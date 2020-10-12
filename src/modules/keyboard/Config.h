@@ -33,12 +33,13 @@ public:
 
     void init();
 
-    Calamares::JobList
-    createJobs( const QString& xOrgConfFileName, const QString& convertedKeymapPath, bool writeEtcDefaultKeyboard );
+    Calamares::JobList createJobs();
     QString prettyStatus() const;
 
     void onActivate();
     void finalize();
+
+    void setConfigurationMap( const QVariantMap& configurationMap );
 
 private:
     void guessLayout( const QStringList& langParts );
@@ -52,6 +53,12 @@ private:
     QString m_selectedModel;
     QString m_selectedVariant;
     QTimer m_setxkbmapTimer;
+
+    // From configuration
+    QString m_xOrgConfFileName;
+    QString m_convertedKeymapPath;
+    bool m_writeEtcDefaultKeyboard = true;
+
 
 protected:
     KeyboardModelsModel* keyboardModels() const;

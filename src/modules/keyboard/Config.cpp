@@ -18,6 +18,7 @@
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 #include "utils/String.h"
+#include "utils/Variant.h"
 
 #include <QApplication>
 #include <QProcess>
@@ -214,16 +215,16 @@ Config::prettyStatus() const
 }
 
 Calamares::JobList
-Config::createJobs( const QString& xOrgConfFileName, const QString& convertedKeymapPath, bool writeEtcDefaultKeyboard )
+Config::createJobs()
 {
     QList< Calamares::job_ptr > list;
 
     Calamares::Job* j = new SetKeyboardLayoutJob( m_selectedModel,
                                                   m_selectedLayout,
                                                   m_selectedVariant,
-                                                  xOrgConfFileName,
-                                                  convertedKeymapPath,
-                                                  writeEtcDefaultKeyboard );
+                                                  m_xOrgConfFileName,
+                                                  m_convertedKeymapPath,
+                                                  m_writeEtcDefaultKeyboard );
     list.append( Calamares::job_ptr( j ) );
 
     return list;
@@ -391,5 +392,43 @@ Config::updateVariants( const QPersistentModelIndex& currentItem, QString curren
             m_keyboardVariantsModel->setCurrentIndex( index );
             return;
         }
+    }
+}
+
+void
+Config::setConfigurationMap( const QVariantMap& configurationMap )
+{
+    using namespace CalamaresUtils;
+
+    if ( configurationMap.contains( "xOrgConfFileName" )
+         && configurationMap.value( "xOrgConfFileName" ).type() == QVariant::String
+         && !getString( configurationMap, "xOrgConfFileName" ).isEmpty() )
+    {
+        m_xOrgConfFileName = getString( configurationMap, "xOrgConfFileName" );
+    }
+    else
+    {
+        m_xOrgConfFileName = "00-keyboard.conf";
+    }
+
+    if ( configurationMap.contains( "convertedKeymapPath" )
+         && configurationMap.value( "convertedKeymapPath" ).type() == QVariant::String
+         && !getString( configurationMap, "convertedKeymapPath" ).isEmpty() )
+    {
+        m_convertedKeymapPath = getString( configurationMap, "convertedKeymapPath" );
+    }
+    else
+    {
+        m_convertedKeymapPath = QString();
+    }
+
+    if ( configurationMap.contains( "writeEtcDefaultKeyboard" )
+         && configurationMap.value( "writeEtcDefaultKeyboard" ).type() == QVariant::Bool )
+    {
+        m_writeEtcDefaultKeyboard = getBool( configurationMap, "writeEtcDefaultKeyboard", true );
+    }
+    else
+    {
+        m_writeEtcDefaultKeyboard = true;
     }
 }
