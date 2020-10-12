@@ -138,18 +138,25 @@ Config::init()
     {
         const QStringList list = QString( process.readAll() ).split( "\n", SplitSkipEmptyParts );
 
-        for ( QString line : list )
+        // A typical line looks like
+        //      xkb_symbols   { include "pc+latin+ru:2+inet(evdev)+group(alt_shift_toggle)+ctrl(swapcaps)"       };
+        for ( const auto& line : list )
         {
-            line = line.trimmed();
-            if ( !line.startsWith( "xkb_symbols" ) )
+            if ( !line.trimmed().startsWith( "xkb_symbols" ) )
             {
                 continue;
             }
 
-            line = line.remove( "}" ).remove( "{" ).remove( ";" );
-            line = line.mid( line.indexOf( "\"" ) + 1 );
+            int firstQuote = line.indexOf('"');
+            int lastQuote = line.lastIndexOf('"');
 
-            QStringList split = line.split( "+", SplitSkipEmptyParts );
+            if (firstQuote < 0 || lastQuote < 0 || lastQuote <= firstQuote)
+            {
+                continue;
+            }
+
+            QStringList split = line.mid(firstQuote+1, lastQuote-firstQuote).split( "+", SplitSkipEmptyParts );
+            cDebug() << split;
             if ( split.size() >= 2 )
             {
                 currentLayout = split.at( 1 );
