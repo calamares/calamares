@@ -41,6 +41,7 @@ struct OsproberEntry
 {
     QString prettyName;
     QString path;
+    QString file;
     QString uuid;
     bool canBeResized;
     QStringList line;

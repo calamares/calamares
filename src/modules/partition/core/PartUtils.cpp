@@ -393,17 +393,25 @@ runOsprober( DeviceModel* dm )
                 prettyName = lineColumns.value( 2 ).simplified();
             }
 
-            QString path = lineColumns.value( 0 ).simplified();
+            QString file, path = lineColumns.value( 0 ).simplified();
             if ( !path.startsWith( "/dev/" ) )  //basic sanity check
             {
                 continue;
+            }
+
+            // strip extra file after device: /dev/name@/path/to/file
+            int index = path.indexOf( '@' );
+            if ( index != -1 )
+            {
+                file = path.right( path.length() - index - 1 );
+                path = path.left( index );
             }
 
             FstabEntryList fstabEntries = lookForFstabEntries( path );
             QString homePath = findPartitionPathForMountPoint( fstabEntries, "/home" );
 
             osproberEntries.append(
-                { prettyName, path, QString(), canBeResized( dm, path ), lineColumns, fstabEntries, homePath } );
+                { prettyName, path, file, QString(), canBeResized( dm, path ), lineColumns, fstabEntries, homePath } );
             osproberCleanLines.append( line );
         }
     }

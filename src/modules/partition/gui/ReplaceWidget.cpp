@@ -178,7 +178,7 @@ ReplaceWidget::onPartitionSelected()
 
         QString fsNameForUser = userVisibleFS( partition->fileSystem() );
         QString prettyName = tr( "Data partition (%1)" ).arg( fsNameForUser );
-        for ( const QString& line : osproberLines )
+        for ( const auto& line : osproberLines )
         {
             QStringList lineColumns = line.split( ':' );
 
