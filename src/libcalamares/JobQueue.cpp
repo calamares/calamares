@@ -177,6 +177,18 @@ private:
             const auto& jobitem = m_runningJobs->at( m_jobIndex );
             progress = ( jobitem.cumulative + jobitem.weight * percentage ) / m_overallQueueWeight;
             message = jobitem.job->prettyStatusMessage();
+            // In progress reports at the start of a job (e.g. when the queue
+            // starts the job, or if the job itself reports 0.0) be more
+            // accepting in what gets reported: jobs with no status fall
+            // back to description and name, whichever is non-empty.
+            if ( percentage == 0.0 && message.isEmpty() )
+            {
+                message = jobitem.job->prettyDescription();
+                if ( message.isEmpty() )
+                {
+                    message = jobitem.job->prettyName();
+                }
+            }
         }
         else
         {

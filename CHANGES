@@ -20,6 +20,8 @@ This release contains contributions from (alphabetically by first name):
    a particular kind of partition table. (thanks Gaël)
  - The *partition* module is a little more resilient to variations
    in btrfs notation from os-prober.
+ - The *shellprocess* module now supports having a different progress
+   message (other than "Shell Processes Job") through the config file.
 
 
  # 3.2.31 (2020-10-06) #

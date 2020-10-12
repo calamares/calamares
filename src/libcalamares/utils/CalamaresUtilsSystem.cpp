@@ -127,7 +127,7 @@ System::runCommand( System::RunLocation location,
 
     if ( ( location == System::RunLocation::RunInTarget ) && ( !gs || !gs->contains( "rootMountPoint" ) ) )
     {
-        cWarning() << "No rootMountPoint in global storage";
+        cWarning() << "No rootMountPoint in global storage, while RunInTarget is specified";
         return ProcessResult::Code::NoWorkingDirectory;
     }
 

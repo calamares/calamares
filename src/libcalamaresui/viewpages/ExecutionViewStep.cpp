@@ -191,7 +191,10 @@ void
 ExecutionViewStep::updateFromJobQueue( qreal percent, const QString& message )
 {
     m_progressBar->setValue( int( percent * m_progressBar->maximum() ) );
-    m_label->setText( message );
+    if ( !message.isEmpty() )
+    {
+        m_label->setText( message );
+    }
 }
 
 void
