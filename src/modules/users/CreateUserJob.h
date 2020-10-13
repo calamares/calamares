@@ -26,6 +26,7 @@ public:
 
 private:
     const Config* m_config;
+    QString m_status;
 };
 
 #endif /* CREATEUSERJOB_H */

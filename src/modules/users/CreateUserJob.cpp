@@ -47,7 +47,7 @@ CreateUserJob::prettyDescription() const
 QString
 CreateUserJob::prettyStatusMessage() const
 {
-    return tr( "Creating user %1." ).arg( m_config->loginName() );
+    return m_status.isEmpty() ? tr( "Creating user %1." ).arg( m_config->loginName() ) : m_status;
 }
 
 STATICTEST QStringList
@@ -157,14 +157,22 @@ setUserGroups( const QString& loginName, const QStringList& groups )
 Calamares::JobResult
 CreateUserJob::exec()
 {
-    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-    QDir destDir( gs->value( "rootMountPoint" ).toString() );
+    QDir destDir;
+    bool reuseHome = false;
 
-    if ( gs->contains( "sudoersGroup" ) && !gs->value( "sudoersGroup" ).toString().isEmpty() )
     {
+        Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+        destDir = QDir( gs->value( "rootMountPoint" ).toString() );
+        reuseHome = gs->value( "reuseHome" ).toBool();
+    }
+
+    if ( !m_config->sudoersGroup().isEmpty() )
+    {
+        m_status = tr( "Preparing sudo for user %1" ).arg( m_config->loginName() );
+        emit progress( 0.05 );
         cDebug() << "[CREATEUSER]: preparing sudoers";
 
-        QString sudoersLine = QString( "%%1 ALL=(ALL) ALL\n" ).arg( gs->value( "sudoersGroup" ).toString() );
+        QString sudoersLine = QString( "%%1 ALL=(ALL) ALL\n" ).arg( m_config->sudoersGroup() );
         auto fileResult
             = CalamaresUtils::System::instance()->createTargetFile( QStringLiteral( "/etc/sudoers.d/10-installer" ),
                                                                     sudoersLine.toUtf8().constData(),
@@ -185,6 +193,8 @@ CreateUserJob::exec()
 
     cDebug() << "[CREATEUSER]: preparing groups";
 
+    m_status = tr( "Preparing groups for user %1" ).arg( m_config->loginName() );
+    emit progress( 0.1 );
     // loginName(), fullName().isEmpty() ? loginName() : fullName(), doAutoLogin(), groupNames );
     const auto& defaultGroups = m_config->defaultGroups();
     QStringList groupsForThisUser = std::accumulate(
@@ -205,8 +215,10 @@ CreateUserJob::exec()
 
     // If we're looking to reuse the contents of an existing /home.
     // This GS setting comes from the **partitioning** module.
-    if ( gs->value( "reuseHome" ).toBool() )
+    if ( reuseHome )
     {
+        m_status = tr( "Preserving home directory" );
+        emit progress( 0.2 );
         QString shellFriendlyHome = "/home/" + m_config->loginName();
         QDir existingHome( destDir.absolutePath() + shellFriendlyHome );
         if ( existingHome.exists() )
@@ -222,18 +234,24 @@ CreateUserJob::exec()
 
     cDebug() << "[CREATEUSER]: creating user";
 
+    m_status = tr( "Creating user %1" ).arg( m_config->loginName() );
+    emit progress( 0.5 );
     auto useraddResult = createUser( m_config->loginName(), m_config->fullName(), m_config->userShell() );
     if ( !useraddResult )
     {
         return useraddResult;
     }
 
+    m_status = tr( "Configuring user %1" ).arg( m_config->loginName() );
+    emit progress( 0.8 );
     auto usergroupsResult = setUserGroups( m_config->loginName(), groupsForThisUser );
     if ( !usergroupsResult )
     {
         return usergroupsResult;
     }
 
+    m_status = tr( "Setting file permissions" );
+    emit progress( 0.9 );
     QString userGroup = QString( "%1:%2" ).arg( m_config->loginName() ).arg( m_config->loginName() );
     QString homeDir = QString( "/home/%1" ).arg( m_config->loginName() );
     auto commandResult = CalamaresUtils::System::instance()->targetEnvCommand( { "chown", "-R", userGroup, homeDir } );
