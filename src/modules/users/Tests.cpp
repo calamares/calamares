@@ -16,7 +16,7 @@
 #include <QtTest/QtTest>
 
 // Implementation details
-extern void setConfigurationDefaultGroups( const QVariantMap& map, QStringList& defaultGroups );
+extern void setConfigurationDefaultGroups( const QVariantMap& map, QList< GroupDescription >& defaultGroups );
 extern HostNameActions getHostNameActions( const QVariantMap& configurationMap );
 extern bool addPasswordCheck( const QString& key, const QVariant& value, PasswordCheckList& passwordChecks );
 
@@ -56,29 +56,32 @@ void
 UserTests::testDefaultGroups()
 {
     {
-        QStringList groups;
+        QList< GroupDescription > groups;
         QVariantMap hweelGroup;
         QVERIFY( groups.isEmpty() );
         hweelGroup.insert( "defaultGroups", QStringList { "hweel" } );
         setConfigurationDefaultGroups( hweelGroup, groups );
         QCOMPARE( groups.count(), 1 );
-        QVERIFY( groups.contains( "hweel" ) );
+        QVERIFY( groups.contains( GroupDescription( "hweel" ) ) );
     }
 
     {
         QStringList desired { "wheel", "root", "operator" };
-        QStringList groups;
+        QList< GroupDescription > groups;
         QVariantMap threeGroup;
         QVERIFY( groups.isEmpty() );
         threeGroup.insert( "defaultGroups", desired );
         setConfigurationDefaultGroups( threeGroup, groups );
         QCOMPARE( groups.count(), 3 );
-        QVERIFY( !groups.contains( "hweel" ) );
-        QCOMPARE( groups, desired );
+        QVERIFY( !groups.contains( GroupDescription( "hweel" ) ) );
+        for ( const auto& s : desired )
+        {
+            QVERIFY( groups.contains( GroupDescription( s ) ) );
+        }
     }
 
     {
-        QStringList groups;
+        QList< GroupDescription > groups;
         QVariantMap explicitEmpty;
         QVERIFY( groups.isEmpty() );
         explicitEmpty.insert( "defaultGroups", QStringList() );
@@ -87,22 +90,22 @@ UserTests::testDefaultGroups()
     }
 
     {
-        QStringList groups;
+        QList< GroupDescription > groups;
         QVariantMap missing;
         QVERIFY( groups.isEmpty() );
         setConfigurationDefaultGroups( missing, groups );
         QCOMPARE( groups.count(), 6 );  // because of fallback!
-        QVERIFY( groups.contains( "lp" ) );
+        QVERIFY( groups.contains( GroupDescription( "lp" ) ) );
     }
 
     {
-        QStringList groups;
+        QList< GroupDescription > groups;
         QVariantMap typeMismatch;
         QVERIFY( groups.isEmpty() );
         typeMismatch.insert( "defaultGroups", 1 );
         setConfigurationDefaultGroups( typeMismatch, groups );
         QCOMPARE( groups.count(), 6 );  // because of fallback!
-        QVERIFY( groups.contains( "lp" ) );
+        QVERIFY( groups.contains( GroupDescription( "lp" ) ) );
     }
 }
 
