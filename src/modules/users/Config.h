@@ -40,11 +40,17 @@ const NamedEnumTable< HostNameAction >& hostNameActionNames();
 class GroupDescription
 {
 public:
+    // TODO: still too-weakly typed, add a macro to define strongly-typed bools
+    class MustExist : public std::true_type {};
+    class CreateIfNeeded : public std::false_type {};
+    class SystemGroup : public std::true_type {};
+    class UserGroup : public std::false_type {};
+
     ///@brief An invalid, empty group
     GroupDescription() {}
 
     ///@brief A group with full details
-    GroupDescription( const QString& name, bool mustExistAlready = false, bool isSystem = false )
+    GroupDescription( const QString& name, bool mustExistAlready = CreateIfNeeded{}, bool isSystem = UserGroup{} )
         : m_name( name )
         , m_isValid( !name.isEmpty() )
         , m_mustAlreadyExist( mustExistAlready )
