@@ -590,8 +590,12 @@ Config::checkReady()
 
 
 STATICTEST void
-setConfigurationDefaultGroups( const QVariantMap& map, QStringList& defaultGroups )
+setConfigurationDefaultGroups( const QVariantMap& map, QList< GroupDescription >& defaultGroups )
 {
+    defaultGroups.clear();
+    auto groupsFromConfig = map.value( "defaultGroups" ).toList();
+    cDebug() << groupsFromConfig;
+#if 0
     // '#' is not a valid group name; use that to distinguish an empty-list
     // in the configuration (which is a legitimate, if unusual, choice)
     // from a bad or missing configuration value.
@@ -601,6 +605,7 @@ setConfigurationDefaultGroups( const QVariantMap& map, QStringList& defaultGroup
         cWarning() << "Using fallback groups. Please check *defaultGroups* in users.conf";
         defaultGroups = QStringList { "lp", "video", "network", "storage", "wheel", "audio" };
     }
+#endif
 }
 
 STATICTEST HostNameActions
@@ -737,8 +742,13 @@ Config::createJobs() const
 
     Calamares::Job* j;
 
-    j = new CreateUserJob(
-        loginName(), fullName().isEmpty() ? loginName() : fullName(), doAutoLogin(), defaultGroups() );
+    QStringList groupNames = std::accumulate(
+        m_defaultGroups.begin(),
+        m_defaultGroups.end(),
+        QStringList(),
+        []( const QStringList& l, const GroupDescription& g ) { return QStringList( l ) << g.name(); } );
+
+    j = new CreateUserJob( loginName(), fullName().isEmpty() ? loginName() : fullName(), doAutoLogin(), groupNames );
     jobs.append( Calamares::job_ptr( j ) );
 
     j = new SetPasswordJob( loginName(), userPassword() );

@@ -15,6 +15,7 @@
 #include "Job.h"
 #include "utils/NamedEnum.h"
 
+#include <QList>
 #include <QObject>
 #include <QVariantMap>
 
@@ -29,6 +30,45 @@ Q_DECLARE_FLAGS( HostNameActions, HostNameAction )
 Q_DECLARE_OPERATORS_FOR_FLAGS( HostNameActions )
 
 const NamedEnumTable< HostNameAction >& hostNameActionNames();
+
+/** @brief Settings for a single group
+ *
+ * The list of defaultgroups from the configuration can be
+ * set up in a fine-grained way, with both user- and system-
+ * level groups; this class stores a configuration for each.
+ */
+class GroupDescription
+{
+public:
+    ///@brief An invalid, empty group
+    GroupDescription() {}
+
+    ///@brief A group with full details
+    GroupDescription( const QString& name, bool mustExistAlready = false, bool isSystem = false )
+        : m_name( name )
+        , m_isValid( !name.isEmpty() )
+        , m_mustAlreadyExist( mustExistAlready )
+        , m_isSystem( isSystem )
+    {
+    }
+
+    bool isValid() const { return m_isValid; }
+    bool isSystemGroup() const { return m_isSystem; }
+    QString name() const { return m_name; }
+
+    ///@brief Equality of groups depends only on name and kind
+    bool operator==( const GroupDescription& rhs ) const
+    {
+        return rhs.name() == name() && rhs.isSystemGroup() == isSystemGroup();
+    }
+
+private:
+    QString m_name;
+    bool m_isValid = false;
+    bool m_mustAlreadyExist = false;
+    bool m_isSystem = false;
+};
+
 
 class Config : public QObject
 {
@@ -158,7 +198,7 @@ public:
     /// Current setting for "require strong password"?
     bool requireStrongPasswords() const { return m_requireStrongPasswords; }
 
-    const QStringList& defaultGroups() const { return m_defaultGroups; }
+    const QList< GroupDescription >& defaultGroups() const { return m_defaultGroups; }
 
     // The user enters a password (and again in a separate UI element)
     QString userPassword() const { return m_userPassword; }
@@ -242,7 +282,7 @@ private:
     PasswordStatus passwordStatus( const QString&, const QString& ) const;
     void checkReady();
 
-    QStringList m_defaultGroups;
+    QList< GroupDescription > m_defaultGroups;
     QString m_userShell;
     QString m_autologinGroup;
     QString m_sudoersGroup;
