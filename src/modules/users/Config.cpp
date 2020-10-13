@@ -608,7 +608,7 @@ setConfigurationDefaultGroups( const QVariantMap& map, QList< GroupDescription >
             cWarning() << "Using fallback groups. Please check *defaultGroups* value in users.conf";
             for ( const auto& s : { "lp", "video", "network", "storage", "wheel", "audio" } )
             {
-                defaultGroups.append( GroupDescription( s ) );
+                defaultGroups.append( GroupDescription( s, GroupDescription::CreateIfNeeded{}, GroupDescription::SystemGroup{} ) );
             }
         }
     }
