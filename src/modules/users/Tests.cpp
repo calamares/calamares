@@ -95,7 +95,7 @@ UserTests::testDefaultGroups()
         QVERIFY( groups.isEmpty() );
         setConfigurationDefaultGroups( missing, groups );
         QCOMPARE( groups.count(), 6 );  // because of fallback!
-        QVERIFY( groups.contains( GroupDescription( "lp" ) ) );
+        QVERIFY( groups.contains( GroupDescription( "lp", false, GroupDescription::SystemGroup{} ) ) );
     }
 
     {
@@ -105,7 +105,7 @@ UserTests::testDefaultGroups()
         typeMismatch.insert( "defaultGroups", 1 );
         setConfigurationDefaultGroups( typeMismatch, groups );
         QCOMPARE( groups.count(), 6 );  // because of fallback!
-        QVERIFY( groups.contains( GroupDescription( "lp" ) ) );
+        QVERIFY( groups.contains( GroupDescription( "lp", false, GroupDescription::SystemGroup{} ) ) );
     }
 }
 
