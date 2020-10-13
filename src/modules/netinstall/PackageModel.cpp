@@ -10,6 +10,7 @@
 
 #include "PackageModel.h"
 
+#include "utils/Logger.h"
 #include "utils/Variant.h"
 #include "utils/Yaml.h"
 
@@ -245,9 +246,21 @@ PackageModel::setupModelData( const QVariantList& groupList, PackageTreeItem* pa
                     }
                 }
             }
+            if ( !item->childCount() )
+            {
+                cWarning() << "*packages* under" << item->name() << "is empty.";
+            }
         }
         if ( groupMap.contains( "subgroups" ) )
         {
+            bool haveWarned = false;
+            const auto& subgroupValue = groupMap.value( "subgroups" );
+            if ( !subgroupValue.canConvert( QVariant::List ) )
+            {
+                cWarning() << "*subgroups* under" << item->name() << "is not a list.";
+                haveWarned = true;
+            }
+
             QVariantList subgroups = groupMap.value( "subgroups" ).toList();
             if ( !subgroups.isEmpty() )
             {
@@ -257,10 +270,22 @@ PackageModel::setupModelData( const QVariantList& groupList, PackageTreeItem* pa
                 // the checked-state -- do it manually.
                 item->updateSelected();
             }
+            else
+            {
+                if ( !haveWarned )
+                {
+                    cWarning() << "*subgroups* list under" << item->name() << "is empty.";
+                }
+            }
         }
         if ( item->isHidden() )
         {
             m_hiddenItems.append( item );
+            if ( !item->isSelected() )
+            {
+                cWarning() << "Item" << ( item->parentItem() ? item->parentItem()->name() : QString() ) << '.'
+                           << item->name() << "is hidden, but not selected.";
+            }
         }
         else
         {
