@@ -780,13 +780,7 @@ Config::createJobs() const
 
     Calamares::Job* j;
 
-    QStringList groupNames = std::accumulate(
-        m_defaultGroups.begin(),
-        m_defaultGroups.end(),
-        QStringList(),
-        []( const QStringList& l, const GroupDescription& g ) { return QStringList( l ) << g.name(); } );
-
-    j = new CreateUserJob( loginName(), fullName().isEmpty() ? loginName() : fullName(), doAutoLogin(), groupNames );
+    j = new CreateUserJob( this );
     jobs.append( Calamares::job_ptr( j ) );
 
     j = new SetPasswordJob( loginName(), userPassword() );

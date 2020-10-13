@@ -7,6 +7,8 @@
 
 #include "CreateUserJob.h"
 
+#include "Config.h"
+
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "utils/CalamaresUtilsSystem.h"
@@ -21,15 +23,9 @@
 #include <QTextStream>
 
 
-CreateUserJob::CreateUserJob( const QString& userName,
-                              const QString& fullName,
-                              bool autologin,
-                              const QStringList& defaultGroups )
+CreateUserJob::CreateUserJob( const Config* config )
     : Calamares::Job()
-    , m_userName( userName )
-    , m_fullName( fullName )
-    , m_autologin( autologin )
-    , m_defaultGroups( defaultGroups )
+    , m_config( config )
 {
 }
 
@@ -37,21 +33,21 @@ CreateUserJob::CreateUserJob( const QString& userName,
 QString
 CreateUserJob::prettyName() const
 {
-    return tr( "Create user %1" ).arg( m_userName );
+    return tr( "Create user %1" ).arg( m_config->loginName() );
 }
 
 
 QString
 CreateUserJob::prettyDescription() const
 {
-    return tr( "Create user <strong>%1</strong>." ).arg( m_userName );
+    return tr( "Create user <strong>%1</strong>." ).arg( m_config->loginName() );
 }
 
 
 QString
 CreateUserJob::prettyStatusMessage() const
 {
-    return tr( "Creating user %1." ).arg( m_userName );
+    return tr( "Creating user %1." ).arg( m_config->loginName() );
 }
 
 STATICTEST QStringList
@@ -86,16 +82,16 @@ groupsInTargetSystem( const QDir& targetRoot )
 }
 
 static void
-ensureGroupsExistInTarget( const QStringList& wantedGroups, const QStringList& availableGroups )
+ensureGroupsExistInTarget( const QList< GroupDescription >& wantedGroups, const QStringList& availableGroups )
 {
-    for ( const QString& group : wantedGroups )
+    for ( const auto& group : wantedGroups )
     {
-        if ( !availableGroups.contains( group ) )
+        if ( group.isValid() && !availableGroups.contains( group.name() ) )
         {
 #ifdef __FreeBSD__
-            CalamaresUtils::System::instance()->targetEnvCall( { "pw", "groupadd", "-n", group } );
+            CalamaresUtils::System::instance()->targetEnvCall( { "pw", "groupadd", "-n", group.name() } );
 #else
-            CalamaresUtils::System::instance()->targetEnvCall( { "groupadd", group } );
+            CalamaresUtils::System::instance()->targetEnvCall( { "groupadd", group.name() } );
 #endif
         }
     }
@@ -189,19 +185,29 @@ CreateUserJob::exec()
 
     cDebug() << "[CREATEUSER]: preparing groups";
 
+    // loginName(), fullName().isEmpty() ? loginName() : fullName(), doAutoLogin(), groupNames );
+    const auto& defaultGroups = m_config->defaultGroups();
+    QStringList groupsForThisUser = std::accumulate(
+        defaultGroups.begin(),
+        defaultGroups.end(),
+        QStringList(),
+        []( const QStringList& l, const GroupDescription& g ) { return QStringList( l ) << g.name(); } );
+
     QStringList availableGroups = groupsInTargetSystem( destDir );
-    QStringList groupsForThisUser = m_defaultGroups;
-    if ( m_autologin && gs->contains( "autologinGroup" ) && !gs->value( "autologinGroup" ).toString().isEmpty() )
+    ensureGroupsExistInTarget( defaultGroups, availableGroups );
+
+    if ( m_config->doAutoLogin() && !m_config->autologinGroup().isEmpty() )
     {
-        groupsForThisUser << gs->value( "autologinGroup" ).toString();
+        const QString autologinGroup = m_config->autologinGroup();
+        groupsForThisUser << autologinGroup;
+        ensureGroupsExistInTarget( QList< GroupDescription >() << GroupDescription( autologinGroup ), availableGroups );
     }
-    ensureGroupsExistInTarget( groupsForThisUser, availableGroups );
 
     // If we're looking to reuse the contents of an existing /home.
     // This GS setting comes from the **partitioning** module.
     if ( gs->value( "reuseHome" ).toBool() )
     {
-        QString shellFriendlyHome = "/home/" + m_userName;
+        QString shellFriendlyHome = "/home/" + m_config->loginName();
         QDir existingHome( destDir.absolutePath() + shellFriendlyHome );
         if ( existingHome.exists() )
         {
@@ -216,20 +222,20 @@ CreateUserJob::exec()
 
     cDebug() << "[CREATEUSER]: creating user";
 
-    auto useraddResult = createUser( m_userName, m_fullName, gs->value( "userShell" ).toString() );
+    auto useraddResult = createUser( m_config->loginName(), m_config->fullName(), m_config->userShell() );
     if ( !useraddResult )
     {
         return useraddResult;
     }
 
-    auto usergroupsResult = setUserGroups( m_userName, groupsForThisUser );
+    auto usergroupsResult = setUserGroups( m_config->loginName(), groupsForThisUser );
     if ( !usergroupsResult )
     {
         return usergroupsResult;
     }
 
-    QString userGroup = QString( "%1:%2" ).arg( m_userName ).arg( m_userName );
-    QString homeDir = QString( "/home/%1" ).arg( m_userName );
+    QString userGroup = QString( "%1:%2" ).arg( m_config->loginName() ).arg( m_config->loginName() );
+    QString homeDir = QString( "/home/%1" ).arg( m_config->loginName() );
     auto commandResult = CalamaresUtils::System::instance()->targetEnvCommand( { "chown", "-R", userGroup, homeDir } );
     if ( commandResult.getExitCode() )
     {
