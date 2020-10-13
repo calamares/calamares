@@ -119,6 +119,7 @@ UserTests::testDefaultGroupsYAML_data()
     QTest::newRow( "users.conf" ) << "users.conf" << 7 << "video";
     QTest::newRow( "dashed list" ) << "tests/4-audio.conf" << 4 << "audio";
     QTest::newRow( "blocked list" ) << "tests/3-wing.conf" << 3 << "wing";
+    QTest::newRow( "issue 1523" ) << "tests/5-issue-1523.conf" << 4 << "foobar";
 }
 
 void
