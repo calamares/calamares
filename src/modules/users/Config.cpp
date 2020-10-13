@@ -34,6 +34,11 @@ static void
 updateGSAutoLogin( bool doAutoLogin, const QString& login )
 {
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+    if ( !gs )
+    {
+        cWarning() << "No Global Storage available";
+        return;
+    }
 
     if ( doAutoLogin && !login.isEmpty() )
     {
