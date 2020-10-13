@@ -33,6 +33,9 @@ public:
 private Q_SLOTS:
     void initTestCase();
 
+    // Derpy test for getting and setting regular values
+    void testGetSet();
+
     void testDefaultGroups();
     void testDefaultGroupsYAML_data();
     void testDefaultGroupsYAML();
@@ -51,6 +54,60 @@ UserTests::initTestCase()
     Logger::setupLogLevel( Logger::LOGDEBUG );
     cDebug() << "Users test started.";
 }
+
+void
+UserTests::testGetSet()
+{
+    Config c;
+
+    {
+        const QString sh( "/bin/sh" );
+        QCOMPARE( c.userShell(), QString() );
+        c.setUserShell( sh );
+        QCOMPARE( c.userShell(), sh );
+        c.setUserShell( sh + sh );
+        QCOMPARE( c.userShell(), sh + sh );
+
+        const QString badsh( "bash" );  // Not absolute, that's bad
+        c.setUserShell( badsh );
+        QEXPECT_FAIL( "", "Shell Unchanged", Abort );
+        QCOMPARE( c.userShell(), badsh );
+        QCOMPARE( c.userShell(), sh + sh );  // what was set previously
+
+        // Explicit set to empty is ok
+        c.setUserShell( QString() );
+        QCOMPARE( c.userShell(), QString() );
+    }
+    {
+        const QString al( "autolg" );
+        QCOMPARE( c.autologinGroup(), QString() );
+        c.setAutologinGroup( al );
+        QCOMPARE( c.autologinGroup(), al );
+        QVERIFY( !c.doAutoLogin() );
+        c.setAutoLogin( true );
+        QVERIFY( c.doAutoLogin() );
+        QCOMPARE( c.autologinGroup(), al );
+    }
+    {
+        const QString su( "sudogrp" );
+        QCOMPARE( c.sudoersGroup(), QString() );
+        c.setSudoersGroup( su );
+        QCOMPARE( c.sudoersGroup(), su );
+    }
+    {
+        const QString ful( "Jan-Jaap Karel Kees" );
+        const QString lg( "jjkk" );
+        QCOMPARE( c.fullName(), QString() );
+        QCOMPARE( c.loginName(), QString() );
+        QVERIFY( !c.loginNameStatus().isEmpty() );  // login name is not ok
+        c.setLoginName( lg );
+        c.setFullName( ful );
+        QVERIFY( c.loginNameStatus().isEmpty() );  // now it's ok
+        QCOMPARE( c.loginName(), lg );
+        QCOMPARE( c.fullName(), ful );
+    }
+}
+
 
 void
 UserTests::testDefaultGroups()
