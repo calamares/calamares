@@ -605,10 +605,13 @@ setConfigurationDefaultGroups( const QVariantMap& map, QList< GroupDescription >
         }
         else
         {
+            // By default give the user a handful of "traditional" groups, if
+            // none are specified at all. These are system (GID < 1000) groups.
             cWarning() << "Using fallback groups. Please check *defaultGroups* value in users.conf";
             for ( const auto& s : { "lp", "video", "network", "storage", "wheel", "audio" } )
             {
-                defaultGroups.append( GroupDescription( s, GroupDescription::CreateIfNeeded{}, GroupDescription::SystemGroup{} ) );
+                defaultGroups.append(
+                    GroupDescription( s, GroupDescription::CreateIfNeeded {}, GroupDescription::SystemGroup {} ) );
             }
         }
     }
@@ -619,6 +622,21 @@ setConfigurationDefaultGroups( const QVariantMap& map, QList< GroupDescription >
             if ( v.type() == QVariant::String )
             {
                 defaultGroups.append( GroupDescription( v.toString() ) );
+            }
+            else if ( v.type() == QVariant::Map )
+            {
+                const auto innermap = v.toMap();
+                QString name = CalamaresUtils::getString( innermap, "name" );
+                if ( !name.isEmpty() )
+                {
+                    defaultGroups.append( GroupDescription( name,
+                                                            CalamaresUtils::getBool( innermap, "must_exist", false ),
+                                                            CalamaresUtils::getBool( innermap, "system", false ) ) );
+                }
+                else
+                {
+                    cWarning() << "Ignoring *defaultGroups* entry without a name" << v;
+                }
             }
             else
             {
