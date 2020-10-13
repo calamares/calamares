@@ -281,6 +281,11 @@ PackageModel::setupModelData( const QVariantList& groupList, PackageTreeItem* pa
         if ( item->isHidden() )
         {
             m_hiddenItems.append( item );
+            if ( !item->isSelected() )
+            {
+                cWarning() << "Item" << ( item->parentItem() ? item->parentItem()->name() : QString() ) << '.'
+                           << item->name() << "is hidden, but not selected.";
+            }
         }
         else
         {
