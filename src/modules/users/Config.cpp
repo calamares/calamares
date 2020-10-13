@@ -593,19 +593,39 @@ STATICTEST void
 setConfigurationDefaultGroups( const QVariantMap& map, QList< GroupDescription >& defaultGroups )
 {
     defaultGroups.clear();
-    auto groupsFromConfig = map.value( "defaultGroups" ).toList();
-    cDebug() << groupsFromConfig;
-#if 0
-    // '#' is not a valid group name; use that to distinguish an empty-list
-    // in the configuration (which is a legitimate, if unusual, choice)
-    // from a bad or missing configuration value.
-    defaultGroups = CalamaresUtils::getStringList( map, QStringLiteral( "defaultGroups" ), QStringList { "#" } );
-    if ( defaultGroups.contains( QStringLiteral( "#" ) ) )
+
+    const QString key( "defaultGroups" );
+    auto groupsFromConfig = map.value( key ).toList();
+    if ( groupsFromConfig.isEmpty() )
     {
-        cWarning() << "Using fallback groups. Please check *defaultGroups* in users.conf";
-        defaultGroups = QStringList { "lp", "video", "network", "storage", "wheel", "audio" };
+        if ( map.contains( key ) && map.value( key ).isValid() && map.value( key ).canConvert( QVariant::List ) )
+        {
+            // Explicitly set, but empty: this is valid, but unusual.
+            cDebug() << key << "has explicit empty value.";
+        }
+        else
+        {
+            cWarning() << "Using fallback groups. Please check *defaultGroups* value in users.conf";
+            for ( const auto& s : { "lp", "video", "network", "storage", "wheel", "audio" } )
+            {
+                defaultGroups.append( GroupDescription( s ) );
+            }
+        }
     }
-#endif
+    else
+    {
+        for ( const auto& v : groupsFromConfig )
+        {
+            if ( v.type() == QVariant::String )
+            {
+                defaultGroups.append( GroupDescription( v.toString() ) );
+            }
+            else
+            {
+                cWarning() << "Unknown *defaultGroups* entry" << v;
+            }
+        }
+    }
 }
 
 STATICTEST HostNameActions
