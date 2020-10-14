@@ -102,12 +102,14 @@ UserTests::testGetSet()
         const QString lg( "jjkk" );
         QCOMPARE( c.fullName(), QString() );
         QCOMPARE( c.loginName(), QString() );
-        QVERIFY( !c.loginNameStatus().isEmpty() );  // login name is not ok
+        QVERIFY( c.loginNameStatus().isEmpty() );  // empty login name is ok
         c.setLoginName( lg );
         c.setFullName( ful );
-        QVERIFY( c.loginNameStatus().isEmpty() );  // now it's ok
+        QVERIFY( c.loginNameStatus().isEmpty() );  // now it's still ok
         QCOMPARE( c.loginName(), lg );
         QCOMPARE( c.fullName(), ful );
+        c.setLoginName( "root" );
+        QVERIFY( !c.loginNameStatus().isEmpty() );  // can't be root
     }
 }
 
