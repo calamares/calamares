@@ -315,7 +315,10 @@ def create_swapfile(root_mount_point, root_btrfs):
     is on btrfs, then handle some btrfs specific features as well,
     as documented in
         https://wiki.archlinux.org/index.php/Swap#Swap_file
+
+    The swapfile-creation covers progress from 0.2 to 0.5
     """
+    libcalamares.job.setprogress(0.2)
     swapfile_path = os.path.join(root_mount_point, "swapfile")
     with open(swapfile_path, "wb") as f:
         pass
@@ -325,11 +328,21 @@ def create_swapfile(root_mount_point, root_btrfs):
         o = subprocess.check_output(["btrfs", "property", "set", swapfile_path, "compression", "none"])
         libcalamares.utils.debug("swapfile compression: {!s}".format(o))
     # Create the swapfile; swapfiles are small-ish
-    o = subprocess.check_output(["dd", "if=/dev/zero", "of=" + swapfile_path, "bs=1M", "count=512", "conv=notrunc"])
-    libcalamares.utils.debug("swapfile dd: {!s}".format(o))
+    zeroes = bytes(16384)
+    with open(swapfile_path, "wb") as f:
+        total = 0
+        desired_size = 512 * 1024 * 1024  # 512MiB
+        while total < desired_size:
+            chunk = f.write(zeroes)
+            if chunk < 1:
+                libcalamares.utils.debug("Short write on {!s}, cancelling.".format(swapfile_path))
+                break
+            libcalamares.job.setprogress(0.2 + 0.3 * ( total / desired_size ) )
+            total += chunk
     os.chmod(swapfile_path, 0o600)
     o = subprocess.check_output(["mkswap", swapfile_path])
     libcalamares.utils.debug("swapfile mkswap: {!s}".format(o))
+    libcalamares.job.setprogress(0.5)
 
 
 def run():
