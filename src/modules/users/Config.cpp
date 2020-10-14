@@ -127,15 +127,23 @@ insertInGlobalStorage( const QString& key, const QString& group )
 void
 Config::setAutologinGroup( const QString& group )
 {
-    insertInGlobalStorage( QStringLiteral( "autologinGroup" ), group );
-    emit autologinGroupChanged( group );
+    if ( group != m_autologinGroup )
+    {
+        m_autologinGroup = group;
+        insertInGlobalStorage( QStringLiteral( "autologinGroup" ), group );
+        emit autologinGroupChanged( group );
+    }
 }
 
 void
 Config::setSudoersGroup( const QString& group )
 {
-    insertInGlobalStorage( QStringLiteral( "sudoersGroup" ), group );
-    emit sudoersGroupChanged( group );
+    if ( group != m_sudoersGroup )
+    {
+        m_sudoersGroup = group;
+        insertInGlobalStorage( QStringLiteral( "sudoersGroup" ), group );
+        emit sudoersGroupChanged( group );
+    }
 }
 
 
@@ -144,10 +152,9 @@ Config::setLoginName( const QString& login )
 {
     if ( login != m_loginName )
     {
-        updateGSAutoLogin( doAutoLogin(), login );
-
         m_customLoginName = !login.isEmpty();
         m_loginName = login;
+        updateGSAutoLogin( doAutoLogin(), login );
         emit loginNameChanged( login );
         emit loginNameStatusChanged( loginNameStatus() );
     }
@@ -199,6 +206,8 @@ Config::setHostName( const QString& host )
 {
     if ( host != m_hostName )
     {
+        m_customHostName = !host.isEmpty();
+        m_hostName = host;
         Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
         if ( host.isEmpty() )
         {
@@ -208,9 +217,6 @@ Config::setHostName( const QString& host )
         {
             gs->insert( "hostname", host );
         }
-
-        m_customHostName = !host.isEmpty();
-        m_hostName = host;
         emit hostNameChanged( host );
         emit hostNameStatusChanged( hostNameStatus() );
     }
@@ -379,8 +385,8 @@ Config::setAutoLogin( bool b )
 {
     if ( b != m_doAutoLogin )
     {
-        updateGSAutoLogin( b, loginName() );
         m_doAutoLogin = b;
+        updateGSAutoLogin( b, loginName() );
         emit autoLoginChanged( b );
     }
 }
