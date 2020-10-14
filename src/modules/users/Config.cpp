@@ -100,11 +100,16 @@ Config::setUserShell( const QString& shell )
         cWarning() << "User shell" << shell << "is not an absolute path.";
         return;
     }
-    // The shell is put into GS because the CreateUser job expects it there
-    auto* gs = Calamares::JobQueue::instance()->globalStorage();
-    if ( gs )
+    if ( shell != m_userShell )
     {
-        gs->insert( "userShell", shell );
+        m_userShell = shell;
+        emit userShellChanged(shell);
+        // The shell is put into GS as well.
+        auto* gs = Calamares::JobQueue::instance()->globalStorage();
+        if ( gs )
+        {
+            gs->insert( "userShell", shell );
+        }
     }
 }
 

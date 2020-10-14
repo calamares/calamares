@@ -74,9 +74,7 @@ UserTests::testGetSet()
         QCOMPARE( c.userShell(), sh + sh );
 
         const QString badsh( "bash" );  // Not absolute, that's bad
-        c.setUserShell( badsh );
-        QEXPECT_FAIL( "", "Shell Unchanged", Abort );
-        QCOMPARE( c.userShell(), badsh );
+        c.setUserShell( badsh );  // .. so unchanged
         QCOMPARE( c.userShell(), sh + sh );  // what was set previously
 
         // Explicit set to empty is ok
