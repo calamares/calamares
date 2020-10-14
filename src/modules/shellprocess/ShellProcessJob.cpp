@@ -60,10 +60,10 @@ void
 ShellProcessJob::setConfigurationMap( const QVariantMap& configurationMap )
 {
     bool dontChroot = CalamaresUtils::getBool( configurationMap, "dontChroot", false );
-    qint64 timeout = CalamaresUtils::getInteger( configurationMap, "timeout", 10 );
+    qint64 timeout = CalamaresUtils::getInteger( configurationMap, "timeout", 30 );
     if ( timeout < 1 )
     {
-        timeout = 10;
+        timeout = 30;
     }
 
     if ( configurationMap.contains( "script" ) )
