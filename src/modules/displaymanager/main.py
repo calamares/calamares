@@ -892,7 +892,7 @@ def run():
     if not displaymanagers:
         return (
             _("No display managers selected for the displaymanager module."),
-            _("The displaymanagers list is empty or undefined in both"
+            _("The displaymanagers list is empty or undefined in both "
             "globalstorage and displaymanager.conf.")
             )
 
