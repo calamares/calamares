@@ -1446,7 +1446,7 @@ ChoicePage::setupActions()
     if ( tableType != PartitionTable::unknownTableType && !matchTableType )
     {
         m_messageLabel->setText( tr( "This storage device already may has an operating system on it, "
-                                     "but its partition table <strong>%1</strong> mismatch the"
+                                     "but its partition table <strong>%1</strong> mismatch the "
                                      "requirement <strong>%2</strong>.<br/>" )
                                      .arg( PartitionTable::tableTypeToName( tableType ) )
                                      .arg( m_requiredPartitionTableType.join( " or " ) ) );
