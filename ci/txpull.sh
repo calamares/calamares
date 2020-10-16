@@ -71,7 +71,6 @@ drop_language() {
 
 drop_language es_ES
 drop_language pl_PL
-drop_language fur
 
 # Also fix the .desktop file, which has some fields removed by Transifex.
 #
