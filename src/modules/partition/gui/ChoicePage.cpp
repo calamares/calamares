@@ -1445,18 +1445,16 @@ ChoicePage::setupActions()
 
     if ( tableType != PartitionTable::unknownTableType && !matchTableType )
     {
-        m_messageLabel->setText( tr( "This storage device already may has an operating system on it, "
-                                     "but its partition table <strong>%1</strong> mismatch the "
-                                     "requirement <strong>%2</strong>.<br/>" )
+        m_messageLabel->setText( tr( "This storage device already has an operating system on it, "
+                                     "but the partition table <strong>%1</strong> is different from the "
+                                     "needed <strong>%2</strong>.<br/>" )
                                      .arg( PartitionTable::tableTypeToName( tableType ) )
                                      .arg( m_requiredPartitionTableType.join( " or " ) ) );
         m_messageLabel->show();
 
         cWarning() << "Partition table" << PartitionTable::tableTypeToName( tableType )
                    << "does not match the requirement " << m_requiredPartitionTableType.join( " or " )
-                   << ", "
-                      "ENABLING erease feature and ";
-        "DISABLING alongside, replace and manual features.";
+                   << ", ENABLING erease feature and DISABLING alongside, replace and manual features.";
         m_eraseButton->show();
         m_alongsideButton->hide();
         m_replaceButton->hide();
