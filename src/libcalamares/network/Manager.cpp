@@ -223,6 +223,7 @@ synchronousRun( QNetworkAccessManager* nam, const QUrl& url, const RequestOption
     auto* reply = asynchronousRun( nam, url, options );
     if ( !reply )
     {
+        cDebug() << "Could not create request for" << url;
         return qMakePair( RequestStatus( RequestStatus::Failed ), nullptr );
     }
 
@@ -232,10 +233,12 @@ synchronousRun( QNetworkAccessManager* nam, const QUrl& url, const RequestOption
     reply->deleteLater();
     if ( reply->isRunning() )
     {
+        cDebug() << "Timeout on request for" << url;
         return qMakePair( RequestStatus( RequestStatus::Timeout ), nullptr );
     }
     else if ( reply->error() != QNetworkReply::NoError )
     {
+        cDebug() << "HTTP error" << reply->error() << "on request for" << url;
         return qMakePair( RequestStatus( RequestStatus::HttpError ), nullptr );
     }
     else
