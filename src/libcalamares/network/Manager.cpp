@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- *
- *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+ * 
+ *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -14,6 +14,10 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+ *
+ *   SPDX-License-Identifier: GPL-3.0-or-later
+ *   License-Filename: LICENSE
+ *
  */
 
 #include "Manager.h"
@@ -236,7 +240,7 @@ synchronousRun( QNetworkAccessManager* nam, const QUrl& url, const RequestOption
     }
     else if ( reply->error() != QNetworkReply::NoError )
     {
-        return qMakePair( RequestStatus( RequestStatus::Timeout ), nullptr );
+        return qMakePair( RequestStatus( RequestStatus::HttpError ), nullptr );
     }
     else
     {
@@ -279,6 +283,30 @@ QNetworkReply*
 Manager::asynchronousGet( const QUrl& url, const CalamaresUtils::Network::RequestOptions& options )
 {
     return asynchronousRun( d->nam(), url, options );
+}
+
+QDebug&
+operator<<( QDebug& s, const CalamaresUtils::Network::RequestStatus& e )
+{
+    s << int( e.status ) << bool( e );
+    switch ( e.status )
+    {
+    case RequestStatus::Ok:
+        break;
+    case RequestStatus::Timeout:
+        s << "Timeout";
+        break;
+    case RequestStatus::Failed:
+        s << "Failed";
+        break;
+    case RequestStatus::HttpError:
+        s << "HTTP";
+        break;
+    case RequestStatus::Empty:
+        s << "Empty";
+        break;
+    }
+    return s;
 }
 
 

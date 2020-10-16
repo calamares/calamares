@@ -13,7 +13,7 @@
 #   You should have received a copy of the GNU General Public License
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 #
-#   SPDX-License-Identifier: GPL-3.0+
+#   SPDX-License-Identifier: GPL-3.0-or-later
 #   License-Filename: LICENSE
 #
 ###
@@ -93,11 +93,10 @@ function(calamares_add_library)
 
     # add link targets
     target_link_libraries(${target}
-        LINK_PUBLIC ${CALAMARES_LIBRARIES}
+        LINK_PUBLIC ${Calamares_LIBRARIES}
         Qt5::Core
         Qt5::Gui
         Qt5::Widgets
-        ${LIBRARY_QT5_MODULES}
     )
     if(LIBRARY_LINK_LIBRARIES)
         target_link_libraries(${target} LINK_PUBLIC ${LIBRARY_LINK_LIBRARIES})

@@ -195,7 +195,7 @@ public Q_SLOTS:
 
 signals:
     void currentStepChanged();
-    void enlarge( QSize enlarge ) const;  // See ViewStep::enlarge()
+    void ensureSize( QSize size ) const;  // See ViewStep::ensureSize()
     void cancelEnabled( bool enabled ) const;
 
     void nextEnabledChanged( bool ) const;

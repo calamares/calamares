@@ -21,11 +21,14 @@
 #include "utils/CalamaresUtilsGui.h"
 #include "widgets/ClickableLabel.h"
 
+#include <QButtonGroup>
 #include <QComboBox>
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QLabel>
 
+namespace Calamares
+{
 
 PrettyRadioButton::PrettyRadioButton( QWidget* parent )
     : QWidget( parent )
@@ -45,10 +48,8 @@ PrettyRadioButton::PrettyRadioButton( QWidget* parent )
     m_mainLayout->addWidget( m_label, 0, 1 );
     m_mainLayout->setContentsMargins( 0, 0, 0, 0 );
 
-    connect( m_label, &ClickableLabel::clicked,
-             m_radio, &QRadioButton::click );
-    connect( m_radio, &QRadioButton::toggled,
-             this, &PrettyRadioButton::toggleOptions );
+    connect( m_label, &ClickableLabel::clicked, m_radio, &QRadioButton::click );
+    connect( m_radio, &QRadioButton::toggled, this, &PrettyRadioButton::toggleOptions );
 }
 
 
@@ -80,17 +81,33 @@ PrettyRadioButton::iconSize() const
 }
 
 
-QRadioButton*
-PrettyRadioButton::buttonWidget() const
+void
+PrettyRadioButton::setChecked( bool checked )
 {
-    return m_radio;
+    m_radio->setChecked( checked );
 }
+
+
+bool
+PrettyRadioButton::isChecked() const
+{
+    return m_radio->isChecked();
+}
+
+void
+PrettyRadioButton::addToGroup( QButtonGroup* group, int id )
+{
+    group->addButton( m_radio, id );
+}
+
 
 void
 PrettyRadioButton::addOptionsComboBox( QComboBox* box )
 {
     if ( !box )
+    {
         return;
+    }
 
     if ( !m_optionsLayout )
     {
@@ -105,12 +122,16 @@ PrettyRadioButton::addOptionsComboBox( QComboBox* box )
         toggleOptions( m_radio->isChecked() );
     }
 
-    m_optionsLayout->insertWidget( m_optionsLayout->count()-1, box );
+    m_optionsLayout->insertWidget( m_optionsLayout->count() - 1, box );
 }
 
 void
 PrettyRadioButton::toggleOptions( bool toggle )
 {
     if ( m_optionsLayout )
+    {
         m_optionsLayout->parentWidget()->setVisible( toggle );
+    }
 }
+
+}  // namespace Calamares

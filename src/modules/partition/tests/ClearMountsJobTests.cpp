@@ -42,7 +42,11 @@ getPartitionsForDevice_other(const QString& deviceName)
     process.start();
     process.waitForFinished();
 
-    const QString partitions = process.readAllStandardOutput();
+    const QString partitions = process.readAllStandardOutput().trimmed();
+    if ( partitions.isEmpty() )
+    {
+        return QStringList();
+    }
     const QStringList partitionsList = partitions.simplified().split( ' ' );
 
     return partitionsList;

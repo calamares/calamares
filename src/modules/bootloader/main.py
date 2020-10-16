@@ -57,7 +57,6 @@ def get_uuid():
 
     :return:
     """
-    root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
     partitions = libcalamares.globalstorage.value("partitions")
 
     for partition in partitions:
@@ -237,6 +236,25 @@ def efi_word_size():
     return efi_bitness
 
 
+def efi_boot_next():
+    """
+    Tell EFI to definitely boot into the just-installed
+    system next time.
+    """
+    boot_mgr = libcalamares.job.configuration["efiBootMgr"]
+    boot_entry = None
+    efi_bootvars = subprocess.check_output([boot_mgr], text=True)
+    for line in efi_bootvars.split('\n'):
+        if not line:
+            continue
+        words = line.split()
+        if len(words) >= 2 and words[0] == "BootOrder:":
+            boot_entry = words[1].split(',')[0]
+            break
+    if boot_entry:
+        subprocess.call([boot_mgr, "-n", boot_entry])
+
+
 def install_systemd_boot(efi_directory):
     """
     Installs systemd-boot as bootloader for EFI setups.
@@ -402,6 +420,8 @@ def install_secureboot(efi_directory):
         "-d", efi_disk,
         "-p", efi_partition_number,
         "-l", install_efi_directory + "/" + install_efi_bin])
+
+    efi_boot_next()
 
     # The input file /etc/default/grub should already be filled out by the
     # grubcfg job module.

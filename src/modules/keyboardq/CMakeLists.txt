@@ -1,3 +1,8 @@
+if( NOT WITH_QML )
+    calamares_skip_module( "keyboardq (QML is not supported in this build)" )
+    return()
+endif()
+
 set( _keyboard ${CMAKE_CURRENT_SOURCE_DIR}/../keyboard )
 
 include_directories( ${_keyboard} )

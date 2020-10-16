@@ -103,9 +103,15 @@ strings:
     supportUrl:          https://github.com/calamares/calamares/issues
     knownIssuesUrl:      https://calamares.io/about/
     releaseNotesUrl:     https://calamares.io/about/
+    donateUrl:           https://kde.org/community/donations/index.php
 
 # These images are loaded from the branding module directory.
 #
+# productBanner is an optional image, which if present, will be shown
+#       on the welcome page of the application, above the welcome text.
+#       It is intended to have a width much greater than height.
+#       It is displayed at 64px height (also on HiDPI).
+#       Recommended size is 64px tall, and up to 460px wide.
 # productIcon is used as the window icon, and will (usually) be used
 #       by the window manager to represent the application. This image
 #       should be square, and may be displayed by the window manager
@@ -113,6 +119,12 @@ strings:
 # productLogo is used as the logo at the top of the left-hand column
 #       which shows the steps to be taken. The image should be square,
 #       and is displayed at 80x80 pixels (also on HiDPI).
+# productWallpaper is an optional image, which if present, will replace
+#       the normal solid background on every page of the application.
+#       It can be any size and proportion,
+#       and will be tiled to fit the entire window.
+#       For a non-tiled wallpaper, the size should be the same as
+#       the overall window, see *windowSize* above (800x520).
 # productWelcome is shown on the welcome page of the application in
 #       the middle of the window, below the welcome text. It can be
 #       any size and proportion, and will be scaled to fit inside
@@ -121,14 +133,31 @@ strings:
 #
 # These filenames can also use substitutions from os-release (see above).
 images:
-    productLogo:         "squid.png"
+    # productBanner:       "banner.png"
     productIcon:         "squid.png"
+    productLogo:         "squid.png"
+    # productWallpaper:    "wallpaper.png"
     productWelcome:      "languages.png"
 
 # The slideshow is displayed during execution steps (e.g. when the
 # installer is actually writing to disk and doing other slow things).
+#
+# The slideshow can be a QML file (recommended) which can display
+# arbitrary things -- text, images, animations, or even play a game --
+# during the execution step. The QML **is** abruptly stopped when the
+# execution step is done, though, so maybe a game isn't a great idea.
+#
+# The slideshow can also be a sequence of images (not recommended unless
+# you don't want QML at all in your Calamares). The images are displayed
+# at a rate of 1 every 2 seconds during the execution step.
+#
+# To configure a QML file, list a single filename:
+#   slideshow:               "show.qml"
+# To configure images, like the filenames (here, as an inline list):
+#   slideshow: [ "/etc/calamares/slideshow/0.png", "/etc/logo.png" ]
 slideshow:               "show.qml"
-# There are two available APIs for the slideshow:
+
+# There are two available APIs for a QML slideshow:
 #  - 1 (the default) loads the entire slideshow when the installation-
 #      slideshow page is shown and starts the QML then. The QML
 #      is never stopped (after installation is done, times etc.
@@ -137,6 +166,8 @@ slideshow:               "show.qml"
 #      onLeave() in the root object. After the installation is done,
 #      the show is stopped (first by calling onLeave(), then destroying
 #      the QML components).
+#
+# An image slideshow does not need to have the API defined.
 slideshowAPI: 2
 
 

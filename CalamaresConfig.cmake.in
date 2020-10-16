@@ -1,32 +1,78 @@
 # Config file for the Calamares package
 #
-# It defines the following variables
-#  CALAMARES_INCLUDE_DIRS - include directories for Calamares
-#  CALAMARES_LIBRARIES    - libraries to link against
-#  CALAMARES_USE_FILE     - name of a convenience include
-#  CALAMARES_APPLICATION_NAME - human-readable application name
+# The following IMPORTED targets are defined:
+#   - Calamares::calamares      - the core library
+#   - Calamares::calamaresui    - the UI (and QML) library
 #
-# Typical use is:
-#
-#    find_package(Calamares REQUIRED)
-#    include("${CALAMARES_USE_FILE}")
-#
+# For legacy use it defines the following variables:
+#   - Calamares_INCLUDE_DIRS    - include directories for Calamares
+#   - Calamares_LIB_DIRS        - library directories
+#   - Calamares_LIBRARIES       - libraries to link against
 
-# Compute paths
-get_filename_component(CALAMARES_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
-if(EXISTS "${CALAMARES_CMAKE_DIR}/CMakeCache.txt")
-   # In build tree
-   include("${CALAMARES_CMAKE_DIR}/CalamaresBuildTreeSettings.cmake")
-else()
-   set(CALAMARES_INCLUDE_DIRS "${CALAMARES_CMAKE_DIR}/@CONF_REL_INCLUDE_DIR@/libcalamares")
+@PACKAGE_INIT@
+
+### Versioning and IMPORTED targets
+#
+#
+include(${CMAKE_CURRENT_LIST_DIR}/CalamaresConfigVersion.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/CalamaresTargets.cmake)
+
+### Dependencies
+#
+# The libraries can depend on a variety of Qt and KDE Frameworks
+# components, so accumulate them and find (just once).
+#
+macro(accumulate_deps outvar target namespace)
+    string(LENGTH ${namespace} _nslen)
+    get_target_property(_libs ${target} INTERFACE_LINK_LIBRARIES)
+    foreach(_lib ${_libs})
+        if (_lib MATCHES ^${namespace})
+            string(SUBSTRING ${_lib} ${_nslen} -1 _component)
+            list(APPEND ${outvar} ${_component})
+        endif()
+    endforeach()
+endmacro()
+
+# Qt5 infrastructure for translations is required
+set(qt5_required Core Widgets LinguistTools)
+accumulate_deps(qt5_required Calamares::calamares Qt5::)
+accumulate_deps(qt5_required Calamares::calamaresui Qt5::)
+find_package(Qt5 CONFIG REQUIRED ${qt5_required})
+
+set(kf5_required "")
+accumulate_deps(kf5_required Calamares::calamares KF5::)
+accumulate_deps(kf5_required Calamares::calamaresui KF5::)
+if(kf5_required)
+    find_package(ECM ${ECM_VERSION} NO_MODULE)
+    if( ECM_FOUND )
+        list(PREPEND CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
+        find_package(KF5 REQUIRED COMPONENTS ${kf5_required})
+    endif()
 endif()
 
-# Our library dependencies (contains definitions for IMPORTED targets)
-include("${CALAMARES_CMAKE_DIR}/CalamaresLibraryDepends.cmake")
+### Legacy support
+#
+#
+set(Calamares_LIB_DIRS "@PACKAGE_CMAKE_INSTALL_LIBDIR@")
+set(Calamares_INCLUDE_DIRS "@PACKAGE_CMAKE_INSTALL_INCLUDEDIR@")
+set(Calamares_LIBRARIES Calamares::calamares)
 
-# These are IMPORTED targets created by CalamaresLibraryDepends.cmake
-set(CALAMARES_LIBRARIES calamares)
+### CMake support
+#
+#
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR})
 
-# Convenience variables
-set(CALAMARES_USE_FILE "${CALAMARES_CMAKE_DIR}/CalamaresUse.cmake")
-set(CALAMARES_APPLICATION_NAME  "Calamares")
+include(CalamaresAddBrandingSubdirectory)
+include(CalamaresAddLibrary)
+include(CalamaresAddModuleSubdirectory)
+include(CalamaresAddPlugin)
+
+# These are feature-settings that affect consumers of Calamares
+# libraries as well; without Python-support in the libs, for instance,
+# there's no point in having a Python plugin.
+#
+# This list should match the one in libcalamares/CalamaresConfig.h,
+# which is the C++-language side of the same configuration.
+set(Calamares_WITH_PYTHON @WITH_PYTHON@)
+set(Calamares_WITH_PYTHONQT @WITH_PYTHONQT@)
+set(Calamares_WITH_QML @WITH_QML@)

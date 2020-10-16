@@ -18,7 +18,10 @@
 
 #include "ClickableLabel.h"
 
-#include <QApplication>
+#include <QApplication>  // for doubleClickInterval()
+
+namespace Calamares
+{
 
 
 ClickableLabel::ClickableLabel( QWidget* parent )
@@ -33,7 +36,7 @@ ClickableLabel::ClickableLabel( const QString& text, QWidget* parent )
 }
 
 
-ClickableLabel::~ClickableLabel() {}
+ClickableLabel::~ClickableLabel() { }
 
 
 void
@@ -53,3 +56,5 @@ ClickableLabel::mouseReleaseEvent( QMouseEvent* event )
         emit clicked();
     }
 }
+
+}  // namespace Calamares

@@ -96,6 +96,8 @@ class RawFSItem:
         count = 0
 
         libcalamares.utils.debug("Copying {} to {}".format(self.source, self.destination))
+        if libcalamares.job.configuration.get("bogus", False):
+            return
 
         srcsize, srcblksize = get_device_size(self.source)
         destsize, destblksize = get_device_size(self.destination)
@@ -151,7 +153,7 @@ def update_global_storage(item, gs):
     for partition in gs:
         if partition["device"] == item.destination:
             ret = subprocess.run(["blkid", "-s", "UUID", "-o", "value", item.destination],
-                    capture_output=True, text=True)
+                    stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
             if ret.returncode == 0:
                 libcalamares.utils.debug("Setting {} UUID to {}".format(item.destination,
                         ret.stdout.rstrip()))
@@ -171,6 +173,7 @@ def run():
         return (_("Configuration Error"),
                 _("No partitions are defined for <pre>{!s}</pre> to use." ).format("rawfs"))
 
+    libcalamares.utils.debug("Copying {!s} raw partitions.".format(len(partitions)))
     for partition in partitions:
         if partition["mountPoint"]:
             for src in libcalamares.job.configuration["targets"]:

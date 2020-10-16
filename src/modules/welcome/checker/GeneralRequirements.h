@@ -50,4 +50,4 @@ private:
     qreal m_requiredRamGiB;
 };
 
-#endif // REQUIREMENTSCHECKER_H
+#endif  // REQUIREMENTSCHECKER_H

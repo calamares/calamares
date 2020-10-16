@@ -20,19 +20,20 @@
 
 #include "Branding.h"
 #include "Settings.h"
+#include "geoip/Handler.h"
+#include "locale/Lookup.h"
+#include "modulesystem/ModuleManager.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
+#include "utils/Variant.h"
+
+#include <QFutureWatcher>
 
 Config::Config( QObject* parent )
     : QObject( parent )
-    , m_requirementsModel( new Calamares::RequirementsModel( this ) )
     , m_languages( CalamaresUtils::Locale::availableTranslations() )
+    , m_filtermodel( std::make_unique< QSortFilterProxyModel >() )
 {
-    connect( m_requirementsModel,
-             &Calamares::RequirementsModel::satisfiedRequirementsChanged,
-             this,
-             &Config::setIsNextEnabled );
-
     initLanguages();
 
     CALAMARES_RETRANSLATE_SLOT( &Config::retranslate )
@@ -41,15 +42,16 @@ Config::Config( QObject* parent )
 void
 Config::retranslate()
 {
-    m_genericWelcomeMessage = genericWelcomeMessage().arg( *Calamares::Branding::VersionedName );
+    m_genericWelcomeMessage = genericWelcomeMessage().arg( Calamares::Branding::instance()->versionedName() );
     emit genericWelcomeMessageChanged( m_genericWelcomeMessage );
 
-    if ( !m_requirementsModel->satisfiedRequirements() )
+    const auto* r = requirementsModel();
+    if ( !r->satisfiedRequirements() )
     {
         QString message;
         const bool setup = Calamares::Settings::instance()->isSetupMode();
 
-        if ( !m_requirementsModel->satisfiedMandatory() )
+        if ( !r->satisfiedMandatory() )
         {
             message = setup ? tr( "This computer does not satisfy the minimum "
                                   "requirements for setting up %1.<br/>"
@@ -72,13 +74,13 @@ Config::retranslate()
                                   "might be disabled." );
         }
 
-        m_warningMessage = message.arg( *Calamares::Branding::ShortVersionedName );
+        m_warningMessage = message.arg( Calamares::Branding::instance()->shortVersionedName() );
     }
     else
     {
         m_warningMessage = tr( "This program will ask you some questions and "
                                "set up %2 on your computer." )
-                               .arg( *Calamares::Branding::ProductName );
+                               .arg( Calamares::Branding::instance()->productName() );
     }
 
     emit warningMessageChanged( m_warningMessage );
@@ -89,6 +91,25 @@ Config::languagesModel() const
 {
     return m_languages;
 }
+
+Calamares::RequirementsModel*
+Config::requirementsModel() const
+{
+    return Calamares::ModuleManager::instance()->requirementsModel();
+}
+
+QAbstractItemModel*
+Config::unsatisfiedRequirements() const
+{
+    if ( !m_filtermodel->sourceModel() )
+    {
+        m_filtermodel->setFilterRole( Calamares::RequirementsModel::Roles::Satisfied );
+        m_filtermodel->setFilterFixedString( QStringLiteral( "false" ) );
+        m_filtermodel->setSourceModel( requirementsModel() );
+    }
+    return m_filtermodel.get();
+}
+
 
 QString
 Config::languageIcon() const
@@ -178,12 +199,6 @@ Config::setLocaleIndex( int index )
     emit localeIndexChanged( m_localeIndex );
 }
 
-Calamares::RequirementsModel&
-Config::requirementsModel() const
-{
-    return *m_requirementsModel;
-}
-
 void
 Config::setIsNextEnabled( bool isNextEnabled )
 {
@@ -191,23 +206,11 @@ Config::setIsNextEnabled( bool isNextEnabled )
     emit isNextEnabledChanged( m_isNextEnabled );
 }
 
-QString
-Config::donateUrl() const
-{
-    return m_donateUrl;
-}
-
 void
 Config::setDonateUrl( const QString& url )
 {
     m_donateUrl = url;
     emit donateUrlChanged();
-}
-
-QString
-Config::knownIssuesUrl() const
-{
-    return m_knownIssuesUrl;
 }
 
 void
@@ -222,18 +225,6 @@ Config::setReleaseNotesUrl( const QString& url )
 {
     m_releaseNotesUrl = url;
     emit releaseNotesUrlChanged();
-}
-
-QString
-Config::releaseNotesUrl() const
-{
-    return m_releaseNotesUrl;
-}
-
-QString
-Config::supportUrl() const
-{
-    return m_supportUrl;
 }
 
 void
@@ -251,14 +242,14 @@ Config::genericWelcomeMessage() const
     if ( Calamares::Settings::instance()->isSetupMode() )
     {
         message = Calamares::Branding::instance()->welcomeStyleCalamares()
-            ? tr( "<h1>Welcome to the Calamares setup program for %1.</h1>" )
-            : tr( "<h1>Welcome to %1 setup.</h1>" );
+            ? tr( "<h1>Welcome to the Calamares setup program for %1</h1>" )
+            : tr( "<h1>Welcome to %1 setup</h1>" );
     }
     else
     {
         message = Calamares::Branding::instance()->welcomeStyleCalamares()
-            ? tr( "<h1>Welcome to the Calamares installer for %1.</h1>" )
-            : tr( "<h1>Welcome to the %1 installer.</h1>" );
+            ? tr( "<h1>Welcome to the Calamares installer for %1</h1>" )
+            : tr( "<h1>Welcome to the %1 installer</h1>" );
     }
 
     return message;
@@ -268,4 +259,137 @@ QString
 Config::warningMessage() const
 {
     return m_warningMessage;
+}
+
+/** @brief Look up a URL for a button
+ *
+ * Looks up @p key in @p map; if it is a *boolean* value, then
+ * assume an old-style configuration, and fetch the string from
+ * the branding settings @p e. If it is a string, not a boolean,
+ * use it as-is. If not found, or a weird type, returns empty.
+ *
+ * This allows switching the showKnownIssuesUrl and similar settings
+ * in welcome.conf from a boolean (deferring to branding) to an
+ * actual string for immediate use. Empty strings, as well as
+ * "false" as a setting, will hide the buttons as before.
+ */
+static QString
+jobOrBrandingSetting( Calamares::Branding::StringEntry e, const QVariantMap& map, const QString& key )
+{
+    if ( !map.contains( key ) )
+    {
+        return QString();
+    }
+    auto v = map.value( key );
+    if ( v.type() == QVariant::Bool )
+    {
+        return v.toBool() ? ( Calamares::Branding::instance()->string( e ) ) : QString();
+    }
+    if ( v.type() == QVariant::String )
+    {
+        return v.toString();
+    }
+
+    return QString();
+}
+
+static inline void
+setLanguageIcon( Config* c, const QVariantMap& configurationMap )
+{
+    QString language = CalamaresUtils::getString( configurationMap, "languageIcon" );
+    if ( !language.isEmpty() )
+    {
+        auto icon = Calamares::Branding::instance()->image( language, QSize( 48, 48 ) );
+        if ( !icon.isNull() )
+        {
+            c->setLanguageIcon( language );
+        }
+    }
+}
+
+static inline void
+logGeoIPHandler( CalamaresUtils::GeoIP::Handler* handler )
+{
+    if ( handler )
+    {
+        cDebug() << Logger::SubEntry << "Obtained from" << handler->url() << " ("
+                 << static_cast< int >( handler->type() ) << handler->selector() << ')';
+    }
+}
+
+static void
+setCountry( Config* config, const QString& countryCode, CalamaresUtils::GeoIP::Handler* handler )
+{
+    if ( countryCode.length() != 2 )
+    {
+        cDebug() << "Unusable country code" << countryCode;
+        logGeoIPHandler( handler );
+        return;
+    }
+
+    auto c_l = CalamaresUtils::Locale::countryData( countryCode );
+    if ( c_l.first == QLocale::Country::AnyCountry )
+    {
+        cDebug() << "Unusable country code" << countryCode;
+        logGeoIPHandler( handler );
+        return;
+    }
+    else
+    {
+        int r = CalamaresUtils::Locale::availableTranslations()->find( countryCode );
+        if ( r < 0 )
+        {
+            cDebug() << "Unusable country code" << countryCode << "(no suitable translation)";
+        }
+        if ( ( r >= 0 ) && config )
+        {
+            config->setCountryCode( countryCode );
+        }
+    }
+}
+
+static inline void
+setGeoIP( Config* config, const QVariantMap& configurationMap )
+{
+    bool ok = false;
+    QVariantMap geoip = CalamaresUtils::getSubMap( configurationMap, "geoip", ok );
+    if ( ok )
+    {
+        using FWString = QFutureWatcher< QString >;
+
+        auto* handler = new CalamaresUtils::GeoIP::Handler( CalamaresUtils::getString( geoip, "style" ),
+                                                            CalamaresUtils::getString( geoip, "url" ),
+                                                            CalamaresUtils::getString( geoip, "selector" ) );
+        if ( handler->type() != CalamaresUtils::GeoIP::Handler::Type::None )
+        {
+            auto* future = new FWString();
+            QObject::connect( future, &FWString::finished, [config, future, handler]() {
+                QString countryResult = future->future().result();
+                cDebug() << "GeoIP result for welcome=" << countryResult;
+                ::setCountry( config, countryResult, handler );
+                future->deleteLater();
+                delete handler;
+            } );
+            future->setFuture( handler->queryRaw() );
+        }
+        else
+        {
+            // Would not produce useful country code anyway.
+            delete handler;
+        }
+    }
+}
+
+void
+Config::setConfigurationMap( const QVariantMap& configurationMap )
+{
+    using Calamares::Branding;
+
+    setSupportUrl( jobOrBrandingSetting( Branding::SupportUrl, configurationMap, "showSupportUrl" ) );
+    setKnownIssuesUrl( jobOrBrandingSetting( Branding::KnownIssuesUrl, configurationMap, "showKnownIssuesUrl" ) );
+    setReleaseNotesUrl( jobOrBrandingSetting( Branding::ReleaseNotesUrl, configurationMap, "showReleaseNotesUrl" ) );
+    setDonateUrl( jobOrBrandingSetting( Branding::DonateUrl, configurationMap, "showDonateUrl" ) );
+
+    ::setLanguageIcon( this, configurationMap );
+    ::setGeoIP( this, configurationMap );
 }

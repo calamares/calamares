@@ -80,7 +80,7 @@ PythonJobModule::PythonJobModule()
 }
 
 
-PythonJobModule::~PythonJobModule() {}
+PythonJobModule::~PythonJobModule() { }
 
 
 }  // namespace Calamares

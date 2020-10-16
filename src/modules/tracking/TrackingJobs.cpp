@@ -32,9 +32,7 @@ TrackingInstallJob::TrackingInstallJob( const QString& url )
 {
 }
 
-TrackingInstallJob::~TrackingInstallJob()
-{
-}
+TrackingInstallJob::~TrackingInstallJob() { }
 
 QString
 TrackingInstallJob::prettyName() const

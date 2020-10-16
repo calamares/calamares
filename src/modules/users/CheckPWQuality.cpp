@@ -55,7 +55,7 @@ DEFINE_CHECK_FUNC( minLength )
     {
         cDebug() << Logger::SubEntry << "minLength set to" << minLength;
         checks.push_back( PasswordCheck( []() { return QCoreApplication::translate( "PWQ", "Password is too short" ); },
-                                         [minLength]( const QString& s ) { return s.length() >= minLength; },
+                                         [ minLength ]( const QString& s ) { return s.length() >= minLength; },
                                          PasswordCheck::Weight( 10 ) ) );
     }
 }
@@ -71,7 +71,7 @@ DEFINE_CHECK_FUNC( maxLength )
     {
         cDebug() << Logger::SubEntry << "maxLength set to" << maxLength;
         checks.push_back( PasswordCheck( []() { return QCoreApplication::translate( "PWQ", "Password is too long" ); },
-                                         [maxLength]( const QString& s ) { return s.length() <= maxLength; },
+                                         [ maxLength ]( const QString& s ) { return s.length() <= maxLength; },
                                          PasswordCheck::Weight( 10 ) ) );
     }
 }
@@ -349,12 +349,13 @@ DEFINE_CHECK_FUNC( libpwquality )
     /* Something actually added? */
     if ( requirement_count )
     {
-        checks.push_back( PasswordCheck( [settings]() { return settings->explanation(); },
-                                         [settings]( const QString& s ) {
+        checks.push_back( PasswordCheck( [ settings ]() { return settings->explanation(); },
+                                         [ settings ]( const QString& s ) {
                                              int r = settings->check( s );
                                              if ( r < 0 )
                                              {
-                                                 cWarning() << "libpwquality error" << r;
+                                                 cWarning() << "libpwquality error" << r
+                                                            << pwquality_strerror( nullptr, 256, r, nullptr );
                                              }
                                              else if ( r < settings->arbitrary_minimum_strength )
                                              {

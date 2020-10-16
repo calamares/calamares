@@ -31,7 +31,7 @@
 
 #include <QHBoxLayout>
 
-CheckerContainer::CheckerContainer( const Calamares::RequirementsModel &model, QWidget* parent )
+CheckerContainer::CheckerContainer( const Calamares::RequirementsModel& model, QWidget* parent )
     : QWidget( parent )
     , m_waitingWidget( new WaitingWidget( QString(), this ) )
     , m_checkerWidget( nullptr )
@@ -55,12 +55,23 @@ CheckerContainer::~CheckerContainer()
 void
 CheckerContainer::requirementsComplete( bool ok )
 {
+    if ( !ok )
+    {
+        cDebug() << "Requirements not satisfied" << m_model.count() << "entries:";
+        for ( int i = 0; i < m_model.count(); ++i )
+        {
+            auto index = m_model.index( i );
+            cDebug() << Logger::SubEntry << i << m_model.data( index, Calamares::RequirementsModel::Name ).toString()
+                     << "set?" << m_model.data( index, Calamares::RequirementsModel::Satisfied ).toBool() << "req?"
+                     << m_model.data( index, Calamares::RequirementsModel::Mandatory ).toBool();
+        }
+    }
 
     layout()->removeWidget( m_waitingWidget );
     m_waitingWidget->deleteLater();
     m_waitingWidget = nullptr;  // Don't delete in destructor
 
-    m_checkerWidget = new ResultsListWidget( m_model, this);
+    m_checkerWidget = new ResultsListWidget( m_model, this );
     layout()->addWidget( m_checkerWidget );
 
     m_verdict = ok;

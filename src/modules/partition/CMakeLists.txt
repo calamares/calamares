@@ -80,7 +80,6 @@ if ( KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND
             gui/PartitionSizeController.cpp
             gui/PartitionSplitterWidget.cpp
             gui/PartitionViewStep.cpp
-            gui/PrettyRadioButton.cpp
             gui/ResizeVolumeGroupDialog.cpp
             gui/ScanningDialog.cpp
             gui/ReplaceWidget.cpp

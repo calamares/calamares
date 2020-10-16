@@ -232,16 +232,27 @@ PackageModel::setupModelData( const QVariantList& groupList, PackageTreeItem* pa
             continue;
         }
 
-        PackageTreeItem* item = new PackageTreeItem( groupMap, parent );
+        PackageTreeItem* item = new PackageTreeItem( groupMap, PackageTreeItem::GroupTag { parent } );
         if ( groupMap.contains( "selected" ) )
         {
             item->setSelected( CalamaresUtils::getBool( groupMap, "selected", false ) ? Qt::Checked : Qt::Unchecked );
         }
         if ( groupMap.contains( "packages" ) )
         {
-            for ( const auto& packageName : groupMap.value( "packages" ).toStringList() )
+            for ( const auto& packageName : groupMap.value( "packages" ).toList() )
             {
-                item->appendChild( new PackageTreeItem( packageName, item ) );
+                if ( packageName.type() == QVariant::String )
+                {
+                    item->appendChild( new PackageTreeItem( packageName.toString(), item ) );
+                }
+                else
+                {
+                    QVariantMap m = packageName.toMap();
+                    if ( !m.isEmpty() )
+                    {
+                        item->appendChild( new PackageTreeItem( m, PackageTreeItem::PackageTag { item } ) );
+                    }
+                }
             }
         }
         if ( groupMap.contains( "subgroups" ) )

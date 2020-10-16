@@ -2,7 +2,11 @@
 <qresource>
   <file alias="welcomeq.qml">welcomeq.qml</file>
   <file alias="about.qml">about.qml</file>
+  <file alias="release_notes.qml">release_notes.qml</file>
+  <file alias="Recommended.qml">Recommended.qml</file>
+  <file alias="Requirements.qml">Requirements.qml</file>
   <file>img/squid.png</file>
   <file>img/chevron-left-solid.svg</file>
+  <file>img/language-icon-48px.png</file>
 </qresource>
 </RCC>

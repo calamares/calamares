@@ -31,6 +31,7 @@
 
 #include "locale/LabelModel.h"
 #include "modulesystem/ModuleManager.h"
+#include "modulesystem/RequirementsModel.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/NamedEnum.h"
@@ -47,41 +48,53 @@
 WelcomePage::WelcomePage( Config* conf, QWidget* parent )
     : QWidget( parent )
     , ui( new Ui::WelcomePage )
-    , m_checkingWidget( new CheckerContainer( conf->requirementsModel(), this ) )
+    , m_checkingWidget( new CheckerContainer( *(conf->requirementsModel()), this ) )
     , m_languages( nullptr )
     , m_conf( conf )
 {
+    using Branding = Calamares::Branding;
 
+    const int defaultFontHeight = CalamaresUtils::defaultFontHeight();
+    ui->setupUi( this );
+    ui->aboutButton->setIcon( CalamaresUtils::defaultPixmap(
+        CalamaresUtils::Information, CalamaresUtils::Original, 2 * QSize( defaultFontHeight, defaultFontHeight ) ) );
+
+    // insert system-check widget below welcome text
+    const int welcome_text_idx = ui->verticalLayout->indexOf( ui->mainText );
+    ui->verticalLayout->insertWidget( welcome_text_idx + 1, m_checkingWidget );
+
+    // insert optional logo banner image above welcome text
+    QString bannerPath = Branding::instance()->imagePath( Branding::ProductBanner );
+    if ( !bannerPath.isEmpty() )
+    {
+        // If the name is not empty, the file exists -- Branding checks that at startup
+        QPixmap bannerPixmap = QPixmap( bannerPath );
+        if ( !bannerPixmap.isNull() )
+        {
+            QLabel* bannerLabel = new QLabel;
+            bannerLabel->setPixmap( bannerPixmap );
+            bannerLabel->setMinimumHeight( 64 );
+            bannerLabel->setAlignment( Qt::AlignCenter );
+            ui->aboveTextSpacer->changeSize( 20, defaultFontHeight );  // Shrink it down
+            ui->aboveTextSpacer->invalidate();
+            ui->verticalLayout->insertSpacing( welcome_text_idx, defaultFontHeight );
+            ui->verticalLayout->insertWidget( welcome_text_idx, bannerLabel );
+        }
+    }
+
+    initLanguages();
+
+    CALAMARES_RETRANSLATE_SLOT( &WelcomePage::retranslate )
+
+    connect( ui->aboutButton, &QPushButton::clicked, this, &WelcomePage::showAboutBox );
     connect( Calamares::ModuleManager::instance(),
              &Calamares::ModuleManager::requirementsComplete,
              m_checkingWidget,
              &CheckerContainer::requirementsComplete );
-    connect( Calamares::ModuleManager::instance(),
-             &Calamares::ModuleManager::requirementsProgress,
+    connect( Calamares::ModuleManager::instance()->requirementsModel(),
+             &Calamares::RequirementsModel::progressMessageChanged,
              m_checkingWidget,
              &CheckerContainer::requirementsProgress );
-    ui->setupUi( this );
-
-    ui->verticalLayout->insertSpacing( 1, CalamaresUtils::defaultFontHeight() * 2 );
-    initLanguages();
-
-    ui->mainText->setAlignment( Qt::AlignCenter );
-    ui->mainText->setWordWrap( true );
-    ui->mainText->setOpenExternalLinks( true );
-
-    cDebug() << "Welcome string" << Calamares::Branding::instance()->welcomeStyleCalamares()
-             << *Calamares::Branding::VersionedName;
-
-    CALAMARES_RETRANSLATE_SLOT( &WelcomePage::retranslate )
-
-    ui->aboutButton->setIcon( CalamaresUtils::defaultPixmap(
-        CalamaresUtils::Information,
-        CalamaresUtils::Original,
-        2 * QSize( CalamaresUtils::defaultFontHeight(), CalamaresUtils::defaultFontHeight() ) ) );
-    connect( ui->aboutButton, &QPushButton::clicked, this, &WelcomePage::showAboutBox );
-
-    int welcome_text_idx = ui->verticalLayout->indexOf( ui->mainText );
-    ui->verticalLayout->insertWidget( welcome_text_idx + 1, m_checkingWidget );
 }
 
 void
@@ -219,9 +232,9 @@ WelcomePage::retranslate()
             : tr( "<h1>Welcome to the %1 installer.</h1>" );
     }
 
-    ui->mainText->setText( message.arg( *Calamares::Branding::VersionedName ) );
+    ui->mainText->setText( message.arg( Calamares::Branding::instance()->versionedName() ) );
     ui->retranslateUi( this );
-    ui->supportButton->setText( tr( "%1 support" ).arg( *Calamares::Branding::ShortProductName ) );
+    ui->supportButton->setText( tr( "%1 support" ).arg( Calamares::Branding::instance()->shortProductName() ) );
 }
 
 void
@@ -245,7 +258,7 @@ WelcomePage::showAboutBox()
                         "Liberating Software." )
                         .arg( CALAMARES_APPLICATION_NAME )
                         .arg( CALAMARES_VERSION )
-                        .arg( *Calamares::Branding::VersionedName ),
+                        .arg( Calamares::Branding::instance()->versionedName() ),
                     QMessageBox::Ok,
                     this );
     mb.setIconPixmap( CalamaresUtils::defaultPixmap(

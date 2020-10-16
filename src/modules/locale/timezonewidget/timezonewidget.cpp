@@ -21,12 +21,13 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <cmath>
-
 #include "locale/TimeZone.h"
 #include "utils/Logger.h"
 
 #include "timezonewidget.h"
+
+#include <QMouseEvent>
+#include <QPainter>
 
 #ifdef DEBUG_TIMEZONES
 // Adds a label to the timezone with this name
@@ -51,6 +52,7 @@ TimeZoneWidget::TimeZoneWidget( QWidget* parent )
     // Set size
     setMinimumSize( background.size() );
     setMaximumSize( background.size() );
+    setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
 }
 
 

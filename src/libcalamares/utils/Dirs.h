@@ -1,12 +1,12 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- *
- *   Copyright 2013-2016, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ * 
+ *   SPDX-FileCopyrightText: 2013-2016 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
  *
  *   Originally from Tomahawk, portions:
- *   Copyright 2010-2011, Christian Muehlhaeuser <muesli@tomahawk-player.org>
- *   Copyright 2010-2011, Leo Franchi <lfranchi@kde.org>
- *   Copyright 2010-2012, Jeff Mitchell <jeff@tomahawk-player.org>
+ *   SPDX-FileCopyrightText: 2010-2011 Christian Muehlhaeuser <muesli@tomahawk-player.org>
+ *   SPDX-FileCopyrightText: 2010-2011 Leo Franchi <lfranchi@kde.org>
+ *   SPDX-FileCopyrightText: 2010-2012 Jeff Mitchell <jeff@tomahawk-player.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -20,6 +20,10 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+ *
+ *   SPDX-License-Identifier: GPL-3.0-or-later
+ *   License-Filename: LICENSE
+ *
  */
 
 #ifndef UTILS_DIRS_H
@@ -31,8 +35,6 @@
 
 namespace CalamaresUtils
 {
-DLLEXPORT QDir qmlModulesDir();
-
 /**
  * @brief appDataDir returns the directory with common application data.
  * Defaults to CMAKE_INSTALL_FULL_DATADIR (usually /usr/share/calamares).
@@ -56,8 +58,6 @@ DLLEXPORT QDir systemLibDir();
  */
 DLLEXPORT void setAppDataDir( const QDir& dir );
 DLLEXPORT bool isAppDataDirOverridden();
-
-DLLEXPORT void setQmlModulesDir( const QDir& dir );
 
 /** @brief Setup extra config and data dirs from the XDG variables.
  */

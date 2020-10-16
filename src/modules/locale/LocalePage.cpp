@@ -35,6 +35,7 @@
 
 #include <QBoxLayout>
 #include <QComboBox>
+#include <QFile>
 #include <QLabel>
 #include <QProcess>
 #include <QPushButton>
@@ -48,35 +49,32 @@ LocalePage::LocalePage( QWidget* parent )
     QBoxLayout* mainLayout = new QVBoxLayout;
 
     QBoxLayout* tzwLayout = new QHBoxLayout;
-    mainLayout->addLayout( tzwLayout );
     m_tzWidget = new TimeZoneWidget( this );
     tzwLayout->addStretch();
     tzwLayout->addWidget( m_tzWidget );
     tzwLayout->addStretch();
-    setMinimumWidth( m_tzWidget->width() );
+    // Adjust for margins and spacing in this page
+    m_tzWidget->setMinimumHeight( m_tzWidget->minimumHeight() + 12 );  // 2 * spacing
 
-    QBoxLayout* bottomLayout = new QHBoxLayout;
-    mainLayout->addLayout( bottomLayout );
-
+    QBoxLayout* zoneAndRegionLayout = new QHBoxLayout;
     m_regionLabel = new QLabel( this );
-    bottomLayout->addWidget( m_regionLabel );
+    zoneAndRegionLayout->addWidget( m_regionLabel );
 
     m_regionCombo = new QComboBox( this );
-    bottomLayout->addWidget( m_regionCombo );
+    zoneAndRegionLayout->addWidget( m_regionCombo );
     m_regionCombo->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
     m_regionLabel->setBuddy( m_regionCombo );
 
-    bottomLayout->addSpacing( 20 );
+    zoneAndRegionLayout->addSpacing( 20 );
 
     m_zoneLabel = new QLabel( this );
-    bottomLayout->addWidget( m_zoneLabel );
+    zoneAndRegionLayout->addWidget( m_zoneLabel );
 
     m_zoneCombo = new QComboBox( this );
     m_zoneCombo->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
-    bottomLayout->addWidget( m_zoneCombo );
+    zoneAndRegionLayout->addWidget( m_zoneCombo );
     m_zoneLabel->setBuddy( m_zoneCombo );
 
-    mainLayout->addStretch();
 
     QBoxLayout* localeLayout = new QHBoxLayout;
     m_localeLabel = new QLabel( this );
@@ -87,7 +85,6 @@ LocalePage::LocalePage( QWidget* parent )
     m_localeChangeButton = new QPushButton( this );
     m_localeChangeButton->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Preferred );
     localeLayout->addWidget( m_localeChangeButton );
-    mainLayout->addLayout( localeLayout );
 
     QBoxLayout* formatsLayout = new QHBoxLayout;
     m_formatsLabel = new QLabel( this );
@@ -98,8 +95,14 @@ LocalePage::LocalePage( QWidget* parent )
     m_formatsChangeButton = new QPushButton( this );
     m_formatsChangeButton->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Preferred );
     formatsLayout->addWidget( m_formatsChangeButton );
-    mainLayout->addLayout( formatsLayout );
 
+    mainLayout->addLayout( tzwLayout );
+    mainLayout->addStretch();
+    mainLayout->addLayout( zoneAndRegionLayout );
+    mainLayout->addStretch();
+    mainLayout->addLayout( localeLayout );
+    mainLayout->addLayout( formatsLayout );
+    setMinimumWidth( m_tzWidget->width() );
     setLayout( mainLayout );
 
     connect( m_regionCombo, QOverload< int >::of( &QComboBox::currentIndexChanged ), this, &LocalePage::regionChanged );

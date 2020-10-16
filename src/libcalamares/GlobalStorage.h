@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- *
- *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ * 
+ *   SPDX-FileCopyrightText: 2014-2015 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2017-2018 Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -15,6 +15,10 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+ *
+ *   SPDX-License-Identifier: GPL-3.0-or-later
+ *   License-Filename: LICENSE
+ *
  */
 
 #ifndef CALAMARES_GLOBALSTORAGE_H
@@ -39,12 +43,8 @@ public:
 
     //NOTE: thread safety is guaranteed by JobQueue, which executes jobs one by one.
     //      If at any time jobs become concurrent, this class must be made thread-safe.
-    bool contains( const QString& key ) const;
-    int count() const;
     void insert( const QString& key, const QVariant& value );
-    QStringList keys() const;
     int remove( const QString& key );
-    QVariant value( const QString& key ) const;
 
     /// @brief dump keys and values to the debug log
     void debugDump() const;
@@ -82,6 +82,12 @@ public:
      * signal for notifications.
      */
     const QVariantMap& data() const { return m; }
+
+public Q_SLOTS:
+    bool contains( const QString& key ) const;
+    int count() const;
+    QStringList keys() const;
+    QVariant value( const QString& key ) const;
 
 signals:
     void changed();

@@ -71,9 +71,11 @@ ViewManager::ViewManager( QObject* parent )
     Q_ASSERT( !s_instance );
 
     QBoxLayout* mainLayout = new QVBoxLayout;
+    m_widget->setObjectName( "viewManager" );
     m_widget->setLayout( mainLayout );
 
     m_stack = new QStackedWidget( m_widget );
+    m_stack->setObjectName( "viewManagerStack" );
     m_stack->setContentsMargins( 0, 0, 0, 0 );
     mainLayout->addWidget( m_stack );
 
@@ -118,7 +120,7 @@ ViewManager::insertViewStep( int before, ViewStep* step )
 {
     emit beginInsertRows( QModelIndex(), before, before );
     m_steps.insert( before, step );
-    connect( step, &ViewStep::enlarge, this, &ViewManager::enlarge );
+    connect( step, &ViewStep::ensureSize, this, &ViewManager::ensureSize );
     connect( step, &ViewStep::nextStatusChanged, this, &ViewManager::updateNextStatus );
 
     if ( !step->widget() )
@@ -181,7 +183,7 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
     msgBox->show();
 
     cDebug() << "Calamares will quit when the dialog closes.";
-    connect( msgBox, &QMessageBox::buttonClicked, [msgBox]( QAbstractButton* button ) {
+    connect( msgBox, &QMessageBox::buttonClicked, [ msgBox ]( QAbstractButton* button ) {
         if ( msgBox->buttonRole( button ) == QMessageBox::ButtonRole::YesRole )
         {
             // TODO: host and port should be configurable
@@ -224,7 +226,9 @@ ViewManager::onInitFailed( const QStringList& modules )
         detailString = details.join( QString() );
     }
 
-    insertViewStep( 0, new BlankViewStep( title, description.arg( *Calamares::Branding::ProductName ), detailString ) );
+    insertViewStep(
+        0,
+        new BlankViewStep( title, description.arg( Calamares::Branding::instance()->productName() ), detailString ) );
 }
 
 void
@@ -333,15 +337,16 @@ ViewManager::next()
                       "to undo these changes.</strong>" );
             QString confirm = settings->isSetupMode() ? tr( "&Set up now" ) : tr( "&Install now" );
 
-            int reply = QMessageBox::question(
-                m_widget,
-                title,
-                question.arg( *Calamares::Branding::ShortProductName, *Calamares::Branding::ShortVersionedName ),
-                confirm,
-                tr( "Go &back" ),
-                QString(),
-                0 /* default first button, i.e. confirm */,
-                1 /* escape is second button, i.e. cancel */ );
+            const auto* branding = Calamares::Branding::instance();
+            int reply
+                = QMessageBox::question( m_widget,
+                                         title,
+                                         question.arg( branding->shortProductName(), branding->shortVersionedName() ),
+                                         confirm,
+                                         tr( "Go &back" ),
+                                         QString(),
+                                         0 /* default first button, i.e. confirm */,
+                                         1 /* escape is second button, i.e. cancel */ );
             if ( reply == 1 )
             {
                 return;

@@ -98,7 +98,7 @@ ProcessJobModule::ProcessJobModule()
 }
 
 
-ProcessJobModule::~ProcessJobModule() {}
+ProcessJobModule::~ProcessJobModule() { }
 
 
 }  // namespace Calamares

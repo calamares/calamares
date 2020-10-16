@@ -41,7 +41,10 @@ private Q_SLOTS:
     void initTestCase();
 
     void testRoot();
+
     void testPackage();
+    void testExtendedPackage();
+
     void testGroup();
     void testCompare();
     void testModel();
@@ -77,6 +80,7 @@ ItemTests::testPackage()
     QCOMPARE( p.isSelected(), Qt::Unchecked );
     QCOMPARE( p.packageName(), QStringLiteral( "bash" ) );
     QVERIFY( p.name().isEmpty() );  // not a group
+    QVERIFY( p.description().isEmpty() );
     QCOMPARE( p.parentItem(), nullptr );
     QCOMPARE( p.childCount(), 0 );
     QVERIFY( !p.isHidden() );
@@ -127,6 +131,33 @@ static const char doc_with_expanded[] =
 // clang-format on
 
 void
+ItemTests::testExtendedPackage()
+{
+    YAML::Node yamldoc = YAML::Load( doc );
+    QVariantList yamlContents = CalamaresUtils::yamlSequenceToVariant( yamldoc );
+
+    QCOMPARE( yamlContents.length(), 1 );
+
+    // Kind of derpy, but we can treat a group as if it is a package
+    // because the keys name and description are the same
+    PackageTreeItem p( yamlContents[ 0 ].toMap(), PackageTreeItem::PackageTag { nullptr } );
+
+    QCOMPARE( p.isSelected(), Qt::Unchecked );
+    QCOMPARE( p.packageName(), QStringLiteral( "CCR" ) );
+    QVERIFY( p.name().isEmpty() );  // not a group
+    QVERIFY( !p.description().isEmpty() );  // because it is set
+    QVERIFY( p.description().startsWith( QStringLiteral( "Tools for the Chakra" ) ) );
+    QCOMPARE( p.parentItem(), nullptr );
+    QCOMPARE( p.childCount(), 0 );
+    QVERIFY( !p.isHidden() );
+    QVERIFY( !p.isCritical() );
+    QVERIFY( !p.isGroup() );
+    QVERIFY( p.isPackage() );
+    QVERIFY( p == p );
+}
+
+
+void
 ItemTests::testGroup()
 {
     YAML::Node yamldoc = YAML::Load( doc );
@@ -134,7 +165,7 @@ ItemTests::testGroup()
 
     QCOMPARE( yamlContents.length(), 1 );
 
-    PackageTreeItem p( yamlContents[ 0 ].toMap(), nullptr );
+    PackageTreeItem p( yamlContents[ 0 ].toMap(), PackageTreeItem::GroupTag { nullptr } );
     QCOMPARE( p.name(), QStringLiteral( "CCR" ) );
     QVERIFY( p.packageName().isEmpty() );
     QVERIFY( p.description().startsWith( QStringLiteral( "Tools " ) ) );
@@ -147,7 +178,7 @@ ItemTests::testGroup()
     QVERIFY( !p.isPackage() );
     QVERIFY( p == p );
 
-    PackageTreeItem c( "zsh", nullptr );
+    PackageTreeItem c( "zsh", nullptr );  // Single string, package
     QVERIFY( p != c );
 }
 
@@ -184,15 +215,17 @@ ItemTests::testCompare()
     QVariantList yamlContents = CalamaresUtils::yamlSequenceToVariant( yamldoc );
     QCOMPARE( yamlContents.length(), 1 );
 
-    PackageTreeItem p3( yamlContents[ 0 ].toMap(), nullptr );
+    PackageTreeItem p3( yamlContents[ 0 ].toMap(), PackageTreeItem::GroupTag { nullptr } );
     QVERIFY( p3 == p3 );
     QVERIFY( p3 != p1 );
     QVERIFY( p1 != p3 );
     QCOMPARE( p3.childCount(), 0 );  // Doesn't load the packages: list
 
-    PackageTreeItem p4( CalamaresUtils::yamlSequenceToVariant( YAML::Load( doc ) )[ 0 ].toMap(), nullptr );
+    PackageTreeItem p4( CalamaresUtils::yamlSequenceToVariant( YAML::Load( doc ) )[ 0 ].toMap(),
+                        PackageTreeItem::GroupTag { nullptr } );
     QVERIFY( p3 == p4 );
-    PackageTreeItem p5( CalamaresUtils::yamlSequenceToVariant( YAML::Load( doc_no_packages ) )[ 0 ].toMap(), nullptr );
+    PackageTreeItem p5( CalamaresUtils::yamlSequenceToVariant( YAML::Load( doc_no_packages ) )[ 0 ].toMap(),
+                        PackageTreeItem::GroupTag { nullptr } );
     QVERIFY( p3 == p5 );
 }
 

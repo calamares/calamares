@@ -35,20 +35,19 @@
 #include "PartitionBarsView.h"
 #include "PartitionLabelsView.h"
 #include "PartitionSplitterWidget.h"
-#include "PrettyRadioButton.h"
 #include "ReplaceWidget.h"
 #include "ScanningDialog.h"
 
+#include "Branding.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "partition/PartitionIterator.h"
 #include "partition/PartitionQuery.h"
+#include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 #include "utils/Units.h"
-
-#include "Branding.h"
-#include "utils/CalamaresUtilsGui.h"
+#include "widgets/PrettyRadioButton.h"
 
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
@@ -69,6 +68,7 @@ using PartitionActions::Choices::SwapChoice;
 using CalamaresUtils::Partition::PartitionIterator;
 using CalamaresUtils::Partition::isPartitionFreeSpace;
 using CalamaresUtils::Partition::findPartitionByPath;
+using Calamares::PrettyRadioButton;
 
 /** @brief Given a set of swap choices, return a sensible value from it.
  *
@@ -259,14 +259,14 @@ ChoicePage::setupChoices()
     m_alongsideButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionAlongside,
                                                                CalamaresUtils::Original,
                                                                iconSize ) );
-    m_grp->addButton( m_alongsideButton->buttonWidget(), Alongside );
+    m_alongsideButton->addToGroup( m_grp, Alongside );
 
     m_eraseButton = new PrettyRadioButton;
     m_eraseButton->setIconSize( iconSize );
     m_eraseButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionEraseAuto,
                                                            CalamaresUtils::Original,
                                                            iconSize ) );
-    m_grp->addButton( m_eraseButton->buttonWidget(), Erase );
+    m_eraseButton->addToGroup( m_grp, Erase );
 
     m_replaceButton = new PrettyRadioButton;
 
@@ -274,7 +274,7 @@ ChoicePage::setupChoices()
     m_replaceButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionReplaceOs,
                                                              CalamaresUtils::Original,
                                                              iconSize ) );
-    m_grp->addButton( m_replaceButton->buttonWidget(), Replace );
+    m_replaceButton->addToGroup( m_grp, Replace );
 
     // Fill up swap options
     // .. TODO: only if enabled in the config
@@ -294,7 +294,7 @@ ChoicePage::setupChoices()
                                                                    CalamaresUtils::Original,
                                                                    iconSize ) );
     m_itemsLayout->addWidget( m_somethingElseButton );
-    m_grp->addButton( m_somethingElseButton->buttonWidget(), Manual );
+    m_somethingElseButton->addToGroup( m_grp, Manual );
 
     m_itemsLayout->addStretch();
 
@@ -560,7 +560,7 @@ ChoicePage::doAlongsideSetupSplitter( const QModelIndex& current,
     Partition* part = modl->partitionForIndex( current );
     if ( !part )
     {
-        cDebug() << Q_FUNC_INFO << "Partition not found for index" << current;
+        cDebug() << "Partition not found for index" << current;
         return;
     }
 
@@ -832,7 +832,7 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
         if ( !homePartitionPath->isEmpty() )
             m_reuseHomeCheckBox->setText( tr( "Reuse %1 as home partition for %2." )
                                           .arg( *homePartitionPath )
-                                          .arg( *Calamares::Branding::ShortProductName ) );
+                                          .arg( Calamares::Branding::instance()->shortProductName() ) );
         delete homePartitionPath;
 
         if ( m_isEfi )
@@ -975,7 +975,7 @@ ChoicePage::updateActionChoicePreview( ChoicePage::InstallChoice choice )
                                         .arg( m_beforePartitionBarsView->selectionModel()->currentIndex().data().toString() )
                                         .arg( CalamaresUtils::BytesToMiB( size ) )
                                         .arg( CalamaresUtils::BytesToMiB( sizeNext ) )
-                                        .arg( *Calamares::Branding::ShortProductName ) );
+                                        .arg( Calamares::Branding::instance()->shortProductName() ) );
                 }
             );
 
@@ -1004,7 +1004,7 @@ ChoicePage::updateActionChoicePreview( ChoicePage::InstallChoice choice )
             m_afterPartitionBarsView->setNestedPartitionsMode( mode );
             m_afterPartitionLabelsView = new PartitionLabelsView( m_previewAfterFrame );
             m_afterPartitionLabelsView->setExtendedPartitionHidden( mode == PartitionBarsView::NoNestedPartitions );
-            m_afterPartitionLabelsView->setCustomNewRootLabel( *Calamares::Branding::BootloaderEntryName );
+            m_afterPartitionLabelsView->setCustomNewRootLabel( Calamares::Branding::instance()->string(Calamares::Branding::BootloaderEntryName) );
 
             PartitionModel* model = m_core->partitionModelForDevice( selectedDevice() );
 
@@ -1135,7 +1135,7 @@ ChoicePage::setupEfiSystemPartitionSelector()
                     tr( "An EFI system partition cannot be found anywhere "
                         "on this system. Please go back and use manual "
                         "partitioning to set up %1." )
-                    .arg( *Calamares::Branding::ShortProductName ) );
+                    .arg( Calamares::Branding::instance()->shortProductName() ) );
         updateNextEnabled();
     }
     else if ( efiSystemPartitions.count() == 1 ) //probably most usual situation
@@ -1144,7 +1144,7 @@ ChoicePage::setupEfiSystemPartitionSelector()
                     tr( "The EFI system partition at %1 will be used for "
                         "starting %2." )
                     .arg( efiSystemPartitions.first()->partitionPath() )
-                    .arg( *Calamares::Branding::ShortProductName ) );
+                    .arg( Calamares::Branding::instance()->shortProductName() ) );
     }
     else
     {
@@ -1193,7 +1193,7 @@ force_uncheck(QButtonGroup* grp, PrettyRadioButton* button)
 {
     button->hide();
     grp->setExclusive( false );
-    button->buttonWidget()->setChecked( false );
+    button->setChecked( false );
     grp->setExclusive( true );
 }
 
@@ -1278,18 +1278,18 @@ ChoicePage::setupActions()
 
             m_alongsideButton->setText( tr( "<strong>Install alongside</strong><br/>"
                                             "The installer will shrink a partition to make room for %1." )
-                                        .arg( *Calamares::Branding::ShortVersionedName ) );
+                                        .arg( Calamares::Branding::instance()->shortVersionedName() ) );
 
             m_replaceButton->setText( tr( "<strong>Replace a partition</strong><br/>"
                                           "Replaces a partition with %1." )
-                                      .arg( *Calamares::Branding::ShortVersionedName ) );
+                                      .arg( Calamares::Branding::instance()->shortVersionedName() ) );
         )
 
         m_replaceButton->hide();
         m_alongsideButton->hide();
         m_grp->setExclusive( false );
-        m_replaceButton->buttonWidget()->setChecked( false );
-        m_alongsideButton->buttonWidget()->setChecked( false );
+        m_replaceButton->setChecked( false );
+        m_alongsideButton->setChecked( false );
         m_grp->setExclusive( true );
     }
     else if ( osproberEntriesForCurrentDevice.count() == 1 )
@@ -1308,7 +1308,7 @@ ChoicePage::setupActions()
 
                 m_alongsideButton->setText( tr( "<strong>Install alongside</strong><br/>"
                                                 "The installer will shrink a partition to make room for %1." )
-                                            .arg( *Calamares::Branding::ShortVersionedName ) );
+                                            .arg( Calamares::Branding::instance()->shortVersionedName() ) );
 
                 m_eraseButton->setText( tr( "<strong>Erase disk</strong><br/>"
                                             "This will <font color=\"red\">delete</font> all data "
@@ -1317,7 +1317,7 @@ ChoicePage::setupActions()
 
                 m_replaceButton->setText( tr( "<strong>Replace a partition</strong><br/>"
                                               "Replaces a partition with %1." )
-                                          .arg( *Calamares::Branding::ShortVersionedName ) );
+                                          .arg( Calamares::Branding::instance()->shortVersionedName() ) );
             )
         }
         else
@@ -1331,7 +1331,7 @@ ChoicePage::setupActions()
 
                 m_alongsideButton->setText( tr( "<strong>Install alongside</strong><br/>"
                                                 "The installer will shrink a partition to make room for %1." )
-                                            .arg( *Calamares::Branding::ShortVersionedName ) );
+                                            .arg( Calamares::Branding::instance()->shortVersionedName() ) );
 
                 m_eraseButton->setText( tr( "<strong>Erase disk</strong><br/>"
                                             "This will <font color=\"red\">delete</font> all data "
@@ -1339,7 +1339,7 @@ ChoicePage::setupActions()
 
                 m_replaceButton->setText( tr( "<strong>Replace a partition</strong><br/>"
                                               "Replaces a partition with %1." )
-                                          .arg( *Calamares::Branding::ShortVersionedName ) );
+                                          .arg( Calamares::Branding::instance()->shortVersionedName() ) );
             )
         }
     }
@@ -1357,7 +1357,7 @@ ChoicePage::setupActions()
 
             m_alongsideButton->setText( tr( "<strong>Install alongside</strong><br/>"
                                             "The installer will shrink a partition to make room for %1." )
-                                        .arg( *Calamares::Branding::ShortVersionedName ) );
+                                        .arg( Calamares::Branding::instance()->shortVersionedName() ) );
 
             m_eraseButton->setText( tr( "<strong>Erase disk</strong><br/>"
                                         "This will <font color=\"red\">delete</font> all data "
@@ -1365,7 +1365,7 @@ ChoicePage::setupActions()
 
             m_replaceButton->setText( tr( "<strong>Replace a partition</strong><br/>"
                                           "Replaces a partition with %1." )
-                                      .arg( *Calamares::Branding::ShortVersionedName ) );
+                                      .arg( Calamares::Branding::instance()->shortVersionedName() ) );
         )
     }
 

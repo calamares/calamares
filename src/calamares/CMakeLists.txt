@@ -10,6 +10,20 @@ set( calamaresSources
     progresstree/ProgressTreeView.cpp
 )
 
+if( NOT WITH_KF5DBus )
+    set( kdsagSources "" )
+    foreach( _s
+        kdsingleapplicationguard/kdsingleapplicationguard.cpp
+        kdsingleapplicationguard/kdsharedmemorylocker.cpp
+        kdsingleapplicationguard/kdtoolsglobal.cpp
+        kdsingleapplicationguard/kdlockedsharedmemorypointer.cpp
+    )
+        list( APPEND kdsagSources ${CMAKE_SOURCE_DIR}/3rdparty/${_s} )
+    endforeach()
+    mark_thirdparty_code( ${kdsagSources} )
+    list( APPEND calamaresSources ${kdsagSources} )
+endif()
+
 include_directories(
     ${CMAKE_SOURCE_DIR}/src/libcalamares
     ${CMAKE_SOURCE_DIR}/src/libcalamaresui
@@ -41,11 +55,12 @@ target_link_libraries( calamares_bin
         KF5::CoreAddons
 )
 if( WITH_KF5Crash )
-    target_link_libraries( calamares_bin
-        PRIVATE
-            KF5::Crash
-    )
+    target_link_libraries( calamares_bin PRIVATE KF5::Crash )
     target_compile_definitions( calamares_bin PRIVATE WITH_KF5Crash )
+endif()
+if( WITH_KF5DBus )
+    target_link_libraries( calamares_bin PRIVATE KF5::DBusAddons )
+    target_compile_definitions( calamares_bin PRIVATE WITH_KF5DBus )
 endif()
 
 install( TARGETS calamares_bin
@@ -59,7 +74,10 @@ install( FILES ${CMAKE_SOURCE_DIR}/data/images/squid.svg
 )
 
 if( BUILD_TESTING )
+    # Don't install, these are just for enable_testing
     add_executable( loadmodule testmain.cpp )
     target_link_libraries( loadmodule PRIVATE Qt5::Core Qt5::Widgets calamares calamaresui )
-    # Don't install, it's just for enable_testing
+
+    add_executable( test_conf test_conf.cpp )
+    target_link_libraries( test_conf PUBLIC yamlcpp Qt5::Core )
 endif()

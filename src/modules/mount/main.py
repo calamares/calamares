@@ -52,8 +52,13 @@ def mount_partition(root_mount_point, partition, partitions):
     # Ensure that the created directory has the correct SELinux context on
     # SELinux-enabled systems.
     os.makedirs(mount_point, exist_ok=True)
-    subprocess.call(['chcon', '--reference=' + raw_mount_point,
-                     mount_point])
+    try:
+        subprocess.call(['chcon', '--reference=' + raw_mount_point, mount_point])
+    except FileNotFoundError as e:
+        libcalamares.utils.warning(str(e))
+    except OSError:
+        libcalamares.utils.error("Cannot run 'chcon' normally.")
+        raise
 
     fstype = partition.get("fs", "").lower()
 

@@ -33,7 +33,7 @@ class Utils : public QObject
     Q_OBJECT
 public:
     explicit Utils( QObject* parent = nullptr );
-    virtual ~Utils() {}
+    virtual ~Utils() { }
 
 public slots:
     void debug( const QString& s ) const;

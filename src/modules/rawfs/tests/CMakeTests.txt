@@ -1,0 +1,8 @@
+# Special cases for rawfs tests
+#
+# - On FreeBSD, /proc/mounts doesn't exist (/proc is only about processes,
+#   and is rarely used). Expect the test to fail.
+
+if(CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
+    set_tests_properties(load-rawfs-1 PROPERTIES WILL_FAIL TRUE)
+endif()

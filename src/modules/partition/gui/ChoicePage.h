@@ -23,7 +23,6 @@
 
 #include "ui_ChoicePage.h"
 
-#include <QWidget>
 
 #include "core/OsproberEntry.h"
 #include "core/PartitionActions.h"
@@ -31,17 +30,22 @@
 #include <QMutex>
 #include <QPointer>
 #include <QSet>
+#include <QWidget>
 
 class QBoxLayout;
 class QComboBox;
 class QLabel;
 class QListView;
 
+namespace Calamares
+{
+class PrettyRadioButton;
+}
+
 class PartitionBarsView;
 class PartitionSplitterWidget;
 class PartitionLabelsView;
 class PartitionCoreModule;
-class PrettyRadioButton;
 class DeviceInfoWidget;
 
 class Device;
@@ -153,10 +157,10 @@ private:
     QComboBox* m_drivesCombo;
 
     QButtonGroup* m_grp;
-    PrettyRadioButton* m_alongsideButton;
-    PrettyRadioButton* m_eraseButton;
-    PrettyRadioButton* m_replaceButton;
-    PrettyRadioButton* m_somethingElseButton;
+    Calamares::PrettyRadioButton* m_alongsideButton;
+    Calamares::PrettyRadioButton* m_eraseButton;
+    Calamares::PrettyRadioButton* m_replaceButton;
+    Calamares::PrettyRadioButton* m_somethingElseButton;
     QComboBox* m_eraseSwapChoiceComboBox;  // UI, see also m_eraseSwapChoice
 
     DeviceInfoWidget* m_deviceInfoWidget;
@@ -182,4 +186,4 @@ private:
     QMutex m_coreMutex;
 };
 
-#endif // CHOICEPAGE_H
+#endif  // CHOICEPAGE_H

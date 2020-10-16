@@ -38,12 +38,12 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 
-#include <QGuiApplication>
 #include <QDBusConnection>
 #include <QDBusInterface>
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
+#include <QGuiApplication>
 #include <QScreen>
 
 #include <unistd.h>  //geteuid
@@ -70,16 +70,48 @@ biggestSingleScreen()
     return s;
 }
 
+/** @brief Distinguish has-not-been-checked-at-all from false.
+ *
+ */
+struct MaybeChecked
+{
+    bool hasBeenChecked = false;
+    bool value = false;
+
+    MaybeChecked& operator=( bool b )
+    {
+        hasBeenChecked = true;
+        value = b;
+        return *this;
+    }
+
+    operator bool() const { return value; }
+};
+
+QDebug&
+operator<<( QDebug& s, const MaybeChecked& c )
+{
+    if ( c.hasBeenChecked )
+    {
+        s << c.value;
+    }
+    else
+    {
+        s << "unchecked";
+    }
+    return s;
+}
+
 Calamares::RequirementsList
 GeneralRequirements::checkRequirements()
 {
     QSize availableSize = biggestSingleScreen();
 
-    bool enoughStorage = false;
-    bool enoughRam = false;
-    bool hasPower = false;
-    bool hasInternet = false;
-    bool isRoot = false;
+    MaybeChecked enoughStorage;
+    MaybeChecked enoughRam;
+    MaybeChecked hasPower;
+    MaybeChecked hasInternet;
+    MaybeChecked isRoot;
     bool enoughScreen = availableSize.isValid() && ( availableSize.width() >= CalamaresUtils::windowMinimumWidth )
         && ( availableSize.height() >= CalamaresUtils::windowMinimumHeight );
 
@@ -112,7 +144,7 @@ GeneralRequirements::checkRequirements()
         isRoot = checkIsRoot();
     }
 
-    using TR = Logger::DebugRow< const char*, bool >;
+    using TR = Logger::DebugRow< const char*, MaybeChecked >;
     cDebug() << "GeneralRequirements output:" << TR( "enoughStorage", enoughStorage ) << TR( "enoughRam", enoughRam )
              << TR( "hasPower", hasPower ) << TR( "hasInternet", hasInternet ) << TR( "isRoot", isRoot );
 
@@ -123,8 +155,10 @@ GeneralRequirements::checkRequirements()
         {
             checkEntries.append(
                 { entry,
-                  [req = m_requiredStorageGiB] { return tr( "has at least %1 GiB available drive space" ).arg( req ); },
-                  [req = m_requiredStorageGiB] {
+                  [ req = m_requiredStorageGiB ] {
+                      return tr( "has at least %1 GiB available drive space" ).arg( req );
+                  },
+                  [ req = m_requiredStorageGiB ] {
                       return tr( "There is not enough drive space. At least %1 GiB is required." ).arg( req );
                   },
                   enoughStorage,
@@ -134,8 +168,8 @@ GeneralRequirements::checkRequirements()
         {
             checkEntries.append(
                 { entry,
-                  [req = m_requiredRamGiB] { return tr( "has at least %1 GiB working memory" ).arg( req ); },
-                  [req = m_requiredRamGiB] {
+                  [ req = m_requiredRamGiB ] { return tr( "has at least %1 GiB working memory" ).arg( req ); },
+                  [ req = m_requiredRamGiB ] {
                       return tr( "The system does not have enough working memory. At least %1 GiB is required." )
                           .arg( req );
                   },

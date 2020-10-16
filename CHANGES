@@ -3,19 +3,103 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.23 (unreleased) #
+# 3.2.26 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - Pablo Ovelleiro Corral
 
 ## Core ##
- - No core changes yet
+ - External modules can now be built again, outside of the Calamares
+   source and build-tree.
 
 ## Modules ##
- - No module changes yet
+ - *locale* put some more places into the correct timezone **visually**;
+   for instance Norfolk Island gave up UTC+11.5 in 2015 and is now
+   UTC+11, but Calamares still showed it in a zone separate from UTC+11.
+ - *packages* gained support for the Void Linux package manager,
+   *xbps*. (thanks Pablo)
+
+# 3.2.25 (2020-06-06) #
+
+This release contains contributions from (alphabetically by first name):
+ - Anke Boersma
+ - Callum Farmer
+ - FLVAL
+ - Gaël PORTAY
+
+## Core ##
+ - The slideshow in `branding.desc` can be configured with QML (recommended,
+   as it has been for the past umpteen releases) or with a list of
+   images (new).
+ - It is possible to turn off all the new QML code -- navigation, slideshow,
+   QML-based modules -- with a single `-DWITH_QML=OFF` at CMake time.
+   This removes QML from Calamares' dependency footprint (but only saves
+   200kB in Calamares itself).
+ - Tests have been extended and now support a tests/CMakeTests.txt file
+   for fine-tuning tests for Python modules.
+ - SPDX identifiers are used much more widely and consistently in Calamares.
+   (thanks Callum)
+
+## Modules ##
+ - The QML based *welcomeq* module is now a viable alternative to the
+   *welcome*(widgets based) module. Using QML files means it no longer
+   is needed to have pop-up windows for additional information or warnings,
+   all loads in the Calamares window itself.  Additional features include the
+   option to customize the *About* info and load files like Release Notes
+   direct into Calamares, QML files added to the branding directory can be used.
+ - The *welcome* and *locale* modules that do GeoIP lookup can now also
+   use "fixed" style; this just negates the GeoIP lookup and substitutes a
+   constant (fixed) value; useful for testing specific locales.
+ - The *keyboard* module no longer uses *ca_eng* keyboards in Canada by
+   default, but sticks to the *us* keyboard. #1419
 
 
- # 3.2.22 (2020-04-08) #
+# 3.2.24 (2020-05-11) #
+
+This release contains contributions from (alphabetically by first name):
+ - Bill Auger
+ - Gaël PORTAY
+ - Luna Jernberg
+ - Philip Müller
+
+## Core ##
+ - There is now a bash-completions script for Calamares; turn on
+   the (CMake-time) option INSTALL_COMPLETION to get it. (Thanks Gaël)
+ - The *productWallpaper* setting is documented and works. (Thanks Bill)
+ - GlobalStorage is available to QML modules as `Global`.
+ - The height of the navigation bar in QML can be set within the
+   QML code for the navigation; if not set, try something sensible.
+ - A regression in the requirements-checker which could block the
+   installer from proceeding without telling the user **why** it
+   was blocked, has been resolved.
+
+## Modules ##
+ - The *bootloader* module can force a UEFI-based machine to boot into
+   the newly-installed system. #1394 (Thanks Gaël)
+ - *partition* Pop-ups about boot flags use the right flag names. #1192
+
+
+# 3.2.23 (2020-04-17) #
+
+This release contains contributions from (alphabetically by first name):
+ - FLVAL
+
+## Core ##
+ - Some strange annotations were added to the *About* dialog text in
+   all the translations, like `{1?}`. These have been removed again.
+
+## Modules ##
+ - *locale* module had some errors in timezone data, where clicking
+   on a city would select a different timezone. Some of these are
+   now fixed (thanks FLVAL). #1374
+ - *netinstall* supports a wider variety of package naming schemes,
+   and is more flexible in loading a `netinstall.yaml` that is copied from
+   the example configuration file, *groups* key and all. #1369
+ - *users* module logs a full error message from libpwquality if something
+   is wrong internally.
+
+
+# 3.2.22 (2020-04-08) #
 
 This release contains contributions from (alphabetically by first name):
  - Anke Boersma

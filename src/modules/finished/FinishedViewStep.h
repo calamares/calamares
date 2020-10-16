@@ -36,10 +36,10 @@ class PLUGINDLLEXPORT FinishedViewStep : public Calamares::ViewStep
 public:
     enum class RestartMode
     {
-        Never=0,         ///< @brief Don't show button, just exit
-        UserUnchecked,   ///< @brief Show button, starts unchecked
-        UserChecked,     ///< @brief Show button, starts checked
-        Always           ///< @brief Show button, can't change, checked
+        Never = 0,  ///< @brief Don't show button, just exit
+        UserUnchecked,  ///< @brief Show button, starts unchecked
+        UserChecked,  ///< @brief Show button, starts checked
+        Always  ///< @brief Show button, can't change, checked
     };
     /// @brief Returns the config-name of the given restart-mode @p m
     static QString modeName( RestartMode m );

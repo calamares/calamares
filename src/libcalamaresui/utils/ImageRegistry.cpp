@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   SPDX-License-Identifier: GPLv3+
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *   License-Filename: LICENSES/GPLv3+-ImageRegistry
  *
  *   Copyright 2019, Adriaan de Groot <groot@kde.org>
@@ -40,7 +40,7 @@ ImageRegistry::instance()
 }
 
 
-ImageRegistry::ImageRegistry() {}
+ImageRegistry::ImageRegistry() { }
 
 
 QIcon

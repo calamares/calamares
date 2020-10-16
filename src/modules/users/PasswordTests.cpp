@@ -24,9 +24,9 @@
 
 QTEST_GUILESS_MAIN( PasswordTests )
 
-PasswordTests::PasswordTests() {}
+PasswordTests::PasswordTests() { }
 
-PasswordTests::~PasswordTests() {}
+PasswordTests::~PasswordTests() { }
 
 void
 PasswordTests::initTestCase()

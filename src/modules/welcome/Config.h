@@ -20,17 +20,40 @@
 #define WELCOME_CONFIG_H
 
 #include "locale/LabelModel.h"
-#include "modulesystem/Requirement.h"
 #include "modulesystem/RequirementsModel.h"
 
 #include <QObject>
+#include <QSortFilterProxyModel>
 #include <QUrl>
+
+#include <memory>
 
 class Config : public QObject
 {
     Q_OBJECT
+    /** @brief The languages available in Calamares.
+     *
+     * This is a list-model, with names and descriptions for the translations
+     * available to Calamares.
+     */
     Q_PROPERTY( CalamaresUtils::Locale::LabelModel* languagesModel READ languagesModel CONSTANT FINAL )
-    Q_PROPERTY( Calamares::RequirementsModel* requirementsModel MEMBER m_requirementsModel CONSTANT FINAL )
+    /** @brief The requirements (from modules) and their checked-status
+     *
+     * The model grows rows over time as each module is checked and its
+     * requirements are taken into account. The model **as a whole**
+     * has properties *satisfiedRequirements* and *satisfiedMandatory*
+     * to say if all of the requirements held in the model have been
+     * satisfied. See the model documentation for details.
+     */
+    Q_PROPERTY( Calamares::RequirementsModel* requirementsModel READ requirementsModel CONSTANT FINAL )
+    /** @brief The requirements (from modules) that are **unsatisfied**
+     *
+     * This is the same as requirementsModel(), except filtered so
+     * that only those requirements that are not satisfied are exposed.
+     * Note that the type is different, so you should still use the
+     * requirementsModel() for overall status like *satisfiedMandatory*.
+     */
+    Q_PROPERTY( QAbstractItemModel* unsatisfiedRequirements READ unsatisfiedRequirements CONSTANT FINAL )
 
     Q_PROPERTY( QString languageIcon READ languageIcon CONSTANT FINAL )
 
@@ -50,7 +73,7 @@ class Config : public QObject
 public:
     Config( QObject* parent = nullptr );
 
-    Calamares::RequirementsModel& requirementsModel() const;
+    void setConfigurationMap( const QVariantMap& );
 
     void setCountryCode( const QString& countryCode );
 
@@ -59,19 +82,19 @@ public:
 
     void setIsNextEnabled( bool isNextEnabled );
 
-    void setLocaleIndex( int index );
     int localeIndex() const { return m_localeIndex; }
+    void setLocaleIndex( int index );
 
-    QString supportUrl() const;
+    QString supportUrl() const { return m_supportUrl; }
     void setSupportUrl( const QString& url );
 
-    QString knownIssuesUrl() const;
+    QString knownIssuesUrl() const { return m_knownIssuesUrl; }
     void setKnownIssuesUrl( const QString& url );
 
-    QString releaseNotesUrl() const;
+    QString releaseNotesUrl() const { return m_releaseNotesUrl; }
     void setReleaseNotesUrl( const QString& url );
 
-    QString donateUrl() const;
+    QString donateUrl() const { return m_donateUrl; }
     void setDonateUrl( const QString& url );
 
     QString genericWelcomeMessage() const;
@@ -80,6 +103,11 @@ public:
 public slots:
     CalamaresUtils::Locale::LabelModel* languagesModel() const;
     void retranslate();
+
+    ///@brief The **global** requirements model, from ModuleManager
+    Calamares::RequirementsModel* requirementsModel() const;
+
+    QAbstractItemModel* unsatisfiedRequirements() const;
 
 signals:
     void countryCodeChanged( QString countryCode );
@@ -97,8 +125,8 @@ signals:
 private:
     void initLanguages();
 
-    Calamares::RequirementsModel* m_requirementsModel;
-    CalamaresUtils::Locale::LabelModel* m_languages;
+    CalamaresUtils::Locale::LabelModel* m_languages = nullptr;
+    std::unique_ptr< QSortFilterProxyModel > m_filtermodel;
 
     QString m_languageIcon;
     QString m_countryCode;

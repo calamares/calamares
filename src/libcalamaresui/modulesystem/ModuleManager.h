@@ -32,7 +32,7 @@ namespace Calamares
 {
 
 class Module;
-struct RequirementEntry;  // from Requirement.h
+class RequirementsModel;
 
 /**
  * @brief The ModuleManager class is a singleton which manages Calamares modules.
@@ -86,10 +86,21 @@ public:
     void loadModules();
 
     /**
+     * @brief Adds a single module (loaded by some other means)
+     *
+     * Returns @c true on success (that is, the module's dependencies
+     * are satisfied, it wasn't already loaded, ...).
+     */
+    bool addModule( Module* );
+
+    /**
      * @brief Starts asynchronous requirements checking for each module.
-     * When this is done, the signal modulesChecked is emitted.
+     * When this is done, the signal requirementsComplete is emitted.
      */
     void checkRequirements();
+
+    ///@brief Gets the model that requirements-checking works on.
+    RequirementsModel* requirementsModel() { return m_requirementsModel; }
 
 signals:
     void initDone();
@@ -97,8 +108,6 @@ signals:
     void modulesFailed( QStringList );  /// .. or not
     // Below, see RequirementsChecker documentation
     void requirementsComplete( bool );
-    void requirementsResult( RequirementsList );
-    void requirementsProgress( const QString& );
 
 private slots:
     void doInit();
@@ -130,6 +139,7 @@ private:
     QMap< QString, QString > m_moduleDirectoriesByModuleName;
     QMap< ModuleSystem::InstanceKey, Module* > m_loadedModulesByInstanceKey;
     const QStringList m_paths;
+    RequirementsModel* m_requirementsModel;
 
     static ModuleManager* s_instance;
 };

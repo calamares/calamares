@@ -73,6 +73,8 @@ LocaleViewStep::setUpPage()
     m_actualWidget->init( m_startingTimezone.first, m_startingTimezone.second, m_localeGenPath );
     m_widget->layout()->addWidget( m_actualWidget );
 
+    ensureSize( m_actualWidget->sizeHint() );
+
     m_nextEnabled = true;
     emit nextStatusChanged( m_nextEnabled );
 }
