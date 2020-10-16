@@ -22,8 +22,8 @@ Individual modules may have their own requirements;
 these are listed in CMake output.
 Particular requirements (not complete):
 
-* *fsresizer* KPMCore >= 3.3 (>= 4.1 recommended)
-* *partition* KPMCore >= 3.3 (>= 4.1 recommended)
+* *fsresizer* KPMCore >= 3.3 (>= 4.2 recommended)
+* *partition* KPMCore >= 3.3 (>= 4.2 recommended)
 * *users* LibPWQuality (optional)
 
 ### Building
