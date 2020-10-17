@@ -618,41 +618,41 @@ The installer will quit and all changes will be lost.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1448"/>
-      <source>This storage device already may has an operating system on it, but its partition table &lt;strong&gt;%1&lt;/strong&gt; mismatch therequirement &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</source>
-      <translation>This storage device already may has an operating system on it, but its partition table &lt;strong&gt;%1&lt;/strong&gt; mismatch therequirement &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</translation>
+      <source>This storage device already has an operating system on it, but the partition table &lt;strong&gt;%1&lt;/strong&gt; is different from the needed &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</source>
+      <translation>This storage device already has an operating system on it, but the partition table &lt;strong&gt;%1&lt;/strong&gt; is different from the needed &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1473"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1471"/>
       <source>This storage device has one of its partitions &lt;strong&gt;mounted&lt;/strong&gt;.</source>
       <translation>This storage device has one of its partitions &lt;strong&gt;mounted&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1478"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1476"/>
       <source>This storage device is a part of an &lt;strong&gt;inactive RAID&lt;/strong&gt; device.</source>
       <translation>This storage device is a part of an &lt;strong&gt;inactive RAID&lt;/strong&gt; device.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1605"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1603"/>
       <source>No Swap</source>
       <translation>No Swap</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1613"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1611"/>
       <source>Reuse Swap</source>
       <translation>Reuse Swap</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1616"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1614"/>
       <source>Swap (no Hibernate)</source>
       <translation>Swap (no Hibernate)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1619"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1617"/>
       <source>Swap (with Hibernate)</source>
       <translation>Swap (with Hibernate)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1622"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1620"/>
       <source>Swap to file</source>
       <translation>Swap to file</translation>
     </message>

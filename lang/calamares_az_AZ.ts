@@ -618,41 +618,41 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1448"/>
-      <source>This storage device already may has an operating system on it, but its partition table &lt;strong&gt;%1&lt;/strong&gt; mismatch therequirement &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</source>
+      <source>This storage device already has an operating system on it, but the partition table &lt;strong&gt;%1&lt;/strong&gt; is different from the needed &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1473"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1471"/>
       <source>This storage device has one of its partitions &lt;strong&gt;mounted&lt;/strong&gt;.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1478"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1476"/>
       <source>This storage device is a part of an &lt;strong&gt;inactive RAID&lt;/strong&gt; device.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1605"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1603"/>
       <source>No Swap</source>
       <translation>Mübadilə bölməsi olmadan</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1613"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1611"/>
       <source>Reuse Swap</source>
       <translation>Mövcud mübadilə bölməsini istifadə etmək</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1616"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1614"/>
       <source>Swap (no Hibernate)</source>
       <translation>Mübadilə bölməsi (yuxu rejimi olmadan)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1619"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1617"/>
       <source>Swap (with Hibernate)</source>
       <translation>Mübadilə bölməsi (yuxu rejimi ilə)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1622"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1620"/>
       <source>Swap to file</source>
       <translation>Mübadilə faylı</translation>
     </message>
