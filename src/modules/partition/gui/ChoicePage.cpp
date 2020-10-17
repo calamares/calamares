@@ -1454,7 +1454,7 @@ ChoicePage::setupActions()
 
         cWarning() << "Partition table" << PartitionTable::tableTypeToName( tableType )
                    << "does not match the requirement " << m_requiredPartitionTableType.join( " or " )
-                   << ", ENABLING erease feature and DISABLING alongside, replace and manual features.";
+                   << ", ENABLING erase feature and DISABLING alongside, replace and manual features.";
         m_eraseButton->show();
         m_alongsideButton->hide();
         m_replaceButton->hide();
