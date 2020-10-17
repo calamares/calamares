@@ -566,7 +566,7 @@ Config::isReady() const
 {
     bool readyFullName = !fullName().isEmpty();  // Needs some text
     bool readyHostname = hostNameStatus().isEmpty();  // .. no warning message
-    bool readyUsername = loginNameStatus().isEmpty();  // .. no warning message
+    bool readyUsername = !loginName().isEmpty() && loginNameStatus().isEmpty();  // .. no warning message
     bool readyUserPassword = userPasswordValidity() != Config::PasswordValidity::Invalid;
     bool readyRootPassword = rootPasswordValidity() != Config::PasswordValidity::Invalid;
     return readyFullName && readyHostname && readyUsername && readyUserPassword && readyRootPassword;
