@@ -267,8 +267,13 @@ PackageModel::setupModelData( const QVariantList& groupList, PackageTreeItem* pa
                 setupModelData( subgroups, item );
                 // The children might be checked while the parent isn't (yet).
                 // Children are added to their parent (below) without affecting
-                // the checked-state -- do it manually.
-                item->updateSelected();
+                // the checked-state -- do it manually. Items with subgroups
+                // but no children have only hidden children -- those get
+                // handled specially.
+                if ( item->childCount() > 0 )
+                {
+                    item->updateSelected();
+                }
             }
             else
             {
