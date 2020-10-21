@@ -33,12 +33,13 @@ calamares_add_plugin( usersq
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
-		${_users}/Config.cpp
-		${_users}/CreateUserJob.cpp
+        ${_users}/CheckPWQuality.cpp
+        ${_users}/Config.cpp
+        ${_users}/CreateUserJob.cpp
+        ${_users}/MiscJobs.cpp
+        ${_users}/SetHostNameJob.cpp
         ${_users}/SetPasswordJob.cpp
         UsersQmlViewStep.cpp
-        ${_users}/SetHostNameJob.cpp
-        ${_users}/CheckPWQuality.cpp
     RESOURCES
         usersq.qrc
     LINK_PRIVATE_LIBRARIES
