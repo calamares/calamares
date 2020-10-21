@@ -25,6 +25,7 @@ include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
 
 set( JOB_SRC
     CreateUserJob.cpp
+    MiscJobs.cpp
     SetPasswordJob.cpp
     SetHostNameJob.cpp
 )

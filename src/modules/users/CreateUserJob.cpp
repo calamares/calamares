@@ -166,31 +166,6 @@ CreateUserJob::exec()
         reuseHome = gs->value( "reuseHome" ).toBool();
     }
 
-    if ( !m_config->sudoersGroup().isEmpty() )
-    {
-        m_status = tr( "Preparing sudo for user %1" ).arg( m_config->loginName() );
-        emit progress( 0.05 );
-        cDebug() << "[CREATEUSER]: preparing sudoers";
-
-        QString sudoersLine = QString( "%%1 ALL=(ALL) ALL\n" ).arg( m_config->sudoersGroup() );
-        auto fileResult
-            = CalamaresUtils::System::instance()->createTargetFile( QStringLiteral( "/etc/sudoers.d/10-installer" ),
-                                                                    sudoersLine.toUtf8().constData(),
-                                                                    CalamaresUtils::System::WriteMode::Overwrite );
-
-        if ( fileResult )
-        {
-            if ( !CalamaresUtils::Permissions::apply( fileResult.path(), 0440 ) )
-            {
-                return Calamares::JobResult::error( tr( "Cannot chmod sudoers file." ) );
-            }
-        }
-        else
-        {
-            return Calamares::JobResult::error( tr( "Cannot create sudoers file for writing." ) );
-        }
-    }
-
     cDebug() << "[CREATEUSER]: preparing groups";
 
     m_status = tr( "Preparing groups for user %1" ).arg( m_config->loginName() );

@@ -10,6 +10,7 @@
 #include "Config.h"
 
 #include "CreateUserJob.h"
+#include "MiscJobs.h"
 #include "SetHostNameJob.h"
 #include "SetPasswordJob.h"
 
@@ -103,7 +104,7 @@ Config::setUserShell( const QString& shell )
     if ( shell != m_userShell )
     {
         m_userShell = shell;
-        emit userShellChanged(shell);
+        emit userShellChanged( shell );
         // The shell is put into GS as well.
         auto* gs = Calamares::JobQueue::instance()->globalStorage();
         if ( gs )
@@ -795,6 +796,12 @@ Config::createJobs() const
     }
 
     Calamares::Job* j;
+
+    if ( m_sudoersGroup.isEmpty() )
+    {
+        j = new SetupSudoJob( m_sudoersGroup );
+        jobs.append( Calamares::job_ptr( j ) );
+    }
 
     j = new CreateUserJob( this );
     jobs.append( Calamares::job_ptr( j ) );
