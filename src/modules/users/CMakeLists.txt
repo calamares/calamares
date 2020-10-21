@@ -23,15 +23,27 @@ endif()
 
 include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
 
-set( JOB_SRC
+set( _users_src
+    # Jobs
     CreateUserJob.cpp
     MiscJobs.cpp
     SetPasswordJob.cpp
     SetHostNameJob.cpp
-)
-set( CONFIG_SRC
+    # Configuration
     CheckPWQuality.cpp
     Config.cpp
+)
+
+calamares_add_library(
+    users_internal
+    EXPORT_MACRO PLUGINDLLEXPORT_PRO
+    TARGET_TYPE STATIC
+    NO_INSTALL
+    NO_VERSION
+    SOURCES
+        ${_users_src}
+    LINK_LIBRARIES
+        Qt5::DBus
 )
 
 calamares_add_plugin( users
@@ -40,8 +52,6 @@ calamares_add_plugin( users
     SOURCES
         UsersViewStep.cpp
         UsersPage.cpp
-        ${JOB_SRC}
-        ${CONFIG_SRC}
     UI
         page_usersetup.ui
     RESOURCES
@@ -50,7 +60,7 @@ calamares_add_plugin( users
         calamaresui
         ${CRYPT_LIBRARIES}
         ${USER_EXTRA_LIB}
-        Qt5::DBus
+        users_internal
     SHARED_LIB
 )
 
@@ -83,10 +93,9 @@ calamares_add_test(
     userstest
     SOURCES
         Tests.cpp
-        ${JOB_SRC}
-        ${CONFIG_SRC}
+        ${_users_src}  # Build again with test-visibility
     LIBRARIES
         ${USER_EXTRA_LIB}
-        Qt5::DBus  # HostName job can use DBus to systemd
         ${CRYPT_LIBRARIES}  # SetPassword job uses crypt()
+        Qt5::DBus  # HostName job can use DBus to systemd
 )

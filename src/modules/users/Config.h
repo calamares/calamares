@@ -84,7 +84,7 @@ private:
 };
 
 
-class Config : public QObject
+class PLUGINDLLEXPORT Config : public QObject
 {
     Q_OBJECT
 
