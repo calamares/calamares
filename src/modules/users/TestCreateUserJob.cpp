@@ -15,14 +15,14 @@
 #include <QtTest/QtTest>
 
 // Implementation details
-extern QStringList groupsInTargetSystem( const QDir& targetRoot );  // CreateUserJob
+extern QStringList groupsInTargetSystem();  // CreateUserJob
 
-class CreateUserTests : public QObject
+class GroupTests : public QObject
 {
     Q_OBJECT
 public:
-    CreateUserTests();
-    ~CreateUserTests() override {}
+    GroupTests();
+    ~GroupTests() override {}
 
 private Q_SLOTS:
     void initTestCase();
@@ -30,23 +30,20 @@ private Q_SLOTS:
     void testReadGroup();
 };
 
-CreateUserTests::CreateUserTests() {}
+GroupTests::GroupTests() {}
 
 void
-CreateUserTests::initTestCase()
+GroupTests::initTestCase()
 {
     Logger::setupLogLevel( Logger::LOGDEBUG );
     cDebug() << "Users test started.";
 }
 
 void
-CreateUserTests::testReadGroup()
+GroupTests::testReadGroup()
 {
-    QDir root( "/" );
-    QVERIFY( root.exists() );
-
     // Get the groups in the host system
-    QStringList groups = groupsInTargetSystem( root );
+    QStringList groups = groupsInTargetSystem();
     QVERIFY( groups.count() > 2 );
 #ifdef __FreeBSD__
     QVERIFY( groups.contains( QStringLiteral( "wheel" ) ) );
@@ -65,7 +62,7 @@ CreateUserTests::testReadGroup()
     }
 }
 
-QTEST_GUILESS_MAIN( CreateUserTests )
+QTEST_GUILESS_MAIN( GroupTests )
 
 #include "utils/moc-warnings.h"
 

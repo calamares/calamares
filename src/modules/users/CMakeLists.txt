@@ -74,10 +74,10 @@ calamares_add_test(
 )
 
 calamares_add_test(
-    userscreatetest
+    usersgroupstest
     SOURCES
-        TestCreateUserJob.cpp
-        CreateUserJob.cpp
+        TestCreateUserJob.cpp  # Misnomer
+        MiscJobs.cpp
 )
 
 calamares_add_test(
