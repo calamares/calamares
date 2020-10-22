@@ -76,7 +76,7 @@ calamares_add_test(
 calamares_add_test(
     usersgroupstest
     SOURCES
-        TestCreateUserJob.cpp  # Misnomer
+        TestGroupInformation.cpp
         MiscJobs.cpp
 )
 
