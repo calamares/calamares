@@ -150,9 +150,8 @@ ensureGroupsExistInTarget( const QList< GroupDescription >& wantedGroups,
     return failureCount == 0;
 }
 
-SetupGroupsJob::SetupGroupsJob( const Config* config, const QString& autologinGroup )
-    : m_autologinGroup( autologinGroup )
-    , m_config( config )
+SetupGroupsJob::SetupGroupsJob( const Config* config )
+    : m_config( config )
 {
 }
 

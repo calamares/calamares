@@ -38,12 +38,11 @@ class SetupGroupsJob : public Calamares::Job
     Q_OBJECT
 
 public:
-    SetupGroupsJob( const Config* config, const QString& autologinGroup );
+    SetupGroupsJob( const Config* config );
     QString prettyName() const override;
     Calamares::JobResult exec() override;
 
 public:
-    QString m_autologinGroup;
     const Config* m_config;
 };
 

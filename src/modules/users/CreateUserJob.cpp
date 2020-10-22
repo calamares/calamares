@@ -50,53 +50,6 @@ CreateUserJob::prettyStatusMessage() const
     return m_status.isEmpty() ? tr( "Creating user %1." ).arg( m_config->loginName() ) : m_status;
 }
 
-STATICTEST QStringList
-groupsInTargetSystem( const QDir& targetRoot )
-{
-    QFileInfo groupsFi( targetRoot.absoluteFilePath( "etc/group" ) );
-    QFile groupsFile( groupsFi.absoluteFilePath() );
-    if ( !groupsFile.open( QIODevice::ReadOnly | QIODevice::Text ) )
-    {
-        return QStringList();
-    }
-    QString groupsData = QString::fromLocal8Bit( groupsFile.readAll() );
-    QStringList groupsLines = groupsData.split( '\n' );
-    QStringList::iterator it = groupsLines.begin();
-    while ( it != groupsLines.end() )
-    {
-        if ( it->startsWith( '#' ) )
-        {
-            it = groupsLines.erase( it );
-            continue;
-        }
-        int indexOfFirstToDrop = it->indexOf( ':' );
-        if ( indexOfFirstToDrop < 1 )
-        {
-            it = groupsLines.erase( it );
-            continue;
-        }
-        it->truncate( indexOfFirstToDrop );
-        ++it;
-    }
-    return groupsLines;
-}
-
-static void
-ensureGroupsExistInTarget( const QList< GroupDescription >& wantedGroups, const QStringList& availableGroups )
-{
-    for ( const auto& group : wantedGroups )
-    {
-        if ( group.isValid() && !availableGroups.contains( group.name() ) )
-        {
-#ifdef __FreeBSD__
-            CalamaresUtils::System::instance()->targetEnvCall( { "pw", "groupadd", "-n", group.name() } );
-#else
-            CalamaresUtils::System::instance()->targetEnvCall( { "groupadd", group.name() } );
-#endif
-        }
-    }
-}
-
 static Calamares::JobResult
 createUser( const QString& loginName, const QString& fullName, const QString& shell )
 {
@@ -166,28 +119,6 @@ CreateUserJob::exec()
         reuseHome = gs->value( "reuseHome" ).toBool();
     }
 
-    cDebug() << "[CREATEUSER]: preparing groups";
-
-    m_status = tr( "Preparing groups for user %1" ).arg( m_config->loginName() );
-    emit progress( 0.1 );
-    // loginName(), fullName().isEmpty() ? loginName() : fullName(), doAutoLogin(), groupNames );
-    const auto& defaultGroups = m_config->defaultGroups();
-    QStringList groupsForThisUser = std::accumulate(
-        defaultGroups.begin(),
-        defaultGroups.end(),
-        QStringList(),
-        []( const QStringList& l, const GroupDescription& g ) { return QStringList( l ) << g.name(); } );
-
-    QStringList availableGroups = groupsInTargetSystem( destDir );
-    ensureGroupsExistInTarget( defaultGroups, availableGroups );
-
-    if ( m_config->doAutoLogin() && !m_config->autologinGroup().isEmpty() )
-    {
-        const QString autologinGroup = m_config->autologinGroup();
-        groupsForThisUser << autologinGroup;
-        ensureGroupsExistInTarget( QList< GroupDescription >() << GroupDescription( autologinGroup ), availableGroups );
-    }
-
     // If we're looking to reuse the contents of an existing /home.
     // This GS setting comes from the **partitioning** module.
     if ( reuseHome )
@@ -219,7 +150,7 @@ CreateUserJob::exec()
 
     m_status = tr( "Configuring user %1" ).arg( m_config->loginName() );
     emit progress( 0.8 );
-    auto usergroupsResult = setUserGroups( m_config->loginName(), groupsForThisUser );
+    auto usergroupsResult = setUserGroups( m_config->loginName(), m_config->groupsForThisUser() );
     if ( !usergroupsResult )
     {
         return usergroupsResult;

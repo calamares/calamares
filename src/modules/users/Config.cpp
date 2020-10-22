@@ -821,6 +821,9 @@ Config::createJobs() const
         jobs.append( Calamares::job_ptr( j ) );
     }
 
+    j = new SetupGroupsJob( this );
+    jobs.append( Calamares::job_ptr( j ) );
+
     j = new CreateUserJob( this );
     jobs.append( Calamares::job_ptr( j ) );
 
