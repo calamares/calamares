@@ -19,6 +19,8 @@
 
 #include "Job.h"
 
+class Config;
+
 class SetupSudoJob : public Calamares::Job
 {
     Q_OBJECT
@@ -29,6 +31,20 @@ public:
 
 public:
     QString m_sudoGroup;
+};
+
+class SetupGroupsJob : public Calamares::Job
+{
+    Q_OBJECT
+
+public:
+    SetupGroupsJob( const Config* config, const QString& autologinGroup );
+    QString prettyName() const override;
+    Calamares::JobResult exec() override;
+
+public:
+    QString m_autologinGroup;
+    const Config* m_config;
 };
 
 #endif
