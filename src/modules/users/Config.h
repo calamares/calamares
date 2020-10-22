@@ -68,6 +68,7 @@ public:
 
     bool isValid() const { return m_isValid; }
     bool isSystemGroup() const { return m_isSystem; }
+    bool mustAlreadyExist() const { return m_mustAlreadyExist; }
     QString name() const { return m_name; }
 
     ///@brief Equality of groups depends only on name and kind
@@ -213,6 +214,11 @@ public:
     bool requireStrongPasswords() const { return m_requireStrongPasswords; }
 
     const QList< GroupDescription >& defaultGroups() const { return m_defaultGroups; }
+    /** @brief the names of all the groups for the current user
+     *
+     * Takes into account defaultGroups and autologin behavior.
+     */
+    QStringList groupsForThisUser() const;
 
     // The user enters a password (and again in a separate UI element)
     QString userPassword() const { return m_userPassword; }

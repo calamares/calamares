@@ -136,6 +136,24 @@ Config::setAutologinGroup( const QString& group )
     }
 }
 
+QStringList
+Config::groupsForThisUser() const
+{
+    QStringList l;
+    l.reserve( defaultGroups().size() + 1 );
+
+    for ( const auto& g : defaultGroups() )
+    {
+        l << g.name();
+    }
+    if ( doAutoLogin() && !autologinGroup().isEmpty() )
+    {
+        l << autologinGroup();
+    }
+
+    return l;
+}
+
 void
 Config::setSudoersGroup( const QString& group )
 {

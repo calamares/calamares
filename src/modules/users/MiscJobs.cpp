@@ -112,7 +112,6 @@ ensureGroupsExistInTarget( const QList< GroupDescription >& wantedGroups,
 
     for ( const auto& group : wantedGroups )
     {
-        int groupaddResult = 0;
         if ( group.isValid() && !availableGroups.contains( group.name() ) )
         {
             if ( group.mustAlreadyExist() )
@@ -122,13 +121,22 @@ ensureGroupsExistInTarget( const QList< GroupDescription >& wantedGroups,
                 continue;
             }
 
+            QStringList cmd;
 #ifdef __FreeBSD__
-            groupaddResult
-                = CalamaresUtils::System::instance()->targetEnvCall( { "pw", "groupadd", "-n", group.name() } );
+            if ( group.isSystemGroup() )
+            {
+                cWarning() << "Ignoring must-be-a-system group for" << group.name() << "on FreeBSD";
+            }
+            cmd = QStringList { "pw", "groupadd", "-n", group.name() };
 #else
-            groupaddResult = CalamaresUtils::System::instance()->targetEnvCall( { "groupadd", group.name() } );
+            cmd << QStringLiteral( "groupadd" );
+            if ( group.isSystemGroup() )
+            {
+                cmd << "--system";
+            }
+            cmd << group.name();
 #endif
-            if ( groupaddResult )
+            if ( CalamaresUtils::System::instance()->targetEnvCall( cmd ) )
             {
                 failureCount++;
                 missingGroups.append( group.name() + QChar( '*' ) );
