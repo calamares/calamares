@@ -1464,7 +1464,7 @@ ChoicePage::setupActions()
     }
 
     if ( m_somethingElseButton->isHidden() && m_alongsideButton->isHidden() && m_replaceButton->isHidden()
-         && m_somethingElseButton->isHidden() )
+         && m_eraseButton->isHidden() )
     {
         if ( atLeastOneIsMounted )
         {
