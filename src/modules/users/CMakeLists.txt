@@ -85,7 +85,7 @@ calamares_add_test(
         ${JOB_SRC}
         ${CONFIG_SRC}
     LIBRARIES
-        ${USER_EXTRA_LIB}
         Qt5::DBus  # HostName job can use DBus to systemd
         ${CRYPT_LIBRARIES}  # SetPassword job uses crypt()
+        ${USER_EXTRA_LIB}
 )
