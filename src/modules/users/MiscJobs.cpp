@@ -66,6 +66,10 @@ STATICTEST QStringList
 groupsInTargetSystem()
 {
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+    if ( !gs )
+    {
+        return QStringList();
+    }
     QDir targetRoot( gs->value( "rootMountPoint" ).toString() );
 
     QFileInfo groupsFi( targetRoot.absoluteFilePath( "etc/group" ) );

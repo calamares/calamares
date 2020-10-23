@@ -9,6 +9,7 @@
 
 #include "CreateUserJob.h"
 
+#include "JobQueue.h"
 #include "utils/Logger.h"
 
 #include <QDir>
@@ -37,6 +38,10 @@ GroupTests::initTestCase()
 {
     Logger::setupLogLevel( Logger::LOGDEBUG );
     cDebug() << "Users test started.";
+    if ( !Calamares::JobQueue::instance() )
+    {
+        (void)new Calamares::JobQueue();
+    }
 }
 
 void
