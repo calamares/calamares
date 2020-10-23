@@ -9,6 +9,7 @@
 
 #include "CreateUserJob.h"
 
+#include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "utils/Logger.h"
 
@@ -47,6 +48,7 @@ GroupTests::initTestCase()
 void
 GroupTests::testReadGroup()
 {
+    Calamares::JobQueue::instance()->globalStorage()->insert( "rootMountPoint", "/" );
     // Get the groups in the host system
     QStringList groups = groupsInTargetSystem();
     QVERIFY( groups.count() > 2 );
