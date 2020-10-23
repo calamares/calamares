@@ -153,18 +153,13 @@ MachineIdJob::setConfigurationMap( const QVariantMap& map )
     m_dbus_symlink = m_dbus && m_dbus_symlink;
 
     m_entropy_copy = CalamaresUtils::getBool( map, "entropy-copy", false );
-
     m_entropy_files = CalamaresUtils::getStringList( map, "entropy-files" );
     if ( CalamaresUtils::getBool( map, "entropy", false ) )
     {
-        cWarning() << "MachineId:: configuration setting *entropy* is deprecated, use *entropy-files*.";
-
-        QString target_entropy_file = QStringLiteral( "/var/lib/urandom/random-seed" );
-        if ( !m_entropy_files.contains( target_entropy_file ) )
-        {
-            m_entropy_files.append( target_entropy_file );
-        }
+        cWarning() << "MachineId:: configuration setting *entropy* is deprecated, use *entropy-files* instead.";
+        m_entropy_files.append( QStringLiteral( "/var/lib/urandom/random-seed" ) );
     }
+    m_entropy_files.removeDuplicates();
 }
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( MachineIdJobFactory, registerPlugin< MachineIdJob >(); )
