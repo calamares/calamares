@@ -845,10 +845,11 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
 
 
 /**
- * @brief ChoicePage::updateDeviceStatePreview clears and rebuilds the contents of the
- *      preview widget for the current on-disk state. This also triggers a rescan in the
- *      PCM to get a Device* copy that's unaffected by subsequent PCM changes.
- * @param currentDevice a pointer to the selected Device.
+ * @brief clear and then rebuild the contents of the preview widget
+ *
+ * The preview widget for the current disk is completely re-constructed
+ * based on the on-disk state. This also triggers a rescan in the
+ * PCM to get a Device* copy that's unaffected by subsequent PCM changes.
  */
 void
 ChoicePage::updateDeviceStatePreview()
@@ -916,10 +917,10 @@ ChoicePage::updateDeviceStatePreview()
 
 
 /**
- * @brief ChoicePage::updateActionChoicePreview clears and rebuilds the contents of the
- *      preview widget for the current PCM-proposed state. No rescans here, this should
- *      be immediate.
- * @param currentDevice a pointer to the selected Device.
+ * @brief rebuild the contents of the preview for the PCM-proposed state.
+ *
+ * No rescans here, this should be immediate.
+ *
  * @param choice the chosen partitioning action.
  */
 void
