@@ -66,4 +66,4 @@ QTEST_GUILESS_MAIN( GroupTests )
 
 #include "utils/moc-warnings.h"
 
-#include "TestCreateUserJob.moc"
+#include "TestGroupInformation.moc"
