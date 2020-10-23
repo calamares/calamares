@@ -44,13 +44,13 @@ getDefaultFileSystemType()
 }
 
 PartitionLayout::PartitionLayout()
+    : m_defaultFsType( getDefaultFileSystemType() )
 {
-    m_defaultFsType = getDefaultFileSystemType();
 }
 
 PartitionLayout::PartitionLayout( PartitionLayout::PartitionEntry entry )
+    : PartitionLayout()
 {
-    m_defaultFsType = getDefaultFileSystemType();
     m_partLayout.append( entry );
 }
 
