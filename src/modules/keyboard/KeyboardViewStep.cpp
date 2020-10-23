@@ -9,20 +9,19 @@
 
 #include "KeyboardViewStep.h"
 
+#include "Config.h"
 #include "KeyboardPage.h"
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 
-#include "utils/Variant.h"
-
 CALAMARES_PLUGIN_FACTORY_DEFINITION( KeyboardViewStepFactory, registerPlugin< KeyboardViewStep >(); )
 
 KeyboardViewStep::KeyboardViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
+    , m_config( new Config(this) )
     , m_widget( new KeyboardPage() )
     , m_nextEnabled( false )
-    , m_writeEtcDefaultKeyboard( true )
 {
     m_widget->init();
     m_nextEnabled = true;
@@ -91,7 +90,7 @@ KeyboardViewStep::isAtEnd() const
 QList< Calamares::job_ptr >
 KeyboardViewStep::jobs() const
 {
-    return m_jobs;
+    return m_config->createJobs();
 }
 
 
@@ -106,7 +105,6 @@ void
 KeyboardViewStep::onLeave()
 {
     m_widget->finalize();
-    m_jobs = m_widget->createJobs( m_xOrgConfFileName, m_convertedKeymapPath, m_writeEtcDefaultKeyboard );
     m_prettyStatus = m_widget->prettyStatus();
 }
 
@@ -114,37 +112,5 @@ KeyboardViewStep::onLeave()
 void
 KeyboardViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    using namespace CalamaresUtils;
-
-    if ( configurationMap.contains( "xOrgConfFileName" )
-         && configurationMap.value( "xOrgConfFileName" ).type() == QVariant::String
-         && !getString( configurationMap, "xOrgConfFileName" ).isEmpty() )
-    {
-        m_xOrgConfFileName = getString( configurationMap, "xOrgConfFileName" );
-    }
-    else
-    {
-        m_xOrgConfFileName = "00-keyboard.conf";
-    }
-
-    if ( configurationMap.contains( "convertedKeymapPath" )
-         && configurationMap.value( "convertedKeymapPath" ).type() == QVariant::String
-         && !getString( configurationMap, "convertedKeymapPath" ).isEmpty() )
-    {
-        m_convertedKeymapPath = getString( configurationMap, "convertedKeymapPath" );
-    }
-    else
-    {
-        m_convertedKeymapPath = QString();
-    }
-
-    if ( configurationMap.contains( "writeEtcDefaultKeyboard" )
-         && configurationMap.value( "writeEtcDefaultKeyboard" ).type() == QVariant::Bool )
-    {
-        m_writeEtcDefaultKeyboard = getBool( configurationMap, "writeEtcDefaultKeyboard", true );
-    }
-    else
-    {
-        m_writeEtcDefaultKeyboard = true;
-    }
+    m_config->setConfigurationMap(configurationMap);
 }

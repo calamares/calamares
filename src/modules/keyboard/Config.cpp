@@ -18,170 +18,28 @@
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 #include "utils/String.h"
+#include "utils/Variant.h"
 
 #include <QApplication>
 #include <QProcess>
 #include <QTimer>
 
-KeyboardModelsModel::KeyboardModelsModel( QObject* parent )
-    : QAbstractListModel( parent )
+/* Returns stringlist with suitable setxkbmap command-line arguments
+ * to set the given @p model.
+ */
+static inline QStringList
+xkbmap_model_args( const QString& model )
 {
-    detectModels();
+    QStringList r { "-model", model };
+    return r;
 }
 
-void
-KeyboardModelsModel::detectModels()
-{
-    beginResetModel();
-    const auto models = KeyboardGlobal::getKeyboardModels();
-    auto index = -1;
-    for ( const auto& key : models.keys() )
-    {
-        index++;
-        m_list << QMap< QString, QString > { { "label", key }, { "key", models[ key ] } };
-        if ( models[ key ] == "pc105" )
-        {
-            this->setCurrentIndex( index );
-        }
-    }
-    endResetModel();
-}
-
-void
-KeyboardModelsModel::refresh()
-{
-    m_list.clear();
-    setCurrentIndex( -1 );
-    detectModels();
-}
-
-QVariant
-KeyboardModelsModel::data( const QModelIndex& index, int role ) const
-{
-    if ( !index.isValid() )
-    {
-        return QVariant();
-    }
-    const auto item = m_list.at( index.row() );
-    return role == Qt::DisplayRole ? item[ "label" ] : item[ "key" ];
-}
-
-int
-KeyboardModelsModel::rowCount( const QModelIndex& ) const
-{
-    return m_list.count();
-}
-
-QHash< int, QByteArray >
-KeyboardModelsModel::roleNames() const
-{
-    return { { Qt::DisplayRole, "label" }, { Qt::UserRole, "key" } };
-}
-
-int
-KeyboardModelsModel::currentIndex() const
-{
-    return m_currentIndex;
-}
-
-const QMap< QString, QString >
-KeyboardModelsModel::item( const int& index ) const
-{
-    if ( index >= m_list.count() || index < 0 )
-    {
-        return QMap< QString, QString >();
-    }
-
-    return m_list.at( index );
-}
-
-const QMap< QString, QString >
-KeyboardVariantsModel::item( const int& index ) const
-{
-    if ( index >= m_list.count() || index < 0 )
-    {
-        return QMap< QString, QString >();
-    }
-
-    return m_list.at( index );
-}
-
-void
-KeyboardModelsModel::setCurrentIndex( const int& index )
-{
-    if ( index >= m_list.count() || index < 0 )
-    {
-        return;
-    }
-
-    m_currentIndex = index;
-    emit currentIndexChanged( m_currentIndex );
-}
-
-KeyboardVariantsModel::KeyboardVariantsModel( QObject* parent )
-    : QAbstractListModel( parent )
-{
-}
-
-int
-KeyboardVariantsModel::currentIndex() const
-{
-    return m_currentIndex;
-}
-
-void
-KeyboardVariantsModel::setCurrentIndex( const int& index )
-{
-    if ( index >= m_list.count() || index < 0 )
-    {
-        return;
-    }
-
-    m_currentIndex = index;
-    emit currentIndexChanged( m_currentIndex );
-}
-
-QVariant
-KeyboardVariantsModel::data( const QModelIndex& index, int role ) const
-{
-    if ( !index.isValid() )
-    {
-        return QVariant();
-    }
-    const auto item = m_list.at( index.row() );
-    return role == Qt::DisplayRole ? item[ "label" ] : item[ "key" ];
-}
-
-int
-KeyboardVariantsModel::rowCount( const QModelIndex& ) const
-{
-    return m_list.count();
-}
-
-QHash< int, QByteArray >
-KeyboardVariantsModel::roleNames() const
-{
-    return { { Qt::DisplayRole, "label" }, { Qt::UserRole, "key" } };
-}
-
-void
-KeyboardVariantsModel::setVariants( QMap< QString, QString > variants )
-{
-    m_list.clear();
-    beginResetModel();
-    for ( const auto& key : variants.keys() )
-    {
-        const auto item = QMap< QString, QString > { { "label", key }, { "key", variants[ key ] } };
-        m_list << item;
-    }
-    endResetModel();
-}
 
 /* Returns stringlist with suitable setxkbmap command-line arguments
  * to set the given @p layout and @p variant.
  */
 static inline QStringList
-xkbmap_args( const QString& layout, const QString& variant )
+xkbmap_layout_args( const QString& layout, const QString& variant )
 {
     QStringList r { "-layout", layout };
     if ( !variant.isEmpty() )
@@ -203,7 +61,7 @@ Config::Config( QObject* parent )
     connect( m_keyboardModelsModel, &KeyboardModelsModel::currentIndexChanged, [&]( int index ) {
         m_selectedModel = m_keyboardModelsModel->item( index ).value( "key", "pc105" );
         //                      Set Xorg keyboard model
-        QProcess::execute( "setxkbmap", QStringList { "-model", m_selectedModel } );
+        QProcess::execute( "setxkbmap", xkbmap_model_args( m_selectedModel ) );
         emit prettyStatusChanged();
     } );
 
@@ -224,7 +82,7 @@ Config::Config( QObject* parent )
         }
 
         connect( &m_setxkbmapTimer, &QTimer::timeout, this, [=] {
-            QProcess::execute( "setxkbmap", xkbmap_args( m_selectedLayout, m_selectedVariant ) );
+            QProcess::execute( "setxkbmap", xkbmap_layout_args( m_selectedLayout, m_selectedVariant ) );
             cDebug() << "xkbmap selection changed to: " << m_selectedLayout << '-' << m_selectedVariant;
             m_setxkbmapTimer.disconnect( this );
         } );
@@ -281,18 +139,25 @@ Config::init()
     {
         const QStringList list = QString( process.readAll() ).split( "\n", SplitSkipEmptyParts );
 
-        for ( QString line : list )
+        // A typical line looks like
+        //      xkb_symbols   { include "pc+latin+ru:2+inet(evdev)+group(alt_shift_toggle)+ctrl(swapcaps)"       };
+        for ( const auto& line : list )
         {
-            line = line.trimmed();
-            if ( !line.startsWith( "xkb_symbols" ) )
+            if ( !line.trimmed().startsWith( "xkb_symbols" ) )
             {
                 continue;
             }
 
-            line = line.remove( "}" ).remove( "{" ).remove( ";" );
-            line = line.mid( line.indexOf( "\"" ) + 1 );
+            int firstQuote = line.indexOf('"');
+            int lastQuote = line.lastIndexOf('"');
 
-            QStringList split = line.split( "+", SplitSkipEmptyParts );
+            if (firstQuote < 0 || lastQuote < 0 || lastQuote <= firstQuote)
+            {
+                continue;
+            }
+
+            QStringList split = line.mid(firstQuote+1, lastQuote-firstQuote).split( "+", SplitSkipEmptyParts );
+            cDebug() << split;
             if ( split.size() >= 2 )
             {
                 currentLayout = split.at( 1 );
@@ -350,16 +215,16 @@ Config::prettyStatus() const
 }
 
 Calamares::JobList
-Config::createJobs( const QString& xOrgConfFileName, const QString& convertedKeymapPath, bool writeEtcDefaultKeyboard )
+Config::createJobs()
 {
     QList< Calamares::job_ptr > list;
 
     Calamares::Job* j = new SetKeyboardLayoutJob( m_selectedModel,
                                                   m_selectedLayout,
                                                   m_selectedVariant,
-                                                  xOrgConfFileName,
-                                                  convertedKeymapPath,
-                                                  writeEtcDefaultKeyboard );
+                                                  m_xOrgConfFileName,
+                                                  m_convertedKeymapPath,
+                                                  m_writeEtcDefaultKeyboard );
     list.append( Calamares::job_ptr( j ) );
 
     return list;
@@ -527,5 +392,43 @@ Config::updateVariants( const QPersistentModelIndex& currentItem, QString curren
             m_keyboardVariantsModel->setCurrentIndex( index );
             return;
         }
+    }
+}
+
+void
+Config::setConfigurationMap( const QVariantMap& configurationMap )
+{
+    using namespace CalamaresUtils;
+
+    if ( configurationMap.contains( "xOrgConfFileName" )
+         && configurationMap.value( "xOrgConfFileName" ).type() == QVariant::String
+         && !getString( configurationMap, "xOrgConfFileName" ).isEmpty() )
+    {
+        m_xOrgConfFileName = getString( configurationMap, "xOrgConfFileName" );
+    }
+    else
+    {
+        m_xOrgConfFileName = "00-keyboard.conf";
+    }
+
+    if ( configurationMap.contains( "convertedKeymapPath" )
+         && configurationMap.value( "convertedKeymapPath" ).type() == QVariant::String
+         && !getString( configurationMap, "convertedKeymapPath" ).isEmpty() )
+    {
+        m_convertedKeymapPath = getString( configurationMap, "convertedKeymapPath" );
+    }
+    else
+    {
+        m_convertedKeymapPath = QString();
+    }
+
+    if ( configurationMap.contains( "writeEtcDefaultKeyboard" )
+         && configurationMap.value( "writeEtcDefaultKeyboard" ).type() == QVariant::Bool )
+    {
+        m_writeEtcDefaultKeyboard = getBool( configurationMap, "writeEtcDefaultKeyboard", true );
+    }
+    else
+    {
+        m_writeEtcDefaultKeyboard = true;
     }
 }

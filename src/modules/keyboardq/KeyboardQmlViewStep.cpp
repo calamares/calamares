@@ -79,7 +79,7 @@ void
 KeyboardQmlViewStep::onLeave()
 {
     m_config->finalize();
-    m_jobs = m_config->createJobs( m_xOrgConfFileName, m_convertedKeymapPath, m_writeEtcDefaultKeyboard );
+    // m_jobs = m_config->createJobs( m_xOrgConfFileName, m_convertedKeymapPath, m_writeEtcDefaultKeyboard );
     m_prettyStatus = m_config->prettyStatus();
 }
 
