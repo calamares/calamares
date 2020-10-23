@@ -85,7 +85,7 @@ public:
     };
 
     PartitionCoreModule( QObject* parent = nullptr );
-    ~PartitionCoreModule();
+    ~PartitionCoreModule() override;
 
     /**
      * @brief init performs a devices scan and initializes all KPMcore data

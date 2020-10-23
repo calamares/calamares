@@ -34,7 +34,7 @@ class PartitionPage : public QWidget
     Q_OBJECT
 public:
     explicit PartitionPage( PartitionCoreModule* core, QWidget* parent = nullptr );
-    ~PartitionPage();
+    ~PartitionPage() override;
 
     void onRevertClicked();
 

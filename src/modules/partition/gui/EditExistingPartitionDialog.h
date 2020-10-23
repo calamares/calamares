@@ -36,7 +36,7 @@ public:
                                  Partition* partition,
                                  const QStringList& usedMountPoints,
                                  QWidget* parentWidget = nullptr );
-    ~EditExistingPartitionDialog();
+    ~EditExistingPartitionDialog() override;
 
     void applyChanges( PartitionCoreModule* module );
 

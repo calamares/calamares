@@ -54,7 +54,7 @@ class ChoicePage : public QWidget, private Ui::ChoicePage
     Q_OBJECT
 public:
     explicit ChoicePage( Config* config, QWidget* parent = nullptr );
-    virtual ~ChoicePage();
+    ~ChoicePage() override;
 
     /**
      * @brief init runs when the PartitionViewStep and the PartitionCoreModule are
