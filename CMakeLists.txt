@@ -192,21 +192,28 @@ include( CMakeColors )
 #
 set( CMAKE_CXX_STANDARD 17 )
 set( CMAKE_CXX_STANDARD_REQUIRED ON )
+set( CMAKE_CXX_FLAGS                "${CMAKE_CXX_FLAGS} -Wall -Werror=return-type -Wl,--no-undefined" )
+set( CMAKE_CXX_FLAGS_DEBUG          "-g ${CMAKE_CXX_FLAGS_DEBUG}" )
+set( CMAKE_CXX_FLAGS_MINSIZEREL     "-Os -DNDEBUG" )
+set( CMAKE_CXX_FLAGS_RELEASE        "-O3 -DNDEBUG" )
+set( CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O2 -g" )
+
 set( CMAKE_C_STANDARD 99 )
 set( CMAKE_C_STANDARD_REQUIRED ON )
-
 set( CMAKE_C_FLAGS                  "${CMAKE_C_FLAGS} -Wall" )
+set( CMAKE_C_FLAGS_DEBUG            "-g" )
+set( CMAKE_C_FLAGS_MINSIZEREL       "-Os -DNDEBUG" )
+set( CMAKE_C_FLAGS_RELEASE          "-O4 -DNDEBUG" )
+set( CMAKE_C_FLAGS_RELWITHDEBINFO   "-O2 -g" )
+
+set( CMAKE_SHARED_LINKER_FLAGS "-Wl,--no-undefined" )
+
 if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
     message( STATUS "Found Clang ${CMAKE_CXX_COMPILER_VERSION}, setting up Clang-specific compiler flags." )
-    set( CMAKE_C_FLAGS                  "${CMAKE_C_FLAGS} -Wall" )
-    set( CMAKE_C_FLAGS_DEBUG            "-g" )
-    set( CMAKE_C_FLAGS_MINSIZEREL       "-Os -DNDEBUG" )
-    set( CMAKE_C_FLAGS_RELEASE          "-O4 -DNDEBUG" )
-    set( CMAKE_C_FLAGS_RELWITHDEBINFO   "-O2 -g" )
 
     # Clang warnings: doing *everything* is counter-productive, since it warns
     # about things which we can't fix (e.g. C++98 incompatibilities, but
-    # Calamares is C++14).
+    # Calamares is C++17).
     foreach( CLANG_WARNINGS
         -Weverything
         -Wno-c++98-compat
@@ -218,7 +225,6 @@ if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
         -Wno-missing-prototypes
         -Wno-documentation-unknown-command
         -Wno-unknown-warning-option
-        -Werror=return-type
     )
         string( APPEND CMAKE_CXX_FLAGS " ${CLANG_WARNINGS}" )
     endforeach()
@@ -229,27 +235,17 @@ if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
     #       mark_thirdparty_code( <file> [<file>...] )
     # to switch off warnings for those sources.
     set( SUPPRESS_3RDPARTY_WARNINGS "-Wno-everything" )
-    set( SUPPRESS_BOOST_WARNINGS " -Wno-zero-as-null-pointer-constant -Wno-disabled-macro-expansion" )
-
-    set( CMAKE_CXX_FLAGS_DEBUG          "-g ${CMAKE_CXX_FLAGS_DEBUG}" )
-    set( CMAKE_CXX_FLAGS_MINSIZEREL     "-Os -DNDEBUG" )
-    set( CMAKE_CXX_FLAGS_RELEASE        "-O3 -DNDEBUG" )
-    set( CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O2 -g" )
 
     set( CMAKE_TOOLCHAIN_PREFIX "llvm-" )
-
-    set( CMAKE_SHARED_LINKER_FLAGS "-Wl,--no-undefined" )
 
     # The path prefix is only relevant for CMake 3.16 and later, fixes #1286
     set( CMAKE_AUTOMOC_PATH_PREFIX OFF )
     set( CALAMARES_AUTOMOC_OPTIONS "-butils/moc-warnings.h" )
     set( CALAMARES_AUTOUIC_OPTIONS --include utils/moc-warnings.h )
 else()
-    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,--no-undefined" )
-    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,--fatal-warnings -Wnon-virtual-dtor -Woverloaded-virtual -Werror=return-type" )
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,--fatal-warnings -Wnon-virtual-dtor -Woverloaded-virtual" )
 
     set( SUPPRESS_3RDPARTY_WARNINGS "" )
-    set( SUPPRESS_BOOST_WARNINGS "" )
 
     set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DNOTREACHED='__builtin_unreachable();' -DFALLTHRU='/* */'" )
 endif()
