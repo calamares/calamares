@@ -42,7 +42,7 @@ makeSlideshow( QWidget* parent )
         return new Calamares::SlideshowPictures( parent );
 #ifdef WITH_QML
     case 1:
-        FALLTHRU;
+        [[fallthrough]];
     case 2:
         return new Calamares::SlideshowQML( parent );
 #endif

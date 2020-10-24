@@ -182,10 +182,10 @@ enableLevelsBelow( Config* config, TrackingType level )
     {
     case TrackingType::UserTracking:
         config->userTracking()->setTracking( TrackingStyleConfig::TrackingState::EnabledByUser );
-        FALLTHRU;
+        [[fallthrough]];
     case TrackingType::MachineTracking:
         config->machineTracking()->setTracking( TrackingStyleConfig::TrackingState::EnabledByUser );
-        FALLTHRU;
+        [[fallthrough]];
     case TrackingType::InstallTracking:
         config->installTracking()->setTracking( TrackingStyleConfig::TrackingState::EnabledByUser );
         break;
