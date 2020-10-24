@@ -284,7 +284,7 @@ PythonJob::exec()
             return JobResult::error( message, description );
         }
     }
-    catch ( bp::error_already_set )
+    catch ( bp::error_already_set& )
     {
         QString msg;
         if ( PyErr_Occurred() )
