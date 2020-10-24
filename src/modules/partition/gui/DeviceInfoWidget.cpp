@@ -7,13 +7,13 @@
  *
  */
 
-
 #include "DeviceInfoWidget.h"
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
+#include "utils/QtCompat.h"
 #include "utils/Retranslator.h"
 
 #include <QDir>
@@ -47,7 +47,7 @@ DeviceInfoWidget::DeviceInfoWidget( QWidget* parent )
     m_ptLabel->setAlignment( Qt::AlignCenter );
 
     QPalette palette;
-    palette.setBrush( QPalette::Foreground, QColor( "#4D4D4D" ) );  //dark grey
+    palette.setBrush( WindowText, QColor( "#4D4D4D" ) );  //dark grey
 
     m_ptIcon->setAutoFillBackground( true );
     m_ptLabel->setAutoFillBackground( true );
