@@ -52,6 +52,7 @@
 #endif
 
 #undef slots
+#include <boost/iterator.hpp>
 #include <boost/python.hpp>
 #include <boost/python/args.hpp>
 #include <boost/python/dict.hpp>
