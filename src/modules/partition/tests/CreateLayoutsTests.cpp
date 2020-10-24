@@ -156,3 +156,7 @@ TestDevice::TestDevice( const QString& name, const qint64 logicalSectorSize, con
 {
 }
 #endif
+
+TestDevice::~TestDevice()
+{
+}

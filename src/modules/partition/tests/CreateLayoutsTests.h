@@ -18,6 +18,7 @@ class CreateLayoutsTests : public QObject
     Q_OBJECT
 public:
     CreateLayoutsTests();
+    ~CreateLayoutsTests() override = default;
 
 private Q_SLOTS:
     void testFixedSizePartition();
@@ -31,6 +32,7 @@ class TestDevice : public Device
 {
 public:
     TestDevice( const QString& name, const qint64 logicalSectorSize, const qint64 totalLogicalSectors );
+    ~TestDevice() override;
 };
 
 #endif
