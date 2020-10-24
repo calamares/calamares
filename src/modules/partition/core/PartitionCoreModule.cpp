@@ -110,7 +110,7 @@ updatePreview( Job* job, const std::true_type& )
 
 template < typename Job >
 void
-updatePreview( Job* job, const std::false_type& )
+updatePreview( Job*, const std::false_type& )
 {
 }
 
@@ -483,7 +483,6 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
         }
     }
 
-    const Calamares::JobList& jobs = deviceInfo->jobs();
     if ( partition->state() == KPM_PARTITION_STATE( New ) )
     {
         // Take all the SetPartFlagsJob from the list and delete them
