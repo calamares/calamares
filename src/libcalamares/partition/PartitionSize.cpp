@@ -139,6 +139,7 @@ PartitionSize::toBytes( qint64 totalSectors, qint64 sectorSize ) const
     case SizeUnit::GiB:
         return toBytes();
     }
+    __builtin_unreachable();
 }
 
 qint64
@@ -175,7 +176,7 @@ PartitionSize::toBytes( qint64 totalBytes ) const
     case SizeUnit::GiB:
         return toBytes();
     }
-
+    __builtin_unreachable();
 }
 
 qint64
@@ -206,6 +207,7 @@ PartitionSize::toBytes() const
     case SizeUnit::GiB:
         return CalamaresUtils::GiBtoBytes( static_cast< unsigned long long >( value() ) );
     }
+    __builtin_unreachable();
 }
 
 bool
@@ -231,6 +233,7 @@ PartitionSize::operator<( const PartitionSize& other ) const
     case SizeUnit::GiB:
         return ( toBytes() < other.toBytes() );
     }
+    __builtin_unreachable();
 }
 
 bool
@@ -256,6 +259,7 @@ PartitionSize::operator>( const PartitionSize& other ) const
     case SizeUnit::GiB:
         return ( toBytes() > other.toBytes() );
     }
+    __builtin_unreachable();
 }
 
 bool
@@ -281,6 +285,7 @@ PartitionSize::operator==( const PartitionSize& other ) const
     case SizeUnit::GiB:
         return ( toBytes() == other.toBytes() );
     }
+    __builtin_unreachable();
 }
 
 }  // namespace Partition
