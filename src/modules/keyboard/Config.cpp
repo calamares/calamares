@@ -109,14 +109,13 @@ xkbmap_query_grp_option()
     return outputLine.mid( index, lastIndex-1 );
 }
 
-AdditionalLayoutInfo Config::getAdditionalLayoutInfo( const QString &layout, bool* found )
+AdditionalLayoutInfo Config::getAdditionalLayoutInfo( const QString &layout )
 {
-    QFile layoutTable(":/non-ascii-layouts");
+    QFile layoutTable( ":/non-ascii-layouts" );
 
-    if(!layoutTable.open(QIODevice::ReadOnly | QIODevice::Text)) {
+    if( !layoutTable.open( QIODevice::ReadOnly | QIODevice::Text ) ) {
         cError() << "Non-ASCII layout table could not be opened";
-        *found = false;
-        return {};
+        return AdditionalLayoutInfo();
     }
 
     QString tableLine;
@@ -125,22 +124,19 @@ AdditionalLayoutInfo Config::getAdditionalLayoutInfo( const QString &layout, boo
     {
         tableLine = layoutTable.readLine();
     }
-    while( !layoutTable.atEnd() || !tableLine.startsWith(layout) );
+    while( !layoutTable.atEnd() || !tableLine.startsWith( layout ) );
 
-    if( !tableLine.startsWith(layout) ){
-        *found = false;
-        return {};
+    if( !tableLine.startsWith( layout ) )
+    {
+        return AdditionalLayoutInfo();
     }
 
-    *found = true;
-
-    QStringList tableEntries = tableLine.split(" ", SplitSkipEmptyParts);
+    QStringList tableEntries = tableLine.split( " ", SplitSkipEmptyParts );
 
     AdditionalLayoutInfo r;
 
-    r.name = tableEntries[0];
     r.additionalLayout = tableEntries[1];
-    r.additionalVariant = tableEntries[2];
+    r.additionalVariant = tableEntries[2] == "-" ? "" : tableEntries[2];
 
     r.vconsoleKeymap = tableEntries[3];
 
@@ -180,10 +176,9 @@ Config::Config( QObject* parent )
         }
 
         connect( &m_setxkbmapTimer, &QTimer::timeout, this, [=] {
-            bool isNotAsciiCapable = false;
-            AdditionalLayoutInfo info = getAdditionalLayoutInfo( m_selectedLayout, &isNotAsciiCapable );
+            AdditionalLayoutInfo info = getAdditionalLayoutInfo( m_selectedLayout);
 
-            if(isNotAsciiCapable)
+            if(!info.additionalLayout.isEmpty())
             {
                 m_selectedLayoutsAdditionalLayoutInfo = info;
                 QString switchOption = xkbmap_query_grp_option();
@@ -195,8 +190,7 @@ Config::Config( QObject* parent )
                                                                     switchOption.isEmpty()?"grp:alt_shift_toggle":QString() )
                                    );
                 cDebug() << "xkbmap selection changed to: " << m_selectedLayout << '-' << m_selectedVariant
-                         << "(added " << info.additionalLayout << "-" << info.additionalVariant << " since target layout is not ASCII-capable)";
-
+                         << "(added " << info.additionalLayout << "-" << info.additionalVariant << " since current layout is not ASCII-capable)";
 
             }
             else
@@ -494,7 +488,7 @@ Config::finalize()
         gs->insert( "keyboardLayout", m_selectedLayout );
         gs->insert( "keyboardVariant", m_selectedVariant );  //empty means default variant
 
-        if ( !m_selectedLayoutsAdditionalLayoutInfo.name.isEmpty() )
+        if ( !m_selectedLayoutsAdditionalLayoutInfo.additionalLayout.isEmpty() )
         {
             gs->insert( "keyboardAdditionalLayout", m_selectedLayoutsAdditionalLayoutInfo.additionalLayout);
             gs->insert( "keyboardAdditionalLayout", m_selectedLayoutsAdditionalLayoutInfo.additionalVariant);

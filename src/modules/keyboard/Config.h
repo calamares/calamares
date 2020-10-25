@@ -21,8 +21,6 @@
 #include <QUrl>
 
 struct AdditionalLayoutInfo {
-    QString name;
-
     QString additionalLayout;
     QString additionalVariant;
 
@@ -50,7 +48,7 @@ public:
 
     void setConfigurationMap( const QVariantMap& configurationMap );
 
-    static AdditionalLayoutInfo getAdditionalLayoutInfo( const QString& layout, bool* found );
+    static AdditionalLayoutInfo getAdditionalLayoutInfo( const QString& layout );
 
 private:
     void guessLayout( const QStringList& langParts );
