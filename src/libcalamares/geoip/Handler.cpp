@@ -101,6 +101,7 @@ create_interface( Handler::Type t, const QString& selector )
     case Handler::Type::Fixed:
         return std::make_unique< GeoIPFixed >( selector );
     }
+    __builtin_unreachable();
 }
 
 static RegionZonePair
