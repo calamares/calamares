@@ -47,7 +47,7 @@ NetInstallViewStep::prettyName() const
     return m_sidebarLabel ? m_sidebarLabel->get() : tr( "Package selection" );
 
 #if defined( TABLE_OF_TRANSLATIONS )
-    NOTREACHED
+    __builtin_unreachable();
     // This is a table of "standard" labels for this module. If you use them
     // in the label: sidebar: section of the config file, the existing
     // translations can be used.

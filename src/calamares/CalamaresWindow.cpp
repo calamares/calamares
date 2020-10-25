@@ -271,7 +271,6 @@ flavoredWidget( Calamares::Branding::PanelFlavor flavor,
     case Calamares::Branding::PanelFlavor::None:
         return nullptr;
     }
-    NOTREACHED return nullptr;  // All enum values handled above
 }
 
 /** @brief Adds widgets to @p layout if they belong on this @p side

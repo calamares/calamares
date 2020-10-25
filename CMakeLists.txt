@@ -228,7 +228,6 @@ if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
     )
         string( APPEND CMAKE_CXX_FLAGS " ${CLANG_WARNINGS}" )
     endforeach()
-    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DNOTREACHED='//'")
 
     # Third-party code where we don't care so much about compiler warnings
     # (because it's uncomfortable to patch) get different flags; use
@@ -246,8 +245,6 @@ else()
     set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wnon-virtual-dtor -Woverloaded-virtual" )
 
     set( SUPPRESS_3RDPARTY_WARNINGS "" )
-
-    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DNOTREACHED='__builtin_unreachable();'" )
 endif()
 
 # Use mark_thirdparty_code() to reduce warnings from the compiler
