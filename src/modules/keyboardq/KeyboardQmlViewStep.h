@@ -19,6 +19,7 @@
 
 #include <QObject>
 
+class Config;
 class KeyboardPage;
 
 class PLUGINDLLEXPORT KeyboardQmlViewStep : public Calamares::QmlViewStep
@@ -50,11 +51,6 @@ private:
     bool m_nextEnabled;
     QString m_prettyStatus;
 
-    QString m_xOrgConfFileName;
-    QString m_convertedKeymapPath;
-    bool m_writeEtcDefaultKeyboard;
-
-    Calamares::JobList m_jobs;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( KeyboardQmlViewStepFactory )
