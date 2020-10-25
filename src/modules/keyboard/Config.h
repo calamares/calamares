@@ -20,6 +20,15 @@
 #include <QTimer>
 #include <QUrl>
 
+struct AdditionalLayoutInfo {
+    QString name;
+
+    QString additionalLayout;
+    QString additionalVariant;
+
+    QString vconsoleKeymap;
+};
+
 class Config : public QObject
 {
     Q_OBJECT
@@ -41,6 +50,8 @@ public:
 
     void setConfigurationMap( const QVariantMap& configurationMap );
 
+    static AdditionalLayoutInfo getAdditionalLayoutInfo( const QString& layout, bool* found );
+
 private:
     void guessLayout( const QStringList& langParts );
     void updateVariants( const QPersistentModelIndex& currentItem, QString currentVariant = QString() );
@@ -52,6 +63,7 @@ private:
     QString m_selectedLayout;
     QString m_selectedModel;
     QString m_selectedVariant;
+    AdditionalLayoutInfo m_selectedLayoutsAdditionalLayoutInfo;
     QTimer m_setxkbmapTimer;
 
     // From configuration

@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>kbd-model-map</file>
         <file>images/restore.png</file>
+        <file>non-ascii-layouts</file>
     </qresource>
 </RCC>

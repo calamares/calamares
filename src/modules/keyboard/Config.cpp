@@ -49,6 +49,104 @@ xkbmap_layout_args( const QString& layout, const QString& variant )
     return r;
 }
 
+static inline QStringList
+xkbmap_layout_args( const QList<QPair<QString, QString>> layoutsAndVariantsList, const QString& switchOption = "grp:alt_shift_toggle")
+{
+    QStringList layouts;
+    QStringList variants;
+
+    for( auto& [layout,variant] : layoutsAndVariantsList )
+    {
+        layouts.append(layout);
+        variants.append(variant);
+    }
+
+    QStringList r{ "-layout", layouts.join( "," ) };
+
+    if ( !variants.isEmpty() )
+    {
+        r << "-variant" << variants.join( "," );
+    }
+
+    if ( !switchOption.isEmpty())
+    {
+        r << "-option" << switchOption;
+    }
+
+    return r;
+}
+
+static inline QString
+xkbmap_query_grp_option()
+{
+    QProcess setxkbmapQuery;
+    setxkbmapQuery.start( "setxkbmap", { "-query" } );
+    setxkbmapQuery.waitForFinished();
+
+    QString outputLine;
+
+    do
+    {
+        outputLine = setxkbmapQuery.readLine();
+    }
+    while( !setxkbmapQuery.atEnd() || !outputLine.startsWith("options:") );
+
+    if( !outputLine.startsWith("options:") )
+    {
+        return QString();
+    }
+
+    int index = outputLine.indexOf("grp:");
+
+    if( index == -1 )
+    {
+        return QString();
+    }
+
+    //it's either in the end of line or before the other option so \s or ,
+    int lastIndex = outputLine.indexOf( QRegExp("[\\s,]"), index );
+
+    return outputLine.mid( index, lastIndex-1 );
+}
+
+AdditionalLayoutInfo Config::getAdditionalLayoutInfo( const QString &layout, bool* found )
+{
+    QFile layoutTable(":/non-ascii-layouts");
+
+    if(!layoutTable.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        cError() << "Non-ASCII layout table could not be opened";
+        *found = false;
+        return {};
+    }
+
+    QString tableLine;
+
+    do
+    {
+        tableLine = layoutTable.readLine();
+    }
+    while( !layoutTable.atEnd() || !tableLine.startsWith(layout) );
+
+    if( !tableLine.startsWith(layout) ){
+        *found = false;
+        return {};
+    }
+
+    *found = true;
+
+    QStringList tableEntries = tableLine.split(" ", SplitSkipEmptyParts);
+
+    AdditionalLayoutInfo r;
+
+    r.name = tableEntries[0];
+    r.additionalLayout = tableEntries[1];
+    r.additionalVariant = tableEntries[2];
+
+    r.vconsoleKeymap = tableEntries[3];
+
+    return r;
+}
+
 Config::Config( QObject* parent )
     : QObject( parent )
     , m_keyboardModelsModel( new KeyboardModelsModel( this ) )
@@ -82,8 +180,31 @@ Config::Config( QObject* parent )
         }
 
         connect( &m_setxkbmapTimer, &QTimer::timeout, this, [=] {
-            QProcess::execute( "setxkbmap", xkbmap_layout_args( m_selectedLayout, m_selectedVariant ) );
-            cDebug() << "xkbmap selection changed to: " << m_selectedLayout << '-' << m_selectedVariant;
+            bool isNotAsciiCapable = false;
+            AdditionalLayoutInfo info = getAdditionalLayoutInfo( m_selectedLayout, &isNotAsciiCapable );
+
+            if(isNotAsciiCapable)
+            {
+                m_selectedLayoutsAdditionalLayoutInfo = info;
+                QString switchOption = xkbmap_query_grp_option();
+
+                QProcess::execute( "setxkbmap", xkbmap_layout_args( {
+                                                                        {m_selectedLayout, m_selectedVariant},
+                                                                        {info.additionalLayout, info.additionalVariant}
+                                                                    },
+                                                                    switchOption.isEmpty()?"grp:alt_shift_toggle":QString() )
+                                   );
+                cDebug() << "xkbmap selection changed to: " << m_selectedLayout << '-' << m_selectedVariant
+                         << "(added " << info.additionalLayout << "-" << info.additionalVariant << " since target layout is not ASCII-capable)";
+
+
+            }
+            else
+            {
+                m_selectedLayoutsAdditionalLayoutInfo = AdditionalLayoutInfo();
+                QProcess::execute( "setxkbmap", xkbmap_layout_args( m_selectedLayout, m_selectedVariant ) );
+                cDebug() << "xkbеmap selection changed to: " << m_selectedLayout << '-' << m_selectedVariant;
+            }
             m_setxkbmapTimer.disconnect( this );
         } );
         m_setxkbmapTimer.start( QApplication::keyboardInputInterval() );
@@ -372,6 +493,13 @@ Config::finalize()
     {
         gs->insert( "keyboardLayout", m_selectedLayout );
         gs->insert( "keyboardVariant", m_selectedVariant );  //empty means default variant
+
+        if ( !m_selectedLayoutsAdditionalLayoutInfo.name.isEmpty() )
+        {
+            gs->insert( "keyboardAdditionalLayout", m_selectedLayoutsAdditionalLayoutInfo.additionalLayout);
+            gs->insert( "keyboardAdditionalLayout", m_selectedLayoutsAdditionalLayoutInfo.additionalVariant);
+            gs->insert( "keyboardVConsoleKeymap", m_selectedLayoutsAdditionalLayoutInfo.vconsoleKeymap );
+        }
     }
 
     //FIXME: also store keyboard model for something?
