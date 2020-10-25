@@ -206,6 +206,41 @@ class FstabGenerator(object):
                             dct = self.generate_fstab_line_info(home_entry)
                             if dct:
                                 self.print_fstab_line(dct, file=fstab_file)
+                        elif line.endswith(b'path @root'):
+                            rootuser_entry = partition
+                            rootuser_entry["mountPoint"] = "/root"
+                            rootuser_entry["subvol"] = "@root"
+                            dct = self.generate_fstab_line_info(rootuser_entry)
+                            if dct:
+                                self.print_fstab_line(dct, file=fstab_file)
+                        elif line.endswith(b'path @srv'):
+                            srv_entry = partition
+                            srv_entry["mountPoint"] = "/srv"
+                            srv_entry["subvol"] = "@srv"
+                            dct = self.generate_fstab_line_info(srv_entry)
+                            if dct:
+                                self.print_fstab_line(dct, file=fstab_file)
+                        elif line.endswith(b'path @cache'):
+                            cache_entry = partition
+                            cache_entry["mountPoint"] = "/var/cache"
+                            cache_entry["subvol"] = "@cache"
+                            dct = self.generate_fstab_line_info(cache_entry)
+                            if dct:
+                                self.print_fstab_line(dct, file=fstab_file)
+                        elif line.endswith(b'path @log'):
+                            log_entry = partition
+                            log_entry["mountPoint"] = "/var/log"
+                            log_entry["subvol"] = "@log"
+                            dct = self.generate_fstab_line_info(log_entry)
+                            if dct:
+                                self.print_fstab_line(dct, file=fstab_file) 
+                        elif line.endswith(b'path @tmp'):
+                            tmp_entry = partition
+                            tmp_entry["mountPoint"] = "/var/tmp"
+                            tmp_entry["subvol"] = "@tmp"
+                            dct = self.generate_fstab_line_info(tmp_entry)
+                            if dct:
+                                self.print_fstab_line(dct, file=fstab_file)
 
                 else:
                     dct = self.generate_fstab_line_info(partition)
@@ -319,7 +354,7 @@ def create_swapfile(root_mount_point, root_btrfs):
     The swapfile-creation covers progress from 0.2 to 0.5
     """
     libcalamares.job.setprogress(0.2)
-    swapfile_path = os.path.join(root_mount_point, "swapfile")
+    swapfile_path = os.path.join(root_mount_point, "var", "cache", "swapfile")
     with open(swapfile_path, "wb") as f:
         pass
     if root_btrfs:
