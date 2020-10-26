@@ -181,8 +181,8 @@ Config::Config( QObject* parent )
                 QString switchOption = xkbmap_query_grp_option();
 
                 QProcess::execute( "setxkbmap", xkbmap_layout_args(
-                                       { m_selectedLayout, info.additionalLayout },
-                                       { m_selectedVariant, info.additionalVariant },
+                                       { info.additionalLayout, m_selectedLayout },
+                                       { info.additionalVariant, m_selectedVariant },
                                        switchOption.isEmpty()?"grp:alt_shift_toggle":QString() )
                                    );
                 cDebug() << "xkbmap selection changed to: " << m_selectedLayout << '-' << m_selectedVariant
