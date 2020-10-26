@@ -73,6 +73,9 @@ xkbmap_layout_args( const QStringList& layouts, const QStringList& variants, con
     return r;
 }
 
+/* Returns group-switch setxkbd option if set
+ * or an empty string otherwise
+ */
 static inline QString
 xkbmap_query_grp_option()
 {
