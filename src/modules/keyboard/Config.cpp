@@ -50,15 +50,12 @@ xkbmap_layout_args( const QString& layout, const QString& variant )
 }
 
 static inline QStringList
-xkbmap_layout_args( const QList<QPair<QString, QString>> layoutsAndVariantsList, const QString& switchOption = "grp:alt_shift_toggle")
+xkbmap_layout_args( const QStringList& layouts, const QStringList& variants, const QString& switchOption = "grp:alt_shift_toggle")
 {
-    QStringList layouts;
-    QStringList variants;
-
-    for( auto& [layout,variant] : layoutsAndVariantsList )
+    if ( layouts.size() != variants.size() )
     {
-        layouts.append(layout);
-        variants.append(variant);
+        cError() << "Number of layouts and variants must be equal (empty string should be used if there is no corresponding variant)";
+        return QStringList();
     }
 
     QStringList r{ "-layout", layouts.join( "," ) };
@@ -183,11 +180,10 @@ Config::Config( QObject* parent )
                 m_selectedLayoutsAdditionalLayoutInfo = info;
                 QString switchOption = xkbmap_query_grp_option();
 
-                QProcess::execute( "setxkbmap", xkbmap_layout_args( {
-                                                                        {m_selectedLayout, m_selectedVariant},
-                                                                        {info.additionalLayout, info.additionalVariant}
-                                                                    },
-                                                                    switchOption.isEmpty()?"grp:alt_shift_toggle":QString() )
+                QProcess::execute( "setxkbmap", xkbmap_layout_args(
+                                       { m_selectedLayout, info.additionalLayout },
+                                       { m_selectedVariant, info.additionalVariant },
+                                       switchOption.isEmpty()?"grp:alt_shift_toggle":QString() )
                                    );
                 cDebug() << "xkbmap selection changed to: " << m_selectedLayout << '-' << m_selectedVariant
                          << "(added " << info.additionalLayout << "-" << info.additionalVariant << " since current layout is not ASCII-capable)";
