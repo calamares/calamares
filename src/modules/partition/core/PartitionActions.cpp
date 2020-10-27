@@ -97,21 +97,6 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
     // empty and a EFI boot partition, while BIOS starts at
     // the 1MiB boundary (usually sector 2048).
     int empty_space_sizeB = isEfi ? 2_MiB : 1_MiB;
-    int uefisys_part_sizeB = 0_MiB;
-
-    if ( isEfi )
-    {
-        if ( gs->contains( "efiSystemPartitionSize" ) )
-        {
-            CalamaresUtils::Partition::PartitionSize part_size
-                = CalamaresUtils::Partition::PartitionSize( gs->value( "efiSystemPartitionSize" ).toString() );
-            uefisys_part_sizeB = part_size.toBytes( dev->capacity() );
-        }
-        else
-        {
-            uefisys_part_sizeB = 300_MiB;
-        }
-    }
 
     // Since sectors count from 0, if the space is 2048 sectors in size,
     // the first free sector has number 2048 (and there are 2048 sectors
@@ -128,6 +113,14 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
 
     if ( isEfi )
     {
+        int uefisys_part_sizeB = 300_MiB;
+        if ( gs->contains( "efiSystemPartitionSize" ) )
+        {
+            CalamaresUtils::Partition::PartitionSize part_size
+                = CalamaresUtils::Partition::PartitionSize( gs->value( "efiSystemPartitionSize" ).toString() );
+            uefisys_part_sizeB = part_size.toBytes( dev->capacity() );
+        }
+
         qint64 efiSectorCount = CalamaresUtils::bytesToSectors( uefisys_part_sizeB, dev->logicalSize() );
         Q_ASSERT( efiSectorCount > 0 );
 
