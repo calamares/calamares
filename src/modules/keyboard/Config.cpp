@@ -178,20 +178,22 @@ Config::Config( QObject* parent )
         connect( &m_setxkbmapTimer, &QTimer::timeout, this, [=] {
             m_selectedLayoutsAdditionalLayoutInfo = getAdditionalLayoutInfo( m_selectedLayout );
 
-            if( !m_selectedLayoutsAdditionalLayoutInfo.additionalLayout.isEmpty() )
+            if ( !m_selectedLayoutsAdditionalLayoutInfo.additionalLayout.isEmpty() )
             {
                 m_selectedLayoutsAdditionalLayoutInfo.groupSwitcher = xkbmap_query_grp_option();
-
-                QProcess::execute( "setxkbmap", xkbmap_layout_args(
-                                       { m_selectedLayoutsAdditionalLayoutInfo.additionalLayout, m_selectedLayout },
-                                       { m_selectedLayoutsAdditionalLayoutInfo.additionalVariant, m_selectedVariant },
-                                       m_selectedLayoutsAdditionalLayoutInfo.groupSwitcher.isEmpty() ? "grp:alt_shift_toggle" : QString() )
-                                   );
 
                 if( m_selectedLayoutsAdditionalLayoutInfo.groupSwitcher.isEmpty() )
                 {
                     m_selectedLayoutsAdditionalLayoutInfo.groupSwitcher = "grp:alt_shift_toggle";
                 }
+
+                QProcess::execute( "setxkbmap", xkbmap_layout_args(
+                                       { m_selectedLayoutsAdditionalLayoutInfo.additionalLayout, m_selectedLayout },
+                                       { m_selectedLayoutsAdditionalLayoutInfo.additionalVariant, m_selectedVariant },
+                                       m_selectedLayoutsAdditionalLayoutInfo.groupSwitcher )
+                                   );
+
+
 
                 cDebug() << "xkbmap selection changed to: " << m_selectedLayout << '-' << m_selectedVariant
                          << "(added " << m_selectedLayoutsAdditionalLayoutInfo.additionalLayout << "-"
@@ -200,7 +202,6 @@ Config::Config( QObject* parent )
             }
             else
             {
-                m_selectedLayoutsAdditionalLayoutInfo = AdditionalLayoutInfo();
                 QProcess::execute( "setxkbmap", xkbmap_layout_args( m_selectedLayout, m_selectedVariant ) );
                 cDebug() << "xkbmap selection changed to: " << m_selectedLayout << '-' << m_selectedVariant;
             }
