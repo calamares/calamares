@@ -3,5 +3,6 @@
         <file alias="kbd-model-map">../keyboard/kbd-model-map</file>
         <file alias="images/restore.png">../keyboard/images/restore.png</file>
         <file>keyboardq.qml</file>
+        <file alias="non-ascii-layouts">../keyboard/non-ascii-layouts</file>
     </qresource>
 </RCC>
