@@ -52,6 +52,7 @@ yamlToVariant( const YAML::Node& node )
     case YAML::NodeType::Undefined:
         return QVariant();
     }
+    __builtin_unreachable();
 }
 
 

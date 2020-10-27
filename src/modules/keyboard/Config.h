@@ -13,6 +13,7 @@
 
 #include "Job.h"
 #include "KeyboardLayoutModel.h"
+#include "AdditionalLayoutInfo.h"
 
 #include <QAbstractListModel>
 #include <QMap>
@@ -41,6 +42,8 @@ public:
 
     void setConfigurationMap( const QVariantMap& configurationMap );
 
+    static AdditionalLayoutInfo getAdditionalLayoutInfo( const QString& layout );
+
 private:
     void guessLayout( const QStringList& langParts );
     void updateVariants( const QPersistentModelIndex& currentItem, QString currentVariant = QString() );
@@ -52,6 +55,10 @@ private:
     QString m_selectedLayout;
     QString m_selectedModel;
     QString m_selectedVariant;
+
+    // Layout (and corresponding info) added if current one doesn't support ASCII (e.g. Russian or Japanese)
+    AdditionalLayoutInfo m_additionalLayoutInfo;
+
     QTimer m_setxkbmapTimer;
 
     // From configuration

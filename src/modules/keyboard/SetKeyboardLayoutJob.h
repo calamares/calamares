@@ -12,6 +12,8 @@
 #define SETKEYBOARDLAYOUTJOB_H
 
 #include "Job.h"
+#include "AdditionalLayoutInfo.h"
+
 
 
 class SetKeyboardLayoutJob : public Calamares::Job
@@ -21,6 +23,7 @@ public:
     SetKeyboardLayoutJob( const QString& model,
                           const QString& layout,
                           const QString& variant,
+                          const AdditionalLayoutInfo& additionaLayoutInfo,
                           const QString& xOrgConfFileName,
                           const QString& convertedKeymapPath,
                           bool writeEtcDefaultKeyboard );
@@ -38,6 +41,7 @@ private:
     QString m_model;
     QString m_layout;
     QString m_variant;
+    AdditionalLayoutInfo m_additionalLayoutInfo;
     QString m_xOrgConfFileName;
     QString m_convertedKeymapPath;
     const bool m_writeEtcDefaultKeyboard;

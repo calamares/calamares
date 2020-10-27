@@ -110,6 +110,7 @@ PackageChooserViewStep::isNextEnabled() const
         // exactly one OR one or more
         return m_widget->hasSelection();
     }
+    __builtin_unreachable();
 }
 
 
