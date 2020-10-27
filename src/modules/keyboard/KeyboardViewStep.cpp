@@ -23,7 +23,7 @@ KeyboardViewStep::KeyboardViewStep( QObject* parent )
     , m_widget( new KeyboardPage() )
     , m_nextEnabled( false )
 {
-    m_widget->init();
+    m_config->detectCurrentKeyboardLayout();
     m_nextEnabled = true;
     emit nextStatusChanged( m_nextEnabled );
 }

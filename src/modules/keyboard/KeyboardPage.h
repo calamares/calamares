@@ -36,8 +36,6 @@ public:
     explicit KeyboardPage( QWidget* parent = nullptr );
     ~KeyboardPage() override;
 
-    void init();
-
     QString prettyStatus() const;
 
     Calamares::JobList
