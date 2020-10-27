@@ -40,7 +40,6 @@ public:
     createJobs( const QString& xOrgConfFileName, const QString& convertedKeymapPath, bool writeEtcDefaultKeyboard );
 
     void onActivate();
-    void finalize();
 
 protected slots:
     void onListLayoutCurrentItemChanged( const QModelIndex& current, const QModelIndex& previous );

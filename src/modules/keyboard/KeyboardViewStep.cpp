@@ -104,7 +104,7 @@ KeyboardViewStep::onActivate()
 void
 KeyboardViewStep::onLeave()
 {
-    m_widget->finalize();
+    m_config->finalize();
 }
 
 

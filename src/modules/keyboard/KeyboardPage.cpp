@@ -251,20 +251,6 @@ KeyboardPage::onActivate()
 
 
 void
-KeyboardPage::finalize()
-{
-    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-    if ( !m_selectedLayout.isEmpty() )
-    {
-        gs->insert( "keyboardLayout", m_selectedLayout );
-        gs->insert( "keyboardVariant", m_selectedVariant );  //empty means default variant
-    }
-
-    //FIXME: also store keyboard model for something?
-}
-
-
-void
 KeyboardPage::updateVariants( const QPersistentModelIndex& currentItem, QString currentVariant )
 {
     // Block signals
