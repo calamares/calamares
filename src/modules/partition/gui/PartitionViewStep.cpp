@@ -543,6 +543,12 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         gs->insert( "efiSystemPartitionName", CalamaresUtils::getString( configurationMap, "efiSystemPartitionName" ) );
     }
 
+    // Read and parse key swapPartitionName
+    if ( configurationMap.contains( "swapPartitionName" ) )
+    {
+        gs->insert( "swapPartitionName", CalamaresUtils::getString( configurationMap, "swapPartitionName" ) );
+    }
+
     // OTHER SETTINGS
     //
     gs->insert( "drawNestedPartitions", CalamaresUtils::getBool( configurationMap, "drawNestedPartitions", false ) );
