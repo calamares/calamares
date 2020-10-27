@@ -90,7 +90,7 @@ public:
      * partition is created with the given @p defaultFsType
      */
     void init( FileSystem::Type defaultFsType, const QVariantList& config );
-    bool addEntry( const PartitionEntry& entry );
+    bool addEntry( const PartitionEntry& entry, bool prepend = false );
 
     /**
      * @brief Apply the current partition layout to the selected drive space.

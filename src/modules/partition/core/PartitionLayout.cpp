@@ -80,14 +80,21 @@ PartitionLayout::PartitionEntry::PartitionEntry( const QString& label,
 
 
 bool
-PartitionLayout::addEntry( const PartitionEntry& entry )
+PartitionLayout::addEntry( const PartitionEntry& entry, bool prepend )
 {
     if ( !entry.isValid() )
     {
         return false;
     }
 
-    m_partLayout.append( entry );
+    if ( prepend )
+    {
+        m_partLayout.prepend( entry );
+    }
+    else
+    {
+        m_partLayout.append( entry );
+    }
 
     return true;
 }
