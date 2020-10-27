@@ -164,6 +164,10 @@ public:
 
     bool layoutAddEntry( const PartitionLayout::PartitionEntry& entry, bool prepend = false );
 
+    bool layoutAddEfiEntry( bool prepend = false );
+
+    bool layoutAddSwapEntry( qint64 size, bool prepend = false );
+
     void layoutApply( Device* dev, qint64 firstSector, qint64 lastSector, QString luksPassphrase );
     void layoutApply( Device* dev,
                       qint64 firstSector,

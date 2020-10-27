@@ -35,6 +35,9 @@
 #include "jobs/ResizeVolumeGroupJob.h"
 #include "jobs/SetPartitionFlagsJob.h"
 
+#include "GlobalStorage.h"
+#include "JobQueue.h"
+
 #ifdef DEBUG_PARTITION_LAME
 #include "JobExample.h"
 #endif
@@ -877,6 +880,50 @@ bool
 PartitionCoreModule::layoutAddEntry( const PartitionLayout::PartitionEntry& entry, bool prepend )
 {
     return m_partLayout.addEntry( entry, prepend );
+}
+
+bool
+PartitionCoreModule::layoutAddEfiEntry( bool prepend )
+{
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+
+    QString name = QString( "efi" );
+    if ( gs->contains( "efiSystemPartitionName" ) )
+    {
+        name = gs->value( "efiSystemPartitionName" ).toString();
+    }
+
+    QString mountPoint = QString( "/boot/efi" );
+    if ( gs->contains( "efiSystemPartition" ) )
+    {
+        mountPoint = gs->value( "efiSystemPartition" ).toString();
+    }
+
+    QString size = QString( "300MiB" );
+    if ( gs->contains( "efiSystemPartitionSize" ) )
+    {
+        size = gs->value( "efiSystemPartitionSize" ).toString();
+    }
+
+    return layoutAddEntry( { name, QString( "" ), QString( "c12a7328-f81f-11d2-ba4b-00a0c93ec93b" ), 0,
+                             mountPoint, QString( "FAT32" ), { }, size, QString( "0" ), QString( "0" ) },
+                           prepend );
+}
+
+bool
+PartitionCoreModule::layoutAddSwapEntry( qint64 size, bool prepend )
+{
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+
+    QString name = QString( "swap" );
+    if ( gs->contains( "swapPartitionName" ) )
+    {
+        name = gs->value( "swapPartitionName" ).toString();
+    }
+
+    return layoutAddEntry( { name, QString( "" ), QString( "0657fd6d-a4ab-43c4-84e5-0933c84b4f4f" ), 0,
+                             QString( "" ), QString( "linuxswap" ), { }, QString::number( size ), QString( "0" ), QString( "0" ) },
+                           prepend );
 }
 
 void
