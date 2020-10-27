@@ -21,11 +21,9 @@ CALAMARES_PLUGIN_FACTORY_DEFINITION( KeyboardQmlViewStepFactory, registerPlugin<
 KeyboardQmlViewStep::KeyboardQmlViewStep( QObject* parent )
     : Calamares::QmlViewStep( parent )
     , m_config( new Config( this ) )
-    , m_nextEnabled( false )
 {
     m_config->detectCurrentKeyboardLayout();
-    m_nextEnabled = true;
-    emit nextStatusChanged( m_nextEnabled );
+    emit nextStatusChanged( true );
 }
 
 QString
@@ -43,7 +41,7 @@ KeyboardQmlViewStep::prettyStatus() const
 bool
 KeyboardQmlViewStep::isNextEnabled() const
 {
-    return m_nextEnabled;
+    return true;
 }
 
 bool

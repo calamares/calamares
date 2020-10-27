@@ -45,7 +45,6 @@ public:
 
 private:
     Config* m_config;
-    bool m_nextEnabled;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( KeyboardQmlViewStepFactory )
