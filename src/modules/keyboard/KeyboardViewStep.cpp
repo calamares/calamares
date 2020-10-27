@@ -48,7 +48,7 @@ KeyboardViewStep::prettyName() const
 QString
 KeyboardViewStep::prettyStatus() const
 {
-    return m_prettyStatus;
+    return m_config->prettyStatus();
 }
 
 
@@ -105,7 +105,6 @@ void
 KeyboardViewStep::onLeave()
 {
     m_widget->finalize();
-    m_prettyStatus = m_widget->prettyStatus();
 }
 
 

@@ -36,8 +36,6 @@ public:
     explicit KeyboardPage( QWidget* parent = nullptr );
     ~KeyboardPage() override;
 
-    QString prettyStatus() const;
-
     Calamares::JobList
     createJobs( const QString& xOrgConfFileName, const QString& convertedKeymapPath, bool writeEtcDefaultKeyboard );
 

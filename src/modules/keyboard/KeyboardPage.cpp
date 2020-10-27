@@ -92,23 +92,6 @@ KeyboardPage::~KeyboardPage()
     delete ui;
 }
 
-
-
-
-QString
-KeyboardPage::prettyStatus() const
-{
-    QString status;
-    status += tr( "Set keyboard model to %1.<br/>" ).arg( ui->comboBoxModel->currentText() );
-
-    QString layout = ui->listLayout->currentIndex().data().toString();
-    QString variant = ui->listVariant->currentItem() ? ui->listVariant->currentItem()->text() : QString( "<default>" );
-    status += tr( "Set keyboard layout to %1/%2." ).arg( layout, variant );
-
-    return status;
-}
-
-
 QList< Calamares::job_ptr >
 KeyboardPage::createJobs( const QString& xOrgConfFileName,
                           const QString& convertedKeymapPath,
