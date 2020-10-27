@@ -91,12 +91,12 @@ xkbmap_query_grp_option()
     }
     while( setxkbmapQuery.canReadLine() && !outputLine.startsWith("options:") );
 
-    if( !outputLine.startsWith("options:") )
+    if( !outputLine.startsWith( "options:" ) )
     {
         return QString();
     }
 
-    int index = outputLine.indexOf("grp:");
+    int index = outputLine.indexOf( "grp:" );
 
     if( index == -1 )
     {
@@ -104,7 +104,7 @@ xkbmap_query_grp_option()
     }
 
     //it's either in the end of line or before the other option so \s or ,
-    int lastIndex = outputLine.indexOf( QRegExp("[\\s,]"), index );
+    int lastIndex = outputLine.indexOf( QRegExp( "[\\s,]" ), index );
 
     return outputLine.mid( index, lastIndex-1 );
 }
@@ -178,14 +178,14 @@ Config::Config( QObject* parent )
         connect( &m_setxkbmapTimer, &QTimer::timeout, this, [=] {
             m_selectedLayoutsAdditionalLayoutInfo = getAdditionalLayoutInfo( m_selectedLayout );
 
-            if(!m_selectedLayoutsAdditionalLayoutInfo.additionalLayout.isEmpty())
+            if( !m_selectedLayoutsAdditionalLayoutInfo.additionalLayout.isEmpty() )
             {
                 m_selectedLayoutsAdditionalLayoutInfo.groupSwitcher = xkbmap_query_grp_option();
 
                 QProcess::execute( "setxkbmap", xkbmap_layout_args(
                                        { m_selectedLayoutsAdditionalLayoutInfo.additionalLayout, m_selectedLayout },
                                        { m_selectedLayoutsAdditionalLayoutInfo.additionalVariant, m_selectedVariant },
-                                       m_selectedLayoutsAdditionalLayoutInfo.groupSwitcher.isEmpty()?"grp:alt_shift_toggle":QString() )
+                                       m_selectedLayoutsAdditionalLayoutInfo.groupSwitcher.isEmpty() ? "grp:alt_shift_toggle" : QString() )
                                    );
 
                 if( m_selectedLayoutsAdditionalLayoutInfo.groupSwitcher.isEmpty() )

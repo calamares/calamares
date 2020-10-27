@@ -33,7 +33,7 @@
 SetKeyboardLayoutJob::SetKeyboardLayoutJob(const QString& model,
                                             const QString& layout,
                                             const QString& variant,
-                                            const AdditionalLayoutInfo &additionalLayoutInfo,
+                                            const AdditionalLayoutInfo& additionalLayoutInfo,
                                             const QString& xOrgConfFileName,
                                             const QString& convertedKeymapPath,
                                             bool writeEtcDefaultKeyboard )
