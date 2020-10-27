@@ -10,7 +10,9 @@ website will have to do for older versions.
 # 3.2.33 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - Anke Boersma
+ - Andrius Štikonas
+ - Gaël PORTAY
 
 ## Core ##
  - Calamares now sets the C++ standard for compilation to C++17; this
