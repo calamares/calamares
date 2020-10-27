@@ -40,23 +40,6 @@ public:
 
 LayoutItem::~LayoutItem() {}
 
-static QPersistentModelIndex
-findLayout( const KeyboardLayoutModel* klm, const QString& currentLayout )
-{
-    QPersistentModelIndex currentLayoutItem;
-
-    for ( int i = 0; i < klm->rowCount(); ++i )
-    {
-        QModelIndex idx = klm->index( i );
-        if ( idx.isValid() && idx.data( KeyboardLayoutModel::KeyboardLayoutKeyRole ).toString() == currentLayout )
-        {
-            currentLayoutItem = idx;
-        }
-    }
-
-    return currentLayoutItem;
-}
-
 KeyboardPage::KeyboardPage( QWidget* parent )
     : QWidget( parent )
     , ui( new Ui::Page_Keyboard )
@@ -91,26 +74,6 @@ KeyboardPage::~KeyboardPage()
 {
     delete ui;
 }
-
-QList< Calamares::job_ptr >
-KeyboardPage::createJobs( const QString& xOrgConfFileName,
-                          const QString& convertedKeymapPath,
-                          bool writeEtcDefaultKeyboard )
-{
-    QList< Calamares::job_ptr > list;
-    QString selectedModel = m_models.value( ui->comboBoxModel->currentText(), "pc105" );
-
-    Calamares::Job* j = new SetKeyboardLayoutJob( selectedModel,
-                                                  m_selectedLayout,
-                                                  m_selectedVariant,
-                                                  xOrgConfFileName,
-                                                  convertedKeymapPath,
-                                                  writeEtcDefaultKeyboard );
-    list.append( Calamares::job_ptr( j ) );
-
-    return list;
-}
-
 
 void
 KeyboardPage::guessLayout( const QStringList& langParts )

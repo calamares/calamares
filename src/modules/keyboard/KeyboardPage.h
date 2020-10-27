@@ -36,9 +36,6 @@ public:
     explicit KeyboardPage( QWidget* parent = nullptr );
     ~KeyboardPage() override;
 
-    Calamares::JobList
-    createJobs( const QString& xOrgConfFileName, const QString& convertedKeymapPath, bool writeEtcDefaultKeyboard );
-
     void onActivate();
 
 protected slots:
