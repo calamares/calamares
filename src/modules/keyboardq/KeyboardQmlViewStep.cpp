@@ -91,5 +91,6 @@ KeyboardQmlViewStep::getConfig()
 void
 KeyboardQmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
+    m_config->setConfigurationMap( configurationMap );
     Calamares::QmlViewStep::setConfigurationMap( configurationMap );
 }
