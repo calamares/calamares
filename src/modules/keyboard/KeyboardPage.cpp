@@ -222,6 +222,7 @@ KeyboardPage::createJobs( const QString& xOrgConfFileName,
     Calamares::Job* j = new SetKeyboardLayoutJob( selectedModel,
                                                   m_selectedLayout,
                                                   m_selectedVariant,
+                                                  AdditionalLayoutInfo(),
                                                   xOrgConfFileName,
                                                   convertedKeymapPath,
                                                   writeEtcDefaultKeyboard );

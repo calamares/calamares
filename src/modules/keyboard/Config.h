@@ -13,19 +13,13 @@
 
 #include "Job.h"
 #include "KeyboardLayoutModel.h"
+#include "AdditionalLayoutInfo.h"
 
 #include <QAbstractListModel>
 #include <QMap>
 #include <QObject>
 #include <QTimer>
 #include <QUrl>
-
-struct AdditionalLayoutInfo {
-    QString additionalLayout;
-    QString additionalVariant;
-
-    QString vconsoleKeymap;
-};
 
 class Config : public QObject
 {

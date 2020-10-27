@@ -176,27 +176,33 @@ Config::Config( QObject* parent )
         }
 
         connect( &m_setxkbmapTimer, &QTimer::timeout, this, [=] {
-            AdditionalLayoutInfo info = getAdditionalLayoutInfo( m_selectedLayout);
+            m_selectedLayoutsAdditionalLayoutInfo = getAdditionalLayoutInfo( m_selectedLayout );
 
-            if(!info.additionalLayout.isEmpty())
+            if(!m_selectedLayoutsAdditionalLayoutInfo.additionalLayout.isEmpty())
             {
-                m_selectedLayoutsAdditionalLayoutInfo = info;
-                QString switchOption = xkbmap_query_grp_option();
+                m_selectedLayoutsAdditionalLayoutInfo.groupSwitcher = xkbmap_query_grp_option();
 
                 QProcess::execute( "setxkbmap", xkbmap_layout_args(
-                                       { info.additionalLayout, m_selectedLayout },
-                                       { info.additionalVariant, m_selectedVariant },
-                                       switchOption.isEmpty()?"grp:alt_shift_toggle":QString() )
+                                       { m_selectedLayoutsAdditionalLayoutInfo.additionalLayout, m_selectedLayout },
+                                       { m_selectedLayoutsAdditionalLayoutInfo.additionalVariant, m_selectedVariant },
+                                       m_selectedLayoutsAdditionalLayoutInfo.groupSwitcher.isEmpty()?"grp:alt_shift_toggle":QString() )
                                    );
+
+                if( m_selectedLayoutsAdditionalLayoutInfo.groupSwitcher.isEmpty() )
+                {
+                    m_selectedLayoutsAdditionalLayoutInfo.groupSwitcher = "grp:alt_shift_toggle";
+                }
+
                 cDebug() << "xkbmap selection changed to: " << m_selectedLayout << '-' << m_selectedVariant
-                         << "(added " << info.additionalLayout << "-" << info.additionalVariant << " since current layout is not ASCII-capable)";
+                         << "(added " << m_selectedLayoutsAdditionalLayoutInfo.additionalLayout << "-"
+                         << m_selectedLayoutsAdditionalLayoutInfo.additionalVariant << " since current layout is not ASCII-capable)";
 
             }
             else
             {
                 m_selectedLayoutsAdditionalLayoutInfo = AdditionalLayoutInfo();
                 QProcess::execute( "setxkbmap", xkbmap_layout_args( m_selectedLayout, m_selectedVariant ) );
-                cDebug() << "xkbеmap selection changed to: " << m_selectedLayout << '-' << m_selectedVariant;
+                cDebug() << "xkbmap selection changed to: " << m_selectedLayout << '-' << m_selectedVariant;
             }
             m_setxkbmapTimer.disconnect( this );
         } );
@@ -336,6 +342,7 @@ Config::createJobs()
     Calamares::Job* j = new SetKeyboardLayoutJob( m_selectedModel,
                                                   m_selectedLayout,
                                                   m_selectedVariant,
+                                                  m_selectedLayoutsAdditionalLayoutInfo,
                                                   m_xOrgConfFileName,
                                                   m_convertedKeymapPath,
                                                   m_writeEtcDefaultKeyboard );
