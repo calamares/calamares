@@ -176,28 +176,28 @@ Config::Config( QObject* parent )
         }
 
         connect( &m_setxkbmapTimer, &QTimer::timeout, this, [=] {
-            m_selectedLayoutsAdditionalLayoutInfo = getAdditionalLayoutInfo( m_selectedLayout );
+            m_additionalLayoutInfo = getAdditionalLayoutInfo( m_selectedLayout );
 
-            if ( !m_selectedLayoutsAdditionalLayoutInfo.additionalLayout.isEmpty() )
+            if ( !m_additionalLayoutInfo.additionalLayout.isEmpty() )
             {
-                m_selectedLayoutsAdditionalLayoutInfo.groupSwitcher = xkbmap_query_grp_option();
+                m_additionalLayoutInfo.groupSwitcher = xkbmap_query_grp_option();
 
-                if( m_selectedLayoutsAdditionalLayoutInfo.groupSwitcher.isEmpty() )
+                if( m_additionalLayoutInfo.groupSwitcher.isEmpty() )
                 {
-                    m_selectedLayoutsAdditionalLayoutInfo.groupSwitcher = "grp:alt_shift_toggle";
+                    m_additionalLayoutInfo.groupSwitcher = "grp:alt_shift_toggle";
                 }
 
                 QProcess::execute( "setxkbmap", xkbmap_layout_args(
-                                       { m_selectedLayoutsAdditionalLayoutInfo.additionalLayout, m_selectedLayout },
-                                       { m_selectedLayoutsAdditionalLayoutInfo.additionalVariant, m_selectedVariant },
-                                       m_selectedLayoutsAdditionalLayoutInfo.groupSwitcher )
+                                       { m_additionalLayoutInfo.additionalLayout, m_selectedLayout },
+                                       { m_additionalLayoutInfo.additionalVariant, m_selectedVariant },
+                                       m_additionalLayoutInfo.groupSwitcher )
                                    );
 
 
 
                 cDebug() << "xkbmap selection changed to: " << m_selectedLayout << '-' << m_selectedVariant
-                         << "(added " << m_selectedLayoutsAdditionalLayoutInfo.additionalLayout << "-"
-                         << m_selectedLayoutsAdditionalLayoutInfo.additionalVariant << " since current layout is not ASCII-capable)";
+                         << "(added " << m_additionalLayoutInfo.additionalLayout << "-"
+                         << m_additionalLayoutInfo.additionalVariant << " since current layout is not ASCII-capable)";
 
             }
             else
@@ -343,7 +343,7 @@ Config::createJobs()
     Calamares::Job* j = new SetKeyboardLayoutJob( m_selectedModel,
                                                   m_selectedLayout,
                                                   m_selectedVariant,
-                                                  m_selectedLayoutsAdditionalLayoutInfo,
+                                                  m_additionalLayoutInfo,
                                                   m_xOrgConfFileName,
                                                   m_convertedKeymapPath,
                                                   m_writeEtcDefaultKeyboard );
@@ -495,11 +495,11 @@ Config::finalize()
         gs->insert( "keyboardLayout", m_selectedLayout );
         gs->insert( "keyboardVariant", m_selectedVariant );  //empty means default variant
 
-        if ( !m_selectedLayoutsAdditionalLayoutInfo.additionalLayout.isEmpty() )
+        if ( !m_additionalLayoutInfo.additionalLayout.isEmpty() )
         {
-            gs->insert( "keyboardAdditionalLayout", m_selectedLayoutsAdditionalLayoutInfo.additionalLayout);
-            gs->insert( "keyboardAdditionalLayout", m_selectedLayoutsAdditionalLayoutInfo.additionalVariant);
-            gs->insert( "keyboardVConsoleKeymap", m_selectedLayoutsAdditionalLayoutInfo.vconsoleKeymap );
+            gs->insert( "keyboardAdditionalLayout", m_additionalLayoutInfo.additionalLayout);
+            gs->insert( "keyboardAdditionalLayout", m_additionalLayoutInfo.additionalVariant);
+            gs->insert( "keyboardVConsoleKeymap", m_additionalLayoutInfo.vconsoleKeymap );
         }
     }
 

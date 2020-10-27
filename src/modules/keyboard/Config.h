@@ -55,7 +55,10 @@ private:
     QString m_selectedLayout;
     QString m_selectedModel;
     QString m_selectedVariant;
-    AdditionalLayoutInfo m_selectedLayoutsAdditionalLayoutInfo;
+
+    // Layout (and corresponding info) added if current one doesn't support ASCII (e.g. Russian or Japanese)
+    AdditionalLayoutInfo m_additionalLayoutInfo;
+
     QTimer m_setxkbmapTimer;
 
     // From configuration
