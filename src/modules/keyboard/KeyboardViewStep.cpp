@@ -21,11 +21,9 @@ KeyboardViewStep::KeyboardViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_config( new Config(this) )
     , m_widget( new KeyboardPage() )
-    , m_nextEnabled( false )
 {
     m_config->detectCurrentKeyboardLayout();
-    m_nextEnabled = true;
-    emit nextStatusChanged( m_nextEnabled );
+    emit nextStatusChanged( true );
 }
 
 
@@ -62,7 +60,7 @@ KeyboardViewStep::widget()
 bool
 KeyboardViewStep::isNextEnabled() const
 {
-    return m_nextEnabled;
+    return true;
 }
 
 
