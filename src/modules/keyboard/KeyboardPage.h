@@ -36,15 +36,11 @@ public:
     explicit KeyboardPage( QWidget* parent = nullptr );
     ~KeyboardPage() override;
 
-    void onActivate();
-
 protected slots:
     void onListLayoutCurrentItemChanged( const QModelIndex& current, const QModelIndex& previous );
     void onListVariantCurrentItemChanged( QListWidgetItem* current, QListWidgetItem* previous );
 
 private:
-    /// Guess a layout based on the split-apart locale
-    void guessLayout( const QStringList& langParts );
     void updateVariants( const QPersistentModelIndex& currentItem, QString currentVariant = QString() );
 
     Ui::Page_Keyboard* ui;

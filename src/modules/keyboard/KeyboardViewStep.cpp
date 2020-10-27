@@ -97,7 +97,7 @@ KeyboardViewStep::jobs() const
 void
 KeyboardViewStep::onActivate()
 {
-    m_widget->onActivate();
+    m_config->onActivate();
 }
 
 
