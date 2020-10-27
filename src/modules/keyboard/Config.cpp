@@ -89,7 +89,7 @@ xkbmap_query_grp_option()
     {
         outputLine = setxkbmapQuery.readLine();
     }
-    while( !setxkbmapQuery.atEnd() || !outputLine.startsWith("options:") );
+    while( setxkbmapQuery.canReadLine() && !outputLine.startsWith("options:") );
 
     if( !outputLine.startsWith("options:") )
     {
@@ -124,7 +124,7 @@ AdditionalLayoutInfo Config::getAdditionalLayoutInfo( const QString &layout )
     {
         tableLine = layoutTable.readLine();
     }
-    while( !layoutTable.atEnd() || !tableLine.startsWith( layout ) );
+    while( layoutTable.canReadLine() && !tableLine.startsWith( layout ) );
 
     if( !tableLine.startsWith( layout ) )
     {
