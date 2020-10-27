@@ -37,7 +37,7 @@ KeyboardQmlViewStep::prettyName() const
 QString
 KeyboardQmlViewStep::prettyStatus() const
 {
-    return m_prettyStatus;
+    return m_config->prettyStatus();
 }
 
 bool
@@ -80,7 +80,6 @@ void
 KeyboardQmlViewStep::onLeave()
 {
     m_config->finalize();
-    m_prettyStatus = m_config->prettyStatus();
 }
 
 QObject*
@@ -92,6 +91,5 @@ KeyboardQmlViewStep::getConfig()
 void
 KeyboardQmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-
     Calamares::QmlViewStep::setConfigurationMap( configurationMap );
 }
