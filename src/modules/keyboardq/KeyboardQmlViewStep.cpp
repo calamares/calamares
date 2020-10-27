@@ -23,7 +23,7 @@ KeyboardQmlViewStep::KeyboardQmlViewStep( QObject* parent )
     , m_config( new Config( this ) )
     , m_nextEnabled( false )
 {
-    m_config->init();
+    m_config->detectCurrentKeyboardLayout();
     m_nextEnabled = true;
     emit nextStatusChanged( m_nextEnabled );
 }

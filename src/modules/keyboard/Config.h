@@ -31,7 +31,7 @@ class Config : public QObject
 public:
     Config( QObject* parent = nullptr );
 
-    void init();
+    void detectCurrentKeyboardLayout();
 
     Calamares::JobList createJobs();
     QString prettyStatus() const;

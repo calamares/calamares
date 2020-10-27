@@ -127,7 +127,7 @@ findLayout( const KeyboardLayoutModel* klm, const QString& currentLayout )
 }
 
 void
-Config::init()
+Config::detectCurrentKeyboardLayout()
 {
     //### Detect current keyboard layout and variant
     QString currentLayout;
