@@ -84,47 +84,18 @@ KeyboardPage::KeyboardPage( Config* config, QWidget* parent )
 
     connect( ui->layoutSelector->selectionModel(),
              &QItemSelectionModel::currentChanged,
-             this,
-             &KeyboardPage::layoutChangedByUser );
-    connect( config->keyboardLayouts(),
-             &KeyboardLayoutModel::currentIndexChanged,
-             this,
-             &KeyboardPage::layoutChangedByConfig );
+             [this]( const QModelIndex& current ) { m_config->keyboardLayouts()->setCurrentIndex( current.row() ); } );
+    connect( config->keyboardLayouts(), &KeyboardLayoutModel::currentIndexChanged, [this]( int index ) {
+        ui->layoutSelector->setCurrentIndex( m_config->keyboardLayouts()->index( index ) );
+    } );
 
     connect( ui->variantSelector->selectionModel(),
              &QItemSelectionModel::currentChanged,
-             this,
-             &KeyboardPage::variantChangedByUser );
-    connect( config->keyboardVariants(),
-             &KeyboardVariantsModel::currentIndexChanged,
-             this,
-             &KeyboardPage::variantChangedByConfig );
-
+             [this]( const QModelIndex& current ) { m_config->keyboardVariants()->setCurrentIndex( current.row() ); } );
+    connect( config->keyboardVariants(), &KeyboardVariantsModel::currentIndexChanged, [this]( int index ) {
+        ui->variantSelector->setCurrentIndex( m_config->keyboardVariants()->index( index ) );
+    } );
     CALAMARES_RETRANSLATE( ui->retranslateUi( this ); )
-}
-
-void
-KeyboardPage::layoutChangedByUser( const QModelIndex& current, const QModelIndex& previous )
-{
-    m_config->keyboardLayouts()->setCurrentIndex( current.row() );
-}
-
-void
-KeyboardPage::layoutChangedByConfig( int index )
-{
-    ui->layoutSelector->setCurrentIndex( m_config->keyboardLayouts()->index( index ) );
-}
-
-void
-KeyboardPage::variantChangedByUser( const QModelIndex& current, const QModelIndex& previous )
-{
-    m_config->keyboardVariants()->setCurrentIndex( current.row() );
-}
-
-void
-KeyboardPage::variantChangedByConfig( int index )
-{
-    ui->variantSelector->setCurrentIndex( m_config->keyboardVariants()->index( index ) );
 }
 
 KeyboardPage::~KeyboardPage()

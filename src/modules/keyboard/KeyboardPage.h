@@ -37,13 +37,6 @@ public:
     explicit KeyboardPage( Config* config, QWidget* parent = nullptr );
     ~KeyboardPage() override;
 
-protected slots:
-    void layoutChangedByUser( const QModelIndex& current, const QModelIndex& previous );
-    void layoutChangedByConfig( int index );
-
-    void variantChangedByUser( const QModelIndex& current, const QModelIndex& previous );
-    void variantChangedByConfig( int index );
-
 private:
     Ui::Page_Keyboard* ui;
     KeyBoardPreview* m_keyboardPreview;
