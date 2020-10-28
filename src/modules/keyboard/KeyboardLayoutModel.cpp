@@ -14,35 +14,19 @@
 
 #include <algorithm>
 
-KeyboardModelsModel::KeyboardModelsModel( QObject* parent )
+XKBListModel::XKBListModel( QObject* parent )
     : QAbstractListModel( parent )
 {
-    // The models map is from human-readable names (!) to xkb identifier
-    const auto models = KeyboardGlobal::getKeyboardModels();
-    int index = 0;
-    for ( const auto& key : models.keys() )
-    {
-        // So here *key* is the key in the map, which is the human-readable thing,
-        //   while the struct fields are xkb-id, and human-readable
-        m_list << ModelInfo { models[ key ], key };
-        if ( models[ key ] == "pc105" )
-        {
-            m_defaultPC105 = index;
-        }
-        index++;
-    }
-
-    cDebug() << "Loaded" << m_list.count() << "keyboard models";
 }
 
 int
-KeyboardModelsModel::rowCount( const QModelIndex& ) const
+XKBListModel::rowCount( const QModelIndex& ) const
 {
     return m_list.count();
 }
 
 QVariant
-KeyboardModelsModel::data( const QModelIndex& index, int role ) const
+XKBListModel::data( const QModelIndex& index, int role ) const
 {
     if ( !index.isValid() )
     {
@@ -67,7 +51,7 @@ KeyboardModelsModel::data( const QModelIndex& index, int role ) const
 }
 
 QString
-KeyboardModelsModel::modelKey( int index ) const
+XKBListModel::modelKey( int index ) const
 {
     if ( index < 0 || index >= m_list.count() )
     {
@@ -77,7 +61,7 @@ KeyboardModelsModel::modelKey( int index ) const
 }
 
 QString
-KeyboardModelsModel::modelLabel( int index ) const
+XKBListModel::modelLabel( int index ) const
 {
     if ( index < 0 || index >= m_list.count() )
     {
@@ -87,13 +71,13 @@ KeyboardModelsModel::modelLabel( int index ) const
 }
 
 QHash< int, QByteArray >
-KeyboardModelsModel::roleNames() const
+XKBListModel::roleNames() const
 {
     return { { Qt::DisplayRole, "label" }, { Qt::UserRole, "key" } };
 }
 
 void
-KeyboardModelsModel::setCurrentIndex( int index )
+XKBListModel::setCurrentIndex( int index )
 {
     if ( index >= m_list.count() || index < 0 )
     {
@@ -104,6 +88,28 @@ KeyboardModelsModel::setCurrentIndex( int index )
         m_currentIndex = index;
         emit currentIndexChanged( m_currentIndex );
     }
+}
+
+KeyboardModelsModel::KeyboardModelsModel( QObject* parent )
+    : XKBListModel( parent )
+{
+    // The models map is from human-readable names (!) to xkb identifier
+    const auto models = KeyboardGlobal::getKeyboardModels();
+    m_list.reserve( models.count() );
+    int index = 0;
+    for ( const auto& key : models.keys() )
+    {
+        // So here *key* is the key in the map, which is the human-readable thing,
+        //   while the struct fields are xkb-id, and human-readable
+        m_list << ModelInfo { models[ key ], key };
+        if ( models[ key ] == "pc105" )
+        {
+            m_defaultPC105 = index;
+        }
+        index++;
+    }
+
+    cDebug() << "Loaded" << m_list.count() << "keyboard models";
 }
 
 

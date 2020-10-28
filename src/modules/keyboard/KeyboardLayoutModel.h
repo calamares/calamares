@@ -17,11 +17,12 @@
 #include <QMetaType>
 #include <QObject>
 
-/** @brief A list model of the physical keyboard formats ("models" in xkb)
+/** @brief A list model with an xkb key and a human-readable string
  *
  * This model acts like it has a single selection, as well.
  */
-class KeyboardModelsModel : public QAbstractListModel
+
+class XKBListModel : public QAbstractListModel
 {
     Q_OBJECT
     Q_PROPERTY( int currentIndex WRITE setCurrentIndex READ currentIndex NOTIFY currentIndexChanged )
@@ -33,7 +34,7 @@ public:
         KeyRole = Qt::UserRole  ///< xkb identifier
     };
 
-    explicit KeyboardModelsModel( QObject* parent = nullptr );
+    explicit XKBListModel( QObject* parent = nullptr );
 
     int rowCount( const QModelIndex& ) const override;
     QVariant data( const QModelIndex& index, int role ) const override;
@@ -54,14 +55,12 @@ public:
     QHash< int, QByteArray > roleNames() const override;
 
     void setCurrentIndex( int index );
-    /// @brief Set the index back to PC105 (the default physical model)
-    void setCurrentIndex() { setCurrentIndex( m_defaultPC105 ); }
     int currentIndex() const { return m_currentIndex; }
 
 signals:
     void currentIndexChanged( int index );
 
-private:
+protected:
     struct ModelInfo
     {
         /// XKB identifier
@@ -71,6 +70,24 @@ private:
     };
     QVector< ModelInfo > m_list;
     int m_currentIndex = -1;
+};
+
+
+/** @brief A list model of the physical keyboard formats ("models" in xkb)
+ *
+ * This model acts like it has a single selection, as well.
+ */
+class KeyboardModelsModel : public XKBListModel
+{
+    Q_OBJECT
+
+public:
+    explicit KeyboardModelsModel( QObject* parent = nullptr );
+
+    /// @brief Set the index back to PC105 (the default physical model)
+    void setCurrentIndex() { XKBListModel::setCurrentIndex( m_defaultPC105 ); }
+
+private:
     int m_defaultPC105 = -1;  ///< The index of pc105, if there is one
 };
 

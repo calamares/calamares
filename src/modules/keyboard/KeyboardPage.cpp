@@ -76,7 +76,7 @@ KeyboardPage::KeyboardPage( Config* config, QWidget* parent )
     connect( ui->physicalModelSelector,
              QOverload< int >::of( &QComboBox::currentIndexChanged ),
              config->keyboardModels(),
-             QOverload< int >::of( &KeyboardModelsModel::setCurrentIndex ) );
+             QOverload< int >::of( &XKBListModel::setCurrentIndex ) );
     connect( config->keyboardModels(),
              &KeyboardModelsModel::currentIndexChanged,
              ui->physicalModelSelector,
