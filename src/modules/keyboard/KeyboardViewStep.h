@@ -49,8 +49,6 @@ public:
 private:
     Config* m_config;
     KeyboardPage* m_widget;
-    bool m_nextEnabled;
-    QString m_prettyStatus;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( KeyboardViewStepFactory )

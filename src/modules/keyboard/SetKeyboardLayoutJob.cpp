@@ -30,7 +30,7 @@
 #include <QTextStream>
 
 
-SetKeyboardLayoutJob::SetKeyboardLayoutJob(const QString& model,
+SetKeyboardLayoutJob::SetKeyboardLayoutJob( const QString& model,
                                             const QString& layout,
                                             const QString& variant,
                                             const AdditionalLayoutInfo& additionalLayoutInfo,
@@ -269,12 +269,14 @@ SetKeyboardLayoutJob::writeX11Data( const QString& keyboardConfPath ) const
     {
         if ( !m_layout.isEmpty() )
         {
-            stream << "        Option \"XkbLayout\" \"" << m_additionalLayoutInfo.additionalLayout << "," << m_layout << "\"\n";
+            stream << "        Option \"XkbLayout\" \"" << m_additionalLayoutInfo.additionalLayout << "," << m_layout
+                   << "\"\n";
         }
 
         if ( !m_variant.isEmpty() )
         {
-            stream << "        Option \"XkbVariant\" \"" << m_additionalLayoutInfo.additionalVariant << "," << m_variant << "\"\n";
+            stream << "        Option \"XkbVariant\" \"" << m_additionalLayoutInfo.additionalVariant << "," << m_variant
+                   << "\"\n";
         }
 
         stream << "        Option \"XkbOptions\" \"" << m_additionalLayoutInfo.groupSwitcher << "\"\n";

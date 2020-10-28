@@ -75,7 +75,7 @@ parseKeyboardModels( const char* filepath )
             break;
         }
 
-        // here we are in the model section, otherwhise we would continue or break
+        // here we are in the model section, otherwise we would continue or break
         QRegExp rx;
         rx.setPattern( "^\\s+(\\S+)\\s+(\\w.*)\n$" );
 

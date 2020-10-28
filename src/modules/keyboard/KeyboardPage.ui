@@ -76,7 +76,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="comboBoxModel">
+      <widget class="QComboBox" name="physicalModelSelector">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -110,10 +110,10 @@ SPDX-License-Identifier: GPL-3.0-or-later
       <number>9</number>
      </property>
      <item>
-      <widget class="QListView" name="listLayout"/>
+      <widget class="QListView" name="layoutSelector"/>
      </item>
      <item>
-      <widget class="QListWidget" name="listVariant"/>
+      <widget class="QListView" name="variantSelector"/>
      </item>
     </layout>
    </item>
@@ -139,9 +139,9 @@ SPDX-License-Identifier: GPL-3.0-or-later
   </layout>
  </widget>
  <tabstops>
-  <tabstop>comboBoxModel</tabstop>
-  <tabstop>listLayout</tabstop>
-  <tabstop>listVariant</tabstop>
+  <tabstop>physicalModelSelector</tabstop>
+  <tabstop>layoutSelector</tabstop>
+  <tabstop>variantSelector</tabstop>
   <tabstop>LE_TestKeyboard</tabstop>
   <tabstop>buttonRestore</tabstop>
  </tabstops>

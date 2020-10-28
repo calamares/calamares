@@ -27,42 +27,20 @@ namespace Ui
 class Page_Keyboard;
 }
 
+class Config;
 class KeyBoardPreview;
 
 class KeyboardPage : public QWidget
 {
     Q_OBJECT
 public:
-    explicit KeyboardPage( QWidget* parent = nullptr );
+    explicit KeyboardPage( Config* config, QWidget* parent = nullptr );
     ~KeyboardPage() override;
 
-    void init();
-
-    QString prettyStatus() const;
-
-    Calamares::JobList
-    createJobs( const QString& xOrgConfFileName, const QString& convertedKeymapPath, bool writeEtcDefaultKeyboard );
-
-    void onActivate();
-    void finalize();
-
-protected slots:
-    void onListLayoutCurrentItemChanged( const QModelIndex& current, const QModelIndex& previous );
-    void onListVariantCurrentItemChanged( QListWidgetItem* current, QListWidgetItem* previous );
-
 private:
-    /// Guess a layout based on the split-apart locale
-    void guessLayout( const QStringList& langParts );
-    void updateVariants( const QPersistentModelIndex& currentItem, QString currentVariant = QString() );
-
     Ui::Page_Keyboard* ui;
     KeyBoardPreview* m_keyboardPreview;
-    int m_defaultIndex;
-    QMap< QString, QString > m_models;
-
-    QString m_selectedLayout;
-    QString m_selectedVariant;
-    QTimer m_setxkbmapTimer;
+    Config* m_config;
 };
 
 #endif  // KEYBOARDPAGE_H
