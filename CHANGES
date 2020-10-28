@@ -12,6 +12,7 @@ website will have to do for older versions.
 This release contains contributions from (alphabetically by first name):
  - Anke Boersma
  - Andrius Štikonas
+ - Artem Grinev
  - Gaël PORTAY
 
 ## Core ##
@@ -20,7 +21,9 @@ This release contains contributions from (alphabetically by first name):
    modern KDE Frameworks and KPMcore 4.2.0.
 
 ## Modules ##
- - No module changes yet
+ - The *keyboard* and *keyboardq* modules now share backend code
+   and handle non-ASCII layouts better (for setting passwords
+   and usernames).
 
 
 # 3.2.32.1 (2020-10-17) #
