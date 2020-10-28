@@ -114,7 +114,7 @@ public:
 
     QVariant data( const QModelIndex& index, int role ) const override;
 
-    void setCurrentIndex( const int& index );
+    void setCurrentIndex( int index );
     int currentIndex() const;
     const QPair< QString, KeyboardGlobal::KeyboardInfo > item( const int& index ) const;
 

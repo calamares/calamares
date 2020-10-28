@@ -183,15 +183,18 @@ KeyboardLayoutModel::roleNames() const
 }
 
 void
-KeyboardLayoutModel::setCurrentIndex( const int& index )
+KeyboardLayoutModel::setCurrentIndex( int index )
 {
     if ( index >= m_layouts.count() || index < 0 )
     {
         return;
     }
 
-    m_currentIndex = index;
-    emit currentIndexChanged( m_currentIndex );
+    if ( m_currentIndex != index )
+    {
+        m_currentIndex = index;
+        emit currentIndexChanged( m_currentIndex );
+    }
 }
 
 int
