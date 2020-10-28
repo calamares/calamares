@@ -53,13 +53,13 @@ KeyboardPage::KeyboardPage( Config* config, QWidget* parent )
 
     ui->physicalModelSelector->setModel( config->keyboardModels() );
     // Connect signals and slots
-    connect( ui->variantSelector, &QListWidget::currentItemChanged, this, &KeyboardPage::onListVariantCurrentItemChanged );
-
     connect(
-        ui->buttonRestore, &QPushButton::clicked, [this] {
-            cDebug() << "Restore clicked";
-            // ui->physicalModelSelector->setCurrentIndex( m_defaultIndex );
-        } );
+        ui->variantSelector, &QListWidget::currentItemChanged, this, &KeyboardPage::onListVariantCurrentItemChanged );
+
+    connect( ui->buttonRestore, &QPushButton::clicked, [this] {
+        cDebug() << "Restore clicked";
+        // ui->physicalModelSelector->setCurrentIndex( m_defaultIndex );
+    } );
 
     connect( ui->physicalModelSelector, &QComboBox::currentTextChanged, [this]( const QString& text ) {
         cDebug() << "ComboBox changed to" << text;

@@ -12,7 +12,8 @@
 
 #include <QString>
 
-struct AdditionalLayoutInfo {
+struct AdditionalLayoutInfo
+{
     QString additionalLayout;
     QString additionalVariant;
 

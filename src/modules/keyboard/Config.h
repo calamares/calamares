@@ -11,9 +11,9 @@
 #ifndef KEYBOARD_CONFIG_H
 #define KEYBOARD_CONFIG_H
 
+#include "AdditionalLayoutInfo.h"
 #include "Job.h"
 #include "KeyboardLayoutModel.h"
-#include "AdditionalLayoutInfo.h"
 
 #include <QAbstractListModel>
 #include <QMap>

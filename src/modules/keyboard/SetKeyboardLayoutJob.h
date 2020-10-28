@@ -11,9 +11,8 @@
 #ifndef SETKEYBOARDLAYOUTJOB_H
 #define SETKEYBOARDLAYOUTJOB_H
 
-#include "Job.h"
 #include "AdditionalLayoutInfo.h"
-
+#include "Job.h"
 
 
 class SetKeyboardLayoutJob : public Calamares::Job
