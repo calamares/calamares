@@ -51,7 +51,7 @@ XKBListModel::data( const QModelIndex& index, int role ) const
 }
 
 QString
-XKBListModel::modelKey( int index ) const
+XKBListModel::key( int index ) const
 {
     if ( index < 0 || index >= m_list.count() )
     {
@@ -61,7 +61,7 @@ XKBListModel::modelKey( int index ) const
 }
 
 QString
-XKBListModel::modelLabel( int index ) const
+XKBListModel::label( int index ) const
 {
     if ( index < 0 || index >= m_list.count() )
     {
@@ -201,72 +201,20 @@ KeyboardLayoutModel::currentIndex() const
 }
 
 
-const QMap< QString, QString >
-KeyboardVariantsModel::item( const int& index ) const
-{
-    if ( index >= m_list.count() || index < 0 )
-    {
-        return QMap< QString, QString >();
-    }
-
-    return m_list.at( index );
-}
-
 KeyboardVariantsModel::KeyboardVariantsModel( QObject* parent )
-    : QAbstractListModel( parent )
+    : XKBListModel( parent )
 {
-}
-
-int
-KeyboardVariantsModel::currentIndex() const
-{
-    return m_currentIndex;
-}
-
-void
-KeyboardVariantsModel::setCurrentIndex( const int& index )
-{
-    if ( index >= m_list.count() || index < 0 )
-    {
-        return;
-    }
-
-    m_currentIndex = index;
-    emit currentIndexChanged( m_currentIndex );
-}
-
-QVariant
-KeyboardVariantsModel::data( const QModelIndex& index, int role ) const
-{
-    if ( !index.isValid() )
-    {
-        return QVariant();
-    }
-    const auto item = m_list.at( index.row() );
-    return role == Qt::DisplayRole ? item[ "label" ] : item[ "key" ];
-}
-
-int
-KeyboardVariantsModel::rowCount( const QModelIndex& ) const
-{
-    return m_list.count();
-}
-
-QHash< int, QByteArray >
-KeyboardVariantsModel::roleNames() const
-{
-    return { { Qt::DisplayRole, "label" }, { Qt::UserRole, "key" } };
 }
 
 void
 KeyboardVariantsModel::setVariants( QMap< QString, QString > variants )
 {
-    m_list.clear();
     beginResetModel();
+    m_list.clear();
+    m_list.reserve( variants.count() );
     for ( const auto& key : variants.keys() )
     {
-        const auto item = QMap< QString, QString > { { "label", key }, { "key", variants[ key ] } };
-        m_list << item;
+        m_list << ModelInfo { variants[ key ], key };
     }
     endResetModel();
 }

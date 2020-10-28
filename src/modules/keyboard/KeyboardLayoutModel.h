@@ -36,21 +36,21 @@ public:
 
     explicit XKBListModel( QObject* parent = nullptr );
 
-    int rowCount( const QModelIndex& ) const override;
+    int rowCount( const QModelIndex& = QModelIndex() ) const override;
     QVariant data( const QModelIndex& index, int role ) const override;
     /** @brief xkb key for a given index (row)
      *
      * This is like calling data( QModelIndex( index ), KeyRole ).toString(),
      * but shorter and faster. Can return an empty string if index is invalid.
      */
-    QString modelKey( int index ) const;
+    QString key( int index ) const;
 
     /** @brief human-readable label for a given index (row)
      *
      * This is like calling data( QModelIndex( index ), LabelRole ).toString(),
      * but shorter and faster. Can return an empty string if index is invalid.
      */
-    QString modelLabel( int index ) const;
+    QString label( int index ) const;
 
     QHash< int, QByteArray > roleNames() const override;
 
@@ -125,32 +125,14 @@ signals:
     void currentIndexChanged( int index );
 };
 
-class KeyboardVariantsModel : public QAbstractListModel
+class KeyboardVariantsModel : public XKBListModel
 {
     Q_OBJECT
-    Q_PROPERTY( int currentIndex WRITE setCurrentIndex READ currentIndex NOTIFY currentIndexChanged )
 
 public:
     explicit KeyboardVariantsModel( QObject* parent = nullptr );
+
     void setVariants( QMap< QString, QString > variants );
-
-    int rowCount( const QModelIndex& = QModelIndex() ) const override;
-    QVariant data( const QModelIndex& index, int role ) const override;
-
-    void setCurrentIndex( const int& index );
-    int currentIndex() const;
-
-    const QMap< QString, QString > item( const int& index ) const;
-
-protected:
-    QHash< int, QByteArray > roleNames() const override;
-
-private:
-    int m_currentIndex = -1;
-    QVector< QMap< QString, QString > > m_list;
-
-signals:
-    void currentIndexChanged( int index );
 };
 
 #endif  // KEYBOARDLAYOUTMODEL_H

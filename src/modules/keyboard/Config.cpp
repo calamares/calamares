@@ -157,7 +157,7 @@ Config::Config( QObject* parent )
     // Connect signals and slots
     connect( m_keyboardModelsModel, &KeyboardModelsModel::currentIndexChanged, [&]( int index ) {
         // Set Xorg keyboard model
-        m_selectedModel = m_keyboardModelsModel->modelKey( index );
+        m_selectedModel = m_keyboardModelsModel->key( index );
         cDebug() << "Setting model" << index << m_selectedModel;
         QProcess::execute( "setxkbmap", xkbmap_model_args( m_selectedModel ) );
         emit prettyStatusChanged();
@@ -172,7 +172,7 @@ Config::Config( QObject* parent )
 
     connect( m_keyboardVariantsModel, &KeyboardVariantsModel::currentIndexChanged, [&]( int index ) {
         // Set Xorg keyboard layout + variant
-        m_selectedVariant = m_keyboardVariantsModel->item( index )[ "key" ];
+        m_selectedVariant = m_keyboardVariantsModel->key( index );
         cDebug() << "Setting variant" << index << m_selectedVariant;
 
         if ( m_setxkbmapTimer.isActive() )
@@ -327,11 +327,11 @@ Config::prettyStatus() const
 {
     QString status;
     status += tr( "Set keyboard model to %1.<br/>" )
-                  .arg( m_keyboardModelsModel->modelLabel( m_keyboardModelsModel->currentIndex() ) );
+                  .arg( m_keyboardModelsModel->label( m_keyboardModelsModel->currentIndex() ) );
 
     QString layout = m_keyboardLayoutsModel->item( m_keyboardLayoutsModel->currentIndex() ).second.description;
     QString variant = m_keyboardVariantsModel->currentIndex() >= 0
-        ? m_keyboardVariantsModel->item( m_keyboardVariantsModel->currentIndex() )[ "label" ]
+        ? m_keyboardVariantsModel->label( m_keyboardVariantsModel->currentIndex() )
         : QString( "<default>" );
     status += tr( "Set keyboard layout to %1/%2." ).arg( layout, variant );
 
@@ -383,13 +383,12 @@ Config::guessLayout( const QStringList& langParts )
                 cDebug() << "Next level:" << *countryPart;
                 for ( int variantnumber = 0; variantnumber < m_keyboardVariantsModel->rowCount(); ++variantnumber )
                 {
-                    if ( m_keyboardVariantsModel->item( variantnumber )[ "key" ].compare( *countryPart,
-                                                                                          Qt::CaseInsensitive )
+                    if ( m_keyboardVariantsModel->key( variantnumber ).compare( *countryPart, Qt::CaseInsensitive )
                          == 0 )
                     {
                         m_keyboardVariantsModel->setCurrentIndex( variantnumber );
                         cDebug() << Logger::SubEntry << "matched variant" << *countryPart << ' '
-                                 << m_keyboardVariantsModel->item( variantnumber )[ "key" ];
+                                 << m_keyboardVariantsModel->key( variantnumber );
                     }
                 }
             }
