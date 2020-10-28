@@ -27,13 +27,14 @@ namespace Ui
 class Page_Keyboard;
 }
 
+class Config;
 class KeyBoardPreview;
 
 class KeyboardPage : public QWidget
 {
     Q_OBJECT
 public:
-    explicit KeyboardPage( QWidget* parent = nullptr );
+    explicit KeyboardPage( Config* config, QWidget* parent = nullptr );
     ~KeyboardPage() override;
 
 protected slots:
@@ -45,12 +46,6 @@ private:
 
     Ui::Page_Keyboard* ui;
     KeyBoardPreview* m_keyboardPreview;
-    int m_defaultIndex;
-    QMap< QString, QString > m_models;
-
-    QString m_selectedLayout;
-    QString m_selectedVariant;
-    QTimer m_setxkbmapTimer;
 };
 
 #endif  // KEYBOARDPAGE_H

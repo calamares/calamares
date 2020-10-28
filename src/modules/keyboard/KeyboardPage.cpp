@@ -15,6 +15,7 @@
 
 #include "KeyboardPage.h"
 
+#include "Config.h"
 #include "KeyboardLayoutModel.h"
 #include "SetKeyboardLayoutJob.h"
 #include "keyboardwidget/keyboardpreview.h"
@@ -40,30 +41,32 @@ public:
 
 LayoutItem::~LayoutItem() {}
 
-KeyboardPage::KeyboardPage( QWidget* parent )
+KeyboardPage::KeyboardPage( Config* config, QWidget* parent )
     : QWidget( parent )
     , ui( new Ui::Page_Keyboard )
     , m_keyboardPreview( new KeyBoardPreview( this ) )
-    , m_defaultIndex( 0 )
 {
     ui->setupUi( this );
 
     // Keyboard Preview
     ui->KBPreviewLayout->addWidget( m_keyboardPreview );
 
-    m_setxkbmapTimer.setSingleShot( true );
-
+    ui->comboBoxModel->setModel( config->keyboardModels() );
     // Connect signals and slots
     connect( ui->listVariant, &QListWidget::currentItemChanged, this, &KeyboardPage::onListVariantCurrentItemChanged );
 
     connect(
-        ui->buttonRestore, &QPushButton::clicked, [this] { ui->comboBoxModel->setCurrentIndex( m_defaultIndex ); } );
+        ui->buttonRestore, &QPushButton::clicked, [this] {
+            cDebug() << "Restore clicked";
+            // ui->comboBoxModel->setCurrentIndex( m_defaultIndex );
+        } );
 
     connect( ui->comboBoxModel, &QComboBox::currentTextChanged, [this]( const QString& text ) {
-        QString model = m_models.value( text, "pc105" );
+        cDebug() << "ComboBox changed to" << text;
+        // QString model = m_models.value( text, "pc105" );
 
         // Set Xorg keyboard model
-        QProcess::execute( "setxkbmap", QStringList { "-model", model } );
+        // QProcess::execute( "setxkbmap", QStringList { "-model", model } );
     } );
 
     CALAMARES_RETRANSLATE( ui->retranslateUi( this ); )
@@ -128,24 +131,12 @@ KeyboardPage::onListLayoutCurrentItemChanged( const QModelIndex& current, const 
     updateVariants( QPersistentModelIndex( current ) );
 }
 
-/* Returns stringlist with suitable setxkbmap command-line arguments
- * to set the given @p layout and @p variant.
- */
-static inline QStringList
-xkbmap_args( const QString& layout, const QString& variant )
-{
-    QStringList r { "-layout", layout };
-    if ( !variant.isEmpty() )
-    {
-        r << "-variant" << variant;
-    }
-    return r;
-}
-
 void
 KeyboardPage::onListVariantCurrentItemChanged( QListWidgetItem* current, QListWidgetItem* previous )
 {
     Q_UNUSED( previous )
+
+    cDebug() << "item" << Logger::Pointer( current );
 
     QPersistentModelIndex layoutIndex = ui->listLayout->currentIndex();
     LayoutItem* variantItem = dynamic_cast< LayoutItem* >( current );
@@ -158,25 +149,8 @@ KeyboardPage::onListVariantCurrentItemChanged( QListWidgetItem* current, QListWi
     QString layout = layoutIndex.data( KeyboardLayoutModel::KeyboardLayoutKeyRole ).toString();
     QString variant = variantItem->data;
 
+    cDebug() << Logger::SubEntry << layout << variant;
+
     m_keyboardPreview->setLayout( layout );
     m_keyboardPreview->setVariant( variant );
-
-    //emit checkReady();
-
-    // Set Xorg keyboard layout
-    if ( m_setxkbmapTimer.isActive() )
-    {
-        m_setxkbmapTimer.stop();
-        m_setxkbmapTimer.disconnect( this );
-    }
-
-    connect( &m_setxkbmapTimer, &QTimer::timeout, this, [=] {
-        QProcess::execute( "setxkbmap", xkbmap_args( layout, variant ) );
-        cDebug() << "xkbmap selection changed to: " << layout << '-' << variant;
-        m_setxkbmapTimer.disconnect( this );
-    } );
-    m_setxkbmapTimer.start( QApplication::keyboardInputInterval() );
-
-    m_selectedLayout = layout;
-    m_selectedVariant = variant;
 }

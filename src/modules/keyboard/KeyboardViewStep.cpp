@@ -20,7 +20,7 @@ CALAMARES_PLUGIN_FACTORY_DEFINITION( KeyboardViewStepFactory, registerPlugin< Ke
 KeyboardViewStep::KeyboardViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_config( new Config(this) )
-    , m_widget( new KeyboardPage() )
+    , m_widget( new KeyboardPage( m_config ) )
 {
     m_config->detectCurrentKeyboardLayout();
     emit nextStatusChanged( true );

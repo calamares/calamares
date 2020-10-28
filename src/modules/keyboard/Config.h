@@ -44,6 +44,23 @@ public:
 
     static AdditionalLayoutInfo getAdditionalLayoutInfo( const QString& layout );
 
+    /* A model is a physical configuration of a keyboard, e.g. 105-key PC
+     * or TKL 88-key physical size.
+     */
+    KeyboardModelsModel* keyboardModels() const;
+    /* A layout describes the basic keycaps / language assigned to the
+     * keys of the physical keyboard, e.g. English (US) or Russian.
+     */
+    KeyboardLayoutModel* keyboardLayouts() const;
+    /* A variant describes a variant of the basic keycaps; this can
+     * concern options (dead keys), or different placements of the keycaps
+     * (dvorak).
+     */
+    KeyboardVariantsModel* keyboardVariants() const;
+
+signals:
+    void prettyStatusChanged();
+
 private:
     void guessLayout( const QStringList& langParts );
     void updateVariants( const QPersistentModelIndex& currentItem, QString currentVariant = QString() );
@@ -65,16 +82,6 @@ private:
     QString m_xOrgConfFileName;
     QString m_convertedKeymapPath;
     bool m_writeEtcDefaultKeyboard = true;
-
-
-protected:
-    KeyboardModelsModel* keyboardModels() const;
-    KeyboardLayoutModel* keyboardLayouts() const;
-    KeyboardVariantsModel* keyboardVariants() const;
-
-
-signals:
-    void prettyStatusChanged();
 };
 
 
