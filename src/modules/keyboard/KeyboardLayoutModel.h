@@ -91,6 +91,11 @@ private:
     int m_defaultPC105 = -1;  ///< The index of pc105, if there is one
 };
 
+/** @brief A list of keyboard layouts (arrangements of keycaps)
+ *
+ * Layouts can have a list of associated Variants, so this
+ * is slightly more complicated than the "regular" XKBListModel.
+ */
 class KeyboardLayoutModel : public QAbstractListModel
 {
     Q_OBJECT
@@ -125,6 +130,12 @@ signals:
     void currentIndexChanged( int index );
 };
 
+/** @brief A list of variants (xkb id and human-readable)
+ *
+ * The variants that are available depend on the Layout that is used,
+ * so the `setVariants()` function can be used to update the variants
+ * when the two models are related.
+ */
 class KeyboardVariantsModel : public XKBListModel
 {
     Q_OBJECT

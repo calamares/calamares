@@ -106,29 +106,25 @@ KeyboardPage::KeyboardPage( Config* config, QWidget* parent )
 void
 KeyboardPage::layoutChangedByUser( const QModelIndex& current, const QModelIndex& previous )
 {
-    cDebug() << "index ->" << current.row();
     m_config->keyboardLayouts()->setCurrentIndex( current.row() );
-    cDebug() << Logger::SubEntry << "variants now" << m_config->keyboardVariants()->rowCount();
 }
 
 void
 KeyboardPage::layoutChangedByConfig( int index )
 {
-    cDebug() << "index ->" << index;
     ui->layoutSelector->setCurrentIndex( m_config->keyboardLayouts()->index( index ) );
-    cDebug() << Logger::SubEntry << "variants now" << m_config->keyboardVariants()->rowCount();
 }
 
 void
 KeyboardPage::variantChangedByUser( const QModelIndex& current, const QModelIndex& previous )
 {
-    cDebug() << "index ->" << current.row();
+    m_config->keyboardVariants()->setCurrentIndex( current.row() );
 }
 
 void
 KeyboardPage::variantChangedByConfig( int index )
 {
-    cDebug() << "index ->" << index;
+    ui->variantSelector->setCurrentIndex( m_config->keyboardVariants()->index( index ) );
 }
 
 KeyboardPage::~KeyboardPage()
