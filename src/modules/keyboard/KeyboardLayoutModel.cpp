@@ -19,11 +19,17 @@ KeyboardModelsModel::KeyboardModelsModel( QObject* parent )
 {
     // The models map is from human-readable names (!) to xkb identifier
     const auto models = KeyboardGlobal::getKeyboardModels();
+    int index = 0;
     for ( const auto& key : models.keys() )
     {
         // So here *key* is the key in the map, which is the human-readable thing,
         //   while the struct fields are xkb-id, and human-readable
         m_list << ModelInfo { models[ key ], key };
+        if ( models[ key ] == "pc105" )
+        {
+            m_defaultPC105 = index;
+        }
+        index++;
     }
 
     cDebug() << "Loaded" << m_list.count() << "keyboard models";

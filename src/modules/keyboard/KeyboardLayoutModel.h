@@ -54,6 +54,8 @@ public:
     QHash< int, QByteArray > roleNames() const override;
 
     void setCurrentIndex( int index );
+    /// @brief Set the index back to PC105 (the default physical model)
+    void setCurrentIndex() { setCurrentIndex( m_defaultPC105 ); }
     int currentIndex() const { return m_currentIndex; }
 
 signals:
@@ -68,7 +70,8 @@ private:
         QString label;
     };
     QVector< ModelInfo > m_list;
-    int m_currentIndex;
+    int m_currentIndex = -1;
+    int m_defaultPC105 = -1;  ///< The index of pc105, if there is one
 };
 
 class KeyboardLayoutModel : public QAbstractListModel
