@@ -50,22 +50,25 @@ xkbmap_layout_args( const QString& layout, const QString& variant )
 }
 
 static inline QStringList
-xkbmap_layout_args( const QStringList& layouts, const QStringList& variants, const QString& switchOption = "grp:alt_shift_toggle")
+xkbmap_layout_args( const QStringList& layouts,
+                    const QStringList& variants,
+                    const QString& switchOption = "grp:alt_shift_toggle" )
 {
     if ( layouts.size() != variants.size() )
     {
-        cError() << "Number of layouts and variants must be equal (empty string should be used if there is no corresponding variant)";
+        cError() << "Number of layouts and variants must be equal (empty string should be used if there is no "
+                    "corresponding variant)";
         return QStringList();
     }
 
-    QStringList r{ "-layout", layouts.join( "," ) };
+    QStringList r { "-layout", layouts.join( "," ) };
 
     if ( !variants.isEmpty() )
     {
         r << "-variant" << variants.join( "," );
     }
 
-    if ( !switchOption.isEmpty())
+    if ( !switchOption.isEmpty() )
     {
         r << "-option" << switchOption;
     }
@@ -88,17 +91,16 @@ xkbmap_query_grp_option()
     do
     {
         outputLine = setxkbmapQuery.readLine();
-    }
-    while( setxkbmapQuery.canReadLine() && !outputLine.startsWith("options:") );
+    } while ( setxkbmapQuery.canReadLine() && !outputLine.startsWith( "options:" ) );
 
-    if( !outputLine.startsWith( "options:" ) )
+    if ( !outputLine.startsWith( "options:" ) )
     {
         return QString();
     }
 
     int index = outputLine.indexOf( "grp:" );
 
-    if( index == -1 )
+    if ( index == -1 )
     {
         return QString();
     }
@@ -106,14 +108,16 @@ xkbmap_query_grp_option()
     //it's either in the end of line or before the other option so \s or ,
     int lastIndex = outputLine.indexOf( QRegExp( "[\\s,]" ), index );
 
-    return outputLine.mid( index, lastIndex-1 );
+    return outputLine.mid( index, lastIndex - 1 );
 }
 
-AdditionalLayoutInfo Config::getAdditionalLayoutInfo( const QString &layout )
+AdditionalLayoutInfo
+Config::getAdditionalLayoutInfo( const QString& layout )
 {
     QFile layoutTable( ":/non-ascii-layouts" );
 
-    if( !layoutTable.open( QIODevice::ReadOnly | QIODevice::Text ) ) {
+    if ( !layoutTable.open( QIODevice::ReadOnly | QIODevice::Text ) )
+    {
         cError() << "Non-ASCII layout table could not be opened";
         return AdditionalLayoutInfo();
     }
@@ -123,10 +127,9 @@ AdditionalLayoutInfo Config::getAdditionalLayoutInfo( const QString &layout )
     do
     {
         tableLine = layoutTable.readLine();
-    }
-    while( layoutTable.canReadLine() && !tableLine.startsWith( layout ) );
+    } while ( layoutTable.canReadLine() && !tableLine.startsWith( layout ) );
 
-    if( !tableLine.startsWith( layout ) )
+    if ( !tableLine.startsWith( layout ) )
     {
         return AdditionalLayoutInfo();
     }
@@ -135,10 +138,10 @@ AdditionalLayoutInfo Config::getAdditionalLayoutInfo( const QString &layout )
 
     AdditionalLayoutInfo r;
 
-    r.additionalLayout = tableEntries[1];
-    r.additionalVariant = tableEntries[2] == "-" ? "" : tableEntries[2];
+    r.additionalLayout = tableEntries[ 1 ];
+    r.additionalVariant = tableEntries[ 2 ] == "-" ? "" : tableEntries[ 2 ];
 
-    r.vconsoleKeymap = tableEntries[3];
+    r.vconsoleKeymap = tableEntries[ 3 ];
 
     return r;
 }
@@ -153,7 +156,7 @@ Config::Config( QObject* parent )
 
     // Connect signals and slots
     connect( m_keyboardModelsModel, &KeyboardModelsModel::currentIndexChanged, [&]( int index ) {
-        m_selectedModel = m_keyboardModelsModel->item( index ).value( "key", "pc105" );
+        m_selectedModel = m_keyboardModelsModel->modelKey( index );
         //                      Set Xorg keyboard model
         QProcess::execute( "setxkbmap", xkbmap_model_args( m_selectedModel ) );
         emit prettyStatusChanged();
@@ -182,23 +185,20 @@ Config::Config( QObject* parent )
             {
                 m_additionalLayoutInfo.groupSwitcher = xkbmap_query_grp_option();
 
-                if( m_additionalLayoutInfo.groupSwitcher.isEmpty() )
+                if ( m_additionalLayoutInfo.groupSwitcher.isEmpty() )
                 {
                     m_additionalLayoutInfo.groupSwitcher = "grp:alt_shift_toggle";
                 }
 
-                QProcess::execute( "setxkbmap", xkbmap_layout_args(
-                                       { m_additionalLayoutInfo.additionalLayout, m_selectedLayout },
-                                       { m_additionalLayoutInfo.additionalVariant, m_selectedVariant },
-                                       m_additionalLayoutInfo.groupSwitcher )
-                                   );
+                QProcess::execute( "setxkbmap",
+                                   xkbmap_layout_args( { m_additionalLayoutInfo.additionalLayout, m_selectedLayout },
+                                                       { m_additionalLayoutInfo.additionalVariant, m_selectedVariant },
+                                                       m_additionalLayoutInfo.groupSwitcher ) );
 
 
-
-                cDebug() << "xkbmap selection changed to: " << m_selectedLayout << '-' << m_selectedVariant
-                         << "(added " << m_additionalLayoutInfo.additionalLayout << "-"
-                         << m_additionalLayoutInfo.additionalVariant << " since current layout is not ASCII-capable)";
-
+                cDebug() << "xkbmap selection changed to: " << m_selectedLayout << '-' << m_selectedVariant << "(added "
+                         << m_additionalLayoutInfo.additionalLayout << "-" << m_additionalLayoutInfo.additionalVariant
+                         << " since current layout is not ASCII-capable)";
             }
             else
             {
@@ -269,15 +269,15 @@ Config::detectCurrentKeyboardLayout()
                 continue;
             }
 
-            int firstQuote = line.indexOf('"');
-            int lastQuote = line.lastIndexOf('"');
+            int firstQuote = line.indexOf( '"' );
+            int lastQuote = line.lastIndexOf( '"' );
 
-            if (firstQuote < 0 || lastQuote < 0 || lastQuote <= firstQuote)
+            if ( firstQuote < 0 || lastQuote < 0 || lastQuote <= firstQuote )
             {
                 continue;
             }
 
-            QStringList split = line.mid(firstQuote+1, lastQuote-firstQuote).split( "+", SplitSkipEmptyParts );
+            QStringList split = line.mid( firstQuote + 1, lastQuote - firstQuote ).split( "+", SplitSkipEmptyParts );
             cDebug() << split;
             if ( split.size() >= 2 )
             {
@@ -324,7 +324,7 @@ Config::prettyStatus() const
 {
     QString status;
     status += tr( "Set keyboard model to %1.<br/>" )
-                  .arg( m_keyboardModelsModel->item( m_keyboardModelsModel->currentIndex() )[ "label" ] );
+                  .arg( m_keyboardModelsModel->modelLabel( m_keyboardModelsModel->currentIndex() ) );
 
     QString layout = m_keyboardLayoutsModel->item( m_keyboardLayoutsModel->currentIndex() ).second.description;
     QString variant = m_keyboardVariantsModel->currentIndex() >= 0
@@ -381,11 +381,11 @@ Config::guessLayout( const QStringList& langParts )
                 for ( int variantnumber = 0; variantnumber < m_keyboardVariantsModel->rowCount(); ++variantnumber )
                 {
                     if ( m_keyboardVariantsModel->item( variantnumber )[ "key" ].compare( *countryPart,
-                                                                                          Qt::CaseInsensitive ) == 0 )
+                                                                                          Qt::CaseInsensitive )
+                         == 0 )
                     {
                         m_keyboardVariantsModel->setCurrentIndex( variantnumber );
-                        cDebug() << Logger::SubEntry << "matched variant"
-                                 << *countryPart << ' '
+                        cDebug() << Logger::SubEntry << "matched variant" << *countryPart << ' '
                                  << m_keyboardVariantsModel->item( variantnumber )[ "key" ];
                     }
                 }
@@ -497,8 +497,8 @@ Config::finalize()
 
         if ( !m_additionalLayoutInfo.additionalLayout.isEmpty() )
         {
-            gs->insert( "keyboardAdditionalLayout", m_additionalLayoutInfo.additionalLayout);
-            gs->insert( "keyboardAdditionalLayout", m_additionalLayoutInfo.additionalVariant);
+            gs->insert( "keyboardAdditionalLayout", m_additionalLayoutInfo.additionalLayout );
+            gs->insert( "keyboardAdditionalLayout", m_additionalLayoutInfo.additionalVariant );
             gs->insert( "keyboardVConsoleKeymap", m_additionalLayoutInfo.vconsoleKeymap );
         }
     }

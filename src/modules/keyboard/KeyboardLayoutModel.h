@@ -17,6 +17,60 @@
 #include <QMetaType>
 #include <QObject>
 
+/** @brief A list model of the physical keyboard formats ("models" in xkb)
+ *
+ * This model acts like it has a single selection, as well.
+ */
+class KeyboardModelsModel : public QAbstractListModel
+{
+    Q_OBJECT
+    Q_PROPERTY( int currentIndex WRITE setCurrentIndex READ currentIndex NOTIFY currentIndexChanged )
+
+public:
+    enum
+    {
+        LabelRole = Qt::DisplayRole,  ///< Human-readable
+        KeyRole = Qt::UserRole  ///< xkb identifier
+    };
+
+    explicit KeyboardModelsModel( QObject* parent = nullptr );
+
+    int rowCount( const QModelIndex& ) const override;
+    QVariant data( const QModelIndex& index, int role ) const override;
+    /** @brief xkb key for a given index (row)
+     *
+     * This is like calling data( QModelIndex( index ), KeyRole ).toString(),
+     * but shorter and faster. Can return an empty string if index is invalid.
+     */
+    QString modelKey( int index ) const;
+
+    /** @brief human-readable label for a given index (row)
+     *
+     * This is like calling data( QModelIndex( index ), LabelRole ).toString(),
+     * but shorter and faster. Can return an empty string if index is invalid.
+     */
+    QString modelLabel( int index ) const;
+
+    QHash< int, QByteArray > roleNames() const override;
+
+    void setCurrentIndex( int index );
+    int currentIndex() const { return m_currentIndex; }
+
+signals:
+    void currentIndexChanged( int index );
+
+private:
+    struct ModelInfo
+    {
+        /// XKB identifier
+        QString key;
+        /// Human-readable
+        QString label;
+    };
+    QVector< ModelInfo > m_list;
+    int m_currentIndex;
+};
+
 class KeyboardLayoutModel : public QAbstractListModel
 {
     Q_OBJECT
@@ -46,35 +100,6 @@ private:
     void init();
     int m_currentIndex = -1;
     QList< QPair< QString, KeyboardGlobal::KeyboardInfo > > m_layouts;
-
-signals:
-    void currentIndexChanged( int index );
-};
-
-class KeyboardModelsModel : public QAbstractListModel
-{
-    Q_OBJECT
-    Q_PROPERTY( int currentIndex WRITE setCurrentIndex READ currentIndex NOTIFY currentIndexChanged )
-
-public:
-    explicit KeyboardModelsModel( QObject* parent = nullptr );
-    int rowCount( const QModelIndex& = QModelIndex() ) const override;
-    QVariant data( const QModelIndex& index, int role ) const override;
-
-    void setCurrentIndex( const int& index );
-    int currentIndex() const;
-    const QMap< QString, QString > item( const int& index ) const;
-
-public slots:
-    void refresh();
-
-protected:
-    QHash< int, QByteArray > roleNames() const override;
-
-private:
-    int m_currentIndex = -1;
-    QVector< QMap< QString, QString > > m_list;
-    void detectModels();
 
 signals:
     void currentIndexChanged( int index );

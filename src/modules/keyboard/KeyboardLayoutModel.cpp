@@ -10,7 +10,95 @@
 
 #include "KeyboardLayoutModel.h"
 
+#include "utils/Logger.h"
+
 #include <algorithm>
+
+KeyboardModelsModel::KeyboardModelsModel( QObject* parent )
+    : QAbstractListModel( parent )
+{
+    // The models map is from human-readable names (!) to xkb identifier
+    const auto models = KeyboardGlobal::getKeyboardModels();
+    for ( const auto& key : models.keys() )
+    {
+        // So here *key* is the key in the map, which is the human-readable thing,
+        //   while the struct fields are xkb-id, and human-readable
+        m_list << ModelInfo { models[ key ], key };
+    }
+
+    cDebug() << "Loaded" << m_list.count() << "keyboard models";
+}
+
+int
+KeyboardModelsModel::rowCount( const QModelIndex& ) const
+{
+    return m_list.count();
+}
+
+QVariant
+KeyboardModelsModel::data( const QModelIndex& index, int role ) const
+{
+    if ( !index.isValid() )
+    {
+        return QVariant();
+    }
+    if ( index.row() < 0 || index.row() >= m_list.count() )
+    {
+        return QVariant();
+    }
+
+    const auto item = m_list.at( index.row() );
+    switch ( role )
+    {
+    case LabelRole:
+        return item.label;
+    case KeyRole:
+        return item.key;
+    default:
+        return QVariant();
+    }
+    __builtin_unreachable();
+}
+
+QString
+KeyboardModelsModel::modelKey( int index ) const
+{
+    if ( index < 0 || index >= m_list.count() )
+    {
+        return QString();
+    }
+    return m_list[ index ].key;
+}
+
+QString
+KeyboardModelsModel::modelLabel( int index ) const
+{
+    if ( index < 0 || index >= m_list.count() )
+    {
+        return QString();
+    }
+    return m_list[ index ].label;
+}
+
+QHash< int, QByteArray >
+KeyboardModelsModel::roleNames() const
+{
+    return { { Qt::DisplayRole, "label" }, { Qt::UserRole, "key" } };
+}
+
+void
+KeyboardModelsModel::setCurrentIndex( int index )
+{
+    if ( index >= m_list.count() || index < 0 )
+    {
+        return;
+    }
+    if ( m_currentIndex != index )
+    {
+        m_currentIndex = index;
+        emit currentIndexChanged( m_currentIndex );
+    }
+}
 
 
 KeyboardLayoutModel::KeyboardLayoutModel( QObject* parent )
@@ -100,77 +188,6 @@ KeyboardLayoutModel::currentIndex() const
     return m_currentIndex;
 }
 
-KeyboardModelsModel::KeyboardModelsModel( QObject* parent )
-    : QAbstractListModel( parent )
-{
-    detectModels();
-}
-
-void
-KeyboardModelsModel::detectModels()
-{
-    beginResetModel();
-    const auto models = KeyboardGlobal::getKeyboardModels();
-    auto index = -1;
-    for ( const auto& key : models.keys() )
-    {
-        index++;
-        m_list << QMap< QString, QString > { { "label", key }, { "key", models[ key ] } };
-        if ( models[ key ] == "pc105" )
-        {
-            this->setCurrentIndex( index );
-        }
-    }
-    endResetModel();
-}
-
-void
-KeyboardModelsModel::refresh()
-{
-    m_list.clear();
-    setCurrentIndex( -1 );
-    detectModels();
-}
-
-QVariant
-KeyboardModelsModel::data( const QModelIndex& index, int role ) const
-{
-    if ( !index.isValid() )
-    {
-        return QVariant();
-    }
-    const auto item = m_list.at( index.row() );
-    return role == Qt::DisplayRole ? item[ "label" ] : item[ "key" ];
-}
-
-int
-KeyboardModelsModel::rowCount( const QModelIndex& ) const
-{
-    return m_list.count();
-}
-
-QHash< int, QByteArray >
-KeyboardModelsModel::roleNames() const
-{
-    return { { Qt::DisplayRole, "label" }, { Qt::UserRole, "key" } };
-}
-
-int
-KeyboardModelsModel::currentIndex() const
-{
-    return m_currentIndex;
-}
-
-const QMap< QString, QString >
-KeyboardModelsModel::item( const int& index ) const
-{
-    if ( index >= m_list.count() || index < 0 )
-    {
-        return QMap< QString, QString >();
-    }
-
-    return m_list.at( index );
-}
 
 const QMap< QString, QString >
 KeyboardVariantsModel::item( const int& index ) const
@@ -181,18 +198,6 @@ KeyboardVariantsModel::item( const int& index ) const
     }
 
     return m_list.at( index );
-}
-
-void
-KeyboardModelsModel::setCurrentIndex( const int& index )
-{
-    if ( index >= m_list.count() || index < 0 )
-    {
-        return;
-    }
-
-    m_currentIndex = index;
-    emit currentIndexChanged( m_currentIndex );
 }
 
 KeyboardVariantsModel::KeyboardVariantsModel( QObject* parent )
@@ -253,4 +258,3 @@ KeyboardVariantsModel::setVariants( QMap< QString, QString > variants )
     }
     endResetModel();
 }
-
