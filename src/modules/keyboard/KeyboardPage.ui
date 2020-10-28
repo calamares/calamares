@@ -113,7 +113,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
       <widget class="QListView" name="layoutSelector"/>
      </item>
      <item>
-      <widget class="QListWidget" name="variantSelector"/>
+      <widget class="QListView" name="variantSelector"/>
      </item>
     </layout>
    </item>

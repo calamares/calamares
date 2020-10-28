@@ -45,105 +45,93 @@ KeyboardPage::KeyboardPage( Config* config, QWidget* parent )
     : QWidget( parent )
     , ui( new Ui::Page_Keyboard )
     , m_keyboardPreview( new KeyBoardPreview( this ) )
+    , m_config( config )
 {
     ui->setupUi( this );
 
     // Keyboard Preview
     ui->KBPreviewLayout->addWidget( m_keyboardPreview );
 
-    ui->physicalModelSelector->setModel( config->keyboardModels() );
-    ui->layoutSelector->setModel( config->keyboardLayouts() );
+    {
+        auto* model = config->keyboardModels();
+        model->setCurrentIndex();  // To default PC105
+        ui->physicalModelSelector->setModel( model );
+        ui->physicalModelSelector->setCurrentIndex( model->currentIndex() );
+    }
+    {
+        auto* model = config->keyboardLayouts();
+        ui->layoutSelector->setModel( model );
+        ui->layoutSelector->setCurrentIndex( model->index( model->currentIndex() ) );
+    }
+    {
+        auto* model = config->keyboardVariants();
+        ui->variantSelector->setModel( model );
+        ui->variantSelector->setCurrentIndex( model->index( model->currentIndex() ) );
+        cDebug() << "Variants now" << model->rowCount() << model->currentIndex();
+    }
 
-    connect( ui->buttonRestore, &QPushButton::clicked, [config=config] {
-        config->keyboardModels()->setCurrentIndex();
-    } );
+    connect(
+        ui->buttonRestore, &QPushButton::clicked, [config = config] { config->keyboardModels()->setCurrentIndex(); } );
+
     connect( ui->physicalModelSelector,
-             QOverload<int>::of( &QComboBox::currentIndexChanged ),
+             QOverload< int >::of( &QComboBox::currentIndexChanged ),
              config->keyboardModels(),
-             QOverload<int>::of( &KeyboardModelsModel::setCurrentIndex ) );
+             QOverload< int >::of( &KeyboardModelsModel::setCurrentIndex ) );
+    connect( config->keyboardModels(),
+             &KeyboardModelsModel::currentIndexChanged,
+             ui->physicalModelSelector,
+             &QComboBox::setCurrentIndex );
+
+    connect( ui->layoutSelector->selectionModel(),
+             &QItemSelectionModel::currentChanged,
+             this,
+             &KeyboardPage::layoutChangedByUser );
+    connect( config->keyboardLayouts(),
+             &KeyboardLayoutModel::currentIndexChanged,
+             this,
+             &KeyboardPage::layoutChangedByConfig );
+
+    connect( ui->variantSelector->selectionModel(),
+             &QItemSelectionModel::currentChanged,
+             this,
+             &KeyboardPage::variantChangedByUser );
+    connect( config->keyboardVariants(),
+             &KeyboardVariantsModel::currentIndexChanged,
+             this,
+             &KeyboardPage::variantChangedByConfig );
 
     CALAMARES_RETRANSLATE( ui->retranslateUi( this ); )
 }
 
+void
+KeyboardPage::layoutChangedByUser( const QModelIndex& current, const QModelIndex& previous )
+{
+    cDebug() << "index ->" << current.row();
+    m_config->keyboardLayouts()->setCurrentIndex( current.row() );
+    cDebug() << Logger::SubEntry << "variants now" << m_config->keyboardVariants()->rowCount();
+}
+
+void
+KeyboardPage::layoutChangedByConfig( int index )
+{
+    cDebug() << "index ->" << index;
+    ui->layoutSelector->setCurrentIndex( m_config->keyboardLayouts()->index( index ) );
+    cDebug() << Logger::SubEntry << "variants now" << m_config->keyboardVariants()->rowCount();
+}
+
+void
+KeyboardPage::variantChangedByUser( const QModelIndex& current, const QModelIndex& previous )
+{
+    cDebug() << "index ->" << current.row();
+}
+
+void
+KeyboardPage::variantChangedByConfig( int index )
+{
+    cDebug() << "index ->" << index;
+}
 
 KeyboardPage::~KeyboardPage()
 {
     delete ui;
-}
-
-void
-KeyboardPage::updateVariants( const QPersistentModelIndex& currentItem, QString currentVariant )
-{
-    // Block signals
-    ui->variantSelector->blockSignals( true );
-
-    QMap< QString, QString > variants
-        = currentItem.data( KeyboardLayoutModel::KeyboardVariantsRole ).value< QMap< QString, QString > >();
-    QMapIterator< QString, QString > li( variants );
-    LayoutItem* defaultItem = nullptr;
-
-    ui->variantSelector->clear();
-
-    while ( li.hasNext() )
-    {
-        li.next();
-
-        LayoutItem* item = new LayoutItem();
-        item->setText( li.key() );
-        item->data = li.value();
-        ui->variantSelector->addItem( item );
-
-        // currentVariant defaults to QString(). It is only non-empty during the
-        // initial setup.
-        if ( li.value() == currentVariant )
-        {
-            defaultItem = item;
-        }
-    }
-
-    // Unblock signals
-    ui->variantSelector->blockSignals( false );
-
-    // Set to default value
-    if ( defaultItem )
-    {
-        ui->variantSelector->setCurrentItem( defaultItem );
-    }
-}
-
-
-void
-KeyboardPage::onListLayoutCurrentItemChanged( const QModelIndex& current, const QModelIndex& previous )
-{
-    Q_UNUSED( previous )
-    if ( !current.isValid() )
-    {
-        return;
-    }
-
-    updateVariants( QPersistentModelIndex( current ) );
-}
-
-void
-KeyboardPage::onListVariantCurrentItemChanged( QListWidgetItem* current, QListWidgetItem* previous )
-{
-    Q_UNUSED( previous )
-
-    cDebug() << "item" << Logger::Pointer( current );
-
-    QPersistentModelIndex layoutIndex = ui->layoutSelector->currentIndex();
-    LayoutItem* variantItem = dynamic_cast< LayoutItem* >( current );
-
-    if ( !layoutIndex.isValid() || !variantItem )
-    {
-        return;
-    }
-
-    QString layout = layoutIndex.data( KeyboardLayoutModel::KeyboardLayoutKeyRole ).toString();
-    QString variant = variantItem->data;
-
-    cDebug() << Logger::SubEntry << layout << variant;
-
-    m_keyboardPreview->setLayout( layout );
-    m_keyboardPreview->setVariant( variant );
 }

@@ -38,14 +38,16 @@ public:
     ~KeyboardPage() override;
 
 protected slots:
-    void onListLayoutCurrentItemChanged( const QModelIndex& current, const QModelIndex& previous );
-    void onListVariantCurrentItemChanged( QListWidgetItem* current, QListWidgetItem* previous );
+    void layoutChangedByUser( const QModelIndex& current, const QModelIndex& previous );
+    void layoutChangedByConfig( int index );
+
+    void variantChangedByUser( const QModelIndex& current, const QModelIndex& previous );
+    void variantChangedByConfig( int index );
 
 private:
-    void updateVariants( const QPersistentModelIndex& currentItem, QString currentVariant = QString() );
-
     Ui::Page_Keyboard* ui;
     KeyBoardPreview* m_keyboardPreview;
+    Config* m_config;
 };
 
 #endif  // KEYBOARDPAGE_H
