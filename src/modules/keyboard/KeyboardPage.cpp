@@ -51,17 +51,17 @@ KeyboardPage::KeyboardPage( Config* config, QWidget* parent )
     // Keyboard Preview
     ui->KBPreviewLayout->addWidget( m_keyboardPreview );
 
-    ui->comboBoxModel->setModel( config->keyboardModels() );
+    ui->physicalModelSelector->setModel( config->keyboardModels() );
     // Connect signals and slots
-    connect( ui->listVariant, &QListWidget::currentItemChanged, this, &KeyboardPage::onListVariantCurrentItemChanged );
+    connect( ui->variantSelector, &QListWidget::currentItemChanged, this, &KeyboardPage::onListVariantCurrentItemChanged );
 
     connect(
         ui->buttonRestore, &QPushButton::clicked, [this] {
             cDebug() << "Restore clicked";
-            // ui->comboBoxModel->setCurrentIndex( m_defaultIndex );
+            // ui->physicalModelSelector->setCurrentIndex( m_defaultIndex );
         } );
 
-    connect( ui->comboBoxModel, &QComboBox::currentTextChanged, [this]( const QString& text ) {
+    connect( ui->physicalModelSelector, &QComboBox::currentTextChanged, [this]( const QString& text ) {
         cDebug() << "ComboBox changed to" << text;
         // QString model = m_models.value( text, "pc105" );
 
@@ -82,14 +82,14 @@ void
 KeyboardPage::updateVariants( const QPersistentModelIndex& currentItem, QString currentVariant )
 {
     // Block signals
-    ui->listVariant->blockSignals( true );
+    ui->variantSelector->blockSignals( true );
 
     QMap< QString, QString > variants
         = currentItem.data( KeyboardLayoutModel::KeyboardVariantsRole ).value< QMap< QString, QString > >();
     QMapIterator< QString, QString > li( variants );
     LayoutItem* defaultItem = nullptr;
 
-    ui->listVariant->clear();
+    ui->variantSelector->clear();
 
     while ( li.hasNext() )
     {
@@ -98,7 +98,7 @@ KeyboardPage::updateVariants( const QPersistentModelIndex& currentItem, QString 
         LayoutItem* item = new LayoutItem();
         item->setText( li.key() );
         item->data = li.value();
-        ui->listVariant->addItem( item );
+        ui->variantSelector->addItem( item );
 
         // currentVariant defaults to QString(). It is only non-empty during the
         // initial setup.
@@ -109,12 +109,12 @@ KeyboardPage::updateVariants( const QPersistentModelIndex& currentItem, QString 
     }
 
     // Unblock signals
-    ui->listVariant->blockSignals( false );
+    ui->variantSelector->blockSignals( false );
 
     // Set to default value
     if ( defaultItem )
     {
-        ui->listVariant->setCurrentItem( defaultItem );
+        ui->variantSelector->setCurrentItem( defaultItem );
     }
 }
 
@@ -138,7 +138,7 @@ KeyboardPage::onListVariantCurrentItemChanged( QListWidgetItem* current, QListWi
 
     cDebug() << "item" << Logger::Pointer( current );
 
-    QPersistentModelIndex layoutIndex = ui->listLayout->currentIndex();
+    QPersistentModelIndex layoutIndex = ui->layoutSelector->currentIndex();
     LayoutItem* variantItem = dynamic_cast< LayoutItem* >( current );
 
     if ( !layoutIndex.isValid() || !variantItem )
