@@ -381,11 +381,11 @@ Config::guessLayout( const QStringList& langParts )
                 for ( int variantnumber = 0; variantnumber < m_keyboardVariantsModel->rowCount(); ++variantnumber )
                 {
                     if ( m_keyboardVariantsModel->item( variantnumber )[ "key" ].compare( *countryPart,
-                                                                                          Qt::CaseInsensitive ) )
+                                                                                          Qt::CaseInsensitive ) == 0 )
                     {
                         m_keyboardVariantsModel->setCurrentIndex( variantnumber );
                         cDebug() << Logger::SubEntry << "matched variant"
-                                 << m_keyboardVariantsModel->item( variantnumber )[ "key" ] << ' '
+                                 << *countryPart << ' '
                                  << m_keyboardVariantsModel->item( variantnumber )[ "key" ];
                     }
                 }
