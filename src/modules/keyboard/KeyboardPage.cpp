@@ -52,22 +52,12 @@ KeyboardPage::KeyboardPage( Config* config, QWidget* parent )
     ui->KBPreviewLayout->addWidget( m_keyboardPreview );
 
     ui->physicalModelSelector->setModel( config->keyboardModels() );
-    // Connect signals and slots
-    connect(
-        ui->variantSelector, &QListWidget::currentItemChanged, this, &KeyboardPage::onListVariantCurrentItemChanged );
+    ui->layoutSelector->setModel( config->keyboardLayouts() );
 
-    connect( ui->buttonRestore, &QPushButton::clicked, [this] {
-        cDebug() << "Restore clicked";
-        // ui->physicalModelSelector->setCurrentIndex( m_defaultIndex );
+    connect( ui->buttonRestore, &QPushButton::clicked, [config=config] {
+        config->keyboardModels()->setCurrentIndex();
     } );
 
-    connect( ui->physicalModelSelector, &QComboBox::currentTextChanged, [this]( const QString& text ) {
-        cDebug() << "ComboBox changed to" << text;
-        // QString model = m_models.value( text, "pc105" );
-
-        // Set Xorg keyboard model
-        // QProcess::execute( "setxkbmap", QStringList { "-model", model } );
-    } );
 
     CALAMARES_RETRANSLATE( ui->retranslateUi( this ); )
 }
