@@ -57,7 +57,10 @@ KeyboardPage::KeyboardPage( Config* config, QWidget* parent )
     connect( ui->buttonRestore, &QPushButton::clicked, [config=config] {
         config->keyboardModels()->setCurrentIndex();
     } );
-
+    connect( ui->physicalModelSelector,
+             QOverload<int>::of( &QComboBox::currentIndexChanged ),
+             config->keyboardModels(),
+             QOverload<int>::of( &KeyboardModelsModel::setCurrentIndex ) );
 
     CALAMARES_RETRANSLATE( ui->retranslateUi( this ); )
 }
