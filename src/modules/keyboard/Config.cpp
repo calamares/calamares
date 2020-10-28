@@ -158,14 +158,12 @@ Config::Config( QObject* parent )
     connect( m_keyboardModelsModel, &KeyboardModelsModel::currentIndexChanged, [&]( int index ) {
         // Set Xorg keyboard model
         m_selectedModel = m_keyboardModelsModel->key( index );
-        cDebug() << "Setting model" << index << m_selectedModel;
         QProcess::execute( "setxkbmap", xkbmap_model_args( m_selectedModel ) );
         emit prettyStatusChanged();
     } );
 
     connect( m_keyboardLayoutsModel, &KeyboardLayoutModel::currentIndexChanged, [&]( int index ) {
         m_selectedLayout = m_keyboardLayoutsModel->item( index ).first;
-        cDebug() << "Setting layout" << index << m_selectedLayout;
         updateVariants( QPersistentModelIndex( m_keyboardLayoutsModel->index( index ) ) );
         emit prettyStatusChanged();
     } );
@@ -173,7 +171,6 @@ Config::Config( QObject* parent )
     connect( m_keyboardVariantsModel, &KeyboardVariantsModel::currentIndexChanged, [&]( int index ) {
         // Set Xorg keyboard layout + variant
         m_selectedVariant = m_keyboardVariantsModel->key( index );
-        cDebug() << "Setting variant" << index << m_selectedVariant;
 
         if ( m_setxkbmapTimer.isActive() )
         {
