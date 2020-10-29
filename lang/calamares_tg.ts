@@ -620,17 +620,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1448"/>
       <source>This storage device already has an operating system on it, but the partition table &lt;strong&gt;%1&lt;/strong&gt; is different from the needed &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</source>
-      <translation type="unfinished"/>
+      <translation>Ин дастгоҳи захирагоҳ аллакай дорои низоми амалкунанда мебошад, аммо ҷадвали қисми диски &lt;strong&gt;%1&lt;/strong&gt; аз диски лозимии &lt;strong&gt;%2&lt;/strong&gt; фарқ мекунад.&lt;br/&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1471"/>
       <source>This storage device has one of its partitions &lt;strong&gt;mounted&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Яке аз қисмҳои диски ин дастгоҳи захирагоҳ &lt;strong&gt;васлшуда&lt;/strong&gt; мебошад.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1476"/>
       <source>This storage device is a part of an &lt;strong&gt;inactive RAID&lt;/strong&gt; device.</source>
-      <translation type="unfinished"/>
+      <translation>Ин дастгоҳи захирагоҳ қисми дасгоҳи &lt;strong&gt;RAID-и ғайрифаъол&lt;/strong&gt; мебошад.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1603"/>

@@ -153,7 +153,7 @@
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="17"/>
       <source>Example job (%1)</source>
-      <translation>Operazion di esempli (%1)</translation>
+      <translation>Lavôr di esempli (%1)</translation>
     </message>
   </context>
   <context>
@@ -189,7 +189,7 @@
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="222"/>
       <source>Working directory %1 for python job %2 is not readable.</source>
-      <translation>No si rive a lei la cartele di lavôr %1 pe ativitât di python %2.</translation>
+      <translation>No si rive a lei la cartele di lavôr %1 pe operazion di python %2.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="228"/>
@@ -199,7 +199,7 @@
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="229"/>
       <source>Main script file %1 for python job %2 is not readable.</source>
-      <translation>No si rive a lei il file di script principâl %1 pe ativitât di python %2.</translation>
+      <translation>No si rive a lei il file di script principâl %1 pe operazion di python %2.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="297"/>
@@ -2258,7 +2258,7 @@ Il program di instalazion al jessarà e dutis lis modifichis a laran pierdudis.<
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="57"/>
       <source>TextLabel</source>
-      <translation type="unfinished"/>
+      <translation>EticheteTest</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="73"/>
@@ -2366,7 +2366,7 @@ Il program di instalazion al jessarà e dutis lis modifichis a laran pierdudis.<
       <location filename="../src/modules/users/page_usersetup.ui" line="349"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="374"/>
       <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</source>
-      <translation>&lt;small&gt;Inserìs la stesse password dôs voltis, in mût di evitâ erôrs di scriture. Une buine password e contignarà un miscliç di letaris, numars e puntuazions, e sarà lungje almancul vot caratars, e si scugnarà cambiâle a intervai regolârs.&lt;/small&gt;</translation>
+      <translation>&lt;small&gt;Inserìs la stesse password dôs voltis, in mût di evitâ erôrs di batidure. Une buine password e contignarà un miscliç di letaris, numars e puntuazions, e sarà lungje almancul vot caratars, e si scugnarà cambiâle a intervai regolârs.&lt;/small&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="355"/>
@@ -2791,7 +2791,7 @@ Output:
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="429"/>
       <source>Bad parameters for process job call.</source>
-      <translation>Parametris sbaliâts par processâ la clamade dal lavôr.</translation>
+      <translation>Parametris sbaliâts par processâ la clamade de operazion.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="433"/>
@@ -2979,24 +2979,24 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="207"/>
       <source>%1 system partition (%2)</source>
-      <translation type="unfinished"/>
+      <translation>%1 partizion di sisteme (%2)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="218"/>
       <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;La partizion %1 e je masse piçule par %2. Selezione une partizion cun almancul %3 GiB di capacitât.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="240"/>
       <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;No si rive a cjatâ di nissune bande su cheste machine une partizion di sisteme EFI. Par plasê torne indaûr e dopre il partizionament manuâl par configurâ %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="251"/>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="267"/>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="292"/>
       <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;all data on partition %2 will be lost.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Si instalarà %1 su %2.&lt;br/&gt;&lt;font color="red"&gt;Atenzion: &lt;/font&gt;ducj i dâts de partizion %2 a laran pierdûts.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="259"/>
@@ -3015,7 +3015,8 @@ Output:
       <location filename="../src/modules/welcomeq/Requirements.qml" line="38"/>
       <source>&lt;p&gt;This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;
         Installation cannot continue.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;Chest computer nol sodisfe i recuisîts minims pe instalazion di %1.&lt;br/&gt;
+        La instalazion no pues continuâ.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/Requirements.qml" line="40"/>
@@ -3030,27 +3031,27 @@ Output:
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="46"/>
       <source>Resize Filesystem Job</source>
-      <translation type="unfinished"/>
+      <translation>Operazion di ridimensionament dal filesystem</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="169"/>
       <source>Invalid configuration</source>
-      <translation type="unfinished"/>
+      <translation>Configurazion no valide</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="170"/>
       <source>The file-system resize job has an invalid configuration and will not run.</source>
-      <translation type="unfinished"/>
+      <translation>La operazion di ridimensionament dal filesystem e à une configurazion no valide e no vignarà eseguide.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="175"/>
       <source>KPMCore not Available</source>
-      <translation type="unfinished"/>
+      <translation>KPMCore no disponibil</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="176"/>
       <source>Calamares cannot start KPMCore for the file-system resize job.</source>
-      <translation type="unfinished"/>
+      <translation>Calamares nol rive a inviâ KPMCore pe operazion di ridimensionament dal filesystem.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="184"/>
@@ -3059,39 +3060,39 @@ Output:
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="213"/>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="231"/>
       <source>Resize Failed</source>
-      <translation type="unfinished"/>
+      <translation>Ridimensionament falît</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="186"/>
       <source>The filesystem %1 could not be found in this system, and cannot be resized.</source>
-      <translation type="unfinished"/>
+      <translation>Nol è stât pussibil cjatâ in chest sisteme il filesystem %1 e duncje nol pues jessi ridimensionât.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="187"/>
       <source>The device %1 could not be found in this system, and cannot be resized.</source>
-      <translation type="unfinished"/>
+      <translation>Nol è stât pussibil cjatâ in chest sisteme il dispositîf %1 e duncje nol pues jessi ridimensionât.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="195"/>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="206"/>
       <source>The filesystem %1 cannot be resized.</source>
-      <translation type="unfinished"/>
+      <translation>Impussibil ridimensionâ il filesystem %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="196"/>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="207"/>
       <source>The device %1 cannot be resized.</source>
-      <translation type="unfinished"/>
+      <translation>Impussibil ridimensionâ il dispositîf %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="214"/>
       <source>The filesystem %1 must be resized, but cannot.</source>
-      <translation type="unfinished"/>
+      <translation>Si scugne ridimensionâ il filesystem %1, ma no si rive.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="215"/>
       <source>The device %1 must be resized, but cannot</source>
-      <translation type="unfinished"/>
+      <translation>Si scugne ridimensionâ il filesystem %1, ma no si rive.</translation>
     </message>
   </context>
   <context>
@@ -3099,22 +3100,22 @@ Output:
     <message>
       <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="40"/>
       <source>Resize partition %1.</source>
-      <translation type="unfinished"/>
+      <translation>Ridimensionâ partizion %1</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="47"/>
       <source>Resize &lt;strong&gt;%2MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%3MiB&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Ridimensionâ la partizion &lt;strong&gt;%1&lt;/strong&gt; di &lt;strong&gt;%2MiB&lt;/strong&gt; a &lt;strong&gt;%3MiB&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="58"/>
       <source>Resizing %2MiB partition %1 to %3MiB.</source>
-      <translation type="unfinished"/>
+      <translation>Ridimensionâ la partizion %1 di %2MiB a %3MiB.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="77"/>
       <source>The installer failed to resize partition %1 on disk '%2'.</source>
-      <translation type="unfinished"/>
+      <translation>Il program di instalazion nol è rivât a ridimensionâ la partizion %1 sul disc '%2'.</translation>
     </message>
   </context>
   <context>
@@ -3131,17 +3132,17 @@ Output:
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="27"/>
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="45"/>
       <source>Resize volume group named %1 from %2 to %3.</source>
-      <translation type="unfinished"/>
+      <translation>Ridimensionâ il grup di volums clamât %1 di %2 a %3.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="36"/>
       <source>Resize volume group named &lt;strong&gt;%1&lt;/strong&gt; from &lt;strong&gt;%2&lt;/strong&gt; to &lt;strong&gt;%3&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Ridimensionâ il grup di volums clamât &lt;strong&gt;%1&lt;/strong&gt; di &lt;strong&gt;%2&lt;/strong&gt; a &lt;strong&gt;%3&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="60"/>
       <source>The installer failed to resize a volume group named '%1'.</source>
-      <translation type="unfinished"/>
+      <translation>Il program di instalazion nol è rivât a ridimensionâ un grup di volums clamât '%1'.</translation>
     </message>
   </context>
   <context>
@@ -3149,12 +3150,12 @@ Output:
     <message>
       <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="133"/>
       <source>For best results, please ensure that this computer:</source>
-      <translation type="unfinished"/>
+      <translation>Par otignî i miôrs risultâts, siguriti che chest computer:</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="134"/>
       <source>System requirements</source>
-      <translation type="unfinished"/>
+      <translation>Recuisîts di sisteme</translation>
     </message>
   </context>
   <context>
@@ -3190,12 +3191,12 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="64"/>
       <source>Scanning storage devices...</source>
-      <translation type="unfinished"/>
+      <translation>Scandai dai dispositîfs di memorie...</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="64"/>
       <source>Partitioning</source>
-      <translation type="unfinished"/>
+      <translation>Partizionament</translation>
     </message>
   </context>
   <context>
@@ -3203,29 +3204,29 @@ Output:
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="37"/>
       <source>Set hostname %1</source>
-      <translation type="unfinished"/>
+      <translation>Stabilî il non-host a %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="44"/>
       <source>Set hostname &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Stabilî il non-host a &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="51"/>
       <source>Setting hostname %1.</source>
-      <translation type="unfinished"/>
+      <translation>Daûr a stabilî il non-host a %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="122"/>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="129"/>
       <source>Internal Error</source>
-      <translation type="unfinished"/>
+      <translation>Erôr interni</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="137"/>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="146"/>
       <source>Cannot write hostname to target system</source>
-      <translation type="unfinished"/>
+      <translation>Impussibil scrivi il non-host sul sisteme di destinazion</translation>
     </message>
   </context>
   <context>
@@ -3233,29 +3234,29 @@ Output:
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="53"/>
       <source>Set keyboard model to %1, layout to %2-%3</source>
-      <translation type="unfinished"/>
+      <translation>Stabilî il model di tastiere a %1, disposizion a %2-%3</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="356"/>
       <source>Failed to write keyboard configuration for the virtual console.</source>
-      <translation type="unfinished"/>
+      <translation>No si è rivâts a scrivi la configurazion de tastiere pe console virtuâl.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="357"/>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="361"/>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="368"/>
       <source>Failed to write to %1</source>
-      <translation type="unfinished"/>
+      <translation>No si è rivâts a scrivi su %1</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="360"/>
       <source>Failed to write keyboard configuration for X11.</source>
-      <translation type="unfinished"/>
+      <translation>No si è rivâts a scrivi la configurazion de tastiere par X11.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="367"/>
       <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
-      <translation type="unfinished"/>
+      <translation>No si è rivâts a scrivi la configurazion de tastiere te cartele esistente /etc/default .</translation>
     </message>
   </context>
   <context>
@@ -3346,42 +3347,42 @@ Output:
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="40"/>
       <source>Set password for user %1</source>
-      <translation type="unfinished"/>
+      <translation>Stabilî la password pal utent %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="47"/>
       <source>Setting password for user %1.</source>
-      <translation type="unfinished"/>
+      <translation>Daûr a stabilî la password pal utent %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="81"/>
       <source>Bad destination system path.</source>
-      <translation type="unfinished"/>
+      <translation>Percors di sisteme de destinazion sbaliât.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="82"/>
       <source>rootMountPoint is %1</source>
-      <translation type="unfinished"/>
+      <translation>Il rootMountPoint (pont di montaç de lidrîs) al è %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="88"/>
       <source>Cannot disable root account.</source>
-      <translation type="unfinished"/>
+      <translation>Impussibil disabilitâ l'account di root.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="89"/>
       <source>passwd terminated with error code %1.</source>
-      <translation type="unfinished"/>
+      <translation>passwd terminât cun codiç di erôr %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="97"/>
       <source>Cannot set password for user %1.</source>
-      <translation type="unfinished"/>
+      <translation>Impussibil stabilî la password pal utent %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="98"/>
       <source>usermod terminated with error code %1.</source>
-      <translation type="unfinished"/>
+      <translation>usermod terminât cun codiç di erôr %1.</translation>
     </message>
   </context>
   <context>
@@ -3389,37 +3390,37 @@ Output:
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="34"/>
       <source>Set timezone to %1/%2</source>
-      <translation type="unfinished"/>
+      <translation>Meti il fûs orari su %1/%2</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="62"/>
       <source>Cannot access selected timezone path.</source>
-      <translation type="unfinished"/>
+      <translation>Impussibil acedi al percors dal fûs orari selezionât.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="63"/>
       <source>Bad path: %1</source>
-      <translation type="unfinished"/>
+      <translation>Percors no valit: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="71"/>
       <source>Cannot set timezone.</source>
-      <translation type="unfinished"/>
+      <translation>Impussibil stabilî il fûs orari.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="72"/>
       <source>Link creation failed, target: %1; link name: %2</source>
-      <translation type="unfinished"/>
+      <translation>Creazion dal colegament falide, destinazion: %1; non colegament: %2</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="77"/>
       <source>Cannot set timezone,</source>
-      <translation type="unfinished"/>
+      <translation>Impussibil stabilî il fûs orari,</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="78"/>
       <source>Cannot open /etc/timezone for writing</source>
-      <translation type="unfinished"/>
+      <translation>Impussibil vierzi /etc/timezone pe scriture</translation>
     </message>
   </context>
   <context>
@@ -3427,7 +3428,7 @@ Output:
     <message>
       <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="41"/>
       <source>Shell Processes Job</source>
-      <translation type="unfinished"/>
+      <translation>Operazion dai procès de shell</translation>
     </message>
   </context>
   <context>
@@ -3436,7 +3437,7 @@ Output:
       <location filename="../src/qml/calamares/slideshow/SlideCounter.qml" line="27"/>
       <source>%L1 / %L2</source>
       <extracomment>slide counter, %1 of %2 (numeric)</extracomment>
-      <translation type="unfinished"/>
+      <translation>%L1 / %L2</translation>
     </message>
   </context>
   <context>
@@ -3444,12 +3445,12 @@ Output:
     <message>
       <location filename="../src/modules/summary/SummaryPage.cpp" line="47"/>
       <source>This is an overview of what will happen once you start the setup procedure.</source>
-      <translation type="unfinished"/>
+      <translation>Cheste e je une panoramiche di ce che al sucedarà une volte inviade la procedure di configurazion.</translation>
     </message>
     <message>
       <location filename="../src/modules/summary/SummaryPage.cpp" line="49"/>
       <source>This is an overview of what will happen once you start the install procedure.</source>
-      <translation type="unfinished"/>
+      <translation>Cheste e je une panoramiche di ce che al sucedarà une volte inviade la procedure di instalazion.</translation>
     </message>
   </context>
   <context>
@@ -3457,7 +3458,7 @@ Output:
     <message>
       <location filename="../src/modules/summary/SummaryViewStep.cpp" line="36"/>
       <source>Summary</source>
-      <translation type="unfinished"/>
+      <translation>Sintesi</translation>
     </message>
   </context>
   <context>
@@ -3465,22 +3466,22 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="37"/>
       <source>Installation feedback</source>
-      <translation type="unfinished"/>
+      <translation>Opinion su la instalazion</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="43"/>
       <source>Sending installation feedback.</source>
-      <translation type="unfinished"/>
+      <translation>Daûr a inviâ la opinion su la instalazion.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="60"/>
       <source>Internal error in install-tracking.</source>
-      <translation type="unfinished"/>
+      <translation>Erôr interni in install-tracking.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="61"/>
       <source>HTTP request timed out.</source>
-      <translation type="unfinished"/>
+      <translation>Richieste HTTP scjadude.</translation>
     </message>
   </context>
   <context>
@@ -3488,28 +3489,28 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="122"/>
       <source>KDE user feedback</source>
-      <translation type="unfinished"/>
+      <translation>Opinion dal utent di KDE</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="128"/>
       <source>Configuring KDE user feedback.</source>
-      <translation type="unfinished"/>
+      <translation>Daûr a configurâ la opinione dal utent di KDE.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="150"/>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="156"/>
       <source>Error in KDE user feedback configuration.</source>
-      <translation type="unfinished"/>
+      <translation>Erôr te configurazion de opinion dal utent di KDE.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="151"/>
       <source>Could not configure KDE user feedback correctly, script error %1.</source>
-      <translation type="unfinished"/>
+      <translation>Nol è stât pussibil configurâ in maniere juste la opinion dal utent di KDE, erôr di script %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="157"/>
       <source>Could not configure KDE user feedback correctly, Calamares error %1.</source>
-      <translation type="unfinished"/>
+      <translation>Nol è stât pussibil configurâ in maniere juste la opinion dal utent di KDE, erôr di Calamares %1.</translation>
     </message>
   </context>
   <context>
@@ -3517,28 +3518,28 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="71"/>
       <source>Machine feedback</source>
-      <translation type="unfinished"/>
+      <translation>Opinion su la machine</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="77"/>
       <source>Configuring machine feedback.</source>
-      <translation type="unfinished"/>
+      <translation>Daûr a configurâ la opinion su la machine.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="100"/>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="106"/>
       <source>Error in machine feedback configuration.</source>
-      <translation type="unfinished"/>
+      <translation>Erôr inte configurazion de opinion su la machine.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="101"/>
       <source>Could not configure machine feedback correctly, script error %1.</source>
-      <translation type="unfinished"/>
+      <translation>Nol è stât pussibil configurâ in maniere juste la opinion su la machine, erôr di script %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="107"/>
       <source>Could not configure machine feedback correctly, Calamares error %1.</source>
-      <translation type="unfinished"/>
+      <translation>Nol è stât pussibil configurâ in maniere juste la opinion su la machine, erôr di Calamares %1.</translation>
     </message>
   </context>
   <context>
@@ -3551,37 +3552,37 @@ Output:
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="28"/>
       <source>Placeholder</source>
-      <translation type="unfinished"/>
+      <translation>Segnepuest</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="76"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click here to send &lt;span style=" font-weight:600;"&gt;no information at all&lt;/span&gt; about your installation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Fâs clic achì par &lt;span style=" font-weight:600;"&gt;no inviâ nissune informazion&lt;/span&gt; su la tô instalazion.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="275"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href="placeholder"&gt;&lt;span style=" text-decoration: underline; color:#2980b9;"&gt;Click here for more information about user feedback&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href="placeholder"&gt;&lt;span style=" text-decoration: underline; color:#2980b9;"&gt;Fâs clic achì par vê plui informazions su lis opinions dai utents&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="86"/>
       <source>Tracking helps %1 to see how often it is installed, what hardware it is installed on and which applications are used. To see what will be sent, please click the help icon next to each area.</source>
-      <translation type="unfinished"/>
+      <translation>Tignî i indizis al jude %1 a viodi trop dispès che al ven instalât, in cuâl hardware e ce aplicazions che a vegnin dopradis. Par viodi ce che al ven inviât, fâs clic su pe icone di jutori dongje a ogni aree.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="91"/>
       <source>By selecting this you will send information about your installation and hardware. This information will only be sent &lt;b&gt;once&lt;/b&gt; after the installation finishes.</source>
-      <translation type="unfinished"/>
+      <translation>Selezionant chest tu inviarâs informazions sul to hardware e su la tô instalazion. Cheste informazion e vignarà mandade dome &lt;b&gt;une volte&lt;/b&gt;, dopo finide la instalazion.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="94"/>
       <source>By selecting this you will periodically send information about your &lt;b&gt;machine&lt;/b&gt; installation, hardware and applications, to %1.</source>
-      <translation type="unfinished"/>
+      <translation>Selezionant chest tu mandarâs informazions in mût periodic a %1 su la instalazion, l'hardware e lis aplicazions de tô &lt;b&gt;machine&lt;/b&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="98"/>
       <source>By selecting this you will regularly send information about your &lt;b&gt;user&lt;/b&gt; installation, hardware, applications and application usage patterns, to %1.</source>
-      <translation type="unfinished"/>
+      <translation>Selezionant chest tu mandarâs cun regolaritât informazions a %1 su la instalazion, l'hardware, lis aplicazions e modei di ûs de aplicazion dal tô &lt;b&gt;utent&lt;/b&gt;.</translation>
     </message>
   </context>
   <context>
@@ -3589,7 +3590,7 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingViewStep.cpp" line="49"/>
       <source>Feedback</source>
-      <translation type="unfinished"/>
+      <translation>Opinion</translation>
     </message>
   </context>
   <context>
@@ -3597,12 +3598,12 @@ Output:
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="156"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;small&gt;Se chest computer al vignarà doprât di plui di une persone, si pues creâ plui accounts dopo vê completade la configurazion.&lt;/small&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="162"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;small&gt;Se chest computer al vignarà doprât di plui di une persone, si pues creâ plui accounts dopo vê completade la instalazion.&lt;/small&gt;</translation>
     </message>
   </context>
   <context>
@@ -3610,7 +3611,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/UsersQmlViewStep.cpp" line="39"/>
       <source>Users</source>
-      <translation type="unfinished"/>
+      <translation>Utents</translation>
     </message>
   </context>
   <context>
@@ -3618,7 +3619,7 @@ Output:
     <message>
       <location filename="../src/modules/users/UsersViewStep.cpp" line="48"/>
       <source>Users</source>
-      <translation type="unfinished"/>
+      <translation>Utents</translation>
     </message>
   </context>
   <context>
@@ -3627,13 +3628,13 @@ Output:
       <location filename="../src/calamares/VariantModel.cpp" line="232"/>
       <source>Key</source>
       <comment>Column header for key/value</comment>
-      <translation type="unfinished"/>
+      <translation>Clâf</translation>
     </message>
     <message>
       <location filename="../src/calamares/VariantModel.cpp" line="236"/>
       <source>Value</source>
       <comment>Column header for key/value</comment>
-      <translation type="unfinished"/>
+      <translation>Valôr</translation>
     </message>
   </context>
   <context>
@@ -3646,22 +3647,22 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="24"/>
       <source>List of Physical Volumes</source>
-      <translation type="unfinished"/>
+      <translation>Liste di volums fisics</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="34"/>
       <source>Volume Group Name:</source>
-      <translation type="unfinished"/>
+      <translation>Non dal grup di volums:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="47"/>
       <source>Volume Group Type:</source>
-      <translation type="unfinished"/>
+      <translation>Gjenar dal grup di volums:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="60"/>
       <source>Physical Extent Size:</source>
-      <translation type="unfinished"/>
+      <translation>Dimension de estension fisiche:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="70"/>
@@ -3671,22 +3672,22 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="86"/>
       <source>Total Size:</source>
-      <translation type="unfinished"/>
+      <translation>Dimension totâl:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="106"/>
       <source>Used Size:</source>
-      <translation type="unfinished"/>
+      <translation>Dimension doprade:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="126"/>
       <source>Total Sectors:</source>
-      <translation type="unfinished"/>
+      <translation>Setôrs totâi:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="146"/>
       <source>Quantity of LVs:</source>
-      <translation type="unfinished"/>
+      <translation>Cuantitât di VLs:</translation>
     </message>
   </context>
   <context>
@@ -3700,92 +3701,92 @@ Output:
       <location filename="../src/modules/welcome/WelcomePage.ui" line="79"/>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="98"/>
       <source>Select application and system language</source>
-      <translation type="unfinished"/>
+      <translation>Selezionâ lenghe di sisteme e di aplicazions</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="140"/>
       <source>&amp;About</source>
-      <translation type="unfinished"/>
+      <translation>&amp;Informazions</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="150"/>
       <source>Open donations website</source>
-      <translation type="unfinished"/>
+      <translation>Vierç il sît web pes donazions</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="153"/>
       <source>&amp;Donate</source>
-      <translation type="unfinished"/>
+      <translation>&amp;Done</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="163"/>
       <source>Open help and support website</source>
-      <translation type="unfinished"/>
+      <translation>Vierç il sît web pal jutori e pal supuart</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="166"/>
       <source>&amp;Support</source>
-      <translation type="unfinished"/>
+      <translation>&amp;Supuart</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="176"/>
       <source>Open issues and bug-tracking website</source>
-      <translation type="unfinished"/>
+      <translation>Vierç il sît web sui problemis e lis segnalazions/indizis sui erôrs</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
       <source>&amp;Known issues</source>
-      <translation type="unfinished"/>
+      <translation>&amp;Problemis cognossûts</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="189"/>
       <source>Open release notes website</source>
-      <translation type="unfinished"/>
+      <translation>Vierç il sît web des notis di publicazion</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="192"/>
       <source>&amp;Release notes</source>
-      <translation type="unfinished"/>
+      <translation>&amp;Notis di publicazion</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="216"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Benvignûts sul program di configurazion Calamares par %1.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="217"/>
       <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Benvignûts te configurazion di %1.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="222"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Benvignûts sul program di instalazion Calamares par %1.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="223"/>
       <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Benvignûts sul program di instalazion di %1.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="228"/>
       <source>%1 support</source>
-      <translation type="unfinished"/>
+      <translation>Supuart di %1</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="235"/>
       <source>About %1 setup</source>
-      <translation type="unfinished"/>
+      <translation>Informazions su la configurazion di %1</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="235"/>
       <source>About %1 installer</source>
-      <translation type="unfinished"/>
+      <translation>Informazion su la instalazion di %1</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="238"/>
       <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;par %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Gracie a &lt;a href="https://calamares.io/team/"&gt;il grup di Calamares&lt;/a&gt; e al &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;grup di tradutôrs di Calamares&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;Il disvilup di &lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; al è patrocinât di &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</translation>
     </message>
   </context>
   <context>
@@ -3793,7 +3794,7 @@ Output:
     <message>
       <location filename="../src/modules/welcomeq/WelcomeQmlViewStep.cpp" line="41"/>
       <source>Welcome</source>
-      <translation type="unfinished"/>
+      <translation>Benvignûts</translation>
     </message>
   </context>
   <context>
@@ -3801,7 +3802,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="48"/>
       <source>Welcome</source>
-      <translation type="unfinished"/>
+      <translation>Benvignûts</translation>
     </message>
   </context>
   <context>
@@ -3820,12 +3821,23 @@ Output:
                         development is sponsored by &lt;br/&gt;
                         &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; -
                         Liberating Software.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;
+                        &lt;strong&gt;%2&lt;br/&gt;
+                        par %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;
+                        Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;
+                        Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;
+                        Gracie a &lt;a href='https://calamares.io/team/'&gt;il grup di Calamares&lt;/a&gt;
+                        e al &lt;a href='https://www.transifex.com/calamares/calamares/'&gt;grup di tradutôrs
+                        di Calamares&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;
+                        Il disvilup di
+                        &lt;a href='https://calamares.io/'&gt;Calamares&lt;/a&gt; al è patrocinât di &lt;br/&gt;
+                        &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; -
+                        Liberating Software.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/about.qml" line="96"/>
       <source>Back</source>
-      <translation type="unfinished"/>
+      <translation>Indaûr</translation>
     </message>
   </context>
   <context>
@@ -3834,18 +3846,20 @@ Output:
       <location filename="../src/modules/localeq/i18n.qml" line="46"/>
       <source>&lt;h1&gt;Languages&lt;/h1&gt; &lt;/br&gt;
                     The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Lenghis&lt;/h1&gt; &lt;/br&gt;
+                    La impostazion di localizazion dal sisteme e influence la lenghe e la cumbinazion di caratars par cualchi element de interface utent a rie di comant. La impostazion atuâl e je &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/i18n.qml" line="106"/>
       <source>&lt;h1&gt;Locales&lt;/h1&gt; &lt;/br&gt;
                     The system locale setting affects the numbers and dates format. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Localitâts&lt;/h1&gt; &lt;/br&gt;
+                    La impostazions di localizazion dal sisteme e influence il formât des datis e dai numars. La impostazion atuâl e je &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/i18n.qml" line="158"/>
       <source>Back</source>
-      <translation type="unfinished"/>
+      <translation>Indaûr</translation>
     </message>
   </context>
   <context>
@@ -3853,42 +3867,42 @@ Output:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="45"/>
       <source>Keyboard Model</source>
-      <translation type="unfinished"/>
+      <translation>Model di tastiere</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="377"/>
       <source>Layouts</source>
-      <translation type="unfinished"/>
+      <translation>Disposizions</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="148"/>
       <source>Keyboard Layout</source>
-      <translation type="unfinished"/>
+      <translation>Disposizion di tastiere</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="60"/>
       <source>Click your preferred keyboard model to select layout and variant, or use the default one based on the detected hardware.</source>
-      <translation type="unfinished"/>
+      <translation>Fâs clic sul model di tastiere preferît par selezionâ la disposizion e la variante, o dopre chel predefinît basât sul hardware rilevât.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="253"/>
       <source>Models</source>
-      <translation type="unfinished"/>
+      <translation>Modei</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="260"/>
       <source>Variants</source>
-      <translation type="unfinished"/>
+      <translation>Variantis</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="276"/>
       <source>Keyboard Variant</source>
-      <translation type="unfinished"/>
+      <translation>Variante di tastiere</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="386"/>
       <source>Test your keyboard</source>
-      <translation type="unfinished"/>
+      <translation>Prove la tastiere</translation>
     </message>
   </context>
   <context>
@@ -3896,7 +3910,7 @@ Output:
     <message>
       <location filename="../src/modules/localeq/localeq.qml" line="81"/>
       <source>Change</source>
-      <translation type="unfinished"/>
+      <translation>Cambie</translation>
     </message>
   </context>
   <context>
@@ -3905,7 +3919,8 @@ Output:
       <location filename="../src/modules/notesqml/notesqml.qml" line="50"/>
       <source>&lt;h3&gt;%1&lt;/h3&gt;
             &lt;p&gt;These are example release notes.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;%1&lt;/h3&gt;
+            &lt;p&gt;Chescj a son esemplis di notis di publicazion.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -3933,12 +3948,32 @@ Output:
             &lt;/ul&gt;
 
             &lt;p&gt;The vertical scrollbar is adjustable, current width set to 10.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;%1&lt;/h3&gt;
+            &lt;p&gt;Chest esempli di file QML, al mostre lis opzions in test formatât cun contignût che si pues dai une passade.&lt;/p&gt;
+
+            &lt;p&gt;Il QML cun test formatât al pues doprâ etichetis HTML, il contignût che si pues scori al è util pai touchscreens.&lt;/p&gt;
+
+            &lt;p&gt;&lt;b&gt;Chest al è test in neret&lt;/b&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;i&gt;Chest al è test corsîf&lt;/i&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;u&gt;Chest al è test sotlineât&lt;/u&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;center&gt;Chest test al vignarà centrât.&lt;/center&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;s&gt;Chest al è stricât&lt;/s&gt;&lt;/p&gt;
+
+            &lt;p&gt;Esempli di codiç:
+            &lt;code&gt;ls -l /home&lt;/code&gt;&lt;/p&gt;
+
+            &lt;p&gt;&lt;b&gt;Listis:&lt;/b&gt;&lt;/p&gt;
+            &lt;ul&gt;
+                &lt;li&gt;Sistemis a CPU Intel&lt;/li&gt;
+                &lt;li&gt;Sistemis a CPU AMD&lt;/li&gt;
+            &lt;/ul&gt;
+
+            &lt;p&gt;La sbare di scoriment verticâl si pues justâ, cumò la largjece e je metude a 10.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/release_notes.qml" line="76"/>
       <source>Back</source>
-      <translation type="unfinished"/>
+      <translation>Indaûr</translation>
     </message>
   </context>
   <context>
@@ -3946,7 +3981,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="36"/>
       <source>Pick your user name and credentials to login and perform admin tasks</source>
-      <translation type="unfinished"/>
+      <translation>Sielç e dopre il to non utent e lis credenziâls par jentrâ e eseguî ativitâts di aministradôr</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="52"/>
@@ -3966,12 +4001,12 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="87"/>
       <source>Login Name</source>
-      <translation type="unfinished"/>
+      <translation>Non di acès</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="103"/>
       <source>If more than one person will use this computer, you can create multiple accounts after installation.</source>
-      <translation type="unfinished"/>
+      <translation>Se chest computer al vignarà doprât di plui personis, tu puedis creâ plui account dopo vê completade la instalazion.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="118"/>
@@ -3986,7 +4021,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="140"/>
       <source>This name will be used if you make the computer visible to others on a network.</source>
-      <translation type="unfinished"/>
+      <translation>Si doprarà chest non se tu rindis visibil a altris chest computer suntune rêt.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="155"/>
@@ -4006,12 +4041,12 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="204"/>
       <source>Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.</source>
-      <translation type="unfinished"/>
+      <translation>Inserìs la stesse password dôs voltis, in mût di evitâ erôrs di batidure. Une buine password e contignarà un miscliç di letaris, numars e puntuazions, e sarà lungje almancul vot caratars e si scugnarà cambiâle a intervai regolârs.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="216"/>
       <source>Validate passwords quality</source>
-      <translation type="unfinished"/>
+      <translation>Convalidâ la cualitât des passwords</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="226"/>
@@ -4021,12 +4056,12 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="234"/>
       <source>Log in automatically without asking for the password</source>
-      <translation type="unfinished"/>
+      <translation>Jentre in automatic cence domandâ la password</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="243"/>
       <source>Reuse user password as root password</source>
-      <translation type="unfinished"/>
+      <translation>Torne dopre la password dal utent pe password di root</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="253"/>
@@ -4036,22 +4071,22 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="268"/>
       <source>Choose a root password to keep your account safe.</source>
-      <translation type="unfinished"/>
+      <translation>Sielç une password di root par tignî il to account al sigûr.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="279"/>
       <source>Root Password</source>
-      <translation type="unfinished"/>
+      <translation>Password di root</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="298"/>
       <source>Repeat Root Password</source>
-      <translation type="unfinished"/>
+      <translation>Ripeti password di root</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="318"/>
       <source>Enter the same password twice, so that it can be checked for typing errors.</source>
-      <translation type="unfinished"/>
+      <translation>Inserìs la stesse password dôs voltis, in mût di evitâ erôrs di batidure.</translation>
     </message>
   </context>
   <context>
@@ -4060,32 +4095,33 @@ Output:
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="35"/>
       <source>&lt;h3&gt;Welcome to the %1 &lt;quote&gt;%2&lt;/quote&gt; installer&lt;/h3&gt;
             &lt;p&gt;This program will ask you some questions and set up %1 on your computer.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;Benvignûts sul program di instalazion &lt;quote&gt;%2&lt;/quote&gt; par %1&lt;/h3&gt;
+            &lt;p&gt;Chest program al fasarà cualchi domande e al configurarà %1 sul to computer.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="66"/>
       <source>About</source>
-      <translation type="unfinished"/>
+      <translation>Informazions</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="80"/>
       <source>Support</source>
-      <translation type="unfinished"/>
+      <translation>Supuart</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="91"/>
       <source>Known issues</source>
-      <translation type="unfinished"/>
+      <translation>Problemis cognossûts</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="102"/>
       <source>Release notes</source>
-      <translation type="unfinished"/>
+      <translation>Notis di publicazion</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="114"/>
       <source>Donate</source>
-      <translation type="unfinished"/>
+      <translation>Done</translation>
     </message>
   </context>
 </TS>

@@ -11,12 +11,12 @@
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="71"/>
       <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-      <translation>מערכת זו הופעלה בתצורת אתחול &lt;strong&gt;EFI&lt;/strong&gt;.&lt;br&gt;&lt;br&gt; כדי להגדיר הפעלה מתצורת אתחול EFI, על אשף ההתקנה להתקין מנהל אתחול מערכת, לדוגמה &lt;strong&gt;GRUB&lt;/strong&gt; או &lt;strong&gt;systemd-boot&lt;/strong&gt; על &lt;strong&gt;מחיצת מערכת EFI&lt;/strong&gt;. פעולה זו היא אוטומטית, אלא אם כן העדפתך היא להגדיר מחיצות באופן ידני, במקרה זה עליך לבחור זאת או להגדיר בעצמך.</translation>
+      <translation>מערכת זו הופעלה בתצורת אתחול &lt;strong&gt;EFI&lt;/strong&gt;.&lt;br&gt;&lt;br&gt; כדי להגדיר הפעלה מתצורת אתחול EFI, על תכנית ההתקנה להתקין מנהל אתחול מערכת, לדוגמה &lt;strong&gt;GRUB&lt;/strong&gt; או &lt;strong&gt;systemd-boot&lt;/strong&gt; על &lt;strong&gt;מחיצת מערכת EFI&lt;/strong&gt;. פעולה זו היא אוטומטית, אלא אם כן העדפתך היא להגדיר מחיצות באופן ידני, במקרה זה יש לבחור זאת או להגדיר בעצמך.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="83"/>
       <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-      <translation>מערכת זו הופעלה בתצורת אתחול &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;&lt;br&gt; כדי להגדיר הפעלה מתצורת אתחול BIOS, על אשף ההתקנה להתקין מנהל אתחול מערכת, לדוגמה &lt;strong&gt;GRUB&lt;/strong&gt;, בתחילת המחיצה או על ה־&lt;strong&gt;Master Boot Record&lt;/strong&gt; בצמוד להתחלה של טבלת המחיצות (מועדף). פעולה זו היא אוטומטית, אלא אם כן תבחר להגדיר מחיצות באופן ידני, במקרה זה עליך להגדיר זאת בעצמך.</translation>
+      <translation>מערכת זו הופעלה בתצורת אתחול &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;&lt;br&gt; כדי להגדיר הפעלה מתצורת אתחול BIOS, על תכנית ההתקנה להתקין מנהל אתחול מערכת, לדוגמה &lt;strong&gt;GRUB&lt;/strong&gt;, בתחילת המחיצה או על ה־&lt;strong&gt;Master Boot Record&lt;/strong&gt; בצמוד להתחלה של טבלת המחיצות (מועדף). פעולה זו היא אוטומטית, אלא אם כן תבחר להגדיר מחיצות באופן ידני, במקרה זה יש להגדיר זאת בעצמך.</translation>
     </message>
   </context>
   <context>
@@ -340,7 +340,7 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="332"/>
       <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-      <translation>אשף ההתקנה של %1 הולך לבצע שינויים בכונן שלך לטובת התקנת %2.&lt;br/&gt;&lt;strong&gt;לא תוכל לבטל את השינויים הללו.&lt;/strong&gt;</translation>
+      <translation>תכנית ההתקנה של %1 עומדת לבצע שינויים בכונן שלך לטובת התקנת %2.&lt;br/&gt;&lt;strong&gt;לא תהיה אפשרות לבטל את השינויים הללו.&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="335"/>
@@ -375,7 +375,7 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="395"/>
       <source>The installation is complete. Close the installer.</source>
-      <translation>תהליך ההתקנה הושלם. נא לסגור את אשף ההתקנה.</translation>
+      <translation>תהליך ההתקנה הושלם. נא לסגור את תכנית ההתקנה.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="397"/>
@@ -428,8 +428,8 @@ The setup program will quit and all changes will be lost.</source>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="514"/>
       <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
-      <translation>האם ברצונך לבטל את תהליך ההתקנה?
-אשף ההתקנה ייסגר וכל השינויים יאבדו.</translation>
+      <translation>האם אכן ברצונך לבטל את תהליך ההתקנה?
+תכנית ההתקנה תיסגר וכל השינויים יאבדו.</translation>
     </message>
   </context>
   <context>
@@ -495,7 +495,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="305"/>
       <source>%1 Installer</source>
-      <translation>אשף התקנה של %1</translation>
+      <translation>תכנית התקנת %1</translation>
     </message>
   </context>
   <context>
@@ -638,7 +638,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1603"/>
       <source>No Swap</source>
-      <translation>בלי החלפה</translation>
+      <translation>ללא החלפה</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1611"/>
@@ -1117,7 +1117,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="56"/>
       <source>The installer failed to delete partition %1.</source>
-      <translation>אשף ההתקנה נכשל בעת מחיקת מחיצה %1.</translation>
+      <translation>תכנית ההתקנה כשלה במחיקת המחיצה %1.</translation>
     </message>
   </context>
   <context>
@@ -1644,7 +1644,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="146"/>
       <source>If you do not agree with the terms, the setup procedure cannot continue.</source>
-      <translation>אם התנאים האלה אינם מקובלים עליך, אי אפשר להמשיך בתהליך ההתקנה.</translation>
+      <translation>אם התנאים האלה אינם מקובלים עליכם, אי אפשר להמשיך בתהליך ההתקנה.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="151"/>
@@ -1654,7 +1654,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="156"/>
       <source>If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
-      <translation>אם תנאים אלו אינם מקובלים עליך, לא תותקן תכנה קניינית וייעשה שימוש בחלופות בקוד פתוח במקום.</translation>
+      <translation>אם התנאים הללו אינם מקובלים עליכם, תוכנה קניינית לא תותקן, ובמקומן יעשה שימוש בחלופות בקוד פתוח.</translation>
     </message>
   </context>
   <context>
@@ -1826,8 +1826,8 @@ The installer will quit and all changes will be lost.</source>
       <source>Please select your preferred location on the map so the installer can suggest the locale
             and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
             to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</source>
-      <translation>נא לבחור את המיקום המועדף עליך על המפה כדי שתכנית ההתקנה תוכל להציע הגדרות מקומיות
-             ואזור זמן עבורך. ניתן לכוונן את ההגדרות המוצעות להלן. לחפש במפה על ידי משיכה להזזתה ובכפתורים +/- כדי להתקרב/להתרחק
+      <translation>נא לבחור את המיקום המועדף עליכם על המפה כדי שתכנית ההתקנה תוכל להציע הגדרות מקומיות
+             ואזור זמן עבורכם. ניתן לכוונן את ההגדרות המוצעות להלן. לחפש במפה על ידי משיכה להזזתה ובכפתורים +/- כדי להתקרב/להתרחק
             או להשתמש בגלילת העכבר לטובת שליטה בתקריב.</translation>
     </message>
   </context>
@@ -1974,7 +1974,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="37"/>
       <source>Select your preferred Region, or use the default one based on your current location.</source>
-      <translation>נא לבחור את המחוז המועדף עליך או להשתמש בבררת המחדל לפי המיקום הנוכחי שלך.</translation>
+      <translation>נא לבחור את המחוז המועדף עליכם או להשתמש בברירת המחדל לפי המיקום הנוכחי שלכם.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="94"/>
@@ -2029,7 +2029,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="158"/>
       <source>The password is the same as the old one</source>
-      <translation>הססמה זהה לישנה</translation>
+      <translation>הססמה הזו זהה לישנה</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="160"/>
@@ -2413,7 +2413,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/users/page_usersetup.ui" line="519"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="544"/>
       <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</source>
-      <translation>&lt;small&gt;עליך להקליד את אותה הססמה פעמיים כדי לאפשר זיהוי של שגיאות הקלדה.&lt;/small&gt;</translation>
+      <translation>&lt;small&gt;יש להקליד את אותה הססמה פעמיים כדי לאפשר זיהוי של שגיאות הקלדה.&lt;/small&gt;</translation>
     </message>
   </context>
   <context>
@@ -2648,12 +2648,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="427"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;%3&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
-      <translation>מחיצת מערכת EFI נדרשת כדי להפעיל את %1.&lt;br/&gt;&lt;br/&gt; כדי להגדיר מחיצת מערכת EFI, עליך לחזור ולבחור או ליצור מערכת קבצים מסוג FAT32 עם סימון &lt;strong&gt;%3&lt;/strong&gt; פעיל ועם נקודת עיגון &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt; ניתן להמשיך ללא הגדרת מחיצת מערכת EFI אך טעינת המערכת עשויה להיכשל.</translation>
+      <translation>מחיצת מערכת EFI נדרשת כדי להפעיל את %1.&lt;br/&gt;&lt;br/&gt; כדי להגדיר מחיצת מערכת EFI, יש לחזור ולבחור או ליצור מערכת קבצים מסוג FAT32 עם סימון &lt;strong&gt;%3&lt;/strong&gt; פעיל ועם נקודת עיגון &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt; ניתן להמשיך ללא הגדרת מחיצת מערכת EFI אך טעינת המערכת עשויה להיכשל.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="441"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;%3&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
-      <translation>לצורך הפעלת %1 נדרשת מחיצת מערכת EFI.&lt;br/&gt;&lt;br/&gt; הוגדרה מחיצה עם נקודת עיגון &lt;strong&gt;%2&lt;/strong&gt; אך לא הוגדר סימון &lt;strong&gt;%3&lt;/strong&gt;.&lt;br/&gt; כדי לסמן את המחיצה, עליך לחזור ולערוך את המחיצה.&lt;br/&gt;&lt;br/&gt; ניתן להמשיך ללא הוספת הסימון אך טעינת המערכת עשויה להיכשל.</translation>
+      <translation>לצורך הפעלת %1 נדרשת מחיצת מערכת EFI.&lt;br/&gt;&lt;br/&gt; הוגדרה מחיצה עם נקודת עיגון &lt;strong&gt;%2&lt;/strong&gt; אך לא הוגדר סימון &lt;strong&gt;%3&lt;/strong&gt;.&lt;br/&gt; כדי לסמן את המחיצה, יש לחזור ולערוך את המחיצה.&lt;br/&gt;&lt;br/&gt; ניתן להמשיך ללא הוספת הסימון אך טעינת המערכת עשויה להיכשל.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="440"/>
@@ -2843,7 +2843,7 @@ Output:
     <message>
       <location filename="../src/libcalamares/partition/FileSystem.cpp" line="34"/>
       <source>swap</source>
-      <translation>דפדוף, swap</translation>
+      <translation>דפדוף swap</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="90"/>
@@ -3886,7 +3886,7 @@ Output:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="60"/>
       <source>Click your preferred keyboard model to select layout and variant, or use the default one based on the detected hardware.</source>
-      <translation>נא ללחוץ על דרם המקלדת המועדף עליך כדי לבחור בפריסה ובהגוון או להשתמש בבררת המחדל בהתאם לחומרה שזוהתה.</translation>
+      <translation>נא ללחוץ על דגם המקלדת המועדף עליכם כדי לבחור בפריסה ובהגוון או להשתמש בברירת המחדל בהתאם לחומרה שזוהתה.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="253"/>

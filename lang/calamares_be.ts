@@ -532,7 +532,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="305"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;Уласнаручная разметка&lt;/strong&gt;&lt;br/&gt;Вы можаце самастойна ствараць раздзелы або змяняць іх памеры.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="831"/>
@@ -621,17 +621,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1448"/>
       <source>This storage device already has an operating system on it, but the partition table &lt;strong&gt;%1&lt;/strong&gt; is different from the needed &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</source>
-      <translation type="unfinished"/>
+      <translation>На гэтай прыладзе ўжо ўсталяваная аперацыйная сістэма, але табліца раздзелаў &lt;strong&gt;%1&lt;/strong&gt; не такая, як патрэбна &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1471"/>
       <source>This storage device has one of its partitions &lt;strong&gt;mounted&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Адзін з раздзелаў гэтай назапашвальнай прылады&lt;strong&gt;прымантаваны&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1476"/>
       <source>This storage device is a part of an &lt;strong&gt;inactive RAID&lt;/strong&gt; device.</source>
-      <translation type="unfinished"/>
+      <translation>Гэтая назапашвальная прылада ёсць часткай&lt;strong&gt;неактыўнага RAID&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1603"/>
@@ -734,7 +734,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="334"/>
       <source>Set timezone to %1/%2.</source>
-      <translation type="unfinished"/>
+      <translation>Вызначыць часавы пояс %1/%2.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="372"/>
@@ -794,22 +794,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="244"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Вітаем у праграме ўсталёўкі Calamares для %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="245"/>
       <source>&lt;h1&gt;Welcome to %1 setup&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Вітаем у праграме ўсталёўкі %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="250"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Вітаем у праграме ўсталёўкі Calamares для %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="251"/>
       <source>&lt;h1&gt;Welcome to the %1 installer&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Вітаем у праграме ўсталёўкі %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="164"/>
@@ -819,7 +819,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="170"/>
       <source>'%1' is not allowed as username.</source>
-      <translation type="unfinished"/>
+      <translation>'%1' немагчыма выкарыстаць як імя карыстальніка.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="177"/>
@@ -844,7 +844,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="237"/>
       <source>'%1' is not allowed as hostname.</source>
-      <translation type="unfinished"/>
+      <translation>'%1' немагчыма выкарыстаць як назву хоста.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="243"/>
@@ -1817,14 +1817,16 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/localeq/Map.qml" line="243"/>
       <source>Timezone: %1</source>
-      <translation type="unfinished"/>
+      <translation>Часавы пояс: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Map.qml" line="264"/>
       <source>Please select your preferred location on the map so the installer can suggest the locale
             and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
             to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</source>
-      <translation type="unfinished"/>
+      <translation>Калі ласка, абярыце неабходнае месца на мапе, каб праграма прапанавала мову
+             і налады часавога пояса.  Вы можаце дакладна наладзіць прапанаваныя параметры ніжэй. Месца на мапе можна абраць перацягваючы
+             яе пры дапамозе мышы. Для павелічэння і памяншэння выкарыстоўвайце кнопкі +/- і кола мышы.</translation>
     </message>
   </context>
   <context>
@@ -1944,7 +1946,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/oemid/OEMPage.ui" line="42"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter a batch-identifier here. This will be stored in the target system.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Увядзіце сюды масавы ідэнтыфікатар. Ён захавецца ў мэтавай сістэме.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Увядзіце сюды масавы ідэнтыфікатар. Ён захаваецца ў мэтавай сістэме.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/oemid/OEMPage.ui" line="52"/>
@@ -1970,29 +1972,29 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="37"/>
       <source>Select your preferred Region, or use the default one based on your current location.</source>
-      <translation type="unfinished"/>
+      <translation>Абярыце пераважны рэгіён альбо выкарыстоўвайце прадвызначаны ў залежнасці ад вашага бягучага месцазнаходжання.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="94"/>
       <location filename="../src/modules/localeq/Offline.qml" line="169"/>
       <location filename="../src/modules/localeq/Offline.qml" line="213"/>
       <source>Timezone: %1</source>
-      <translation type="unfinished"/>
+      <translation>Часавы пояс: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="111"/>
       <source>Select your preferred Zone within your Region.</source>
-      <translation type="unfinished"/>
+      <translation>Абярыце часавы пояс для вашага рэгіёна.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="182"/>
       <source>Zones</source>
-      <translation type="unfinished"/>
+      <translation>Часавыя паясы</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="229"/>
       <source>You can fine-tune Language and Locale settings below.</source>
-      <translation type="unfinished"/>
+      <translation>Ніжэй вы можаце наладзіць мову і мясцовасць.</translation>
     </message>
   </context>
   <context>
@@ -2644,12 +2646,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="427"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;%3&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
-      <translation type="unfinished"/>
+      <translation>Для таго, каб пачаць %1, патрабуецца сістэмны раздзел EFI.&lt;br/&gt;&lt;br/&gt; Каб наладзіць сістэмны раздзел EFI, вярніцеся назад, абярыце альбо стварыце файлавую сістэму FAT32 са сцягам &lt;strong&gt;%3&lt;/strong&gt; і пунктам мантавання &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;Вы можаце працягнуць і без наладкі сістэмнага раздзела EFI, але ваша сістэма можа не загрузіцца.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="441"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;%3&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
-      <translation type="unfinished"/>
+      <translation>Для таго, каб пачаць %1, патрабуецца сістэмны раздзел EFI.&lt;br/&gt;&lt;br/&gt;Быў наладжаны раздзел з пунктам мантавання&lt;strong&gt;%2&lt;/strong&gt; але яго сцяг &lt;strong&gt;%3&lt;/strong&gt; не вызначаны.&lt;br/&gt;Каб вызначыць сцяг, вярніцеся назад і адрэдагуйце раздзел.&lt;br/&gt;&lt;br/&gt; Вы можаце працягнуць без наладкі раздзела, але ваша сістэма можа не загрузіцца.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="440"/>
@@ -2868,7 +2870,7 @@ Output:
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="83"/>
       <source>Directory not found</source>
-      <translation type="unfinished"/>
+      <translation>Каталог не знойдзены</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="84"/>
@@ -2903,7 +2905,8 @@ Output:
       <location filename="../src/modules/welcomeq/Recommended.qml" line="40"/>
       <source>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
         Setup can continue, but some features might be disabled.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;Гэты камп’ютар адпавядае не ўсім патрэбам для ўсталёўкі %1.&lt;br/&gt;
+        Можна працягнуць усталёўку, але некаторыя магчымасці могуць быць недаступнымі.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -3014,13 +3017,15 @@ Output:
       <location filename="../src/modules/welcomeq/Requirements.qml" line="38"/>
       <source>&lt;p&gt;This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;
         Installation cannot continue.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;Гэты камп’ютар не адпавядае мінімальным патрэбам для ўсталёўкі %1.&lt;p&gt;
+        Немагчыма працягнуць. &lt;br/&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/Requirements.qml" line="40"/>
       <source>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
         Setup can continue, but some features might be disabled.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;Гэты камп’ютар адпавядае не ўсім патрэбам для ўсталёўкі %1.&lt;br/&gt;
+        Можна працягнуць усталёўку, але некаторыя магчымасці могуць быць недаступнымі.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -3038,7 +3043,7 @@ Output:
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="170"/>
       <source>The file-system resize job has an invalid configuration and will not run.</source>
-      <translation>У задачы па змене памеру файлавай сістэмы хібная канфігурафыя, таму яна не будзе выконвацца.</translation>
+      <translation>У задачы па змене памеру файлавай сістэмы хібная канфігурацыя, таму яна не будзе выконвацца.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="175"/>
@@ -3486,28 +3491,28 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="122"/>
       <source>KDE user feedback</source>
-      <translation type="unfinished"/>
+      <translation>Зваротная сувязь KDE</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="128"/>
       <source>Configuring KDE user feedback.</source>
-      <translation type="unfinished"/>
+      <translation>Наладка зваротнай сувязі KDE.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="150"/>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="156"/>
       <source>Error in KDE user feedback configuration.</source>
-      <translation type="unfinished"/>
+      <translation>Падчас наладкі зваротнай сувязі KDE адбылася памылка.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="151"/>
       <source>Could not configure KDE user feedback correctly, script error %1.</source>
-      <translation type="unfinished"/>
+      <translation>Не атрымалася наладзіць зваротную сувязь KDE, памылка скрыпта %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="157"/>
       <source>Could not configure KDE user feedback correctly, Calamares error %1.</source>
-      <translation type="unfinished"/>
+      <translation>Не атрымалася наладзіць зваротную сувязь KDE, памылка Calamares %1.</translation>
     </message>
   </context>
   <context>
@@ -3554,7 +3559,7 @@ Output:
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="76"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click here to send &lt;span style=" font-weight:600;"&gt;no information at all&lt;/span&gt; about your installation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Пстрыкніце сюды, каб не адпраўляць &lt;span style=" font-weight:600;"&gt;ніякіх звестак&lt;/span&gt; пра вашу ўсталёўку.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="275"/>
@@ -3564,22 +3569,22 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="86"/>
       <source>Tracking helps %1 to see how often it is installed, what hardware it is installed on and which applications are used. To see what will be sent, please click the help icon next to each area.</source>
-      <translation type="unfinished"/>
+      <translation>Адсочванне дапамагае праекту %1 бачыць, як часта ён усталёўваецца, на якім абсталяванні ён усталёўваецца, якія праграмы выкарыстоўваюцца. Каб убачыць, што будзе адпраўлена, пстрыкніце па значку ля кожнай вобласці.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="91"/>
       <source>By selecting this you will send information about your installation and hardware. This information will only be sent &lt;b&gt;once&lt;/b&gt; after the installation finishes.</source>
-      <translation type="unfinished"/>
+      <translation>Абраўшы гэты пункт вы адправіце звесткі пра сваю канфігурацыю ўсталёўкі і ваша абсталяванне. Звесткі адправяцца &lt;b&gt;адзін раз&lt;/b&gt; пасля завяршэння ўсталёўкі.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="94"/>
       <source>By selecting this you will periodically send information about your &lt;b&gt;machine&lt;/b&gt; installation, hardware and applications, to %1.</source>
-      <translation type="unfinished"/>
+      <translation>Абраўшы гэты пункт вы будзеце перыядычна адпраўляць звесткі пра усталёўку, абсталяванне і праграмы вашага &lt;b&gt;камп'ютара&lt;/b&gt; на %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="98"/>
       <source>By selecting this you will regularly send information about your &lt;b&gt;user&lt;/b&gt; installation, hardware, applications and application usage patterns, to %1.</source>
-      <translation type="unfinished"/>
+      <translation>Абраўшы гэты пункт вы будзеце перыядычна адпраўляць звесткі пра усталёўку, абсталяванне, праграмы &lt;b&gt;карыстальніка&lt;/b&gt; і вобласці іх выкарыстання на %1.</translation>
     </message>
   </context>
   <context>
@@ -3625,7 +3630,7 @@ Output:
       <location filename="../src/calamares/VariantModel.cpp" line="232"/>
       <source>Key</source>
       <comment>Column header for key/value</comment>
-      <translation>Клавіша</translation>
+      <translation>Ключ</translation>
     </message>
     <message>
       <location filename="../src/calamares/VariantModel.cpp" line="236"/>
@@ -3783,7 +3788,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="238"/>
       <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Аўтарскія правы 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Аўтарскія правы 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Шчырыя падзякі &lt;a href="https://calamares.io/team/"&gt;камандзе распрацоўкі Calamares&lt;/a&gt; і &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;камандзе перакладчыкаў Calamares&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; распрацоўваецца пры падтрымцы&lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</translation>
     </message>
   </context>
   <context>
@@ -3818,7 +3823,17 @@ Output:
                         development is sponsored by &lt;br/&gt;
                         &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; -
                         Liberating Software.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;
+                        &lt;strong&gt;%2&lt;br/&gt;
+                        for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;
+                        Аўтарскія правы 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;
+                        Аўтарскія правы 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;
+                        Шчырыя падзякі &lt;a href='https://calamares.io/team/'&gt;камандзе распрацоўкі Calamares &lt;/a&gt; 
+                        і &lt;a href='https://www.transifex.com/calamares/calamares/'&gt; перакладчыкам Calamares&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;
+                        &lt;a href='https://calamares.io/'&gt;Calamares&lt;/a&gt; 
+                        распрацоўваецца пры падтрымцы &lt;br/&gt;
+                        &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; - 
+                        Liberating Software.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/about.qml" line="96"/>
@@ -3832,13 +3847,15 @@ Output:
       <location filename="../src/modules/localeq/i18n.qml" line="46"/>
       <source>&lt;h1&gt;Languages&lt;/h1&gt; &lt;/br&gt;
                     The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Мовы&lt;/h1&gt;&lt;/br&gt;
+                    Сістэмныя рэгіянальныя налады вызначаюць мову і кадаванне для пэўных элементаў інтэрфейсу загаднага радка. Бягучыя налады &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/i18n.qml" line="106"/>
       <source>&lt;h1&gt;Locales&lt;/h1&gt; &lt;/br&gt;
                     The system locale setting affects the numbers and dates format. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Рэгіянальныя налады&lt;/h1&gt;&lt;/br&gt;
+                    Сістэмныя рэгіянальныя налады вызначаюць фармат нумароў і датаў. Бягучыя налады &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/i18n.qml" line="158"/>
@@ -3866,7 +3883,7 @@ Output:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="60"/>
       <source>Click your preferred keyboard model to select layout and variant, or use the default one based on the detected hardware.</source>
-      <translation type="unfinished"/>
+      <translation>Пстрыкніце на пераважную мадэль клавіятуры, каб абраць раскладку і варыянт, альбо выкарыстоўвайце прадвызначаную ў залежнасці ад выяўленага абсталявання.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="253"/>
@@ -3881,7 +3898,7 @@ Output:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="276"/>
       <source>Keyboard Variant</source>
-      <translation type="unfinished"/>
+      <translation>Варыянт клавіятуры</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="386"/>
@@ -3894,7 +3911,7 @@ Output:
     <message>
       <location filename="../src/modules/localeq/localeq.qml" line="81"/>
       <source>Change</source>
-      <translation type="unfinished"/>
+      <translation>Змяніць</translation>
     </message>
   </context>
   <context>
@@ -3932,7 +3949,28 @@ Output:
             &lt;/ul&gt;
 
             &lt;p&gt;The vertical scrollbar is adjustable, current width set to 10.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;%1&lt;/h3&gt;
+             &lt;p&gt;Гэта прыклад файла QML, у якім паказваюцца параметры RichText са зменным змесцівам.&lt;/p&gt;
+
+             &lt;p&gt;QML з RichText можа выкарыстоўваць пазнакі HTML. Зменнае змесціва карысна для сэнсарных экранаў.&lt;/p&gt;
+
+             &lt;p&gt;&lt;b&gt;Гэта паўтлусты тэкст&lt;/b&gt;&lt;/p&gt;
+             &lt;p&gt;&lt;i&gt;Гэта тэкст курсівам&lt;/i&gt;&lt;/p&gt;
+             &lt;p&gt;&lt;u&gt;Гэта падкрэслены&lt;/u&gt;&lt;/p&gt;
+             &lt;p&gt;&lt;center&gt;Гэта выраўнаваны па цэнтры тэкст.&lt;/center&gt;&lt;s&gt;
+             &lt;p&gt;&lt;s&gt;Гэта закрэслены тэкст&lt;/s&gt;&lt;/p&gt;
+
+             &lt;p&gt;Прыклад кода:
+             &lt;code&gt;ls -l /
+/home&lt;/code&gt;&lt;/p&gt;
+
+            &lt;p&gt;&lt;b&gt;Спісы:&lt;/b&gt;&lt;/p&gt;
+            &lt;ul&gt;
+                &lt;li&gt;Сістэмы з Intel CPU&lt;/li&gt;
+                &lt;li&gt;Сістэмы з AMD CPU&lt;/li&gt;
+            &lt;/ul&gt;
+
+            &lt;p&gt;Вертыкальная паласа пракруткі наладжваецца. Бягучая шырыня - 10.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/release_notes.qml" line="76"/>
@@ -3945,7 +3983,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="36"/>
       <source>Pick your user name and credentials to login and perform admin tasks</source>
-      <translation type="unfinished"/>
+      <translation>Абярыце свае імя карыстальніка і ўліковыя даныя для ўваходу і выканання задач адміністратара</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="52"/>
@@ -3965,12 +4003,12 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="87"/>
       <source>Login Name</source>
-      <translation type="unfinished"/>
+      <translation>Лагін</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="103"/>
       <source>If more than one person will use this computer, you can create multiple accounts after installation.</source>
-      <translation type="unfinished"/>
+      <translation>Калі камп’ютарам карыстаецца некалькі чалавек, то вы можаце стварыць для іх акаўнты пасля завяршэння ўсталёўкі.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="118"/>
@@ -3985,7 +4023,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="140"/>
       <source>This name will be used if you make the computer visible to others on a network.</source>
-      <translation type="unfinished"/>
+      <translation>Назва будзе выкарыстоўвацца для пазначэння камп’ютара ў сетцы.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="155"/>
@@ -4005,12 +4043,12 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="204"/>
       <source>Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.</source>
-      <translation type="unfinished"/>
+      <translation>Увядзіце двойчы аднолькавы пароль. Гэта неабходна для таго, каб пазбегнуць памылак. Надзейны пароль павінен складацца з літар, лічбаў, знакаў пунктуацыі. Ён павінен змяшчаць прынамсі 8 знакаў, яго перыядычна трэба змяняць.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="216"/>
       <source>Validate passwords quality</source>
-      <translation type="unfinished"/>
+      <translation>Праверка якасці пароляў</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="226"/>
@@ -4020,12 +4058,12 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="234"/>
       <source>Log in automatically without asking for the password</source>
-      <translation type="unfinished"/>
+      <translation>Аўтаматычна ўваходзіць без уводу пароля</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="243"/>
       <source>Reuse user password as root password</source>
-      <translation type="unfinished"/>
+      <translation>Выкарыстоўваць пароль карыстальніка як пароль адміністратара</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="253"/>
@@ -4035,22 +4073,22 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="268"/>
       <source>Choose a root password to keep your account safe.</source>
-      <translation type="unfinished"/>
+      <translation>Абярыце пароль адміністратара для абароны вашага акаўнта.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="279"/>
       <source>Root Password</source>
-      <translation type="unfinished"/>
+      <translation>Пароль адміністратара</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="298"/>
       <source>Repeat Root Password</source>
-      <translation type="unfinished"/>
+      <translation>Паўтарыце пароль адміністратара</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="318"/>
       <source>Enter the same password twice, so that it can be checked for typing errors.</source>
-      <translation type="unfinished"/>
+      <translation>Увядзіце пароль двойчы, каб пазбегнуць памылак уводу.</translation>
     </message>
   </context>
   <context>
@@ -4059,7 +4097,8 @@ Output:
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="35"/>
       <source>&lt;h3&gt;Welcome to the %1 &lt;quote&gt;%2&lt;/quote&gt; installer&lt;/h3&gt;
             &lt;p&gt;This program will ask you some questions and set up %1 on your computer.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;Вітаем у %1, праграме ўсталёўкі&lt;quote&gt;%2&lt;/quote&gt; &lt;/h3&gt;
+            &lt;p&gt;Гэтая праграма дапаможа вам усталяваць %1 на ваш камп'ютар.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="66"/>
