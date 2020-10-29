@@ -14,11 +14,13 @@ This release contains contributions from (alphabetically by first name):
  - Andrius Štikonas
  - Artem Grinev
  - Gaël PORTAY
+ - TTran Me
 
 ## Core ##
  - Calamares now sets the C++ standard for compilation to C++17; this
    is for better compatibility and fewer warnings when building with
    modern KDE Frameworks and KPMcore 4.2.0.
+ - Vietnamese translations have been added. Welcome!
 
 ## Modules ##
  - The *keyboard* and *keyboardq* modules now share backend code
