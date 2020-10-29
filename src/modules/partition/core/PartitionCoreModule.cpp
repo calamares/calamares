@@ -320,14 +320,7 @@ PartitionCoreModule::doInit()
 
     m_bootLoaderModel->init( bootLoaderDevices );
 
-    scanForLVMPVs();
-
-    //FIXME: this should be removed in favor of
-    //       proper KPM support for EFI
-    if ( PartUtils::isEfiSystem() )
-    {
-        scanForEfiSystemPartitions();
-    }
+    scanForPartitions();
 }
 
 PartitionCoreModule::~PartitionCoreModule()
@@ -677,14 +670,7 @@ PartitionCoreModule::refreshAfterModelChange()
     updateIsDirty();
     m_bootLoaderModel->update();
 
-    scanForLVMPVs();
-
-    //FIXME: this should be removed in favor of
-    //       proper KPM support for EFI
-    if ( PartUtils::isEfiSystem() )
-    {
-        scanForEfiSystemPartitions();
-    }
+    scanForPartitions();
 }
 
 void
@@ -713,6 +699,19 @@ PartitionCoreModule::updateIsDirty()
     if ( oldValue != m_isDirty )
     {
         isDirtyChanged( m_isDirty );
+    }
+}
+
+void
+PartitionCoreModule::scanForPartitions()
+{
+    scanForLVMPVs();
+
+    //FIXME: this should be removed in favor of
+    //       proper KPM support for EFI
+    if ( PartUtils::isEfiSystem() )
+    {
+        scanForEfiSystemPartitions();
     }
 }
 

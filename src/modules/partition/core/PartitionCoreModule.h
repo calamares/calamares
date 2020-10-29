@@ -249,6 +249,7 @@ private:
     void doInit();
     void updateHasRootMountPoint();
     void updateIsDirty();
+    void scanForPartitions();
     void scanForEfiSystemPartitions();
     void scanForLVMPVs();
 
