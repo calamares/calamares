@@ -199,7 +199,7 @@ msgstr "未在顯示管理器模組中選取顯示管理器。"
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
-msgstr ""
+msgstr "顯示管理器清單為空或在 globalstorage 與 displaymanager.conf 中皆未定義。"
 
 #: src/modules/displaymanager/main.py:977
 msgid "Display manager configuration was incomplete"

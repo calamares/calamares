@@ -201,6 +201,8 @@ msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
 msgstr ""
+"Luettelo on tyhjä tai määrittelemätön, sekä globalstorage, että "
+"displaymanager.conf tiedostossa."
 
 #: src/modules/displaymanager/main.py:977
 msgid "Display manager configuration was incomplete"

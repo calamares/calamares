@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Davidmp <medipas@gmail.com>, 2020
+# T. Tran <transifex@emiu.net>, 2020
 # 
 #, fuzzy
 msgid ""
@@ -13,21 +13,21 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-16 22:35+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Davidmp <medipas@gmail.com>, 2020\n"
-"Language-Team: Catalan (https://www.transifex.com/calamares/teams/20061/ca/)\n"
+"Last-Translator: T. Tran <transifex@emiu.net>, 2020\n"
+"Language-Team: Vietnamese (https://www.transifex.com/calamares/teams/20061/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ca\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: vi\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: src/modules/grubcfg/main.py:28
 msgid "Configure GRUB."
-msgstr "Configura el GRUB."
+msgstr "Cấu hình GRUB"
 
 #: src/modules/mount/main.py:29
 msgid "Mounting partitions."
-msgstr "Es munten les particions."
+msgstr "Đang gắn kết các phân vùng."
 
 #: src/modules/mount/main.py:141 src/modules/initcpiocfg/main.py:196
 #: src/modules/initcpiocfg/main.py:200
@@ -39,181 +39,178 @@ msgstr "Es munten les particions."
 #: src/modules/fstab/main.py:367 src/modules/localecfg/main.py:135
 #: src/modules/networkcfg/main.py:39
 msgid "Configuration Error"
-msgstr "Error de configuració"
+msgstr "Lỗi cấu hình"
 
 #: src/modules/mount/main.py:142 src/modules/initcpiocfg/main.py:197
 #: src/modules/luksopenswaphookcfg/main.py:87 src/modules/rawfs/main.py:165
 #: src/modules/initramfscfg/main.py:86 src/modules/openrcdmcryptcfg/main.py:70
 #: src/modules/fstab/main.py:362
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr "No s'han definit particions perquè les usi <pre>{!s}</pre>."
+msgstr "Không có phân vùng nào được định nghĩa cho <pre>{!s}</pre> để dùng."
 
 #: src/modules/services-systemd/main.py:26
 msgid "Configure systemd services"
-msgstr "Configura els serveis de systemd"
+msgstr "Cấu hình các dịch vụ systemd"
 
 #: src/modules/services-systemd/main.py:59
 #: src/modules/services-openrc/main.py:93
 msgid "Cannot modify service"
-msgstr "No es pot modificar el servei."
+msgstr "Không thể sửa đổi dịch vụ"
 
 #: src/modules/services-systemd/main.py:60
 msgid ""
 "<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
 msgstr ""
-"La crida de <code>systemctl {arg!s}</code> a chroot ha retornat el codi "
-"d'error {num!s}."
+"<code>systemctl {arg!s}</code> trong môi trường chroot trả về lỗi {num!s}."
 
 #: src/modules/services-systemd/main.py:63
 #: src/modules/services-systemd/main.py:67
 msgid "Cannot enable systemd service <code>{name!s}</code>."
-msgstr "No es pot habilitar el servei de systemd <code>{name!s}</code>."
+msgstr "Không thể bật dịch vụ systemd <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:65
 msgid "Cannot enable systemd target <code>{name!s}</code>."
-msgstr "No es pot habilitar la destinació de systemd <code>{name!s}</code>."
+msgstr "Không thể bật nhóm dịch vụ systemd <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:69
 msgid "Cannot disable systemd target <code>{name!s}</code>."
-msgstr "No es pot inhabilitar la destinació de systemd <code>{name!s}</code>."
+msgstr "Không thể tắt nhóm dịch vụ systemd <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:71
 msgid "Cannot mask systemd unit <code>{name!s}</code>."
-msgstr "No es pot emmascarar la unitat de systemd <code>{name!s}</code>."
+msgstr "Không thể đánh dấu đơn vị systemd <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:73
 msgid ""
 "Unknown systemd commands <code>{command!s}</code> and "
 "<code>{suffix!s}</code> for unit {name!s}."
 msgstr ""
-"Ordres desconegudes de systemd: <code>{command!s}</code> i "
-"<code>{suffix!s}</code>, per a la unitat {name!s}."
+"Không nhận ra lệnh systemd <code>{command!s}</code> và "
+"<code>{suffix!s}</code> cho đơn vị {name!s}."
 
 #: src/modules/umount/main.py:31
 msgid "Unmount file systems."
-msgstr "Desmunta els sistemes de fitxers."
+msgstr "Gỡ kết nối các hệ thống tập tin."
 
 #: src/modules/unpackfs/main.py:35
 msgid "Filling up filesystems."
-msgstr "S'omplen els sistemes de fitxers."
+msgstr "Đang làm đầy các hệ thống tập tin."
 
 #: src/modules/unpackfs/main.py:254
 msgid "rsync failed with error code {}."
-msgstr "Ha fallat rsync amb el codi d'error {}."
+msgstr "rsync thất bại với lỗi {}."
 
 #: src/modules/unpackfs/main.py:299
 msgid "Unpacking image {}/{}, file {}/{}"
-msgstr "Es desempaqueta la imatge {}/{}, fitxer {}/{}"
+msgstr "Đang bung hình ảnh {}/{}, tập tin {}/{}"
 
 #: src/modules/unpackfs/main.py:314
 msgid "Starting to unpack {}"
-msgstr "Es comença a desempaquetar {}"
+msgstr "Bắt đầu bung nội dung {}"
 
 #: src/modules/unpackfs/main.py:323 src/modules/unpackfs/main.py:463
 msgid "Failed to unpack image \"{}\""
-msgstr "Ha fallat desempaquetar la imatge \"{}\"."
+msgstr "Bung hình ảnh thất bại \"{}\""
 
 #: src/modules/unpackfs/main.py:430
 msgid "No mount point for root partition"
-msgstr "No hi ha punt de muntatge per a la partició d'arrel."
+msgstr "Không có điểm kết nối cho phân vùng gốc"
 
 #: src/modules/unpackfs/main.py:431
 msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr "globalstorage no conté cap clau de \"rootMountPoint\". No es fa res."
+msgstr "globalstorage không có khoá \"rootMountPoint\", sẽ không làm gì cả"
 
 #: src/modules/unpackfs/main.py:436
 msgid "Bad mount point for root partition"
-msgstr "Punt de muntatge incorrecte per a la partició d'arrel"
+msgstr "Sai điểm kết nối cho phân vùng gốc"
 
 #: src/modules/unpackfs/main.py:437
 msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr "El punt de muntatge d'arrel és \"{}\", que no existeix. No es fa res."
+msgstr "rootMountPoint không tồn tại, có giá trị là \"{}\", sẽ không làm gì cả"
 
 #: src/modules/unpackfs/main.py:453 src/modules/unpackfs/main.py:457
 #: src/modules/unpackfs/main.py:477
 msgid "Bad unsquash configuration"
-msgstr "Configuració incorrecta d'unsquash."
+msgstr "Sai cấu hình bung nén"
 
 #: src/modules/unpackfs/main.py:454
 msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
-msgstr "El sistema de fitxers per a {} ({}) no és admès pel nucli actual."
+msgstr "Hệ thống tập tin cho \"{}\" ({}) không được hỗ trợ bởi nhân hiện tại"
 
 #: src/modules/unpackfs/main.py:458
 msgid "The source filesystem \"{}\" does not exist"
-msgstr "El sistema de fitxers font \"{}\" no existeix."
+msgstr "Hệ thống tập tin nguồn \"{}\" không tồn tại"
 
 #: src/modules/unpackfs/main.py:464
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed"
-msgstr ""
-"Ha fallat trobar unsquashfs, assegureu-vos que tingueu el paquet squashfs-"
-"tools instal·lat."
+msgstr "Không tìm thấy lệnh unsquashfs, vui lòng cài đặt gói squashfs-tools"
 
 #: src/modules/unpackfs/main.py:478
 msgid "The destination \"{}\" in the target system is not a directory"
-msgstr "La destinació \"{}\" al sistema de destinació no és un directori."
+msgstr "Hệ thống đích \"{}\" không phải là một thư mục"
 
 #: src/modules/displaymanager/main.py:514
 msgid "Cannot write KDM configuration file"
-msgstr "No es pot escriure el fitxer de configuració del KDM."
+msgstr "Không thể ghi vào tập tin cấu hình KDM"
 
 #: src/modules/displaymanager/main.py:515
 msgid "KDM config file {!s} does not exist"
-msgstr "El fitxer de configuració del KDM {!s} no existeix."
+msgstr "Tập tin cấu hình KDM {!s} không tồn tại"
 
 #: src/modules/displaymanager/main.py:576
 msgid "Cannot write LXDM configuration file"
-msgstr "No es pot escriure el fitxer de configuració de l'LXDM."
+msgstr "Không thể ghi vào tập tin cấu hình LXDM"
 
 #: src/modules/displaymanager/main.py:577
 msgid "LXDM config file {!s} does not exist"
-msgstr "El fitxer de configuració de l'LXDM {!s} no existeix."
+msgstr "Tập tin cấu hình LXDM {!s} không tồn tại"
 
 #: src/modules/displaymanager/main.py:660
 msgid "Cannot write LightDM configuration file"
-msgstr "No es pot escriure el fitxer de configuració del LightDM."
+msgstr "Không thể ghi vào tập tin cấu hình LightDM"
 
 #: src/modules/displaymanager/main.py:661
 msgid "LightDM config file {!s} does not exist"
-msgstr "El fitxer de configuració del LightDM {!s} no existeix."
+msgstr "Tập tin cấu hình LightDM {!s} không tồn tại"
 
 #: src/modules/displaymanager/main.py:735
 msgid "Cannot configure LightDM"
-msgstr "No es pot configurar el LightDM."
+msgstr "Không thể cấu hình LXDM"
 
 #: src/modules/displaymanager/main.py:736
 msgid "No LightDM greeter installed."
-msgstr "No hi ha benvinguda instal·lada per al LightDM."
+msgstr "Màn hình chào mừng LightDM không được cài đặt."
 
 #: src/modules/displaymanager/main.py:767
 msgid "Cannot write SLIM configuration file"
-msgstr "No es pot escriure el fitxer de configuració de l'SLIM."
+msgstr "Không thể ghi vào tập tin cấu hình SLIM"
 
 #: src/modules/displaymanager/main.py:768
 msgid "SLIM config file {!s} does not exist"
-msgstr "El fitxer de configuració de l'SLIM {!s} no existeix."
+msgstr "Tập tin cấu hình SLIM {!s} không tồn tại"
 
 #: src/modules/displaymanager/main.py:894
 msgid "No display managers selected for the displaymanager module."
 msgstr ""
-"No hi ha cap gestor de pantalla seleccionat per al mòdul displaymanager."
+"Không có trình quản lý hiển thị nào được chọn cho mô-đun quản lý hiển thị"
 
 #: src/modules/displaymanager/main.py:895
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
 msgstr ""
-"La llista de gestors de pantalla és buida o no definida ni a globalstorage "
-"ni a displaymanager.conf."
+"Danh sách quản lý hiện thị trống hoặc không được định nghĩa cả trong "
+"globalstorage và displaymanager.conf."
 
 #: src/modules/displaymanager/main.py:977
 msgid "Display manager configuration was incomplete"
-msgstr "La configuració del gestor de pantalla no era completa."
+msgstr "Cầu hình quản lý hiện thị không hoàn tất"
 
 #: src/modules/initcpiocfg/main.py:28
 msgid "Configuring mkinitcpio."
-msgstr "Es configura mkinitcpio."
+msgstr "Đang cấu hình mkinitcpio."
 
 #: src/modules/initcpiocfg/main.py:201
 #: src/modules/luksopenswaphookcfg/main.py:91
@@ -221,149 +218,146 @@ msgstr "Es configura mkinitcpio."
 #: src/modules/fstab/main.py:368 src/modules/localecfg/main.py:136
 #: src/modules/networkcfg/main.py:40
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr ""
-"No s'ha proporcionat el punt de muntatge perquè l'usi <pre>{!s}</pre>."
+msgstr "Không có điểm kết nối gốc cho <pre>{!s}</pre> để dùng."
 
 #: src/modules/luksopenswaphookcfg/main.py:26
 msgid "Configuring encrypted swap."
-msgstr "Es configura l'intercanvi encriptat."
+msgstr "Đang cấu hình hoán đổi mã hoá"
 
 #: src/modules/rawfs/main.py:26
 msgid "Installing data."
-msgstr "S'instal·len dades."
+msgstr "Đang cài đặt dữ liệu."
 
 #: src/modules/services-openrc/main.py:29
 msgid "Configure OpenRC services"
-msgstr "Configura els serveis d'OpenRC"
+msgstr "Cấu hình dịch vụ OpenRC"
 
 #: src/modules/services-openrc/main.py:57
 msgid "Cannot add service {name!s} to run-level {level!s}."
-msgstr "No es pot afegir el servei {name!s} al nivell d'execució {level!s}."
+msgstr "Không thể thêm dịch vụ {name!s} vào run-level {level!s}."
 
 #: src/modules/services-openrc/main.py:59
 msgid "Cannot remove service {name!s} from run-level {level!s}."
-msgstr ""
-"No es pot suprimir el servei {name!s} del nivell d'execució {level!s}."
+msgstr "Không thể loại bỏ dịch vụ {name!s} từ run-level {level!s}."
 
 #: src/modules/services-openrc/main.py:61
 msgid ""
 "Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
 "level {level!s}."
 msgstr ""
-"Servei - acció desconeguda <code>{arg!s}</code> per al servei {name!s} al "
-"nivell d'execució {level!s}."
+"Không nhận ra thao tác <code>{arg!s}</code> cho dịch vụ {name!s} ở run-level"
+" {level!s}."
 
 #: src/modules/services-openrc/main.py:94
 msgid ""
 "<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
 msgstr ""
-"La crida de <code>rc-update {arg!s}</code> a chroot ha retornat el codi "
-"d'error {num!s}."
+"Lệnh <code>rc-update {arg!s}</code> trong môi trường chroot trả về lỗi "
+"{num!s}."
 
 #: src/modules/services-openrc/main.py:101
 msgid "Target runlevel does not exist"
-msgstr "El nivell d'execució de destinació no existeix."
+msgstr "Nhóm dịch vụ khởi động không tồn tại"
 
 #: src/modules/services-openrc/main.py:102
 msgid ""
 "The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
 "exist."
 msgstr ""
-"El camí per al nivell d'execució {level!s} és <code>{path!s}</code>, però no"
-" existeix."
+"Đường dẫn cho runlevel {level!s} là <code>{path!s}</code>, nhưng không tồn "
+"tại."
 
 #: src/modules/services-openrc/main.py:110
 msgid "Target service does not exist"
-msgstr "El servei de destinació no existeix."
+msgstr "Nhóm dịch vụ không tồn tại"
 
 #: src/modules/services-openrc/main.py:111
 msgid ""
 "The path for service {name!s} is <code>{path!s}</code>, which does not "
 "exist."
 msgstr ""
-"El camí per al servei {name!s} és <code>{path!s}</code>, però no existeix."
+"Đường dẫn cho dịch vụ {name!s} là <code>{path!s}</code>, nhưng không tồn "
+"tại."
 
 #: src/modules/plymouthcfg/main.py:27
 msgid "Configure Plymouth theme"
-msgstr "Configura el tema del Plymouth"
+msgstr "Cấu hình giao diện Plymouth"
 
 #: src/modules/packages/main.py:50 src/modules/packages/main.py:59
 #: src/modules/packages/main.py:69
 msgid "Install packages."
-msgstr "Instal·la els paquets."
+msgstr "Đang cài đặt các gói ứng dụng."
 
 #: src/modules/packages/main.py:57
 #, python-format
 msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "Es processen paquets (%(count)d / %(total)d)"
+msgstr "Đang xử lý gói (%(count)d / %(total)d)"
 
 #: src/modules/packages/main.py:62
 #, python-format
 msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
-msgstr[0] "S'instal·la un paquet."
-msgstr[1] "S'instal·len %(num)d paquets."
+msgstr[0] "Đang cài đặt %(num)d gói ứng dụng."
 
 #: src/modules/packages/main.py:65
 #, python-format
 msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
-msgstr[0] "Se suprimeix un paquet."
-msgstr[1] "Se suprimeixen %(num)d paquets."
+msgstr[0] "Đang gỡ bỏ %(num)d gói ứng dụng."
 
 #: src/modules/bootloader/main.py:42
 msgid "Install bootloader."
-msgstr "S'instal·la el carregador d'arrencada."
+msgstr "Đang cài đặt bộ khởi động."
 
 #: src/modules/hwclock/main.py:26
 msgid "Setting hardware clock."
-msgstr "S'estableix el rellotge del maquinari."
+msgstr "Đang thiết lập đồng hồ máy tính."
 
 #: src/modules/mkinitfs/main.py:27
 msgid "Creating initramfs with mkinitfs."
-msgstr "Es creen initramfs amb mkinitfs."
+msgstr "Đang tạo initramfs bằng mkinitfs."
 
 #: src/modules/mkinitfs/main.py:49
 msgid "Failed to run mkinitfs on the target"
-msgstr "Ha fallat executar mkinitfs a la destinació."
+msgstr "Chạy mkinitfs thất bại ở hệ thống đích"
 
 #: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
 msgid "The exit code was {}"
-msgstr "El codi de sortida ha estat {}"
+msgstr "Mã lỗi trả về là {}"
 
 #: src/modules/dracut/main.py:27
 msgid "Creating initramfs with dracut."
-msgstr "Es creen initramfs amb dracut."
+msgstr "Đang tạo initramfs bằng dracut."
 
 #: src/modules/dracut/main.py:49
 msgid "Failed to run dracut on the target"
-msgstr "Ha fallat executar dracut a la destinació."
+msgstr "Chạy dracut thất bại ở hệ thống đích"
 
 #: src/modules/initramfscfg/main.py:32
 msgid "Configuring initramfs."
-msgstr "Es configuren initramfs."
+msgstr "Đang cấu hình initramfs."
 
 #: src/modules/openrcdmcryptcfg/main.py:25
 msgid "Configuring OpenRC dmcrypt service."
-msgstr "Es configura el sevei OpenRC dmcrypt."
+msgstr "Đang cấu hình dịch vụ OpenRC dmcrypt."
 
 #: src/modules/fstab/main.py:29
 msgid "Writing fstab."
-msgstr "S'escriu fstab."
+msgstr "Đang viết vào fstab."
 
 #: src/modules/dummypython/main.py:35
 msgid "Dummy python job."
-msgstr "Tasca de python fictícia."
+msgstr "Ví dụ công việc python."
 
 #: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
 #: src/modules/dummypython/main.py:94
 msgid "Dummy python step {}"
-msgstr "Pas de python fitctici {}"
+msgstr "Ví dụ python bước {}"
 
 #: src/modules/localecfg/main.py:30
 msgid "Configuring locales."
-msgstr "Es configuren les llengües."
+msgstr "Đang cấu hình ngôn ngữ."
 
 #: src/modules/networkcfg/main.py:28
 msgid "Saving network configuration."
-msgstr "Es desa la configuració de la xarxa."
+msgstr "Đang lưu cấu hình mạng."

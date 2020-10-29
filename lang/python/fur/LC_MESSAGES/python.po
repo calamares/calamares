@@ -23,11 +23,11 @@ msgstr ""
 
 #: src/modules/grubcfg/main.py:28
 msgid "Configure GRUB."
-msgstr ""
+msgstr "Configure GRUB."
 
 #: src/modules/mount/main.py:29
 msgid "Mounting partitions."
-msgstr ""
+msgstr "Montaç des partizions."
 
 #: src/modules/mount/main.py:141 src/modules/initcpiocfg/main.py:196
 #: src/modules/initcpiocfg/main.py:200
