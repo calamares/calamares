@@ -143,7 +143,7 @@
   <context>
     <name>Calamares::JobThread</name>
     <message>
-      <location filename="../src/libcalamares/JobQueue.cpp" line="175"/>
+      <location filename="../src/libcalamares/JobQueue.cpp" line="196"/>
       <source>Done</source>
       <translation>Fecho</translation>
     </message>
@@ -177,32 +177,32 @@
   <context>
     <name>Calamares::PythonJob</name>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="193"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="192"/>
       <source>Running %1 operation.</source>
       <translation>Executando la operación %1.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="222"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="221"/>
       <source>Bad working directory path</source>
       <translation>El camín del direutoriu de trabayu ye incorreutu</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="223"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="222"/>
       <source>Working directory %1 for python job %2 is not readable.</source>
       <translation>El direutoriu de trabayu %1 pal trabayu en Python %2 nun ye lleibe.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="229"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="228"/>
       <source>Bad main script file</source>
       <translation>El ficheru del script principal ye incorreutu</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="230"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="229"/>
       <source>Main script file %1 for python job %2 is not readable.</source>
       <translation>El ficheru del script principal %1 pal trabayu en Python %2 nun ye lleibe.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="298"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="297"/>
       <source>Boost.Python error in job "%1".</source>
       <translation>Fallu de Boost.Python nel trabayu «%1».</translation>
     </message>
@@ -509,20 +509,20 @@ L'instalador va colar y van perdese tolos cambeos.</translation>
       <translation>Formulariu</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="130"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="126"/>
       <source>Select storage de&amp;vice:</source>
       <translation>Esbilla un preséu d'al&amp;macenamientu:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="131"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="938"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="983"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1073"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="127"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="963"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1008"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1098"/>
       <source>Current:</source>
       <translation>Anguaño:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="132"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="128"/>
       <source>After:</source>
       <translation>Dempués:</translation>
     </message>
@@ -532,111 +532,126 @@ L'instalador va colar y van perdese tolos cambeos.</translation>
       <translation>&lt;strong&gt;Particionáu manual&lt;/strong&gt;&lt;br/&gt;Vas poder crear o redimensionar particiones.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="806"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="831"/>
       <source>Reuse %1 as home partition for %2.</source>
       <translation>Reusu de %s como partición d'aniciu pa %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="939"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="964"/>
       <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;Esbilla una partición a redimensionar, dempués arrastra la barra baxera pa facelo&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="956"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="981"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
       <translation>%1 va redimensionase a %2MB y va crease una partición de %3MB pa %4.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1012"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1037"/>
       <source>Boot loader location:</source>
       <translation>Allugamientu del xestor d'arrinque:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1064"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1089"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;Esbilla una partición na qu'instalar&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1119"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1146"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation>Nun pudo alcontrase per nenyures una partición del sistema EFI. Volvi p'atrás y usa'l particionáu manual pa configurar %1, por favor.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1127"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1154"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>La partición del sistema EFI en %1 va usase p'aniciar %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1135"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1162"/>
       <source>EFI system partition:</source>
       <translation>Partición del sistema EFI:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1260"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1296"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Esti preséu d'almacenamientu nun paez que tenga un sistema operativu nelli. ¿Qué te prestaría facer?&lt;br/&gt;Vas ser a revisar y confirmar lo qu'escueyas enantes de que se faiga cualesquier cambéu nel preséu d'almacenamientu.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1265"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1302"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1324"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1349"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1301"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1338"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1360"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1385"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
       <translation>&lt;strong&gt;Desaniciu d'un discu&lt;/strong&gt;&lt;br/&gt;Esto va &lt;font color="red"&gt;desaniciar&lt;/font&gt; tolos datos presentes nel preséu d'almacenamientu esbilláu.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1269"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1298"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1320"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1345"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1305"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1334"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1356"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1381"/>
       <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
       <translation>&lt;strong&gt;Instalación anexa&lt;/strong&gt;&lt;br/&gt;L'instalador va redimensionar una partición pa dexar sitiu a %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1273"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1307"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1328"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1353"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1309"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1343"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1364"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1389"/>
       <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
       <translation>&lt;strong&gt;Troquéu d'una partición&lt;/strong&gt;&lt;br/&gt;Troca una parción con %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1292"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1328"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Esti preséu d'almacenamientu tien %1 nelli. ¿Qué te prestaría facer?&lt;br/&gt;Vas ser a revisar y confirmar lo qu'escueyas enantes de que se faiga cualesquier cambéu nel preséu d'almacenamientu.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1315"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1351"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Esti preséu d'almacenamientu yá tien un sistema operativu nelli. ¿Qué te prestaría facer?&lt;br/&gt;Vas ser a revisar y confirmar lo qu'escueyas enantes de que se faiga cualesquier cambéu nel preséu d'almacenamientu.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1340"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1376"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Esti preséu d'almacenamientu tien varios sistemes operativos nelli. ¿Qué te prestaría facer?&lt;br/&gt;Vas ser a revisar y confirmar lo qu'escueyas enantes de que se faiga cualesquier cambéu nel preséu d'almacenamientu.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1532"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1448"/>
+      <source>This storage device already has an operating system on it, but the partition table &lt;strong&gt;%1&lt;/strong&gt; is different from the needed &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1471"/>
+      <source>This storage device has one of its partitions &lt;strong&gt;mounted&lt;/strong&gt;.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1476"/>
+      <source>This storage device is a part of an &lt;strong&gt;inactive RAID&lt;/strong&gt; device.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1603"/>
       <source>No Swap</source>
       <translation>Ensin intercambéu</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1540"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1611"/>
       <source>Reuse Swap</source>
       <translation>Reusar un intercambéu</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1543"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1614"/>
       <source>Swap (no Hibernate)</source>
       <translation>Intercambéu (ensin ivernación)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1546"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1617"/>
       <source>Swap (with Hibernate)</source>
       <translation>Intercambéu (con ivernación)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1549"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1620"/>
       <source>Swap to file</source>
       <translation>Intercambéu nun ficheru</translation>
     </message>
@@ -1038,22 +1053,22 @@ L'instalador va colar y van perdese tolos cambeos.</translation>
   <context>
     <name>CreateVolumeGroupJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="28"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="31"/>
       <source>Create new volume group named %1.</source>
       <translation>Creación d'un grupu de volúmenes col nome %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="34"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="37"/>
       <source>Create new volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Va crease un grupu de volúmenes col nome &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="40"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="43"/>
       <source>Creating new volume group named %1.</source>
       <translation>Creando un grupu de volúmenes col nome %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="52"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="55"/>
       <source>The installer failed to create a volume group named '%1'.</source>
       <translation>L'instalador falló al crear un grupu de volúmenes col nome %1.</translation>
     </message>
@@ -1545,12 +1560,12 @@ L'instalador va colar y van perdese tolos cambeos.</translation>
   <context>
     <name>KeyboardPage</name>
     <message>
-      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="206"/>
+      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="204"/>
       <source>Set keyboard model to %1.&lt;br/&gt;</source>
       <translation>Va afitase'l modelu del tecláu a %1.&lt;br/&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="210"/>
+      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="208"/>
       <source>Set keyboard layout to %1/%2.</source>
       <translation>Va afitase la distrubución del tecláu a %1/%2.</translation>
     </message>
@@ -2269,12 +2284,12 @@ L'instalador va colar y van perdese tolos cambeos.</translation>
   <context>
     <name>PackageModel</name>
     <message>
-      <location filename="../src/modules/netinstall/PackageModel.cpp" line="167"/>
+      <location filename="../src/modules/netinstall/PackageModel.cpp" line="168"/>
       <source>Name</source>
       <translation>Nome</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/PackageModel.cpp" line="167"/>
+      <location filename="../src/modules/netinstall/PackageModel.cpp" line="168"/>
       <source>Description</source>
       <translation>Descripción</translation>
     </message>
@@ -2619,42 +2634,42 @@ L'instalador va colar y van perdese tolos cambeos.</translation>
       <translation>Dempués:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="427"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="426"/>
       <source>No EFI system partition configured</source>
       <translation>Nun se configuró nenguna partición del sistema EFI</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="428"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="427"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;%3&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="442"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="441"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;%3&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="441"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="440"/>
       <source>EFI system partition flag not set</source>
       <translation>Nun s'afitó la bandera del sistema EFI</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="468"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="467"/>
       <source>Option to use GPT on BIOS</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="469"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="468"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="497"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="496"/>
       <source>Boot partition not encrypted</source>
       <translation>La partición d'arrinque nun ta cifrada</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="498"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="497"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
       <translation>Configuróse una partición d'arrinque xunto con una partición raigañu cifrada pero la partición d'arrinque nun ta cifrada.&lt;br/&gt;&lt;br/&gt;Hai problemes de seguranza con esta triba de configuración porque los ficheros importantes del sistema caltiénense nuna partición ensin cifrar.&lt;br/&gt;Podríes siguir si quixeres pero'l desbloquéu del sistema de ficheros va asoceder más sero nel aniciu del sistema.&lt;br/&gt;Pa cifrar la partición raigañu, volvi p'atrás y recreala esbillando &lt;strong&gt;Cifrar&lt;/strong&gt; na ventana de creación de particiones.</translation>
     </message>
@@ -2924,69 +2939,69 @@ Salida:
       <translation>Formulariu</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="123"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="127"/>
       <source>Select where to install %1.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
       <translation>Esbilla ónde instalar %1.&lt;br/&gt;&lt;font color="red"&gt;Alvertencia:&lt;/font&gt; esto va desaniciar tolos ficheros de la partición esbillada.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="145"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="149"/>
       <source>The selected item does not appear to be a valid partition.</source>
       <translation>L'elementu esbilláu nun paez ser una partición válida.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="153"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="157"/>
       <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
       <translation>%1 nun pue instalase nel espaciu baleru. Esbilla una partición esistente, por favor.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="163"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="167"/>
       <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
       <translation>%1 nun pue instalase nuna partición estendida. Esbilla una partición primaria o llóxica esistente, por favor.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="173"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="177"/>
       <source>%1 cannot be installed on this partition.</source>
       <translation>%1 nun pue instalase nesta partición.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="179"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="183"/>
       <source>Data partition (%1)</source>
       <translation>Partición de datos (%1)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="199"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="203"/>
       <source>Unknown system partition (%1)</source>
       <translation>Desconozse la partición del sistema (%1)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="203"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="207"/>
       <source>%1 system partition (%2)</source>
       <translation>Partición %1 del sistema (%2)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="214"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="218"/>
       <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
       <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;La partición %1 ye perpequeña pa %2. Esbilla una con una capacidá de polo menos %3GB.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="236"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="240"/>
       <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Nun pudo alcontrase per nenyures una partición del sistema EFI. Volvi p'atrás y usa'l particionáu manual pa configurar %1, por favor.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="247"/>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="263"/>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="288"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="251"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="267"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="292"/>
       <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;all data on partition %2 will be lost.</source>
       <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 va instalase en %2.&lt;br/&gt;&lt;font color="red"&gt;Alvertencia: &lt;/font&gt;van perdese tolos datos de la partición %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="255"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="259"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>La partición del sistema EFI en %1 va usase p'aniciar %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="271"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="275"/>
       <source>EFI system partition:</source>
       <translation>Partición del sistema EFI:</translation>
     </message>
@@ -3408,7 +3423,7 @@ Salida:
   <context>
     <name>ShellProcessJob</name>
     <message>
-      <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="37"/>
+      <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="41"/>
       <source>Shell Processes Job</source>
       <translation>Trabayu de procesos de la shell</translation>
     </message>

@@ -143,7 +143,7 @@
   <context>
     <name>Calamares::JobThread</name>
     <message>
-      <location filename="../src/libcalamares/JobQueue.cpp" line="175"/>
+      <location filename="../src/libcalamares/JobQueue.cpp" line="196"/>
       <source>Done</source>
       <translation>완료</translation>
     </message>
@@ -177,32 +177,32 @@
   <context>
     <name>Calamares::PythonJob</name>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="193"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="192"/>
       <source>Running %1 operation.</source>
       <translation>%1 명령을 실행중</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="222"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="221"/>
       <source>Bad working directory path</source>
       <translation>잘못된 작업 디렉터리 경로</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="223"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="222"/>
       <source>Working directory %1 for python job %2 is not readable.</source>
       <translation>파이썬 작업 %2에 대한 작업 디렉터리 %1을 읽을 수 없습니다.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="229"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="228"/>
       <source>Bad main script file</source>
       <translation>잘못된 주 스크립트 파일</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="230"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="229"/>
       <source>Main script file %1 for python job %2 is not readable.</source>
       <translation>파이썬 작업 %2에 대한 주 스크립트 파일 %1을 읽을 수 없습니다.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="298"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="297"/>
       <source>Boost.Python error in job "%1".</source>
       <translation>작업 "%1"에서 Boost.Python 오류</translation>
     </message>
@@ -508,20 +508,20 @@ The installer will quit and all changes will be lost.</source>
       <translation>형식</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="130"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="126"/>
       <source>Select storage de&amp;vice:</source>
       <translation>저장 장치 선택 (&amp;v)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="131"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="938"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="983"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1073"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="127"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="963"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1008"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1098"/>
       <source>Current:</source>
       <translation>현재:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="132"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="128"/>
       <source>After:</source>
       <translation>이후:</translation>
     </message>
@@ -531,111 +531,126 @@ The installer will quit and all changes will be lost.</source>
       <translation>&lt;strong&gt;수동 파티션 작업&lt;/strong&gt;&lt;br/&gt;직접 파티션을 만들거나 크기를 조정할 수 있습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="806"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="831"/>
       <source>Reuse %1 as home partition for %2.</source>
       <translation>%2의 홈 파티션으로 %1을 재사용합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="939"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="964"/>
       <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;축소할 파티션을 선택한 다음 하단 막대를 끌어 크기를 조정합니다.&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="956"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="981"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
       <translation>%1이 %2MiB로 축소되고 %4에 대해 새 %3MiB 파티션이 생성됩니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1012"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1037"/>
       <source>Boot loader location:</source>
       <translation>부트 로더 위치 :</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1064"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1089"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;설치할 파티션을 선택합니다.&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1119"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1146"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation>이 시스템에서는 EFI 시스템 파티션을 찾을 수 없습니다. 돌아가서 수동 파티션 작업을 사용하여 %1을 설정하세요.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1127"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1154"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>%1의 EFI 시스템 파티션은 %2의 시작으로 사용될 것입니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1135"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1162"/>
       <source>EFI system partition:</source>
       <translation>EFI 시스템 파티션:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1260"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1296"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>이 저장 장치에는 운영 체제가없는 것 같습니다. 무엇을하고 싶으십니까?&lt;br/&gt;저장 장치를 변경하기 전에 선택 사항을 검토하고 확인할 수 있습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1265"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1302"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1324"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1349"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1301"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1338"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1360"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1385"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
       <translation>&lt;strong&gt;디스크 지우기&lt;/strong&gt;&lt;br/&gt;그러면 선택한 저장 장치에 현재 있는 모든 데이터가 &lt;font color="red"&gt;삭제&lt;/font&gt;됩니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1269"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1298"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1320"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1345"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1305"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1334"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1356"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1381"/>
       <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
       <translation>&lt;strong&gt;함께 설치&lt;/strong&gt;&lt;br/&gt;설치 관리자가 파티션을 축소하여 %1 공간을 확보합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1273"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1307"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1328"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1353"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1309"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1343"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1364"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1389"/>
       <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
       <translation>&lt;strong&gt;파티션 바꾸기&lt;/strong&gt;&lt;br/&gt;파티션을 %1로 바꿉니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1292"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1328"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>이 저장 장치에 %1이 있습니다. 무엇을하고 싶으십니까?&lt;br/&gt;저장 장치를 변경하기 전에 선택 사항을 검토하고 확인할 수 있습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1315"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1351"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>이 저장 장치에는 이미 운영 체제가 있습니다. 무엇을하고 싶으십니까?&lt;br/&gt;저장 장치를 변경하기 전에 선택 사항을 검토하고 확인할 수 있습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1340"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1376"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>이 저장 장치에는 여러 개의 운영 체제가 있습니다. 무엇을하고 싶으십니까?&lt;br/&gt;저장 장치를 변경하기 전에 선택 사항을 검토하고 확인할 수 있습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1532"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1448"/>
+      <source>This storage device already has an operating system on it, but the partition table &lt;strong&gt;%1&lt;/strong&gt; is different from the needed &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1471"/>
+      <source>This storage device has one of its partitions &lt;strong&gt;mounted&lt;/strong&gt;.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1476"/>
+      <source>This storage device is a part of an &lt;strong&gt;inactive RAID&lt;/strong&gt; device.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1603"/>
       <source>No Swap</source>
       <translation>스왑 없음</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1540"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1611"/>
       <source>Reuse Swap</source>
       <translation>스왑 재사용</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1543"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1614"/>
       <source>Swap (no Hibernate)</source>
       <translation>스왑 (최대 절전모드 아님)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1546"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1617"/>
       <source>Swap (with Hibernate)</source>
       <translation>스왑 (최대 절전모드 사용)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1549"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1620"/>
       <source>Swap to file</source>
       <translation>파일로 스왑</translation>
     </message>
@@ -1037,22 +1052,22 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>CreateVolumeGroupJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="28"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="31"/>
       <source>Create new volume group named %1.</source>
       <translation>%1로 이름 지정된 새 볼륨 그룹을 생성합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="34"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="37"/>
       <source>Create new volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>&lt;strong&gt;%1&lt;/strong&gt;로 이름 지정된 새 볼륨 그룹을 생성중입니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="40"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="43"/>
       <source>Creating new volume group named %1.</source>
       <translation>%1로 이름 지정된 새 볼륨 그룹을 생성중입니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="52"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="55"/>
       <source>The installer failed to create a volume group named '%1'.</source>
       <translation>설치 관리자가 '%1'로 이름 지정된 볼륨 그룹을 생성하지 못했습니다.</translation>
     </message>
@@ -1544,12 +1559,12 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>KeyboardPage</name>
     <message>
-      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="206"/>
+      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="204"/>
       <source>Set keyboard model to %1.&lt;br/&gt;</source>
       <translation>키보드 모델을 %1로 설정합니다.&lt;br/&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="210"/>
+      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="208"/>
       <source>Set keyboard layout to %1/%2.</source>
       <translation>키보드 레이아웃을 %1/%2로 설정합니다.</translation>
     </message>
@@ -2268,12 +2283,12 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>PackageModel</name>
     <message>
-      <location filename="../src/modules/netinstall/PackageModel.cpp" line="167"/>
+      <location filename="../src/modules/netinstall/PackageModel.cpp" line="168"/>
       <source>Name</source>
       <translation>이름</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/PackageModel.cpp" line="167"/>
+      <location filename="../src/modules/netinstall/PackageModel.cpp" line="168"/>
       <source>Description</source>
       <translation>설명</translation>
     </message>
@@ -2618,42 +2633,42 @@ The installer will quit and all changes will be lost.</source>
       <translation>이후:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="427"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="426"/>
       <source>No EFI system partition configured</source>
       <translation>EFI 시스템 파티션이 설정되지 않았습니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="428"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="427"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;%3&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="442"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="441"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;%3&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="441"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="440"/>
       <source>EFI system partition flag not set</source>
       <translation>EFI 시스템 파티션 플래그가 설정되지 않았습니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="468"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="467"/>
       <source>Option to use GPT on BIOS</source>
       <translation>BIOS에서 GPT를 사용하는 옵션</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="469"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="468"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
       <translation>GPT 파티션 테이블은 모든 시스템에 가장 적합한 옵션입니다. 이 설치 프로그램은 BIOS 시스템에 대한 이러한 설정도 지원합니다.&lt;br/&gt;&lt;br/&gt;BIOS에서 GPT 파티션 테이블을 구성하려면(아직 구성되지 않은 경우) 돌아가서 파티션 테이블을 GPT로 설정한 다음, &lt;strong&gt;bios_grub&lt;/strong&gt; 플래그가 사용하도록 설정된 8MB의 포맷되지 않은 파티션을 생성합니다.&lt;br/&gt;&lt;br/&gt;GPT가 있는 BIOS 시스템에서 %1을 시작하려면 포맷되지 않은 8MB 파티션이 필요합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="497"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="496"/>
       <source>Boot partition not encrypted</source>
       <translation>부트 파티션이 암호화되지 않았습니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="498"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="497"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
       <translation>암호화된 루트 파티션과 함께 별도의 부팅 파티션이 설정되었지만 부팅 파티션은 암호화되지 않았습니다.&lt;br/&gt;&lt;br/&gt;중요한 시스템 파일은 암호화되지 않은 파티션에 보관되기 때문에 이러한 설정과 관련하여 보안 문제가 있습니다.&lt;br/&gt;원하는 경우 계속할 수 있지만 나중에 시스템을 시작하는 동안 파일 시스템 잠금이 해제됩니다.&lt;br/&gt;부팅 파티션을 암호화하려면 돌아가서 다시 생성하여 파티션 생성 창에서 &lt;strong&gt;암호화&lt;/strong&gt;를 선택합니다.</translation>
     </message>
@@ -2922,69 +2937,69 @@ Output:
       <translation>형식</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="123"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="127"/>
       <source>Select where to install %1.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
       <translation>%1을 설치할 위치를 선택합니다.&lt;br/&gt;&lt;font color="red"&gt;경고: &lt;/font&gt;선택한 파티션의 모든 파일이 삭제됩니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="145"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="149"/>
       <source>The selected item does not appear to be a valid partition.</source>
       <translation>선택된 항목은 유효한 파티션으로 표시되지 않습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="153"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="157"/>
       <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
       <translation>%1은 빈 공간에 설치될 수 없습니다. 존재하는 파티션을 선택해주세요.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="163"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="167"/>
       <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
       <translation>%1은 확장 파티션에 설치될 수 없습니다. 주 파티션 혹은 논리 파티션을 선택해주세요.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="173"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="177"/>
       <source>%1 cannot be installed on this partition.</source>
       <translation>%1은 이 파티션에 설치될 수 없습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="179"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="183"/>
       <source>Data partition (%1)</source>
       <translation>데이터 파티션 (%1)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="199"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="203"/>
       <source>Unknown system partition (%1)</source>
       <translation>알 수 없는 시스템 파티션 (%1)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="203"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="207"/>
       <source>%1 system partition (%2)</source>
       <translation>%1 시스템 파티션 (%2)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="214"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="218"/>
       <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
       <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 파티션이 %2에 비해 너무 작습니다. 용량이 %3 GiB 이상인 파티션을 선택하십시오.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="236"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="240"/>
       <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;이 시스템에서는 EFI 시스템 파티션을 찾을 수 없습니다. 돌아가서 수동 파티션 작업을 사용하여 %1을 설정하세요.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="247"/>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="263"/>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="288"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="251"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="267"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="292"/>
       <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;all data on partition %2 will be lost.</source>
       <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1이 %2에 설치됩니다.&lt;br/&gt;&lt;font color="red"&gt;경고: &lt;/font&gt;%2 파티션의 모든 데이터가 손실됩니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="255"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="259"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>%1의 EFI 시스템 파티션은 %2의 시작으로 사용될 것입니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="271"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="275"/>
       <source>EFI system partition:</source>
       <translation>EFI 시스템 파티션:</translation>
     </message>
@@ -3404,7 +3419,7 @@ Output:
   <context>
     <name>ShellProcessJob</name>
     <message>
-      <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="37"/>
+      <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="41"/>
       <source>Shell Processes Job</source>
       <translation>셸 처리 작업</translation>
     </message>

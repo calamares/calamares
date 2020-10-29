@@ -12,6 +12,7 @@
 #include "core/PartUtils.h"
 
 #include "utils/CalamaresUtilsGui.h"
+#include "utils/QtCompat.h"
 #include "utils/Retranslator.h"
 
 #include <QDir>
@@ -45,7 +46,7 @@ BootInfoWidget::BootInfoWidget( QWidget* parent )
     m_bootLabel->setAlignment( Qt::AlignCenter );
 
     QPalette palette;
-    palette.setBrush( QPalette::Foreground, QColor( "#4D4D4D" ) );  //dark grey
+    palette.setBrush( WindowText, QColor( "#4D4D4D" ) );  //dark grey
 
     m_bootIcon->setAutoFillBackground( true );
     m_bootLabel->setAutoFillBackground( true );

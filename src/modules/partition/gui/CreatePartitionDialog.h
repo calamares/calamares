@@ -45,7 +45,7 @@ public:
                            Partition* partition,
                            const QStringList& usedMountPoints,
                            QWidget* parentWidget = nullptr );
-    ~CreatePartitionDialog();
+    ~CreatePartitionDialog() override;
 
     /**
      * Must be called when user wants to create a partition in

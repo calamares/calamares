@@ -34,6 +34,7 @@
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/NamedEnum.h"
+#include "utils/QtCompat.h"
 #include "utils/Retranslator.h"
 #include "utils/Variant.h"
 #include "widgets/WaitingWidget.h"
@@ -273,7 +274,7 @@ PartitionViewStep::createSummaryWidget() const
         jobsLabel->setText( jobsLines.join( "<br/>" ) );
         jobsLabel->setMargin( CalamaresUtils::defaultFontHeight() / 2 );
         QPalette pal;
-        pal.setColor( QPalette::Background, pal.window().color().lighter( 108 ) );
+        pal.setColor( WindowBackground, pal.window().color().lighter( 108 ) );
         jobsLabel->setAutoFillBackground( true );
         jobsLabel->setPalette( pal );
     }

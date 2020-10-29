@@ -43,7 +43,7 @@ Config::status() const
     case Status::FailedNetworkError:
         return tr( "Network Installation. (Disabled: Unable to fetch package lists, check your network connection)" );
     }
-    NOTREACHED return QString();
+    __builtin_unreachable();
 }
 
 

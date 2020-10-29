@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-22 09:58+0200\n"
+"POT-Creation-Date: 2020-10-16 22:35+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Zmicer Turok <nashtlumach@gmail.com>, 2020\n"
 "Language-Team: Belarusian (https://www.transifex.com/calamares/teams/20061/be/)\n"
@@ -21,146 +21,32 @@ msgstr ""
 "Language: be\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: src/modules/packages/main.py:50 src/modules/packages/main.py:59
-#: src/modules/packages/main.py:69
-msgid "Install packages."
-msgstr "Усталяваць пакункі."
+#: src/modules/grubcfg/main.py:28
+msgid "Configure GRUB."
+msgstr "Наладзіць GRUB."
 
-#: src/modules/packages/main.py:57
-#, python-format
-msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "Апрацоўка пакункаў (%(count)d / %(total)d)"
+#: src/modules/mount/main.py:29
+msgid "Mounting partitions."
+msgstr "Мантаванне раздзелаў."
 
-#: src/modules/packages/main.py:62
-#, python-format
-msgid "Installing one package."
-msgid_plural "Installing %(num)d packages."
-msgstr[0] "Усталёўка аднаго пакунка."
-msgstr[1] "Усталёўка %(num)d пакункаў."
-msgstr[2] "Усталёўка %(num)d пакункаў."
-msgstr[3] "Усталёўка%(num)d пакункаў."
-
-#: src/modules/packages/main.py:65
-#, python-format
-msgid "Removing one package."
-msgid_plural "Removing %(num)d packages."
-msgstr[0] "Выдаленне аднаго пакунка."
-msgstr[1] "Выдаленне %(num)d пакункаў."
-msgstr[2] "Выдаленне %(num)d пакункаў."
-msgstr[3] "Выдаленне %(num)d пакункаў."
-
-#: src/modules/networkcfg/main.py:28
-msgid "Saving network configuration."
-msgstr "Захаванне сеткавай канфігурацыі."
-
-#: src/modules/networkcfg/main.py:39 src/modules/initcpiocfg/main.py:196
-#: src/modules/initcpiocfg/main.py:200 src/modules/openrcdmcryptcfg/main.py:69
-#: src/modules/openrcdmcryptcfg/main.py:73 src/modules/localecfg/main.py:135
-#: src/modules/mount/main.py:141 src/modules/luksopenswaphookcfg/main.py:86
-#: src/modules/luksopenswaphookcfg/main.py:90 src/modules/fstab/main.py:323
-#: src/modules/fstab/main.py:329 src/modules/initramfscfg/main.py:85
-#: src/modules/initramfscfg/main.py:89 src/modules/rawfs/main.py:164
+#: src/modules/mount/main.py:141 src/modules/initcpiocfg/main.py:196
+#: src/modules/initcpiocfg/main.py:200
+#: src/modules/luksopenswaphookcfg/main.py:86
+#: src/modules/luksopenswaphookcfg/main.py:90 src/modules/rawfs/main.py:164
+#: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
+#: src/modules/openrcdmcryptcfg/main.py:69
+#: src/modules/openrcdmcryptcfg/main.py:73 src/modules/fstab/main.py:361
+#: src/modules/fstab/main.py:367 src/modules/localecfg/main.py:135
+#: src/modules/networkcfg/main.py:39
 msgid "Configuration Error"
 msgstr "Памылка канфігурацыі"
 
-#: src/modules/networkcfg/main.py:40 src/modules/initcpiocfg/main.py:201
-#: src/modules/openrcdmcryptcfg/main.py:74 src/modules/localecfg/main.py:136
-#: src/modules/luksopenswaphookcfg/main.py:91 src/modules/fstab/main.py:330
-#: src/modules/initramfscfg/main.py:90
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr "Каранёвы пункт мантавання для<pre>{!s}</pre> не пададзены."
-
-#: src/modules/umount/main.py:31
-msgid "Unmount file systems."
-msgstr "Адмантаваць файлавыя сістэмы."
-
-#: src/modules/initcpiocfg/main.py:28
-msgid "Configuring mkinitcpio."
-msgstr "Наладка mkinitcpio."
-
-#: src/modules/initcpiocfg/main.py:197 src/modules/openrcdmcryptcfg/main.py:70
-#: src/modules/mount/main.py:142 src/modules/luksopenswaphookcfg/main.py:87
-#: src/modules/fstab/main.py:324 src/modules/initramfscfg/main.py:86
-#: src/modules/rawfs/main.py:165
+#: src/modules/mount/main.py:142 src/modules/initcpiocfg/main.py:197
+#: src/modules/luksopenswaphookcfg/main.py:87 src/modules/rawfs/main.py:165
+#: src/modules/initramfscfg/main.py:86 src/modules/openrcdmcryptcfg/main.py:70
+#: src/modules/fstab/main.py:362
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "Раздзелы для <pre>{!s}</pre> не вызначаныя."
-
-#: src/modules/mkinitfs/main.py:27
-msgid "Creating initramfs with mkinitfs."
-msgstr ""
-
-#: src/modules/mkinitfs/main.py:49
-msgid "Failed to run mkinitfs on the target"
-msgstr ""
-
-#: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
-msgid "The exit code was {}"
-msgstr "Код выхаду {}"
-
-#: src/modules/openrcdmcryptcfg/main.py:25
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "Наладка OpenRC dmcrypt."
-
-#: src/modules/unpackfs/main.py:35
-msgid "Filling up filesystems."
-msgstr "Запаўненне файлавых сістэм."
-
-#: src/modules/unpackfs/main.py:248
-msgid "rsync failed with error code {}."
-msgstr "памылка rsync з кодам {}."
-
-#: src/modules/unpackfs/main.py:293
-msgid "Unpacking image {}/{}, file {}/{}"
-msgstr "Распакоўванне вобраза {}/{}, файл {}/{}"
-
-#: src/modules/unpackfs/main.py:308
-msgid "Starting to unpack {}"
-msgstr "Запуск распакоўвання {}"
-
-#: src/modules/unpackfs/main.py:317 src/modules/unpackfs/main.py:439
-msgid "Failed to unpack image \"{}\""
-msgstr "Не атрымалася распакаваць вобраз \"{}\""
-
-#: src/modules/unpackfs/main.py:406
-msgid "No mount point for root partition"
-msgstr "Для каранёвага раздзела няма пункта мантавання"
-
-#: src/modules/unpackfs/main.py:407
-msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr "globalstorage не змяшчае ключа \"rootMountPoint\", нічога не выконваецца"
-
-#: src/modules/unpackfs/main.py:412
-msgid "Bad mount point for root partition"
-msgstr "Хібны пункт мантавання для каранёвага раздзела"
-
-#: src/modules/unpackfs/main.py:413
-msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr "rootMountPoint \"{}\" не існуе, нічога не выконваецца"
-
-#: src/modules/unpackfs/main.py:429 src/modules/unpackfs/main.py:433
-#: src/modules/unpackfs/main.py:453
-msgid "Bad unsquash configuration"
-msgstr "Хібная канфігурацыя unsquash"
-
-#: src/modules/unpackfs/main.py:430
-msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
-msgstr "Файлавая сістэма для \"{}\" ({}) не падтрымліваецца вашым бягучым ядром"
-
-#: src/modules/unpackfs/main.py:434
-msgid "The source filesystem \"{}\" does not exist"
-msgstr "Зыходная файлавая сістэма \"{}\" не існуе"
-
-#: src/modules/unpackfs/main.py:440
-msgid ""
-"Failed to find unsquashfs, make sure you have the squashfs-tools package "
-"installed"
-msgstr ""
-"Не атрымалася знайсці unsquashfs, праверце ці ўсталяваны ў вас пакунак "
-"squashfs-tools"
-
-#: src/modules/unpackfs/main.py:454
-msgid "The destination \"{}\" in the target system is not a directory"
-msgstr "Пункт прызначэння \"{}\" у мэтавай сістэме не з’яўляецца каталогам"
 
 #: src/modules/services-systemd/main.py:26
 msgid "Configure systemd services"
@@ -201,96 +87,70 @@ msgstr ""
 "Невядомыя systemd загады <code>{command!s}</code> і <code>{suffix!s}</code> "
 "для адзінкі {name!s}."
 
-#: src/modules/dummypython/main.py:35
-msgid "Dummy python job."
-msgstr "Задача Dummy python."
+#: src/modules/umount/main.py:31
+msgid "Unmount file systems."
+msgstr "Адмантаваць файлавыя сістэмы."
 
-#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
-#: src/modules/dummypython/main.py:94
-msgid "Dummy python step {}"
-msgstr "Крок Dummy python {}"
+#: src/modules/unpackfs/main.py:35
+msgid "Filling up filesystems."
+msgstr "Запаўненне файлавых сістэм."
 
-#: src/modules/bootloader/main.py:42
-msgid "Install bootloader."
-msgstr "Усталяваць загрузчык."
+#: src/modules/unpackfs/main.py:254
+msgid "rsync failed with error code {}."
+msgstr "памылка rsync з кодам {}."
 
-#: src/modules/localecfg/main.py:30
-msgid "Configuring locales."
-msgstr "Наладка лакаляў."
+#: src/modules/unpackfs/main.py:299
+msgid "Unpacking image {}/{}, file {}/{}"
+msgstr "Распакоўванне вобраза {}/{}, файл {}/{}"
 
-#: src/modules/mount/main.py:29
-msgid "Mounting partitions."
-msgstr "Мантаванне раздзелаў."
+#: src/modules/unpackfs/main.py:314
+msgid "Starting to unpack {}"
+msgstr "Запуск распакоўвання {}"
 
-#: src/modules/plymouthcfg/main.py:27
-msgid "Configure Plymouth theme"
-msgstr "Наладзіць тэму Plymouth"
+#: src/modules/unpackfs/main.py:323 src/modules/unpackfs/main.py:463
+msgid "Failed to unpack image \"{}\""
+msgstr "Не атрымалася распакаваць вобраз \"{}\""
 
-#: src/modules/luksopenswaphookcfg/main.py:26
-msgid "Configuring encrypted swap."
-msgstr "Наладка зашыфраванага swap."
+#: src/modules/unpackfs/main.py:430
+msgid "No mount point for root partition"
+msgstr "Для каранёвага раздзела няма пункта мантавання"
 
-#: src/modules/fstab/main.py:29
-msgid "Writing fstab."
-msgstr "Запіс fstab."
+#: src/modules/unpackfs/main.py:431
+msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
+msgstr "globalstorage не змяшчае ключа \"rootMountPoint\", нічога не выконваецца"
 
-#: src/modules/services-openrc/main.py:29
-msgid "Configure OpenRC services"
-msgstr "Наладзіць службы OpenRC"
+#: src/modules/unpackfs/main.py:436
+msgid "Bad mount point for root partition"
+msgstr "Хібны пункт мантавання для каранёвага раздзела"
 
-#: src/modules/services-openrc/main.py:57
-msgid "Cannot add service {name!s} to run-level {level!s}."
-msgstr "Не атрымалася дадаць службу {name!s} на ўзровень запуску  {level!s}."
+#: src/modules/unpackfs/main.py:437
+msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
+msgstr "rootMountPoint \"{}\" не існуе, нічога не выконваецца"
 
-#: src/modules/services-openrc/main.py:59
-msgid "Cannot remove service {name!s} from run-level {level!s}."
-msgstr "Не атрымалася выдаліць службу {name!s} з узроўню запуску {level!s}."
+#: src/modules/unpackfs/main.py:453 src/modules/unpackfs/main.py:457
+#: src/modules/unpackfs/main.py:477
+msgid "Bad unsquash configuration"
+msgstr "Хібная канфігурацыя unsquash"
 
-#: src/modules/services-openrc/main.py:61
+#: src/modules/unpackfs/main.py:454
+msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
+msgstr "Файлавая сістэма для \"{}\" ({}) не падтрымліваецца вашым бягучым ядром"
+
+#: src/modules/unpackfs/main.py:458
+msgid "The source filesystem \"{}\" does not exist"
+msgstr "Зыходная файлавая сістэма \"{}\" не існуе"
+
+#: src/modules/unpackfs/main.py:464
 msgid ""
-"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
-"level {level!s}."
+"Failed to find unsquashfs, make sure you have the squashfs-tools package "
+"installed"
 msgstr ""
-"Невядомае дзеянне <code>{arg!s}</code> для службы {name!s} на ўзроўні "
-"запуску {level!s}."
+"Не атрымалася знайсці unsquashfs, праверце ці ўсталяваны ў вас пакунак "
+"squashfs-tools"
 
-#: src/modules/services-openrc/main.py:94
-msgid ""
-"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr ""
-"<code>rc-update {arg!s}</code> пад chroot вярнуўся з кодам памылкі {num!s}."
-
-#: src/modules/services-openrc/main.py:101
-msgid "Target runlevel does not exist"
-msgstr "Мэтавы ўзровень запуску не існуе"
-
-#: src/modules/services-openrc/main.py:102
-msgid ""
-"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr "Шлях <code>{path!s}</code> да ўзроўня запуску {level!s} не існуе."
-
-#: src/modules/services-openrc/main.py:110
-msgid "Target service does not exist"
-msgstr "Мэтавая служба не існуе"
-
-#: src/modules/services-openrc/main.py:111
-msgid ""
-"The path for service {name!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr "Шлях <code>{path!s}</code> да службы {level!s} не існуе."
-
-#: src/modules/dracut/main.py:27
-msgid "Creating initramfs with dracut."
-msgstr "Стварэнне initramfs з dracut."
-
-#: src/modules/dracut/main.py:49
-msgid "Failed to run dracut on the target"
-msgstr "Не атрымалася запусціць dracut у пункце прызначэння"
-
-#: src/modules/grubcfg/main.py:28
-msgid "Configure GRUB."
-msgstr "Наладзіць GRUB."
+#: src/modules/unpackfs/main.py:478
+msgid "The destination \"{}\" in the target system is not a directory"
+msgstr "Пункт прызначэння \"{}\" у мэтавай сістэме не з’яўляецца каталогам"
 
 #: src/modules/displaymanager/main.py:514
 msgid "Cannot write KDM configuration file"
@@ -338,24 +198,167 @@ msgstr "У модулі дысплейных кіраўнікоў нічога �
 
 #: src/modules/displaymanager/main.py:895
 msgid ""
-"The displaymanagers list is empty or undefined in bothglobalstorage and "
+"The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
 msgstr ""
-"Спіс дысплейных кіраўнікоў пусты альбо не вызначаны ў bothglobalstorage і "
+"Спіс дысплейных кіраўнікоў пусты альбо не вызначаны ў both globalstorage і "
 "displaymanager.conf."
 
 #: src/modules/displaymanager/main.py:977
 msgid "Display manager configuration was incomplete"
 msgstr "Наладка дысплейнага кіраўніка не завершаная."
 
-#: src/modules/initramfscfg/main.py:32
-msgid "Configuring initramfs."
-msgstr "Наладка initramfs."
+#: src/modules/initcpiocfg/main.py:28
+msgid "Configuring mkinitcpio."
+msgstr "Наладка mkinitcpio."
+
+#: src/modules/initcpiocfg/main.py:201
+#: src/modules/luksopenswaphookcfg/main.py:91
+#: src/modules/initramfscfg/main.py:90 src/modules/openrcdmcryptcfg/main.py:74
+#: src/modules/fstab/main.py:368 src/modules/localecfg/main.py:136
+#: src/modules/networkcfg/main.py:40
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr "Каранёвы пункт мантавання для<pre>{!s}</pre> не пададзены."
+
+#: src/modules/luksopenswaphookcfg/main.py:26
+msgid "Configuring encrypted swap."
+msgstr "Наладка зашыфраванага swap."
+
+#: src/modules/rawfs/main.py:26
+msgid "Installing data."
+msgstr "Усталёўка даных."
+
+#: src/modules/services-openrc/main.py:29
+msgid "Configure OpenRC services"
+msgstr "Наладзіць службы OpenRC"
+
+#: src/modules/services-openrc/main.py:57
+msgid "Cannot add service {name!s} to run-level {level!s}."
+msgstr "Не атрымалася дадаць службу {name!s} на ўзровень запуску  {level!s}."
+
+#: src/modules/services-openrc/main.py:59
+msgid "Cannot remove service {name!s} from run-level {level!s}."
+msgstr "Не атрымалася выдаліць службу {name!s} з узроўню запуску {level!s}."
+
+#: src/modules/services-openrc/main.py:61
+msgid ""
+"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
+"level {level!s}."
+msgstr ""
+"Невядомае дзеянне <code>{arg!s}</code> для службы {name!s} на ўзроўні "
+"запуску {level!s}."
+
+#: src/modules/services-openrc/main.py:94
+msgid ""
+"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"<code>rc-update {arg!s}</code> пад chroot вярнуўся з кодам памылкі {num!s}."
+
+#: src/modules/services-openrc/main.py:101
+msgid "Target runlevel does not exist"
+msgstr "Мэтавы ўзровень запуску не існуе"
+
+#: src/modules/services-openrc/main.py:102
+msgid ""
+"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr "Шлях <code>{path!s}</code> да ўзроўня запуску {level!s} не існуе."
+
+#: src/modules/services-openrc/main.py:110
+msgid "Target service does not exist"
+msgstr "Мэтавая служба не існуе"
+
+#: src/modules/services-openrc/main.py:111
+msgid ""
+"The path for service {name!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr "Шлях <code>{path!s}</code> да службы {level!s} не існуе."
+
+#: src/modules/plymouthcfg/main.py:27
+msgid "Configure Plymouth theme"
+msgstr "Наладзіць тэму Plymouth"
+
+#: src/modules/packages/main.py:50 src/modules/packages/main.py:59
+#: src/modules/packages/main.py:69
+msgid "Install packages."
+msgstr "Усталяваць пакункі."
+
+#: src/modules/packages/main.py:57
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "Апрацоўка пакункаў (%(count)d / %(total)d)"
+
+#: src/modules/packages/main.py:62
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] "Усталёўка аднаго пакунка."
+msgstr[1] "Усталёўка %(num)d пакункаў."
+msgstr[2] "Усталёўка %(num)d пакункаў."
+msgstr[3] "Усталёўка%(num)d пакункаў."
+
+#: src/modules/packages/main.py:65
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] "Выдаленне аднаго пакунка."
+msgstr[1] "Выдаленне %(num)d пакункаў."
+msgstr[2] "Выдаленне %(num)d пакункаў."
+msgstr[3] "Выдаленне %(num)d пакункаў."
+
+#: src/modules/bootloader/main.py:42
+msgid "Install bootloader."
+msgstr "Усталяваць загрузчык."
 
 #: src/modules/hwclock/main.py:26
 msgid "Setting hardware clock."
 msgstr "Наладка апаратнага гадзінніка."
 
-#: src/modules/rawfs/main.py:26
-msgid "Installing data."
-msgstr "Усталёўка даных."
+#: src/modules/mkinitfs/main.py:27
+msgid "Creating initramfs with mkinitfs."
+msgstr "Стварэнне initramfs праз mkinitfs."
+
+#: src/modules/mkinitfs/main.py:49
+msgid "Failed to run mkinitfs on the target"
+msgstr "Не атрымалася запусціць mkinitfs у пункце прызначэння"
+
+#: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
+msgid "The exit code was {}"
+msgstr "Код выхаду {}"
+
+#: src/modules/dracut/main.py:27
+msgid "Creating initramfs with dracut."
+msgstr "Стварэнне initramfs з dracut."
+
+#: src/modules/dracut/main.py:49
+msgid "Failed to run dracut on the target"
+msgstr "Не атрымалася запусціць dracut у пункце прызначэння"
+
+#: src/modules/initramfscfg/main.py:32
+msgid "Configuring initramfs."
+msgstr "Наладка initramfs."
+
+#: src/modules/openrcdmcryptcfg/main.py:25
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "Наладка OpenRC dmcrypt."
+
+#: src/modules/fstab/main.py:29
+msgid "Writing fstab."
+msgstr "Запіс fstab."
+
+#: src/modules/dummypython/main.py:35
+msgid "Dummy python job."
+msgstr "Задача Dummy python."
+
+#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
+#: src/modules/dummypython/main.py:94
+msgid "Dummy python step {}"
+msgstr "Крок Dummy python {}"
+
+#: src/modules/localecfg/main.py:30
+msgid "Configuring locales."
+msgstr "Наладка лакаляў."
+
+#: src/modules/networkcfg/main.py:28
+msgid "Saving network configuration."
+msgstr "Захаванне сеткавай канфігурацыі."

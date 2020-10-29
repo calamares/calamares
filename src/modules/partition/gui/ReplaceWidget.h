@@ -27,7 +27,7 @@ class ReplaceWidget : public QWidget
     Q_OBJECT
 public:
     explicit ReplaceWidget( PartitionCoreModule* core, QComboBox* devicesComboBox, QWidget* parent = nullptr );
-    virtual ~ReplaceWidget();
+    virtual ~ReplaceWidget() override;
 
     bool isNextEnabled() const;
 

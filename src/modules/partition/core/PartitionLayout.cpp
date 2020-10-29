@@ -44,13 +44,13 @@ getDefaultFileSystemType()
 }
 
 PartitionLayout::PartitionLayout()
+    : m_defaultFsType( getDefaultFileSystemType() )
 {
-    m_defaultFsType = getDefaultFileSystemType();
 }
 
 PartitionLayout::PartitionLayout( PartitionLayout::PartitionEntry entry )
+    : PartitionLayout()
 {
-    m_defaultFsType = getDefaultFileSystemType();
     m_partLayout.append( entry );
 }
 
@@ -82,10 +82,10 @@ PartitionLayout::PartitionEntry::PartitionEntry()
 }
 
 PartitionLayout::PartitionEntry::PartitionEntry( const QString& size, const QString& min, const QString& max )
-    : partSize( size )
+    : partAttributes( 0 )
+    , partSize( size )
     , partMinSize( min )
     , partMaxSize( max )
-    , partAttributes( 0 )
 {
 }
 
@@ -172,32 +172,30 @@ PartitionLayout::execute( Device* dev,
     // Let's check if we have enough space for each partSize
     for ( const auto& part : qAsConst( m_partLayout ) )
     {
-        qint64 size;
-        // Calculate partition size
-
-        if ( part.partSize.isValid() )
+        if ( !part.partSize.isValid() )
         {
-            // We need to ignore the percent-defined
-            if ( part.partSize.unit() != CalamaresUtils::Partition::SizeUnit::Percent )
-            {
-                size = part.partSize.toSectors( totalSize, dev->logicalSize() );
-            }
-            else
-            {
-                if ( part.partMinSize.isValid() )
-                {
-                    size = part.partMinSize.toSectors( totalSize, dev->logicalSize() );
-                }
-                else
-                {
-                    size = 0;
-                }
-            }
+            cWarning() << "Partition" << part.partMountPoint << "size is invalid, skipping...";
+            continue;
+        }
+
+        // Calculate partition size: Rely on "possibly uninitialized use"
+        // warnings to ensure that all the cases are covered below.
+        qint64 size;
+        // We need to ignore the percent-defined until later
+        if ( part.partSize.unit() != CalamaresUtils::Partition::SizeUnit::Percent )
+        {
+            size = part.partSize.toSectors( totalSize, dev->logicalSize() );
         }
         else
         {
-            cWarning() << "Partition" << part.partMountPoint << "size (" << size << "sectors) is invalid, skipping...";
-            continue;
+            if ( part.partMinSize.isValid() )
+            {
+                size = part.partMinSize.toSectors( totalSize, dev->logicalSize() );
+            }
+            else
+            {
+                size = 0;
+            }
         }
 
         partSizeMap.insert( &part, size );

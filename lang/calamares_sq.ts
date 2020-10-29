@@ -143,7 +143,7 @@
   <context>
     <name>Calamares::JobThread</name>
     <message>
-      <location filename="../src/libcalamares/JobQueue.cpp" line="175"/>
+      <location filename="../src/libcalamares/JobQueue.cpp" line="196"/>
       <source>Done</source>
       <translation>U bë</translation>
     </message>
@@ -177,32 +177,32 @@
   <context>
     <name>Calamares::PythonJob</name>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="193"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="192"/>
       <source>Running %1 operation.</source>
       <translation>Po xhirohet %1 veprim.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="222"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="221"/>
       <source>Bad working directory path</source>
       <translation>Shteg i gabuar drejtorie pune</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="223"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="222"/>
       <source>Working directory %1 for python job %2 is not readable.</source>
       <translation>Drejtoria e punës %1 për aktin python %2 s’është e lexueshme.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="229"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="228"/>
       <source>Bad main script file</source>
       <translation>Kartelë kryesore programthi e dëmtuar</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="230"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="229"/>
       <source>Main script file %1 for python job %2 is not readable.</source>
       <translation>Kartela kryesore e programthit file %1 për aktin python %2 s’është e lexueshme.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="298"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="297"/>
       <source>Boost.Python error in job "%1".</source>
       <translation>Gabim Boost.Python tek akti \"%1\".</translation>
     </message>
@@ -510,20 +510,20 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
       <translation>Formular</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="130"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="126"/>
       <source>Select storage de&amp;vice:</source>
       <translation>Përzgjidhni &amp;pajisje depozitimi:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="131"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="938"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="983"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1073"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="127"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="963"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1008"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1098"/>
       <source>Current:</source>
       <translation>E tanishmja:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="132"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="128"/>
       <source>After:</source>
       <translation>Më Pas:</translation>
     </message>
@@ -533,111 +533,126 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
       <translation>&lt;strong&gt;Pjesëzim dorazi&lt;/strong&gt;&lt;br/&gt;Pjesët mund t’i krijoni dhe ripërmasoni ju vetë.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="806"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="831"/>
       <source>Reuse %1 as home partition for %2.</source>
       <translation>Ripërdore %1 si pjesën shtëpi për %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="939"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="964"/>
       <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;Përzgjidhni një pjesë që të zvogëlohet, mandej tërhiqni shtyllën e poshtme që ta ripërmasoni&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="956"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="981"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
       <translation>%1 do të zvogëlohet në %2MiB dhe për %4 do të krijohet një pjesë e re %3MiB.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1012"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1037"/>
       <source>Boot loader location:</source>
       <translation>Vendndodhje ngarkuesi nisjesh:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1064"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1089"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;Përzgjidhni një pjesë ku të instalohet&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1119"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1146"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation>Në këtë sistem s’gjendet gjëkundi një pjesë EFI sistemi. Ju lutemi, kthehuni mbrapsht dhe përdorni pjesëtimin dorazi që të rregulloni %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1127"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1154"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>Për nisjen e %2 do të përdoret pjesa EFI e sistemit te %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1135"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1162"/>
       <source>EFI system partition:</source>
       <translation>Pjesë EFI sistemi:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1260"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1296"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Kjo pajisje depozitimi përmban %1 në të. Ç’do të donit të bënit?&lt;br/&gt;Do të jeni në gjendje të rishqyrtoni dhe ripohoni zgjedhjet tuaja, para se te pajisja e depozitimit të bëhet çfarëdo ndryshimi.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1265"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1302"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1324"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1349"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1301"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1338"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1360"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1385"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
       <translation>&lt;strong&gt;Fshije diskun&lt;/strong&gt;&lt;br/&gt;Kështu do të &lt;font color=\"red\"&gt;fshihen&lt;/font&gt; krejt të dhënat të pranishme tani në pajisjen e përzgjedhur.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1269"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1298"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1320"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1345"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1305"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1334"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1356"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1381"/>
       <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
       <translation>&lt;strong&gt;Instaloje në krah të tij&lt;/strong&gt;&lt;br/&gt;Instaluesi do të zvogëlojë një pjesë për të bërë vend për %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1273"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1307"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1328"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1353"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1309"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1343"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1364"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1389"/>
       <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
       <translation>&lt;strong&gt;Zëvendëso një pjesë&lt;/strong&gt;&lt;br/&gt;Zëvendëson një pjesë me %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1292"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1328"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Kjo pajisje depozitimi përmban %1 në të. Ç’do të donit të bënit?&lt;br/&gt;Do të jeni në gjendje të rishqyrtoni dhe ripohoni zgjedhjet tuaja, para se te pajisja e depozitimit të bëhet çfarëdo ndryshimi.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1315"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1351"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Kjo pajisje depozitimi ka tashmë një sistem operativ në të. Ç’do të donit të bënit?&lt;br/&gt;Do të jeni në gjendje të rishqyrtoni dhe ripohoni zgjedhjet tuaja, para se te pajisja e depozitimit të bëhet çfarëdo ndryshimi.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1340"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1376"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Kjo pajisje depozitimi ka disa sisteme operativë në të. Ç’do të donit të bënit?&lt;br/&gt;Do të jeni në gjendje të rishqyrtoni dhe ripohoni zgjedhjet tuaja, para se te pajisja e depozitimit të bëhet çfarëdo ndryshimi.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1532"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1448"/>
+      <source>This storage device already has an operating system on it, but the partition table &lt;strong&gt;%1&lt;/strong&gt; is different from the needed &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</source>
+      <translation>Kjo pajisje depozitimi ka tashmë një sistem operativ në të, por tabela e saj e pjesëve &lt;strong&gt;%1&lt;/strong&gt; është e ndryshme nga ajo e duhura &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1471"/>
+      <source>This storage device has one of its partitions &lt;strong&gt;mounted&lt;/strong&gt;.</source>
+      <translation>Kjo pajisje depozitimi ka një nga pjesët e saj &lt;strong&gt;të montuar&lt;/strong&gt;.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1476"/>
+      <source>This storage device is a part of an &lt;strong&gt;inactive RAID&lt;/strong&gt; device.</source>
+      <translation>Kjo pajisje depozitimi është pjesë e një pajisje &lt;strong&gt;RAID jo aktive&lt;/strong&gt; device.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1603"/>
       <source>No Swap</source>
       <translation>Pa Swap</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1540"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1611"/>
       <source>Reuse Swap</source>
       <translation>Ripërdor Swap-in</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1543"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1614"/>
       <source>Swap (no Hibernate)</source>
       <translation>Swap (pa Hibernate)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1546"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1617"/>
       <source>Swap (with Hibernate)</source>
       <translation>Swap (me Hibernate)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1549"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1620"/>
       <source>Swap to file</source>
       <translation>Swap në kartelë</translation>
     </message>
@@ -1039,22 +1054,22 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
   <context>
     <name>CreateVolumeGroupJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="28"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="31"/>
       <source>Create new volume group named %1.</source>
       <translation>Krijo grup të ri vëllimesh të quajtur %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="34"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="37"/>
       <source>Create new volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Krijo grup të ri vëllimesh të quajtur &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="40"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="43"/>
       <source>Creating new volume group named %1.</source>
       <translation>Po krijohet grup i ri vëllimesh i quajtur &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="52"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="55"/>
       <source>The installer failed to create a volume group named '%1'.</source>
       <translation>Instaluesi s’arriti të krijojë grup të ri vëllimesh të quajtur '%1'.</translation>
     </message>
@@ -1546,12 +1561,12 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
   <context>
     <name>KeyboardPage</name>
     <message>
-      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="206"/>
+      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="204"/>
       <source>Set keyboard model to %1.&lt;br/&gt;</source>
       <translation>Si model tastiere do të caktohet %1.&lt;br/&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="210"/>
+      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="208"/>
       <source>Set keyboard layout to %1/%2.</source>
       <translation>Si model tastiere do të caktohet %1%2.</translation>
     </message>
@@ -2270,12 +2285,12 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
   <context>
     <name>PackageModel</name>
     <message>
-      <location filename="../src/modules/netinstall/PackageModel.cpp" line="167"/>
+      <location filename="../src/modules/netinstall/PackageModel.cpp" line="168"/>
       <source>Name</source>
       <translation>Emër</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/PackageModel.cpp" line="167"/>
+      <location filename="../src/modules/netinstall/PackageModel.cpp" line="168"/>
       <source>Description</source>
       <translation>Përshkrim</translation>
     </message>
@@ -2620,42 +2635,42 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
       <translation>Më Pas:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="427"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="426"/>
       <source>No EFI system partition configured</source>
       <translation>S’ka të formësuar pjesë sistemi EFI</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="428"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="427"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;%3&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
       <translation>Një pjesë EFI sistemi është e nevojshme për nisjen e %1.&lt;br/&gt;&lt;br/&gt;Që të formësoni një pjesë EFI sistemi, kthehuni mbrapsht dhe përzgjidhni ose krijoni një sistem kartelash FAT32 me parametrin &lt;strong&gt;%3&lt;/strong&gt; të aktivizuar dhe me pikë montimi &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;Mund të vazhdoni pa ujdisur një pjesë EFI sistemi, por nisja nën sistemi juaj mund të dështojë.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="442"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="441"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;%3&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
       <translation>Një pjesë EFI sistemi është e nevojshme për nisjen e %1.&lt;br/&gt;&lt;br/&gt;Qe formësuar një pikë montimi &lt;strong&gt;%2&lt;/strong&gt;, por parametri &lt;strong&gt;%3&lt;/strong&gt; për të s’është ujdisur.&lt;br/&gt;Për të ujdisur parametrin, kthehuni mbrapsht dhe përpunoni pjesën.&lt;br/&gt;&lt;br/&gt;Mund të vazhdoni pa ujdisur një pjesë EFI sistemi, por nisja nën sistemin tuaj mund të dështojë.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="441"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="440"/>
       <source>EFI system partition flag not set</source>
       <translation>S’i është vënë parametër pjese EFI sistemi</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="468"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="467"/>
       <source>Option to use GPT on BIOS</source>
       <translation>Mundësi për përdorim GTP-je në BIOS</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="469"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="468"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
       <translation>Një tabelë pjesësh GPT është mundësia më e mirë për krejt sistemet. Ky instalues mbulon gjithashtu një ujdisje të tillë edhe për sisteme BIOS.&lt;br/&gt;&lt;br/&gt;Që të formësoni një tabelë pjesësh GPT në BIOS, (nëse s’është bërë ende) kthehuni dhe ujdiseni tabelën e pjesëve si  GPT, më pas krijoni një ndarje të paformatuar 8 MB me shenjën &lt;strong&gt;bios_grub&lt;/strong&gt; të aktivizuar.&lt;br/&gt;&lt;br/&gt;Një pjesë e paformatuar 8 MB është e nevojshme për të nisur %1 në një sistem BIOS me GPT.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="497"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="496"/>
       <source>Boot partition not encrypted</source>
       <translation>Pjesë nisjesh e pafshehtëzuar</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="498"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="497"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
       <translation>Tok me pjesën e fshehtëzuar &lt;em&gt;root&lt;/em&gt; qe rregulluar edhe një pjesë &lt;em&gt;boot&lt;/em&gt; veçmas, por pjesa &lt;em&gt;boot&lt;/em&gt; s’është e fshehtëzuar.&lt;br/&gt;&lt;br/&gt;Ka preokupime mbi sigurinë e këtij lloj rregullimi, ngaqë kartela të rëndësishme sistemi mbahen në një pjesë të pafshehtëzuar.&lt;br/&gt;Mund të vazhdoni, nëse doni, por shkyçja e sistemit të kartelave do të ndodhë më vonë, gjatë nisjes së sistemit.&lt;br/&gt;Që të fshehtëzoni pjesën &lt;em&gt;boot&lt;/em&gt;, kthehuni mbrapsht dhe rikrijojeni, duke përzgjedhur te skena e krijimit të pjesës &lt;strong&gt;Fshehtëzoje&lt;/strong&gt;.</translation>
     </message>
@@ -2925,69 +2940,69 @@ Përfundim:
       <translation>Formular</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="123"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="127"/>
       <source>Select where to install %1.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
       <translation>Përzgjidhni ku të instalohet %1.&lt;br/&gt;&lt;font color=\"red\"&gt;Kujdes: &lt;/font&gt;kjo do të sjellë fshirjen e krejt kartelave në pjesën e përzgjedhur.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="145"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="149"/>
       <source>The selected item does not appear to be a valid partition.</source>
       <translation>Objekti i përzgjedhur s’duket se është pjesë e vlefshme.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="153"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="157"/>
       <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
       <translation>%1 s’mund të instalohet në hapësirë të zbrazët. Ju lutemi, përzgjidhni një pjesë ekzistuese.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="163"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="167"/>
       <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
       <translation>%1 s’mund të instalohet në një pjesë të llojit “extended”. Ju lutemi, përzgjidhni një pjesë parësore ose logjike ekzistuese.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="173"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="177"/>
       <source>%1 cannot be installed on this partition.</source>
       <translation>%1 s’mund të instalohet në këtë pjesë.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="179"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="183"/>
       <source>Data partition (%1)</source>
       <translation>Pjesë të dhënash (%1)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="199"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="203"/>
       <source>Unknown system partition (%1)</source>
       <translation>Pjesë sistemi e panjohur (%1)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="203"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="207"/>
       <source>%1 system partition (%2)</source>
       <translation>Pjesë sistemi %1 (%2)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="214"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="218"/>
       <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
       <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Ndarja %1 është shumë e vogël për %2. Ju lutemi, përzgjidhni një pjesë me kapacitet të paktën %3 GiB.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="236"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="240"/>
       <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Në këtë sistem s’gjendet dot ndonjë pjesë sistemi EFI. Ju lutemi, që të rregulloni %1, kthehuni mbrapsht dhe përdorni procesin e pjesëtimit dorazi.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="247"/>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="263"/>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="288"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="251"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="267"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="292"/>
       <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;all data on partition %2 will be lost.</source>
       <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 do të instalohet në %2.&lt;br/&gt;&lt;font color=\"red\"&gt;Kujdes: &lt;/font&gt;krejt të dhënat në pjesën %2 do të humbin.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="255"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="259"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>Për nisjen e %2 do të përdoret pjesa EFI e sistemit te %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="271"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="275"/>
       <source>EFI system partition:</source>
       <translation>Pjesë Sistemi EFI:</translation>
     </message>
@@ -3409,7 +3424,7 @@ Përfundim:
   <context>
     <name>ShellProcessJob</name>
     <message>
-      <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="37"/>
+      <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="41"/>
       <source>Shell Processes Job</source>
       <translation>Akt Procesesh Shelli</translation>
     </message>
@@ -3804,7 +3819,18 @@ Përfundim:
                         development is sponsored by &lt;br/&gt;
                         &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; -
                         Liberating Software.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;
+                        &lt;strong&gt;%2&lt;br/&gt;
+                        për %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;
+                        Të drejta kopjimi 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;
+                        Të drejta kopjimi 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;
+                        Falënderime &lt;a href='https://calamares.io/team/'&gt;ekipit Calamares&lt;/a&gt; 
+                        dhe &lt;a href='https://www.transifex.com/calamares/calamares/'&gt;ekipit
+                        të përkthyesve të Calamares&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;
+                        Zhvillimi i &lt;a href='https://calamares.io/'&gt;Calamares&lt;/a&gt; 
+                        sponsorizohet nga &lt;br/&gt;
+                        &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; - 
+                        Liberating Software.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/about.qml" line="96"/>

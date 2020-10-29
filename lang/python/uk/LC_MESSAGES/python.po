@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-22 09:58+0200\n"
+"POT-Creation-Date: 2020-10-16 22:35+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2020\n"
 "Language-Team: Ukrainian (https://www.transifex.com/calamares/teams/20061/uk/)\n"
@@ -23,152 +23,32 @@ msgstr ""
 "Language: uk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
-#: src/modules/packages/main.py:50 src/modules/packages/main.py:59
-#: src/modules/packages/main.py:69
-msgid "Install packages."
-msgstr "Встановити пакети."
+#: src/modules/grubcfg/main.py:28
+msgid "Configure GRUB."
+msgstr "Налаштовування GRUB."
 
-#: src/modules/packages/main.py:57
-#, python-format
-msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "Обробляємо пакунки (%(count)d з %(total)d)"
+#: src/modules/mount/main.py:29
+msgid "Mounting partitions."
+msgstr "Монтування розділів."
 
-#: src/modules/packages/main.py:62
-#, python-format
-msgid "Installing one package."
-msgid_plural "Installing %(num)d packages."
-msgstr[0] "Встановлюємо %(num)d пакунок."
-msgstr[1] "Встановлюємо %(num)d пакунки."
-msgstr[2] "Встановлюємо %(num)d пакунків."
-msgstr[3] "Встановлюємо один пакунок."
-
-#: src/modules/packages/main.py:65
-#, python-format
-msgid "Removing one package."
-msgid_plural "Removing %(num)d packages."
-msgstr[0] "Вилучаємо %(num)d пакунок."
-msgstr[1] "Вилучаємо %(num)d пакунки."
-msgstr[2] "Вилучаємо %(num)d пакунків."
-msgstr[3] "Вилучаємо один пакунок."
-
-#: src/modules/networkcfg/main.py:28
-msgid "Saving network configuration."
-msgstr "Зберігаємо налаштування мережі."
-
-#: src/modules/networkcfg/main.py:39 src/modules/initcpiocfg/main.py:196
-#: src/modules/initcpiocfg/main.py:200 src/modules/openrcdmcryptcfg/main.py:69
-#: src/modules/openrcdmcryptcfg/main.py:73 src/modules/localecfg/main.py:135
-#: src/modules/mount/main.py:141 src/modules/luksopenswaphookcfg/main.py:86
-#: src/modules/luksopenswaphookcfg/main.py:90 src/modules/fstab/main.py:323
-#: src/modules/fstab/main.py:329 src/modules/initramfscfg/main.py:85
-#: src/modules/initramfscfg/main.py:89 src/modules/rawfs/main.py:164
+#: src/modules/mount/main.py:141 src/modules/initcpiocfg/main.py:196
+#: src/modules/initcpiocfg/main.py:200
+#: src/modules/luksopenswaphookcfg/main.py:86
+#: src/modules/luksopenswaphookcfg/main.py:90 src/modules/rawfs/main.py:164
+#: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
+#: src/modules/openrcdmcryptcfg/main.py:69
+#: src/modules/openrcdmcryptcfg/main.py:73 src/modules/fstab/main.py:361
+#: src/modules/fstab/main.py:367 src/modules/localecfg/main.py:135
+#: src/modules/networkcfg/main.py:39
 msgid "Configuration Error"
 msgstr "Помилка налаштовування"
 
-#: src/modules/networkcfg/main.py:40 src/modules/initcpiocfg/main.py:201
-#: src/modules/openrcdmcryptcfg/main.py:74 src/modules/localecfg/main.py:136
-#: src/modules/luksopenswaphookcfg/main.py:91 src/modules/fstab/main.py:330
-#: src/modules/initramfscfg/main.py:90
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr ""
-"Не вказано кореневої точки монтування для використання у <pre>{!s}</pre>."
-
-#: src/modules/umount/main.py:31
-msgid "Unmount file systems."
-msgstr "Демонтувати файлові системи."
-
-#: src/modules/initcpiocfg/main.py:28
-msgid "Configuring mkinitcpio."
-msgstr "Налаштовуємо mkinitcpio."
-
-#: src/modules/initcpiocfg/main.py:197 src/modules/openrcdmcryptcfg/main.py:70
-#: src/modules/mount/main.py:142 src/modules/luksopenswaphookcfg/main.py:87
-#: src/modules/fstab/main.py:324 src/modules/initramfscfg/main.py:86
-#: src/modules/rawfs/main.py:165
+#: src/modules/mount/main.py:142 src/modules/initcpiocfg/main.py:197
+#: src/modules/luksopenswaphookcfg/main.py:87 src/modules/rawfs/main.py:165
+#: src/modules/initramfscfg/main.py:86 src/modules/openrcdmcryptcfg/main.py:70
+#: src/modules/fstab/main.py:362
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "Не визначено розділів для використання <pre>{!s}</pre>."
-
-#: src/modules/mkinitfs/main.py:27
-msgid "Creating initramfs with mkinitfs."
-msgstr "Створення initramfs за допомогою mkinitfs."
-
-#: src/modules/mkinitfs/main.py:49
-msgid "Failed to run mkinitfs on the target"
-msgstr "Не вдалося виконати mkinitfs над призначенням"
-
-#: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
-msgid "The exit code was {}"
-msgstr "Код виходу — {}"
-
-#: src/modules/openrcdmcryptcfg/main.py:25
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "Налаштовуємо службу dmcrypt OpenRC."
-
-#: src/modules/unpackfs/main.py:35
-msgid "Filling up filesystems."
-msgstr "Заповнення файлових систем."
-
-#: src/modules/unpackfs/main.py:248
-msgid "rsync failed with error code {}."
-msgstr "Спроба виконати rsync зазнала невдачі з кодом помилки {}."
-
-#: src/modules/unpackfs/main.py:293
-msgid "Unpacking image {}/{}, file {}/{}"
-msgstr "Розпаковуємо образ {} з {}, файл {} з {}"
-
-#: src/modules/unpackfs/main.py:308
-msgid "Starting to unpack {}"
-msgstr "Починаємо розпаковувати {}"
-
-#: src/modules/unpackfs/main.py:317 src/modules/unpackfs/main.py:439
-msgid "Failed to unpack image \"{}\""
-msgstr "Не вдалося розпакувати образ «{}»"
-
-#: src/modules/unpackfs/main.py:406
-msgid "No mount point for root partition"
-msgstr "Немає точки монтування для кореневого розділу"
-
-#: src/modules/unpackfs/main.py:407
-msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr ""
-"У globalstorage не міститься ключа «rootMountPoint». Не виконуватимемо "
-"ніяких дій."
-
-#: src/modules/unpackfs/main.py:412
-msgid "Bad mount point for root partition"
-msgstr "Помилкова точна монтування для кореневого розділу"
-
-#: src/modules/unpackfs/main.py:413
-msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr ""
-"Для rootMountPoint вказано значення «{}». Такого шляху не існує. Не "
-"виконуватимемо ніяких дій."
-
-#: src/modules/unpackfs/main.py:429 src/modules/unpackfs/main.py:433
-#: src/modules/unpackfs/main.py:453
-msgid "Bad unsquash configuration"
-msgstr "Помилкові налаштування unsquash"
-
-#: src/modules/unpackfs/main.py:430
-msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
-msgstr ""
-"У поточному ядрі системи не передбачено підтримки файлової системи «{}» ({})"
-
-#: src/modules/unpackfs/main.py:434
-msgid "The source filesystem \"{}\" does not exist"
-msgstr "Вихідної файлової системи «{}» не існує"
-
-#: src/modules/unpackfs/main.py:440
-msgid ""
-"Failed to find unsquashfs, make sure you have the squashfs-tools package "
-"installed"
-msgstr ""
-"Не вдалося знайти unsquashfs; переконайтеся, що встановлено пакет squashfs-"
-"tools"
-
-#: src/modules/unpackfs/main.py:454
-msgid "The destination \"{}\" in the target system is not a directory"
-msgstr "Призначення «{}» у цільовій системі не є каталогом"
 
 #: src/modules/services-systemd/main.py:26
 msgid "Configure systemd services"
@@ -211,38 +91,150 @@ msgstr ""
 "Невідомі команди systemd <code>{command!s}</code> та <code>{suffix!s}</code>"
 " для пристрою {name!s}."
 
-#: src/modules/dummypython/main.py:35
-msgid "Dummy python job."
-msgstr "Фіктивне завдання python."
+#: src/modules/umount/main.py:31
+msgid "Unmount file systems."
+msgstr "Демонтувати файлові системи."
 
-#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
-#: src/modules/dummypython/main.py:94
-msgid "Dummy python step {}"
-msgstr "Фіктивний крок python {}"
+#: src/modules/unpackfs/main.py:35
+msgid "Filling up filesystems."
+msgstr "Заповнення файлових систем."
 
-#: src/modules/bootloader/main.py:42
-msgid "Install bootloader."
-msgstr "Встановити завантажувач."
+#: src/modules/unpackfs/main.py:254
+msgid "rsync failed with error code {}."
+msgstr "Спроба виконати rsync зазнала невдачі з кодом помилки {}."
 
-#: src/modules/localecfg/main.py:30
-msgid "Configuring locales."
-msgstr "Налаштовуємо локалі."
+#: src/modules/unpackfs/main.py:299
+msgid "Unpacking image {}/{}, file {}/{}"
+msgstr "Розпаковуємо образ {} з {}, файл {} з {}"
 
-#: src/modules/mount/main.py:29
-msgid "Mounting partitions."
-msgstr "Монтування розділів."
+#: src/modules/unpackfs/main.py:314
+msgid "Starting to unpack {}"
+msgstr "Починаємо розпаковувати {}"
 
-#: src/modules/plymouthcfg/main.py:27
-msgid "Configure Plymouth theme"
-msgstr "Налаштувати тему Plymouth"
+#: src/modules/unpackfs/main.py:323 src/modules/unpackfs/main.py:463
+msgid "Failed to unpack image \"{}\""
+msgstr "Не вдалося розпакувати образ «{}»"
+
+#: src/modules/unpackfs/main.py:430
+msgid "No mount point for root partition"
+msgstr "Немає точки монтування для кореневого розділу"
+
+#: src/modules/unpackfs/main.py:431
+msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
+msgstr ""
+"У globalstorage не міститься ключа «rootMountPoint». Не виконуватимемо "
+"ніяких дій."
+
+#: src/modules/unpackfs/main.py:436
+msgid "Bad mount point for root partition"
+msgstr "Помилкова точна монтування для кореневого розділу"
+
+#: src/modules/unpackfs/main.py:437
+msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
+msgstr ""
+"Для rootMountPoint вказано значення «{}». Такого шляху не існує. Не "
+"виконуватимемо ніяких дій."
+
+#: src/modules/unpackfs/main.py:453 src/modules/unpackfs/main.py:457
+#: src/modules/unpackfs/main.py:477
+msgid "Bad unsquash configuration"
+msgstr "Помилкові налаштування unsquash"
+
+#: src/modules/unpackfs/main.py:454
+msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
+msgstr ""
+"У поточному ядрі системи не передбачено підтримки файлової системи «{}» ({})"
+
+#: src/modules/unpackfs/main.py:458
+msgid "The source filesystem \"{}\" does not exist"
+msgstr "Вихідної файлової системи «{}» не існує"
+
+#: src/modules/unpackfs/main.py:464
+msgid ""
+"Failed to find unsquashfs, make sure you have the squashfs-tools package "
+"installed"
+msgstr ""
+"Не вдалося знайти unsquashfs; переконайтеся, що встановлено пакет squashfs-"
+"tools"
+
+#: src/modules/unpackfs/main.py:478
+msgid "The destination \"{}\" in the target system is not a directory"
+msgstr "Призначення «{}» у цільовій системі не є каталогом"
+
+#: src/modules/displaymanager/main.py:514
+msgid "Cannot write KDM configuration file"
+msgstr "Не вдалося записати файл налаштувань KDM"
+
+#: src/modules/displaymanager/main.py:515
+msgid "KDM config file {!s} does not exist"
+msgstr "Файла налаштувань KDM {!s} не існує"
+
+#: src/modules/displaymanager/main.py:576
+msgid "Cannot write LXDM configuration file"
+msgstr "Не вдалося виконати запис до файла налаштувань LXDM"
+
+#: src/modules/displaymanager/main.py:577
+msgid "LXDM config file {!s} does not exist"
+msgstr "Файла налаштувань LXDM {!s} не існує"
+
+#: src/modules/displaymanager/main.py:660
+msgid "Cannot write LightDM configuration file"
+msgstr "Не вдалося виконати запис до файла налаштувань LightDM"
+
+#: src/modules/displaymanager/main.py:661
+msgid "LightDM config file {!s} does not exist"
+msgstr "Файла налаштувань LightDM {!s} не існує"
+
+#: src/modules/displaymanager/main.py:735
+msgid "Cannot configure LightDM"
+msgstr "Не вдалося налаштувати LightDM"
+
+#: src/modules/displaymanager/main.py:736
+msgid "No LightDM greeter installed."
+msgstr "Засіб входу до системи LightDM не встановлено."
+
+#: src/modules/displaymanager/main.py:767
+msgid "Cannot write SLIM configuration file"
+msgstr "Не вдалося виконати запис до файла налаштувань SLIM"
+
+#: src/modules/displaymanager/main.py:768
+msgid "SLIM config file {!s} does not exist"
+msgstr "Файла налаштувань SLIM {!s} не існує"
+
+#: src/modules/displaymanager/main.py:894
+msgid "No display managers selected for the displaymanager module."
+msgstr "Не вибрано засобу керування дисплеєм для модуля displaymanager."
+
+#: src/modules/displaymanager/main.py:895
+msgid ""
+"The displaymanagers list is empty or undefined in both globalstorage and "
+"displaymanager.conf."
+msgstr ""
+
+#: src/modules/displaymanager/main.py:977
+msgid "Display manager configuration was incomplete"
+msgstr "Налаштування засобу керування дисплеєм є неповними"
+
+#: src/modules/initcpiocfg/main.py:28
+msgid "Configuring mkinitcpio."
+msgstr "Налаштовуємо mkinitcpio."
+
+#: src/modules/initcpiocfg/main.py:201
+#: src/modules/luksopenswaphookcfg/main.py:91
+#: src/modules/initramfscfg/main.py:90 src/modules/openrcdmcryptcfg/main.py:74
+#: src/modules/fstab/main.py:368 src/modules/localecfg/main.py:136
+#: src/modules/networkcfg/main.py:40
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr ""
+"Не вказано кореневої точки монтування для використання у <pre>{!s}</pre>."
 
 #: src/modules/luksopenswaphookcfg/main.py:26
 msgid "Configuring encrypted swap."
 msgstr "Налаштовуємо зашифрований розділ резервної пам'яті."
 
-#: src/modules/fstab/main.py:29
-msgid "Writing fstab."
-msgstr "Записуємо fstab."
+#: src/modules/rawfs/main.py:26
+msgid "Installing data."
+msgstr "Встановлюємо дані."
 
 #: src/modules/services-openrc/main.py:29
 msgid "Configure OpenRC services"
@@ -295,6 +287,58 @@ msgstr ""
 "Шляхом до служби {name!s} вказано <code>{path!s}</code>. Такого шляху не "
 "існує."
 
+#: src/modules/plymouthcfg/main.py:27
+msgid "Configure Plymouth theme"
+msgstr "Налаштувати тему Plymouth"
+
+#: src/modules/packages/main.py:50 src/modules/packages/main.py:59
+#: src/modules/packages/main.py:69
+msgid "Install packages."
+msgstr "Встановити пакети."
+
+#: src/modules/packages/main.py:57
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "Обробляємо пакунки (%(count)d з %(total)d)"
+
+#: src/modules/packages/main.py:62
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] "Встановлюємо %(num)d пакунок."
+msgstr[1] "Встановлюємо %(num)d пакунки."
+msgstr[2] "Встановлюємо %(num)d пакунків."
+msgstr[3] "Встановлюємо один пакунок."
+
+#: src/modules/packages/main.py:65
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] "Вилучаємо %(num)d пакунок."
+msgstr[1] "Вилучаємо %(num)d пакунки."
+msgstr[2] "Вилучаємо %(num)d пакунків."
+msgstr[3] "Вилучаємо один пакунок."
+
+#: src/modules/bootloader/main.py:42
+msgid "Install bootloader."
+msgstr "Встановити завантажувач."
+
+#: src/modules/hwclock/main.py:26
+msgid "Setting hardware clock."
+msgstr "Встановлюємо значення для апаратного годинника."
+
+#: src/modules/mkinitfs/main.py:27
+msgid "Creating initramfs with mkinitfs."
+msgstr "Створення initramfs за допомогою mkinitfs."
+
+#: src/modules/mkinitfs/main.py:49
+msgid "Failed to run mkinitfs on the target"
+msgstr "Не вдалося виконати mkinitfs над призначенням"
+
+#: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
+msgid "The exit code was {}"
+msgstr "Код виходу — {}"
+
 #: src/modules/dracut/main.py:27
 msgid "Creating initramfs with dracut."
 msgstr "Створюємо initramfs за допомогою dracut."
@@ -303,74 +347,31 @@ msgstr "Створюємо initramfs за допомогою dracut."
 msgid "Failed to run dracut on the target"
 msgstr "Не вдалося виконати dracut над призначенням"
 
-#: src/modules/grubcfg/main.py:28
-msgid "Configure GRUB."
-msgstr "Налаштовування GRUB."
-
-#: src/modules/displaymanager/main.py:514
-msgid "Cannot write KDM configuration file"
-msgstr "Не вдалося записати файл налаштувань KDM"
-
-#: src/modules/displaymanager/main.py:515
-msgid "KDM config file {!s} does not exist"
-msgstr "Файла налаштувань KDM {!s} не існує"
-
-#: src/modules/displaymanager/main.py:576
-msgid "Cannot write LXDM configuration file"
-msgstr "Не вдалося виконати запис до файла налаштувань LXDM"
-
-#: src/modules/displaymanager/main.py:577
-msgid "LXDM config file {!s} does not exist"
-msgstr "Файла налаштувань LXDM {!s} не існує"
-
-#: src/modules/displaymanager/main.py:660
-msgid "Cannot write LightDM configuration file"
-msgstr "Не вдалося виконати запис до файла налаштувань LightDM"
-
-#: src/modules/displaymanager/main.py:661
-msgid "LightDM config file {!s} does not exist"
-msgstr "Файла налаштувань LightDM {!s} не існує"
-
-#: src/modules/displaymanager/main.py:735
-msgid "Cannot configure LightDM"
-msgstr "Не вдалося налаштувати LightDM"
-
-#: src/modules/displaymanager/main.py:736
-msgid "No LightDM greeter installed."
-msgstr "Засіб входу до системи LightDM не встановлено."
-
-#: src/modules/displaymanager/main.py:767
-msgid "Cannot write SLIM configuration file"
-msgstr "Не вдалося виконати запис до файла налаштувань SLIM"
-
-#: src/modules/displaymanager/main.py:768
-msgid "SLIM config file {!s} does not exist"
-msgstr "Файла налаштувань SLIM {!s} не існує"
-
-#: src/modules/displaymanager/main.py:894
-msgid "No display managers selected for the displaymanager module."
-msgstr "Не вибрано засобу керування дисплеєм для модуля displaymanager."
-
-#: src/modules/displaymanager/main.py:895
-msgid ""
-"The displaymanagers list is empty or undefined in bothglobalstorage and "
-"displaymanager.conf."
-msgstr ""
-"Список засобів керування дисплеєм є порожнім або невизначеним у "
-"bothglobalstorage та displaymanager.conf."
-
-#: src/modules/displaymanager/main.py:977
-msgid "Display manager configuration was incomplete"
-msgstr "Налаштування засобу керування дисплеєм є неповними"
-
 #: src/modules/initramfscfg/main.py:32
 msgid "Configuring initramfs."
 msgstr "Налаштовуємо initramfs."
 
-#: src/modules/hwclock/main.py:26
-msgid "Setting hardware clock."
-msgstr "Встановлюємо значення для апаратного годинника."
+#: src/modules/openrcdmcryptcfg/main.py:25
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "Налаштовуємо службу dmcrypt OpenRC."
 
-#: src/modules/rawfs/main.py:26
-msgid "Installing data."
-msgstr "Встановлюємо дані."
+#: src/modules/fstab/main.py:29
+msgid "Writing fstab."
+msgstr "Записуємо fstab."
+
+#: src/modules/dummypython/main.py:35
+msgid "Dummy python job."
+msgstr "Фіктивне завдання python."
+
+#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
+#: src/modules/dummypython/main.py:94
+msgid "Dummy python step {}"
+msgstr "Фіктивний крок python {}"
+
+#: src/modules/localecfg/main.py:30
+msgid "Configuring locales."
+msgstr "Налаштовуємо локалі."
+
+#: src/modules/networkcfg/main.py:28
+msgid "Saving network configuration."
+msgstr "Зберігаємо налаштування мережі."

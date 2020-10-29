@@ -28,7 +28,7 @@ class SmartStatus;
 
 QTEST_GUILESS_MAIN( CreateLayoutsTests )
 
-CalamaresUtils::Partition::KPMManager* kpmcore = nullptr;
+static CalamaresUtils::Partition::KPMManager* kpmcore = nullptr;
 
 using CalamaresUtils::operator""_MiB;
 using CalamaresUtils::operator""_GiB;
@@ -156,3 +156,7 @@ TestDevice::TestDevice( const QString& name, const qint64 logicalSectorSize, con
 {
 }
 #endif
+
+TestDevice::~TestDevice()
+{
+}

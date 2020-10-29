@@ -143,7 +143,7 @@
   <context>
     <name>Calamares::JobThread</name>
     <message>
-      <location filename="../src/libcalamares/JobQueue.cpp" line="175"/>
+      <location filename="../src/libcalamares/JobQueue.cpp" line="196"/>
       <source>Done</source>
       <translation>انجام شد.</translation>
     </message>
@@ -177,32 +177,32 @@
   <context>
     <name>Calamares::PythonJob</name>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="193"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="192"/>
       <source>Running %1 operation.</source>
       <translation>اجرا عملیات %1</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="222"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="221"/>
       <source>Bad working directory path</source>
       <translation>مسیر شاخهٔ جاری بد</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="223"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="222"/>
       <source>Working directory %1 for python job %2 is not readable.</source>
       <translation>شاخهٔ کاری %1 برای کار پایتونی %2 خواندنی نیست</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="229"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="228"/>
       <source>Bad main script file</source>
       <translation>پروندهٔ کدنوشتهٔ اصلی بد</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="230"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="229"/>
       <source>Main script file %1 for python job %2 is not readable.</source>
       <translation>پروندهٔ کدنویسهٔ اصلی %1 برای کار پایتونی %2 قابل خواندن نیست.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="298"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="297"/>
       <source>Boost.Python error in job "%1".</source>
       <translation>خطای Boost.Python در کار %1.</translation>
     </message>
@@ -510,20 +510,20 @@ The installer will quit and all changes will be lost.</source>
       <translation>فرم</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="130"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="126"/>
       <source>Select storage de&amp;vice:</source>
       <translation>انتخاب &amp;دستگاه ذخیره‌سازی:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="131"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="938"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="983"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1073"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="127"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="963"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1008"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1098"/>
       <source>Current:</source>
       <translation>فعلی:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="132"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="128"/>
       <source>After:</source>
       <translation>بعد از:</translation>
     </message>
@@ -533,111 +533,126 @@ The installer will quit and all changes will be lost.</source>
       <translation>شما می توانید پارتیشن بندی دستی ایجاد یا تغییر اندازه دهید .</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="806"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="831"/>
       <source>Reuse %1 as home partition for %2.</source>
       <translation>استفاده مجدد از %1 به عنوان پارتیشن خانه برای %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="939"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="964"/>
       <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;انتخاب یک پارتیشن برای کوجک کردن و ایجاد پارتیشن جدید از آن، سپس نوار دکمه را بکشید تا تغییر اندازه دهد&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="956"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="981"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
       <translation>%1 تغییر سایز خواهد داد به %2 مبی‌بایت و یک پارتیشن %3 مبی‌بایتی برای %4 ساخته خواهد شد.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1012"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1037"/>
       <source>Boot loader location:</source>
       <translation>مکان بالاآورنده بوت:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1064"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1089"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;یک پارتیشن را برای نصب بر روی آن، انتخاب کنید&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1119"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1146"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation>پارتیشن سیستم ای.اف.آی نمی‌تواند در هیچ جایی از این سیستم یافت شود. لطفا برگردید و از پارتیشن بندی دستی استفاده کنید تا %1 را راه‌اندازی کنید.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1127"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1154"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>پارتیشن سیستم ای.اف.آی در %1 برای شروع %2 استفاده خواهد شد.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1135"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1162"/>
       <source>EFI system partition:</source>
       <translation>پارتیشن سیستم ای.اف.آی</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1260"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1296"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>به نظر می‌رسد در دستگاه ذخیره‌سازی هیچ سیستم‌عاملی وجود ندارد. تمایل به انجام چه کاری دارید؟&lt;br/&gt;شما می‌توانید انتخاب‌هایتان را قبل از اعمال هر تغییری در دستگاه ذخیره‌سازی، مرور و تأیید نمایید.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1265"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1302"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1324"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1349"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1301"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1338"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1360"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1385"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
       <translation>&lt;strong&gt;پاک کردن دیسک&lt;/strong&gt;&lt;br/&gt;این کار تمام داده‌های موجود بر روی دستگاه ذخیره‌سازی انتخاب شده را &lt;font color="red"&gt;حذف می‌کند&lt;/font&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1269"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1298"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1320"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1345"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1305"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1334"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1356"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1381"/>
       <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
       <translation>&lt;strong&gt;نصب در امتداد&lt;/strong&gt;&lt;br/&gt;این نصاب از یک پارتیشن برای ساخت یک اتاق برای %1 استفاده می‌کند.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1273"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1307"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1328"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1353"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1309"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1343"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1364"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1389"/>
       <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
       <translation>&lt;strong&gt;جایگزینی یک افراز&lt;/strong&gt;&lt;br/&gt;افرازی را با %1 جایگزین می‌کند.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1292"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1328"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>این دستگاه ذخیره سازی٪ 1 روی خود دارد. دوست دارید چه کاری انجام دهید؟ قبل از اینکه تغییری در دستگاه ذخیره ایجاد شود ، می توانید انتخاب های خود را بررسی و تأیید کنید.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1315"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1351"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>این دستگاه ذخیره سازی از قبل یک سیستم عامل روی خود دارد. دوست دارید چه کاری انجام دهید؟ قبل از اینکه تغییری در دستگاه ذخیره ایجاد شود ، می توانید انتخاب های خود را بررسی و تأیید کنید.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1340"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1376"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>این دستگاه ذخیره سازی دارای چندین سیستم عامل است. دوست دارید چه کاری انجام دهید؟ قبل از اینکه تغییری در دستگاه ذخیره ایجاد شود ، می توانید انتخاب های خود را بررسی و تأیید کنید.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1532"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1448"/>
+      <source>This storage device already has an operating system on it, but the partition table &lt;strong&gt;%1&lt;/strong&gt; is different from the needed &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1471"/>
+      <source>This storage device has one of its partitions &lt;strong&gt;mounted&lt;/strong&gt;.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1476"/>
+      <source>This storage device is a part of an &lt;strong&gt;inactive RAID&lt;/strong&gt; device.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1603"/>
       <source>No Swap</source>
       <translation>بدون Swap</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1540"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1611"/>
       <source>Reuse Swap</source>
       <translation>باز استفاده از مبادله</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1543"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1614"/>
       <source>Swap (no Hibernate)</source>
       <translation>مبادله (بدون خواب‌زمستانی)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1546"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1617"/>
       <source>Swap (with Hibernate)</source>
       <translation>مبادله (با خواب‌زمستانی)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1549"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1620"/>
       <source>Swap to file</source>
       <translation>مبادله به پرونده</translation>
     </message>
@@ -1039,22 +1054,22 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>CreateVolumeGroupJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="28"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="31"/>
       <source>Create new volume group named %1.</source>
       <translation>ایجاد گروه حجمی جدید به نام %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="34"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="37"/>
       <source>Create new volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>ایجاد گروه حجمی جدید به نام &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="40"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="43"/>
       <source>Creating new volume group named %1.</source>
       <translation>در حال ایجاد گروه حجمی جدید به نام %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="52"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="55"/>
       <source>The installer failed to create a volume group named '%1'.</source>
       <translation type="unfinished"/>
     </message>
@@ -1546,12 +1561,12 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>KeyboardPage</name>
     <message>
-      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="206"/>
+      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="204"/>
       <source>Set keyboard model to %1.&lt;br/&gt;</source>
       <translation>تنظیم مدل صفحه‌کلید به %1.&lt;br/&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="210"/>
+      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="208"/>
       <source>Set keyboard layout to %1/%2.</source>
       <translation>تنظیم چینش صفحه‌کلید به %1/%2.</translation>
     </message>
@@ -2270,12 +2285,12 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>PackageModel</name>
     <message>
-      <location filename="../src/modules/netinstall/PackageModel.cpp" line="167"/>
+      <location filename="../src/modules/netinstall/PackageModel.cpp" line="168"/>
       <source>Name</source>
       <translation>نام</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/PackageModel.cpp" line="167"/>
+      <location filename="../src/modules/netinstall/PackageModel.cpp" line="168"/>
       <source>Description</source>
       <translation>شرح</translation>
     </message>
@@ -2620,42 +2635,42 @@ The installer will quit and all changes will be lost.</source>
       <translation>بعد از:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="427"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="426"/>
       <source>No EFI system partition configured</source>
       <translation>هیچ پارتیشن سیستم EFI پیکربندی نشده است</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="428"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="427"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;%3&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
       <translation>برای راه اندازی پارتیشن سیستم EFI لازم است. برای پیکربندی یک پارتیشن سیستم EFI ، به عقب برگردید و یک سیستم فایل FAT32 را با پرچم٪ 3 فعال کنید و نقطه نصب را نصب کنید. 2. بدون تنظیم پارتیشن سیستم EFI می توانید ادامه دهید اما ممکن است سیستم شما از کار بیفتد.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="442"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="441"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;%3&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="441"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="440"/>
       <source>EFI system partition flag not set</source>
       <translation>پرچم پارتیشن سیستم EFI تنظیم نشده است</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="468"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="467"/>
       <source>Option to use GPT on BIOS</source>
       <translation>گزینه ای برای استفاده از GPT در BIOS</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="469"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="468"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
       <translation>جدول پارتیشن GPT بهترین گزینه برای همه سیستم ها است. این نصب از چنین تنظیماتی برای سیستم های BIOS نیز پشتیبانی می کند. برای پیکربندی جدول پارتیشن GPT در BIOS ، (اگر قبلاً این کار انجام نشده است) برگردید و جدول پارتیشن را روی GPT تنظیم کنید ، سپس یک پارتیشن 8 مگابایتی بدون فرمت با پرچم bios_grub ایجاد کنید. برای راه اندازی٪ 1 سیستم BIOS با GPT ، یک پارتیشن 8 مگابایتی بدون قالب لازم است.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="497"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="496"/>
       <source>Boot partition not encrypted</source>
       <translation>پارتیشن بوت رمزشده نیست</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="498"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="497"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
       <translation>یک پارتیشن بوت جداگانه همراه با یک پارتیشن ریشه ای رمزگذاری شده راه اندازی شده است ، اما پارتیشن بوت رمزگذاری نشده است. با این نوع تنظیمات مشکلات امنیتی وجود دارد ، زیرا پرونده های مهم سیستم در یک پارتیشن رمزگذاری نشده نگهداری می شوند. در صورت تمایل می توانید ادامه دهید ، اما باز کردن قفل سیستم فایل بعداً در هنگام راه اندازی سیستم اتفاق می افتد. برای رمزگذاری پارتیشن بوت ، به عقب برگردید و آن را دوباره ایجاد کنید ، رمزگذاری را در پنجره ایجاد پارتیشن انتخاب کنید.</translation>
     </message>
@@ -2921,69 +2936,69 @@ Output:
       <translation>فرم</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="123"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="127"/>
       <source>Select where to install %1.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="145"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="149"/>
       <source>The selected item does not appear to be a valid partition.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="153"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="157"/>
       <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="163"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="167"/>
       <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="173"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="177"/>
       <source>%1 cannot be installed on this partition.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="179"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="183"/>
       <source>Data partition (%1)</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="199"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="203"/>
       <source>Unknown system partition (%1)</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="203"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="207"/>
       <source>%1 system partition (%2)</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="214"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="218"/>
       <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="236"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="240"/>
       <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="247"/>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="263"/>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="288"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="251"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="267"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="292"/>
       <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;all data on partition %2 will be lost.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="255"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="259"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>پارتیشن سیستم ای.اف.آی در %1 برای شروع %2 استفاده خواهد شد.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="271"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="275"/>
       <source>EFI system partition:</source>
       <translation>پارتیشن سیستم ای.اف.آی</translation>
     </message>
@@ -3403,7 +3418,7 @@ Output:
   <context>
     <name>ShellProcessJob</name>
     <message>
-      <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="37"/>
+      <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="41"/>
       <source>Shell Processes Job</source>
       <translation type="unfinished"/>
     </message>

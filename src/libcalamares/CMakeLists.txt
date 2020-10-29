@@ -86,9 +86,6 @@ if( WITH_PYTHON )
         PythonJob.cpp
         PythonJobApi.cpp
     )
-    set_source_files_properties( PythonJob.cpp
-        PROPERTIES COMPILE_FLAGS "${SUPPRESS_BOOST_WARNINGS}"
-    )
 
     include_directories(${PYTHON_INCLUDE_DIRS})
     link_directories(${PYTHON_LIBRARIES})
@@ -148,8 +145,8 @@ calamares_automoc( calamares )
 target_link_libraries( calamares
     LINK_PRIVATE
         ${OPTIONAL_PRIVATE_LIBRARIES}
-        yamlcpp
     LINK_PUBLIC
+        yamlcpp
         Qt5::Core
         KF5::CoreAddons
         ${OPTIONAL_PUBLIC_LIBRARIES}

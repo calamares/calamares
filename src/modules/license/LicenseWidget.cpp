@@ -13,6 +13,7 @@
 #include "LicenseWidget.h"
 
 #include "utils/Logger.h"
+#include "utils/QtCompat.h"
 
 #include <QDesktopServices>
 #include <QFile>
@@ -48,7 +49,7 @@ LicenseWidget::LicenseWidget( LicenseEntry entry, QWidget* parent )
     , m_isExpanded( m_entry.expandByDefault() )
 {
     QPalette pal( palette() );
-    pal.setColor( QPalette::Background, palette().window().color().lighter( 108 ) );
+    pal.setColor( WindowBackground, palette().window().color().lighter( 108 ) );
 
     setObjectName( "licenseItem" );
 

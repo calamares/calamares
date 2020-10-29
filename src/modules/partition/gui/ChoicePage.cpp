@@ -845,10 +845,11 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
 
 
 /**
- * @brief ChoicePage::updateDeviceStatePreview clears and rebuilds the contents of the
- *      preview widget for the current on-disk state. This also triggers a rescan in the
- *      PCM to get a Device* copy that's unaffected by subsequent PCM changes.
- * @param currentDevice a pointer to the selected Device.
+ * @brief clear and then rebuild the contents of the preview widget
+ *
+ * The preview widget for the current disk is completely re-constructed
+ * based on the on-disk state. This also triggers a rescan in the
+ * PCM to get a Device* copy that's unaffected by subsequent PCM changes.
  */
 void
 ChoicePage::updateDeviceStatePreview()
@@ -916,10 +917,10 @@ ChoicePage::updateDeviceStatePreview()
 
 
 /**
- * @brief ChoicePage::updateActionChoicePreview clears and rebuilds the contents of the
- *      preview widget for the current PCM-proposed state. No rescans here, this should
- *      be immediate.
- * @param currentDevice a pointer to the selected Device.
+ * @brief rebuild the contents of the preview for the PCM-proposed state.
+ *
+ * No rescans here, this should be immediate.
+ *
  * @param choice the chosen partitioning action.
  */
 void
@@ -1445,18 +1446,16 @@ ChoicePage::setupActions()
 
     if ( tableType != PartitionTable::unknownTableType && !matchTableType )
     {
-        m_messageLabel->setText( tr( "This storage device already may has an operating system on it, "
-                                     "but its partition table <strong>%1</strong> mismatch the"
-                                     "requirement <strong>%2</strong>.<br/>" )
+        m_messageLabel->setText( tr( "This storage device already has an operating system on it, "
+                                     "but the partition table <strong>%1</strong> is different from the "
+                                     "needed <strong>%2</strong>.<br/>" )
                                      .arg( PartitionTable::tableTypeToName( tableType ) )
                                      .arg( m_requiredPartitionTableType.join( " or " ) ) );
         m_messageLabel->show();
 
         cWarning() << "Partition table" << PartitionTable::tableTypeToName( tableType )
                    << "does not match the requirement " << m_requiredPartitionTableType.join( " or " )
-                   << ", "
-                      "ENABLING erease feature and ";
-        "DISABLING alongside, replace and manual features.";
+                   << ", ENABLING erase feature and DISABLING alongside, replace and manual features.";
         m_eraseButton->show();
         m_alongsideButton->hide();
         m_replaceButton->hide();
@@ -1466,7 +1465,7 @@ ChoicePage::setupActions()
     }
 
     if ( m_somethingElseButton->isHidden() && m_alongsideButton->isHidden() && m_replaceButton->isHidden()
-         && m_somethingElseButton->isHidden() )
+         && m_eraseButton->isHidden() )
     {
         if ( atLeastOneIsMounted )
         {

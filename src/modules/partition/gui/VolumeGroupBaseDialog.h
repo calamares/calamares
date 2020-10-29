@@ -30,7 +30,7 @@ class VolumeGroupBaseDialog : public QDialog
 
 public:
     explicit VolumeGroupBaseDialog( QString& vgName, QVector< const Partition* > pvList, QWidget* parent = nullptr );
-    ~VolumeGroupBaseDialog();
+    ~VolumeGroupBaseDialog() override;
 
 protected:
     virtual void updateOkButton();

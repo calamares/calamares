@@ -11,13 +11,16 @@
  * This is a test-application that does one GeoIP parse.
  */
 
-#include <iostream>
 
 #include "GeoIPFixed.h"
 #include "GeoIPJSON.h"
 #ifdef QT_XML_LIB
 #include "GeoIPXML.h"
 #endif
+
+#include "utils/Logger.h"
+
+#include <iostream>
 
 using std::cerr;
 using namespace CalamaresUtils::GeoIP;
@@ -33,6 +36,9 @@ main( int argc, char** argv )
 
     QString format( argv[ 1 ] );
     QString selector = argc == 3 ? QString( argv[ 2 ] ) : QString();
+
+    Logger::setupLogLevel(Logger::LOGVERBOSE);
+    cDebug() << "Doing GeoIP interpretation with format=" << format << "selector=" << selector;
 
     Interface* handler = nullptr;
     if ( QStringLiteral( "json" ) == format )

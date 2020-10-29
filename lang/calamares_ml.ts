@@ -143,7 +143,7 @@
   <context>
     <name>Calamares::JobThread</name>
     <message>
-      <location filename="../src/libcalamares/JobQueue.cpp" line="175"/>
+      <location filename="../src/libcalamares/JobQueue.cpp" line="196"/>
       <source>Done</source>
       <translation>പൂർത്തിയായി</translation>
     </message>
@@ -177,32 +177,32 @@
   <context>
     <name>Calamares::PythonJob</name>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="193"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="192"/>
       <source>Running %1 operation.</source>
       <translation>%1 ക്രിയ നടപ്പിലാക്കുന്നു.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="222"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="221"/>
       <source>Bad working directory path</source>
       <translation>പ്രവർത്ഥനരഹിതമായ ഡയറക്ടറി പാത</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="223"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="222"/>
       <source>Working directory %1 for python job %2 is not readable.</source>
       <translation>പൈതൺ ജോബ് %2 യുടെ പ്രവർത്തന പാതയായ %1 വായിക്കുവാൻ കഴിയുന്നില്ല</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="229"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="228"/>
       <source>Bad main script file</source>
       <translation>മോശമായ പ്രധാന സ്ക്രിപ്റ്റ് ഫയൽ</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="230"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="229"/>
       <source>Main script file %1 for python job %2 is not readable.</source>
       <translation>പൈത്തൺ ജോബ് %2 നായുള്ള പ്രധാന സ്ക്രിപ്റ്റ് ഫയൽ %1 വായിക്കാൻ കഴിയുന്നില്ല.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="298"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="297"/>
       <source>Boost.Python error in job "%1".</source>
       <translation>"%1" എന്ന പ്രവൃത്തിയില്‍ ബൂസ്റ്റ്.പൈതണ്‍ പിശക്</translation>
     </message>
@@ -510,20 +510,20 @@ The installer will quit and all changes will be lost.</source>
       <translation>ഫോം</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="130"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="126"/>
       <source>Select storage de&amp;vice:</source>
       <translation>സംഭരണിയ്ക്കുള്ള ഉപകരണം തിരഞ്ഞെടുക്കൂ:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="131"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="938"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="983"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1073"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="127"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="963"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1008"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1098"/>
       <source>Current:</source>
       <translation>നിലവിലുള്ളത്:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="132"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="128"/>
       <source>After:</source>
       <translation>ശേഷം:</translation>
     </message>
@@ -533,111 +533,126 @@ The installer will quit and all changes will be lost.</source>
       <translation>&lt;strong&gt;സ്വമേധയാ ഉള്ള പാർട്ടീഷനിങ്&lt;/strong&gt;&lt;br/&gt;നിങ്ങൾക്ക് സ്വയം പാർട്ടീഷനുകൾ സൃഷ്ടിക്കാനോ വലുപ്പം മാറ്റാനോ കഴിയും.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="806"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="831"/>
       <source>Reuse %1 as home partition for %2.</source>
       <translation>%2 നുള്ള ഹോം പാർട്ടീഷനായി %1 വീണ്ടും ഉപയോഗിക്കൂ.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="939"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="964"/>
       <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;ചുരുക്കുന്നതിന് ഒരു പാർട്ടീഷൻ തിരഞ്ഞെടുക്കുക, എന്നിട്ട് വലുപ്പം മാറ്റാൻ ചുവടെയുള്ള ബാർ വലിക്കുക.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="956"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="981"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
       <translation>%1 %2MiB ആയി ചുരുങ്ങുകയും %4 ന് ഒരു പുതിയ %3MiB പാർട്ടീഷൻ സൃഷ്ടിക്കുകയും ചെയ്യും.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1012"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1037"/>
       <source>Boot loader location:</source>
       <translation>ബൂട്ട് ലോഡറിന്റെ സ്ഥാനം:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1064"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1089"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;ഇൻസ്റ്റാൾ ചെയ്യാനായി ഒരു പാർട്ടീഷൻ തിരഞ്ഞെടുക്കുക&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1119"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1146"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation>ഈ സിസ്റ്റത്തിൽ എവിടെയും ഒരു ഇ.എഫ്.ഐ സിസ്റ്റം പാർട്ടീഷൻ കണ്ടെത്താനായില്ല. %1 സജ്ജീകരിക്കുന്നതിന് ദയവായി തിരികെ പോയി മാനുവൽ പാർട്ടീഷനിംഗ് ഉപയോഗിക്കുക.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1127"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1154"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>%1 ലെ ഇഎഫ്ഐ സിസ്റ്റം പാർട്ടീഷൻ %2 ആരംഭിക്കുന്നതിന് ഉപയോഗിക്കും.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1135"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1162"/>
       <source>EFI system partition:</source>
       <translation>ഇഎഫ്ഐ സിസ്റ്റം പാർട്ടീഷൻ</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1260"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1296"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>ഈ ഡറ്റോറേജ്‌ ഉപകരണത്തിൽ ഒരു ഓപ്പറേറ്റിംഗ് സിസ്റ്റം ഉണ്ടെന്ന് തോന്നുന്നില്ല. നിങ്ങൾ എന്താണ് ചെയ്യാൻ ആഗ്രഹിക്കുന്നത്?&lt;br/&gt;സ്റ്റോറേജ് ഉപകരണത്തിൽ എന്തെങ്കിലും മാറ്റം വരുത്തുന്നതിനുമുമ്പ് നിങ്ങൾക്ക് നിങ്ങളുടെ ചോയ്‌സുകൾ അവലോകനം ചെയ്യാനും സ്ഥിരീകരിക്കാനും കഴിയും. </translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1265"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1302"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1324"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1349"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1301"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1338"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1360"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1385"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
       <translation>&lt;strong&gt;ഡിസ്ക് മായ്ക്കൂ&lt;/strong&gt;&lt;br/&gt;ഈ പ്രവൃത്തി തെരെഞ്ഞെടുത്ത സ്റ്റോറേജ് ഉപകരണത്തിലെ എല്ലാ ഡാറ്റയും &lt;font color="red"&gt;മായ്‌ച്ച്കളയും&lt;/font&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1269"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1298"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1320"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1345"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1305"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1334"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1356"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1381"/>
       <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
       <translation>&lt;strong&gt;ഇതിനൊപ്പം ഇൻസ്റ്റാൾ ചെയ്യുക&lt;/strong&gt;&lt;br/&gt;%1 ന് ഇടം നൽകുന്നതിന് ഇൻസ്റ്റാളർ ഒരു പാർട്ടീഷൻ ചുരുക്കും.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1273"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1307"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1328"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1353"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1309"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1343"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1364"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1389"/>
       <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
       <translation>&lt;strong&gt;ഒരു പാർട്ടീഷൻ പുനഃസ്ഥാപിക്കുക&lt;/strong&gt;&lt;br/&gt;ഒരു പാർട്ടീഷന് %1 ഉപയോഗിച്ച് പുനഃസ്ഥാപിക്കുന്നു.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1292"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1328"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>ഈ സ്റ്റോറേജ് ഉപകരണത്തിൽ %1 ഉണ്ട്.നിങ്ങൾ എന്താണ് ചെയ്യാൻ ആഗ്രഹിക്കുന്നത്?&lt;br/&gt;സ്റ്റോറേജ് ഉപകരണത്തിൽ എന്തെങ്കിലും മാറ്റം വരുത്തുന്നതിനുമുമ്പ് നിങ്ങളുടെ ചോയ്‌സുകൾ അവലോകനം ചെയ്യാനും സ്ഥിരീകരിക്കാനും നിങ്ങൾക്ക് കഴിയും.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1315"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1351"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>ഈ സ്റ്റോറേജ് ഉപകരണത്തിൽ ഇതിനകം ഒരു ഓപ്പറേറ്റിംഗ് സിസ്റ്റം ഉണ്ട്. നിങ്ങൾ എന്താണ് ചെയ്യാൻ ആഗ്രഹിക്കുന്നത്?&lt;br/&gt;സ്റ്റോറേജ് ഉപകരണത്തിൽ എന്തെങ്കിലും മാറ്റം വരുത്തുന്നതിനുമുമ്പ് നിങ്ങൾക്ക് നിങ്ങളുടെ ചോയ്‌സുകൾ അവലോകനം ചെയ്യാനും സ്ഥിരീകരിക്കാനും കഴിയും. </translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1340"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1376"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>ഈ സ്റ്റോറേജ് ഉപകരണത്തിൽ ഒന്നിലധികം ഓപ്പറേറ്റിംഗ് സിസ്റ്റങ്ങളുണ്ട്. നിങ്ങൾ എന്താണ് ചെയ്യാൻ ആഗ്രഹിക്കുന്നത്?&lt;br/&gt;സ്റ്റോറേജ് ഉപകരണത്തിൽ എന്തെങ്കിലും മാറ്റം വരുത്തുന്നതിനുമുമ്പ് നിങ്ങൾക്ക് നിങ്ങളുടെ ചോയ്‌സുകൾ അവലോകനം ചെയ്യാനും സ്ഥിരീകരിക്കാനും കഴിയും. </translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1532"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1448"/>
+      <source>This storage device already has an operating system on it, but the partition table &lt;strong&gt;%1&lt;/strong&gt; is different from the needed &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1471"/>
+      <source>This storage device has one of its partitions &lt;strong&gt;mounted&lt;/strong&gt;.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1476"/>
+      <source>This storage device is a part of an &lt;strong&gt;inactive RAID&lt;/strong&gt; device.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1603"/>
       <source>No Swap</source>
       <translation>സ്വാപ്പ് വേണ്ട</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1540"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1611"/>
       <source>Reuse Swap</source>
       <translation>സ്വാപ്പ് വീണ്ടും ഉപയോഗിക്കൂ</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1543"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1614"/>
       <source>Swap (no Hibernate)</source>
       <translation>സ്വാപ്പ് (ഹൈബർനേഷൻ ഇല്ല)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1546"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1617"/>
       <source>Swap (with Hibernate)</source>
       <translation>സ്വാപ്പ് (ഹൈബർനേഷനോട് കൂടി)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1549"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1620"/>
       <source>Swap to file</source>
       <translation>ഫയലിലേക്ക് സ്വാപ്പ് ചെയ്യുക</translation>
     </message>
@@ -1039,22 +1054,22 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>CreateVolumeGroupJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="28"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="31"/>
       <source>Create new volume group named %1.</source>
       <translation>%1 എന്ന് പേരുള്ള വോള്യം ഗ്രൂപ്പ് നിർമ്മിക്കുക.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="34"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="37"/>
       <source>Create new volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>&lt;strong&gt;%1&lt;/strong&gt; എന്ന് പേരുള്ള വോള്യം ഗ്രൂപ്പ് നിർമ്മിക്കുക.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="40"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="43"/>
       <source>Creating new volume group named %1.</source>
       <translation>%1 എന്ന് പേരുള്ള വോള്യം ഗ്രൂപ്പ് നിർമ്മിക്കുന്നു.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="52"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="55"/>
       <source>The installer failed to create a volume group named '%1'.</source>
       <translation>%1 എന്ന് പേരുള്ള വോള്യം ഗ്രൂപ്പ് നിർമ്മിക്കുന്നതിൽ ഇൻസ്റ്റാളർ പരാജയപ്പെട്ടു.</translation>
     </message>
@@ -1546,12 +1561,12 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>KeyboardPage</name>
     <message>
-      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="206"/>
+      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="204"/>
       <source>Set keyboard model to %1.&lt;br/&gt;</source>
       <translation>കീബോർഡ് മോഡൽ %1 എന്നതായി ക്രമീകരിക്കുക.&lt;br/&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="210"/>
+      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="208"/>
       <source>Set keyboard layout to %1/%2.</source>
       <translation>കീബോർഡ് വിന്യാസം %1%2 എന്നതായി ക്രമീകരിക്കുക.</translation>
     </message>
@@ -2270,12 +2285,12 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>PackageModel</name>
     <message>
-      <location filename="../src/modules/netinstall/PackageModel.cpp" line="167"/>
+      <location filename="../src/modules/netinstall/PackageModel.cpp" line="168"/>
       <source>Name</source>
       <translation>പേര്</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/PackageModel.cpp" line="167"/>
+      <location filename="../src/modules/netinstall/PackageModel.cpp" line="168"/>
       <source>Description</source>
       <translation>വിവരണം</translation>
     </message>
@@ -2620,42 +2635,42 @@ The installer will quit and all changes will be lost.</source>
       <translation>ശേഷം:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="427"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="426"/>
       <source>No EFI system partition configured</source>
       <translation>ഇഎഫ്ഐ സിസ്റ്റം പാർട്ടീഷനൊന്നും ക്രമീകരിച്ചിട്ടില്ല</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="428"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="427"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;%3&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="442"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="441"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;%3&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="441"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="440"/>
       <source>EFI system partition flag not set</source>
       <translation>ഇഎഫ്ഐ സിസ്റ്റം പാർട്ടീഷൻ ഫ്ലാഗ് ക്രമീകരിച്ചിട്ടില്ല</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="468"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="467"/>
       <source>Option to use GPT on BIOS</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="469"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="468"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="497"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="496"/>
       <source>Boot partition not encrypted</source>
       <translation>ബൂട്ട് പാർട്ടീഷൻ എൻക്രിപ്റ്റ് ചെയ്യപ്പെട്ടിട്ടില്ല</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="498"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="497"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
       <translation>എൻക്രിപ്റ്റ് ചെയ്ത ഒരു റൂട്ട് പാർട്ടീഷനോടൊപ്പം ഒരു വേർപെടുത്തിയ ബൂട്ട് പാർട്ടീഷനും ക്രമീകരിക്കപ്പെട്ടിരുന്നു, എന്നാൽ ബൂട്ട് പാർട്ടീഷൻ എൻക്രിപ്റ്റ് ചെയ്യപ്പെട്ടതല്ല.&lt;br/&gt;&lt;br/&gt;ഇത്തരം സജ്ജീകരണത്തിന്റെ സുരക്ഷ ഉത്കണ്ഠാജനകമാണ്, എന്തെന്നാൽ പ്രധാനപ്പെട്ട സിസ്റ്റം ഫയലുകൾ ഒരു എൻക്രിപ്റ്റ് ചെയ്യപ്പെടാത്ത പാർട്ടീഷനിലാണ് സൂക്ഷിച്ചിട്ടുള്ളത്.&lt;br/&gt; താങ്കൾക്ക് വേണമെങ്കിൽ തുടരാം, പക്ഷേ ഫയൽ സിസ്റ്റം തുറക്കൽ സിസ്റ്റം ആരംഭപ്രക്രിയയിൽ വൈകിയേ സംഭവിക്കൂ.&lt;br/&gt;ബൂട്ട് പാർട്ടീഷൻ എൻക്രിപ്റ്റ് ചെയ്യാനായി, തിരിച്ചു പോയി പാർട്ടീഷൻ നിർമ്മാണ ജാലകത്തിൽ &lt;strong&gt;എൻക്രിപ്റ്റ്&lt;/strong&gt; തിരഞ്ഞെടുത്തുകൊണ്ട് അത് വീണ്ടും നിർമ്മിക്കുക.</translation>
     </message>
@@ -2924,69 +2939,69 @@ Output:
       <translation>ഫോം</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="123"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="127"/>
       <source>Select where to install %1.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
       <translation>%1 എവിടെ ഇൻസ്റ്റാൾ ചെയ്യണമെന്ന് തിരഞ്ഞെടുക്കുക.&lt;br/&gt;&lt;font color="red"&gt;മുന്നറിയിപ്പ്: &lt;/font&gt; ഇത് തിരഞ്ഞെടുത്ത പാർട്ടീഷനിലെ എല്ലാ ഫയലുകളും നീക്കം ചെയ്യും.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="145"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="149"/>
       <source>The selected item does not appear to be a valid partition.</source>
       <translation>തിരഞ്ഞെടുക്കപ്പെട്ടത് സാധുവായ ഒരു പാർട്ടീഷനായി തോന്നുന്നില്ല.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="153"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="157"/>
       <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
       <translation>%1 ഒരു ശൂന്യമായ സ്ഥലത്ത് ഇൻസ്റ്റാൾ ചെയ്യാൻ സാധിക്കില്ല. ദയവായി നിലവിലുള്ള ഒരു പാർട്ടീഷൻ തിരഞ്ഞെടുക്കൂ.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="163"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="167"/>
       <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
       <translation>%1 ഒരു എക്സ്റ്റൻഡഡ് പാർട്ടീഷനിൽ ചെയ്യാൻ സാധിക്കില്ല. ദയവായി നിലവിലുള്ള ഒരു പ്രൈമറി അല്ലെങ്കിൽ ലോജിക്കൽ പാർട്ടീഷൻ തിരഞ്ഞെടുക്കൂ.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="173"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="177"/>
       <source>%1 cannot be installed on this partition.</source>
       <translation>%1 ഈ പാർട്ടീഷനിൽ ഇൻസ്റ്റാൾ ചെയ്യാൻ സാധിക്കില്ല.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="179"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="183"/>
       <source>Data partition (%1)</source>
       <translation>ഡാറ്റ പാർട്ടീഷൻ (%1)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="199"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="203"/>
       <source>Unknown system partition (%1)</source>
       <translation>അപരിചിതമായ സിസ്റ്റം പാർട്ടീഷൻ (%1)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="203"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="207"/>
       <source>%1 system partition (%2)</source>
       <translation>%1 സിസ്റ്റം പാർട്ടീഷൻ (%2)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="214"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="218"/>
       <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
       <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;പാർട്ടീഷൻ %1 %2ന് തീരെ ചെറുതാണ്. ദയവായി %3ജിബി എങ്കീലും  ഇടമുള്ള ഒരു പാർട്ടീഷൻ തിരഞ്ഞെടുക്കൂ.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="236"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="240"/>
       <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;ഈ സിസ്റ്റത്തിൽ എവിടേയും ഒരു ഇഎഫ്ഐ സിസ്റ്റം പർട്ടീഷൻ കണ്ടെത്താനായില്ല. %1 സജ്ജീകരിക്കുന്നതിന് ദയവായി തിരിച്ചുപോയി മാനുവൽ പാർട്ടീഷനിങ്ങ് ഉപയോഗിക്കുക.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="247"/>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="263"/>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="288"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="251"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="267"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="292"/>
       <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;all data on partition %2 will be lost.</source>
       <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 %2ൽ ഇൻസ്റ്റാൾ ചെയ്യപ്പെടും.&lt;br/&gt;&lt;font color="red"&gt;മുന്നറിയിപ്പ്:&lt;/font&gt;പാർട്ടീഷൻ %2ൽ ഉള്ള എല്ലാ ഡാറ്റയും നഷ്ടപ്പെടും.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="255"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="259"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>%1 ലെ ഇഎഫ്ഐ സിസ്റ്റം പാർട്ടീഷൻ %2 ആരംഭിക്കുന്നതിന് ഉപയോഗിക്കും.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="271"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="275"/>
       <source>EFI system partition:</source>
       <translation>ഇഎഫ്ഐ സിസ്റ്റം പാർട്ടീഷൻ</translation>
     </message>
@@ -3406,7 +3421,7 @@ Output:
   <context>
     <name>ShellProcessJob</name>
     <message>
-      <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="37"/>
+      <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="41"/>
       <source>Shell Processes Job</source>
       <translation>ഷെൽ പ്രക്രിയകൾ ജോലി</translation>
     </message>

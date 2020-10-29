@@ -13,13 +13,11 @@
 
 #include "Config.h"
 
-#include <DllMacro.h>
-#include <utils/PluginFactory.h>
-#include <viewpages/QmlViewStep.h>
+#include "DllMacro.h"
+#include "utils/PluginFactory.h"
+#include "viewpages/QmlViewStep.h"
 
 #include <QObject>
-
-class KeyboardPage;
 
 class PLUGINDLLEXPORT KeyboardQmlViewStep : public Calamares::QmlViewStep
 {
@@ -47,14 +45,6 @@ public:
 
 private:
     Config* m_config;
-    bool m_nextEnabled;
-    QString m_prettyStatus;
-
-    QString m_xOrgConfFileName;
-    QString m_convertedKeymapPath;
-    bool m_writeEtcDefaultKeyboard;
-
-    Calamares::JobList m_jobs;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( KeyboardQmlViewStepFactory )

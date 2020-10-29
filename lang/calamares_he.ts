@@ -11,12 +11,12 @@
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="71"/>
       <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-      <translation>מערכת זו הופעלה בתצורת אתחול &lt;strong&gt;EFI&lt;/strong&gt;.&lt;br&gt;&lt;br&gt; כדי להגדיר הפעלה מתצורת אתחול EFI, על אשף ההתקנה להתקין מנהל אתחול מערכת, לדוגמה &lt;strong&gt;GRUB&lt;/strong&gt; או &lt;strong&gt;systemd-boot&lt;/strong&gt; על &lt;strong&gt;מחיצת מערכת EFI&lt;/strong&gt;. פעולה זו היא אוטומטית, אלא אם כן העדפתך היא להגדיר מחיצות באופן ידני, במקרה זה עליך לבחור זאת או להגדיר בעצמך.</translation>
+      <translation>מערכת זו הופעלה בתצורת אתחול &lt;strong&gt;EFI&lt;/strong&gt;.&lt;br&gt;&lt;br&gt; כדי להגדיר הפעלה מתצורת אתחול EFI, על תכנית ההתקנה להתקין מנהל אתחול מערכת, לדוגמה &lt;strong&gt;GRUB&lt;/strong&gt; או &lt;strong&gt;systemd-boot&lt;/strong&gt; על &lt;strong&gt;מחיצת מערכת EFI&lt;/strong&gt;. פעולה זו היא אוטומטית, אלא אם כן העדפתך היא להגדיר מחיצות באופן ידני, במקרה זה יש לבחור זאת או להגדיר בעצמך.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="83"/>
       <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-      <translation>מערכת זו הופעלה בתצורת אתחול &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;&lt;br&gt; כדי להגדיר הפעלה מתצורת אתחול BIOS, על אשף ההתקנה להתקין מנהל אתחול מערכת, לדוגמה &lt;strong&gt;GRUB&lt;/strong&gt;, בתחילת המחיצה או על ה־&lt;strong&gt;Master Boot Record&lt;/strong&gt; בצמוד להתחלה של טבלת המחיצות (מועדף). פעולה זו היא אוטומטית, אלא אם כן תבחר להגדיר מחיצות באופן ידני, במקרה זה עליך להגדיר זאת בעצמך.</translation>
+      <translation>מערכת זו הופעלה בתצורת אתחול &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;&lt;br&gt; כדי להגדיר הפעלה מתצורת אתחול BIOS, על תכנית ההתקנה להתקין מנהל אתחול מערכת, לדוגמה &lt;strong&gt;GRUB&lt;/strong&gt;, בתחילת המחיצה או על ה־&lt;strong&gt;Master Boot Record&lt;/strong&gt; בצמוד להתחלה של טבלת המחיצות (מועדף). פעולה זו היא אוטומטית, אלא אם כן תבחר להגדיר מחיצות באופן ידני, במקרה זה יש להגדיר זאת בעצמך.</translation>
     </message>
   </context>
   <context>
@@ -143,7 +143,7 @@
   <context>
     <name>Calamares::JobThread</name>
     <message>
-      <location filename="../src/libcalamares/JobQueue.cpp" line="175"/>
+      <location filename="../src/libcalamares/JobQueue.cpp" line="196"/>
       <source>Done</source>
       <translation>בוצע</translation>
     </message>
@@ -177,32 +177,32 @@
   <context>
     <name>Calamares::PythonJob</name>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="193"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="192"/>
       <source>Running %1 operation.</source>
       <translation>הפעולה %1 רצה.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="222"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="221"/>
       <source>Bad working directory path</source>
       <translation>נתיב תיקיית עבודה שגוי</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="223"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="222"/>
       <source>Working directory %1 for python job %2 is not readable.</source>
       <translation>תיקיית העבודה %1 עבור משימת python‏ %2 אינה קריאה.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="229"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="228"/>
       <source>Bad main script file</source>
       <translation>קובץ תסריט הרצה ראשי לא תקין</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="230"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="229"/>
       <source>Main script file %1 for python job %2 is not readable.</source>
       <translation>קובץ תסריט הרצה ראשי %1 עבור משימת python %2 לא קריא. </translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="298"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="297"/>
       <source>Boost.Python error in job "%1".</source>
       <translation>שגיאת Boost.Python במשימה „%1”.</translation>
     </message>
@@ -340,7 +340,7 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="332"/>
       <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-      <translation>אשף ההתקנה של %1 הולך לבצע שינויים בכונן שלך לטובת התקנת %2.&lt;br/&gt;&lt;strong&gt;לא תוכל לבטל את השינויים הללו.&lt;/strong&gt;</translation>
+      <translation>תכנית ההתקנה של %1 עומדת לבצע שינויים בכונן שלך לטובת התקנת %2.&lt;br/&gt;&lt;strong&gt;לא תהיה אפשרות לבטל את השינויים הללו.&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="335"/>
@@ -375,7 +375,7 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="395"/>
       <source>The installation is complete. Close the installer.</source>
-      <translation>תהליך ההתקנה הושלם. נא לסגור את אשף ההתקנה.</translation>
+      <translation>תהליך ההתקנה הושלם. נא לסגור את תכנית ההתקנה.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="397"/>
@@ -428,8 +428,8 @@ The setup program will quit and all changes will be lost.</source>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="514"/>
       <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
-      <translation>האם ברצונך לבטל את תהליך ההתקנה?
-אשף ההתקנה ייסגר וכל השינויים יאבדו.</translation>
+      <translation>האם אכן ברצונך לבטל את תהליך ההתקנה?
+תכנית ההתקנה תיסגר וכל השינויים יאבדו.</translation>
     </message>
   </context>
   <context>
@@ -495,7 +495,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="305"/>
       <source>%1 Installer</source>
-      <translation>אשף התקנה של %1</translation>
+      <translation>תכנית התקנת %1</translation>
     </message>
   </context>
   <context>
@@ -514,20 +514,20 @@ The installer will quit and all changes will be lost.</source>
       <translation>Form</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="130"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="126"/>
       <source>Select storage de&amp;vice:</source>
       <translation>בחירת התקן א&amp;חסון:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="131"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="938"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="983"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1073"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="127"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="963"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1008"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1098"/>
       <source>Current:</source>
       <translation>נוכחי:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="132"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="128"/>
       <source>After:</source>
       <translation>לאחר:</translation>
     </message>
@@ -537,111 +537,126 @@ The installer will quit and all changes will be lost.</source>
       <translation>&lt;strong&gt;הגדרת מחיצות באופן ידני&lt;/strong&gt;&lt;br/&gt;ניתן ליצור או לשנות את גודל המחיצות בעצמך.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="806"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="831"/>
       <source>Reuse %1 as home partition for %2.</source>
       <translation>להשתמש ב־%1 כמחיצת הבית (home) עבור %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="939"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="964"/>
       <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;ראשית יש לבחור מחיצה לכיווץ, לאחר מכן לגרור את הסרגל התחתון כדי לשנות את גודלה&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="956"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="981"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
       <translation>%1 תכווץ לכדי %2MiB ותיווצר מחיצה חדשה בגודל %3MiB עבור %4.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1012"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1037"/>
       <source>Boot loader location:</source>
       <translation>מיקום מנהל אתחול המערכת:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1064"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1089"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;נא לבחור מחיצה כדי להתקין עליה&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1119"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1146"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation>במערכת זו לא נמצאה מחיצת מערכת EFI. נא לחזור ולהשתמש ביצירת מחיצות באופן ידני כדי להגדיר את %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1127"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1154"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>מחיצת מערכת ה־EFI שב־%1 תשמש עבור טעינת %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1135"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1162"/>
       <source>EFI system partition:</source>
       <translation>מחיצת מערכת EFI:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1260"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1296"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>לא נמצאה מערכת הפעלה על התקן אחסון זה. מה ברצונך לעשות?&lt;br/&gt; ניתן לסקור ולאשר את בחירתך לפני ששינויים יתבצעו על התקן האחסון.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1265"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1302"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1324"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1349"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1301"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1338"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1360"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1385"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
       <translation>&lt;strong&gt;מחיקת כונן&lt;/strong&gt;&lt;br/&gt; פעולה זו &lt;font color="red"&gt;תמחק&lt;/font&gt; את כל המידע השמור על התקן האחסון הנבחר.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1269"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1298"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1320"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1345"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1305"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1334"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1356"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1381"/>
       <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
       <translation>&lt;strong&gt;התקנה לצד&lt;/strong&gt;&lt;br/&gt; אשף ההתקנה יכווץ מחיצה כדי לפנות מקום לטובת %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1273"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1307"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1328"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1353"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1309"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1343"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1364"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1389"/>
       <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
       <translation>&lt;strong&gt;החלפת מחיצה&lt;/strong&gt;&lt;br/&gt; ביצוע החלפה של המחיצה ב־%1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1292"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1328"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>בהתקן אחסון זה נמצאה %1. מה ברצונך לעשות?&lt;br/&gt; ניתן לסקור ולאשר את בחירתך לפני ששינויים יתבצעו על התקן האחסון.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1315"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1351"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>כבר קיימת מערכת הפעלה על התקן האחסון הזה. כיצד להמשיך?&lt;br/&gt; ניתן לסקור ולאשר את בחירתך לפני ששינויים יתבצעו על התקן האחסון.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1340"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1376"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>ישנן מגוון מערכות הפעלה על התקן אחסון זה. איך להמשיך? &lt;br/&gt;ניתן לסקור ולאשר את בחירתך לפני ששינויים יתבצעו על התקן האחסון.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1532"/>
-      <source>No Swap</source>
-      <translation>בלי החלפה</translation>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1448"/>
+      <source>This storage device already has an operating system on it, but the partition table &lt;strong&gt;%1&lt;/strong&gt; is different from the needed &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</source>
+      <translation>בהתקן האחסון הזה כבר יש מערכת הפעלה אך טבלת המחיצות &lt;strong&gt;%1&lt;/strong&gt; שונה מהנדרשת &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1540"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1471"/>
+      <source>This storage device has one of its partitions &lt;strong&gt;mounted&lt;/strong&gt;.</source>
+      <translation>אחת המחיצות של התקן האחסון הזה &lt;strong&gt;מעוגנת&lt;/strong&gt;.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1476"/>
+      <source>This storage device is a part of an &lt;strong&gt;inactive RAID&lt;/strong&gt; device.</source>
+      <translation>התקן אחסון זה הוא חלק מהתקן &lt;strong&gt;RAID בלתי פעיל&lt;/strong&gt;.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1603"/>
+      <source>No Swap</source>
+      <translation>ללא החלפה</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1611"/>
       <source>Reuse Swap</source>
       <translation>שימוש מחדש בהחלפה</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1543"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1614"/>
       <source>Swap (no Hibernate)</source>
       <translation>החלפה (ללא תרדמת)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1546"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1617"/>
       <source>Swap (with Hibernate)</source>
       <translation>החלפה (עם תרדמת)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1549"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1620"/>
       <source>Swap to file</source>
       <translation>החלפה לקובץ</translation>
     </message>
@@ -1043,22 +1058,22 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>CreateVolumeGroupJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="28"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="31"/>
       <source>Create new volume group named %1.</source>
       <translation>יצירת קבוצת כרכים חדשה בשם %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="34"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="37"/>
       <source>Create new volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>יצירת קבוצת כרכים חדשה בשם &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="40"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="43"/>
       <source>Creating new volume group named %1.</source>
       <translation>נוצרת קבוצת כרכים חדשה בשם %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="52"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="55"/>
       <source>The installer failed to create a volume group named '%1'.</source>
       <translation>אשף ההתקנה נכשל ביצירת קבוצת כרכים בשם ‚%1’.</translation>
     </message>
@@ -1102,7 +1117,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="56"/>
       <source>The installer failed to delete partition %1.</source>
-      <translation>אשף ההתקנה נכשל בעת מחיקת מחיצה %1.</translation>
+      <translation>תכנית ההתקנה כשלה במחיקת המחיצה %1.</translation>
     </message>
   </context>
   <context>
@@ -1550,12 +1565,12 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>KeyboardPage</name>
     <message>
-      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="206"/>
+      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="204"/>
       <source>Set keyboard model to %1.&lt;br/&gt;</source>
       <translation>הגדרת דגם המקלדת בתור %1.&lt;br/&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="210"/>
+      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="208"/>
       <source>Set keyboard layout to %1/%2.</source>
       <translation>הגדרת פריסת לוח המקשים בתור %1/%2.</translation>
     </message>
@@ -1629,7 +1644,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="146"/>
       <source>If you do not agree with the terms, the setup procedure cannot continue.</source>
-      <translation>אם התנאים האלה אינם מקובלים עליך, אי אפשר להמשיך בתהליך ההתקנה.</translation>
+      <translation>אם התנאים האלה אינם מקובלים עליכם, אי אפשר להמשיך בתהליך ההתקנה.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="151"/>
@@ -1639,7 +1654,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="156"/>
       <source>If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
-      <translation>אם תנאים אלו אינם מקובלים עליך, לא תותקן תכנה קניינית וייעשה שימוש בחלופות בקוד פתוח במקום.</translation>
+      <translation>אם התנאים הללו אינם מקובלים עליכם, תוכנה קניינית לא תותקן, ובמקומן יעשה שימוש בחלופות בקוד פתוח.</translation>
     </message>
   </context>
   <context>
@@ -1811,8 +1826,8 @@ The installer will quit and all changes will be lost.</source>
       <source>Please select your preferred location on the map so the installer can suggest the locale
             and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
             to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</source>
-      <translation>נא לבחור את המיקום המועדף עליך על המפה כדי שתכנית ההתקנה תוכל להציע הגדרות מקומיות
-             ואזור זמן עבורך. ניתן לכוונן את ההגדרות המוצעות להלן. לחפש במפה על ידי משיכה להזזתה ובכפתורים +/- כדי להתקרב/להתרחק
+      <translation>נא לבחור את המיקום המועדף עליכם על המפה כדי שתכנית ההתקנה תוכל להציע הגדרות מקומיות
+             ואזור זמן עבורכם. ניתן לכוונן את ההגדרות המוצעות להלן. לחפש במפה על ידי משיכה להזזתה ובכפתורים +/- כדי להתקרב/להתרחק
             או להשתמש בגלילת העכבר לטובת שליטה בתקריב.</translation>
     </message>
   </context>
@@ -1959,7 +1974,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="37"/>
       <source>Select your preferred Region, or use the default one based on your current location.</source>
-      <translation>נא לבחור את המחוז המועדף עליך או להשתמש בבררת המחדל לפי המיקום הנוכחי שלך.</translation>
+      <translation>נא לבחור את המחוז המועדף עליכם או להשתמש בברירת המחדל לפי המיקום הנוכחי שלכם.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="94"/>
@@ -2014,7 +2029,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="158"/>
       <source>The password is the same as the old one</source>
-      <translation>הססמה זהה לישנה</translation>
+      <translation>הססמה הזו זהה לישנה</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="160"/>
@@ -2276,12 +2291,12 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>PackageModel</name>
     <message>
-      <location filename="../src/modules/netinstall/PackageModel.cpp" line="167"/>
+      <location filename="../src/modules/netinstall/PackageModel.cpp" line="168"/>
       <source>Name</source>
       <translation>שם</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/PackageModel.cpp" line="167"/>
+      <location filename="../src/modules/netinstall/PackageModel.cpp" line="168"/>
       <source>Description</source>
       <translation>תיאור</translation>
     </message>
@@ -2398,7 +2413,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/users/page_usersetup.ui" line="519"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="544"/>
       <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</source>
-      <translation>&lt;small&gt;עליך להקליד את אותה הססמה פעמיים כדי לאפשר זיהוי של שגיאות הקלדה.&lt;/small&gt;</translation>
+      <translation>&lt;small&gt;יש להקליד את אותה הססמה פעמיים כדי לאפשר זיהוי של שגיאות הקלדה.&lt;/small&gt;</translation>
     </message>
   </context>
   <context>
@@ -2626,42 +2641,42 @@ The installer will quit and all changes will be lost.</source>
       <translation>לאחר:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="427"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="426"/>
       <source>No EFI system partition configured</source>
       <translation>לא הוגדרה מחיצת מערכת EFI</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="428"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="427"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;%3&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
-      <translation>מחיצת מערכת EFI נדרשת כדי להפעיל את %1.&lt;br/&gt;&lt;br/&gt; כדי להגדיר מחיצת מערכת EFI, עליך לחזור ולבחור או ליצור מערכת קבצים מסוג FAT32 עם סימון &lt;strong&gt;%3&lt;/strong&gt; פעיל ועם נקודת עיגון &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt; ניתן להמשיך ללא הגדרת מחיצת מערכת EFI אך טעינת המערכת עשויה להיכשל.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="442"/>
-      <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;%3&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
-      <translation>לצורך הפעלת %1 נדרשת מחיצת מערכת EFI.&lt;br/&gt;&lt;br/&gt; הוגדרה מחיצה עם נקודת עיגון &lt;strong&gt;%2&lt;/strong&gt; אך לא הוגדר סימון &lt;strong&gt;%3&lt;/strong&gt;.&lt;br/&gt; כדי לסמן את המחיצה, עליך לחזור ולערוך את המחיצה.&lt;br/&gt;&lt;br/&gt; ניתן להמשיך ללא הוספת הסימון אך טעינת המערכת עשויה להיכשל.</translation>
+      <translation>מחיצת מערכת EFI נדרשת כדי להפעיל את %1.&lt;br/&gt;&lt;br/&gt; כדי להגדיר מחיצת מערכת EFI, יש לחזור ולבחור או ליצור מערכת קבצים מסוג FAT32 עם סימון &lt;strong&gt;%3&lt;/strong&gt; פעיל ועם נקודת עיגון &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt; ניתן להמשיך ללא הגדרת מחיצת מערכת EFI אך טעינת המערכת עשויה להיכשל.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="441"/>
+      <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;%3&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
+      <translation>לצורך הפעלת %1 נדרשת מחיצת מערכת EFI.&lt;br/&gt;&lt;br/&gt; הוגדרה מחיצה עם נקודת עיגון &lt;strong&gt;%2&lt;/strong&gt; אך לא הוגדר סימון &lt;strong&gt;%3&lt;/strong&gt;.&lt;br/&gt; כדי לסמן את המחיצה, יש לחזור ולערוך את המחיצה.&lt;br/&gt;&lt;br/&gt; ניתן להמשיך ללא הוספת הסימון אך טעינת המערכת עשויה להיכשל.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="440"/>
       <source>EFI system partition flag not set</source>
       <translation>לא מוגדר סימון מחיצת מערכת EFI</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="468"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="467"/>
       <source>Option to use GPT on BIOS</source>
       <translation>אפשרות להשתמש ב־GPT או ב־BIOS</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="469"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="468"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
       <translation>טבלת מחיצות מסוג GPT היא האפשרות הטובה ביותר בכל המערכות. תכנית התקנה זו תומכת גם במערכות מסוג BIOS.&lt;br/&gt;&lt;br/&gt;כדי להגדיר טבלת מחיצות מסוג GPT על גבי BIOS, (אם זה טרם בוצע) יש לחזור ולהגדיר את טבלת המחיצות ל־GPT, לאחר מכן יש ליצור מחיצה של 8 מ״ב ללא פירמוט עם הדגלון &lt;strong&gt;bios_grub&lt;/strong&gt; פעיל.&lt;br/&gt;&lt;br/&gt;מחיצה בלתי מפורמטת בגודל 8 מ״ב נחוצה לטובת הפעלת %1 על מערכת מסוג BIOS עם GPT.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="497"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="496"/>
       <source>Boot partition not encrypted</source>
       <translation>מחיצת האתחול (Boot) אינה מוצפנת</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="498"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="497"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
       <translation>מחיצת אתחול, boot, נפרדת הוגדרה יחד עם מחיצת מערכת ההפעלה, root, מוצפנת, אך מחיצת האתחול לא הוצפנה.&lt;br/&gt;&lt;br/&gt; ישנן השלכות בטיחותיות עם התצורה שהוגדרה, מכיוון שקובצי מערכת חשובים נשמרים על מחיצה לא מוצפנת.&lt;br/&gt;ניתן להמשיך אם זהו רצונך, אך שחרור מערכת הקבצים יתרחש מאוחר יותר כחלק מהאתחול.&lt;br/&gt;בכדי להצפין את מחיצת האתחול, יש לחזור וליצור אותה מחדש, על ידי בחירה ב &lt;strong&gt;הצפנה&lt;/strong&gt; בחלונית יצירת המחיצה.</translation>
     </message>
@@ -2828,7 +2843,7 @@ Output:
     <message>
       <location filename="../src/libcalamares/partition/FileSystem.cpp" line="34"/>
       <source>swap</source>
-      <translation>דפדוף, swap</translation>
+      <translation>דפדוף swap</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="90"/>
@@ -2931,69 +2946,69 @@ Output:
       <translation>Form</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="123"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="127"/>
       <source>Select where to install %1.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
       <translation>בחר מיקום התקנת %1.&lt;br/&gt;&lt;font color="red"&gt;אזהרה: &lt;/font&gt; הפעולה תמחק את כל הקבצים במחיצה שנבחרה.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="145"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="149"/>
       <source>The selected item does not appear to be a valid partition.</source>
       <translation>הפריט הנבחר איננו מחיצה תקינה.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="153"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="157"/>
       <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
       <translation>לא ניתן להתקין את %1 על זכרון ריק. אנא בחר מחיצה קיימת.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="163"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="167"/>
       <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
       <translation>לא ניתן להתקין את %1 על מחיצה מורחבת. אנא בחר מחיצה ראשית או לוגית קיימת.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="173"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="177"/>
       <source>%1 cannot be installed on this partition.</source>
       <translation>לא ניתן להתקין את %1 על מחיצה זו.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="179"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="183"/>
       <source>Data partition (%1)</source>
       <translation>מחיצת מידע (%1)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="199"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="203"/>
       <source>Unknown system partition (%1)</source>
       <translation>מחיצת מערכת (%1) לא מוכרת</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="203"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="207"/>
       <source>%1 system partition (%2)</source>
       <translation>%1 מחיצת מערכת (%2)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="214"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="218"/>
       <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
       <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt; גודל המחיצה %1 קטן מדי עבור %2. אנא בחר מחיצה עם קיבולת בנפח %3 GiB לפחות.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="236"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="240"/>
       <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt; מחיצת מערכת EFI לא נמצאה באף מקום על המערכת. חזור בבקשה והשתמש ביצירת מחיצות באופן ידני בכדי להגדיר את %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="247"/>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="263"/>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="288"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="251"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="267"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="292"/>
       <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;all data on partition %2 will be lost.</source>
       <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 יותקן על %2. &lt;br/&gt;&lt;font color="red"&gt;אזהרה: &lt;/font&gt;כל המידע אשר קיים במחיצה %2 יאבד.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="255"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="259"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>מחיצת מערכת EFI ב %1 תשמש עבור טעינת %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="271"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="275"/>
       <source>EFI system partition:</source>
       <translation>מחיצת מערכת EFI:</translation>
     </message>
@@ -3415,7 +3430,7 @@ Output:
   <context>
     <name>ShellProcessJob</name>
     <message>
-      <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="37"/>
+      <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="41"/>
       <source>Shell Processes Job</source>
       <translation>משימת תהליכי מעטפת</translation>
     </message>
@@ -3871,7 +3886,7 @@ Output:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="60"/>
       <source>Click your preferred keyboard model to select layout and variant, or use the default one based on the detected hardware.</source>
-      <translation>נא ללחוץ על דרם המקלדת המועדף עליך כדי לבחור בפריסה ובהגוון או להשתמש בבררת המחדל בהתאם לחומרה שזוהתה.</translation>
+      <translation>נא ללחוץ על דגם המקלדת המועדף עליכם כדי לבחור בפריסה ובהגוון או להשתמש בברירת המחדל בהתאם לחומרה שזוהתה.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="253"/>

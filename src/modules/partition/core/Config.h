@@ -28,7 +28,7 @@ class Config : public QObject
 
 public:
     Config( QObject* parent );
-    virtual ~Config() = default;
+    ~Config() override = default;
 
     enum InstallChoice
     {

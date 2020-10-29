@@ -11,6 +11,7 @@
 #ifndef KEYBOARD_CONFIG_H
 #define KEYBOARD_CONFIG_H
 
+#include "AdditionalLayoutInfo.h"
 #include "Job.h"
 #include "KeyboardLayoutModel.h"
 
@@ -19,63 +20,6 @@
 #include <QObject>
 #include <QTimer>
 #include <QUrl>
-
-class KeyboardModelsModel : public QAbstractListModel
-{
-    Q_OBJECT
-    Q_PROPERTY( int currentIndex WRITE setCurrentIndex READ currentIndex NOTIFY currentIndexChanged )
-
-public:
-    explicit KeyboardModelsModel( QObject* parent = nullptr );
-    int rowCount( const QModelIndex& = QModelIndex() ) const override;
-    QVariant data( const QModelIndex& index, int role ) const override;
-
-    void setCurrentIndex( const int& index );
-    int currentIndex() const;
-    const QMap< QString, QString > item( const int& index ) const;
-
-public slots:
-    void refresh();
-
-protected:
-    QHash< int, QByteArray > roleNames() const override;
-
-private:
-    int m_currentIndex = -1;
-    QVector< QMap< QString, QString > > m_list;
-    void detectModels();
-
-signals:
-    void currentIndexChanged( int index );
-};
-
-class KeyboardVariantsModel : public QAbstractListModel
-{
-    Q_OBJECT
-    Q_PROPERTY( int currentIndex WRITE setCurrentIndex READ currentIndex NOTIFY currentIndexChanged )
-
-public:
-    explicit KeyboardVariantsModel( QObject* parent = nullptr );
-    void setVariants( QMap< QString, QString > variants );
-
-    int rowCount( const QModelIndex& = QModelIndex() ) const override;
-    QVariant data( const QModelIndex& index, int role ) const override;
-
-    void setCurrentIndex( const int& index );
-    int currentIndex() const;
-
-    const QMap< QString, QString > item( const int& index ) const;
-
-protected:
-    QHash< int, QByteArray > roleNames() const override;
-
-private:
-    int m_currentIndex = -1;
-    QVector< QMap< QString, QString > > m_list;
-
-signals:
-    void currentIndexChanged( int index );
-};
 
 class Config : public QObject
 {
@@ -88,14 +32,34 @@ class Config : public QObject
 public:
     Config( QObject* parent = nullptr );
 
-    void init();
+    void detectCurrentKeyboardLayout();
 
-    Calamares::JobList
-    createJobs( const QString& xOrgConfFileName, const QString& convertedKeymapPath, bool writeEtcDefaultKeyboard );
+    Calamares::JobList createJobs();
     QString prettyStatus() const;
 
     void onActivate();
     void finalize();
+
+    void setConfigurationMap( const QVariantMap& configurationMap );
+
+    static AdditionalLayoutInfo getAdditionalLayoutInfo( const QString& layout );
+
+    /* A model is a physical configuration of a keyboard, e.g. 105-key PC
+     * or TKL 88-key physical size.
+     */
+    KeyboardModelsModel* keyboardModels() const;
+    /* A layout describes the basic keycaps / language assigned to the
+     * keys of the physical keyboard, e.g. English (US) or Russian.
+     */
+    KeyboardLayoutModel* keyboardLayouts() const;
+    /* A variant describes a variant of the basic keycaps; this can
+     * concern options (dead keys), or different placements of the keycaps
+     * (dvorak).
+     */
+    KeyboardVariantsModel* keyboardVariants() const;
+
+signals:
+    void prettyStatusChanged();
 
 private:
     void guessLayout( const QStringList& langParts );
@@ -108,16 +72,16 @@ private:
     QString m_selectedLayout;
     QString m_selectedModel;
     QString m_selectedVariant;
+
+    // Layout (and corresponding info) added if current one doesn't support ASCII (e.g. Russian or Japanese)
+    AdditionalLayoutInfo m_additionalLayoutInfo;
+
     QTimer m_setxkbmapTimer;
 
-protected:
-    KeyboardModelsModel* keyboardModels() const;
-    KeyboardLayoutModel* keyboardLayouts() const;
-    KeyboardVariantsModel* keyboardVariants() const;
-
-
-signals:
-    void prettyStatusChanged();
+    // From configuration
+    QString m_xOrgConfFileName;
+    QString m_convertedKeymapPath;
+    bool m_writeEtcDefaultKeyboard = true;
 };
 
 

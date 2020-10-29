@@ -7,6 +7,7 @@ calamares_add_plugin( keyboard
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
+        Config.cpp
         KeyboardViewStep.cpp
         KeyboardPage.cpp
         KeyboardLayoutModel.cpp

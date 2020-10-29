@@ -22,7 +22,7 @@ export LANG LC_ALL LC_NUMERIC
 
 AS=$( which astyle )
 
-CF_VERSIONS="clang-format-7 clang-format-8 clang-format70 clang-format80 clang-format-9.0.1 clang-format"
+CF_VERSIONS="clang-format-7 clang-format-8 clang-format70 clang-format80 clang-format90 clang-format-9.0.1 clang-format"
 for _cf in $CF_VERSIONS
 do
 	# Not an error if this particular clang-format isn't found

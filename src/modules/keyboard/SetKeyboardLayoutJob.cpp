@@ -33,6 +33,7 @@
 SetKeyboardLayoutJob::SetKeyboardLayoutJob( const QString& model,
                                             const QString& layout,
                                             const QString& variant,
+                                            const AdditionalLayoutInfo& additionalLayoutInfo,
                                             const QString& xOrgConfFileName,
                                             const QString& convertedKeymapPath,
                                             bool writeEtcDefaultKeyboard )
@@ -40,6 +41,7 @@ SetKeyboardLayoutJob::SetKeyboardLayoutJob( const QString& model,
     , m_model( model )
     , m_layout( layout )
     , m_variant( variant )
+    , m_additionalLayoutInfo( additionalLayoutInfo )
     , m_xOrgConfFileName( xOrgConfFileName )
     , m_convertedKeymapPath( convertedKeymapPath )
     , m_writeEtcDefaultKeyboard( writeEtcDefaultKeyboard )
@@ -250,19 +252,34 @@ SetKeyboardLayoutJob::writeX11Data( const QString& keyboardConfPath ) const
               "        Identifier \"system-keyboard\"\n"
               "        MatchIsKeyboard \"on\"\n";
 
-    if ( !m_layout.isEmpty() )
-    {
-        stream << "        Option \"XkbLayout\" \"" << m_layout << "\"\n";
-    }
 
-    if ( !m_model.isEmpty() )
+    if ( m_additionalLayoutInfo.additionalLayout.isEmpty() )
     {
-        stream << "        Option \"XkbModel\" \"" << m_model << "\"\n";
-    }
+        if ( !m_layout.isEmpty() )
+        {
+            stream << "        Option \"XkbLayout\" \"" << m_layout << "\"\n";
+        }
 
-    if ( !m_variant.isEmpty() )
+        if ( !m_variant.isEmpty() )
+        {
+            stream << "        Option \"XkbVariant\" \"" << m_variant << "\"\n";
+        }
+    }
+    else
     {
-        stream << "        Option \"XkbVariant\" \"" << m_variant << "\"\n";
+        if ( !m_layout.isEmpty() )
+        {
+            stream << "        Option \"XkbLayout\" \"" << m_additionalLayoutInfo.additionalLayout << "," << m_layout
+                   << "\"\n";
+        }
+
+        if ( !m_variant.isEmpty() )
+        {
+            stream << "        Option \"XkbVariant\" \"" << m_additionalLayoutInfo.additionalVariant << "," << m_variant
+                   << "\"\n";
+        }
+
+        stream << "        Option \"XkbOptions\" \"" << m_additionalLayoutInfo.groupSwitcher << "\"\n";
     }
 
     stream << "EndSection\n";
