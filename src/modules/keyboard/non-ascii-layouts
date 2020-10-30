@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: no
+# SPDX-License-Identifier: CC0-1.0
+#
 # Layouts stored here need additional layout (usually us) to provide ASCII support for user
 
 #layout   additional-layout   additional-variant   vconsole-keymap
