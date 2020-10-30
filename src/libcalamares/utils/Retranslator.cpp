@@ -193,10 +193,9 @@ installTranslator( const QLocale& locale, const QString& brandingTranslationsPre
 {
     loadSingletonTranslator( BrandingLoader( locale, brandingTranslationsPrefix ), s_brandingTranslator );
     loadSingletonTranslator( TZLoader( locale ), s_tztranslator );
+    loadSingletonTranslator( CalamaresLoader( locale ), s_translator );
 
-    CalamaresLoader l( locale );  // because we want the extracted localeName
-    loadSingletonTranslator( std::move( l ), s_translator );
-    s_translatorLocaleName = l.m_localeName;
+    s_translatorLocaleName = CalamaresLoader::mungeLocaleName( locale );
 }
 
 
