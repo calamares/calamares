@@ -108,7 +108,7 @@ xkbmap_query_grp_option()
     //it's either in the end of line or before the other option so \s or ,
     int lastIndex = outputLine.indexOf( QRegExp( "[\\s,]" ), index );
 
-    return outputLine.mid( index, lastIndex - 1 );
+    return outputLine.mid( index, lastIndex - index );
 }
 
 AdditionalLayoutInfo
