@@ -85,12 +85,12 @@ public:
      * @brief Apply the current partition layout to the selected drive space.
      * @return  A list of Partition objects.
      */
-    QList< Partition* > execute( Device* dev,
-                                 qint64 firstSector,
-                                 qint64 lastSector,
-                                 QString luksPassphrase,
-                                 PartitionNode* parent,
-                                 const PartitionRole& role );
+    QList< Partition* > createPartitions( Device* dev,
+                                          qint64 firstSector,
+                                          qint64 lastSector,
+                                          QString luksPassphrase,
+                                          PartitionNode* parent,
+                                          const PartitionRole& role );
 
 private:
     FileSystem::Type m_defaultFsType;

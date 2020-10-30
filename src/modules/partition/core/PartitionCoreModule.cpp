@@ -875,7 +875,7 @@ PartitionCoreModule::layoutApply( Device* dev,
                                   const PartitionRole& role )
 {
     bool isEfi = PartUtils::isEfiSystem();
-    QList< Partition* > partList = m_partLayout.execute( dev, firstSector, lastSector, luksPassphrase, parent, role );
+    QList< Partition* > partList = m_partLayout.createPartitions( dev, firstSector, lastSector, luksPassphrase, parent, role );
 
     // Partition::mountPoint() tells us where it is mounted **now**, while
     // PartitionInfo::mountPoint() says where it will be mounted in the target system.

@@ -167,12 +167,12 @@ PartitionLayout::init( const QVariantList& config )
 }
 
 QList< Partition* >
-PartitionLayout::execute( Device* dev,
-                          qint64 firstSector,
-                          qint64 lastSector,
-                          QString luksPassphrase,
-                          PartitionNode* parent,
-                          const PartitionRole& role )
+PartitionLayout::createPartitions( Device* dev,
+                                   qint64 firstSector,
+                                   qint64 lastSector,
+                                   QString luksPassphrase,
+                                   PartitionNode* parent,
+                                   const PartitionRole& role )
 {
     QList< Partition* > partList;
     // Map each partition entry to its requested size (0 when calculated later)
