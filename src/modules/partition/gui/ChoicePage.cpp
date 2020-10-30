@@ -90,13 +90,7 @@ ChoicePage::ChoicePage( Config* config, QWidget* parent )
     auto gs = Calamares::JobQueue::instance()->globalStorage();
 
     m_requiredPartitionTableType = gs->value( "requiredPartitionTableType" ).toStringList();
-    m_defaultFsType = gs->value( "defaultFileSystemType" ).toString();
     m_enableEncryptionWidget = gs->value( "enableLuksAutomatedPartitioning" ).toBool();
-
-    if ( FileSystem::typeForName( m_defaultFsType ) == FileSystem::Unknown )
-    {
-        m_defaultFsType = "ext4";
-    }
 
     // Set up drives combo
     m_mainLayout->setDirection( QBoxLayout::TopToBottom );
@@ -763,6 +757,20 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
                             newRoles = PartitionRole( PartitionRole::Logical );
                             newParent = findPartitionByPath( { selectedDevice() }, parent->partitionPath() );
                         }
+                    }
+
+                    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+
+                    m_core->layoutInit( gs->value( "defaultFileSystemType" ).toString() );
+
+                    if ( m_homePartitionCheckBox->isChecked() )
+                    {
+                        gs->insert( "reuseHome", true );
+                    }
+                    else
+                    {
+                        gs->insert( "reuseHome", false );
+                        m_core->layoutAddHomeEntry();
                     }
 
                     m_core->layoutApply( selectedDevice(),

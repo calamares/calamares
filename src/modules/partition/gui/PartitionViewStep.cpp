@@ -549,6 +549,37 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         gs->insert( "swapPartitionName", CalamaresUtils::getString( configurationMap, "swapPartitionName" ) );
     }
 
+    // Read and parse key homePartition
+    if ( configurationMap.contains( "homePartition" ) )
+    {
+        gs->insert( "homePartition", CalamaresUtils::getString( configurationMap, "homePartition" ) );
+    }
+
+    // Read and parse key homePartitionSize
+    if ( configurationMap.contains( "homePartitionSize" ) )
+    {
+        gs->insert( "homePartitionSize", CalamaresUtils::getString( configurationMap, "homePartitionSize" ) );
+    }
+
+    // Read and parse key homePartitionName
+    if ( configurationMap.contains( "homePartitionName" ) )
+    {
+        gs->insert( "homePartitionName", CalamaresUtils::getString( configurationMap, "homePartitionName" ) );
+    }
+
+    // Read and parse key homePartitionFileSystemType
+    if ( configurationMap.contains( "homePartitionFileSystemType" ) )
+    {
+        gs->insert( "homePartitionFileSystemType", CalamaresUtils::getString( configurationMap, "homePartitionFileSystemType" ) );
+    }
+
+    // Read and parse key homePartitionFileSystemFeatures
+    if ( configurationMap.contains( "homePartitionFileSystemFeatures" ) )
+    {
+        bool success;
+        gs->insert( "homePartitionFileSystemFeatures", CalamaresUtils::getSubMap( configurationMap, "homePartitionFileSystemFeatures", success ) );
+    }
+
     // OTHER SETTINGS
     //
     gs->insert( "drawNestedPartitions", CalamaresUtils::getBool( configurationMap, "drawNestedPartitions", false ) );
@@ -602,8 +633,7 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     QFuture< void > future = QtConcurrent::run( this, &PartitionViewStep::initPartitionCoreModule );
     m_future->setFuture( future );
 
-    m_core->initLayout( fsType == FileSystem::Unknown ? FileSystem::Ext4 : fsType,
-                        configurationMap.value( "partitionLayout" ).toList() );
+    m_core->setLayout( configurationMap.value( "partitionLayout" ).toList() );
 }
 
 

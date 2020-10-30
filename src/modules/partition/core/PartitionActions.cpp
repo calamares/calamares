@@ -3,6 +3,7 @@
  *   SPDX-FileCopyrightText: 2014-2017 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2017-2019 Adriaan de Groot <groot@kde.org>
  *   SPDX-FileCopyrightText: 2019 Collabora Ltd <arnaud.ferraris@collabora.com>
+ *   SPDX-FileCopyrightText: 2020 Gaël PORTAY <gael.portay@collabora.com>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -132,9 +133,18 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
         shouldCreateSwap = availableSpaceB > requiredSpaceB;
     }
 
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+
+    core->layoutInit( gs->value( "defaultFileSystemType" ).toString() );
+
     if ( shouldCreateSwap )
     {
         core->layoutAddSwapEntry( suggestedSwapSizeB );
+    }
+
+    if ( !gs->value( "reuseHome" ).toBool() )
+    {
+        core->layoutAddHomeEntry();
     }
 
     core->layoutApply( dev, firstFreeSector, dev->totalLogical() - 1, o.luksPassphrase );
@@ -176,6 +186,15 @@ doReplacePartition( PartitionCoreModule* core, Device* dev, Partition* partition
     if ( !partition->roles().has( PartitionRole::Unallocated ) )
     {
         core->deletePartition( dev, partition );
+    }
+
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+
+    core->layoutInit( gs->value( "defaultFileSystemType" ).toString() );
+
+    if ( !gs->value( "reuseHome" ).toBool() )
+    {
+        core->layoutAddHomeEntry();
     }
 
     core->layoutApply( dev, firstSector, lastSector, o.luksPassphrase );

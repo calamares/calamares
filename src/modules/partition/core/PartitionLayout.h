@@ -49,8 +49,8 @@ public:
          * Sets a specific FS type (not parsed from string like the other
          * constructor).
          */
-        PartitionEntry( FileSystem::Type fs,
-                        const QString& mountPoint,
+        PartitionEntry( const QString& mountPoint,
+                        const QString& fs,
                         const QString& size,
                         const QString& minSize = QString(),
                         const QString& maxSize = QString() );
@@ -83,13 +83,20 @@ public:
     PartitionLayout( const PartitionLayout& layout );
     ~PartitionLayout();
 
-    /** @brief create the configuration from @p config
+    /** @brief Set the partition layout.
      *
-     * @p config is a list of partition entries (in QVariant form,
-     * read from YAML). If no entries are given, then a single
-     * partition is created with the given @p defaultFsType
+     * @p list is a list of partition entries (in QVariant form, read from
+     * YAML).
      */
-    void init( FileSystem::Type defaultFsType, const QVariantList& config );
+    void setList( const QVariantList& list );
+
+    /** @brief Initialize the current partition layout.
+     *
+     * If no entries were given thanks to setList(), then a single partition is
+     * created with the given @p defaultFsType
+     */
+    void init( const QString& defaultFsType );
+
     bool addEntry( const PartitionEntry& entry, bool prepend = false );
 
     /**
@@ -104,6 +111,7 @@ public:
                                           const PartitionRole& role );
 
 private:
+    QVariantList m_list;
     QList< PartitionEntry > m_partLayout;
 };
 
