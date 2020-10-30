@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://calamares.io> ===
  *
  *   SPDX-FileCopyrightText: 2015-2016 Teo Mrnjavac <teo@kde.org>
- *   Copyright 2018-2019 Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2018-2019 Adriaan de Groot <groot@kde.org>
  *   SPDX-FileCopyrightText: 2019 Collabora Ltd <arnaud.ferraris@collabora.com>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -59,7 +59,7 @@ convenienceName( const Partition* const candidate )
 
     QString p;
     QTextStream s( &p );
-    s << static_cast<const void*>(candidate);  // No good name available, use pointer address
+    s << static_cast< const void* >( candidate );  // No good name available, use pointer address
 
     return p;
 }
