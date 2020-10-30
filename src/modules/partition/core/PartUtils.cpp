@@ -59,7 +59,7 @@ convenienceName( const Partition* const candidate )
 
     QString p;
     QTextStream s( &p );
-    s << static_cast<const void*>(candidate);  // No good name available, use pointer address
+    s << static_cast< const void* >( candidate );  // No good name available, use pointer address
 
     return p;
 }
