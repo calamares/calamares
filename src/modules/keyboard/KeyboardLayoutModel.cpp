@@ -11,8 +11,14 @@
 #include "KeyboardLayoutModel.h"
 
 #include "utils/Logger.h"
+#include "utils/RAII.h"
+#include "utils/Retranslator.h"
+
+#include <QTranslator>
 
 #include <algorithm>
+
+static QTranslator* s_kbtranslator = nullptr;
 
 XKBListModel::XKBListModel( QObject* parent )
     : QAbstractListModel( parent )
@@ -41,6 +47,11 @@ XKBListModel::data( const QModelIndex& index, int role ) const
     switch ( role )
     {
     case LabelRole:
+        if ( s_kbtranslator && m_contextname )
+        {
+            auto s = s_kbtranslator->translate( m_contextname, item.label.toUtf8().data() );
+            cDebug() << "Translated" << item.label << "to" << s;
+        }
         return item.label;
     case KeyRole:
         return item.key;
@@ -93,6 +104,8 @@ XKBListModel::setCurrentIndex( int index )
 KeyboardModelsModel::KeyboardModelsModel( QObject* parent )
     : XKBListModel( parent )
 {
+    m_contextname = "kb_models";
+
     // The models map is from human-readable names (!) to xkb identifier
     const auto models = KeyboardGlobal::getKeyboardModels();
     m_list.reserve( models.count() );
@@ -110,6 +123,10 @@ KeyboardModelsModel::KeyboardModelsModel( QObject* parent )
     }
 
     cDebug() << "Loaded" << m_list.count() << "keyboard models";
+
+    CALAMARES_RETRANSLATE( if ( !s_kbtranslator ) { s_kbtranslator = new QTranslator; } cqDeleter<QTranslator> d { s_kbtranslator };
+                           d.preserve
+                           = CalamaresUtils::loadTranslator( QLocale(), QStringLiteral( "kb_" ), s_kbtranslator ); )
 }
 
 
@@ -207,6 +224,7 @@ KeyboardLayoutModel::currentIndex() const
 KeyboardVariantsModel::KeyboardVariantsModel( QObject* parent )
     : XKBListModel( parent )
 {
+    m_contextname = "kb_variants";
 }
 
 void

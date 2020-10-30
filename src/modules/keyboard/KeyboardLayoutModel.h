@@ -21,7 +21,6 @@
  *
  * This model acts like it has a single selection, as well.
  */
-
 class XKBListModel : public QAbstractListModel
 {
     Q_OBJECT
@@ -70,6 +69,7 @@ protected:
     };
     QVector< ModelInfo > m_list;
     int m_currentIndex = -1;
+    const char* m_contextname = nullptr;
 };
 
 
