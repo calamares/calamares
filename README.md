@@ -10,8 +10,8 @@
 [![Coverity Scan Build Status](https://scan.coverity.com/projects/5389/badge.svg)](https://scan.coverity.com/projects/5389)
 [![GitHub license](https://img.shields.io/github/license/calamares/calamares.svg)](https://github.com/calamares/calamares/blob/calamares/LICENSE)
 
-| [Report a Bug](https://github.com/calamares/calamares/issues/new) | [Translate](https://www.transifex.com/projects/p/calamares/) | [Contribute](CONTRIBUTING.md) | [Freenode (IRC): #calamares](https://webchat.freenode.net/?channel=#calamares?nick=guest|) | [Wiki](https://github.com/calamares/calamares/wiki) |
-|:-----------------------------------------:|:----------------------:|:-----------------------:|:--------------------------:|:--------------------------:|
+[Report a Bug](https://github.com/calamares/calamares/issues/new) | [Translate](https://www.transifex.com/projects/p/calamares/) | [Contribute](CONTRIBUTING.md) | [Freenode (IRC): #calamares](https://webchat.freenode.net/?channel=#calamares?nick=guest|) | [Wiki](https://github.com/calamares/calamares/wiki)
+----------------------------------------------------------------- | ------------------------------------------------------------ | ----------------------------- | ------------------------------------------------------------------------------------------ | ---------------------------------------------------
 
 > Calamares is a distribution-independent system installer, with an advanced partitioning
 > feature for both manual and automated partitioning operations. Calamares is designed to
