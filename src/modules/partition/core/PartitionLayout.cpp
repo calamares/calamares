@@ -134,7 +134,7 @@ PartitionLayout::init( const QVariantList& config )
     {
         QVariantMap pentry = r.toMap();
 
-        if ( !pentry.contains( "name" ) || !pentry.contains( "filesystem" ) || !pentry.contains( "size" ) )
+        if ( !pentry.contains( "name" ) || !pentry.contains( "size" ) )
         {
             cError() << "Partition layout entry #" << config.indexOf( r )
                      << "lacks mandatory attributes, switching to default layout.";
@@ -147,7 +147,7 @@ PartitionLayout::init( const QVariantList& config )
                           CalamaresUtils::getString( pentry, "type" ),
                           CalamaresUtils::getUnsignedInteger( pentry, "attributes", 0 ),
                           CalamaresUtils::getString( pentry, "mountPoint" ),
-                          CalamaresUtils::getString( pentry, "filesystem" ),
+                          CalamaresUtils::getString( pentry, "filesystem", "unformatted" ),
                           CalamaresUtils::getSubMap( pentry, "features", ok ),
                           CalamaresUtils::getString( pentry, "size", QStringLiteral( "0" ) ),
                           CalamaresUtils::getString( pentry, "minSize", QStringLiteral( "0" ) ),
