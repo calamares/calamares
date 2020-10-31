@@ -736,14 +736,12 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
         return;
     }
 
+    // This will be deleted by the second lambda, below.
     QString* homePartitionPath = new QString();
-    bool doReuseHomePartition = m_reuseHomeCheckBox->isChecked();
 
-    // NOTE: using by-ref captures because we need to write homePartitionPath and
-    //       doReuseHomePartition *after* the device revert, for later use.
     ScanningDialog::run(
         QtConcurrent::run(
-            [this, current]( QString* homePartitionPath, bool doReuseHomePartition ) {
+            [this, current, homePartitionPath]( bool doReuseHomePartition ) {
                 QMutexLocker locker( &m_coreMutex );
 
                 if ( m_core->isDirty() )
@@ -823,9 +821,8 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
                     }
                 }
             },
-            homePartitionPath,
-            doReuseHomePartition ),
-        [=] {
+            m_reuseHomeCheckBox->isChecked() ),
+        [this, homePartitionPath] {
             m_reuseHomeCheckBox->setVisible( !homePartitionPath->isEmpty() );
             if ( !homePartitionPath->isEmpty() )
                 m_reuseHomeCheckBox->setText( tr( "Reuse %1 as home partition for %2." )
