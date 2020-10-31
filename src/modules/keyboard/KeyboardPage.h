@@ -37,6 +37,8 @@ public:
     explicit KeyboardPage( Config* config, QWidget* parent = nullptr );
     ~KeyboardPage() override;
 
+    void retranslate();
+
 private:
     Ui::Page_Keyboard* ui;
     KeyBoardPreview* m_keyboardPreview;

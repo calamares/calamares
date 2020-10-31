@@ -123,10 +123,6 @@ KeyboardModelsModel::KeyboardModelsModel( QObject* parent )
     }
 
     cDebug() << "Loaded" << m_list.count() << "keyboard models";
-
-    CALAMARES_RETRANSLATE( if ( !s_kbtranslator ) { s_kbtranslator = new QTranslator; } cqDeleter<QTranslator> d { s_kbtranslator };
-                           d.preserve
-                           = CalamaresUtils::loadTranslator( QLocale(), QStringLiteral( "kb_" ), s_kbtranslator ); )
 }
 
 

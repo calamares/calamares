@@ -95,10 +95,17 @@ KeyboardPage::KeyboardPage( Config* config, QWidget* parent )
     connect( config->keyboardVariants(), &KeyboardVariantsModel::currentIndexChanged, [this]( int index ) {
         ui->variantSelector->setCurrentIndex( m_config->keyboardVariants()->index( index ) );
     } );
-    CALAMARES_RETRANSLATE( ui->retranslateUi( this ); )
+    CALAMARES_RETRANSLATE_SLOT( &KeyboardPage::retranslate )
 }
 
 KeyboardPage::~KeyboardPage()
 {
     delete ui;
+}
+
+void
+KeyboardPage::retranslate()
+{
+    ui->retranslateUi( this );
+    m_config->retranslate();
 }
