@@ -736,14 +736,12 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
         return;
     }
 
+    // This will be deleted by the second lambda, below.
     QString* homePartitionPath = new QString();
-    bool doReuseHomePartition = m_reuseHomeCheckBox->isChecked();
 
-    // NOTE: using by-ref captures because we need to write homePartitionPath and
-    //       doReuseHomePartition *after* the device revert, for later use.
     ScanningDialog::run(
         QtConcurrent::run(
-            [this, current]( QString* homePartitionPath, bool doReuseHomePartition ) {
+            [this, current, homePartitionPath]( bool doReuseHomePartition ) {
                 QMutexLocker locker( &m_coreMutex );
 
                 if ( m_core->isDirty() )
@@ -823,9 +821,8 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
                     }
                 }
             },
-            homePartitionPath,
-            doReuseHomePartition ),
-        [=] {
+            m_reuseHomeCheckBox->isChecked() ),
+        [this, homePartitionPath] {
             m_reuseHomeCheckBox->setVisible( !homePartitionPath->isEmpty() );
             if ( !homePartitionPath->isEmpty() )
                 m_reuseHomeCheckBox->setText( tr( "Reuse %1 as home partition for %2." )
@@ -906,7 +903,9 @@ ChoicePage::updateDeviceStatePreview()
         m_beforePartitionBarsView->setSelectionMode( QAbstractItemView::SingleSelection );
         m_beforePartitionLabelsView->setSelectionMode( QAbstractItemView::SingleSelection );
         break;
-    default:
+    case InstallChoice::NoChoice:
+    case InstallChoice::Erase:
+    case InstallChoice::Manual:
         m_beforePartitionBarsView->setSelectionMode( QAbstractItemView::NoSelection );
         m_beforePartitionLabelsView->setSelectionMode( QAbstractItemView::NoSelection );
     }
@@ -990,7 +989,7 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
         m_previewAfterFrame->show();
         m_previewAfterLabel->show();
 
-        SelectionFilter filter = [this]( const QModelIndex& index ) {
+        SelectionFilter filter = []( const QModelIndex& index ) {
             return PartUtils::canBeResized(
                 static_cast< Partition* >( index.data( PartitionModel::PartitionPtrRole ).value< void* >() ) );
         };
@@ -1079,7 +1078,7 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
         }
         else
         {
-            SelectionFilter filter = [this]( const QModelIndex& index ) {
+            SelectionFilter filter = []( const QModelIndex& index ) {
                 return PartUtils::canBeReplaced(
                     static_cast< Partition* >( index.data( PartitionModel::PartitionPtrRole ).value< void* >() ) );
             };
@@ -1125,7 +1124,9 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
     case InstallChoice::Alongside:
         previewSelectionMode = QAbstractItemView::SingleSelection;
         break;
-    default:
+    case InstallChoice::NoChoice:
+    case InstallChoice::Erase:
+    case InstallChoice::Manual:
         previewSelectionMode = QAbstractItemView::NoSelection;
     }
 
@@ -1179,15 +1180,15 @@ ChoicePage::setupEfiSystemPartitionSelector()
 QComboBox*
 ChoicePage::createBootloaderComboBox( QWidget* parent )
 {
-    QComboBox* bcb = new QComboBox( parent );
-    bcb->setModel( m_core->bootLoaderModel() );
+    QComboBox* comboForBootloader = new QComboBox( parent );
+    comboForBootloader->setModel( m_core->bootLoaderModel() );
 
     // When the chosen bootloader device changes, we update the choice in the PCM
-    connect( bcb, QOverload< int >::of( &QComboBox::currentIndexChanged ), this, [this]( int newIndex ) {
-        QComboBox* bcb = qobject_cast< QComboBox* >( sender() );
-        if ( bcb )
+    connect( comboForBootloader, QOverload< int >::of( &QComboBox::currentIndexChanged ), this, [this]( int newIndex ) {
+        QComboBox* bootloaderCombo = qobject_cast< QComboBox* >( sender() );
+        if ( bootloaderCombo )
         {
-            QVariant var = bcb->itemData( newIndex, BootLoaderModel::BootLoaderPathRole );
+            QVariant var = bootloaderCombo->itemData( newIndex, BootLoaderModel::BootLoaderPathRole );
             if ( !var.isValid() )
             {
                 return;
@@ -1196,7 +1197,7 @@ ChoicePage::createBootloaderComboBox( QWidget* parent )
         }
     } );
 
-    return bcb;
+    return comboForBootloader;
 }
 
 
@@ -1220,7 +1221,6 @@ operator<<( QDebug& s, PartitionIterator& it )
  * @brief ChoicePage::setupActions happens every time a new Device* is selected in the
  *      device picker. Sets up the text and visibility of the partitioning actions based
  *      on the currently selected Device*, bootloader and os-prober output.
- * @param currentDevice
  */
 void
 ChoicePage::setupActions()
