@@ -24,9 +24,16 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdocumentation"
 #pragma clang diagnostic ignored "-Wsuggest-destructor-override"
+#pragma clang diagnostic ignored "-Winconsistent-missing-destructor-override"
 #endif
 
 #include <backend/corebackend.h>
+#include <core/device.h>
+#include <core/lvmdevice.h>
+#include <core/partition.h>
+#include <core/partitionrole.h>
+#include <core/partitiontable.h>
+#include <fs/filesystem.h>
 #include <fs/filesystemfactory.h>
 
 #ifdef __clang__

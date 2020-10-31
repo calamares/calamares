@@ -15,10 +15,6 @@
 #include "partition/KPMManager.h"
 #include "utils/Logger.h"
 
-#include <core/lvmdevice.h>
-#include <core/partition.h>
-#include <fs/filesystemfactory.h>
-
 #include <memory>
 
 #include <QtTest/QtTest>

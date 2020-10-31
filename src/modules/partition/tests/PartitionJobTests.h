@@ -12,12 +12,7 @@
 
 #include "JobQueue.h"
 
-// CalaPM
-#include <core/device.h>
-#include <core/partition.h>
-#include <core/partitionrole.h>
-#include <core/partitiontable.h>
-#include <fs/filesystem.h>
+#include "partition/KPMHelper.h"
 
 // Qt
 #include <QObject>

@@ -10,8 +10,9 @@
 #ifndef CLEARMOUNTSJOBTESTS_H
 #define CLEARMOUNTSJOBTESTS_H
 
+#include "partition/KPMHelper.h"
+
 #include <QObject>
-#include <core/device.h>
 
 class CreateLayoutsTests : public QObject
 {
