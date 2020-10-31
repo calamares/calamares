@@ -39,6 +39,9 @@ def mount_partition(root_mount_point, partition, partitions):
     # Create mount point with `+` rather than `os.path.join()` because
     # `partition["mountPoint"]` starts with a '/'.
     raw_mount_point = partition["mountPoint"]
+    if not raw_mount_point:
+        return
+
     mount_point = root_mount_point + raw_mount_point
 
     # Ensure that the created directory has the correct SELinux context on
