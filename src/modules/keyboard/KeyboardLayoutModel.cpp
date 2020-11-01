@@ -23,12 +23,11 @@ static QTranslator* s_kbtranslator = nullptr;
 void
 retranslateKeyboardModels()
 {
-    cqDeleter< QTranslator > d{ s_kbtranslator };
     if ( !s_kbtranslator )
     {
         s_kbtranslator = new QTranslator;
     }
-    d.preserve = CalamaresUtils::loadTranslator( QLocale(), QStringLiteral("kb_"), s_kbtranslator );
+    (void) CalamaresUtils::loadTranslator( QLocale(), QStringLiteral("kb_"), s_kbtranslator );
 }
 
 
@@ -59,10 +58,13 @@ XKBListModel::data( const QModelIndex& index, int role ) const
     switch ( role )
     {
     case LabelRole:
-        if ( s_kbtranslator && m_contextname )
+        if ( s_kbtranslator && !s_kbtranslator->isEmpty() && m_contextname )
         {
             auto s = s_kbtranslator->translate( m_contextname, item.label.toUtf8().data() );
-            cDebug() << "Translated" << item.label << "to" << s;
+            if ( !s.isEmpty() )
+            {
+                return s;
+            }
         }
         return item.label;
     case KeyRole:
