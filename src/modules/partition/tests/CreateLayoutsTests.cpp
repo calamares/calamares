@@ -25,6 +25,7 @@ class SmartStatus;
 QTEST_GUILESS_MAIN( CreateLayoutsTests )
 
 static CalamaresUtils::Partition::KPMManager* kpmcore = nullptr;
+static Calamares::JobQueue* jobqueue = nullptr;
 
 using CalamaresUtils::operator""_MiB;
 using CalamaresUtils::operator""_GiB;
@@ -39,7 +40,7 @@ CreateLayoutsTests::CreateLayoutsTests()
 void
 CreateLayoutsTests::init()
 {
-    std::unique_ptr< Calamares::JobQueue > jobqueue_p( new Calamares::JobQueue( nullptr ) );
+    jobqueue = new Calamares::JobQueue( nullptr );
     kpmcore = new CalamaresUtils::Partition::KPMManager();
 }
 
@@ -47,6 +48,7 @@ void
 CreateLayoutsTests::cleanup()
 {
     delete kpmcore;
+    delete jobqueue;
 }
 
 void

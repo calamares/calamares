@@ -249,6 +249,7 @@ JobQueue::~JobQueue()
     }
 
     delete m_storage;
+    s_instance = nullptr;
 }
 
 
