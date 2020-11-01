@@ -27,7 +27,7 @@ retranslateKeyboardModels()
     {
         s_kbtranslator = new QTranslator;
     }
-    (void) CalamaresUtils::loadTranslator( QLocale(), QStringLiteral("kb_"), s_kbtranslator );
+    (void)CalamaresUtils::loadTranslator( QLocale(), QStringLiteral( "kb_" ), s_kbtranslator );
 }
 
 
@@ -165,7 +165,18 @@ KeyboardLayoutModel::data( const QModelIndex& index, int role ) const
     switch ( role )
     {
     case Qt::DisplayRole:
-        return m_layouts.at( index.row() ).second.description;
+    {
+        auto description = m_layouts.at( index.row() ).second.description;
+        if ( s_kbtranslator && !s_kbtranslator->isEmpty() )
+        {
+            auto s = s_kbtranslator->translate( "kb_layouts", description.toUtf8().data() );
+            if ( !s.isEmpty() )
+            {
+                return s;
+            }
+        }
+        return description;
+    }
     case KeyboardVariantsRole:
         return QVariant::fromValue( m_layouts.at( index.row() ).second.variants );
     case KeyboardLayoutKeyRole:
