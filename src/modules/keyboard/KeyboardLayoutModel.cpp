@@ -20,6 +20,18 @@
 
 static QTranslator* s_kbtranslator = nullptr;
 
+void
+retranslateKeyboardModels()
+{
+    cqDeleter< QTranslator > d{ s_kbtranslator };
+    if ( !s_kbtranslator )
+    {
+        s_kbtranslator = new QTranslator;
+    }
+    d.preserve = CalamaresUtils::loadTranslator( QLocale(), QStringLiteral("kb_"), s_kbtranslator );
+}
+
+
 XKBListModel::XKBListModel( QObject* parent )
     : QAbstractListModel( parent )
 {

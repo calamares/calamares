@@ -564,4 +564,5 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
 void
 Config::retranslate()
 {
+    retranslateKeyboardModels();
 }

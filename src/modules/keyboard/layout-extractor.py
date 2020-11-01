@@ -58,10 +58,11 @@ def scrape_file(file, modelsset, layoutsset, variantsset):
 def write_set(file, label, set):
     file.write("/* This returns a reference to local, which is a terrible idea.\n * Good thing it's not meant to be compiled.\n */\n")
     # Note {{ is an escaped { for Python string formatting
-    file.write("static const QStringList& {!s}_table()\n{{\n\treturn QStringList {{\n".format(label))
+    file.write("class {!s} : public QObject {{\nQ_OBJECT\npublic:\n".format(label))
+    file.write("\tconst QStringList& table()\n\t{\n\treturn QStringList {\n")
     for x in sorted(set):
-        file.write("""\t\tQObject::tr("{!s}", "{!s}"),\n""".format(x, label))
-    file.write("\t\tQString()\n\t};\n}\n\n")
+        file.write("""\t\ttr("{!s}", "{!s}"),\n""".format(x, label))
+    file.write("\t\tQString()\n\t};\n}\n}\n\n")
 
 cpp_header_comment = """/*   GENERATED FILE DO NOT EDIT
 *
@@ -84,6 +85,7 @@ if __name__ == "__main__":
     models=set()
     layouts=set()
     variants=set()
+    variants.add( "Default" )
     with open("/usr/local/share/X11/xkb/rules/base.lst", "r") as f:
         scrape_file(f, models, layouts, variants)
     with open("KeyboardData_p.cxxtr", "w") as f:

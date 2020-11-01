@@ -146,4 +146,8 @@ public:
     void setVariants( QMap< QString, QString > variants );
 };
 
+/** @brief Adjust to changes in application language.
+ */
+void retranslateKeyboardModels();
+
 #endif  // KEYBOARDLAYOUTMODEL_H
