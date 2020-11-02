@@ -75,8 +75,6 @@ GroupTests::testReadGroup()
 
 void GroupTests::testCreateGroup()
 {
-    Config g;
-
     // BUILD_AS_TEST is the source-directory path
     QFile fi( QString( "%1/tests/5-issue-1523.conf" ).arg( BUILD_AS_TEST ) );
     QVERIFY( fi.exists() );
@@ -91,6 +89,12 @@ void GroupTests::testCreateGroup()
 
     QCOMPARE( c.defaultGroups().count(), 4 );
     QVERIFY( c.defaultGroups().contains( QStringLiteral( "adm" ) ) );
+    QVERIFY( c.defaultGroups().contains( QStringLiteral( "bar" ) ) );
+
+    Calamares::JobQueue::instance()->globalStorage()->insert( "rootMountPoint", "/" );
+
+    SetupGroupsJob j(&c);
+    QVERIFY( !j.exec() );  // running as regular user this should fail
 }
 
 
