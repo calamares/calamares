@@ -44,6 +44,7 @@ calamares_add_library(
         ${_users_src}
     LINK_LIBRARIES
         Qt5::DBus
+        ${CRYPT_LIBRARIES}
 )
 
 calamares_add_plugin( users
@@ -57,10 +58,10 @@ calamares_add_plugin( users
     RESOURCES
         users.qrc
     LINK_PRIVATE_LIBRARIES
+        users_internal
         calamaresui
         ${CRYPT_LIBRARIES}
         ${USER_EXTRA_LIB}
-        users_internal
     SHARED_LIB
 )
 

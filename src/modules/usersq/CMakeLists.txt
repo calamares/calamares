@@ -36,10 +36,10 @@ calamares_add_plugin( usersq
     RESOURCES
         usersq.qrc
     LINK_PRIVATE_LIBRARIES
+        users_internal
         calamaresui
         ${CRYPT_LIBRARIES}
         ${USER_EXTRA_LIB}
         Qt5::DBus
-        users_internal
     SHARED_LIB
 )

@@ -20,12 +20,14 @@ This release contains contributions from (alphabetically by first name):
  - Calamares now sets the C++ standard for compilation to C++17; this
    is for better compatibility and fewer warnings when building with
    modern KDE Frameworks and KPMcore 4.2.0.
- - Vietnamese translations have been added. Welcome!
+ - Vietnamese translations have been added. Welcome! (Thanks TTran)
 
 ## Modules ##
  - The *keyboard* and *keyboardq* modules now share backend code
    and handle non-ASCII layouts better (for setting passwords
-   and usernames).
+   and usernames). (Thanks Artem)
+ - Various cleanups and documentation improvements in the *partition*
+   module, and configurable GPT name for swap. (Thanks Gaël)
 
 
 # 3.2.32.1 (2020-10-17) #
