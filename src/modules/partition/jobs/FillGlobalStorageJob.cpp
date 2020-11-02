@@ -153,7 +153,7 @@ FillGlobalStorageJob::prettyDescription() const
             QString path = partitionMap.value( "device" ).toString();
             QString mountPoint = partitionMap.value( "mountPoint" ).toString();
             QString fsType = partitionMap.value( "fs" ).toString();
-            if ( mountPoint.isEmpty() || fsType.isEmpty() )
+            if ( mountPoint.isEmpty() || fsType.isEmpty() || fsType == QString( "unformatted" ) )
             {
                 continue;
             }
