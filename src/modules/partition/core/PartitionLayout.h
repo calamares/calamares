@@ -44,8 +44,13 @@ public:
 
         /// @brief All-zeroes PartitionEntry
         PartitionEntry();
-        /// @brief Parse @p mountPoint, @p size, @p minSize and @p maxSize to their respective member variables
-        PartitionEntry( const QString& mountPoint,
+        /** @brief Parse @p mountPoint, @p size, @p minSize and @p maxSize to their respective member variables
+         *
+         * Sets a specific FS type (not parsed from string like the other
+         * constructor).
+         */
+        PartitionEntry( FileSystem::Type type,
+                        const QString& mountPoint,
                         const QString& size,
                         const QString& minSize = QString(),
                         const QString& maxSize = QString() );

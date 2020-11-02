@@ -63,8 +63,9 @@ PartitionLayout::PartitionEntry::PartitionEntry()
 {
 }
 
-PartitionLayout::PartitionEntry::PartitionEntry( const QString& mountPoint, const QString& size, const QString& minSize, const QString& maxSize )
-    : partAttributes( 0 )
+PartitionLayout::PartitionEntry::PartitionEntry( FileSystem::Type type, const QString& mountPoint, const QString& size, const QString& minSize, const QString& maxSize )
+    : partType( type )
+    , partAttributes( 0 )
     , partMountPoint( mountPoint )
     , partSize( size )
     , partMinSize( minSize )
@@ -148,7 +149,7 @@ PartitionLayout::init( const QVariantList& config )
 
     if ( !m_partLayout.count() )
     {
-        addEntry( { QString( "/" ), QString( "100%" ) } );
+        addEntry( { m_defaultFsType, QString( "/" ), QString( "100%" ) } );
     }
 }
 
