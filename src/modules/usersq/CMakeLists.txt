@@ -29,6 +29,7 @@ if( LibPWQuality_FOUND )
     add_definitions( -DCHECK_PWQUALITY -DHAVE_LIBPWQUALITY )
 endif()
 
+#needed for ${_users}/Config.cpp
 find_package( ICU COMPONENTS uc i18n )
 set_package_properties(
     ICU PROPERTIES
