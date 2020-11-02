@@ -91,6 +91,7 @@ mapForPartition( Partition* partition, const QString& uuid )
     map[ "mountPoint" ] = PartitionInfo::mountPoint( partition );
     map[ "fsName" ] = userVisibleFS( partition->fileSystem() );
     map[ "fs" ] = untranslatedFS( partition->fileSystem() );
+    map[ "features" ] = partition->fileSystem().features();
     if ( partition->fileSystem().type() == FileSystem::Luks
          && dynamic_cast< FS::luks& >( partition->fileSystem() ).innerFS() )
     {
@@ -157,38 +158,67 @@ FillGlobalStorageJob::prettyDescription() const
             {
                 continue;
             }
+            QStringList featureList;
+            for ( const auto& key : partitionMap.value( "features" ).toMap().keys() )
+            {
+                const auto& value = partitionMap.value( "features" ).toMap().value( key );
+                if ( value.type() == QVariant::Bool )
+                {
+                    if ( value.toBool() )
+                    {
+                        featureList += key;
+                    }
+                    else
+                    {
+                        featureList += QString( "not " ) + key;
+                    }
+                }
+                else
+                {
+                    featureList += key + QString( "=" ) + partitionMap.value( "features" ).toMap().value( key ).toString();
+                }
+            }
+            QString extra = featureList.join( QStringLiteral( ", " ) );
+            if ( extra.size() )
+            {
+                extra = QString( " with <em>" ) + extra + QString( "</em>" );
+            }
             if ( path.isEmpty() )
             {
                 if ( mountPoint == "/" )
                 {
-                    lines.append( tr( "Install %1 on <strong>new</strong> %2 system partition." )
+                    lines.append( tr( "Install %1 on <strong>new</strong> %2 system partition%3." )
                                       .arg( Calamares::Branding::instance()->shortProductName() )
-                                      .arg( fsType ) );
+                                      .arg( fsType )
+                                      .arg( extra ) );
                 }
                 else
                 {
                     lines.append( tr( "Set up <strong>new</strong> %2 partition with mount point "
-                                      "<strong>%1</strong>." )
+                                      "<strong>%1</strong>%3." )
                                       .arg( mountPoint )
-                                      .arg( fsType ) );
+                                      .arg( fsType )
+                                      .arg( extra ) );
                 }
             }
             else
             {
                 if ( mountPoint == "/" )
                 {
-                    lines.append( tr( "Install %2 on %3 system partition <strong>%1</strong>." )
+                    lines.append( tr( "Install %2 on %3 system partition <strong>%1</strong>%4." )
                                       .arg( path )
                                       .arg( Calamares::Branding::instance()->shortProductName() )
-                                      .arg( fsType ) );
+                                      .arg( fsType )
+                                      .arg( extra ) );
                 }
                 else
                 {
                     lines.append( tr( "Set up %3 partition <strong>%1</strong> with mount point "
-                                      "<strong>%2</strong>." )
+                                      "<strong>%2</strong>%4." )
                                       .arg( path )
                                       .arg( mountPoint )
-                                      .arg( fsType ) );
+                                      .arg( fsType )
+                                      .arg( extra ) );
                 }
             }
         }
