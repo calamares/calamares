@@ -196,6 +196,7 @@ UserTests::testDefaultGroupsYAML()
     QFETCH( int, count );
     QFETCH( QString, group );
 
+    // BUILD_AS_TEST is the source-directory path
     QFile fi( QString( "%1/%2" ).arg( BUILD_AS_TEST, filename ) );
     QVERIFY( fi.exists() );
 

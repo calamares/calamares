@@ -42,6 +42,8 @@ function( calamares_add_test )
                 Qt5::Test
             )
         calamares_automoc( ${TEST_NAME} )
+        # We specifically pass in the source directory of the test-being-
+        # compiled, so that it can find test-files in that source dir.
         target_compile_definitions( ${TEST_NAME} PRIVATE -DBUILD_AS_TEST="${CMAKE_CURRENT_SOURCE_DIR}"  ${TEST_DEFINITIONS} )
         if( TEST_GUI )
             target_link_libraries( ${TEST_NAME} calamaresui Qt5::Gui )
