@@ -23,6 +23,11 @@
 #include <QFile>
 #include <QRegExp>
 
+#ifdef HAVE_ICU
+#include <unicode/translit.h>
+#include <unicode/unistr.h>
+#endif
+
 static const QRegExp USERNAME_RX( "^[a-z_][a-z0-9_-]*[$]?$" );
 static constexpr const int USERNAME_MAX_LENGTH = 31;
 
@@ -279,6 +284,30 @@ guessProductName()
     }
     return dmiProduct;
 }
+#ifdef HAVE_ICU
+static QString
+transliterate( const QString& input )
+{
+    static UErrorCode ue = UErrorCode::U_ZERO_ERROR;
+    static auto transliterator = std::unique_ptr< icu::Transliterator >(
+                icu::Transliterator::createInstance( "Any-Latin; Latin-ASCII", UTRANS_FORWARD, ue )
+                );
+
+    if(ue!=0){
+        cWarning() << "Can't create transliterator";
+
+        //it'll be checked later for non-ASCII characters
+        return input;
+    }
+
+    auto transliterable = icu::UnicodeString( input.toUtf8().data() );
+
+    transliterator->transliterate( transliterable );
+
+    return QString::fromUtf16( transliterable.getTerminatedBuffer() );
+
+}
+#endif
 
 static QString
 makeLoginNameSuggestion( const QStringList& parts )
@@ -337,8 +366,16 @@ Config::setFullName( const QString& name )
         emit fullNameChanged( name );
 
         // Build login and hostname, if needed
+        QString cleanName = CalamaresUtils::removeDiacritics( name ).toLower().simplified();
+
+#ifdef HAVE_ICU
+        cleanName = transliterate(cleanName);
+#else
         QRegExp rx( "[^a-zA-Z0-9 ]", Qt::CaseInsensitive );
-        QString cleanName = CalamaresUtils::removeDiacritics( name ).toLower().replace( rx, " " ).simplified();
+        cleanName.replace( rx, " " );
+#endif
+
+
         QStringList cleanParts = cleanName.split( ' ' );
 
         if ( !m_customLoginName )
