@@ -288,12 +288,12 @@ guessProductName()
 static QString
 transliterate( const QString& input )
 {
-    static UErrorCode ue = UErrorCode::U_ZERO_ERROR;
+    static auto ue = UErrorCode::U_ZERO_ERROR;
     static auto transliterator = std::unique_ptr< icu::Transliterator >(
                 icu::Transliterator::createInstance( "Any-Latin; Latin-ASCII", UTRANS_FORWARD, ue )
                 );
 
-    if(ue!=0){
+    if( ue != UErrorCode::U_ZERO_ERROR ){
         cWarning() << "Can't create transliterator";
 
         //it'll be checked later for non-ASCII characters
