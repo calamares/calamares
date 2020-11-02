@@ -7,6 +7,7 @@
 #   SPDX-FileCopyrightText: 2017 Alf Gaida <agaida@siduction.org>
 #   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
 #   SPDX-FileCopyrightText: 2019 Kevin Kofler <kevin.kofler@chello.at>
+#   SPDX-FileCopyrightText: 2019-2020 Collabora Ltd
 #   SPDX-License-Identifier: GPL-3.0-or-later
 #
 #   Calamares is Free Software: see the License-Identifier above.
@@ -38,6 +39,9 @@ def mount_partition(root_mount_point, partition, partitions):
     # Create mount point with `+` rather than `os.path.join()` because
     # `partition["mountPoint"]` starts with a '/'.
     raw_mount_point = partition["mountPoint"]
+    if not raw_mount_point:
+        return
+
     mount_point = root_mount_point + raw_mount_point
 
     # Ensure that the created directory has the correct SELinux context on
@@ -52,26 +56,22 @@ def mount_partition(root_mount_point, partition, partitions):
         raise
 
     fstype = partition.get("fs", "").lower()
+    if not fstype or fstype == "unformatted":
+        return
 
     if fstype == "fat16" or fstype == "fat32":
         fstype = "vfat"
 
-    if "luksMapperName" in partition:
-        libcalamares.utils.debug(
-            "about to mount {!s}".format(partition["luksMapperName"]))
-        libcalamares.utils.mount(
-            "/dev/mapper/{!s}".format(partition["luksMapperName"]),
-            mount_point,
-            fstype,
-            partition.get("options", ""),
-            )
+    device = partition["device"]
 
-    else:
-        libcalamares.utils.mount(partition["device"],
-                                 mount_point,
-                                 fstype,
-                                 partition.get("options", ""),
-                                 )
+    if "luksMapperName" in partition:
+        device = os.path.join("/dev/mapper", partition["luksMapperName"])
+
+    if libcalamares.utils.mount(device,
+                                mount_point,
+                                fstype,
+                                partition.get("options", "")) != 0:
+        libcalamares.utils.warning("Cannot mount {}".format(device))
 
     # If the root partition is btrfs, we create a subvolume "@"
     # for the root mount point.
@@ -96,37 +96,23 @@ def mount_partition(root_mount_point, partition, partitions):
 
         subprocess.check_call(["umount", "-v", root_mount_point])
 
+        device = partition["device"]
+
         if "luksMapperName" in partition:
-            libcalamares.utils.mount(
-                "/dev/mapper/{!s}".format(partition["luksMapperName"]),
-                mount_point,
-                fstype,
-                ",".join(
-                    ["subvol=@", partition.get("options", "")]),
-                )
-            if not has_home_mount_point:
-                libcalamares.utils.mount(
-                    "/dev/mapper/{!s}".format(partition["luksMapperName"]),
-                    root_mount_point + "/home",
-                    fstype,
-                    ",".join(
-                        ["subvol=@home", partition.get("options", "")]),
-                    )
-        else:
-            libcalamares.utils.mount(
-                partition["device"],
-                mount_point,
-                fstype,
-                ",".join(["subvol=@", partition.get("options", "")]),
-                )
-            if not has_home_mount_point:
-                libcalamares.utils.mount(
-                    partition["device"],
-                    root_mount_point + "/home",
-                    fstype,
-                    ",".join(
-                        ["subvol=@home", partition.get("options", "")]),
-                    )
+            device = os.path.join("/dev/mapper", partition["luksMapperName"])
+
+        if libcalamares.utils.mount(device,
+                                    mount_point,
+                                    fstype,
+                                    ",".join(["subvol=@", partition.get("options", "")])) != 0:
+            libcalamares.utils.warning("Cannot mount {}".format(device))
+
+        if not has_home_mount_point:
+            if libcalamares.utils.mount(device,
+                                        root_mount_point + "/home",
+                                        fstype,
+                                        ",".join(["subvol=@home", partition.get("options", "")])) != 0:
+                libcalamares.utils.warning("Cannot mount {}".format(device))
 
 
 def run():
