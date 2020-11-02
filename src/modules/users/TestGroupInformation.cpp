@@ -7,11 +7,14 @@
  *
  */
 
+#include "Config.h"
 #include "CreateUserJob.h"
+#include "MiscJobs.h"
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "utils/Logger.h"
+#include "utils/Yaml.h"
 
 #include <QDir>
 #include <QtTest/QtTest>
@@ -30,6 +33,7 @@ private Q_SLOTS:
     void initTestCase();
 
     void testReadGroup();
+    void testCreateGroup();
 };
 
 GroupTests::GroupTests() {}
@@ -43,12 +47,12 @@ GroupTests::initTestCase()
     {
         (void)new Calamares::JobQueue();
     }
+    Calamares::JobQueue::instance()->globalStorage()->insert( "rootMountPoint", "/" );
 }
 
 void
 GroupTests::testReadGroup()
 {
-    Calamares::JobQueue::instance()->globalStorage()->insert( "rootMountPoint", "/" );
     // Get the groups in the host system
     QStringList groups = groupsInTargetSystem();
     QVERIFY( groups.count() > 2 );
@@ -68,6 +72,28 @@ GroupTests::testReadGroup()
         QVERIFY( !s.contains( '#' ) );
     }
 }
+
+void GroupTests::testCreateGroup()
+{
+    Config g;
+
+    // BUILD_AS_TEST is the source-directory path
+    QFile fi( QString( "%1/tests/5-issue-1523.conf" ).arg( BUILD_AS_TEST ) );
+    QVERIFY( fi.exists() );
+
+    bool ok = false;
+    const auto map = CalamaresUtils::loadYaml( fi, &ok );
+    QVERIFY( ok );
+    QVERIFY( map.count() > 0 );  // Just that it loaded, one key *defaultGroups*
+
+    Config c;
+    c.setConfigurationMap( map );
+
+    QCOMPARE( c.defaultGroups().count(), 4 );
+    QVERIFY( c.defaultGroups().contains( QStringLiteral( "adm" ) ) );
+}
+
+
 
 QTEST_GUILESS_MAIN( GroupTests )
 

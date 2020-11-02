@@ -77,7 +77,11 @@ calamares_add_test(
     usersgroupstest
     SOURCES
         TestGroupInformation.cpp
-        MiscJobs.cpp
+        ${_users_src}  # Build again with test-visibility
+    LIBRARIES
+        Qt5::DBus  # HostName job can use DBus to systemd
+        ${CRYPT_LIBRARIES}  # SetPassword job uses crypt()
+        ${USER_EXTRA_LIB}
 )
 
 calamares_add_test(
