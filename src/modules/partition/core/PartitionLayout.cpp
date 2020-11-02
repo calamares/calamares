@@ -95,20 +95,6 @@ PartitionLayout::PartitionEntry::PartitionEntry( const QString& label,
     PartUtils::findFS( fs, &partFileSystem );
 }
 
-PartitionLayout::PartitionEntry::PartitionEntry( const PartitionEntry& e )
-    : partLabel( e.partLabel )
-    , partUUID( e.partUUID )
-    , partType( e.partType )
-    , partAttributes( e.partAttributes )
-    , partMountPoint( e.partMountPoint )
-    , partFileSystem( e.partFileSystem )
-    , partFeatures( e.partFeatures )
-    , partSize( e.partSize )
-    , partMinSize( e.partMinSize )
-    , partMaxSize( e.partMaxSize )
-{
-}
-
 
 bool
 PartitionLayout::addEntry( const PartitionEntry& entry )

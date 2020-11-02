@@ -34,7 +34,7 @@ public:
         QString partLabel;
         QString partUUID;
         QString partType;
-        quint64 partAttributes;
+        quint64 partAttributes = 0;
         QString partMountPoint;
         FileSystem::Type partFileSystem = FileSystem::Unknown;
         QVariantMap partFeatures;
@@ -61,7 +61,7 @@ public:
                         const QString& minSize = QString(),
                         const QString& maxSize = QString() );
         /// @brief Copy PartitionEntry
-        PartitionEntry( const PartitionEntry& e );
+        PartitionEntry( const PartitionEntry& e ) = default;
 
         bool isValid() const
         {
