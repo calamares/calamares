@@ -40,7 +40,7 @@ git clone https://github.com/calamares/calamares.git
 ```
 
 Calamares is a KDE-Frameworks and Qt-based, C++17, CMake-built application.
-The dependencies are explainged in [CONTRIBUTING.md](CONTRIBUTING.md).
+The dependencies are explained in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Contributing to Calamares
 
