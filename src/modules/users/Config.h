@@ -15,6 +15,7 @@
 #include "Job.h"
 #include "utils/NamedEnum.h"
 
+#include <QList>
 #include <QObject>
 #include <QVariantMap>
 
@@ -30,7 +31,61 @@ Q_DECLARE_OPERATORS_FOR_FLAGS( HostNameActions )
 
 const NamedEnumTable< HostNameAction >& hostNameActionNames();
 
-class Config : public QObject
+/** @brief Settings for a single group
+ *
+ * The list of defaultgroups from the configuration can be
+ * set up in a fine-grained way, with both user- and system-
+ * level groups; this class stores a configuration for each.
+ */
+class GroupDescription
+{
+public:
+    // TODO: still too-weakly typed, add a macro to define strongly-typed bools
+    class MustExist : public std::true_type
+    {
+    };
+    class CreateIfNeeded : public std::false_type
+    {
+    };
+    class SystemGroup : public std::true_type
+    {
+    };
+    class UserGroup : public std::false_type
+    {
+    };
+
+    ///@brief An invalid, empty group
+    GroupDescription() {}
+
+    ///@brief A group with full details
+    GroupDescription( const QString& name, bool mustExistAlready = CreateIfNeeded {}, bool isSystem = UserGroup {} )
+        : m_name( name )
+        , m_isValid( !name.isEmpty() )
+        , m_mustAlreadyExist( mustExistAlready )
+        , m_isSystem( isSystem )
+    {
+    }
+
+    bool isValid() const { return m_isValid; }
+    bool isSystemGroup() const { return m_isSystem; }
+    bool mustAlreadyExist() const { return m_mustAlreadyExist; }
+    QString name() const { return m_name; }
+
+    ///@brief Equality of groups depends only on name and kind
+    bool operator==( const GroupDescription& rhs ) const
+    {
+        return rhs.name() == name() && rhs.isSystemGroup() == isSystemGroup();
+    }
+
+private:
+    QString m_name;
+    bool m_isValid = false;
+    bool m_mustAlreadyExist = false;
+    bool m_isSystem = false;
+};
+
+
+class PLUGINDLLEXPORT Config : public QObject
 {
     Q_OBJECT
 
@@ -158,7 +213,12 @@ public:
     /// Current setting for "require strong password"?
     bool requireStrongPasswords() const { return m_requireStrongPasswords; }
 
-    const QStringList& defaultGroups() const { return m_defaultGroups; }
+    const QList< GroupDescription >& defaultGroups() const { return m_defaultGroups; }
+    /** @brief the names of all the groups for the current user
+     *
+     * Takes into account defaultGroups and autologin behavior.
+     */
+    QStringList groupsForThisUser() const;
 
     // The user enters a password (and again in a separate UI element)
     QString userPassword() const { return m_userPassword; }
@@ -242,7 +302,7 @@ private:
     PasswordStatus passwordStatus( const QString&, const QString& ) const;
     void checkReady();
 
-    QStringList m_defaultGroups;
+    QList< GroupDescription > m_defaultGroups;
     QString m_userShell;
     QString m_autologinGroup;
     QString m_sudoersGroup;

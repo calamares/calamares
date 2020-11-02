@@ -12,23 +12,21 @@
 
 #include "Job.h"
 
-#include <QStringList>
+class Config;
 
 class CreateUserJob : public Calamares::Job
 {
     Q_OBJECT
 public:
-    CreateUserJob( const QString& userName, const QString& fullName, bool autologin, const QStringList& defaultGroups );
+    CreateUserJob( const Config* config );
     QString prettyName() const override;
     QString prettyDescription() const override;
     QString prettyStatusMessage() const override;
     Calamares::JobResult exec() override;
 
 private:
-    QString m_userName;
-    QString m_fullName;
-    bool m_autologin;
-    QStringList m_defaultGroups;
+    const Config* m_config;
+    QString m_status;
 };
 
 #endif /* CREATEUSERJOB_H */

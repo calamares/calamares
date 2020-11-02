@@ -10,6 +10,7 @@
 #include "Config.h"
 
 #include "CreateUserJob.h"
+#include "MiscJobs.h"
 #include "SetHostNameJob.h"
 #include "SetPasswordJob.h"
 
@@ -34,6 +35,11 @@ static void
 updateGSAutoLogin( bool doAutoLogin, const QString& login )
 {
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+    if ( !gs )
+    {
+        cWarning() << "No Global Storage available";
+        return;
+    }
 
     if ( doAutoLogin && !login.isEmpty() )
     {
@@ -95,11 +101,16 @@ Config::setUserShell( const QString& shell )
         cWarning() << "User shell" << shell << "is not an absolute path.";
         return;
     }
-    // The shell is put into GS because the CreateUser job expects it there
-    auto* gs = Calamares::JobQueue::instance()->globalStorage();
-    if ( gs )
+    if ( shell != m_userShell )
     {
-        gs->insert( "userShell", shell );
+        m_userShell = shell;
+        emit userShellChanged( shell );
+        // The shell is put into GS as well.
+        auto* gs = Calamares::JobQueue::instance()->globalStorage();
+        if ( gs )
+        {
+            gs->insert( "userShell", shell );
+        }
     }
 }
 
@@ -117,15 +128,41 @@ insertInGlobalStorage( const QString& key, const QString& group )
 void
 Config::setAutologinGroup( const QString& group )
 {
-    insertInGlobalStorage( QStringLiteral( "autologinGroup" ), group );
-    emit autologinGroupChanged( group );
+    if ( group != m_autologinGroup )
+    {
+        m_autologinGroup = group;
+        insertInGlobalStorage( QStringLiteral( "autologinGroup" ), group );
+        emit autologinGroupChanged( group );
+    }
+}
+
+QStringList
+Config::groupsForThisUser() const
+{
+    QStringList l;
+    l.reserve( defaultGroups().size() + 1 );
+
+    for ( const auto& g : defaultGroups() )
+    {
+        l << g.name();
+    }
+    if ( doAutoLogin() && !autologinGroup().isEmpty() )
+    {
+        l << autologinGroup();
+    }
+
+    return l;
 }
 
 void
 Config::setSudoersGroup( const QString& group )
 {
-    insertInGlobalStorage( QStringLiteral( "sudoersGroup" ), group );
-    emit sudoersGroupChanged( group );
+    if ( group != m_sudoersGroup )
+    {
+        m_sudoersGroup = group;
+        insertInGlobalStorage( QStringLiteral( "sudoersGroup" ), group );
+        emit sudoersGroupChanged( group );
+    }
 }
 
 
@@ -134,10 +171,9 @@ Config::setLoginName( const QString& login )
 {
     if ( login != m_loginName )
     {
-        updateGSAutoLogin( doAutoLogin(), login );
-
         m_customLoginName = !login.isEmpty();
         m_loginName = login;
+        updateGSAutoLogin( doAutoLogin(), login );
         emit loginNameChanged( login );
         emit loginNameStatusChanged( loginNameStatus() );
     }
@@ -189,6 +225,8 @@ Config::setHostName( const QString& host )
 {
     if ( host != m_hostName )
     {
+        m_customHostName = !host.isEmpty();
+        m_hostName = host;
         Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
         if ( host.isEmpty() )
         {
@@ -198,9 +236,6 @@ Config::setHostName( const QString& host )
         {
             gs->insert( "hostname", host );
         }
-
-        m_customHostName = !host.isEmpty();
-        m_hostName = host;
         emit hostNameChanged( host );
         emit hostNameStatusChanged( hostNameStatus() );
     }
@@ -369,8 +404,8 @@ Config::setAutoLogin( bool b )
 {
     if ( b != m_doAutoLogin )
     {
-        updateGSAutoLogin( b, loginName() );
         m_doAutoLogin = b;
+        updateGSAutoLogin( b, loginName() );
         emit autoLoginChanged( b );
     }
 }
@@ -590,16 +625,59 @@ Config::checkReady()
 
 
 STATICTEST void
-setConfigurationDefaultGroups( const QVariantMap& map, QStringList& defaultGroups )
+setConfigurationDefaultGroups( const QVariantMap& map, QList< GroupDescription >& defaultGroups )
 {
-    // '#' is not a valid group name; use that to distinguish an empty-list
-    // in the configuration (which is a legitimate, if unusual, choice)
-    // from a bad or missing configuration value.
-    defaultGroups = CalamaresUtils::getStringList( map, QStringLiteral( "defaultGroups" ), QStringList { "#" } );
-    if ( defaultGroups.contains( QStringLiteral( "#" ) ) )
+    defaultGroups.clear();
+
+    const QString key( "defaultGroups" );
+    auto groupsFromConfig = map.value( key ).toList();
+    if ( groupsFromConfig.isEmpty() )
     {
-        cWarning() << "Using fallback groups. Please check *defaultGroups* in users.conf";
-        defaultGroups = QStringList { "lp", "video", "network", "storage", "wheel", "audio" };
+        if ( map.contains( key ) && map.value( key ).isValid() && map.value( key ).canConvert( QVariant::List ) )
+        {
+            // Explicitly set, but empty: this is valid, but unusual.
+            cDebug() << key << "has explicit empty value.";
+        }
+        else
+        {
+            // By default give the user a handful of "traditional" groups, if
+            // none are specified at all. These are system (GID < 1000) groups.
+            cWarning() << "Using fallback groups. Please check *defaultGroups* value in users.conf";
+            for ( const auto& s : { "lp", "video", "network", "storage", "wheel", "audio" } )
+            {
+                defaultGroups.append(
+                    GroupDescription( s, GroupDescription::CreateIfNeeded {}, GroupDescription::SystemGroup {} ) );
+            }
+        }
+    }
+    else
+    {
+        for ( const auto& v : groupsFromConfig )
+        {
+            if ( v.type() == QVariant::String )
+            {
+                defaultGroups.append( GroupDescription( v.toString() ) );
+            }
+            else if ( v.type() == QVariant::Map )
+            {
+                const auto innermap = v.toMap();
+                QString name = CalamaresUtils::getString( innermap, "name" );
+                if ( !name.isEmpty() )
+                {
+                    defaultGroups.append( GroupDescription( name,
+                                                            CalamaresUtils::getBool( innermap, "must_exist", false ),
+                                                            CalamaresUtils::getBool( innermap, "system", false ) ) );
+                }
+                else
+                {
+                    cWarning() << "Ignoring *defaultGroups* entry without a name" << v;
+                }
+            }
+            else
+            {
+                cWarning() << "Unknown *defaultGroups* entry" << v;
+            }
+        }
     }
 }
 
@@ -737,8 +815,16 @@ Config::createJobs() const
 
     Calamares::Job* j;
 
-    j = new CreateUserJob(
-        loginName(), fullName().isEmpty() ? loginName() : fullName(), doAutoLogin(), defaultGroups() );
+    if ( m_sudoersGroup.isEmpty() )
+    {
+        j = new SetupSudoJob( m_sudoersGroup );
+        jobs.append( Calamares::job_ptr( j ) );
+    }
+
+    j = new SetupGroupsJob( this );
+    jobs.append( Calamares::job_ptr( j ) );
+
+    j = new CreateUserJob( this );
     jobs.append( Calamares::job_ptr( j ) );
 
     j = new SetPasswordJob( loginName(), userPassword() );

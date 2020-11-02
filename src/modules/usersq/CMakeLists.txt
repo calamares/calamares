@@ -13,9 +13,8 @@ find_package( Crypt REQUIRED )
 
 # Add optional libraries here
 set( USER_EXTRA_LIB )
-set( _users ${CMAKE_CURRENT_SOURCE_DIR}/../users )
 
-include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui ${CMAKE_CURRENT_SOURCE_DIR}/../../libcalamares ${_users} )
+include_directories( ${CMAKE_CURRENT_SOURCE_DIR}/../users )
 
 find_package( LibPWQuality )
 set_package_properties(
@@ -33,12 +32,7 @@ calamares_add_plugin( usersq
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
-		${_users}/Config.cpp
-		${_users}/CreateUserJob.cpp
-        ${_users}/SetPasswordJob.cpp
         UsersQmlViewStep.cpp
-        ${_users}/SetHostNameJob.cpp
-        ${_users}/CheckPWQuality.cpp
     RESOURCES
         usersq.qrc
     LINK_PRIVATE_LIBRARIES
@@ -46,5 +40,6 @@ calamares_add_plugin( usersq
         ${CRYPT_LIBRARIES}
         ${USER_EXTRA_LIB}
         Qt5::DBus
+        users_internal
     SHARED_LIB
 )

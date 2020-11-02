@@ -16,7 +16,7 @@
 #include <QtTest/QtTest>
 
 // Implementation details
-extern void setConfigurationDefaultGroups( const QVariantMap& map, QStringList& defaultGroups );
+extern void setConfigurationDefaultGroups( const QVariantMap& map, QList< GroupDescription >& defaultGroups );
 extern HostNameActions getHostNameActions( const QVariantMap& configurationMap );
 extern bool addPasswordCheck( const QString& key, const QVariant& value, PasswordCheckList& passwordChecks );
 
@@ -32,6 +32,9 @@ public:
 
 private Q_SLOTS:
     void initTestCase();
+
+    // Derpy test for getting and setting regular values
+    void testGetSet();
 
     void testDefaultGroups();
     void testDefaultGroupsYAML_data();
@@ -50,35 +53,97 @@ UserTests::initTestCase()
 {
     Logger::setupLogLevel( Logger::LOGDEBUG );
     cDebug() << "Users test started.";
+
+    if ( !Calamares::JobQueue::instance() )
+    {
+        (void)new Calamares::JobQueue();
+    }
 }
+
+void
+UserTests::testGetSet()
+{
+    Config c;
+
+    {
+        const QString sh( "/bin/sh" );
+        QCOMPARE( c.userShell(), QString() );
+        c.setUserShell( sh );
+        QCOMPARE( c.userShell(), sh );
+        c.setUserShell( sh + sh );
+        QCOMPARE( c.userShell(), sh + sh );
+
+        const QString badsh( "bash" );  // Not absolute, that's bad
+        c.setUserShell( badsh );  // .. so unchanged
+        QCOMPARE( c.userShell(), sh + sh );  // what was set previously
+
+        // Explicit set to empty is ok
+        c.setUserShell( QString() );
+        QCOMPARE( c.userShell(), QString() );
+    }
+    {
+        const QString al( "autolg" );
+        QCOMPARE( c.autologinGroup(), QString() );
+        c.setAutologinGroup( al );
+        QCOMPARE( c.autologinGroup(), al );
+        QVERIFY( !c.doAutoLogin() );
+        c.setAutoLogin( true );
+        QVERIFY( c.doAutoLogin() );
+        QCOMPARE( c.autologinGroup(), al );
+    }
+    {
+        const QString su( "sudogrp" );
+        QCOMPARE( c.sudoersGroup(), QString() );
+        c.setSudoersGroup( su );
+        QCOMPARE( c.sudoersGroup(), su );
+    }
+    {
+        const QString ful( "Jan-Jaap Karel Kees" );
+        const QString lg( "jjkk" );
+        QCOMPARE( c.fullName(), QString() );
+        QCOMPARE( c.loginName(), QString() );
+        QVERIFY( c.loginNameStatus().isEmpty() );  // empty login name is ok
+        c.setLoginName( lg );
+        c.setFullName( ful );
+        QVERIFY( c.loginNameStatus().isEmpty() );  // now it's still ok
+        QCOMPARE( c.loginName(), lg );
+        QCOMPARE( c.fullName(), ful );
+        c.setLoginName( "root" );
+        QVERIFY( !c.loginNameStatus().isEmpty() );  // can't be root
+    }
+}
+
 
 void
 UserTests::testDefaultGroups()
 {
     {
-        QStringList groups;
+        QList< GroupDescription > groups;
         QVariantMap hweelGroup;
         QVERIFY( groups.isEmpty() );
         hweelGroup.insert( "defaultGroups", QStringList { "hweel" } );
         setConfigurationDefaultGroups( hweelGroup, groups );
         QCOMPARE( groups.count(), 1 );
-        QVERIFY( groups.contains( "hweel" ) );
+        QVERIFY( groups.contains( GroupDescription( "hweel" ) ) );
     }
 
     {
         QStringList desired { "wheel", "root", "operator" };
-        QStringList groups;
+        QList< GroupDescription > groups;
         QVariantMap threeGroup;
         QVERIFY( groups.isEmpty() );
         threeGroup.insert( "defaultGroups", desired );
         setConfigurationDefaultGroups( threeGroup, groups );
         QCOMPARE( groups.count(), 3 );
-        QVERIFY( !groups.contains( "hweel" ) );
-        QCOMPARE( groups, desired );
+        QVERIFY( !groups.contains( GroupDescription( "hweel" ) ) );
+        for ( const auto& s : desired )
+        {
+            QVERIFY( groups.contains( GroupDescription( s ) ) );
+        }
     }
 
     {
-        QStringList groups;
+        QList< GroupDescription > groups;
         QVariantMap explicitEmpty;
         QVERIFY( groups.isEmpty() );
         explicitEmpty.insert( "defaultGroups", QStringList() );
@@ -87,22 +152,22 @@ UserTests::testDefaultGroups()
     }
 
     {
-        QStringList groups;
+        QList< GroupDescription > groups;
         QVariantMap missing;
         QVERIFY( groups.isEmpty() );
         setConfigurationDefaultGroups( missing, groups );
         QCOMPARE( groups.count(), 6 );  // because of fallback!
-        QVERIFY( groups.contains( "lp" ) );
+        QVERIFY( groups.contains( GroupDescription( "lp", false, GroupDescription::SystemGroup {} ) ) );
     }
 
     {
-        QStringList groups;
+        QList< GroupDescription > groups;
         QVariantMap typeMismatch;
         QVERIFY( groups.isEmpty() );
         typeMismatch.insert( "defaultGroups", 1 );
         setConfigurationDefaultGroups( typeMismatch, groups );
         QCOMPARE( groups.count(), 6 );  // because of fallback!
-        QVERIFY( groups.contains( "lp" ) );
+        QVERIFY( groups.contains( GroupDescription( "lp", false, GroupDescription::SystemGroup {} ) ) );
     }
 }
 
@@ -116,6 +181,7 @@ UserTests::testDefaultGroupsYAML_data()
     QTest::newRow( "users.conf" ) << "users.conf" << 7 << "video";
     QTest::newRow( "dashed list" ) << "tests/4-audio.conf" << 4 << "audio";
     QTest::newRow( "blocked list" ) << "tests/3-wing.conf" << 3 << "wing";
+    QTest::newRow( "issue 1523" ) << "tests/5-issue-1523.conf" << 4 << "foobar";
 }
 
 void
@@ -130,6 +196,7 @@ UserTests::testDefaultGroupsYAML()
     QFETCH( int, count );
     QFETCH( QString, group );
 
+    // BUILD_AS_TEST is the source-directory path
     QFile fi( QString( "%1/%2" ).arg( BUILD_AS_TEST, filename ) );
     QVERIFY( fi.exists() );
 
