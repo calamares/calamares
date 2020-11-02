@@ -49,7 +49,7 @@ public:
          * Sets a specific FS type (not parsed from string like the other
          * constructor).
          */
-        PartitionEntry( FileSystem::Type type,
+        PartitionEntry( FileSystem::Type fs,
                         const QString& mountPoint,
                         const QString& size,
                         const QString& minSize = QString(),
@@ -83,7 +83,13 @@ public:
     PartitionLayout( const PartitionLayout& layout );
     ~PartitionLayout();
 
-    void init( const QVariantList& config );
+    /** @brief create the configuration from @p config
+     *
+     * @p config is a list of partition entries (in QVariant form,
+     * read from YAML). If no entries are given, then a single
+     * partition is created with the given @p defaultFsType
+     */
+    void init( FileSystem::Type defaultFsType, const QVariantList& config );
     bool addEntry( const PartitionEntry& entry );
 
     /**
@@ -98,7 +104,6 @@ public:
                                           const PartitionRole& role );
 
 private:
-    FileSystem::Type m_defaultFsType;
     QList< PartitionEntry > m_partLayout;
 };
 
