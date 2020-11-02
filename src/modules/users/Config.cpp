@@ -300,7 +300,7 @@ transliterate( const QString& input )
         return input;
     }
 
-    auto transliterable = icu::UnicodeString( input.toUtf8().data() );
+    auto transliterable = icu::UnicodeString( input.utf16() );
 
     transliterator->transliterate( transliterable );
 
