@@ -49,7 +49,7 @@ public:
          * Sets a specific FS type (not parsed from string like the other
          * constructor).
          */
-        PartitionEntry( FileSystem::Type type,
+        PartitionEntry( FileSystem::Type fs,
                         const QString& mountPoint,
                         const QString& size,
                         const QString& minSize = QString(),

@@ -41,14 +41,14 @@ PartitionLayout::PartitionEntry::PartitionEntry()
 {
 }
 
-PartitionLayout::PartitionEntry::PartitionEntry( FileSystem::Type type,
+PartitionLayout::PartitionEntry::PartitionEntry( FileSystem::Type fs,
                                                  const QString& mountPoint,
                                                  const QString& size,
                                                  const QString& minSize,
                                                  const QString& maxSize )
-    : partType( type )
-    , partAttributes( 0 )
+    : partAttributes( 0 )
     , partMountPoint( mountPoint )
+    , partFileSystem( fs )
     , partSize( size )
     , partMinSize( minSize )
     , partMaxSize( maxSize )
