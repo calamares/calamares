@@ -196,6 +196,10 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
                                                                      KPM_PARTITION_FLAG( None ) );
         }
         PartitionInfo::setFormat( swapPartition, true );
+        if ( gs->contains( "swapPartitionName" ))
+        {
+            swapPartition->setLabel( gs->value( "swapPartitionName" ).toString() );
+        }
         core->createPartition( dev, swapPartition );
     }
 
