@@ -7,7 +7,7 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.33 (unreleased) #
+# 3.2.33 (2020-11-03) #
 
 This release contains contributions from (alphabetically by first name):
  - Anke Boersma
@@ -28,6 +28,11 @@ This release contains contributions from (alphabetically by first name):
    and usernames). (Thanks Artem)
  - Various cleanups and documentation improvements in the *partition*
    module, and configurable GPT name for swap. (Thanks Gaël)
+ - The *users* module now has a more detailed way to specify
+   user groups -- which may be system groups rather than user-GIDs.
+   A new option in each group can require that the group already
+   exists in the target system, allowing for better consistency checks
+   with the squashfs.
 
 
 # 3.2.32.1 (2020-10-17) #
