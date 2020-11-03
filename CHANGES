@@ -14,6 +14,7 @@ This release contains contributions from (alphabetically by first name):
  - Andrius Štikonas
  - Artem Grinev
  - Gaël PORTAY
+ - Matti Hyttinen
  - TTran Me
 
 ## Core ##
@@ -23,6 +24,8 @@ This release contains contributions from (alphabetically by first name):
  - Vietnamese translations have been added. Welcome! (Thanks TTran)
 
 ## Modules ##
+ - The *initcpiocfg* module should support plymouth with encryption
+   now. (Thanks Matti)
  - The *keyboard* and *keyboardq* modules now share backend code
    and handle non-ASCII layouts better (for setting passwords
    and usernames). (Thanks Artem)
@@ -32,7 +35,7 @@ This release contains contributions from (alphabetically by first name):
    user groups -- which may be system groups rather than user-GIDs.
    A new option in each group can require that the group already
    exists in the target system, allowing for better consistency checks
-   with the squashfs.
+   with the squashfs. #1523
 
 
 # 3.2.32.1 (2020-10-17) #
