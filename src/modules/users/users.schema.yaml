@@ -11,7 +11,16 @@ properties:
     # Group settings
     defaultGroups:
         type: array
-        items: { type: string }
+        items:
+            oneOf:
+                - type: string
+                - type: object
+                  properties:
+                      name: { type: string }
+                      must_exist: { type: boolean, default: false }
+                      system: { type: boolean, default: false }
+                  additionalProperties: false
+                  required: [ name ]
     autologinGroup: { type: string }
     sudoersGroup: { type: string }
     # Skip login (depends on displaymanager support)
