@@ -439,10 +439,8 @@ isEfiSystem()
 bool
 isEfiBootable( const Partition* candidate )
 {
-    cDebug() << "Check EFI bootable" << convenienceName( candidate ) << candidate->devicePath();
-    cDebug() << Logger::SubEntry << "flags" << candidate->activeFlags();
-
     auto flags = PartitionInfo::flags( candidate );
+    cDebug() << "Check EFI bootable" << convenienceName( candidate ) << candidate->devicePath() << "flags" << flags;
 
     /* If bit 17 is set, old-style Esp flag, it's OK */
     if ( flags.testFlag( KPM_PARTITION_FLAG_ESP ) )
@@ -455,19 +453,28 @@ isEfiBootable( const Partition* candidate )
     while ( root && !root->isRoot() )
     {
         root = root->parent();
-        cDebug() << Logger::SubEntry << "moved towards root" << Logger::Pointer( root );
     }
 
     // Strange case: no root found, no partition table node?
     if ( !root )
     {
+        cWarning() << "No root of partition table found.";
         return false;
     }
 
     const PartitionTable* table = dynamic_cast< const PartitionTable* >( root );
-    cDebug() << Logger::SubEntry << "partition table" << Logger::Pointer( table ) << "type"
-             << ( table ? table->type() : PartitionTable::TableType::unknownTableType );
-    return table && ( table->type() == PartitionTable::TableType::gpt ) && flags.testFlag( KPM_PARTITION_FLAG( Boot ) );
+    if ( !table )
+    {
+        cWarning() << "Root of partition table is not a PartitionTable object";
+        return false;
+    }
+    if ( table->type() == PartitionTable::TableType::gpt )
+    {
+        const auto bootFlag = KPM_PARTITION_FLAG( Boot );
+        cDebug() << Logger::SubEntry << "GPT table" << flags << "boot?" <<  bootFlag << flags.testFlag( bootFlag );
+        return flags.testFlag( bootFlag );
+    }
+    return false;
 }
 
 QString
