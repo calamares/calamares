@@ -42,8 +42,7 @@ def write_dmcrypt_conf(partitions, root_mount_point, dmcrypt_conf_path):
         if not has_luks and not skip_partitions:
             libcalamares.utils.debug(
                 "Skip writing OpenRC LUKS configuration for partition {!s}".format(partition["mountPoint"]))
-        # Don't use keyfile if boot is unecrypted, keys must not be stored on unencrypted partitions
-        if has_luks and not skip_partitions and not unencrypted_separate_boot:
+        if has_luks and not skip_partitions:
             crypto_target = partition["luksMapperName"]
             crypto_source = "/dev/disk/by-uuid/{!s}".format(partition["uuid"])
             libcalamares.utils.debug(
@@ -52,7 +51,9 @@ def write_dmcrypt_conf(partitions, root_mount_point, dmcrypt_conf_path):
             with open(os.path.join(root_mount_point, dmcrypt_conf_path), 'a+') as dmcrypt_file:
                 dmcrypt_file.write("\ntarget=" + crypto_target)
                 dmcrypt_file.write("\nsource=" + crypto_source)
-                dmcrypt_file.write("\nkey=/crypto_keyfile.bin")
+                # Don't use keyfile if boot is unecrypted, keys must not be stored on unencrypted partitions
+                if not unencrypted_separate_boot:
+                    dmcrypt_file.write("\nkey=/crypto_keyfile.bin")
                 dmcrypt_file.write("\n")
 
         if has_luks and skip_partitions:
