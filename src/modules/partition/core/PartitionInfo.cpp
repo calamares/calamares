@@ -52,6 +52,10 @@ PartitionTable::Flags
 flags( const Partition* partition )
 {
     auto v = partition->property( FLAGS_PROPERTY );
+    if ( !v.isValid() )
+    {
+        return partition->activeFlags();
+    }
     if ( v.type() == QVariant::Int )
     {
         return static_cast< PartitionTable::Flags >( v.toInt() );
