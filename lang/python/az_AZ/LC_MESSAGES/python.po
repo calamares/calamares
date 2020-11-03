@@ -206,6 +206,8 @@ msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
 msgstr ""
+"Ekran menecerləri siyahısı həm qlobal yaddaşda, həm də displaymanager.conf-"
+"da boşdur və ya təyin olunmamışdır."
 
 #: src/modules/displaymanager/main.py:977
 msgid "Display manager configuration was incomplete"
@@ -318,11 +320,11 @@ msgstr "Aparat saatını ayarlamaq."
 
 #: src/modules/mkinitfs/main.py:27
 msgid "Creating initramfs with mkinitfs."
-msgstr "mkinitfs ilə initramfs yaradılır."
+msgstr "mkinitfs ilə initramfs yaradılır"
 
 #: src/modules/mkinitfs/main.py:49
 msgid "Failed to run mkinitfs on the target"
-msgstr "Hədəfdə dracut başladılmadı"
+msgstr "Hədəfdə mkinitfs başlatmaq baş tutmadı"
 
 #: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
 msgid "The exit code was {}"

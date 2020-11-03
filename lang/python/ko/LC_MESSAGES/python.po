@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# 김지현 <potatogim@potatogim.net>, 2018
+# Ji-Hyeon Gim <potatogim@potatogim.net>, 2018
 # JungHee Lee <daemul72@gmail.com>, 2020
 # 
 #, fuzzy
