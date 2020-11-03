@@ -123,10 +123,6 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
     openswap_hook = False
     unencrypted_separate_boot = False
 
-    # It is important that the plymouth hook comes before any encrypt hook
-    if detect_plymouth():
-        hooks.append("plymouth")
-
     for partition in partitions:
         if partition["fs"] == "linuxswap" and not partition.get("claimed", None):
             # Skip foreign swap
@@ -154,7 +150,10 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
             hooks.append("usr")
 
     if encrypt_hook:
-        hooks.append("encrypt")
+        if detect_plymouth():
+            hooks.append("plymouth-encrypt")
+        else:
+            hooks.append("encrypt")
         if not unencrypted_separate_boot and \
            os.path.isfile(
                os.path.join(root_mount_point, "crypto_keyfile.bin")
