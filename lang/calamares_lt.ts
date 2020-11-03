@@ -2870,7 +2870,7 @@ Išvestis:
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="83"/>
       <source>Directory not found</source>
-      <translation type="unfinished"/>
+      <translation>Katalogas nerastas</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="84"/>
@@ -3885,7 +3885,7 @@ Išvestis:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="276"/>
       <source>Keyboard Variant</source>
-      <translation type="unfinished"/>
+      <translation>Klaviatūros variantas</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="386"/>
@@ -3989,7 +3989,7 @@ Išvestis:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="87"/>
       <source>Login Name</source>
-      <translation type="unfinished"/>
+      <translation>Prisijungimo vardas</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="103"/>
@@ -4009,7 +4009,7 @@ Išvestis:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="140"/>
       <source>This name will be used if you make the computer visible to others on a network.</source>
-      <translation type="unfinished"/>
+      <translation>Šis vardas bus naudojamas, jeigu padarysite savo kompiuterį matomą kitiems naudotojams tinkle.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="155"/>
@@ -4074,7 +4074,7 @@ Išvestis:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="318"/>
       <source>Enter the same password twice, so that it can be checked for typing errors.</source>
-      <translation type="unfinished"/>
+      <translation>Norint įsitikinti, kad rašydami slaptažodį nesuklydote, įrašykite tą patį slaptažodį du kartus.</translation>
     </message>
   </context>
   <context>

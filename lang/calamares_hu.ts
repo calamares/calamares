@@ -1620,7 +1620,7 @@ Telepítés nem folytatható. &lt;a href="#details"&gt;Részletek...&lt;/a&gt;</
     <message>
       <location filename="../src/modules/license/LicensePage.ui" line="26"/>
       <source>&lt;h1&gt;License Agreement&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Licenszszerződés&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="136"/>

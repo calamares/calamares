@@ -304,12 +304,12 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="208"/>
       <source>Calamares Initialization Failed</source>
-      <translation>Calamares 초기화 실패</translation>
+      <translation>깔라마레스 초기화 실패</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="209"/>
       <source>%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution.</source>
-      <translation>%1 가 설치될 수 없습니다. Calamares가 모든 구성된 모듈을 불러올 수 없었습니다. 이것은 Calamares가 분포에 의해 사용되는 방식에서 비롯된 문제입니다.</translation>
+      <translation>%1 가 설치될 수 없습니다. 깔라마레스가 모든 구성된 모듈을 불러올 수 없었습니다. 이것은 깔라마레스가 배포판에서 사용되는 방식에서 발생한 문제입니다.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="215"/>
@@ -617,17 +617,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1448"/>
       <source>This storage device already has an operating system on it, but the partition table &lt;strong&gt;%1&lt;/strong&gt; is different from the needed &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</source>
-      <translation type="unfinished"/>
+      <translation>이 스토리지 장치에는 이미 운영 체제가 설치되어 있으나 &lt;strong&gt;%1&lt;/strong&gt; 파티션 테이블이 필요로 하는 &lt;strong&gt;%2&lt;/strong&gt;와 다릅니다.&lt;br/&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1471"/>
       <source>This storage device has one of its partitions &lt;strong&gt;mounted&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>이 스토리지 장치는 하나 이상의 &lt;strong&gt;마운트된&lt;/strong&gt; 파티션을 갖고 있습니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1476"/>
       <source>This storage device is a part of an &lt;strong&gt;inactive RAID&lt;/strong&gt; device.</source>
-      <translation type="unfinished"/>
+      <translation>이 스토리지 장치는 &lt;strong&gt;비활성화된 RAID&lt;/strong&gt; 장치의 일부입니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1603"/>
@@ -730,7 +730,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="334"/>
       <source>Set timezone to %1/%2.</source>
-      <translation type="unfinished"/>
+      <translation>표준시간대를 %1/%2로 설정합니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="372"/>
@@ -790,22 +790,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="244"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt; 깔라마레스 설치 프로그램 %1에 오신 것을 환영합니다&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="245"/>
       <source>&lt;h1&gt;Welcome to %1 setup&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1 설치에 오신 것을 환영합니다&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="250"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;깔라마레스 인스톨러 %1에 오신 것을 환영합니다&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="251"/>
       <source>&lt;h1&gt;Welcome to the %1 installer&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1 인스톨러에 오신 것을 환영합니다&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="164"/>
@@ -815,7 +815,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="170"/>
       <source>'%1' is not allowed as username.</source>
-      <translation type="unfinished"/>
+      <translation>'%1'은 사용자 이름으로 허용되지 않습니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="177"/>
@@ -840,7 +840,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="237"/>
       <source>'%1' is not allowed as hostname.</source>
-      <translation type="unfinished"/>
+      <translation>'%1'은 호스트 이름으로 허용되지 않습니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="243"/>
@@ -1813,7 +1813,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/localeq/Map.qml" line="243"/>
       <source>Timezone: %1</source>
-      <translation type="unfinished"/>
+      <translation>표준시간대: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Map.qml" line="264"/>
@@ -1945,7 +1945,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/oemid/OEMPage.ui" line="52"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;h1&gt;OEM Configuration&lt;/h1&gt;&lt;p&gt;Calamares will use OEM settings while configuring the target system.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;h1&gt;OEM 구성&lt;/h1&gt; &lt;p&gt;Calamares는 대상 시스템을 구성하는 동안 OEM 설정을 사용합니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;h1&gt;OEM 구성&lt;/h1&gt; &lt;p&gt;깔라마레스는 대상 시스템을 구성하는 동안 OEM 설정을 사용합니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
   </context>
   <context>
@@ -1973,22 +1973,22 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/localeq/Offline.qml" line="169"/>
       <location filename="../src/modules/localeq/Offline.qml" line="213"/>
       <source>Timezone: %1</source>
-      <translation type="unfinished"/>
+      <translation>표준시간대: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="111"/>
       <source>Select your preferred Zone within your Region.</source>
-      <translation type="unfinished"/>
+      <translation>선호하는 표준시간대와 지역을 선택하세요.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="182"/>
       <source>Zones</source>
-      <translation type="unfinished"/>
+      <translation>표준시간대</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="229"/>
       <source>You can fine-tune Language and Locale settings below.</source>
-      <translation type="unfinished"/>
+      <translation>아래에서 언어 및 로케일을 상세하게 설정할 수 있습니다.</translation>
     </message>
   </context>
   <context>
@@ -2864,7 +2864,7 @@ Output:
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="83"/>
       <source>Directory not found</source>
-      <translation type="unfinished"/>
+      <translation>디렉터리를 찾을 수 없습니다</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="84"/>
@@ -3044,7 +3044,7 @@ Output:
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="176"/>
       <source>Calamares cannot start KPMCore for the file-system resize job.</source>
-      <translation>Calamares는 파일 시스템 크기 조정 작업을 위해 KPMCore를 시작할 수 없습니다.</translation>
+      <translation>깔라마레스는 파일 시스템 크기 조정 작업을 위해 KPMCore를 시작할 수 없습니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="184"/>
@@ -3482,18 +3482,18 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="122"/>
       <source>KDE user feedback</source>
-      <translation type="unfinished"/>
+      <translation>KDE 사용자 의견</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="128"/>
       <source>Configuring KDE user feedback.</source>
-      <translation type="unfinished"/>
+      <translation>KDE 사용자 의견을 설정하는 중입니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="150"/>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="156"/>
       <source>Error in KDE user feedback configuration.</source>
-      <translation type="unfinished"/>
+      <translation>KDE 사용자 의견 설정 중에 오류가 발생했습니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="151"/>
@@ -3744,7 +3744,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="216"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;%1에 대한 Calamares 설정 프로그램에 오신 것을 환영합니다.&lt;/h1&gt;</translation>
+      <translation>&lt;h1&gt;%1에 대한 깔라마레스 설정 프로그램에 오신 것을 환영합니다.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="217"/>
@@ -3754,7 +3754,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="222"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;%1을 위한 Calamares 설치 관리자에 오신 것을 환영합니다.&lt;/h1&gt;</translation>
+      <translation>&lt;h1&gt;%1을 위한 깔라마레스 설치 관리자에 오신 것을 환영합니다.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="223"/>
@@ -3877,7 +3877,7 @@ Output:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="276"/>
       <source>Keyboard Variant</source>
-      <translation type="unfinished"/>
+      <translation>키보드 유형</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="386"/>
@@ -3890,7 +3890,7 @@ Output:
     <message>
       <location filename="../src/modules/localeq/localeq.qml" line="81"/>
       <source>Change</source>
-      <translation type="unfinished"/>
+      <translation>변경</translation>
     </message>
   </context>
   <context>
@@ -3941,7 +3941,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="36"/>
       <source>Pick your user name and credentials to login and perform admin tasks</source>
-      <translation type="unfinished"/>
+      <translation>로그인 및 관리자 작업을 수행하려면 사용자 이름과 자격 증명을 선택하세요</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="52"/>
@@ -3961,7 +3961,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="87"/>
       <source>Login Name</source>
-      <translation type="unfinished"/>
+      <translation>로그인 이름</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="103"/>
@@ -4006,7 +4006,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="216"/>
       <source>Validate passwords quality</source>
-      <translation type="unfinished"/>
+      <translation>패스워드 품질 검증</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="226"/>
@@ -4016,12 +4016,12 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="234"/>
       <source>Log in automatically without asking for the password</source>
-      <translation type="unfinished"/>
+      <translation>패스워드를 묻지 않고 자동으로 로그인합니다</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="243"/>
       <source>Reuse user password as root password</source>
-      <translation type="unfinished"/>
+      <translation>사용자 패스워드를 루트 패스워드로 재사용합니다</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="253"/>
@@ -4031,22 +4031,22 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="268"/>
       <source>Choose a root password to keep your account safe.</source>
-      <translation type="unfinished"/>
+      <translation>당신의 계정을 안전하게 보호하기 위해서 루트 패스워드를 선택하세요.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="279"/>
       <source>Root Password</source>
-      <translation type="unfinished"/>
+      <translation>루트 패스워드</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="298"/>
       <source>Repeat Root Password</source>
-      <translation type="unfinished"/>
+      <translation>루트 패스워드 확인</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="318"/>
       <source>Enter the same password twice, so that it can be checked for typing errors.</source>
-      <translation type="unfinished"/>
+      <translation>입력 오류를 확인하기 위해서 동일한 패스워드를 두번 입력해주세요.</translation>
     </message>
   </context>
   <context>
@@ -4060,7 +4060,7 @@ Output:
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="66"/>
       <source>About</source>
-      <translation>Calamares에 대하여</translation>
+      <translation>깔라마레스에 대하여</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="80"/>

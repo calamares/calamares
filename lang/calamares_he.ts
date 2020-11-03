@@ -437,7 +437,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/libcalamares/PythonHelper.cpp" line="288"/>
       <source>Unknown exception type</source>
-      <translation>טיפוס חריגה אינו מוכר</translation>
+      <translation>סוג חריגה לא מוכר</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonHelper.cpp" line="306"/>
