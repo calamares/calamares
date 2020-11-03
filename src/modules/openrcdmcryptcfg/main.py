@@ -20,6 +20,12 @@ _ = gettext.translation("calamares-python",
                         languages=libcalamares.utils.gettext_languages(),
                         fallback=True).gettext
 
+unencrypted_separate_boot = False
+
+for partition in partitions:
+        if (partition["mountPoint"] == "/boot"
+                and "luksMapperName" not in partition):
+            unencrypted_separate_boot = True
 
 def pretty_name():
     return _("Configuring OpenRC dmcrypt service.")
@@ -36,8 +42,8 @@ def write_dmcrypt_conf(partitions, root_mount_point, dmcrypt_conf_path):
         if not has_luks and not skip_partitions:
             libcalamares.utils.debug(
                 "Skip writing OpenRC LUKS configuration for partition {!s}".format(partition["mountPoint"]))
-
-        if has_luks and not skip_partitions:
+        # Don't use keyfile if boot is unecrypted, keys must not be stored on unencrypted partitions
+        if has_luks and not skip_partitions and not unencrypted_separate_boot:
             crypto_target = partition["luksMapperName"]
             crypto_source = "/dev/disk/by-uuid/{!s}".format(partition["uuid"])
             libcalamares.utils.debug(
