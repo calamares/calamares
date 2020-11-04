@@ -31,6 +31,8 @@ This release contains contributions from (alphabetically by first name):
    and usernames). (Thanks Artem)
  - Various cleanups and documentation improvements in the *partition*
    module, and configurable GPT name for swap. (Thanks Gaël)
+ - A long-standing bug related to GPT partition flags in the
+   *partition* module has been resolved. #1327 #1267
  - The *users* module now has a more detailed way to specify
    user groups -- which may be system groups rather than user-GIDs.
    A new option in each group can require that the group already

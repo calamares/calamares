@@ -16,20 +16,28 @@
 
 #include <type_traits>
 
-/// @brief Convenience to zero out and deleteLater of any QObject-derived-class
+/** @brief Convenience to zero out and deleteLater of any QObject-derived-class
+ *
+ * If, before destruction, preserve is set to @c true, then
+ * the object is "preserved", and not deleted at all.
+ */
 template < typename T >
 struct cqDeleter
 {
     T*& p;
+    bool preserve = false;
 
     ~cqDeleter()
     {
         static_assert( std::is_base_of< QObject, T >::value, "Not a QObject-class" );
-        if ( p )
+        if ( !preserve )
         {
-            p->deleteLater();
+            if ( p )
+            {
+                p->deleteLater();
+            }
+            p = nullptr;
         }
-        p = nullptr;
     }
 };
 

@@ -560,3 +560,9 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         m_writeEtcDefaultKeyboard = true;
     }
 }
+
+void
+Config::retranslate()
+{
+    retranslateKeyboardModels();
+}

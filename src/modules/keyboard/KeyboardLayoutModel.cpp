@@ -11,8 +11,25 @@
 #include "KeyboardLayoutModel.h"
 
 #include "utils/Logger.h"
+#include "utils/RAII.h"
+#include "utils/Retranslator.h"
+
+#include <QTranslator>
 
 #include <algorithm>
+
+static QTranslator* s_kbtranslator = nullptr;
+
+void
+retranslateKeyboardModels()
+{
+    if ( !s_kbtranslator )
+    {
+        s_kbtranslator = new QTranslator;
+    }
+    (void)CalamaresUtils::loadTranslator( QLocale(), QStringLiteral( "kb_" ), s_kbtranslator );
+}
+
 
 XKBListModel::XKBListModel( QObject* parent )
     : QAbstractListModel( parent )
@@ -41,6 +58,14 @@ XKBListModel::data( const QModelIndex& index, int role ) const
     switch ( role )
     {
     case LabelRole:
+        if ( s_kbtranslator && !s_kbtranslator->isEmpty() && m_contextname )
+        {
+            auto s = s_kbtranslator->translate( m_contextname, item.label.toUtf8().data() );
+            if ( !s.isEmpty() )
+            {
+                return s;
+            }
+        }
         return item.label;
     case KeyRole:
         return item.key;
@@ -93,6 +118,8 @@ XKBListModel::setCurrentIndex( int index )
 KeyboardModelsModel::KeyboardModelsModel( QObject* parent )
     : XKBListModel( parent )
 {
+    m_contextname = "kb_models";
+
     // The models map is from human-readable names (!) to xkb identifier
     const auto models = KeyboardGlobal::getKeyboardModels();
     m_list.reserve( models.count() );
@@ -138,7 +165,18 @@ KeyboardLayoutModel::data( const QModelIndex& index, int role ) const
     switch ( role )
     {
     case Qt::DisplayRole:
-        return m_layouts.at( index.row() ).second.description;
+    {
+        auto description = m_layouts.at( index.row() ).second.description;
+        if ( s_kbtranslator && !s_kbtranslator->isEmpty() )
+        {
+            auto s = s_kbtranslator->translate( "kb_layouts", description.toUtf8().data() );
+            if ( !s.isEmpty() )
+            {
+                return s;
+            }
+        }
+        return description;
+    }
     case KeyboardVariantsRole:
         return QVariant::fromValue( m_layouts.at( index.row() ).second.variants );
     case KeyboardLayoutKeyRole:
@@ -207,6 +245,7 @@ KeyboardLayoutModel::currentIndex() const
 KeyboardVariantsModel::KeyboardVariantsModel( QObject* parent )
     : XKBListModel( parent )
 {
+    m_contextname = "kb_variants";
 }
 
 void

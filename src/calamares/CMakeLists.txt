@@ -42,7 +42,7 @@ set( calamares_i18n_qrc_content "" )
 
 # calamares and qt language files
 foreach( lang ${CALAMARES_TRANSLATION_LANGUAGES} )
-    foreach( tlsource "calamares_${lang}" "tz_${lang}" )
+    foreach( tlsource "calamares_${lang}" "tz_${lang}" "kb_${lang}" )
         if( EXISTS "${CMAKE_SOURCE_DIR}/lang/${tlsource}.ts" )
             set( calamares_i18n_qrc_content "${calamares_i18n_qrc_content}<file>${tlsource}.qm</file>\n" )
             list( APPEND TS_FILES "${CMAKE_SOURCE_DIR}/lang/${tlsource}.ts" )

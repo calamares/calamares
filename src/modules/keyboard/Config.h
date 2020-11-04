@@ -58,6 +58,17 @@ public:
      */
     KeyboardVariantsModel* keyboardVariants() const;
 
+    /** @brief Call this to change application language
+     *
+     * The models (for keyboard model, layouts and variants) provide
+     * translations of strings in the xkb table, so need to be
+     * notified of language changes as well.
+     *
+     * Only widgets get LanguageChange events, so one of them will
+     * need to call this.
+     */
+    void retranslate();
+
 signals:
     void prettyStatusChanged();
 

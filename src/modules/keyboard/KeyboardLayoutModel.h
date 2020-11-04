@@ -21,7 +21,6 @@
  *
  * This model acts like it has a single selection, as well.
  */
-
 class XKBListModel : public QAbstractListModel
 {
     Q_OBJECT
@@ -70,6 +69,7 @@ protected:
     };
     QVector< ModelInfo > m_list;
     int m_currentIndex = -1;
+    const char* m_contextname = nullptr;
 };
 
 
@@ -145,5 +145,9 @@ public:
 
     void setVariants( QMap< QString, QString > variants );
 };
+
+/** @brief Adjust to changes in application language.
+ */
+void retranslateKeyboardModels();
 
 #endif  // KEYBOARDLAYOUTMODEL_H
