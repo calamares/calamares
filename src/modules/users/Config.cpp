@@ -375,6 +375,7 @@ Config::setFullName( const QString& name )
         static QRegExp rx( "[^a-zA-Z0-9 ]", Qt::CaseInsensitive );
 #ifdef HAVE_ICU
         QString cleanName = transliterate(name);
+        cleanName.replace("'", "");
 #else
         QString cleanName = name;
 #endif
