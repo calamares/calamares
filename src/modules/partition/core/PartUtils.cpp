@@ -439,9 +439,13 @@ isEfiSystem()
 bool
 isEfiBootable( const Partition* candidate )
 {
-    auto flags = PartitionInfo::flags( candidate );
-    cDebug() << "Check EFI bootable" << convenienceName( candidate ) << candidate->devicePath() << "flags" << flags;
+    const auto flags = PartitionInfo::flags( candidate );
 
+    // TODO: with KPMCore 4, this comment is wrong: the flags
+    //       are remapped, and the ESP flag is the same as Boot.
+#if defined( WITH_KPMCORE4API )
+    return flags.testFlag( KPM_PARTITION_FLAG_ESP );
+#else
     /* If bit 17 is set, old-style Esp flag, it's OK */
     if ( flags.testFlag( KPM_PARTITION_FLAG_ESP ) )
     {
@@ -471,10 +475,10 @@ isEfiBootable( const Partition* candidate )
     if ( table->type() == PartitionTable::TableType::gpt )
     {
         const auto bootFlag = KPM_PARTITION_FLAG( Boot );
-        cDebug() << Logger::SubEntry << "GPT table" << flags << "boot?" <<  bootFlag << flags.testFlag( bootFlag );
         return flags.testFlag( bootFlag );
     }
     return false;
+#endif
 }
 
 QString
