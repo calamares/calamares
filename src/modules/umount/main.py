@@ -39,10 +39,11 @@ def list_mounts(root_mount_point):
     """
     lst = []
 
+    root_mount_point = os.path.normpath(root_mount_point)
     for line in open("/etc/mtab").readlines():
         device, mount_point, _ = line.split(" ", 2)
 
-        if mount_point.startswith(root_mount_point):
+        if os.path.commonprefix([root_mount_point, mount_point]) == root_mount_point:
             lst.append((device, mount_point))
 
     return lst
