@@ -220,7 +220,7 @@ SetKeyboardLayoutJob::writeVConsoleData( const QString& vconsoleConfPath, const 
     }
     QTextStream stream( &file );
     bool found = false;
-    for( const QString& existingLine : qAsConst( existingLines ) )
+    for ( const QString& existingLine : qAsConst( existingLines ) )
     {
         if ( existingLine.trimmed().startsWith( "KEYMAP=" ) )
         {
@@ -300,8 +300,8 @@ SetKeyboardLayoutJob::writeX11Data( const QString& keyboardConfPath ) const
 
     file.close();
 
-    cDebug() << Logger::SubEntry << "Written XkbLayout" << m_layout << "; XkbModel" << m_model << "; XkbVariant" << m_variant
-             << "to X.org file" << keyboardConfPath << stream.status();
+    cDebug() << Logger::SubEntry << "Written XkbLayout" << m_layout << "; XkbModel" << m_model << "; XkbVariant"
+             << m_variant << "to X.org file" << keyboardConfPath << stream.status();
 
     return ( stream.status() == QTextStream::Ok );
 }
@@ -332,8 +332,8 @@ SetKeyboardLayoutJob::writeDefaultKeyboardData( const QString& defaultKeyboardPa
 
     file.close();
 
-    cDebug() << Logger::SubEntry << "Written XKBMODEL" << m_model << "; XKBLAYOUT" << m_layout << "; XKBVARIANT" << m_variant
-             << "to /etc/default/keyboard file" << defaultKeyboardPath << stream.status();
+    cDebug() << Logger::SubEntry << "Written XKBMODEL" << m_model << "; XKBLAYOUT" << m_layout << "; XKBVARIANT"
+             << m_variant << "to /etc/default/keyboard file" << defaultKeyboardPath << stream.status();
 
     return ( stream.status() == QTextStream::Ok );
 }
