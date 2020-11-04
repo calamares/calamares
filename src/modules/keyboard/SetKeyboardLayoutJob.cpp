@@ -179,6 +179,8 @@ SetKeyboardLayoutJob::findLegacyKeymap() const
 bool
 SetKeyboardLayoutJob::writeVConsoleData( const QString& vconsoleConfPath, const QString& convertedKeymapPath ) const
 {
+    cDebug() << "Writing vconsole data to" << vconsoleConfPath;
+
     QString keymap = findConvertedKeymap( convertedKeymapPath );
     if ( keymap.isEmpty() )
     {
@@ -205,15 +207,20 @@ SetKeyboardLayoutJob::writeVConsoleData( const QString& vconsoleConfPath, const 
         file.close();
         if ( stream.status() != QTextStream::Ok )
         {
+            cError() << "Could not read lines from" << file.fileName();
             return false;
         }
     }
 
     // Write out the existing lines and replace the KEYMAP= line
-    file.open( QIODevice::WriteOnly | QIODevice::Text );
+    if ( !file.open( QIODevice::WriteOnly | QIODevice::Text ) )
+    {
+        cError() << "Could not open" << file.fileName() << "for writing.";
+        return false;
+    }
     QTextStream stream( &file );
     bool found = false;
-    foreach ( const QString& existingLine, existingLines )
+    for ( const QString& existingLine : qAsConst( existingLines ) )
     {
         if ( existingLine.trimmed().startsWith( "KEYMAP=" ) )
         {
@@ -233,7 +240,7 @@ SetKeyboardLayoutJob::writeVConsoleData( const QString& vconsoleConfPath, const 
     stream.flush();
     file.close();
 
-    cDebug() << "Written KEYMAP=" << keymap << "to vconsole.conf";
+    cDebug() << Logger::SubEntry << "Written KEYMAP=" << keymap << "to vconsole.conf" << stream.status();
 
     return ( stream.status() == QTextStream::Ok );
 }
@@ -242,8 +249,14 @@ SetKeyboardLayoutJob::writeVConsoleData( const QString& vconsoleConfPath, const 
 bool
 SetKeyboardLayoutJob::writeX11Data( const QString& keyboardConfPath ) const
 {
+    cDebug() << "Writing X11 configuration to" << keyboardConfPath;
+
     QFile file( keyboardConfPath );
-    file.open( QIODevice::WriteOnly | QIODevice::Text );
+    if ( !file.open( QIODevice::WriteOnly | QIODevice::Text ) )
+    {
+        cError() << "Could not open" << file.fileName() << "for writing.";
+        return false;
+    }
     QTextStream stream( &file );
 
     stream << "# Read and parsed by systemd-localed. It's probably wise not to edit this file\n"
@@ -287,8 +300,8 @@ SetKeyboardLayoutJob::writeX11Data( const QString& keyboardConfPath ) const
 
     file.close();
 
-    cDebug() << "Written XkbLayout" << m_layout << "; XkbModel" << m_model << "; XkbVariant" << m_variant
-             << "to X.org file" << keyboardConfPath;
+    cDebug() << Logger::SubEntry << "Written XkbLayout" << m_layout << "; XkbModel" << m_model << "; XkbVariant"
+             << m_variant << "to X.org file" << keyboardConfPath << stream.status();
 
     return ( stream.status() == QTextStream::Ok );
 }
@@ -297,8 +310,14 @@ SetKeyboardLayoutJob::writeX11Data( const QString& keyboardConfPath ) const
 bool
 SetKeyboardLayoutJob::writeDefaultKeyboardData( const QString& defaultKeyboardPath ) const
 {
+    cDebug() << "Writing default keyboard data to" << defaultKeyboardPath;
+
     QFile file( defaultKeyboardPath );
-    file.open( QIODevice::WriteOnly | QIODevice::Text );
+    if ( !file.open( QIODevice::WriteOnly | QIODevice::Text ) )
+    {
+        cError() << "Could not open" << defaultKeyboardPath << "for writing";
+        return false;
+    }
     QTextStream stream( &file );
 
     stream << "# KEYBOARD CONFIGURATION FILE\n\n"
@@ -313,8 +332,8 @@ SetKeyboardLayoutJob::writeDefaultKeyboardData( const QString& defaultKeyboardPa
 
     file.close();
 
-    cDebug() << "Written XKBMODEL" << m_model << "; XKBLAYOUT" << m_layout << "; XKBVARIANT" << m_variant
-             << "to /etc/default/keyboard file" << defaultKeyboardPath;
+    cDebug() << Logger::SubEntry << "Written XKBMODEL" << m_model << "; XKBLAYOUT" << m_layout << "; XKBVARIANT"
+             << m_variant << "to /etc/default/keyboard file" << defaultKeyboardPath << stream.status();
 
     return ( stream.status() == QTextStream::Ok );
 }
@@ -329,60 +348,72 @@ SetKeyboardLayoutJob::exec()
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
     QDir destDir( gs->value( "rootMountPoint" ).toString() );
 
-    // Get the path to the destination's /etc/vconsole.conf
-    QString vconsoleConfPath = destDir.absoluteFilePath( "etc/vconsole.conf" );
-
-    // Get the path to the destination's /etc/X11/xorg.conf.d/00-keyboard.conf
-    QString xorgConfDPath;
-    QString keyboardConfPath;
-    if ( QDir::isAbsolutePath( m_xOrgConfFileName ) )
     {
-        keyboardConfPath = m_xOrgConfFileName;
-        while ( keyboardConfPath.startsWith( '/' ) )
+        // Get the path to the destination's /etc/vconsole.conf
+        QString vconsoleConfPath = destDir.absoluteFilePath( "etc/vconsole.conf" );
+
+        // Get the path to the destination's path to the converted key mappings
+        QString convertedKeymapPath = m_convertedKeymapPath;
+        if ( !convertedKeymapPath.isEmpty() )
         {
-            keyboardConfPath.remove( 0, 1 );
+            while ( convertedKeymapPath.startsWith( '/' ) )
+            {
+                convertedKeymapPath.remove( 0, 1 );
+            }
+            convertedKeymapPath = destDir.absoluteFilePath( convertedKeymapPath );
         }
-        keyboardConfPath = destDir.absoluteFilePath( keyboardConfPath );
-        xorgConfDPath = QFileInfo( keyboardConfPath ).path();
-    }
-    else
-    {
-        xorgConfDPath = destDir.absoluteFilePath( "etc/X11/xorg.conf.d" );
-        keyboardConfPath = QDir( xorgConfDPath ).absoluteFilePath( m_xOrgConfFileName );
-    }
-    destDir.mkpath( xorgConfDPath );
 
-    QString defaultKeyboardPath;
-    if ( QDir( destDir.absoluteFilePath( "etc/default" ) ).exists() )
-    {
-        defaultKeyboardPath = destDir.absoluteFilePath( "etc/default/keyboard" );
-    }
-
-    // Get the path to the destination's path to the converted key mappings
-    QString convertedKeymapPath = m_convertedKeymapPath;
-    if ( !convertedKeymapPath.isEmpty() )
-    {
-        while ( convertedKeymapPath.startsWith( '/' ) )
+        if ( !writeVConsoleData( vconsoleConfPath, convertedKeymapPath ) )
         {
-            convertedKeymapPath.remove( 0, 1 );
+            return Calamares::JobResult::error( tr( "Failed to write keyboard configuration for the virtual console." ),
+                                                tr( "Failed to write to %1" ).arg( vconsoleConfPath ) );
         }
-        convertedKeymapPath = destDir.absoluteFilePath( convertedKeymapPath );
     }
 
-    if ( !writeVConsoleData( vconsoleConfPath, convertedKeymapPath ) )
-        return Calamares::JobResult::error( tr( "Failed to write keyboard configuration for the virtual console." ),
-                                            tr( "Failed to write to %1" ).arg( vconsoleConfPath ) );
-
-    if ( !writeX11Data( keyboardConfPath ) )
-        return Calamares::JobResult::error( tr( "Failed to write keyboard configuration for X11." ),
-                                            tr( "Failed to write to %1" ).arg( keyboardConfPath ) );
-
-    if ( !defaultKeyboardPath.isEmpty() && m_writeEtcDefaultKeyboard )
     {
-        if ( !writeDefaultKeyboardData( defaultKeyboardPath ) )
-            return Calamares::JobResult::error(
-                tr( "Failed to write keyboard configuration to existing /etc/default directory." ),
-                tr( "Failed to write to %1" ).arg( keyboardConfPath ) );
+        // Get the path to the destination's /etc/X11/xorg.conf.d/00-keyboard.conf
+        QString xorgConfDPath;
+        QString keyboardConfPath;
+        if ( QDir::isAbsolutePath( m_xOrgConfFileName ) )
+        {
+            keyboardConfPath = m_xOrgConfFileName;
+            while ( keyboardConfPath.startsWith( '/' ) )
+            {
+                keyboardConfPath.remove( 0, 1 );
+            }
+            keyboardConfPath = destDir.absoluteFilePath( keyboardConfPath );
+            xorgConfDPath = QFileInfo( keyboardConfPath ).path();
+        }
+        else
+        {
+            xorgConfDPath = destDir.absoluteFilePath( "etc/X11/xorg.conf.d" );
+            keyboardConfPath = QDir( xorgConfDPath ).absoluteFilePath( m_xOrgConfFileName );
+        }
+        destDir.mkpath( xorgConfDPath );
+
+        if ( !writeX11Data( keyboardConfPath ) )
+        {
+            return Calamares::JobResult::error( tr( "Failed to write keyboard configuration for X11." ),
+                                                tr( "Failed to write to %1" ).arg( keyboardConfPath ) );
+        }
+    }
+
+    {
+        QString defaultKeyboardPath;
+        if ( QDir( destDir.absoluteFilePath( "etc/default" ) ).exists() )
+        {
+            defaultKeyboardPath = destDir.absoluteFilePath( "etc/default/keyboard" );
+        }
+
+        if ( !defaultKeyboardPath.isEmpty() && m_writeEtcDefaultKeyboard )
+        {
+            if ( !writeDefaultKeyboardData( defaultKeyboardPath ) )
+            {
+                return Calamares::JobResult::error(
+                    tr( "Failed to write keyboard configuration to existing /etc/default directory." ),
+                    tr( "Failed to write to %1" ).arg( defaultKeyboardPath ) );
+            }
+        }
     }
 
     return Calamares::JobResult::ok();
