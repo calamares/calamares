@@ -249,6 +249,8 @@ SetKeyboardLayoutJob::writeVConsoleData( const QString& vconsoleConfPath, const 
 bool
 SetKeyboardLayoutJob::writeX11Data( const QString& keyboardConfPath ) const
 {
+    cDebug() << "Writing X11 configuration to" << keyboardConfPath;
+
     QFile file( keyboardConfPath );
     if ( !file.open( QIODevice::WriteOnly | QIODevice::Text ) )
     {
@@ -298,8 +300,8 @@ SetKeyboardLayoutJob::writeX11Data( const QString& keyboardConfPath ) const
 
     file.close();
 
-    cDebug() << "Written XkbLayout" << m_layout << "; XkbModel" << m_model << "; XkbVariant" << m_variant
-             << "to X.org file" << keyboardConfPath;
+    cDebug() << Logger::SubEntry << "Written XkbLayout" << m_layout << "; XkbModel" << m_model << "; XkbVariant" << m_variant
+             << "to X.org file" << keyboardConfPath << stream.status();
 
     return ( stream.status() == QTextStream::Ok );
 }
