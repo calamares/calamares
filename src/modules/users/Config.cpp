@@ -26,6 +26,12 @@
 #ifdef HAVE_ICU
 #include <unicode/translit.h>
 #include <unicode/unistr.h>
+
+//Did my best choosing compound ID
+static const char* TRANSLITERATOR_ID = "Russian-Latin/BGN;"
+                                       "Greek-Latin/UNGEGN;"
+                                       "Any-Latin;"
+                                       "Latin-ASCII";
 #endif
 
 static const QRegExp USERNAME_RX( "^[a-z_][a-z0-9_-]*[$]?$" );
@@ -290,7 +296,7 @@ transliterate( const QString& input )
 {
     static auto ue = UErrorCode::U_ZERO_ERROR;
     static auto transliterator = std::unique_ptr< icu::Transliterator >(
-                icu::Transliterator::createInstance( "Any-Latin; Latin-ASCII", UTRANS_FORWARD, ue )
+                icu::Transliterator::createInstance( TRANSLITERATOR_ID, UTRANS_FORWARD, ue )
                 );
 
     if( ue != UErrorCode::U_ZERO_ERROR ){
