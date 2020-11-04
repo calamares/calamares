@@ -1,205 +1,205 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE TS>
-<TS version="2.1" language="en_US">
+<TS language="tg" version="2.1">
 <context>
     <name>kb_layouts</name>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="229"/>
         <source>Afghani</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Афғонӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="230"/>
         <source>Albanian</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Албанӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="231"/>
         <source>Amharic</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Амҳарӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="232"/>
         <source>Arabic</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Арабӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="233"/>
         <source>Arabic (Morocco)</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Арабӣ (Марокаш)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="234"/>
         <source>Arabic (Syria)</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Арабӣ (Сурия)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="235"/>
         <source>Armenian</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Арманӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="236"/>
         <source>Azerbaijani</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Озарбойҷонӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="237"/>
         <source>Bambara</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Бамбара</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="238"/>
         <source>Bangla</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Бангла</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="239"/>
         <source>Belarusian</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Белорусӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="240"/>
         <source>Belgian</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Белгиягӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="241"/>
         <source>Bosnian</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Босниягӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="242"/>
         <source>Braille</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Брайл</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="243"/>
         <source>Bulgarian</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Булғорӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="244"/>
         <source>Burmese</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Бирманӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="245"/>
         <source>Chinese</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Хитоӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="246"/>
         <source>Croatian</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Хорватӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="247"/>
         <source>Czech</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Чехӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="248"/>
         <source>Danish</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Даниягӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="249"/>
         <source>Dhivehi</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Дхивеҳӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="250"/>
         <source>Dutch</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ҳоландӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="251"/>
         <source>Dzongkha</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Дзонгха</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="252"/>
         <source>English (Australian)</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (Австралиягӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="253"/>
         <source>English (Cameroon)</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (Камерун)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="254"/>
         <source>English (Ghana)</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (Гана)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="255"/>
         <source>English (Nigeria)</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (Нигерия)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="256"/>
         <source>English (South Africa)</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (Африкаи Ҷунубӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="257"/>
         <source>English (UK)</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (БК)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="258"/>
         <source>English (US)</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (ИМА)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="259"/>
         <source>Esperanto</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Эсперанто</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="260"/>
         <source>Estonian</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Эстонӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="261"/>
         <source>Faroese</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Фарерӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="262"/>
@@ -475,7 +475,7 @@
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="307"/>
         <source>Russian</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Русӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="308"/>
@@ -565,13 +565,13 @@
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="322"/>
         <source>Turkmen</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Туркменӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="323"/>
         <source>Ukrainian</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Украинӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="324"/>
@@ -583,19 +583,19 @@
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="325"/>
         <source>Uzbek</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ӯзбекӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="326"/>
         <source>Vietnamese</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ветнамӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="327"/>
         <source>Wolof</source>
         <comment>kb_layouts</comment>
-        <translation type="unfinished"></translation>
+        <translation>Волоф</translation>
     </message>
 </context>
 <context>
@@ -604,385 +604,385 @@
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="25"/>
         <source>A4Tech KB-21</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>A4Tech KB-21</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="26"/>
         <source>A4Tech KBS-8</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>A4Tech KBS-8</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="27"/>
         <source>A4Tech Wireless Desktop RFKB-23</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Мизи кории бесими A4Tech RFKB-23</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="28"/>
         <source>Acer AirKey V</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Acer AirKey V</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="29"/>
         <source>Acer C300</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Acer C300</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="30"/>
         <source>Acer Ferrari 4000</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Acer Ferrari 4000</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="31"/>
         <source>Acer laptop</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Лэптопи Acer</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="32"/>
         <source>Advance Scorpius KI</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Scorpius KI-и пешрафта</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="33"/>
         <source>Apple</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Apple</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="34"/>
         <source>Apple Aluminium (ANSI)</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Apple-и Алюминий (ANSI)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="35"/>
         <source>Apple Aluminium (ISO)</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Apple-и Алюминий (ISO)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="36"/>
         <source>Apple Aluminium (JIS)</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Apple-и Алюминий (JIS)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="37"/>
         <source>Apple laptop</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Лэптопи Apple</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="38"/>
         <source>Asus laptop</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Лэптопи Asus</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="39"/>
         <source>Azona RF2300 wireless Internet</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Azona RF2300 Интернети бесим</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="40"/>
         <source>BTC 5090</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>BTC 5090</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="41"/>
         <source>BTC 5113RF Multimedia</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>BTC 5113RF Мултимедиа</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="42"/>
         <source>BTC 5126T</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>BTC 5126T</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="43"/>
         <source>BTC 6301URF</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>BTC 6301URF</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="44"/>
         <source>BTC 9000</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>BTC 9000</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="45"/>
         <source>BTC 9000A</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>BTC 9000A</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="46"/>
         <source>BTC 9001AH</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>BTC 9001AH</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="47"/>
         <source>BTC 9019U</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>BTC 9019U</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="48"/>
         <source>BTC 9116U Mini Wireless Internet and Gaming</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>BTC 9116U Бозиҳо ва Интернети бесим (Хурд)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="49"/>
         <source>BenQ X-Touch</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>BenQ X-Touch</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="50"/>
         <source>BenQ X-Touch 730</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>BenQ X-Touch 730</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="51"/>
         <source>BenQ X-Touch 800</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>BenQ X-Touch 800</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="52"/>
         <source>Brother Internet</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Интернети бародарон</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="53"/>
         <source>Cherry B.UNLIMITED</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Черри, НОМАҲДУДИ B</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="54"/>
         <source>Cherry Blue Line CyBo@rd</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Черри, Хати кабуди CyBo@rd</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="55"/>
         <source>Cherry Blue Line CyBo@rd (alt.)</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Черри, Хати кабуди CyBo@rd. (илов.)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="56"/>
         <source>Cherry CyBo@rd USB-Hub</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Черри, CyBo@rd USB-Hub</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="57"/>
         <source>Cherry CyMotion Expert</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Черри, Коршиноси CyMotion</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="58"/>
         <source>Cherry CyMotion Master Linux</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Черри, Устои Linux-и CyMotion</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="59"/>
         <source>Cherry CyMotion Master XPress</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Черри, Устои XPress-и CyMotion</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="60"/>
         <source>Chicony Internet</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Chicony-и интернетӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="61"/>
         <source>Chicony KB-9885</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Chicony KB-9885</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="62"/>
         <source>Chicony KU-0108</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Chicony KU-0108</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="63"/>
         <source>Chicony KU-0420</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Chicony KU-0420</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="64"/>
         <source>Chromebook</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Хромбук</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="65"/>
         <source>Classmate PC</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Classmate PC</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="66"/>
         <source>Compaq Armada laptop</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Лэптопи Compaq Armada</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="67"/>
         <source>Compaq Easy Access</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Дастрасии осони Compaq</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="68"/>
         <source>Compaq Internet (13 keys)</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Compaq-и интернетӣ (13 тугма)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="69"/>
         <source>Compaq Internet (18 keys)</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Compaq-и интернетӣ (18 тугма)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="70"/>
         <source>Compaq Internet (7 keys)</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Compaq-и интернетӣ (7 тугма)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="71"/>
         <source>Compaq Presario laptop</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Лэптопи Compaq Presario</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="72"/>
         <source>Compaq iPaq</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Compaq iPaq</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="73"/>
         <source>Creative Desktop Wireless 7000</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Creative Desktop Wireless 7000</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="74"/>
         <source>DTK2000</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>DTK2000</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="75"/>
         <source>Dell</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dell</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="76"/>
         <source>Dell 101-key PC</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dell, 101 тугмаи компютерӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="77"/>
         <source>Dell Inspiron 6000/8000 laptop</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Лэптопи Dell Inspiron 6000/8000</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="78"/>
         <source>Dell Latitude laptop</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Лэптопи Dell Latitude</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="79"/>
         <source>Dell Precision M laptop</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Лэптопи Dell Precision M</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="80"/>
         <source>Dell Precision M65 laptop</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Лэптопи Dell Precision M65</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="81"/>
         <source>Dell SK-8125</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dell SK-8125</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="82"/>
         <source>Dell SK-8135</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dell SK-8135</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="83"/>
         <source>Dell USB Multimedia</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dell, Мултимедиаи USB</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="84"/>
         <source>Dexxa Wireless Desktop</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Мизи кории бесими Dexxa</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="85"/>
         <source>Diamond 9801/9802</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Diamond 9801/9802</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="86"/>
         <source>Ennyah DKB-1008</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ennyah DKB-1008</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="87"/>
         <source>Everex STEPnote</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Everex STEPnote</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="88"/>
         <source>FL90</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>FL90</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="89"/>
@@ -994,37 +994,37 @@
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="90"/>
         <source>Generic 101-key PC</source>
         <comment>kb_models</comment>
-        <translation>Общий 101-ключ</translation>
+        <translation>Умумӣ, 101 тугмаи компютерӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="91"/>
         <source>Generic 102-key PC</source>
         <comment>kb_models</comment>
-        <translation>Общий 102-ключ</translation>
+        <translation>Умумӣ, 102 тугмаи компютерӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="92"/>
         <source>Generic 104-key PC</source>
         <comment>kb_models</comment>
-        <translation>Общий 104-ключ</translation>
+        <translation>Умумӣ, 104 тугмаи компютерӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="93"/>
         <source>Generic 104-key PC with L-shaped Enter key</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Умумӣ, 104 тугмаи компютерӣ бо тугмаи Enter дар шакли L</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="94"/>
         <source>Generic 105-key PC</source>
         <comment>kb_models</comment>
-        <translation>Общий 105-ключ</translation>
+        <translation>Умумӣ, 105 тугмаи компютерӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="95"/>
         <source>Generic 86-key PC</source>
         <comment>kb_models</comment>
-        <translation>Общий 86-ключ</translation>
+        <translation>Умумӣ, 86 тугмаи компютерӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="96"/>
@@ -1204,13 +1204,13 @@
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="125"/>
         <source>Logitech</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Logitech</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="126"/>
         <source>Logitech Access</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Logitech Access</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="127"/>
@@ -1366,25 +1366,25 @@
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="152"/>
         <source>Memorex MX1998</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Memorex MX1998</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="153"/>
         <source>Memorex MX2500 EZ-Access</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Memorex MX2500 EZ-Access</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="154"/>
         <source>Memorex MX2750</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Memorex MX2750</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="155"/>
         <source>Microsoft Comfort Curve 2000</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Microsoft Comfort Curve 2000</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="156"/>
@@ -1462,25 +1462,25 @@
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="168"/>
         <source>NEC SK-1300</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>NEC SK-1300</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="169"/>
         <source>NEC SK-2500</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>NEC SK-2500</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="170"/>
         <source>NEC SK-6200</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>NEC SK-6200</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="171"/>
         <source>NEC SK-7100</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>NEC SK-7100</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="172"/>
@@ -1492,7 +1492,7 @@
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="173"/>
         <source>OLPC</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>OLPC</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="174"/>
@@ -1522,25 +1522,25 @@
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="178"/>
         <source>SVEN Ergonomic 2500</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>SVEN Ergonomic 2500</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="179"/>
         <source>SVEN Slim 303</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>SVEN Slim 303</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="180"/>
         <source>Samsung SDM 4500P</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Samsung SDM 4500P</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="181"/>
         <source>Samsung SDM 4510P</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Samsung SDM 4510P</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="182"/>
@@ -1684,61 +1684,61 @@
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="205"/>
         <source>TypeMatrix EZ-Reach 2020</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>TypeMatrix EZ-Reach 2020</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="206"/>
         <source>TypeMatrix EZ-Reach 2030 PS2</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>TypeMatrix EZ-Reach 2030 PS2</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="207"/>
         <source>TypeMatrix EZ-Reach 2030 USB</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>TypeMatrix EZ-Reach 2030 USB</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="208"/>
         <source>TypeMatrix EZ-Reach 2030 USB (102/105:EU mode)</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>TypeMatrix EZ-Reach 2030 USB (Реҷаи 102/105:EU)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="209"/>
         <source>TypeMatrix EZ-Reach 2030 USB (106:JP mode)</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>TypeMatrix EZ-Reach 2030 USB (Реҷаи 106:JP)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="210"/>
         <source>Unitek KB-1925</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Unitek KB-1925</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="211"/>
         <source>ViewSonic KU-306 Internet</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>ViewSonic KU-306-и интернетӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="212"/>
         <source>Winbook Model XP5</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="213"/>
         <source>Yahoo! Internet</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Yahoo! Интернет</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="214"/>
         <source>eMachines m6800 laptop</source>
         <comment>kb_models</comment>
-        <translation type="unfinished"></translation>
+        <translation>Лэптопи eMachines m6800</translation>
     </message>
 </context>
 <context>
@@ -1747,775 +1747,775 @@
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="342"/>
         <source>Akan</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Аконӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="343"/>
         <source>Albanian (Plisi)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Албанӣ (Плисӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="344"/>
         <source>Albanian (Veqilharxhi)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Албанӣ (Векилхаркшӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="345"/>
         <source>Arabic (AZERTY)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Арабӣ (AZERTY)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="346"/>
         <source>Arabic (AZERTY, Eastern Arabic numerals)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Арабӣ (AZERTY, Рақамҳои арабии шаркӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="347"/>
         <source>Arabic (Algeria)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Арабӣ (Алҷазоир)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="348"/>
         <source>Arabic (Buckwalter)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Арабӣ (Бакуолтер)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="349"/>
         <source>Arabic (Eastern Arabic numerals)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Арабӣ (Рақамҳои арабии шаркӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="350"/>
         <source>Arabic (Macintosh)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Арабӣ (Макинтош)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="351"/>
         <source>Arabic (OLPC)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Арабӣ (OLPC)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="352"/>
         <source>Arabic (Pakistan)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Арабӣ (Покистон)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="353"/>
         <source>Arabic (QWERTY)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Арабӣ (QWERTY)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="354"/>
         <source>Arabic (QWERTY, Eastern Arabic numerals)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Арабӣ (QWERTY, Рақамҳои арабии шаркӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="355"/>
         <source>Armenian (alt. eastern)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Арманӣ (илов. шарқӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="356"/>
         <source>Armenian (alt. phonetic)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Арманӣ (илов. фонетикӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="357"/>
         <source>Armenian (eastern)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Арманӣ (шарқӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="358"/>
         <source>Armenian (phonetic)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Арманӣ (фонетикӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="359"/>
         <source>Armenian (western)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Арманӣ (ғарбӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="360"/>
         <source>Asturian (Spain, with bottom-dot H and L)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Астурӣ (Испания, бо нуқтаи поёни H ва L)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="361"/>
         <source>Avatime</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Avatime</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="362"/>
         <source>Azerbaijani (Cyrillic)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Озарбойҷонӣ (Кириллӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="363"/>
         <source>Bangla (India)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Бангла (Ҳиндустон)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="364"/>
         <source>Bangla (India, Baishakhi Inscript)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Бангла (Ҳиндустон, Инскрипти Байшахӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="365"/>
         <source>Bangla (India, Baishakhi)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Бангла (Ҳиндустон, Байшахӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="366"/>
         <source>Bangla (India, Bornona)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Бангла (Ҳиндустон, Борнона)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="367"/>
         <source>Bangla (India, Gitanjali)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Бангла (Ҳиндустон, Гитанҷалӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="368"/>
         <source>Bangla (India, Probhat)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Бангла (Ҳиндустон, Пробхат)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="369"/>
         <source>Bangla (Probhat)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Бангла (Пробхат)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="370"/>
         <source>Bashkirian</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Бошқирдӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="371"/>
         <source>Belarusian (Latin)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Белорусӣ (Лотинӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="372"/>
         <source>Belarusian (intl.)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Белорусӣ (байналм.)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="373"/>
         <source>Belarusian (legacy)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Белорусӣ (ворисӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="374"/>
         <source>Belgian (ISO, alt.)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Белгиягӣ (ISO, илов.)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="375"/>
         <source>Belgian (Latin-9 only, alt.)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Белгиягӣ (Танҳо лотинии-9, илов.)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="376"/>
         <source>Belgian (Sun dead keys)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Белгиягӣ (Тугмаҳои хомӯшии Sun)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="377"/>
         <source>Belgian (Sun dead keys, alt.)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Белгиягӣ (Тугмаҳои хомӯшии Sun, илов.)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="378"/>
         <source>Belgian (Wang 724 AZERTY)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Белгиягӣ (Ванг 724 AZERTY)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="379"/>
         <source>Belgian (alt.)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Белгиягӣ (илов.)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="380"/>
         <source>Belgian (no dead keys)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Белгиягӣ (бе тугмаҳои хомӯшӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="381"/>
         <source>Berber (Morocco, Tifinagh alt.)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Берберӣ (Марокаш, Тифинагҳӣ, илов.)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="382"/>
         <source>Berber (Morocco, Tifinagh extended phonetic)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Берберӣ (Марокаш, Тифинагҳӣ, фонетикии васеъшуда)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="383"/>
         <source>Berber (Morocco, Tifinagh extended)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Берберӣ (Марокаш, Тифинагҳӣ, васеъшуда)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="384"/>
         <source>Berber (Morocco, Tifinagh phonetic)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Берберӣ (Марокаш, Тифинагҳӣ, фонетикӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="385"/>
         <source>Berber (Morocco, Tifinagh phonetic, alt.)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Берберӣ (Марокаш, Тифинагҳӣ, фонетикӣ, илов.)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="386"/>
         <source>Berber (Morocco, Tifinagh)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Берберӣ (Марокаш, Тифинагҳӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="387"/>
         <source>Bosnian (US)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Босниягӣ (ИМА)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="388"/>
         <source>Bosnian (US, with Bosnian digraphs)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Босниягӣ (ИМА, бо диграфҳои босниягӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="389"/>
         <source>Bosnian (with Bosnian digraphs)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Босниягӣ (бо диграфҳои босниягӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="390"/>
         <source>Bosnian (with guillemets)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Босниягӣ (бо гиллеметҳо)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="391"/>
         <source>Braille (left-handed inverted thumb)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Брайл (сарангушти чаппаи дасти чап)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="392"/>
         <source>Braille (left-handed)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Брайл (дасти чап)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="393"/>
         <source>Braille (right-handed inverted thumb)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Брайл (сарангушти чаппаи дасти рост)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="394"/>
         <source>Braille (right-handed)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Брайл (дасти рост)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="395"/>
         <source>Bulgarian (enhanced)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Булғорӣ (такмилёфта)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="396"/>
         <source>Bulgarian (new phonetic)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Булғорӣ (фонетикии нав)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="397"/>
         <source>Bulgarian (traditional phonetic)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Булғорӣ (фонетикии анъанавӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="398"/>
         <source>Burmese Zawgyi</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Бирмании завҷӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="399"/>
         <source>Cameroon (AZERTY, intl.)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Камерун (AZERTY, байналм.)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="400"/>
         <source>Cameroon (Dvorak, intl.)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Камерун (Дворак, байналм.)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="401"/>
         <source>Cameroon Multilingual (QWERTY, intl.)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Камеруни серзабон (QWERTY, байналм.)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="402"/>
         <source>Canadian (intl.)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Канадагӣ (байналм.)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="403"/>
         <source>Canadian (intl., 1st part)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Канадагӣ (байналм. қисми 1)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="404"/>
         <source>Canadian (intl., 2nd part)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Канадагӣ (байналм. қисми 2)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="405"/>
         <source>Catalan (Spain, with middle-dot L)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Каталонӣ (Испания, бо нуқтаи миёнаи L)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="406"/>
         <source>Cherokee</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Черокӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="407"/>
         <source>Chuvash</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Чувашӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="408"/>
         <source>Chuvash (Latin)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Чувашӣ (Лотинӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="409"/>
         <source>CloGaelach</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>CloGaelach</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="410"/>
         <source>Crimean Tatar (Turkish Alt-Q)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Тотории кримӣ (Туркӣ, Alt-Q)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="411"/>
         <source>Crimean Tatar (Turkish F)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Тотории кримӣ (F-и туркӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="412"/>
         <source>Crimean Tatar (Turkish Q)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Тотории кримӣ (Q-и туркӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="413"/>
         <source>Croatian (US)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Хорватӣ (ИМА)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="414"/>
         <source>Croatian (US, with Croatian digraphs)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Хорватӣ (ИМА, бо диграфҳои хорватӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="415"/>
         <source>Croatian (with Croatian digraphs)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Хорватӣ (бо диграфҳои хорватӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="416"/>
         <source>Croatian (with guillemets)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Хорватӣ (бо гиллеметҳо)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="417"/>
         <source>Czech (QWERTY)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Чехӣ (QWERTY)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="418"/>
         <source>Czech (QWERTY, Macintosh)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Чехӣ (QWERTY, Макинтош)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="419"/>
         <source>Czech (QWERTY, extended backslash)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Чехӣ (QWERTY, аломати хати каҷи баръакси васеъшуда)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="420"/>
         <source>Czech (UCW, only accented letters)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Чехӣ (UCW, танҳо ҳарфҳои вижагӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="421"/>
         <source>Czech (US, Dvorak, UCW support)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Чехӣ (ИМА, Дворак, дастгирии UCW)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="422"/>
         <source>Czech (with &amp;lt;|&amp;gt; key)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Чехӣ (бо тугмаи &amp;lt;|&amp;gt;)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="423"/>
         <source>Danish (Dvorak)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Даниягӣ (Дворак)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="424"/>
         <source>Danish (Macintosh)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Даниягӣ (Макинтош)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="425"/>
         <source>Danish (Macintosh, no dead keys)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Даниягӣ (Макинтош, бе тугмаҳои хомӯшӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="426"/>
         <source>Danish (Windows)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Даниягӣ (Windows)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="427"/>
         <source>Danish (no dead keys)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Даниягӣ (бе тугмаҳои хомӯшӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="428"/>
         <source>Default</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Стандартӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="429"/>
         <source>Dutch (Macintosh)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ҳоландӣ (Макинтош)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="430"/>
         <source>Dutch (Sun dead keys)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ҳоландӣ (Тугмаҳои хомӯшии Sun)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="431"/>
         <source>Dutch (standard)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ҳоландӣ (стандартӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="432"/>
         <source>English (Canada)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (Канада)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="433"/>
         <source>English (Colemak)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (Колемак)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="434"/>
         <source>English (Dvorak)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (Дворак)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="435"/>
         <source>English (Dvorak, alt. intl.)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (Дворак, илов. байналм.)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="436"/>
         <source>English (Dvorak, intl., with dead keys)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (Дворак, байналм. бо тугмаҳои хомӯшӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="437"/>
         <source>English (Dvorak, left-handed)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (Дворак, дасти чап)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="438"/>
         <source>English (Dvorak, right-handed)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (Дворак, дасти рост)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="439"/>
         <source>English (Ghana, GILLBT)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (Гана, GILLBT)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="440"/>
         <source>English (Ghana, multilingual)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (Гана, серзабон)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="441"/>
         <source>English (India, with rupee)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (Ҳиндустон, бо рупия)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="442"/>
         <source>English (Macintosh)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (Макинтош)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="443"/>
         <source>English (Mali, US, Macintosh)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (Малӣ, ИМА, Макинтош)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="444"/>
         <source>English (Mali, US, intl.)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (Малӣ, ИМА, байналм.)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="445"/>
         <source>English (Norman)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (Норман)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="446"/>
         <source>English (UK, Colemak)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (БК, Колемак)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="447"/>
         <source>English (UK, Dvorak)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (БК, Дворак)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="448"/>
         <source>English (UK, Dvorak, with UK punctuation)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (БК, Дворак, бо аломатҳои китобатӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="449"/>
         <source>English (UK, Macintosh)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (БК, Макинтош)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="450"/>
         <source>English (UK, Macintosh, intl.)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (БК, Макинтош, байналм.)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="451"/>
         <source>English (UK, extended, Windows)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (БК, васеъшуда, Windows)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="452"/>
         <source>English (UK, intl., with dead keys)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (БК, байналм., бо тугмаҳои хомӯшӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="453"/>
         <source>English (US, Symbolic)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (ИМА, Рамзӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="454"/>
         <source>English (US, alt. intl.)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (ИМА, илов. байналм.)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="455"/>
         <source>English (US, euro on 5)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (ИМА, евро дар 5)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="456"/>
         <source>English (US, intl., with dead keys)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (ИМА, байналм., бо тугмаҳои хомӯшӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="457"/>
         <source>English (Workman)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (Воркман)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="458"/>
         <source>English (Workman, intl., with dead keys)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (Воркман, байналм., бо тугмаҳои хомӯшӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="459"/>
         <source>English (classic Dvorak)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (Двораки классикӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="460"/>
         <source>English (intl., with AltGr dead keys)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (байналм., бо тугмаҳои хомӯшии AltGr)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="461"/>
         <source>English (programmer Dvorak)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (Двораки барномарезӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="462"/>
         <source>English (the divide/multiply toggle the layout)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Англисӣ (тарҳбандӣ бо алоҳида/якчанд васлкунак)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="463"/>
         <source>Esperanto (Brazil, Nativo)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Эсперанто (Бразилия, Нативо)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="464"/>
         <source>Esperanto (Portugal, Nativo)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Эсперанто (Португалия, Нативо)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="465"/>
         <source>Esperanto (legacy)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Эсперанто (ворисӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="466"/>
         <source>Estonian (Dvorak)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Эстонӣ (Дворак)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="467"/>
         <source>Estonian (US)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Эстонӣ (ИМА)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="468"/>
         <source>Estonian (no dead keys)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Эстонӣ (бе тугмаҳои хомӯшӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="469"/>
         <source>Ewe</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ewe</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="470"/>
         <source>Faroese (no dead keys)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Фарерӣ (бе тугмаҳои хомӯшӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="471"/>
@@ -3985,127 +3985,127 @@
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="715"/>
         <source>Russian (Belarus)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Русӣ (Беларус)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="716"/>
         <source>Russian (Czech, phonetic)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Русӣ (Чехӣ, фонетикӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="717"/>
         <source>Russian (DOS)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Русӣ (DOS)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="718"/>
         <source>Russian (Georgia)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Русӣ (Гурҷӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="719"/>
         <source>Russian (Germany, phonetic)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Русӣ (Немисӣ, фонетикӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="720"/>
         <source>Russian (Kazakhstan, with Kazakh)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Русӣ (Қазоқистон, бо қазоқӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="721"/>
         <source>Russian (Macintosh)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Русӣ (Макинтош)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="722"/>
         <source>Russian (Poland, phonetic Dvorak)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Русӣ (Полша, Дворакии фонетикӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="723"/>
         <source>Russian (Sweden, phonetic)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Русӣ (Шведӣ, фонетикӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="724"/>
         <source>Russian (Sweden, phonetic, no dead keys)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Русӣ (Шведӣ, фонетикӣ, бе тугмаҳои хомӯшӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="725"/>
         <source>Russian (US, phonetic)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Русӣ (ИМА, фонетикӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="726"/>
         <source>Russian (Ukraine, standard RSTU)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Русӣ (Украина, RSTU-и стандартӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="727"/>
         <source>Russian (legacy)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Русӣ (ворисӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="728"/>
         <source>Russian (phonetic)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Русӣ (фонетикӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="729"/>
         <source>Russian (phonetic, AZERTY)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Русӣ (фонетикӣ, AZERTY)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="730"/>
         <source>Russian (phonetic, Dvorak)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Русӣ (фонетикӣ, Дворак)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="731"/>
         <source>Russian (phonetic, French)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Русӣ (фонетикӣ, Франсузӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="732"/>
         <source>Russian (phonetic, Windows)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Русӣ (фонетикӣ, Windows)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="733"/>
         <source>Russian (phonetic, YAZHERTY)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Русӣ (фонетикӣ, YAZHERTY)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="734"/>
         <source>Russian (typewriter)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Русӣ (мошини хатнависӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="735"/>
         <source>Russian (typewriter, legacy)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Русӣ (мошини хатнависӣ, ворисӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="736"/>
@@ -4117,7 +4117,7 @@
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="737"/>
         <source>Samogitian</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="738"/>
@@ -4369,7 +4369,7 @@
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="779"/>
         <source>Tajik (legacy)</source>
         <comment>kb_variants</comment>
-        <translation>Тоҷикӣ (красіво)</translation>
+        <translation>Тоҷикӣ (ворисӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="780"/>
@@ -4379,37 +4379,37 @@
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="781"/>
-        <source>Tamil (Sri Lanka, TamilNet &apos;99)</source>
+        <source>Tamil (Sri Lanka, TamilNet '99)</source>
         <comment>kb_variants</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="782"/>
-        <source>Tamil (Sri Lanka, TamilNet &apos;99, TAB encoding)</source>
+        <source>Tamil (Sri Lanka, TamilNet '99, TAB encoding)</source>
         <comment>kb_variants</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="783"/>
-        <source>Tamil (TamilNet &apos;99 with Tamil numerals)</source>
+        <source>Tamil (TamilNet '99 with Tamil numerals)</source>
         <comment>kb_variants</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="784"/>
-        <source>Tamil (TamilNet &apos;99)</source>
+        <source>Tamil (TamilNet '99)</source>
         <comment>kb_variants</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="785"/>
-        <source>Tamil (TamilNet &apos;99, TAB encoding)</source>
+        <source>Tamil (TamilNet '99, TAB encoding)</source>
         <comment>kb_variants</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="786"/>
-        <source>Tamil (TamilNet &apos;99, TSCII encoding)</source>
+        <source>Tamil (TamilNet '99, TSCII encoding)</source>
         <comment>kb_variants</comment>
         <translation type="unfinished"></translation>
     </message>
@@ -4417,7 +4417,7 @@
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="787"/>
         <source>Tatar</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Тоторӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="788"/>
@@ -4495,49 +4495,49 @@
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="800"/>
         <source>Turkmen (Alt-Q)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Туркменӣ (Alt-Q)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="801"/>
         <source>Udmurt</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Удмуртӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="802"/>
         <source>Ukrainian (Windows)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Украинӣ (Windows)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="803"/>
         <source>Ukrainian (homophonic)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Украинӣ (гомофонӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="804"/>
         <source>Ukrainian (legacy)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Украинӣ (ворисӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="805"/>
         <source>Ukrainian (phonetic)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Украинӣ (фонетикӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="806"/>
         <source>Ukrainian (standard RSTU)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Украинӣ (RSTU-и стандартӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="807"/>
         <source>Ukrainian (typewriter)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Украинӣ (мошини хатнависӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="808"/>
@@ -4573,49 +4573,49 @@
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="813"/>
         <source>Uyghur</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ӯйғурӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="814"/>
         <source>Uzbek (Afghanistan)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ӯзбекӣ (Афғонистон)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="815"/>
         <source>Uzbek (Afghanistan, OLPC)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ӯзбекӣ (Афғонистон, OLPC)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="816"/>
         <source>Uzbek (Latin)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ӯзбекӣ (Лотинӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="817"/>
         <source>Vietnamese (French)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ветнамӣ (Франсузӣ)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="818"/>
         <source>Vietnamese (US)</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ветнамӣ (ИМА)</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="819"/>
         <source>Yakut</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ёқутӣ</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardData_p.cxxtr" line="820"/>
         <source>Yoruba</source>
         <comment>kb_variants</comment>
-        <translation type="unfinished"></translation>
+        <translation>Йоруба</translation>
     </message>
 </context>
 </TS>
