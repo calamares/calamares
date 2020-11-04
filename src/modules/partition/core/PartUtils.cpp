@@ -439,11 +439,14 @@ isEfiSystem()
 bool
 isEfiBootable( const Partition* candidate )
 {
-    cDebug() << "Check EFI bootable" << convenienceName( candidate ) << candidate->devicePath();
-    cDebug() << Logger::SubEntry << "flags" << candidate->activeFlags();
+    const auto flags = PartitionInfo::flags( candidate );
 
-    auto flags = PartitionInfo::flags( candidate );
-
+    // TODO: with KPMCore 4, this comment is wrong: the flags
+    //       are remapped, and the ESP flag is the same as Boot.
+#if defined( WITH_KPMCORE4API )
+    static_assert( KPM_PARTITION_FLAG_ESP == KPM_PARTITION_FLAG( Boot ), "KPMCore API enum changed" );
+    return flags.testFlag( KPM_PARTITION_FLAG_ESP );
+#else
     /* If bit 17 is set, old-style Esp flag, it's OK */
     if ( flags.testFlag( KPM_PARTITION_FLAG_ESP ) )
     {
@@ -455,19 +458,28 @@ isEfiBootable( const Partition* candidate )
     while ( root && !root->isRoot() )
     {
         root = root->parent();
-        cDebug() << Logger::SubEntry << "moved towards root" << Logger::Pointer( root );
     }
 
     // Strange case: no root found, no partition table node?
     if ( !root )
     {
+        cWarning() << "No root of partition table found.";
         return false;
     }
 
     const PartitionTable* table = dynamic_cast< const PartitionTable* >( root );
-    cDebug() << Logger::SubEntry << "partition table" << Logger::Pointer( table ) << "type"
-             << ( table ? table->type() : PartitionTable::TableType::unknownTableType );
-    return table && ( table->type() == PartitionTable::TableType::gpt ) && flags.testFlag( KPM_PARTITION_FLAG( Boot ) );
+    if ( !table )
+    {
+        cWarning() << "Root of partition table is not a PartitionTable object";
+        return false;
+    }
+    if ( table->type() == PartitionTable::TableType::gpt )
+    {
+        const auto bootFlag = KPM_PARTITION_FLAG( Boot );
+        return flags.testFlag( bootFlag );
+    }
+    return false;
+#endif
 }
 
 QString
