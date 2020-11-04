@@ -210,7 +210,11 @@ SetKeyboardLayoutJob::writeVConsoleData( const QString& vconsoleConfPath, const 
     }
 
     // Write out the existing lines and replace the KEYMAP= line
-    file.open( QIODevice::WriteOnly | QIODevice::Text );
+    if ( !file.open( QIODevice::WriteOnly | QIODevice::Text ) )
+    {
+        cError() << "Could not open" << file.fileName() << "for writing.";
+        return false;
+    }
     QTextStream stream( &file );
     bool found = false;
     foreach ( const QString& existingLine, existingLines )
@@ -243,7 +247,11 @@ bool
 SetKeyboardLayoutJob::writeX11Data( const QString& keyboardConfPath ) const
 {
     QFile file( keyboardConfPath );
-    file.open( QIODevice::WriteOnly | QIODevice::Text );
+    if ( !file.open( QIODevice::WriteOnly | QIODevice::Text ) )
+    {
+        cError() << "Could not open" << file.fileName() << "for writing.";
+        return false;
+    }
     QTextStream stream( &file );
 
     stream << "# Read and parsed by systemd-localed. It's probably wise not to edit this file\n"
