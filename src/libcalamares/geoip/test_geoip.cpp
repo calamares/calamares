@@ -37,7 +37,7 @@ main( int argc, char** argv )
     QString format( argv[ 1 ] );
     QString selector = argc == 3 ? QString( argv[ 2 ] ) : QString();
 
-    Logger::setupLogLevel(Logger::LOGVERBOSE);
+    Logger::setupLogLevel( Logger::LOGVERBOSE );
     cDebug() << "Doing GeoIP interpretation with format=" << format << "selector=" << selector;
 
     Interface* handler = nullptr;

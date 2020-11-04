@@ -86,7 +86,8 @@ moduleConfigurationCandidates( bool assumeBuildDir, const QString& moduleName, c
     return paths;
 }
 
-void Module::loadConfigurationFile( const QString& configFileName )  //throws YAML::Exception
+void
+Module::loadConfigurationFile( const QString& configFileName )  //throws YAML::Exception
 {
     QStringList configCandidates
         = moduleConfigurationCandidates( Settings::instance()->debugMode(), name(), configFileName );

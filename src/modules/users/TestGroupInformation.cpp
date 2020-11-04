@@ -73,7 +73,8 @@ GroupTests::testReadGroup()
     }
 }
 
-void GroupTests::testCreateGroup()
+void
+GroupTests::testCreateGroup()
 {
     // BUILD_AS_TEST is the source-directory path
     QFile fi( QString( "%1/tests/5-issue-1523.conf" ).arg( BUILD_AS_TEST ) );
@@ -93,10 +94,9 @@ void GroupTests::testCreateGroup()
 
     Calamares::JobQueue::instance()->globalStorage()->insert( "rootMountPoint", "/" );
 
-    SetupGroupsJob j(&c);
+    SetupGroupsJob j( &c );
     QVERIFY( !j.exec() );  // running as regular user this should fail
 }
-
 
 
 QTEST_GUILESS_MAIN( GroupTests )

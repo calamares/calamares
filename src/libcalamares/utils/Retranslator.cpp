@@ -195,7 +195,7 @@ installTranslator( const QLocale& locale, const QString& brandingTranslationsPre
     loadSingletonTranslator( TZLoader( locale ), s_tztranslator );
     loadSingletonTranslator( CalamaresLoader( locale ), s_translator );
 
-    s_translatorLocaleName = CalamaresLoader::mungeLocaleName(locale);
+    s_translatorLocaleName = CalamaresLoader::mungeLocaleName( locale );
 }
 
 
@@ -206,7 +206,7 @@ translatorLocaleName()
 }
 
 bool
-loadTranslator( const QLocale& locale, const QString& prefix, QTranslator *translator )
+loadTranslator( const QLocale& locale, const QString& prefix, QTranslator* translator )
 {
     return ::tryLoad( translator, prefix, locale.name() );
 }
