@@ -179,6 +179,8 @@ SetKeyboardLayoutJob::findLegacyKeymap() const
 bool
 SetKeyboardLayoutJob::writeVConsoleData( const QString& vconsoleConfPath, const QString& convertedKeymapPath ) const
 {
+    cDebug() << "Writing vconsole data to" << vconsoleConfPath;
+
     QString keymap = findConvertedKeymap( convertedKeymapPath );
     if ( keymap.isEmpty() )
     {
@@ -205,6 +207,7 @@ SetKeyboardLayoutJob::writeVConsoleData( const QString& vconsoleConfPath, const 
         file.close();
         if ( stream.status() != QTextStream::Ok )
         {
+            cError() << "Could not read lines from" << file.fileName();
             return false;
         }
     }
@@ -217,7 +220,7 @@ SetKeyboardLayoutJob::writeVConsoleData( const QString& vconsoleConfPath, const 
     }
     QTextStream stream( &file );
     bool found = false;
-    foreach ( const QString& existingLine, existingLines )
+    for( const QString& existingLine : qAsConst( existingLines ) )
     {
         if ( existingLine.trimmed().startsWith( "KEYMAP=" ) )
         {
@@ -237,7 +240,7 @@ SetKeyboardLayoutJob::writeVConsoleData( const QString& vconsoleConfPath, const 
     stream.flush();
     file.close();
 
-    cDebug() << "Written KEYMAP=" << keymap << "to vconsole.conf";
+    cDebug() << Logger::SubEntry << "Written KEYMAP=" << keymap << "to vconsole.conf" << stream.status();
 
     return ( stream.status() == QTextStream::Ok );
 }
@@ -352,7 +355,6 @@ SetKeyboardLayoutJob::exec()
             convertedKeymapPath = destDir.absoluteFilePath( convertedKeymapPath );
         }
 
-        cDebug() << "Writing VCONSOLE data to" << vconsoleConfPath << convertedKeymapPath;
         if ( !writeVConsoleData( vconsoleConfPath, convertedKeymapPath ) )
         {
             return Calamares::JobResult::error( tr( "Failed to write keyboard configuration for the virtual console." ),
