@@ -20,7 +20,6 @@ _ = gettext.translation("calamares-python",
                         languages=libcalamares.utils.gettext_languages(),
                         fallback=True).gettext
 
-unencrypted_separate_boot = False
 
 for partition in partitions:
         if (partition["mountPoint"] == "/boot"
@@ -34,6 +33,7 @@ def pretty_name():
 def write_dmcrypt_conf(partitions, root_mount_point, dmcrypt_conf_path):
     crypto_target = ""
     crypto_source = ""
+    unencrypted_separate_boot = False
 
     for partition in partitions:
         has_luks = "luksMapperName" in partition
