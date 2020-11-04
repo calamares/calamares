@@ -310,8 +310,14 @@ SetKeyboardLayoutJob::writeX11Data( const QString& keyboardConfPath ) const
 bool
 SetKeyboardLayoutJob::writeDefaultKeyboardData( const QString& defaultKeyboardPath ) const
 {
+    cDebug() << "Writing default keyboard data to" << defaultKeyboardPath;
+
     QFile file( defaultKeyboardPath );
-    file.open( QIODevice::WriteOnly | QIODevice::Text );
+    if ( !file.open( QIODevice::WriteOnly | QIODevice::Text ) )
+    {
+        cError() << "Could not open" << defaultKeyboardPath << "for writing";
+        return false;
+    }
     QTextStream stream( &file );
 
     stream << "# KEYBOARD CONFIGURATION FILE\n\n"
@@ -326,8 +332,8 @@ SetKeyboardLayoutJob::writeDefaultKeyboardData( const QString& defaultKeyboardPa
 
     file.close();
 
-    cDebug() << "Written XKBMODEL" << m_model << "; XKBLAYOUT" << m_layout << "; XKBVARIANT" << m_variant
-             << "to /etc/default/keyboard file" << defaultKeyboardPath;
+    cDebug() << Logger::SubEntry << "Written XKBMODEL" << m_model << "; XKBLAYOUT" << m_layout << "; XKBVARIANT" << m_variant
+             << "to /etc/default/keyboard file" << defaultKeyboardPath << stream.status();
 
     return ( stream.status() == QTextStream::Ok );
 }
