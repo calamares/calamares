@@ -337,60 +337,73 @@ SetKeyboardLayoutJob::exec()
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
     QDir destDir( gs->value( "rootMountPoint" ).toString() );
 
-    // Get the path to the destination's /etc/vconsole.conf
-    QString vconsoleConfPath = destDir.absoluteFilePath( "etc/vconsole.conf" );
-
-    // Get the path to the destination's /etc/X11/xorg.conf.d/00-keyboard.conf
-    QString xorgConfDPath;
-    QString keyboardConfPath;
-    if ( QDir::isAbsolutePath( m_xOrgConfFileName ) )
     {
-        keyboardConfPath = m_xOrgConfFileName;
-        while ( keyboardConfPath.startsWith( '/' ) )
+        // Get the path to the destination's /etc/vconsole.conf
+        QString vconsoleConfPath = destDir.absoluteFilePath( "etc/vconsole.conf" );
+
+        // Get the path to the destination's path to the converted key mappings
+        QString convertedKeymapPath = m_convertedKeymapPath;
+        if ( !convertedKeymapPath.isEmpty() )
         {
-            keyboardConfPath.remove( 0, 1 );
+            while ( convertedKeymapPath.startsWith( '/' ) )
+            {
+                convertedKeymapPath.remove( 0, 1 );
+            }
+            convertedKeymapPath = destDir.absoluteFilePath( convertedKeymapPath );
         }
-        keyboardConfPath = destDir.absoluteFilePath( keyboardConfPath );
-        xorgConfDPath = QFileInfo( keyboardConfPath ).path();
-    }
-    else
-    {
-        xorgConfDPath = destDir.absoluteFilePath( "etc/X11/xorg.conf.d" );
-        keyboardConfPath = QDir( xorgConfDPath ).absoluteFilePath( m_xOrgConfFileName );
-    }
-    destDir.mkpath( xorgConfDPath );
 
-    QString defaultKeyboardPath;
-    if ( QDir( destDir.absoluteFilePath( "etc/default" ) ).exists() )
-    {
-        defaultKeyboardPath = destDir.absoluteFilePath( "etc/default/keyboard" );
-    }
-
-    // Get the path to the destination's path to the converted key mappings
-    QString convertedKeymapPath = m_convertedKeymapPath;
-    if ( !convertedKeymapPath.isEmpty() )
-    {
-        while ( convertedKeymapPath.startsWith( '/' ) )
+        cDebug() << "Writing VCONSOLE data to" << vconsoleConfPath << convertedKeymapPath;
+        if ( !writeVConsoleData( vconsoleConfPath, convertedKeymapPath ) )
         {
-            convertedKeymapPath.remove( 0, 1 );
+            return Calamares::JobResult::error( tr( "Failed to write keyboard configuration for the virtual console." ),
+                                                tr( "Failed to write to %1" ).arg( vconsoleConfPath ) );
         }
-        convertedKeymapPath = destDir.absoluteFilePath( convertedKeymapPath );
     }
 
-    if ( !writeVConsoleData( vconsoleConfPath, convertedKeymapPath ) )
-        return Calamares::JobResult::error( tr( "Failed to write keyboard configuration for the virtual console." ),
-                                            tr( "Failed to write to %1" ).arg( vconsoleConfPath ) );
-
-    if ( !writeX11Data( keyboardConfPath ) )
-        return Calamares::JobResult::error( tr( "Failed to write keyboard configuration for X11." ),
-                                            tr( "Failed to write to %1" ).arg( keyboardConfPath ) );
-
-    if ( !defaultKeyboardPath.isEmpty() && m_writeEtcDefaultKeyboard )
     {
-        if ( !writeDefaultKeyboardData( defaultKeyboardPath ) )
-            return Calamares::JobResult::error(
-                tr( "Failed to write keyboard configuration to existing /etc/default directory." ),
-                tr( "Failed to write to %1" ).arg( keyboardConfPath ) );
+        // Get the path to the destination's /etc/X11/xorg.conf.d/00-keyboard.conf
+        QString xorgConfDPath;
+        QString keyboardConfPath;
+        if ( QDir::isAbsolutePath( m_xOrgConfFileName ) )
+        {
+            keyboardConfPath = m_xOrgConfFileName;
+            while ( keyboardConfPath.startsWith( '/' ) )
+            {
+                keyboardConfPath.remove( 0, 1 );
+            }
+            keyboardConfPath = destDir.absoluteFilePath( keyboardConfPath );
+            xorgConfDPath = QFileInfo( keyboardConfPath ).path();
+        }
+        else
+        {
+            xorgConfDPath = destDir.absoluteFilePath( "etc/X11/xorg.conf.d" );
+            keyboardConfPath = QDir( xorgConfDPath ).absoluteFilePath( m_xOrgConfFileName );
+        }
+        destDir.mkpath( xorgConfDPath );
+
+        if ( !writeX11Data( keyboardConfPath ) )
+        {
+            return Calamares::JobResult::error( tr( "Failed to write keyboard configuration for X11." ),
+                                                tr( "Failed to write to %1" ).arg( keyboardConfPath ) );
+        }
+    }
+
+    {
+        QString defaultKeyboardPath;
+        if ( QDir( destDir.absoluteFilePath( "etc/default" ) ).exists() )
+        {
+            defaultKeyboardPath = destDir.absoluteFilePath( "etc/default/keyboard" );
+        }
+
+        if ( !defaultKeyboardPath.isEmpty() && m_writeEtcDefaultKeyboard )
+        {
+            if ( !writeDefaultKeyboardData( defaultKeyboardPath ) )
+            {
+                return Calamares::JobResult::error(
+                    tr( "Failed to write keyboard configuration to existing /etc/default directory." ),
+                    tr( "Failed to write to %1" ).arg( defaultKeyboardPath ) );
+            }
+        }
     }
 
     return Calamares::JobResult::ok();
