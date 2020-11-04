@@ -21,10 +21,6 @@ _ = gettext.translation("calamares-python",
                         fallback=True).gettext
 
 
-for partition in partitions:
-        if (partition["mountPoint"] == "/boot"
-                and "luksMapperName" not in partition):
-            unencrypted_separate_boot = True
 
 def pretty_name():
     return _("Configuring OpenRC dmcrypt service.")
@@ -34,6 +30,8 @@ def write_dmcrypt_conf(partitions, root_mount_point, dmcrypt_conf_path):
     crypto_target = ""
     crypto_source = ""
     unencrypted_separate_boot = False
+    if any(partition["mountPoint"] == "/boot" and "luksMapperName" not in partition for partition in partitions):
+        unencrypted_separate_boot = True
 
     for partition in partitions:
         has_luks = "luksMapperName" in partition
