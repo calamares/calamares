@@ -372,14 +372,13 @@ Config::setFullName( const QString& name )
         emit fullNameChanged( name );
 
         // Build login and hostname, if needed
-        QString cleanName = CalamaresUtils::removeDiacritics( name ).toLower().simplified();
-
+        static QRegExp rx( "[^a-zA-Z0-9 ]", Qt::CaseInsensitive );
 #ifdef HAVE_ICU
-        cleanName = transliterate(cleanName);
+        QString cleanName = transliterate(name);
 #else
-        QRegExp rx( "[^a-zA-Z0-9 ]", Qt::CaseInsensitive );
-        cleanName.replace( rx, " " );
+        QString cleanName = name;
 #endif
+        cleanName = CalamaresUtils::removeDiacritics( cleanName ).replace( rx, " " ).toLower().simplified();
 
 
         QStringList cleanParts = cleanName.split( ' ' );
