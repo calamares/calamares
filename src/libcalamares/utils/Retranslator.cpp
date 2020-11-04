@@ -168,17 +168,17 @@ TZLoader::tryLoad( QTranslator* translator )
 static void
 loadSingletonTranslator( TranslationLoader&& loader, QTranslator*& translator_p )
 {
-    QTranslator* translator = new QTranslator();
-    loader.tryLoad( translator );
-
-    if ( translator_p )
+    if ( !translator_p )
     {
-        QCoreApplication::removeTranslator( translator_p );
-        delete translator_p;
+        QTranslator* translator = new QTranslator();
+        loader.tryLoad( translator );
+        QCoreApplication::installTranslator( translator );
+        translator_p = translator;
     }
-
-    QCoreApplication::installTranslator( translator );
-    translator_p = translator;
+    else
+    {
+        loader.tryLoad( translator_p );
+    }
 }
 
 namespace CalamaresUtils
