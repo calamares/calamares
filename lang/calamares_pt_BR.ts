@@ -2015,7 +2015,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="151"/>
       <source>Memory allocation error when setting '%1'</source>
-      <translation>Erro de alocação de memória ao definir '% 1'</translation>
+      <translation>Erro de alocação de memória ao definir '%1'</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="156"/>

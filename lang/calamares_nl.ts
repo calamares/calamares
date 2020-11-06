@@ -3012,7 +3012,7 @@ Uitvoer:
       <location filename="../src/modules/welcomeq/Requirements.qml" line="38"/>
       <source>&lt;p&gt;This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;
         Installation cannot continue.&lt;/p&gt;</source>
-      <translation>Deze computer voldoet niet aan de minimale vereisten voor het installeren van % 1.
+      <translation>Deze computer voldoet niet aan de minimale vereisten voor het installeren van %1.
 De installatie kan niet doorgaan.</translation>
     </message>
     <message>

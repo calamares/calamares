@@ -162,12 +162,12 @@ Para configurar el arranque desde un entorno BIOS, este instalador debe instalar
     <message>
       <location filename="../src/libcalamares/ProcessJob.cpp" line="43"/>
       <source>Run command '%1' in target system.</source>
-      <translation>Ejecutar el comando '% 1' en el sistema de destino.</translation>
+      <translation>Ejecutar el comando '%1' en el sistema de destino.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/ProcessJob.cpp" line="43"/>
       <source> Run command '%1'.</source>
-      <translation>Ejecutar el comando '% 1'.</translation>
+      <translation>Ejecutar el comando '%1'.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/ProcessJob.cpp" line="50"/>
@@ -1120,7 +1120,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="97"/>
       <source>This device has a &lt;strong&gt;%1&lt;/strong&gt; partition table.</source>
-      <translation>Este dispositivo tiene un &lt;strong&gt;% 1 &lt;/ strong&gt; tabla de particiones.</translation>
+      <translation>Este dispositivo tiene un &lt;strong&gt;%1&lt;/strong&gt; tabla de particiones.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="104"/>

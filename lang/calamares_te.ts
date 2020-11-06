@@ -25,7 +25,7 @@ automatic ఉంటుంది, మీరు మాన్యువల్ వి
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="58"/>
       <source>Master Boot Record of %1</source>
-      <translation>% 1 యొక్క మాస్టర్ బూట్ రికార్డ్</translation>
+      <translation>%1 యొక్క మాస్టర్ బూట్ రికార్డ్</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="91"/>
@@ -134,7 +134,7 @@ automatic ఉంటుంది, మీరు మాన్యువల్ వి
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="29"/>
       <source>Job failed (%1)</source>
-      <translation>జాబ్ విఫలమైంది (% 1)</translation>
+      <translation>జాబ్ విఫలమైంది (%1)</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="30"/>

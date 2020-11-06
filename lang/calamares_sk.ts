@@ -2127,7 +2127,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="220"/>
       <source>The password contains more than %1 same characters consecutively</source>
-      <translation>Heslo obsahuje viac ako% 1 rovnakých znakov za sebou</translation>
+      <translation>Heslo obsahuje viac ako %1 rovnakých znakov za sebou</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="224"/>
@@ -2137,7 +2137,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="228"/>
       <source>The password contains more than %1 characters of the same class consecutively</source>
-      <translation>Heslo obsahuje postupne viac ako% 1 znakov toho istého typu</translation>
+      <translation>Heslo obsahuje postupne viac ako %1 znakov toho istého typu</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="232"/>

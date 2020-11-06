@@ -1080,17 +1080,17 @@ El instalador terminará y se perderán todos los cambios.</translation>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="24"/>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="36"/>
       <source>Deactivate volume group named %1.</source>
-      <translation>Desactivar el grupo de volúmenes llamado%1.</translation>
+      <translation>Desactivar el grupo de volúmenes llamado %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="30"/>
       <source>Deactivate volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>Desactivar el grupo de volúmenes llamado&lt;strong&gt;% 1&lt;/strong&gt;.</translation>
+      <translation>Desactivar el grupo de volúmenes llamado&lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="48"/>
       <source>The installer failed to deactivate a volume group named %1.</source>
-      <translation>El instalador no pudo desactivar un grupo de volúmenes llamado%1.</translation>
+      <translation>El instalador no pudo desactivar un grupo de volúmenes llamado %1.</translation>
     </message>
   </context>
   <context>
@@ -1330,7 +1330,7 @@ El instalador terminará y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="44"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been set up on your computer.&lt;br/&gt;You may now start using your new system.</source>
-      <translation>&lt;h1&gt;Todo listo.&lt;/h1&gt;&lt;br/&gt;% 1 se ha configurado en su computadora. &lt;br/&gt;Ahora puede comenzar a usar su nuevo sistema.</translation>
+      <translation>&lt;h1&gt;Todo listo.&lt;/h1&gt;&lt;br/&gt;%1 se ha configurado en su computadora. &lt;br/&gt;Ahora puede comenzar a usar su nuevo sistema.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="48"/>
@@ -2198,7 +2198,7 @@ El instalador terminará y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="278"/>
       <source>Setting %1 is not of integer type</source>
-      <translation>Ajuste de % 1 no es de tipo entero</translation>
+      <translation>Ajuste de %1 no es de tipo entero</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="283"/>
@@ -3260,7 +3260,7 @@ Salida
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="43"/>
       <source>Set flags on partition %1.</source>
-      <translation>Establecer indicadores en la partición% 1.</translation>
+      <translation>Establecer indicadores en la partición %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="49"/>
@@ -3335,7 +3335,7 @@ Salida
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="156"/>
       <source>The installer failed to set flags on partition %1.</source>
-      <translation>El instalador no pudo establecer indicadores en la partición% 1.</translation>
+      <translation>El instalador no pudo establecer indicadores en la partición %1.</translation>
     </message>
   </context>
   <context>
@@ -3530,12 +3530,12 @@ Salida
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="101"/>
       <source>Could not configure machine feedback correctly, script error %1.</source>
-      <translation>No se pudo configurar correctamente la retroalimentación de la máquina, error de script% 1.</translation>
+      <translation>No se pudo configurar correctamente la retroalimentación de la máquina, error de script %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="107"/>
       <source>Could not configure machine feedback correctly, Calamares error %1.</source>
-      <translation>No se pudo configurar la retroalimentación de la máquina correctamente, Calamares error% 1.</translation>
+      <translation>No se pudo configurar la retroalimentación de la máquina correctamente, Calamares error %1.</translation>
     </message>
   </context>
   <context>

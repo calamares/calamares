@@ -3067,12 +3067,12 @@ Postavljanje se može nastaviti, ali neke će značajke možda biti onemogućene
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="186"/>
       <source>The filesystem %1 could not be found in this system, and cannot be resized.</source>
-      <translation>Datotečni sustav % 1 nije moguće pronaći na ovom sustavu i ne može mu se promijeniti veličina.</translation>
+      <translation>Datotečni sustav %1 nije moguće pronaći na ovom sustavu i ne može mu se promijeniti veličina.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="187"/>
       <source>The device %1 could not be found in this system, and cannot be resized.</source>
-      <translation>Uređaj % 1 nije moguće pronaći na ovom sustavu i ne može mu se promijeniti veličina.</translation>
+      <translation>Uređaj %1 nije moguće pronaći na ovom sustavu i ne može mu se promijeniti veličina.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="195"/>

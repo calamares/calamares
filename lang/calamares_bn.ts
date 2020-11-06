@@ -3337,7 +3337,7 @@ Output:
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="40"/>
       <source>Set password for user %1</source>
-      <translation>ব্যবহারকারীর জন্য গুপ্ত-সংকেত নির্ধারণ করুন % 1</translation>
+      <translation>ব্যবহারকারীর জন্য গুপ্ত-সংকেত নির্ধারণ করুন %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="47"/>
@@ -3352,7 +3352,7 @@ Output:
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="82"/>
       <source>rootMountPoint is %1</source>
-      <translation>রুটমাউন্টপয়েন্টটি % 1</translation>
+      <translation>রুটমাউন্টপয়েন্টটি %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="88"/>
@@ -3367,7 +3367,7 @@ Output:
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="97"/>
       <source>Cannot set password for user %1.</source>
-      <translation>% 1 ব্যবহারকারীর জন্য পাসওয়ার্ড নির্ধারণ করা যাচ্ছে না।</translation>
+      <translation>%1 ব্যবহারকারীর জন্য পাসওয়ার্ড নির্ধারণ করা যাচ্ছে না।</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="98"/>
