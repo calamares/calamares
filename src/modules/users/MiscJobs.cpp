@@ -38,6 +38,7 @@ SetupSudoJob::exec()
 {
     if ( m_sudoGroup.isEmpty() )
     {
+        cDebug() << "Skipping sudo 10-installer because the sudoGroup is empty.";
         return Calamares::JobResult::ok();
     }
 

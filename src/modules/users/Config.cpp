@@ -815,7 +815,7 @@ Config::createJobs() const
 
     Calamares::Job* j;
 
-    if ( m_sudoersGroup.isEmpty() )
+    if ( !m_sudoersGroup.isEmpty() )
     {
         j = new SetupSudoJob( m_sudoersGroup );
         jobs.append( Calamares::job_ptr( j ) );
