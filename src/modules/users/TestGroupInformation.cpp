@@ -34,6 +34,8 @@ private Q_SLOTS:
 
     void testReadGroup();
     void testCreateGroup();
+
+    void testSudoGroup();
 };
 
 GroupTests::GroupTests() {}
@@ -96,6 +98,47 @@ GroupTests::testCreateGroup()
 
     SetupGroupsJob j( &c );
     QVERIFY( !j.exec() );  // running as regular user this should fail
+}
+
+void GroupTests::testSudoGroup()
+{
+    // Test programmatic changes
+    {
+        Config c;
+        QSignalSpy spy(&c, &Config::sudoersGroupChanged);
+        QCOMPARE( c.sudoersGroup(), QString() );
+        c.setSudoersGroup( QStringLiteral( "wheel" ) );
+        QCOMPARE( c.sudoersGroup(), QStringLiteral( "wheel" ) );
+        QCOMPARE( spy.count(), 1);  // Changed to wheel
+        // Do it again, no change
+        c.setSudoersGroup( QStringLiteral( "wheel" ) );
+        QCOMPARE( c.sudoersGroup(), QStringLiteral( "wheel" ) );
+        QCOMPARE( spy.count(), 1);
+        c.setSudoersGroup( QStringLiteral( "roue" ) );
+        QCOMPARE( c.sudoersGroup(), QStringLiteral( "roue" ) );
+        QCOMPARE( spy.count(), 2);
+    }
+
+
+    // Test config loading
+    {
+        Config c;
+        QSignalSpy spy(&c, &Config::sudoersGroupChanged);
+        QCOMPARE( c.sudoersGroup(), QString() );
+
+        QVariantMap m;
+        c.setConfigurationMap( m );
+        QCOMPARE( c.sudoersGroup(), QString() );
+        QCOMPARE( spy.count(), 0);  // Unchanged
+
+        const auto key = QStringLiteral( "sudoersGroup" );
+        const auto v0 = QStringLiteral( "wheel" );
+        const auto v1 = QStringLiteral( "roue" );
+        m.insert( key, v0 );
+        c.setConfigurationMap( m );
+        QCOMPARE( c.sudoersGroup(), v0 );
+        QCOMPARE( spy.count(), 1);
+    }
 }
 
 
