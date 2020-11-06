@@ -56,7 +56,7 @@ def mount_partition(root_mount_point, partition, partitions):
         raise
 
     fstype = partition.get("fs", "").lower()
-    if not fstype or fstype == "unformatted":
+    if fstype == "unformatted":
         return
 
     if fstype == "fat16" or fstype == "fat32":
