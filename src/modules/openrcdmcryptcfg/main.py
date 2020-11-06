@@ -49,7 +49,7 @@ def write_dmcrypt_conf(partitions, root_mount_point, dmcrypt_conf_path):
             with open(os.path.join(root_mount_point, dmcrypt_conf_path), 'a+') as dmcrypt_file:
                 dmcrypt_file.write("\ntarget=" + crypto_target)
                 dmcrypt_file.write("\nsource=" + crypto_source)
-                # Don't use keyfile if boot is unecrypted, keys must not be stored on unencrypted partitions
+                # Don't use keyfile if boot is unencrypted, keys must not be stored on unencrypted partitions
                 if not unencrypted_separate_boot:
                     dmcrypt_file.write("\nkey=/crypto_keyfile.bin")
                 dmcrypt_file.write("\n")
