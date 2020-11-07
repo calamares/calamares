@@ -201,7 +201,7 @@ LuksBootKeyFileJob::exec()
     // /boot partition is not encrypted, keyfile must not be used
     if ( hasUnencryptedSeparateBoot() )
     {
-        cDebug() << Logger::SubEntry << "/boot partition is not encryptepted, skipping keyfile creation.";
+        cDebug() << Logger::SubEntry << "/boot partition is not encrypted, skipping keyfile creation.";
         return Calamares::JobResult::ok();
     }
 
