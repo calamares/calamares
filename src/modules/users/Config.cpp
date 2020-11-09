@@ -28,7 +28,7 @@
 #include <unicode/unistr.h>
 
 //Did my best choosing compound ID
-static const char* TRANSLITERATOR_ID = "Russian-Latin/BGN;"
+static const char TRANSLITERATOR_ID[] = "Russian-Latin/BGN;"
                                        "Greek-Latin/UNGEGN;"
                                        "Any-Latin;"
                                        "Latin-ASCII";
