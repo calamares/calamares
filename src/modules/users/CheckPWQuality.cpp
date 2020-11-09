@@ -172,62 +172,66 @@ public:
         case PWQ_ERROR_MIN_DIGITS:
             if ( auxerror )
             {
-                return QCoreApplication::translate( "PWQ", "The password contains less than %1 digits" )
-                    .arg( mungeLong( auxerror ) );
+                return QCoreApplication::translate(
+                    "PWQ", "The password contains fewer than %n digits", nullptr, mungeLong( auxerror ) );
             }
             return QCoreApplication::translate( "PWQ", "The password contains too few digits" );
         case PWQ_ERROR_MIN_UPPERS:
             if ( auxerror )
             {
-                return QCoreApplication::translate( "PWQ", "The password contains less than %1 uppercase letters" )
-                    .arg( mungeLong( auxerror ) );
+                return QCoreApplication::translate(
+                    "PWQ", "The password contains fewer than %n uppercase letters", nullptr, mungeLong( auxerror ) );
             }
             return QCoreApplication::translate( "PWQ", "The password contains too few uppercase letters" );
         case PWQ_ERROR_MIN_LOWERS:
             if ( auxerror )
             {
-                return QCoreApplication::translate( "PWQ", "The password contains less than %1 lowercase letters" )
-                    .arg( mungeLong( auxerror ) );
+                return QCoreApplication::translate(
+                    "PWQ", "The password contains fewer  than %n lowercase letters", nullptr, mungeLong( auxerror ) );
             }
             return QCoreApplication::translate( "PWQ", "The password contains too few lowercase letters" );
         case PWQ_ERROR_MIN_OTHERS:
             if ( auxerror )
             {
                 return QCoreApplication::translate( "PWQ",
-                                                    "The password contains less than %1 non-alphanumeric characters" )
-                    .arg( mungeLong( auxerror ) );
+                                                    "The password contains fewer than %n non-alphanumeric characters",
+                                                    nullptr,
+                                                    mungeLong( auxerror ) );
             }
             return QCoreApplication::translate( "PWQ", "The password contains too few non-alphanumeric characters" );
         case PWQ_ERROR_MIN_LENGTH:
             if ( auxerror )
             {
-                return QCoreApplication::translate( "PWQ", "The password is shorter than %1 characters" )
-                    .arg( mungeLong( auxerror ) );
+                return QCoreApplication::translate(
+                    "PWQ", "The password is shorter than %n characters", nullptr, mungeLong( auxerror ) );
             }
             return QCoreApplication::translate( "PWQ", "The password is too short" );
         case PWQ_ERROR_ROTATED:
-            return QCoreApplication::translate( "PWQ", "The password is just rotated old one" );
+            return QCoreApplication::translate( "PWQ", "The password is a rotated version of the previous one" );
         case PWQ_ERROR_MIN_CLASSES:
             if ( auxerror )
             {
-                return QCoreApplication::translate( "PWQ", "The password contains less than %1 character classes" )
-                    .arg( mungeLong( auxerror ) );
+                return QCoreApplication::translate(
+                    "PWQ", "The password contains fewer than %n character classes", nullptr, mungeLong( auxerror ) );
             }
             return QCoreApplication::translate( "PWQ", "The password does not contain enough character classes" );
         case PWQ_ERROR_MAX_CONSECUTIVE:
             if ( auxerror )
             {
                 return QCoreApplication::translate( "PWQ",
-                                                    "The password contains more than %1 same characters consecutively" )
-                    .arg( mungeLong( auxerror ) );
+                                                    "The password contains more than %n same characters consecutively",
+                                                    nullptr,
+                                                    mungeLong( auxerror ) );
             }
             return QCoreApplication::translate( "PWQ", "The password contains too many same characters consecutively" );
         case PWQ_ERROR_MAX_CLASS_REPEAT:
             if ( auxerror )
             {
                 return QCoreApplication::translate(
-                           "PWQ", "The password contains more than %1 characters of the same class consecutively" )
-                    .arg( mungeLong( auxerror ) );
+                    "PWQ",
+                    "The password contains more than %n characters of the same class consecutively",
+                    nullptr,
+                    mungeLong( auxerror ) );
             }
             return QCoreApplication::translate(
                 "PWQ", "The password contains too many characters of the same class consecutively" );
@@ -235,8 +239,10 @@ public:
             if ( auxerror )
             {
                 return QCoreApplication::translate(
-                           "PWQ", "The password contains monotonic sequence longer than %1 characters" )
-                    .arg( mungeLong( auxerror ) );
+                    "PWQ",
+                    "The password contains monotonic sequence longer than %n characters",
+                    nullptr,
+                    mungeLong( auxerror ) );
             }
             return QCoreApplication::translate( "PWQ",
                                                 "The password contains too long of a monotonic character sequence" );
