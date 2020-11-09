@@ -27,11 +27,12 @@
 #include <unicode/translit.h>
 #include <unicode/unistr.h>
 
-//Did my best choosing compound ID
+//Needed for ICU to apply some transliteration ruleset.
+//Still needs to be adjusted to fit the needs of the most of users
 static const char TRANSLITERATOR_ID[] = "Russian-Latin/BGN;"
-                                       "Greek-Latin/UNGEGN;"
-                                       "Any-Latin;"
-                                       "Latin-ASCII";
+                                        "Greek-Latin/UNGEGN;"
+                                        "Any-Latin;"
+                                        "Latin-ASCII";
 #endif
 
 static const QRegExp USERNAME_RX( "^[a-z_][a-z0-9_-]*[$]?$" );
