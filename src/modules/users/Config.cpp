@@ -97,7 +97,7 @@ Config::Config( QObject* parent )
     connect( this, &Config::requireStrongPasswordsChanged, this, &Config::checkReady );
 }
 
-Config::~Config() {}
+Config::~Config() { }
 
 void
 Config::setUserShell( const QString& shell )
@@ -297,10 +297,10 @@ transliterate( const QString& input )
 {
     static auto ue = UErrorCode::U_ZERO_ERROR;
     static auto transliterator = std::unique_ptr< icu::Transliterator >(
-                icu::Transliterator::createInstance( TRANSLITERATOR_ID, UTRANS_FORWARD, ue )
-                );
+        icu::Transliterator::createInstance( TRANSLITERATOR_ID, UTRANS_FORWARD, ue ) );
 
-    if( ue != UErrorCode::U_ZERO_ERROR ){
+    if ( ue != UErrorCode::U_ZERO_ERROR )
+    {
         cWarning() << "Can't create transliterator";
 
         //it'll be checked later for non-ASCII characters
@@ -378,7 +378,11 @@ Config::setFullName( const QString& name )
         // Build login and hostname, if needed
         static QRegExp rx( "[^a-zA-Z0-9 ]", Qt::CaseInsensitive );
 
-        QString cleanName = CalamaresUtils::removeDiacritics( transliterate( name ) ).replace( QRegExp( "[-']" ), "").replace( rx, " " ).toLower().simplified();
+        QString cleanName = CalamaresUtils::removeDiacritics( transliterate( name ) )
+                                .replace( QRegExp( "[-']" ), "" )
+                                .replace( rx, " " )
+                                .toLower()
+                                .simplified();
 
 
         QStringList cleanParts = cleanName.split( ' ' );
