@@ -307,12 +307,15 @@ transliterate( const QString& input )
         return input;
     }
 
-    auto transliterable = icu::UnicodeString( input.utf16() );
-
+    icu::UnicodeString transliterable( input.utf16() );
     transliterator->transliterate( transliterable );
-
     return QString::fromUtf16( transliterable.getTerminatedBuffer() );
-
+}
+#else
+static QString
+transliterate( const QString& input )
+{
+    return input;
 }
 #endif
 
@@ -374,13 +377,8 @@ Config::setFullName( const QString& name )
 
         // Build login and hostname, if needed
         static QRegExp rx( "[^a-zA-Z0-9 ]", Qt::CaseInsensitive );
-#ifdef HAVE_ICU
-        QString cleanName = transliterate(name);
-        cleanName.replace("'", "");
-#else
-        QString cleanName = name;
-#endif
-        cleanName = CalamaresUtils::removeDiacritics( cleanName ).replace( rx, " " ).toLower().simplified();
+
+        QString cleanName = CalamaresUtils::removeDiacritics( transliterate( name ) ).replace( QRegExp( "[-']" ), "").replace( rx, " " ).toLower().simplified();
 
 
         QStringList cleanParts = cleanName.split( ' ' );
