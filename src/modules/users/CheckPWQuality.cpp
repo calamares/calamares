@@ -104,7 +104,6 @@ public:
 
     PWSettingsHolder()
         : m_settings( pwquality_default_settings() )
-        , m_auxerror( nullptr )
     {
     }
 
@@ -129,8 +128,7 @@ public:
      */
     QString explanation()
     {
-        void* auxerror = m_auxerror;
-        m_auxerror = nullptr;
+        void* auxerror = nullptr;
 
         if ( m_rv >= arbitrary_minimum_strength )
         {
@@ -308,7 +306,6 @@ public:
 private:
     pwquality_settings_t* m_settings;
     int m_rv;
-    void* m_auxerror;
 };
 
 DEFINE_CHECK_FUNC( libpwquality )
