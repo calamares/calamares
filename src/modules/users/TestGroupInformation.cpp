@@ -36,6 +36,7 @@ private Q_SLOTS:
     void testCreateGroup();
 
     void testSudoGroup();
+    void testJobCreation();
 };
 
 GroupTests::GroupTests() {}
@@ -100,36 +101,37 @@ GroupTests::testCreateGroup()
     QVERIFY( !j.exec() );  // running as regular user this should fail
 }
 
-void GroupTests::testSudoGroup()
+void
+GroupTests::testSudoGroup()
 {
     // Test programmatic changes
     {
         Config c;
-        QSignalSpy spy(&c, &Config::sudoersGroupChanged);
+        QSignalSpy spy( &c, &Config::sudoersGroupChanged );
         QCOMPARE( c.sudoersGroup(), QString() );
         c.setSudoersGroup( QStringLiteral( "wheel" ) );
         QCOMPARE( c.sudoersGroup(), QStringLiteral( "wheel" ) );
-        QCOMPARE( spy.count(), 1);  // Changed to wheel
+        QCOMPARE( spy.count(), 1 );  // Changed to wheel
         // Do it again, no change
         c.setSudoersGroup( QStringLiteral( "wheel" ) );
         QCOMPARE( c.sudoersGroup(), QStringLiteral( "wheel" ) );
-        QCOMPARE( spy.count(), 1);
+        QCOMPARE( spy.count(), 1 );
         c.setSudoersGroup( QStringLiteral( "roue" ) );
         QCOMPARE( c.sudoersGroup(), QStringLiteral( "roue" ) );
-        QCOMPARE( spy.count(), 2);
+        QCOMPARE( spy.count(), 2 );
     }
 
 
     // Test config loading
     {
         Config c;
-        QSignalSpy spy(&c, &Config::sudoersGroupChanged);
+        QSignalSpy spy( &c, &Config::sudoersGroupChanged );
         QCOMPARE( c.sudoersGroup(), QString() );
 
         QVariantMap m;
         c.setConfigurationMap( m );
         QCOMPARE( c.sudoersGroup(), QString() );
-        QCOMPARE( spy.count(), 0);  // Unchanged
+        QCOMPARE( spy.count(), 0 );  // Unchanged
 
         const auto key = QStringLiteral( "sudoersGroup" );
         const auto v0 = QStringLiteral( "wheel" );
@@ -137,8 +139,37 @@ void GroupTests::testSudoGroup()
         m.insert( key, v0 );
         c.setConfigurationMap( m );
         QCOMPARE( c.sudoersGroup(), v0 );
-        QCOMPARE( spy.count(), 1);
+        QCOMPARE( spy.count(), 1 );
     }
+}
+
+/** @brief Are all the expected jobs (and no others) created?
+ *
+ * - A sudo job is created only when the sudoers group is set;
+ * - Groups job
+ * - User job
+ * - Password job
+ * - Root password job
+ * - Hostname job are always created.
+ */
+void
+GroupTests::testJobCreation()
+{
+    const int expectedJobs = 5;
+    Config c;
+    QVERIFY( !c.isReady() );
+
+    // Needs some setup
+    c.setFullName( QStringLiteral( "Goodluck Jonathan" ) );
+    c.setLoginName( QStringLiteral( "goodj" ) );
+    QVERIFY( c.isReady() );
+
+    QCOMPARE( c.sudoersGroup(), QString() );
+    QCOMPARE( c.createJobs().count(), expectedJobs );
+
+    c.setSudoersGroup( QStringLiteral( "wheel" ) );
+    QCOMPARE( c.sudoersGroup(), QString( "wheel" ) );
+    QCOMPARE( c.createJobs().count(), expectedJobs + 1 );
 }
 
 
