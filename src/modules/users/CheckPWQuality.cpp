@@ -104,7 +104,6 @@ public:
 
     PWSettingsHolder()
         : m_settings( pwquality_default_settings() )
-        , m_auxerror( nullptr )
     {
     }
 
@@ -113,27 +112,73 @@ public:
     /// Sets an option via the configuration string @p v, <key>=<value> style.
     int set( const QString& v ) { return pwquality_set_option( m_settings, v.toUtf8().constData() ); }
 
-    /// Checks the given password @p pwd against the current configuration
+    /** @brief Checks the given password @p pwd against the current configuration
+     *
+     * Resets m_errorString and m_errorCount and then sets them appropriately
+     * so that explanation() can be called afterwards. Sets m_rv as well.
+     */
+
     int check( const QString& pwd )
     {
         void* auxerror = nullptr;
-        int r = pwquality_check( m_settings, pwd.toUtf8().constData(), nullptr, nullptr, &auxerror );
-        m_rv = r;
-        return r;
+        m_rv = pwquality_check( m_settings, pwd.toUtf8().constData(), nullptr, nullptr, &auxerror );
+
+        // Positive return values could be ignored; some negative ones
+        // place extra information in auxerror, which is a void* and
+        // which needs interpretation to long- or string-values.
+        m_errorCount = 0;
+        m_errorString = QString();
+
+        switch ( m_rv )
+        {
+        case PWQ_ERROR_CRACKLIB_CHECK:
+            if ( auxerror )
+            {
+                /* Here the string comes from cracklib, don't free? */
+                m_errorString = mungeString( auxerror );
+            }
+            break;
+        case PWQ_ERROR_MEM_ALLOC:
+        case PWQ_ERROR_UNKNOWN_SETTING:
+        case PWQ_ERROR_INTEGER:
+        case PWQ_ERROR_NON_INT_SETTING:
+        case PWQ_ERROR_NON_STR_SETTING:
+            if ( auxerror )
+            {
+                m_errorString = mungeString( auxerror );
+                free( auxerror );
+            }
+            break;
+        case PWQ_ERROR_MIN_DIGITS:
+        case PWQ_ERROR_MIN_UPPERS:
+        case PWQ_ERROR_MIN_LOWERS:
+        case PWQ_ERROR_MIN_OTHERS:
+        case PWQ_ERROR_MIN_LENGTH:
+        case PWQ_ERROR_MIN_CLASSES:
+        case PWQ_ERROR_MAX_CONSECUTIVE:
+        case PWQ_ERROR_MAX_CLASS_REPEAT:
+        case PWQ_ERROR_MAX_SEQUENCE:
+            if ( auxerror )
+            {
+                m_errorCount = mungeLong( auxerror );
+            }
+            break;
+        default:
+            break;
+        }
+
+        return m_rv;
     }
 
-    bool hasExplanation() const { return m_rv < 0; }
-
-    /* This is roughly the same as the function pwquality_strerror,
+    /** @brief Explain the results of the last call to check()
+     *
+     * This is roughly the same as the function pwquality_strerror,
      * only with QStrings instead, and using the Qt translation scheme.
      * It is used under the terms of the GNU GPL v3 or later, as
      * allowed by the libpwquality license (LICENSES/GPLv2+-libpwquality)
      */
     QString explanation()
     {
-        void* auxerror = m_auxerror;
-        m_auxerror = nullptr;
-
         if ( m_rv >= arbitrary_minimum_strength )
         {
             return QString();
@@ -146,12 +191,10 @@ public:
         switch ( m_rv )
         {
         case PWQ_ERROR_MEM_ALLOC:
-            if ( auxerror )
+            if ( !m_errorString.isEmpty() )
             {
-                QString s = QCoreApplication::translate( "PWQ", "Memory allocation error when setting '%1'" )
-                                .arg( mungeString( auxerror ) );
-                free( auxerror );
-                return s;
+                return QCoreApplication::translate( "PWQ", "Memory allocation error when setting '%1'" )
+                    .arg( m_errorString );
             }
             return QCoreApplication::translate( "PWQ", "Memory allocation error" );
         case PWQ_ERROR_SAME_PASSWORD:
@@ -170,73 +213,75 @@ public:
         case PWQ_ERROR_BAD_WORDS:
             return QCoreApplication::translate( "PWQ", "The password contains forbidden words in some form" );
         case PWQ_ERROR_MIN_DIGITS:
-            if ( auxerror )
+            if ( m_errorCount )
             {
-                return QCoreApplication::translate( "PWQ", "The password contains less than %1 digits" )
-                    .arg( mungeLong( auxerror ) );
+                return QCoreApplication::translate(
+                    "PWQ", "The password contains fewer than %n digits", nullptr, m_errorCount );
             }
             return QCoreApplication::translate( "PWQ", "The password contains too few digits" );
         case PWQ_ERROR_MIN_UPPERS:
-            if ( auxerror )
+            if ( m_errorCount )
             {
-                return QCoreApplication::translate( "PWQ", "The password contains less than %1 uppercase letters" )
-                    .arg( mungeLong( auxerror ) );
+                return QCoreApplication::translate(
+                    "PWQ", "The password contains fewer than %n uppercase letters", nullptr, m_errorCount );
             }
             return QCoreApplication::translate( "PWQ", "The password contains too few uppercase letters" );
         case PWQ_ERROR_MIN_LOWERS:
-            if ( auxerror )
+            if ( m_errorCount )
             {
-                return QCoreApplication::translate( "PWQ", "The password contains less than %1 lowercase letters" )
-                    .arg( mungeLong( auxerror ) );
+                return QCoreApplication::translate(
+                    "PWQ", "The password contains fewer  than %n lowercase letters", nullptr, m_errorCount );
             }
             return QCoreApplication::translate( "PWQ", "The password contains too few lowercase letters" );
         case PWQ_ERROR_MIN_OTHERS:
-            if ( auxerror )
+            if ( m_errorCount )
             {
-                return QCoreApplication::translate( "PWQ",
-                                                    "The password contains less than %1 non-alphanumeric characters" )
-                    .arg( mungeLong( auxerror ) );
+                return QCoreApplication::translate(
+                    "PWQ", "The password contains fewer than %n non-alphanumeric characters", nullptr, m_errorCount );
             }
             return QCoreApplication::translate( "PWQ", "The password contains too few non-alphanumeric characters" );
         case PWQ_ERROR_MIN_LENGTH:
-            if ( auxerror )
+            if ( m_errorCount )
             {
-                return QCoreApplication::translate( "PWQ", "The password is shorter than %1 characters" )
-                    .arg( mungeLong( auxerror ) );
+                return QCoreApplication::translate(
+                    "PWQ", "The password is shorter than %n characters", nullptr, m_errorCount );
             }
             return QCoreApplication::translate( "PWQ", "The password is too short" );
         case PWQ_ERROR_ROTATED:
-            return QCoreApplication::translate( "PWQ", "The password is just rotated old one" );
+            return QCoreApplication::translate( "PWQ", "The password is a rotated version of the previous one" );
         case PWQ_ERROR_MIN_CLASSES:
-            if ( auxerror )
+            if ( m_errorCount )
             {
-                return QCoreApplication::translate( "PWQ", "The password contains less than %1 character classes" )
-                    .arg( mungeLong( auxerror ) );
+                return QCoreApplication::translate(
+                    "PWQ", "The password contains fewer than %n character classes", nullptr, m_errorCount );
             }
             return QCoreApplication::translate( "PWQ", "The password does not contain enough character classes" );
         case PWQ_ERROR_MAX_CONSECUTIVE:
-            if ( auxerror )
+            if ( m_errorCount )
             {
-                return QCoreApplication::translate( "PWQ",
-                                                    "The password contains more than %1 same characters consecutively" )
-                    .arg( mungeLong( auxerror ) );
+                return QCoreApplication::translate(
+                    "PWQ", "The password contains more than %n same characters consecutively", nullptr, m_errorCount );
             }
             return QCoreApplication::translate( "PWQ", "The password contains too many same characters consecutively" );
         case PWQ_ERROR_MAX_CLASS_REPEAT:
-            if ( auxerror )
+            if ( m_errorCount )
             {
                 return QCoreApplication::translate(
-                           "PWQ", "The password contains more than %1 characters of the same class consecutively" )
-                    .arg( mungeLong( auxerror ) );
+                    "PWQ",
+                    "The password contains more than %n characters of the same class consecutively",
+                    nullptr,
+                    m_errorCount );
             }
             return QCoreApplication::translate(
                 "PWQ", "The password contains too many characters of the same class consecutively" );
         case PWQ_ERROR_MAX_SEQUENCE:
-            if ( auxerror )
+            if ( m_errorCount )
             {
                 return QCoreApplication::translate(
-                           "PWQ", "The password contains monotonic sequence longer than %1 characters" )
-                    .arg( mungeLong( auxerror ) );
+                    "PWQ",
+                    "The password contains monotonic sequence longer than %n characters",
+                    nullptr,
+                    m_errorCount );
             }
             return QCoreApplication::translate( "PWQ",
                                                 "The password contains too long of a monotonic character sequence" );
@@ -248,46 +293,34 @@ public:
             return QCoreApplication::translate( "PWQ",
                                                 "Password generation failed - required entropy too low for settings" );
         case PWQ_ERROR_CRACKLIB_CHECK:
-            if ( auxerror )
+            if ( !m_errorString.isEmpty() )
             {
-                /* Here the string comes from cracklib, don't free? */
                 return QCoreApplication::translate( "PWQ", "The password fails the dictionary check - %1" )
-                    .arg( mungeString( auxerror ) );
+                    .arg( m_errorString );
             }
             return QCoreApplication::translate( "PWQ", "The password fails the dictionary check" );
         case PWQ_ERROR_UNKNOWN_SETTING:
-            if ( auxerror )
+            if ( !m_errorString.isEmpty() )
             {
-                QString s = QCoreApplication::translate( "PWQ", "Unknown setting - %1" ).arg( mungeString( auxerror ) );
-                free( auxerror );
-                return s;
+                return QCoreApplication::translate( "PWQ", "Unknown setting - %1" ).arg( m_errorString );
             }
             return QCoreApplication::translate( "PWQ", "Unknown setting" );
         case PWQ_ERROR_INTEGER:
-            if ( auxerror )
+            if ( !m_errorString.isEmpty() )
             {
-                QString s = QCoreApplication::translate( "PWQ", "Bad integer value of setting - %1" )
-                                .arg( mungeString( auxerror ) );
-                free( auxerror );
-                return s;
+                return QCoreApplication::translate( "PWQ", "Bad integer value of setting - %1" ).arg( m_errorString );
             }
             return QCoreApplication::translate( "PWQ", "Bad integer value" );
         case PWQ_ERROR_NON_INT_SETTING:
-            if ( auxerror )
+            if ( !m_errorString.isEmpty() )
             {
-                QString s = QCoreApplication::translate( "PWQ", "Setting %1 is not of integer type" )
-                                .arg( mungeString( auxerror ) );
-                free( auxerror );
-                return s;
+                return QCoreApplication::translate( "PWQ", "Setting %1 is not of integer type" ).arg( m_errorString );
             }
             return QCoreApplication::translate( "PWQ", "Setting is not of integer type" );
         case PWQ_ERROR_NON_STR_SETTING:
-            if ( auxerror )
+            if ( !m_errorString.isEmpty() )
             {
-                QString s = QCoreApplication::translate( "PWQ", "Setting %1 is not of string type" )
-                                .arg( mungeString( auxerror ) );
-                free( auxerror );
-                return s;
+                return QCoreApplication::translate( "PWQ", "Setting %1 is not of string type" ).arg( m_errorString );
             }
             return QCoreApplication::translate( "PWQ", "Setting is not of string type" );
         case PWQ_ERROR_CFGFILE_OPEN:
@@ -302,9 +335,11 @@ public:
     }
 
 private:
-    pwquality_settings_t* m_settings;
-    int m_rv;
-    void* m_auxerror;
+    QString m_errorString;  ///< Textual error from last call to check()
+    int m_errorCount = 0;  ///< Count (used in %n) error from last call to check()
+    int m_rv = 0;  ///< Return value from libpwquality
+
+    pwquality_settings_t* m_settings = nullptr;
 };
 
 DEFINE_CHECK_FUNC( libpwquality )
