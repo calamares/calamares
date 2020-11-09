@@ -30,6 +30,9 @@ public:
     QString prettyName() const override;
 
     Calamares::JobResult exec() override;
+private:
+    static QVariantList partitions();
+    static bool hasUnencryptedSeparateBoot();
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( LuksBootKeyFileJobFactory )
