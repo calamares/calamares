@@ -122,8 +122,6 @@ public:
         return r;
     }
 
-    bool hasExplanation() const { return m_rv < 0; }
-
     /* This is roughly the same as the function pwquality_strerror,
      * only with QStrings instead, and using the Qt translation scheme.
      * It is used under the terms of the GNU GPL v3 or later, as
