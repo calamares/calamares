@@ -623,17 +623,18 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1448"/>
       <source>This storage device already has an operating system on it, but the partition table &lt;strong&gt;%1&lt;/strong&gt; is different from the needed &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</source>
-      <translation type="unfinished"/>
+      <translation>Toto úložné zariadenie už obsahuje operačný systém, ale tabuľka oddielov &lt;strong&gt;%1&lt;/strong&gt; sa líši od požadovanej &lt;strong&gt;%2&lt;/strong&gt;.
+&lt;br/&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1471"/>
       <source>This storage device has one of its partitions &lt;strong&gt;mounted&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Toto úložné zariadenie má jeden zo svojich oddielov &lt;strong&gt;pripojený&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1476"/>
       <source>This storage device is a part of an &lt;strong&gt;inactive RAID&lt;/strong&gt; device.</source>
-      <translation type="unfinished"/>
+      <translation>Toto úložné zariadenie je súčasťou zariadenia s &lt;strong&gt;neaktívnym RAIDom&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1603"/>
@@ -1826,7 +1827,8 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
       <source>Please select your preferred location on the map so the installer can suggest the locale
             and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
             to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</source>
-      <translation type="unfinished"/>
+      <translation>Prosím, vyberte vaše preferované umiestnenie, aby mohol inštalátor pre vás navrhnúť
+            miestne nastavenia a časovú zónu. Navrhnuté nastavenia môžete doladiť nižšie. Mapu môžete presúvať ťahaním a približovať alebo odďaľovať tlačidlami +/- alebo rolovaním myšou.</translation>
     </message>
   </context>
   <context>
@@ -2870,7 +2872,7 @@ Výstup:
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="83"/>
       <source>Directory not found</source>
-      <translation type="unfinished"/>
+      <translation>Adresár sa nenašiel</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="84"/>
@@ -3873,7 +3875,7 @@ Výstup:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="60"/>
       <source>Click your preferred keyboard model to select layout and variant, or use the default one based on the detected hardware.</source>
-      <translation type="unfinished"/>
+      <translation>Kliknutím na preferovaný model klávesnice vyberiete rozloženie, alebo použite predvolený, ktorý bol vybraný podľa rozpoznaného hardvéru.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="253"/>
@@ -4012,12 +4014,12 @@ Výstup:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="204"/>
       <source>Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.</source>
-      <translation type="unfinished"/>
+      <translation>Zadajte rovnaké heslo dvakrát, aby sa predišlo preklepom. Dobré heslo by malo obsahovať mix písmen, čísel a diakritiky, malo by mať dĺžku aspoň osem znakov a malo by byť pravidelne menené.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="216"/>
       <source>Validate passwords quality</source>
-      <translation type="unfinished"/>
+      <translation>Overiť kvalitu hesiel</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="226"/>
@@ -4032,7 +4034,7 @@ Výstup:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="243"/>
       <source>Reuse user password as root password</source>
-      <translation type="unfinished"/>
+      <translation>Znovu použiť používateľské heslo ako heslo správcu</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="253"/>
