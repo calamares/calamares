@@ -137,7 +137,8 @@ LuksBootKeyFileJob::partitions()
     return globalStorage->value( QStringLiteral( "partitions" ) ).toList();
 }
 
-static bool
+// static
+bool
 LuksBootKeyFileJob::hasUnencryptedSeparateBoot()
 {
     const QVariantList partitions = LuksBootKeyFileJob::partitions();
