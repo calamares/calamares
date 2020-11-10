@@ -7,6 +7,22 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
+# 3.2.34 (unreleased) #
+
+This release contains contributions from (alphabetically by first name):
+ - Artem Grinev
+
+## Core ##
+ - No core changes yet
+
+## Modules ##
+ - In the *users* module, warnings about the strength of the password
+   are now correctly pluralized when possible.
+ - In the *users* module, if ICU is installed, the user's full name is
+   automatically transliterated to US-ASCII (for some locales; this will
+   need tweaking) so that the login name is acceptable. (Thanks Artem)
+
+
 # 3.2.33 (2020-11-09) #
 
 This release contains contributions from (alphabetically by first name):
