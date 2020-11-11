@@ -32,6 +32,7 @@ if ( KF5Plasma_FOUND AND KF5Package_FOUND )
         COMPILE_DEFINITIONS
             ${option_defs}
         SOURCES
+            Config.cpp
             PlasmaLnfViewStep.cpp
             PlasmaLnfPage.cpp
             PlasmaLnfJob.cpp

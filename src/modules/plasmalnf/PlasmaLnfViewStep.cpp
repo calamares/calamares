@@ -8,6 +8,7 @@
  */
 #include "PlasmaLnfViewStep.h"
 
+#include "Config.h"
 #include "PlasmaLnfJob.h"
 #include "PlasmaLnfPage.h"
 #include "ThemeInfo.h"
@@ -39,6 +40,7 @@ currentPlasmaTheme()
 
 PlasmaLnfViewStep::PlasmaLnfViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
+    , m_config( new Config( this ) )
     , m_widget( new PlasmaLnfPage )
 {
     connect( m_widget, &PlasmaLnfPage::plasmaThemeSelected, this, &PlasmaLnfViewStep::themeSelected );
@@ -127,6 +129,7 @@ PlasmaLnfViewStep::jobs() const
 void
 PlasmaLnfViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
+    m_config->setConfigurationMap( configurationMap );
     m_lnfPath = CalamaresUtils::getString( configurationMap, "lnftool" );
     m_widget->setLnfPath( m_lnfPath );
 

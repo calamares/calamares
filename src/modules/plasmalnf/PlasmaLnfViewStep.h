@@ -14,6 +14,7 @@
 #include "utils/PluginFactory.h"
 #include "viewpages/ViewStep.h"
 
+class Config;
 class PlasmaLnfPage;
 
 class PLUGINDLLEXPORT PlasmaLnfViewStep : public Calamares::ViewStep
@@ -44,6 +45,7 @@ public slots:
     void themeSelected( const QString& id );
 
 private:
+    Config* m_config;
     PlasmaLnfPage* m_widget;
     QString m_lnfPath;  // Path to the lnf tool
     QString m_themeId;  // Id of selected theme
