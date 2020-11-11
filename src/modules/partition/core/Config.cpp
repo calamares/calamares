@@ -190,7 +190,7 @@ Config::setSwapChoice( int c )
 {
     if ( ( c < SwapChoice::NoSwap ) || ( c > SwapChoice::SwapFile ) )
     {
-        cWarning() << "Instalid swap choice (int)" << c;
+        cWarning() << "Invalid swap choice (int)" << c;
         c = SwapChoice::NoSwap;
     }
     setSwapChoice( static_cast< SwapChoice >( c ) );
