@@ -20,9 +20,7 @@ PlasmaLnfJob::PlasmaLnfJob( const QString& lnfPath, const QString& id )
 {
 }
 
-
 PlasmaLnfJob::~PlasmaLnfJob() {}
-
 
 QString
 PlasmaLnfJob::prettyName() const
@@ -30,20 +28,11 @@ PlasmaLnfJob::prettyName() const
     return tr( "Plasma Look-and-Feel Job" );
 }
 
-QString
-PlasmaLnfJob::prettyStatusMessage() const
-{
-    return prettyName();
-}
-
-
 Calamares::JobResult
 PlasmaLnfJob::exec()
 {
-    cDebug() << "Plasma Look-and-Feel Job";
-
-    auto system = CalamaresUtils::System::instance();
-    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+    auto* system = CalamaresUtils::System::instance();
+    auto* gs = Calamares::JobQueue::instance()->globalStorage();
 
     QStringList command( { "sudo",
                            "-E",
@@ -59,8 +48,10 @@ PlasmaLnfJob::exec()
 
     int r = system->targetEnvCall( command );
     if ( r )
+    {
         return Calamares::JobResult::error( tr( "Could not select KDE Plasma Look-and-Feel package" ),
                                             tr( "Could not select KDE Plasma Look-and-Feel package" ) );
+    }
 
     return Calamares::JobResult::ok();
 }
