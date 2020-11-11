@@ -14,10 +14,6 @@
 #include "utils/PluginFactory.h"
 #include "viewpages/ViewStep.h"
 
-#include <QObject>
-#include <QUrl>
-#include <QVariantMap>
-
 class PlasmaLnfPage;
 
 class PLUGINDLLEXPORT PlasmaLnfViewStep : public Calamares::ViewStep
