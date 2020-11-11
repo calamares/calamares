@@ -113,9 +113,9 @@ PlasmaLnfViewStep::jobs() const
     cDebug() << "Creating Plasma LNF jobs ..";
     if ( !m_themeId.isEmpty() )
     {
-        if ( !m_lnfPath.isEmpty() )
+        if ( !m_config->lnfToolPath().isEmpty() )
         {
-            l.append( Calamares::job_ptr( new PlasmaLnfJob( m_lnfPath, m_themeId ) ) );
+            l.append( Calamares::job_ptr( new PlasmaLnfJob( m_config->lnfToolPath(), m_themeId ) ) );
         }
         else
         {
@@ -130,13 +130,8 @@ void
 PlasmaLnfViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     m_config->setConfigurationMap( configurationMap );
-    m_lnfPath = CalamaresUtils::getString( configurationMap, "lnftool" );
-    m_widget->setLnfPath( m_lnfPath );
 
-    if ( m_lnfPath.isEmpty() )
-    {
-        cWarning() << "no lnftool given for plasmalnf module.";
-    }
+    m_widget->setLnfPath( m_config->lnfToolPath() );
 
     m_liveUser = CalamaresUtils::getString( configurationMap, "liveuser" );
 
@@ -186,7 +181,7 @@ void
 PlasmaLnfViewStep::themeSelected( const QString& id )
 {
     m_themeId = id;
-    if ( m_lnfPath.isEmpty() )
+    if ( m_config->lnfToolPath().isEmpty() )
     {
         cWarning() << "no lnftool given for plasmalnf module.";
         return;
@@ -194,18 +189,18 @@ PlasmaLnfViewStep::themeSelected( const QString& id )
 
     QProcess lnftool;
     if ( !m_liveUser.isEmpty() )
-        lnftool.start( "sudo", { "-E", "-H", "-u", m_liveUser, m_lnfPath, "--resetLayout", "--apply", id } );
+        lnftool.start( "sudo", { "-E", "-H", "-u", m_liveUser, m_config->lnfToolPath(), "--resetLayout", "--apply", id } );
     else
-        lnftool.start( m_lnfPath, { "--resetLayout", "--apply", id } );
+        lnftool.start( m_config->lnfToolPath(), { "--resetLayout", "--apply", id } );
 
     if ( !lnftool.waitForStarted( 1000 ) )
     {
-        cWarning() << "could not start look-and-feel" << m_lnfPath;
+        cWarning() << "could not start look-and-feel" << m_config->lnfToolPath();
         return;
     }
     if ( !lnftool.waitForFinished() )
     {
-        cWarning() << m_lnfPath << "timed out.";
+        cWarning() << m_config->lnfToolPath() << "timed out.";
         return;
     }
 

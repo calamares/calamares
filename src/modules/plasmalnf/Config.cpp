@@ -9,12 +9,21 @@
 
 #include "Config.h"
 
+#include "utils/Logger.h"
+#include "utils/Variant.h"
+
 Config::Config( QObject* parent )
     : QObject( parent )
 {
 }
 
 void
-Config::setConfigurationMap( const QVariantMap& )
+Config::setConfigurationMap( const QVariantMap& configurationMap )
 {
+    m_lnfPath = CalamaresUtils::getString( configurationMap, "lnftool" );
+
+    if ( m_lnfPath.isEmpty() )
+    {
+        cWarning() << "no lnftool given for plasmalnf module.";
+    }
 }

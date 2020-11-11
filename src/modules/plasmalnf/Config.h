@@ -21,6 +21,11 @@ public:
     virtual ~Config() override = default;
 
     void setConfigurationMap( const QVariantMap& );
+
+    QString lnfToolPath() const { return m_lnfPath; }
+
+private:
+    QString m_lnfPath;  // Path to the lnf tool
 };
 
 #endif

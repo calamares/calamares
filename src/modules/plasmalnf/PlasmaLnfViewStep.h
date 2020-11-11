@@ -47,7 +47,6 @@ public slots:
 private:
     Config* m_config;
     PlasmaLnfPage* m_widget;
-    QString m_lnfPath;  // Path to the lnf tool
     QString m_themeId;  // Id of selected theme
     QString m_liveUser;  // Name of the live user (for OEM mode)
 };
