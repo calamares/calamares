@@ -43,7 +43,7 @@ PlasmaLnfViewStep::PlasmaLnfViewStep( QObject* parent )
     , m_config( new Config( this ) )
     , m_widget( new PlasmaLnfPage )
 {
-    connect( m_widget, &PlasmaLnfPage::plasmaThemeSelected, this, &PlasmaLnfViewStep::themeSelected );
+    connect( m_widget, &PlasmaLnfPage::plasmaThemeSelected, m_config, &Config::setTheme );
     emit nextStatusChanged( false );
 }
 
@@ -111,11 +111,11 @@ PlasmaLnfViewStep::jobs() const
     Calamares::JobList l;
 
     cDebug() << "Creating Plasma LNF jobs ..";
-    if ( !m_themeId.isEmpty() )
+    if ( !m_config->theme().isEmpty() )
     {
         if ( !m_config->lnfToolPath().isEmpty() )
         {
-            l.append( Calamares::job_ptr( new PlasmaLnfJob( m_config->lnfToolPath(), m_themeId ) ) );
+            l.append( Calamares::job_ptr( new PlasmaLnfJob( m_config->lnfToolPath(), m_config->theme() ) ) );
         }
         else
         {
@@ -132,8 +132,6 @@ PlasmaLnfViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     m_config->setConfigurationMap( configurationMap );
 
     m_widget->setLnfPath( m_config->lnfToolPath() );
-
-    m_liveUser = CalamaresUtils::getString( configurationMap, "liveuser" );
 
     QString preselect = CalamaresUtils::getString( configurationMap, "preselect" );
     if ( preselect == QStringLiteral( "*" ) )
@@ -174,42 +172,5 @@ PlasmaLnfViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     else
     {
         m_widget->setEnabledThemesAll();  // All of them
-    }
-}
-
-void
-PlasmaLnfViewStep::themeSelected( const QString& id )
-{
-    m_themeId = id;
-    if ( m_config->lnfToolPath().isEmpty() )
-    {
-        cWarning() << "no lnftool given for plasmalnf module.";
-        return;
-    }
-
-    QProcess lnftool;
-    if ( !m_liveUser.isEmpty() )
-        lnftool.start( "sudo", { "-E", "-H", "-u", m_liveUser, m_config->lnfToolPath(), "--resetLayout", "--apply", id } );
-    else
-        lnftool.start( m_config->lnfToolPath(), { "--resetLayout", "--apply", id } );
-
-    if ( !lnftool.waitForStarted( 1000 ) )
-    {
-        cWarning() << "could not start look-and-feel" << m_config->lnfToolPath();
-        return;
-    }
-    if ( !lnftool.waitForFinished() )
-    {
-        cWarning() << m_config->lnfToolPath() << "timed out.";
-        return;
-    }
-
-    if ( ( lnftool.exitCode() == 0 ) && ( lnftool.exitStatus() == QProcess::NormalExit ) )
-    {
-        cDebug() << "Plasma look-and-feel applied" << id;
-    }
-    else
-    {
-        cWarning() << "could not apply look-and-feel" << id;
     }
 }
