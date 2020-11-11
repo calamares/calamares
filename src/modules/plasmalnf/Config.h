@@ -10,6 +10,8 @@
 #ifndef PLASMALNF_CONFIG_H
 #define PLASMALNF_CONFIG_H
 
+#include "Job.h"
+
 #include <QObject>
 
 class Config : public QObject
@@ -23,6 +25,7 @@ public:
     virtual ~Config() override = default;
 
     void setConfigurationMap( const QVariantMap& );
+    Calamares::JobList createJobs() const;
 
     /** @brief Full path to the lookandfeeltool (if it exists)
      *

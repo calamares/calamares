@@ -9,6 +9,8 @@
 
 #include "Config.h"
 
+#include "PlasmaLnfJob.h"
+
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
@@ -30,6 +32,27 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
 
     m_liveUser = CalamaresUtils::getString( configurationMap, "liveuser" );
 }
+
+Calamares::JobList
+Config::createJobs() const
+{
+    Calamares::JobList l;
+
+    cDebug() << "Creating Plasma LNF jobs ..";
+    if ( !theme().isEmpty() )
+    {
+        if ( !lnfToolPath().isEmpty() )
+        {
+            l.append( Calamares::job_ptr( new PlasmaLnfJob( lnfToolPath(), theme() ) ) );
+        }
+        else
+        {
+            cWarning() << "no lnftool given for plasmalnf module.";
+        }
+    }
+    return l;
+}
+
 
 void
 Config::setTheme( const QString& id )

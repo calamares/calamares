@@ -9,7 +9,6 @@
 #include "PlasmaLnfViewStep.h"
 
 #include "Config.h"
-#include "PlasmaLnfJob.h"
 #include "PlasmaLnfPage.h"
 #include "ThemeInfo.h"
 
@@ -108,21 +107,7 @@ PlasmaLnfViewStep::onLeave()
 Calamares::JobList
 PlasmaLnfViewStep::jobs() const
 {
-    Calamares::JobList l;
-
-    cDebug() << "Creating Plasma LNF jobs ..";
-    if ( !m_config->theme().isEmpty() )
-    {
-        if ( !m_config->lnfToolPath().isEmpty() )
-        {
-            l.append( Calamares::job_ptr( new PlasmaLnfJob( m_config->lnfToolPath(), m_config->theme() ) ) );
-        }
-        else
-        {
-            cWarning() << "no lnftool given for plasmalnf module.";
-        }
-    }
-    return l;
+    return m_config->createJobs();
 }
 
 
