@@ -15,27 +15,9 @@
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
-#include <QProcess>
 #include <QVariantMap>
 
-#ifdef WITH_KCONFIG
-#include <KConfigGroup>
-#include <KSharedConfig>
-#endif
-
 CALAMARES_PLUGIN_FACTORY_DEFINITION( PlasmaLnfViewStepFactory, registerPlugin< PlasmaLnfViewStep >(); )
-
-static QString
-currentPlasmaTheme()
-{
-#ifdef WITH_KCONFIG
-    KConfigGroup cg( KSharedConfig::openConfig( QStringLiteral( "kdeglobals" ) ), "KDE" );
-    return cg.readEntry( "LookAndFeelPackage", QString() );
-#else
-    cWarning() << "No KConfig support, cannot determine Plasma theme.";
-    return QString();
-#endif
-}
 
 PlasmaLnfViewStep::PlasmaLnfViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
@@ -117,16 +99,7 @@ PlasmaLnfViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     m_config->setConfigurationMap( configurationMap );
 
     m_widget->setLnfPath( m_config->lnfToolPath() );
-
-    QString preselect = CalamaresUtils::getString( configurationMap, "preselect" );
-    if ( preselect == QStringLiteral( "*" ) )
-    {
-        preselect = currentPlasmaTheme();
-    }
-    if ( !preselect.isEmpty() )
-    {
-        m_widget->setPreselect( preselect );
-    }
+    m_widget->setPreselect( m_config->preselectedTheme() );
 
     bool showAll = CalamaresUtils::getBool( configurationMap, "showAll", false );
 

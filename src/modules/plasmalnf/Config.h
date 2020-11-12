@@ -14,15 +14,19 @@
 
 #include <QObject>
 
+class QAbstractItemModel;
+
 class Config : public QObject
 {
     Q_OBJECT
 
+    Q_PROPERTY( QString preselectedTheme READ preselectedTheme CONSTANT )
     Q_PROPERTY( QString theme READ theme WRITE setTheme NOTIFY themeChanged )
+    Q_PROPERTY( QAbstractItemModel* themeModel READ themeModel CONSTANT )
 
 public:
     Config( QObject* parent = nullptr );
-    virtual ~Config() override = default;
+    virtual ~Config() override = default;  // QObject cleans up the model pointer
 
     void setConfigurationMap( const QVariantMap& );
     Calamares::JobList createJobs() const;
@@ -42,6 +46,17 @@ public:
      */
     QString theme() const { return m_themeId; }
 
+    /** @brief The theme we start with
+     *
+     * This can be configured, or is taken from the live environment
+     * if the environment is (also) KDE Plasma.
+     */
+    QString preselectedTheme() const { return m_preselectThemeId; }
+
+    /** @brief The (list) model of available themes.
+     */
+    QAbstractItemModel* themeModel() const { return m_themeModel; }
+
 public slots:
     void setTheme( const QString& id );
 
@@ -52,7 +67,10 @@ private:
     QString m_lnfPath;  // Path to the lnf tool
     QString m_liveUser;  // Name of the live user (for OEM mode)
 
+    QString m_preselectThemeId;
     QString m_themeId;  // Id of selected theme
+
+    QAbstractItemModel* m_themeModel = nullptr;
 };
 
 #endif
