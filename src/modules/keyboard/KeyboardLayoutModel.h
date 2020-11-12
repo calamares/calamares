@@ -118,6 +118,13 @@ public:
     int currentIndex() const;
     const QPair< QString, KeyboardGlobal::KeyboardInfo > item( const int& index ) const;
 
+    /** @brief xkb key for a given index (row)
+     *
+     * This is like calling data( QModelIndex( index ), KeyboardLayoutKeyRole ).toString(),
+     * but shorter and faster. Can return an empty string if index is invalid.
+     */
+    QString key( int index ) const;
+
 protected:
     QHash< int, QByteArray > roleNames() const override;
 

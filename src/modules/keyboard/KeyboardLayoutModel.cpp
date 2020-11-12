@@ -198,6 +198,16 @@ KeyboardLayoutModel::item( const int& index ) const
     return m_layouts.at( index );
 }
 
+QString
+KeyboardLayoutModel::key( int index ) const
+{
+    if ( index >= m_layouts.count() || index < 0 )
+    {
+        return QString();
+    }
+    return m_layouts.at( index ).first;
+}
+
 void
 KeyboardLayoutModel::init()
 {
