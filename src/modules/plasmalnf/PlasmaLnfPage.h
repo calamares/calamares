@@ -36,7 +36,6 @@ class PlasmaLnfPage : public QWidget
 public:
     explicit PlasmaLnfPage( QWidget* parent = nullptr );
 
-    void setLnfPath( const QString& path );
     /** @brief enable only the listed themes.
      *
      * Shows the listed @p themes with full information (e.g. screenshot).
@@ -61,7 +60,6 @@ private:
     void fillUi();
 
     Ui::PlasmaLnfPage* ui;
-    QString m_lnfPath;
     QString m_preselect;
     bool m_showAll;  // If true, don't winnow according to enabledThemes
     ThemeInfoList m_enabledThemes;

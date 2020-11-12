@@ -73,12 +73,6 @@ PlasmaLnfPage::PlasmaLnfPage( QWidget* parent )
 }
 
 void
-PlasmaLnfPage::setLnfPath( const QString& path )
-{
-    m_lnfPath = path;
-}
-
-void
 PlasmaLnfPage::setEnabledThemes( const ThemeInfoList& themes, bool showAll )
 {
     m_enabledThemes = themes;

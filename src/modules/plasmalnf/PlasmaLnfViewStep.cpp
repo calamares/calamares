@@ -98,7 +98,6 @@ PlasmaLnfViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     m_config->setConfigurationMap( configurationMap );
 
-    m_widget->setLnfPath( m_config->lnfToolPath() );
     m_widget->setPreselect( m_config->preselectedTheme() );
 
     bool showAll = CalamaresUtils::getBool( configurationMap, "showAll", false );
