@@ -131,7 +131,7 @@ setupLuks( const LuksDevice& d )
 
 // static
 QVariantList
-LuksBootKeyFileJob::partitions()
+partitions()
 {
     Calamares::GlobalStorage* globalStorage = Calamares::JobQueue::instance()->globalStorage();
     return globalStorage->value( QStringLiteral( "partitions" ) ).toList();
@@ -139,9 +139,9 @@ LuksBootKeyFileJob::partitions()
 
 // static
 bool
-LuksBootKeyFileJob::hasUnencryptedSeparateBoot()
+hasUnencryptedSeparateBoot()
 {
-    const QVariantList partitions = LuksBootKeyFileJob::partitions();
+    const QVariantList partitions = partitions();
     for ( const QVariant& partition : partitions )
     {
         QVariantMap partitionMap = partition.toMap();
