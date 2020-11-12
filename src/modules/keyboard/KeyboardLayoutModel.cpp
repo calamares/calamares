@@ -269,5 +269,6 @@ KeyboardVariantsModel::setVariants( QMap< QString, QString > variants )
     {
         m_list << ModelInfo { variants[ key ], key };
     }
+    m_currentIndex = -1;
     endResetModel();
 }

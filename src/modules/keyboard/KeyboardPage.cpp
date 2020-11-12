@@ -90,6 +90,7 @@ KeyboardPage::KeyboardPage( Config* config, QWidget* parent )
     connect( config->keyboardLayouts(), &KeyboardLayoutModel::currentIndexChanged, [ this ]( int index ) {
         ui->layoutSelector->setCurrentIndex( m_config->keyboardLayouts()->index( index ) );
         m_keyboardPreview->setLayout( m_config->keyboardLayouts()->key( index ) );
+        m_keyboardPreview->setVariant( m_config->keyboardVariants()->key( m_config->keyboardVariants()->currentIndex() ) );
     } );
 
     connect(
