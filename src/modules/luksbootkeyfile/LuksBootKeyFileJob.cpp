@@ -141,7 +141,7 @@ partitions()
 bool
 hasUnencryptedSeparateBoot()
 {
-    const QVariantList partitions = partitions();
+    const QVariantList partitions = ::partitions();
     for ( const QVariant& partition : partitions )
     {
         QVariantMap partitionMap = partition.toMap();
