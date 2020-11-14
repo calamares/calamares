@@ -29,7 +29,7 @@ def pretty_name():
 def write_dmcrypt_conf(partitions, root_mount_point, dmcrypt_conf_path):
     crypto_target = ""
     crypto_source = ""
-    unencrypted_separate_boot = any(p["mountPoint"] == "/boot" and "luksMapperName" not in p for p in partitions):
+    unencrypted_separate_boot = any(p["mountPoint"] == "/boot" and "luksMapperName" not in p for p in partitions)
 
     for partition in partitions:
         has_luks = "luksMapperName" in partition
