@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-16 22:35+0200\n"
+"POT-Creation-Date: 2020-11-09 16:19+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: ZIzA, 2020\n"
 "Language-Team: Russian (https://www.transifex.com/calamares/teams/20061/ru/)\n"
@@ -26,12 +26,12 @@ msgstr ""
 msgid "Configure GRUB."
 msgstr "Настройте GRUB."
 
-#: src/modules/mount/main.py:29
+#: src/modules/mount/main.py:30
 msgid "Mounting partitions."
 msgstr "Монтирование разделов."
 
-#: src/modules/mount/main.py:141 src/modules/initcpiocfg/main.py:196
-#: src/modules/initcpiocfg/main.py:200
+#: src/modules/mount/main.py:127 src/modules/initcpiocfg/main.py:199
+#: src/modules/initcpiocfg/main.py:203
 #: src/modules/luksopenswaphookcfg/main.py:86
 #: src/modules/luksopenswaphookcfg/main.py:90 src/modules/rawfs/main.py:164
 #: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
@@ -42,7 +42,7 @@ msgstr "Монтирование разделов."
 msgid "Configuration Error"
 msgstr "Ошибка конфигурации"
 
-#: src/modules/mount/main.py:142 src/modules/initcpiocfg/main.py:197
+#: src/modules/mount/main.py:128 src/modules/initcpiocfg/main.py:200
 #: src/modules/luksopenswaphookcfg/main.py:87 src/modules/rawfs/main.py:165
 #: src/modules/initramfscfg/main.py:86 src/modules/openrcdmcryptcfg/main.py:70
 #: src/modules/fstab/main.py:362
@@ -208,7 +208,7 @@ msgstr ""
 msgid "Configuring mkinitcpio."
 msgstr ""
 
-#: src/modules/initcpiocfg/main.py:201
+#: src/modules/initcpiocfg/main.py:204
 #: src/modules/luksopenswaphookcfg/main.py:91
 #: src/modules/initramfscfg/main.py:90 src/modules/openrcdmcryptcfg/main.py:74
 #: src/modules/fstab/main.py:368 src/modules/localecfg/main.py:136
