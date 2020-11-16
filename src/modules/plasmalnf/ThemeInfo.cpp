@@ -90,7 +90,7 @@ ThemesModel::showTheme( const QString& id, bool show )
 }
 
 void
-ThemesModel::showTheme( const QMap< QString, QString >& onlyThese )
+ThemesModel::showOnlyThemes( const QMap< QString, QString >& onlyThese )
 {
     for ( auto& t : m_themes )
     {

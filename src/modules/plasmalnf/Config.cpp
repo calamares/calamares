@@ -58,6 +58,37 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         preselect = currentPlasmaTheme();
     }
     m_preselectThemeId = preselect;
+
+    if ( configurationMap.contains( "themes" ) && configurationMap.value( "themes" ).type() == QVariant::List )
+    {
+        QMap< QString, QString > listedThemes;
+        auto themeList = configurationMap.value( "themes" ).toList();
+        // Create the ThemInfo objects for the listed themes; information
+        // about the themes from Plasma (e.g. human-readable name and description)
+        // are filled in by update_names() in PlasmaLnfPage.
+        for ( const auto& i : themeList )
+            if ( i.type() == QVariant::Map )
+            {
+                auto iv = i.toMap();
+                listedThemes.insert( iv.value( "theme" ).toString(), iv.value( "image" ).toString() );
+            }
+            else if ( i.type() == QVariant::String )
+            {
+                listedThemes.insert( i.toString(), QString() );
+            }
+
+        if ( listedThemes.count() == 1 )
+        {
+            cWarning() << "only one theme enabled in plasmalnf";
+        }
+        m_themeModel->setThemeImage( listedThemes );
+
+        bool showAll = CalamaresUtils::getBool( configurationMap, "showAll", false );
+        if ( !listedThemes.isEmpty() && !showAll )
+        {
+            m_themeModel->showOnlyThemes( listedThemes );
+        }
+    }
 }
 
 Calamares::JobList

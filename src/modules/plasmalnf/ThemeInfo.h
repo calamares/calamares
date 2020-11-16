@@ -119,7 +119,7 @@ public:
     void showTheme( const QString& id, bool show = true );
 
     /// @brief Shows the keys in the @p onlyThese map, and hides the rest
-    void showTheme( const QMap< QString, QString >& onlyThese );
+    void showOnlyThemes( const QMap< QString, QString >& onlyThese );
 
 private:
     ThemeInfoList m_themes;
