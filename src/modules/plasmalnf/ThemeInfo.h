@@ -31,6 +31,7 @@ struct ThemeInfo
     QString description;
     QString imagePath;
     ThemeWidget* widget;
+    bool show = true;
 
     ThemeInfo()
         : widget( nullptr )
@@ -107,6 +108,18 @@ public:
     QHash< int, QByteArray > roleNames() const override;
 
     const ThemeInfo* findById( const QString& id ) const { return m_themes.findById( id ); }
+
+    /// @brief Set the screenshot to go with the given @p id
+    void setThemeImage( const QString& id, const QString& imagePath );
+
+    /// @brief Call setThemeImage( key, value ) for all keys in @p images
+    void setThemeImage( const QMap< QString, QString >& images );
+
+    /// @brief Set whether to show the given theme @p id (or not)
+    void showTheme( const QString& id, bool show = true );
+
+    /// @brief Shows the keys in the @p onlyThese map, and hides the rest
+    void showTheme( const QMap< QString, QString >& onlyThese );
 
 private:
     ThemeInfoList m_themes;
