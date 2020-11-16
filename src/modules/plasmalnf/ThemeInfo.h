@@ -52,6 +52,20 @@ struct ThemeInfo
 class ThemeInfoList : public QList< ThemeInfo >
 {
 public:
+    std::pair< int, ThemeInfo* > indexById( const QString& id )
+    {
+        int index = 0;
+        for ( ThemeInfo& i : *this )
+        {
+            if ( i.id == id )
+            {
+                return { index, &i };
+            }
+        }
+        return { -1, nullptr };
+    }
+
+
     /** @brief Looks for a given @p id in the list of themes, returns nullptr if not found. */
     ThemeInfo* findById( const QString& id )
     {
