@@ -22,9 +22,8 @@ CALAMARES_PLUGIN_FACTORY_DEFINITION( PlasmaLnfViewStepFactory, registerPlugin< P
 PlasmaLnfViewStep::PlasmaLnfViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_config( new Config( this ) )
-    , m_widget( new PlasmaLnfPage )
+    , m_widget( new PlasmaLnfPage( m_config ) )
 {
-    connect( m_widget, &PlasmaLnfPage::plasmaThemeSelected, m_config, &Config::setTheme );
     emit nextStatusChanged( false );
 }
 
@@ -97,37 +96,4 @@ void
 PlasmaLnfViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     m_config->setConfigurationMap( configurationMap );
-
-    m_widget->setPreselect( m_config->preselectedTheme() );
-
-    bool showAll = CalamaresUtils::getBool( configurationMap, "showAll", false );
-
-    if ( configurationMap.contains( "themes" ) && configurationMap.value( "themes" ).type() == QVariant::List )
-    {
-        ThemeInfoList listedThemes;
-        auto themeList = configurationMap.value( "themes" ).toList();
-        // Create the ThemInfo objects for the listed themes; information
-        // about the themes from Plasma (e.g. human-readable name and description)
-        // are filled in by update_names() in PlasmaLnfPage.
-        for ( const auto& i : themeList )
-            if ( i.type() == QVariant::Map )
-            {
-                auto iv = i.toMap();
-                listedThemes.append( ThemeInfo( iv.value( "theme" ).toString(), iv.value( "image" ).toString() ) );
-            }
-            else if ( i.type() == QVariant::String )
-            {
-                listedThemes.append( ThemeInfo( i.toString() ) );
-            }
-
-        if ( listedThemes.length() == 1 )
-        {
-            cWarning() << "only one theme enabled in plasmalnf";
-        }
-        m_widget->setEnabledThemes( listedThemes, showAll );
-    }
-    else
-    {
-        m_widget->setEnabledThemesAll();  // All of them
-    }
 }

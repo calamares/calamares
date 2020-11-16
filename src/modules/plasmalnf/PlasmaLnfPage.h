@@ -24,6 +24,8 @@ namespace Ui
 class PlasmaLnfPage;
 }
 
+class Config;
+
 /** @brief Page for selecting a Plasma Look-and-Feel theme.
  *
  * You must call setEnabledThemes -- either overload -- once
@@ -34,38 +36,14 @@ class PlasmaLnfPage : public QWidget
 {
     Q_OBJECT
 public:
-    explicit PlasmaLnfPage( QWidget* parent = nullptr );
-
-    /** @brief enable only the listed themes.
-     *
-     * Shows the listed @p themes with full information (e.g. screenshot).
-     * If @p showAll is true, then also show all installed themes
-     * not explicitly listed (without a screenshot).
-     */
-    void setEnabledThemes( const ThemeInfoList& themes, bool showAll );
-    /** @brief enable all installed plasma themes. */
-    void setEnabledThemesAll();
-    /** @brief set which theme is to be preselected. */
-    void setPreselect( const QString& id );
+    explicit PlasmaLnfPage( Config* config, QWidget* parent = nullptr );
 
 signals:
     void plasmaThemeSelected( const QString& id );
 
 private:
-    /** @brief Intersect the list of enabled themes with the installed ones. */
-    void winnowThemes();
-    /** @brief Get the translated names for all enabled themes. */
-    void updateThemeNames();
-    /** @brief show enabled themes in the UI. */
-    void fillUi();
-
     Ui::PlasmaLnfPage* ui;
-    QString m_preselect;
-    bool m_showAll;  // If true, don't winnow according to enabledThemes
-    ThemeInfoList m_enabledThemes;
-
-    QButtonGroup* m_buttonGroup;
-    QList< ThemeWidget* > m_widgets;
+    Config* m_config;
 };
 
 #endif  //PLASMALNFPAGE_H

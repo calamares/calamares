@@ -21,6 +21,8 @@
 #include <KSharedConfig>
 #endif
 
+#include <QSortFilterProxyModel>
+
 static QString
 currentPlasmaTheme()
 {
@@ -33,11 +35,16 @@ currentPlasmaTheme()
 #endif
 }
 
-
 Config::Config( QObject* parent )
     : QObject( parent )
     , m_themeModel( new ThemesModel( this ) )
 {
+    auto* filter = new QSortFilterProxyModel( m_themeModel );
+    filter->setFilterRole( ThemesModel::ShownRole );
+    filter->setFilterFixedString( QStringLiteral( "true" ) );
+    filter->setSourceModel( m_themeModel );
+
+    m_filteredModel = filter;
 }
 
 void

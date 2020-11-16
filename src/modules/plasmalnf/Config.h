@@ -55,7 +55,7 @@ public:
 
     /** @brief The (list) model of available themes.
      */
-    QAbstractItemModel* themeModel() const { return m_themeModel; }
+    QAbstractItemModel* themeModel() const { return m_filteredModel; }
 
 public slots:
     void setTheme( const QString& id );
@@ -70,6 +70,7 @@ private:
     QString m_preselectThemeId;
     QString m_themeId;  // Id of selected theme
 
+    QAbstractItemModel* m_filteredModel = nullptr;
     ThemesModel* m_themeModel = nullptr;
 };
 

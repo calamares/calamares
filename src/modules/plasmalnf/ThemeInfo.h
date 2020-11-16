@@ -97,7 +97,8 @@ public:
     enum
     {
         LabelRole = Qt::DisplayRole,
-        KeyRole = Qt::UserRole
+        KeyRole = Qt::UserRole,
+        ShownRole
     };
 
     explicit ThemesModel( QObject* parent );

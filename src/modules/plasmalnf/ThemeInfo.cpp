@@ -48,6 +48,8 @@ ThemesModel::data( const QModelIndex& index, int role ) const
         return item.name;
     case KeyRole:
         return item.id;
+    case ShownRole:
+        return item.show;
     default:
         return QVariant();
     }
