@@ -15,7 +15,6 @@
 #include <QString>
 
 class KPluginMetaData;
-class ThemeWidget;
 
 /** @brief describes a single plasma LnF theme.
  *
@@ -30,24 +29,18 @@ struct ThemeInfo
     QString name;
     QString description;
     QString imagePath;
-    ThemeWidget* widget;
     bool show = true;
 
-    ThemeInfo()
-        : widget( nullptr )
-    {
-    }
+    ThemeInfo() {}
 
     explicit ThemeInfo( const QString& _id )
         : id( _id )
-        , widget( nullptr )
     {
     }
 
     explicit ThemeInfo( const QString& _id, const QString& image )
         : id( _id )
         , imagePath( image )
-        , widget( nullptr )
     {
     }
 
@@ -98,7 +91,8 @@ public:
     {
         LabelRole = Qt::DisplayRole,
         KeyRole = Qt::UserRole,
-        ShownRole
+        ShownRole,
+        ImageRole
     };
 
     explicit ThemesModel( QObject* parent );

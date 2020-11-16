@@ -59,7 +59,7 @@ ThemesModel::data( const QModelIndex& index, int role ) const
 QHash< int, QByteArray >
 ThemesModel::roleNames() const
 {
-    return { { LabelRole, "label" }, { KeyRole, "key" } };
+    return { { LabelRole, "label" }, { KeyRole, "key" }, { ShownRole, "show" }, { ImageRole, "image" } };
 }
 
 void
@@ -75,10 +75,16 @@ ThemesModel::setThemeImage( const QString& id, const QString& imagePath )
 void
 ThemesModel::setThemeImage( const QMap< QString, QString >& images )
 {
+    if ( m_themes.isEmpty() )
+    {
+        return;
+    }
+
     for ( const auto& k : images )
     {
         setThemeImage( k, images[ k ] );
     }
+    emit dataChanged( index( 0, 0 ), index( m_themes.count() - 1 ), { ImageRole } );
 }
 
 void
@@ -94,10 +100,16 @@ ThemesModel::showTheme( const QString& id, bool show )
 void
 ThemesModel::showOnlyThemes( const QMap< QString, QString >& onlyThese )
 {
+    if ( m_themes.isEmpty() )
+    {
+        return;
+    }
+
     for ( auto& t : m_themes )
     {
         t.show = onlyThese.contains( t.id );
     }
+    emit dataChanged( index( 0, 0 ), index( m_themes.count() - 1 ), { ShownRole } );
 }
 
 
@@ -105,6 +117,5 @@ ThemeInfo::ThemeInfo( const KPluginMetaData& data )
     : id( data.pluginId() )
     , name( data.name() )
     , description( data.description() )
-    , widget( nullptr )
 {
 }
