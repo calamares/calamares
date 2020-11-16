@@ -21,14 +21,6 @@
 #include <KPackage/Package>
 #include <KPackage/PackageLoader>
 
-ThemeInfo::ThemeInfo( const KPluginMetaData& data )
-    : id( data.pluginId() )
-    , name( data.name() )
-    , description( data.description() )
-    , widget( nullptr )
-{
-}
-
 static ThemeInfoList
 plasma_themes()
 {

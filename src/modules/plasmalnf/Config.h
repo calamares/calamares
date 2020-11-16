@@ -12,9 +12,9 @@
 
 #include "Job.h"
 
-#include <QObject>
+#include "ThemeInfo.h"
 
-class QAbstractItemModel;
+#include <QObject>
 
 class Config : public QObject
 {
@@ -70,7 +70,7 @@ private:
     QString m_preselectThemeId;
     QString m_themeId;  // Id of selected theme
 
-    QAbstractItemModel* m_themeModel = nullptr;
+    ThemesModel* m_themeModel = nullptr;
 };
 
 #endif

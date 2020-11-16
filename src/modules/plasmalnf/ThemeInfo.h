@@ -10,6 +10,7 @@
 #ifndef PLASMALNF_THEMEINFO_H
 #define PLASMALNF_THEMEINFO_H
 
+#include <QAbstractListModel>
 #include <QList>
 #include <QString>
 
@@ -49,7 +50,6 @@ struct ThemeInfo
     {
     }
 
-    // Defined in PlasmaLnfPage.cpp
     explicit ThemeInfo( const KPluginMetaData& );
 
     bool isValid() const { return !id.isEmpty(); }
@@ -87,5 +87,30 @@ public:
     /** @brief Checks if a given @p id is in the list of themes. */
     bool contains( const QString& id ) const { return findById( id ) != nullptr; }
 };
+
+class ThemesModel : public QAbstractListModel
+{
+    Q_OBJECT
+
+public:
+    enum
+    {
+        LabelRole = Qt::DisplayRole,
+        KeyRole = Qt::UserRole
+    };
+
+    explicit ThemesModel( QObject* parent );
+
+    int rowCount( const QModelIndex& = QModelIndex() ) const override;
+    QVariant data( const QModelIndex& index, int role ) const override;
+
+    QHash< int, QByteArray > roleNames() const override;
+
+    const ThemeInfo* findById( const QString& id ) const { return m_themes.findById( id ); }
+
+private:
+    ThemeInfoList m_themes;
+};
+
 
 #endif

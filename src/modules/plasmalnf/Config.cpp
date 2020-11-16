@@ -10,6 +10,7 @@
 #include "Config.h"
 
 #include "PlasmaLnfJob.h"
+#include "ThemeInfo.h"
 
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
@@ -19,78 +20,6 @@
 #include <KConfigGroup>
 #include <KSharedConfig>
 #endif
-
-#include <KPackage/Package>
-#include <KPackage/PackageLoader>
-
-#include <QAbstractListModel>
-#include <QList>
-
-class ThemesModel : public QAbstractListModel
-{
-    Q_OBJECT
-
-public:
-    enum
-    {
-        LabelRole = Qt::DisplayRole,
-        KeyRole = Qt::UserRole
-    };
-
-    explicit ThemesModel( QObject* parent );
-
-    int rowCount( const QModelIndex& = QModelIndex() ) const override;
-    QVariant data( const QModelIndex& index, int role ) const override;
-
-    QHash< int, QByteArray > roleNames() const override;
-
-private:
-    QList< KPluginMetaData > m_themes;
-};
-
-ThemesModel::ThemesModel( QObject* parent )
-    : QAbstractListModel( parent )
-    , m_themes( KPackage::PackageLoader::self()->listPackages( "Plasma/LookAndFeel" ) )
-{
-}
-
-int
-ThemesModel::rowCount( const QModelIndex& ) const
-{
-    return m_themes.count();
-}
-
-QVariant
-ThemesModel::data( const QModelIndex& index, int role ) const
-{
-    if ( !index.isValid() )
-    {
-        return QVariant();
-    }
-    if ( index.row() < 0 || index.row() >= m_themes.count() )
-    {
-        return QVariant();
-    }
-
-    const auto& item = m_themes.at( index.row() );
-    switch ( role )
-    {
-    case LabelRole:
-        return item.name();
-    case KeyRole:
-        return item.pluginId();
-    default:
-        return QVariant();
-    }
-    __builtin_unreachable();
-}
-
-QHash< int, QByteArray >
-ThemesModel::roleNames() const
-{
-    return { { LabelRole, "label" }, { KeyRole, "key" } };
-}
-
 
 static QString
 currentPlasmaTheme()
@@ -190,7 +119,3 @@ Config::setTheme( const QString& id )
     }
     emit themeChanged( id );
 }
-
-#include "utils/moc-warnings.h"
-
-#include "Config.moc"
