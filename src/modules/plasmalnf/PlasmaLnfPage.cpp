@@ -17,7 +17,8 @@
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 
-#include <QAbstractButton>
+#include <QComboBox>
+
 
 #include <KPackage/Package>
 #include <KPackage/PackageLoader>
@@ -42,4 +43,18 @@ PlasmaLnfPage::PlasmaLnfPage( Config* config, QWidget* parent )
                                                  "selection will give you a live preview of that look-and-feel." ) );
     } )
     connect( this, &PlasmaLnfPage::plasmaThemeSelected, config, &Config::setTheme );
+
+    QComboBox* box = new QComboBox();
+    box->setModel( m_config->themeModel() );
+    ui->verticalLayout->addWidget( box );
+
+    connect( box, QOverload< int >::of( &QComboBox::currentIndexChanged ), [this]( int index ) {
+        auto* model = m_config->themeModel();
+        auto id = model->data( model->index( index, 0 ), ThemesModel::KeyRole ).toString();
+        cDebug() << "ComboBox selected" << index << id;
+        if ( !id.isEmpty() )
+        {
+            emit plasmaThemeSelected( id );
+        }
+    } );
 }

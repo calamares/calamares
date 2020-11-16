@@ -43,6 +43,8 @@ Config::Config( QObject* parent )
     filter->setFilterRole( ThemesModel::ShownRole );
     filter->setFilterFixedString( QStringLiteral( "true" ) );
     filter->setSourceModel( m_themeModel );
+    filter->setSortRole( ThemesModel::LabelRole );
+    filter->sort( 0 );
 
     m_filteredModel = filter;
 }
