@@ -7,15 +7,20 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.34 (unreleased) #
+# 3.2.34 (2020-11-16) #
 
 This release contains contributions from (alphabetically by first name):
  - Artem Grinev
+ - Gaël PORTAY
 
 ## Core ##
  - No core changes yet
 
 ## Modules ##
+ - The *keyboard* module had a regression in which it no-longer painted
+   the keycaps in the keyboard preview. (reported by Vinnie)
+ - The *plasmalnf* module did not set all of the look-and-feel values
+   in the target system. (reported by Bluestar Linux)
  - In the *users* module, warnings about the strength of the password
    are now correctly pluralized when possible.
  - In the *users* module, if ICU is installed, the user's full name is
