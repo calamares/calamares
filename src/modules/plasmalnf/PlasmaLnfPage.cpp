@@ -17,10 +17,9 @@
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 
-#include <QListView>
-
-#include <KPackage/Package>
-#include <KPackage/PackageLoader>
+#include <QHeaderView>
+#include <QStyledItemDelegate>
+#include <QTableView>
 
 PlasmaLnfPage::PlasmaLnfPage( Config* config, QWidget* parent )
     : QWidget( parent )
@@ -43,8 +42,9 @@ PlasmaLnfPage::PlasmaLnfPage( Config* config, QWidget* parent )
     } )
     connect( this, &PlasmaLnfPage::plasmaThemeSelected, config, &Config::setTheme );
 
-    QListView* view = new QListView( this );
-    view->setUniformItemSizes( true );
+    QTableView* view = new QTableView( this );
+    view->verticalHeader()->hide();
+    view->horizontalHeader()->hide();
     view->setModel( m_config->themeModel() );
     ui->verticalLayout->addWidget( view );
 

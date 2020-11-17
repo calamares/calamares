@@ -26,6 +26,7 @@ public:
         LabelRole = Qt::DisplayRole,
         KeyRole = Qt::UserRole,
         ShownRole,
+        DescriptionRole,
         ImageRole
     };
 
