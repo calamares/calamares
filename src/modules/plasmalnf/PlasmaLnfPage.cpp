@@ -39,7 +39,7 @@ ThemeColumns::ThemeColumns( QObject* parent )
 }
 
 QVariant
-ThemeColumns::extraColumnData( const QModelIndex& parent, int row, int extraColumn, int role ) const
+ThemeColumns::extraColumnData( const QModelIndex&, int row, int extraColumn, int role ) const
 {
     if ( role != Qt::DisplayRole )
     {
@@ -80,9 +80,9 @@ PlasmaLnfPage::PlasmaLnfPage( Config* config, QWidget* parent )
     connect( this, &PlasmaLnfPage::plasmaThemeSelected, config, &Config::setTheme );
 
     QTableView* view = new QTableView( this );
-    ThemeColumns* model = new ThemeColumns( this );
-    model->setSourceModel( m_config->themeModel() );
-    view->setModel( model );
+    ThemeColumns* columnsModel = new ThemeColumns( this );
+    columnsModel->setSourceModel( m_config->themeModel() );
+    view->setModel( columnsModel );
     view->verticalHeader()->hide();
     view->horizontalHeader()->hide();
     ui->verticalLayout->addWidget( view );
@@ -96,7 +96,6 @@ PlasmaLnfPage::PlasmaLnfPage( Config* config, QWidget* parent )
                      auto row = i.first().row();
                      auto* model = m_config->themeModel();
                      auto id = model->data( model->index( row, 0 ), ThemesModel::KeyRole ).toString();
-                     cDebug() << "View selected" << selected << id;
                      if ( !id.isEmpty() )
                      {
                          emit plasmaThemeSelected( id );
