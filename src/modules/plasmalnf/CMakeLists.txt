@@ -37,7 +37,6 @@ if ( KF5Plasma_FOUND AND KF5Package_FOUND )
             PlasmaLnfPage.cpp
             PlasmaLnfJob.cpp
             ThemeInfo.cpp
-            ThemeWidget.cpp
         RESOURCES
             page_plasmalnf.qrc
         UI

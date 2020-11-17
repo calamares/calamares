@@ -14,82 +14,7 @@
 #include <QList>
 #include <QString>
 
-class KPluginMetaData;
-
-/** @brief describes a single plasma LnF theme.
- *
- * A theme description has an id, which is really the name of the desktop
- * file (e.g. org.kde.breeze.desktop), a name which is human-readable and
- * translated, and an optional image Page, which points to a local screenshot
- * of that theme.
- */
-struct ThemeInfo
-{
-    QString id;
-    QString name;
-    QString description;
-    QString imagePath;
-    bool show = true;
-
-    ThemeInfo() {}
-
-    explicit ThemeInfo( const QString& _id )
-        : id( _id )
-    {
-    }
-
-    explicit ThemeInfo( const QString& _id, const QString& image )
-        : id( _id )
-        , imagePath( image )
-    {
-    }
-
-    explicit ThemeInfo( const KPluginMetaData& );
-
-    bool isValid() const { return !id.isEmpty(); }
-};
-
-class ThemeInfoList : public QList< ThemeInfo >
-{
-public:
-    std::pair< int, const ThemeInfo* > indexById( const QString& id ) const
-    {
-        int index = 0;
-        for ( const ThemeInfo& i : *this )
-        {
-            if ( i.id == id )
-            {
-                return { index, &i };
-            }
-        }
-        return { -1, nullptr };
-    }
-
-    std::pair< int, ThemeInfo* > indexById( const QString& id )
-    {
-        // Call the const version and then munge the types
-        auto [ i, p ] = const_cast< const ThemeInfoList* >( this )->indexById( id );
-        return { i, const_cast< ThemeInfo* >( p ) };
-    }
-
-
-    /** @brief Looks for a given @p id in the list of themes, returns nullptr if not found. */
-    ThemeInfo* findById( const QString& id )
-    {
-        auto [ i, p ] = indexById( id );
-        return p;
-    }
-
-    /** @brief Looks for a given @p id in the list of themes, returns nullptr if not found. */
-    const ThemeInfo* findById( const QString& id ) const
-    {
-        auto [ i, p ] = indexById( id );
-        return p;
-    }
-
-    /** @brief Checks if a given @p id is in the list of themes. */
-    bool contains( const QString& id ) const { return findById( id ) != nullptr; }
-};
+class ThemeInfoList;
 
 class ThemesModel : public QAbstractListModel
 {
@@ -111,8 +36,6 @@ public:
 
     QHash< int, QByteArray > roleNames() const override;
 
-    const ThemeInfo* findById( const QString& id ) const { return m_themes.findById( id ); }
-
     /// @brief Set the screenshot to go with the given @p id
     void setThemeImage( const QString& id, const QString& imagePath );
 
@@ -126,7 +49,7 @@ public:
     void showOnlyThemes( const QMap< QString, QString >& onlyThese );
 
 private:
-    ThemeInfoList m_themes;
+    ThemeInfoList* m_themes;
 };
 
 
