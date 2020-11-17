@@ -17,9 +17,46 @@
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 
+#include <KExtraColumnsProxyModel>
+
 #include <QHeaderView>
 #include <QStyledItemDelegate>
 #include <QTableView>
+
+class ThemeColumns : public KExtraColumnsProxyModel
+{
+public:
+    ThemeColumns( QObject* parent );
+
+    QVariant extraColumnData( const QModelIndex& parent, int row, int extraColumn, int role ) const override;
+};
+
+ThemeColumns::ThemeColumns( QObject* parent )
+    : KExtraColumnsProxyModel( parent )
+{
+    appendColumn();
+    appendColumn();
+}
+
+QVariant
+ThemeColumns::extraColumnData( const QModelIndex& parent, int row, int extraColumn, int role ) const
+{
+    if ( role != Qt::DisplayRole )
+    {
+        return QVariant();
+    }
+    switch ( extraColumn )
+    {
+    case 0:
+        return sourceModel()->data( sourceModel()->index( row, 0 ), ThemesModel::DescriptionRole );
+    case 1:
+        return sourceModel()->data( sourceModel()->index( row, 0 ), ThemesModel::ImageRole );
+    default:
+        return QVariant();
+    }
+    __builtin_unreachable();
+}
+
 
 PlasmaLnfPage::PlasmaLnfPage( Config* config, QWidget* parent )
     : QWidget( parent )
@@ -43,9 +80,11 @@ PlasmaLnfPage::PlasmaLnfPage( Config* config, QWidget* parent )
     connect( this, &PlasmaLnfPage::plasmaThemeSelected, config, &Config::setTheme );
 
     QTableView* view = new QTableView( this );
+    ThemeColumns* model = new ThemeColumns( this );
+    model->setSourceModel( m_config->themeModel() );
+    view->setModel( model );
     view->verticalHeader()->hide();
     view->horizontalHeader()->hide();
-    view->setModel( m_config->themeModel() );
     ui->verticalLayout->addWidget( view );
 
     connect( view->selectionModel(),
@@ -54,8 +93,9 @@ PlasmaLnfPage::PlasmaLnfPage( Config* config, QWidget* parent )
                  auto i = selected.indexes();
                  if ( !i.isEmpty() )
                  {
+                     auto row = i.first().row();
                      auto* model = m_config->themeModel();
-                     auto id = model->data( i.first(), ThemesModel::KeyRole ).toString();
+                     auto id = model->data( model->index( row, 0 ), ThemesModel::KeyRole ).toString();
                      cDebug() << "View selected" << selected << id;
                      if ( !id.isEmpty() )
                      {

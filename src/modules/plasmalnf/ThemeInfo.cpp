@@ -8,8 +8,16 @@
  */
 #include "ThemeInfo.h"
 
+#include "Branding.h"
+#include "utils/CalamaresUtilsGui.h"
+#include "utils/Logger.h"
+
 #include <KPackage/Package>
 #include <KPackage/PackageLoader>
+
+#include <QDir>
+#include <QFileInfo>
+#include <QPixmap>
 
 /** @brief describes a single plasma LnF theme.
  *
@@ -24,6 +32,7 @@ struct ThemeInfo
     QString name;
     QString description;
     QString imagePath;
+    mutable QPixmap pixmap;
     bool show = true;
 
     ThemeInfo() {}
@@ -42,6 +51,9 @@ struct ThemeInfo
     explicit ThemeInfo( const KPluginMetaData& );
 
     bool isValid() const { return !id.isEmpty(); }
+
+    /// @brief Fill in the pixmap member based on imagePath
+    QPixmap loadImage() const;
 };
 
 class ThemeInfoList : public QList< ThemeInfo >
@@ -128,6 +140,8 @@ ThemesModel::data( const QModelIndex& index, int role ) const
         return item.show;
     case DescriptionRole:
         return item.description;
+    case ImageRole:
+        return item.loadImage();
     default:
         return QVariant();
     }
@@ -198,10 +212,74 @@ ThemesModel::showOnlyThemes( const QMap< QString, QString >& onlyThese )
     emit dataChanged( index( 0, 0 ), index( m_themes->count() - 1 ), { ShownRole } );
 }
 
+/**
+ * Massage the given @p path to the most-likely
+ * path that actually contains a screenshot. For
+ * empty image paths, returns the QRC path for an
+ * empty screenshot. Returns blank if the path
+ * doesn't exist anywhere in the search paths.
+ */
+static QString
+munge_imagepath( const QString& path )
+{
+    if ( path.isEmpty() )
+    {
+        return ":/view-preview.png";
+    }
+
+    if ( path.startsWith( '/' ) )
+    {
+        return path;
+    }
+
+    if ( QFileInfo::exists( path ) )
+    {
+        return path;
+    }
+
+    QFileInfo fi( QDir( Calamares::Branding::instance()->componentDirectory() ), path );
+    if ( fi.exists() )
+    {
+        return fi.absoluteFilePath();
+    }
+
+    return QString();
+}
 
 ThemeInfo::ThemeInfo( const KPluginMetaData& data )
     : id( data.pluginId() )
     , name( data.name() )
     , description( data.description() )
 {
+}
+
+QPixmap
+ThemeInfo::loadImage() const
+{
+    if ( pixmap.isNull() )
+    {
+
+        const QSize image_size { qMax( 12 * CalamaresUtils::defaultFontHeight(), 120 ),
+                                 qMax( 8 * CalamaresUtils::defaultFontHeight(), 80 ) };
+
+        const QString path = munge_imagepath( imagePath );
+        cDebug() << "Loading initial image for" << id << imagePath << "->" << path;
+        QPixmap image( path );
+        if ( image.isNull() )
+        {
+            // Not found or not specified, so convert the name into some (horrible, likely)
+            // color instead.
+            image = QPixmap( image_size );
+            auto hash_color = qHash( imagePath.isEmpty() ? id : imagePath );
+            cDebug() << Logger::SubEntry << "Theme image" << imagePath << "not found, hash" << hash_color;
+            image.fill( QColor( QRgb( hash_color ) ) );
+        }
+        else
+        {
+            cDebug() << Logger::SubEntry << "Theme image" << image.size();
+        }
+
+        pixmap = image.scaled( image_size, Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
+    }
+    return pixmap;
 }
