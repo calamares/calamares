@@ -150,7 +150,7 @@ Config::setTheme( const QString& id )
 
         if ( r.getExitCode() )
         {
-            cWarning() << r.explainProcess( command, std::chrono::seconds( 10 ) );
+            cWarning() << "Failed (" << r.getExitCode() << ')';
         }
         else
         {
