@@ -17,8 +17,7 @@
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 
-#include <QComboBox>
-
+#include <QListView>
 
 #include <KPackage/Package>
 #include <KPackage/PackageLoader>
@@ -44,17 +43,24 @@ PlasmaLnfPage::PlasmaLnfPage( Config* config, QWidget* parent )
     } )
     connect( this, &PlasmaLnfPage::plasmaThemeSelected, config, &Config::setTheme );
 
-    QComboBox* box = new QComboBox();
-    box->setModel( m_config->themeModel() );
-    ui->verticalLayout->addWidget( box );
+    QListView* view = new QListView( this );
+    view->setUniformItemSizes( true );
+    view->setModel( m_config->themeModel() );
+    ui->verticalLayout->addWidget( view );
 
-    connect( box, QOverload< int >::of( &QComboBox::currentIndexChanged ), [this]( int index ) {
-        auto* model = m_config->themeModel();
-        auto id = model->data( model->index( index, 0 ), ThemesModel::KeyRole ).toString();
-        cDebug() << "ComboBox selected" << index << id;
-        if ( !id.isEmpty() )
-        {
-            emit plasmaThemeSelected( id );
-        }
-    } );
+    connect( view->selectionModel(),
+             &QItemSelectionModel::selectionChanged,
+             [this]( const QItemSelection& selected, const QItemSelection& ) {
+                 auto i = selected.indexes();
+                 if ( !i.isEmpty() )
+                 {
+                     auto* model = m_config->themeModel();
+                     auto id = model->data( i.first(), ThemesModel::KeyRole ).toString();
+                     cDebug() << "View selected" << selected << id;
+                     if ( !id.isEmpty() )
+                     {
+                         emit plasmaThemeSelected( id );
+                     }
+                 }
+             } );
 }
