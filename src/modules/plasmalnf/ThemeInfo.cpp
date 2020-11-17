@@ -65,10 +65,11 @@ ThemesModel::roleNames() const
 void
 ThemesModel::setThemeImage( const QString& id, const QString& imagePath )
 {
-    auto* theme = m_themes.findById( id );
+    auto [ i, theme ] = m_themes.indexById( id );
     if ( theme )
     {
         theme->imagePath = imagePath;
+        emit dataChanged( index( i, 0 ), index( i, 0 ), { ImageRole } );
     }
 }
 
@@ -80,9 +81,13 @@ ThemesModel::setThemeImage( const QMap< QString, QString >& images )
         return;
     }
 
-    for ( const auto& k : images )
+    // Don't emit signals from each call, aggregate to one call (below this block)
     {
-        setThemeImage( k, images[ k ] );
+        QSignalBlocker b( this );
+        for ( const auto& k : images )
+        {
+            setThemeImage( k, images[ k ] );
+        }
     }
     emit dataChanged( index( 0, 0 ), index( m_themes.count() - 1 ), { ImageRole } );
 }
@@ -90,10 +95,11 @@ ThemesModel::setThemeImage( const QMap< QString, QString >& images )
 void
 ThemesModel::showTheme( const QString& id, bool show )
 {
-    auto* theme = m_themes.findById( id );
+    auto [ i, theme ] = m_themes.indexById( id );
     if ( theme )
     {
         theme->show = show;
+        emit dataChanged( index( i, 0 ), index( i, 0 ), { ShownRole } );
     }
 }
 
@@ -105,6 +111,8 @@ ThemesModel::showOnlyThemes( const QMap< QString, QString >& onlyThese )
         return;
     }
 
+    // No signal blocker block needed here because we're not calling showTheme()
+    // QSignalBlocker b( this );
     for ( auto& t : m_themes )
     {
         t.show = onlyThese.contains( t.id );
