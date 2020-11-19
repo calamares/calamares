@@ -136,23 +136,6 @@ class UnpackEntry:
 ON_POSIX = 'posix' in sys.builtin_module_names
 
 
-def global_excludes():
-    """
-    List excludes for rsync.
-    """
-    lst = []
-    extra_mounts = globalstorage.value("extraMounts")
-    if extra_mounts is None:
-        extra_mounts = []
-
-    for extra_mount in extra_mounts:
-        mount_point = extra_mount["mountPoint"]
-
-        if mount_point:
-            lst.extend(['--exclude', mount_point + '/'])
-
-    return lst
-
 def file_copy(source, entry, progress_cb):
     """
     Extract given image using rsync.
@@ -181,8 +164,7 @@ def file_copy(source, entry, progress_cb):
     num_files_total_local = 0
     num_files_copied = 0  # Gets updated through rsync output
 
-    args = ['rsync', '-aHAXr']
-    args.extend(global_excludes())
+    args = ['rsync', '-aHAXxr']
     if entry.excludeFile:
         args.extend(["--exclude-from=" + entry.excludeFile])
     if entry.exclude:
