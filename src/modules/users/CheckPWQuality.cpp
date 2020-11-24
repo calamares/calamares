@@ -230,7 +230,7 @@ public:
             if ( m_errorCount )
             {
                 return QCoreApplication::translate(
-                    "PWQ", "The password contains fewer  than %n lowercase letters", nullptr, m_errorCount );
+                    "PWQ", "The password contains fewer than %n lowercase letters", nullptr, m_errorCount );
             }
             return QCoreApplication::translate( "PWQ", "The password contains too few lowercase letters" );
         case PWQ_ERROR_MIN_OTHERS:
