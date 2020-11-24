@@ -90,6 +90,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     swap_outer_uuid = ""
     swap_outer_mappername = None
     no_save_default = False
+    unencrypted_separate_boot = any(p["mountPoint"] == "/boot" and "luksMapperName" not in p for p in partitions)
 
     for partition in partitions:
         if partition["mountPoint"] in ("/", "/boot") and partition["fs"] in ("btrfs", "f2fs"):
@@ -239,7 +240,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     if not have_distributor_line:
         lines.append(distributor_line)
 
-    if cryptdevice_params:
+    if cryptdevice_params and not unencrypted_separate_boot:
         lines.append("GRUB_ENABLE_CRYPTODISK=y")
 
     with open(default_grub, 'w') as grub_file:

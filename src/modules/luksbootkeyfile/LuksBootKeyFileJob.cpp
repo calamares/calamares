@@ -129,6 +129,31 @@ setupLuks( const LuksDevice& d )
     return true;
 }
 
+// static
+QVariantList
+partitions()
+{
+    Calamares::GlobalStorage* globalStorage = Calamares::JobQueue::instance()->globalStorage();
+    return globalStorage->value( QStringLiteral( "partitions" ) ).toList();
+}
+
+// static
+bool
+hasUnencryptedSeparateBoot()
+{
+    const QVariantList partitions = ::partitions();
+    for ( const QVariant& partition : partitions )
+    {
+        QVariantMap partitionMap = partition.toMap();
+        QString mountPoint = partitionMap.value( QStringLiteral( "mountPoint" ) ).toString();
+        if ( mountPoint == QStringLiteral( "/boot" ) )
+        {
+            return !partitionMap.contains( QStringLiteral( "luksMapperName" ) );
+        }
+    }
+    return false;
+}
+
 Calamares::JobResult
 LuksBootKeyFileJob::exec()
 {
@@ -171,6 +196,13 @@ LuksBootKeyFileJob::exec()
     {
         // Then there was no root partition
         cDebug() << Logger::SubEntry << "No root partition.";
+        return Calamares::JobResult::ok();
+    }
+
+    // /boot partition is not encrypted, keyfile must not be used
+    if ( hasUnencryptedSeparateBoot() )
+    {
+        cDebug() << Logger::SubEntry << "/boot partition is not encrypted, skipping keyfile creation.";
         return Calamares::JobResult::ok();
     }
 
