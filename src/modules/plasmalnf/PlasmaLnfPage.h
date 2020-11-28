@@ -38,9 +38,6 @@ class PlasmaLnfPage : public QWidget
 public:
     explicit PlasmaLnfPage( Config* config, QWidget* parent = nullptr );
 
-signals:
-    void plasmaThemeSelected( const QString& id );
-
 private:
     Ui::PlasmaLnfPage* ui;
     Config* m_config;
