@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-09 16:19+0100\n"
+"POT-Creation-Date: 2020-11-25 11:10+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Davidmp <medipas@gmail.com>, 2020\n"
 "Language-Team: Catalan (https://www.transifex.com/calamares/teams/20061/ca/)\n"
@@ -21,32 +21,143 @@ msgstr ""
 "Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/modules/grubcfg/main.py:28
-msgid "Configure GRUB."
-msgstr "Configura el GRUB."
+#: src/modules/packages/main.py:50 src/modules/packages/main.py:59
+#: src/modules/packages/main.py:69
+msgid "Install packages."
+msgstr "Instal·la els paquets."
 
-#: src/modules/mount/main.py:30
-msgid "Mounting partitions."
-msgstr "Es munten les particions."
+#: src/modules/packages/main.py:57
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "Es processen paquets (%(count)d / %(total)d)"
 
-#: src/modules/mount/main.py:127 src/modules/initcpiocfg/main.py:199
-#: src/modules/initcpiocfg/main.py:203
-#: src/modules/luksopenswaphookcfg/main.py:86
-#: src/modules/luksopenswaphookcfg/main.py:90 src/modules/rawfs/main.py:164
-#: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
-#: src/modules/openrcdmcryptcfg/main.py:69
-#: src/modules/openrcdmcryptcfg/main.py:73 src/modules/fstab/main.py:361
-#: src/modules/fstab/main.py:367 src/modules/localecfg/main.py:135
-#: src/modules/networkcfg/main.py:39
+#: src/modules/packages/main.py:62
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] "S'instal·la un paquet."
+msgstr[1] "S'instal·len %(num)d paquets."
+
+#: src/modules/packages/main.py:65
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] "Se suprimeix un paquet."
+msgstr[1] "Se suprimeixen %(num)d paquets."
+
+#: src/modules/networkcfg/main.py:28
+msgid "Saving network configuration."
+msgstr "Es desa la configuració de la xarxa."
+
+#: src/modules/networkcfg/main.py:39 src/modules/initcpiocfg/main.py:198
+#: src/modules/initcpiocfg/main.py:202 src/modules/openrcdmcryptcfg/main.py:72
+#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/localecfg/main.py:135
+#: src/modules/mount/main.py:127 src/modules/luksopenswaphookcfg/main.py:86
+#: src/modules/luksopenswaphookcfg/main.py:90 src/modules/fstab/main.py:361
+#: src/modules/fstab/main.py:367 src/modules/initramfscfg/main.py:85
+#: src/modules/initramfscfg/main.py:89 src/modules/rawfs/main.py:164
 msgid "Configuration Error"
 msgstr "Error de configuració"
 
-#: src/modules/mount/main.py:128 src/modules/initcpiocfg/main.py:200
-#: src/modules/luksopenswaphookcfg/main.py:87 src/modules/rawfs/main.py:165
-#: src/modules/initramfscfg/main.py:86 src/modules/openrcdmcryptcfg/main.py:70
-#: src/modules/fstab/main.py:362
+#: src/modules/networkcfg/main.py:40 src/modules/initcpiocfg/main.py:203
+#: src/modules/openrcdmcryptcfg/main.py:77 src/modules/localecfg/main.py:136
+#: src/modules/luksopenswaphookcfg/main.py:91 src/modules/fstab/main.py:368
+#: src/modules/initramfscfg/main.py:90
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr ""
+"No s'ha proporcionat el punt de muntatge perquè l'usi <pre>{!s}</pre>."
+
+#: src/modules/umount/main.py:31
+msgid "Unmount file systems."
+msgstr "Desmunta els sistemes de fitxers."
+
+#: src/modules/initcpiocfg/main.py:28
+msgid "Configuring mkinitcpio."
+msgstr "Es configura mkinitcpio."
+
+#: src/modules/initcpiocfg/main.py:199 src/modules/openrcdmcryptcfg/main.py:73
+#: src/modules/mount/main.py:128 src/modules/luksopenswaphookcfg/main.py:87
+#: src/modules/fstab/main.py:362 src/modules/initramfscfg/main.py:86
+#: src/modules/rawfs/main.py:165
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "No s'han definit particions perquè les usi <pre>{!s}</pre>."
+
+#: src/modules/mkinitfs/main.py:27
+msgid "Creating initramfs with mkinitfs."
+msgstr "Es creen initramfs amb mkinitfs."
+
+#: src/modules/mkinitfs/main.py:49
+msgid "Failed to run mkinitfs on the target"
+msgstr "Ha fallat executar mkinitfs a la destinació."
+
+#: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
+msgid "The exit code was {}"
+msgstr "El codi de sortida ha estat {}"
+
+#: src/modules/openrcdmcryptcfg/main.py:26
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "Es configura el sevei OpenRC dmcrypt."
+
+#: src/modules/unpackfs/main.py:35
+msgid "Filling up filesystems."
+msgstr "S'omplen els sistemes de fitxers."
+
+#: src/modules/unpackfs/main.py:255
+msgid "rsync failed with error code {}."
+msgstr "Ha fallat rsync amb el codi d'error {}."
+
+#: src/modules/unpackfs/main.py:300
+msgid "Unpacking image {}/{}, file {}/{}"
+msgstr "Es desempaqueta la imatge {}/{}, fitxer {}/{}"
+
+#: src/modules/unpackfs/main.py:315
+msgid "Starting to unpack {}"
+msgstr "Es comença a desempaquetar {}"
+
+#: src/modules/unpackfs/main.py:324 src/modules/unpackfs/main.py:464
+msgid "Failed to unpack image \"{}\""
+msgstr "Ha fallat desempaquetar la imatge \"{}\"."
+
+#: src/modules/unpackfs/main.py:431
+msgid "No mount point for root partition"
+msgstr "No hi ha punt de muntatge per a la partició d'arrel."
+
+#: src/modules/unpackfs/main.py:432
+msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
+msgstr "globalstorage no conté cap clau de \"rootMountPoint\". No es fa res."
+
+#: src/modules/unpackfs/main.py:437
+msgid "Bad mount point for root partition"
+msgstr "Punt de muntatge incorrecte per a la partició d'arrel"
+
+#: src/modules/unpackfs/main.py:438
+msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
+msgstr "El punt de muntatge d'arrel és \"{}\", que no existeix. No es fa res."
+
+#: src/modules/unpackfs/main.py:454 src/modules/unpackfs/main.py:458
+#: src/modules/unpackfs/main.py:478
+msgid "Bad unsquash configuration"
+msgstr "Configuració incorrecta d'unsquash."
+
+#: src/modules/unpackfs/main.py:455
+msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
+msgstr "El sistema de fitxers per a {} ({}) no és admès pel nucli actual."
+
+#: src/modules/unpackfs/main.py:459
+msgid "The source filesystem \"{}\" does not exist"
+msgstr "El sistema de fitxers font \"{}\" no existeix."
+
+#: src/modules/unpackfs/main.py:465
+msgid ""
+"Failed to find unsquashfs, make sure you have the squashfs-tools package "
+"installed"
+msgstr ""
+"Ha fallat trobar unsquashfs, assegureu-vos que tingueu el paquet squashfs-"
+"tools instal·lat."
+
+#: src/modules/unpackfs/main.py:479
+msgid "The destination \"{}\" in the target system is not a directory"
+msgstr "La destinació \"{}\" al sistema de destinació no és un directori."
 
 #: src/modules/services-systemd/main.py:26
 msgid "Configure systemd services"
@@ -89,70 +200,101 @@ msgstr ""
 "Ordres desconegudes de systemd: <code>{command!s}</code> i "
 "<code>{suffix!s}</code>, per a la unitat {name!s}."
 
-#: src/modules/umount/main.py:31
-msgid "Unmount file systems."
-msgstr "Desmunta els sistemes de fitxers."
+#: src/modules/dummypython/main.py:35
+msgid "Dummy python job."
+msgstr "Tasca de python fictícia."
 
-#: src/modules/unpackfs/main.py:35
-msgid "Filling up filesystems."
-msgstr "S'omplen els sistemes de fitxers."
+#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
+#: src/modules/dummypython/main.py:94
+msgid "Dummy python step {}"
+msgstr "Pas de python fitctici {}"
 
-#: src/modules/unpackfs/main.py:254
-msgid "rsync failed with error code {}."
-msgstr "Ha fallat rsync amb el codi d'error {}."
+#: src/modules/bootloader/main.py:42
+msgid "Install bootloader."
+msgstr "S'instal·la el carregador d'arrencada."
 
-#: src/modules/unpackfs/main.py:299
-msgid "Unpacking image {}/{}, file {}/{}"
-msgstr "Es desempaqueta la imatge {}/{}, fitxer {}/{}"
+#: src/modules/localecfg/main.py:30
+msgid "Configuring locales."
+msgstr "Es configuren les llengües."
 
-#: src/modules/unpackfs/main.py:314
-msgid "Starting to unpack {}"
-msgstr "Es comença a desempaquetar {}"
+#: src/modules/mount/main.py:30
+msgid "Mounting partitions."
+msgstr "Es munten les particions."
 
-#: src/modules/unpackfs/main.py:323 src/modules/unpackfs/main.py:463
-msgid "Failed to unpack image \"{}\""
-msgstr "Ha fallat desempaquetar la imatge \"{}\"."
+#: src/modules/plymouthcfg/main.py:27
+msgid "Configure Plymouth theme"
+msgstr "Configura el tema del Plymouth"
 
-#: src/modules/unpackfs/main.py:430
-msgid "No mount point for root partition"
-msgstr "No hi ha punt de muntatge per a la partició d'arrel."
+#: src/modules/luksopenswaphookcfg/main.py:26
+msgid "Configuring encrypted swap."
+msgstr "Es configura l'intercanvi encriptat."
 
-#: src/modules/unpackfs/main.py:431
-msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr "globalstorage no conté cap clau de \"rootMountPoint\". No es fa res."
+#: src/modules/fstab/main.py:29
+msgid "Writing fstab."
+msgstr "S'escriu fstab."
 
-#: src/modules/unpackfs/main.py:436
-msgid "Bad mount point for root partition"
-msgstr "Punt de muntatge incorrecte per a la partició d'arrel"
+#: src/modules/services-openrc/main.py:29
+msgid "Configure OpenRC services"
+msgstr "Configura els serveis d'OpenRC"
 
-#: src/modules/unpackfs/main.py:437
-msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr "El punt de muntatge d'arrel és \"{}\", que no existeix. No es fa res."
+#: src/modules/services-openrc/main.py:57
+msgid "Cannot add service {name!s} to run-level {level!s}."
+msgstr "No es pot afegir el servei {name!s} al nivell d'execució {level!s}."
 
-#: src/modules/unpackfs/main.py:453 src/modules/unpackfs/main.py:457
-#: src/modules/unpackfs/main.py:477
-msgid "Bad unsquash configuration"
-msgstr "Configuració incorrecta d'unsquash."
-
-#: src/modules/unpackfs/main.py:454
-msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
-msgstr "El sistema de fitxers per a {} ({}) no és admès pel nucli actual."
-
-#: src/modules/unpackfs/main.py:458
-msgid "The source filesystem \"{}\" does not exist"
-msgstr "El sistema de fitxers font \"{}\" no existeix."
-
-#: src/modules/unpackfs/main.py:464
-msgid ""
-"Failed to find unsquashfs, make sure you have the squashfs-tools package "
-"installed"
+#: src/modules/services-openrc/main.py:59
+msgid "Cannot remove service {name!s} from run-level {level!s}."
 msgstr ""
-"Ha fallat trobar unsquashfs, assegureu-vos que tingueu el paquet squashfs-"
-"tools instal·lat."
+"No es pot suprimir el servei {name!s} del nivell d'execució {level!s}."
 
-#: src/modules/unpackfs/main.py:478
-msgid "The destination \"{}\" in the target system is not a directory"
-msgstr "La destinació \"{}\" al sistema de destinació no és un directori."
+#: src/modules/services-openrc/main.py:61
+msgid ""
+"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
+"level {level!s}."
+msgstr ""
+"Servei - acció desconeguda <code>{arg!s}</code> per al servei {name!s} al "
+"nivell d'execució {level!s}."
+
+#: src/modules/services-openrc/main.py:94
+msgid ""
+"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"La crida de <code>rc-update {arg!s}</code> a chroot ha retornat el codi "
+"d'error {num!s}."
+
+#: src/modules/services-openrc/main.py:101
+msgid "Target runlevel does not exist"
+msgstr "El nivell d'execució de destinació no existeix."
+
+#: src/modules/services-openrc/main.py:102
+msgid ""
+"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr ""
+"El camí per al nivell d'execució {level!s} és <code>{path!s}</code>, però no"
+" existeix."
+
+#: src/modules/services-openrc/main.py:110
+msgid "Target service does not exist"
+msgstr "El servei de destinació no existeix."
+
+#: src/modules/services-openrc/main.py:111
+msgid ""
+"The path for service {name!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr ""
+"El camí per al servei {name!s} és <code>{path!s}</code>, però no existeix."
+
+#: src/modules/dracut/main.py:27
+msgid "Creating initramfs with dracut."
+msgstr "Es creen initramfs amb dracut."
+
+#: src/modules/dracut/main.py:49
+msgid "Failed to run dracut on the target"
+msgstr "Ha fallat executar dracut a la destinació."
+
+#: src/modules/grubcfg/main.py:28
+msgid "Configure GRUB."
+msgstr "Configura el GRUB."
 
 #: src/modules/displaymanager/main.py:514
 msgid "Cannot write KDM configuration file"
@@ -211,159 +353,14 @@ msgstr ""
 msgid "Display manager configuration was incomplete"
 msgstr "La configuració del gestor de pantalla no era completa."
 
-#: src/modules/initcpiocfg/main.py:28
-msgid "Configuring mkinitcpio."
-msgstr "Es configura mkinitcpio."
-
-#: src/modules/initcpiocfg/main.py:204
-#: src/modules/luksopenswaphookcfg/main.py:91
-#: src/modules/initramfscfg/main.py:90 src/modules/openrcdmcryptcfg/main.py:74
-#: src/modules/fstab/main.py:368 src/modules/localecfg/main.py:136
-#: src/modules/networkcfg/main.py:40
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr ""
-"No s'ha proporcionat el punt de muntatge perquè l'usi <pre>{!s}</pre>."
-
-#: src/modules/luksopenswaphookcfg/main.py:26
-msgid "Configuring encrypted swap."
-msgstr "Es configura l'intercanvi encriptat."
-
-#: src/modules/rawfs/main.py:26
-msgid "Installing data."
-msgstr "S'instal·len dades."
-
-#: src/modules/services-openrc/main.py:29
-msgid "Configure OpenRC services"
-msgstr "Configura els serveis d'OpenRC"
-
-#: src/modules/services-openrc/main.py:57
-msgid "Cannot add service {name!s} to run-level {level!s}."
-msgstr "No es pot afegir el servei {name!s} al nivell d'execució {level!s}."
-
-#: src/modules/services-openrc/main.py:59
-msgid "Cannot remove service {name!s} from run-level {level!s}."
-msgstr ""
-"No es pot suprimir el servei {name!s} del nivell d'execució {level!s}."
-
-#: src/modules/services-openrc/main.py:61
-msgid ""
-"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
-"level {level!s}."
-msgstr ""
-"Servei - acció desconeguda <code>{arg!s}</code> per al servei {name!s} al "
-"nivell d'execució {level!s}."
-
-#: src/modules/services-openrc/main.py:94
-msgid ""
-"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr ""
-"La crida de <code>rc-update {arg!s}</code> a chroot ha retornat el codi "
-"d'error {num!s}."
-
-#: src/modules/services-openrc/main.py:101
-msgid "Target runlevel does not exist"
-msgstr "El nivell d'execució de destinació no existeix."
-
-#: src/modules/services-openrc/main.py:102
-msgid ""
-"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr ""
-"El camí per al nivell d'execució {level!s} és <code>{path!s}</code>, però no"
-" existeix."
-
-#: src/modules/services-openrc/main.py:110
-msgid "Target service does not exist"
-msgstr "El servei de destinació no existeix."
-
-#: src/modules/services-openrc/main.py:111
-msgid ""
-"The path for service {name!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr ""
-"El camí per al servei {name!s} és <code>{path!s}</code>, però no existeix."
-
-#: src/modules/plymouthcfg/main.py:27
-msgid "Configure Plymouth theme"
-msgstr "Configura el tema del Plymouth"
-
-#: src/modules/packages/main.py:50 src/modules/packages/main.py:59
-#: src/modules/packages/main.py:69
-msgid "Install packages."
-msgstr "Instal·la els paquets."
-
-#: src/modules/packages/main.py:57
-#, python-format
-msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "Es processen paquets (%(count)d / %(total)d)"
-
-#: src/modules/packages/main.py:62
-#, python-format
-msgid "Installing one package."
-msgid_plural "Installing %(num)d packages."
-msgstr[0] "S'instal·la un paquet."
-msgstr[1] "S'instal·len %(num)d paquets."
-
-#: src/modules/packages/main.py:65
-#, python-format
-msgid "Removing one package."
-msgid_plural "Removing %(num)d packages."
-msgstr[0] "Se suprimeix un paquet."
-msgstr[1] "Se suprimeixen %(num)d paquets."
-
-#: src/modules/bootloader/main.py:42
-msgid "Install bootloader."
-msgstr "S'instal·la el carregador d'arrencada."
+#: src/modules/initramfscfg/main.py:32
+msgid "Configuring initramfs."
+msgstr "Es configuren initramfs."
 
 #: src/modules/hwclock/main.py:26
 msgid "Setting hardware clock."
 msgstr "S'estableix el rellotge del maquinari."
 
-#: src/modules/mkinitfs/main.py:27
-msgid "Creating initramfs with mkinitfs."
-msgstr "Es creen initramfs amb mkinitfs."
-
-#: src/modules/mkinitfs/main.py:49
-msgid "Failed to run mkinitfs on the target"
-msgstr "Ha fallat executar mkinitfs a la destinació."
-
-#: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
-msgid "The exit code was {}"
-msgstr "El codi de sortida ha estat {}"
-
-#: src/modules/dracut/main.py:27
-msgid "Creating initramfs with dracut."
-msgstr "Es creen initramfs amb dracut."
-
-#: src/modules/dracut/main.py:49
-msgid "Failed to run dracut on the target"
-msgstr "Ha fallat executar dracut a la destinació."
-
-#: src/modules/initramfscfg/main.py:32
-msgid "Configuring initramfs."
-msgstr "Es configuren initramfs."
-
-#: src/modules/openrcdmcryptcfg/main.py:25
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "Es configura el sevei OpenRC dmcrypt."
-
-#: src/modules/fstab/main.py:29
-msgid "Writing fstab."
-msgstr "S'escriu fstab."
-
-#: src/modules/dummypython/main.py:35
-msgid "Dummy python job."
-msgstr "Tasca de python fictícia."
-
-#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
-#: src/modules/dummypython/main.py:94
-msgid "Dummy python step {}"
-msgstr "Pas de python fitctici {}"
-
-#: src/modules/localecfg/main.py:30
-msgid "Configuring locales."
-msgstr "Es configuren les llengües."
-
-#: src/modules/networkcfg/main.py:28
-msgid "Saving network configuration."
-msgstr "Es desa la configuració de la xarxa."
+#: src/modules/rawfs/main.py:26
+msgid "Installing data."
+msgstr "S'instal·len dades."
