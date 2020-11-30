@@ -10,14 +10,7 @@
 #ifndef PLASMALNFPAGE_H
 #define PLASMALNFPAGE_H
 
-#include <QButtonGroup>
-#include <QList>
-#include <QString>
-#include <QStringList>
 #include <QWidget>
-
-#include "ThemeInfo.h"
-#include "ThemeWidget.h"
 
 namespace Ui
 {
