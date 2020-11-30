@@ -57,9 +57,8 @@ partitions()
     return globalStorage->value( QStringLiteral( "partitions" ) ).toList();
 }
 
-// static
-bool
-DracutLuksCfgJob::isRootEncrypted()
+static bool
+isRootEncrypted()
 {
     const QVariantList partitions = ::partitions();
     for ( const QVariant& partition : partitions )
@@ -74,9 +73,8 @@ DracutLuksCfgJob::isRootEncrypted()
     return false;
 }
 
-// static
-bool
-DracutLuksCfgJob::hasUnencryptedSeparateBoot()
+static bool
+hasUnencryptedSeparateBoot()
 {
     const QVariantList partitions = ::partitions();
     for ( const QVariant& partition : partitions )
@@ -91,9 +89,8 @@ DracutLuksCfgJob::hasUnencryptedSeparateBoot()
     return false;
 }
 
-// static
-QString
-DracutLuksCfgJob::swapOuterUuid()
+static QString
+swapOuterUuid()
 {
     const QVariantList partitions = ::partitions();
     for ( const QVariant& partition : partitions )
@@ -148,7 +145,7 @@ DracutLuksCfgJob::exec()
         QTextStream outStream( &configFile );
         outStream << CONFIG_FILE_HEADER
                   << ( hasUnencryptedSeparateBoot() ? CONFIG_FILE_CRYPTTAB_LINE : CONFIG_FILE_CRYPTTAB_KEYFILE_LINE );
-        const QString swapOuterUuid = DracutLuksCfgJob::swapOuterUuid();
+        const QString swapOuterUuid = ::swapOuterUuid();
         if ( !swapOuterUuid.isEmpty() )
         {
             cDebug() << "[DRACUTLUKSCFG]: Swap outer UUID" << swapOuterUuid;
