@@ -212,6 +212,14 @@ ThemesModel::showOnlyThemes( const QMap< QString, QString >& onlyThese )
     emit dataChanged( index( 0, 0 ), index( m_themes->count() - 1 ), { ShownRole } );
 }
 
+QSize
+ThemesModel::imageSize()
+{
+    return { qMax( 12 * CalamaresUtils::defaultFontHeight(), 120 ),
+             qMax( 8 * CalamaresUtils::defaultFontHeight(), 80 ) };
+}
+
+
 /**
  * Massage the given @p path to the most-likely
  * path that actually contains a screenshot. For
@@ -259,8 +267,7 @@ ThemeInfo::loadImage() const
     if ( pixmap.isNull() )
     {
 
-        const QSize image_size { qMax( 12 * CalamaresUtils::defaultFontHeight(), 120 ),
-                                 qMax( 8 * CalamaresUtils::defaultFontHeight(), 80 ) };
+        const QSize image_size( ThemesModel::imageSize() );
 
         const QString path = munge_imagepath( imagePath );
         cDebug() << "Loading initial image for" << id << imagePath << "->" << path;

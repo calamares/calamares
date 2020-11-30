@@ -49,6 +49,14 @@ public:
     /// @brief Shows the keys in the @p onlyThese map, and hides the rest
     void showOnlyThemes( const QMap< QString, QString >& onlyThese );
 
+    /** @brief The size of theme Images
+     *
+     * The size is dependent on the font size used by Calamares,
+     * and is constant within one run of Calamares, but may change
+     * if the font settings do between runs.
+     */
+    static QSize imageSize();
+
 private:
     ThemeInfoList* m_themes;
 };
