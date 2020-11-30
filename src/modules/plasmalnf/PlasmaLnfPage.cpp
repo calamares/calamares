@@ -18,8 +18,52 @@
 #include "utils/Retranslator.h"
 
 #include <QHeaderView>
+#include <QListView>
 #include <QStyledItemDelegate>
-#include <QTableView>
+
+class ThemeDelegate : public QStyledItemDelegate
+{
+public:
+    using QStyledItemDelegate::QStyledItemDelegate;
+
+    void paint( QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index ) const override;
+    // The size of the item is constant
+    QSize sizeHint( const QStyleOptionViewItem&, const QModelIndex& ) const override;
+};
+
+QSize
+ThemeDelegate::sizeHint( const QStyleOptionViewItem&, const QModelIndex& ) const
+{
+    QSize image( ThemesModel::imageSize() );
+    return { 3 * image.width(), image.height() };
+}
+
+void
+ThemeDelegate::paint( QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index ) const
+{
+    auto label = index.data( ThemesModel::LabelRole ).toString();
+    auto description = index.data( ThemesModel::DescriptionRole ).toString();
+    auto image_v = index.data( ThemesModel::ImageRole );
+    QPixmap image = image_v.canConvert< QPixmap >() ? qvariant_cast< QPixmap >( image_v ) : QPixmap();
+
+    // The delegate paints three "columns", each of which takes 1/3
+    // of the space: label, description and screenshot.
+    QRect labelRect( option.rect );
+    labelRect.setWidth( labelRect.width() / 3 );
+
+    QStyleOptionButton rbOption;
+    rbOption.state |= QStyle::State_Enabled | QStyle::State_On;
+    rbOption.rect = labelRect;
+    rbOption.text = label;
+    option.widget->style()->drawControl( QStyle::CE_RadioButton, &rbOption, painter, option.widget );
+
+    labelRect.moveLeft( labelRect.width() );
+    option.widget->style()->drawItemText(
+        painter, labelRect, Qt::AlignLeft | Qt::AlignVCenter | Qt::TextWordWrap, option.palette, false, description );
+
+    labelRect.moveLeft( 2 * labelRect.width() );
+    option.widget->style()->drawItemPixmap( painter, labelRect, Qt::AlignHCenter | Qt::AlignVCenter, image );
+}
 
 
 PlasmaLnfPage::PlasmaLnfPage( Config* config, QWidget* parent )
@@ -42,10 +86,10 @@ PlasmaLnfPage::PlasmaLnfPage( Config* config, QWidget* parent )
                                                  "selection will give you a live preview of that look-and-feel." ) );
     } )
 
-    QTableView* view = new QTableView( this );
+    auto* view = new QListView( this );
     view->setModel( m_config->themeModel() );
-    view->verticalHeader()->hide();
-    view->horizontalHeader()->hide();
+    view->setItemDelegate( new ThemeDelegate( view ) );
+    view->setUniformItemSizes( true );
     ui->verticalLayout->addWidget( view );
 
     connect( view->selectionModel(),
