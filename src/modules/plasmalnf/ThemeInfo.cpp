@@ -183,9 +183,9 @@ ThemesModel::setThemeImage( const QMap< QString, QString >& images )
     // Don't emit signals from each call, aggregate to one call (below this block)
     {
         QSignalBlocker b( this );
-        for ( const auto& k : images )
+        for ( auto k = images.constKeyValueBegin(); k != images.constKeyValueEnd(); ++k )
         {
-            setThemeImage( k, images[ k ] );
+            setThemeImage( k->first, k->second );
         }
     }
     emit dataChanged( index( 0, 0 ), index( m_themes->count() - 1 ), { ImageRole } );
