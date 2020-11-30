@@ -2071,11 +2071,11 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="232"/>
       <source>The password contains fewer than %n lowercase letters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Heslo obsahuje menej ako %n malé písmeno</numerusform>
+        <numerusform>Heslo obsahuje menej ako %n malé písmená</numerusform>
+        <numerusform>Heslo obsahuje menej ako %n malého písmena</numerusform>
+        <numerusform>Heslo obsahuje menej ako %n malých písmen</numerusform>
       </translation>
     </message>
     <message>
@@ -2111,21 +2111,21 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="218"/>
       <source>The password contains fewer than %n digits</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Heslo obsahuje menej ako %n číslo</numerusform>
+        <numerusform>Heslo obsahuje menej ako %n čísla</numerusform>
+        <numerusform>Heslo obsahuje menej ako %n čísla</numerusform>
+        <numerusform>Heslo obsahuje menej ako %n čísel</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="225"/>
       <source>The password contains fewer than %n uppercase letters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Heslo obsahuje menej ako %n veľké písmeno</numerusform>
+        <numerusform>Heslo obsahuje menej ako %n veľké písmená</numerusform>
+        <numerusform>Heslo obsahuje menej ako %n veľkého písmena</numerusform>
+        <numerusform>Heslo obsahuje menej ako %n veľkých písmen</numerusform>
       </translation>
     </message>
     <message numerus="yes">
@@ -2141,11 +2141,11 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="246"/>
       <source>The password is shorter than %n characters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Heslo je kratšie ako %n znak</numerusform>
+        <numerusform>Heslo je kratšie ako %n znaky</numerusform>
+        <numerusform>Heslo je kratšie ako %n znaku</numerusform>
+        <numerusform>Heslo je kratšie ako %n znakov</numerusform>
       </translation>
     </message>
     <message>
@@ -2156,31 +2156,31 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="255"/>
       <source>The password contains fewer than %n character classes</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Heslo obsahuje menej ako %n triedu znakov</numerusform>
+        <numerusform>Heslo obsahuje menej ako %n triedy znakov</numerusform>
+        <numerusform>Heslo obsahuje menej ako %n triedy znakov</numerusform>
+        <numerusform>Heslo obsahuje menej ako %n tried znakov</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="262"/>
       <source>The password contains more than %n same characters consecutively</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Heslo obsahuje viac ako %n rovnaký znak opakujúci sa po sebe</numerusform>
+        <numerusform>Heslo obsahuje viac ako %n rovnaké znaky opakujúce sa po sebe</numerusform>
+        <numerusform>Heslo obsahuje viac ako %n rovnakého znaku opakujúceho sa po sebe</numerusform>
+        <numerusform>Heslo obsahuje viac ako %n rovnakých znakov opakujúcich sa po sebe</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="269"/>
       <source>The password contains more than %n characters of the same class consecutively</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Heslo obsahuje viac ako %n znak rovnakej triedy opakujúci sa po sebe</numerusform>
+        <numerusform>Heslo obsahuje viac ako %n znaky rovnakej triedy opakujúce sa po sebe</numerusform>
+        <numerusform>Heslo obsahuje viac ako %n znaku rovnakej triedy opakujúceho sa po sebe</numerusform>
+        <numerusform>Heslo obsahuje viac ako %n znakov rovnakej triedy opakujúcich sa po sebe</numerusform>
       </translation>
     </message>
     <message numerus="yes">
@@ -3488,7 +3488,7 @@ Výstup:
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="33"/>
       <source>Configure &lt;pre&gt;sudo&lt;/pre&gt; users.</source>
-      <translation type="unfinished"/>
+      <translation>Konfigurácia používateľov skupiny &lt;pre&gt;sudo&lt;/pre&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="55"/>
