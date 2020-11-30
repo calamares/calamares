@@ -25,7 +25,8 @@ public:
     {
         LabelRole = Qt::DisplayRole,
         KeyRole = Qt::UserRole,
-        ShownRole,
+        ShownRole,  // Should theme be displayed
+        SelectedRole,  // Is theme selected
         DescriptionRole,
         ImageRole
     };
@@ -48,6 +49,15 @@ public:
 
     /// @brief Shows the keys in the @p onlyThese map, and hides the rest
     void showOnlyThemes( const QMap< QString, QString >& onlyThese );
+
+    /** @brief Mark the @p themeId as current / selected
+     *
+     * One theme can be selected at a time; this will emit data
+     * changed signals for any (one) theme already selected, and
+     * the newly-selected theme. If @p themeId does not name any
+     * theme, none are selected.
+     */
+    void select( const QString& themeId );
 
     /** @brief The size of theme Images
      *

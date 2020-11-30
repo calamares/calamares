@@ -98,6 +98,8 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
             m_themeModel->showOnlyThemes( listedThemes );
         }
     }
+
+    m_themeModel->select( m_preselectThemeId );
 }
 
 Calamares::JobList
@@ -157,5 +159,6 @@ Config::setTheme( const QString& id )
             cDebug() << "Plasma look-and-feel applied" << id;
         }
     }
+    m_themeModel->select( id );
     emit themeChanged( id );
 }

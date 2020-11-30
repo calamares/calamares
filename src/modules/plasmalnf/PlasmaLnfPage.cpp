@@ -43,6 +43,7 @@ ThemeDelegate::paint( QPainter* painter, const QStyleOptionViewItem& option, con
 {
     auto label = index.data( ThemesModel::LabelRole ).toString();
     auto description = index.data( ThemesModel::DescriptionRole ).toString();
+    auto selected = index.data( ThemesModel::SelectedRole ).toBool() ? QStyle::State_On : QStyle::State_Off;
     auto image_v = index.data( ThemesModel::ImageRole );
     QPixmap image = image_v.canConvert< QPixmap >() ? qvariant_cast< QPixmap >( image_v ) : QPixmap();
 
@@ -52,7 +53,7 @@ ThemeDelegate::paint( QPainter* painter, const QStyleOptionViewItem& option, con
     labelRect.setWidth( labelRect.width() / 3 );
 
     QStyleOptionButton rbOption;
-    rbOption.state |= QStyle::State_Enabled | QStyle::State_On;
+    rbOption.state |= QStyle::State_Enabled | selected;
     rbOption.rect = labelRect;
     rbOption.text = label;
     option.widget->style()->drawControl( QStyle::CE_RadioButton, &rbOption, painter, option.widget );

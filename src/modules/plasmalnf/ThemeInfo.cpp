@@ -34,6 +34,7 @@ struct ThemeInfo
     QString imagePath;
     mutable QPixmap pixmap;
     bool show = true;
+    bool selected = false;
 
     ThemeInfo() {}
 
@@ -138,6 +139,8 @@ ThemesModel::data( const QModelIndex& index, int role ) const
         return item.id;
     case ShownRole:
         return item.show;
+    case SelectedRole:
+        return item.selected;
     case DescriptionRole:
         return item.description;
     case ImageRole:
@@ -151,7 +154,11 @@ ThemesModel::data( const QModelIndex& index, int role ) const
 QHash< int, QByteArray >
 ThemesModel::roleNames() const
 {
-    return { { LabelRole, "label" }, { KeyRole, "key" }, { ShownRole, "show" }, { ImageRole, "image" } };
+    return { { LabelRole, "label" },
+             { KeyRole, "key" },
+             { SelectedRole, "selected" },
+             { ShownRole, "show" },
+             { ImageRole, "image" } };
 }
 
 void
@@ -217,6 +224,26 @@ ThemesModel::imageSize()
 {
     return { qMax( 12 * CalamaresUtils::defaultFontHeight(), 120 ),
              qMax( 8 * CalamaresUtils::defaultFontHeight(), 80 ) };
+}
+
+void
+ThemesModel::select( const QString& themeId )
+{
+    int i = 0;
+    for ( auto& t : *m_themes )
+    {
+        if ( t.selected && t.id != themeId )
+        {
+            t.selected = false;
+            emit dataChanged( index( i, 0 ), index( i, 0 ), { SelectedRole } );
+        }
+        if ( !t.selected && t.id == themeId )
+        {
+            t.selected = true;
+            emit dataChanged( index( i, 0 ), index( i, 0 ), { SelectedRole } );
+        }
+        ++i;
+    }
 }
 
 
