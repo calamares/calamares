@@ -23,21 +23,18 @@
 // static
 const QLatin1String DracutLuksCfgJob::CONFIG_FILE( "/etc/dracut.conf.d/calamares-luks.conf" );
 
-// static
-const char* DracutLuksCfgJob::CONFIG_FILE_HEADER
+static const char CONFIG_FILE_HEADER[]
     = "# Configuration file automatically written by the Calamares system installer\n"
       "# (This file is written once at install time and should be safe to edit.)\n"
       "# Enables support for LUKS full disk encryption with single sign on from GRUB.\n"
       "\n";
 
-// static
-const char* DracutLuksCfgJob::CONFIG_FILE_CRYPTTAB_KEYFILE_LINE
+static const char CONFIG_FILE_CRYPTTAB_KEYFILE_LINE[]
     = "# force installing /etc/crypttab even if hostonly=\"no\", install the keyfile\n"
       "install_items+=\" /etc/crypttab /crypto_keyfile.bin \"\n";
 
-// static
-const char* DracutLuksCfgJob::CONFIG_FILE_CRYPTTAB_LINE = "# force installing /etc/crypttab even if hostonly=\"no\"\n"
-                                                          "install_items+=\" /etc/crypttab \"\n";
+static const char CONFIG_FILE_CRYPTTAB_LINE[] = "# force installing /etc/crypttab even if hostonly=\"no\"\n"
+                                                "install_items+=\" /etc/crypttab \"\n";
 
 // static
 const QLatin1String DracutLuksCfgJob::CONFIG_FILE_SWAPLINE(
