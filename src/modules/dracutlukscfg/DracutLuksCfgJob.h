@@ -39,8 +39,6 @@ private:
     static const char* CONFIG_FILE_CRYPTTAB_LINE;
     static const QLatin1String CONFIG_FILE_SWAPLINE;
 
-    static QString rootMountPoint();
-    static QVariantList partitions();
     static bool isRootEncrypted();
     static bool hasUnencryptedSeparateBoot();
     static QString swapOuterUuid();

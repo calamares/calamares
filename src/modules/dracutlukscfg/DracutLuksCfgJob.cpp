@@ -43,17 +43,15 @@ const char* DracutLuksCfgJob::CONFIG_FILE_CRYPTTAB_LINE = "# force installing /e
 const QLatin1String DracutLuksCfgJob::CONFIG_FILE_SWAPLINE(
     "# enable automatic resume from swap\nadd_device+=\" /dev/disk/by-uuid/%1 \"\n" );
 
-// static
-QString
-DracutLuksCfgJob::rootMountPoint()
+static QString
+rootMountPoint()
 {
     Calamares::GlobalStorage* globalStorage = Calamares::JobQueue::instance()->globalStorage();
     return globalStorage->value( QStringLiteral( "rootMountPoint" ) ).toString();
 }
 
-// static
-QVariantList
-DracutLuksCfgJob::partitions()
+static QVariantList
+partitions()
 {
     Calamares::GlobalStorage* globalStorage = Calamares::JobQueue::instance()->globalStorage();
     return globalStorage->value( QStringLiteral( "partitions" ) ).toList();
@@ -63,7 +61,7 @@ DracutLuksCfgJob::partitions()
 bool
 DracutLuksCfgJob::isRootEncrypted()
 {
-    const QVariantList partitions = DracutLuksCfgJob::partitions();
+    const QVariantList partitions = ::partitions();
     for ( const QVariant& partition : partitions )
     {
         QVariantMap partitionMap = partition.toMap();
@@ -80,7 +78,7 @@ DracutLuksCfgJob::isRootEncrypted()
 bool
 DracutLuksCfgJob::hasUnencryptedSeparateBoot()
 {
-    const QVariantList partitions = DracutLuksCfgJob::partitions();
+    const QVariantList partitions = ::partitions();
     for ( const QVariant& partition : partitions )
     {
         QVariantMap partitionMap = partition.toMap();
@@ -97,7 +95,7 @@ DracutLuksCfgJob::hasUnencryptedSeparateBoot()
 QString
 DracutLuksCfgJob::swapOuterUuid()
 {
-    const QVariantList partitions = DracutLuksCfgJob::partitions();
+    const QVariantList partitions = ::partitions();
     for ( const QVariant& partition : partitions )
     {
         QVariantMap partitionMap = partition.toMap();
