@@ -90,6 +90,7 @@ PlasmaLnfPage::PlasmaLnfPage( Config* config, QWidget* parent )
     view->setModel( m_config->themeModel() );
     view->setItemDelegate( new ThemeDelegate( view ) );
     view->setUniformItemSizes( true );
+    view->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
     ui->verticalLayout->addWidget( view );
 
     connect( view->selectionModel(),
