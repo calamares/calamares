@@ -113,7 +113,7 @@ LibCalamaresTests::testLoadSaveYaml()
     CalamaresUtils::saveYaml( "out.yaml", map );
 
     auto other_map = CalamaresUtils::loadYaml( "out.yaml" );
-    CalamaresUtils::saveYaml( " out2.yaml", other_map );
+    CalamaresUtils::saveYaml( "out2.yaml", other_map );
     QCOMPARE( map, other_map );
 
     QFile::remove( "out.yaml" );
