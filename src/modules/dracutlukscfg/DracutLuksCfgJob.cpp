@@ -20,8 +20,7 @@
 
 #include "utils/Logger.h"
 
-// static
-const QLatin1String DracutLuksCfgJob::CONFIG_FILE( "/etc/dracut.conf.d/calamares-luks.conf" );
+static const QLatin1String CONFIG_FILE( "/etc/dracut.conf.d/calamares-luks.conf" );
 
 static const char CONFIG_FILE_HEADER[]
     = "# Configuration file automatically written by the Calamares system installer\n"
@@ -36,9 +35,8 @@ static const char CONFIG_FILE_CRYPTTAB_KEYFILE_LINE[]
 static const char CONFIG_FILE_CRYPTTAB_LINE[] = "# force installing /etc/crypttab even if hostonly=\"no\"\n"
                                                 "install_items+=\" /etc/crypttab \"\n";
 
-// static
-const QLatin1String DracutLuksCfgJob::CONFIG_FILE_SWAPLINE(
-    "# enable automatic resume from swap\nadd_device+=\" /dev/disk/by-uuid/%1 \"\n" );
+static const QLatin1String
+    CONFIG_FILE_SWAPLINE( "# enable automatic resume from swap\nadd_device+=\" /dev/disk/by-uuid/%1 \"\n" );
 
 static QString
 rootMountPoint()

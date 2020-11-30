@@ -33,8 +33,6 @@ public:
     Calamares::JobResult exec() override;
 
 private:
-    static const QLatin1String CONFIG_FILE;
-    static const QLatin1String CONFIG_FILE_SWAPLINE;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( DracutLuksCfgJobFactory )
