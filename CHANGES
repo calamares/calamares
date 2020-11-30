@@ -7,16 +7,25 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.35(unreleased) #
+# 3.2.35 (2020-11-30) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - Clarissa Borges
+ - Matti Hyttinen
+
+A new kind of issue template has been added for Calamares,
+for reporting (and adding tests for) usability issues. Thanks
+to Clarissa for leading that effort.
 
 ## Core ##
  - No core changes yet
 
 ## Modules ##
- - No module changes yet
+ - The *partition* module now supports a not-full-disk-encryption setup,
+   where `/boot` is not encrypted, but the rest of the system is.
+ - The *plasmalnf* module has been substantially rewritten, so that it
+   can support a QML version of the module in future. The UI has changed
+   a little, and now displays more themes than before.
 
 
 # 3.2.34 (2020-11-16) #
