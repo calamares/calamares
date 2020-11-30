@@ -139,32 +139,33 @@ public:
         RunInTarget
     };
 
-    /**
-      * Runs the specified command in the chroot of the target system.
-      * @param args the command with arguments, as a string list.
-      * @param workingPath the current working directory for the QProcess
-      *        call (optional).
-      * @param stdInput the input string to send to the running process as
-      *        standard input (optional).
-      * @param timeoutSec the timeout after which the process will be
-      *        killed (optional, default is 0 i.e. no timeout).
-      *
-      * @returns the program's exit code and its output (if any). Special
-      *     exit codes (which will never have any output) are:
-      *             Crashed = QProcess crash
-      *             FailedToStart = QProcess cannot start
-      *             NoWorkingDirectory = bad arguments
-      *             TimedOut = QProcess timeout
-      */
+    /** @brief Runs a command in the host or the target (select explicitly)
+     *
+     * @param location whether to run in the host or the target
+     * @param args the command with arguments, as a string list.
+     * @param workingPath the current working directory for the QProcess
+     *        call (optional).
+     * @param stdInput the input string to send to the running process as
+     *        standard input (optional).
+     * @param timeoutSec the timeout after which the process will be
+     *        killed (optional, default is 0 i.e. no timeout).
+     *
+     * @returns the program's exit code and its output (if any). Special
+     *     exit codes (which will never have any output) are:
+     *             Crashed = QProcess crash
+     *             FailedToStart = QProcess cannot start
+     *             NoWorkingDirectory = bad arguments
+     *             TimedOut = QProcess timeout
+     */
     static DLLEXPORT ProcessResult runCommand( RunLocation location,
                                                const QStringList& args,
                                                const QString& workingPath = QString(),
                                                const QString& stdInput = QString(),
                                                std::chrono::seconds timeoutSec = std::chrono::seconds( 0 ) );
 
-    /** @brief Convenience wrapper for runCommand()
+    /** @brief Convenience wrapper for runCommand() in the host
      *
-     * Runs the given command-line @p args in the host in the current direcory
+     * Runs the given command-line @p args in the **host** in the current direcory
      * with no input, and the given @p timeoutSec for completion.
      */
     static inline ProcessResult runCommand( const QStringList& args, std::chrono::seconds timeoutSec )
@@ -173,10 +174,11 @@ public:
     }
 
     /** @brief Convenience wrapper for runCommand().
-     *  Runs the command in the location specified through the boolean
-     *  doChroot(), which is what you usually want for running commands
-     *  during installation.
-      */
+     *
+     * Runs the command in the location specified through the boolean
+     * doChroot(), which is what you usually want for running commands
+     * during installation.
+     */
     inline ProcessResult targetEnvCommand( const QStringList& args,
                                            const QString& workingPath = QString(),
                                            const QString& stdInput = QString(),
