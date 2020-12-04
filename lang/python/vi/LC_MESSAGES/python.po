@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-25 11:10+0100\n"
+"POT-Creation-Date: 2020-12-04 22:26+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: T. Tran <transifex@emiu.net>, 2020\n"
 "Language-Team: Vietnamese (https://www.transifex.com/calamares/teams/20061/vi/)\n"
@@ -21,79 +21,76 @@ msgstr ""
 "Language: vi\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/modules/packages/main.py:50 src/modules/packages/main.py:59
-#: src/modules/packages/main.py:69
-msgid "Install packages."
-msgstr "Đang cài đặt các gói ứng dụng."
+#: src/modules/grubcfg/main.py:28
+msgid "Configure GRUB."
+msgstr "Cấu hình GRUB"
 
-#: src/modules/packages/main.py:57
-#, python-format
-msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "Đang xử lý gói (%(count)d / %(total)d)"
+#: src/modules/mount/main.py:30
+msgid "Mounting partitions."
+msgstr "Đang gắn kết các phân vùng."
 
-#: src/modules/packages/main.py:62
-#, python-format
-msgid "Installing one package."
-msgid_plural "Installing %(num)d packages."
-msgstr[0] "Đang cài đặt %(num)d gói ứng dụng."
-
-#: src/modules/packages/main.py:65
-#, python-format
-msgid "Removing one package."
-msgid_plural "Removing %(num)d packages."
-msgstr[0] "Đang gỡ bỏ %(num)d gói ứng dụng."
-
-#: src/modules/networkcfg/main.py:28
-msgid "Saving network configuration."
-msgstr "Đang lưu cấu hình mạng."
-
-#: src/modules/networkcfg/main.py:39 src/modules/initcpiocfg/main.py:198
-#: src/modules/initcpiocfg/main.py:202 src/modules/openrcdmcryptcfg/main.py:72
-#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/localecfg/main.py:135
-#: src/modules/mount/main.py:127 src/modules/luksopenswaphookcfg/main.py:86
-#: src/modules/luksopenswaphookcfg/main.py:90 src/modules/fstab/main.py:361
-#: src/modules/fstab/main.py:367 src/modules/initramfscfg/main.py:85
-#: src/modules/initramfscfg/main.py:89 src/modules/rawfs/main.py:164
+#: src/modules/mount/main.py:127 src/modules/initcpiocfg/main.py:198
+#: src/modules/initcpiocfg/main.py:202
+#: src/modules/luksopenswaphookcfg/main.py:86
+#: src/modules/luksopenswaphookcfg/main.py:90 src/modules/rawfs/main.py:164
+#: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
+#: src/modules/openrcdmcryptcfg/main.py:72
+#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/fstab/main.py:361
+#: src/modules/fstab/main.py:367 src/modules/localecfg/main.py:135
+#: src/modules/networkcfg/main.py:39
 msgid "Configuration Error"
 msgstr "Lỗi cấu hình"
 
-#: src/modules/networkcfg/main.py:40 src/modules/initcpiocfg/main.py:203
-#: src/modules/openrcdmcryptcfg/main.py:77 src/modules/localecfg/main.py:136
-#: src/modules/luksopenswaphookcfg/main.py:91 src/modules/fstab/main.py:368
-#: src/modules/initramfscfg/main.py:90
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr "Không có điểm kết nối gốc cho <pre>{!s}</pre> để dùng."
+#: src/modules/mount/main.py:128 src/modules/initcpiocfg/main.py:199
+#: src/modules/luksopenswaphookcfg/main.py:87 src/modules/rawfs/main.py:165
+#: src/modules/initramfscfg/main.py:86 src/modules/openrcdmcryptcfg/main.py:73
+#: src/modules/fstab/main.py:362
+msgid "No partitions are defined for <pre>{!s}</pre> to use."
+msgstr "Không có phân vùng nào được định nghĩa cho <pre>{!s}</pre> để dùng."
+
+#: src/modules/services-systemd/main.py:26
+msgid "Configure systemd services"
+msgstr "Cấu hình các dịch vụ systemd"
+
+#: src/modules/services-systemd/main.py:59
+#: src/modules/services-openrc/main.py:93
+msgid "Cannot modify service"
+msgstr "Không thể sửa đổi dịch vụ"
+
+#: src/modules/services-systemd/main.py:60
+msgid ""
+"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"<code>systemctl {arg!s}</code> trong môi trường chroot trả về lỗi {num!s}."
+
+#: src/modules/services-systemd/main.py:63
+#: src/modules/services-systemd/main.py:67
+msgid "Cannot enable systemd service <code>{name!s}</code>."
+msgstr "Không thể bật dịch vụ systemd <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:65
+msgid "Cannot enable systemd target <code>{name!s}</code>."
+msgstr "Không thể bật nhóm dịch vụ systemd <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:69
+msgid "Cannot disable systemd target <code>{name!s}</code>."
+msgstr "Không thể tắt nhóm dịch vụ systemd <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:71
+msgid "Cannot mask systemd unit <code>{name!s}</code>."
+msgstr "Không thể đánh dấu đơn vị systemd <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:73
+msgid ""
+"Unknown systemd commands <code>{command!s}</code> and "
+"<code>{suffix!s}</code> for unit {name!s}."
+msgstr ""
+"Không nhận ra lệnh systemd <code>{command!s}</code> và "
+"<code>{suffix!s}</code> cho đơn vị {name!s}."
 
 #: src/modules/umount/main.py:31
 msgid "Unmount file systems."
 msgstr "Gỡ kết nối các hệ thống tập tin."
-
-#: src/modules/initcpiocfg/main.py:28
-msgid "Configuring mkinitcpio."
-msgstr "Đang cấu hình mkinitcpio."
-
-#: src/modules/initcpiocfg/main.py:199 src/modules/openrcdmcryptcfg/main.py:73
-#: src/modules/mount/main.py:128 src/modules/luksopenswaphookcfg/main.py:87
-#: src/modules/fstab/main.py:362 src/modules/initramfscfg/main.py:86
-#: src/modules/rawfs/main.py:165
-msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr "Không có phân vùng nào được định nghĩa cho <pre>{!s}</pre> để dùng."
-
-#: src/modules/mkinitfs/main.py:27
-msgid "Creating initramfs with mkinitfs."
-msgstr "Đang tạo initramfs bằng mkinitfs."
-
-#: src/modules/mkinitfs/main.py:49
-msgid "Failed to run mkinitfs on the target"
-msgstr "Chạy mkinitfs thất bại ở hệ thống đích"
-
-#: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
-msgid "The exit code was {}"
-msgstr "Mã lỗi trả về là {}"
-
-#: src/modules/openrcdmcryptcfg/main.py:26
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "Đang cấu hình dịch vụ OpenRC dmcrypt."
 
 #: src/modules/unpackfs/main.py:35
 msgid "Filling up filesystems."
@@ -154,142 +151,6 @@ msgstr "Không tìm thấy lệnh unsquashfs, vui lòng cài đặt gói squashf
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "Hệ thống đích \"{}\" không phải là một thư mục"
 
-#: src/modules/services-systemd/main.py:26
-msgid "Configure systemd services"
-msgstr "Cấu hình các dịch vụ systemd"
-
-#: src/modules/services-systemd/main.py:59
-#: src/modules/services-openrc/main.py:93
-msgid "Cannot modify service"
-msgstr "Không thể sửa đổi dịch vụ"
-
-#: src/modules/services-systemd/main.py:60
-msgid ""
-"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr ""
-"<code>systemctl {arg!s}</code> trong môi trường chroot trả về lỗi {num!s}."
-
-#: src/modules/services-systemd/main.py:63
-#: src/modules/services-systemd/main.py:67
-msgid "Cannot enable systemd service <code>{name!s}</code>."
-msgstr "Không thể bật dịch vụ systemd <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:65
-msgid "Cannot enable systemd target <code>{name!s}</code>."
-msgstr "Không thể bật nhóm dịch vụ systemd <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:69
-msgid "Cannot disable systemd target <code>{name!s}</code>."
-msgstr "Không thể tắt nhóm dịch vụ systemd <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:71
-msgid "Cannot mask systemd unit <code>{name!s}</code>."
-msgstr "Không thể đánh dấu đơn vị systemd <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:73
-msgid ""
-"Unknown systemd commands <code>{command!s}</code> and "
-"<code>{suffix!s}</code> for unit {name!s}."
-msgstr ""
-"Không nhận ra lệnh systemd <code>{command!s}</code> và "
-"<code>{suffix!s}</code> cho đơn vị {name!s}."
-
-#: src/modules/dummypython/main.py:35
-msgid "Dummy python job."
-msgstr "Ví dụ công việc python."
-
-#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
-#: src/modules/dummypython/main.py:94
-msgid "Dummy python step {}"
-msgstr "Ví dụ python bước {}"
-
-#: src/modules/bootloader/main.py:42
-msgid "Install bootloader."
-msgstr "Đang cài đặt bộ khởi động."
-
-#: src/modules/localecfg/main.py:30
-msgid "Configuring locales."
-msgstr "Đang cấu hình ngôn ngữ."
-
-#: src/modules/mount/main.py:30
-msgid "Mounting partitions."
-msgstr "Đang gắn kết các phân vùng."
-
-#: src/modules/plymouthcfg/main.py:27
-msgid "Configure Plymouth theme"
-msgstr "Cấu hình giao diện Plymouth"
-
-#: src/modules/luksopenswaphookcfg/main.py:26
-msgid "Configuring encrypted swap."
-msgstr "Đang cấu hình hoán đổi mã hoá"
-
-#: src/modules/fstab/main.py:29
-msgid "Writing fstab."
-msgstr "Đang viết vào fstab."
-
-#: src/modules/services-openrc/main.py:29
-msgid "Configure OpenRC services"
-msgstr "Cấu hình dịch vụ OpenRC"
-
-#: src/modules/services-openrc/main.py:57
-msgid "Cannot add service {name!s} to run-level {level!s}."
-msgstr "Không thể thêm dịch vụ {name!s} vào run-level {level!s}."
-
-#: src/modules/services-openrc/main.py:59
-msgid "Cannot remove service {name!s} from run-level {level!s}."
-msgstr "Không thể loại bỏ dịch vụ {name!s} từ run-level {level!s}."
-
-#: src/modules/services-openrc/main.py:61
-msgid ""
-"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
-"level {level!s}."
-msgstr ""
-"Không nhận ra thao tác <code>{arg!s}</code> cho dịch vụ {name!s} ở run-level"
-" {level!s}."
-
-#: src/modules/services-openrc/main.py:94
-msgid ""
-"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr ""
-"Lệnh <code>rc-update {arg!s}</code> trong môi trường chroot trả về lỗi "
-"{num!s}."
-
-#: src/modules/services-openrc/main.py:101
-msgid "Target runlevel does not exist"
-msgstr "Nhóm dịch vụ khởi động không tồn tại"
-
-#: src/modules/services-openrc/main.py:102
-msgid ""
-"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr ""
-"Đường dẫn cho runlevel {level!s} là <code>{path!s}</code>, nhưng không tồn "
-"tại."
-
-#: src/modules/services-openrc/main.py:110
-msgid "Target service does not exist"
-msgstr "Nhóm dịch vụ không tồn tại"
-
-#: src/modules/services-openrc/main.py:111
-msgid ""
-"The path for service {name!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr ""
-"Đường dẫn cho dịch vụ {name!s} là <code>{path!s}</code>, nhưng không tồn "
-"tại."
-
-#: src/modules/dracut/main.py:27
-msgid "Creating initramfs with dracut."
-msgstr "Đang tạo initramfs bằng dracut."
-
-#: src/modules/dracut/main.py:49
-msgid "Failed to run dracut on the target"
-msgstr "Chạy dracut thất bại ở hệ thống đích"
-
-#: src/modules/grubcfg/main.py:28
-msgid "Configure GRUB."
-msgstr "Cấu hình GRUB"
-
 #: src/modules/displaymanager/main.py:514
 msgid "Cannot write KDM configuration file"
 msgstr "Không thể ghi vào tập tin cấu hình KDM"
@@ -347,14 +208,156 @@ msgstr ""
 msgid "Display manager configuration was incomplete"
 msgstr "Cầu hình quản lý hiện thị không hoàn tất"
 
-#: src/modules/initramfscfg/main.py:32
-msgid "Configuring initramfs."
-msgstr "Đang cấu hình initramfs."
+#: src/modules/initcpiocfg/main.py:28
+msgid "Configuring mkinitcpio."
+msgstr "Đang cấu hình mkinitcpio."
+
+#: src/modules/initcpiocfg/main.py:203
+#: src/modules/luksopenswaphookcfg/main.py:91
+#: src/modules/initramfscfg/main.py:90 src/modules/openrcdmcryptcfg/main.py:77
+#: src/modules/fstab/main.py:368 src/modules/localecfg/main.py:136
+#: src/modules/networkcfg/main.py:40
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr "Không có điểm kết nối gốc cho <pre>{!s}</pre> để dùng."
+
+#: src/modules/luksopenswaphookcfg/main.py:26
+msgid "Configuring encrypted swap."
+msgstr "Đang cấu hình hoán đổi mã hoá"
+
+#: src/modules/rawfs/main.py:26
+msgid "Installing data."
+msgstr "Đang cài đặt dữ liệu."
+
+#: src/modules/services-openrc/main.py:29
+msgid "Configure OpenRC services"
+msgstr "Cấu hình dịch vụ OpenRC"
+
+#: src/modules/services-openrc/main.py:57
+msgid "Cannot add service {name!s} to run-level {level!s}."
+msgstr "Không thể thêm dịch vụ {name!s} vào run-level {level!s}."
+
+#: src/modules/services-openrc/main.py:59
+msgid "Cannot remove service {name!s} from run-level {level!s}."
+msgstr "Không thể loại bỏ dịch vụ {name!s} từ run-level {level!s}."
+
+#: src/modules/services-openrc/main.py:61
+msgid ""
+"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
+"level {level!s}."
+msgstr ""
+"Không nhận ra thao tác <code>{arg!s}</code> cho dịch vụ {name!s} ở run-level"
+" {level!s}."
+
+#: src/modules/services-openrc/main.py:94
+msgid ""
+"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"Lệnh <code>rc-update {arg!s}</code> trong môi trường chroot trả về lỗi "
+"{num!s}."
+
+#: src/modules/services-openrc/main.py:101
+msgid "Target runlevel does not exist"
+msgstr "Nhóm dịch vụ khởi động không tồn tại"
+
+#: src/modules/services-openrc/main.py:102
+msgid ""
+"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr ""
+"Đường dẫn cho runlevel {level!s} là <code>{path!s}</code>, nhưng không tồn "
+"tại."
+
+#: src/modules/services-openrc/main.py:110
+msgid "Target service does not exist"
+msgstr "Nhóm dịch vụ không tồn tại"
+
+#: src/modules/services-openrc/main.py:111
+msgid ""
+"The path for service {name!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr ""
+"Đường dẫn cho dịch vụ {name!s} là <code>{path!s}</code>, nhưng không tồn "
+"tại."
+
+#: src/modules/plymouthcfg/main.py:27
+msgid "Configure Plymouth theme"
+msgstr "Cấu hình giao diện Plymouth"
+
+#: src/modules/packages/main.py:50 src/modules/packages/main.py:59
+#: src/modules/packages/main.py:69
+msgid "Install packages."
+msgstr "Đang cài đặt các gói ứng dụng."
+
+#: src/modules/packages/main.py:57
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "Đang xử lý gói (%(count)d / %(total)d)"
+
+#: src/modules/packages/main.py:62
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] "Đang cài đặt %(num)d gói ứng dụng."
+
+#: src/modules/packages/main.py:65
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] "Đang gỡ bỏ %(num)d gói ứng dụng."
+
+#: src/modules/bootloader/main.py:42
+msgid "Install bootloader."
+msgstr "Đang cài đặt bộ khởi động."
 
 #: src/modules/hwclock/main.py:26
 msgid "Setting hardware clock."
 msgstr "Đang thiết lập đồng hồ máy tính."
 
-#: src/modules/rawfs/main.py:26
-msgid "Installing data."
-msgstr "Đang cài đặt dữ liệu."
+#: src/modules/mkinitfs/main.py:27
+msgid "Creating initramfs with mkinitfs."
+msgstr "Đang tạo initramfs bằng mkinitfs."
+
+#: src/modules/mkinitfs/main.py:49
+msgid "Failed to run mkinitfs on the target"
+msgstr "Chạy mkinitfs thất bại ở hệ thống đích"
+
+#: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
+msgid "The exit code was {}"
+msgstr "Mã lỗi trả về là {}"
+
+#: src/modules/dracut/main.py:27
+msgid "Creating initramfs with dracut."
+msgstr "Đang tạo initramfs bằng dracut."
+
+#: src/modules/dracut/main.py:49
+msgid "Failed to run dracut on the target"
+msgstr "Chạy dracut thất bại ở hệ thống đích"
+
+#: src/modules/initramfscfg/main.py:32
+msgid "Configuring initramfs."
+msgstr "Đang cấu hình initramfs."
+
+#: src/modules/openrcdmcryptcfg/main.py:26
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "Đang cấu hình dịch vụ OpenRC dmcrypt."
+
+#: src/modules/fstab/main.py:29
+msgid "Writing fstab."
+msgstr "Đang viết vào fstab."
+
+#: src/modules/dummypython/main.py:35
+msgid "Dummy python job."
+msgstr "Ví dụ công việc python."
+
+#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
+#: src/modules/dummypython/main.py:94
+msgid "Dummy python step {}"
+msgstr "Ví dụ python bước {}"
+
+#: src/modules/localecfg/main.py:30
+msgid "Configuring locales."
+msgstr "Đang cấu hình ngôn ngữ."
+
+#: src/modules/networkcfg/main.py:28
+msgid "Saving network configuration."
+msgstr "Đang lưu cấu hình mạng."

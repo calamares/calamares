@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-25 11:10+0100\n"
+"POT-Creation-Date: 2020-12-04 22:26+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Adriaan de Groot <groot@kde.org>, 2020\n"
 "Language-Team: Dutch (https://www.transifex.com/calamares/teams/20061/nl/)\n"
@@ -22,82 +22,78 @@ msgstr ""
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/modules/packages/main.py:50 src/modules/packages/main.py:59
-#: src/modules/packages/main.py:69
-msgid "Install packages."
-msgstr "Pakketten installeren."
+#: src/modules/grubcfg/main.py:28
+msgid "Configure GRUB."
+msgstr "GRUB instellen."
 
-#: src/modules/packages/main.py:57
-#, python-format
-msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "Pakketten verwerken (%(count)d/ %(total)d)"
+#: src/modules/mount/main.py:30
+msgid "Mounting partitions."
+msgstr "Partities mounten."
 
-#: src/modules/packages/main.py:62
-#, python-format
-msgid "Installing one package."
-msgid_plural "Installing %(num)d packages."
-msgstr[0] "Pakket installeren."
-msgstr[1] "%(num)d pakketten installeren."
-
-#: src/modules/packages/main.py:65
-#, python-format
-msgid "Removing one package."
-msgid_plural "Removing %(num)d packages."
-msgstr[0] "Pakket verwijderen."
-msgstr[1] "%(num)d pakketten verwijderen."
-
-#: src/modules/networkcfg/main.py:28
-msgid "Saving network configuration."
-msgstr "Netwerk-configuratie opslaan."
-
-#: src/modules/networkcfg/main.py:39 src/modules/initcpiocfg/main.py:198
-#: src/modules/initcpiocfg/main.py:202 src/modules/openrcdmcryptcfg/main.py:72
-#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/localecfg/main.py:135
-#: src/modules/mount/main.py:127 src/modules/luksopenswaphookcfg/main.py:86
-#: src/modules/luksopenswaphookcfg/main.py:90 src/modules/fstab/main.py:361
-#: src/modules/fstab/main.py:367 src/modules/initramfscfg/main.py:85
-#: src/modules/initramfscfg/main.py:89 src/modules/rawfs/main.py:164
+#: src/modules/mount/main.py:127 src/modules/initcpiocfg/main.py:198
+#: src/modules/initcpiocfg/main.py:202
+#: src/modules/luksopenswaphookcfg/main.py:86
+#: src/modules/luksopenswaphookcfg/main.py:90 src/modules/rawfs/main.py:164
+#: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
+#: src/modules/openrcdmcryptcfg/main.py:72
+#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/fstab/main.py:361
+#: src/modules/fstab/main.py:367 src/modules/localecfg/main.py:135
+#: src/modules/networkcfg/main.py:39
 msgid "Configuration Error"
 msgstr "Configuratiefout"
 
-#: src/modules/networkcfg/main.py:40 src/modules/initcpiocfg/main.py:203
-#: src/modules/openrcdmcryptcfg/main.py:77 src/modules/localecfg/main.py:136
-#: src/modules/luksopenswaphookcfg/main.py:91 src/modules/fstab/main.py:368
-#: src/modules/initramfscfg/main.py:90
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
+#: src/modules/mount/main.py:128 src/modules/initcpiocfg/main.py:199
+#: src/modules/luksopenswaphookcfg/main.py:87 src/modules/rawfs/main.py:165
+#: src/modules/initramfscfg/main.py:86 src/modules/openrcdmcryptcfg/main.py:73
+#: src/modules/fstab/main.py:362
+msgid "No partitions are defined for <pre>{!s}</pre> to use."
+msgstr "Geen partities gedefinieerd voor <pre>{!s}</pre> om te gebruiken."
+
+#: src/modules/services-systemd/main.py:26
+msgid "Configure systemd services"
+msgstr "Configureer systemd services "
+
+#: src/modules/services-systemd/main.py:59
+#: src/modules/services-openrc/main.py:93
+msgid "Cannot modify service"
+msgstr "De service kan niet worden gewijzigd"
+
+#: src/modules/services-systemd/main.py:60
+msgid ""
+"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
 msgstr ""
-"Geen hoofd mount punt is gegeven voor <pre>{!s}</pre> om te gebruiken. "
+"<code>systemctl {arg!s}</code> aanroeping in chroot resulteerde in foutcode "
+"{num!s}."
+
+#: src/modules/services-systemd/main.py:63
+#: src/modules/services-systemd/main.py:67
+msgid "Cannot enable systemd service <code>{name!s}</code>."
+msgstr ""
+"De systemd service <code>{name!s}</code> kon niet worden ingeschakeld."
+
+#: src/modules/services-systemd/main.py:65
+msgid "Cannot enable systemd target <code>{name!s}</code>."
+msgstr "Het systemd doel <code>{name!s}</code> kon niet worden ingeschakeld."
+
+#: src/modules/services-systemd/main.py:69
+msgid "Cannot disable systemd target <code>{name!s}</code>."
+msgstr "De systemd service <code>{name!s} kon niet worden uitgeschakeld."
+
+#: src/modules/services-systemd/main.py:71
+msgid "Cannot mask systemd unit <code>{name!s}</code>."
+msgstr "De systemd unit <code>{name!s}</code> kon niet worden gemaskerd."
+
+#: src/modules/services-systemd/main.py:73
+msgid ""
+"Unknown systemd commands <code>{command!s}</code> and "
+"<code>{suffix!s}</code> for unit {name!s}."
+msgstr ""
+"Onbekende systemd opdrachten <code>{command!s}</code> en "
+"<code>{suffix!s}</code> voor unit {name!s}. "
 
 #: src/modules/umount/main.py:31
 msgid "Unmount file systems."
 msgstr "Unmount bestandssystemen."
-
-#: src/modules/initcpiocfg/main.py:28
-msgid "Configuring mkinitcpio."
-msgstr "Instellen van mkinitcpio"
-
-#: src/modules/initcpiocfg/main.py:199 src/modules/openrcdmcryptcfg/main.py:73
-#: src/modules/mount/main.py:128 src/modules/luksopenswaphookcfg/main.py:87
-#: src/modules/fstab/main.py:362 src/modules/initramfscfg/main.py:86
-#: src/modules/rawfs/main.py:165
-msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr "Geen partities gedefinieerd voor <pre>{!s}</pre> om te gebruiken."
-
-#: src/modules/mkinitfs/main.py:27
-msgid "Creating initramfs with mkinitfs."
-msgstr "Een initramfs wordt aangemaakt met mkinitfs."
-
-#: src/modules/mkinitfs/main.py:49
-msgid "Failed to run mkinitfs on the target"
-msgstr "Uitvoeren van mkinitfs in het doelsysteem is mislukt"
-
-#: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
-msgid "The exit code was {}"
-msgstr "De afsluitcode was {}"
-
-#: src/modules/openrcdmcryptcfg/main.py:26
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "Configureren van OpenRC dmcrypt service."
 
 #: src/modules/unpackfs/main.py:35
 msgid "Filling up filesystems."
@@ -164,142 +160,6 @@ msgstr ""
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "De bestemming \"{}\" in het doelsysteem is niet een map"
 
-#: src/modules/services-systemd/main.py:26
-msgid "Configure systemd services"
-msgstr "Configureer systemd services "
-
-#: src/modules/services-systemd/main.py:59
-#: src/modules/services-openrc/main.py:93
-msgid "Cannot modify service"
-msgstr "De service kan niet worden gewijzigd"
-
-#: src/modules/services-systemd/main.py:60
-msgid ""
-"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr ""
-"<code>systemctl {arg!s}</code> aanroeping in chroot resulteerde in foutcode "
-"{num!s}."
-
-#: src/modules/services-systemd/main.py:63
-#: src/modules/services-systemd/main.py:67
-msgid "Cannot enable systemd service <code>{name!s}</code>."
-msgstr ""
-"De systemd service <code>{name!s}</code> kon niet worden ingeschakeld."
-
-#: src/modules/services-systemd/main.py:65
-msgid "Cannot enable systemd target <code>{name!s}</code>."
-msgstr "Het systemd doel <code>{name!s}</code> kon niet worden ingeschakeld."
-
-#: src/modules/services-systemd/main.py:69
-msgid "Cannot disable systemd target <code>{name!s}</code>."
-msgstr "De systemd service <code>{name!s} kon niet worden uitgeschakeld."
-
-#: src/modules/services-systemd/main.py:71
-msgid "Cannot mask systemd unit <code>{name!s}</code>."
-msgstr "De systemd unit <code>{name!s}</code> kon niet worden gemaskerd."
-
-#: src/modules/services-systemd/main.py:73
-msgid ""
-"Unknown systemd commands <code>{command!s}</code> and "
-"<code>{suffix!s}</code> for unit {name!s}."
-msgstr ""
-"Onbekende systemd opdrachten <code>{command!s}</code> en "
-"<code>{suffix!s}</code> voor unit {name!s}. "
-
-#: src/modules/dummypython/main.py:35
-msgid "Dummy python job."
-msgstr "Voorbeeld Python-taak"
-
-#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
-#: src/modules/dummypython/main.py:94
-msgid "Dummy python step {}"
-msgstr "Voorbeeld Python-stap {}"
-
-#: src/modules/bootloader/main.py:42
-msgid "Install bootloader."
-msgstr "Installeer bootloader"
-
-#: src/modules/localecfg/main.py:30
-msgid "Configuring locales."
-msgstr "Taal en locatie instellen."
-
-#: src/modules/mount/main.py:30
-msgid "Mounting partitions."
-msgstr "Partities mounten."
-
-#: src/modules/plymouthcfg/main.py:27
-msgid "Configure Plymouth theme"
-msgstr "Plymouth thema instellen"
-
-#: src/modules/luksopenswaphookcfg/main.py:26
-msgid "Configuring encrypted swap."
-msgstr "Instellen van versleutelde swap."
-
-#: src/modules/fstab/main.py:29
-msgid "Writing fstab."
-msgstr "fstab schrijven."
-
-#: src/modules/services-openrc/main.py:29
-msgid "Configure OpenRC services"
-msgstr "Configureer OpenRC services"
-
-#: src/modules/services-openrc/main.py:57
-msgid "Cannot add service {name!s} to run-level {level!s}."
-msgstr "Kon service {name!s} niet toegoeven aan runlevel {level!s}."
-
-#: src/modules/services-openrc/main.py:59
-msgid "Cannot remove service {name!s} from run-level {level!s}."
-msgstr "Kon service {name!s} niet verwijderen van runlevel {level!s}."
-
-#: src/modules/services-openrc/main.py:61
-msgid ""
-"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
-"level {level!s}."
-msgstr ""
-"Onbekende serviceactie <code>{arg!s}</code> voor service {name!s} in "
-"runlevel {level!s}."
-
-#: src/modules/services-openrc/main.py:94
-msgid ""
-"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr ""
-"<code>rc-update {arg!s}</code> aanroeping in chroot resulteerde in foutcode "
-"{num!s}."
-
-#: src/modules/services-openrc/main.py:101
-msgid "Target runlevel does not exist"
-msgstr "Doel runlevel bestaat niet"
-
-#: src/modules/services-openrc/main.py:102
-msgid ""
-"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr ""
-"Het pad voor runlevel {level!s} is <code>{path!s}</code>, welke niet bestaat"
-
-#: src/modules/services-openrc/main.py:110
-msgid "Target service does not exist"
-msgstr "Doelservice bestaat niet"
-
-#: src/modules/services-openrc/main.py:111
-msgid ""
-"The path for service {name!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr ""
-"Het pad voor service {level!s} is <code>{path!s}</code>, welke niet bestaat"
-
-#: src/modules/dracut/main.py:27
-msgid "Creating initramfs with dracut."
-msgstr "initramfs aanmaken met dracut."
-
-#: src/modules/dracut/main.py:49
-msgid "Failed to run dracut on the target"
-msgstr "Uitvoeren van dracut op het doel is mislukt"
-
-#: src/modules/grubcfg/main.py:28
-msgid "Configure GRUB."
-msgstr "GRUB instellen."
-
 #: src/modules/displaymanager/main.py:514
 msgid "Cannot write KDM configuration file"
 msgstr "Schrijven naar het KDM-configuratiebestand is mislukt "
@@ -356,14 +216,157 @@ msgstr ""
 msgid "Display manager configuration was incomplete"
 msgstr "Display manager configuratie was incompleet"
 
-#: src/modules/initramfscfg/main.py:32
-msgid "Configuring initramfs."
-msgstr "Instellen van initramfs."
+#: src/modules/initcpiocfg/main.py:28
+msgid "Configuring mkinitcpio."
+msgstr "Instellen van mkinitcpio"
+
+#: src/modules/initcpiocfg/main.py:203
+#: src/modules/luksopenswaphookcfg/main.py:91
+#: src/modules/initramfscfg/main.py:90 src/modules/openrcdmcryptcfg/main.py:77
+#: src/modules/fstab/main.py:368 src/modules/localecfg/main.py:136
+#: src/modules/networkcfg/main.py:40
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr ""
+"Geen hoofd mount punt is gegeven voor <pre>{!s}</pre> om te gebruiken. "
+
+#: src/modules/luksopenswaphookcfg/main.py:26
+msgid "Configuring encrypted swap."
+msgstr "Instellen van versleutelde swap."
+
+#: src/modules/rawfs/main.py:26
+msgid "Installing data."
+msgstr "Data aan het installeren."
+
+#: src/modules/services-openrc/main.py:29
+msgid "Configure OpenRC services"
+msgstr "Configureer OpenRC services"
+
+#: src/modules/services-openrc/main.py:57
+msgid "Cannot add service {name!s} to run-level {level!s}."
+msgstr "Kon service {name!s} niet toegoeven aan runlevel {level!s}."
+
+#: src/modules/services-openrc/main.py:59
+msgid "Cannot remove service {name!s} from run-level {level!s}."
+msgstr "Kon service {name!s} niet verwijderen van runlevel {level!s}."
+
+#: src/modules/services-openrc/main.py:61
+msgid ""
+"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
+"level {level!s}."
+msgstr ""
+"Onbekende serviceactie <code>{arg!s}</code> voor service {name!s} in "
+"runlevel {level!s}."
+
+#: src/modules/services-openrc/main.py:94
+msgid ""
+"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"<code>rc-update {arg!s}</code> aanroeping in chroot resulteerde in foutcode "
+"{num!s}."
+
+#: src/modules/services-openrc/main.py:101
+msgid "Target runlevel does not exist"
+msgstr "Doel runlevel bestaat niet"
+
+#: src/modules/services-openrc/main.py:102
+msgid ""
+"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr ""
+"Het pad voor runlevel {level!s} is <code>{path!s}</code>, welke niet bestaat"
+
+#: src/modules/services-openrc/main.py:110
+msgid "Target service does not exist"
+msgstr "Doelservice bestaat niet"
+
+#: src/modules/services-openrc/main.py:111
+msgid ""
+"The path for service {name!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr ""
+"Het pad voor service {level!s} is <code>{path!s}</code>, welke niet bestaat"
+
+#: src/modules/plymouthcfg/main.py:27
+msgid "Configure Plymouth theme"
+msgstr "Plymouth thema instellen"
+
+#: src/modules/packages/main.py:50 src/modules/packages/main.py:59
+#: src/modules/packages/main.py:69
+msgid "Install packages."
+msgstr "Pakketten installeren."
+
+#: src/modules/packages/main.py:57
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "Pakketten verwerken (%(count)d/ %(total)d)"
+
+#: src/modules/packages/main.py:62
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] "Pakket installeren."
+msgstr[1] "%(num)d pakketten installeren."
+
+#: src/modules/packages/main.py:65
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] "Pakket verwijderen."
+msgstr[1] "%(num)d pakketten verwijderen."
+
+#: src/modules/bootloader/main.py:42
+msgid "Install bootloader."
+msgstr "Installeer bootloader"
 
 #: src/modules/hwclock/main.py:26
 msgid "Setting hardware clock."
 msgstr "Instellen van hardwareklok"
 
-#: src/modules/rawfs/main.py:26
-msgid "Installing data."
-msgstr "Data aan het installeren."
+#: src/modules/mkinitfs/main.py:27
+msgid "Creating initramfs with mkinitfs."
+msgstr "Een initramfs wordt aangemaakt met mkinitfs."
+
+#: src/modules/mkinitfs/main.py:49
+msgid "Failed to run mkinitfs on the target"
+msgstr "Uitvoeren van mkinitfs in het doelsysteem is mislukt"
+
+#: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
+msgid "The exit code was {}"
+msgstr "De afsluitcode was {}"
+
+#: src/modules/dracut/main.py:27
+msgid "Creating initramfs with dracut."
+msgstr "initramfs aanmaken met dracut."
+
+#: src/modules/dracut/main.py:49
+msgid "Failed to run dracut on the target"
+msgstr "Uitvoeren van dracut op het doel is mislukt"
+
+#: src/modules/initramfscfg/main.py:32
+msgid "Configuring initramfs."
+msgstr "Instellen van initramfs."
+
+#: src/modules/openrcdmcryptcfg/main.py:26
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "Configureren van OpenRC dmcrypt service."
+
+#: src/modules/fstab/main.py:29
+msgid "Writing fstab."
+msgstr "fstab schrijven."
+
+#: src/modules/dummypython/main.py:35
+msgid "Dummy python job."
+msgstr "Voorbeeld Python-taak"
+
+#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
+#: src/modules/dummypython/main.py:94
+msgid "Dummy python step {}"
+msgstr "Voorbeeld Python-stap {}"
+
+#: src/modules/localecfg/main.py:30
+msgid "Configuring locales."
+msgstr "Taal en locatie instellen."
+
+#: src/modules/networkcfg/main.py:28
+msgid "Saving network configuration."
+msgstr "Netwerk-configuratie opslaan."
