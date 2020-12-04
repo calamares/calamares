@@ -131,7 +131,7 @@ strings:
     productUrl:          https://calamares.io/
     supportUrl:          https://github.com/calamares/calamares/wiki
     knownIssuesUrl:      https://github.com/calamares/calamares/issues
-    releaseNotesUrl:     http://calamares.io/news/
+    releaseNotesUrl:     https://calamares.io/news/
     donateUrl:           https://kde.org/community/donations/index.php
 
 # These images are loaded from the branding module directory.
