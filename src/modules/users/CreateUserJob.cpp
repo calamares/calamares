@@ -47,7 +47,7 @@ CreateUserJob::prettyDescription() const
 QString
 CreateUserJob::prettyStatusMessage() const
 {
-    return m_status.isEmpty() ? tr( "Creating user %1." ).arg( m_config->loginName() ) : m_status;
+    return m_status.isEmpty() ? tr( "Creating user %1" ).arg( m_config->loginName() ) : m_status;
 }
 
 static Calamares::JobResult
