@@ -2067,9 +2067,9 @@ The installer will quit and all changes will be lost.</source>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="232"/>
       <source>The password contains fewer than %n lowercase letters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>कूटशब्द में %n से कम लोअरकेस अक्षर हैं</numerusform>
+        <numerusform>कूटशब्द में %n से कम लोअरकेस अक्षर हैं</numerusform>
       </translation>
     </message>
     <message>

@@ -2067,9 +2067,9 @@ Sök på kartan genom att dra
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="232"/>
       <source>The password contains fewer than %n lowercase letters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Lösenordet innehåller färre än %n små bokstäver</numerusform>
+        <numerusform>Lösenordet innehåller färre än %n små bokstäver</numerusform>
       </translation>
     </message>
     <message>
