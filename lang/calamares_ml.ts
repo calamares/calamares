@@ -1028,16 +1028,12 @@ The installer will quit and all changes will be lost.</source>
       <translation>&lt;strong&gt;%1&lt;/strong&gt; എന്ന ഉപയോക്താവിനെ സൃഷ്ടിക്കുക.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CreateUserJob.cpp" line="50"/>
-      <source>Creating user %1.</source>
-      <translation>ഉപയോക്താവ് %1-നെ ഉണ്ടാക്കുന്നു.</translation>
-    </message>
-    <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="126"/>
       <source>Preserving home directory</source>
       <translation type="unfinished"/>
     </message>
     <message>
+      <location filename="../src/modules/users/CreateUserJob.cpp" line="50"/>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="143"/>
       <source>Creating user %1</source>
       <translation type="unfinished"/>
@@ -1177,17 +1173,17 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>DracutLuksCfgJob</name>
     <message>
-      <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="127"/>
+      <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="117"/>
       <source>Write LUKS configuration for Dracut to %1</source>
       <translation>ഡ്രാക്കട്ടിനായി LUKS കോൺഫിഗറേഷൻ %1 ലേക്ക് എഴുതുക</translation>
     </message>
     <message>
-      <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="131"/>
+      <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="121"/>
       <source>Skip writing LUKS configuration for Dracut: "/" partition is not encrypted</source>
       <translation>ഡ്രാക്കട്ടിനായി LUKS കോൺഫിഗറേഷൻ എഴുതുന്നത് ഒഴിവാക്കുക: "/" പാർട്ടീഷൻ എൻ‌ക്രിപ്റ്റ് ചെയ്തിട്ടില്ല</translation>
     </message>
     <message>
-      <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="148"/>
+      <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="138"/>
       <source>Failed to open %1</source>
       <translation>%1 തുറക്കുന്നതിൽ പരാജയപ്പെട്ടു</translation>
     </message>
@@ -1761,30 +1757,30 @@ The installer will quit and all changes will be lost.</source>
       <translation>LUKS കീ ഫയൽ ക്രമീകരിക്കുന്നു.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="170"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="178"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="168"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="176"/>
       <source>No partitions are defined.</source>
       <translation>പാര്‍ട്ടീഷ്യനുകള്‍ നിര്‍വ്വചിച്ചിട്ടില്ല</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="213"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="220"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="228"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="211"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="218"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="226"/>
       <source>Encrypted rootfs setup error</source>
       <translation>എന്‍ക്രിപ്റ്റുചെയ്ത റൂട്ട് എഫ്എസ് സജ്ജീകരണത്തില്‍ പ്രശ്നമുണ്ടു്</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="214"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="212"/>
       <source>Root partition %1 is LUKS but no passphrase has been set.</source>
       <translation>റൂട്ട് പാർട്ടീഷൻ %1 LUKS ആണ് പക്ഷേ രഹസ്യവാക്കൊന്നും ക്രമീകരിച്ചിട്ടില്ല.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="221"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="219"/>
       <source>Could not create LUKS key file for root partition %1.</source>
       <translation>റൂട്ട് പാർട്ടീഷൻ %1ന് വേണ്ടി LUKS കീ ഫയൽ നിർമ്മിക്കാനായില്ല.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="229"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="227"/>
       <source>Could not configure LUKS key file on partition %1.</source>
       <translation type="unfinished"/>
     </message>
@@ -2731,12 +2727,12 @@ The installer will quit and all changes will be lost.</source>
       <translation>ഫോം</translation>
     </message>
     <message>
-      <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="61"/>
+      <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="79"/>
       <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is set up. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
       <translation>കെ‌ഡി‌ഇ പ്ലാസ്മ ഡെസ്‌ക്‌ടോപ്പിനായി ഒരു കെട്ടും മട്ടും തിരഞ്ഞെടുക്കുക.നിങ്ങൾക്ക് ഈ ഘട്ടം ഇപ്പോൾ ഒഴിവാക്കി സിസ്റ്റം ഇൻസ്റ്റാൾ ചെയ്തതിനു ശേഷവും കെട്ടും മട്ടും ക്രമീരകരിക്കാൻ കഴിയും.ഒരു കെട്ടും മട്ടും തിരഞ്ഞെടുക്കലിൽ ക്ലിക്കുചെയ്യുന്നത് ആ കെട്ടും മട്ടിന്റെയും തത്സമയ പ്രിവ്യൂ നൽകും.</translation>
     </message>
     <message>
-      <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="66"/>
+      <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="84"/>
       <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is installed. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
       <translation>കെ‌ഡി‌ഇ പ്ലാസ്മ ഡെസ്‌ക്‌ടോപ്പിനായി ഒരു കെട്ടും മട്ടും തിരഞ്ഞെടുക്കുക.നിങ്ങൾക്ക് ഈ ഘട്ടം ഇപ്പോൾ ഒഴിവാക്കി സിസ്റ്റം ഇൻസ്റ്റാൾ ചെയ്തതിനു ശേഷവും കെട്ടും മട്ടും ക്രമീരകരിക്കാൻ കഴിയും </translation>
     </message>
@@ -2744,7 +2740,7 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>PlasmaLnfViewStep</name>
     <message>
-      <location filename="../src/modules/plasmalnf/PlasmaLnfViewStep.cpp" line="61"/>
+      <location filename="../src/modules/plasmalnf/PlasmaLnfViewStep.cpp" line="43"/>
       <source>Look-and-Feel</source>
       <translation>കെട്ടും മട്ടും</translation>
     </message>

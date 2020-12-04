@@ -1028,19 +1028,15 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
       <translation>&lt;strong&gt;%1&lt;/strong&gt; istifadəçi hesabı yaratmaq.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CreateUserJob.cpp" line="50"/>
-      <source>Creating user %1.</source>
-      <translation>%1 istifadəçi hesabı yaradılır.</translation>
-    </message>
-    <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="126"/>
       <source>Preserving home directory</source>
       <translation>Ev qovluğunun saxlanılması</translation>
     </message>
     <message>
+      <location filename="../src/modules/users/CreateUserJob.cpp" line="50"/>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="143"/>
       <source>Creating user %1</source>
-      <translation>%1 istifadəçisinin yaradılması. {1?}</translation>
+      <translation>%1 istifadəçisinin yaradılması.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="151"/>
@@ -1177,17 +1173,17 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
   <context>
     <name>DracutLuksCfgJob</name>
     <message>
-      <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="127"/>
+      <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="117"/>
       <source>Write LUKS configuration for Dracut to %1</source>
       <translation>%1 -də Dracut üçün LUKS tənzimləməlirini yazmaq</translation>
     </message>
     <message>
-      <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="131"/>
+      <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="121"/>
       <source>Skip writing LUKS configuration for Dracut: "/" partition is not encrypted</source>
       <translation>Dracut üçün LUKS tənzimləmələrini yazmağı ötürmək: "/" bölməsi şifrələnmədi</translation>
     </message>
     <message>
-      <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="148"/>
+      <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="138"/>
       <source>Failed to open %1</source>
       <translation>%1 açılmadı</translation>
     </message>
@@ -1761,30 +1757,30 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
       <translation>LUKS düymə faylını ayarlamaq.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="170"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="178"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="168"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="176"/>
       <source>No partitions are defined.</source>
       <translation>Heç bir bölmə müəyyən edilməyib.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="213"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="220"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="228"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="211"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="218"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="226"/>
       <source>Encrypted rootfs setup error</source>
       <translation>Kök fayl sisteminin şifrələnməsi xətası</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="214"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="212"/>
       <source>Root partition %1 is LUKS but no passphrase has been set.</source>
       <translation>%1 Kök bölməsi LUKS-dur lakin, şifrə təyin olunmayıb.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="221"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="219"/>
       <source>Could not create LUKS key file for root partition %1.</source>
       <translation>%1 kök bölməsi üçün LUKS düymə faylı yaradılmadı.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="229"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="227"/>
       <source>Could not configure LUKS key file on partition %1.</source>
       <translation>%1 bölməsində LUKS düymə faylı tənzimlənə bilmədi.</translation>
     </message>
@@ -2734,12 +2730,12 @@ Lütfən bir birinci disk bölümünü çıxarın və əvəzinə genişləndiril
       <translation>Format</translation>
     </message>
     <message>
-      <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="61"/>
+      <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="79"/>
       <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is set up. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
       <translation>Lütfən, KDE Plasma İş Masası üçün Xarici Görünüşü seçin. Siz həmçinin bu mərhələni ötürə və sistem qurulduqdan sonra Plasma xarici görünüşünü ayarlaya bilərsiniz. Xarici Görünüşə klikləməniz onun canlı görüntüsünü sizə göstərəcəkdir.</translation>
     </message>
     <message>
-      <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="66"/>
+      <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="84"/>
       <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is installed. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
       <translation>Lütfən, KDE Plasma İş Masası üçün Xarici Görünüşü seçin. Siz həmçinin bu mərhələni ötürə və sistem qurulduqdan sonra Plasma xarici görünüşünü ayarlaya bilərsiniz. Xarici Görünüşə klikləməniz onun canlı görüntüsünü sizə göstərəcəkdir.</translation>
     </message>
@@ -2747,7 +2743,7 @@ Lütfən bir birinci disk bölümünü çıxarın və əvəzinə genişləndiril
   <context>
     <name>PlasmaLnfViewStep</name>
     <message>
-      <location filename="../src/modules/plasmalnf/PlasmaLnfViewStep.cpp" line="61"/>
+      <location filename="../src/modules/plasmalnf/PlasmaLnfViewStep.cpp" line="43"/>
       <source>Look-and-Feel</source>
       <translation>Xarici Görünüş</translation>
     </message>
