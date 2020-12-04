@@ -82,11 +82,11 @@ msgstr "사용할 <pre>{!s}</pre>에 대해 정의된 파티션이 없음."
 
 #: src/modules/mkinitfs/main.py:27
 msgid "Creating initramfs with mkinitfs."
-msgstr ""
+msgstr "mkinitfs로 initramfs 생성 중."
 
 #: src/modules/mkinitfs/main.py:49
 msgid "Failed to run mkinitfs on the target"
-msgstr ""
+msgstr "대상에서 mkinitfs를 실행하지 못했습니다"
 
 #: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
 msgid "The exit code was {}"
@@ -106,11 +106,11 @@ msgstr "rsync가 {} 오류 코드로 실패했습니다."
 
 #: src/modules/unpackfs/main.py:300
 msgid "Unpacking image {}/{}, file {}/{}"
-msgstr ""
+msgstr "이미지 {}/{}, 파일 {}/{} 압축푸는 중"
 
 #: src/modules/unpackfs/main.py:315
 msgid "Starting to unpack {}"
-msgstr ""
+msgstr "{} 압축 풀기 시작 중"
 
 #: src/modules/unpackfs/main.py:324 src/modules/unpackfs/main.py:464
 msgid "Failed to unpack image \"{}\""
@@ -333,6 +333,8 @@ msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
 msgstr ""
+"displaymanagers 목록이 비어 있거나 globalstorage 및 displaymanager.conf 모두에서 정의되지 "
+"않았습니다."
 
 #: src/modules/displaymanager/main.py:977
 msgid "Display manager configuration was incomplete"
