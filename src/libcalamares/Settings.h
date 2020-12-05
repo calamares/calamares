@@ -157,6 +157,8 @@ public:
     /** @brief Temporary setting of disable-cancel: can't cancel during exec. */
     bool disableCancelDuringExec() const { return m_disableCancelDuringExec; }
 
+    bool hideBackAndNextDuringExec() const { return m_hideBackAndNextDuringExec; }
+
     /** @brief Is quit-at-end set? (Quit automatically when done) */
     bool quitAtEnd() const { return m_quitAtEnd; }
 
@@ -176,6 +178,7 @@ private:
     bool m_promptInstall;
     bool m_disableCancel;
     bool m_disableCancelDuringExec;
+    bool m_hideBackAndNextDuringExec;
     bool m_quitAtEnd;
 };
 
