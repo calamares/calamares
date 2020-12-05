@@ -153,7 +153,7 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
             hooks.append("usr")
 
     if encrypt_hook:
-        if detect_plymouth():
+        if detect_plymouth() and unencrypted_separate_boot:
             hooks.append("plymouth-encrypt")
         else:
             hooks.append("encrypt")
