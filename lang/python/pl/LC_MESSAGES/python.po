@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-16 22:35+0200\n"
+"POT-Creation-Date: 2020-12-04 22:26+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Piotr Strębski <strebski@gmail.com>, 2020\n"
 "Language-Team: Polish (https://www.transifex.com/calamares/teams/20061/pl/)\n"
@@ -27,25 +27,25 @@ msgstr ""
 msgid "Configure GRUB."
 msgstr "Konfiguracja GRUB."
 
-#: src/modules/mount/main.py:29
+#: src/modules/mount/main.py:30
 msgid "Mounting partitions."
 msgstr "Montowanie partycji."
 
-#: src/modules/mount/main.py:141 src/modules/initcpiocfg/main.py:196
-#: src/modules/initcpiocfg/main.py:200
+#: src/modules/mount/main.py:127 src/modules/initcpiocfg/main.py:198
+#: src/modules/initcpiocfg/main.py:202
 #: src/modules/luksopenswaphookcfg/main.py:86
 #: src/modules/luksopenswaphookcfg/main.py:90 src/modules/rawfs/main.py:164
 #: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
-#: src/modules/openrcdmcryptcfg/main.py:69
-#: src/modules/openrcdmcryptcfg/main.py:73 src/modules/fstab/main.py:361
+#: src/modules/openrcdmcryptcfg/main.py:72
+#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/fstab/main.py:361
 #: src/modules/fstab/main.py:367 src/modules/localecfg/main.py:135
 #: src/modules/networkcfg/main.py:39
 msgid "Configuration Error"
 msgstr "Błąd konfiguracji"
 
-#: src/modules/mount/main.py:142 src/modules/initcpiocfg/main.py:197
+#: src/modules/mount/main.py:128 src/modules/initcpiocfg/main.py:199
 #: src/modules/luksopenswaphookcfg/main.py:87 src/modules/rawfs/main.py:165
-#: src/modules/initramfscfg/main.py:86 src/modules/openrcdmcryptcfg/main.py:70
+#: src/modules/initramfscfg/main.py:86 src/modules/openrcdmcryptcfg/main.py:73
 #: src/modules/fstab/main.py:362
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr ""
@@ -95,56 +95,56 @@ msgstr "Odmontuj systemy plików."
 msgid "Filling up filesystems."
 msgstr "Zapełnianie systemu plików."
 
-#: src/modules/unpackfs/main.py:254
+#: src/modules/unpackfs/main.py:255
 msgid "rsync failed with error code {}."
 msgstr "rsync zakończyło działanie kodem błędu {}."
 
-#: src/modules/unpackfs/main.py:299
+#: src/modules/unpackfs/main.py:300
 msgid "Unpacking image {}/{}, file {}/{}"
 msgstr ""
 
-#: src/modules/unpackfs/main.py:314
+#: src/modules/unpackfs/main.py:315
 msgid "Starting to unpack {}"
 msgstr ""
 
-#: src/modules/unpackfs/main.py:323 src/modules/unpackfs/main.py:463
+#: src/modules/unpackfs/main.py:324 src/modules/unpackfs/main.py:464
 msgid "Failed to unpack image \"{}\""
 msgstr "Błąd rozpakowywania obrazu \"{}\""
 
-#: src/modules/unpackfs/main.py:430
+#: src/modules/unpackfs/main.py:431
 msgid "No mount point for root partition"
 msgstr "Brak punktu montowania partycji root"
 
-#: src/modules/unpackfs/main.py:431
+#: src/modules/unpackfs/main.py:432
 msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
 msgstr ""
 "globalstorage nie zawiera klucza \"rootMountPoint\", nic nie zostanie "
 "zrobione"
 
-#: src/modules/unpackfs/main.py:436
+#: src/modules/unpackfs/main.py:437
 msgid "Bad mount point for root partition"
 msgstr "Błędny punkt montowania partycji root"
 
-#: src/modules/unpackfs/main.py:437
+#: src/modules/unpackfs/main.py:438
 msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
 msgstr ""
 "Punkt montowania partycji root (rootMountPoint) jest \"{}\", które nie "
 "istnieje; nic nie zostanie zrobione"
 
-#: src/modules/unpackfs/main.py:453 src/modules/unpackfs/main.py:457
-#: src/modules/unpackfs/main.py:477
+#: src/modules/unpackfs/main.py:454 src/modules/unpackfs/main.py:458
+#: src/modules/unpackfs/main.py:478
 msgid "Bad unsquash configuration"
 msgstr "Błędna konfiguracja unsquash"
 
-#: src/modules/unpackfs/main.py:454
+#: src/modules/unpackfs/main.py:455
 msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
 msgstr ""
 
-#: src/modules/unpackfs/main.py:458
+#: src/modules/unpackfs/main.py:459
 msgid "The source filesystem \"{}\" does not exist"
 msgstr "Źródłowy system plików \"{}\" nie istnieje"
 
-#: src/modules/unpackfs/main.py:464
+#: src/modules/unpackfs/main.py:465
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed"
@@ -152,7 +152,7 @@ msgstr ""
 "Nie można odnaleźć unsquashfs, upewnij się, że masz zainstalowany pakiet "
 "squashfs-tools"
 
-#: src/modules/unpackfs/main.py:478
+#: src/modules/unpackfs/main.py:479
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "Miejsce docelowe \"{}\" w docelowym systemie nie jest katalogiem"
 
@@ -214,9 +214,9 @@ msgstr "Konfiguracja menedżera wyświetlania była niekompletna"
 msgid "Configuring mkinitcpio."
 msgstr "Konfigurowanie mkinitcpio."
 
-#: src/modules/initcpiocfg/main.py:201
+#: src/modules/initcpiocfg/main.py:203
 #: src/modules/luksopenswaphookcfg/main.py:91
-#: src/modules/initramfscfg/main.py:90 src/modules/openrcdmcryptcfg/main.py:74
+#: src/modules/initramfscfg/main.py:90 src/modules/openrcdmcryptcfg/main.py:77
 #: src/modules/fstab/main.py:368 src/modules/localecfg/main.py:136
 #: src/modules/networkcfg/main.py:40
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
@@ -337,7 +337,7 @@ msgstr ""
 msgid "Configuring initramfs."
 msgstr "Konfigurowanie initramfs."
 
-#: src/modules/openrcdmcryptcfg/main.py:25
+#: src/modules/openrcdmcryptcfg/main.py:26
 msgid "Configuring OpenRC dmcrypt service."
 msgstr ""
 

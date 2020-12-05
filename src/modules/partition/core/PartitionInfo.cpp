@@ -52,7 +52,15 @@ PartitionTable::Flags
 flags( const Partition* partition )
 {
     auto v = partition->property( FLAGS_PROPERTY );
-    if ( v.type() == QVariant::Int )
+    if ( !v.isValid() )
+    {
+        return partition->activeFlags();
+    }
+    // The underlying type of PartitionTable::Flags can be int or uint
+    // (see qflags.h) and so setting those flags can create a QVariant
+    // of those types; we don't just want to check QVariant::canConvert()
+    // here because that will also accept QByteArray and some other things.
+    if ( v.type() == QVariant::Int || v.type() == QVariant::UInt )
     {
         return static_cast< PartitionTable::Flags >( v.toInt() );
     }

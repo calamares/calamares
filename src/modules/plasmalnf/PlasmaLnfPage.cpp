@@ -10,49 +10,67 @@
 
 #include "PlasmaLnfPage.h"
 
+#include "Config.h"
 #include "ui_page_plasmalnf.h"
 
 #include "Settings.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 
-#include <QAbstractButton>
+#include <QHeaderView>
+#include <QListView>
+#include <QStyledItemDelegate>
 
-#include <KPackage/Package>
-#include <KPackage/PackageLoader>
-
-ThemeInfo::ThemeInfo( const KPluginMetaData& data )
-    : id( data.pluginId() )
-    , name( data.name() )
-    , description( data.description() )
-    , widget( nullptr )
+class ThemeDelegate : public QStyledItemDelegate
 {
+public:
+    using QStyledItemDelegate::QStyledItemDelegate;
+
+    void paint( QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index ) const override;
+    // The size of the item is constant
+    QSize sizeHint( const QStyleOptionViewItem&, const QModelIndex& ) const override;
+};
+
+QSize
+ThemeDelegate::sizeHint( const QStyleOptionViewItem&, const QModelIndex& ) const
+{
+    QSize image( ThemesModel::imageSize() );
+    return { 3 * image.width(), image.height() };
 }
 
-static ThemeInfoList
-plasma_themes()
+void
+ThemeDelegate::paint( QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index ) const
 {
-    ThemeInfoList packages;
+    auto label = index.data( ThemesModel::LabelRole ).toString();
+    auto description = index.data( ThemesModel::DescriptionRole ).toString();
+    auto selected = index.data( ThemesModel::SelectedRole ).toBool() ? QStyle::State_On : QStyle::State_Off;
+    auto image_v = index.data( ThemesModel::ImageRole );
+    QPixmap image = image_v.canConvert< QPixmap >() ? qvariant_cast< QPixmap >( image_v ) : QPixmap();
 
-    QList< KPluginMetaData > pkgs = KPackage::PackageLoader::self()->listPackages( "Plasma/LookAndFeel" );
+    // The delegate paints three "columns", each of which takes 1/3
+    // of the space: label, description and screenshot.
+    QRect labelRect( option.rect );
+    labelRect.setWidth( labelRect.width() / 3 );
 
-    for ( const KPluginMetaData& data : pkgs )
-    {
-        if ( data.isValid() && !data.isHidden() && !data.name().isEmpty() )
-        {
-            packages << ThemeInfo { data };
-        }
-    }
+    QStyleOptionButton rbOption;
+    rbOption.state |= QStyle::State_Enabled | selected;
+    rbOption.rect = labelRect;
+    rbOption.text = label;
+    option.widget->style()->drawControl( QStyle::CE_RadioButton, &rbOption, painter, option.widget );
 
-    return packages;
+    labelRect.moveLeft( labelRect.width() );
+    option.widget->style()->drawItemText(
+        painter, labelRect, Qt::AlignLeft | Qt::AlignVCenter | Qt::TextWordWrap, option.palette, false, description );
+
+    labelRect.moveLeft( 2 * labelRect.width() );
+    option.widget->style()->drawItemPixmap( painter, labelRect, Qt::AlignHCenter | Qt::AlignVCenter, image );
 }
 
 
-PlasmaLnfPage::PlasmaLnfPage( QWidget* parent )
+PlasmaLnfPage::PlasmaLnfPage( Config* config, QWidget* parent )
     : QWidget( parent )
     , ui( new Ui::PlasmaLnfPage )
-    , m_showAll( false )
-    , m_buttonGroup( nullptr )
+    , m_config( config )
 {
     ui->setupUi( this );
     CALAMARES_RETRANSLATE( {
@@ -67,134 +85,28 @@ PlasmaLnfPage::PlasmaLnfPage( QWidget* parent )
                                                  "You can also skip this step and configure the look-and-feel "
                                                  "once the system is installed. Clicking on a look-and-feel "
                                                  "selection will give you a live preview of that look-and-feel." ) );
-        updateThemeNames();
-        fillUi();
     } )
-}
 
-void
-PlasmaLnfPage::setLnfPath( const QString& path )
-{
-    m_lnfPath = path;
-}
+    auto* view = new QListView( this );
+    view->setModel( m_config->themeModel() );
+    view->setItemDelegate( new ThemeDelegate( view ) );
+    view->setUniformItemSizes( true );
+    view->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
+    ui->verticalLayout->addWidget( view );
 
-void
-PlasmaLnfPage::setEnabledThemes( const ThemeInfoList& themes, bool showAll )
-{
-    m_enabledThemes = themes;
-
-    if ( showAll )
-    {
-        auto plasmaThemes = plasma_themes();
-        for ( auto& installed_theme : plasmaThemes )
-            if ( !m_enabledThemes.findById( installed_theme.id ) )
-            {
-                m_enabledThemes.append( installed_theme );
-            }
-    }
-
-    updateThemeNames();
-    winnowThemes();
-    fillUi();
-}
-
-void
-PlasmaLnfPage::setEnabledThemesAll()
-{
-    // Don't need to set showAll=true, because we're already passing in
-    // the complete list of installed themes.
-    setEnabledThemes( plasma_themes(), false );
-}
-
-void
-PlasmaLnfPage::setPreselect( const QString& id )
-{
-    m_preselect = id;
-    if ( !m_enabledThemes.isEmpty() )
-    {
-        fillUi();
-    }
-}
-
-void
-PlasmaLnfPage::updateThemeNames()
-{
-    auto plasmaThemes = plasma_themes();
-    for ( auto& enabled_theme : m_enabledThemes )
-    {
-        ThemeInfo* t = plasmaThemes.findById( enabled_theme.id );
-        if ( t != nullptr )
-        {
-            enabled_theme.name = t->name;
-            enabled_theme.description = t->description;
-        }
-    }
-}
-
-void
-PlasmaLnfPage::winnowThemes()
-{
-    auto plasmaThemes = plasma_themes();
-    bool winnowed = true;
-    int winnow_index = 0;
-    while ( winnowed )
-    {
-        winnowed = false;
-        winnow_index = 0;
-
-        for ( auto& enabled_theme : m_enabledThemes )
-        {
-            ThemeInfo* t = plasmaThemes.findById( enabled_theme.id );
-            if ( t == nullptr )
-            {
-                cDebug() << "Removing" << enabled_theme.id;
-                winnowed = true;
-                break;
-            }
-            ++winnow_index;
-        }
-
-        if ( winnowed )
-        {
-            m_enabledThemes.removeAt( winnow_index );
-        }
-    }
-}
-
-void
-PlasmaLnfPage::fillUi()
-{
-    if ( m_enabledThemes.isEmpty() )
-    {
-        return;
-    }
-
-    if ( !m_buttonGroup )
-    {
-        m_buttonGroup = new QButtonGroup( this );
-        m_buttonGroup->setExclusive( true );
-    }
-
-    int c = 1;  // After the general explanation
-    for ( auto& theme : m_enabledThemes )
-    {
-        if ( !theme.widget )
-        {
-            ThemeWidget* w = new ThemeWidget( theme );
-            m_buttonGroup->addButton( w->button() );
-            ui->verticalLayout->insertWidget( c, w );
-            connect( w, &ThemeWidget::themeSelected, this, &PlasmaLnfPage::plasmaThemeSelected );
-            theme.widget = w;
-        }
-        else
-        {
-            theme.widget->updateThemeName( theme );
-        }
-        if ( theme.id == m_preselect )
-        {
-            const QSignalBlocker b( theme.widget->button() );
-            theme.widget->button()->setChecked( true );
-        }
-        ++c;
-    }
+    connect( view->selectionModel(),
+             &QItemSelectionModel::selectionChanged,
+             [this]( const QItemSelection& selected, const QItemSelection& ) {
+                 auto i = selected.indexes();
+                 if ( !i.isEmpty() )
+                 {
+                     auto row = i.first().row();
+                     auto* model = m_config->themeModel();
+                     auto id = model->data( model->index( row, 0 ), ThemesModel::KeyRole ).toString();
+                     if ( !id.isEmpty() )
+                     {
+                         m_config->setTheme( id );
+                     }
+                 }
+             } );
 }

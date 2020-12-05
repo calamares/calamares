@@ -129,16 +129,14 @@ setupLuks( const LuksDevice& d )
     return true;
 }
 
-// static
-QVariantList
+static QVariantList
 partitions()
 {
     Calamares::GlobalStorage* globalStorage = Calamares::JobQueue::instance()->globalStorage();
     return globalStorage->value( QStringLiteral( "partitions" ) ).toList();
 }
 
-// static
-bool
+static bool
 hasUnencryptedSeparateBoot()
 {
     const QVariantList partitions = ::partitions();

@@ -100,6 +100,8 @@ LibCalamaresTests::testDebugLevels()
 void
 LibCalamaresTests::testLoadSaveYaml()
 {
+    Logger::setupLogLevel( Logger::LOGDEBUG );
+
     QFile f( "settings.conf" );
     // Find the nearest settings.conf to read
     for ( unsigned int up = 0; !f.exists() && ( up < 4 ); ++up )
@@ -110,10 +112,23 @@ LibCalamaresTests::testLoadSaveYaml()
     QVERIFY( f.exists() );
 
     auto map = CalamaresUtils::loadYaml( f.fileName() );
+    QVERIFY( map.contains( "sequence" ) );
+    QCOMPARE( map[ "sequence" ].type(), QVariant::List );
+
+    // The source-repo example `settings.conf` has a show and an exec phase
+    auto sequence = map[ "sequence" ].toList();
+    cDebug() << "Loaded example `settings.conf` sequence:";
+    for ( const auto& v : sequence )
+    {
+        cDebug() << Logger::SubEntry << v;
+        QCOMPARE( v.type(), QVariant::Map );
+        QVERIFY( v.toMap().contains( "show" ) || v.toMap().contains( "exec" ) );
+    }
+
     CalamaresUtils::saveYaml( "out.yaml", map );
 
     auto other_map = CalamaresUtils::loadYaml( "out.yaml" );
-    CalamaresUtils::saveYaml( " out2.yaml", other_map );
+    CalamaresUtils::saveYaml( "out2.yaml", other_map );
     QCOMPARE( map, other_map );
 
     QFile::remove( "out.yaml" );

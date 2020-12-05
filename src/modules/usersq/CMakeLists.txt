@@ -28,6 +28,19 @@ if( LibPWQuality_FOUND )
     add_definitions( -DCHECK_PWQUALITY -DHAVE_LIBPWQUALITY )
 endif()
 
+#needed for ${_users}/Config.cpp
+find_package( ICU COMPONENTS uc i18n )
+set_package_properties(
+    ICU PROPERTIES
+    PURPOSE "Transliteration support for full name to username conversion"
+)
+
+if( ICU_FOUND )
+    list( APPEND USER_EXTRA_LIB ICU::uc ICU::i18n )
+    include_directories( ${ICU_INCLUDE_DIRS} )
+    add_definitions( -DHAVE_ICU )
+endif()
+
 calamares_add_plugin( usersq
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO

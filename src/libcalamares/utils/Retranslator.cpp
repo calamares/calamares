@@ -168,17 +168,17 @@ TZLoader::tryLoad( QTranslator* translator )
 static void
 loadSingletonTranslator( TranslationLoader&& loader, QTranslator*& translator_p )
 {
-    QTranslator* translator = new QTranslator();
-    loader.tryLoad( translator );
-
-    if ( translator_p )
+    if ( !translator_p )
     {
-        QCoreApplication::removeTranslator( translator_p );
-        delete translator_p;
+        QTranslator* translator = new QTranslator();
+        loader.tryLoad( translator );
+        QCoreApplication::installTranslator( translator );
+        translator_p = translator;
     }
-
-    QCoreApplication::installTranslator( translator );
-    translator_p = translator;
+    else
+    {
+        loader.tryLoad( translator_p );
+    }
 }
 
 namespace CalamaresUtils
@@ -193,10 +193,9 @@ installTranslator( const QLocale& locale, const QString& brandingTranslationsPre
 {
     loadSingletonTranslator( BrandingLoader( locale, brandingTranslationsPrefix ), s_brandingTranslator );
     loadSingletonTranslator( TZLoader( locale ), s_tztranslator );
+    loadSingletonTranslator( CalamaresLoader( locale ), s_translator );
 
-    CalamaresLoader l( locale );  // because we want the extracted localeName
-    loadSingletonTranslator( std::move( l ), s_translator );
-    s_translatorLocaleName = l.m_localeName;
+    s_translatorLocaleName = CalamaresLoader::mungeLocaleName( locale );
 }
 
 
@@ -204,6 +203,12 @@ QString
 translatorLocaleName()
 {
     return s_translatorLocaleName;
+}
+
+bool
+loadTranslator( const QLocale& locale, const QString& prefix, QTranslator* translator )
+{
+    return ::tryLoad( translator, prefix, locale.name() );
 }
 
 Retranslator*

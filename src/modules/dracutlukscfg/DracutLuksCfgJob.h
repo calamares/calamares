@@ -33,17 +33,6 @@ public:
     Calamares::JobResult exec() override;
 
 private:
-    static const QLatin1String CONFIG_FILE;
-    static const char* CONFIG_FILE_HEADER;
-    static const char* CONFIG_FILE_CRYPTTAB_KEYFILE_LINE;
-    static const char* CONFIG_FILE_CRYPTTAB_LINE;
-    static const QLatin1String CONFIG_FILE_SWAPLINE;
-
-    static QString rootMountPoint();
-    static QVariantList partitions();
-    static bool isRootEncrypted();
-    static bool hasUnencryptedSeparateBoot();
-    static QString swapOuterUuid();
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( DracutLuksCfgJobFactory )

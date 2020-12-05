@@ -24,6 +24,18 @@
 #include <QFile>
 #include <QRegExp>
 
+#ifdef HAVE_ICU
+#include <unicode/translit.h>
+#include <unicode/unistr.h>
+
+//Needed for ICU to apply some transliteration ruleset.
+//Still needs to be adjusted to fit the needs of the most of users
+static const char TRANSLITERATOR_ID[] = "Russian-Latin/BGN;"
+                                        "Greek-Latin/UNGEGN;"
+                                        "Any-Latin;"
+                                        "Latin-ASCII";
+#endif
+
 static const QRegExp USERNAME_RX( "^[a-z_][a-z0-9_-]*[$]?$" );
 static constexpr const int USERNAME_MAX_LENGTH = 31;
 
@@ -91,7 +103,7 @@ Config::Config( QObject* parent )
     connect( this, &Config::requireStrongPasswordsChanged, this, &Config::checkReady );
 }
 
-Config::~Config() {}
+Config::~Config() { }
 
 void
 Config::setUserShell( const QString& shell )
@@ -314,6 +326,33 @@ guessProductName()
     }
     return dmiProduct;
 }
+#ifdef HAVE_ICU
+static QString
+transliterate( const QString& input )
+{
+    static auto ue = UErrorCode::U_ZERO_ERROR;
+    static auto transliterator = std::unique_ptr< icu::Transliterator >(
+        icu::Transliterator::createInstance( TRANSLITERATOR_ID, UTRANS_FORWARD, ue ) );
+
+    if ( ue != UErrorCode::U_ZERO_ERROR )
+    {
+        cWarning() << "Can't create transliterator";
+
+        //it'll be checked later for non-ASCII characters
+        return input;
+    }
+
+    icu::UnicodeString transliterable( input.utf16() );
+    transliterator->transliterate( transliterable );
+    return QString::fromUtf16( transliterable.getTerminatedBuffer() );
+}
+#else
+static QString
+transliterate( const QString& input )
+{
+    return input;
+}
+#endif
 
 static QString
 makeLoginNameSuggestion( const QStringList& parts )
@@ -372,8 +411,15 @@ Config::setFullName( const QString& name )
         emit fullNameChanged( name );
 
         // Build login and hostname, if needed
-        QRegExp rx( "[^a-zA-Z0-9 ]", Qt::CaseInsensitive );
-        QString cleanName = CalamaresUtils::removeDiacritics( name ).toLower().replace( rx, " " ).simplified();
+        static QRegExp rx( "[^a-zA-Z0-9 ]", Qt::CaseInsensitive );
+
+        QString cleanName = CalamaresUtils::removeDiacritics( transliterate( name ) )
+                                .replace( QRegExp( "[-']" ), "" )
+                                .replace( rx, " " )
+                                .toLower()
+                                .simplified();
+
+
         QStringList cleanParts = cleanName.split( ' ' );
 
         if ( !m_customLoginName )
@@ -815,7 +861,7 @@ Config::createJobs() const
 
     Calamares::Job* j;
 
-    if ( m_sudoersGroup.isEmpty() )
+    if ( !m_sudoersGroup.isEmpty() )
     {
         j = new SetupSudoJob( m_sudoersGroup );
         jobs.append( Calamares::job_ptr( j ) );

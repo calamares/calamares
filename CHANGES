@@ -7,13 +7,68 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.33 (2020-11-03) #
+# 3.2.36 (unreleased) #
+
+This release contains contributions from (alphabetically by first name):
+ - Anubhav Choudhary
+
+## Core ##
+ - No core changes yet
+
+## Modules ##
+ - No module changes yet
+
+
+# 3.2.35 (2020-11-30) #
+
+This release contains contributions from (alphabetically by first name):
+ - Clarissa Borges
+ - Matti Hyttinen
+
+A new kind of issue template has been added for Calamares,
+for reporting (and adding tests for) usability issues. Thanks
+to Clarissa for leading that effort.
+
+## Core ##
+ - No core changes yet
+
+## Modules ##
+ - The *partition* module now supports a not-full-disk-encryption setup,
+   where `/boot` is not encrypted, but the rest of the system is.
+ - The *plasmalnf* module has been substantially rewritten, so that it
+   can support a QML version of the module in future. The UI has changed
+   a little, and now displays more themes than before.
+
+
+# 3.2.34 (2020-11-16) #
+
+This release contains contributions from (alphabetically by first name):
+ - Artem Grinev
+ - Gaël PORTAY
+
+## Core ##
+ - No core changes yet
+
+## Modules ##
+ - The *keyboard* module had a regression in which it no-longer painted
+   the keycaps in the keyboard preview. (reported by Vinnie)
+ - The *plasmalnf* module did not set all of the look-and-feel values
+   in the target system. (reported by Bluestar Linux)
+ - In the *users* module, warnings about the strength of the password
+   are now correctly pluralized when possible.
+ - In the *users* module, if ICU is installed, the user's full name is
+   automatically transliterated to US-ASCII (for some locales; this will
+   need tweaking) so that the login name is acceptable. (Thanks Artem)
+
+
+# 3.2.33 (2020-11-09) #
 
 This release contains contributions from (alphabetically by first name):
  - Anke Boersma
  - Andrius Štikonas
  - Artem Grinev
  - Gaël PORTAY
+ - Matti Hyttinen
  - TTran Me
 
 ## Core ##
@@ -23,16 +78,20 @@ This release contains contributions from (alphabetically by first name):
  - Vietnamese translations have been added. Welcome! (Thanks TTran)
 
 ## Modules ##
+ - The *initcpiocfg* module should support plymouth with encryption
+   now. (Thanks Matti)
  - The *keyboard* and *keyboardq* modules now share backend code
    and handle non-ASCII layouts better (for setting passwords
    and usernames). (Thanks Artem)
  - Various cleanups and documentation improvements in the *partition*
    module, and configurable GPT name for swap. (Thanks Gaël)
+ - A long-standing bug related to GPT partition flags in the
+   *partition* module has been resolved. #1327 #1267
  - The *users* module now has a more detailed way to specify
    user groups -- which may be system groups rather than user-GIDs.
    A new option in each group can require that the group already
    exists in the target system, allowing for better consistency checks
-   with the squashfs.
+   with the squashfs. #1523
 
 
 # 3.2.32.1 (2020-10-17) #

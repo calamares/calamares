@@ -139,6 +139,7 @@ NetInstallViewStep::onLeave()
     // Clear out existing operations for this module, going backwards:
     // Sometimes we remove an item, and we don't want the index to
     // fall off the end of the list.
+    bool somethingRemoved = false;
     for ( int index = packageOperations.length() - 1; 0 <= index; index-- )
     {
         const QVariantMap op = packageOperations.at( index ).toMap();
@@ -146,6 +147,7 @@ NetInstallViewStep::onLeave()
         {
             cDebug() << Logger::SubEntry << "Removing existing operations for" << moduleInstanceKey();
             packageOperations.removeAt( index );
+            somethingRemoved = true;
         }
     }
 
@@ -183,7 +185,7 @@ NetInstallViewStep::onLeave()
         cDebug() << Logger::SubEntry << tryInstallPackages.length() << "non-critical packages.";
     }
 
-    if ( !packageOperations.isEmpty() )
+    if ( somethingRemoved || !packageOperations.isEmpty() )
     {
         gs->insert( PACKAGEOP, packageOperations );
     }

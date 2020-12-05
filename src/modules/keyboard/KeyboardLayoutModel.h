@@ -21,7 +21,6 @@
  *
  * This model acts like it has a single selection, as well.
  */
-
 class XKBListModel : public QAbstractListModel
 {
     Q_OBJECT
@@ -70,6 +69,7 @@ protected:
     };
     QVector< ModelInfo > m_list;
     int m_currentIndex = -1;
+    const char* m_contextname = nullptr;
 };
 
 
@@ -118,6 +118,13 @@ public:
     int currentIndex() const;
     const QPair< QString, KeyboardGlobal::KeyboardInfo > item( const int& index ) const;
 
+    /** @brief xkb key for a given index (row)
+     *
+     * This is like calling data( QModelIndex( index ), KeyboardLayoutKeyRole ).toString(),
+     * but shorter and faster. Can return an empty string if index is invalid.
+     */
+    QString key( int index ) const;
+
 protected:
     QHash< int, QByteArray > roleNames() const override;
 
@@ -145,5 +152,9 @@ public:
 
     void setVariants( QMap< QString, QString > variants );
 };
+
+/** @brief Adjust to changes in application language.
+ */
+void retranslateKeyboardModels();
 
 #endif  // KEYBOARDLAYOUTMODEL_H

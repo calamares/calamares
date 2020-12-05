@@ -136,8 +136,8 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
     bool partResizedMoved = newFirstSector != m_partition->firstSector() || newLastSector != m_partition->lastSector();
 
     cDebug() << "old boundaries:" << m_partition->firstSector() << m_partition->lastSector() << m_partition->length();
-    cDebug() << "new boundaries:" << newFirstSector << newLastSector;
-    cDebug() << "dirty status:" << m_partitionSizeController->isDirty();
+    cDebug() << Logger::SubEntry << "new boundaries:" << newFirstSector << newLastSector;
+    cDebug() << Logger::SubEntry << "dirty status:" << m_partitionSizeController->isDirty();
 
     FileSystem::Type fsType = FileSystem::Unknown;
     if ( m_ui->formatRadioButton->isChecked() )
@@ -146,6 +146,9 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
             ? FileSystem::Extended
             : FileSystem::typeForName( m_ui->fileSystemComboBox->currentText() );
     }
+
+    const auto resultFlags = newFlags();
+    const auto currentFlags = PartitionInfo::flags( m_partition );
 
     if ( partResizedMoved )
     {
@@ -157,20 +160,20 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
                                                                       fsType,
                                                                       newFirstSector,
                                                                       newLastSector,
-                                                                      newFlags() );
+                                                                      resultFlags );
             PartitionInfo::setMountPoint( newPartition, PartitionInfo::mountPoint( m_partition ) );
             PartitionInfo::setFormat( newPartition, true );
 
             core->deletePartition( m_device, m_partition );
             core->createPartition( m_device, newPartition );
-            core->setPartitionFlags( m_device, newPartition, newFlags() );
+            core->setPartitionFlags( m_device, newPartition, resultFlags );
         }
         else
         {
             core->resizePartition( m_device, m_partition, newFirstSector, newLastSector );
-            if ( m_partition->activeFlags() != newFlags() )
+            if ( currentFlags != resultFlags )
             {
-                core->setPartitionFlags( m_device, m_partition, newFlags() );
+                core->setPartitionFlags( m_device, m_partition, resultFlags );
             }
         }
     }
@@ -183,9 +186,9 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
             if ( m_partition->fileSystem().type() == fsType )
             {
                 core->formatPartition( m_device, m_partition );
-                if ( m_partition->activeFlags() != newFlags() )
+                if ( currentFlags != resultFlags )
                 {
-                    core->setPartitionFlags( m_device, m_partition, newFlags() );
+                    core->setPartitionFlags( m_device, m_partition, resultFlags );
                 }
             }
             else  // otherwise, we delete and recreate the partition with new fs type
@@ -196,22 +199,22 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
                                                                           fsType,
                                                                           m_partition->firstSector(),
                                                                           m_partition->lastSector(),
-                                                                          newFlags() );
+                                                                          resultFlags );
                 PartitionInfo::setMountPoint( newPartition, PartitionInfo::mountPoint( m_partition ) );
                 PartitionInfo::setFormat( newPartition, true );
 
                 core->deletePartition( m_device, m_partition );
                 core->createPartition( m_device, newPartition );
-                core->setPartitionFlags( m_device, newPartition, newFlags() );
+                core->setPartitionFlags( m_device, newPartition, resultFlags );
             }
         }
         else
         {
-            core->refreshPartition( m_device, m_partition );
-            if ( m_partition->activeFlags() != newFlags() )
+            if ( currentFlags != resultFlags )
             {
-                core->setPartitionFlags( m_device, m_partition, newFlags() );
+                core->setPartitionFlags( m_device, m_partition, resultFlags );
             }
+            core->refreshPartition( m_device, m_partition );
         }
     }
 }

@@ -21,6 +21,18 @@ if( LibPWQuality_FOUND )
     add_definitions( -DCHECK_PWQUALITY -DHAVE_LIBPWQUALITY )
 endif()
 
+find_package( ICU COMPONENTS uc i18n )
+set_package_properties(
+    ICU PROPERTIES
+    PURPOSE "Transliteration support for full name to username conversion"
+)
+
+if( ICU_FOUND )
+    list( APPEND USER_EXTRA_LIB ICU::uc ICU::i18n )
+    include_directories( ${ICU_INCLUDE_DIRS} )
+    add_definitions( -DHAVE_ICU )
+endif()
+
 include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
 
 set( _users_src

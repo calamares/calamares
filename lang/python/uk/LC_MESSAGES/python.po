@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-16 22:35+0200\n"
+"POT-Creation-Date: 2020-12-04 22:26+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2020\n"
 "Language-Team: Ukrainian (https://www.transifex.com/calamares/teams/20061/uk/)\n"
@@ -27,25 +27,25 @@ msgstr ""
 msgid "Configure GRUB."
 msgstr "Налаштовування GRUB."
 
-#: src/modules/mount/main.py:29
+#: src/modules/mount/main.py:30
 msgid "Mounting partitions."
 msgstr "Монтування розділів."
 
-#: src/modules/mount/main.py:141 src/modules/initcpiocfg/main.py:196
-#: src/modules/initcpiocfg/main.py:200
+#: src/modules/mount/main.py:127 src/modules/initcpiocfg/main.py:198
+#: src/modules/initcpiocfg/main.py:202
 #: src/modules/luksopenswaphookcfg/main.py:86
 #: src/modules/luksopenswaphookcfg/main.py:90 src/modules/rawfs/main.py:164
 #: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
-#: src/modules/openrcdmcryptcfg/main.py:69
-#: src/modules/openrcdmcryptcfg/main.py:73 src/modules/fstab/main.py:361
+#: src/modules/openrcdmcryptcfg/main.py:72
+#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/fstab/main.py:361
 #: src/modules/fstab/main.py:367 src/modules/localecfg/main.py:135
 #: src/modules/networkcfg/main.py:39
 msgid "Configuration Error"
 msgstr "Помилка налаштовування"
 
-#: src/modules/mount/main.py:142 src/modules/initcpiocfg/main.py:197
+#: src/modules/mount/main.py:128 src/modules/initcpiocfg/main.py:199
 #: src/modules/luksopenswaphookcfg/main.py:87 src/modules/rawfs/main.py:165
-#: src/modules/initramfscfg/main.py:86 src/modules/openrcdmcryptcfg/main.py:70
+#: src/modules/initramfscfg/main.py:86 src/modules/openrcdmcryptcfg/main.py:73
 #: src/modules/fstab/main.py:362
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "Не визначено розділів для використання <pre>{!s}</pre>."
@@ -99,57 +99,57 @@ msgstr "Демонтувати файлові системи."
 msgid "Filling up filesystems."
 msgstr "Заповнення файлових систем."
 
-#: src/modules/unpackfs/main.py:254
+#: src/modules/unpackfs/main.py:255
 msgid "rsync failed with error code {}."
 msgstr "Спроба виконати rsync зазнала невдачі з кодом помилки {}."
 
-#: src/modules/unpackfs/main.py:299
+#: src/modules/unpackfs/main.py:300
 msgid "Unpacking image {}/{}, file {}/{}"
 msgstr "Розпаковуємо образ {} з {}, файл {} з {}"
 
-#: src/modules/unpackfs/main.py:314
+#: src/modules/unpackfs/main.py:315
 msgid "Starting to unpack {}"
 msgstr "Починаємо розпаковувати {}"
 
-#: src/modules/unpackfs/main.py:323 src/modules/unpackfs/main.py:463
+#: src/modules/unpackfs/main.py:324 src/modules/unpackfs/main.py:464
 msgid "Failed to unpack image \"{}\""
 msgstr "Не вдалося розпакувати образ «{}»"
 
-#: src/modules/unpackfs/main.py:430
+#: src/modules/unpackfs/main.py:431
 msgid "No mount point for root partition"
 msgstr "Немає точки монтування для кореневого розділу"
 
-#: src/modules/unpackfs/main.py:431
+#: src/modules/unpackfs/main.py:432
 msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
 msgstr ""
 "У globalstorage не міститься ключа «rootMountPoint». Не виконуватимемо "
 "ніяких дій."
 
-#: src/modules/unpackfs/main.py:436
+#: src/modules/unpackfs/main.py:437
 msgid "Bad mount point for root partition"
 msgstr "Помилкова точна монтування для кореневого розділу"
 
-#: src/modules/unpackfs/main.py:437
+#: src/modules/unpackfs/main.py:438
 msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
 msgstr ""
 "Для rootMountPoint вказано значення «{}». Такого шляху не існує. Не "
 "виконуватимемо ніяких дій."
 
-#: src/modules/unpackfs/main.py:453 src/modules/unpackfs/main.py:457
-#: src/modules/unpackfs/main.py:477
+#: src/modules/unpackfs/main.py:454 src/modules/unpackfs/main.py:458
+#: src/modules/unpackfs/main.py:478
 msgid "Bad unsquash configuration"
 msgstr "Помилкові налаштування unsquash"
 
-#: src/modules/unpackfs/main.py:454
+#: src/modules/unpackfs/main.py:455
 msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
 msgstr ""
 "У поточному ядрі системи не передбачено підтримки файлової системи «{}» ({})"
 
-#: src/modules/unpackfs/main.py:458
+#: src/modules/unpackfs/main.py:459
 msgid "The source filesystem \"{}\" does not exist"
 msgstr "Вихідної файлової системи «{}» не існує"
 
-#: src/modules/unpackfs/main.py:464
+#: src/modules/unpackfs/main.py:465
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed"
@@ -157,7 +157,7 @@ msgstr ""
 "Не вдалося знайти unsquashfs; переконайтеся, що встановлено пакет squashfs-"
 "tools"
 
-#: src/modules/unpackfs/main.py:478
+#: src/modules/unpackfs/main.py:479
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "Призначення «{}» у цільовій системі не є каталогом"
 
@@ -210,6 +210,8 @@ msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
 msgstr ""
+"Список засобів керування дисплеєм є порожнім або невизначеним у "
+"bothglobalstorage та displaymanager.conf."
 
 #: src/modules/displaymanager/main.py:977
 msgid "Display manager configuration was incomplete"
@@ -219,9 +221,9 @@ msgstr "Налаштування засобу керування дисплеє�
 msgid "Configuring mkinitcpio."
 msgstr "Налаштовуємо mkinitcpio."
 
-#: src/modules/initcpiocfg/main.py:201
+#: src/modules/initcpiocfg/main.py:203
 #: src/modules/luksopenswaphookcfg/main.py:91
-#: src/modules/initramfscfg/main.py:90 src/modules/openrcdmcryptcfg/main.py:74
+#: src/modules/initramfscfg/main.py:90 src/modules/openrcdmcryptcfg/main.py:77
 #: src/modules/fstab/main.py:368 src/modules/localecfg/main.py:136
 #: src/modules/networkcfg/main.py:40
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
@@ -351,7 +353,7 @@ msgstr "Не вдалося виконати dracut над призначенн�
 msgid "Configuring initramfs."
 msgstr "Налаштовуємо initramfs."
 
-#: src/modules/openrcdmcryptcfg/main.py:25
+#: src/modules/openrcdmcryptcfg/main.py:26
 msgid "Configuring OpenRC dmcrypt service."
 msgstr "Налаштовуємо службу dmcrypt OpenRC."
 

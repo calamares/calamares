@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-16 22:35+0200\n"
+"POT-Creation-Date: 2020-12-04 22:26+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Moo, 2020\n"
 "Language-Team: Lithuanian (https://www.transifex.com/calamares/teams/20061/lt/)\n"
@@ -26,25 +26,25 @@ msgstr ""
 msgid "Configure GRUB."
 msgstr "Konfigūruoti GRUB."
 
-#: src/modules/mount/main.py:29
+#: src/modules/mount/main.py:30
 msgid "Mounting partitions."
 msgstr "Prijungiami skaidiniai."
 
-#: src/modules/mount/main.py:141 src/modules/initcpiocfg/main.py:196
-#: src/modules/initcpiocfg/main.py:200
+#: src/modules/mount/main.py:127 src/modules/initcpiocfg/main.py:198
+#: src/modules/initcpiocfg/main.py:202
 #: src/modules/luksopenswaphookcfg/main.py:86
 #: src/modules/luksopenswaphookcfg/main.py:90 src/modules/rawfs/main.py:164
 #: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
-#: src/modules/openrcdmcryptcfg/main.py:69
-#: src/modules/openrcdmcryptcfg/main.py:73 src/modules/fstab/main.py:361
+#: src/modules/openrcdmcryptcfg/main.py:72
+#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/fstab/main.py:361
 #: src/modules/fstab/main.py:367 src/modules/localecfg/main.py:135
 #: src/modules/networkcfg/main.py:39
 msgid "Configuration Error"
 msgstr "Konfigūracijos klaida"
 
-#: src/modules/mount/main.py:142 src/modules/initcpiocfg/main.py:197
+#: src/modules/mount/main.py:128 src/modules/initcpiocfg/main.py:199
 #: src/modules/luksopenswaphookcfg/main.py:87 src/modules/rawfs/main.py:165
-#: src/modules/initramfscfg/main.py:86 src/modules/openrcdmcryptcfg/main.py:70
+#: src/modules/initramfscfg/main.py:86 src/modules/openrcdmcryptcfg/main.py:73
 #: src/modules/fstab/main.py:362
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "Nėra apibrėžta jokių skaidinių, skirtų <pre>{!s}</pre> naudojimui."
@@ -98,52 +98,52 @@ msgstr "Atjungti failų sistemas."
 msgid "Filling up filesystems."
 msgstr "Užpildomos failų sistemos."
 
-#: src/modules/unpackfs/main.py:254
+#: src/modules/unpackfs/main.py:255
 msgid "rsync failed with error code {}."
 msgstr "rsync patyrė nesėkmę su klaidos kodu {}."
 
-#: src/modules/unpackfs/main.py:299
+#: src/modules/unpackfs/main.py:300
 msgid "Unpacking image {}/{}, file {}/{}"
 msgstr "Išpakuojamas atvaizdis {}/{}, failas {}/{}"
 
-#: src/modules/unpackfs/main.py:314
+#: src/modules/unpackfs/main.py:315
 msgid "Starting to unpack {}"
 msgstr "Pradedama išpakuoti {}"
 
-#: src/modules/unpackfs/main.py:323 src/modules/unpackfs/main.py:463
+#: src/modules/unpackfs/main.py:324 src/modules/unpackfs/main.py:464
 msgid "Failed to unpack image \"{}\""
 msgstr "Nepavyko išpakuoti atvaizdį „{}“"
 
-#: src/modules/unpackfs/main.py:430
+#: src/modules/unpackfs/main.py:431
 msgid "No mount point for root partition"
 msgstr "Nėra prijungimo taško šaknies skaidiniui"
 
-#: src/modules/unpackfs/main.py:431
+#: src/modules/unpackfs/main.py:432
 msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
 msgstr "globalstorage viduje nėra „rootMountPoint“ rakto, nieko nedaroma"
 
-#: src/modules/unpackfs/main.py:436
+#: src/modules/unpackfs/main.py:437
 msgid "Bad mount point for root partition"
 msgstr "Blogas šaknies skaidinio prijungimo taškas"
 
-#: src/modules/unpackfs/main.py:437
+#: src/modules/unpackfs/main.py:438
 msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
 msgstr "rootMountPoint yra „{}“, kurio nėra, nieko nedaroma"
 
-#: src/modules/unpackfs/main.py:453 src/modules/unpackfs/main.py:457
-#: src/modules/unpackfs/main.py:477
+#: src/modules/unpackfs/main.py:454 src/modules/unpackfs/main.py:458
+#: src/modules/unpackfs/main.py:478
 msgid "Bad unsquash configuration"
 msgstr "Bloga unsquash konfigūracija"
 
-#: src/modules/unpackfs/main.py:454
+#: src/modules/unpackfs/main.py:455
 msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
 msgstr "Jūsų branduolys nepalaiko failų sistemos, kuri skirta \"{}\" ({})"
 
-#: src/modules/unpackfs/main.py:458
+#: src/modules/unpackfs/main.py:459
 msgid "The source filesystem \"{}\" does not exist"
 msgstr "Šaltinio failų sistemos „{}“ nėra"
 
-#: src/modules/unpackfs/main.py:464
+#: src/modules/unpackfs/main.py:465
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed"
@@ -151,7 +151,7 @@ msgstr ""
 "Nepavyko rasti unsquashfs, įsitikinkite, kad esate įdiegę squashfs-tools "
 "paketą"
 
-#: src/modules/unpackfs/main.py:478
+#: src/modules/unpackfs/main.py:479
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "Paskirties vieta „{}“, esanti paskirties sistemoje, nėra katalogas"
 
@@ -204,6 +204,8 @@ msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
 msgstr ""
+"Displaymanagers sąrašas yra tuščias arba neapibrėžtas tiek globalstorage, "
+"tiek ir displaymanager.conf faile."
 
 #: src/modules/displaymanager/main.py:977
 msgid "Display manager configuration was incomplete"
@@ -213,9 +215,9 @@ msgstr "Ekranų tvarkytuvės konfigūracija yra nepilna"
 msgid "Configuring mkinitcpio."
 msgstr "Konfigūruojama mkinitcpio."
 
-#: src/modules/initcpiocfg/main.py:201
+#: src/modules/initcpiocfg/main.py:203
 #: src/modules/luksopenswaphookcfg/main.py:91
-#: src/modules/initramfscfg/main.py:90 src/modules/openrcdmcryptcfg/main.py:74
+#: src/modules/initramfscfg/main.py:90 src/modules/openrcdmcryptcfg/main.py:77
 #: src/modules/fstab/main.py:368 src/modules/localecfg/main.py:136
 #: src/modules/networkcfg/main.py:40
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
@@ -345,7 +347,7 @@ msgstr "Nepavyko paskirties vietoje paleisti dracut"
 msgid "Configuring initramfs."
 msgstr "Konfigūruojama initramfs."
 
-#: src/modules/openrcdmcryptcfg/main.py:25
+#: src/modules/openrcdmcryptcfg/main.py:26
 msgid "Configuring OpenRC dmcrypt service."
 msgstr "Konfigūruojama OpenRC dmcrypt tarnyba."
 

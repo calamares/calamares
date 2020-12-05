@@ -716,6 +716,8 @@ PartitionCoreModule::updateIsDirty()
 void
 PartitionCoreModule::scanForEfiSystemPartitions()
 {
+    const bool wasEmpty = m_efiSystemPartitions.isEmpty();
+
     m_efiSystemPartitions.clear();
 
     QList< Device* > devices;
@@ -731,6 +733,11 @@ PartitionCoreModule::scanForEfiSystemPartitions()
     if ( efiSystemPartitions.isEmpty() )
     {
         cWarning() << "system is EFI but no EFI system partitions found.";
+    }
+    else if ( wasEmpty )
+    {
+        // But it isn't empty anymore, so whatever problem has been solved
+        cDebug() << "system is EFI and new EFI system partition has been found.";
     }
 
     m_efiSystemPartitions = efiSystemPartitions;

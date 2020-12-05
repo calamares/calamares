@@ -20,50 +20,42 @@
 
 #include "utils/Logger.h"
 
-// static
-const QLatin1String DracutLuksCfgJob::CONFIG_FILE( "/etc/dracut.conf.d/calamares-luks.conf" );
+static const QLatin1String CONFIG_FILE( "/etc/dracut.conf.d/calamares-luks.conf" );
 
-// static
-const char* DracutLuksCfgJob::CONFIG_FILE_HEADER
+static const char CONFIG_FILE_HEADER[]
     = "# Configuration file automatically written by the Calamares system installer\n"
       "# (This file is written once at install time and should be safe to edit.)\n"
       "# Enables support for LUKS full disk encryption with single sign on from GRUB.\n"
       "\n";
 
-// static
-const char* DracutLuksCfgJob::CONFIG_FILE_CRYPTTAB_KEYFILE_LINE
+static const char CONFIG_FILE_CRYPTTAB_KEYFILE_LINE[]
     = "# force installing /etc/crypttab even if hostonly=\"no\", install the keyfile\n"
       "install_items+=\" /etc/crypttab /crypto_keyfile.bin \"\n";
 
-// static
-const char* DracutLuksCfgJob::CONFIG_FILE_CRYPTTAB_LINE = "# force installing /etc/crypttab even if hostonly=\"no\"\n"
-                                                          "install_items+=\" /etc/crypttab \"\n";
+static const char CONFIG_FILE_CRYPTTAB_LINE[] = "# force installing /etc/crypttab even if hostonly=\"no\"\n"
+                                                "install_items+=\" /etc/crypttab \"\n";
 
-// static
-const QLatin1String DracutLuksCfgJob::CONFIG_FILE_SWAPLINE(
-    "# enable automatic resume from swap\nadd_device+=\" /dev/disk/by-uuid/%1 \"\n" );
+static const QLatin1String
+    CONFIG_FILE_SWAPLINE( "# enable automatic resume from swap\nadd_device+=\" /dev/disk/by-uuid/%1 \"\n" );
 
-// static
-QString
-DracutLuksCfgJob::rootMountPoint()
+static QString
+rootMountPoint()
 {
     Calamares::GlobalStorage* globalStorage = Calamares::JobQueue::instance()->globalStorage();
     return globalStorage->value( QStringLiteral( "rootMountPoint" ) ).toString();
 }
 
-// static
-QVariantList
-DracutLuksCfgJob::partitions()
+static QVariantList
+partitions()
 {
     Calamares::GlobalStorage* globalStorage = Calamares::JobQueue::instance()->globalStorage();
     return globalStorage->value( QStringLiteral( "partitions" ) ).toList();
 }
 
-// static
-bool
-DracutLuksCfgJob::isRootEncrypted()
+static bool
+isRootEncrypted()
 {
-    const QVariantList partitions = DracutLuksCfgJob::partitions();
+    const QVariantList partitions = ::partitions();
     for ( const QVariant& partition : partitions )
     {
         QVariantMap partitionMap = partition.toMap();
@@ -76,11 +68,10 @@ DracutLuksCfgJob::isRootEncrypted()
     return false;
 }
 
-// static
-bool
-DracutLuksCfgJob::hasUnencryptedSeparateBoot()
+static bool
+hasUnencryptedSeparateBoot()
 {
-    const QVariantList partitions = DracutLuksCfgJob::partitions();
+    const QVariantList partitions = ::partitions();
     for ( const QVariant& partition : partitions )
     {
         QVariantMap partitionMap = partition.toMap();
@@ -93,11 +84,10 @@ DracutLuksCfgJob::hasUnencryptedSeparateBoot()
     return false;
 }
 
-// static
-QString
-DracutLuksCfgJob::swapOuterUuid()
+static QString
+swapOuterUuid()
 {
-    const QVariantList partitions = DracutLuksCfgJob::partitions();
+    const QVariantList partitions = ::partitions();
     for ( const QVariant& partition : partitions )
     {
         QVariantMap partitionMap = partition.toMap();
@@ -150,7 +140,7 @@ DracutLuksCfgJob::exec()
         QTextStream outStream( &configFile );
         outStream << CONFIG_FILE_HEADER
                   << ( hasUnencryptedSeparateBoot() ? CONFIG_FILE_CRYPTTAB_LINE : CONFIG_FILE_CRYPTTAB_KEYFILE_LINE );
-        const QString swapOuterUuid = DracutLuksCfgJob::swapOuterUuid();
+        const QString swapOuterUuid = ::swapOuterUuid();
         if ( !swapOuterUuid.isEmpty() )
         {
             cDebug() << "[DRACUTLUKSCFG]: Swap outer UUID" << swapOuterUuid;

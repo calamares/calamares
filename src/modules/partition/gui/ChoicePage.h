@@ -155,7 +155,6 @@ private:
     int m_lastSelectedActionIndex = -1;
 
     QStringList m_requiredPartitionTableType;
-    QString m_defaultFsType;
     bool m_enableEncryptionWidget;
 
     QMutex m_coreMutex;

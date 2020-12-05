@@ -21,6 +21,7 @@
 
 class QEvent;
 class QLocale;
+class QTranslator;
 
 namespace CalamaresUtils
 {
@@ -31,7 +32,28 @@ namespace CalamaresUtils
  */
 DLLEXPORT void installTranslator( const QLocale& locale, const QString& brandingTranslationsPrefix );
 
+/** @brief The name of the (locale of the) most recently installed translator
+ *
+ * May return something different from the locale.name() of the
+ * QLocale passed in, because Calamares will munge some names and
+ * may remap translations.
+ */
 DLLEXPORT QString translatorLocaleName();
+
+/** @brief Loads <prefix><locale> translations into the given @p translator
+ *
+ * This function is not intended for general use: it is for those special
+ * cases where modules need their own translator / translations for data
+ * that is locale to the module. Tries to load a .qm from "sensible"
+ * locations, which are the same ones that installTranslator() would use.
+ * Takes local-translations into account.
+ *
+ * Note that @p prefix should end with an underscore '_' -- this function
+ * does not introduce one by itself.
+ *
+ * @returns @c true on success
+ */
+DLLEXPORT bool loadTranslator( const QLocale& locale, const QString& prefix, QTranslator* translator );
 
 /** @brief Set @p allow to true to load translations from current dir.
  *

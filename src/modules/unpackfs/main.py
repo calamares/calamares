@@ -130,6 +130,7 @@ class UnpackEntry:
             r = mount(self.source, imgmountdir, self.sourcefs, "")
 
         if r != 0:
+            utils.debug("Failed to mount '{}' (fs={}) (target={})".format(self.source, self.sourcefs, imgmountdir))
             raise subprocess.CalledProcessError(r, "mount")
 
 

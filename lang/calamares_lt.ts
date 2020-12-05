@@ -4,17 +4,17 @@
   <context>
     <name>BootInfoWidget</name>
     <message>
-      <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="61"/>
+      <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="62"/>
       <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
       <translation>Šios sistemos &lt;strong&gt;paleidimo aplinka&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Senesnės x86 sistemos palaiko tik &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Šiuolaikinės sistemos, dažniausiai, naudoja &lt;strong&gt;EFI&lt;/strong&gt;, tačiau, jeigu jos yra paleistos suderinamumo veiksenoje, taip pat gali būti rodomos kaip BIOS.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="71"/>
+      <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="72"/>
       <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
       <translation>Ši sistema buvo paleista su &lt;strong&gt;EFI&lt;/strong&gt; paleidimo aplinka.&lt;br&gt;&lt;br&gt;Tam, kad sukonfigūruotų paleidimą iš EFI aplinkos, ši diegimo programa, &lt;strong&gt;EFI sistemos skaidinyje&lt;/strong&gt;, privalo išskleisti paleidyklės programą, kaip, pavyzdžiui, &lt;strong&gt;GRUB&lt;/strong&gt; ar &lt;strong&gt;systemd-boot&lt;/strong&gt;. Tai vyks automatiškai, nebent pasirinksite rankinį skaidymą ir tokiu atveju patys turėsite pasirinkti arba sukurti skaidinį.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="83"/>
+      <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="84"/>
       <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
       <translation>Ši sistema buvo paleista su &lt;strong&gt;BIOS&lt;/strong&gt; paleidimo aplinka.&lt;br&gt;&lt;br&gt;Tam, kad sukonfigūruotų paleidimą iš BIOS aplinkos, ši diegimo programa, arba skaidinio pradžioje, arba &lt;strong&gt;Paleidimo įraše (MBR)&lt;/strong&gt;, šalia skaidinių lentelės pradžios (pageidautina), privalo įdiegti paleidyklę, kaip, pavyzdžiui, &lt;strong&gt;GRUB&lt;/strong&gt;. Tai vyks automatiškai, nebent pasirinksite rankinį skaidymą ir tokiu atveju, viską turėsite nusistatyti patys.</translation>
     </message>
@@ -514,149 +514,149 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
       <translation>Forma</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="126"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="120"/>
       <source>Select storage de&amp;vice:</source>
       <translation>Pasirinkite atminties įr&amp;enginį:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="127"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="963"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1008"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1098"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="121"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="957"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1002"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1092"/>
       <source>Current:</source>
       <translation>Dabartinis:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="128"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="122"/>
       <source>After:</source>
       <translation>Po:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="305"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="299"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
       <translation>&lt;strong&gt;Rankinis skaidymas&lt;/strong&gt;&lt;br/&gt;Galite patys kurti ar keisti skaidinių dydžius.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="831"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="822"/>
       <source>Reuse %1 as home partition for %2.</source>
       <translation>Pakartotinai naudoti %1 kaip namų skaidinį, skirtą %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="964"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="958"/>
       <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;Pasirinkite, kurį skaidinį sumažinti, o tuomet vilkite juostą, kad pakeistumėte skaidinio dydį&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="981"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="975"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
       <translation>%1 bus sumažintas iki %2MiB ir naujas %3MiB skaidinys bus sukurtas sistemai %4.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1037"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1031"/>
       <source>Boot loader location:</source>
       <translation>Paleidyklės vieta:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1089"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1083"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;Pasirinkite kuriame skaidinyje įdiegti&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1146"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1142"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation>Šioje sistemoje niekur nepavyko rasti EFI skaidinio. Prašome grįžti ir naudoti rankinį skaidymą, kad nustatytumėte %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1154"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1150"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>%2 paleidimui bus naudojamas EFI sistemos skaidinys, esantis ties %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1162"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1158"/>
       <source>EFI system partition:</source>
       <translation>EFI sistemos skaidinys:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1296"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1291"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Atrodo, kad šiame įrenginyje nėra operacinės sistemos. Ką norėtumėte daryti?&lt;br/&gt;Prieš atliekant bet kokius pakeitimus atminties įrenginyje, jūs galėsite apžvelgti ir patvirtinti savo pasirinkimus.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1301"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1338"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1360"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1385"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1296"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1333"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1355"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1380"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
       <translation>&lt;strong&gt;Ištrinti diską&lt;/strong&gt;&lt;br/&gt;Tai &lt;font color="red"&gt;ištrins&lt;/font&gt; visus, pasirinktame atminties įrenginyje, esančius duomenis.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1305"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1334"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1356"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1381"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1300"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1329"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1351"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1376"/>
       <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
       <translation>&lt;strong&gt;Įdiegti šalia&lt;/strong&gt;&lt;br/&gt;Diegimo programa sumažins skaidinį, kad atlaisvintų vietą sistemai %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1309"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1343"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1364"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1389"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1304"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1338"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1359"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1384"/>
       <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
       <translation>&lt;strong&gt;Pakeisti skaidinį&lt;/strong&gt;&lt;br/&gt;Pakeičia skaidinį ir įrašo %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1328"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1323"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Šiame atminties įrenginyje jau yra %1. Ką norėtumėte daryti?&lt;br/&gt;Prieš atliekant bet kokius pakeitimus atminties įrenginyje, jūs galėsite apžvelgti ir patvirtinti savo pasirinkimus.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1351"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1346"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Šiame atminties įrenginyje jau yra operacinė sistema. Ką norėtumėte daryti?&lt;br/&gt;Prieš atliekant bet kokius pakeitimus atminties įrenginyje, jūs galėsite apžvelgti ir patvirtinti savo pasirinkimus.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1376"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1371"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Šiame atminties įrenginyje jau yra kelios operacinės sistemos. Ką norėtumėte daryti?&lt;br/&gt;Prieš atliekant bet kokius pakeitimus atminties įrenginyje, jūs galėsite apžvelgti ir patvirtinti savo pasirinkimus.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1448"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1443"/>
       <source>This storage device already has an operating system on it, but the partition table &lt;strong&gt;%1&lt;/strong&gt; is different from the needed &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</source>
-      <translation type="unfinished"/>
+      <translation>Šiame atminties įrenginyje jau yra operacinė sistema, bet skaidinių lentelė &lt;strong&gt;%1&lt;/strong&gt; yra kitokia nei reikiama &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1466"/>
+      <source>This storage device has one of its partitions &lt;strong&gt;mounted&lt;/strong&gt;.</source>
+      <translation>Vienas iš šio atminties įrenginio skaidinių yra &lt;strong&gt;prijungtas&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1471"/>
-      <source>This storage device has one of its partitions &lt;strong&gt;mounted&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1476"/>
       <source>This storage device is a part of an &lt;strong&gt;inactive RAID&lt;/strong&gt; device.</source>
-      <translation type="unfinished"/>
+      <translation>Šis atminties įrenginys yra &lt;strong&gt;neaktyvaus RAID&lt;/strong&gt; įrenginio dalis.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1603"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1598"/>
       <source>No Swap</source>
       <translation>Be sukeitimų skaidinio</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1611"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1606"/>
       <source>Reuse Swap</source>
       <translation>Iš naujo naudoti sukeitimų skaidinį</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1614"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1609"/>
       <source>Swap (no Hibernate)</source>
       <translation>Sukeitimų skaidinys (be užmigdymo)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1617"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1612"/>
       <source>Swap (with Hibernate)</source>
       <translation>Sukeitimų skaidinys (su užmigdymu)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1620"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1615"/>
       <source>Swap to file</source>
       <translation>Sukeitimų failas</translation>
     </message>
@@ -724,12 +724,12 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
   <context>
     <name>Config</name>
     <message>
-      <location filename="../src/modules/keyboard/Config.cpp" line="340"/>
+      <location filename="../src/modules/keyboard/Config.cpp" line="326"/>
       <source>Set keyboard model to %1.&lt;br/&gt;</source>
       <translation>Nustatyti klaviatūros modelį kaip %1.&lt;br/&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/Config.cpp" line="347"/>
+      <location filename="../src/modules/keyboard/Config.cpp" line="333"/>
       <source>Set keyboard layout to %1/%2.</source>
       <translation>Nustatyti klaviatūros išdėstymą kaip %1/%2.</translation>
     </message>
@@ -814,47 +814,47 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
       <translation>&lt;h1&gt;Jus sveikina %1 diegimo programa&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="164"/>
+      <location filename="../src/modules/users/Config.cpp" line="212"/>
       <source>Your username is too long.</source>
       <translation>Jūsų naudotojo vardas yra pernelyg ilgas.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="170"/>
+      <location filename="../src/modules/users/Config.cpp" line="218"/>
       <source>'%1' is not allowed as username.</source>
-      <translation type="unfinished"/>
+      <translation>„%1“ neleidžiama naudoti kaip naudotojo vardą.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="177"/>
+      <location filename="../src/modules/users/Config.cpp" line="225"/>
       <source>Your username must start with a lowercase letter or underscore.</source>
       <translation>Jūsų naudotojo vardas privalo prasidėti mažąja raide arba pabraukimo brūkšniu.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="181"/>
+      <location filename="../src/modules/users/Config.cpp" line="229"/>
       <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
       <translation>Yra leidžiamos tik mažosios raidės, skaitmenys, pabraukimo brūkšniai ir brūkšneliai.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="227"/>
+      <location filename="../src/modules/users/Config.cpp" line="274"/>
       <source>Your hostname is too short.</source>
       <translation>Jūsų kompiuterio vardas yra pernelyg trumpas.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="231"/>
+      <location filename="../src/modules/users/Config.cpp" line="278"/>
       <source>Your hostname is too long.</source>
       <translation>Jūsų kompiuterio vardas yra pernelyg ilgas.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="237"/>
+      <location filename="../src/modules/users/Config.cpp" line="284"/>
       <source>'%1' is not allowed as hostname.</source>
-      <translation type="unfinished"/>
+      <translation>„%1“ neleidžiama naudoti kaip kompiuterio vardą.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="243"/>
+      <location filename="../src/modules/users/Config.cpp" line="290"/>
       <source>Only letters, numbers, underscore and hyphen are allowed.</source>
       <translation>Yra leidžiamos tik raidės, skaitmenys, pabraukimo brūkšniai ir brūkšneliai.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="446"/>
+      <location filename="../src/modules/users/Config.cpp" line="527"/>
       <source>Your passwords do not match!</source>
       <translation>Jūsų slaptažodžiai nesutampa!</translation>
     </message>
@@ -1022,29 +1022,35 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
   <context>
     <name>CreateUserJob</name>
     <message>
-      <location filename="../src/modules/users/CreateUserJob.cpp" line="40"/>
+      <location filename="../src/modules/users/CreateUserJob.cpp" line="36"/>
       <source>Create user %1</source>
       <translation>Sukurti naudotoją %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CreateUserJob.cpp" line="47"/>
+      <location filename="../src/modules/users/CreateUserJob.cpp" line="43"/>
       <source>Create user &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Sukurti naudotoją &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CreateUserJob.cpp" line="54"/>
-      <source>Creating user %1.</source>
+      <location filename="../src/modules/users/CreateUserJob.cpp" line="126"/>
+      <source>Preserving home directory</source>
+      <translation>Išsaugomas namų katalogas</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/users/CreateUserJob.cpp" line="50"/>
+      <location filename="../src/modules/users/CreateUserJob.cpp" line="143"/>
+      <source>Creating user %1</source>
       <translation>Kuriamas naudotojas %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CreateUserJob.cpp" line="186"/>
-      <source>Cannot create sudoers file for writing.</source>
-      <translation>Nepavyko įrašymui sukurti failo sudoers.</translation>
+      <location filename="../src/modules/users/CreateUserJob.cpp" line="151"/>
+      <source>Configuring user %1</source>
+      <translation>Konfigūruojamas naudotojas %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CreateUserJob.cpp" line="181"/>
-      <source>Cannot chmod sudoers file.</source>
-      <translation>Nepavyko pritaikyti chmod failui sudoers.</translation>
+      <location filename="../src/modules/users/CreateUserJob.cpp" line="159"/>
+      <source>Setting file permissions</source>
+      <translation>Nustatomi failų leidimai</translation>
     </message>
   </context>
   <context>
@@ -1171,17 +1177,17 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
   <context>
     <name>DracutLuksCfgJob</name>
     <message>
-      <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="127"/>
+      <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="117"/>
       <source>Write LUKS configuration for Dracut to %1</source>
       <translation>Dracut skirtąją LUKS konfigūraciją įrašyti į %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="131"/>
+      <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="121"/>
       <source>Skip writing LUKS configuration for Dracut: "/" partition is not encrypted</source>
       <translation>Praleisti LUKS konfigūracijos, kuri yra skirta Dracut, įrašymą: "/" skaidinys nėra užšifruotas</translation>
     </message>
     <message>
-      <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="148"/>
+      <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="138"/>
       <source>Failed to open %1</source>
       <translation>Nepavyko atverti %1</translation>
     </message>
@@ -1247,7 +1253,7 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
       <translation>Vėliavėlės:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="272"/>
+      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="275"/>
       <source>Mountpoint already in use. Please select another one.</source>
       <translation>Prijungimo taškas jau yra naudojamas. Prašome pasirinkti kitą.</translation>
     </message>
@@ -1458,7 +1464,7 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="187"/>
       <source>is running the installer as an administrator (root)</source>
-      <translation>vykdo diegimo programa administratoriaus (root) teisėmis</translation>
+      <translation>vykdo diegimo programą pagrindinio naudotojo (root) teisėmis</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="190"/>
@@ -1563,22 +1569,9 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     </message>
   </context>
   <context>
-    <name>KeyboardPage</name>
-    <message>
-      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="204"/>
-      <source>Set keyboard model to %1.&lt;br/&gt;</source>
-      <translation>Nustatyti klaviatūros modelį kaip %1.&lt;br/&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="208"/>
-      <source>Set keyboard layout to %1/%2.</source>
-      <translation>Nustatyti klaviatūros išdėstymą kaip %1/%2.</translation>
-    </message>
-  </context>
-  <context>
     <name>KeyboardQmlViewStep</name>
     <message>
-      <location filename="../src/modules/keyboardq/KeyboardQmlViewStep.cpp" line="33"/>
+      <location filename="../src/modules/keyboardq/KeyboardQmlViewStep.cpp" line="32"/>
       <source>Keyboard</source>
       <translation>Klaviatūra</translation>
     </message>
@@ -1586,7 +1579,7 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
   <context>
     <name>KeyboardViewStep</name>
     <message>
-      <location filename="../src/modules/keyboard/KeyboardViewStep.cpp" line="45"/>
+      <location filename="../src/modules/keyboard/KeyboardViewStep.cpp" line="42"/>
       <source>Keyboard</source>
       <translation>Klaviatūra</translation>
     </message>
@@ -1668,59 +1661,59 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
   <context>
     <name>LicenseWidget</name>
     <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="87"/>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="88"/>
       <source>URL: %1</source>
       <translation>URL: %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="108"/>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="109"/>
       <source>&lt;strong&gt;%1 driver&lt;/strong&gt;&lt;br/&gt;by %2</source>
       <extracomment>%1 is an untranslatable product name, example: Creative Audigy driver</extracomment>
       <translation>&lt;strong&gt;%1 tvarkyklė&lt;/strong&gt;&lt;br/&gt;iš %2</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="115"/>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="116"/>
       <source>&lt;strong&gt;%1 graphics driver&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
       <extracomment>%1 is usually a vendor name, example: Nvidia graphics driver</extracomment>
       <translation>&lt;strong&gt;%1 grafikos tvarkyklė&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;iš %2&lt;/font&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="121"/>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="122"/>
       <source>&lt;strong&gt;%1 browser plugin&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
       <translation>&lt;strong&gt;%1 naršyklės papildinys&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;iš %2&lt;/font&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="127"/>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="128"/>
       <source>&lt;strong&gt;%1 codec&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
       <translation>&lt;strong&gt;%1 kodekas&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;iš %2&lt;/font&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="133"/>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="134"/>
       <source>&lt;strong&gt;%1 package&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
       <translation>&lt;strong&gt;%1 paketas&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;iš %2&lt;/font&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="139"/>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="140"/>
       <source>&lt;strong&gt;%1&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
       <translation>&lt;strong&gt;%1&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;iš %2&lt;/font&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="162"/>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="163"/>
       <source>File: %1</source>
       <translation>Failas: %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="185"/>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="186"/>
       <source>Hide license text</source>
       <translation>Slėpti licencijos tekstą</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="185"/>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="186"/>
       <source>Show the license text</source>
       <translation>Rodyti licencijos tekstą</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="189"/>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="190"/>
       <source>Open license agreement in browser.</source>
       <translation>Atverti licencijos sutartį naršyklėje.</translation>
     </message>
@@ -1728,18 +1721,18 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
   <context>
     <name>LocalePage</name>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="124"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="130"/>
       <source>Region:</source>
       <translation>Regionas:</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="125"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="131"/>
       <source>Zone:</source>
-      <translation>Zona:</translation>
+      <translation>Sritis:</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="126"/>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="127"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="132"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="133"/>
       <source>&amp;Change...</source>
       <translation>K&amp;eisti...</translation>
     </message>
@@ -1768,30 +1761,30 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
       <translation>Konfigūruojamas LUKS raktų failas.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="145"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="153"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="168"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="176"/>
       <source>No partitions are defined.</source>
       <translation>Nėra jokių apibrėžtų skaidinių.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="181"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="188"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="196"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="211"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="218"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="226"/>
       <source>Encrypted rootfs setup error</source>
       <translation>Šifruoto rootfs sąrankos klaida</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="182"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="212"/>
       <source>Root partition %1 is LUKS but no passphrase has been set.</source>
       <translation>Šaknies skaidinys %1 yra LUKS, tačiau nebuvo nustatyta jokia slaptafrazė.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="189"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="219"/>
       <source>Could not create LUKS key file for root partition %1.</source>
       <translation>Nepavyko šakniniam skaidiniui %1 sukurti LUKS rakto failo. </translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="197"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="227"/>
       <source>Could not configure LUKS key file on partition %1.</source>
       <translation>Nepavyko konfigūruoti LUKS rakto failo skaidinyje %1.</translation>
     </message>
@@ -1826,7 +1819,9 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
       <source>Please select your preferred location on the map so the installer can suggest the locale
             and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
             to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</source>
-      <translation type="unfinished"/>
+      <translation>Pasirinkite žemėlapyje pageidaujamą vietą, kad diegimo programa galėtų jums pasiūlyti
+            lokalės ir laiko juostos nustatymus. Žemiau galite derinti pasiūlytus nustatymus. Tempkite norėdami judinti žemėlapį
+            ir didinkite/mažinkite naudodami mygtukus +/- arba mastelio keitimui naudokite pelės ratuką.</translation>
     </message>
   </context>
   <context>
@@ -1972,7 +1967,7 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="37"/>
       <source>Select your preferred Region, or use the default one based on your current location.</source>
-      <translation type="unfinished"/>
+      <translation>Pasirinkite pageidaujamą regioną arba naudokite numatytąjį, kuris remiasi jūsų dabartine vieta.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="94"/>
@@ -1984,17 +1979,17 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="111"/>
       <source>Select your preferred Zone within your Region.</source>
-      <translation type="unfinished"/>
+      <translation>Pasirinkite pageidaujamą sritį regiono ribose.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="182"/>
       <source>Zones</source>
-      <translation type="unfinished"/>
+      <translation>Sritys</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="229"/>
       <source>You can fine-tune Language and Locale settings below.</source>
-      <translation type="unfinished"/>
+      <translation>Žemiau galite derinti kalbos ir lokalės nustatymus.</translation>
     </message>
   </context>
   <context>
@@ -2010,237 +2005,282 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
       <translation>Slaptažodis yra per ilgas</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="143"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="188"/>
       <source>Password is too weak</source>
       <translation>Slaptažodis yra per silpnas</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="151"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="196"/>
       <source>Memory allocation error when setting '%1'</source>
       <translation>Atminties paskirstymo klaida, nustatant "%1"</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="156"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="199"/>
       <source>Memory allocation error</source>
       <translation>Atminties paskirstymo klaida</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="158"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="201"/>
       <source>The password is the same as the old one</source>
       <translation>Slaptažodis yra toks pats kaip ir senas</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="160"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="203"/>
       <source>The password is a palindrome</source>
       <translation>Slaptažodis yra palindromas</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="162"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="205"/>
       <source>The password differs with case changes only</source>
       <translation>Slaptažodyje skiriasi tik raidžių dydis</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="164"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="207"/>
       <source>The password is too similar to the old one</source>
       <translation>Slaptažodis pernelyg panašus į senąjį</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="166"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="209"/>
       <source>The password contains the user name in some form</source>
       <translation>Slaptažodyje tam tikru pavidalu yra naudotojo vardas</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="168"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="211"/>
       <source>The password contains words from the real name of the user in some form</source>
       <translation>Slaptažodyje tam tikra forma yra žodžiai iš tikrojo naudotojo vardo</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="171"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="214"/>
       <source>The password contains forbidden words in some form</source>
       <translation>Slaptažodyje tam tikra forma yra uždrausti žodžiai</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="175"/>
-      <source>The password contains less than %1 digits</source>
-      <translation>Slaptažodyje yra mažiau nei %1 skaitmenys</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="178"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="221"/>
       <source>The password contains too few digits</source>
       <translation>Slaptažodyje yra per mažai skaitmenų</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="182"/>
-      <source>The password contains less than %1 uppercase letters</source>
-      <translation>Slaptažodyje yra mažiau nei %1 didžiosios raidės</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="185"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="228"/>
       <source>The password contains too few uppercase letters</source>
       <translation>Slaptažodyje yra per mažai didžiųjų raidžių</translation>
     </message>
-    <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="189"/>
-      <source>The password contains less than %1 lowercase letters</source>
-      <translation>Slaptažodyje yra mažiau nei %1 mažosios raidės</translation>
+    <message numerus="yes">
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="232"/>
+      <source>The password contains fewer than %n lowercase letters</source>
+      <translation>
+        <numerusform>Slaptažodyje yra mažiau nei %n mažoji raidė</numerusform>
+        <numerusform>Slaptažodyje yra mažiau nei %n mažosios raidės</numerusform>
+        <numerusform>Slaptažodyje yra mažiau nei %n mažųjų raidžių</numerusform>
+        <numerusform>Slaptažodyje yra mažiau nei %n mažoji raidė</numerusform>
+      </translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="192"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="235"/>
       <source>The password contains too few lowercase letters</source>
       <translation>Slaptažodyje yra per mažai mažųjų raidžių</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="196"/>
-      <source>The password contains less than %1 non-alphanumeric characters</source>
-      <translation>Slaptažodyje yra mažiau nei %1 neraidiniai ir neskaitiniai simboliai</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="200"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="242"/>
       <source>The password contains too few non-alphanumeric characters</source>
       <translation>Slaptažodyje yra per mažai neraidinių ir neskaitinių simbolių</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="204"/>
-      <source>The password is shorter than %1 characters</source>
-      <translation>Slaptažodyje yra mažiau nei %1 simboliai</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="207"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="249"/>
       <source>The password is too short</source>
       <translation>Slaptažodis yra per trumpas</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="209"/>
-      <source>The password is just rotated old one</source>
-      <translation>Slaptažodis yra toks pats kaip ir senas, tik apverstas</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="213"/>
-      <source>The password contains less than %1 character classes</source>
-      <translation>Slaptažodyje yra mažiau nei %1 simbolių klasės</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="216"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="258"/>
       <source>The password does not contain enough character classes</source>
       <translation>Slaptažodyje nėra pakankamai simbolių klasių</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="220"/>
-      <source>The password contains more than %1 same characters consecutively</source>
-      <translation>Slaptažodyje yra daugiau nei %1 tokie patys simboliai iš eilės</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="224"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="265"/>
       <source>The password contains too many same characters consecutively</source>
       <translation>Slaptažodyje yra per daug tokių pačių simbolių iš eilės</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="228"/>
-      <source>The password contains more than %1 characters of the same class consecutively</source>
-      <translation>Slaptažodyje yra daugiau nei %1 tos pačios klasės simboliai iš eilės</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="232"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="275"/>
       <source>The password contains too many characters of the same class consecutively</source>
       <translation>Slaptažodyje yra per daug tos pačios klasės simbolių iš eilės</translation>
     </message>
-    <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="237"/>
-      <source>The password contains monotonic sequence longer than %1 characters</source>
-      <translation>Slaptažodyje yra ilgesnė nei %1 simbolių monotoninė seka</translation>
+    <message numerus="yes">
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="218"/>
+      <source>The password contains fewer than %n digits</source>
+      <translation>
+        <numerusform>Slaptažodyje yra mažiau nei %n skaitmuo</numerusform>
+        <numerusform>Slaptažodyje yra mažiau nei %n skaitmenys</numerusform>
+        <numerusform>Slaptažodyje yra mažiau nei %n skaitmenų</numerusform>
+        <numerusform>Slaptažodyje yra mažiau nei %n skaitmuo</numerusform>
+      </translation>
+    </message>
+    <message numerus="yes">
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="225"/>
+      <source>The password contains fewer than %n uppercase letters</source>
+      <translation>
+        <numerusform>Slaptažodyje yra mažiau nei %n didžioji raidė</numerusform>
+        <numerusform>Slaptažodyje yra mažiau nei %n didžiosios raidės</numerusform>
+        <numerusform>Slaptažodyje yra mažiau nei %n didžiųjų raidžių</numerusform>
+        <numerusform>Slaptažodyje yra mažiau nei %n didžioji raidė</numerusform>
+      </translation>
+    </message>
+    <message numerus="yes">
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="239"/>
+      <source>The password contains fewer than %n non-alphanumeric characters</source>
+      <translation>
+        <numerusform>Slaptažodyje yra mažiau nei %n neraidinis ir neskaitinis simbolis</numerusform>
+        <numerusform>Slaptažodyje yra mažiau nei %n neraidiniai ir neskaitiniai simboliai</numerusform>
+        <numerusform>Slaptažodyje yra mažiau nei %n neraidinių ir neskaitinių simbolių</numerusform>
+        <numerusform>Slaptažodyje yra mažiau nei %n neraidinis ir neskaitinis simbolis</numerusform>
+      </translation>
+    </message>
+    <message numerus="yes">
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="246"/>
+      <source>The password is shorter than %n characters</source>
+      <translation>
+        <numerusform>Slaptažodyje yra mažiau nei %n simbolis</numerusform>
+        <numerusform>Slaptažodyje yra mažiau nei %n simboliai</numerusform>
+        <numerusform>Slaptažodyje yra mažiau nei %n simbolių</numerusform>
+        <numerusform>Slaptažodyje yra mažiau nei %n simbolis</numerusform>
+      </translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="241"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="251"/>
+      <source>The password is a rotated version of the previous one</source>
+      <translation>Šis slaptažodis yra apversta senojo slaptažodžio versija</translation>
+    </message>
+    <message numerus="yes">
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="255"/>
+      <source>The password contains fewer than %n character classes</source>
+      <translation>
+        <numerusform>Slaptažodyje yra mažiau nei %n simbolių klasė</numerusform>
+        <numerusform>Slaptažodyje yra mažiau nei %n simbolių klasės</numerusform>
+        <numerusform>Slaptažodyje yra mažiau nei %n simbolių klasių</numerusform>
+        <numerusform>Slaptažodyje yra mažiau nei %n simbolių klasė</numerusform>
+      </translation>
+    </message>
+    <message numerus="yes">
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="262"/>
+      <source>The password contains more than %n same characters consecutively</source>
+      <translation>
+        <numerusform>Slaptažodyje yra daugiau nei %n toks pats simbolis iš eilės</numerusform>
+        <numerusform>Slaptažodyje yra daugiau nei %n tokie patys simboliai iš eilės</numerusform>
+        <numerusform>Slaptažodyje yra daugiau nei %n tokių pačių simbolių iš eilės</numerusform>
+        <numerusform>Slaptažodyje yra daugiau nei %n toks pats simbolis iš eilės</numerusform>
+      </translation>
+    </message>
+    <message numerus="yes">
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="269"/>
+      <source>The password contains more than %n characters of the same class consecutively</source>
+      <translation>
+        <numerusform>Slaptažodyje yra daugiau nei %n tos pačios klasės simbolis iš eilės</numerusform>
+        <numerusform>Slaptažodyje yra daugiau nei %n tos pačios klasės simboliai iš eilės</numerusform>
+        <numerusform>Slaptažodyje yra daugiau nei %n tos pačios klasės simbolių iš eilės</numerusform>
+        <numerusform>Slaptažodyje yra daugiau nei %n tos pačios klasės simbolis iš eilės</numerusform>
+      </translation>
+    </message>
+    <message numerus="yes">
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="280"/>
+      <source>The password contains monotonic sequence longer than %n characters</source>
+      <translation>
+        <numerusform>Slaptažodyje yra ilgesnė nei %n simbolio monotoninė seka</numerusform>
+        <numerusform>Slaptažodyje yra ilgesnė nei %n simbolių monotoninė seka</numerusform>
+        <numerusform>Slaptažodyje yra ilgesnė nei %n simbolių monotoninė seka</numerusform>
+        <numerusform>Slaptažodyje yra ilgesnė nei %n simbolio monotoninė seka</numerusform>
+      </translation>
+    </message>
+    <message>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="286"/>
       <source>The password contains too long of a monotonic character sequence</source>
       <translation>Slaptažodyje yra per ilga monotoninių simbolių seka</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="244"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="289"/>
       <source>No password supplied</source>
       <translation>Nepateiktas joks slaptažodis</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="246"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="291"/>
       <source>Cannot obtain random numbers from the RNG device</source>
       <translation>Nepavyksta gauti atsitiktinių skaičių iš RNG įrenginio</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="248"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="293"/>
       <source>Password generation failed - required entropy too low for settings</source>
       <translation>Slaptažodžio generavimas nepavyko - reikalinga entropija nustatymams yra per maža</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="254"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="298"/>
       <source>The password fails the dictionary check - %1</source>
       <translation>Slaptažodis nepraeina žodyno patikros - %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="257"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="301"/>
       <source>The password fails the dictionary check</source>
       <translation>Slaptažodis nepraeina žodyno patikros</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="261"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="305"/>
       <source>Unknown setting - %1</source>
       <translation>Nežinomas nustatymas - %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="265"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="307"/>
       <source>Unknown setting</source>
       <translation>Nežinomas nustatymas</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="269"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="311"/>
       <source>Bad integer value of setting - %1</source>
       <translation>Bloga nustatymo sveikojo skaičiaus reikšmė - %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="274"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="313"/>
       <source>Bad integer value</source>
       <translation>Bloga sveikojo skaičiaus reikšmė</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="278"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="317"/>
       <source>Setting %1 is not of integer type</source>
       <translation>Nustatymas %1 nėra sveikojo skaičiaus tipo</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="283"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="319"/>
       <source>Setting is not of integer type</source>
       <translation>Nustatymas nėra sveikojo skaičiaus tipo</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="287"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="323"/>
       <source>Setting %1 is not of string type</source>
       <translation>Nustatymas %1 nėra eilutės tipo</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="292"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="325"/>
       <source>Setting is not of string type</source>
       <translation>Nustatymas nėra eilutės tipo</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="294"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="327"/>
       <source>Opening the configuration file failed</source>
       <translation>Konfigūracijos failo atvėrimas nepavyko</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="296"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="329"/>
       <source>The configuration file is malformed</source>
       <translation>Konfigūracijos failas yra netaisyklingas</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="298"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="331"/>
       <source>Fatal failure</source>
       <translation>Lemtingoji klaida</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="300"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="333"/>
       <source>Unknown error</source>
       <translation>Nežinoma klaida</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="651"/>
+      <location filename="../src/modules/users/Config.cpp" line="775"/>
       <source>Password is empty</source>
       <translation>Slaptažodis yra tuščias</translation>
     </message>
@@ -2574,117 +2614,117 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
   <context>
     <name>PartitionViewStep</name>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="69"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="70"/>
       <source>Gathering system information...</source>
       <translation>Renkama sistemos informacija...</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="124"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="125"/>
       <source>Partitions</source>
       <translation>Skaidiniai</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="162"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="163"/>
       <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system.</source>
       <translation>Diegti %1 &lt;strong&gt;šalia&lt;/strong&gt; kitos operacinės sistemos.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="166"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="167"/>
       <source>&lt;strong&gt;Erase&lt;/strong&gt; disk and install %1.</source>
       <translation>&lt;strong&gt;Ištrinti&lt;/strong&gt; diską ir diegti %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="169"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="170"/>
       <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition with %1.</source>
       <translation>&lt;strong&gt;Pakeisti&lt;/strong&gt; skaidinį, įrašant %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="173"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="174"/>
       <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning.</source>
       <translation>&lt;strong&gt;Rankinis&lt;/strong&gt; skaidymas.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="186"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="187"/>
       <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system on disk &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
       <translation>Įdiegti %1 &lt;strong&gt;šalia&lt;/strong&gt; kitos operacinės sistemos diske &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="193"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="194"/>
       <source>&lt;strong&gt;Erase&lt;/strong&gt; disk &lt;strong&gt;%2&lt;/strong&gt; (%3) and install %1.</source>
       <translation>&lt;strong&gt;Ištrinti&lt;/strong&gt; diską &lt;strong&gt;%2&lt;/strong&gt; (%3) ir diegti %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="199"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="200"/>
       <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition on disk &lt;strong&gt;%2&lt;/strong&gt; (%3) with %1.</source>
       <translation>&lt;strong&gt;Pakeisti&lt;/strong&gt; skaidinį diske &lt;strong&gt;%2&lt;/strong&gt; (%3), įrašant %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="206"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="207"/>
       <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning on disk &lt;strong&gt;%1&lt;/strong&gt; (%2).</source>
       <translation>&lt;strong&gt;Rankinis&lt;/strong&gt; skaidymas diske &lt;strong&gt;%1&lt;/strong&gt; (%2).</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="215"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="216"/>
       <source>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
       <translation>Diskas &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="241"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="242"/>
       <source>Current:</source>
       <translation>Dabartinis:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="259"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="260"/>
       <source>After:</source>
       <translation>Po:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="426"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="427"/>
       <source>No EFI system partition configured</source>
       <translation>Nėra sukonfigūruoto EFI sistemos skaidinio</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="427"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="428"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;%3&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
       <translation>EFI sistemos skaidinys yra būtinas, norint paleisti %1.&lt;br/&gt;&lt;br/&gt;Norėdami sukonfigūruoti EFI sistemos skaidinį, grįžkite atgal ir pasirinkite arba sukurkite FAT32 failų sistemą su įjungta &lt;strong&gt;%3&lt;/strong&gt; vėliavėle ir &lt;strong&gt;%2&lt;/strong&gt; prijungimo tašku.&lt;br/&gt;&lt;br/&gt;Jūs galite tęsti ir nenustatę EFI sistemos skaidinio, tačiau tokiu atveju, gali nepavykti paleisti jūsų sistemos.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="441"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="442"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;%3&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
       <translation>EFI sistemos skaidinys yra būtinas, norint paleisti %1.&lt;br/&gt;&lt;br/&gt;Skaidinys buvo sukonfigūruotas su prijungimo tašku &lt;strong&gt;%2&lt;/strong&gt;, tačiau jo &lt;strong&gt;%3&lt;/strong&gt; vėliavėlė yra nenustatyta.&lt;br/&gt;Norėdami nustatyti vėliavėlę, grįžkite atgal ir taisykite skaidinį.&lt;br/&gt;&lt;br/&gt;Jūs galite tęsti ir nenustatę vėliavėlės, tačiau tokiu atveju, gali nepavykti paleisti jūsų sistemos.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="440"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="441"/>
       <source>EFI system partition flag not set</source>
       <translation>Nenustatyta EFI sistemos skaidinio vėliavėlė</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="467"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="468"/>
       <source>Option to use GPT on BIOS</source>
       <translation>Parinktis naudoti GPT per BIOS</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="468"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="469"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
       <translation>GPT skaidinių lentelė yra geriausias variantas visoms sistemoms. Ši diegimo programa palaiko tokią sąranką taip pat ir BIOS sistemoms.&lt;br/&gt;&lt;br/&gt;Norėdami konfigūruoti GPT skaidinių lentelę BIOS sistemoje, (jei dar nesate to padarę) grįžkite atgal ir nustatykite skaidinių lentelę į GPT, toliau, sukurkite 8 MB neformatuotą skaidinį su įjungta &lt;strong&gt;bios_grub&lt;/strong&gt; vėliavėle.&lt;br/&gt;&lt;br/&gt;Neformatuotas 8 MB skaidinys yra būtinas, norint paleisti %1 BIOS sistemoje su GPT.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="496"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="497"/>
       <source>Boot partition not encrypted</source>
       <translation>Paleidimo skaidinys nėra užšifruotas</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="497"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="498"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
       <translation>Kartu su užšifruotu šaknies skaidiniu, buvo nustatytas atskiras paleidimo skaidinys, tačiau paleidimo skaidinys nėra užšifruotas.&lt;br/&gt;&lt;br/&gt;Dėl tokios sąrankos iškyla tam tikrų saugumo klausimų, kadangi svarbūs sisteminiai failai yra laikomi neužšifruotame skaidinyje.&lt;br/&gt;Jeigu norite, galite tęsti, tačiau failų sistemos atrakinimas įvyks vėliau, sistemos paleidimo metu.&lt;br/&gt;Norėdami užšifruoti paleidimo skaidinį, grįžkite atgal ir sukurkite jį iš naujo bei skaidinių kūrimo lange pažymėkite parinktį &lt;strong&gt;Užšifruoti&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="626"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="627"/>
       <source>has at least one disk device available.</source>
       <translation>turi bent vieną prieinamą disko įrenginį.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="627"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="628"/>
       <source>There are no partitions to install on.</source>
       <translation>Nėra skaidinių į kuriuos diegti.</translation>
     </message>
@@ -2692,13 +2732,13 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
   <context>
     <name>PlasmaLnfJob</name>
     <message>
-      <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="30"/>
+      <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="33"/>
       <source>Plasma Look-and-Feel Job</source>
       <translation>Plasma išvaizdos ir turinio užduotis</translation>
     </message>
     <message>
-      <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="62"/>
-      <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="63"/>
+      <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="57"/>
+      <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="58"/>
       <source>Could not select KDE Plasma Look-and-Feel package</source>
       <translation>Nepavyko pasirinkti KDE Plasma išvaizdos ir turinio paketo</translation>
     </message>
@@ -2711,12 +2751,12 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
       <translation>Forma</translation>
     </message>
     <message>
-      <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="61"/>
+      <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="79"/>
       <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is set up. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
       <translation>Pasirinkite KDE Plasma darbalaukio išvaizdą ir turinį. Taip pat galite praleisti šį žingsnį ir konfigūruoti išvaizdą ir turinį, kai sistema bus nustatyta. Spustelėjus ant tam tikro išvaizdos ir turinio pasirinkimo, jums bus parodyta tiesioginė peržiūrą.</translation>
     </message>
     <message>
-      <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="66"/>
+      <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="84"/>
       <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is installed. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
       <translation>Pasirinkite KDE Plasma darbalaukio išvaizdą ir turinį. Taip pat galite praleisti šį žingsnį ir konfigūruoti išvaizdą ir turinį, kai sistema bus įdiegta. Spustelėjus ant tam tikro išvaizdos ir turinio pasirinkimo, jums bus parodyta tiesioginė peržiūrą.</translation>
     </message>
@@ -2724,7 +2764,7 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
   <context>
     <name>PlasmaLnfViewStep</name>
     <message>
-      <location filename="../src/modules/plasmalnf/PlasmaLnfViewStep.cpp" line="61"/>
+      <location filename="../src/modules/plasmalnf/PlasmaLnfViewStep.cpp" line="43"/>
       <source>Look-and-Feel</source>
       <translation>Išvaizda ir turinys</translation>
     </message>
@@ -2844,13 +2884,8 @@ Išvestis:
       <translation>sukeitimų (swap)</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="90"/>
-      <source>Default Keyboard Model</source>
-      <translation>Numatytasis klaviatūros modelis</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="136"/>
-      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="173"/>
+      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="130"/>
+      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="167"/>
       <source>Default</source>
       <translation>Numatytasis</translation>
     </message>
@@ -2870,7 +2905,7 @@ Išvestis:
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="83"/>
       <source>Directory not found</source>
-      <translation type="unfinished"/>
+      <translation>Katalogas nerastas</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="84"/>
@@ -3017,7 +3052,8 @@ Išvestis:
       <location filename="../src/modules/welcomeq/Requirements.qml" line="38"/>
       <source>&lt;p&gt;This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;
         Installation cannot continue.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;Šis kompiuteris netenkina minimalių %1 diegimo reikalavimų.&lt;br/&gt;
+        Diegimas negali būti tęsiamas.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/Requirements.qml" line="40"/>
@@ -3233,29 +3269,29 @@ Išvestis:
   <context>
     <name>SetKeyboardLayoutJob</name>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="53"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="55"/>
       <source>Set keyboard model to %1, layout to %2-%3</source>
       <translation>Nustatyti klaviatūros modelį kaip %1, o išdėstymą kaip %2-%3</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="356"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="368"/>
       <source>Failed to write keyboard configuration for the virtual console.</source>
       <translation>Nepavyko įrašyti klaviatūros sąrankos virtualiam pultui.</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="357"/>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="361"/>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="368"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="369"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="397"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="414"/>
       <source>Failed to write to %1</source>
       <translation>Nepavyko įrašyti į %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="360"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="396"/>
       <source>Failed to write keyboard configuration for X11.</source>
       <translation>Nepavyko įrašyti klaviatūros sąrankos X11 aplinkai.</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="367"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="413"/>
       <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
       <translation>Nepavyko įrašyti klaviatūros konfigūracijos į esamą /etc/default katalogą.</translation>
     </message>
@@ -3368,7 +3404,7 @@ Išvestis:
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="88"/>
       <source>Cannot disable root account.</source>
-      <translation>Nepavyksta išjungti administratoriaus (root) paskyros.</translation>
+      <translation>Nepavyksta išjungti pagrindinio naudotojo (root) paskyros.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="89"/>
@@ -3425,6 +3461,43 @@ Išvestis:
     </message>
   </context>
   <context>
+    <name>SetupGroupsJob</name>
+    <message>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="166"/>
+      <source>Preparing groups.</source>
+      <translation>Ruošiamos grupės.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="178"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="183"/>
+      <source>Could not create groups in target system</source>
+      <translation>Nepavyko paskirties sistemoje sukurti grupių</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="184"/>
+      <source>These groups are missing in the target system: %1</source>
+      <translation>Paskirties sistemoje nėra šių grupių: %1</translation>
+    </message>
+  </context>
+  <context>
+    <name>SetupSudoJob</name>
+    <message>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="33"/>
+      <source>Configure &lt;pre&gt;sudo&lt;/pre&gt; users.</source>
+      <translation>Konfigūruoti &lt;pre&gt;sudo&lt;/pre&gt; naudotojus.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="55"/>
+      <source>Cannot chmod sudoers file.</source>
+      <translation>Nepavyko pritaikyti chmod failui sudoers.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="60"/>
+      <source>Cannot create sudoers file for writing.</source>
+      <translation>Nepavyko įrašymui sukurti failo sudoers.</translation>
+    </message>
+  </context>
+  <context>
     <name>ShellProcessJob</name>
     <message>
       <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="41"/>
@@ -3444,12 +3517,12 @@ Išvestis:
   <context>
     <name>SummaryPage</name>
     <message>
-      <location filename="../src/modules/summary/SummaryPage.cpp" line="47"/>
+      <location filename="../src/modules/summary/SummaryPage.cpp" line="48"/>
       <source>This is an overview of what will happen once you start the setup procedure.</source>
       <translation>Tai yra apžvalga to, kas įvyks, prasidėjus sąrankos procedūrai.</translation>
     </message>
     <message>
-      <location filename="../src/modules/summary/SummaryPage.cpp" line="49"/>
+      <location filename="../src/modules/summary/SummaryPage.cpp" line="50"/>
       <source>This is an overview of what will happen once you start the install procedure.</source>
       <translation>Tai yra apžvalga to, kas įvyks, prasidėjus diegimo procedūrai.</translation>
     </message>
@@ -3558,7 +3631,7 @@ Išvestis:
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="76"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click here to send &lt;span style=" font-weight:600;"&gt;no information at all&lt;/span&gt; about your installation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Spustelėkite čia norėdami &lt;span style=" font-weight:600;"&gt;nesiųsti visiškai jokios informacijos&lt;/span&gt; apie savo diegimą.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="275"/>
@@ -3568,7 +3641,7 @@ Išvestis:
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="86"/>
       <source>Tracking helps %1 to see how often it is installed, what hardware it is installed on and which applications are used. To see what will be sent, please click the help icon next to each area.</source>
-      <translation type="unfinished"/>
+      <translation>Sekimas padeda matyti kaip dažnai yra įdiegiama %1, kokioje aparatinėje įrangoje ji yra įdiegiama bei kokios yra naudojamos programos. Norėdami pamatyti kas bus išsiųsta, šalia kiekvienos srities spustelėkite pagalbos piktogramą.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="91"/>
@@ -3583,7 +3656,7 @@ Išvestis:
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="98"/>
       <source>By selecting this you will regularly send information about your &lt;b&gt;user&lt;/b&gt; installation, hardware, applications and application usage patterns, to %1.</source>
-      <translation type="unfinished"/>
+      <translation>Tai pažymėję, reguliariai į %1 siųsite informaciją apie savo &lt;b&gt;naudotojo&lt;/b&gt; diegimą, aparatinę įrangą, programas bei naudojimosi programomis šablonus.</translation>
     </message>
   </context>
   <context>
@@ -3822,7 +3895,18 @@ Išvestis:
                         development is sponsored by &lt;br/&gt;
                         &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; -
                         Liberating Software.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;
+                        &lt;strong&gt;%2&lt;br/&gt;
+                        skirta %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;
+                        Autorių teisės 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;
+                        Autorių teisės 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;
+                        Dėkojame &lt;a href='https://calamares.io/team/'&gt;Calamares komandai&lt;/a&gt;
+                        ir &lt;a href='https://www.transifex.com/calamares/calamares/'&gt;Calamares
+                        vertėjų komandai&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;
+                        &lt;a href='https://calamares.io/'&gt;Calamares&lt;/a&gt;
+                        plėtojimą remia &lt;br/&gt;
+                        &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; -
+                        Išlaisvinanti programinė įranga.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/about.qml" line="96"/>
@@ -3836,13 +3920,15 @@ Išvestis:
       <location filename="../src/modules/localeq/i18n.qml" line="46"/>
       <source>&lt;h1&gt;Languages&lt;/h1&gt; &lt;/br&gt;
                     The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Kalbos&lt;/h1&gt; &lt;/br&gt;
+                    Sistemos lokalės nustatymas įtakoja, kai kurių komandų eilutės naudotojo sąsajos elementų, kalbos ir simbolių rinkinį. Dabar yra nustatyta &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/i18n.qml" line="106"/>
       <source>&lt;h1&gt;Locales&lt;/h1&gt; &lt;/br&gt;
                     The system locale setting affects the numbers and dates format. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Lokalės&lt;/h1&gt; &lt;/br&gt;
+                    Sistemos lokalės nustatymas įtakoja skaičių ir datų formatą. Dabar yra nustatyta &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/i18n.qml" line="158"/>
@@ -3870,7 +3956,7 @@ Išvestis:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="60"/>
       <source>Click your preferred keyboard model to select layout and variant, or use the default one based on the detected hardware.</source>
-      <translation type="unfinished"/>
+      <translation>Pasirinkite pageidaujamą klaviatūros modelį, kad pasirinktumėte išdėstymą ir variantą arba naudokite numatytąjį, kuris remiasi aptikta aparatine įranga.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="253"/>
@@ -3885,7 +3971,7 @@ Išvestis:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="276"/>
       <source>Keyboard Variant</source>
-      <translation type="unfinished"/>
+      <translation>Klaviatūros variantas</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="386"/>
@@ -3969,7 +4055,7 @@ Išvestis:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="36"/>
       <source>Pick your user name and credentials to login and perform admin tasks</source>
-      <translation type="unfinished"/>
+      <translation>Pasirinkite naudotojo vardą ir prisijungimo duomenis, kad galėtumėte prisijungti ir atlikti administravimo užduotis</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="52"/>
@@ -3989,12 +4075,12 @@ Išvestis:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="87"/>
       <source>Login Name</source>
-      <translation type="unfinished"/>
+      <translation>Prisijungimo vardas</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="103"/>
       <source>If more than one person will use this computer, you can create multiple accounts after installation.</source>
-      <translation type="unfinished"/>
+      <translation>Jei šiuo kompiuteriu naudosis keli žmonės, po diegimo galėsite sukurti papildomas paskyras.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="118"/>
@@ -4009,7 +4095,7 @@ Išvestis:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="140"/>
       <source>This name will be used if you make the computer visible to others on a network.</source>
-      <translation type="unfinished"/>
+      <translation>Šis vardas bus naudojamas, jeigu padarysite savo kompiuterį matomą kitiems naudotojams tinkle.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="155"/>
@@ -4029,12 +4115,12 @@ Išvestis:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="204"/>
       <source>Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.</source>
-      <translation type="unfinished"/>
+      <translation>Norint įsitikinti, kad rašydami slaptažodį nesuklydote, įrašykite tą patį slaptažodį du kartus. Stiprus slaptažodis yra raidžių, skaičių ir punktuacijos ženklų mišinys, jis turi būti mažiausiai aštuonių simbolių, be to, turėtų būti reguliariai keičiamas.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="216"/>
       <source>Validate passwords quality</source>
-      <translation type="unfinished"/>
+      <translation>Tikrinti slaptažodžių kokybę</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="226"/>
@@ -4044,12 +4130,12 @@ Išvestis:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="234"/>
       <source>Log in automatically without asking for the password</source>
-      <translation type="unfinished"/>
+      <translation>Prisijungti automatiškai, neklausiant slaptažodžio</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="243"/>
       <source>Reuse user password as root password</source>
-      <translation type="unfinished"/>
+      <translation>Naudotojo slaptažodį naudoti pakartotinai kaip pagrindinio naudotojo (root) slaptažodį</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="253"/>
@@ -4059,22 +4145,22 @@ Išvestis:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="268"/>
       <source>Choose a root password to keep your account safe.</source>
-      <translation type="unfinished"/>
+      <translation>Pasirinkite pagrindinio naudotojo (root) slaptažodį, kad apsaugotumėte savo paskyrą.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="279"/>
       <source>Root Password</source>
-      <translation type="unfinished"/>
+      <translation>Pagrindinio naudotojo (Root) slaptažodis</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="298"/>
       <source>Repeat Root Password</source>
-      <translation type="unfinished"/>
+      <translation>Pakartokite pagrindinio naudotojo (Root) slaptažodį</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="318"/>
       <source>Enter the same password twice, so that it can be checked for typing errors.</source>
-      <translation type="unfinished"/>
+      <translation>Norint įsitikinti, kad rašydami slaptažodį nesuklydote, įrašykite tą patį slaptažodį du kartus.</translation>
     </message>
   </context>
   <context>

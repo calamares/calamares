@@ -91,10 +91,16 @@ LocalePage::LocalePage( Config* config, QWidget* parent )
 
     // Set up the location before connecting signals, to avoid a signal
     // storm as various parts interact.
-    m_regionCombo->setModel( m_config->regionModel() );
-    m_zoneCombo->setModel( m_config->regionalZonesModel() );
-    locationChanged( m_config->currentLocation() );  // doesn't inform TZ widget
-    m_tzWidget->setCurrentLocation( m_config->currentLocation() );
+    {
+        auto* regions = m_config->regionModel();
+        auto* zones = m_config->regionalZonesModel();
+        auto* location = m_config->currentLocation();
+        zones->setRegion( location->region() );
+        m_regionCombo->setModel( regions );
+        m_zoneCombo->setModel( zones );
+        m_tzWidget->setCurrentLocation( location );
+        locationChanged( location );  // doesn't inform TZ widget
+    }
 
     connect( config, &Config::currentLCStatusChanged, m_formatsLabel, &QLabel::setText );
     connect( config, &Config::currentLanguageStatusChanged, m_localeLabel, &QLabel::setText );

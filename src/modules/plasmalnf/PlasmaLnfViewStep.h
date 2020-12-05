@@ -14,10 +14,7 @@
 #include "utils/PluginFactory.h"
 #include "viewpages/ViewStep.h"
 
-#include <QObject>
-#include <QUrl>
-#include <QVariantMap>
-
+class Config;
 class PlasmaLnfPage;
 
 class PLUGINDLLEXPORT PlasmaLnfViewStep : public Calamares::ViewStep
@@ -44,14 +41,9 @@ public:
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
-public slots:
-    void themeSelected( const QString& id );
-
 private:
+    Config* m_config;
     PlasmaLnfPage* m_widget;
-    QString m_lnfPath;  // Path to the lnf tool
-    QString m_themeId;  // Id of selected theme
-    QString m_liveUser;  // Name of the live user (for OEM mode)
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( PlasmaLnfViewStepFactory )

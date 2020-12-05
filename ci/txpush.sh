@@ -92,9 +92,16 @@ done
 # those are done separately.
 _srcdirs="src/calamares src/libcalamares src/libcalamaresui src/modules src/qml"
 $LUPDATE -no-obsolete $_srcdirs -ts lang/calamares_en.ts
-# Updating the TZ only needs to happen when the TZ themselves are updated,
-# very-very-rarely.
+# Non-Transifex special-cases
+#
+# - timezone names can be translated, but that's 700+ strings I don't want
+#   to inflict on translators normally
+# - keyboard layouts can be translated, but that's 767 strings
+#
+# For both of these, the language / translation only needs to be updated
+# when the source data is updated, which is very very rarely.
 # $LUPDATE -no-obsolete -extensions cxxtr src/libcalamares/locale -ts lang/tz_en.ts
+# $LUPDATE -no-obsolete -extensions cxxtr src/modules/keyboard -ts lang/kb_en.ts
 
 if test -n "$XMLLINT" ; then
 	TS_FILE="lang/calamares_en.ts"

@@ -84,12 +84,6 @@ parseKeyboardModels( const char* filepath )
         {
             QString modelDesc = rx.cap( 2 );
             QString model = rx.cap( 1 );
-
-            if ( model == "pc105" )
-            {
-                modelDesc += "  -  " + QObject::tr( "Default Keyboard Model" );
-            }
-
             models.insert( modelDesc, model );
         }
     }

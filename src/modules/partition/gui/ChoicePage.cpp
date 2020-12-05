@@ -90,13 +90,7 @@ ChoicePage::ChoicePage( Config* config, QWidget* parent )
     auto gs = Calamares::JobQueue::instance()->globalStorage();
 
     m_requiredPartitionTableType = gs->value( "requiredPartitionTableType" ).toStringList();
-    m_defaultFsType = gs->value( "defaultFileSystemType" ).toString();
     m_enableEncryptionWidget = gs->value( "enableLuksAutomatedPartitioning" ).toBool();
-
-    if ( FileSystem::typeForName( m_defaultFsType ) == FileSystem::Unknown )
-    {
-        m_defaultFsType = "ext4";
-    }
 
     // Set up drives combo
     m_mainLayout->setDirection( QBoxLayout::TopToBottom );
