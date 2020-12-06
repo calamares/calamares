@@ -21,20 +21,19 @@
 #   You should have received a copy of the GNU General Public License
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
-import libcalamares
 from libcalamares.utils import debug, target_env_call
 import os
 from collections import OrderedDict
 
 import gettext
-_ = gettext.translation("calamares-python",
+translate = gettext.translation("calamares-python",
                         localedir=libcalamares.utils.gettext_path(),
                         languages=libcalamares.utils.gettext_languages(),
                         fallback=True).gettext
 
 
 def pretty_name():
-    return _("Configuring mkinitcpio.")
+    return translate("Configuring mkinitcpio.")
 
 
 def cpuinfo():
@@ -50,7 +49,7 @@ def cpuinfo():
 
     nprocs = 0
 
-    with open('/proc/cpuinfo') as cpuinfo_file:
+    with open("/proc/cpuinfo") as cpuinfo_file:
         for line in cpuinfo_file:
             if not line.strip():
                 # end of one processor
@@ -59,11 +58,11 @@ def cpuinfo():
                 # Reset
                 procinfo = OrderedDict()
             else:
-                if len(line.split(':')) == 2:
-                    splitted_line = line.split(':')[1].strip()
-                    procinfo[line.split(':')[0].strip()] = splitted_line
+                if len(line.split(":")) == 2:
+                    splitted_line = line.split(":")[1].strip()
+                    procinfo[line.split(":")[0].strip()] = splitted_line
                 else:
-                    procinfo[line.split(':')[0].strip()] = ''
+                    procinfo[line.split(":")[0].strip()] = ""
 
     return cpu_info
 
@@ -87,19 +86,20 @@ def write_mkinitcpio_lines(hooks, modules, files, root_mount_point):
 
     for i in range(len(mklins)):
         if mklins[i].startswith("HOOKS"):
-            joined_hooks = ' '.join(hooks)
-            mklins[i] = "HOOKS=\"{!s}\"".format(joined_hooks)
+            joined_hooks = " ".join(hooks)
+            mklins[i] = "HOOKS='{!s}'".format(joined_hooks)
         elif mklins[i].startswith("MODULES"):
             joined_modules = ' '.join(modules)
-            mklins[i] = "MODULES=\"{!s}\"".format(joined_modules)
+            mklins[i] = "MODULES='{!s}'".format(joined_modules)
         elif mklins[i].startswith("FILES"):
             joined_files = ' '.join(files)
-            mklins[i] = "FILES=\"{!s}\"".format(joined_files)
+            mklins[i] = "FILES='{!s}'".format(joined_files)
 
     path = os.path.join(root_mount_point, "etc/mkinitcpio.conf")
 
     with open(path, "w") as mkinitcpio_file:
         mkinitcpio_file.write("\n".join(mklins) + "\n")
+
 
 def detect_plymouth():
     """
@@ -108,10 +108,11 @@ def detect_plymouth():
     @return True if plymouth exists in the target, False otherwise
     """
     # Used to only check existence of path /usr/bin/plymouth in target
-    isPlymouth = target_env_call(["sh", "-c", "which plymouth"])
-    debug("which plymouth exit code: {!s}".format(isPlymouth))
+    is_plymouth = target_env_call(["sh", "-c", "which plymouth"])
+    debug("which plymouth exit code: {!s}".format(is_plymouth))
 
-    return isPlymouth == 0
+    return is_plymouth == 0
+
 
 def modify_mkinitcpio_conf(partitions, root_mount_point):
     """
@@ -122,10 +123,17 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
     """
     cpu = cpuinfo()
     swap_uuid = ""
-    btrfs = ""
-    lvm2 = ""
-    hooks = ["base", "udev", "autodetect", "modconf", "block", "keyboard",
-             "keymap"]
+    btrfs = False
+    lvm2 = False
+    hooks = [
+        "base",
+        "udev",
+        "autodetect",
+        "modconf",
+        "block",
+        "keyboard",
+        "keymap"
+    ]
     modules = []
     files = []
     encrypt_hook = False
@@ -147,10 +155,10 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
                 openswap_hook = True
 
         if partition["fs"] == "btrfs":
-            btrfs = "yes"
+            btrfs = True
 
         if "lvm2" in partition["fs"]:
-            lvm2 = "yes"
+            lvm2 = True
 
         if partition["mountPoint"] == "/" and "luksMapperName" in partition:
             encrypt_hook = True
@@ -164,11 +172,12 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
 
     if encrypt_hook:
         hooks.append("encrypt")
+        crypto_file = "crypto_keyfile.bin"
         if not unencrypted_separate_boot and \
            os.path.isfile(
-               os.path.join(root_mount_point, "crypto_keyfile.bin")
+               os.path.join(root_mount_point, crypto_file)
                ):
-            files.append("/crypto_keyfile.bin")
+            files.append("/{!s}".format(crypto_file))
 
     if lvm2:
         hooks.append("lvm2")
@@ -180,10 +189,11 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
     else:
         hooks.extend(["filesystems"])
 
-    if btrfs == "yes" and cpu['proc0']['vendor_id'].lower() != "genuineintel":
+    cpu_intel = "genuineintel"
+    if btrfs and cpu["proc0"]["vendor_id"].lower() != cpu_intel:
         modules.append("crc32c")
-    elif (btrfs == "yes"
-          and cpu['proc0']['vendor_id'].lower() == "genuineintel"):
+    elif (btrfs
+          and cpu["proc0"]["vendor_id"].lower() == cpu_intel):
         modules.append("crc32c-intel")
     else:
         hooks.append("fsck")
@@ -193,7 +203,7 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
 
 def run():
     """
-    Calls routine with given parameters to modify '/etc/mkinitcpio.conf'.
+    Calls routine with given parameters to modify "/etc/mkinitcpio.conf".
 
     :return:
     """
@@ -202,12 +212,12 @@ def run():
 
     if not partitions:
         libcalamares.utils.warning("partitions is empty, {!s}".format(partitions))
-        return (_("Configuration Error"),
-                _("No partitions are defined for <pre>{!s}</pre> to use." ).format("initcpiocfg"))
+        return (translate("Configuration Error"),
+                translate("No partitions are defined for <pre>{!s}</pre> to use." ).format("initcpiocfg"))
     if not root_mount_point:
         libcalamares.utils.warning("rootMountPoint is empty, {!s}".format(root_mount_point))
-        return (_("Configuration Error"),
-                _("No root mount point is given for <pre>{!s}</pre> to use." ).format("initcpiocfg"))
+        return (translate("Configuration Error"),
+                translate("No root mount point is given for <pre>{!s}</pre> to use." ).format("initcpiocfg"))
 
     modify_mkinitcpio_conf(partitions, root_mount_point)
 
