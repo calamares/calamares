@@ -87,6 +87,12 @@ def mount_partition(root_mount_point, partition, partitions):
             if p["mountPoint"] == "/home":
                 has_home_mount_point = True
                 break
+        needs_swap_subvolume = False
+        swap_choice = global_storage.value( "partitionChoices" )
+        if swap_choice:
+            swap_choice = swap_choice.get( "swap", None )
+            if swap_choice and swap_choice == "file":
+                needs_swap_subvolume = True
 
         subprocess.check_call(['btrfs', 'subvolume', 'create',
                                root_mount_point + '/@'])
@@ -94,12 +100,8 @@ def mount_partition(root_mount_point, partition, partitions):
         if not has_home_mount_point:
             subprocess.check_call(['btrfs', 'subvolume', 'create',
                                    root_mount_point + '/@home'])
-
-        swap_choice = global_storage.value( "partitionChoices" )
-        if swap_choice:
-            swap_choice = swap_choice.get( "swap", None )
-            if swap_choice and swap_choice == "file":
-                subprocess.check_call(['btrfs', 'subvolume', 'create',
+        if needs_swap_subvolume:
+            subprocess.check_call(['btrfs', 'subvolume', 'create',
                                        root_mount_point + '/@swap'])
 
         subprocess.check_call(["umount", "-v", root_mount_point])
@@ -120,6 +122,13 @@ def mount_partition(root_mount_point, partition, partitions):
                                         root_mount_point + "/home",
                                         fstype,
                                         ",".join(["subvol=@home", partition.get("options", "")])) != 0:
+                libcalamares.utils.warning("Cannot mount {}".format(device))
+        
+        if needs_swap_subvolume:
+            if libcalamares.utils.mount(device,
+                                        root_mount_point + "/swap",
+                                        fstype,
+                                        ",".join(["subvol=@swap", partition.get("options", "")])) != 0:
                 libcalamares.utils.warning("Cannot mount {}".format(device))
 
 
