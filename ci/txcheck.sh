@@ -1,10 +1,10 @@
 #! /bin/sh
 
 ### LICENSE
-# === This file is part of Calamares - <https://github.com/calamares> ===
+# === This file is part of Calamares - <https://calamares.io> ===
 #
-#   SPDX-License-Identifier: BSD-2-Clause
 #   SPDX-FileCopyrightText: 2019-2020 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
 #
 #   This file is Free Software: you can redistribute it and/or modify
 #   it under the terms of the 2-clause BSD License.
@@ -29,7 +29,7 @@
 ### END USAGE
 
 # The files that are translated; should match the contents of .tx/config
-TX_FILE_LIST="lang/calamares_en.ts lang/python.pot src/modules/dummypythonqt/lang/dummypythonqt.pot calamares.desktop"
+TX_FILE_LIST="lang/calamares_en.ts lang/python.pot calamares.desktop"
 
 ### COMMAND ARGUMENTS
 #
@@ -125,7 +125,7 @@ tx_sum()
 
 	# Remove linenumbers from .ts (XML) and .pot
 	sed -i'' -e '/<location filename/d' "$WORKTREE_NAME/lang/calamares_en.ts"
-	sed -i'' -e '/^#: src..*[0-9]$/d' $WORKTREE_NAME/lang/python.pot $WORKTREE_NAME/src/modules/dummypythonqt/lang/dummypythonqt.pot
+	sed -i'' -e '/^#: src..*[0-9]$/d' $WORKTREE_NAME/lang/python.pot
 
 	_SUM=$( cd $WORKTREE_NAME && cat $TX_FILE_LIST | $SHA256 )
 	echo "$_SUM"

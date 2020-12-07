@@ -1,45 +1,9 @@
 #! /usr/bin/env python3
 #
-#  === This file is part of Calamares - <https://github.com/calamares> ===
-# 
+#  === This file is part of Calamares - <https://calamares.io> ===
+#
 #   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
-#
 #   SPDX-License-Identifier: BSD-2-Clause
-#   License-Filename: LICENSES/BSD2
-#
-#
-#
-# Python3 script to scrape some data out of ICU CLDR supplemental data.
-#
-### BEGIN LICENSES
-#
-# Copyright 2019 Adriaan de Groot <groot@kde.org>
-#
-# Redistribution and use in source and binary forms, with or without
-# modification, are permitted provided that the following conditions
-# are met:
-#
-#   1. Redistributions of source code must retain the above copyright
-#      notice, this list of conditions and the following disclaimer.
-#   2. Redistributions in binary form must reproduce the above copyright
-#      notice, this list of conditions and the following disclaimer in the
-#      documentation and/or other materials provided with the distribution.
-#
-# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-# POSSIBILITY OF SUCH DAMAGE.
-#
-### END LICENSES
- 
-### BEGIN USAGE
 #
 """
 Python3 script to scrape some data out of ICU CLDR supplemental data.
@@ -126,7 +90,7 @@ class CountryData:
             self.country_code = ""
             self.language_enum = "AnyLanguage"
             self.country_enum = "AnyCountry"
-    
+
     def __str__(self):
         if self.country_code:
             char0 = "'{!s}'".format(self.country_code[0])
@@ -134,18 +98,18 @@ class CountryData:
         else:
             char0 = "0"
             char1 = "0"
-            
+
         return "{!s} QLocale::Language::{!s}, QLocale::Country::{!s}, {!s}, {!s} {!s},".format(
             "{",
-            self.language_enum, 
+            self.language_enum,
             self.country_enum,
-            char0, 
+            char0,
             char1,
             "}")
 
     # Must match type name below
     cpp_classname = "CountryData"
-    
+
     # Must match the output format of __str__ above
     cpp_declaration = """
 struct CountryData
@@ -169,30 +133,30 @@ def extricate_subtags(l1, l2):
         return
     if '{ ?; ?;' not in l2:
         return
-    
+
     # This is extremely crude "parsing" which chops up the string
     # by delimiter and then extracts some substring.
     l1_parts = l1.split("und_")
     l2_parts = l2.split(";")
-    
+
     l1_first_quote = l1_parts[1].find('"')
     l1_code = l1_parts[1][:l1_first_quote]
     if len(l1_code) != 2:
         return
-    
+
     l2_brace = l2_parts[2].find("{")
     l2_language = l2_parts[2][l2_brace+1:].strip()
     l2_brace = l2_parts[2].find("}")
     l2_country = l2_parts[2][:l2_brace-1].strip()
-    
+
     # Handle mapped cases
     l2_language = language_mapper.get(l2_language, l2_language)
     l2_language = l2_language.replace(" ", "")
-    
+
     # Handle mapped cases and then do a bunch of standard replacements.
     l2_country = country_mapper.get(l2_country, l2_country)
     l2_country = l2_country.replace(" ", "").replace("-", "").replace(".","").replace("&","And")
-      
+
     return CountryData(l1_code, l2_language, l2_country)
 
 
@@ -213,7 +177,7 @@ def read_subtags_file():
             if l1:
                 assert "likelySubtag" in l1, l1;
                 assert "<!--" in l2, l2;
-                
+
                 data.append(extricate_subtags(l1, l2))
 
     data.append(CountryData("", None, None))
@@ -222,9 +186,15 @@ def read_subtags_file():
 
 cpp_header_comment = """/*   GENERATED FILE DO NOT EDIT
 *
-*  === This file is part of Calamares - <https://github.com/calamares> ===
+*  === This file is part of Calamares - <https://calamares.io> ===
 *
-* This file is derived from CLDR data from Unicode, Inc. Applicable terms:
+* SPDX-FileCopyrightText: 1991-2019 Unicode, Inc.
+* SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
+* SPDX-License-Identifier: CC0
+*
+* This file is derived from CLDR data from Unicode, Inc. Applicable terms
+* are listed at http://unicode.org/copyright.html , of which the most
+* important are:
 *
 * A. Unicode Copyright
 *    1. Copyright © 1991-2019 Unicode, Inc. All rights reserved.
@@ -232,6 +202,11 @@ cpp_header_comment = """/*   GENERATED FILE DO NOT EDIT
 *    Unicode Data Files ("DATA FILES") include all data files under the directories:
 *    https://www.unicode.org/Public/
 * C. Terms of Use
+*    1. Certain documents and files on this website contain a legend indicating
+*       that "Modification is permitted." Any person is hereby authorized,
+*       without fee, to modify such documents and files to create derivative
+*       works conforming to the Unicode® Standard, subject to Terms and
+*       Conditions herein.
 *    2. Any person is hereby authorized, without fee, to view, use, reproduce,
 *       and distribute all documents and files, subject to the Terms and
 *       Conditions herein.
@@ -259,17 +234,17 @@ def make_identifier(classname):
             identifier.extend(["_", c.lower()])
         else:
             identifier.append(c)
-            
+
     return "".join(identifier)
-        
-        
+
+
 def export_class(cls, data):
     """
     Given a @p cls and a list of @p data objects from that class,
     print (to stdout) a C++ file for that data.
     """
     identifier = make_identifier(cls.cpp_classname)
-    
+
     with open("{!s}_p.cpp".format(cls.cpp_classname), "wt", encoding="UTF-8") as f:
         f.write(cpp_header_comment)
         f.write(cls.cpp_declaration)
@@ -290,7 +265,7 @@ def export_class(cls, data):
             identifier,
             cls.cpp_classname))
         f.write(cpp_footer_comment)
-    
-    
+
+
 if __name__ == "__main__":
     export_class(CountryData, read_subtags_file())

@@ -1,3 +1,9 @@
+# === This file is part of Calamares - <https://calamares.io> ===
+#
+#   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
+#
+
 # When debugging the timezone widget, add this debugging definition
 # to have a debugging-friendly timezone widget, debug logging,
 # and no intrusive timezone-setting while clicking around.
@@ -36,7 +42,9 @@ calamares_add_test(
     localetest
     SOURCES
         Tests.cpp
+        Config.cpp
         LocaleConfiguration.cpp
+        SetTimezoneJob.cpp
         timezonewidget/TimeZoneImage.cpp
     DEFINITIONS
         SOURCE_DIR="${CMAKE_CURRENT_LIST_DIR}/images"

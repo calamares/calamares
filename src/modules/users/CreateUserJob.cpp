@@ -1,17 +1,19 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
  *   SPDX-FileCopyrightText: 2014-2016 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
  *   SPDX-License-Identifier: GPL-3.0-or-later
- *   License-Filename: LICENSE
  */
 
 #include "CreateUserJob.h"
+
+#include "Config.h"
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
+#include "utils/Permissions.h"
 
 #include <QDateTime>
 #include <QDir>
@@ -21,15 +23,9 @@
 #include <QTextStream>
 
 
-CreateUserJob::CreateUserJob( const QString& userName,
-                              const QString& fullName,
-                              bool autologin,
-                              const QStringList& defaultGroups )
+CreateUserJob::CreateUserJob( const Config* config )
     : Calamares::Job()
-    , m_userName( userName )
-    , m_fullName( fullName )
-    , m_autologin( autologin )
-    , m_defaultGroups( defaultGroups )
+    , m_config( config )
 {
 }
 
@@ -37,102 +33,106 @@ CreateUserJob::CreateUserJob( const QString& userName,
 QString
 CreateUserJob::prettyName() const
 {
-    return tr( "Create user %1" ).arg( m_userName );
+    return tr( "Create user %1" ).arg( m_config->loginName() );
 }
 
 
 QString
 CreateUserJob::prettyDescription() const
 {
-    return tr( "Create user <strong>%1</strong>." ).arg( m_userName );
+    return tr( "Create user <strong>%1</strong>." ).arg( m_config->loginName() );
 }
 
 
 QString
 CreateUserJob::prettyStatusMessage() const
 {
-    return tr( "Creating user %1." ).arg( m_userName );
+    return m_status.isEmpty() ? tr( "Creating user %1" ).arg( m_config->loginName() ) : m_status;
+}
+
+static Calamares::JobResult
+createUser( const QString& loginName, const QString& fullName, const QString& shell )
+{
+    QStringList useraddCommand;
+#ifdef __FreeBSD__
+    useraddCommand << "pw"
+                   << "useradd"
+                   << "-n" << loginName << "-m"
+                   << "-c" << fullName;
+    if ( !shell.isEmpty() )
+    {
+        useraddCommand << "-s" << shell;
+    }
+#else
+    useraddCommand << "useradd"
+                   << "-m"
+                   << "-U";
+    if ( !shell.isEmpty() )
+    {
+        useraddCommand << "-s" << shell;
+    }
+    useraddCommand << "-c" << fullName;
+    useraddCommand << loginName;
+#endif
+
+    auto commandResult = CalamaresUtils::System::instance()->targetEnvCommand( useraddCommand );
+    if ( commandResult.getExitCode() )
+    {
+        cError() << "useradd failed" << commandResult.getExitCode();
+        return commandResult.explainProcess( useraddCommand, std::chrono::seconds( 10 ) /* bogus timeout */ );
+    }
+    return Calamares::JobResult::ok();
+}
+
+static Calamares::JobResult
+setUserGroups( const QString& loginName, const QStringList& groups )
+{
+    QStringList setgroupsCommand;
+#ifdef __FreeBSD__
+    setgroupsCommand << "pw"
+                     << "usermod"
+                     << "-n" << loginName << "-G" << groups.join( ',' );
+#else
+    setgroupsCommand << "usermod"
+                     << "-aG" << groups.join( ',' ) << loginName;
+#endif
+
+    auto commandResult = CalamaresUtils::System::instance()->targetEnvCommand( setgroupsCommand );
+    if ( commandResult.getExitCode() )
+    {
+        cError() << "usermod failed" << commandResult.getExitCode();
+        return commandResult.explainProcess( setgroupsCommand, std::chrono::seconds( 10 ) /* bogus timeout */ );
+    }
+    return Calamares::JobResult::ok();
 }
 
 
 Calamares::JobResult
 CreateUserJob::exec()
 {
-    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-    QDir destDir( gs->value( "rootMountPoint" ).toString() );
+    QDir destDir;
+    bool reuseHome = false;
 
-    if ( gs->contains( "sudoersGroup" ) && !gs->value( "sudoersGroup" ).toString().isEmpty() )
     {
-        cDebug() << "[CREATEUSER]: preparing sudoers";
-
-        QFileInfo sudoersFi( destDir.absoluteFilePath( "etc/sudoers.d/10-installer" ) );
-
-        if ( !sudoersFi.absoluteDir().exists() )
-        {
-            return Calamares::JobResult::error( tr( "Sudoers dir is not writable." ) );
-        }
-
-        QFile sudoersFile( sudoersFi.absoluteFilePath() );
-        if ( !sudoersFile.open( QIODevice::WriteOnly | QIODevice::Text ) )
-        {
-            return Calamares::JobResult::error( tr( "Cannot create sudoers file for writing." ) );
-        }
-
-        QString sudoersGroup = gs->value( "sudoersGroup" ).toString();
-
-        QTextStream sudoersOut( &sudoersFile );
-        sudoersOut << QString( "%%1 ALL=(ALL) ALL\n" ).arg( sudoersGroup );
-
-        if ( QProcess::execute( "chmod", { "440", sudoersFi.absoluteFilePath() } ) )
-            return Calamares::JobResult::error( tr( "Cannot chmod sudoers file." ) );
+        Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+        destDir = QDir( gs->value( "rootMountPoint" ).toString() );
+        reuseHome = gs->value( "reuseHome" ).toBool();
     }
 
-    cDebug() << "[CREATEUSER]: preparing groups";
-
-    QFileInfo groupsFi( destDir.absoluteFilePath( "etc/group" ) );
-    QFile groupsFile( groupsFi.absoluteFilePath() );
-    if ( !groupsFile.open( QIODevice::ReadOnly | QIODevice::Text ) )
+    // If we're looking to reuse the contents of an existing /home.
+    // This GS setting comes from the **partitioning** module.
+    if ( reuseHome )
     {
-        return Calamares::JobResult::error( tr( "Cannot open groups file for reading." ) );
-    }
-    QString groupsData = QString::fromLocal8Bit( groupsFile.readAll() );
-    QStringList groupsLines = groupsData.split( '\n' );
-    for ( QStringList::iterator it = groupsLines.begin(); it != groupsLines.end(); ++it )
-    {
-        int indexOfFirstToDrop = it->indexOf( ':' );
-        it->truncate( indexOfFirstToDrop );
-    }
-
-    for ( const QString& group : m_defaultGroups )
-    {
-        if ( !groupsLines.contains( group ) )
-        {
-            CalamaresUtils::System::instance()->targetEnvCall( { "groupadd", group } );
-        }
-    }
-
-    QString defaultGroups = m_defaultGroups.join( ',' );
-    if ( m_autologin )
-    {
-        QString autologinGroup;
-        if ( gs->contains( "autologinGroup" ) && !gs->value( "autologinGroup" ).toString().isEmpty() )
-        {
-            autologinGroup = gs->value( "autologinGroup" ).toString();
-            CalamaresUtils::System::instance()->targetEnvCall( { "groupadd", autologinGroup } );
-            defaultGroups.append( QString( ",%1" ).arg( autologinGroup ) );
-        }
-    }
-
-    // If we're looking to reuse the contents of an existing /home
-    if ( gs->value( "reuseHome" ).toBool() )
-    {
-        QString shellFriendlyHome = "/home/" + m_userName;
+        m_status = tr( "Preserving home directory" );
+        emit progress( 0.2 );
+        QString shellFriendlyHome = "/home/" + m_config->loginName();
         QDir existingHome( destDir.absolutePath() + shellFriendlyHome );
         if ( existingHome.exists() )
         {
             QString backupDirName = "dotfiles_backup_" + QDateTime::currentDateTime().toString( "yyyy-MM-dd_HH-mm-ss" );
             existingHome.mkdir( backupDirName );
 
+            // We need the extra `sh -c` here to ensure that we can expand the shell globs
             CalamaresUtils::System::instance()->targetEnvCall(
                 { "sh", "-c", "mv -f " + shellFriendlyHome + "/.* " + shellFriendlyHome + "/" + backupDirName } );
         }
@@ -140,33 +140,27 @@ CreateUserJob::exec()
 
     cDebug() << "[CREATEUSER]: creating user";
 
-    QStringList useradd { "useradd", "-m", "-U" };
-    QString shell = gs->value( "userShell" ).toString();
-    if ( !shell.isEmpty() )
+    m_status = tr( "Creating user %1" ).arg( m_config->loginName() );
+    emit progress( 0.5 );
+    auto useraddResult = createUser( m_config->loginName(), m_config->fullName(), m_config->userShell() );
+    if ( !useraddResult )
     {
-        useradd << "-s" << shell;
-    }
-    useradd << "-c" << m_fullName;
-    useradd << m_userName;
-
-    auto commandResult = CalamaresUtils::System::instance()->targetEnvCommand( useradd );
-    if ( commandResult.getExitCode() )
-    {
-        cError() << "useradd failed" << commandResult.getExitCode();
-        return commandResult.explainProcess( useradd, std::chrono::seconds( 10 ) /* bogus timeout */ );
+        return useraddResult;
     }
 
-    commandResult
-        = CalamaresUtils::System::instance()->targetEnvCommand( { "usermod", "-aG", defaultGroups, m_userName } );
-    if ( commandResult.getExitCode() )
+    m_status = tr( "Configuring user %1" ).arg( m_config->loginName() );
+    emit progress( 0.8 );
+    auto usergroupsResult = setUserGroups( m_config->loginName(), m_config->groupsForThisUser() );
+    if ( !usergroupsResult )
     {
-        cError() << "usermod failed" << commandResult.getExitCode();
-        return commandResult.explainProcess( "usermod", std::chrono::seconds( 10 ) /* bogus timeout */ );
+        return usergroupsResult;
     }
 
-    QString userGroup = QString( "%1:%2" ).arg( m_userName ).arg( m_userName );
-    QString homeDir = QString( "/home/%1" ).arg( m_userName );
-    commandResult = CalamaresUtils::System::instance()->targetEnvCommand( { "chown", "-R", userGroup, homeDir } );
+    m_status = tr( "Setting file permissions" );
+    emit progress( 0.9 );
+    QString userGroup = QString( "%1:%2" ).arg( m_config->loginName() ).arg( m_config->loginName() );
+    QString homeDir = QString( "/home/%1" ).arg( m_config->loginName() );
+    auto commandResult = CalamaresUtils::System::instance()->targetEnvCommand( { "chown", "-R", userGroup, homeDir } );
     if ( commandResult.getExitCode() )
     {
         cError() << "chown failed" << commandResult.getExitCode();

@@ -1,28 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# === This file is part of Calamares - <https://github.com/calamares> ===
+# === This file is part of Calamares - <https://calamares.io> ===
 #
-#   Copyright 2014, Teo Mrnjavac <teo@kde.org>
-#   Copyright 2014, Daniel Hillenbrand <codeworkx@bbqlinux.org>
-#   Copyright 2014, Philip Müller <philm@manjaro.org>
-#   Copyright 2017, Alf Gaida <agaida@siduction.org>
-#   Copyright 2019, Kevin Kofler <kevin.kofler@chello.at>
-#   Copyright 2020, Adriaan de Groot <groot@kde.org>
-#   Copyright 2020, Gabriel Craciunescu <crazy@frugalware.org>
+#   SPDX-FileCopyrightText: 2014 Teo Mrnjavac <teo@kde.org>
+#   SPDX-FileCopyrightText: 2014 Daniel Hillenbrand <codeworkx@bbqlinux.org>
+#   SPDX-FileCopyrightText: 2014 Philip Müller <philm@manjaro.org>
+#   SPDX-FileCopyrightText: 2017 Alf Gaida <agaida@siduction.org>
+#   SPDX-FileCopyrightText: 2019 Kevin Kofler <kevin.kofler@chello.at>
+#   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+#   SPDX-FileCopyrightText: 2020 Gabriel Craciunescu <crazy@frugalware.org>
+#   SPDX-License-Identifier: GPL-3.0-or-later
 #
-#   Calamares is free software: you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License as published by
-#   the Free Software Foundation, either version 3 of the License, or
-#   (at your option) any later version.
+#   Calamares is Free Software: see the License-Identifier above.
 #
-#   Calamares is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#   GNU General Public License for more details.
-#
-#   You should have received a copy of the GNU General Public License
-#   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
 import os
 import re
@@ -57,8 +48,8 @@ class UnpackEntry:
     :param sourcefs:
     :param destination:
     """
-    __slots__ = ['source', 'sourcefs', 'destination', 'copied', 'total', 'exclude', 'excludeFile',
-                 'mountPoint']
+    __slots__ = ('source', 'sourcefs', 'destination', 'copied', 'total', 'exclude', 'excludeFile',
+                 'mountPoint', 'weight')
 
     def __init__(self, source, sourcefs, destination):
         """
@@ -80,6 +71,7 @@ class UnpackEntry:
         self.copied = 0
         self.total = 0
         self.mountPoint = None
+        self.weight = 1
 
     def is_file(self):
         return self.sourcefs == "file"
@@ -138,6 +130,7 @@ class UnpackEntry:
             r = mount(self.source, imgmountdir, self.sourcefs, "")
 
         if r != 0:
+            utils.debug("Failed to mount '{}' (fs={}) (target={})".format(self.source, self.sourcefs, imgmountdir))
             raise subprocess.CalledProcessError(r, "mount")
 
 
@@ -171,6 +164,8 @@ def file_copy(source, entry, progress_cb):
     :param progress_cb: A callback function for progress reporting.
         Takes a number and a total-number.
     """
+    import time
+
     dest = entry.destination
 
     # Environment used for executing rsync properly
@@ -199,12 +194,14 @@ def file_copy(source, entry, progress_cb):
         args, env=at_env,
         stdout=subprocess.PIPE, close_fds=ON_POSIX
         )
-    # last_num_files_copied trails num_files_copied, and whenever at least 100 more
-    # files have been copied, progress is reported and last_num_files_copied is updated.
+    # last_num_files_copied trails num_files_copied, and whenever at least 107 more
+    # files (file_count_chunk) have been copied, progress is reported and
+    # last_num_files_copied is updated. The chunk size isn't "tidy"
+    # so that all the digits of the progress-reported number change.
+    #
     last_num_files_copied = 0
-    file_count_chunk = entry.total / 100
-    if file_count_chunk < 100:
-        file_count_chunk = 100
+    last_timestamp_reported = time.time()
+    file_count_chunk = 107
 
     for line in iter(process.stdout.readline, b''):
         # rsync outputs progress in parentheses. Each line will have an
@@ -229,9 +226,10 @@ def file_copy(source, entry, progress_cb):
             # adjusting the offset so that progressbar can be continuesly drawn
             num_files_copied = num_files_total_local - num_files_remaining
 
-            # Update about once every 1% of this entry
-            if num_files_copied - last_num_files_copied >= file_count_chunk:
+            now = time.time()
+            if (num_files_copied - last_num_files_copied >= file_count_chunk) or (now - last_timestamp_reported > 0.5):
                 last_num_files_copied = num_files_copied
+                last_timestamp_reported = now
                 progress_cb(num_files_copied, num_files_total_local)
 
     process.wait()
@@ -269,6 +267,7 @@ class UnpackOperation:
     def __init__(self, entries):
         self.entries = entries
         self.entry_for_source = dict((x.source, x) for x in self.entries)
+        self.total_weight = sum([e.weight for e in entries])
 
     def report_progress(self):
         """
@@ -276,30 +275,29 @@ class UnpackOperation:
         """
         progress = float(0)
 
-        done = 0  # Done and total apply to the entry now-unpacking
-        total = 0
-        complete = 0  # This many are already finished
+        current_total = 0
+        current_done = 0  # Files count in the current entry
+        complete_count = 0
+        complete_weight = 0  # This much weight already finished
         for entry in self.entries:
             if entry.total == 0:
                 # Total 0 hasn't counted yet
                 continue
             if entry.total == entry.copied:
-                complete += 1
+                complete_weight += entry.weight
+                complete_count += 1
             else:
                 # There is at most *one* entry in-progress
-                total = entry.total
-                done = entry.copied
+                current_total = entry.total
+                current_done = entry.copied
+                complete_weight += entry.weight * ( 1.0 * current_done ) / current_total
                 break
 
-        if total > 0:
-            # Pretend that each entry represents an equal amount of work;
-            # the complete ones count as 100% of their own fraction
-            # (and have *not* been counted in total or done), while
-            # total/done represents the fraction of the current fraction.
-            progress = ( ( 1.0 * complete ) / len(self.entries) ) + ( ( 1.0 / len(self.entries) ) * ( 1.0 * done / total ) )
+        if current_total > 0:
+            progress = ( 1.0 * complete_weight ) / self.total_weight
 
         global status
-        status = _("Unpacking image {}/{}, file {}/{}").format((complete+1),len(self.entries),done, total)
+        status = _("Unpacking image {}/{}, file {}/{}").format((complete_count+1), len(self.entries), current_done, current_total)
         job.setprogress(progress)
 
     def run(self):
@@ -404,6 +402,24 @@ def repair_root_permissions(root_mount_point):
             # But ignore it
 
 
+def extract_weight(entry):
+    """
+    Given @p entry, a dict representing a single entry in
+    the *unpack* list, returns its weight (1, or whatever is
+    set if it is sensible).
+    """
+    w =  entry.get("weight", None)
+    if w:
+        try:
+            wi = int(w)
+            return wi if wi > 0 else 1
+        except ValueError:
+            utils.warning("*weight* setting {!r} is not valid.".format(w))
+        except TypeError:
+            utils.warning("*weight* setting {!r} must be number.".format(w))
+    return 1
+
+
 def run():
     """
     Unsquash filesystem.
@@ -470,6 +486,7 @@ def run():
             unpack[-1].exclude = entry["exclude"]
         if entry.get("excludeFile", None):
             unpack[-1].excludeFile = entry["excludeFile"]
+        unpack[-1].weight = extract_weight(entry)
 
         is_first = False
 

@@ -1,24 +1,16 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2007 Free Software Foundation, Inc.
+ *   SPDX-FileCopyrightText: 2014 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Originally from the Manjaro Installation Framework
  *   by Roland Singer <roland@manjaro.org>
  *   Copyright (C) 2007 Free Software Foundation, Inc.
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef TIMEZONEWIDGET_H
@@ -31,35 +23,51 @@
 #include <QFont>
 #include <QWidget>
 
+/** @brief The TimeZoneWidget shows a map and reports where clicks happen
+ *
+ * This widget shows a map (unspecified whether it's a whole world map
+ * or can show regionsvia some kind of internal state). Mouse clicks are
+ * translated into timezone locations (e.g. the zone for America/New_York).
+ *
+ * The current location can be changed programmatically, by name
+ * or through a pointer to a location. If a pointer is used, take care
+ * that the pointer is to a zone in the same model as used by the
+ * widget.
+ *
+ * When a location is chosen -- by mouse click or programmatically --
+ * the locationChanged() signal is emitted with the new location.
+ *
+ * NOTE: the widget currently uses the globally cached TZRegion::fromZoneTab()
+ */
 class TimeZoneWidget : public QWidget
 {
     Q_OBJECT
 public:
-    using TZZone = CalamaresUtils::Locale::TZZone;
+    using TimeZoneData = CalamaresUtils::Locale::TimeZoneData;
 
-    explicit TimeZoneWidget( QWidget* parent = nullptr );
+    explicit TimeZoneWidget( const CalamaresUtils::Locale::ZonesModel* zones, QWidget* parent = nullptr );
 
-    void setCurrentLocation( QString region, QString zone );
-    void setCurrentLocation( const TZZone* location );
-    const TZZone* currentLocation() { return m_currentLocation; }
-
+public Q_SLOTS:
+    /** @brief Sets a location by pointer
+     *
+     * Pointer should be within the same model as the widget uses.
+     */
+    void setCurrentLocation( const TimeZoneData* location );
 
 signals:
-    void locationChanged( const TZZone* location );
+    /** @brief The location has changed by mouse click */
+    void locationChanged( const TimeZoneData* location );
 
 private:
     QFont font;
     QImage background, pin, currentZoneImage;
     TimeZoneImageList timeZoneImages;
-    const TZZone* m_currentLocation = nullptr;  // Not owned by me
 
-    QPoint getLocationPosition( const TZZone* l )
-    {
-        return timeZoneImages.getLocationPosition( l->longitude(), l->latitude() );
-    }
+    const CalamaresUtils::Locale::ZonesModel* m_zonesData;
+    const TimeZoneData* m_currentLocation = nullptr;  // Not owned by me
 
-    void paintEvent( QPaintEvent* event );
-    void mousePressEvent( QMouseEvent* event );
+    void paintEvent( QPaintEvent* event ) override;
+    void mousePressEvent( QMouseEvent* event ) override;
 };
 
 #endif  // TIMEZONEWIDGET_H

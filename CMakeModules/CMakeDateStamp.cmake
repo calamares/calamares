@@ -1,3 +1,11 @@
+# === This file is part of Calamares - <https://calamares.io> ===
+#
+#   SPDX-FileCopyrightText: 2014 Teo Mrnjavac <teo@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
+#
+###
+#
+# Find today's date, for versioning purposes.
 find_program(DATE_EXECUTABLE NAMES date)
 mark_as_advanced(DATE_EXECUTABLE)
 

@@ -1,19 +1,10 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2014 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "ProcessJobModule.h"
@@ -61,32 +52,14 @@ ProcessJobModule::jobs() const
 
 
 void
-ProcessJobModule::initFrom( const QVariantMap& moduleDescriptor )
+ProcessJobModule::initFrom( const ModuleSystem::Descriptor& moduleDescriptor )
 {
     QDir directory( location() );
     m_workingPath = directory.absolutePath();
 
-    if ( !moduleDescriptor.value( "command" ).toString().isEmpty() )
-    {
-        m_command = moduleDescriptor.value( "command" ).toString();
-    }
-
-    m_secondsTimeout = std::chrono::seconds( 30 );
-    if ( moduleDescriptor.contains( "timeout" ) && !moduleDescriptor.value( "timeout" ).isNull() )
-    {
-        int sec = moduleDescriptor.value( "timeout" ).toInt();
-        if ( sec < 0 )
-        {
-            sec = 0;
-        }
-        m_secondsTimeout = std::chrono::seconds( sec );
-    }
-
-    m_runInChroot = false;
-    if ( moduleDescriptor.contains( "chroot" ) && !moduleDescriptor.value( "chroot" ).isNull() )
-    {
-        m_runInChroot = moduleDescriptor.value( "chroot" ).toBool();
-    }
+    m_command = moduleDescriptor.command();
+    m_secondsTimeout = std::chrono::seconds( moduleDescriptor.timeout() );
+    m_runInChroot = moduleDescriptor.chroot();
 }
 
 
@@ -98,7 +71,7 @@ ProcessJobModule::ProcessJobModule()
 }
 
 
-ProcessJobModule::~ProcessJobModule() { }
+ProcessJobModule::~ProcessJobModule() {}
 
 
 }  // namespace Calamares

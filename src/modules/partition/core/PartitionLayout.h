@@ -1,20 +1,11 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2018-2019, Collabora Ltd <arnaud.ferraris@collabora.com>
- *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2018-2019 Collabora Ltd <arnaud.ferraris@collabora.com>
+ *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef PARTITIONLAYOUT_H
@@ -43,7 +34,7 @@ public:
         QString partLabel;
         QString partUUID;
         QString partType;
-        quint64 partAttributes;
+        quint64 partAttributes = 0;
         QString partMountPoint;
         FileSystem::Type partFileSystem = FileSystem::Unknown;
         QVariantMap partFeatures;
@@ -53,8 +44,29 @@ public:
 
         /// @brief All-zeroes PartitionEntry
         PartitionEntry();
-        /// @brief Parse @p size, @p min and @p max to their respective member variables
-        PartitionEntry( const QString& size, const QString& min, const QString& max );
+        /** @brief Parse @p mountPoint, @p size, @p minSize and @p maxSize to their respective member variables
+         *
+         * Sets a specific FS type (not parsed from string like the other
+         * constructor).
+         */
+        PartitionEntry( FileSystem::Type fs,
+                        const QString& mountPoint,
+                        const QString& size,
+                        const QString& minSize = QString(),
+                        const QString& maxSize = QString() );
+        /// @brief All-field PartitionEntry
+        PartitionEntry( const QString& label,
+                        const QString& uuid,
+                        const QString& type,
+                        quint64 attributes,
+                        const QString& mountPoint,
+                        const QString& fs,
+                        const QVariantMap& features,
+                        const QString& size,
+                        const QString& minSize = QString(),
+                        const QString& maxSize = QString() );
+        /// @brief Copy PartitionEntry
+        PartitionEntry( const PartitionEntry& e ) = default;
 
         bool isValid() const
         {
@@ -68,39 +80,30 @@ public:
     };
 
     PartitionLayout();
-    PartitionLayout( PartitionEntry entry );
     PartitionLayout( const PartitionLayout& layout );
     ~PartitionLayout();
 
-    bool addEntry( PartitionEntry entry );
-    bool addEntry( const QString& mountPoint,
-                   const QString& size,
-                   const QString& min = QString(),
-                   const QString& max = QString() );
-    bool addEntry( const QString& label,
-                   const QString& uuid,
-                   const QString& type,
-                   quint64 attributes,
-                   const QString& mountPoint,
-                   const QString& fs,
-                   const QVariantMap& features,
-                   const QString& size,
-                   const QString& min = QString(),
-                   const QString& max = QString() );
+    /** @brief create the configuration from @p config
+     *
+     * @p config is a list of partition entries (in QVariant form,
+     * read from YAML). If no entries are given, then a single
+     * partition is created with the given @p defaultFsType
+     */
+    void init( FileSystem::Type defaultFsType, const QVariantList& config );
+    bool addEntry( const PartitionEntry& entry );
 
     /**
      * @brief Apply the current partition layout to the selected drive space.
      * @return  A list of Partition objects.
      */
-    QList< Partition* > execute( Device* dev,
-                                 qint64 firstSector,
-                                 qint64 lastSector,
-                                 QString luksPassphrase,
-                                 PartitionNode* parent,
-                                 const PartitionRole& role );
+    QList< Partition* > createPartitions( Device* dev,
+                                          qint64 firstSector,
+                                          qint64 lastSector,
+                                          QString luksPassphrase,
+                                          PartitionNode* parent,
+                                          const PartitionRole& role );
 
 private:
-    FileSystem::Type m_defaultFsType;
     QList< PartitionEntry > m_partLayout;
 };
 

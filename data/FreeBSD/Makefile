@@ -1,4 +1,7 @@
 # $FreeBSD$
+# 
+# SPDX-FileCopyrightText: 2020 Adriaan de Groot <adridg@FreeBSD.org>
+# SPDX-License-Identifier: BSD-2-Clause
 
 PORTNAME=	calamares
 DISTVERSION=	3.2.25

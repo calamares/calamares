@@ -1,3 +1,9 @@
+# === This file is part of Calamares - <https://calamares.io> ===
+#
+#   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
+#
+
 # The variable SKIP_MODULES can be set to skip particular modules;
 # individual modules can also decide they must be skipped (e.g. OS-specific
 # modules, or ones with unmet dependencies). Collect the skipped modules
@@ -66,9 +72,6 @@ foreach( _category ${_use_categories} )
         message( FATAL_ERROR "USE_${_category} is set to ${USE_${_category}} and no module matches." )
     endif()
 endforeach()
-
-include( CalamaresAddTranslations )
-add_calamares_python_translations( ${CALAMARES_TRANSLATION_LANGUAGES} )
 
 # TODO:3.3: Use FindPython3
 if ( BUILD_TESTING AND BUILD_SCHEMA_TESTING AND PYTHONINTERP_FOUND AND PYTHON_EXECUTABLE )

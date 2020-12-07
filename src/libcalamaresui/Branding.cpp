@@ -1,22 +1,13 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017-2019, Adriaan de Groot <groot@kde.org>
- *   Copyright 2018, Raul Rodrigo Segura (raurodse)
- *   Copyright 2019, Camilo Higuita <milo.h@aol.com>
+ *   SPDX-FileCopyrightText: 2014-2015 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2017-2019 Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2018 Raul Rodrigo Segura (raurodse)
+ *   SPDX-FileCopyrightText: 2019 Camilo Higuita <milo.h@aol.com>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "Branding.h"
@@ -132,9 +123,7 @@ loadStrings( QMap< QString, QString >& map,
         throw YAML::Exception( YAML::Mark(), std::string( "Branding configuration is not a map: " ) + key );
     }
 
-    const auto& config = CalamaresUtils::yamlMapToVariant( doc[ key ] );
-
-    map.clear();
+    const QVariantMap config = CalamaresUtils::yamlMapToVariant( doc[ key ] );
     for ( auto it = config.constBegin(); it != config.constEnd(); ++it )
     {
         map.insert( it.key(), transform( it.value().toString() ) );
@@ -369,7 +358,7 @@ Branding::WindowDimension::isValid() const
 }
 
 
-/// @brief Guard against cases where the @p key doesn't exist in @p doc
+/// @brief Get a string (empty is @p key doesn't exist) from @p key in @p doc
 static inline QString
 getString( const YAML::Node& doc, const char* key )
 {
@@ -378,6 +367,18 @@ getString( const YAML::Node& doc, const char* key )
         return QString::fromStdString( doc[ key ].as< std::string >() );
     }
     return QString();
+}
+
+/// @brief Get a node (throws if @p key doesn't exist) from @p key in @p doc
+static inline YAML::Node
+get( const YAML::Node& doc, const char* key )
+{
+    auto r = doc[ key ];
+    if ( !r.IsDefined() )
+    {
+        throw YAML::KeyNotFound( YAML::Mark::null_mark(), std::string( key ) );
+    }
+    return r;
 }
 
 static inline void
@@ -516,10 +517,11 @@ Branding::initSlideshowSettings( const YAML::Node& doc )
 {
     QDir componentDir( componentDirectory() );
 
-    if ( doc[ "slideshow" ].IsSequence() )
+    auto slideshow = get( doc, "slideshow" );
+    if ( slideshow.IsSequence() )
     {
         QStringList slideShowPictures;
-        doc[ "slideshow" ] >> slideShowPictures;
+        slideshow >> slideShowPictures;
         for ( int i = 0; i < slideShowPictures.count(); ++i )
         {
             QString pathString = slideShowPictures[ i ];
@@ -537,9 +539,9 @@ Branding::initSlideshowSettings( const YAML::Node& doc )
         m_slideshowAPI = -1;
     }
 #ifdef WITH_QML
-    else if ( doc[ "slideshow" ].IsScalar() )
+    else if ( slideshow.IsScalar() )
     {
-        QString slideshowPath = QString::fromStdString( doc[ "slideshow" ].as< std::string >() );
+        QString slideshowPath = QString::fromStdString( slideshow.as< std::string >() );
         QFileInfo slideshowFi( componentDir.absoluteFilePath( slideshowPath ) );
         if ( !slideshowFi.exists() || !slideshowFi.fileName().toLower().endsWith( ".qml" ) )
             bail( m_descriptorPath,
@@ -548,7 +550,9 @@ Branding::initSlideshowSettings( const YAML::Node& doc )
         m_slideshowPath = slideshowFi.absoluteFilePath();
 
         // API choice is relevant for QML slideshow
-        int api = doc[ "slideshowAPI" ].IsScalar() ? doc[ "slideshowAPI" ].as< int >() : -1;
+        // TODO:3.3: use get(), make slideshowAPI required
+        int api
+            = ( doc[ "slideshowAPI" ] && doc[ "slideshowAPI" ].IsScalar() ) ? doc[ "slideshowAPI" ].as< int >() : -1;
         if ( ( api < 1 ) || ( api > 2 ) )
         {
             cWarning() << "Invalid or missing *slideshowAPI* in branding file.";
@@ -557,7 +561,7 @@ Branding::initSlideshowSettings( const YAML::Node& doc )
         m_slideshowAPI = api;
     }
 #else
-    else if ( doc[ "slideshow" ].IsScalar() )
+    else if ( slideshow.IsScalar() )
     {
         cWarning() << "Invalid *slideshow* setting, must be list of images.";
     }

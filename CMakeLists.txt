@@ -1,20 +1,15 @@
-# === This file is part of Calamares - <https://github.com/calamares> ===
+# === This file is part of Calamares - <https://calamares.io> ===
 #
-#   Calamares is free software: you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License as published by
-#   the Free Software Foundation, either version 3 of the License, or
-#   (at your option) any later version.
+#   SPDX-FileCopyrightText: 2017 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
 #
-#   Calamares is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#   GNU General Public License for more details.
+###
 #
-#   You should have received a copy of the GNU General Public License
-#   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+#   Calamares is Free Software: see the License-Identifier above.
 #
-#   SPDX-License-Identifier: GPL-3.0-or-later
-#   License-Filename: LICENSE
+#   Individual files may have different licenses (like the CMake
+#   infrastructure, which is BSD-2-Clause licensed). Check the SPDX
+#   identifiers in each file.
 #
 ###
 #
@@ -46,8 +41,9 @@
 # TODO:3.3: Require CMake 3.12
 cmake_minimum_required( VERSION 3.3 FATAL_ERROR )
 project( CALAMARES
-    VERSION 3.2.26.1
-    LANGUAGES C CXX )
+    VERSION 3.2.35.1
+    LANGUAGES C CXX
+)
 
 set( CALAMARES_VERSION_RC 0 )  # Set to 0 during release cycle, 1 during development
 
@@ -140,21 +136,19 @@ set( CALAMARES_DESCRIPTION_SUMMARY
 # TODO: drop the es_ES translation from Transifex
 #
 # NOTE: move eo (Esperanto) to _ok once Qt can actually create a
-#       locale for it. (Qt 5.12.2 can, see check later on).
-# NOTE: update these lines by running txstats.py, or copy these four lines
-#       and prefix each variable name with "p", so that the automatic
-#       checks for new languages and misspelled ones are done (that is,
-#       copy these four lines to four backup lines, add "p", and then update
-#       the original four lines with the current translations).
+#       locale for it. (Qt 5.12.2 can, see Translation Status section).
+# NOTE: move ie (Interlingue) to _ok once Qt supports it.
+# NOTE: update these lines by running `txstats.py`, or for full automation
+#       `txstats.py -e`. See also
 #
-# Total 66 languages
-set( _tx_complete az az_AZ ca he hi hr ja sq tr_TR uk zh_TW )
-set( _tx_good as ast be cs_CZ da de es fi_FI fr hu it_IT ko lt ml
-    nl pt_BR pt_PT ru sk sv zh_CN )
-set( _tx_ok ar bg el en_GB es_MX es_PR et eu fa gl id is mr nb pl
+# Total 71 languages
+set( _tx_complete az ca fi_FI fur he hr ja lt sq uk zh_CN zh_TW )
+set( _tx_good as ast az_AZ be cs_CZ da de es fa fr hi hu it_IT ko
+    ml nl pt_BR pt_PT ru sk sv tg tr_TR vi )
+set( _tx_ok ar bg bn el en_GB es_MX es_PR et eu gl id is mr nb pl
     ro sl sr sr@latin th )
-set( _tx_incomplete bn ca@valencia eo fr_CH gu kk kn lo lv mk ne_NP
-    ur uz )
+set( _tx_incomplete ca@valencia eo fr_CH gu ie kk kn lo lv mk ne_NP
+    te ur uz )
 
 ### Required versions
 #
@@ -197,23 +191,30 @@ include( CMakeColors )
 
 ### C++ SETUP
 #
-set( CMAKE_CXX_STANDARD 14 )
+set( CMAKE_CXX_STANDARD 17 )
 set( CMAKE_CXX_STANDARD_REQUIRED ON )
+set( CMAKE_CXX_FLAGS                "${CMAKE_CXX_FLAGS} -Wall -Werror=return-type" )
+set( CMAKE_CXX_FLAGS_DEBUG          "-g ${CMAKE_CXX_FLAGS_DEBUG}" )
+set( CMAKE_CXX_FLAGS_MINSIZEREL     "-Os -DNDEBUG" )
+set( CMAKE_CXX_FLAGS_RELEASE        "-O3 -DNDEBUG" )
+set( CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O2 -g" )
+
 set( CMAKE_C_STANDARD 99 )
 set( CMAKE_C_STANDARD_REQUIRED ON )
-
 set( CMAKE_C_FLAGS                  "${CMAKE_C_FLAGS} -Wall" )
+set( CMAKE_C_FLAGS_DEBUG            "-g" )
+set( CMAKE_C_FLAGS_MINSIZEREL       "-Os -DNDEBUG" )
+set( CMAKE_C_FLAGS_RELEASE          "-O4 -DNDEBUG" )
+set( CMAKE_C_FLAGS_RELWITHDEBINFO   "-O2 -g" )
+
+set( CMAKE_SHARED_LINKER_FLAGS      "-Wl,--no-undefined -Wl,--fatal-warnings" )
+
 if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
     message( STATUS "Found Clang ${CMAKE_CXX_COMPILER_VERSION}, setting up Clang-specific compiler flags." )
-    set( CMAKE_C_FLAGS                  "${CMAKE_C_FLAGS} -Wall" )
-    set( CMAKE_C_FLAGS_DEBUG            "-g" )
-    set( CMAKE_C_FLAGS_MINSIZEREL       "-Os -DNDEBUG" )
-    set( CMAKE_C_FLAGS_RELEASE          "-O4 -DNDEBUG" )
-    set( CMAKE_C_FLAGS_RELWITHDEBINFO   "-O2 -g" )
 
     # Clang warnings: doing *everything* is counter-productive, since it warns
     # about things which we can't fix (e.g. C++98 incompatibilities, but
-    # Calamares is C++14).
+    # Calamares is C++17).
     foreach( CLANG_WARNINGS
         -Weverything
         -Wno-c++98-compat
@@ -225,40 +226,26 @@ if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
         -Wno-missing-prototypes
         -Wno-documentation-unknown-command
         -Wno-unknown-warning-option
-        -Werror=return-type
     )
         string( APPEND CMAKE_CXX_FLAGS " ${CLANG_WARNINGS}" )
     endforeach()
-    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DNOTREACHED='//' -DFALLTHRU='[[clang::fallthrough]]'")
 
     # Third-party code where we don't care so much about compiler warnings
     # (because it's uncomfortable to patch) get different flags; use
     #       mark_thirdparty_code( <file> [<file>...] )
     # to switch off warnings for those sources.
     set( SUPPRESS_3RDPARTY_WARNINGS "-Wno-everything" )
-    set( SUPPRESS_BOOST_WARNINGS " -Wno-zero-as-null-pointer-constant -Wno-disabled-macro-expansion" )
-
-    set( CMAKE_CXX_FLAGS_DEBUG          "-g ${CMAKE_CXX_FLAGS_DEBUG}" )
-    set( CMAKE_CXX_FLAGS_MINSIZEREL     "-Os -DNDEBUG" )
-    set( CMAKE_CXX_FLAGS_RELEASE        "-O3 -DNDEBUG" )
-    set( CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O2 -g" )
 
     set( CMAKE_TOOLCHAIN_PREFIX "llvm-" )
-
-    set( CMAKE_SHARED_LINKER_FLAGS "-Wl,--no-undefined" )
 
     # The path prefix is only relevant for CMake 3.16 and later, fixes #1286
     set( CMAKE_AUTOMOC_PATH_PREFIX OFF )
     set( CALAMARES_AUTOMOC_OPTIONS "-butils/moc-warnings.h" )
     set( CALAMARES_AUTOUIC_OPTIONS --include utils/moc-warnings.h )
 else()
-    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,--no-undefined" )
-    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,--fatal-warnings -Wnon-virtual-dtor -Woverloaded-virtual -Werror=return-type" )
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wnon-virtual-dtor -Woverloaded-virtual" )
 
     set( SUPPRESS_3RDPARTY_WARNINGS "" )
-    set( SUPPRESS_BOOST_WARNINGS "" )
-
-    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DNOTREACHED='__builtin_unreachable();' -DFALLTHRU='/* */'" )
 endif()
 
 # Use mark_thirdparty_code() to reduce warnings from the compiler
@@ -285,14 +272,6 @@ endif()
 find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Concurrent Core Gui LinguistTools Network Svg Widgets )
 if( WITH_QML )
     find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Quick QuickWidgets )
-endif()
-if( Qt5_VERSION VERSION_GREATER 5.12.1 )
-    # At least Qt 5.12.2 seems to support Esperanto in QLocale
-    if( "eo" IN_LIST _tx_incomplete )
-        message(STATUS "Esperanto support since Qt 5.12.2, enabling Esperanto locale")
-        list( REMOVE_ITEM _tx_incomplete "eo" )
-        list( APPEND _tx_ok "eo" )
-    endif()
 endif()
 # Optional Qt parts
 find_package( Qt5DBus CONFIG )
@@ -355,23 +334,33 @@ set_package_properties(
     URL "https://python.org"
     PURPOSE "Python 3 interpreter for certain tests."
 )
+
+set( _schema_explanation "" )
 if ( PYTHONINTERP_FOUND )
-    message(STATUS "Found Python 3 interpreter ${PYTHON_EXECUTABLE}")
     if ( BUILD_SCHEMA_TESTING )
         # The configuration validator script has some dependencies,
         # and if they are not installed, don't run. If errors out
         # with exit(1) on missing dependencies.
-        exec_program( ${PYTHON_EXECUTABLE} ARGS "${CMAKE_SOURCE_DIR}/ci/configvalidator.py" -x RETURN_VALUE _validator_deps )
+        if ( CALAMARES_CONFIGVALIDATOR_CHECKED )
+            set( _validator_deps ${CALAMARES_CONFIGVALIDATOR_RESULT} )
+        else()
+            exec_program( ${PYTHON_EXECUTABLE} ARGS "${CMAKE_SOURCE_DIR}/ci/configvalidator.py" -x RETURN_VALUE _validator_deps )
+            set( CALAMARES_CONFIGVALIDATOR_CHECKED TRUE CACHE INTERNAL "Dependencies for configvalidator checked" )
+            set( CALAMARES_CONFIGVALIDATOR_RESULT ${_validator_deps} CACHE INTERNAL "Result of configvalidator dependency check" )
+        endif()
         # It should never succeed, but only returns 1 when the imports fail
         if ( _validator_deps EQUAL 1 )
-            message(STATUS "BUILD_SCHEMA_TESTING dependencies are missing." )
+            set( _schema_explanation " Missing dependencies for configvalidator.py." )
             set( BUILD_SCHEMA_TESTING OFF )
         endif()
     endif()
 else()
     # Can't run schema tests without Python3.
+    set( _schema_explanation " Missing Python3." )
     set( BUILD_SCHEMA_TESTING OFF )
 endif()
+add_feature_info( yaml-schema BUILD_SCHEMA_TESTING "Validate YAML (config files) with schema.${_schema_explanation}" )
+
 find_package( PythonLibs ${PYTHONLIBS_VERSION} )
 set_package_properties(
     PythonLibs PROPERTIES
@@ -419,30 +408,22 @@ set(Calamares_WITH_QML ${WITH_QML})
 
 ### Transifex Translation status
 #
-# Construct language lists for use. If there are p_tx* variables,
-# then run an extra cmake-time check for consistency of the old
-# (p_tx*) and new (_tx*) lists.
+# Construct language lists for use.
 #
-set( prev_tx ${p_tx_complete} ${p_tx_good} ${p_tx_ok} ${p_tx_incomplete} )
+if( Qt5_VERSION VERSION_GREATER 5.12.1 )
+    # At least Qt 5.12.2 seems to support Esperanto in QLocale
+    if( "eo" IN_LIST _tx_incomplete )
+        message(STATUS "Esperanto support since Qt 5.12.2, enabling Esperanto locale")
+        list( REMOVE_ITEM _tx_incomplete "eo" )
+        list( APPEND _tx_ok "eo" )
+    endif()
+endif()
+
 set( curr_tx ${_tx_complete} ${_tx_good} ${_tx_ok} ${_tx_incomplete} )
 set( tx_errors OFF )
-if ( prev_tx )
-    # Gone in new list
-    foreach( l ${prev_tx} )
-        list( FIND curr_tx ${l} p_l )
-        if( p_l EQUAL -1 )
-            message(WARNING "Language ${l} was present in previous translations and is now absent.")
-            set( tx_errors ON )
-        endif()
-    endforeach()
-
+if ( curr_tx )
     # New in list
     foreach( l ${curr_tx} )
-        list( FIND prev_tx ${l} p_l )
-        if( p_l EQUAL -1 )
-            message(WARNING "Language ${l} is new.")
-            set( tx_errors ON )
-        endif()
         set( p_l "lang/calamares_${l}.ts" )
         if( NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${p_l} )
             message(WARNING "Language ${l} has no .ts file yet.")
@@ -453,7 +434,6 @@ if ( prev_tx )
     unset( p_l )
     unset( l )
 endif()
-unset( prev_tx )
 unset( curr_tx )
 if( tx_errors )
     message( FATAL_ERROR "Translation warnings, see above." )
@@ -463,14 +443,6 @@ set( CALAMARES_TRANSLATION_LANGUAGES en ${_tx_complete} ${_tx_good} ${_tx_ok} )
 list( SORT CALAMARES_TRANSLATION_LANGUAGES )
 
 add_subdirectory( lang )  # i18n tools
-
-if ( INSTALL_COMPLETION )
-    if( NOT CMAKE_INSTALL_BASHCOMPLETIONDIR )
-        set( CMAKE_INSTALL_BASHCOMPLETIONDIR "${CMAKE_INSTALL_DATADIR}/bash-completion/completions" )
-    endif()
-
-    install( FILES ${CMAKE_SOURCE_DIR}/data/completion/bash/calamares DESTINATION "${CMAKE_INSTALL_BASHCOMPLETIONDIR}" )
-endif()
 
 ### Example Distro
 #
@@ -536,7 +508,11 @@ if( CALAMARES_VERSION_RC )
     set( CALAMARES_VERSION ${CALAMARES_VERSION}rc${CALAMARES_VERSION_RC} )
 endif()
 
-# additional info for non-release builds
+# Additional info for non-release builds. The "extended" version information
+# with date and git information (commit, dirty status) is used only
+# by CalamaresVersionX.h, which is included by consumers that need a full
+# version number with all that information; normal consumers can include
+# CalamaresVersion.h with more stable numbers.
 if( NOT BUILD_RELEASE AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.git/" )
     include( CMakeDateStamp )
     set( CALAMARES_VERSION_DATE "${CMAKE_DATESTAMP_YEAR}${CMAKE_DATESTAMP_MONTH}${CMAKE_DATESTAMP_DAY}" )
@@ -655,6 +631,14 @@ if( INSTALL_POLKIT )
         FILES com.github.calamares.calamares.policy
         DESTINATION "${POLKITQT-1_POLICY_FILES_INSTALL_DIR}"
     )
+endif()
+
+if ( INSTALL_COMPLETION )
+    if( NOT CMAKE_INSTALL_BASHCOMPLETIONDIR )
+        set( CMAKE_INSTALL_BASHCOMPLETIONDIR "${CMAKE_INSTALL_DATADIR}/bash-completion/completions" )
+    endif()
+
+    install( FILES ${CMAKE_SOURCE_DIR}/data/completion/bash/calamares DESTINATION "${CMAKE_INSTALL_BASHCOMPLETIONDIR}" )
 endif()
 
 install(

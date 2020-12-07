@@ -1,37 +1,56 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+/* === This file is part of Calamares - <https://calamares.io> ===
+ *
  *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
- *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
- *
  *   SPDX-License-Identifier: GPL-3.0-or-later
- *   License-Filename: LICENSE
+ *
+ *   Calamares is Free Software: see the License-Identifier above.
+ *
  *
  */
 
-#include "Tests.h"
-
+#include "locale/Global.h"
 #include "locale/LabelModel.h"
 #include "locale/TimeZone.h"
 #include "locale/TranslatableConfiguration.h"
 
 #include "CalamaresVersion.h"
+#include "GlobalStorage.h"
 #include "utils/Logger.h"
 
 #include <QtTest/QtTest>
 
-QTEST_GUILESS_MAIN( LocaleTests )
+class LocaleTests : public QObject
+{
+    Q_OBJECT
+public:
+    LocaleTests();
+    ~LocaleTests() override;
+
+private Q_SLOTS:
+    void initTestCase();
+
+    void testLanguageModelCount();
+    void testTranslatableLanguages();
+    void testTranslatableConfig1();
+    void testTranslatableConfig2();
+    void testLanguageScripts();
+
+    void testEsperanto();
+    void testInterlingue();
+
+    // TimeZone testing
+    void testRegions();
+    void testSimpleZones();
+    void testComplexZones();
+    void testTZLookup();
+    void testTZIterator();
+    void testLocationLookup_data();
+    void testLocationLookup();
+    void testLocationLookup2();
+
+    // Global Storage updates
+    void testGSUpdates();
+};
 
 LocaleTests::LocaleTests() {}
 
@@ -40,6 +59,8 @@ LocaleTests::~LocaleTests() {}
 void
 LocaleTests::initTestCase()
 {
+    Logger::setupLogLevel( Logger::LOGDEBUG );
+
     // Otherwise plain get() is dubious in the TranslatableConfiguration tests
     QLocale::setDefault( QLocale( QStringLiteral( "en_US" ) ) );
     QVERIFY( ( QLocale().name() == "C" ) || ( QLocale().name() == "en_US" ) );
@@ -65,10 +86,8 @@ LocaleTests::testLanguageModelCount()
 }
 
 void
-LocaleTests::testEsperanto()
+LocaleTests::testLanguageScripts()
 {
-    Logger::setupLogLevel( Logger::LOGDEBUG );
-
     const auto* m = CalamaresUtils::Locale::availableTranslations();
 
     QVERIFY( m );
@@ -89,12 +108,33 @@ LocaleTests::testEsperanto()
         QVERIFY( locale.language() == QLocale::Lithuanian ? locale.country() == QLocale::Lithuania : true );
         QVERIFY( locale.language() != QLocale::C );
     }
+}
+
+void
+LocaleTests::testEsperanto()
+{
 #if QT_VERSION < QT_VERSION_CHECK( 5, 12, 2 )
     QCOMPARE( QLocale( "eo" ).language(), QLocale::C );
+    QCOMPARE( QLocale( QLocale::Esperanto ).language(), QLocale::English );
 #else
     QCOMPARE( QLocale( "eo" ).language(), QLocale::Esperanto );
+    QCOMPARE( QLocale( QLocale::Esperanto ).language(), QLocale::Esperanto );  // Probably fails on 5.12, too
 #endif
 }
+
+void
+LocaleTests::testInterlingue()
+{
+    // ie / Interlingue is borked (is "ie" even the right name?)
+    QCOMPARE( QLocale( "ie" ).language(), QLocale::C );
+    QCOMPARE( QLocale( QLocale::Interlingue ).language(), QLocale::English );
+
+    // "ia" exists (post-war variant of Interlingue)
+    QCOMPARE( QLocale( "ia" ).language(), QLocale::Interlingua );
+    // "bork" does not exist
+    QCOMPARE( QLocale( "bork" ).language(), QLocale::C );
+}
+
 
 static const QStringList&
 someLanguages()
@@ -207,53 +247,279 @@ LocaleTests::testTranslatableConfig2()
 }
 
 void
+LocaleTests::testRegions()
+{
+    using namespace CalamaresUtils::Locale;
+    RegionsModel regions;
+
+    QVERIFY( regions.rowCount( QModelIndex() ) > 3 );  // Africa, America, Asia
+
+    QStringList names;
+    for ( int i = 0; i < regions.rowCount( QModelIndex() ); ++i )
+    {
+        QVariant name = regions.data( regions.index( i ), RegionsModel::NameRole );
+        QVERIFY( name.isValid() );
+        QVERIFY( !name.toString().isEmpty() );
+        names.append( name.toString() );
+    }
+
+    QVERIFY( names.contains( "America" ) );
+    QVERIFY( !names.contains( "UTC" ) );
+}
+
+
+static void
+displayedNames( QAbstractItemModel& model, QStringList& names )
+{
+    names.clear();
+    for ( int i = 0; i < model.rowCount( QModelIndex() ); ++i )
+    {
+        QVariant name = model.data( model.index( i, 0 ), Qt::DisplayRole );
+        QVERIFY( name.isValid() );
+        QVERIFY( !name.toString().isEmpty() );
+        names.append( name.toString() );
+    }
+}
+
+void
 LocaleTests::testSimpleZones()
 {
     using namespace CalamaresUtils::Locale;
+    ZonesModel zones;
 
+    QVERIFY( zones.rowCount( QModelIndex() ) > 24 );
+
+    QStringList names;
+    displayedNames( zones, names );
+    QVERIFY( names.contains( "Amsterdam" ) );
+    if ( !names.contains( "New York" ) )
     {
-        TZRegion r;
-        QVERIFY( r.tr().isEmpty() );
+        for ( const auto& s : names )
+        {
+            if ( s.startsWith( 'N' ) )
+            {
+                cDebug() << s;
+            }
+        }
     }
-    {
-        TZZone n;
-        QVERIFY( n.tr().isEmpty() );
-    }
-    {
-        TZZone r0( "xAmsterdam" );
-        QCOMPARE( r0.tr(), QStringLiteral( "xAmsterdam" ) );
-        TZZone r1( r0 );
-        QCOMPARE( r0.tr(), QStringLiteral( "xAmsterdam" ) );
-        QCOMPARE( r1.tr(), QStringLiteral( "xAmsterdam" ) );
-        TZZone r2( std::move( r0 ) );
-        QCOMPARE( r2.tr(), QStringLiteral( "xAmsterdam" ) );
-        QCOMPARE( r0.tr(), QString() );
-    }
-    {
-        TZZone r0( nullptr );
-        QVERIFY( r0.tr().isEmpty() );
-        TZZone r1( r0 );
-        QVERIFY( r1.tr().isEmpty() );
-        TZZone r2( std::move( r0 ) );
-        QVERIFY( r2.tr().isEmpty() );
-    }
+    QVERIFY( names.contains( "New York" ) );
+    QVERIFY( !names.contains( "America" ) );
+    QVERIFY( !names.contains( "New_York" ) );
 }
 
 void
 LocaleTests::testComplexZones()
 {
     using namespace CalamaresUtils::Locale;
+    ZonesModel zones;
+    RegionalZonesModel europe( &zones );
 
+    QStringList names;
+    displayedNames( zones, names );
+    QVERIFY( names.contains( "New York" ) );
+    QVERIFY( names.contains( "Prague" ) );
+    QVERIFY( names.contains( "Abidjan" ) );
+
+    // No region set
+    displayedNames( europe, names );
+    QVERIFY( names.contains( "New York" ) );
+    QVERIFY( names.contains( "Prague" ) );
+    QVERIFY( names.contains( "Abidjan" ) );
+
+    // Now filter
+    europe.setRegion( "Europe" );
+    displayedNames( europe, names );
+    QVERIFY( !names.contains( "New York" ) );
+    QVERIFY( names.contains( "Prague" ) );
+    QVERIFY( !names.contains( "Abidjan" ) );
+
+    europe.setRegion( "America" );
+    displayedNames( europe, names );
+    QVERIFY( names.contains( "New York" ) );
+    QVERIFY( !names.contains( "Prague" ) );
+    QVERIFY( !names.contains( "Abidjan" ) );
+
+    europe.setRegion( "Africa" );
+    displayedNames( europe, names );
+    QVERIFY( !names.contains( "New York" ) );
+    QVERIFY( !names.contains( "Prague" ) );
+    QVERIFY( names.contains( "Abidjan" ) );
+}
+
+void
+LocaleTests::testTZLookup()
+{
+    using namespace CalamaresUtils::Locale;
+    ZonesModel zones;
+
+    QVERIFY( zones.find( "America", "New_York" ) );
+    QCOMPARE( zones.find( "America", "New_York" )->zone(), QStringLiteral( "New_York" ) );
+    QCOMPARE( zones.find( "America", "New_York" )->tr(), QStringLiteral( "New York" ) );
+
+    QVERIFY( !zones.find( "Europe", "New_York" ) );
+    QVERIFY( !zones.find( "America", "New York" ) );
+}
+
+void
+LocaleTests::testTZIterator()
+{
+    using namespace CalamaresUtils::Locale;
+    const ZonesModel zones;
+
+    QVERIFY( zones.find( "Europe", "Rome" ) );
+
+    int count = 0;
+    bool seenRome = false;
+    bool seenGnome = false;
+    for ( auto it = zones.begin(); it; ++it )
     {
-        TZZone r0( "America/New_York" );
-        TZZone r1( "America/New York" );
-
-        QCOMPARE( r0.tr(), r1.tr() );
-        QCOMPARE( r0.tr(), QStringLiteral( "America/New York" ) );
+        QVERIFY( *it );
+        QVERIFY( !( *it )->zone().isEmpty() );
+        seenRome |= ( *it )->zone() == QStringLiteral( "Rome" );
+        seenGnome |= ( *it )->zone() == QStringLiteral( "Gnome" );
+        count++;
     }
+
+    QVERIFY( seenRome );
+    QVERIFY( !seenGnome );
+    QCOMPARE( count, zones.rowCount( QModelIndex() ) );
+
+    QCOMPARE( zones.data( zones.index( 0 ), ZonesModel::RegionRole ).toString(), QStringLiteral( "Africa" ) );
+    QCOMPARE( ( *zones.begin() )->zone(), QStringLiteral( "Abidjan" ) );
+}
+
+void
+LocaleTests::testLocationLookup_data()
+{
+    QTest::addColumn< double >( "latitude" );
+    QTest::addColumn< double >( "longitude" );
+    QTest::addColumn< QString >( "name" );
+
+    QTest::newRow( "London" ) << 50.0 << 0.0 << QString( "London" );
+    QTest::newRow( "Tarawa E" ) << 0.0 << 179.0 << QString( "Tarawa" );
+    QTest::newRow( "Tarawa W" ) << 0.0 << -179.0 << QString( "Tarawa" );
+
+    QTest::newRow( "Johannesburg" ) << -26.0 << 28.0 << QString( "Johannesburg" );  // South Africa
+    QTest::newRow( "Maseru" ) << -29.0 << 27.0 << QString( "Maseru" );  // Lesotho
+    QTest::newRow( "Windhoek" ) << -22.0 << 17.0 << QString( "Windhoek" );  // Namibia
+    QTest::newRow( "Port Elisabeth" ) << -33.0 << 25.0 << QString( "Johannesburg" );  // South Africa
+    QTest::newRow( "Cape Town" ) << -33.0 << 18.0 << QString( "Johannesburg" );  // South Africa
+}
+
+void
+LocaleTests::testLocationLookup()
+{
+    const CalamaresUtils::Locale::ZonesModel zones;
+
+    QFETCH( double, latitude );
+    QFETCH( double, longitude );
+    QFETCH( QString, name );
+
+    const auto* zone = zones.find( latitude, longitude );
+    QVERIFY( zone );
+    QCOMPARE( zone->zone(), name );
+}
+
+void
+LocaleTests::testLocationLookup2()
+{
+    // Official
+    // ZA      -2615+02800     Africa/Johannesburg
+    // Spot patch
+    //     "ZA -3230+02259 Africa/Johannesburg\n";
+
+    const CalamaresUtils::Locale::ZonesModel zones;
+    const auto* zone = zones.find( -26.15, 28.00 );
+    QCOMPARE( zone->zone(), QString( "Johannesburg" ) );
+    // The TZ data sources use minutes-and-seconds notation,
+    // so "2615" is 26 degrees, 15 minutes, and 15 minutes is
+    // one-quarter of a degree.
+    QCOMPARE( zone->latitude(), -26.25 );
+    QCOMPARE( zone->longitude(), 28.00 );
+
+    // Elsewhere in South Africa
+    const auto* altzone = zones.find( -32.0, 22.0 );
+    QCOMPARE( altzone, zone );  // same pointer
+    QCOMPARE( altzone->zone(), QString( "Johannesburg" ) );
+    QCOMPARE( altzone->latitude(), -26.25 );
+    QCOMPARE( altzone->longitude(), 28.00 );
+
+    altzone = zones.find( -29.0, 27.0 );
+    QCOMPARE( altzone->zone(), QString( "Maseru" ) );
+    // -2928, that's -29 and 28/60 of a degree, is almost half, but we don't want
+    //   to fall foul of variations in double-precision
+    QCOMPARE( trunc( altzone->latitude() * 1000.0 ), -29466 );
+}
+
+void
+LocaleTests::testGSUpdates()
+{
+    Calamares::GlobalStorage gs;
+
+    const QString gsKey( "localeConf" );
+
+    QCOMPARE( gs.value( gsKey ), QVariant() );
+
+    // Insert one
     {
-        TZZone r( "zxc,;*_vm" );
-        QVERIFY( !r.tr().isEmpty() );
-        QCOMPARE( r.tr(), QStringLiteral( "zxc,;* vm" ) );  // Only _ is special
+        CalamaresUtils::Locale::insertGS( gs, "LANG", "en_US" );
+        auto map = gs.value( gsKey ).toMap();
+        QCOMPARE( map.count(), 1 );
+        QCOMPARE( map.value( "LANG" ).toString(), QString( "en_US" ) );
+    }
+
+    // Overwrite one
+    {
+        CalamaresUtils::Locale::insertGS( gs, "LANG", "nl_BE" );
+        auto map = gs.value( gsKey ).toMap();
+        QCOMPARE( map.count(), 1 );
+        QCOMPARE( map.value( "LANG" ).toString(), QString( "nl_BE" ) );
+    }
+
+    // Insert a second value
+    {
+        CalamaresUtils::Locale::insertGS( gs, "LC_TIME", "UTC" );
+        auto map = gs.value( gsKey ).toMap();
+        QCOMPARE( map.count(), 2 );
+        QCOMPARE( map.value( "LANG" ).toString(), QString( "nl_BE" ) );
+        QCOMPARE( map.value( "LC_TIME" ).toString(), QString( "UTC" ) );
+    }
+
+    // Overwrite parts
+    {
+        QMap< QString, QString > kv;
+        kv.insert( "LANG", "en_SU" );
+        kv.insert( "LC_CURRENCY", "rbl" );
+
+        // Overwrite one, add one
+        CalamaresUtils::Locale::insertGS( gs, kv, CalamaresUtils::Locale::InsertMode::Merge );
+        auto map = gs.value( gsKey ).toMap();
+        QCOMPARE( map.count(), 3 );
+        QCOMPARE( map.value( "LANG" ).toString(), QString( "en_SU" ) );
+        QCOMPARE( map.value( "LC_TIME" ).toString(), QString( "UTC" ) );  // unchanged
+        QCOMPARE( map.value( "LC_CURRENCY" ).toString(), QString( "rbl" ) );
+    }
+
+    // Overwrite with clear
+    {
+        QMap< QString, QString > kv;
+        kv.insert( "LANG", "en_US" );
+        kv.insert( "LC_CURRENCY", "peso" );
+
+        // Overwrite one, add one
+        CalamaresUtils::Locale::insertGS( gs, kv, CalamaresUtils::Locale::InsertMode::Overwrite );
+        auto map = gs.value( gsKey ).toMap();
+        QCOMPARE( map.count(), 2 );  // the rest were cleared
+        QCOMPARE( map.value( "LANG" ).toString(), QString( "en_US" ) );
+        QVERIFY( !map.contains( "LC_TIME" ) );
+        QCOMPARE( map.value( "LC_TIME" ).toString(), QString() );  // removed
+        QCOMPARE( map.value( "LC_CURRENCY" ).toString(), QString( "peso" ) );
     }
 }
+
+
+QTEST_GUILESS_MAIN( LocaleTests )
+
+#include "utils/moc-warnings.h"
+
+#include "Tests.moc"

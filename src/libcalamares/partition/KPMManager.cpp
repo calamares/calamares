@@ -1,22 +1,10 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
  *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
- *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
- *
  *   SPDX-License-Identifier: GPL-3.0-or-later
- *   License-Filename: LICENSE
+ *
+ *   Calamares is Free Software: see the License-Identifier above.
+ *
  *
  */
 
@@ -74,7 +62,8 @@ InternalManager::InternalManager()
         else
         {
             auto* backend_p = CoreBackendManager::self()->backend();
-            cDebug() << Logger::SubEntry << "Backend" << Logger::Pointer(backend_p) << backend_p->id() << backend_p->version();
+            cDebug() << Logger::SubEntry << "Backend" << Logger::Pointer( backend_p ) << backend_p->id()
+                     << backend_p->version();
             s_kpm_loaded = true;
         }
     }
@@ -82,9 +71,12 @@ InternalManager::InternalManager()
 
 InternalManager::~InternalManager()
 {
+#if defined( WITH_KPMCORE4API ) && !defined( WITH_KPMCORE42API )
     cDebug() << "Cleaning up KPMCore backend ..";
 
-#if defined( WITH_KPMCORE4API )
+    // From KPMcore 4.0 until KPMcore 4.2 we needed to stop
+    // the helper by hand. KPMcore 4.2 ported to polkit directly,
+    // which doesn't need a helper.
     auto backend_p = CoreBackendManager::self()->backend();
     if ( backend_p )
     {

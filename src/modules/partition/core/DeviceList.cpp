@@ -1,20 +1,11 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2015-2016, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2018-2019, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2015-2016 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2018-2019 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "DeviceList.h"
@@ -92,6 +83,19 @@ isIso9660( const Device* device )
     return false;
 }
 
+static inline bool
+isZRam( const Device* device )
+{
+    const QString path = device->deviceNode();
+    return path.startsWith( "/dev/zram" );
+}
+
+static inline bool
+isFloppyDrive( const Device* device )
+{
+    const QString path = device->deviceNode();
+    return path.startsWith( "/dev/fd" ) || path.startsWith( "/dev/floppy" );
+}
 
 static inline QDebug&
 operator<<( QDebug& s, QList< Device* >::iterator& it )
@@ -112,7 +116,7 @@ erase( DeviceList& l, DeviceList::iterator& it )
 }
 
 QList< Device* >
-getDevices( DeviceType which, qint64 minimumSize )
+getDevices( DeviceType which )
 {
     bool writableOnly = ( which == DeviceType::WritableOnly );
 
@@ -138,9 +142,14 @@ getDevices( DeviceType which, qint64 minimumSize )
             cDebug() << Logger::SubEntry << "Skipping nullptr device";
             it = erase( devices, it );
         }
-        else if ( ( *it )->deviceNode().startsWith( "/dev/zram" ) )
+        else if ( isZRam( *it ) )
         {
             cDebug() << Logger::SubEntry << "Removing zram" << it;
+            it = erase( devices, it );
+        }
+        else if ( isFloppyDrive( ( *it ) ) )
+        {
+            cDebug() << Logger::SubEntry << "Removing floppy disk" << it;
             it = erase( devices, it );
         }
         else if ( writableOnly && hasRootPartition( *it ) )
@@ -151,11 +160,6 @@ getDevices( DeviceType which, qint64 minimumSize )
         else if ( writableOnly && isIso9660( *it ) )
         {
             cDebug() << Logger::SubEntry << "Removing device with iso9660 filesystem (probably a CD) on it" << it;
-            it = erase( devices, it );
-        }
-        else if ( ( minimumSize >= 0 ) && !( ( *it )->capacity() > minimumSize ) )
-        {
-            cDebug() << Logger::SubEntry << "Removing too-small" << it;
             it = erase( devices, it );
         }
         else

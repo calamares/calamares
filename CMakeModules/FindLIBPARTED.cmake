@@ -1,4 +1,5 @@
-# Copyright (C) 2008,2010,2011 by Volker Lanz <vl@fidra.de>
+# SPDX-FileCopyrightText: 2008,2010,2011 by Volker Lanz <vl@fidra.de>
+# SPDX-License-Identifier: BSD-2-Clause
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions
@@ -44,7 +45,7 @@ else (LIBPARTED_FS_RESIZE_LIBRARY)
   set(LIBPARTED_LIBS ${LIBPARTED_LIBRARY})
 endif (LIBPARTED_FS_RESIZE_LIBRARY)
 
-# KDE adds -ansi to the C make flags, parted headers use GNU extensions, so 
+# KDE adds -ansi to the C make flags, parted headers use GNU extensions, so
 # undo that
 unset(CMAKE_C_FLAGS)
 

@@ -4,10 +4,10 @@
         <file>localeq.qml</file>
         <file>Map.qml</file>
         <file>Offline.qml</file>
+        <file>img/locale.svg</file>
         <file>img/minus.png</file>
         <file>img/pin.svg</file>
         <file>img/plus.png</file>
         <file>img/chevron-left-solid.svg</file>
-        <file>img/worldmap.png</file>
     </qresource>
 </RCC>

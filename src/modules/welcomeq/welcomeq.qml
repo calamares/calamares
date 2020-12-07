@@ -1,20 +1,11 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2020, Adriaan de Groot <groot@kde.org>
- *   Copyright 2020, Anke Boersma <demm@kaosx.us>
+ *   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2020 Anke Boersma <demm@kaosx.us>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 import io.calamares.core 1.0
 import io.calamares.ui 1.0
@@ -144,16 +135,34 @@ Page
                 width: parent.width
                 Layout.fillWidth: true
                 focus: true
-                Image {
-                    id: image
-                    height: 48
-                    fillMode: Image.PreserveAspectFit
-                    source: "img/language-icon-48px.png"
+
+                Loader {
+                    id: imLoader
+
+                    Component {
+                        id: icon
+                        Kirigami.Icon {
+                            source: config.languageIcon
+                            height: 48
+                            width: 48
+                        }
+                    }
+
+                    Component {
+                        id: image
+                        Image {
+                            height: 48
+                            fillMode: Image.PreserveAspectFit
+                            source: "img/language-icon-48px.png"
+                        }
+                    }
+
+                    sourceComponent: (config.languageIcon != "")  ? icon : image
                 }
 
                 ComboBox {
                     id: languages
-                    anchors.left: image.right
+                    anchors.left: imLoader.right
                     width: languageBar.width /1.1
                     textRole: "label"
                     currentIndex: config.localeIndex

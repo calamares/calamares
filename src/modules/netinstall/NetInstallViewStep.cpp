@@ -1,21 +1,12 @@
 /*
- *   Copyright 2016, Luca Giambonini <almack@chakraos.org>
- *   Copyright 2016, Lisa Vitolo <shainer@chakraos.org>
- *   Copyright 2017, Kyle Robbertze  <krobbertze@gmail.com>
- *   Copyright 2017-2018, 2020, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2016 Luca Giambonini <almack@chakraos.org>
+ *   SPDX-FileCopyrightText: 2016 Lisa Vitolo <shainer@chakraos.org>
+ *   SPDX-FileCopyrightText: 2017 Kyle Robbertze  <krobbertze@gmail.com>
+ *   SPDX-FileCopyrightText: 2017-2018 2020, Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "NetInstallViewStep.h"
@@ -56,7 +47,7 @@ NetInstallViewStep::prettyName() const
     return m_sidebarLabel ? m_sidebarLabel->get() : tr( "Package selection" );
 
 #if defined( TABLE_OF_TRANSLATIONS )
-    NOTREACHED
+    __builtin_unreachable();
     // This is a table of "standard" labels for this module. If you use them
     // in the label: sidebar: section of the config file, the existing
     // translations can be used.
@@ -148,6 +139,7 @@ NetInstallViewStep::onLeave()
     // Clear out existing operations for this module, going backwards:
     // Sometimes we remove an item, and we don't want the index to
     // fall off the end of the list.
+    bool somethingRemoved = false;
     for ( int index = packageOperations.length() - 1; 0 <= index; index-- )
     {
         const QVariantMap op = packageOperations.at( index ).toMap();
@@ -155,6 +147,7 @@ NetInstallViewStep::onLeave()
         {
             cDebug() << Logger::SubEntry << "Removing existing operations for" << moduleInstanceKey();
             packageOperations.removeAt( index );
+            somethingRemoved = true;
         }
     }
 
@@ -192,7 +185,7 @@ NetInstallViewStep::onLeave()
         cDebug() << Logger::SubEntry << tryInstallPackages.length() << "non-critical packages.";
     }
 
-    if ( !packageOperations.isEmpty() )
+    if ( somethingRemoved || !packageOperations.isEmpty() )
     {
         gs->insert( PACKAGEOP, packageOperations );
     }

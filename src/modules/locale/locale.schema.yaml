@@ -1,10 +1,40 @@
+# SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+# SPDX-License-Identifier: GPL-3.0-or-later
 ---
 $schema: https://json-schema.org/schema#
 $id: https://calamares.io/schemas/locale
 additionalProperties: false
 type: object
 properties:
-    "region": { type: str }
-    "zone": { type: str }
-    "localeGenPath": { type: string, required: true }
-    "geoipUrl": { type: str }
+    region: { type: string,
+        enum: [
+            Africa,
+            America,
+            Antarctica,
+            Arctic,
+            Asia,
+            Atlantic,
+            Australia,
+            Europe,
+            Indian,
+            Pacific
+            ]
+        }
+    zone: { type: string }
+    useSystemTimezone: { type: boolean, default: false }
+
+    adjustLiveTimezone: { type: boolean, default: true }
+
+    localeGenPath: { type: string }
+
+    # TODO: refactor, this is reused in welcome
+    geoip:
+        additionalProperties: false
+        type: object
+        properties:
+            style: { type: string, enum: [ none, fixed, xml, json ] }
+            url: { type: string }
+            selector: { type: string }
+        required: [ style, url, selector ]
+
+required: [ region, zone ]

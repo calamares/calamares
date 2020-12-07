@@ -1,0 +1,9 @@
+<!DOCTYPE RCC>
+<!-- SPDX-FileCopyrightText: no
+     SPDX-License-Identifier: CC0-1.0
+     -->
+<RCC version="1.0">
+    <qresource prefix="/lang">
+@calamares_i18n_qrc_content@
+    </qresource>
+</RCC>

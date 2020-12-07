@@ -1,19 +1,10 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "MachineIdJob.h"
@@ -36,10 +27,11 @@ class MachineIdTests : public QObject
     Q_OBJECT
 public:
     MachineIdTests() {}
-    virtual ~MachineIdTests() {}
+    ~MachineIdTests() override {}
 
 private Q_SLOTS:
     void initTestCase();
+    void testConfigEntropyFiles();
 
     void testCopyFile();
 
@@ -53,6 +45,65 @@ MachineIdTests::initTestCase()
 {
     Logger::setupLogLevel( Logger::LOGDEBUG );
 }
+
+void
+MachineIdTests::testConfigEntropyFiles()
+{
+    static QString urandom_entropy( "/var/lib/urandom/random-seed" );
+    // No config at all
+    {
+        QVariantMap m;
+        MachineIdJob j;
+        j.setConfigurationMap( m );
+        QCOMPARE( j.entropyFileNames(), QStringList() );
+    }
+    // No entropy, deprecated setting
+    {
+        QVariantMap m;
+        MachineIdJob j;
+        m.insert( "entropy", false );
+        j.setConfigurationMap( m );
+        QCOMPARE( j.entropyFileNames(), QStringList() );
+    }
+    // Entropy, deprecated setting
+    {
+        QVariantMap m;
+        MachineIdJob j;
+        m.insert( "entropy", true );
+        j.setConfigurationMap( m );
+        QCOMPARE( j.entropyFileNames(), QStringList { urandom_entropy } );
+    }
+    // Duplicate entry, with deprecated setting
+    {
+        QVariantMap m;
+        MachineIdJob j;
+        m.insert( "entropy", true );
+        m.insert( "entropy-files", QStringList { urandom_entropy } );
+        j.setConfigurationMap( m );
+        QCOMPARE( j.entropyFileNames(), QStringList { urandom_entropy } );
+
+        m.clear();
+        j.setConfigurationMap( m );
+        QCOMPARE( j.entropyFileNames(), QStringList() );
+
+        // This would be weird
+        m.insert( "entropy", false );
+        m.insert( "entropy-files", QStringList { urandom_entropy } );
+        j.setConfigurationMap( m );
+        QCOMPARE( j.entropyFileNames(), QStringList { urandom_entropy } );
+    }
+    // No deprecated setting
+    {
+        QString tmp_entropy( "/tmp/entropy" );
+        QVariantMap m;
+        MachineIdJob j;
+        m.insert( "entropy-files", QStringList { urandom_entropy, tmp_entropy } );
+        j.setConfigurationMap( m );
+        QVERIFY( !j.entropyFileNames().isEmpty() );
+        QCOMPARE( j.entropyFileNames(), QStringList() << urandom_entropy << tmp_entropy );
+    }
+}
+
 
 void
 MachineIdTests::testCopyFile()
@@ -109,6 +160,7 @@ MachineIdTests::testJob()
     Logger::setupLogLevel( Logger::LOGDEBUG );
 
     QTemporaryDir tempRoot( QDir::tempPath() + QStringLiteral( "/test-job-XXXXXX" ) );
+    // Only clean up if the tests succeed
     tempRoot.setAutoRemove( false );
     cDebug() << "Temporary files as" << QDir::tempPath();
 
@@ -130,7 +182,7 @@ MachineIdTests::testJob()
 
     // Prepare part of the target filesystem
     {
-        QVERIFY( system->createTargetDirs("/etc") );
+        QVERIFY( system->createTargetDirs( "/etc" ) );
         auto r = system->createTargetFile( "/etc/machine-id", "Hello" );
         QVERIFY( !r.failed() );
         QVERIFY( r );
@@ -164,9 +216,30 @@ MachineIdTests::testJob()
         QFileInfo fi( "/tmp/var/lib/dbus/machine-id" );
         QVERIFY( fi.exists() );
         QVERIFY( fi.isSymLink() );
-        QCOMPARE( fi.size(), 5);
+        QCOMPARE( fi.size(), 5 );
 #endif
     }
+
+    {
+        QString tmp_entropy2( "/pineapple.random" );
+        QString tmp_entropy( "/tmp/entropy" );
+        QVariantMap m;
+        MachineIdJob j;
+        m.insert( "entropy-files", QStringList { tmp_entropy2, tmp_entropy } );
+        m.insert( "entropy", true );
+        j.setConfigurationMap( m );
+        QCOMPARE( j.entropyFileNames().count(), 3 );  // Because of the standard entropy entry
+
+        // Check all three are created
+        auto r = j.exec();
+        QVERIFY( r );
+        for ( const auto& fileName : j.entropyFileNames() )
+        {
+            cDebug() << "Verifying existence of" << fileName;
+            QVERIFY( QFile::exists( tempRoot.filePath( fileName.mid( 1 ) ) ) );
+        }
+    }
+
     tempRoot.setAutoRemove( true );  // All tests succeeded
 }
 

@@ -1,22 +1,13 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017-2018, 2020, Adriaan de Groot <groot@kde.org>
- *   Copyright 2017, Gabriel Craciunescu <crazy@frugalware.org>
- *   Copyright 2019, Collabora Ltd <arnaud.ferraris@collabora.com>
+ *   SPDX-FileCopyrightText: 2014-2017 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2017-2018 2020, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2017 Gabriel Craciunescu <crazy@frugalware.org>
+ *   SPDX-FileCopyrightText: 2019 Collabora Ltd <arnaud.ferraris@collabora.com>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "GeneralRequirements.h"
@@ -155,10 +146,8 @@ GeneralRequirements::checkRequirements()
         {
             checkEntries.append(
                 { entry,
-                  [ req = m_requiredStorageGiB ] {
-                      return tr( "has at least %1 GiB available drive space" ).arg( req );
-                  },
-                  [ req = m_requiredStorageGiB ] {
+                  [req = m_requiredStorageGiB] { return tr( "has at least %1 GiB available drive space" ).arg( req ); },
+                  [req = m_requiredStorageGiB] {
                       return tr( "There is not enough drive space. At least %1 GiB is required." ).arg( req );
                   },
                   enoughStorage,
@@ -168,8 +157,8 @@ GeneralRequirements::checkRequirements()
         {
             checkEntries.append(
                 { entry,
-                  [ req = m_requiredRamGiB ] { return tr( "has at least %1 GiB working memory" ).arg( req ); },
-                  [ req = m_requiredRamGiB ] {
+                  [req = m_requiredRamGiB] { return tr( "has at least %1 GiB working memory" ).arg( req ); },
+                  [req = m_requiredRamGiB] {
                       return tr( "The system does not have enough working memory. At least %1 GiB is required." )
                           .arg( req );
                   },
@@ -358,7 +347,7 @@ GeneralRequirements::checkEnoughRam( qint64 requiredRam )
     // Ignore the guesstimate-factor; we get an under-estimate
     // which is probably the usable RAM for programs.
     quint64 availableRam = CalamaresUtils::System::instance()->getTotalMemoryB().first;
-    return double(availableRam) >= double(requiredRam) * 0.95;  // cast to silence 64-bit-int conversion to double
+    return double( availableRam ) >= double( requiredRam ) * 0.95;  // cast to silence 64-bit-int conversion to double
 }
 
 

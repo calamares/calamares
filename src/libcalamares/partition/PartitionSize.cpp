@@ -1,23 +1,11 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+/* === This file is part of Calamares - <https://calamares.io> ===
+ *
  *   SPDX-FileCopyrightText: 2019 Collabora Ltd <arnaud.ferraris@collabora.com>
  *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
- *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
- *
  *   SPDX-License-Identifier: GPL-3.0-or-later
- *   License-Filename: LICENSE
+ *
+ *   Calamares is Free Software: see the License-Identifier above.
+ *
  *
  */
 
@@ -151,9 +139,7 @@ PartitionSize::toBytes( qint64 totalSectors, qint64 sectorSize ) const
     case SizeUnit::GiB:
         return toBytes();
     }
-
-    // notreached
-    return -1;
+    __builtin_unreachable();
 }
 
 qint64
@@ -190,9 +176,7 @@ PartitionSize::toBytes( qint64 totalBytes ) const
     case SizeUnit::GiB:
         return toBytes();
     }
-
-    // notreached
-    return -1;
+    __builtin_unreachable();
 }
 
 qint64
@@ -223,7 +207,7 @@ PartitionSize::toBytes() const
     case SizeUnit::GiB:
         return CalamaresUtils::GiBtoBytes( static_cast< unsigned long long >( value() ) );
     }
-    NOTREACHED return -1;
+    __builtin_unreachable();
 }
 
 bool
@@ -249,7 +233,7 @@ PartitionSize::operator<( const PartitionSize& other ) const
     case SizeUnit::GiB:
         return ( toBytes() < other.toBytes() );
     }
-    NOTREACHED return false;
+    __builtin_unreachable();
 }
 
 bool
@@ -275,7 +259,7 @@ PartitionSize::operator>( const PartitionSize& other ) const
     case SizeUnit::GiB:
         return ( toBytes() > other.toBytes() );
     }
-    NOTREACHED return false;
+    __builtin_unreachable();
 }
 
 bool
@@ -301,7 +285,7 @@ PartitionSize::operator==( const PartitionSize& other ) const
     case SizeUnit::GiB:
         return ( toBytes() == other.toBytes() );
     }
-    NOTREACHED return false;
+    __builtin_unreachable();
 }
 
 }  // namespace Partition

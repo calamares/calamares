@@ -1,19 +1,10 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "ResizeFSJob.h"
@@ -26,8 +17,8 @@
 #include "utils/Units.h"
 #include "utils/Variant.h"
 
-#include <QProcess>
 #include <QDateTime>
+#include <QProcess>
 #include <QThread>
 
 #include <kpmcore/backend/corebackend.h>
@@ -46,9 +37,7 @@ ResizeFSJob::ResizeFSJob( QObject* parent )
 }
 
 
-ResizeFSJob::~ResizeFSJob()
-{
-}
+ResizeFSJob::~ResizeFSJob() {}
 
 
 QString
@@ -62,7 +51,8 @@ ResizeFSJob::findPartition()
 {
     using DeviceList = QList< Device* >;
 #if defined( WITH_KPMCORE4API )
-    DeviceList devices = m_kpmcore.backend()->scanDevices( /* not includeReadOnly, not includeLoopback */ ScanFlag(0) );
+    DeviceList devices
+        = m_kpmcore.backend()->scanDevices( /* not includeReadOnly, not includeLoopback */ ScanFlag( 0 ) );
 #else
     DeviceList devices = m_kpmcore.backend()->scanDevices( /* excludeReadOnly */ true );
 #endif
@@ -70,14 +60,17 @@ ResizeFSJob::findPartition()
     cDebug() << "ResizeFSJob found" << devices.count() << "devices.";
     for ( DeviceList::iterator dev_it = devices.begin(); dev_it != devices.end(); ++dev_it )
     {
-        if ( ! ( *dev_it ) )
-            continue;
-        cDebug() << "ResizeFSJob found" << ( *dev_it )->deviceNode();
-        for ( auto part_it = PartitionIterator::begin( *dev_it ); part_it != PartitionIterator::end( *dev_it ); ++part_it )
+        if ( !( *dev_it ) )
         {
-            cDebug() << Logger::SubEntry <<  ( *part_it )->mountPoint() << "on" << ( *part_it )->deviceNode();
-            if ( ( !m_fsname.isEmpty() && ( *part_it )->mountPoint() == m_fsname ) ||
-                    ( !m_devicename.isEmpty() && ( *part_it )->deviceNode() == m_devicename ) )
+            continue;
+        }
+        cDebug() << "ResizeFSJob found" << ( *dev_it )->deviceNode();
+        for ( auto part_it = PartitionIterator::begin( *dev_it ); part_it != PartitionIterator::end( *dev_it );
+              ++part_it )
+        {
+            cDebug() << Logger::SubEntry << ( *part_it )->mountPoint() << "on" << ( *part_it )->deviceNode();
+            if ( ( !m_fsname.isEmpty() && ( *part_it )->mountPoint() == m_fsname )
+                 || ( !m_devicename.isEmpty() && ( *part_it )->deviceNode() == m_devicename ) )
             {
                 cDebug() << Logger::SubEntry << "matched configuration dev=" << m_devicename << "fs=" << m_fsname;
                 return PartitionMatch( *dev_it, *part_it );
@@ -101,11 +94,17 @@ qint64
 ResizeFSJob::findGrownEnd( ResizeFSJob::PartitionMatch m )
 {
     if ( !m.first || !m.second )
+    {
         return -1;  // Missing device data
+    }
     if ( !ResizeOperation::canGrow( m.second ) )
+    {
         return -1;  // Operation is doomed
+    }
     if ( !m_size.isValid() )
+    {
         return -1;  // Must have a grow-size
+    }
 
     cDebug() << "Containing device size" << m.first->totalLogical();
     qint64 last_available = m.first->totalLogical() - 1;  // Numbered from 0
@@ -170,12 +169,11 @@ ResizeFSJob::exec()
             tr( "Invalid configuration" ),
             tr( "The file-system resize job has an invalid configuration and will not run." ) );
 
-    if ( !m_kpmcore)
+    if ( !m_kpmcore )
     {
         cWarning() << "Could not load KPMCore backend (2).";
-        return Calamares::JobResult::error(
-            tr( "KPMCore not Available" ),
-            tr( "Calamares cannot start KPMCore for the file-system resize job." ) );
+        return Calamares::JobResult::error( tr( "KPMCore not Available" ),
+                                            tr( "Calamares cannot start KPMCore for the file-system resize job." ) );
     }
     m_kpmcore.backend()->initFSSupport();  // Might not be enough, see below
 
@@ -184,34 +182,32 @@ ResizeFSJob::exec()
     if ( !m.first || !m.second )
         return Calamares::JobResult::error(
             tr( "Resize Failed" ),
-            !m_fsname.isEmpty() ? tr( "The filesystem %1 could not be found in this system, and cannot be resized." ).arg( m_fsname )
-                                : tr( "The device %1 could not be found in this system, and cannot be resized." ).arg( m_devicename ) );
+            !m_fsname.isEmpty()
+                ? tr( "The filesystem %1 could not be found in this system, and cannot be resized." ).arg( m_fsname )
+                : tr( "The device %1 could not be found in this system, and cannot be resized." ).arg( m_devicename ) );
 
     m.second->fileSystem().init();  // Initialize support for specific FS
     if ( !ResizeOperation::canGrow( m.second ) )
     {
         cDebug() << "canGrow() returned false.";
-        return Calamares::JobResult::error(
-            tr( "Resize Failed" ),
-            !m_fsname.isEmpty() ? tr( "The filesystem %1 cannot be resized." ).arg( m_fsname )
-                                : tr( "The device %1 cannot be resized." ).arg( m_devicename ) );
+        return Calamares::JobResult::error( tr( "Resize Failed" ),
+                                            !m_fsname.isEmpty()
+                                                ? tr( "The filesystem %1 cannot be resized." ).arg( m_fsname )
+                                                : tr( "The device %1 cannot be resized." ).arg( m_devicename ) );
     }
 
     qint64 new_end = findGrownEnd( m );
-    cDebug() << "Resize from"
-             << m.second->firstSector() << '-' << m.second->lastSector()
-             << '(' << m.second->length() << ')'
-             << "to -" << new_end;
+    cDebug() << "Resize from" << m.second->firstSector() << '-' << m.second->lastSector() << '(' << m.second->length()
+             << ')' << "to -" << new_end;
 
     if ( new_end < 0 )
-        return Calamares::JobResult::error(
-            tr( "Resize Failed" ),
-            !m_fsname.isEmpty() ? tr( "The filesystem %1 cannot be resized." ).arg( m_fsname )
-                                : tr( "The device %1 cannot be resized." ).arg( m_devicename ) );
+        return Calamares::JobResult::error( tr( "Resize Failed" ),
+                                            !m_fsname.isEmpty()
+                                                ? tr( "The filesystem %1 cannot be resized." ).arg( m_fsname )
+                                                : tr( "The device %1 cannot be resized." ).arg( m_devicename ) );
     if ( new_end == 0 )
     {
-        cWarning() << "Resize operation on" << m_fsname << m_devicename
-                   << "skipped as not-useful.";
+        cWarning() << "Resize operation on" << m_fsname << m_devicename << "skipped as not-useful.";
         if ( m_required )
             return Calamares::JobResult::error(
                 tr( "Resize Failed" ),
@@ -226,13 +222,13 @@ ResizeFSJob::exec()
         ResizeOperation op( *m.first, *m.second, m.second->firstSector(), new_end );
         Report op_report( nullptr );
         if ( op.execute( op_report ) )
+        {
             cDebug() << "Resize operation OK.";
+        }
         else
         {
             cDebug() << "Resize failed." << op_report.output();
-            return Calamares::JobResult::error(
-                       tr( "Resize Failed" ),
-                       op_report.toText() );
+            return Calamares::JobResult::error( tr( "Resize Failed" ), op_report.toText() );
         }
     }
 
@@ -243,8 +239,8 @@ ResizeFSJob::exec()
 void
 ResizeFSJob::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    m_fsname = configurationMap["fs"].toString();
-    m_devicename = configurationMap["dev"].toString();
+    m_fsname = configurationMap[ "fs" ].toString();
+    m_devicename = configurationMap[ "dev" ].toString();
 
     if ( m_fsname.isEmpty() && m_devicename.isEmpty() )
     {
@@ -252,10 +248,10 @@ ResizeFSJob::setConfigurationMap( const QVariantMap& configurationMap )
         return;
     }
 
-    m_size = PartitionSize( configurationMap["size"].toString() );
-    m_atleast = PartitionSize( configurationMap["atleast"].toString() );
+    m_size = PartitionSize( configurationMap[ "size" ].toString() );
+    m_atleast = PartitionSize( configurationMap[ "atleast" ].toString() );
 
     m_required = CalamaresUtils::getBool( configurationMap, "required", false );
 }
 
-CALAMARES_PLUGIN_FACTORY_DEFINITION( ResizeFSJobFactory, registerPlugin<ResizeFSJob>(); )
+CALAMARES_PLUGIN_FACTORY_DEFINITION( ResizeFSJobFactory, registerPlugin< ResizeFSJob >(); )

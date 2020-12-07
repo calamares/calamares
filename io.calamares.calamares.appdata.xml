@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-FileCopyrightText: no
+     SPDX-License-Identifier: CC0-1.0
+-->
 <component type="desktop">
   <id>io.calamares.calamares.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>

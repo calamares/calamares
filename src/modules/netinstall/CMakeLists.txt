@@ -1,3 +1,8 @@
+# === This file is part of Calamares - <https://calamares.io> ===
+#
+#   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
+#
 calamares_add_plugin( netinstall
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
@@ -9,8 +14,6 @@ calamares_add_plugin( netinstall
         PackageModel.cpp
     UI
         page_netinst.ui
-    RESOURCES
-        netinstall.qrc
     LINK_PRIVATE_LIBRARIES
         calamaresui
         Qt5::Network

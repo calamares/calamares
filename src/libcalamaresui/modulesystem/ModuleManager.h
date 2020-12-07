@@ -1,20 +1,11 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2014-2015 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef MODULELOADER_H
@@ -46,7 +37,7 @@ class ModuleManager : public QObject
     Q_OBJECT
 public:
     explicit ModuleManager( const QStringList& paths, QObject* parent = nullptr );
-    virtual ~ModuleManager() override;
+    ~ModuleManager() override;
 
     static ModuleManager* instance();
 
@@ -71,12 +62,22 @@ public:
      */
     ModuleSystem::Descriptor moduleDescriptor( const QString& name );
 
+    /** @brief returns the module descriptor structure for the module @p instance
+     *
+     * Descriptors are for the module, which may have multiple instances;
+     * this is the same as moduleDescriptor( instance.module() ).
+     */
+    ModuleSystem::Descriptor moduleDescriptor( const ModuleSystem::InstanceKey& instanceKey )
+    {
+        return moduleDescriptor( instanceKey.module() );
+    }
+
     /**
      * @brief moduleInstance returns a Module object for a given instance key.
      * @param instanceKey the instance key for a module instance.
      * @return a pointer to an object of a subtype of Module.
      */
-    Module* moduleInstance( const QString& instanceKey );
+    Module* moduleInstance( const ModuleSystem::InstanceKey& instanceKey );
 
     /**
      * @brief loadModules does all of the module loading operation.
@@ -103,11 +104,37 @@ public:
     RequirementsModel* requirementsModel() { return m_requirementsModel; }
 
 signals:
+    /** @brief Emitted when all the module **configuration** has been read
+     *
+     * This indicates that all of the module.desc files have been
+     * loaded; bad ones are silently skipped, so this just indicates
+     * that the module manager is ready for the next phase (loading).
+     */
     void initDone();
-    void modulesLoaded();  /// All of the modules were loaded successfully
-    void modulesFailed( QStringList );  /// .. or not
-    // Below, see RequirementsChecker documentation
-    void requirementsComplete( bool );
+    /** @brief Emitted when all the modules are loaded successfully
+     *
+     * Each module listed in the settings is loaded. Modules are loaded
+     * only once, even when instantiated multiple times. If all of
+     * the listed modules are successfully loaded, this signal is
+     * emitted (otherwise, it isn't, so you need to wait for **both**
+     * of the signals).
+     *
+     * If this is emitted (i.e. all modules have loaded) then the next
+     * phase, requirements checking, can be started.
+     */
+    void modulesLoaded();
+    /** @brief Emitted if any modules failed to load
+     *
+     * Modules that failed to load (for any reason) are listed by
+     * instance key (e.g. "welcome@welcome", "shellprocess@mycustomthing").
+     */
+    void modulesFailed( QStringList );
+    /** @brief Emitted after all requirements have been checked
+     *
+     * The bool @p canContinue indicates if all of the **mandatory** requirements
+     * are satisfied (e.g. whether installation can continue).
+     */
+    void requirementsComplete( bool canContinue );
 
 private slots:
     void doInit();
@@ -136,7 +163,6 @@ private:
     bool checkModuleDependencies( const Module& );
 
     QMap< QString, ModuleSystem::Descriptor > m_availableDescriptorsByModuleName;
-    QMap< QString, QString > m_moduleDirectoriesByModuleName;
     QMap< ModuleSystem::InstanceKey, Module* > m_loadedModulesByInstanceKey;
     const QStringList m_paths;
     RequirementsModel* m_requirementsModel;

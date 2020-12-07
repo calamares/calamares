@@ -1,24 +1,16 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright (c) 2017, Kyle Robbertze <kyle@aims.ac.za>
- *   Copyright 2017-2018, 2020, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2017 Kyle Robbertze <kyle@aims.ac.za>
+ *   SPDX-FileCopyrightText: 2017-2018 2020, Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "PackageModel.h"
 
+#include "utils/Logger.h"
 #include "utils/Variant.h"
 #include "utils/Yaml.h"
 
@@ -254,22 +246,51 @@ PackageModel::setupModelData( const QVariantList& groupList, PackageTreeItem* pa
                     }
                 }
             }
+            if ( !item->childCount() )
+            {
+                cWarning() << "*packages* under" << item->name() << "is empty.";
+            }
         }
         if ( groupMap.contains( "subgroups" ) )
         {
+            bool haveWarned = false;
+            const auto& subgroupValue = groupMap.value( "subgroups" );
+            if ( !subgroupValue.canConvert( QVariant::List ) )
+            {
+                cWarning() << "*subgroups* under" << item->name() << "is not a list.";
+                haveWarned = true;
+            }
+
             QVariantList subgroups = groupMap.value( "subgroups" ).toList();
             if ( !subgroups.isEmpty() )
             {
                 setupModelData( subgroups, item );
                 // The children might be checked while the parent isn't (yet).
                 // Children are added to their parent (below) without affecting
-                // the checked-state -- do it manually.
-                item->updateSelected();
+                // the checked-state -- do it manually. Items with subgroups
+                // but no children have only hidden children -- those get
+                // handled specially.
+                if ( item->childCount() > 0 )
+                {
+                    item->updateSelected();
+                }
+            }
+            else
+            {
+                if ( !haveWarned )
+                {
+                    cWarning() << "*subgroups* list under" << item->name() << "is empty.";
+                }
             }
         }
         if ( item->isHidden() )
         {
             m_hiddenItems.append( item );
+            if ( !item->isSelected() )
+            {
+                cWarning() << "Item" << ( item->parentItem() ? item->parentItem()->name() : QString() ) << '.'
+                           << item->name() << "is hidden, but not selected.";
+            }
         }
         else
         {

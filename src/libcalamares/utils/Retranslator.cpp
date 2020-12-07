@@ -1,22 +1,10 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+/* === This file is part of Calamares - <https://calamares.io> ===
+ *
  *   SPDX-FileCopyrightText: 2014 Teo Mrnjavac <teo@kde.org>
- *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
- *
  *   SPDX-License-Identifier: GPL-3.0-or-later
- *   License-Filename: LICENSE
+ *
+ *   Calamares is Free Software: see the License-Identifier above.
+ *
  *
  */
 
@@ -180,17 +168,17 @@ TZLoader::tryLoad( QTranslator* translator )
 static void
 loadSingletonTranslator( TranslationLoader&& loader, QTranslator*& translator_p )
 {
-    QTranslator* translator = new QTranslator();
-    loader.tryLoad( translator );
-
-    if ( translator_p )
+    if ( !translator_p )
     {
-        QCoreApplication::removeTranslator( translator_p );
-        delete translator_p;
+        QTranslator* translator = new QTranslator();
+        loader.tryLoad( translator );
+        QCoreApplication::installTranslator( translator );
+        translator_p = translator;
     }
-
-    QCoreApplication::installTranslator( translator );
-    translator_p = translator;
+    else
+    {
+        loader.tryLoad( translator_p );
+    }
 }
 
 namespace CalamaresUtils
@@ -205,10 +193,9 @@ installTranslator( const QLocale& locale, const QString& brandingTranslationsPre
 {
     loadSingletonTranslator( BrandingLoader( locale, brandingTranslationsPrefix ), s_brandingTranslator );
     loadSingletonTranslator( TZLoader( locale ), s_tztranslator );
+    loadSingletonTranslator( CalamaresLoader( locale ), s_translator );
 
-    CalamaresLoader l( locale );  // because we want the extracted localeName
-    loadSingletonTranslator( std::move( l ), s_translator );
-    s_translatorLocaleName = l.m_localeName;
+    s_translatorLocaleName = CalamaresLoader::mungeLocaleName( locale );
 }
 
 
@@ -216,6 +203,12 @@ QString
 translatorLocaleName()
 {
     return s_translatorLocaleName;
+}
+
+bool
+loadTranslator( const QLocale& locale, const QString& prefix, QTranslator* translator )
+{
+    return ::tryLoad( translator, prefix, locale.name() );
 }
 
 Retranslator*

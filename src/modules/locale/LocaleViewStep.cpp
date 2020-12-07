@@ -1,20 +1,11 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2018, Adriaan de Groot <groot.org>
+ *   SPDX-FileCopyrightText: 2014-2016 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "LocaleViewStep.h"
@@ -34,7 +25,6 @@
 
 #include <QBoxLayout>
 #include <QLabel>
-#include <QtConcurrent/QtConcurrentRun>
 
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( LocaleViewStepFactory, registerPlugin< LocaleViewStep >(); )
@@ -44,7 +34,7 @@ LocaleViewStep::LocaleViewStep( QObject* parent )
     , m_widget( new QWidget() )
     , m_actualWidget( nullptr )
     , m_nextEnabled( false )
-    , m_geoip( nullptr )
+    , m_config( std::make_unique< Config >() )
 {
     QBoxLayout* mainLayout = new QHBoxLayout;
     m_widget->setLayout( mainLayout );
@@ -66,31 +56,17 @@ LocaleViewStep::~LocaleViewStep()
 void
 LocaleViewStep::setUpPage()
 {
+    m_config->setCurrentLocation();
     if ( !m_actualWidget )
     {
-        m_actualWidget = new LocalePage();
+        m_actualWidget = new LocalePage( m_config.get() );
     }
-    m_actualWidget->init( m_startingTimezone.first, m_startingTimezone.second, m_localeGenPath );
     m_widget->layout()->addWidget( m_actualWidget );
 
     ensureSize( m_actualWidget->sizeHint() );
 
     m_nextEnabled = true;
     emit nextStatusChanged( m_nextEnabled );
-}
-
-
-void
-LocaleViewStep::fetchGeoIpTimezone()
-{
-    if ( m_geoip && m_geoip->isValid() )
-    {
-        m_startingTimezone = m_geoip->get();
-        if ( !m_startingTimezone.isValid() )
-        {
-            cWarning() << "GeoIP lookup at" << m_geoip->url() << "failed.";
-        }
-    }
 }
 
 
@@ -104,7 +80,7 @@ LocaleViewStep::prettyName() const
 QString
 LocaleViewStep::prettyStatus() const
 {
-    return m_prettyStatus;
+    return m_config->prettyStatus();
 }
 
 
@@ -146,13 +122,14 @@ LocaleViewStep::isAtEnd() const
 Calamares::JobList
 LocaleViewStep::jobs() const
 {
-    return m_jobs;
+    return m_config->createJobs();
 }
 
 
 void
 LocaleViewStep::onActivate()
 {
+    m_config->setCurrentLocation();  // Finalize the location
     if ( !m_actualWidget )
     {
         setUpPage();
@@ -164,83 +141,12 @@ LocaleViewStep::onActivate()
 void
 LocaleViewStep::onLeave()
 {
-    if ( m_actualWidget )
-    {
-        m_jobs = m_actualWidget->createJobs();
-        m_prettyStatus = m_actualWidget->prettyStatus();
-
-        auto map = m_actualWidget->localesMap();
-        QVariantMap vm;
-        for ( auto it = map.constBegin(); it != map.constEnd(); ++it )
-        {
-            vm.insert( it.key(), it.value() );
-        }
-
-        Calamares::JobQueue::instance()->globalStorage()->insert( "localeConf", vm );
-    }
-    else
-    {
-        m_jobs.clear();
-        Calamares::JobQueue::instance()->globalStorage()->remove( "localeConf" );
-    }
+    m_config->finalizeGlobalStorage();
 }
 
 
 void
 LocaleViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    QString region = CalamaresUtils::getString( configurationMap, "region" );
-    QString zone = CalamaresUtils::getString( configurationMap, "zone" );
-    if ( !region.isEmpty() && !zone.isEmpty() )
-    {
-        m_startingTimezone = CalamaresUtils::GeoIP::RegionZonePair( region, zone );
-    }
-    else
-    {
-        m_startingTimezone
-            = CalamaresUtils::GeoIP::RegionZonePair( QStringLiteral( "America" ), QStringLiteral( "New_York" ) );
-    }
-
-    m_localeGenPath = CalamaresUtils::getString( configurationMap, "localeGenPath" );
-    if ( m_localeGenPath.isEmpty() )
-    {
-        m_localeGenPath = QStringLiteral( "/etc/locale.gen" );
-    }
-
-    bool ok = false;
-    QVariantMap geoip = CalamaresUtils::getSubMap( configurationMap, "geoip", ok );
-    if ( ok )
-    {
-        QString url = CalamaresUtils::getString( geoip, "url" );
-        QString style = CalamaresUtils::getString( geoip, "style" );
-        QString selector = CalamaresUtils::getString( geoip, "selector" );
-
-        m_geoip = std::make_unique< CalamaresUtils::GeoIP::Handler >( style, url, selector );
-        if ( !m_geoip->isValid() )
-        {
-            cWarning() << "GeoIP Style" << style << "is not recognized.";
-        }
-    }
-}
-
-Calamares::RequirementsList
-LocaleViewStep::checkRequirements()
-{
-    if ( m_geoip && m_geoip->isValid() )
-    {
-        auto& network = CalamaresUtils::Network::Manager::instance();
-        if ( network.hasInternet() )
-        {
-            fetchGeoIpTimezone();
-        }
-        else
-        {
-            if ( network.synchronousPing( m_geoip->url() ) )
-            {
-                fetchGeoIpTimezone();
-            }
-        }
-    }
-
-    return Calamares::RequirementsList();
+    m_config->setConfigurationMap( configurationMap );
 }

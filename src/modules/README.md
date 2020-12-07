@@ -1,5 +1,10 @@
 # Calamares modules
 
+<!-- SPDX-FileCopyrightText: 2014 Teo Mrnjavac <teo@kde.org>
+     SPDX-FileCopyrightText: 2017 Adriaan de Groot <groot@kde.org>
+     SPDX-License-Identifier: GPL-3.0-or-later
+-->
+
 Calamares modules are plugins that provide features like installer pages,
 batch jobs, etc. An installer page (visible to the user) is called a "view",
 while other modules are "jobs".
@@ -46,8 +51,18 @@ Module descriptors **must** have the following keys:
 - *interface* (see below for the different interfaces; generally we
   refer to the kinds of modules by their interface)
 
+Module descriptors for C++ modules **may** have the following key:
+- *load* (the name of the shared library to load; if empty, uses a
+  standard library name derived from the module name)
+
 Module descriptors for Python modules **must** have the following key:
 - *script* (the name of the Python script to load, nearly always `main.py`)
+
+Module descriptors for process modules **must** have the following key:
+- *command* (the command to run)
+Module descriptors for process modules **may** have the following keys:
+- *timeout* (how long, in seconds, to wait for the command to run)
+- *chroot* (if true, run the command in the target system rather than the host)
 
 Module descriptors **may** have the following keys:
 - *emergency* (a boolean value, set to true to mark the module
@@ -56,6 +71,8 @@ Module descriptors **may** have the following keys:
   has no configuration file; defaults to false)
 - *requiredModules* (a list of modules which are required for this module
   to operate properly)
+- *weight* (a relative module weight, used to scale progress reporting)
+
 
 ### Required Modules
 
@@ -112,6 +129,40 @@ All sample module configuration files are installed in
 files with the same name placed manually (or by the packager)
 in `/etc/calamares/modules`.
 
+### Module Weights
+
+During the *exec* phase of an installation, where jobs are run and
+things happen to the target system, there is a running progress bar.
+It goes from 0% to 100% while all of the jobs for that exec phase
+are run. Generally, one module creates on job, but this varies a little
+(e.g. the partition module can spawn a whole bunch of jobs to
+deal with each disk, and the users module has separate jobs for
+the regular user and the root user).
+
+By default, modules all "weigh" the same, and each job is equal.
+A typical installation has about 30 modules in the exec phase,
+so there may be 40 jobs or so: each job represents 2.5% of the
+overall progress of the installation.
+
+The consequence is that the *unpackfs* module, which needs to write
+a few hundred MB to disk, gets 2.5% of the progress, and the *machineid*
+module, which is essentially instantaneous, also gets 2.5% of the progress.
+This makes progress reporting seem weird and uneven, and suggests to users
+that Calamares may be "hanging" during the unpackfs stage.
+
+A module may be assigned a different "weight" in the `module.desc`
+file (or via the CMake macros for adding plugins). This gives the
+module more space in the overall progress: for instance, the *unpackfs*
+module now has a weight of 12, so (assuming there are 38 modules
+in the exec phase with a weight of 1, and *unpackfs* with a weight of 12)
+regular modules get 2% (1 in 50 total weight) of the overall progress
+bar, and the *unpackfs* module gets 24% (12 in 50). While this doesn't
+speed anything up, it does make the progress in the unpackfs module more
+visible.
+
+It is also possible to set a weight on a specific module **instance**,
+which can be done in `settings.conf`. This overrides any weight
+set in the module descriptor.
 
 
 ## C++ modules

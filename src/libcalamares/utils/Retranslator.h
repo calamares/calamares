@@ -1,22 +1,10 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+/* === This file is part of Calamares - <https://calamares.io> ===
+ *
  *   SPDX-FileCopyrightText: 2014-2015 Teo Mrnjavac <teo@kde.org>
- *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
- *
  *   SPDX-License-Identifier: GPL-3.0-or-later
- *   License-Filename: LICENSE
+ *
+ *   Calamares is Free Software: see the License-Identifier above.
+ *
  *
  */
 
@@ -33,6 +21,7 @@
 
 class QEvent;
 class QLocale;
+class QTranslator;
 
 namespace CalamaresUtils
 {
@@ -43,7 +32,28 @@ namespace CalamaresUtils
  */
 DLLEXPORT void installTranslator( const QLocale& locale, const QString& brandingTranslationsPrefix );
 
+/** @brief The name of the (locale of the) most recently installed translator
+ *
+ * May return something different from the locale.name() of the
+ * QLocale passed in, because Calamares will munge some names and
+ * may remap translations.
+ */
 DLLEXPORT QString translatorLocaleName();
+
+/** @brief Loads <prefix><locale> translations into the given @p translator
+ *
+ * This function is not intended for general use: it is for those special
+ * cases where modules need their own translator / translations for data
+ * that is locale to the module. Tries to load a .qm from "sensible"
+ * locations, which are the same ones that installTranslator() would use.
+ * Takes local-translations into account.
+ *
+ * Note that @p prefix should end with an underscore '_' -- this function
+ * does not introduce one by itself.
+ *
+ * @returns @c true on success
+ */
+DLLEXPORT bool loadTranslator( const QLocale& locale, const QString& prefix, QTranslator* translator );
 
 /** @brief Set @p allow to true to load translations from current dir.
  *

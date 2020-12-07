@@ -1,20 +1,11 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2014 Aurélien Gâteau <agateau@kde.org>
+ *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "core/PartitionInfo.h"
@@ -61,7 +52,15 @@ PartitionTable::Flags
 flags( const Partition* partition )
 {
     auto v = partition->property( FLAGS_PROPERTY );
-    if ( v.type() == QVariant::Int )
+    if ( !v.isValid() )
+    {
+        return partition->activeFlags();
+    }
+    // The underlying type of PartitionTable::Flags can be int or uint
+    // (see qflags.h) and so setting those flags can create a QVariant
+    // of those types; we don't just want to check QVariant::canConvert()
+    // here because that will also accept QByteArray and some other things.
+    if ( v.type() == QVariant::Int || v.type() == QVariant::UInt )
     {
         return static_cast< PartitionTable::Flags >( v.toInt() );
     }

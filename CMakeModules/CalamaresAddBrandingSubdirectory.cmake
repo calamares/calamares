@@ -1,20 +1,11 @@
-# === This file is part of Calamares - <https://github.com/calamares> ===
+# === This file is part of Calamares - <https://calamares.io> ===
 #
-#   Calamares is free software: you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License as published by
-#   the Free Software Foundation, either version 3 of the License, or
-#   (at your option) any later version.
+#   SPDX-FileCopyrightText: 2014 Teo Mrnjavac <teo@kde.org>
+#   SPDX-FileCopyrightText: 2017 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
 #
-#   Calamares is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#   GNU General Public License for more details.
+#   Calamares is Free Software: see the License-Identifier above.
 #
-#   You should have received a copy of the GNU General Public License
-#   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
-#
-#   SPDX-License-Identifier: GPL-3.0-or-later
-#   License-Filename: LICENSE
 #
 ###
 #
@@ -70,7 +61,11 @@ function( calamares_add_branding NAME )
         foreach( BRANDING_COMPONENT_FILE ${BRANDING_COMPONENT_FILES} )
             set( _subpath ${_brand_dir}/${BRANDING_COMPONENT_FILE} )
             if( NOT IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${_subpath} )
-                configure_file( ${_subpath} ${_subpath} COPYONLY )
+                set( _src ${CMAKE_CURRENT_SOURCE_DIR}/${_subpath} )
+                set( _dst ${CMAKE_CURRENT_BINARY_DIR}/${_subpath} )
+                if( ${_src} IS_NEWER_THAN ${_dst} )
+                    configure_file( ${_src} ${_dst} COPYONLY )
+                endif()
 
                 install( FILES ${CMAKE_CURRENT_BINARY_DIR}/${_subpath}
                             DESTINATION ${BRANDING_COMPONENT_DESTINATION}/${_subdir}/ )

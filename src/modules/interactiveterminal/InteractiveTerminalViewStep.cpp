@@ -1,19 +1,10 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2014-2015 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "InteractiveTerminalViewStep.h"
@@ -24,7 +15,8 @@
 
 #include <QVariant>
 
-CALAMARES_PLUGIN_FACTORY_DEFINITION( InteractiveTerminalViewStepFactory, registerPlugin<InteractiveTerminalViewStep>(); )
+CALAMARES_PLUGIN_FACTORY_DEFINITION( InteractiveTerminalViewStepFactory,
+                                     registerPlugin< InteractiveTerminalViewStep >(); )
 
 InteractiveTerminalViewStep::InteractiveTerminalViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
@@ -37,7 +29,9 @@ InteractiveTerminalViewStep::InteractiveTerminalViewStep( QObject* parent )
 InteractiveTerminalViewStep::~InteractiveTerminalViewStep()
 {
     if ( m_widget && m_widget->parent() == nullptr )
+    {
         m_widget->deleteLater();
+    }
 }
 
 
@@ -102,8 +96,8 @@ InteractiveTerminalViewStep::onActivate()
 void
 InteractiveTerminalViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    if ( configurationMap.contains( "command" ) &&
-         configurationMap.value( "command").type() == QVariant::String )
+    if ( configurationMap.contains( "command" ) && configurationMap.value( "command" ).type() == QVariant::String )
+    {
         m_widget->setCommand( configurationMap.value( "command" ).toString() );
+    }
 }
-

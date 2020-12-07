@@ -1,7 +1,11 @@
+# SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+# SPDX-License-Identifier: GPL-3.0-or-later
 ---
 $schema: https://json-schema.org/schema#
 $id: https://calamares.io/schemas/initcpio
 additionalProperties: false
 type: object
 properties:
-  kernel: { type: string, required: true }
+    kernel: { type: string }
+    be_unsafe: { type: boolean, default: false }
+required: [ kernel ]

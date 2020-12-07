@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
+ <author>
+SPDX-FileCopyrightText: 2014 Teo Mrnjavac &lt;teo@kde.org&gt;
+SPDX-License-Identifier: GPL-3.0-or-later
+ </author>
  <class>Page_UserSetup</class>
  <widget class="QWidget" name="Page_UserSetup">
   <property name="geometry">
@@ -127,7 +131,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="QLineEdit" name="textBoxUsername">
+      <widget class="QLineEdit" name="textBoxLoginName">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -226,7 +230,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
-      <widget class="QLineEdit" name="textBoxHostname">
+      <widget class="QLineEdit" name="textBoxHostName">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -446,7 +450,7 @@
     </spacer>
    </item>
    <item>
-    <widget class="QCheckBox" name="checkBoxValidatePassword">
+    <widget class="QCheckBox" name="checkBoxRequireStrongPassword">
      <property name="toolTip">
       <string>When this box is checked, password-strength checking is done and you will not be able to use a weak password.</string>
      </property>
@@ -456,7 +460,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="checkBoxAutoLogin">
+    <widget class="QCheckBox" name="checkBoxDoAutoLogin">
      <property name="text">
       <string>Log in automatically without asking for the password.</string>
      </property>

@@ -1,23 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# === This file is part of Calamares - <https://github.com/calamares> ===
+# === This file is part of Calamares - <https://calamares.io> ===
 #
-#   Copyright 2017, Ghiunhan Mamut <venerix@redcorelinux.org>
-#   Copyright 2019, Adriaan de Groot <groot@kde.org>
+#   SPDX-FileCopyrightText: 2017 Ghiunhan Mamut <venerix@redcorelinux.org>
+#   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: GPL-3.0-or-later
 #
-#   Calamares is free software: you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License as published by
-#   the Free Software Foundation, either version 3 of the License, or
-#   (at your option) any later version.
+#   Calamares is Free Software: see the License-Identifier above.
 #
-#   Calamares is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#   GNU General Public License for more details.
-#
-#   You should have received a copy of the GNU General Public License
-#   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
 import os.path
 
@@ -30,6 +21,7 @@ _ = gettext.translation("calamares-python",
                         fallback=True).gettext
 
 
+
 def pretty_name():
     return _("Configuring OpenRC dmcrypt service.")
 
@@ -37,6 +29,7 @@ def pretty_name():
 def write_dmcrypt_conf(partitions, root_mount_point, dmcrypt_conf_path):
     crypto_target = ""
     crypto_source = ""
+    unencrypted_separate_boot = any(p["mountPoint"] == "/boot" and "luksMapperName" not in p for p in partitions)
 
     for partition in partitions:
         has_luks = "luksMapperName" in partition
@@ -45,7 +38,6 @@ def write_dmcrypt_conf(partitions, root_mount_point, dmcrypt_conf_path):
         if not has_luks and not skip_partitions:
             libcalamares.utils.debug(
                 "Skip writing OpenRC LUKS configuration for partition {!s}".format(partition["mountPoint"]))
-
         if has_luks and not skip_partitions:
             crypto_target = partition["luksMapperName"]
             crypto_source = "/dev/disk/by-uuid/{!s}".format(partition["uuid"])
@@ -55,7 +47,9 @@ def write_dmcrypt_conf(partitions, root_mount_point, dmcrypt_conf_path):
             with open(os.path.join(root_mount_point, dmcrypt_conf_path), 'a+') as dmcrypt_file:
                 dmcrypt_file.write("\ntarget=" + crypto_target)
                 dmcrypt_file.write("\nsource=" + crypto_source)
-                dmcrypt_file.write("\nkey=/crypto_keyfile.bin")
+                # Don't use keyfile if boot is unencrypted, keys must not be stored on unencrypted partitions
+                if not unencrypted_separate_boot:
+                    dmcrypt_file.write("\nkey=/crypto_keyfile.bin")
                 dmcrypt_file.write("\n")
 
         if has_luks and skip_partitions:

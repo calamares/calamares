@@ -1,19 +1,10 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2020, Anke Boersma <demm@kaosx.us>
+ *   SPDX-FileCopyrightText: 2020 Anke Boersma <demm@kaosx.us>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 import io.calamares.ui 1.0
@@ -31,10 +22,6 @@ Item {
     MouseArea {
         anchors.fill: parent
     }
-
-    //Needs to come from Locale config
-    property var confLang: "en_US.UTF8"
-    property var confLocale: "nl_NL.UTF8"
 
     Rectangle {
         id: textArea
@@ -57,7 +44,7 @@ Item {
                     width: 240
                     wrapMode: Text.WordWrap
                     text: qsTr("<h1>Languages</h1> </br>
-                    The system locale setting affects the language and character set for some command line user interface elements. The current setting is <strong>%1</strong>.").arg(confLang)
+                    The system locale setting affects the language and character set for some command line user interface elements. The current setting is <strong>%1</strong>.").arg(config.currentLanguageCode)
                     font.pointSize: 10
                 }
             }
@@ -76,10 +63,9 @@ Item {
                         id: list1
                         focus: true
 
-                        // bogus entries, need to come from Locale config
-                        model: ["en_GB.UTF-8 UTF-8", "en_US.UTF-8 UTF-8 ", "nl_NL.UTF-8 UTF-8", "en_GB.UTF-8 UTF-8", "en_US.UTF-8 UTF-8 ", "nl_NL.UTF-8 UTF-8", "en_GB.UTF-8 UTF-8", "en_US.UTF-8 UTF-8 ", "nl_NL.UTF-8 UTF-8", "en_GB.UTF-8 UTF-8", "en_US.UTF-8 UTF-8 ", "nl_NL.UTF-8 UTF-8", "en_GB.UTF-8 UTF-8", "en_US.UTF-8 UTF-8 ", "nl_NL.UTF-8 UTF-8"]
+                        model: config.supportedLocales
 
-                        currentIndex: 1
+                        currentIndex: -1
                         highlight: Rectangle {
                             color: Kirigami.Theme.highlightColor
                         }
@@ -95,17 +81,17 @@ Item {
                                 }
                                 onClicked: {
                                     list1.currentIndex = index
-                                    confLang = list1.currentIndex
                                 }
                             }
                         }
+                        onCurrentItemChanged: { config.currentLanguageCode = model[currentIndex] } /* This works because model is a stringlist */
                     }
                 }
             }
         }
 
         Column {
-            id: i18n
+            id: lc_numeric
             x: 430
             y: 40
 
@@ -118,7 +104,7 @@ Item {
                     width: 240
                     wrapMode: Text.WordWrap
                     text: qsTr("<h1>Locales</h1> </br>
-                    The system locale setting affects the language and character set for some command line user interface elements. The current setting is <strong>%1</strong>.").arg(confLocale)
+                    The system locale setting affects the numbers and dates format. The current setting is <strong>%1</strong>.").arg(config.currentLCCode)
                     font.pointSize: 10
                 }
             }
@@ -138,10 +124,9 @@ Item {
                         width: 180; height: 200
                         focus: true
 
-                        // bogus entries, need to come from Locale config
-                        model: ["en_GB.UTF-8 UTF-8", "en_US.UTF-8 UTF-8 ", "nl_NL.UTF-8 UTF-8", "en_GB.UTF-8 UTF-8", "en_US.UTF-8 UTF-8 ", "nl_NL.UTF-8 UTF-8", "en_GB.UTF-8 UTF-8", "en_US.UTF-8 UTF-8 ", "nl_NL.UTF-8 UTF-8", "en_GB.UTF-8 UTF-8", "en_US.UTF-8 UTF-8 ", "nl_NL.UTF-8 UTF-8", "en_GB.UTF-8 UTF-8", "en_US.UTF-8 UTF-8 ", "nl_NL.UTF-8 UTF-8"]
+                        model: config.supportedLocales
 
-                        currentIndex: 2
+                        currentIndex: -1
                         highlight: Rectangle {
                             color: Kirigami.Theme.highlightColor
                         }
@@ -154,11 +139,10 @@ Item {
                                 cursorShape: Qt.PointingHandCursor
                                 onClicked: {
                                     list2.currentIndex = index
-                                    confLocale = list1.currentIndex
                                 }
                             }
                         }
-                        onCurrentItemChanged: console.debug(currentIndex)
+                        onCurrentItemChanged: { config.currentLCCode = model[currentIndex]; } /* This works because model is a stringlist */
                     }
                 }
             }

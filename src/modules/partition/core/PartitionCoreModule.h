@@ -1,21 +1,12 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
- *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2014 Aurélien Gâteau <agateau@kde.org>
+ *   SPDX-FileCopyrightText: 2014-2016 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef PARTITIONCOREMODULE_H
@@ -24,6 +15,7 @@
 #include "core/KPMHelpers.h"
 #include "core/PartitionLayout.h"
 #include "core/PartitionModel.h"
+#include "jobs/PartitionJob.h"
 
 #include "Job.h"
 #include "partition/KPMManager.h"
@@ -40,6 +32,7 @@
 #include <functional>
 
 class BootLoaderModel;
+class Config;
 class CreatePartitionJob;
 class Device;
 class DeviceModel;
@@ -92,7 +85,7 @@ public:
     };
 
     PartitionCoreModule( QObject* parent = nullptr );
-    ~PartitionCoreModule();
+    ~PartitionCoreModule() override;
 
     /**
      * @brief init performs a devices scan and initializes all KPMcore data
@@ -163,8 +156,11 @@ public:
     /// @brief Set the path where the bootloader will be installed
     void setBootLoaderInstallPath( const QString& path );
 
-    void initLayout();
-    void initLayout( const QVariantList& config );
+    /** @brief Initialize the default layout that will be applied
+     *
+     * See PartitionLayout::init()
+     */
+    void initLayout( FileSystem::Type defaultFsType, const QVariantList& config = QVariantList() );
 
     void layoutApply( Device* dev, qint64 firstSector, qint64 lastSector, QString luksPassphrase );
     void layoutApply( Device* dev,
@@ -179,7 +175,7 @@ public:
      * requested by the user.
      * @return a list of jobs.
      */
-    Calamares::JobList jobs() const;
+    Calamares::JobList jobs( const Config* ) const;
 
     bool hasRootMountPoint() const;
 
@@ -241,28 +237,19 @@ Q_SIGNALS:
     void deviceReverted( Device* device );
 
 private:
-    CalamaresUtils::Partition::KPMManager m_kpmcore;
-
+    struct DeviceInfo;
     void refreshAfterModelChange();
 
-    /**
-     * Owns the Device, PartitionModel and the jobs
-     */
-    struct DeviceInfo
-    {
-        DeviceInfo( Device* );
-        ~DeviceInfo();
-        QScopedPointer< Device > device;
-        QScopedPointer< PartitionModel > partitionModel;
-        const QScopedPointer< Device > immutableDevice;
-        Calamares::JobList jobs;
+    void doInit();
+    void updateHasRootMountPoint();
+    void updateIsDirty();
+    void scanForEfiSystemPartitions();
+    void scanForLVMPVs();
 
-        // To check if LVM VGs are deactivated
-        bool isAvailable;
+    DeviceInfo* infoForDevice( const Device* ) const;
 
-        void forgetChanges();
-        bool isDirty() const;
-    };
+    CalamaresUtils::Partition::KPMManager m_kpmcore;
+
     QList< DeviceInfo* > m_deviceInfos;
     QList< Partition* > m_efiSystemPartitions;
     QVector< const Partition* > m_lvmPVs;
@@ -272,15 +259,7 @@ private:
     bool m_hasRootMountPoint = false;
     bool m_isDirty = false;
     QString m_bootLoaderInstallPath;
-    PartitionLayout* m_partLayout;
-
-    void doInit();
-    void updateHasRootMountPoint();
-    void updateIsDirty();
-    void scanForEfiSystemPartitions();
-    void scanForLVMPVs();
-
-    DeviceInfo* infoForDevice( const Device* ) const;
+    PartitionLayout m_partLayout;
 
     OsproberEntryList m_osproberLines;
 

@@ -2,7 +2,6 @@
 #
 # SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
 # SPDX-License-Identifier: BSD-2-Clause
-# License-Filename: LICENSES/BSD2
 #
 usage = """
 Validates a Calamares config file -- YAML syntax -- against a schema.
@@ -46,6 +45,7 @@ ERR_IMPORT, ERR_USAGE, ERR_FILE_NOT_FOUND, ERR_SYNTAX, ERR_INVALID = range(1,6)
 #
 try:
     from jsonschema import validate, SchemaError, ValidationError
+    from jsonschema import draft7_format_checker
     from yaml import safe_load, YAMLError
 except ImportError as e:
     print(e)

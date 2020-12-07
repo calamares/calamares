@@ -1,20 +1,11 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2020, Adriaan de Groot <groot@kde.org>
- *   Copyright 2020, Anke Boersma <demm@kaosx.us>
+ *   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2020 Anke Boersma <demm@kaosx.us>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 import io.calamares.core 1.0
@@ -29,35 +20,12 @@ Page {
     width: 800
     height: 550
 
-    property var confLang: "American English"
-    property var confLocale: "Nederland"
-    //Needs to come from .conf/geoip
-    property var hasInternet: true
-
-    function getInt(format) {
-        var requestURL = "https://example.org/";
-        var xhr = new XMLHttpRequest;
-
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-
-                if (xhr.status !== 200) {
-                    console.log("Disconnected!!");
-                    var connected = false
-                    hasInternet = connected
-                    return;
-                }
-
-                else {
-                    console.log("Connected!!");
-                }
-            }
-        }
-        xhr.open("GET", requestURL, true);
-        xhr.send();
-    }
-    Component.onCompleted: {
-        getInt();
+    function onActivate() {
+        /* If you want the map to follow Calamares's GeoIP
+         * lookup or configuration, call the update function
+         * here, and disable the one at onCompleted in Map.qml.
+         */
+        if (Network.hasInternet) { image.item.getIpOffline() }
     }
 
     Loader {
@@ -65,7 +33,8 @@ Page {
         anchors.horizontalCenter: parent.horizontalCenter
         width: parent.width
         height: parent.height / 1.28
-        source: (hasInternet) ? "Map.qml" : "Offline.qml"
+        // Network is in io.calamares.core
+        source: Network.hasInternet ? "Map.qml" : "Offline.qml"
     }
 
     RowLayout {
@@ -85,8 +54,8 @@ Page {
                 rowSpacing: Kirigami.Units.largeSpacing
                 columnSpacing: Kirigami.Units.largeSpacing
 
-                Kirigami.Icon {
-                    source: "application-x-gettext-translation"
+                Image {
+                    source: "img/locale.svg"
                     Layout.fillHeight: true
                     Layout.maximumHeight: Kirigami.Units.iconSizes.medium
                     Layout.preferredWidth: height
@@ -95,7 +64,7 @@ Page {
                     Label {
                         Layout.fillWidth: true
                         wrapMode: Text.WordWrap
-                        text: qsTr("System language set to %1").arg(confLang)
+                        text: config.currentLanguageStatus
                     }
                     Kirigami.Separator {
                         Layout.fillWidth: true
@@ -103,7 +72,7 @@ Page {
                     Label {
                         Layout.fillWidth: true
                         wrapMode: Text.WordWrap
-                        text: qsTr("Numbers and dates locale set to %1").arg(confLocale)
+                        text: config.currentLCStatus
                     }
                 }
                 Button {

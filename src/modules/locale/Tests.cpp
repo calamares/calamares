@@ -1,31 +1,46 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2019-2020, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2019-2020 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-#include "Tests.h"
+#include "Config.h"
 #include "LocaleConfiguration.h"
 #include "timezonewidget/TimeZoneImage.h"
 
 #include "locale/TimeZone.h"
+#include "utils/Logger.h"
 
 #include <QtTest/QtTest>
 
 #include <set>
+
+class LocaleTests : public QObject
+{
+    Q_OBJECT
+public:
+    LocaleTests();
+    ~LocaleTests() override;
+
+private Q_SLOTS:
+    void initTestCase();
+    // Check the sample config file is processed correctly
+    void testEmptyLocaleConfiguration();
+    void testDefaultLocaleConfiguration();
+    void testSplitLocaleConfiguration();
+
+    // Check the TZ images for consistency
+    void testTZSanity();
+    void testTZImages();  // No overlaps in images
+    void testTZLocations();  // No overlaps in locations
+    void testSpecificLocations();
+
+    // Check the Config loading
+    void testConfigInitialization();
+};
 
 QTEST_MAIN( LocaleTests )
 
@@ -84,6 +99,18 @@ LocaleTests::testSplitLocaleConfiguration()
 }
 
 void
+LocaleTests::testTZSanity()
+{
+    // Data source for all TZ info
+    QVERIFY( QFile( "/usr/share/zoneinfo/zone.tab" ).exists() );
+
+    // Contains a sensible number of total zones
+    const CalamaresUtils::Locale::ZonesModel zones;
+    QVERIFY( zones.rowCount( QModelIndex() ) > 100 );
+}
+
+
+void
 LocaleTests::testTZImages()
 {
     // This test messes around with log-levels a lot so
@@ -115,37 +142,35 @@ LocaleTests::testTZImages()
     //
     //
     using namespace CalamaresUtils::Locale;
-    const CStringPairList& regions = TZRegion::fromZoneTab();
+    const ZonesModel m;
 
     int overlapcount = 0;
-    for ( const auto* pr : regions )
+    for ( auto it = m.begin(); it; ++it )
     {
-        const TZRegion* region = dynamic_cast< const TZRegion* >( pr );
-        QVERIFY( region );
+        QString region = m.data( m.index( it.index() ), ZonesModel::RegionRole ).toString();
+        QString zoneName = m.data( m.index( it.index() ), ZonesModel::KeyRole ).toString();
+        QVERIFY( !region.isEmpty() );
+        QVERIFY( !zoneName.isEmpty() );
+        const auto* zone = m.find( region, zoneName );
+        const auto* iterzone = *it;
 
-        Logger::setupLogLevel( Logger::LOGDEBUG );
-        cDebug() << "Region" << region->region() << "zones #" << region->zones().count();
-        Logger::setupLogLevel( Logger::LOGERROR );
+        QVERIFY( iterzone );
+        QVERIFY( zone );
+        QCOMPARE( zone, iterzone );
+        QCOMPARE( zone->zone(), zoneName );
+        QCOMPARE( zone->region(), region );
 
-        const auto zones = region->zones();
-        QVERIFY( zones.count() > 0 );
-        for ( const auto* pz : zones )
+        int overlap = 0;
+        auto pos = images.getLocationPosition( zone->longitude(), zone->latitude() );
+        QVERIFY( images.index( pos, overlap ) >= 0 );
+        QVERIFY( overlap > 0 );  // At least one image contains the spot
+        if ( overlap > 1 )
         {
-            const TZZone* zone = dynamic_cast< const TZZone* >( pz );
-            QVERIFY( zone );
-
-            int overlap = 0;
-            auto pos = images.getLocationPosition( zone->longitude(), zone->latitude() );
-            QVERIFY( images.index( pos, overlap ) >= 0 );
-            QVERIFY( overlap > 0 );  // At least one image contains the spot
-            if ( overlap > 1 )
-            {
-                Logger::setupLogLevel( Logger::LOGDEBUG );
-                cDebug() << Logger::SubEntry << "Zone" << zone->zone() << pos;
-                (void)images.index( pos, overlap );
-                Logger::setupLogLevel( Logger::LOGERROR );
-                overlapcount++;
-            }
+            Logger::setupLogLevel( Logger::LOGDEBUG );
+            cDebug() << Logger::SubEntry << "Zone" << zone->zone() << pos;
+            (void)images.index( pos, overlap );
+            Logger::setupLogLevel( Logger::LOGERROR );
+            overlapcount++;
         }
     }
 
@@ -168,12 +193,17 @@ operator<( const QPoint& l, const QPoint& r )
 }
 
 void
-listAll( const QPoint& p, const CalamaresUtils::Locale::CStringPairList& zones )
+listAll( const QPoint& p, const CalamaresUtils::Locale::ZonesModel& zones )
 {
     using namespace CalamaresUtils::Locale;
-    for ( const auto* pz : zones )
+    for ( auto it = zones.begin(); it; ++it )
     {
-        const TZZone* zone = dynamic_cast< const TZZone* >( pz );
+        const auto* zone = *it;
+        if ( !zone )
+        {
+            cError() << Logger::SubEntry << "NULL zone";
+            return;
+        }
         if ( p == TimeZoneImageList::getLocationPosition( zone->longitude(), zone->latitude() ) )
         {
             cError() << Logger::SubEntry << zone->zone();
@@ -185,78 +215,37 @@ void
 LocaleTests::testTZLocations()
 {
     using namespace CalamaresUtils::Locale;
-    const CStringPairList& regions = TZRegion::fromZoneTab();
+    ZonesModel zones;
+
+    QVERIFY( zones.rowCount( QModelIndex() ) > 100 );
 
     int overlapcount = 0;
-    for ( const auto* pr : regions )
+    std::set< QPoint > occupied;
+    for ( auto it = zones.begin(); it; ++it )
     {
-        const TZRegion* region = dynamic_cast< const TZRegion* >( pr );
-        QVERIFY( region );
+        const auto* zone = *it;
+        QVERIFY( zone );
 
-        Logger::setupLogLevel( Logger::LOGDEBUG );
-        cDebug() << "Region" << region->region() << "zones #" << region->zones().count();
-        Logger::setupLogLevel( Logger::LOGERROR );
-
-        std::set< QPoint > occupied;
-
-        const auto zones = region->zones();
-        QVERIFY( zones.count() > 0 );
-        for ( const auto* pz : zones )
+        auto pos = TimeZoneImageList::getLocationPosition( zone->longitude(), zone->latitude() );
+        if ( occupied.find( pos ) != occupied.end() )
         {
-            const TZZone* zone = dynamic_cast< const TZZone* >( pz );
-            QVERIFY( zone );
-
-            auto pos = TimeZoneImageList::getLocationPosition( zone->longitude(), zone->latitude() );
-            if ( occupied.find( pos ) != occupied.end() )
-            {
-                cError() << "Zone" << zone->zone() << "occupies same spot as ..";
-                listAll( pos, zones );
-                overlapcount++;
-            }
-            occupied.insert( pos );
+            cError() << "Zone" << zone->zone() << "occupies same spot as ..";
+            listAll( pos, zones );
+            overlapcount++;
         }
+        occupied.insert( pos );
     }
 
     QEXPECT_FAIL( "", "TZ Images contain pixel-overlaps", Continue );
     QCOMPARE( overlapcount, 0 );
 }
 
-const CalamaresUtils::Locale::TZZone*
-findZone( const QString& name )
-{
-    using namespace CalamaresUtils::Locale;
-    const CStringPairList& regions = TZRegion::fromZoneTab();
-
-    for ( const auto* pr : regions )
-    {
-        const TZRegion* region = dynamic_cast< const TZRegion* >( pr );
-        if ( !region )
-        {
-            continue;
-        }
-        const auto zones = region->zones();
-        for ( const auto* pz : zones )
-        {
-            const TZZone* zone = dynamic_cast< const TZZone* >( pz );
-            if ( !zone )
-            {
-                continue;
-            }
-
-            if ( zone->zone() == name )
-            {
-                return zone;
-            }
-        }
-    }
-    return nullptr;
-}
-
 void
 LocaleTests::testSpecificLocations()
 {
-    const auto* gibraltar = findZone( "Gibraltar" );
-    const auto* ceuta = findZone( "Ceuta" );
+    CalamaresUtils::Locale::ZonesModel zones;
+    const auto* gibraltar = zones.find( "Europe", "Gibraltar" );
+    const auto* ceuta = zones.find( "Africa", "Ceuta" );
     QVERIFY( gibraltar );
     QVERIFY( ceuta );
 
@@ -268,3 +257,17 @@ LocaleTests::testSpecificLocations()
     QEXPECT_FAIL( "", "Gibraltar and Ceuta are really close", Continue );
     QVERIFY( gpos.y() < cpos.y() );  // Gibraltar is north of Ceuta
 }
+
+void
+LocaleTests::testConfigInitialization()
+{
+    Config c;
+
+    QVERIFY( !c.currentLocation() );
+    QVERIFY( !c.currentLocationStatus().isEmpty() );
+}
+
+
+#include "utils/moc-warnings.h"
+
+#include "Tests.moc"

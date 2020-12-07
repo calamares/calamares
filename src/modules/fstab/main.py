@@ -1,25 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# === This file is part of Calamares - <https://github.com/calamares> ===
+# === This file is part of Calamares - <https://calamares.io> ===
 #
-#   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
-#   Copyright 2016, Teo Mrnjavac <teo@kde.org>
-#   Copyright 2017, Alf Gaida <agaida@siduction.org>
-#   Copyright 2019, Adriaan de Groot <groot@kde.org>
+#   SPDX-FileCopyrightText: 2014 Aurélien Gâteau <agateau@kde.org>
+#   SPDX-FileCopyrightText: 2016 Teo Mrnjavac <teo@kde.org>
+#   SPDX-FileCopyrightText: 2017 Alf Gaida <agaida@siduction.org>
+#   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: GPL-3.0-or-later
 #
-#   Calamares is free software: you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License as published by
-#   the Free Software Foundation, either version 3 of the License, or
-#   (at your option) any later version.
+#   Calamares is Free Software: see the License-Identifier above.
 #
-#   Calamares is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#   GNU General Public License for more details.
-#
-#   You should have received a copy of the GNU General Public License
-#   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
 import os
 import re
@@ -266,7 +257,7 @@ class FstabGenerator(object):
 
         if mount_point == "/":
             check = 1
-        elif mount_point:
+        elif mount_point and mount_point != "swap":
             check = 2
         else:
             check = 0
@@ -279,8 +270,10 @@ class FstabGenerator(object):
 
         if has_luks:
             device = "/dev/mapper/" + partition["luksMapperName"]
-        else:
+        elif partition["uuid"] is not None:
             device = "UUID=" + partition["uuid"]
+        else:
+            device = partition["device"]
 
         return dict(device=device,
                     mount_point=mount_point,
@@ -316,6 +309,42 @@ class FstabGenerator(object):
                                       self.mount_options["default"])
 
 
+def create_swapfile(root_mount_point, root_btrfs):
+    """
+    Creates /swapfile in @p root_mount_point ; if the root filesystem
+    is on btrfs, then handle some btrfs specific features as well,
+    as documented in
+        https://wiki.archlinux.org/index.php/Swap#Swap_file
+
+    The swapfile-creation covers progress from 0.2 to 0.5
+    """
+    libcalamares.job.setprogress(0.2)
+    swapfile_path = os.path.join(root_mount_point, "swapfile")
+    with open(swapfile_path, "wb") as f:
+        pass
+    if root_btrfs:
+        o = subprocess.check_output(["chattr", "+C", swapfile_path])
+        libcalamares.utils.debug("swapfile attributes: {!s}".format(o))
+        o = subprocess.check_output(["btrfs", "property", "set", swapfile_path, "compression", "none"])
+        libcalamares.utils.debug("swapfile compression: {!s}".format(o))
+    # Create the swapfile; swapfiles are small-ish
+    zeroes = bytes(16384)
+    with open(swapfile_path, "wb") as f:
+        total = 0
+        desired_size = 512 * 1024 * 1024  # 512MiB
+        while total < desired_size:
+            chunk = f.write(zeroes)
+            if chunk < 1:
+                libcalamares.utils.debug("Short write on {!s}, cancelling.".format(swapfile_path))
+                break
+            libcalamares.job.setprogress(0.2 + 0.3 * ( total / desired_size ) )
+            total += chunk
+    os.chmod(swapfile_path, 0o600)
+    o = subprocess.check_output(["mkswap", swapfile_path])
+    libcalamares.utils.debug("swapfile mkswap: {!s}".format(o))
+    libcalamares.job.setprogress(0.5)
+
+
 def run():
     """ Configures fstab.
 
@@ -339,6 +368,17 @@ def run():
                 _("No root mount point is given for <pre>{!s}</pre> to use.")
                 .format("fstab"))
 
+    # This follows the GS settings from the partition module's Config object
+    swap_choice = global_storage.value( "partitionChoices" )
+    if swap_choice:
+        swap_choice = swap_choice.get( "swap", None )
+        if swap_choice and swap_choice == "file":
+            # There's no formatted partition for it, so we'll sneak in an entry
+            partitions.append( dict(fs="swap", mountPoint=None, claimed=True, device="/swapfile", uuid=None) )
+        else:
+            swap_choice = None
+
+    libcalamares.job.setprogress(0.1)
     mount_options = conf["mountOptions"]
     ssd_extra_mount_options = conf.get("ssdExtraMountOptions", {})
     crypttab_options = conf.get("crypttabOptions", "luks")
@@ -348,4 +388,14 @@ def run():
                                ssd_extra_mount_options,
                                crypttab_options)
 
-    return generator.run()
+    if swap_choice is not None:
+        libcalamares.job.setprogress(0.2)
+        root_partitions = [ p["fs"].lower() for p in partitions if p["mountPoint"] == "/" ]
+        root_btrfs = (root_partitions[0] == "btrfs") if root_partitions else False
+        create_swapfile(root_mount_point, root_btrfs)
+
+    try:
+        libcalamares.job.setprogress(0.5)
+        return generator.run()
+    finally:
+        libcalamares.job.setprogress(1.0)

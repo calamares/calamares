@@ -1,21 +1,12 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
- *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2014 Aurélien Gâteau <agateau@kde.org>
+ *   SPDX-FileCopyrightText: 2014-2016 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2017 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef PARTITIONVIEWSTEP_H
@@ -26,18 +17,18 @@
 
 #include "DllMacro.h"
 
-#include "core/PartitionActions.h"
-
 #include <QObject>
 #include <QSet>
 
 class ChoicePage;
+class Config;
 class PartitionPage;
 class PartitionCoreModule;
 class QStackedWidget;
 class WaitingWidget;
 
-template<typename T> class QFutureWatcher;
+template < typename T >
+class QFutureWatcher;
 
 /**
  * The starting point of the module. Instantiates PartitionCoreModule,
@@ -49,7 +40,7 @@ class PLUGINDLLEXPORT PartitionViewStep : public Calamares::ViewStep
 
 public:
     explicit PartitionViewStep( QObject* parent = nullptr );
-    virtual ~PartitionViewStep() override;
+    ~PartitionViewStep() override;
 
     QString prettyName() const override;
     QWidget* createSummaryWidget() const override;
@@ -78,19 +69,20 @@ private:
     void initPartitionCoreModule();
     void continueLoading();
 
+    /// "slot" for changes to next-status from the KPMCore and ChoicePage
+    void nextPossiblyChanged( bool );
+
+    Config* m_config;
+
     PartitionCoreModule* m_core;
-    QStackedWidget*   m_widget;
-    ChoicePage*       m_choicePage;
-    PartitionPage*    m_manualPartitionPage;
+    QStackedWidget* m_widget;
+    ChoicePage* m_choicePage;
+    PartitionPage* m_manualPartitionPage;
 
     WaitingWidget* m_waitingWidget;
-    QFutureWatcher<void>* m_future;
-
-    QSet< PartitionActions::Choices::SwapChoice > m_swapChoices;
-
-    qreal m_requiredStorageGiB;  // May duplicate setting in the welcome module
+    QFutureWatcher< void >* m_future;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( PartitionViewStepFactory )
 
-#endif // PARTITIONVIEWSTEP_H
+#endif  // PARTITIONVIEWSTEP_H

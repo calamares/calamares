@@ -1,25 +1,13 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+/* === This file is part of Calamares - <https://calamares.io> ===
+ *
  *   SPDX-FileCopyrightText: 2014-2015 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2019 Gabriel Craciunescu <crazy@frugalware.org>
  *   SPDX-FileCopyrightText: 2019 Dominic Hayes <ferenosdev@outlook.com>
  *   SPDX-FileCopyrightText: 2017-2018 Adriaan de Groot <groot@kde.org>
- *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
- *
  *   SPDX-License-Identifier: GPL-3.0-or-later
- *   License-Filename: LICENSE
+ *
+ *   Calamares is Free Software: see the License-Identifier above.
+ *
  *
  */
 
@@ -28,6 +16,7 @@
 
 #include "DllMacro.h"
 #include "modulesystem/Actions.h"
+#include "modulesystem/InstanceKey.h"
 
 #include <QObject>
 #include <QStringList>
@@ -36,20 +25,62 @@
 namespace Calamares
 {
 
-struct DLLEXPORT InstanceDescription
+/** @brief Description of an instance as named in `settings.conf`
+ *
+ * An instance is an intended-step-in-sequence; it is not yet
+ * a loaded module. The instances have config-files and weights
+ * which are used by the module manager when loading modules
+ * and creating jobs.
+ */
+class DLLEXPORT InstanceDescription
 {
-    InstanceDescription( const QVariantMap& );
+    using InstanceKey = Calamares::ModuleSystem::InstanceKey;
 
-    QString module;  ///< Module name (e.g. "welcome")
-    QString id;  ///< Id, to distinguish multiple instances (e.g. "one", for "welcome@one")
-    QString config;  ///< Config-file name (for multiple instances)
-    int weight;
+public:
+    /** @brief An invalid InstanceDescription
+     *
+     * Use `fromSettings()` to populate an InstanceDescription and
+     * check its validity.
+     */
+    InstanceDescription() = default;
+
+    /** @brief An InstanceDescription with no special settings.
+     *
+     * Regardless of @p key being custom, sets weight to 1 and
+     * the configuration file to @c key.module() (plus the ".conf"
+     * extension).
+     *
+     * To InstanceDescription is custom if the key is.
+     */
+    InstanceDescription( const InstanceKey& key );
+
+    static InstanceDescription fromSettings( const QVariantMap& );
+
+    bool isValid() const { return m_instanceKey.isValid(); }
+
+    const InstanceKey& key() const { return m_instanceKey; }
+    QString configFileName() const { return m_configFileName; }
+    bool isCustom() const { return m_instanceKey.isCustom(); }
+    int weight() const { return m_weight < 0 ? 1 : m_weight; }
+    bool explicitWeight() const { return m_weight > 0; }
+
+private:
+    InstanceKey m_instanceKey;
+    QString m_configFileName;
+    int m_weight = 0;
 };
 
 class DLLEXPORT Settings : public QObject
 {
     Q_OBJECT
+#ifdef BUILD_AS_TEST
+public:
+#endif
+    explicit Settings( bool debugMode );
     explicit Settings( const QString& settingsFilePath, bool debugMode );
+
+    void setConfiguration( const QByteArray& configData, const QString& explainName );
+    void reconcileInstancesAndSequence();
 
 public:
     static Settings* instance();
@@ -61,12 +92,33 @@ public:
     QStringList modulesSearchPaths() const;
 
     using InstanceDescriptionList = QList< InstanceDescription >;
-    InstanceDescriptionList customModuleInstances() const;
+    /** @brief All the module instances used
+     *
+     * Each module-instance mentioned in `settings.conf` has an entry
+     * in the moduleInstances list -- both custom entries that are
+     * in the *instances* section, and each module mentioned in the
+     * *sequence*.
+     */
+    InstanceDescriptionList moduleInstances() const;
 
-    using ModuleSequence = QList< QPair< ModuleSystem::Action, QStringList > >;
+    using ModuleSequence = QList< QPair< ModuleSystem::Action, Calamares::ModuleSystem::InstanceKeyList > >;
+    /** @brief Representation of *sequence* of execution
+     *
+     * Each "section" of the *sequence* key in `settings.conf` gets an
+     * entry here, stating what kind of action is taken and which modules
+     * take part (in order). Each entry in the list is an instance key
+     * which can be found in the moduleInstances() list.
+     */
     ModuleSequence modulesSequence() const;
 
     QString brandingComponentName() const;
+
+    /** @brief Are the settings consistent and valid?
+     *
+     * Checks that at least branding is set, and that the instances
+     * and sequence are valid.
+     */
+    bool isValid() const;
 
     /** @brief Is this a debugging run?
      *
@@ -113,7 +165,7 @@ private:
 
     QStringList m_modulesSearchPaths;
 
-    InstanceDescriptionList m_customModuleInstances;
+    InstanceDescriptionList m_moduleInstances;
     ModuleSequence m_modulesSequence;
 
     QString m_brandingComponentName;

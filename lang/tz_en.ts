@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-FileCopyrightText: no
+     SPDX-License-Identifier: CC0-1.0
+-->
 <!DOCTYPE TS>
 <TS version="2.1" language="en_US">
 <context>
@@ -2605,7 +2608,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="473"/>
         <source>Zaporozhye</source>
         <comment>tz_names</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zaporizhia</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="474"/>

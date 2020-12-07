@@ -1,28 +1,15 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+/* === This file is part of Calamares - <https://calamares.io> ===
+ *
  *   SPDX-FileCopyrightText: 2014-2015 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2017-2018 Adriaan de Groot <groot@kde.org>
- *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
- *
  *   SPDX-License-Identifier: GPL-3.0-or-later
- *   License-Filename: LICENSE
+ *
+ *   Calamares is Free Software: see the License-Identifier above.
+ *
  *
  */
 
 #include "GlobalStorage.h"
-#include "JobQueue.h"
 
 #include "utils/Logger.h"
 #include "utils/Units.h"
@@ -30,14 +17,37 @@
 
 #include <QFile>
 #include <QJsonDocument>
+#include <QMutexLocker>
 
 using CalamaresUtils::operator""_MiB;
 
 namespace Calamares
 {
 
-GlobalStorage::GlobalStorage()
-    : QObject( nullptr )
+class GlobalStorage::ReadLock : public QMutexLocker
+{
+public:
+    ReadLock( const GlobalStorage* gs )
+        : QMutexLocker( &gs->m_mutex )
+    {
+    }
+};
+
+class GlobalStorage::WriteLock : public QMutexLocker
+{
+public:
+    WriteLock( GlobalStorage* gs )
+        : QMutexLocker( &gs->m_mutex )
+        , m_gs( gs )
+    {
+    }
+    ~WriteLock() { m_gs->changed(); }
+
+    GlobalStorage* m_gs;
+};
+
+GlobalStorage::GlobalStorage( QObject* parent )
+    : QObject( parent )
 {
 }
 
@@ -45,6 +55,7 @@ GlobalStorage::GlobalStorage()
 bool
 GlobalStorage::contains( const QString& key ) const
 {
+    ReadLock l( this );
     return m.contains( key );
 }
 
@@ -52,6 +63,7 @@ GlobalStorage::contains( const QString& key ) const
 int
 GlobalStorage::count() const
 {
+    ReadLock l( this );
     return m.count();
 }
 
@@ -59,14 +71,15 @@ GlobalStorage::count() const
 void
 GlobalStorage::insert( const QString& key, const QVariant& value )
 {
+    WriteLock l( this );
     m.insert( key, value );
-    emit changed();
 }
 
 
 QStringList
 GlobalStorage::keys() const
 {
+    ReadLock l( this );
     return m.keys();
 }
 
@@ -74,8 +87,8 @@ GlobalStorage::keys() const
 int
 GlobalStorage::remove( const QString& key )
 {
+    WriteLock l( this );
     int nItems = m.remove( key );
-    emit changed();
     return nItems;
 }
 
@@ -83,21 +96,25 @@ GlobalStorage::remove( const QString& key )
 QVariant
 GlobalStorage::value( const QString& key ) const
 {
+    ReadLock l( this );
     return m.value( key );
 }
 
 void
 GlobalStorage::debugDump() const
 {
+    ReadLock l( this );
+    cDebug() << "GlobalStorage" << Logger::Pointer( this ) << m.count() << "items";
     for ( auto it = m.cbegin(); it != m.cend(); ++it )
     {
-        cDebug() << it.key() << '\t' << it.value();
+        cDebug() << Logger::SubEntry << it.key() << '\t' << it.value();
     }
 }
 
 bool
-GlobalStorage::save( const QString& filename )
+GlobalStorage::saveJson( const QString& filename ) const
 {
+    ReadLock l( this );
     QFile f( filename );
     if ( !f.open( QFile::WriteOnly ) )
     {
@@ -110,7 +127,7 @@ GlobalStorage::save( const QString& filename )
 }
 
 bool
-GlobalStorage::load( const QString& filename )
+GlobalStorage::loadJson( const QString& filename )
 {
     QFile f( filename );
     if ( !f.open( QFile::ReadOnly ) )
@@ -130,10 +147,14 @@ GlobalStorage::load( const QString& filename )
     }
     else
     {
+        WriteLock l( this );
+        // Do **not** use method insert() here, because it would
+        //   recursively lock the mutex, leading to deadlock. Also,
+        //   that would emit changed() for each key.
         auto map = d.toVariant().toMap();
         for ( auto i = map.constBegin(); i != map.constEnd(); ++i )
         {
-            insert( i.key(), *i );
+            m.insert( i.key(), *i );
         }
         return true;
     }
@@ -141,8 +162,9 @@ GlobalStorage::load( const QString& filename )
 }
 
 bool
-GlobalStorage::saveYaml( const QString& filename )
+GlobalStorage::saveYaml( const QString& filename ) const
 {
+    ReadLock l( this );
     return CalamaresUtils::saveYaml( filename, m );
 }
 
@@ -150,12 +172,20 @@ bool
 GlobalStorage::loadYaml( const QString& filename )
 {
     bool ok = false;
-    auto gs = CalamaresUtils::loadYaml( filename, &ok );
+    auto map = CalamaresUtils::loadYaml( filename, &ok );
     if ( ok )
     {
-        m = gs;
+        WriteLock l( this );
+        // Do **not** use method insert() here, because it would
+        //   recursively lock the mutex, leading to deadlock. Also,
+        //   that would emit changed() for each key.
+        for ( auto i = map.constBegin(); i != map.constEnd(); ++i )
+        {
+            m.insert( i.key(), *i );
+        }
+        return true;
     }
-    return ok;
+    return false;
 }
 
 

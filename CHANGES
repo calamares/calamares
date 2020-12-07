@@ -1,18 +1,312 @@
+<!-- SPDX-FileCopyrightText: no
+     SPDX-License-Identifier: CC0-1.0
+-->
+
 This is the changelog for Calamares. For each release, the major changes and
 contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.27 (unreleased) #
+# 3.2.35.1 (2020-12-07) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - Anubhav Choudhary
+ - Matti Hyttinen
+
+Some strange string artifacts appeared, leading to `{1?}` being
+displayed in various user-facing messages. These have been removed
+and the translations updated.
+
+## Modules ##
+ - The *initcpiocfg* module would sometimes configure the system to ask
+   for a passphrase, when none is needed.
+
+
+# 3.2.35 (2020-11-30) #
+
+This release contains contributions from (alphabetically by first name):
+ - Clarissa Borges
+ - Matti Hyttinen
+
+A new kind of issue template has been added for Calamares,
+for reporting (and adding tests for) usability issues. Thanks
+to Clarissa for leading that effort.
 
 ## Core ##
  - No core changes yet
 
 ## Modules ##
- - No module changes yet
+ - The *partition* module now supports a not-full-disk-encryption setup,
+   where `/boot` is not encrypted, but the rest of the system is.
+ - The *plasmalnf* module has been substantially rewritten, so that it
+   can support a QML version of the module in future. The UI has changed
+   a little, and now displays more themes than before.
+
+
+# 3.2.34 (2020-11-16) #
+
+This release contains contributions from (alphabetically by first name):
+ - Artem Grinev
+ - Gaël PORTAY
+
+## Core ##
+ - No core changes yet
+
+## Modules ##
+ - The *keyboard* module had a regression in which it no-longer painted
+   the keycaps in the keyboard preview. (reported by Vinnie)
+ - The *plasmalnf* module did not set all of the look-and-feel values
+   in the target system. (reported by Bluestar Linux)
+ - In the *users* module, warnings about the strength of the password
+   are now correctly pluralized when possible.
+ - In the *users* module, if ICU is installed, the user's full name is
+   automatically transliterated to US-ASCII (for some locales; this will
+   need tweaking) so that the login name is acceptable. (Thanks Artem)
+
+
+# 3.2.33 (2020-11-09) #
+
+This release contains contributions from (alphabetically by first name):
+ - Anke Boersma
+ - Andrius Štikonas
+ - Artem Grinev
+ - Gaël PORTAY
+ - Matti Hyttinen
+ - TTran Me
+
+## Core ##
+ - Calamares now sets the C++ standard for compilation to C++17; this
+   is for better compatibility and fewer warnings when building with
+   modern KDE Frameworks and KPMcore 4.2.0.
+ - Vietnamese translations have been added. Welcome! (Thanks TTran)
+
+## Modules ##
+ - The *initcpiocfg* module should support plymouth with encryption
+   now. (Thanks Matti)
+ - The *keyboard* and *keyboardq* modules now share backend code
+   and handle non-ASCII layouts better (for setting passwords
+   and usernames). (Thanks Artem)
+ - Various cleanups and documentation improvements in the *partition*
+   module, and configurable GPT name for swap. (Thanks Gaël)
+ - A long-standing bug related to GPT partition flags in the
+   *partition* module has been resolved. #1327 #1267
+ - The *users* module now has a more detailed way to specify
+   user groups -- which may be system groups rather than user-GIDs.
+   A new option in each group can require that the group already
+   exists in the target system, allowing for better consistency checks
+   with the squashfs. #1523
+
+
+# 3.2.32.1 (2020-10-17) #
+
+This is a release to address source-incompatible changes in KPMcore 4.2.0,
+which was released just before Calamares 3.2.32 and had not yet been
+compile-tested. There is also one changed message in the translations,
+reported by Yuri Chornoivan.
+
+
+# 3.2.32 (2020-10-16) #
+
+This release contains contributions from (alphabetically by first name):
+ - Fabian Tomat
+ - Gaël PORTAY
+
+## Core ##
+ - When doing GeoIP lookups, Calamares pretends to be Firefox.
+   This resolves an issue where the GeoIP provider was refusing
+   QNAM connections with the default User-Agent.
+ - New translation available, Friulian. Welcome!
+
+## Modules ##
+ - The *netinstall* module has some tricky configuration files;
+   it now complains about more cases of bad syntax or poor structure.
+ - The *partition* module can now be constrained to work only with
+   a particular kind of partition table. (thanks Gaël)
+ - The *partition* module is a little more resilient to variations
+   in btrfs notation from os-prober.
+ - The *shellprocess* module now supports having a different progress
+   message (other than "Shell Processes Job") through the config file.
+
+
+ # 3.2.31 (2020-10-06) #
+
+This release contains contributions from (alphabetically by first name):
+ - Corentin Noël
+ - kadler15 (new contributor! hi!)
+
+## Core ##
+ - At the start of the *exec* phase, an overview is given of the
+   various job weights, which allows you to tweak the overall
+   progress reporting during the installation.
+ - Problems with running Calamares on a 1-core single CPU have been resolved.
+
+## Modules ##
+ - The *keyboard* module now recognizes Turkish "F" layout and
+   will set the vconsole keyboard layout correctly even if xkb
+   keymaps are not found.
+ - The *machineid* module, which generates UUIDs for systemd and dbus
+   and can generate entropy files (filled from `/dev/urandom` in the host
+   system) now supports more than one entropy file; generate them as needed
+   (or copy a fixed value to all, depending on *entropy-copy*). Deprecate
+   *entropy* (which generates a specific output file) as too inflexible.
+ - In the *partition* module, swap can now be chosen as *file*, which is
+   **not** create a swap partition, but write a `/swapfile` in the root
+   directory, 512MiB large, and set that as swap. There is as yet no
+   "smarts" about the size of the swap file.
+ - Multiple problems in the *partition* module around partition
+   sizing have been resolved by Corentin Noël.
+ - The *preservefiles* module documentation did not match the functionality,
+   and when used, didn't work right. #1521 (thanks kadler15)
+ - Progress reporting from the *unpackfs* module has been revamped:
+   it reports more often now, so that it is more obvious that files
+   are being transferred even when the percentage progress does not
+   change.
+ - The *unpackfs* module now supports a *weight* setting for each
+   of the unpack entries. For a single entry this does not matter,
+   but if there are multiple entries it allows tweaking the relative
+   progress between each entry.
+
+
+# 3.2.30 (2020-09-03) #
+
+This release contains contributions from (alphabetically by first name):
+ - Anke Boersma
+ - Asif Mahmud Shimon
+ - Manzoor Ahmed Munawar
+ - Sai Kamal
+ - Victor Ibragimov
+
+This release has two giant source-code changes that have no effect
+on functionality, but do touch each and every source file:
+ - SPDX headers for licensing information, following the standard
+   set by REUSE.software ; all source files and resources have
+   SPDX-License-Identifier information and copyright notices. All
+   of the boilerplate texts have been removed.
+ - Calamares coding style has been mechanically applied to the entire
+   codebase. This was already done to most of it, but there were
+   some hold-outs.
+
+## Core ##
+ - Network access status is deprecated in Qt 5.15's QNetworkAccessManager,
+   and was not useful already in some previous versions. Replace its
+   use in the Calamares network service by testing-it-ourself directly
+   via a synchronous ping. (Thanks to Asif)
+ - New Telugu translation. (Thanks to Sai)
+ - Urdu translation started. (Thanks to Manzoor)
+ - Timezones translated in Tajik and Russian. (Thanks to Victor)
+
+## Modules ##
+ - *keyboardq* and *localeq* improvements. (Thanks to Anke)
+ - *users* module did not set up autologin properly. This is yet another
+   regression left over from 3.2.28. (Reported by Phil and pcrepix, #1498)
+ - *welcome* module now sets the *LANG* key in the locale configuration
+   (which is shared with the *locale* module and consumed by the
+   *localecfg* module). This makes it feasible to drop the *locale*
+   module and still set the installed system's language to the language
+   selected in Calamares. (Reported by FerenOS)
+
+
+# 3.2.29 (2020-08-20) #
+
+This release contains contributions from (alphabetically by first name):
+ - Asif Mahmud Shimon (new contributor! hi!)
+
+## Core ##
+ - Edge case in extracting string-lists from YAML, reported and fixed
+   by Asif (#1491).
+ - Progress reporting is now more flexible. Modules can have a weight
+   assigned to them in the descriptor; module instances can have a weight
+   assigned which overrides the module descriptor. When jobs are run
+   for a module instance, the jobs report progress pro-rated by the
+   module's weight. Or in other words, it is now possible to tweak
+   the amount of the overall progress bar that different modules fill.
+   The default settings give unpackfs a weight of 12. (#1176)
+
+## Modules ##
+ - The *users* module did not read the *defaultGroups* correctly.
+   Fixed by the string-lists change mentioned above.
+
+
+ # 3.2.28.3 (2020-08-18) #
+
+Another hotfix, for more issues reported by Marco Obaid. Users
+were not having a password set (#1489)
+
+
+# 3.2.28.2 (2020-08-12) #
+
+A second hotfix, for autologin support -- the autologin group was not
+created in the target system before assigning the user to it. Reported
+by Marco Obaid.
+
+
+# 3.2.28.1 (2020-08-10) #
+
+This is a hotfix release for #1482 and #1483, where no user was
+created during installation and a chmod was failing (resulting in
+a failed installation). Reported by Jonathan Riddell.
+
+With incidental improvements in SPDX tagging (code licensing)
+and some new icon options for the welcomeq and localeq modules.
+
+
+# 3.2.28 (2020-08-09) #
+
+This release contains contributions from (alphabetically by first name):
+ - Anke Boersma
+ - apt-ghetto
+ - Victor Ibragimov
+
+## Core ##
+ - A new object *Network* is available to QML modules in `io.calamares.core`.
+   It exposes network status through the *hasInternet* property.
+ - Welcome to Tajik translations. The Tajik language has quickly reached
+   100% completion. Thanks Victor!
+ - Welcome to [Interlingue](https://en.wikipedia.org/wiki/Interlingue).
+   The translation is at an early stage. Qt does not support language
+   code *ie* though, so it may take some time to be integrated (much
+   like Esperanto wasn't supported until Qt 5.12).
+
+## Modules ##
+ - The *locale* module has been completely redone on the inside.
+   Users should see no changes. #1391
+ - The *localeq* module uses the redone internals of the locale module.
+   It can now be used to set timezone, language and locale information
+   and is a suitable alternative module. Thanks to Anke Boersma who did
+   the work of figuring out maps. Note that the map uses several GeoIP
+   and GeoData providers and you may need to configure the URLs
+   with suitable usernames for those services. #1426
+ - Both *locale* and *localeq* can now be configured to use the system's
+   timezone setting -- this can be useful to avoid both hard-coding an
+   initial zone and doing extra GeoIP lookups, in the case where the
+   live system already does so. #1391
+ - The *locale* and *localeq* modules have additional machinery for
+   timezone lookups; please report cases where clicking on the map
+   returns an obviously bogus timezone (up until this release, for
+   instance, Cape Town).
+ - The *users* module no longer accepts `root` as a username. #1462
+ - The *keyboardq* module is now more inline with the look of the rest
+   of the Calamares modules, use of a background image is removed.
+ - The *grubcfg* module now understands `/etc/default/grub.d`. #1457
+
+
+# 3.2.27 (2020-07-11) #
+
+This release contains contributions from (alphabetically by first name):
+ - Gaël PORTAY
+ - Vitor Lopes (new! welcome!)
+
+## Core ##
+ - QML modules with no surrounding navigation -- this is basically a
+   special case for full-screen Calamares -- now have margins suitable
+   for full-screen use.
+ - PythonQt modules are increasingly on the way out.
+
+## Modules ##
+ - The Manjaro package manager *pamac* has been added to those supported by
+   the *packages* module.
+ - The *netinstall* module has had some minor UI tweaks.
+ - Partitioning now tries harder to avoid floppy drives.
 
 
 # 3.2.26.1 (2020-06-23) #

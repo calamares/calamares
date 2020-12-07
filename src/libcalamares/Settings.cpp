@@ -1,25 +1,13 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+/* === This file is part of Calamares - <https://calamares.io> ===
+ *
  *   SPDX-FileCopyrightText: 2014-2015 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2019 Gabriel Craciunescu <crazy@frugalware.org>
  *   SPDX-FileCopyrightText: 2019 Dominic Hayes <ferenosdev@outlook.com>
  *   SPDX-FileCopyrightText: 2017-2018 Adriaan de Groot <groot@kde.org>
- *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
- *
  *   SPDX-License-Identifier: GPL-3.0-or-later
- *   License-Filename: LICENSE
+ *
+ *   Calamares is Free Software: see the License-Identifier above.
+ *
  *
  */
 
@@ -75,22 +63,40 @@ requireBool( const YAML::Node& config, const char* key, bool d )
 namespace Calamares
 {
 
-InstanceDescription::InstanceDescription( const QVariantMap& m )
-    : module( m.value( "module" ).toString() )
-    , id( m.value( "id" ).toString() )
-    , config( m.value( "config" ).toString() )
-    , weight( m.value( "weight" ).toInt() )
+InstanceDescription::InstanceDescription( const Calamares::ModuleSystem::InstanceKey& key )
+    : m_instanceKey( key )
+    , m_weight( -1 )
 {
-    if ( id.isEmpty() )
+    if ( !isValid() )
     {
-        id = module;
+        m_weight = 0;
     }
-    if ( config.isEmpty() )
+    else
     {
-        config = module + QStringLiteral( ".conf" );
+        m_configFileName = key.module() + QStringLiteral( ".conf" );
     }
+}
 
-    weight = qBound( 1, weight, 100 );
+InstanceDescription
+InstanceDescription::fromSettings( const QVariantMap& m )
+{
+    InstanceDescription r(
+        Calamares::ModuleSystem::InstanceKey( m.value( "module" ).toString(), m.value( "id" ).toString() ) );
+    if ( r.isValid() )
+    {
+        if ( m.value( "weight" ).isValid() )
+        {
+            int w = qBound( 1, m.value( "weight" ).toInt(), 100 );
+            r.m_weight = w;
+        }
+
+        QString c = m.value( "config" ).toString();
+        if ( !c.isEmpty() )
+        {
+            r.m_configFileName = c;
+        }
+    }
+    return r;
 }
 
 Settings* Settings::s_instance = nullptr;
@@ -156,7 +162,13 @@ interpretInstances( const YAML::Node& node, Settings::InstanceDescriptionList& c
                 {
                     continue;
                 }
-                customInstances.append( InstanceDescription( instancesVListItem.toMap() ) );
+                auto description = InstanceDescription::fromSettings( instancesVListItem.toMap() );
+                if ( !description.isValid() )
+                {
+                    cWarning() << "Invalid entry in *instances*" << instancesVListItem;
+                }
+                // Append it **anyway**, since this will bail out after Settings is constructed
+                customInstances.append( description );
             }
         }
     }
@@ -193,17 +205,39 @@ interpretSequence( const YAML::Node& node, Settings::ModuleSequence& moduleSeque
             }
             else
             {
+                cDebug() << "Unknown action in *sequence*" << thisActionS;
                 continue;
             }
 
             QStringList thisActionRoster = sequenceVListItem.toMap().value( thisActionS ).toStringList();
-            moduleSequence.append( qMakePair( thisAction, thisActionRoster ) );
+            Calamares::ModuleSystem::InstanceKeyList roster;
+            roster.reserve( thisActionRoster.count() );
+            for ( const auto& s : thisActionRoster )
+            {
+                auto instanceKey = Calamares::ModuleSystem::InstanceKey::fromString( s );
+                if ( !instanceKey.isValid() )
+                {
+                    cWarning() << "Invalid instance in *sequence*" << s;
+                }
+                roster.append( instanceKey );
+            }
+            moduleSequence.append( qMakePair( thisAction, roster ) );
         }
     }
     else
     {
         throw YAML::Exception( YAML::Mark(), "sequence key is missing" );
     }
+}
+
+Settings::Settings( bool debugMode )
+    : QObject()
+    , m_debug( debugMode )
+    , m_doChroot( true )
+    , m_promptInstall( false )
+    , m_disableCancel( false )
+    , m_disableCancelDuringExec( false )
+{
 }
 
 Settings::Settings( const QString& settingsFilePath, bool debugMode )
@@ -218,30 +252,7 @@ Settings::Settings( const QString& settingsFilePath, bool debugMode )
     QFile file( settingsFilePath );
     if ( file.exists() && file.open( QFile::ReadOnly | QFile::Text ) )
     {
-        QByteArray ba = file.readAll();
-
-        try
-        {
-            YAML::Node config = YAML::Load( ba.constData() );
-            Q_ASSERT( config.IsMap() );
-
-            interpretModulesSearch(
-                debugMode, CalamaresUtils::yamlToStringList( config[ "modules-search" ] ), m_modulesSearchPaths );
-            interpretInstances( config[ "instances" ], m_customModuleInstances );
-            interpretSequence( config[ "sequence" ], m_modulesSequence );
-
-            m_brandingComponentName = requireString( config, "branding" );
-            m_promptInstall = requireBool( config, "prompt-install", false );
-            m_doChroot = !requireBool( config, "dont-chroot", false );
-            m_isSetupMode = requireBool( config, "oem-setup", !m_doChroot );
-            m_disableCancel = requireBool( config, "disable-cancel", false );
-            m_disableCancelDuringExec = requireBool( config, "disable-cancel-during-exec", false );
-            m_quitAtEnd = requireBool( config, "quit-at-end", false );
-        }
-        catch ( YAML::Exception& e )
-        {
-            CalamaresUtils::explainYamlException( e, ba, file.fileName() );
-        }
+        setConfiguration( file.readAll(), file.fileName() );
     }
     else
     {
@@ -251,6 +262,61 @@ Settings::Settings( const QString& settingsFilePath, bool debugMode )
     s_instance = this;
 }
 
+void
+Settings::reconcileInstancesAndSequence()
+{
+    // Since moduleFinder captures targetKey by reference, we can
+    //   update targetKey to change what the finder lambda looks for.
+    Calamares::ModuleSystem::InstanceKey targetKey;
+    auto moduleFinder = [&targetKey]( const InstanceDescription& d ) { return d.isValid() && d.key() == targetKey; };
+
+    // Check the sequence against the existing instances (which so far are only custom)
+    for ( const auto& step : m_modulesSequence )
+    {
+        for ( const auto& instanceKey : step.second )
+        {
+            targetKey = instanceKey;
+            const auto it = std::find_if( m_moduleInstances.constBegin(), m_moduleInstances.constEnd(), moduleFinder );
+            if ( it == m_moduleInstances.constEnd() )
+            {
+                if ( instanceKey.isCustom() )
+                {
+                    cWarning() << "Custom instance key" << instanceKey << "is not listed in the *instances*";
+                }
+                m_moduleInstances.append( InstanceDescription( instanceKey ) );
+            }
+        }
+    }
+}
+
+void
+Settings::setConfiguration( const QByteArray& ba, const QString& explainName )
+{
+    try
+    {
+        YAML::Node config = YAML::Load( ba.constData() );
+        Q_ASSERT( config.IsMap() );
+
+        interpretModulesSearch(
+            debugMode(), CalamaresUtils::yamlToStringList( config[ "modules-search" ] ), m_modulesSearchPaths );
+        interpretInstances( config[ "instances" ], m_moduleInstances );
+        interpretSequence( config[ "sequence" ], m_modulesSequence );
+
+        m_brandingComponentName = requireString( config, "branding" );
+        m_promptInstall = requireBool( config, "prompt-install", false );
+        m_doChroot = !requireBool( config, "dont-chroot", false );
+        m_isSetupMode = requireBool( config, "oem-setup", !m_doChroot );
+        m_disableCancel = requireBool( config, "disable-cancel", false );
+        m_disableCancelDuringExec = requireBool( config, "disable-cancel-during-exec", false );
+        m_quitAtEnd = requireBool( config, "quit-at-end", false );
+
+        reconcileInstancesAndSequence();
+    }
+    catch ( YAML::Exception& e )
+    {
+        CalamaresUtils::explainYamlException( e, ba, explainName );
+    }
+}
 
 QStringList
 Settings::modulesSearchPaths() const
@@ -260,9 +326,9 @@ Settings::modulesSearchPaths() const
 
 
 Settings::InstanceDescriptionList
-Settings::customModuleInstances() const
+Settings::moduleInstances() const
 {
-    return m_customModuleInstances;
+    return m_moduleInstances;
 }
 
 
@@ -366,6 +432,27 @@ Settings::init( const QString& path )
         return s_instance;
     }
     return new Calamares::Settings( path, true );
+}
+
+bool
+Settings::isValid() const
+{
+    if ( brandingComponentName().isEmpty() )
+    {
+        cWarning() << "No branding component is set";
+        return false;
+    }
+
+    const auto invalidDescriptor = []( const InstanceDescription& d ) { return !d.isValid(); };
+    const auto invalidDescriptorIt
+        = std::find_if( m_moduleInstances.constBegin(), m_moduleInstances.constEnd(), invalidDescriptor );
+    if ( invalidDescriptorIt != m_moduleInstances.constEnd() )
+    {
+        cWarning() << "Invalid module instance in *instances* or *sequence*";
+        return false;
+    }
+
+    return true;
 }
 
 }  // namespace Calamares

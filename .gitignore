@@ -1,3 +1,6 @@
+#   SPDX-FileCopyrightText: no
+#   SPDX-License-Identifier: CC0-1.0
+#
 # C++ objects and libs
 
 *.slo
@@ -47,6 +50,7 @@ CMakeLists.txt.user
 
 # Backup files
 *~
+*.bak
 
 # Kate
 *.kate-swp

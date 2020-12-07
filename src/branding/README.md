@@ -1,5 +1,10 @@
 # Branding directory
 
+<!-- SPDX-FileCopyrightText: 2014 Teo Mrnjavac <teo@kde.org>
+     SPDX-FileCopyrightText: 2017 Adriaan de Groot <groot@kde.org>
+     SPDX-License-Identifier: GPL-3.0-or-later
+-->
+
 Branding components can go here, or they can be installed separately.
 
 A branding component is a subdirectory with a `branding.desc` descriptor
@@ -66,7 +71,7 @@ The setting *slideshowAPI* in `branding.desc` indicates which one to use
 for a given branding slideshow. Which API to use is really a function of
 the QML. Expect the version 1 API to be deprecated in the course of Calamares 3.3.
 
-In Calamares 3.2.13 support for activation notification to the QML 
+In Calamares 3.2.13 support for activation notification to the QML
 parts is improved:
  - If the root object has a property *activatedInCalamares* (the examples do),
    then that property is set to *true* when the slideshow becomes visible

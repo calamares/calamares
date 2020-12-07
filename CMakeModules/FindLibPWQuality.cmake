@@ -1,3 +1,10 @@
+# === This file is part of Calamares - <https://calamares.io> ===
+#
+#   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
+#
+###
+#
 # Locate libpwquality
 #   https://github.com/libpwquality/libpwquality
 #
@@ -6,10 +13,16 @@
 #  LibPWQuality_LIBRARIES, where to find the library
 #  LibPWQuality_INCLUDE_DIRS, where to find pwquality.h
 #
-include(FindPkgConfig)
+find_package(PkgConfig)
 include(FindPackageHandleStandardArgs)
 
-pkg_search_module(pc_pwquality QUIET pwquality)
+if(PkgConfig_FOUND)
+    pkg_search_module(pc_pwquality QUIET pwquality)
+else()
+    # It's just possible that the find_path and find_library will
+    # find it **anyway**, so let's pretend it was there.
+    set(pc_pwquality_FOUND ON)
+endif()
 
 find_path(LibPWQuality_INCLUDE_DIR
     NAMES pwquality.h

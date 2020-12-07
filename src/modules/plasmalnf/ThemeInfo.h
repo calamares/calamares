@@ -1,97 +1,75 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2017 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef PLASMALNF_THEMEINFO_H
 #define PLASMALNF_THEMEINFO_H
 
+#include <QAbstractListModel>
 #include <QList>
 #include <QString>
 
-class KPluginMetaData;
-class ThemeWidget;
+class ThemeInfoList;
 
-/** @brief describes a single plasma LnF theme.
- *
- * A theme description has an id, which is really the name of the desktop
- * file (e.g. org.kde.breeze.desktop), a name which is human-readable and
- * translated, and an optional image Page, which points to a local screenshot
- * of that theme.
- */
-struct ThemeInfo
+class ThemesModel : public QAbstractListModel
 {
-    QString id;
-    QString name;
-    QString description;
-    QString imagePath;
-    ThemeWidget* widget;
+    Q_OBJECT
 
-    ThemeInfo()
-        : widget( nullptr )
-    {}
-
-    explicit ThemeInfo( const QString& _id )
-        : id( _id )
-        , widget( nullptr )
-    {
-    }
-
-    explicit ThemeInfo( const QString& _id, const QString& image )
-        : id( _id )
-        , imagePath( image )
-        , widget( nullptr )
-    {}
-
-    // Defined in PlasmaLnfPage.cpp
-    explicit ThemeInfo( const KPluginMetaData& );
-
-    bool isValid() const { return !id.isEmpty(); }
-} ;
-
-class ThemeInfoList : public QList< ThemeInfo >
-{
 public:
-    /** @brief Looks for a given @p id in the list of themes, returns nullptr if not found. */
-    ThemeInfo* findById( const QString& id )
+    enum
     {
-        for ( ThemeInfo& i : *this )
-        {
-            if ( i.id == id )
-                return &i;
-        }
-        return nullptr;
-    }
+        LabelRole = Qt::DisplayRole,
+        KeyRole = Qt::UserRole,
+        ShownRole,  // Should theme be displayed
+        SelectedRole,  // Is theme selected
+        DescriptionRole,
+        ImageRole
+    };
 
-    /** @brief Looks for a given @p id in the list of themes, returns nullptr if not found. */
-    const ThemeInfo* findById( const QString& id ) const
-    {
-        for ( const ThemeInfo& i : *this )
-        {
-            if ( i.id == id )
-                return &i;
-        }
-        return nullptr;
-    }
+    explicit ThemesModel( QObject* parent );
 
-    /** @brief Checks if a given @p id is in the list of themes. */
-    bool contains( const QString& id ) const
-    {
-        return findById( id ) != nullptr;
-    }
-} ;
+    int rowCount( const QModelIndex& = QModelIndex() ) const override;
+    QVariant data( const QModelIndex& index, int role ) const override;
+
+    QHash< int, QByteArray > roleNames() const override;
+
+    /// @brief Set the screenshot to go with the given @p id
+    void setThemeImage( const QString& id, const QString& imagePath );
+
+    /// @brief Call setThemeImage( key, value ) for all keys in @p images
+    void setThemeImage( const QMap< QString, QString >& images );
+
+    /// @brief Set whether to show the given theme @p id (or not)
+    void showTheme( const QString& id, bool show = true );
+
+    /// @brief Shows the keys in the @p onlyThese map, and hides the rest
+    void showOnlyThemes( const QMap< QString, QString >& onlyThese );
+
+    /** @brief Mark the @p themeId as current / selected
+     *
+     * One theme can be selected at a time; this will emit data
+     * changed signals for any (one) theme already selected, and
+     * the newly-selected theme. If @p themeId does not name any
+     * theme, none are selected.
+     */
+    void select( const QString& themeId );
+
+    /** @brief The size of theme Images
+     *
+     * The size is dependent on the font size used by Calamares,
+     * and is constant within one run of Calamares, but may change
+     * if the font settings do between runs.
+     */
+    static QSize imageSize();
+
+private:
+    ThemeInfoList* m_themes;
+};
+
 
 #endif

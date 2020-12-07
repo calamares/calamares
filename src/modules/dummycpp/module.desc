@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: no
+# SPDX-License-Identifier: CC0-1.0
 # Module metadata file for dummycpp job
 #
 # The metadata for C++ (qtplugin) plugins is almost never interesting:

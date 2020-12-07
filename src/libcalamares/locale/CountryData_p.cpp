@@ -1,8 +1,14 @@
 /*   GENERATED FILE DO NOT EDIT
 *
-*  === This file is part of Calamares - <https://github.com/calamares> ===
+*  === This file is part of Calamares - <https://calamares.io> ===
 *
-* This file is derived from CLDR data from Unicode, Inc. Applicable terms:
+* SPDX-FileCopyrightText: 1991-2019 Unicode, Inc.
+* SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
+* SPDX-License-Identifier: CC0-1.0
+*
+* This file is derived from CLDR data from Unicode, Inc. Applicable terms
+* are listed at http://unicode.org/copyright.html , of which the most
+* important are:
 *
 * A. Unicode Copyright
 *    1. Copyright © 1991-2019 Unicode, Inc. All rights reserved.
@@ -10,6 +16,11 @@
 *    Unicode Data Files ("DATA FILES") include all data files under the directories:
 *    https://www.unicode.org/Public/
 * C. Terms of Use
+*    1. Certain documents and files on this website contain a legend indicating
+*       that "Modification is permitted." Any person is hereby authorized,
+*       without fee, to modify such documents and files to create derivative
+*       works conforming to the Unicode® Standard, subject to Terms and
+*       Conditions herein.
 *    2. Any person is hereby authorized, without fee, to view, use, reproduce,
 *       and distribute all documents and files, subject to the Terms and
 *       Conditions herein.

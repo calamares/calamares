@@ -1,21 +1,18 @@
 # Calamares Release Process
 
+<!-- SPDX-FileCopyrightText: 2015 Teo Mrnjavac <teo@kde.org>
+     SPDX-FileCopyrightText: 2017 Adriaan de Groot <groot@kde.org>
+     SPDX-License-Identifier: GPL-3.0-or-later
+-->
+
 > Calamares releases are now rolling when-they-are-ready releases.
-> Releases are made from *master* and tagged there. When, in future,
+> Releases are made from *calamares* and tagged there. When, in future,
 > LTS releases resume, these steps may be edited again.
 >
 > Most things are automated through the release script [RELEASE.sh](RELEASE.sh)
 
-## (0) A week in advance
+## (1) Preparation
 
-* Run [Coverity scan][coverity], fix what's relevant. The Coverity scan runs
-  automatically once a week on master. The badge is displayed on the
-  project front page and in the wiki.
-* Build with clang -Weverything, fix what's relevant.
-  ```
-    rm -rf build ; mkdir build ; cd build
-    CC=clang CXX=clang++ cmake .. && make
-  ```
 * Make sure all tests pass.
   ```
     make
@@ -25,16 +22,6 @@
   an additional environment variable to be set for some tests, which will
   destroy an attached disk. This is not always desirable. There are some
   sample config-files that are empty and which fail the config-tests.
-* Notify [translators][transifex]. In the dashboard there is an *Announcements*
-  link that you can use to send a translation announcement. Note that regular
-  use of `txpush.sh` will notify translators as well of any changes.
-
-[coverity]: https://scan.coverity.com/projects/calamares-calamares?tab=overview
-[transifex]: https://www.transifex.com/calamares/calamares/dashboard/
-
-
-## (1) Preparation
-
 * Pull latest translations from Transifex. We only push / pull translations
   from master, so longer-lived branches (e.g. 3.1.x) don't get translation
   updates. This is to keep the translation workflow simple. The script
@@ -47,13 +34,8 @@
   fairly complete translations, or use `ci/txstats.py` for an automated
   suggestion. If there are changes, commit them.
 * Push the changes.
-* Drop the RC variable to 0 in `CMakeLists.txt`, *CALAMARES_VERSION_RC*.
-* Check `README.md` and the
-  [Coding Guide](https://github.com/calamares/calamares/wiki/Develop-Code),
-  make sure it's all still
-  relevant. Run `ci/calamaresstyle` to check the C++ code style.
-  Run pycodestyle on recently-modified Python modules, fix what makes sense.
 * Check defaults in `settings.conf` and other configuration files.
+* Drop the RC variable to 0 in `CMakeLists.txt`, *CALAMARES_VERSION_RC*.
 * Edit `CHANGES` and set the date of the release.
 * Commit both. This is usually done with commit-message
   *Changes: pre-release housekeeping*.
@@ -73,44 +55,16 @@
   On success, it prints out a suitable signature- and SHA256 blurb
   for use in the release announcement.
 
-### (2.1) Buld and Test
+## (3) Release
 
-* Build with gcc. If available, build again with Clang and double-check
-  any warnings Clang produces.
-* Run the tests; `make test` in the build directory should have no
-  failures (or if there are, know why they are there).
+Follow the instructions printed by the release script.
 
-### (2.2) Tag
-
-* `git tag -s v1.1.0` Make sure the signing key is known in GitHub, so that the
-  tag is shown as a verified tag. Do not sign -rc tags.
-  You can use `make show-version` in the build directory to get the right
-  version number -- this will fail if you didn't follow step (1).
-
-### (2.3) Tarball
-
-* Create tarball: `git-archive-all -v calamares-1.1-rc1.tar.gz` or without
-  the helper script,
-  ```
-    V=calamares-3.1.5
-    git archive -o $V.tar.gz --prefix $V/ master
-  ```
-  Double check that the tarball matches the version number.
-* Test tarball (e.g. unpack somewhere else and run the tests from step 0).
-
-
-## (3) Housekeeping
-
-* Generate MD5 and SHA256 checksums.
-* Upload tarball.
-* Announce on mailing list, notify packagers.
-* Write release article.
-* Publish tarball.
-* Update download page.
+* Push the tags.
+* Create a new release on GitHub.
+* Upload tarball and signature.
 * Publish release article on `calamares.io`.
-* Publicize on social networks.
-* Close associated milestone on GitHub if this is the actual release.
-* Publish blog post.
+* Close associated milestone on GitHub if it's entirely done.
+* Update topic on #calamares IRC channel.
 
 ## (4) Post-Release
 
@@ -133,3 +87,44 @@ This release contains contributions from (alphabetically by first name):
 ## Modules ##
  - No module changes yet
 ```
+
+# Related Material
+
+> This section isn't directly related to any specific release,
+> but bears on all releases.
+
+## GPG Key Maintainence
+
+Calamares uses GPG Keys for signing the tarballs and some commits
+(tags, mostly). Calamares uses the **maintainer's** personal GPG
+key for this. This section details some GPG activities that the
+maintainer should do with those keys.
+
+- Signing sub-key. It's convenient to use a signing sub-key specifically
+  for the signing of Calamares. To do so, add a key to the private key.
+  It's recommended to use key expiry, and to update signing keys periodically.
+  - Run `gpg -K` to find the key ID of your personal GPG secret key.
+  - Run `gpg --edit-key <keyid>` to edit that personal GPG key.
+  - In gpg edit-mode, use `addkey`, then pick a key type that is *sign-only*
+    (e.g. type 4, *RSA (sign only)*), then pick a keysize (3072 seems ok
+    as of 2020) and set a key expiry time, (e.g. in 18 months time).
+  - After generation, the secret key information is printed again, now
+    including the new signing subkey:
+    ```
+ssb  rsa3072/0xCFDDC96F12B1915C
+     created: 2020-07-11  expires: 2022-01-02  usage: S
+```
+- Update the `RELEASE.sh` script with a new signing sub-key ID when a new
+  one is generated. Also announce the change of signing sub-key (e.g. on
+  the Calmares site or as part of a release announcement).
+  - Send the updated key to keyservers with `gpg --send-keys <keyid>`
+  - Optional: sanitize the keyring for use in development machines.
+    Export the current subkeys of the master key and keep **only** those
+    secret keys around. There is documentation
+    [here](https://blog.tinned-software.net/create-gnupg-key-with-sub-keys-to-sign-encrypt-authenticate/)
+    but be careful.
+  - Export the public key material with `gpg --export --armor <keyid>`,
+    possibly also setting an output file.
+  - Upload that public key to the relevant GitHub profile.
+  - Upload that public key to the Calamares site.
+

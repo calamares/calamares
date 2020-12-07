@@ -1,19 +1,10 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2020, Anke Boersma <demm@kaosx.us>
+ *   SPDX-FileCopyrightText: 2020 Anke Boersma <demm@kaosx.us>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 import QtQuick 2.10
@@ -29,19 +20,19 @@ import QtPositioning 5.14
 Column {
     width: parent.width
 
-    //Needs to come from .conf/geoip
-    property var configCity: "New York"
-    property var configCountry: "USA"
-    property var configTimezone: "America/New York"
-    property var geoipCity: "" //"Amsterdam"
-    property var geoipCountry: "" //"Netherlands"
-    property var geoipTimezone: "" //"Europe/Amsterdam"
-    // vars that will stay once connected
-    property var cityName: (geoipCity != "") ? geoipCity : configCity
-    property var countryName: (geoipCountry != "") ? geoipCountry : configCountry
-    property var timeZone: (geoipTimezone != "") ? geoipTimezone : configTimezone
+    // These are used by the map query to initially center the
+    //   map on the user's likely location. They are updated by
+    //   getIp() which does a more accurate GeoIP lookup than
+    //   the default one in Calamares
+    property var cityName: ""
+    property var countryName: ""
 
-    function getIp() {
+    /* This is an extra GeoIP lookup, which will find better-accuracy
+     * location data for the user's IP, and then sets the current timezone
+     * and map location. Call it from Component.onCompleted so that
+     * it happens "on time" before the page is shown.
+     */
+    function getIpOnline() {
         var xhr = new XMLHttpRequest
 
         xhr.onreadystatechange = function() {
@@ -51,9 +42,10 @@ Column {
                 var ct = responseJSON.city
                 var cy = responseJSON.country
 
-                tzText.text = "Timezone: " + tz
                 cityName = ct
                 countryName = cy
+
+                config.setCurrentLocation(tz)
             }
         }
 
@@ -63,7 +55,25 @@ Column {
         xhr.send()
     }
 
-    function getTz() {
+    /* This is an "offline" GeoIP lookup -- it just follows what
+     * Calamares itself has figured out with its GeoIP or configuration.
+     * Call it from the **Component** onActivate() -- in localeq.qml --
+     * so it happens as the page is shown.
+     */
+    function getIpOffline() {
+        cityName = config.currentLocation.zone
+        countryName = config.currentLocation.countryCode
+    }
+
+    /* This is an **accurate** TZ lookup method: it queries an
+     * online service for the TZ at the given coordinates. It
+     * requires an internet connection, though, and the distribution
+     * will need to have an account with geonames to not hit the
+     * daily query limit.
+     *
+     * See below, in MouseArea, for calling the right method.
+     */
+    function getTzOnline() {
         var xhr = new XMLHttpRequest
         var latC = map.center.latitude
         var lonC = map.center.longitude
@@ -73,13 +83,27 @@ Column {
                 var responseJSON = JSON.parse(xhr.responseText)
                 var tz2 = responseJSON.timezoneId
 
-                tzText.text = "Timezone: " + tz2
+                config.setCurrentLocation(tz2)
             }
         }
 
+        console.log("Online lookup", latC, lonC)
         // Needs to move to localeq.conf, each distribution will need their own account
         xhr.open("GET", "http://api.geonames.org/timezoneJSON?lat=" + latC + "&lng=" + lonC + "&username=SOME_USERNAME")
         xhr.send()
+    }
+
+    /* This is a quick TZ lookup method: it uses the existing
+     * Calamares "closest TZ" code, which has lots of caveats.
+     *
+     * See below, in MouseArea, for calling the right method.
+     */
+    function getTzOffline() {
+        var latC = map.center.latitude
+        var lonC = map.center.longitude
+        var tz = config.zonesModel.lookup(latC, lonC)
+        console.log("Offline lookup", latC, lonC)
+        config.setCurrentLocation(tz.region, tz.zone)
     }
 
     Rectangle {
@@ -126,7 +150,7 @@ Column {
                 anchorPoint.x: image.width/4
                 anchorPoint.y: image.height
                 coordinate: QtPositioning.coordinate(
-                    map.center.latitude, 
+                    map.center.latitude,
                     map.center.longitude)
                 //coordinate: QtPositioning.coordinate(40.730610, -73.935242) // New York
 
@@ -155,9 +179,8 @@ Column {
                     map.center.latitude = coordinate.latitude
                     map.center.longitude = coordinate.longitude
 
-                    getTz();
-                        
-                    console.log(coordinate.latitude, coordinate.longitude)
+                    // Pick a TZ lookup method here (quick:offline, accurate:online)
+                    getTzOffline();
                 }
             }
         }
@@ -199,7 +222,7 @@ Column {
     }
 
     Rectangle {
-        width: parent.width 
+        width: parent.width
         height: 100
         anchors.horizontalCenter: parent.horizontalCenter
 
@@ -217,13 +240,16 @@ Column {
 
                 Text {
                     id: tzText
-                    text: tzText.text
-                    //text: qsTr("Timezone: %1").arg(timeZone)
+                    text: qsTr("Timezone: %1").arg(config.currentTimezoneName)
                     color: Kirigami.Theme.textColor
                     anchors.centerIn: parent
                 }
 
-                Component.onCompleted: getIp();
+                /* If you want an extra (and accurate) GeoIP lookup,
+                 * enable this one and disable the offline lookup in
+                 * onActivate().
+                Component.onCompleted: getIpOnline();
+                 */
             }
         }
 

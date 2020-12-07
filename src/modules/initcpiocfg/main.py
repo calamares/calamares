@@ -1,26 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# === This file is part of Calamares - <https://github.com/calamares> ===
+# === This file is part of Calamares - <https://calamares.io> ===
 #
-#   Copyright 2014, Rohan Garg <rohan@kde.org>
-#   Copyright 2015,2019-2020, Philip Müller <philm@manjaro.org>
-#   Copyright 2017, Alf Gaida <agaida@sidution.org>
-#   Copyright 2019, Adriaan de Groot <groot@kde.org>
+#   SPDX-FileCopyrightText: 2014 Rohan Garg <rohan@kde.org>
+#   SPDX-FileCopyrightText: 2015 2019-2020, Philip Müller <philm@manjaro.org>
+#   SPDX-FileCopyrightText: 2017 Alf Gaida <agaida@sidution.org>
+#   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: GPL-3.0-or-later
 #
-#   Calamares is free software: you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License as published by
-#   the Free Software Foundation, either version 3 of the License, or
-#   (at your option) any later version.
+#   Calamares is Free Software: see the License-Identifier above.
 #
-#   Calamares is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#   GNU General Public License for more details.
-#
-#   You should have received a copy of the GNU General Public License
-#   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
-
+import libcalamares
 from libcalamares.utils import debug, target_env_call
 import os
 from collections import OrderedDict
@@ -163,18 +154,19 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
         if partition["mountPoint"] == "/" and "luksMapperName" in partition:
             encrypt_hook = True
 
-        if (partition["mountPoint"] == "/boot"
-                and "luksMapperName" not in partition):
+        if partition["mountPoint"] == "/boot" and "luksMapperName" not in partition:
             unencrypted_separate_boot = True
 
         if partition["mountPoint"] == "/usr":
             hooks.append("usr")
 
     if encrypt_hook:
-        hooks.append("encrypt")
         crypto_file = "crypto_keyfile.bin"
-        if not unencrypted_separate_boot and \
-           os.path.isfile(
+        if detect_plymouth() and unencrypted_separate_boot:
+            hooks.append("plymouth-encrypt")
+        else:
+            hooks.append("encrypt")
+        if not unencrypted_separate_boot and os.path.isfile(
                os.path.join(root_mount_point, crypto_file)
                ):
             files.append("/{!s}".format(crypto_file))
@@ -189,12 +181,20 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
     else:
         hooks.extend(["filesystems"])
 
-    cpu_intel = "genuineintel"
-    if btrfs and cpu["proc0"]["vendor_id"].lower() != cpu_intel:
+    def is_cpu_intel():
+        cpu_intel = "genuineintel"
+        if cpu["proc0"]["vendor_id"].lower() == cpu_intel:
+            return True
+        else:
+            return False
+
+    if btrfs and not is_cpu_intel():
         modules.append("crc32c")
-    elif (btrfs and cpu["proc0"]["vendor_id"].lower() == cpu_intel):
+
+    elif btrfs and is_cpu_intel():
         modules.append("crc32c-intel")
     else:
+        # What we doing here this one never runs?
         hooks.append("fsck")
 
     write_mkinitcpio_lines(hooks, modules, files, root_mount_point)

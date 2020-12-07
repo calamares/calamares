@@ -1,41 +1,29 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2014-2015 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "KeyboardViewStep.h"
 
+#include "Config.h"
 #include "KeyboardPage.h"
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 
-#include "utils/Variant.h"
-
 CALAMARES_PLUGIN_FACTORY_DEFINITION( KeyboardViewStepFactory, registerPlugin< KeyboardViewStep >(); )
 
 KeyboardViewStep::KeyboardViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
-    , m_widget( new KeyboardPage() )
-    , m_nextEnabled( false )
-    , m_writeEtcDefaultKeyboard( true )
+    , m_config( new Config( this ) )
+    , m_widget( new KeyboardPage( m_config ) )
 {
-    m_widget->init();
-    m_nextEnabled = true;
-    emit nextStatusChanged( m_nextEnabled );
+    m_config->detectCurrentKeyboardLayout();
+    emit nextStatusChanged( true );
 }
 
 
@@ -58,7 +46,7 @@ KeyboardViewStep::prettyName() const
 QString
 KeyboardViewStep::prettyStatus() const
 {
-    return m_prettyStatus;
+    return m_config->prettyStatus();
 }
 
 
@@ -72,7 +60,7 @@ KeyboardViewStep::widget()
 bool
 KeyboardViewStep::isNextEnabled() const
 {
-    return m_nextEnabled;
+    return true;
 }
 
 
@@ -100,60 +88,26 @@ KeyboardViewStep::isAtEnd() const
 QList< Calamares::job_ptr >
 KeyboardViewStep::jobs() const
 {
-    return m_jobs;
+    return m_config->createJobs();
 }
 
 
 void
 KeyboardViewStep::onActivate()
 {
-    m_widget->onActivate();
+    m_config->onActivate();
 }
 
 
 void
 KeyboardViewStep::onLeave()
 {
-    m_widget->finalize();
-    m_jobs = m_widget->createJobs( m_xOrgConfFileName, m_convertedKeymapPath, m_writeEtcDefaultKeyboard );
-    m_prettyStatus = m_widget->prettyStatus();
+    m_config->finalize();
 }
 
 
 void
 KeyboardViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    using namespace CalamaresUtils;
-
-    if ( configurationMap.contains( "xOrgConfFileName" )
-         && configurationMap.value( "xOrgConfFileName" ).type() == QVariant::String
-         && !getString( configurationMap, "xOrgConfFileName" ).isEmpty() )
-    {
-        m_xOrgConfFileName = getString( configurationMap, "xOrgConfFileName" );
-    }
-    else
-    {
-        m_xOrgConfFileName = "00-keyboard.conf";
-    }
-
-    if ( configurationMap.contains( "convertedKeymapPath" )
-         && configurationMap.value( "convertedKeymapPath" ).type() == QVariant::String
-         && !getString( configurationMap, "convertedKeymapPath" ).isEmpty() )
-    {
-        m_convertedKeymapPath = getString( configurationMap, "convertedKeymapPath" );
-    }
-    else
-    {
-        m_convertedKeymapPath = QString();
-    }
-
-    if ( configurationMap.contains( "writeEtcDefaultKeyboard" )
-         && configurationMap.value( "writeEtcDefaultKeyboard" ).type() == QVariant::Bool )
-    {
-        m_writeEtcDefaultKeyboard = getBool( configurationMap, "writeEtcDefaultKeyboard", true );
-    }
-    else
-    {
-        m_writeEtcDefaultKeyboard = true;
-    }
+    m_config->setConfigurationMap( configurationMap );
 }

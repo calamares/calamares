@@ -1,20 +1,10 @@
-# === This file is part of Calamares - <https://github.com/calamares> ===
+# === This file is part of Calamares - <https://calamares.io> ===
 #
-#   Calamares is free software: you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License as published by
-#   the Free Software Foundation, either version 3 of the License, or
-#   (at your option) any later version.
+#   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
 #
-#   Calamares is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#   GNU General Public License for more details.
+#   Calamares is Free Software: see the License-Identifier above.
 #
-#   You should have received a copy of the GNU General Public License
-#   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
-#
-#   SPDX-License-Identifier: GPL-3.0-or-later
-#   License-Filename: LICENSE
 #
 ###
 #
@@ -24,6 +14,7 @@
 # calamares_add_test(
 #   <NAME>
 #   [GUI]
+#   [RESOURCES FILE]
 #   SOURCES <FILE..>
 #   )
 
@@ -34,13 +25,14 @@ function( calamares_add_test )
     # parse arguments (name needs to be saved before passing ARGN into the macro)
     set( NAME ${ARGV0} )
     set( options GUI )
+    set( oneValueArgs NAME RESOURCES )
     set( multiValueArgs SOURCES LIBRARIES DEFINITIONS )
-    cmake_parse_arguments( TEST "${options}" "" "${multiValueArgs}" ${ARGN} )
+    cmake_parse_arguments( TEST "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN} )
     set( TEST_NAME ${NAME} )
 
     if( ECM_FOUND AND BUILD_TESTING )
         ecm_add_test(
-            ${TEST_SOURCES}
+            ${TEST_SOURCES} ${TEST_RESOURCES}
             TEST_NAME
                 ${TEST_NAME}
             LINK_LIBRARIES
@@ -50,9 +42,14 @@ function( calamares_add_test )
                 Qt5::Test
             )
         calamares_automoc( ${TEST_NAME} )
+        # We specifically pass in the source directory of the test-being-
+        # compiled, so that it can find test-files in that source dir.
         target_compile_definitions( ${TEST_NAME} PRIVATE -DBUILD_AS_TEST="${CMAKE_CURRENT_SOURCE_DIR}"  ${TEST_DEFINITIONS} )
         if( TEST_GUI )
             target_link_libraries( ${TEST_NAME} calamaresui Qt5::Gui )
+        endif()
+        if( TEST_RESOURCES )
+            calamares_autorcc( ${TEST_NAME} ${TEST_RESOURCES} )
         endif()
     endif()
 endfunction()

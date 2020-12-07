@@ -1,11 +1,11 @@
 #!/bin/sh
 
 ### LICENSE
-# === This file is part of Calamares - <https://github.com/calamares> ===
+# === This file is part of Calamares - <https://calamares.io> ===
 #
-#   SPDX-License-Identifier: BSD-2-Clause
-#   SPDX-FileCopyrightText: 2017-2020 Adriaan de Groot <groot@kde.org>
 #   SPDX-FileCopyrightText: 2015-2016 Teo Mrnjavac <teo@kde.org>
+#   SPDX-FileCopyrightText: 2017-2020 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
 #
 #   This file is Free Software: you can redistribute it and/or modify
 #   it under the terms of the 2-clause BSD License.
@@ -64,7 +64,7 @@ tx pull --force --source --all
 # so clean them up after pulling.
 #
 drop_language() {
-	rm -rf lang/python/"$1" src/modules/dummypythonqt/lang/"$1" lang/calamares_"$1".ts
+	rm -rf lang/python/"$1" lang/calamares_"$1".ts
 	grep -v "\\[$1]" calamares.desktop > calamares.desktop.new
 	mv calamares.desktop.new calamares.desktop
 }
@@ -126,7 +126,7 @@ for MODULE_DIR in $(find src/modules -maxdepth 1 -mindepth 1 -type d) ; do
 			# Convert PO files to MO files
 			for POFILE in $(find ${MODULE_DIR} -name "*.po") ; do
 				sed -i'' '/^"Content-Type/s/CHARSET/UTF-8/' $POFILE
-				msgfmt -o ${POFILE%.po}.mo $POFILE
+				# msgfmt -o ${POFILE%.po}.mo $POFILE
 			done
 			git add --verbose ${MODULE_DIR}/lang/*
 			git commit "$AUTHOR" --message="i18n: [${MODULE_NAME}] $BOILERPLATE" | true
@@ -136,7 +136,7 @@ done
 
 for POFILE in $(find lang -name "python.po") ; do
 	sed -i'' '/^"Content-Type/s/CHARSET/UTF-8/' $POFILE
-	msgfmt -o ${POFILE%.po}.mo $POFILE
+	# msgfmt -o ${POFILE%.po}.mo $POFILE
 done
 git add --verbose lang/python*
 git commit "$AUTHOR" --message="i18n: [python] $BOILERPLATE" | true
