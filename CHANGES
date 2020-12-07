@@ -7,16 +7,19 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.36 (unreleased) #
+# 3.2.35.1 (2020-12-07) #
 
 This release contains contributions from (alphabetically by first name):
  - Anubhav Choudhary
+ - Matti Hyttinen
 
-## Core ##
- - No core changes yet
+Some strange string artifacts appeared, leading to `{1?}` being
+displayed in various user-facing messages. These have been removed
+and the translations updated.
 
 ## Modules ##
- - No module changes yet
+ - The *initcpiocfg* module would sometimes configure the system to ask
+   for a passphrase, when none is needed.
 
 
 # 3.2.35 (2020-11-30) #
