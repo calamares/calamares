@@ -319,14 +319,19 @@ def create_swapfile(root_mount_point, root_btrfs):
     The swapfile-creation covers progress from 0.2 to 0.5
     """
     libcalamares.job.setprogress(0.2)
-    swapfile_path = os.path.join(root_mount_point, "swapfile")
-    with open(swapfile_path, "wb") as f:
-        pass
     if root_btrfs:
+        # btrfs swapfiles must reside on a subvolume that is not snapshotted to prevent file system corruption
+        swapfile_path = os.path.join(root_mount_point, "swap/swapfile")
+        with open(swapfile_path, "wb") as f:
+            pass
         o = subprocess.check_output(["chattr", "+C", swapfile_path])
         libcalamares.utils.debug("swapfile attributes: {!s}".format(o))
         o = subprocess.check_output(["btrfs", "property", "set", swapfile_path, "compression", "none"])
         libcalamares.utils.debug("swapfile compression: {!s}".format(o))
+    else:
+        swapfile_path = os.path.join(root_mount_point, "swapfile")
+        with open(swapfile_path, "wb") as f:
+            pass
     # Create the swapfile; swapfiles are small-ish
     zeroes = bytes(16384)
     with open(swapfile_path, "wb") as f:
