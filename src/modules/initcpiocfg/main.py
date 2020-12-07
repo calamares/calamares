@@ -26,14 +26,14 @@ import os
 from collections import OrderedDict
 
 import gettext
-translate = gettext.translation("calamares-python",
+_ = gettext.translation("calamares-python",
                         localedir=libcalamares.utils.gettext_path(),
                         languages=libcalamares.utils.gettext_languages(),
                         fallback=True).gettext
 
 
 def pretty_name():
-    return translate("Configuring mkinitcpio.")
+    return _("Configuring mkinitcpio.")
 
 
 def cpuinfo():
@@ -192,8 +192,7 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
     cpu_intel = "genuineintel"
     if btrfs and cpu["proc0"]["vendor_id"].lower() != cpu_intel:
         modules.append("crc32c")
-    elif (btrfs
-          and cpu["proc0"]["vendor_id"].lower() == cpu_intel):
+    elif (btrfs and cpu["proc0"]["vendor_id"].lower() == cpu_intel):
         modules.append("crc32c-intel")
     else:
         hooks.append("fsck")
@@ -212,12 +211,12 @@ def run():
 
     if not partitions:
         libcalamares.utils.warning("partitions is empty, {!s}".format(partitions))
-        return (translate("Configuration Error"),
-                translate("No partitions are defined for <pre>{!s}</pre> to use." ).format("initcpiocfg"))
+        return (_("Configuration Error"),
+                _("No partitions are defined for <pre>{!s}</pre> to use.").format("initcpiocfg"))
     if not root_mount_point:
         libcalamares.utils.warning("rootMountPoint is empty, {!s}".format(root_mount_point))
-        return (translate("Configuration Error"),
-                translate("No root mount point is given for <pre>{!s}</pre> to use." ).format("initcpiocfg"))
+        return (_("Configuration Error"),
+                _("No root mount point is given for <pre>{!s}</pre> to use.").format("initcpiocfg"))
 
     modify_mkinitcpio_conf(partitions, root_mount_point)
 
