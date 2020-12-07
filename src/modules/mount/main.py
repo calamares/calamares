@@ -77,6 +77,7 @@ def mount_partition(root_mount_point, partition, partitions):
     # for the root mount point.
     # If a separate /home partition isn't defined, we also create
     # a subvolume "@home".
+    # If a swapfile is used, we also create a subvolume "@swap".
     # Finally we remount all of the above on the correct paths.
     if fstype == "btrfs" and partition["mountPoint"] == '/':
         has_home_mount_point = False
@@ -93,6 +94,13 @@ def mount_partition(root_mount_point, partition, partitions):
         if not has_home_mount_point:
             subprocess.check_call(['btrfs', 'subvolume', 'create',
                                    root_mount_point + '/@home'])
+
+        swap_choice = global_storage.value( "partitionChoices" )
+        if swap_choice:
+            swap_choice = swap_choice.get( "swap", None )
+            if swap_choice and swap_choice == "file":
+                subprocess.check_call(['btrfs', 'subvolume', 'create',
+                                       root_mount_point + '/@swap'])
 
         subprocess.check_call(["umount", "-v", root_mount_point])
 
