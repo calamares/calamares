@@ -1030,18 +1030,18 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="126"/>
       <source>Preserving home directory</source>
-      <translation type="unfinished"/>
+      <translation>A preservar o directório da pasta pessoal</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="50"/>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="143"/>
       <source>Creating user %1</source>
-      <translation type="unfinished"/>
+      <translation>A criar utilizador %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="151"/>
       <source>Configuring user %1</source>
-      <translation type="unfinished"/>
+      <translation>A configurar o utilizador %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="159"/>
@@ -1527,7 +1527,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
       <location filename="../src/modules/initcpio/InitcpioJob.cpp" line="31"/>
       <source>Creating initramfs with mkinitcpio.</source>
-      <translation type="unfinished"/>
+      <translation>A criar o initramfs com o mkinitcpio.</translation>
     </message>
   </context>
   <context>
@@ -1808,7 +1808,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
       <location filename="../src/modules/localeq/Map.qml" line="243"/>
       <source>Timezone: %1</source>
-      <translation type="unfinished"/>
+      <translation>Fuso horário: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Map.qml" line="264"/>
@@ -1968,7 +1968,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
       <location filename="../src/modules/localeq/Offline.qml" line="169"/>
       <location filename="../src/modules/localeq/Offline.qml" line="213"/>
       <source>Timezone: %1</source>
-      <translation type="unfinished"/>
+      <translation>Fuso horário: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="111"/>

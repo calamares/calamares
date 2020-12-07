@@ -569,7 +569,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1150"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
-      <translation>מחיצת מערכת ה־EFI שב־%1 תשמש עבור טעינת %2.</translation>
+      <translation>מחיצת מערכת EFI שב־%1 תשמש לטעינת %2.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1158"/>
@@ -1040,7 +1040,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="50"/>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="143"/>
       <source>Creating user %1</source>
-      <translation>המשתמש %1 נוצר.</translation>
+      <translation>המשתמש %1 נוצר</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="151"/>
@@ -1184,7 +1184,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="121"/>
       <source>Skip writing LUKS configuration for Dracut: "/" partition is not encrypted</source>
-      <translation>דלג רישום הגדרות הצפנה LUKS עבור Dracut: מחיצת "/" לא תוצפן.</translation>
+      <translation>דילוג על רישום הגדרת LUKS עבור Dracut: מחיצת "/" אינה מוצפנת</translation>
     </message>
     <message>
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="138"/>
@@ -1322,7 +1322,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="209"/>
       <source>Setting up mount points.</source>
-      <translation>נקודות עיגון מוגדרות.</translation>
+      <translation>כעת בהגדרת נקודות העיגון.</translation>
     </message>
   </context>
   <context>
@@ -1411,7 +1411,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="58"/>
       <source>Formatting partition %1 with file system %2.</source>
-      <translation>מאתחל מחיצה %1 עם מערכת קבצים %2.</translation>
+      <translation>כעת בפרמוט המחיצה %1 עם מערכת הקבצים %2.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="72"/>
@@ -3251,7 +3251,7 @@ Output:
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="51"/>
       <source>Setting hostname %1.</source>
-      <translation>שם העמדה %1 מוגדר.</translation>
+      <translation>כעת בהגדרת שם המארח %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="122"/>
@@ -3389,7 +3389,7 @@ Output:
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="47"/>
       <source>Setting password for user %1.</source>
-      <translation>מגדיר סיסמה עבור משתמש %1.</translation>
+      <translation>כעת בהגדרת הסיסמה למשתמש %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="81"/>
