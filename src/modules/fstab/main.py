@@ -183,7 +183,7 @@ class FstabGenerator(object):
             print(FSTAB_HEADER, file=fstab_file)
 
             for partition in self.partitions:
-                # Special treatment for a btrfs root with @ and @home
+                # Special treatment for a btrfs root with @, @home and @swap
                 # subvolumes
                 if (partition["fs"] == "btrfs"
                    and partition["mountPoint"] == "/"):
@@ -204,6 +204,13 @@ class FstabGenerator(object):
                             home_entry["mountPoint"] = "/home"
                             home_entry["subvol"] = "@home"
                             dct = self.generate_fstab_line_info(home_entry)
+                            if dct:
+                                self.print_fstab_line(dct, file=fstab_file)
+                        elif line.endswith(b'path @swap'):
+                            swap_part_entry = partition
+                            swap_part_entry["mountPoint"] = "/swap"
+                            swap_part_entry["subvol"] = "@swap"
+                            dct = self.generate_fstab_line_info(swap_part_entry)
                             if dct:
                                 self.print_fstab_line(dct, file=fstab_file)
 
