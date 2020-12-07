@@ -386,7 +386,12 @@ def run():
         swap_choice = swap_choice.get( "swap", None )
         if swap_choice and swap_choice == "file":
             # There's no formatted partition for it, so we'll sneak in an entry
-            partitions.append( dict(fs="swap", mountPoint=None, claimed=True, device="/swapfile", uuid=None) )
+            root_partitions = [ p["fs"].lower() for p in partitions if p["mountPoint"] == "/" ]
+            root_btrfs = (root_partitions[0] == "btrfs") if root_partitions else False
+            if root_btrfs:
+                partitions.append( dict(fs="swap", mountPoint=None, claimed=True, device="/swap/swapfile", uuid=None) )
+            else:    
+                partitions.append( dict(fs="swap", mountPoint=None, claimed=True, device="/swapfile", uuid=None) )
         else:
             swap_choice = None
 
