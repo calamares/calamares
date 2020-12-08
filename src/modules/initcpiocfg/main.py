@@ -78,13 +78,13 @@ def write_mkinitcpio_lines(hooks, modules, files, root_mount_point):
     for i in range(len(mklins)):
         if mklins[i].startswith("HOOKS"):
             joined_hooks = " ".join(hooks)
-            mklins[i] = "HOOKS='{!s}'".format(joined_hooks)
+            mklins[i] = 'HOOKS="{!s}"'.format(joined_hooks)
         elif mklins[i].startswith("MODULES"):
             joined_modules = ' '.join(modules)
-            mklins[i] = "MODULES='{!s}'".format(joined_modules)
+            mklins[i] = 'MODULES="{!s}"'.format(joined_modules)
         elif mklins[i].startswith("FILES"):
             joined_files = ' '.join(files)
-            mklins[i] = "FILES='{!s}'".format(joined_files)
+            mklins[i] = 'FILES="{!s}"'.format(joined_files)
 
     path = os.path.join(root_mount_point, "etc/mkinitcpio.conf")
 
