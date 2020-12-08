@@ -72,7 +72,7 @@ def write_mkinitcpio_lines(hooks, modules, files, root_mount_point):
         with open(hostfile, "r") as mkinitcpio_file:
             mklins = [x.strip() for x in mkinitcpio_file.readlines()]
     except FileNotFoundError:
-        libcalamares.utils.debug("Could not open host file '%s'" % hostfile)
+        libcalamares.utils.debug("Could not open host file {!s}".format(hostfile))
         mklins = []
 
     for i in range(len(mklins)):
