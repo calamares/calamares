@@ -130,6 +130,7 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
     encrypt_hook = False
     openswap_hook = False
     unencrypted_separate_boot = False
+    is_cpu_intel = cpu["proc0"]["vendor_id"].lower() == "genuineintel"
 
     # It is important that the plymouth hook comes before any encrypt hook
     if detect_plymouth():
@@ -181,20 +182,13 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
     else:
         hooks.extend(["filesystems"])
 
-    def is_cpu_intel():
-        cpu_intel = "genuineintel"
-        if cpu["proc0"]["vendor_id"].lower() == cpu_intel:
-            return True
-        else:
-            return False
-
-    if btrfs and not is_cpu_intel():
+    if btrfs and not is_cpu_intel:
         modules.append("crc32c")
 
-    elif btrfs and is_cpu_intel():
+    elif btrfs and is_cpu_intel:
         modules.append("crc32c-intel")
-    else:
-        # What we doing here this one never runs?
+
+    elif not btrfs:
         hooks.append("fsck")
 
     write_mkinitcpio_lines(hooks, modules, files, root_mount_point)
