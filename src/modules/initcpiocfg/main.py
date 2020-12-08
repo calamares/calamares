@@ -134,6 +134,8 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
         hooks.append("plymouth")
 
     for partition in partitions:
+        hooks.extend(["filesystems"])
+
         if partition["fs"] == "linuxswap" and not partition.get("claimed", None):
             # Skip foreign swap
             continue
@@ -174,11 +176,9 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
         hooks.append("lvm2")
 
     if swap_uuid != "":
+        hooks.extend(["resume"])
         if encrypt_hook and openswap_hook:
             hooks.extend(["openswap"])
-        hooks.extend(["resume", "filesystems"])
-    else:
-        hooks.extend(["filesystems"])
 
     if btrfs and not is_cpu_intel:
         modules.append("crc32c")
