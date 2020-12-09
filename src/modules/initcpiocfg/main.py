@@ -72,7 +72,7 @@ def write_mkinitcpio_lines(hooks, modules, files, root_mount_point):
         with open(hostfile, "r") as mkinitcpio_file:
             mklins = [x.strip() for x in mkinitcpio_file.readlines()]
     except FileNotFoundError:
-        libcalamares.utils.debug("Could not open host file {!s}".format(hostfile))
+        libcalamares.utils.debug(f"Could not open host file {hostfile}")
         mklins = []
 
     for i in range(len(mklins)):
@@ -170,7 +170,7 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
            os.path.isfile(
                os.path.join(root_mount_point, crypto_file)
                ):
-            files.append("/{!s}".format(crypto_file))
+            files.append(f"/{crypto_file}")
 
     if lvm2:
         hooks.append("lvm2")
@@ -202,13 +202,13 @@ def run():
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
 
     if not partitions:
-        libcalamares.utils.warning("partitions is empty, {!s}".format(partitions))
+        libcalamares.utils.warning(f"partitions is empty, {partitions}")
         return (_("Configuration Error"),
-                _("No partitions are defined for <pre>{!s}</pre> to use.").format("initcpiocfg"))
+                _("No partitions are defined for <pre>initcpiocfg</pre> to use."))
     if not root_mount_point:
-        libcalamares.utils.warning("rootMountPoint is empty, {!s}".format(root_mount_point))
+        libcalamares.utils.warning(f"rootMountPoint is empty, {root_mount_point}")
         return (_("Configuration Error"),
-                _("No root mount point is given for <pre>{!s}</pre> to use.").format("initcpiocfg"))
+                _("No root mount point is given for <pre>initcpiocfg</pre> to use."))
 
     modify_mkinitcpio_conf(partitions, root_mount_point)
 
