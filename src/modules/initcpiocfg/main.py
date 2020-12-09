@@ -202,13 +202,13 @@ def run():
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
 
     if not partitions:
-        libcalamares.utils.warning(f"partitions is empty, {partitions}")
+        libcalamares.utils.warning(f"partitions are empty, {partitions}")
         return (_("Configuration Error"),
-                _("No partitions are defined for <pre>initcpiocfg</pre> to use."))
+                _("No partitions are defined for <pre>initcpiocfg</pre>."))
     if not root_mount_point:
         libcalamares.utils.warning(f"rootMountPoint is empty, {root_mount_point}")
         return (_("Configuration Error"),
-                _("No root mount point is given for <pre>initcpiocfg</pre> to use."))
+                _("No root mount point for <pre>initcpiocfg</pre>."))
 
     modify_mkinitcpio_conf(partitions, root_mount_point)
 
