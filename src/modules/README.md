@@ -180,6 +180,11 @@ a `CMakeLists.txt` with a `calamares_add_plugin` call. It will be picked
 up automatically by our CMake magic. The `module.desc` file is not recommended:
 nearly all cases can be described in CMake.
 
+Modules can be tested with the `loadmodule` testing executable in
+the build directory. See the section on [testing modules](#testing-modules)
+for more details.
+
+
 ### C++ Jobmodule
 
 **TODO:** this needs documentation
@@ -258,8 +263,10 @@ All code in Python job modules must obey PEP8, the only exception are
 `libcalamares.globalstorage` keys, which should always be
 camelCaseWithLowerCaseInitial to match the C++ identifier convention.
 
-For testing and debugging we provide the `testmodule.py` script which
-fakes a limited Calamares Python environment for running a single jobmodule.
+Modules can be tested with the `loadmodule` testing executable in
+the build directory. See the section on [testing modules](#testing-modules)
+for more details.
+
 
 ### Python Jobmodule
 
@@ -301,3 +308,29 @@ The module-descriptor key *command* should have a string as value, which is
 passed to the shell -- remember to quote it properly. It is generally
 recommended to use a *shellprocess* job module instead (less configuration,
 easier to have multiple instances).
+
+
+## Testing Modules
+
+For testing purposes there is an executable `loadmodule` which is
+built, but not installed. It can be found in the build directory.
+The `loadmodule` executable behaves like single-module Calamares:
+it loads global configuration, job configuration, and then runs
+a single module which may be a C++ module or a Python module,
+a Job or a ViewModule.
+
+The same application can also be used to test translations,
+branding, and slideshows, without starting up a whole Calamares
+each time. It is possible to run multiple `loadmodule` executables
+at the same time (Calamares tries to enforce that it runs only
+once).
+
+The following arguments can be used with `loadmodule`
+(there are more; run `loadmodule --help` for a complete list):
+ - `--global` takes a filename and reads the file to provide data in
+   global storage. The file must be YAML-formatted.
+ - `--job` takes a filename and reads that to provide the job
+   configuration (e.g. the `.conf` file for the module).
+ - `--ui` runs a view module with a UI. Without this option,
+   view modules are run as jobs, and most of them are not
+   prepared for that, and will crash.
