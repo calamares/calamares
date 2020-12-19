@@ -38,6 +38,7 @@ def mount_partition(root_mount_point, partition, partitions):
     """
     # Create mount point with `+` rather than `os.path.join()` because
     # `partition["mountPoint"]` starts with a '/'.
+    global_storage = libcalamares.globalstorage
     raw_mount_point = partition["mountPoint"]
     if not raw_mount_point:
         return
