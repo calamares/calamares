@@ -67,10 +67,10 @@ querySolidAutoMount( QDBusConnection& dbus, AutoMountInfo& info )
     }
 }
 
-std::unique_ptr< AutoMountInfo >
+std::shared_ptr< AutoMountInfo >
 automountDisable( bool disable )
 {
-    auto u = std::make_unique< AutoMountInfo >();
+    auto u = std::make_shared< AutoMountInfo >();
     QDBusConnection dbus = QDBusConnection::sessionBus();
     querySolidAutoMount( dbus, *u );
     enableSolidAutoMount( dbus, !disable );
@@ -79,7 +79,7 @@ automountDisable( bool disable )
 
 
 void
-automountRestore( std::unique_ptr< AutoMountInfo >&& t )
+automountRestore( std::shared_ptr< AutoMountInfo >&& t )
 {
     QDBusConnection dbus = QDBusConnection::sessionBus();
     enableSolidAutoMount( dbus, t->wasSolidModuleAutoLoaded );

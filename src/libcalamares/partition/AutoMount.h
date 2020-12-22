@@ -36,14 +36,14 @@ struct AutoMountInfo;
  * Returns an opaque structure which can be passed to automountRestore()
  * to return the system to the previously-configured automount settings.
  */
-DLLEXPORT std::unique_ptr< AutoMountInfo > automountDisable( bool disable = true );
+DLLEXPORT std::shared_ptr< AutoMountInfo > automountDisable( bool disable = true );
 
 /** @brief Restore automount settings
  *
  * Pass the value returned from automountDisable() to restore the
  * previous settings.
  */
-DLLEXPORT void automountRestore( std::unique_ptr< AutoMountInfo >&& t );
+DLLEXPORT void automountRestore( std::shared_ptr< AutoMountInfo >&& t );
 
 }  // namespace Partition
 }  // namespace CalamaresUtils
