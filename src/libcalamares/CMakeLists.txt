@@ -77,6 +77,14 @@ set( libSources
     utils/Yaml.cpp
 )
 
+### OPTIONAL Automount support (requires dbus)
+#
+#
+if( Qt5DBus_FOUND)
+    list( APPEND libSources partition/AutoMount.cpp )
+    list( APPEND OPTIONAL_PRIVATE_LIBRARIES Qt5::DBus )
+endif()
+
 ### OPTIONAL Python support
 #
 #
