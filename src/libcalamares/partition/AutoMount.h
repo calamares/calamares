@@ -30,10 +30,13 @@ struct AutoMountInfo;
  * steps (create table, create partition, set partition flags) which are
  * blocked if the partition gets mounted partway through the operation.
  *
+ * @param disable set this to false to reverse the sense of the function
+ *      call and force *enabling* automount, instead.
+ *
  * Returns an opaque structure which can be passed to automountRestore()
  * to return the system to the previously-configured automount settings.
  */
-DLLEXPORT std::unique_ptr< AutoMountInfo > automountDisable();
+DLLEXPORT std::unique_ptr< AutoMountInfo > automountDisable( bool disable = true );
 
 /** @brief Restore automount settings
  *
