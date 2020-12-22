@@ -68,12 +68,12 @@ querySolidAutoMount( QDBusConnection& dbus, AutoMountInfo& info )
 }
 
 std::unique_ptr< AutoMountInfo >
-automountDisable()
+automountDisable( bool disable )
 {
     auto u = std::make_unique< AutoMountInfo >();
     QDBusConnection dbus = QDBusConnection::sessionBus();
     querySolidAutoMount( dbus, *u );
-    enableSolidAutoMount( dbus, false );
+    enableSolidAutoMount( dbus, !disable );
     return u;
 }
 
