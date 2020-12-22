@@ -262,6 +262,6 @@ target_link_libraries( test_geoip calamares Qt5::Network yamlcpp )
 calamares_automoc( test_geoip )
 
 if ( Qt5DBus_FOUND )
-    add_executable( calautomount partition/calautomount.cpp )
-    target_link_libraries( calautomount calamares Qt5::DBus )
+    add_executable( test_automount partition/calautomount.cpp )
+    target_link_libraries( test_automount calamares Qt5::DBus )
 endif()
