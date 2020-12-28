@@ -41,18 +41,18 @@ PartitionLayout::PartitionEntry::PartitionEntry()
 {
 }
 
-PartitionLayout::PartitionEntry::PartitionEntry( FileSystem::Type fs,
-                                                 const QString& mountPoint,
+PartitionLayout::PartitionEntry::PartitionEntry( const QString& mountPoint,
+                                                 const QString& fs,
                                                  const QString& size,
                                                  const QString& minSize,
                                                  const QString& maxSize )
     : partAttributes( 0 )
     , partMountPoint( mountPoint )
-    , partFileSystem( fs )
     , partSize( size )
     , partMinSize( minSize )
     , partMaxSize( maxSize )
 {
+    PartUtils::findFS( fs, &partFileSystem );
 }
 
 PartitionLayout::PartitionEntry::PartitionEntry( const QString& label,
@@ -80,32 +80,45 @@ PartitionLayout::PartitionEntry::PartitionEntry( const QString& label,
 
 
 bool
-PartitionLayout::addEntry( const PartitionEntry& entry )
+PartitionLayout::addEntry( const PartitionEntry& entry, bool prepend )
 {
     if ( !entry.isValid() )
     {
         return false;
     }
 
-    m_partLayout.append( entry );
+    if ( prepend )
+    {
+        m_partLayout.prepend( entry );
+    }
+    else
+    {
+        m_partLayout.append( entry );
+    }
 
     return true;
 }
 
 void
-PartitionLayout::init( FileSystem::Type defaultFsType, const QVariantList& config )
+PartitionLayout::setList( const QVariantList& list )
+{
+    m_list = list;
+}
+
+void
+PartitionLayout::init( const QString& defaultFsType )
 {
     bool ok;
 
     m_partLayout.clear();
 
-    for ( const auto& r : config )
+    for ( const auto& r : m_list )
     {
         QVariantMap pentry = r.toMap();
 
         if ( !pentry.contains( "name" ) || !pentry.contains( "size" ) )
         {
-            cError() << "Partition layout entry #" << config.indexOf( r )
+            cError() << "Partition layout entry #" << m_list.indexOf( r )
                      << "lacks mandatory attributes, switching to default layout.";
             m_partLayout.clear();
             break;
@@ -116,13 +129,13 @@ PartitionLayout::init( FileSystem::Type defaultFsType, const QVariantList& confi
                           CalamaresUtils::getString( pentry, "type" ),
                           CalamaresUtils::getUnsignedInteger( pentry, "attributes", 0 ),
                           CalamaresUtils::getString( pentry, "mountPoint" ),
-                          CalamaresUtils::getString( pentry, "filesystem", "unformatted" ),
+                          CalamaresUtils::getString( pentry, "filesystem", defaultFsType ),
                           CalamaresUtils::getSubMap( pentry, "features", ok ),
                           CalamaresUtils::getString( pentry, "size", QStringLiteral( "0" ) ),
                           CalamaresUtils::getString( pentry, "minSize", QStringLiteral( "0" ) ),
                           CalamaresUtils::getString( pentry, "maxSize", QStringLiteral( "0" ) ) } ) )
         {
-            cError() << "Partition layout entry #" << config.indexOf( r ) << "is invalid, switching to default layout.";
+            cError() << "Partition layout entry #" << m_list.indexOf( r ) << "is invalid, switching to default layout.";
             m_partLayout.clear();
             break;
         }
@@ -130,7 +143,7 @@ PartitionLayout::init( FileSystem::Type defaultFsType, const QVariantList& confi
 
     if ( !m_partLayout.count() )
     {
-        addEntry( { defaultFsType, QString( "/" ), QString( "100%" ) } );
+        addEntry( { QString( "/" ), defaultFsType, QString( "100%" ) } );
     }
 }
 

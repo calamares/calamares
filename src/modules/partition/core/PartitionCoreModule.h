@@ -3,6 +3,7 @@
  *   SPDX-FileCopyrightText: 2014 Aurélien Gâteau <agateau@kde.org>
  *   SPDX-FileCopyrightText: 2014-2016 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2020 Gaël PORTAY <gael.portay@collabora.com>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -156,11 +157,21 @@ public:
     /// @brief Set the path where the bootloader will be installed
     void setBootLoaderInstallPath( const QString& path );
 
+    void setLayout( const QVariantList& list = QVariantList() );
+
     /** @brief Initialize the default layout that will be applied
      *
-     * See PartitionLayout::init()
+     * See PartitionLayout::init() and PartitionLayout::setLayout
      */
-    void initLayout( FileSystem::Type defaultFsType, const QVariantList& config = QVariantList() );
+    void layoutInit( const QString& defaultFsType );
+
+    bool layoutAddEntry( const PartitionLayout::PartitionEntry& entry, bool prepend = false );
+
+    bool layoutAddEfiEntry( bool prepend = false );
+
+    bool layoutAddSwapEntry( qint64 size, bool prepend = false );
+
+    bool layoutAddHomeEntry( bool prepend = false );
 
     void layoutApply( Device* dev, qint64 firstSector, qint64 lastSector, QString luksPassphrase );
     void layoutApply( Device* dev,
@@ -180,6 +191,8 @@ public:
     bool hasRootMountPoint() const;
 
     QList< Partition* > efiSystemPartitions() const;
+
+    QList< Partition* > homePartitions() const;
 
     QVector< const Partition* > lvmPVs() const;
 
@@ -243,8 +256,10 @@ private:
     void doInit();
     void updateHasRootMountPoint();
     void updateIsDirty();
+    void scanForPartitions();
     void scanForEfiSystemPartitions();
     void scanForLVMPVs();
+    void scanForHomePartitions();
 
     DeviceInfo* infoForDevice( const Device* ) const;
 
@@ -252,6 +267,7 @@ private:
 
     QList< DeviceInfo* > m_deviceInfos;
     QList< Partition* > m_efiSystemPartitions;
+    QList< Partition* > m_homePartitions;
     QVector< const Partition* > m_lvmPVs;
 
     DeviceModel* m_deviceModel;

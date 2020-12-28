@@ -3,6 +3,7 @@
  *   SPDX-FileCopyrightText: 2014-2017 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2017-2019 Adriaan de Groot <groot@kde.org>
  *   SPDX-FileCopyrightText: 2019 Collabora Ltd <arnaud.ferraris@collabora.com>
+ *   SPDX-FileCopyrightText: 2020 Gaël PORTAY <gael.portay@collabora.com>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -88,8 +89,6 @@ swapSuggestion( const qint64 availableSpaceB, Config::SwapChoice swap )
 void
 doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionOptions o )
 {
-    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-
     bool isEfi = PartUtils::isEfiSystem();
 
     // Partition sizes are expressed in MiB, should be multiples of
@@ -113,36 +112,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
 
     if ( isEfi )
     {
-        int uefisys_part_sizeB = 300_MiB;
-        if ( gs->contains( "efiSystemPartitionSize" ) )
-        {
-            CalamaresUtils::Partition::PartitionSize part_size
-                = CalamaresUtils::Partition::PartitionSize( gs->value( "efiSystemPartitionSize" ).toString() );
-            uefisys_part_sizeB = part_size.toBytes( dev->capacity() );
-        }
-
-        qint64 efiSectorCount = CalamaresUtils::bytesToSectors( uefisys_part_sizeB, dev->logicalSize() );
-        Q_ASSERT( efiSectorCount > 0 );
-
-        // Since sectors count from 0, and this partition is created starting
-        // at firstFreeSector, we need efiSectorCount sectors, numbered
-        // firstFreeSector..firstFreeSector+efiSectorCount-1.
-        qint64 lastSector = firstFreeSector + efiSectorCount - 1;
-        Partition* efiPartition = KPMHelpers::createNewPartition( dev->partitionTable(),
-                                                                  *dev,
-                                                                  PartitionRole( PartitionRole::Primary ),
-                                                                  FileSystem::Fat32,
-                                                                  firstFreeSector,
-                                                                  lastSector,
-                                                                  KPM_PARTITION_FLAG( None ) );
-        PartitionInfo::setFormat( efiPartition, true );
-        PartitionInfo::setMountPoint( efiPartition, o.efiPartitionMountPoint );
-        if ( gs->contains( "efiSystemPartitionName" ) )
-        {
-            efiPartition->setLabel( gs->value( "efiSystemPartitionName" ).toString() );
-        }
-        core->createPartition( dev, efiPartition, KPM_PARTITION_FLAG_ESP );
-        firstFreeSector = lastSector + 1;
+        core->layoutAddEfiEntry( true );
     }
 
     const bool mayCreateSwap
@@ -163,45 +133,21 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
         shouldCreateSwap = availableSpaceB > requiredSpaceB;
     }
 
-    qint64 lastSectorForRoot = dev->totalLogical() - 1;  //last sector of the device
-    if ( shouldCreateSwap )
-    {
-        lastSectorForRoot -= suggestedSwapSizeB / dev->logicalSize() + 1;
-    }
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
 
-    core->layoutApply( dev, firstFreeSector, lastSectorForRoot, o.luksPassphrase );
+    core->layoutInit( gs->value( "defaultFileSystemType" ).toString() );
 
     if ( shouldCreateSwap )
     {
-        Partition* swapPartition = nullptr;
-        if ( o.luksPassphrase.isEmpty() )
-        {
-            swapPartition = KPMHelpers::createNewPartition( dev->partitionTable(),
-                                                            *dev,
-                                                            PartitionRole( PartitionRole::Primary ),
-                                                            FileSystem::LinuxSwap,
-                                                            lastSectorForRoot + 1,
-                                                            dev->totalLogical() - 1,
-                                                            KPM_PARTITION_FLAG( None ) );
-        }
-        else
-        {
-            swapPartition = KPMHelpers::createNewEncryptedPartition( dev->partitionTable(),
-                                                                     *dev,
-                                                                     PartitionRole( PartitionRole::Primary ),
-                                                                     FileSystem::LinuxSwap,
-                                                                     lastSectorForRoot + 1,
-                                                                     dev->totalLogical() - 1,
-                                                                     o.luksPassphrase,
-                                                                     KPM_PARTITION_FLAG( None ) );
-        }
-        PartitionInfo::setFormat( swapPartition, true );
-        if ( gs->contains( "swapPartitionName" ) )
-        {
-            swapPartition->setLabel( gs->value( "swapPartitionName" ).toString() );
-        }
-        core->createPartition( dev, swapPartition );
+        core->layoutAddSwapEntry( suggestedSwapSizeB );
     }
+
+    if ( !gs->value( "reuseHome" ).toBool() )
+    {
+        core->layoutAddHomeEntry();
+    }
+
+    core->layoutApply( dev, firstFreeSector, dev->totalLogical() - 1, o.luksPassphrase );
 
     core->dumpQueue();
 }
@@ -240,6 +186,15 @@ doReplacePartition( PartitionCoreModule* core, Device* dev, Partition* partition
     if ( !partition->roles().has( PartitionRole::Unallocated ) )
     {
         core->deletePartition( dev, partition );
+    }
+
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+
+    core->layoutInit( gs->value( "defaultFileSystemType" ).toString() );
+
+    if ( !gs->value( "reuseHome" ).toBool() )
+    {
+        core->layoutAddHomeEntry();
     }
 
     core->layoutApply( dev, firstSector, lastSector, o.luksPassphrase );

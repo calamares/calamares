@@ -16,6 +16,7 @@
 
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
+#include <kpmcore/core/partitiontable.h>
 
 namespace CalamaresUtils
 {
@@ -25,6 +26,19 @@ namespace Partition
 // Types from KPMCore
 using ::Device;
 using ::Partition;
+
+const PartitionTable*
+getPartitionTable( const Partition* partition )
+{
+    const PartitionNode* root = partition;
+    while ( root && !root->isRoot() )
+    {
+        root = root->parent();
+    }
+
+    return dynamic_cast< const PartitionTable* >( root );
+}
+
 
 bool
 isPartitionFreeSpace( const Partition* partition )

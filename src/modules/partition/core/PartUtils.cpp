@@ -3,6 +3,7 @@
  *   SPDX-FileCopyrightText: 2015-2016 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2018-2019 Adriaan de Groot <groot@kde.org>
  *   SPDX-FileCopyrightText: 2019 Collabora Ltd <arnaud.ferraris@collabora.com>
+ *   SPDX-FileCopyrightText: 2020 Gaël PORTAY <gael.portay@collabora.com>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -454,20 +455,7 @@ isEfiBootable( const Partition* candidate )
     }
 
     /* Otherwise, if it's a GPT table, Boot (bit 0) is the same as Esp */
-    const PartitionNode* root = candidate;
-    while ( root && !root->isRoot() )
-    {
-        root = root->parent();
-    }
-
-    // Strange case: no root found, no partition table node?
-    if ( !root )
-    {
-        cWarning() << "No root of partition table found.";
-        return false;
-    }
-
-    const PartitionTable* table = dynamic_cast< const PartitionTable* >( root );
+    const PartitionTable* table = CalamaresUtils::Partition::getPartitionTable( candidate );
     if ( !table )
     {
         cWarning() << "Root of partition table is not a PartitionTable object";
@@ -480,6 +468,29 @@ isEfiBootable( const Partition* candidate )
     }
     return false;
 #endif
+}
+
+bool
+isHomePartition( const Partition* candidate )
+{
+    cDebug() << "Check Home partition" << convenienceName( candidate ) << candidate->devicePath();
+    cDebug() << Logger::SubEntry << "uuid" << candidate->uuid();
+    cDebug() << Logger::SubEntry << "type" << candidate->type();
+    cDebug() << Logger::SubEntry << "label" << candidate->label();
+    cDebug() << Logger::SubEntry << "attributes" << candidate->attributes();
+
+    const PartitionTable* table = CalamaresUtils::Partition::getPartitionTable( candidate );
+
+    // Strange case: no partition table node?
+    if ( !table )
+    {
+        return false;
+    }
+
+    cDebug() << Logger::SubEntry << "partition table" << ( void* )table << "type"
+             << ( table ? table->type() : PartitionTable::TableType::unknownTableType );
+    return table && ( table->type() == PartitionTable::TableType::gpt )
+           && candidate->type().compare( "933AC7E1-2EB4-4F13-B844-0E14E2AEF915", Qt::CaseInsensitive ) == 0;
 }
 
 QString

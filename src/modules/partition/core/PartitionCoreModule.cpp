@@ -5,6 +5,7 @@
  *   SPDX-FileCopyrightText: 2017-2019 Adriaan de Groot <groot@kde.org>
  *   SPDX-FileCopyrightText: 2018 Caio Carvalho <caiojcarvalho@gmail.com>
  *   SPDX-FileCopyrightText: 2019 Collabora Ltd <arnaud.ferraris@collabora.com>
+ *   SPDX-FileCopyrightText: 2020 Gaël PORTAY <gael.portay@collabora.com>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -34,6 +35,9 @@
 #include "jobs/ResizePartitionJob.h"
 #include "jobs/ResizeVolumeGroupJob.h"
 #include "jobs/SetPartitionFlagsJob.h"
+
+#include "GlobalStorage.h"
+#include "JobQueue.h"
 
 #ifdef DEBUG_PARTITION_LAME
 #include "JobExample.h"
@@ -317,14 +321,7 @@ PartitionCoreModule::doInit()
 
     m_bootLoaderModel->init( bootLoaderDevices );
 
-    scanForLVMPVs();
-
-    //FIXME: this should be removed in favor of
-    //       proper KPM support for EFI
-    if ( PartUtils::isEfiSystem() )
-    {
-        scanForEfiSystemPartitions();
-    }
+    scanForPartitions();
 }
 
 PartitionCoreModule::~PartitionCoreModule()
@@ -608,6 +605,12 @@ PartitionCoreModule::efiSystemPartitions() const
     return m_efiSystemPartitions;
 }
 
+QList< Partition* >
+PartitionCoreModule::homePartitions() const
+{
+    return m_homePartitions;
+}
+
 QVector< const Partition* >
 PartitionCoreModule::lvmPVs() const
 {
@@ -674,14 +677,7 @@ PartitionCoreModule::refreshAfterModelChange()
     updateIsDirty();
     m_bootLoaderModel->update();
 
-    scanForLVMPVs();
-
-    //FIXME: this should be removed in favor of
-    //       proper KPM support for EFI
-    if ( PartUtils::isEfiSystem() )
-    {
-        scanForEfiSystemPartitions();
-    }
+    scanForPartitions();
 }
 
 void
@@ -714,6 +710,21 @@ PartitionCoreModule::updateIsDirty()
 }
 
 void
+PartitionCoreModule::scanForPartitions()
+{
+    scanForLVMPVs();
+
+    //FIXME: this should be removed in favor of
+    //       proper KPM support for EFI
+    if ( PartUtils::isEfiSystem() )
+    {
+        scanForEfiSystemPartitions();
+    }
+
+    scanForHomePartitions();
+}
+
+void
 PartitionCoreModule::scanForEfiSystemPartitions()
 {
     const bool wasEmpty = m_efiSystemPartitions.isEmpty();
@@ -741,6 +752,53 @@ PartitionCoreModule::scanForEfiSystemPartitions()
     }
 
     m_efiSystemPartitions = efiSystemPartitions;
+}
+
+void
+PartitionCoreModule::scanForHomePartitions()
+{
+    m_homePartitions.clear();
+
+    QList< Device* > devices;
+    for ( int row = 0; row < deviceModel()->rowCount(); ++row )
+    {
+        Device* device = deviceModel()->deviceForIndex( deviceModel()->index( row ) );
+        devices.append( device );
+    }
+
+    QList< Partition* > homePartitions
+        = CalamaresUtils::Partition::findPartitions( devices, PartUtils::isHomePartition );
+
+    for ( const OsproberEntry& osproberEntry : osproberEntries() )
+    {
+        if ( !osproberEntry.homePath.isEmpty() ) {
+            Partition* homePartition = CalamaresUtils::Partition::findPartitionByPath( devices, osproberEntry.homePath );
+            if ( homePartition )
+            {
+                bool found = false;
+                for ( auto* part: homePartitions )
+                {
+                    if ( part == homePartition )
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if ( !found )
+                {
+                    homePartitions.append( homePartition );
+                }
+            }
+        }
+    }
+
+    if ( homePartitions.isEmpty() )
+    {
+        cWarning() << "system has no home partitions found.";
+    }
+
+    m_homePartitions = homePartitions;
 }
 
 void
@@ -868,9 +926,110 @@ PartitionCoreModule::setBootLoaderInstallPath( const QString& path )
 }
 
 void
-PartitionCoreModule::initLayout( FileSystem::Type defaultFsType, const QVariantList& config )
+PartitionCoreModule::setLayout( const QVariantList& list )
 {
-    m_partLayout.init( defaultFsType, config );
+    m_partLayout.setList( list );
+}
+
+void
+PartitionCoreModule::layoutInit( const QString& defaultFsType )
+{
+    m_partLayout.init( defaultFsType );
+}
+
+bool
+PartitionCoreModule::layoutAddEntry( const PartitionLayout::PartitionEntry& entry, bool prepend )
+{
+    return m_partLayout.addEntry( entry, prepend );
+}
+
+bool
+PartitionCoreModule::layoutAddEfiEntry( bool prepend )
+{
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+
+    QString name = QString( "efi" );
+    if ( gs->contains( "efiSystemPartitionName" ) )
+    {
+        name = gs->value( "efiSystemPartitionName" ).toString();
+    }
+
+    QString mountPoint = QString( "/boot/efi" );
+    if ( gs->contains( "efiSystemPartition" ) )
+    {
+        mountPoint = gs->value( "efiSystemPartition" ).toString();
+    }
+
+    QString size = QString( "300MiB" );
+    if ( gs->contains( "efiSystemPartitionSize" ) )
+    {
+        size = gs->value( "efiSystemPartitionSize" ).toString();
+    }
+
+    return layoutAddEntry( { name, QString( "" ), QString( "c12a7328-f81f-11d2-ba4b-00a0c93ec93b" ), 0,
+                             mountPoint, QString( "FAT32" ), { }, size, QString( "0" ), QString( "0" ) },
+                           prepend );
+}
+
+bool
+PartitionCoreModule::layoutAddSwapEntry( qint64 size, bool prepend )
+{
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+
+    QString name = QString( "swap" );
+    if ( gs->contains( "swapPartitionName" ) )
+    {
+        name = gs->value( "swapPartitionName" ).toString();
+    }
+
+    return layoutAddEntry( { name, QString( "" ), QString( "0657fd6d-a4ab-43c4-84e5-0933c84b4f4f" ), 0,
+                             QString( "" ), QString( "linuxswap" ), { }, QString::number( size ), QString( "0" ), QString( "0" ) },
+                           prepend );
+}
+
+bool
+PartitionCoreModule::layoutAddHomeEntry( bool prepend )
+{
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+
+    QString name = QString( "home" );
+    if ( gs->contains( "homePartitionName" ) )
+    {
+        name = gs->value( "homePartitionName" ).toString();
+    }
+
+    QString mountPoint = QString( "/home" );
+    if ( gs->contains( "homePartition" ) )
+    {
+        mountPoint = gs->value( "homePartition" ).toString();
+    }
+
+    QString fileSystemType = gs->value( "defaultFileSystemType" ).toString();
+    if ( gs->contains( "homePartitionFileSystemType" ) )
+    {
+        fileSystemType = gs->value( "homePartitionFileSystemType" ).toString();
+    }
+
+    if ( FileSystem::typeForName( fileSystemType ) == FileSystem::Unknown )
+    {
+        fileSystemType = QString( "ext4" );
+    }
+
+    QVariantMap features;
+    if ( gs->contains( "homePartitionFileSystemFeatures" ) )
+    {
+        features = gs->value( "homePartitionFileSystemFeatures" ).toMap();
+    }
+
+    QString size = QString( "100%" );
+    if ( gs->contains( "homePartitionSize" ) )
+    {
+        size = gs->value( "homePartitionSize" ).toString();
+    }
+
+    return layoutAddEntry( { name, QString( "" ), QString( "933ac7e1-2eb4-4f13-b844-0e14e2aef915" ), 0,
+                             mountPoint, fileSystemType, features, size, QString( "0" ), QString( "0" ) },
+                           prepend );
 }
 
 void

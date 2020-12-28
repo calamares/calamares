@@ -3,6 +3,7 @@
  *   SPDX-FileCopyrightText: 2015-2016 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2018-2019 Adriaan de Groot <groot@kde.org>
  *   SPDX-FileCopyrightText: 2019 Collabora Ltd <arnaud.ferraris@collabora.com>
+ *   SPDX-FileCopyrightText: 2020 Gaël PORTAY <gael.portay@collabora.com>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -80,6 +81,11 @@ bool isEfiSystem();
  * the partition table layout, this may mean different flags.
  */
 bool isEfiBootable( const Partition* candidate );
+
+/**
+ * @brief Is the given @p partition home?
+ */
+bool isHomePartition( const Partition* candidate );
 
 /** @brief translate @p fsName into a recognized name and type
  *

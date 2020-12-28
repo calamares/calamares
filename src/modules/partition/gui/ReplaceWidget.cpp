@@ -106,6 +106,21 @@ ReplaceWidget::applyChanges()
                 }
             }
 
+            if ( gs->value( "reuseHome" ).toBool() )
+            {
+                QList< Partition* > homePartitions = m_core->homePartitions();
+                if ( homePartitions.count() == 1 )
+                {
+                    PartitionInfo::setMountPoint( homePartitions.first(),
+                                                  gs->value( "homePartition" ).toString() );
+                }
+                else if ( homePartitions.count() > 1 )
+                {
+                    PartitionInfo::setMountPoint( homePartitions.at( m_ui->bootComboBox->currentIndex() ),
+                                                  gs->value( "homePartition" ).toString() );
+                }
+            }
+
             m_core->dumpQueue();
         }
     }

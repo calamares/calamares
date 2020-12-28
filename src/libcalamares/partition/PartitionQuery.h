@@ -24,6 +24,7 @@
 
 class Device;
 class Partition;
+class PartitionTable;
 
 namespace CalamaresUtils
 {
@@ -32,6 +33,10 @@ namespace Partition
 
 using ::Device;
 using ::Partition;
+using ::PartitionTable;
+
+/** @brief Get partition table */
+const PartitionTable* getPartitionTable( const Partition* partition );
 
 /** @brief Is this a free-space area? */
 bool isPartitionFreeSpace( const Partition* );
