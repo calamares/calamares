@@ -176,7 +176,7 @@ def file_copy(source, entry, progress_cb):
     num_files_total_local = 0
     num_files_copied = 0  # Gets updated through rsync output
 
-    args = ['rsync', '-aHAXr', '--filter=-x trusted.overlay.*']
+    args = ['rsync', '-aHAXSr', '--filter=-x trusted.overlay.*']
     args.extend(global_excludes())
     if entry.excludeFile:
         args.extend(["--exclude-from=" + entry.excludeFile])
