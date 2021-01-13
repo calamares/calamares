@@ -1039,7 +1039,7 @@ Kurulum devam edebilir fakat bazı özellikler devre dışı kalabilir.</transla
       <location filename="../src/modules/users/CreateUserJob.cpp" line="50"/>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="143"/>
       <source>Creating user %1</source>
-      <translation>%1 kullanıcısı oluşturuluyor.</translation>
+      <translation>%1 kullanıcısı oluşturuluyor</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="151"/>
@@ -2067,9 +2067,9 @@ Sistem güç kaynağına bağlı değil.</translation>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="232"/>
       <source>The password contains fewer than %n lowercase letters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Parola %n'den daha az küçük harf içeriyor</numerusform>
+        <numerusform>Parola %n'den daha az küçük harf içeriyor</numerusform>
       </translation>
     </message>
     <message>

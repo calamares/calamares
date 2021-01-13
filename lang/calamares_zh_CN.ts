@@ -1037,7 +1037,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="50"/>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="143"/>
       <source>Creating user %1</source>
-      <translation>正在创建用户 %1.</translation>
+      <translation>创建用户 %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="151"/>
@@ -2852,7 +2852,7 @@ Output:
     <message>
       <location filename="../src/libcalamares/partition/FileSystem.cpp" line="34"/>
       <source>swap</source>
-      <translation>临时存储空间</translation>
+      <translation>交换分区</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="130"/>

@@ -1030,23 +1030,23 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="126"/>
       <source>Preserving home directory</source>
-      <translation type="unfinished"/>
+      <translation>Home-Verzeichnis wird beibehalten</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="50"/>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="143"/>
       <source>Creating user %1</source>
-      <translation type="unfinished"/>
+      <translation>Erstelle Benutzer %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="151"/>
       <source>Configuring user %1</source>
-      <translation type="unfinished"/>
+      <translation>Konfiguriere Benutzer %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="159"/>
       <source>Setting file permissions</source>
-      <translation type="unfinished"/>
+      <translation>Setze Dateiberechtigungen</translation>
     </message>
   </context>
   <context>
@@ -2063,9 +2063,9 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="232"/>
       <source>The password contains fewer than %n lowercase letters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Das Passwort enthält weniger als %n Kleinbuchstaben</numerusform>
+        <numerusform>Das Passwort enthält weniger als %n Kleinbuchstaben</numerusform>
       </translation>
     </message>
     <message>
@@ -2101,70 +2101,70 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="218"/>
       <source>The password contains fewer than %n digits</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Das Passwort enthält weniger als %n Zeichen</numerusform>
+        <numerusform>Das Passwort enthält weniger als %n Zeichen</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="225"/>
       <source>The password contains fewer than %n uppercase letters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Das Passwort enthält weniger als %n Großbuchstaben</numerusform>
+        <numerusform>Das Passwort enthält weniger als %n Großbuchstaben</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="239"/>
       <source>The password contains fewer than %n non-alphanumeric characters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Das Passwort enthält weniger als %n nicht-alphanumerische Zeichen</numerusform>
+        <numerusform>Das Passwort enthält weniger als %n nicht-alphanumerische Zeichen</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="246"/>
       <source>The password is shorter than %n characters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Das Passwort ist kürzer als %n Zeichen</numerusform>
+        <numerusform>Das Passwort ist kürzer als %n Zeichen</numerusform>
       </translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="251"/>
       <source>The password is a rotated version of the previous one</source>
-      <translation type="unfinished"/>
+      <translation>Dieses Passwort ist eine abgeänderte Version des vorigen </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="255"/>
       <source>The password contains fewer than %n character classes</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Dieses Passwort enthält weniger als %n Zeichenarten</numerusform>
+        <numerusform>Dieses Passwort enthält weniger als %n Zeichenarten</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="262"/>
       <source>The password contains more than %n same characters consecutively</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Dieses Passwort enthält mehr als %n geiche Zeichen hintereinander</numerusform>
+        <numerusform>Dieses Passwort enthält mehr als %n geiche Zeichen hintereinander</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="269"/>
       <source>The password contains more than %n characters of the same class consecutively</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Dieses Passwort enthält mehr als %n Zeichen derselben Zeichenart hintereinander</numerusform>
+        <numerusform>Dieses Passwort enthält mehr als %n  Zeichen derselben Zeichenart hintereinander</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="280"/>
       <source>The password contains monotonic sequence longer than %n characters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Dieses Passwort enthält eine abwechslungslose Sequenz länger als %n Zeichen</numerusform>
+        <numerusform>Dieses Passwort enthält eine abwechslungslose Sequenz länger als %n Zeichen</numerusform>
       </translation>
     </message>
     <message>
@@ -3443,18 +3443,18 @@ Ausgabe:
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="166"/>
       <source>Preparing groups.</source>
-      <translation type="unfinished"/>
+      <translation>Bereite Gruppen vor.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="178"/>
       <location filename="../src/modules/users/MiscJobs.cpp" line="183"/>
       <source>Could not create groups in target system</source>
-      <translation type="unfinished"/>
+      <translation>Auf dem Zielsystem konnten keine Gruppen erstellt werden.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="184"/>
       <source>These groups are missing in the target system: %1</source>
-      <translation type="unfinished"/>
+      <translation>Folgende Gruppen fehlen auf dem Zielsystem: %1</translation>
     </message>
   </context>
   <context>
@@ -3462,7 +3462,7 @@ Ausgabe:
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="33"/>
       <source>Configure &lt;pre&gt;sudo&lt;/pre&gt; users.</source>
-      <translation type="unfinished"/>
+      <translation>Konfiguriere &lt;pre&gt;sudo&lt;/pre&gt; Benutzer.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="55"/>

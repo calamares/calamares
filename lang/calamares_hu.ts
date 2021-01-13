@@ -1849,32 +1849,32 @@ Telepítés nem folytatható. &lt;a href="#details"&gt;Részletek...&lt;/a&gt;</
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="59"/>
       <source>Web browser</source>
-      <translation type="unfinished"/>
+      <translation>Böngésző</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="60"/>
       <source>Kernel</source>
-      <translation type="unfinished"/>
+      <translation>Kernel</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="61"/>
       <source>Services</source>
-      <translation type="unfinished"/>
+      <translation>Szolgáltatások</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="62"/>
       <source>Login</source>
-      <translation type="unfinished"/>
+      <translation>Bejelentkezés</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="63"/>
       <source>Desktop</source>
-      <translation type="unfinished"/>
+      <translation>Asztal</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="64"/>
       <source>Applications</source>
-      <translation type="unfinished"/>
+      <translation>Alkalmazások</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="65"/>

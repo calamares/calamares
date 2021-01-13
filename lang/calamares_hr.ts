@@ -1038,7 +1038,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
       <location filename="../src/modules/users/CreateUserJob.cpp" line="50"/>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="143"/>
       <source>Creating user %1</source>
-      <translation>Stvaranje korisnika %1.</translation>
+      <translation>Stvaram korisnika %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="151"/>

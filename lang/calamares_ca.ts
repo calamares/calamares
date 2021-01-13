@@ -1046,7 +1046,7 @@ L'instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="159"/>
       <source>Setting file permissions</source>
-      <translation>S'estableixen els permisos del fitxer</translation>
+      <translation>S'estableixen els permisos del fitxer.</translation>
     </message>
   </context>
   <context>
@@ -2133,7 +2133,7 @@ per desplaçar-s'hi i useu els botons +/- per fer ampliar-lo o reduir-lo, o bé 
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="251"/>
       <source>The password is a rotated version of the previous one</source>
-      <translation>La contrasenya és només l'anterior capgirada.</translation>
+      <translation>La contrasenya és una versió capgirada de l'anterior.</translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="255"/>
@@ -3462,7 +3462,7 @@ La configuració pot continuar, però algunes característiques podrien estar in
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="33"/>
       <source>Configure &lt;pre&gt;sudo&lt;/pre&gt; users.</source>
-      <translation>Configuració d'usuaris de &lt;pre&gt;sudo&lt;/pre&gt;.</translation>
+      <translation>Configuració d'usuaris de &lt;pre&gt;sudo&lt;/pre&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="55"/>

@@ -1036,7 +1036,7 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
       <location filename="../src/modules/users/CreateUserJob.cpp" line="50"/>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="143"/>
       <source>Creating user %1</source>
-      <translation>Gebruiker %1 wordt aangemaakt.</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="151"/>
