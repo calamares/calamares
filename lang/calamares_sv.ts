@@ -1035,7 +1035,7 @@ Alla ändringar kommer att gå förlorade.</translation>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="50"/>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="143"/>
       <source>Creating user %1</source>
-      <translation>Skapar användare %1.</translation>
+      <translation>Skapar användare %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="151"/>

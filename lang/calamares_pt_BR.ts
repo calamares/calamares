@@ -1036,7 +1036,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
       <location filename="../src/modules/users/CreateUserJob.cpp" line="50"/>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="143"/>
       <source>Creating user %1</source>
-      <translation>Criando usuário %1.</translation>
+      <translation>Criando usuário %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="151"/>
@@ -2063,9 +2063,9 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="232"/>
       <source>The password contains fewer than %n lowercase letters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>A senha contém menos que %n letras minúsculas</numerusform>
+        <numerusform>A senha contém menos que %n letras minúsculas</numerusform>
       </translation>
     </message>
     <message>

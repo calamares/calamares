@@ -1041,7 +1041,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="50"/>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="143"/>
       <source>Creating user %1</source>
-      <translation>Vytvára sa používateľ %1.</translation>
+      <translation>Vytvára sa používateľ %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="151"/>
@@ -3895,7 +3895,17 @@ Výstup:
                         development is sponsored by &lt;br/&gt;
                         &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; -
                         Liberating Software.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;
+                        &lt;strong&gt;%2&lt;br/&gt;
+                        pre distribúciu %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;
+                        Autorské práva 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;
+                        Autorské práva 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;
+                        Poďakovanie patrí &lt;a href='https://calamares.io/team/'&gt;tímu inštalátora Calamares&lt;/a&gt; 
+                        a &lt;a href='https://www.transifex.com/calamares/calamares/'&gt;prekladateľskému tímu inštalátora Calamares&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;
+                        Vývoj inštalátora &lt;a href='https://calamares.io/'&gt;Calamares&lt;/a&gt; 
+                        je podporovaný spoločnosťou &lt;br/&gt;
+                        &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; - 
+                        oslobodzujúci softvér.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/about.qml" line="96"/>

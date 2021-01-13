@@ -244,8 +244,8 @@
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="116"/>
       <source>(%n second(s))</source>
       <translation>
-        <numerusform>(%n sekunttia(s))</numerusform>
-        <numerusform>(%n sekunttia(s))</numerusform>
+        <numerusform>(%n sekunti(a))</numerusform>
+        <numerusform>(%n sekunti(a))</numerusform>
       </translation>
     </message>
     <message>
@@ -570,7 +570,7 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1158"/>
       <source>EFI system partition:</source>
-      <translation>EFI järjestelmäosio</translation>
+      <translation>EFI järjestelmäosio:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1291"/>
@@ -1037,7 +1037,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
       <location filename="../src/modules/users/CreateUserJob.cpp" line="50"/>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="143"/>
       <source>Creating user %1</source>
-      <translation>Luodaan käyttäjää %1.</translation>
+      <translation>Luodaan käyttäjä %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="151"/>

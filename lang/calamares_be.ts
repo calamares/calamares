@@ -11,12 +11,12 @@
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="72"/>
       <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-      <translation>Гэтая сістэма выкарыстоўвае асяроддзе загрузкі &lt;strong&gt;EFI&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Каб наладзіць запуск з EFI, усталёўшчык выкарыстоўвае праграму &lt;strong&gt;GRUB&lt;/strong&gt; альбо &lt;strong&gt;systemd-boot&lt;/strong&gt; на &lt;strong&gt;Сістэмным раздзеле EFI&lt;/strong&gt;. Працэс аўтаматызаваны, але вы можаце абраць ручны рэжым, у якім зможаце абраць ці стварыць раздзел.</translation>
+      <translation>Гэтая сістэма выкарыстоўвае асяроддзе загрузкі &lt;strong&gt;EFI&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Каб наладзіць запуск з EFI, сродак усталёўкі выкарыстоўвае праграму &lt;strong&gt;GRUB&lt;/strong&gt; альбо &lt;strong&gt;systemd-boot&lt;/strong&gt; на &lt;strong&gt;Сістэмным раздзеле EFI&lt;/strong&gt;. Працэс аўтаматызаваны, але вы можаце абраць ручны рэжым, у якім зможаце абраць ці стварыць раздзел.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="84"/>
       <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-      <translation>Сістэма запушчаная ў працоўным асяроддзі &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Каб наладзіць запуск з BIOS, усталёўшчыку неабходна ўсталяваць загрузчык &lt;strong&gt;GRUB&lt;/strong&gt;, альбо ў пачатку раздзела, альбо ў &lt;strong&gt;Галоўны загрузачны запіс. (MBR)&lt;/strong&gt;, які прадвызначана знаходзіцца ў пачатку табліцы раздзелаў. Працэс аўтаматычны, але вы можаце перайсці ў ручны рэжым, дзе зможаце наладзіць гэта ўласнаручна.</translation>
+      <translation>Сістэма запушчаная ў працоўным асяроддзі &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Каб наладзіць запуск з BIOS, сродку ўсталёўкі неабходна ўсталяваць загрузчык &lt;strong&gt;GRUB&lt;/strong&gt;, альбо ў пачатку раздзела, альбо ў &lt;strong&gt;Галоўны загрузачны запіс. (MBR)&lt;/strong&gt;, які прадвызначана знаходзіцца ў пачатку табліцы раздзелаў. Працэс аўтаматычны, але вы можаце перайсці ў ручны рэжым, дзе зможаце наладзіць гэта ўласнаручна.</translation>
     </message>
   </context>
   <context>
@@ -427,7 +427,7 @@ The setup program will quit and all changes will be lost.</source>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="514"/>
       <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
-      <translation>Сапраўды хочаце скасаваць працэс усталёўкі? Усталёўшчык спыніць працу, а ўсе змены страцяцца.</translation>
+      <translation>Сапраўды хочаце скасаваць працэс усталёўкі? Праграма спыніць працу, а ўсе змены страцяцца.</translation>
     </message>
   </context>
   <context>
@@ -711,7 +711,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/libcalamares/utils/CommandList.cpp" line="143"/>
       <source>The command runs in the host environment and needs to know the root path, but no rootMountPoint is defined.</source>
-      <translation>Загад выконваецца ў асяроддзі ўсталёўшчыка. Яму неабходна ведаць шлях да каранёвага раздзела, але rootMountPoint не вызначаны.</translation>
+      <translation>Загад выконваецца ў асяроддзі праграмы для ўсталёўкі. Яму неабходна ведаць шлях да каранёвага раздзела, але rootMountPoint не вызначаны.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CommandList.cpp" line="156"/>
@@ -1032,23 +1032,23 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="126"/>
       <source>Preserving home directory</source>
-      <translation type="unfinished"/>
+      <translation>Захаванне хатняга каталога</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="50"/>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="143"/>
       <source>Creating user %1</source>
-      <translation type="unfinished"/>
+      <translation>Стварэнне карыстальніка %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="151"/>
       <source>Configuring user %1</source>
-      <translation type="unfinished"/>
+      <translation>Наладка карыстальніка %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="159"/>
       <source>Setting file permissions</source>
-      <translation type="unfinished"/>
+      <translation>Наладка правоў доступу да файлаў</translation>
     </message>
   </context>
   <context>
@@ -2065,11 +2065,11 @@ The installer will quit and all changes will be lost.</source>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="232"/>
       <source>The password contains fewer than %n lowercase letters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>У паролі менш %n малой літары</numerusform>
+        <numerusform>У паролі менш %n малых літар</numerusform>
+        <numerusform>У паролі менш %n малых літар</numerusform>
+        <numerusform>У паролі менш %n малых літар</numerusform>
       </translation>
     </message>
     <message>
@@ -2105,86 +2105,86 @@ The installer will quit and all changes will be lost.</source>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="218"/>
       <source>The password contains fewer than %n digits</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Пароль змяшчае менш %n лічбы</numerusform>
+        <numerusform>Пароль змяшчае менш %n лічбаў</numerusform>
+        <numerusform>Пароль змяшчае менш %n лічбаў</numerusform>
+        <numerusform>Пароль змяшчае менш %n лічбаў</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="225"/>
       <source>The password contains fewer than %n uppercase letters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>У паролі менш %n вялікай літары</numerusform>
+        <numerusform>У паролі менш %n вялікіх літар</numerusform>
+        <numerusform>У паролі менш %n вялікіх літар</numerusform>
+        <numerusform>У паролі менш %n вялікіх літар</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="239"/>
       <source>The password contains fewer than %n non-alphanumeric characters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>У паролі менш %n адмысловага знака</numerusform>
+        <numerusform>У паролі менш %n адмысловых знакаў</numerusform>
+        <numerusform>У паролі менш %n адмысловых знакаў</numerusform>
+        <numerusform>У паролі менш %n адмысловых знакаў</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="246"/>
       <source>The password is shorter than %n characters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Пароль карацейшы за %n знак</numerusform>
+        <numerusform>Пароль карацейшы за %n знакі</numerusform>
+        <numerusform>Пароль карацейшы за %n знакаў</numerusform>
+        <numerusform>Пароль карацейшы за %n знакаў</numerusform>
       </translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="251"/>
       <source>The password is a rotated version of the previous one</source>
-      <translation type="unfinished"/>
+      <translation>Пароль ёсць адваротнай версіяй мінулага</translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="255"/>
       <source>The password contains fewer than %n character classes</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Пароль змяшчае менш %n класа сімвалаў</numerusform>
+        <numerusform>Пароль змяшчае менш %n класаў сімвалаў</numerusform>
+        <numerusform>Пароль змяшчае менш %n класаў сімвалаў</numerusform>
+        <numerusform>Пароль змяшчае менш %n класаў сімвалаў</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="262"/>
       <source>The password contains more than %n same characters consecutively</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Пароль змяшчае больш за %n аднолькавы паслядоўны знак</numerusform>
+        <numerusform>Пароль змяшчае больш за %n аднолькавыя паслядоўныя знакі</numerusform>
+        <numerusform>Пароль змяшчае больш за %n аднолькавых паслядоўных знакаў</numerusform>
+        <numerusform>Пароль змяшчае больш за %n аднолькавых паслядоўных знакаў</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="269"/>
       <source>The password contains more than %n characters of the same class consecutively</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Пароль змяшчае больш за %n паслядоўны знак таго ж класа</numerusform>
+        <numerusform>Пароль змяшчае больш за %n паслядоўныя знакі таго ж класа</numerusform>
+        <numerusform>Пароль змяшчае больш за %n паслядоўных знакаў таго ж класа</numerusform>
+        <numerusform>Пароль змяшчае больш за %n паслядоўных знакаў таго ж класа</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="280"/>
       <source>The password contains monotonic sequence longer than %n characters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Пароль змяшчае аднастайную паслядоўнасць, даўжэйшую за %n знак</numerusform>
+        <numerusform>Пароль змяшчае аднастайную паслядоўнасць, даўжэйшую за %n знакі</numerusform>
+        <numerusform>Пароль змяшчае аднастайную паслядоўнасць, даўжэйшую за %n знакаў</numerusform>
+        <numerusform>Пароль змяшчае аднастайную паслядоўнасць, даўжэйшую за %n знакаў</numerusform>
       </translation>
     </message>
     <message>
@@ -3463,18 +3463,18 @@ Output:
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="166"/>
       <source>Preparing groups.</source>
-      <translation type="unfinished"/>
+      <translation>Падрыхтоўка групаў.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="178"/>
       <location filename="../src/modules/users/MiscJobs.cpp" line="183"/>
       <source>Could not create groups in target system</source>
-      <translation type="unfinished"/>
+      <translation>Не атрымалася стварыць групы ў мэтавай сістэме</translation>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="184"/>
       <source>These groups are missing in the target system: %1</source>
-      <translation type="unfinished"/>
+      <translation>Наступныя групы адсутнічаюць у мэтавай сістэме: %1</translation>
     </message>
   </context>
   <context>
@@ -3482,7 +3482,7 @@ Output:
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="33"/>
       <source>Configure &lt;pre&gt;sudo&lt;/pre&gt; users.</source>
-      <translation type="unfinished"/>
+      <translation>Наладка &lt;pre&gt;суперкарыстальнікаў&lt;/pre&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="55"/>
@@ -3833,7 +3833,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="222"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Вітаем ва ўсталёўшчыку Calamares для %1.&lt;/h1&gt;</translation>
+      <translation>&lt;h1&gt;Вітаем у Calamares для %1.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="223"/>
@@ -3853,7 +3853,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="235"/>
       <source>About %1 installer</source>
-      <translation>Пра ўсталёўшчык %1</translation>
+      <translation>Пра %1</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="238"/>

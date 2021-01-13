@@ -1036,7 +1036,7 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
       <location filename="../src/modules/users/CreateUserJob.cpp" line="50"/>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="143"/>
       <source>Creating user %1</source>
-      <translation>%1 istifadəçisinin yaradılması.</translation>
+      <translation>İstifadəçi %1 yaradılır</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="151"/>
@@ -2063,9 +2063,9 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="232"/>
       <source>The password contains fewer than %n lowercase letters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Şifrə %n hərfdən az kiçik hərflərdən ibarətdir</numerusform>
+        <numerusform>Şifrə %n hərfdən az kiçik hərflərdən ibarətdir</numerusform>
       </translation>
     </message>
     <message>
