@@ -162,6 +162,7 @@ CalamaresWindow::getWidgetNavigation( QWidget* parent )
         connect( m_viewManager, &Calamares::ViewManager::backIconChanged, this, [=]( QString n ) {
             setButtonIcon( back, n );
         } );
+        connect( m_viewManager, &Calamares::ViewManager::backAndNextVisibleChanged, back, &QPushButton::setVisible );
         bottomLayout->addWidget( back );
     }
     {
@@ -174,6 +175,7 @@ CalamaresWindow::getWidgetNavigation( QWidget* parent )
         connect( m_viewManager, &Calamares::ViewManager::nextIconChanged, this, [=]( QString n ) {
             setButtonIcon( next, n );
         } );
+        connect( m_viewManager, &Calamares::ViewManager::backAndNextVisibleChanged, next, &QPushButton::setVisible );
         bottomLayout->addWidget( next );
     }
     bottomLayout->addSpacing( 12 );
