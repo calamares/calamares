@@ -157,6 +157,8 @@ public:
     /** @brief Temporary setting of disable-cancel: can't cancel during exec. */
     bool disableCancelDuringExec() const { return m_disableCancelDuringExec; }
 
+    bool hideBackAndNextDuringExec() const { return m_hideBackAndNextDuringExec; }
+
     /** @brief Is quit-at-end set? (Quit automatically when done) */
     bool quitAtEnd() const { return m_quitAtEnd; }
 
@@ -170,13 +172,15 @@ private:
 
     QString m_brandingComponentName;
 
+    // bools are initialized here according to default setting
     bool m_debug;
-    bool m_doChroot;
-    bool m_isSetupMode;
-    bool m_promptInstall;
-    bool m_disableCancel;
-    bool m_disableCancelDuringExec;
-    bool m_quitAtEnd;
+    bool m_doChroot = true;
+    bool m_isSetupMode = false;
+    bool m_promptInstall = false;
+    bool m_disableCancel = false;
+    bool m_disableCancelDuringExec = false;
+    bool m_hideBackAndNextDuringExec=false;
+    bool m_quitAtEnd = false;
 };
 
 }  // namespace Calamares

@@ -4,6 +4,7 @@
  *   SPDX-FileCopyrightText: 2017-2018 Adriaan de Groot <groot@kde.org>
  *   SPDX-FileCopyrightText: 2018 Raul Rodrigo Segura (raurodse)
  *   SPDX-FileCopyrightText: 2019 Collabora Ltd <arnaud.ferraris@collabora.com>
+ *   SPDX-FileCopyrightText: 2020 Anubhav Choudhary <ac.10edu@gmail.com>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -161,6 +162,7 @@ CalamaresWindow::getWidgetNavigation( QWidget* parent )
         connect( m_viewManager, &Calamares::ViewManager::backIconChanged, this, [=]( QString n ) {
             setButtonIcon( back, n );
         } );
+        connect( m_viewManager, &Calamares::ViewManager::backAndNextVisibleChanged, back, &QPushButton::setVisible );
         bottomLayout->addWidget( back );
     }
     {
@@ -173,6 +175,7 @@ CalamaresWindow::getWidgetNavigation( QWidget* parent )
         connect( m_viewManager, &Calamares::ViewManager::nextIconChanged, this, [=]( QString n ) {
             setButtonIcon( next, n );
         } );
+        connect( m_viewManager, &Calamares::ViewManager::backAndNextVisibleChanged, next, &QPushButton::setVisible );
         bottomLayout->addWidget( next );
     }
     bottomLayout->addSpacing( 12 );

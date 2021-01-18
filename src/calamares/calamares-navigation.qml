@@ -35,7 +35,7 @@ Rectangle {
             icon.name: ViewManager.backIcon;
 
             enabled: ViewManager.backEnabled;
-            visible: true;
+            visible: ViewManager.backAndNextVisible;
             onClicked: { ViewManager.back(); }
         }
         Button
@@ -44,7 +44,7 @@ Rectangle {
             icon.name: ViewManager.nextIcon;
 
             enabled: ViewManager.nextEnabled;
-            visible: true;
+            visible: ViewManager.backAndNextVisible;
             onClicked: { ViewManager.next(); }
         }
         Button

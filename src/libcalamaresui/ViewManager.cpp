@@ -369,6 +369,7 @@ ViewManager::next()
             UPDATE_BUTTON_PROPERTY( backEnabled, false )
         }
         updateCancelEnabled( !settings->disableCancel() && !( executing && settings->disableCancelDuringExec() ) );
+        updateBackAndNextVisibility( !( executing && settings->hideBackAndNextDuringExec() ) );
     }
     else
     {
@@ -526,6 +527,12 @@ ViewManager::updateCancelEnabled( bool enabled )
 {
     UPDATE_BUTTON_PROPERTY( quitEnabled, enabled )
     emit cancelEnabled( enabled );
+}
+
+void
+ViewManager::updateBackAndNextVisibility( bool visible)
+{
+    UPDATE_BUTTON_PROPERTY( backAndNextVisible, visible )
 }
 
 QVariant
