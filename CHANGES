@@ -10,13 +10,23 @@ website will have to do for older versions.
 # 3.2.36 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - Anubhav Choudhary
+ - Gaël PORTAY
 
 ## Core ##
- - No core changes yet
+ - It is now possible to hide the *next* and *back* buttons during
+   the "exec" phase of installation. THanks Anubhav.
 
 ## Modules ##
- - No module changes yet
+ - *partition* includes more information about what it will do, including
+   GPT partition types (in human-readable format, if possible). Thanks Gaël.
+ - Some edge-cases with overlay filesystems have been resolved in the
+   *partition* module. Thanks Gaël.
+ - During the creation of filesystems and partitions, automounting is
+   turned off (if DBus is available, and the host system supports
+   Freedesktop automount control). This should reduce the number of
+   failed installations if automount grabs partitions while they are
+   being created.
 
 
 # 3.2.35.1 (2020-12-07) #
