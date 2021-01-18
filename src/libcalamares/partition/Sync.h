@@ -11,6 +11,8 @@
 #ifndef PARTITION_SYNC_H
 #define PARTITION_SYNC_H
 
+#include "DllMacro.h"
+
 namespace CalamaresUtils
 {
 namespace Partition
@@ -24,10 +26,10 @@ namespace Partition
  * are sensitive, and systemd tends to keep disks busy after a change
  * for a while).
  */
-void sync();
+DLLEXPORT void sync();
 
 /** @brief RAII class for calling sync() */
-struct Syncer
+struct DLLEXPORT Syncer
 {
     ~Syncer() { sync(); }
 };
