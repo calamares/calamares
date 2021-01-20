@@ -84,14 +84,14 @@ mapForPartition( Partition* partition, const QString& uuid )
     map[ "device" ] = partition->partitionPath();
     map[ "partlabel" ] = partition->label();
     map[ "partuuid" ] = partition->uuid();
-#ifdef WITH_KPMCORE42API
-    map[ "parttype" ] = partition->type();
-    map[ "partattrs" ] = partition->attributes();
-#endif
     map[ "mountPoint" ] = PartitionInfo::mountPoint( partition );
     map[ "fsName" ] = userVisibleFS( partition->fileSystem() );
     map[ "fs" ] = untranslatedFS( partition->fileSystem() );
+#ifdef WITH_KPMCORE42API
+    map[ "parttype" ] = partition->type();
+    map[ "partattrs" ] = partition->attributes();
     map[ "features" ] = partition->fileSystem().features();
+#endif
     if ( partition->fileSystem().type() == FileSystem::Luks
          && dynamic_cast< FS::luks& >( partition->fileSystem() ).innerFS() )
     {
