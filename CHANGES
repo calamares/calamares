@@ -24,9 +24,10 @@ This release contains contributions from (alphabetically by first name):
    *partition* module. Thanks Gaël.
  - During the creation of filesystems and partitions, automounting is
    turned off (if DBus is available, and the host system supports
-   Freedesktop automount control). This should reduce the number of
+   KDE Solid automount control). This should reduce the number of
    failed installations if automount grabs partitions while they are
-   being created.
+   being created. The code is prepared to handle other ways to control
+   automount-behavior as well.
 
 
 # 3.2.35.1 (2020-12-07) #
