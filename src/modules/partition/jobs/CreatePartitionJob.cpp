@@ -72,6 +72,12 @@ prettyGptType( const QString& type )
 }
 
 static QString
+prettyGptType( const Partition* partition )
+{
+    return prettyGptType( partition->type() );
+}
+
+static QString
 prettyGptEntries( const Partition* partition )
 {
     if ( !partition )
@@ -86,7 +92,7 @@ prettyGptEntries( const Partition* partition )
         list += partition->label();
     }
 
-    QString type = prettyGptType( partition->type() );
+    QString type = prettyGptType( partition );
     if ( !type.isEmpty() )
     {
         list += type;
@@ -166,7 +172,7 @@ CreatePartitionJob::prettyStatusMessage() const
     const PartitionTable* table = CalamaresUtils::Partition::getPartitionTable( m_partition );
     if ( table && table->type() == PartitionTable::TableType::gpt )
     {
-        QString type = prettyGptType( m_partition->type() );
+        QString type = prettyGptType( m_partition );
         if ( type.isEmpty() )
         {
             type = m_partition->label();
