@@ -74,7 +74,11 @@ prettyGptType( const QString& type )
 static QString
 prettyGptType( const Partition* partition )
 {
+#ifdef WITH_KPMCORE42API
     return prettyGptType( partition->type() );
+#else
+    return QString();
+#endif
 }
 
 static QString
