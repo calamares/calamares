@@ -7,7 +7,7 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.36 (unreleased) #
+# 3.2.36 (2021-02-03) #
 
 This release contains contributions from (alphabetically by first name):
  - Anubhav Choudhary
@@ -20,11 +20,14 @@ This release contains contributions from (alphabetically by first name):
 
 ## Core ##
  - It is now possible to hide the *next* and *back* buttons during
-   the "exec" phase of installation. THanks Anubhav.
+   the "exec" phase of installation. Thanks Anubhav.
+ - The Calamares CI has migrated to GitHub actions. Thanks Jonas.
 
 ## Modules ##
  - *bootloader* now uses the current file names for the UEFI Secure Boot
    shim instead of obsolete ones.
+ - The *mount* module creates swap in its own subvolume, if btrfs is used.
+   Thanks Matti.
  - *partition* includes more information about what it will do, including
    GPT partition types (in human-readable format, if possible). Thanks Gaël.
  - Some edge-cases with overlay filesystems have been resolved in the
