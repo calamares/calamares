@@ -261,12 +261,12 @@ PythonJob::exec()
                 {
                     m_description.truncate( i_newline );
                 }
-                cDebug() << "Job description from __doc__" << prettyName() << '=' << m_description;
+                cDebug() << Logger::SubEntry << "Job description from __doc__" << prettyName() << '=' << m_description;
             }
         }
         else
         {
-            cDebug() << "Job description from pretty_name" << prettyName() << '=' << m_description;
+            cDebug() << Logger::SubEntry << "Job description from pretty_name" << prettyName() << '=' << m_description;
         }
         emit progress( 0 );
 
