@@ -3,7 +3,7 @@
 #   SPDX-FileCopyrightText: 2017 Adriaan de Groot <groot@kde.org>
 #   SPDX-License-Identifier: BSD-2-Clause
 #
-# Travis CI script for use on every-commit:
+# CI script for use on every-commit:
 #  - build and install Calamares
 #
 test -n "$BUILDDIR" || { echo "! \$BUILDDIR not set" ; exit 1 ; }
