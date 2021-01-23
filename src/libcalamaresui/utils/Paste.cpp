@@ -15,6 +15,8 @@
 #include <QRegularExpression>
 #include <QTcpSocket>
 #include <QUrl>
+#include <QClipboard>
+#include <QApplication>
 
 namespace CalamaresUtils
 {
@@ -22,7 +24,8 @@ namespace CalamaresUtils
 QString
 sendLogToPastebin( QObject* parent, const QString& ficheHost, quint16 fichePort )
 {
-    QString pasteUrlFmt = parent->tr( "Install log posted to:\n%1" );
+    QString pasteUrlFmt = parent->tr( "Install log posted to\n\n%1\n\nLink copied to clipboard" );
+
     QFile pasteSourceFile( Logger::logFile() );
     if ( !pasteSourceFile.open( QIODevice::ReadOnly | QIODevice::Text ) )
     {
@@ -77,6 +80,14 @@ sendLogToPastebin( QObject* parent, const QString& ficheHost, quint16 fichePort 
     QString pasteUrlStr = pasteUrl.toString();
     QRegularExpression pasteUrlRegex( "^http[s]?://" + ficheHost );
     QString pasteUrlMsg = QString( pasteUrlFmt ).arg( pasteUrlStr );
+
+    QClipboard* clipboard = QApplication::clipboard();
+    clipboard->setText(pasteUrlStr, QClipboard::Clipboard);
+
+    if (clipboard->supportsSelection())
+    {
+         clipboard->setText(pasteUrlStr, QClipboard::Selection);
+    }
 
     if ( nBytesRead < 8 || !pasteUrl.isValid() || !pasteUrlRegex.match( pasteUrlStr ).hasMatch() )
     {
