@@ -42,6 +42,7 @@ public:
      * e.g. *Branding::ProductName to get the string value for
      * the product name.
      */
+
     enum StringEntry
     {
         ProductName,
@@ -214,6 +215,13 @@ public:
      */
     void setGlobals( GlobalStorage* globalStorage ) const;
 
+
+     //Paste functionality related
+     bool logUploadEnable() { return m_logUploadEnable; };
+     QString logUploadURL() { return m_logUploadURL; };
+     int logUploadPort() { return m_logUploadPort; };
+     QString logUploadStyle() { return m_logUploadStyle; };
+
 public slots:
     QString string( StringEntry stringEntry ) const;
     QString versionedName() const { return string( VersionedName ); }
@@ -260,6 +268,11 @@ private:
 
     bool m_welcomeStyleCalamares;
     bool m_welcomeExpandingLogo;
+
+    bool m_logUploadEnable;
+    QString m_logUploadURL;
+    int m_logUploadPort;
+    QString m_logUploadStyle;
 
     WindowExpansion m_windowExpansion;
     WindowDimension m_windowHeight, m_windowWidth;

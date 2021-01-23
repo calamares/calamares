@@ -140,7 +140,7 @@ ViewManager::insertViewStep( int before, ViewStep* step )
 void
 ViewManager::onInstallationFailed( const QString& message, const QString& details )
 {
-    bool shouldOfferWebPaste = false;  // TODO: config var
+    bool shouldOfferWebPaste = Calamares::Branding::instance()->logUploadEnable();  // TODO: config var
 
     cError() << "Installation failed:";
     cDebug() << "- message:" << message;
@@ -183,8 +183,9 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
     connect( msgBox, &QMessageBox::buttonClicked, [msgBox]( QAbstractButton* button ) {
         if ( msgBox->buttonRole( button ) == QMessageBox::ButtonRole::YesRole )
         {
-            // TODO: host and port should be configurable
-            QString pasteUrlMsg = CalamaresUtils::sendLogToPastebin( msgBox, QStringLiteral( "termbin.com" ), 9999 );
+            QString pasteURLHost = Calamares::Branding::instance()->logUploadURL();
+            int pasteURLPort = Calamares::Branding::instance()->logUploadPort();
+            QString pasteUrlMsg = CalamaresUtils::sendLogToPastebin( msgBox, pasteURLHost, pasteURLPort );
 
             QString pasteUrlTitle = tr( "Install Log Paste URL" );
             if ( pasteUrlMsg.isEmpty() )

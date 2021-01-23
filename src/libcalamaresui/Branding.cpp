@@ -86,6 +86,7 @@ const QStringList Branding::s_styleEntryStrings =
     "sidebarTextSelect",
     "sidebarTextHighlight"
 };
+
 // clang-format on
 // *INDENT-ON*
 
@@ -510,6 +511,11 @@ Branding::initSimpleSettings( const YAML::Node& doc )
     {
         m_windowHeight = WindowDimension( CalamaresUtils::windowPreferredHeight, WindowDimensionUnit::Pixies );
     }
+
+    m_logUploadEnable = doc[ "logUpload.enable" ].as< bool >( false );
+    m_logUploadURL = getString( doc, "logUpload.url") ;
+    m_logUploadPort = doc[ "logUpload.port" ].as< int >();
+    m_logUploadStyle= getString(doc, "logUpload.style" );
 }
 
 void
