@@ -220,15 +220,17 @@ slideshowAPI: 2
 
 
 # These options are to customize online uploading of logs to pastebins:
-#  - style  :  Defines the kind of pastebin service to be used. Takes
-#              string as input
+#  - style  :  Defines the kind of pastebin service to be used. ie it can
+#              provide the functionality of controlling privacy of 
+#              paste (in future).Currently only "fiche" servers
+#              are supported. Takes string as input
 #  - url    :  Defines the address of pastebin service to be used.
 #              Takes string as input
 #  - port   :  Defines the port number to be used to send logs. Takes 
 #              integer as input
 #  - enable :  Defines if the functionality is to be used or not. Takes 
 #              bool as input
-logUpload.style   :    "fische"
+logUpload.style   :    "fiche"
 logUpload.url     :    "termbin.com"
 logUpload.port    :    9999
 logUpload.enable  :    true

@@ -4,6 +4,7 @@
  *   SPDX-FileCopyrightText: 2017-2018 Adriaan de Groot <groot@kde.org>
  *   SPDX-FileCopyrightText: 2019 Dominic Hayes <ferenosdev@outlook.com>
  *   SPDX-FileCopyrightText: 2019 Gabriel Craciunescu <crazy@frugalware.org>
+ *   SPDX-FileCopyrightText: 2021 Anubhav Choudhary <ac.10edu@gmail.com>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -140,7 +141,7 @@ ViewManager::insertViewStep( int before, ViewStep* step )
 void
 ViewManager::onInstallationFailed( const QString& message, const QString& details )
 {
-    bool shouldOfferWebPaste = Calamares::Branding::instance()->logUploadEnable();  // TODO: config var
+    bool shouldOfferWebPaste = Calamares::Branding::instance()->logUploadEnable();
 
     cError() << "Installation failed:";
     cDebug() << "- message:" << message;
@@ -531,13 +532,9 @@ ViewManager::updateCancelEnabled( bool enabled )
 }
 
 void
-ViewManager::updateBackAndNextVisibility( bool visible)
-{
-    UPDATE_BUTTON_PROPERTY( backAndNextVisible, visible )
-}
+ViewManager::updateBackAndNextVisibility( bool visible ) { UPDATE_BUTTON_PROPERTY( backAndNextVisible, visible ) }
 
-QVariant
-ViewManager::data( const QModelIndex& index, int role ) const
+QVariant ViewManager::data( const QModelIndex& index, int role ) const
 {
     if ( !index.isValid() )
     {

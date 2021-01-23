@@ -4,6 +4,7 @@
  *   SPDX-FileCopyrightText: 2017-2018 Adriaan de Groot <groot@kde.org>
  *   SPDX-FileCopyrightText: 2018 Raul Rodrigo Segura (raurodse)
  *   SPDX-FileCopyrightText: 2019 Camilo Higuita <milo.h@aol.com>
+ *   SPDX-FileCopyrightText: 2021 Anubhav Choudhary <ac.10edu@gmail.com>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -216,11 +217,11 @@ public:
     void setGlobals( GlobalStorage* globalStorage ) const;
 
 
-     //Paste functionality related
-     bool logUploadEnable() { return m_logUploadEnable; };
-     QString logUploadURL() { return m_logUploadURL; };
-     int logUploadPort() { return m_logUploadPort; };
-     QString logUploadStyle() { return m_logUploadStyle; };
+    //Paste functionality related
+    bool logUploadEnable() { return m_logUploadEnable; };
+    QString logUploadURL() { return m_logUploadURL; };
+    int logUploadPort() { return m_logUploadPort; };
+    QString logUploadStyle() { return m_logUploadStyle; };
 
 public slots:
     QString string( StringEntry stringEntry ) const;

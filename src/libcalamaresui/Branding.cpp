@@ -4,6 +4,7 @@
  *   SPDX-FileCopyrightText: 2017-2019 Adriaan de Groot <groot@kde.org>
  *   SPDX-FileCopyrightText: 2018 Raul Rodrigo Segura (raurodse)
  *   SPDX-FileCopyrightText: 2019 Camilo Higuita <milo.h@aol.com>
+ *   SPDX-FileCopyrightText: 2021 Anubhav Choudhary <ac.10edu@gmail.com>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -513,9 +514,9 @@ Branding::initSimpleSettings( const YAML::Node& doc )
     }
 
     m_logUploadEnable = doc[ "logUpload.enable" ].as< bool >( false );
-    m_logUploadURL = getString( doc, "logUpload.url") ;
+    m_logUploadURL = getString( doc, "logUpload.url" );
     m_logUploadPort = doc[ "logUpload.port" ].as< int >();
-    m_logUploadStyle= getString(doc, "logUpload.style" );
+    m_logUploadStyle = getString( doc, "logUpload.style" );
 }
 
 void
