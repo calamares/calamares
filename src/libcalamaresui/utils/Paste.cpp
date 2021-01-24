@@ -9,6 +9,7 @@
 
 #include "Paste.h"
 
+#include "Branding.h"
 #include "utils/Logger.h"
 
 #include <QFile>
@@ -17,13 +18,24 @@
 #include <QUrl>
 #include <QClipboard>
 #include <QApplication>
+#include <QStringList>
 
 namespace CalamaresUtils
 {
 
+QStringList UploadServersList = {
+    "fiche"
+    // In future more serverTypes can be added as Calamares support them
+    // "none" serverType is explicitly not mentioned here
+};
+
 QString
-sendLogToPastebin( QObject* parent, const QString& ficheHost, quint16 fichePort )
+sendLogToPastebin( QObject* parent )
 {
+
+    const QString& ficheHost = Calamares::Branding::instance()->uploadServerURL();
+    quint16 fichePort = Calamares::Branding::instance()->uploadServerPort();
+
     QString pasteUrlFmt = parent->tr( "Install log posted to\n\n%1\n\nLink copied to clipboard" );
 
     QFile pasteSourceFile( Logger::logFile() );
@@ -81,15 +93,17 @@ sendLogToPastebin( QObject* parent, const QString& ficheHost, quint16 fichePort 
     QRegularExpression pasteUrlRegex( "^http[s]?://" + ficheHost );
     QString pasteUrlMsg = QString( pasteUrlFmt ).arg( pasteUrlStr );
 
-    QClipboard* clipboard = QApplication::clipboard();
-    clipboard->setText(pasteUrlStr, QClipboard::Clipboard);
-
-    if (clipboard->supportsSelection())
+    if ( nBytesRead >= 8 && pasteUrl.isValid() && pasteUrlRegex.match( pasteUrlStr ).hasMatch() )
     {
-         clipboard->setText(pasteUrlStr, QClipboard::Selection);
-    }
+        QClipboard* clipboard = QApplication::clipboard();
+        clipboard->setText(pasteUrlStr, QClipboard::Clipboard);
 
-    if ( nBytesRead < 8 || !pasteUrl.isValid() || !pasteUrlRegex.match( pasteUrlStr ).hasMatch() )
+        if (clipboard->supportsSelection())
+        {
+             clipboard->setText(pasteUrlStr, QClipboard::Selection);
+        }
+    }
+    else
     {
         cError() << "No data from paste server";
         return QString();

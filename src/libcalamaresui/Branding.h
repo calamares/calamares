@@ -218,10 +218,9 @@ public:
 
 
     //Paste functionality related
-    bool logUploadEnable() { return m_logUploadEnable; };
-    QString logUploadURL() { return m_logUploadURL; };
-    int logUploadPort() { return m_logUploadPort; };
-    QString logUploadStyle() { return m_logUploadStyle; };
+    QString uploadServerType() { return m_uploadServerType; };
+    QString uploadServerURL() { return m_uploadServerURL; };
+    int uploadServerPort() { return m_uploadServerPort; };
 
 public slots:
     QString string( StringEntry stringEntry ) const;
@@ -270,10 +269,9 @@ private:
     bool m_welcomeStyleCalamares;
     bool m_welcomeExpandingLogo;
 
-    bool m_logUploadEnable;
-    QString m_logUploadURL;
-    int m_logUploadPort;
-    QString m_logUploadStyle;
+    QString m_uploadServerType;
+    QString m_uploadServerURL;
+    int m_uploadServerPort;
 
     WindowExpansion m_windowExpansion;
     WindowDimension m_windowHeight, m_windowWidth;

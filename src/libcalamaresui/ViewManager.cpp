@@ -141,7 +141,8 @@ ViewManager::insertViewStep( int before, ViewStep* step )
 void
 ViewManager::onInstallationFailed( const QString& message, const QString& details )
 {
-    bool shouldOfferWebPaste = Calamares::Branding::instance()->logUploadEnable();
+    QString UploadServerType = Calamares::Branding::instance()->uploadServerType();
+    bool shouldOfferWebPaste = CalamaresUtils::UploadServersList.contains( UploadServerType );
 
     cError() << "Installation failed:";
     cDebug() << "- message:" << message;
@@ -184,9 +185,16 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
     connect( msgBox, &QMessageBox::buttonClicked, [msgBox]( QAbstractButton* button ) {
         if ( msgBox->buttonRole( button ) == QMessageBox::ButtonRole::YesRole )
         {
-            QString pasteURLHost = Calamares::Branding::instance()->logUploadURL();
-            int pasteURLPort = Calamares::Branding::instance()->logUploadPort();
-            QString pasteUrlMsg = CalamaresUtils::sendLogToPastebin( msgBox, pasteURLHost, pasteURLPort );
+            QString pasteUrlMsg;
+            QString UploadServerType = Calamares::Branding::instance()->uploadServerType();
+            if ( UploadServerType == "fiche" )
+            {
+                pasteUrlMsg = CalamaresUtils::sendLogToPastebin( msgBox );
+            }
+            else
+            {
+                pasteUrlMsg = QString();
+            }
 
             QString pasteUrlTitle = tr( "Install Log Paste URL" );
             if ( pasteUrlMsg.isEmpty() )
@@ -532,9 +540,13 @@ ViewManager::updateCancelEnabled( bool enabled )
 }
 
 void
-ViewManager::updateBackAndNextVisibility( bool visible ) { UPDATE_BUTTON_PROPERTY( backAndNextVisible, visible ) }
+ViewManager::updateBackAndNextVisibility( bool visible )
+{
+    UPDATE_BUTTON_PROPERTY( backAndNextVisible, visible )
+}
 
-QVariant ViewManager::data( const QModelIndex& index, int role ) const
+QVariant 
+ViewManager::data( const QModelIndex& index, int role ) const
 {
     if ( !index.isValid() )
     {
