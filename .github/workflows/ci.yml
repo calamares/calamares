@@ -9,13 +9,18 @@ on:
 env:
   BUILDDIR: /build
   SRCDIR: /src
+  CMAKE_ARGS: |
+    -DCMAKE_BUILD_TYPE=Release
+    -DWEBVIEW_FORCE_WEBKIT=1
+    -DKDE_INSTALL_USE_QT_SYS_PATHS=ON
+    -DWITH_PYTHONQT=OFF"
 
 jobs:
   build:
     runs-on: ubuntu-latest
     container:
       image: docker://kdeneon/plasma:user
-      options: --tmpfs /build:rw,size=500M --user 0:0
+      options: --tmpfs /build:rw,size=512M --user 0:0
     steps:
       - 
         name: prepare
@@ -59,21 +64,14 @@ jobs:
       -
         name: config
         run: |
-          test -f "ci/ci-config.sh" && . "ci/ci-config.sh"
+          test -n "$BUILDDIR" || { echo "! \$BUILDDIR not set" ; exit 1 ; }
+          test -n "$SRCDIR" || { echo "! \$SRCDIR not set" ; exit 1 ; }
+          mkdir -p $SRCDIR $BUILDDIR
+          test -f $SRCDIR/CMakeLists.txt || { echo "! Missing $SRCDIR/CMakeLists.txt" ; exit 1 ; }
+          test -n "$COVERITY_SCAN_TOKEN" || { echo "! Missing Coverity token" ; exit 1 ; }
       - 
         name: continuous
-        env: 
-          SRCDIR: ${{ github.workspace }}
         run: |
           test -x "ci/ci-continuous.sh" || { echo "! Missing ci-continuous.sh" ; exit 1 ; }
           exec "ci/ci-continuous.sh"
-
-      # - name: irc push
-      #   uses: rectalogic/notify-irc@v1
-      #   if: github.event_name == 'push'
-      #   with:
-      #     channel: "#mychannel"
-      #     nickname: my-github-notifier
-      #     message: |
-      #       ${{ github.actor }} pushed ${{ github.event.ref }} ${{ github.event.compare }}
-      #       ${{ join(github.event.commits.*.message) }}
+      # irc notification to chat.freenode.net#calamares
