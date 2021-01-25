@@ -183,7 +183,7 @@ class FstabGenerator(object):
             print(FSTAB_HEADER, file=fstab_file)
 
             for partition in self.partitions:
-                # Special treatment for a btrfs root with @ and @home
+                # Special treatment for a btrfs root with @, @home and @swap
                 # subvolumes
                 if (partition["fs"] == "btrfs"
                    and partition["mountPoint"] == "/"):
@@ -204,6 +204,13 @@ class FstabGenerator(object):
                             home_entry["mountPoint"] = "/home"
                             home_entry["subvol"] = "@home"
                             dct = self.generate_fstab_line_info(home_entry)
+                            if dct:
+                                self.print_fstab_line(dct, file=fstab_file)
+                        elif line.endswith(b'path @swap'):
+                            swap_part_entry = partition
+                            swap_part_entry["mountPoint"] = "/swap"
+                            swap_part_entry["subvol"] = "@swap"
+                            dct = self.generate_fstab_line_info(swap_part_entry)
                             if dct:
                                 self.print_fstab_line(dct, file=fstab_file)
 
@@ -319,14 +326,19 @@ def create_swapfile(root_mount_point, root_btrfs):
     The swapfile-creation covers progress from 0.2 to 0.5
     """
     libcalamares.job.setprogress(0.2)
-    swapfile_path = os.path.join(root_mount_point, "swapfile")
-    with open(swapfile_path, "wb") as f:
-        pass
     if root_btrfs:
+        # btrfs swapfiles must reside on a subvolume that is not snapshotted to prevent file system corruption
+        swapfile_path = os.path.join(root_mount_point, "swap/swapfile")
+        with open(swapfile_path, "wb") as f:
+            pass
         o = subprocess.check_output(["chattr", "+C", swapfile_path])
         libcalamares.utils.debug("swapfile attributes: {!s}".format(o))
         o = subprocess.check_output(["btrfs", "property", "set", swapfile_path, "compression", "none"])
         libcalamares.utils.debug("swapfile compression: {!s}".format(o))
+    else:
+        swapfile_path = os.path.join(root_mount_point, "swapfile")
+        with open(swapfile_path, "wb") as f:
+            pass
     # Create the swapfile; swapfiles are small-ish
     zeroes = bytes(16384)
     with open(swapfile_path, "wb") as f:
@@ -374,7 +386,12 @@ def run():
         swap_choice = swap_choice.get( "swap", None )
         if swap_choice and swap_choice == "file":
             # There's no formatted partition for it, so we'll sneak in an entry
-            partitions.append( dict(fs="swap", mountPoint=None, claimed=True, device="/swapfile", uuid=None) )
+            root_partitions = [ p["fs"].lower() for p in partitions if p["mountPoint"] == "/" ]
+            root_btrfs = (root_partitions[0] == "btrfs") if root_partitions else False
+            if root_btrfs:
+                partitions.append( dict(fs="swap", mountPoint=None, claimed=True, device="/swap/swapfile", uuid=None) )
+            else:    
+                partitions.append( dict(fs="swap", mountPoint=None, claimed=True, device="/swapfile", uuid=None) )
         else:
             swap_choice = None
 
