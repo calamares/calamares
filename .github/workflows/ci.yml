@@ -31,18 +31,9 @@ jobs:
     steps:
       - 
         name: prepare
-        env:
-          COVERITY_SCAN_TOKEN: ${{ secrets.COVERITY_SCAN_TOKEN }}
         run: |
           sudo apt-get update
           sudo apt-get -y install git-core
-          if [ -n "$COVERITY_SCAN_TOKEN" ]; then
-            curl -k -o coverity_tool.tar.gz \
-              -d "token=$COVERITY_SCAN_TOKEN&project=calamares%2Fcalamares" \
-              https://scan.coverity.com/download/cxx/linux64
-            mkdir "$BUILDDIR/coveritytool"
-            tar xvf coverity_tool.tar.gz -C "$BUILDDIR/coveritytool" --strip-components 2
-          fi
       - 
         name: checkout
         uses: actions/checkout@v2
@@ -87,21 +78,6 @@ jobs:
       -
         name: cmake
         run: cmake $CMAKE_ARGS $SRCDIR
-      -
-        name: generate coverage report
-        env:
-          COVERITY_SCAN_TOKEN: ${{ secrets.COVERITY_SCAN_TOKEN }}
-        run: |
-          if [ -n "$COVERITY_SCAN_TOKEN" ]; then
-            $BUILDDIR/coveritytool/bin/cov-build --dir cov-int make -j2
-            tar caf calamares-ci.tar.xz cov-int
-            curl -k --form token=$COVERITY_SCAN_TOKEN \
-              --form email=groot@kde.org \
-              --form file=@calamares-ci.tar.xz \
-              --form version="calamares-`date -u +%Y%m%d`" \
-              --form description="calamares on `date -u`" \
-              https://scan.coverity.com/builds?project=calamares%2Fcalamares
-          fi
       -
         name: make
         run: make -j2 VERBOSE=1
