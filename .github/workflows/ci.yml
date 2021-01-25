@@ -2,18 +2,25 @@ name: ci
 
 on:
   push:
+    branches:
+      - calamares
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
   workflow_dispatch:
-  #schedule:
-  #  - cron:  '30 * * * *'
 
 env:
   BUILDDIR: /build
-  SRCDIR: /src
+  SRCDIR: ${{ github.workspace }}
+  DESTDIR: /INSTALL_ROOT
   CMAKE_ARGS: |
     -DCMAKE_BUILD_TYPE=Release
     -DWEBVIEW_FORCE_WEBKIT=1
     -DKDE_INSTALL_USE_QT_SYS_PATHS=ON
     -DWITH_PYTHONQT=OFF"
+    -DCMAKE_BUILD_TYPE=Debug
 
 jobs:
   build:
@@ -24,9 +31,18 @@ jobs:
     steps:
       - 
         name: prepare
+        env:
+          COVERITY_SCAN_TOKEN: ${{ secrets.COVERITY_SCAN_TOKEN }}
         run: |
           sudo apt-get update
           sudo apt-get -y install git-core
+          if [ -n "$COVERITY_SCAN_TOKEN" ]; then
+            curl -k -o coverity_tool.tar.gz \
+              -d "token=$COVERITY_SCAN_TOKEN&project=calamares%2Fcalamares" \
+              https://scan.coverity.com/download/cxx/linux64
+            mkdir "$BUILDDIR/coveritytool"
+            tar xvf coverity_tool.tar.gz -C "$BUILDDIR/coveritytool" --strip-components 2
+          fi
       - 
         name: checkout
         uses: actions/checkout@v2
@@ -62,16 +78,41 @@ jobs:
             qttools5-dev \
             qttools5-dev-tools
       -
-        name: config
+        name: check environment
         run: |
+          test -f $SRCDIR/CMakeLists.txt || { echo "! Missing $SRCDIR/CMakeLists.txt" ; exit 1 ; }
           test -n "$BUILDDIR" || { echo "! \$BUILDDIR not set" ; exit 1 ; }
           test -n "$SRCDIR" || { echo "! \$SRCDIR not set" ; exit 1 ; }
-          mkdir -p $SRCDIR $BUILDDIR
-          test -f $SRCDIR/CMakeLists.txt || { echo "! Missing $SRCDIR/CMakeLists.txt" ; exit 1 ; }
-          test -n "$COVERITY_SCAN_TOKEN" || { echo "! Missing Coverity token" ; exit 1 ; }
-      - 
-        name: continuous
+          mkdir -p $BUILDDIR $SRCDIR $DESTDIR
+      -
+        name: cmake
+        run: cmake $CMAKE_ARGS $SRCDIR
+      -
+        name: generate coverage report
+        env:
+          COVERITY_SCAN_TOKEN: ${{ secrets.COVERITY_SCAN_TOKEN }}
         run: |
-          test -x "ci/ci-continuous.sh" || { echo "! Missing ci-continuous.sh" ; exit 1 ; }
-          exec "ci/ci-continuous.sh"
-      # irc notification to chat.freenode.net#calamares
+          if [ -n "$COVERITY_SCAN_TOKEN" ]; then
+            $BUILDDIR/coveritytool/bin/cov-build --dir cov-int make -j2
+            tar caf calamares-ci.tar.xz cov-int
+            curl -k --form token=$COVERITY_SCAN_TOKEN \
+              --form email=groot@kde.org \
+              --form file=@calamares-ci.tar.xz \
+              --form version="calamares-`date -u +%Y%m%d`" \
+              --form description="calamares on `date -u`" \
+              https://scan.coverity.com/builds?project=calamares%2Fcalamares
+          fi
+      -
+        name: make
+        run: make -j2 VERBOSE=1
+      - 
+        name: build results
+        run: ls -la $( find "$BUILDDIR" -type f -name '*.so' )
+      - 
+        name: install
+        id: install
+        run:  make install VERBOSE=1
+      -
+        name: debug install
+        if: ${{ failure() && steps.install.outcome == 'failure' }}
+        run: ls -la $( find "$DESTDIR" -type f -name '*.so' )
