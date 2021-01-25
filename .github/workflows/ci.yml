@@ -14,9 +14,7 @@ on:
 env:
   BUILDDIR: /build
   SRCDIR: ${{ github.workspace }}
-  DESTDIR: /INSTALL_ROOT
   CMAKE_ARGS: |
-    -DCMAKE_BUILD_TYPE=Release
     -DWEBVIEW_FORCE_WEBKIT=1
     -DKDE_INSTALL_USE_QT_SYS_PATHS=ON
     -DWITH_PYTHONQT=OFF"
@@ -27,10 +25,10 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: docker://kdeneon/plasma:user
-      options: --tmpfs /build:rw,size=512M --user 0:0
+      options: --tmpfs /build:rw --user 0:0
     steps:
       - 
-        name: prepare
+        name: prepare env
         run: |
           sudo apt-get update
           sudo apt-get -y install git-core
@@ -69,26 +67,21 @@ jobs:
             qttools5-dev \
             qttools5-dev-tools
       -
-        name: check environment
+        name: prepare build
         run: |
-          test -f $SRCDIR/CMakeLists.txt || { echo "! Missing $SRCDIR/CMakeLists.txt" ; exit 1 ; }
           test -n "$BUILDDIR" || { echo "! \$BUILDDIR not set" ; exit 1 ; }
-          test -n "$SRCDIR" || { echo "! \$SRCDIR not set" ; exit 1 ; }
-          mkdir -p $BUILDDIR $SRCDIR $DESTDIR
+          mkdir -p $BUILDDIR
+          test -f $SRCDIR/CMakeLists.txt || { echo "! Missing $SRCDIR/CMakeLists.txt" ; exit 1 ; }
       -
         name: cmake
+        working-directory: ${{ env.BUILDDIR }}
         run: cmake $CMAKE_ARGS $SRCDIR
       -
         name: make
+        working-directory: ${{ env.BUILDDIR }}
         run: make -j2 VERBOSE=1
       - 
-        name: build results
-        run: ls -la $( find "$BUILDDIR" -type f -name '*.so' )
-      - 
         name: install
-        id: install
-        run:  make install VERBOSE=1
-      -
-        name: debug install
-        if: ${{ failure() && steps.install.outcome == 'failure' }}
-        run: ls -la $( find "$DESTDIR" -type f -name '*.so' )
+        working-directory: ${{ env.BUILDDIR }}
+        run: |
+          make install VERBOSE=1
