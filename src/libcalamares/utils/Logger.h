@@ -25,15 +25,17 @@ struct FuncSuppressor
     const char* m_s;
 };
 
-struct NoQuote
+struct NoQuote_t
 {
 };
-struct Quote
+struct Quote_t
 {
 };
 
 DLLEXPORT extern const FuncSuppressor Continuation;
 DLLEXPORT extern const FuncSuppressor SubEntry;
+DLLEXPORT extern const NoQuote_t NoQuote;
+DLLEXPORT extern const Quote_t Quote;
 
 enum
 {
@@ -74,13 +76,13 @@ operator<<( QDebug& s, const FuncSuppressor& f )
 }
 
 inline QDebug&
-operator<<( QDebug& s, const NoQuote& )
+operator<<( QDebug& s, const NoQuote_t& )
 {
     return s.noquote().nospace();
 }
 
 inline QDebug&
-operator<<( QDebug& s, const Quote& )
+operator<<( QDebug& s, const Quote_t& )
 {
     return s.quote().space();
 }
@@ -254,7 +256,7 @@ operator<<( QDebug& s, const DebugMap& t )
 inline QDebug&
 operator<<( QDebug& s, const Pointer& p )
 {
-    s << NoQuote {} << '@' << p.ptr << Quote {};
+    s << NoQuote << '@' << p.ptr << Quote;
     return s;
 }
 }  // namespace Logger

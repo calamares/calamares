@@ -35,7 +35,7 @@
 [[noreturn]] static void
 bail( const QString& descriptorPath, const QString& message )
 {
-    cError() << "FATAL in" << descriptorPath << Logger::Continuation << Logger::NoQuote {} << message;
+    cError() << "FATAL in" << descriptorPath << Logger::Continuation << Logger::NoQuote << message;
     ::exit( EXIT_FAILURE );
 }
 

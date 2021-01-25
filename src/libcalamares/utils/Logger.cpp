@@ -207,6 +207,8 @@ constexpr FuncSuppressor::FuncSuppressor( const char s[] )
 
 const constexpr FuncSuppressor Continuation( s_Continuation );
 const constexpr FuncSuppressor SubEntry( s_SubEntry );
+const constexpr NoQuote_t NoQuote {};
+const constexpr Quote_t Quote {};
 
 QString
 toString( const QVariant& v )

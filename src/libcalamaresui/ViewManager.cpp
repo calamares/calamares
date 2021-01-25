@@ -142,9 +142,9 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
 {
     bool shouldOfferWebPaste = false;  // TODO: config var
 
-    cError() << "Installation failed:";
-    cDebug() << "- message:" << message;
-    cDebug() << "- details:" << details;
+    cError() << "Installation failed:" << message;
+    cDebug() << Logger::SubEntry << "- message:" << message;
+    cDebug() << Logger::SubEntry << "- details:" << Logger::NoQuote << details;
 
     QString heading
         = Calamares::Settings::instance()->isSetupMode() ? tr( "Setup Failed" ) : tr( "Installation Failed" );
