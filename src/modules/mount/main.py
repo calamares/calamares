@@ -96,6 +96,8 @@ def mount_partition(root_mount_point, partition, partitions):
             swap_choice = swap_choice.get( "swap", None )
             if swap_choice and swap_choice == "file":
                 btrfs_subvolumes.append({'mountPoint': '/swap', 'subvolume': '/@swap'})
+        # Store created list in global storage so it can be used in the fstab module
+        libcalamares.globalstorage.insert("btrfsSubvolumes", btrfs_subvolumes)
         # Create the subvolumes that are in the completed list
         for s in btrfs_subvolumes:
             subprocess.check_call(['btrfs', 'subvolume', 'create',
