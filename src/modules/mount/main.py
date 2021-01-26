@@ -89,24 +89,19 @@ def mount_partition(root_mount_point, partition, partitions):
             if "mountPoint" not in p or not p["mountPoint"]:
                 continue
             if p["mountpoint"] in subvolume_mountpoints and p["mountpoint"] != '/':
-                # mountpoint is already define, remove subvolume from the list
+                # mountpoint is already defined, remove subvolume from the list
                 btrfs_subvolumes = [d for d in btrfs_subvolumes if d['mountPoint'] != p["mountpoint"]]
-        # Now we shouold have a valid list of needed subvolumes, so all subvolumes can be created and mounted
-        for s in btrfs_subvolumes:
-            # Create the subvolume
-            subprocess.check_call(['btrfs', 'subvolume', 'create',
-                               root_mount_point + s['subvolume']])
-
-        # Handle swap subvolume separately
+        # Check if we need a subvolume for swap file
         needs_swap_subvolume = False
         swap_choice = global_storage.value( "partitionChoices" )
         if swap_choice:
             swap_choice = swap_choice.get( "swap", None )
             if swap_choice and swap_choice == "file":
-                needs_swap_subvolume = True
-        if needs_swap_subvolume:
+                btrfs_subvolumes.append({'mountPoint': '/swap', 'subvolume': '/@swap'})
+        # Create the subvolumes that are in the completed list
+        for s in btrfs_subvolumes:
             subprocess.check_call(['btrfs', 'subvolume', 'create',
-                                       root_mount_point + '/@swap'])
+                               root_mount_point + s['subvolume']])
 
         subprocess.check_call(["umount", "-v", root_mount_point])
 
@@ -122,14 +117,7 @@ def mount_partition(root_mount_point, partition, partitions):
                                     mount_point,
                                     fstype,
                                     ",".join([mount_option, partition.get("options", "")])) != 0:
-                libcalamares.utils.warning("Cannot mount {}".format(device))
-        
-        if needs_swap_subvolume:
-            if libcalamares.utils.mount(device,
-                                        root_mount_point + "/swap",
-                                        fstype,
-                                        ",".join(["subvol=@swap", partition.get("options", "")])) != 0:
-                libcalamares.utils.warning("Cannot mount {}".format(device))
+                libcalamares.utils.warning(f"Cannot mount {device}")
 
 
 def run():
