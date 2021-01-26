@@ -192,7 +192,9 @@ class FstabGenerator(object):
                                                       'list',
                                                       self.root_mount_point])
                     output_lines = output.splitlines()
+                    btrfs_subvolumes = libcalamares.globalstorage.value("btrfsSubvolumes")
                     for line in output_lines:
+                        # This is where changes need to go
                         if line.endswith(b'path @'):
                             root_entry = partition
                             root_entry["subvol"] = "@"
