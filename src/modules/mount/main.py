@@ -81,26 +81,29 @@ def mount_partition(root_mount_point, partition, partitions):
     # If a swapfile is used, we also create a subvolume "@swap".
     # Finally we remount all of the above on the correct paths.
     if fstype == "btrfs" and partition["mountPoint"] == '/':
-        has_home_mount_point = False
+        # Root has been mounted to btrfs volume -> create subvolumes from configuration
+        btrfs_subvolumes = libcalamares.job.configuration.get("btrfsSubvolumes") or []
+        subvolume_mountpoints = [d['mountPoint'] for d in btrfs_subvolumes]
+        # Check if listed mountpoints besides / are already present and don't create subvolume for those
         for p in partitions:
             if "mountPoint" not in p or not p["mountPoint"]:
                 continue
-            if p["mountPoint"] == "/home":
-                has_home_mount_point = True
-                break
+            if p["mountpoint"] in subvolume_mountpoints and p["mountpoint"] != '/':
+                # mountpoint is already define, remove subvolume from the list
+                btrfs_subvolumes = [d for d in btrfs_subvolumes if d['mountPoint'] != p["mountpoint"]]
+        # Now we shouold have a valid list of needed subvolumes, so all subvolumes can be created and mounted
+        for s in btrfs_subvolumes:
+            # Create the subvolume
+            subprocess.check_call(['btrfs', 'subvolume', 'create',
+                               root_mount_point + s['subvolume']])
+
+        # Handle swap subvolume separately
         needs_swap_subvolume = False
         swap_choice = global_storage.value( "partitionChoices" )
         if swap_choice:
             swap_choice = swap_choice.get( "swap", None )
             if swap_choice and swap_choice == "file":
                 needs_swap_subvolume = True
-
-        subprocess.check_call(['btrfs', 'subvolume', 'create',
-                               root_mount_point + '/@'])
-
-        if not has_home_mount_point:
-            subprocess.check_call(['btrfs', 'subvolume', 'create',
-                                   root_mount_point + '/@home'])
         if needs_swap_subvolume:
             subprocess.check_call(['btrfs', 'subvolume', 'create',
                                        root_mount_point + '/@swap'])
@@ -112,17 +115,13 @@ def mount_partition(root_mount_point, partition, partitions):
         if "luksMapperName" in partition:
             device = os.path.join("/dev/mapper", partition["luksMapperName"])
 
-        if libcalamares.utils.mount(device,
+        # Mount the subvolumes
+        for s in btrfs_subvolumes:
+            mount_option = f"subvol={s[subvolume]}"
+            if libcalamares.utils.mount(device,
                                     mount_point,
                                     fstype,
-                                    ",".join(["subvol=@", partition.get("options", "")])) != 0:
-            libcalamares.utils.warning("Cannot mount {}".format(device))
-
-        if not has_home_mount_point:
-            if libcalamares.utils.mount(device,
-                                        root_mount_point + "/home",
-                                        fstype,
-                                        ",".join(["subvol=@home", partition.get("options", "")])) != 0:
+                                    ",".join([mount_option, partition.get("options", "")])) != 0:
                 libcalamares.utils.warning("Cannot mount {}".format(device))
         
         if needs_swap_subvolume:
