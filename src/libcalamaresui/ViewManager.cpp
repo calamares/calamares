@@ -19,6 +19,7 @@
 #include "utils/Logger.h"
 #include "utils/Paste.h"
 #include "utils/Retranslator.h"
+#include "utils/String.h"
 #include "viewpages/BlankViewStep.h"
 #include "viewpages/ExecutionViewStep.h"
 #include "viewpages/ViewStep.h"
@@ -136,41 +137,6 @@ ViewManager::insertViewStep( int before, ViewStep* step )
     emit endInsertRows();
 }
 
-/** Makes a long details message suitable for display
- *
- * @returns a (possibly shortened) version of @p text that
- *      will fit sensibly in a messagebox.
- */
-static QString
-simplifyText( const QString& text )
-{
-    constexpr const int maxLines = 8;
-    constexpr const int maxChars = 640;
-    QString shorter = text.simplified();
-    if ( shorter.count( '\n' ) >= maxLines )
-    {
-        int from = -1;
-        for ( int i = 0; i < maxLines; ++i )
-        {
-            from = shorter.indexOf( '\n', from + 1 );
-            if ( from < 0 )
-            {
-                // That's odd, we counted at least maxLines newlines before
-                break;
-            }
-        }
-        if ( from > 0 )
-        {
-            shorter.truncate( from );
-        }
-    }
-    if ( shorter.length() > maxChars )
-    {
-        shorter.truncate( maxChars );
-    }
-    return shorter;
-}
-
 void
 ViewManager::onInstallationFailed( const QString& message, const QString& details )
 {
@@ -186,7 +152,7 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
     QString text = "<p>" + message + "</p>";
     if ( !details.isEmpty() )
     {
-        text += "<p>" + simplifyText( details ) + "</p>";
+        text += "<p>" + CalamaresUtils::truncateMultiLine( details, CalamaresUtils::LinesStartEnd{8, 0}) + "</p>";
     }
     if ( shouldOfferWebPaste )
     {
