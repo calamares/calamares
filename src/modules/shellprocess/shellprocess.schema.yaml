@@ -1,0 +1,54 @@
+$schema: http://json-schema.org/draft-07/schema#
+$id: https://calamares.io/schemas/shellprocess
+definitions:
+  command:
+    $id: '#definitions/command'
+    type: string
+    description: This is one command that is executed.  If a command starts with '-'
+      (a single minus sign), then the return value of the command following the -
+      is ignored; otherwise, a failing command will abort the installation.
+  commandObj:
+    $id: '#definitions/commandObj'
+    type: object
+    properties:
+      command:
+        $ref: '#definitions/command'
+      timeout:
+        type: number
+        description: the (optional) timeout for this specific command (differently
+          from the global setting)
+    required:
+    - command
+type: object
+description: Configuration for the shell process job.
+properties:
+  dontChroot:
+    type: boolean
+    description: If the top-level key *dontChroot* is true, then the commands are
+      executed in the context of the live system, otherwise in the context of the
+      target system.
+  timeout:
+    type: number
+    description: The (global) timeout for the command list in seconds. If unset, defaults
+      to 30 seconds.
+  script:
+    anyOf:
+    - $ref: '#definitions/command'
+    - $ref: '#definitions/commandObj'
+    - type: array
+      description: these commands are executed one at a time, by separate shells (/bin/sh
+        -c is invoked for each command).
+      items:
+        anyOf:
+        - $ref: '#definitions/command'
+        - $ref: '#definitions/commandObj'
+  i18n:
+    type: object
+    description: To change description of the job (as it is displayed in the progress
+      bar during installation) use *name* field and optionally, translations as *name[lang]*.
+      Without a translation, the default name from the source code is used, "Shell Processes Job".
+    properties:
+      name:
+        type: string
+    required:
+    - name
