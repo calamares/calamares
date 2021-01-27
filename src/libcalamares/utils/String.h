@@ -62,15 +62,22 @@ DLLEXPORT QString removeDiacritics( const QString& string );
  */
 DLLEXPORT QString obscure( const QString& string );
 
+/** @brief Parameter for counting lines at beginning and end of string
+ *
+ * This is used by truncateMultiLine() to indicate how many lines from
+ * the beginning and how many from the end should be kept.
+ */
 struct LinesStartEnd
 {
-    int atStart;
-    int atEnd;
+    int atStart = 0;
+    int atEnd = 0;
 };
 
+/** @brief Parameter for counting characters in truncateMultiLine()
+ */
 struct CharCount
 {
-    int total;
+    int total = 0;
 };
 
 /** @brief Truncate a string to some reasonable length for display
