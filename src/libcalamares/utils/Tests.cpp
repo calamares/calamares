@@ -600,13 +600,37 @@ and the translations updated.)" );
 
     // Grab first line, untruncated
     {
-
         auto s = truncateMultiLine( longString, LinesStartEnd { 1, 0 } );
         QVERIFY( s.length() > 1 );
         QVERIFY( longString.startsWith( s ) );
         QVERIFY( s.endsWith( NEWLINE ) );
         QVERIFY( s.endsWith( "being\n" ) );
+        QVERIFY( s.startsWith( "Some " ) );
     }
+
+    // Grab last line, untruncated
+    {
+        auto s = truncateMultiLine( longString, LinesStartEnd { 0, 1 } );
+        QVERIFY( s.length() > 1 );
+        QVERIFY( longString.endsWith( s ) );
+        QVERIFY( !s.endsWith( NEWLINE ) );
+        QVERIFY( s.endsWith( "updated." ) );
+        QCOMPARE( s.count( NEWLINE ), 0 );  // Because last line doesn't end with a newline
+        QVERIFY( s.startsWith( "and the " ) );
+    }
+
+    // Grab last two lines, untruncated
+    {
+        auto s = truncateMultiLine( longString, LinesStartEnd { 0, 2 } );
+        QVERIFY( s.length() > 1 );
+        QVERIFY( longString.endsWith( s ) );
+        QVERIFY( !s.endsWith( NEWLINE ) );
+        QVERIFY( s.endsWith( "updated." ) );
+        cDebug() << "Result-line" << Logger::Quote << s;
+        QCOMPARE( s.count( NEWLINE ), 1 );  // Because last line doesn't end with a newline
+        QVERIFY( s.startsWith( "displayed in " ) );
+    }
+
 }
 
 

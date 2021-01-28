@@ -135,7 +135,8 @@ truncateMultiLine( const QString& string, CalamaresUtils::LinesStartEnd lines, C
         return shorter;
     }
 
-    if ( ( string.length() <= chars.total ) && ( string.count( NEWLINE ) <= maxLines ) )
+    const int linesInString = string.count( NEWLINE ) + ( string.endsWith( NEWLINE ) ? 0 : 1 );
+    if ( ( string.length() <= chars.total ) && ( linesInString <= maxLines ) )
     {
         return string;
     }
