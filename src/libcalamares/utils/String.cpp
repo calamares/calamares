@@ -126,6 +126,7 @@ obscure( const QString& string )
 QString
 truncateMultiLine( const QString& string, CalamaresUtils::LinesStartEnd lines, CalamaresUtils::CharCount chars )
 {
+    const char NEWLINE = '\n';
     const int maxLines = lines.atStart + lines.atEnd;
     if ( maxLines < 1 )
     {
@@ -134,19 +135,18 @@ truncateMultiLine( const QString& string, CalamaresUtils::LinesStartEnd lines, C
         return shorter;
     }
 
-    if ( ( string.length() <= chars.total ) && ( string.count( '\n' ) <= maxLines ) )
+    if ( ( string.length() <= chars.total ) && ( string.count( NEWLINE ) <= maxLines ) )
     {
         return string;
     }
 
-    QString shorter = string;
     QString front, back;
-    if ( shorter.count( '\n' ) >= maxLines )
+    if ( string.count( NEWLINE ) >= maxLines )
     {
         int from = -1;
         for ( int i = 0; i < lines.atStart; ++i )
         {
-            from = shorter.indexOf( '\n', from + 1 );
+            from = string.indexOf( NEWLINE, from + 1 );
             if ( from < 0 )
             {
                 // That's strange, we counted at least maxLines newlines before
@@ -155,22 +155,22 @@ truncateMultiLine( const QString& string, CalamaresUtils::LinesStartEnd lines, C
         }
         if ( from > 0 )
         {
-            front = shorter.left( from + 1 );
+            front = string.left( from + 1 );
         }
 
         int lastNewLine = -1;
-        int lastCount = shorter.endsWith( '\n' ) ? -1 : 0;
-        for ( auto i = shorter.rbegin(); i != shorter.rend() && lastCount < lines.atEnd; ++i )
+        int lastCount = string.endsWith( NEWLINE ) ? -1 : 0;
+        for ( auto i = string.rbegin(); i != string.rend() && lastCount < lines.atEnd; ++i )
         {
-            if ( *i == '\n' )
+            if ( *i == NEWLINE )
             {
                 ++lastCount;
-                lastNewLine = int( i - shorter.rbegin() );
+                lastNewLine = int( i - string.rbegin() );
             }
         }
         if ( ( lastNewLine >= 0 ) && ( lastCount >= lines.atEnd ) )
         {
-            back = shorter.right( lastNewLine );
+            back = string.right( lastNewLine );
         }
     }
 
