@@ -562,6 +562,20 @@ LibCalamaresTests::testStringTruncation()
         cDebug() << "Result-line" << Logger::Quote << s;
         QCOMPARE( s.count( '\n' ), 4 );
     }
+
+    // Lines at both ends
+    {
+        auto s = truncateMultiLine( longString, LinesStartEnd { 2, 2 }, CharCount { sufficientLength } );
+        QVERIFY( s.length() > 1 );
+        cDebug() << "Result-line" << Logger::Quote << s;
+        QCOMPARE( s.count( '\n' ), 4 );
+
+        auto firsttwo = truncateMultiLine( s, LinesStartEnd { 2, 0 }, CharCount { sufficientLength } );
+        auto lasttwo = truncateMultiLine( s, LinesStartEnd { 0, 2 }, CharCount { sufficientLength } );
+        QCOMPARE( firsttwo + lasttwo, s );
+        QVERIFY( longString.startsWith( firsttwo ) );
+        QVERIFY( longString.endsWith( lasttwo ) );
+    }
 }
 
 
