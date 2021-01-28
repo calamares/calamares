@@ -188,7 +188,7 @@ System::runCommand( System::RunLocation location,
                                        : -1 ) )
     {
         cWarning() << "Process" << args.first() << "timed out after" << timeoutSec.count() << "s. Output so far:\n"
-                   << Logger::NoQuote {} << process.readAllStandardOutput();
+                   << Logger::NoQuote << process.readAllStandardOutput();
         return ProcessResult::Code::TimedOut;
     }
 
@@ -196,7 +196,7 @@ System::runCommand( System::RunLocation location,
 
     if ( process.exitStatus() == QProcess::CrashExit )
     {
-        cWarning() << "Process" << args.first() << "crashed. Output so far:\n" << Logger::NoQuote {} << output;
+        cWarning() << "Process" << args.first() << "crashed. Output so far:\n" << Logger::NoQuote << output;
         return ProcessResult::Code::Crashed;
     }
 
@@ -206,7 +206,7 @@ System::runCommand( System::RunLocation location,
     {
         if ( showDebug && !output.isEmpty() )
         {
-            cDebug() << Logger::SubEntry << "Finished. Exit code:" << r << "output:\n" << Logger::NoQuote {} << output;
+            cDebug() << Logger::SubEntry << "Finished. Exit code:" << r << "output:\n" << Logger::NoQuote << output;
         }
         else
         {
@@ -218,7 +218,7 @@ System::runCommand( System::RunLocation location,
         if ( !output.isEmpty() )
         {
             cDebug() << Logger::SubEntry << "Target cmd:" << RedactedList( args ) << "Exit code:" << r << "output:\n"
-                     << Logger::NoQuote {} << output;
+                     << Logger::NoQuote << output;
         }
         else
         {

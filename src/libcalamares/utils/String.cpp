@@ -15,6 +15,7 @@
  */
 
 #include "String.h"
+#include "Logger.h"
 
 #include <QStringList>
 
@@ -120,5 +121,61 @@ obscure( const QString& string )
     }
     return result;
 }
+
+
+QString
+truncateMultiLine( const QString& string, CalamaresUtils::LinesStartEnd lines, CalamaresUtils::CharCount chars )
+{
+    const int maxLines = lines.atStart + lines.atEnd;
+    if ( maxLines < 1 )
+    {
+        QString shorter( string );
+        shorter.truncate( chars.total );
+        return shorter;
+    }
+
+    if ( ( string.length() <= chars.total ) && ( string.count( '\n' ) <= maxLines ) )
+    {
+        return string;
+    }
+
+    QString shorter = string;
+    QString front, back;
+    if ( shorter.count( '\n' ) >= maxLines )
+    {
+        int from = -1;
+        for ( int i = 0; i < lines.atStart; ++i )
+        {
+            from = shorter.indexOf( '\n', from + 1 );
+            if ( from < 0 )
+            {
+                // That's strange, we counted at least maxLines newlines before
+                break;
+            }
+        }
+        if ( from > 0 )
+        {
+            front = shorter.left( from + 1 );
+        }
+
+        int lastNewLine = -1;
+        int lastCount = shorter.endsWith( '\n' ) ? -1 : 0;
+        for ( auto i = shorter.rbegin(); i != shorter.rend() && lastCount < lines.atEnd; ++i )
+        {
+            if ( *i == '\n' )
+            {
+                ++lastCount;
+                lastNewLine = int( i - shorter.rbegin() );
+            }
+        }
+        if ( ( lastNewLine >= 0 ) && ( lastCount >= lines.atEnd ) )
+        {
+            back = shorter.right( lastNewLine );
+        }
+    }
+
+    return front + back;
+}
+
 
 }  // namespace CalamaresUtils

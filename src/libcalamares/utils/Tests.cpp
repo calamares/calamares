@@ -13,6 +13,7 @@
 #include "Entropy.h"
 #include "Logger.h"
 #include "RAII.h"
+#include "String.h"
 #include "Traits.h"
 #include "UMask.h"
 #include "Variant.h"
@@ -63,6 +64,8 @@ private Q_SLOTS:
     void testVariantStringListYAMLDashed();
     void testVariantStringListYAMLBracketed();
 
+    /** @brief Test smart string truncation. */
+    void testStringTruncation();
 
 private:
     void recursiveCompareMap( const QVariantMap& a, const QVariantMap& b, int depth );
@@ -494,6 +497,87 @@ strings: [ aap, noot, mies ]
     QVERIFY( getStringList( m, key ).contains( "mies" ) );
     QVERIFY( !getStringList( m, key ).contains( "lam" ) );
 }
+
+void
+LibCalamaresTests::testStringTruncation()
+{
+    Logger::setupLogLevel( Logger::LOGDEBUG );
+
+    using namespace CalamaresUtils;
+
+    const QString longString( R"(---
+--- src/libcalamares/utils/String.h
++++ src/libcalamares/utils/String.h
+@@ -62,15 +62,22 @@ DLLEXPORT QString removeDiacritics( const QString& string );
+  */
+ DLLEXPORT QString obscure( const QString& string );
+
++/** @brief Parameter for counting lines at beginning and end of string
++ *
++ * This is used by truncateMultiLine() to indicate how many lines from
++ * the beginning and how many from the end should be kept.
++ */
+ struct LinesStartEnd
+ {
+-    int atStart;
+-    int atEnd;
++    int atStart = 0;
++    int atEnd = 0;
+)" );
+
+    const int sufficientLength = 812;
+    // There's 18 lines in all
+    QCOMPARE( longString.count( '\n' ), 18 );
+    QVERIFY( longString.length() < sufficientLength );
+
+    // If we ask for more, we get everything back
+    QCOMPARE( longString, truncateMultiLine( longString, LinesStartEnd { 20, 0 }, CharCount { sufficientLength } ) );
+    QCOMPARE( longString, truncateMultiLine( longString, LinesStartEnd { 0, 20 }, CharCount { sufficientLength } ) );
+
+    // If we ask for no lines, only characters, we get that
+    {
+        auto s = truncateMultiLine( longString, LinesStartEnd { 0, 0 }, CharCount { 4 } );
+        QCOMPARE( s.length(), 4 );
+        QCOMPARE( s, QString( "---\n" ) );
+    }
+    {
+        auto s = truncateMultiLine( longString, LinesStartEnd { 0, 0 }, CharCount { sufficientLength } );
+        QCOMPARE( s, longString );
+    }
+
+    // Lines at the start
+    {
+        auto s = truncateMultiLine( longString, LinesStartEnd { 4, 0 }, CharCount { sufficientLength } );
+        QVERIFY( s.length() > 1 );
+        QVERIFY( longString.startsWith( s ) );
+        cDebug() << "Result-line" << Logger::Quote << s;
+        QCOMPARE( s.count( '\n' ), 4 );
+    }
+
+    // Lines at the end
+    {
+        auto s = truncateMultiLine( longString, LinesStartEnd { 0, 4 }, CharCount { sufficientLength } );
+        QVERIFY( s.length() > 1 );
+        QVERIFY( longString.endsWith( s ) );
+        cDebug() << "Result-line" << Logger::Quote << s;
+        QCOMPARE( s.count( '\n' ), 4 );
+    }
+
+    // Lines at both ends
+    {
+        auto s = truncateMultiLine( longString, LinesStartEnd { 2, 2 }, CharCount { sufficientLength } );
+        QVERIFY( s.length() > 1 );
+        cDebug() << "Result-line" << Logger::Quote << s;
+        QCOMPARE( s.count( '\n' ), 4 );
+
+        auto firsttwo = truncateMultiLine( s, LinesStartEnd { 2, 0 }, CharCount { sufficientLength } );
+        auto lasttwo = truncateMultiLine( s, LinesStartEnd { 0, 2 }, CharCount { sufficientLength } );
+        QCOMPARE( firsttwo + lasttwo, s );
+        QVERIFY( longString.startsWith( firsttwo ) );
+        QVERIFY( longString.endsWith( lasttwo ) );
+    }
+}
+
 
 QTEST_GUILESS_MAIN( LibCalamaresTests )
 

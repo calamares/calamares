@@ -19,6 +19,7 @@
 #include "utils/Logger.h"
 #include "utils/Paste.h"
 #include "utils/Retranslator.h"
+#include "utils/String.h"
 #include "viewpages/BlankViewStep.h"
 #include "viewpages/ExecutionViewStep.h"
 #include "viewpages/ViewStep.h"
@@ -136,15 +137,14 @@ ViewManager::insertViewStep( int before, ViewStep* step )
     emit endInsertRows();
 }
 
-
 void
 ViewManager::onInstallationFailed( const QString& message, const QString& details )
 {
     bool shouldOfferWebPaste = false;  // TODO: config var
 
-    cError() << "Installation failed:";
-    cDebug() << "- message:" << message;
-    cDebug() << "- details:" << details;
+    cError() << "Installation failed:" << message;
+    cDebug() << Logger::SubEntry << "- message:" << message;
+    cDebug() << Logger::SubEntry << "- details:" << Logger::NoQuote << details;
 
     QString heading
         = Calamares::Settings::instance()->isSetupMode() ? tr( "Setup Failed" ) : tr( "Installation Failed" );
@@ -152,7 +152,7 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
     QString text = "<p>" + message + "</p>";
     if ( !details.isEmpty() )
     {
-        text += "<p>" + details + "</p>";
+        text += "<p>" + CalamaresUtils::truncateMultiLine( details, CalamaresUtils::LinesStartEnd{8, 0}) + "</p>";
     }
     if ( shouldOfferWebPaste )
     {

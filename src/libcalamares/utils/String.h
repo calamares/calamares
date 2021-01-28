@@ -61,6 +61,43 @@ DLLEXPORT QString removeDiacritics( const QString& string );
  * @return the obfuscated string.
  */
 DLLEXPORT QString obscure( const QString& string );
+
+/** @brief Parameter for counting lines at beginning and end of string
+ *
+ * This is used by truncateMultiLine() to indicate how many lines from
+ * the beginning and how many from the end should be kept.
+ */
+struct LinesStartEnd
+{
+    int atStart = 0;
+    int atEnd = 0;
+};
+
+/** @brief Parameter for counting characters in truncateMultiLine()
+ */
+struct CharCount
+{
+    int total = 0;
+};
+
+/** @brief Truncate a string to some reasonable length for display
+ *
+ * Keep the first few, or last few (or both) lines of a possibly lengthy
+ * message @p string and reduce it to a displayable size (e.g. for
+ * pop-up windows that display the message). If the message is longer
+ * than @p chars, then characters are removed from the front (if
+ * @p lines.atStart is zero) or end (if @p lines.atEnd is zero) or in the middle
+ * (if both are nonzero).
+ *
+ * @param string the input string.
+ * @param lines number of lines to preserve.
+ * @param chars maximum number of characters in the returned string.
+ * @return a string built from parts of the input string.
+ */
+DLLEXPORT QString truncateMultiLine( const QString& string,
+                                     LinesStartEnd lines = LinesStartEnd { 3, 5 },
+                                     CharCount chars = CharCount { 812 } );
+
 }  // namespace CalamaresUtils
 
 #endif
