@@ -15,6 +15,7 @@
  */
 
 #include "String.h"
+#include "Logger.h"
 
 #include <QStringList>
 
@@ -138,7 +139,7 @@ truncateMultiLine( const QString& string, CalamaresUtils::LinesStartEnd lines, C
         return string;
     }
 
-    QString shorter = string.simplified();
+    QString shorter = string;
     QString front, back;
     if ( shorter.count( '\n' ) >= maxLines )
     {
@@ -154,17 +155,17 @@ truncateMultiLine( const QString& string, CalamaresUtils::LinesStartEnd lines, C
         }
         if ( from > 0 )
         {
-            front = shorter.left( from );
+            front = shorter.left( from + 1 );
         }
 
         int lastNewLine = -1;
-        int lastCount = 0;
+        int lastCount = shorter.endsWith( '\n' ) ? -1 : 0;
         for ( auto i = shorter.rbegin(); i != shorter.rend() && lastCount < lines.atEnd; ++i )
         {
             if ( *i == '\n' )
             {
                 ++lastCount;
-                lastNewLine = shorter.length() - int( i - shorter.rbegin() );
+                lastNewLine = int( i - shorter.rbegin() );
             }
         }
         if ( ( lastNewLine >= 0 ) && ( lastCount >= lines.atEnd ) )

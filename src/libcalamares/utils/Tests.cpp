@@ -501,6 +501,8 @@ strings: [ aap, noot, mies ]
 void
 LibCalamaresTests::testStringTruncation()
 {
+    Logger::setupLogLevel( Logger::LOGDEBUG );
+
     using namespace CalamaresUtils;
 
     const QString longString( R"(---
@@ -546,14 +548,18 @@ LibCalamaresTests::testStringTruncation()
     // Lines at the start
     {
         auto s = truncateMultiLine( longString, LinesStartEnd { 4, 0 }, CharCount { sufficientLength } );
+        QVERIFY( s.length() > 1 );
         QVERIFY( longString.startsWith( s ) );
+        cDebug() << "Result-line" << Logger::Quote << s;
         QCOMPARE( s.count( '\n' ), 4 );
     }
 
     // Lines at the end
     {
         auto s = truncateMultiLine( longString, LinesStartEnd { 0, 4 }, CharCount { sufficientLength } );
+        QVERIFY( s.length() > 1 );
         QVERIFY( longString.endsWith( s ) );
+        cDebug() << "Result-line" << Logger::Quote << s;
         QCOMPARE( s.count( '\n' ), 4 );
     }
 }
