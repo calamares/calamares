@@ -11,7 +11,7 @@ jobs:
         uses: rectalogic/notify-irc@v1
         with:
           server: chat.freenode.net
-          channel: #calamares
-          nickname: ircalamares
+          channel: "#calamares"
+          nickname: gh-issues
           message: |
             ${{ github.actor }} issue ${{ github.event.issue.title }}
