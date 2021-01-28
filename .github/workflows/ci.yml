@@ -27,15 +27,15 @@ jobs:
       image: docker://kdeneon/plasma:user
       options: --tmpfs /build:rw --user 0:0
     steps:
-      - 
+      -
         name: prepare env
         run: |
           sudo apt-get update
           sudo apt-get -y install git-core
-      - 
+      -
         name: checkout
         uses: actions/checkout@v2
-      - 
+      -
         name: install dependencies
         run: |
           sudo apt-get -y install \
@@ -80,8 +80,17 @@ jobs:
         name: make
         working-directory: ${{ env.BUILDDIR }}
         run: make -j2 VERBOSE=1
-      - 
+      -
         name: install
         working-directory: ${{ env.BUILDDIR }}
         run: |
           make install VERBOSE=1
+      -
+        name: notify
+        uses: rectalogic/notify-irc@v1
+        with:
+          server: char.freenode.net
+          channel: #calamares
+          nickname: ircalamares
+          message: |
+            ${{ github.actor }} pushed ${{ github.event.ref }} CI ${{ steps.install.conclusion }}
