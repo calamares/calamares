@@ -175,7 +175,36 @@ truncateMultiLine( const QString& string, CalamaresUtils::LinesStartEnd lines, C
         }
     }
 
-    return front + back;
+    if ( front.length() + back.length() <= chars.total )
+    {
+        return front + back;
+    }
+
+    // We need to cut off some bits, preserving whether there are
+    // newlines present at the end of the string. Go case-by-case:
+    if ( !front.isEmpty() && back.isEmpty() )
+    {
+        // Truncate towards the front
+        bool needsNewline = front.endsWith( NEWLINE );
+        front.truncate( chars.total );
+        if ( !front.endsWith( NEWLINE ) && needsNewline )
+        {
+            front.append( NEWLINE );
+        }
+        return front;
+    }
+    if ( front.isEmpty() && !back.isEmpty() )
+    {
+        // Truncate towards the tail
+        return back.right( chars.total );
+    }
+    // Both are non-empty, so nibble away at both of them
+    front.truncate( chars.total / 2 );
+    if ( !front.endsWith( NEWLINE ) )
+    {
+        front.append( NEWLINE );
+    }
+    return front + back.right( chars.total / 2 );
 }
 
 

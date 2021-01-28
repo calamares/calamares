@@ -597,6 +597,8 @@ and the translations updated.)" );
     QVERIFY( !longString.endsWith( NEWLINE ) );
     QCOMPARE( longString.count( NEWLINE ), 2 );
     QVERIFY( longString.length() > insufficientLength );
+    // Even the first line must be more than the insufficientLength
+    QVERIFY( longString.indexOf( NEWLINE ) > insufficientLength );
 
     // Grab first line, untruncated
     {
@@ -626,11 +628,51 @@ and the translations updated.)" );
         QVERIFY( longString.endsWith( s ) );
         QVERIFY( !s.endsWith( NEWLINE ) );
         QVERIFY( s.endsWith( "updated." ) );
-        cDebug() << "Result-line" << Logger::Quote << s;
         QCOMPARE( s.count( NEWLINE ), 1 );  // Because last line doesn't end with a newline
         QVERIFY( s.startsWith( "displayed in " ) );
     }
 
+    // First line, truncated
+    {
+        auto s = truncateMultiLine( longString, LinesStartEnd { 1, 0 }, CharCount { insufficientLength } );
+        cDebug() << "Result-line" << Logger::Quote << s;
+        QVERIFY( s.length() > 1 );
+        QVERIFY( s.endsWith( NEWLINE ) );
+        QVERIFY( s.startsWith( "Some " ) );
+        // Because the first line has a newline, the truncated version does too,
+        //   but that makes it one longer than requested.
+        QCOMPARE( s.length(), insufficientLength + 1 );
+        QVERIFY( longString.startsWith( s.left( insufficientLength ) ) );
+    }
+
+    // Last line, truncated; this line is quite short
+    {
+        const int quiteShort = 8;
+        QVERIFY( longString.lastIndexOf( NEWLINE ) < longString.length() - quiteShort );
+
+        auto s = truncateMultiLine( longString, LinesStartEnd { 0, 1 }, CharCount { quiteShort } );
+        cDebug() << "Result-line" << Logger::Quote << s;
+        QVERIFY( s.length() > 1 );
+        QVERIFY( !s.endsWith( NEWLINE ) );  // Because the original doesn't either
+        QVERIFY( s.startsWith( "upda" ) );
+        QCOMPARE( s.length(), quiteShort );  // No extra newlines
+        QVERIFY( longString.endsWith( s ) );
+    }
+
+    // First and last, but both truncated
+    {
+        const int quiteShort = 16;
+        QVERIFY( longString.indexOf( NEWLINE ) > quiteShort );
+        QVERIFY( longString.lastIndexOf( NEWLINE ) < longString.length() - quiteShort );
+
+        auto s = truncateMultiLine( longString, LinesStartEnd { 1, 1 }, CharCount { quiteShort } );
+        cDebug() << "Result-line" << Logger::Quote << s;
+        QVERIFY( s.length() > 1 );
+        QVERIFY( !s.endsWith( NEWLINE ) );  // Because the original doesn't either
+        QVERIFY( s.startsWith( "Some " ) );
+        QVERIFY( s.endsWith( "updated." ) );
+        QCOMPARE( s.length(), quiteShort + 1 );  // Newline between front and back part
+    }
 }
 
 
