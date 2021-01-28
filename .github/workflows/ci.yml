@@ -89,8 +89,8 @@ jobs:
         name: notify
         uses: rectalogic/notify-irc@v1
         with:
-          server: char.freenode.net
+          server: chat.freenode.net
           channel: #calamares
           nickname: ircalamares
           message: |
-            ${{ github.actor }} pushed ${{ github.event.ref }} CI ${{ steps.install.conclusion }}
+            ${{ github.actor }} pushed ${{ github.event.ref }} CI ${{ steps.install.conclusion }} JOB ${{ github.job }} RUN ${{ github.run_id }}

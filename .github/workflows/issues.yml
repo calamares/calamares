@@ -1,0 +1,17 @@
+name: issues
+
+on: issues
+
+jobs:
+  irc:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: notify
+        uses: rectalogic/notify-irc@v1
+        with:
+          server: chat.freenode.net
+          channel: #calamares
+          nickname: ircalamares
+          message: |
+            ${{ github.actor }} issue ${{ github.event.issue.title }}
