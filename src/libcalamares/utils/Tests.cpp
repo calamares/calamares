@@ -66,6 +66,7 @@ private Q_SLOTS:
 
     /** @brief Test smart string truncation. */
     void testStringTruncation();
+    void testStringTruncationShorter();
 
 private:
     void recursiveCompareMap( const QVariantMap& a, const QVariantMap& b, int depth );
@@ -573,8 +574,38 @@ LibCalamaresTests::testStringTruncation()
         auto firsttwo = truncateMultiLine( s, LinesStartEnd { 2, 0 }, CharCount { sufficientLength } );
         auto lasttwo = truncateMultiLine( s, LinesStartEnd { 0, 2 }, CharCount { sufficientLength } );
         QCOMPARE( firsttwo + lasttwo, s );
+        QCOMPARE( firsttwo.count( '\n' ), 2 );
         QVERIFY( longString.startsWith( firsttwo ) );
         QVERIFY( longString.endsWith( lasttwo ) );
+    }
+}
+
+void
+LibCalamaresTests::testStringTruncationShorter()
+{
+    Logger::setupLogLevel( Logger::LOGDEBUG );
+
+    using namespace CalamaresUtils;
+
+    const QString longString( R"(Some strange string artifacts appeared, leading to `{1?}` being
+displayed in various user-facing messages. These have been removed
+and the translations updated.)" );
+    const char NEWLINE = '\n';
+
+    const int insufficientLength = 42;
+    // There's 2 newlines in all, no trailing newline
+    QVERIFY( !longString.endsWith( NEWLINE ) );
+    QCOMPARE( longString.count( NEWLINE ), 2 );
+    QVERIFY( longString.length() > insufficientLength );
+
+    // Grab first line, untruncated
+    {
+
+        auto s = truncateMultiLine( longString, LinesStartEnd { 1, 0 } );
+        QVERIFY( s.length() > 1 );
+        QVERIFY( longString.startsWith( s ) );
+        QVERIFY( s.endsWith( NEWLINE ) );
+        QVERIFY( s.endsWith( "being\n" ) );
     }
 }
 
