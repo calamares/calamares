@@ -67,6 +67,7 @@ private Q_SLOTS:
     /** @brief Test smart string truncation. */
     void testStringTruncation();
     void testStringTruncationShorter();
+    void testStringTruncationDegenerate();
 
 private:
     void recursiveCompareMap( const QVariantMap& a, const QVariantMap& b, int depth );
@@ -672,6 +673,36 @@ and the translations updated.)" );
         QVERIFY( s.startsWith( "Some " ) );
         QVERIFY( s.endsWith( "updated." ) );
         QCOMPARE( s.length(), quiteShort + 1 );  // Newline between front and back part
+    }
+}
+
+void LibCalamaresTests::testStringTruncationDegenerate()
+{
+    Logger::setupLogLevel( Logger::LOGDEBUG );
+
+    using namespace CalamaresUtils;
+
+    // This is quite long, 1 line only, with no newlines
+    const QString longString(
+        "The portscout new distfile checker has detected that one or more of your"
+        "ports appears to be out of date. Please take the opportunity to check"
+        "each of the ports listed below, and if possible and appropriate,"
+        "submit/commit an update. If any ports have already been updated, you can"
+        "safely ignore the entry." );
+
+    const char NEWLINE = '\n';
+    const int quiteShort = 16;
+    QVERIFY( longString.length() > quiteShort);
+    QVERIFY( !longString.contains(NEWLINE));
+    QVERIFY( longString.indexOf(NEWLINE) < 0);
+
+    {
+        auto s = truncateMultiLine( longString, LinesStartEnd { 1, 0 }, CharCount { quiteShort } );
+        cDebug() << "Result-line" << Logger::Quote << s;
+        QVERIFY( s.length() > 1 );
+        QCOMPARE( s.length(), quiteShort);  // Newline between front and back part
+        QVERIFY( s.startsWith( "The " ) );
+        QVERIFY( s.endsWith( "entry." ) );
     }
 }
 
