@@ -12,6 +12,7 @@ website will have to do for older versions.
 This release contains contributions from (alphabetically by first name):
  - Anubhav Choudhary
  - Gaël PORTAY
+ - Neal Gompa
 
 ## Core ##
  - It is now possible to hide the *next* and *back* buttons during
@@ -28,6 +29,8 @@ This release contains contributions from (alphabetically by first name):
    failed installations if automount grabs partitions while they are
    being created. The code is prepared to handle other ways to control
    automount-behavior as well.
+ - *bootloader* now uses the current file names for the UEFI Secure Boot
+   shim instead of obsolete ones.
 
 
 # 3.2.35.1 (2020-12-07) #
