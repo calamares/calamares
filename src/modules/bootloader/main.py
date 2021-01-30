@@ -14,6 +14,7 @@
 #   SPDX-FileCopyrightText: 2017-2019 Adriaan de Groot <groot@kde.org>
 #   SPDX-FileCopyrightText: 2017 Gabriel Craciunescu <crazy@frugalware.org>
 #   SPDX-FileCopyrightText: 2017 Ben Green <Bezzy1999@hotmail.com>
+#   SPDX-FileCopyrightText: 2021 Neal Gompa <ngompa13@gmail.com>
 #   SPDX-License-Identifier: GPL-3.0-or-later
 #
 #   Calamares is Free Software: see the License-Identifier above.
@@ -372,9 +373,9 @@ def install_secureboot(efi_directory):
     install_efi_directory = install_path + efi_directory
 
     if efi_word_size() == "64":
-        install_efi_bin = "shim64.efi"
-    else:
-        install_efi_bin = "shim.efi"
+        install_efi_bin = "shimx64.efi"
+    elif efi_word_size() == "32":
+        install_efi_bin = "shimia32.efi"
 
     # Copied, roughly, from openSUSE's install script,
     # and pythonified. *disk* is something like /dev/sda,
