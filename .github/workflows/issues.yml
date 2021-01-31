@@ -1,17 +1,28 @@
 name: issues
 
-on: issues
+on:
+  issues:
+    types: [opened, reopened, closed]
 
 jobs:
   irc:
     runs-on: ubuntu-latest
     steps:
       -
-        name: notify
+        name: notify-new
         uses: rectalogic/notify-irc@v1
+        if: ${{ github.event.issue.state }} == "open"
         with:
           server: chat.freenode.net
           channel: "#calamares"
           nickname: gh-issues
-          message: |
-            ${{ github.actor }} issue ${{ github.event.issue.title }}
+          message: "New issue [${{ github.event.issue.title }}](${{ github.event.issue.url }})"
+      -
+        name: notify-closed
+        uses: rectalogic/notify-irc@v1
+        if: ${{ github.event.issue.state }} != "open"
+        with:
+          server: chat.freenode.net
+          channel: "#calamares"
+          nickname: gh-issues
+          message: "Closed issue [${{ github.event.issue.title }}](${{ github.event.issue.url }})"
