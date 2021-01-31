@@ -11,18 +11,18 @@ jobs:
       -
         name: notify-new
         uses: rectalogic/notify-irc@v1
-        if: ${{ github.event.issue.state }} == "open"
+        if: github.event.issue.state == "open"
         with:
           server: chat.freenode.net
           channel: "#calamares"
           nickname: gh-issues
-          message: "New issue [${{ github.event.issue.title }}](${{ github.event.issue.url }})"
+          message: "[${{ github.event.issue.title }}](${{ github.event.issue.url }}) opened by ${{ github.actor }}"
       -
         name: notify-closed
         uses: rectalogic/notify-irc@v1
-        if: ${{ github.event.issue.state }} != "open"
+        if: github.event.issue.state != "open"
         with:
           server: chat.freenode.net
           channel: "#calamares"
           nickname: gh-issues
-          message: "Closed issue [${{ github.event.issue.title }}](${{ github.event.issue.url }})"
+          message: "[${{ github.event.issue.title }}](${{ github.event.issue.url }}) closed by ${{ github.actor }}"
