@@ -19,6 +19,8 @@
 #include <QMutexLocker>
 #include <QThread>
 
+#include <memory>
+
 namespace Calamares
 {
 
