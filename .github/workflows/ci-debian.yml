@@ -23,9 +23,9 @@ jobs:
     steps:
       - name: "prepare env"
         run: |
-          sudo apt-get update
-          sudo apt-get -y install git-core
-          sudo apt-get -y install \
+          apt-get update
+          apt-get -y install git-core
+          apt-get -y install \
             build-essential \
             cmake \
             extra-cmake-modules \
