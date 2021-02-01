@@ -86,11 +86,22 @@ jobs:
         run: |
           make install VERBOSE=1
       -
+        name: Dump steps context
+        env:
+          JOBS_CONTEXT: ${{ toJSON(job) }}
+          STEPS_CONTEXT: ${{ toJSON(steps) }}
+        run: |
+          echo "STEPS"
+          echo "$STEPS_CONTEXT"
+          echo "JOB"
+          echo "$JOB_CONTEXT"
+      -
         name: notify
         uses: rectalogic/notify-irc@v1
+        if: always()
         with:
           server: chat.freenode.net
           channel: "#calamares"
           nickname: gh-notify
           message: |
-            ${{ github.actor }} pushed ${{ github.event.ref }} CI ${{ steps.install.conclusion }} JOB ${{ github.job }} RUN ${{ github.run_id }}
+            ${{ github.actor }} result ${{ steps.install.conclusion }} - ${{ steps.install.outcome }} - ${{ job.status }} RUN ${{ github.run_id }}
