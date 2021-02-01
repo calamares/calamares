@@ -75,11 +75,14 @@ jobs:
         env:
           JOBS_CONTEXT: ${{ toJSON(job) }}
           STEPS_CONTEXT: ${{ toJSON(steps) }}
+          EVENT_CONTEXT: ${{ toJSON(github.event) }}
         run: |
           echo "STEPS"
           echo "$STEPS_CONTEXT"
           echo "JOB"
           echo "$JOBS_CONTEXT"
+          echo "EVENT"
+          echo "$EVENT_CONTEXT"
       - name: "notify"
         uses: rectalogic/notify-irc@v1
         if: always()
@@ -88,8 +91,8 @@ jobs:
           channel: "#calamares"
           nickname: gh-notify
           message: |
-            ${{ github.actor }} $${ github.sha }} on ${{ github.ref }}
-            result ${{ steps.checkout.conclusion }} - ${{ steps.checkout.outcome }} - ${{ job.status }} RUN ${{ github.run_id }} ${{ github.job_id }}
+            ${{ github.actor }} ${{ github.sha }} on ${{ github.ref }}
+            result ${{ job.status }} RUN ${{ github.run_id }} ${{ github.job }}
 
 # Unused while we figure out notifications.
 #      - name: "Calamares: make"
