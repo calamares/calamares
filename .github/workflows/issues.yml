@@ -8,8 +8,7 @@ jobs:
   irc:
     runs-on: ubuntu-latest
     steps:
-      -
-        name: notify-new
+      - name: "notify: new"
         uses: rectalogic/notify-irc@v1
         if: github.event.issue.state == "open"
         with:
@@ -17,8 +16,7 @@ jobs:
           channel: "#calamares"
           nickname: gh-issues
           message: "[${{ github.event.issue.title }}](${{ github.event.issue.url }}) opened by ${{ github.actor }}"
-      -
-        name: notify-closed
+      - name: "notify: closed"
         uses: rectalogic/notify-irc@v1
         if: github.event.issue.state != "open"
         with:

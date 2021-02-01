@@ -83,16 +83,24 @@ jobs:
           echo "$JOBS_CONTEXT"
           echo "EVENT"
           echo "$EVENT_CONTEXT"
-      - name: "notify"
+      - name: "notify: ok"
         uses: rectalogic/notify-irc@v1
-        if: always()
+        if: ${{ success() }}
+        with:
+          server: chat.freenode.net
+          channel: "#calamares"
+          nickname: gh-notify
+          message: "CI OK   for '${{ github.event.head_commit.message }}'"
+      - name: "notify: fail"
+        uses: rectalogic/notify-irc@v1
+        if: ${{ failure() }}
         with:
           server: chat.freenode.net
           channel: "#calamares"
           nickname: gh-notify
           message: |
-            ${{ github.actor }} ${{ github.sha }} on ${{ github.ref }}
-            result ${{ job.status }} RUN ${{ github.run_id }} ${{ github.job }}
+            CI FAIL for '${{ github.event.head_commit.message }}'
+            .. DIFF     ${{ github.event.compare }}
 
 # Unused while we figure out notifications.
 #      - name: "Calamares: make"
