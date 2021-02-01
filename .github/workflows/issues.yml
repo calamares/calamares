@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: "notify: new"
         uses: rectalogic/notify-irc@v1
-        if: github.event.issue.state == "open"
+        if: github.event.issue.state == 'open'
         with:
           server: chat.freenode.net
           channel: "#calamares"
@@ -18,7 +18,7 @@ jobs:
           message: "[${{ github.event.issue.title }}](${{ github.event.issue.html_url }}) opened by ${{ github.actor }}"
       - name: "notify: closed"
         uses: rectalogic/notify-irc@v1
-        if: github.event.issue.state != "open"
+        if: github.event.issue.state != 'open'
         with:
           server: chat.freenode.net
           channel: "#calamares"
