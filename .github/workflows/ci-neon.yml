@@ -68,7 +68,7 @@ jobs:
           test -n "$BUILDDIR" || { echo "! \$BUILDDIR not set" ; exit 1 ; }
           mkdir -p $BUILDDIR
           test -f $SRCDIR/CMakeLists.txt || { echo "! Missing $SRCDIR/CMakeLists.txt" ; exit 1 ; }
-          echo "::set-output name=message::"`git log -1 --abbrev-commit --pretty=oneline --no-decorate ${{ github.event.head_commit.id }}
+          echo "::set-output name=message::"`git log -1 --abbrev-commit --pretty=oneline --no-decorate ${{ github.event.head_commit.id }}`
       - name: "Calamares: cmake"
         working-directory: ${{ env.BUILDDIR }}
         run: cmake $CMAKE_ARGS $SRCDIR
@@ -85,7 +85,7 @@ jobs:
           server: chat.freenode.net
           channel: "#calamares"
           nickname: gh-notify
-          message: "CI OK   ${{ github.repository }} ${{ steps.pre_build.outputs.message }}"
+          message: "${{ github.workflow }} OK ${{ github.repository }} ${{ steps.pre_build.outputs.message }}"
       - name: "notify: fail"
         uses: rectalogic/notify-irc@v1
         if: ${{ failure() }}
@@ -94,5 +94,5 @@ jobs:
           channel: "#calamares"
           nickname: gh-notify
           message: |
-            CI FAIL ${{ github.repository }} ${{ steps.pre_build.outputs.message }}
+            ${{ github.workflow }} FAIL ${{ github.repository }} ${{ steps.pre_build.outputs.message }}
             .. DIFF ${{ github.event.compare }}
