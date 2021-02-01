@@ -3,6 +3,7 @@ name: ci-debian-9
 on:
   schedule:
     - cron: "12 23 * * *"
+  workflow_dispatch:
 
 env:
   BUILDDIR: /build
