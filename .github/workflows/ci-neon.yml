@@ -26,7 +26,7 @@ jobs:
     container:
       image: docker://kdeneon/plasma:user
       options: --tmpfs /build:rw --user 0:0
-    if: ${{ github.repository == 'calamares/calamares' }}
+    if: github.repository == 'calamares/calamares'
     steps:
       - name: "prepare env"
         run: |
