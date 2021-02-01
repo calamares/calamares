@@ -26,7 +26,7 @@ jobs:
     container:
       image: docker://kdeneon/plasma:user
       options: --tmpfs /build:rw --user 0:0
-    if: github.repository == "calamares/calamares"
+    if: ${{ github.repository == "calamares/calamares" }}
     steps:
       - name: "prepare env"
         run: |
@@ -94,5 +94,5 @@ jobs:
           channel: "#calamares"
           nickname: gh-notify
           message: |
-            CI FAIL for '${{ github.event.head_commit.message }}'
+            CI FAIL for '${{ github.event.head_commit.message }}' in ${{ github.repository }}
             .. DIFF     ${{ github.event.compare }}

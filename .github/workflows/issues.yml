@@ -7,7 +7,6 @@ on:
 jobs:
   irc:
     runs-on: ubuntu-latest
-    if: github.repository == "calamares/calamares"
     steps:
       - name: "notify: new"
         uses: rectalogic/notify-irc@v1
