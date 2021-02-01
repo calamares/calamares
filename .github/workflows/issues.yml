@@ -7,6 +7,7 @@ on:
 jobs:
   irc:
     runs-on: ubuntu-latest
+    if: github.repository == "calamares/calamares"
     steps:
       - name: "notify: new"
         uses: rectalogic/notify-irc@v1
@@ -15,7 +16,7 @@ jobs:
           server: chat.freenode.net
           channel: "#calamares"
           nickname: gh-issues
-          message: "[${{ github.event.issue.title }}](${{ github.event.issue.url }}) opened by ${{ github.actor }}"
+          message: "[${{ github.event.issue.title }}](${{ github.event.issue.html_url }}) opened by ${{ github.actor }}"
       - name: "notify: closed"
         uses: rectalogic/notify-irc@v1
         if: github.event.issue.state != "open"
@@ -23,4 +24,4 @@ jobs:
           server: chat.freenode.net
           channel: "#calamares"
           nickname: gh-issues
-          message: "[${{ github.event.issue.title }}](${{ github.event.issue.url }}) closed by ${{ github.actor }}"
+          message: "[${{ github.event.issue.title }}](${{ github.event.issue.html_url }}) closed by ${{ github.actor }}"

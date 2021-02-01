@@ -26,6 +26,7 @@ jobs:
     container:
       image: docker://kdeneon/plasma:user
       options: --tmpfs /build:rw --user 0:0
+    if: github.repository == "calamares/calamares"
     steps:
       - name: "prepare env"
         run: |
@@ -71,18 +72,12 @@ jobs:
       - name: "Calamares: cmake"
         working-directory: ${{ env.BUILDDIR }}
         run: cmake $CMAKE_ARGS $SRCDIR
-      - name: "dump context"
-        env:
-          JOBS_CONTEXT: ${{ toJSON(job) }}
-          STEPS_CONTEXT: ${{ toJSON(steps) }}
-          EVENT_CONTEXT: ${{ toJSON(github.event) }}
-        run: |
-          echo "STEPS"
-          echo "$STEPS_CONTEXT"
-          echo "JOB"
-          echo "$JOBS_CONTEXT"
-          echo "EVENT"
-          echo "$EVENT_CONTEXT"
+      - name: "Calamares: make"
+        working-directory: ${{ env.BUILDDIR }}
+        run: make -j2 VERBOSE=1
+      - name: "Calamares: install"
+        working-directory: ${{ env.BUILDDIR }}
+        run: make install VERBOSE=1
       - name: "notify: ok"
         uses: rectalogic/notify-irc@v1
         if: ${{ success() }}
@@ -90,7 +85,7 @@ jobs:
           server: chat.freenode.net
           channel: "#calamares"
           nickname: gh-notify
-          message: "CI OK   for '${{ github.event.head_commit.message }}'"
+          message: "CI OK   for '${{ github.event.head_commit.message }}' in ${{ github.repository }}"
       - name: "notify: fail"
         uses: rectalogic/notify-irc@v1
         if: ${{ failure() }}
@@ -101,13 +96,3 @@ jobs:
           message: |
             CI FAIL for '${{ github.event.head_commit.message }}'
             .. DIFF     ${{ github.event.compare }}
-
-# Unused while we figure out notifications.
-#      - name: "Calamares: make"
-#        working-directory: ${{ env.BUILDDIR }}
-#        run: make -j2 VERBOSE=1
-#      - name: "Calamares: install"
-#        working-directory: ${{ env.BUILDDIR }}
-#        run: |
-#          make install VERBOSE=1
-#
