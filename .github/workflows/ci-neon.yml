@@ -32,10 +32,6 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get -y install git-core
-      - name: "checkout"
-        uses: actions/checkout@v2
-      - name: "install dependencies"
-        run: |
           sudo apt-get -y install \
             build-essential \
             cmake \
@@ -64,11 +60,15 @@ jobs:
             qtdeclarative5-dev \
             qttools5-dev \
             qttools5-dev-tools
+      - name: "prepare source"
+        uses: actions/checkout@v2
       - name: "prepare build"
+        id: pre_build
         run: |
           test -n "$BUILDDIR" || { echo "! \$BUILDDIR not set" ; exit 1 ; }
           mkdir -p $BUILDDIR
           test -f $SRCDIR/CMakeLists.txt || { echo "! Missing $SRCDIR/CMakeLists.txt" ; exit 1 ; }
+          echo "::set-output name=message::"`git log -1 --abbrev-commit --pretty=oneline --no-decorate ${{ github.event.head_commit.id }}
       - name: "Calamares: cmake"
         working-directory: ${{ env.BUILDDIR }}
         run: cmake $CMAKE_ARGS $SRCDIR
@@ -85,7 +85,7 @@ jobs:
           server: chat.freenode.net
           channel: "#calamares"
           nickname: gh-notify
-          message: "CI OK   for '${{ github.event.head_commit.message }}' in ${{ github.repository }}"
+          message: "CI OK   ${{ github.repository }} ${{ steps.pre_build.outputs.message }}"
       - name: "notify: fail"
         uses: rectalogic/notify-irc@v1
         if: ${{ failure() }}
@@ -94,5 +94,5 @@ jobs:
           channel: "#calamares"
           nickname: gh-notify
           message: |
-            CI FAIL for '${{ github.event.head_commit.message }}' in ${{ github.repository }}
-            .. DIFF     ${{ github.event.compare }}
+            CI FAIL ${{ github.repository }} ${{ steps.pre_build.outputs.message }}
+            .. DIFF ${{ github.event.compare }}
