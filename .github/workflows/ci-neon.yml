@@ -27,16 +27,13 @@ jobs:
       image: docker://kdeneon/plasma:user
       options: --tmpfs /build:rw --user 0:0
     steps:
-      -
-        name: prepare env
+      - name: prepare env
         run: |
           sudo apt-get update
           sudo apt-get -y install git-core
-      -
-        name: checkout
+      - name: checkout
         uses: actions/checkout@v2
-      -
-        name: install dependencies
+      - name: install dependencies
         run: |
           sudo apt-get -y install \
             build-essential \
@@ -66,27 +63,15 @@ jobs:
             qtdeclarative5-dev \
             qttools5-dev \
             qttools5-dev-tools
-      -
-        name: prepare build
+      - name: prepare build
         run: |
           test -n "$BUILDDIR" || { echo "! \$BUILDDIR not set" ; exit 1 ; }
           mkdir -p $BUILDDIR
           test -f $SRCDIR/CMakeLists.txt || { echo "! Missing $SRCDIR/CMakeLists.txt" ; exit 1 ; }
-      -
-        name: cmake
+      - name: Calamares: cmake
         working-directory: ${{ env.BUILDDIR }}
         run: cmake $CMAKE_ARGS $SRCDIR
-      -
-        name: make
-        working-directory: ${{ env.BUILDDIR }}
-        run: make -j2 VERBOSE=1
-      -
-        name: install
-        working-directory: ${{ env.BUILDDIR }}
-        run: |
-          make install VERBOSE=1
-      -
-        name: Dump steps context
+      - name: Dump steps context
         env:
           JOBS_CONTEXT: ${{ toJSON(job) }}
           STEPS_CONTEXT: ${{ toJSON(steps) }}
@@ -94,9 +79,8 @@ jobs:
           echo "STEPS"
           echo "$STEPS_CONTEXT"
           echo "JOB"
-          echo "$JOB_CONTEXT"
-      -
-        name: notify
+          echo "$JOBS_CONTEXT"
+      - name: notify
         uses: rectalogic/notify-irc@v1
         if: always()
         with:
@@ -104,4 +88,15 @@ jobs:
           channel: "#calamares"
           nickname: gh-notify
           message: |
-            ${{ github.actor }} result ${{ steps.install.conclusion }} - ${{ steps.install.outcome }} - ${{ job.status }} RUN ${{ github.run_id }}
+            ${{ github.actor }} $${ github.sha }} on ${{ github.ref }}
+            result ${{ steps.checkout.conclusion }} - ${{ steps.checkout.outcome }} - ${{ job.status }} RUN ${{ github.run_id }} ${{ github.job_id }}
+
+# Unused while we figure out notifications.
+#      - name: make
+#        working-directory: ${{ env.BUILDDIR }}
+#        run: make -j2 VERBOSE=1
+#      - name: install
+#        working-directory: ${{ env.BUILDDIR }}
+#        run: |
+#          make install VERBOSE=1
+#
