@@ -3,6 +3,7 @@
  *   SPDX-FileCopyrightText: 2014-2017 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2017-2019 Adriaan de Groot <groot@kde.org>
  *   SPDX-FileCopyrightText: 2019 Collabora Ltd
+ *   SPDX-FileCopyrightText: 2021 Anubhav Choudhary <ac.10edu@gmail.com>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -982,6 +983,51 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
 
         m_previewAfterFrame->show();
         m_previewAfterLabel->show();
+
+
+        {
+            QWidget* alongsideWidget = new QWidget;
+
+            QHBoxLayout* alongsideLayout = new QHBoxLayout;
+            alongsideWidget->setLayout( alongsideLayout );
+            alongsideLayout->setContentsMargins( 0, 0, 0, 0 );
+            QLabel* alongsideBootloaderLabel = new QLabel( alongsideWidget );
+            alongsideLayout->addWidget( alongsideBootloaderLabel );
+            alongsideBootloaderLabel->setText( tr( "Boot loader location:" ) );
+
+            m_bootloaderComboBox = createBootloaderComboBox( alongsideWidget );
+            connect( m_core->bootLoaderModel(), &QAbstractItemModel::modelReset, [this]() {
+                if ( !m_bootloaderComboBox.isNull() )
+                {
+                    Calamares::restoreSelectedBootLoader( *m_bootloaderComboBox, m_core->bootLoaderInstallPath() );
+                }
+            } );
+            connect(
+                m_core,
+                &PartitionCoreModule::deviceReverted,
+                this,
+                [this]( Device* dev ) {
+                    Q_UNUSED( dev )
+                    if ( !m_bootloaderComboBox.isNull() )
+                    {
+                        if ( m_bootloaderComboBox->model() != m_core->bootLoaderModel() )
+                        {
+                            m_bootloaderComboBox->setModel( m_core->bootLoaderModel() );
+                        }
+
+                        m_bootloaderComboBox->setCurrentIndex( m_lastSelectedDeviceIndex );
+                    }
+                },
+                Qt::QueuedConnection );
+            // ^ Must be Queued so it's sure to run when the widget is already visible.
+
+            alongsideLayout->addWidget( m_bootloaderComboBox );
+            alongsideBootloaderLabel->setBuddy( m_bootloaderComboBox );
+            alongsideLayout->addStretch();
+
+            layout->addWidget( alongsideWidget );
+        }
+
 
         SelectionFilter filter = []( const QModelIndex& index ) {
             return PartUtils::canBeResized(

@@ -3,6 +3,7 @@
  *   SPDX-FileCopyrightText: 2014 Aurélien Gâteau <agateau@kde.org>
  *   SPDX-FileCopyrightText: 2015 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
+ *   SPDX_FileCopyrightText: 2021 Anubhav Choudhary <ac.10edu@gmail.com>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -124,9 +125,9 @@ BootLoaderModel::updateInternal()
             appendRow( createBootLoaderItem( partitionText, PartitionInfo::mountPoint( partition ), true ) );
         }
 
-        // Create "don't install bootloader" item
-        appendRow( createBootLoaderItem( tr( "Do not install a boot loader" ), QString(), false ) );
     }
+	//Create "don't install bootloader" item
+	appendRow( createBootLoaderItem( tr( "Do not install a boot loader" ), QString(), false ) );
 }
 
 
