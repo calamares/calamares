@@ -79,7 +79,7 @@ automountDisable( bool disable )
 
 
 void
-automountRestore( std::shared_ptr< AutoMountInfo >&& t )
+automountRestore( const std::shared_ptr< AutoMountInfo >& t )
 {
     QDBusConnection dbus = QDBusConnection::sessionBus();
     enableSolidAutoMount( dbus, t->wasSolidModuleAutoLoaded );

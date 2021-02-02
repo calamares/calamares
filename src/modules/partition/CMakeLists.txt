@@ -79,6 +79,7 @@ if ( KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND
             gui/ScanningDialog.cpp
             gui/ReplaceWidget.cpp
             gui/VolumeGroupBaseDialog.cpp
+            jobs/AutoMountManagementJob.cpp
             jobs/ClearMountsJob.cpp
             jobs/ClearTempMountsJob.cpp
             jobs/CreatePartitionJob.cpp

@@ -43,7 +43,7 @@ DLLEXPORT std::shared_ptr< AutoMountInfo > automountDisable( bool disable = true
  * Pass the value returned from automountDisable() to restore the
  * previous settings.
  */
-DLLEXPORT void automountRestore( std::shared_ptr< AutoMountInfo >&& t );
+DLLEXPORT void automountRestore( const std::shared_ptr< AutoMountInfo >& t );
 
 }  // namespace Partition
 }  // namespace CalamaresUtils
