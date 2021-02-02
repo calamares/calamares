@@ -13,9 +13,12 @@
 #ifndef UTILS_LOGGER_H
 #define UTILS_LOGGER_H
 
-#include <QDebug>
-
 #include "DllMacro.h"
+
+#include <QDebug>
+#include <QSharedPointer>
+
+#include <memory>
 
 namespace Logger
 {
@@ -206,16 +209,34 @@ public:
  * Pointers are printed as void-pointer, so just an address (unlike, say,
  * QObject pointers which show an address and some metadata) preceded
  * by an '@'. This avoids C-style (void*) casts in the code.
+ *
+ * Shared pointers are indicated by 'S@' and unique pointers by 'U@'.
  */
 struct Pointer
 {
 public:
     explicit Pointer( const void* p )
         : ptr( p )
+        , kind( 0 )
+    {
+    }
+
+    template < typename T >
+    explicit Pointer( const std::shared_ptr< T >& p )
+        : ptr( p.get() )
+        , kind( 'S' )
+    {
+    }
+
+    template < typename T >
+    explicit Pointer( const std::unique_ptr< T >& p )
+        : ptr( p.get() )
+        , kind( 'U' )
     {
     }
 
     const void* const ptr;
+    const char kind;
 };
 
 /** @brief output operator for DebugRow */
@@ -256,7 +277,12 @@ operator<<( QDebug& s, const DebugMap& t )
 inline QDebug&
 operator<<( QDebug& s, const Pointer& p )
 {
-    s << NoQuote << '@' << p.ptr << Quote;
+    s << NoQuote;
+    if ( p.kind )
+    {
+        s << p.kind;
+    }
+    s << '@' << p.ptr << Quote;
     return s;
 }
 }  // namespace Logger
