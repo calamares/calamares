@@ -153,7 +153,10 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
     QString text = "<p>" + message + "</p>";
     if ( !details.isEmpty() )
     {
-        text += "<p>" + CalamaresUtils::truncateMultiLine( details, CalamaresUtils::LinesStartEnd { 8, 0 } ) + "</p>";
+        text += "<p>"
+            + CalamaresUtils::truncateMultiLine( details, CalamaresUtils::LinesStartEnd { 6, 2 } )
+                  .replace( '\n', QStringLiteral( "<br/>" ) )
+            + "</p>";
     }
     if ( shouldOfferWebPaste )
     {
