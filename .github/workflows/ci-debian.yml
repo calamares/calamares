@@ -97,4 +97,4 @@ jobs:
           server: chat.freenode.net
           nickname: cala-notify
           channel: "#calamares"
-          message: "${{ github.workflow }} FAIL ${{ steps.pre_build.outputs.message }}\n.. DIFF ${{ github.event.compare }}"
+          message: "${{ github.workflow }} FAIL ${{ steps.pre_build.outputs.message }}"
