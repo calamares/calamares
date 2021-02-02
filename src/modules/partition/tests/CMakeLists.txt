@@ -58,3 +58,11 @@ calamares_add_test(
     DEFINITIONS ${_partition_defs}
 )
 
+calamares_add_test(
+    automounttests
+    SOURCES
+        ${PartitionModule_SOURCE_DIR}/jobs/AutoMountManagementJob.cpp
+        AutoMountTests.cpp
+    LIBRARIES
+        calamares
+)

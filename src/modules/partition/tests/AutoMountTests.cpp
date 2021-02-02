@@ -37,7 +37,7 @@ AutoMountJobTests::AutoMountJobTests() {}
 void
 AutoMountJobTests::testRunThrice()
 {
-    Logger::setupLogLevel( Logger::LOGDEBUG );
+    Logger::setupLogLevel( Logger::LOGVERBOSE );
 
     auto original = CalamaresUtils::Partition::automountDisable( true );
     cDebug() << "Got automount info" << Logger::Pointer( original.get() );
