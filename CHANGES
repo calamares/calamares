@@ -11,7 +11,11 @@ website will have to do for older versions.
 
 This release contains contributions from (alphabetically by first name):
  - Anubhav Choudhary
+ - benne-dee
  - Gaël PORTAY
+ - Jonas Strassel
+ - Kevin Kofler
+ - Matti Hyttinen
  - Neal Gompa
 
 ## Core ##
@@ -19,6 +23,8 @@ This release contains contributions from (alphabetically by first name):
    the "exec" phase of installation. THanks Anubhav.
 
 ## Modules ##
+ - *bootloader* now uses the current file names for the UEFI Secure Boot
+   shim instead of obsolete ones.
  - *partition* includes more information about what it will do, including
    GPT partition types (in human-readable format, if possible). Thanks Gaël.
  - Some edge-cases with overlay filesystems have been resolved in the
@@ -29,8 +35,6 @@ This release contains contributions from (alphabetically by first name):
    failed installations if automount grabs partitions while they are
    being created. The code is prepared to handle other ways to control
    automount-behavior as well.
- - *bootloader* now uses the current file names for the UEFI Secure Boot
-   shim instead of obsolete ones.
 
 
 # 3.2.35.1 (2020-12-07) #
