@@ -1,4 +1,4 @@
-name: ci-debian-9
+name: ci-debian-10
 
 on:
   schedule:
@@ -18,7 +18,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: docker://debian:9
+      image: docker://debian:10
       options: --tmpfs /build:rw --user 0:0
     steps:
       - name: "prepare env"
@@ -52,7 +52,18 @@ jobs:
             qtdeclarative5-dev \
             qttools5-dev \
             qttools5-dev-tools
+          # Same name as on KDE neon, different version
           apt-get -y install libkpmcore-dev
+          # Additional dependencies
+          apt-get -y install \
+            libappstreamqt-dev \
+            libicu-dev \
+            libkf5crash-dev \
+            libkf5package-dev \
+            libkf5plasma-dev \
+            libpwquality-dev \
+            libqt5webenginewidgets5 \
+            qtwebengine5-dev
       - name: "prepare source"
         uses: actions/checkout@v2
       - name: "prepare build"
@@ -78,7 +89,7 @@ jobs:
           server: chat.freenode.net
           nickname: cala-notify
           channel: "#calamares"
-          message: "${{ github.workflow }} OK ${{ github.repository }} ${{ steps.pre_build.outputs.message }}"
+          message: "${{ github.workflow }} OK ${{ steps.pre_build.outputs.message }}"
       - name: "notify: fail"
         uses: rectalogic/notify-irc@v1
         if: ${{ failure() && github.repository == 'calamares/calamares' }}
@@ -86,4 +97,4 @@ jobs:
           server: chat.freenode.net
           nickname: cala-notify
           channel: "#calamares"
-          message: "${{ github.workflow }} FAIL ${{ github.repository }} ${{ steps.pre_build.outputs.message }}\n.. DIFF ${{ github.event.compare }}"
+          message: "${{ github.workflow }} FAIL ${{ steps.pre_build.outputs.message }}\n.. DIFF ${{ github.event.compare }}"
