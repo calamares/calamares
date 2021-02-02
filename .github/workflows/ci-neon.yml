@@ -84,7 +84,7 @@ jobs:
           server: chat.freenode.net
           nickname: cala-notify
           channel: "#calamares"
-          message: "${{ github.workflow }} OK ${{ github.repository }} ${{ steps.pre_build.outputs.message }}"
+          message: "${{ github.workflow }} OK ${{ github.actor }} on ${{ github.event.ref }}\n.. ${{ steps.pre_build.outputs.message }}"
       - name: "notify: fail"
         uses: rectalogic/notify-irc@v1
         if: ${{ failure() && github.repository == 'calamares/calamares' }}
@@ -92,4 +92,4 @@ jobs:
           server: chat.freenode.net
           nickname: cala-notify
           channel: "#calamares"
-          message: "${{ github.workflow }} FAIL ${{ github.repository }} ${{ steps.pre_build.outputs.message }}\n.. DIFF ${{ github.event.compare }}"
+          message: "${{ github.workflow }} FAIL ${{ github.actor }} on ${{ github.event.ref }}\n.. ${{ steps.pre_build.outputs.message }}\n.. DIFF ${{ github.event.compare }}"
