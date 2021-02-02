@@ -36,6 +36,8 @@ static const char TRANSLITERATOR_ID[] = "Russian-Latin/BGN;"
                                         "Latin-ASCII";
 #endif
 
+#include <memory>
+
 static const QRegExp USERNAME_RX( "^[a-z_][a-z0-9_-]*[$]?$" );
 static constexpr const int USERNAME_MAX_LENGTH = 31;
 
