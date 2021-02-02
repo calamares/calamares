@@ -135,14 +135,15 @@ truncateMultiLine( const QString& string, CalamaresUtils::LinesStartEnd lines, C
         return shorter;
     }
 
-    const int linesInString = string.count( NEWLINE ) + ( string.endsWith( NEWLINE ) ? 0 : 1 );
-    if ( ( string.length() <= chars.total ) && ( linesInString <= maxLines ) )
+    const int physicalLinesInString = string.count( NEWLINE );
+    const int logicalLinesInString = physicalLinesInString + ( string.endsWith( NEWLINE ) ? 0 : 1 );
+    if ( ( string.length() <= chars.total ) && ( logicalLinesInString <= maxLines ) )
     {
         return string;
     }
 
     QString front, back;
-    if ( string.count( NEWLINE ) >= maxLines )
+    if ( physicalLinesInString >= maxLines )
     {
         int from = -1;
         for ( int i = 0; i < lines.atStart; ++i )
@@ -174,8 +175,53 @@ truncateMultiLine( const QString& string, CalamaresUtils::LinesStartEnd lines, C
             back = string.right( lastNewLine );
         }
     }
+    else
+    {
+        // We have: <= maxLines and longer than chars.total, so:
+        //   - carve out a chunk in the middle, based a little on
+        //     how the balance of atStart and atEnd is
+        const int charsToChop = string.length() - chars.total;
+        if ( charsToChop < 1 )
+        {
+            // That's strange, again
+            return string;
+        }
+        const int startPortion = charsToChop * lines.atStart / maxLines;
+        const int endPortion = charsToChop * lines.atEnd / maxLines;
+        front = string.left( string.length() / 2 - startPortion );
+        back = string.right( string.length() / 2 - endPortion );
+    }
 
-    return front + back;
+    if ( front.length() + back.length() <= chars.total )
+    {
+        return front + back;
+    }
+
+    // We need to cut off some bits, preserving whether there are
+    // newlines present at the end of the string. Go case-by-case:
+    if ( !front.isEmpty() && back.isEmpty() )
+    {
+        // Truncate towards the front
+        bool needsNewline = front.endsWith( NEWLINE );
+        front.truncate( chars.total );
+        if ( !front.endsWith( NEWLINE ) && needsNewline )
+        {
+            front.append( NEWLINE );
+        }
+        return front;
+    }
+    if ( front.isEmpty() && !back.isEmpty() )
+    {
+        // Truncate towards the tail
+        return back.right( chars.total );
+    }
+    // Both are non-empty, so nibble away at both of them
+    front.truncate( chars.total / 2 );
+    if ( !front.endsWith( NEWLINE ) && physicalLinesInString > 0 )
+    {
+        front.append( NEWLINE );
+    }
+    return front + back.right( chars.total / 2 );
 }
 
 

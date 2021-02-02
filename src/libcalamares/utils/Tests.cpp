@@ -67,6 +67,7 @@ private Q_SLOTS:
     /** @brief Test smart string truncation. */
     void testStringTruncation();
     void testStringTruncationShorter();
+    void testStringTruncationDegenerate();
 
 private:
     void recursiveCompareMap( const QVariantMap& a, const QVariantMap& b, int depth );
@@ -597,6 +598,8 @@ and the translations updated.)" );
     QVERIFY( !longString.endsWith( NEWLINE ) );
     QCOMPARE( longString.count( NEWLINE ), 2 );
     QVERIFY( longString.length() > insufficientLength );
+    // Even the first line must be more than the insufficientLength
+    QVERIFY( longString.indexOf( NEWLINE ) > insufficientLength );
 
     // Grab first line, untruncated
     {
@@ -626,11 +629,84 @@ and the translations updated.)" );
         QVERIFY( longString.endsWith( s ) );
         QVERIFY( !s.endsWith( NEWLINE ) );
         QVERIFY( s.endsWith( "updated." ) );
-        cDebug() << "Result-line" << Logger::Quote << s;
         QCOMPARE( s.count( NEWLINE ), 1 );  // Because last line doesn't end with a newline
         QVERIFY( s.startsWith( "displayed in " ) );
     }
 
+    // First line, truncated
+    {
+        auto s = truncateMultiLine( longString, LinesStartEnd { 1, 0 }, CharCount { insufficientLength } );
+        cDebug() << "Result-line" << Logger::Quote << s;
+        QVERIFY( s.length() > 1 );
+        QVERIFY( s.endsWith( NEWLINE ) );
+        QVERIFY( s.startsWith( "Some " ) );
+        // Because the first line has a newline, the truncated version does too,
+        //   but that makes it one longer than requested.
+        QCOMPARE( s.length(), insufficientLength + 1 );
+        QVERIFY( longString.startsWith( s.left( insufficientLength ) ) );
+    }
+
+    // Last line, truncated; this line is quite short
+    {
+        const int quiteShort = 8;
+        QVERIFY( longString.lastIndexOf( NEWLINE ) < longString.length() - quiteShort );
+
+        auto s = truncateMultiLine( longString, LinesStartEnd { 0, 1 }, CharCount { quiteShort } );
+        cDebug() << "Result-line" << Logger::Quote << s;
+        QVERIFY( s.length() > 1 );
+        QVERIFY( !s.endsWith( NEWLINE ) );  // Because the original doesn't either
+        QVERIFY( s.startsWith( "upda" ) );
+        QCOMPARE( s.length(), quiteShort );  // No extra newlines
+        QVERIFY( longString.endsWith( s ) );
+    }
+
+    // First and last, but both truncated
+    {
+        const int quiteShort = 16;
+        QVERIFY( longString.indexOf( NEWLINE ) > quiteShort );
+        QVERIFY( longString.lastIndexOf( NEWLINE ) < longString.length() - quiteShort );
+
+        auto s = truncateMultiLine( longString, LinesStartEnd { 1, 1 }, CharCount { quiteShort } );
+        cDebug() << "Result-line" << Logger::Quote << s;
+        QVERIFY( s.length() > 1 );
+        QVERIFY( !s.endsWith( NEWLINE ) );  // Because the original doesn't either
+        QVERIFY( s.startsWith( "Some " ) );
+        QVERIFY( s.endsWith( "updated." ) );
+        QCOMPARE( s.length(), quiteShort + 1 );  // Newline between front and back part
+    }
+}
+
+void
+LibCalamaresTests::testStringTruncationDegenerate()
+{
+    Logger::setupLogLevel( Logger::LOGDEBUG );
+
+    using namespace CalamaresUtils;
+
+    // This is quite long, 1 line only, with no newlines
+    const QString longString( "The portscout new distfile checker has detected that one or more of your "
+                              "ports appears to be out of date. Please take the opportunity to check "
+                              "each of the ports listed below, and if possible and appropriate, "
+                              "submit/commit an update. If any ports have already been updated, you can "
+                              "safely ignore the entry." );
+
+    const char NEWLINE = '\n';
+    const int quiteShort = 16;
+    QVERIFY( longString.length() > quiteShort );
+    QVERIFY( !longString.contains( NEWLINE ) );
+    QVERIFY( longString.indexOf( NEWLINE ) < 0 );
+
+    {
+        auto s = truncateMultiLine( longString, LinesStartEnd { 1, 0 }, CharCount { quiteShort } );
+        cDebug() << "Result-line" << Logger::Quote << s;
+        QVERIFY( s.length() > 1 );
+        QCOMPARE( s.length(), quiteShort );  // No newline between front and back part
+        QVERIFY( s.startsWith( "The port" ) );  // 8, which is quiteShort / 2
+        QVERIFY( s.endsWith( "e entry." ) );  // also 8 chars
+
+        auto t = truncateMultiLine( longString, LinesStartEnd { 2, 2 }, CharCount { quiteShort } );
+        QCOMPARE( s, t );
+    }
 }
 
 

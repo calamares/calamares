@@ -89,6 +89,8 @@ struct CharCount
  * @p lines.atStart is zero) or end (if @p lines.atEnd is zero) or in the middle
  * (if both are nonzero).
  *
+ * Asking for 0 lines will make this behave like QString::truncate().
+ *
  * @param string the input string.
  * @param lines number of lines to preserve.
  * @param chars maximum number of characters in the returned string.
