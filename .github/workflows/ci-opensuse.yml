@@ -1,4 +1,4 @@
-name: ci-opensuse-leap
+name: ci-opensuse
 
 on:
   schedule:
@@ -85,14 +85,14 @@ jobs:
         if: ${{ success() && github.repository == 'calamares/calamares' }}
         with:
           server: chat.freenode.net
-          nickname: cala-notify
+          nickname: cala-ci
           channel: "#calamares"
-          message: "${{ github.workflow }} OK ${{ steps.pre_build.outputs.message }}"
+          message: "SCHEDULED ${{ github.workflow }} OK ${{ steps.pre_build.outputs.message }}"
       - name: "notify: fail"
         uses: rectalogic/notify-irc@v1
         if: ${{ failure() && github.repository == 'calamares/calamares' }}
         with:
           server: chat.freenode.net
-          nickname: cala-notify
+          nickname: cala-ci
           channel: "#calamares"
-          message: "${{ github.workflow }} FAIL ${{ steps.pre_build.outputs.message }}"
+          message: "SCHEDULED ${{ github.workflow }} FAIL ${{ steps.pre_build.outputs.message }}"

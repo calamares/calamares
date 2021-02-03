@@ -13,14 +13,14 @@ jobs:
         if: github.event.issue.state == 'open'
         with:
           server: chat.freenode.net
-          nickname: cala-notify
+          nickname: cala-issues
           channel: "#calamares"
-          message: "[${{ github.event.issue.title }}](${{ github.event.issue.html_url }}) opened by ${{ github.actor }}"
+          message: "OPENED ${{ github.event.issue.html_url }} by ${{ github.actor }} ${{ github.event.issue.title }}"
       - name: "notify: closed"
         uses: rectalogic/notify-irc@v1
         if: github.event.issue.state != 'open'
         with:
           server: chat.freenode.net
-          nickname: cala-notify
+          nickname: cala-issues
           channel: "#calamares"
-          message: "[${{ github.event.issue.title }}](${{ github.event.issue.html_url }}) closed by ${{ github.actor }}"
+          message: "CLOSED ${{ github.event.issue.html_url }} by ${{ github.actor }} ${{ github.event.issue.title }}"
