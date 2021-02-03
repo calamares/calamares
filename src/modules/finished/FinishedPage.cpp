@@ -10,10 +10,12 @@
  */
 
 #include "FinishedPage.h"
+#include "ui_FinishedPage.h"
 
+#include "Branding.h"
+#include "Settings.h"
 #include "CalamaresVersion.h"
 #include "ViewManager.h"
-#include "ui_FinishedPage.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
@@ -24,13 +26,11 @@
 #include <QLabel>
 #include <QProcess>
 
-#include "Branding.h"
-#include "Settings.h"
 
 FinishedPage::FinishedPage( QWidget* parent )
     : QWidget( parent )
     , ui( new Ui::FinishedPage )
-    , m_mode( FinishedViewStep::RestartMode::UserUnchecked )
+    , m_mode( Config::RestartMode::UserDefaultUnchecked )
 {
     ui->setupUi( this );
 
@@ -66,15 +66,15 @@ FinishedPage::FinishedPage( QWidget* parent )
 
 
 void
-FinishedPage::setRestart( FinishedViewStep::RestartMode mode )
+FinishedPage::setRestart( Config::RestartMode mode )
 {
-    using Mode = FinishedViewStep::RestartMode;
+    using Mode = Config::RestartMode;
 
     m_mode = mode;
 
     ui->restartCheckBox->setVisible( mode != Mode::Never );
     ui->restartCheckBox->setEnabled( mode != Mode::Always );
-    ui->restartCheckBox->setChecked( ( mode == Mode::Always ) || ( mode == Mode::UserChecked ) );
+    ui->restartCheckBox->setChecked( ( mode == Mode::Always ) || ( mode == Mode::UserDefaultChecked ) );
 }
 
 
@@ -89,7 +89,7 @@ void
 FinishedPage::setUpRestart()
 {
     cDebug() << "FinishedPage::setUpRestart(), Quit button"
-             << "setup=" << FinishedViewStep::modeName( m_mode ) << "command=" << m_restartNowCommand;
+             << "setup=" << restartModes().find( m_mode ) << "command=" << m_restartNowCommand;
 
     connect( qApp, &QApplication::aboutToQuit, [this]() {
         if ( ui->restartCheckBox->isVisible() && ui->restartCheckBox->isChecked() )
@@ -124,5 +124,5 @@ FinishedPage::onInstallationFailed( const QString& message, const QString& detai
                                    "The error message was: %2." )
                                    .arg( branding->versionedName() )
                                    .arg( message ) );
-    setRestart( FinishedViewStep::RestartMode::Never );
+    setRestart( Config::RestartMode::Never );
 }

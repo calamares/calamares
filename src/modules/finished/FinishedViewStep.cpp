@@ -25,24 +25,11 @@
 #include <QtDBus/QDBusInterface>
 #include <QtDBus/QDBusReply>
 
-static const NamedEnumTable< FinishedViewStep::RestartMode >&
-modeNames()
-{
-    using Mode = FinishedViewStep::RestartMode;
-
-    static const NamedEnumTable< Mode > names { { QStringLiteral( "never" ), Mode::Never },
-                                                { QStringLiteral( "user-unchecked" ), Mode::UserUnchecked },
-                                                { QStringLiteral( "user-checked" ), Mode::UserChecked },
-                                                { QStringLiteral( "always" ), Mode::Always } };
-
-    return names;
-}
-
 FinishedViewStep::FinishedViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
+    , m_config( new Config( this ))
     , m_widget( new FinishedPage() )
     , installFailed( false )
-    , m_notifyOnFinished( false )
 {
     auto jq = Calamares::JobQueue::instance();
     connect( jq, &Calamares::JobQueue::failed, m_widget, &FinishedPage::onInstallationFailed );
@@ -146,7 +133,7 @@ FinishedViewStep::onActivate()
 {
     m_widget->setUpRestart();
 
-    if ( m_notifyOnFinished )
+    if ( m_config->notifyOnFinished() )
     {
         sendNotification();
     }
@@ -170,59 +157,13 @@ FinishedViewStep::onInstallationFailed( const QString& message, const QString& d
 void
 FinishedViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    RestartMode mode = RestartMode::Never;
+    m_config->setConfigurationMap(configurationMap);
+    m_widget->setRestart( m_config->restartNowMode() );
 
-    QString restartMode = CalamaresUtils::getString( configurationMap, "restartNowMode" );
-    if ( restartMode.isEmpty() )
+    if ( m_config->restartNowMode() != Config::RestartMode::Never )
     {
-        if ( configurationMap.contains( "restartNowEnabled" ) )
-        {
-            cWarning() << "Configuring the finished module with deprecated restartNowEnabled settings";
-        }
-
-        bool restartNowEnabled = CalamaresUtils::getBool( configurationMap, "restartNowEnabled", false );
-        bool restartNowChecked = CalamaresUtils::getBool( configurationMap, "restartNowChecked", false );
-
-        if ( !restartNowEnabled )
-        {
-            mode = RestartMode::Never;
-        }
-        else
-        {
-            mode = restartNowChecked ? RestartMode::UserChecked : RestartMode::UserUnchecked;
-        }
+        m_widget->setRestartNowCommand( m_config->restartNowCommand() );
     }
-    else
-    {
-        bool ok = false;
-        mode = modeNames().find( restartMode, ok );
-        if ( !ok )
-        {
-            cWarning() << "Configuring the finished module with bad restartNowMode" << restartMode;
-        }
-    }
-
-    m_widget->setRestart( mode );
-
-    if ( mode != RestartMode::Never )
-    {
-        QString restartNowCommand = CalamaresUtils::getString( configurationMap, "restartNowCommand" );
-        if ( restartNowCommand.isEmpty() )
-        {
-            restartNowCommand = QStringLiteral( "shutdown -r now" );
-        }
-        m_widget->setRestartNowCommand( restartNowCommand );
-    }
-
-    m_notifyOnFinished = CalamaresUtils::getBool( configurationMap, "notifyOnFinished", false );
 }
-
-QString
-FinishedViewStep::modeName( FinishedViewStep::RestartMode m )
-{
-    bool ok = false;
-    return modeNames().find( m, ok );  // May be QString()
-}
-
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( FinishedViewStepFactory, registerPlugin< FinishedViewStep >(); )

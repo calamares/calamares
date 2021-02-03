@@ -11,9 +11,10 @@
 #ifndef FINISHEDPAGE_H
 #define FINISHEDPAGE_H
 
-#include <QWidget>
 
-#include "FinishedViewStep.h"
+#include "Config.h"
+
+#include <QWidget>
 
 namespace Ui
 {
@@ -26,7 +27,7 @@ class FinishedPage : public QWidget
 public:
     explicit FinishedPage( QWidget* parent = nullptr );
 
-    void setRestart( FinishedViewStep::RestartMode mode );
+    void setRestart( Config::RestartMode mode );
     void setRestartNowCommand( const QString& command );
 
     void setUpRestart();
@@ -40,7 +41,7 @@ protected:
 private:
     Ui::FinishedPage* ui;
 
-    FinishedViewStep::RestartMode m_mode;
+    Config::RestartMode m_mode;
     QString m_restartNowCommand;
 };
 
