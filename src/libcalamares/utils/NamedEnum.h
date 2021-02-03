@@ -98,7 +98,7 @@ struct NamedEnumTable
 
     /** @brief Find a value @p s in the table and return its name.
      *
-     * Returns emptry string if the value is not found.
+     * Returns empty string if the value is not found.
      */
     string_t find( enum_t s ) const
     {
