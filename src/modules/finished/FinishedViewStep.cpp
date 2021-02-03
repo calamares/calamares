@@ -27,7 +27,7 @@
 
 FinishedViewStep::FinishedViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
-    , m_config( new Config( this ))
+    , m_config( new Config( this ) )
     , m_widget( new FinishedPage() )
     , installFailed( false )
 {
@@ -157,7 +157,7 @@ FinishedViewStep::onInstallationFailed( const QString& message, const QString& d
 void
 FinishedViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    m_config->setConfigurationMap(configurationMap);
+    m_config->setConfigurationMap( configurationMap );
     m_widget->setRestart( m_config->restartNowMode() );
 
     if ( m_config->restartNowMode() != Config::RestartMode::Never )

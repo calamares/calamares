@@ -13,8 +13,8 @@
 #include "ui_FinishedPage.h"
 
 #include "Branding.h"
-#include "Settings.h"
 #include "CalamaresVersion.h"
+#include "Settings.h"
 #include "ViewManager.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
