@@ -112,7 +112,7 @@ def mount_partition(root_mount_point, partition, partitions):
 
         # Mount the subvolumes
         for s in btrfs_subvolumes:
-            mount_option = f"subvol={s[subvolume]}"
+            mount_option = f"subvol={s['subvolume']}"
             if libcalamares.utils.mount(device,
                                     mount_point,
                                     fstype,
