@@ -10,6 +10,7 @@
 #include "jobs/AutoMountManagementJob.h"
 
 #include "utils/Logger.h"
+#include "JobQueue.h"
 
 #include <QObject>
 #include <QtTest/QtTest>
@@ -22,6 +23,7 @@ public:
 
 private Q_SLOTS:
     void testRunThrice();
+    void testRunQueue();
 };
 
 AutoMountJobTests::AutoMountJobTests() {}
@@ -48,6 +50,33 @@ AutoMountJobTests::testRunThrice()
     QVERIFY( j.exec() );
 
     CalamaresUtils::Partition::automountRestore( original );
+}
+
+void AutoMountJobTests::testRunQueue()
+{
+    Calamares::JobQueue q;
+    Calamares::job_ptr jp( new AutoMountManagementJob( false ) );
+    QSignalSpy progress( &q, &Calamares::JobQueue::progress );
+    QSignalSpy finish( &q, &Calamares::JobQueue::finished );
+    QSignalSpy fail( &q, &Calamares::JobQueue::failed );
+
+    Logger::setupLogLevel( Logger::LOGVERBOSE );
+    cDebug() << "Got automount job" << jp;
+
+    QVERIFY( !q.isRunning() );
+    q.enqueue( 2, { jp, jp } );
+    QVERIFY( !q.isRunning() );
+
+    QEventLoop loop;
+    QTimer::singleShot( std::chrono::milliseconds( 100 ), [&q](){ q.start(); } );
+    QTimer::singleShot( std::chrono::milliseconds( 5000 ), [&loop](){ loop.quit(); } );
+    connect( &q, &Calamares::JobQueue::finished, &loop, &QEventLoop::quit );
+    loop.exec();
+
+    QCOMPARE( fail.count(), 0 );
+    QCOMPARE( finish.count(), 1 );
+    // 5 progress: 0% and 100% for each *job* and then 100% overall
+    QCOMPARE( progress.count(), 5 );
 }
 
 
