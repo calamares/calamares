@@ -21,6 +21,7 @@
 #include "core/PartUtils.h"
 #include "core/PartitionInfo.h"
 #include "core/PartitionModel.h"
+#include "jobs/AutoMountManagementJob.h"
 #include "jobs/ClearMountsJob.h"
 #include "jobs/ClearTempMountsJob.h"
 #include "jobs/CreatePartitionJob.h"
@@ -576,6 +577,11 @@ PartitionCoreModule::jobs( const Config* config ) const
 #endif
 #endif
 
+    // The automountControl job goes in the list twice: the first
+    //   time it runs, it disables automount and remembers the old setting
+    //   for automount; the second time it restores that old setting.
+    Calamares::job_ptr automountControl( new AutoMountManagementJob( true /* disable automount */ ) );
+    lst << automountControl;
     lst << Calamares::job_ptr( new ClearTempMountsJob() );
 
     for ( auto info : m_deviceInfos )
@@ -592,6 +598,7 @@ PartitionCoreModule::jobs( const Config* config ) const
         devices << info->device.data();
     }
     lst << Calamares::job_ptr( new FillGlobalStorageJob( config, devices, m_bootLoaderInstallPath ) );
+    lst << automountControl;
 
     return lst;
 }
