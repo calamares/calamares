@@ -495,7 +495,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="305"/>
       <source>%1 Installer</source>
-      <translation>תכנית התקנת %1</translation>
+      <translation>אשף התקנת %1</translation>
     </message>
   </context>
   <context>
@@ -539,7 +539,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="822"/>
       <source>Reuse %1 as home partition for %2.</source>
-      <translation>להשתמש ב־%1 כמחיצת הבית (home) עבור %2.</translation>
+      <translation>שימוש ב־%1 כמחיצת הבית (home) עבור %2.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="958"/>
@@ -3341,7 +3341,7 @@ Output:
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="96"/>
       <source>Flag new partition as &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>סמן מחיצה חדשה כ &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+      <translation>סימון המחיצה החדשה בתור &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="108"/>
@@ -4065,7 +4065,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="59"/>
       <source>Your Full Name</source>
-      <translation>שם המלא</translation>
+      <translation>שמך המלא</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="80"/>

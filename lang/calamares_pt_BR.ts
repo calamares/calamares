@@ -291,7 +291,7 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="178"/>
       <source>&amp;Close</source>
-      <translation>Fe&amp;char</translation>
+      <translation>&amp;Fechar</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="189"/>
@@ -396,7 +396,7 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="419"/>
       <source>&amp;Done</source>
-      <translation>Concluí&amp;do</translation>
+      <translation>&amp;Concluído</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="438"/>
@@ -512,7 +512,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="120"/>
       <source>Select storage de&amp;vice:</source>
-      <translation>Selecione o dispositi&amp;vo de armazenamento:</translation>
+      <translation>Selecione o dispositivo de armazenamento:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="121"/>
@@ -898,7 +898,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="123"/>
       <source>Fi&amp;le System:</source>
-      <translation>Sistema de &amp;Arquivos:</translation>
+      <translation>Sistema de Arquivos:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="155"/>
@@ -908,7 +908,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="165"/>
       <source>&amp;Mount Point:</source>
-      <translation>Ponto de &amp;Montagem:</translation>
+      <translation>Ponto de Montagem:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="192"/>
