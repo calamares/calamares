@@ -64,10 +64,9 @@ GroupTests::testReadGroup()
 #else
     QVERIFY( groups.contains( QStringLiteral( "root" ) ) );
 #endif
-    // openSUSE doesn't have "sys"
-    // QVERIFY( groups.contains( QStringLiteral( "sys" ) ) );
-    QVERIFY( groups.contains( QStringLiteral( "nogroup" ) ) );
     QVERIFY( groups.contains( QStringLiteral( "tty" ) ) );
+    // openSUSE doesn't have "sys", KaOS doesn't have "nogroup"
+    QVERIFY( groups.contains( QStringLiteral( "sys" ) ) || groups.contains( QStringLiteral( "nogroup" ) ) );
 
     for ( const QString& s : groups )
     {
