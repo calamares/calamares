@@ -89,7 +89,7 @@ def mount_partition(root_mount_point, partition, partitions):
             if "mountPoint" not in p or not p["mountPoint"]:
                 continue
             if p["mountPoint"] in subvolume_mountpoints and p["mountPoint"] != '/':
-                btrfs_subvolumes = [d for d in btrfs_subvolumes if d['mountPoint'] != p["mountpoint"]]
+                btrfs_subvolumes = [d for d in btrfs_subvolumes if d['mountPoint'] != p["mountPoint"]]
         # Check if we need a subvolume for swap file
         swap_choice = global_storage.value( "partitionChoices" )
         if swap_choice:
