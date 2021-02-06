@@ -192,7 +192,7 @@ class FstabGenerator(object):
                     for s in btrfs_subvolumes:
                         mount_entry = partition
                         mount_entry["mountPoint"] = s["mountPoint"]
-                        home_entry["subvol"] = s["subvolume"]
+                        mount_entry["subvol"] = s["subvolume"]
                         dct = self.generate_fstab_line_info(mount_entry)
                         if dct:
                                 self.print_fstab_line(dct, file=fstab_file)
