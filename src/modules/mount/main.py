@@ -74,12 +74,7 @@ def mount_partition(root_mount_point, partition, partitions):
                                 partition.get("options", "")) != 0:
         libcalamares.utils.warning("Cannot mount {}".format(device))
 
-    # If the root partition is btrfs, we create a subvolume "@"
-    # for the root mount point.
-    # If a separate /home partition isn't defined, we also create
-    # a subvolume "@home".
-    # If a swapfile is used, we also create a subvolume "@swap".
-    # Finally we remount all of the above on the correct paths.
+    # Special handling for btrfs subvolumes. Create the subvolumes listed in mount.conf
     if fstype == "btrfs" and partition["mountPoint"] == '/':
         # Root has been mounted to btrfs volume -> create subvolumes from configuration
         btrfs_subvolumes = libcalamares.job.configuration.get("btrfsSubvolumes") or []
