@@ -32,9 +32,6 @@ def pretty_name():
 def mount_partition(root_mount_point, partition, partitions):
     """
     Do a single mount of @p partition inside @p root_mount_point.
-
-    The @p partitions are used to handle btrfs special-cases:
-    then subvolumes are created for root and home.
     """
     # Create mount point with `+` rather than `os.path.join()` because
     # `partition["mountPoint"]` starts with a '/'.
