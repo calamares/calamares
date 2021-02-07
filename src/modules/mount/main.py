@@ -104,13 +104,13 @@ def mount_partition(root_mount_point, partition, partitions):
 
         # Mount the subvolumes
         for s in btrfs_subvolumes:
-            mount_option = f"subvol={s['subvolume']}"
+            mount_option = "subvol={}".format(s['subvolume'])
             subvolume_mountpoint = mount_point[:-1] + s['mountPoint']
             if libcalamares.utils.mount(device,
                                     subvolume_mountpoint,
                                     fstype,
                                     ",".join([mount_option, partition.get("options", "")])) != 0:
-                libcalamares.utils.warning(f"Cannot mount {device}")
+                libcalamares.utils.warning("Cannot mount {}".format(device))
 
 
 def run():
