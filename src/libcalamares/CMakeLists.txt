@@ -242,7 +242,10 @@ calamares_add_test(
 calamares_add_test(
     libcalamarespartitiontest
     SOURCES
+        partition/Global.cpp
         partition/Tests.cpp
+    LIBRARIES
+        ${OPTIONAL_PRIVATE_LIBRARIES}
 )
 
 if( KPMcore_FOUND )
