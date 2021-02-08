@@ -199,6 +199,16 @@ PartitionServiceTests::testFilesystemGS()
         const auto map = gs.value( "filesystem_use" ).toMap();
         QCOMPARE( map.count(), fsNames.count() + 1 );
     }
+
+    // The API says that it it case-insensitive
+    QVERIFY( !isFilesystemUsedGS( &gs, "ZFS" ) );
+    QVERIFY( isFilesystemUsedGS( &gs, "EXT4" ) );
+    QCOMPARE( isFilesystemUsedGS( &gs, "ZFS" ), isFilesystemUsedGS( &gs, "zfs" ) );
+    QCOMPARE( isFilesystemUsedGS( &gs, "EXT4" ), isFilesystemUsedGS( &gs, "ext4" ) );
+
+    useFilesystemGS( &gs, "EXT4", false );
+    QVERIFY( !isFilesystemUsedGS( &gs, "EXT4" ) );
+    QCOMPARE( isFilesystemUsedGS( &gs, "EXT4" ), isFilesystemUsedGS( &gs, "ext4" ) );
 }
 
 
