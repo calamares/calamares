@@ -16,7 +16,11 @@ This release contains contributions from (alphabetically by first name):
  - No core changes yet
 
 ## Modules ##
- - No module changes yet
+ - *netinstall* now supports fallbacks for the groups data.
+   Instead of a single URL, multiple URLs may be specified in
+   a list and Calamares goes through them until one is successfully
+   retrieved. Older configurations with a single string are
+   treated like a one-item list. #1579
 
 
 # 3.2.36 (2021-02-03) #
