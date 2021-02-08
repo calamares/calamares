@@ -209,6 +209,13 @@ PartitionServiceTests::testFilesystemGS()
     useFilesystemGS( &gs, "EXT4", false );
     QVERIFY( !isFilesystemUsedGS( &gs, "EXT4" ) );
     QCOMPARE( isFilesystemUsedGS( &gs, "EXT4" ), isFilesystemUsedGS( &gs, "ext4" ) );
+    useFilesystemGS( &gs, "ext4", true );
+    QVERIFY( isFilesystemUsedGS( &gs, "EXT4" ) );
+
+    CalamaresUtils::Partition::clearFilesystemGS( &gs );
+    QVERIFY( !isFilesystemUsedGS( &gs, "ZFS" ) );
+    QVERIFY( !isFilesystemUsedGS( &gs, "EXT4" ) );
+    QVERIFY( !isFilesystemUsedGS( &gs, "ext4" ) );
 }
 
 
