@@ -8,6 +8,7 @@
  *
  */
 
+#include "Global.h"
 #include "PartitionSize.h"
 
 #include "GlobalStorage.h"
@@ -15,11 +16,6 @@
 
 #include <QObject>
 #include <QtTest/QtTest>
-
-// Implementation details being tested
-extern bool isFilesystemUsedGS( const Calamares::GlobalStorage& gs, const QString& filesystemType );
-extern void useFilesystemGS( Calamares::GlobalStorage& gs, const QString& filesystemType, bool used );
-
 
 using SizeUnit = CalamaresUtils::Partition::SizeUnit;
 using PartitionSize = CalamaresUtils::Partition::PartitionSize;
@@ -165,6 +161,9 @@ PartitionServiceTests::testUnitNormalisation()
 void
 PartitionServiceTests::testFilesystemGS()
 {
+    using CalamaresUtils::Partition::isFilesystemUsedGS;
+    using CalamaresUtils::Partition::useFilesystemGS;
+
     // Some filesystems names, they don't have to be real
     const QStringList fsNames { "ext4", "zfs", "berries", "carrot" };
     // Predicate to return whether we consider this FS in use
@@ -174,7 +173,7 @@ PartitionServiceTests::testFilesystemGS()
     Calamares::GlobalStorage gs;
     for ( const auto& s : fsNames )
     {
-        useFilesystemGS( gs, s, pred( s ) );
+        useFilesystemGS( &gs, s, pred( s ) );
     }
 
     QVERIFY( gs.contains( "filesystem_use" ) );
@@ -185,16 +184,16 @@ PartitionServiceTests::testFilesystemGS()
 
     for ( const auto& s : fsNames )
     {
-        QCOMPARE( isFilesystemUsedGS( gs, s ), pred( s ) );
+        QCOMPARE( isFilesystemUsedGS( &gs, s ), pred( s ) );
     }
-    QCOMPARE( isFilesystemUsedGS( gs, QStringLiteral( "derp" ) ), false );
-    QCOMPARE( isFilesystemUsedGS( gs, QString() ), false );
+    QCOMPARE( isFilesystemUsedGS( &gs, QStringLiteral( "derp" ) ), false );
+    QCOMPARE( isFilesystemUsedGS( &gs, QString() ), false );
     // But I can set a value for QString!
-    useFilesystemGS( gs, QString(), true );
-    QCOMPARE( isFilesystemUsedGS( gs, QString() ), true );
+    useFilesystemGS( &gs, QString(), true );
+    QCOMPARE( isFilesystemUsedGS( &gs, QString() ), true );
     // .. and replace it again
-    useFilesystemGS( gs, QString(), false );
-    QCOMPARE( isFilesystemUsedGS( gs, QString() ), false );
+    useFilesystemGS( &gs, QString(), false );
+    QCOMPARE( isFilesystemUsedGS( &gs, QString() ), false );
     // Now there is one more key
     {
         const auto map = gs.value( "filesystem_use" ).toMap();

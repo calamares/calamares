@@ -17,6 +17,7 @@
 #define PARTITION_GLOBAL_H
 
 #include "DllMacro.h"
+#include "JobQueue.h"
 
 #ifdef WITH_KPMCORE4API
 #include "FileSystem.h"
@@ -39,14 +40,37 @@ namespace Partition
  * The filesystem name should be the untranslated name. Filesystem
  * names are **lower**cased when used as keys.
  */
-void DLLEXPORT useFilesystemGS( const QString& filesystemType, bool used );
+void DLLEXPORT useFilesystemGS( Calamares::GlobalStorage* gs, const QString& filesystemType, bool used );
 /** @brief Reads from global storage whether the filesystem type is used
  *
  * Reads from the global storage key *filesystem_use* and returns
  * the boolean value stored in subkey @p filesystemType. Returns
  * @c false if the subkey is not set at all.
+ *
+ * The filesystem name should be the untranslated name. Filesystem
+ * names are **lower**cased when used as keys.
  */
-bool DLLEXPORT isFilesystemUsedGS( const QString& filesystemType );
+bool DLLEXPORT isFilesystemUsedGS( const Calamares::GlobalStorage* gs, const QString& filesystemType );
+
+/** @brief Convenience function for using "the" Global Storage
+ *
+ * @see useFilesystemGS(const QString&, bool)
+ */
+inline void
+useFilesystemGS( const QString& filesystemType, bool used )
+{
+    useFilesystemGS( Calamares::JobQueue::instanceGlobalStorage(), filesystemType, used );
+}
+
+/** @brief Convenience function for using "the" Global Storage
+ *
+ * @see isFilesystemUsedGS(const QString&);
+ */
+inline bool
+isFilesystemUsedGS( const QString& filesystemType )
+{
+    return isFilesystemUsedGS( Calamares::JobQueue::instanceGlobalStorage(), filesystemType );
+}
 
 #ifdef WITH_KPMCORE4API
 /** @brief Mark a particular filesystem type as used (or not)
@@ -54,7 +78,7 @@ bool DLLEXPORT isFilesystemUsedGS( const QString& filesystemType );
  * See useFilesystemGS(const QString&, bool); this method uses the filesystem type
  * enumeration to pick the name.
  */
-void
+inline void
 useFilesystemGS( FileSystem::Type filesystem, bool used )
 {
     useFilesystemGS( untranslatedFS( filesystem ), used );
@@ -64,7 +88,7 @@ useFilesystemGS( FileSystem::Type filesystem, bool used )
  *
  * See isFilesystemUsedGS(const QString&).
  */
-bool
+inline bool
 isFilesystemUsedGS( FileSystem::Type filesystem )
 {
     return isFilesystemUsedGS( untranslatedFS( filesystem ) );
