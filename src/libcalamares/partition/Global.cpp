@@ -45,3 +45,12 @@ CalamaresUtils::Partition::useFilesystemGS( Calamares::GlobalStorage* gs, const 
         gs->insert( fsUse_key, existingMap );
     }
 }
+
+void
+CalamaresUtils::Partition::clearFilesystemGS( Calamares::GlobalStorage* gs )
+{
+    if ( gs )
+    {
+        gs->remove( fsUse_key );
+    }
+}

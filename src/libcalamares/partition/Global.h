@@ -52,6 +52,12 @@ void DLLEXPORT useFilesystemGS( Calamares::GlobalStorage* gs, const QString& fil
  */
 bool DLLEXPORT isFilesystemUsedGS( const Calamares::GlobalStorage* gs, const QString& filesystemType );
 
+/** @brief Clears the usage data for filesystems
+ *
+ * This removes the internal key *filesystem_use*.
+ */
+void DLLEXPORT clearFilesystemGS( Calamares::GlobalStorage* gs );
+
 /** @brief Convenience function for using "the" Global Storage
  *
  * @see useFilesystemGS(const QString&, bool)
