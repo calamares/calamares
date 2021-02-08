@@ -25,9 +25,10 @@ CalamaresUtils::Partition::isFilesystemUsedGS( const Calamares::GlobalStorage* g
         return false;
     }
     const QVariantMap fsUse = gs->value( fsUse_key ).toMap();
-    if ( fsUse.contains( filesystemType ) )
+    QString key = filesystemType.toLower();
+    if ( fsUse.contains( key ) )
     {
-        const auto v = fsUse.value( filesystemType );
+        const auto v = fsUse.value( key );
         return v.toBool();
     }
     return false;
@@ -39,7 +40,8 @@ CalamaresUtils::Partition::useFilesystemGS( Calamares::GlobalStorage* gs, const 
     if ( gs )
     {
         QVariantMap existingMap = gs->contains( fsUse_key ) ? gs->value( fsUse_key ).toMap() : QVariantMap();
-        existingMap.insert( filesystemType, used );
+        QString key = filesystemType.toLower();
+        existingMap.insert( key, used );
         gs->insert( fsUse_key, existingMap );
     }
 }
