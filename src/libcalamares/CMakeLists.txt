@@ -63,6 +63,7 @@ set( libSources
     packages/Globals.cpp
 
     # Partition service
+    partition/Global.cpp
     partition/Mount.cpp
     partition/PartitionSize.cpp
     partition/Sync.cpp
