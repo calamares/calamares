@@ -63,16 +63,3 @@ CalamaresUtils::Partition::useFilesystemGS( const QString& filesystemType, bool 
         useFilesystemGS( *gs, filesystemType, used );
     }
 }
-
-#ifdef WITH_KPMCORE4API
-bool
-CalamaresUtils::Partition::isFilesystemUsedGS( FileSystem::Type filesystem )
-{
-    return isFilesystemUsedGS( untranslatedFS( filesystem ) );
-}
-void
-CalamaresUtils::Partition::useFilesystemGS( FileSystem::Type filesystem, bool used )
-{
-    useFilesystemGS( untranslatedFS( filesystem ), used );
-}
-#endif
