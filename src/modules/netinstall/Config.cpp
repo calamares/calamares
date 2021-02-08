@@ -12,9 +12,12 @@
 
 #include "Config.h"
 
+#include "GlobalStorage.h"
+#include "JobQueue.h"
 #include "network/Manager.h"
 #include "utils/Logger.h"
 #include "utils/RAII.h"
+#include "utils/Variant.h"
 #include "utils/Yaml.h"
 
 #include <QNetworkReply>
@@ -53,6 +56,19 @@ Config::setStatus( Status s )
     m_status = s;
     emit statusChanged( status() );
 }
+
+QString
+Config::sidebarLabel() const
+{
+    return m_sidebarLabel ? m_sidebarLabel->get() : tr( "Package selection" );
+}
+
+QString
+Config::titleLabel() const
+{
+    return m_titleLabel ? m_titleLabel->get() : QString();
+}
+
 
 void
 Config::loadGroupList( const QVariantList& groupData )
@@ -141,5 +157,38 @@ Config::receivedGroupData()
     {
         CalamaresUtils::explainYamlException( e, yamlData, "netinstall groups data" );
         setStatus( Status::FailedBadData );
+    }
+}
+
+void
+Config::setConfigurationMap( const QVariantMap& configurationMap )
+{
+    setRequired( CalamaresUtils::getBool( configurationMap, "required", false ) );
+
+    // Get the translations, if any
+    bool bogus = false;
+    auto label = CalamaresUtils::getSubMap( configurationMap, "label", bogus );
+
+    if ( label.contains( "sidebar" ) )
+    {
+        m_sidebarLabel = new CalamaresUtils::Locale::TranslatedString( label, "sidebar", metaObject()->className() );
+    }
+
+    // Lastly, load the groups data
+    QString groupsUrl = CalamaresUtils::getString( configurationMap, "groupsUrl" );
+    if ( !groupsUrl.isEmpty() )
+    {
+        // Keep putting groupsUrl into the global storage,
+        // even though it's no longer used for in-module data-passing.
+        Calamares::JobQueue::instance()->globalStorage()->insert( "groupsUrl", groupsUrl );
+        if ( groupsUrl == QStringLiteral( "local" ) )
+        {
+            QVariantList l = configurationMap.value( "groups" ).toList();
+            loadGroupList( l );
+        }
+        else
+        {
+            loadGroupList( groupsUrl );
+        }
     }
 }

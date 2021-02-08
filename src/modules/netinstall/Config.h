@@ -14,8 +14,11 @@
 
 #include "PackageModel.h"
 
+#include "locale/TranslatableConfiguration.h"
+
 #include <QObject>
 #include <QUrl>
+#include <QVariantMap>
 
 class QNetworkReply;
 
@@ -26,9 +29,15 @@ class Config : public QObject
     Q_PROPERTY( PackageModel* packageModel MEMBER m_model FINAL )
     Q_PROPERTY( QString status READ status NOTIFY statusChanged FINAL )
 
+    // Translations, of the module name (for sidebar) and above the list
+    Q_PROPERTY( QString sidebarLabel READ sidebarLabel NOTIFY sidebarLabelChanged FINAL )
+    Q_PROPERTY( QString titleLabel READ titleLabel NOTIFY titleLabelChanged FINAL )
+
 public:
     Config( QObject* parent = nullptr );
     ~Config() override;
+
+    void setConfigurationMap( const QVariantMap& configurationMap );
 
     enum class Status
     {
@@ -45,6 +54,11 @@ public:
     bool required() const { return m_required; }
     void setRequired( bool r ) { m_required = r; }
 
+    PackageModel* model() const { return m_model; }
+
+    QString sidebarLabel() const;
+    QString titleLabel() const;
+
     /** @brief Retrieves the groups, with name, description and packages
      *
      * Loads data from the given URL. Once done, the data is parsed
@@ -59,16 +73,19 @@ public:
      */
     void loadGroupList( const QVariantList& groupData );
 
-    PackageModel* model() const { return m_model; }
 
 signals:
     void statusChanged( QString status );  ///< Something changed
+    void sidebarLabelChanged( QString label );
+    void titleLabelChanged( QString label );
     void statusReady();  ///< Loading groups is complete
 
 private slots:
     void receivedGroupData();  ///< From async-loading group data
 
 private:
+    CalamaresUtils::Locale::TranslatedString* m_sidebarLabel = nullptr;  // As it appears in the sidebar
+    CalamaresUtils::Locale::TranslatedString* m_titleLabel = nullptr;
     PackageModel* m_model = nullptr;
     QNetworkReply* m_reply = nullptr;  // For fetching data
     Status m_status = Status::Ok;

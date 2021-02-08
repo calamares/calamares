@@ -24,7 +24,6 @@ CALAMARES_PLUGIN_FACTORY_DEFINITION( NetInstallViewStepFactory, registerPlugin< 
 NetInstallViewStep::NetInstallViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( new NetInstallPage( &m_config ) )
-    , m_sidebarLabel( nullptr )
     , m_nextEnabled( false )
 {
     connect( &m_config, &Config::statusReady, this, &NetInstallViewStep::nextIsReady );
@@ -37,14 +36,13 @@ NetInstallViewStep::~NetInstallViewStep()
     {
         m_widget->deleteLater();
     }
-    delete m_sidebarLabel;
 }
 
 
 QString
 NetInstallViewStep::prettyName() const
 {
-    return m_sidebarLabel ? m_sidebarLabel->get() : tr( "Package selection" );
+    return m_config.sidebarLabel();
 
 #if defined( TABLE_OF_TRANSLATIONS )
     __builtin_unreachable();
@@ -201,32 +199,11 @@ NetInstallViewStep::nextIsReady()
 void
 NetInstallViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    m_config.setRequired( CalamaresUtils::getBool( configurationMap, "required", false ) );
-
-    QString groupsUrl = CalamaresUtils::getString( configurationMap, "groupsUrl" );
-    if ( !groupsUrl.isEmpty() )
-    {
-        // Keep putting groupsUrl into the global storage,
-        // even though it's no longer used for in-module data-passing.
-        Calamares::JobQueue::instance()->globalStorage()->insert( "groupsUrl", groupsUrl );
-        if ( groupsUrl == QStringLiteral( "local" ) )
-        {
-            QVariantList l = configurationMap.value( "groups" ).toList();
-            m_config.loadGroupList( l );
-        }
-        else
-        {
-            m_config.loadGroupList( groupsUrl );
-        }
-    }
+    m_config.setConfigurationMap( configurationMap );
 
     bool bogus = false;
     auto label = CalamaresUtils::getSubMap( configurationMap, "label", bogus );
 
-    if ( label.contains( "sidebar" ) )
-    {
-        m_sidebarLabel = new CalamaresUtils::Locale::TranslatedString( label, "sidebar", metaObject()->className() );
-    }
     if ( label.contains( "title" ) )
     {
         m_widget->setPageTitle(
