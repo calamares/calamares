@@ -170,6 +170,19 @@ Config::receivedGroupData()
     }
 }
 
+Config::SourceItem Config::SourceItem::makeSourceItem(const QVariantMap& configurationMap, const QString& groupsUrl)
+{
+    if ( groupsUrl == QStringLiteral( "local" ) )
+    {
+        return SourceItem{ QUrl(), configurationMap.value( "groups" ).toList() };
+    }
+    else
+    {
+        return SourceItem{ QUrl{ groupsUrl }, QVariantList() };
+    }
+}
+
+
 void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
 {
@@ -193,6 +206,20 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     }
 
     // Lastly, load the groups data
+    const QString key = QStringLiteral( "groupsUrl" );
+    const auto& groupsUrlVariant = configurationMap.value( key );
+    if ( groupsUrlVariant.type() == QVariant::String )
+    {
+        m_urls.append( SourceItem::makeSourceItem( configurationMap, groupsUrlVariant.toString() ) );
+    }
+    else if ( groupsUrlVariant.type() == QVariant::StringList )
+    {
+        for ( const auto& s : groupsUrlVariant.toStringList() )
+        {
+            m_urls.append( SourceItem::makeSourceItem( configurationMap, s ) );
+        }
+    }
+
     QString groupsUrl = CalamaresUtils::getString( configurationMap, "groupsUrl" );
     if ( !groupsUrl.isEmpty() )
     {

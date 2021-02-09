@@ -18,6 +18,7 @@
 
 #include <QObject>
 #include <QUrl>
+#include <QQueue>
 #include <QVariantMap>
 
 class QNetworkReply;
@@ -85,6 +86,23 @@ private slots:
     void retranslate();
 
 private:
+    /** @brief Data about an entry in *groupsUrl*
+     *
+     * This can be a specific URL, or "local" which uses data stored
+     * in the configuration file itself.
+     */
+    struct SourceItem
+    {
+        QUrl url;
+        QVariantList data;
+
+        bool isUrl() const { return url.isValid(); }
+        bool isLocal() const { return !data.isEmpty(); }
+        bool isValid() const { return isUrl() || isLocal(); }
+        static SourceItem makeSourceItem( const QVariantMap& configurationMap, const QString& groupsUrl);
+    };
+
+    QQueue< SourceItem > m_urls;
     CalamaresUtils::Locale::TranslatedString* m_sidebarLabel = nullptr;  // As it appears in the sidebar
     CalamaresUtils::Locale::TranslatedString* m_titleLabel = nullptr;
     PackageModel* m_model = nullptr;
