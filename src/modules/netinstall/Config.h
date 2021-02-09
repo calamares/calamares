@@ -82,6 +82,7 @@ signals:
 
 private slots:
     void receivedGroupData();  ///< From async-loading group data
+    void retranslate();
 
 private:
     CalamaresUtils::Locale::TranslatedString* m_sidebarLabel = nullptr;  // As it appears in the sidebar

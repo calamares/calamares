@@ -17,6 +17,7 @@
 #include "network/Manager.h"
 #include "utils/Logger.h"
 #include "utils/RAII.h"
+#include "utils/Retranslator.h"
 #include "utils/Variant.h"
 #include "utils/Yaml.h"
 
@@ -24,11 +25,20 @@
 
 Config::Config( QObject* parent )
     : QObject( parent )
-    , m_model( new PackageModel( this ) )
+    , m_model( new PackageModel( this ) ) { CALAMARES_RETRANSLATE_SLOT( &Config::retranslate ) }
+
+    Config::~Config()
 {
 }
 
-Config::~Config() {}
+void
+Config::retranslate()
+{
+    emit statusChanged( status() );
+    emit sidebarLabelChanged( sidebarLabel() );
+    emit titleLabelChanged( titleLabel() );
+}
+
 
 QString
 Config::status() const
