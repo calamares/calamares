@@ -34,38 +34,11 @@ NetInstallPage::NetInstallPage( Config* c, QWidget* parent )
     ui->groupswidget->header()->setSectionResizeMode( QHeaderView::ResizeToContents );
     ui->groupswidget->setModel( c->model() );
     connect( c, &Config::statusChanged, this, &NetInstallPage::setStatus );
+    connect( c, &Config::titleLabelChanged, this, &NetInstallPage::setTitle );
     connect( c, &Config::statusReady, this, &NetInstallPage::expandGroups );
-
-    setPageTitle( nullptr );
-    CALAMARES_RETRANSLATE_SLOT( &NetInstallPage::retranslate )
 }
 
 NetInstallPage::~NetInstallPage() {}
-
-void
-NetInstallPage::setPageTitle( CalamaresUtils::Locale::TranslatedString* t )
-{
-    m_title.reset( t );
-    if ( !m_title )
-    {
-        ui->label->hide();
-    }
-    else
-    {
-        ui->label->show();
-    }
-    retranslate();
-}
-
-void
-NetInstallPage::retranslate()
-{
-    if ( m_title )
-    {
-        ui->label->setText( m_title->get() );  // That's get() on the TranslatedString
-    }
-    ui->netinst_status->setText( m_config->status() );
-}
 
 void
 NetInstallPage::expandGroups()
@@ -86,6 +59,20 @@ void
 NetInstallPage::setStatus( QString s )
 {
     ui->netinst_status->setText( s );
+}
+
+void
+NetInstallPage::setTitle( QString title )
+{
+    if ( title.isEmpty() )
+    {
+        ui->label->hide();
+    }
+    else
+    {
+        ui->label->setText( title );  // That's get() on the TranslatedString
+        ui->label->show();
+    }
 }
 
 void

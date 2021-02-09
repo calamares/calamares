@@ -49,6 +49,9 @@ NetInstallViewStep::prettyName() const
     // This is a table of "standard" labels for this module. If you use them
     // in the label: sidebar: section of the config file, the existing
     // translations can be used.
+    //
+    // These translations still live here, even though the lookup
+    // code is in the Config class.
     tr( "Package selection" );
     tr( "Office software" );
     tr( "Office package" );
@@ -200,13 +203,4 @@ void
 NetInstallViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     m_config.setConfigurationMap( configurationMap );
-
-    bool bogus = false;
-    auto label = CalamaresUtils::getSubMap( configurationMap, "label", bogus );
-
-    if ( label.contains( "title" ) )
-    {
-        m_widget->setPageTitle(
-            new CalamaresUtils::Locale::TranslatedString( label, "title", metaObject()->className() ) );
-    }
 }

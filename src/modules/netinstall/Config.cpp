@@ -168,10 +168,18 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     // Get the translations, if any
     bool bogus = false;
     auto label = CalamaresUtils::getSubMap( configurationMap, "label", bogus );
+    // Use a different class name for translation lookup because the
+    // .. table of strings lives in NetInstallViewStep.cpp and moving them
+    // .. around is annoying for translators.
+    static const char className[] = "NetInstallViewStep";
 
     if ( label.contains( "sidebar" ) )
     {
-        m_sidebarLabel = new CalamaresUtils::Locale::TranslatedString( label, "sidebar", metaObject()->className() );
+        m_sidebarLabel = new CalamaresUtils::Locale::TranslatedString( label, "sidebar", className );
+    }
+    if ( label.contains( "title" ) )
+    {
+        m_titleLabel = new CalamaresUtils::Locale::TranslatedString( label, "title", className );
     }
 
     // Lastly, load the groups data
