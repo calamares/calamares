@@ -30,10 +30,10 @@ QStringList UploadServersList = {
 };
 
 QString
-sendLogToPastebin( QObject* parent )
+ficheLogUpload( QObject* parent )
 {
 
-    const QString& ficheHost = Calamares::Branding::instance()->uploadServerURL();
+    const QString& ficheHost = Calamares::Branding::instance()->uploadServerURL().toString();
     quint16 fichePort = Calamares::Branding::instance()->uploadServerPort();
 
     QString pasteUrlFmt = parent->tr( "Install log posted to\n\n%1\n\nLink copied to clipboard" );

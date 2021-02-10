@@ -22,7 +22,7 @@ namespace CalamaresUtils
  *
  * Returns the (string) URL that the pastebin gives us.
  */
-QString sendLogToPastebin( QObject* parent );
+QString ficheLogUpload( QObject* parent );
 
 extern QStringList UploadServersList;
 

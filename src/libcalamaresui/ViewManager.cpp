@@ -141,8 +141,8 @@ ViewManager::insertViewStep( int before, ViewStep* step )
 void
 ViewManager::onInstallationFailed( const QString& message, const QString& details )
 {
-    QString UploadServerType = Calamares::Branding::instance()->uploadServerType();
-    bool shouldOfferWebPaste = CalamaresUtils::UploadServersList.contains( UploadServerType );
+    QString serverType = Calamares::Branding::instance()->uploadServerType();
+    bool shouldOfferWebPaste = CalamaresUtils::UploadServersList.contains( serverType );
 
     cError() << "Installation failed:";
     cDebug() << "- message:" << message;
@@ -186,10 +186,10 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
         if ( msgBox->buttonRole( button ) == QMessageBox::ButtonRole::YesRole )
         {
             QString pasteUrlMsg;
-            QString UploadServerType = Calamares::Branding::instance()->uploadServerType();
-            if ( UploadServerType == "fiche" )
+            QString serverType = Calamares::Branding::instance()->uploadServerType();
+            if ( serverType == "fiche" )
             {
-                pasteUrlMsg = CalamaresUtils::sendLogToPastebin( msgBox );
+                pasteUrlMsg = CalamaresUtils::ficheLogUpload( msgBox );
             }
             else
             {
@@ -545,7 +545,7 @@ ViewManager::updateBackAndNextVisibility( bool visible )
     UPDATE_BUTTON_PROPERTY( backAndNextVisible, visible )
 }
 
-QVariant 
+QVariant
 ViewManager::data( const QModelIndex& index, int role ) const
 {
     if ( !index.isValid() )

@@ -23,6 +23,7 @@
 #include <QPixmap>
 #include <QSize>
 #include <QStringList>
+#include <QUrl>
 
 namespace YAML
 {
@@ -219,7 +220,7 @@ public:
 
     //Paste functionality related
     QString uploadServerType() { return m_uploadServerType; };
-    QString uploadServerURL() { return m_uploadServerURL; };
+    QUrl uploadServerURL() { return m_uploadServerURL; };
     int uploadServerPort() { return m_uploadServerPort; };
 
 public slots:
@@ -270,7 +271,7 @@ private:
     bool m_welcomeExpandingLogo;
 
     QString m_uploadServerType;
-    QString m_uploadServerURL;
+    QUrl m_uploadServerURL;
     int m_uploadServerPort;
 
     WindowExpansion m_windowExpansion;
