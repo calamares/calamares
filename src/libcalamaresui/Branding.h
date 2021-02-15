@@ -83,6 +83,14 @@ public:
     };
     Q_ENUM( StyleEntry )
 
+    enum UploadServerEntry : short
+    {
+        Type,
+        URL,
+        Port
+    };
+    Q_ENUM( UploadServerEntry )
+
     /** @brief Setting for how much the main window may expand. */
     enum class WindowExpansion
     {
@@ -217,12 +225,6 @@ public:
      */
     void setGlobals( GlobalStorage* globalStorage ) const;
 
-
-    //Paste functionality related
-    QString uploadServerType() { return m_uploadServerType; };
-    QUrl uploadServerURL() { return m_uploadServerURL; };
-    int uploadServerPort() { return m_uploadServerPort; };
-
 public slots:
     QString string( StringEntry stringEntry ) const;
     QString versionedName() const { return string( VersionedName ); }
@@ -232,6 +234,7 @@ public slots:
 
     QString styleString( StyleEntry styleEntry ) const;
     QString imagePath( ImageEntry imageEntry ) const;
+    QString uploadServer( UploadServerEntry uploadServerEntry ) const;
 
     PanelSide sidebarSide() const { return m_sidebarSide; }
     PanelSide navigationSide() const { return m_navigationSide; }
@@ -242,12 +245,14 @@ private:
     static const QStringList s_stringEntryStrings;
     static const QStringList s_imageEntryStrings;
     static const QStringList s_styleEntryStrings;
+    static const QStringList s_uploadServerStrings;
 
     QString m_descriptorPath;  // Path to descriptor (e.g. "/etc/calamares/default/branding.desc")
     QString m_componentName;  // Matches last part of full path to containing directory
     QMap< QString, QString > m_strings;
     QMap< QString, QString > m_images;
     QMap< QString, QString > m_style;
+    QMap< QString, QString > m_uploadServer;
 
     /* The slideshow can be done in one of two ways:
      *  - as a sequence of images
@@ -269,10 +274,6 @@ private:
 
     bool m_welcomeStyleCalamares;
     bool m_welcomeExpandingLogo;
-
-    QString m_uploadServerType;
-    QUrl m_uploadServerURL;
-    int m_uploadServerPort;
 
     WindowExpansion m_windowExpansion;
     WindowDimension m_windowHeight, m_windowWidth;

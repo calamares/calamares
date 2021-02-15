@@ -87,6 +87,13 @@ const QStringList Branding::s_styleEntryStrings =
     "sidebarTextSelect",
     "sidebarTextHighlight"
 };
+
+const QStringList Branding::s_uploadServerStrings =
+{
+    "type",
+    "url",
+    "port"
+};
 // clang-format on
 // *INDENT-ON*
 
@@ -219,6 +226,12 @@ Branding::Branding( const QString& brandingFilePath, QObject* parent )
                 return imageFi.absoluteFilePath();
             } );
             loadStrings( m_style, doc, "style", []( const QString& s ) -> QString { return s; } );
+
+            const QVariantMap temp = CalamaresUtils::yamlMapToVariant( doc[ "uploadServer" ] );
+            for ( auto it = temp.constBegin(); it != temp.constEnd(); ++it )
+            {
+                m_uploadServer.insert( it.key(), it.value().toString() );
+            }
         }
         catch ( YAML::Exception& e )
         {
@@ -279,6 +292,11 @@ Branding::imagePath( Branding::ImageEntry imageEntry ) const
     return m_images.value( s_imageEntryStrings.value( imageEntry ) );
 }
 
+QString
+Branding::uploadServer( Branding::UploadServerEntry uploadServerEntry ) const
+{
+    return m_uploadServer.value( s_uploadServerStrings.value( uploadServerEntry ) );
+}
 
 QPixmap
 Branding::image( Branding::ImageEntry imageEntry, const QSize& size ) const
@@ -511,10 +529,6 @@ Branding::initSimpleSettings( const YAML::Node& doc )
     {
         m_windowHeight = WindowDimension( CalamaresUtils::windowPreferredHeight, WindowDimensionUnit::Pixies );
     }
-
-    m_uploadServerURL  = getString( doc, "uploadServer.url" );
-    m_uploadServerPort = doc[ "uploadServer.port" ].as< int >();
-    m_uploadServerType = getString( doc, "uploadServer.type" );
 }
 
 void

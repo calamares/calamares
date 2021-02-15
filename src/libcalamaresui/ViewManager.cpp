@@ -141,7 +141,7 @@ ViewManager::insertViewStep( int before, ViewStep* step )
 void
 ViewManager::onInstallationFailed( const QString& message, const QString& details )
 {
-    QString serverType = Calamares::Branding::instance()->uploadServerType();
+    QString serverType = Calamares::Branding::instance()->uploadServer( Calamares::Branding::Type );
     bool shouldOfferWebPaste = CalamaresUtils::UploadServersList.contains( serverType );
 
     cError() << "Installation failed:";
@@ -186,7 +186,7 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
         if ( msgBox->buttonRole( button ) == QMessageBox::ButtonRole::YesRole )
         {
             QString pasteUrlMsg;
-            QString serverType = Calamares::Branding::instance()->uploadServerType();
+            QString serverType = Calamares::Branding::instance()->uploadServer( Calamares::Branding::Type );
             if ( serverType == "fiche" )
             {
                 pasteUrlMsg = CalamaresUtils::ficheLogUpload( msgBox );

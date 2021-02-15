@@ -228,6 +228,7 @@ slideshowAPI: 2
 #              Takes string as input
 #  - port   :  Defines the port number to be used to send logs. Takes 
 #              integer as input
-uploadServer.type    :    "fiche"
-uploadServer.url     :    "termbin.com"
-uploadServer.port    :    9999
+uploadServer :
+    type :    "fiche"
+    url :      "termbin.com"
+    port :     9999

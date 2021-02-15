@@ -33,8 +33,8 @@ QString
 ficheLogUpload( QObject* parent )
 {
 
-    const QString& ficheHost = Calamares::Branding::instance()->uploadServerURL().toString();
-    quint16 fichePort = Calamares::Branding::instance()->uploadServerPort();
+    const QString& ficheHost = Calamares::Branding::instance()->uploadServer( Calamares::Branding::URL );
+    quint16 fichePort = Calamares::Branding::instance()->uploadServer( Calamares::Branding::Port ).toInt();
 
     QString pasteUrlFmt = parent->tr( "Install log posted to\n\n%1\n\nLink copied to clipboard" );
 
