@@ -70,7 +70,17 @@ jobs:
         run: make -j2 VERBOSE=1
       - name: "Calamares: install"
         working-directory: ${{ env.BUILDDIR }}
-        run: make install VERBOSE=1
+        run: make install VERBOSE=1 DESTDIR=${{ env.BUILDDIR }}/stage
+      - name: "Calamares: archive"
+        working-directory: ${{ env.BUILDDIR }}
+        run: tar czf calamares.tar.gz stage
+      - name: "upload"
+        uses: actions/upload-artifact@v2
+        with:
+          name: calamares-tarball
+          path: ${{ env.BUILDDIR }}/calamares.tar.gz
+          if-no-files-found: error
+          retention-days: 3
       - name: "notify: ok"
         uses: rectalogic/notify-irc@v1
         if: ${{ success() && github.repository == 'calamares/calamares' }}
