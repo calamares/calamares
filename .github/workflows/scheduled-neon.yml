@@ -1,14 +1,8 @@
-name: ci-push
+name: ci-neon
 
 on:
-  push:
-    branches:
-      - calamares
-  pull_request:
-    types:
-      - opened
-      - reopened
-      - synchronize
+  schedule:
+    - cron: "52 23 * * *"
   workflow_dispatch:
 
 env:
@@ -84,7 +78,7 @@ jobs:
           server: chat.freenode.net
           nickname: cala-ci
           channel: "#calamares"
-          message: "PUSH ${{ github.workflow }} OK ${{ github.actor }} on ${{ github.event.ref }}\n.. ${{ steps.pre_build.outputs.message }}"
+          message: "SCHEDULED ${{ github.workflow }} OK ${{ steps.pre_build.outputs.message }}"
       - name: "notify: fail"
         uses: rectalogic/notify-irc@v1
         if: ${{ failure() && github.repository == 'calamares/calamares' }}
@@ -92,4 +86,4 @@ jobs:
           server: chat.freenode.net
           nickname: cala-ci
           channel: "#calamares"
-          message: "PUSH ${{ github.workflow }} FAIL ${{ github.actor }} on ${{ github.event.ref }}\n.. ${{ steps.pre_build.outputs.message }}\n.. DIFF ${{ github.event.compare }}"
+          message: "SCHEDULED ${{ github.workflow }} FAIL ${{ steps.pre_build.outputs.message }}"
