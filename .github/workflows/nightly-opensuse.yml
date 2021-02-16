@@ -1,8 +1,8 @@
-name: ci-debian-10
+name: nightly-opensuse
 
 on:
   schedule:
-    - cron: "12 23 * * *"
+    - cron: "32 23 * * *"
   workflow_dispatch:
 
 env:
@@ -18,52 +18,50 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: docker://debian:10
+      image: docker://opensuse/leap
       options: --tmpfs /build:rw --user 0:0
     steps:
       - name: "prepare env"
         run: |
-          apt-get update
-          apt-get -y install git-core
-          apt-get -y install \
-            build-essential \
-            cmake \
-            extra-cmake-modules \
-            gettext \
-            kio-dev \
-            libatasmart-dev \
-            libboost-python-dev \
-            libkf5config-dev \
-            libkf5coreaddons-dev \
-            libkf5i18n-dev \
-            libkf5iconthemes-dev \
-            libkf5parts-dev \
-            libkf5service-dev \
-            libkf5solid-dev \
-            libparted-dev \
-            libpolkit-qt5-1-dev \
-            libqt5svg5-dev \
-            libqt5webkit5-dev \
-            libyaml-cpp-dev \
-            os-prober \
-            pkg-config \
-            python3-dev \
-            qtbase5-dev \
-            qtdeclarative5-dev \
-            qttools5-dev \
-            qttools5-dev-tools
-          # Same name as on KDE neon, different version
-          apt-get -y install libkpmcore-dev
+          zypper --non-interactive up
+          zypper --non-interactive in git-core
+          # From deploycala.py
+          zypper --non-interactive in \
+            "autoconf" \
+            "automake" \
+            "bison" \
+            "flex" \
+            "git" \
+            "libtool" \
+            "m4" \
+            "make" \
+            "cmake" \
+            "extra-cmake-modules" \
+            "gcc-c++" \
+            "libqt5-qtbase-devel" \
+            "libqt5-linguist-devel" \
+            "libqt5-qtsvg-devel" \
+            "libqt5-qtdeclarative-devel" \
+            "libqt5-qtwebengine-devel" \
+            "yaml-cpp-devel" \
+            "libpolkit-qt5-1-devel" \
+            "kservice-devel" \
+            "kpackage-devel" \
+            "kparts-devel" \
+            "kcrash-devel" \
+            "kpmcore-devel" \
+            "plasma5-workspace-devel" \
+            "plasma-framework-devel" \
+            "libpwquality-devel" \
+            "parted-devel" \
+            "python3-devel" \
+            "boost-devel" \
+            "libboost_python-py3-*-devel"
           # Additional dependencies
-          apt-get -y install \
-            libappstreamqt-dev \
-            libicu-dev \
-            libkf5crash-dev \
-            libkf5package-dev \
-            libkf5plasma-dev \
-            libpwquality-dev \
-            libqt5webenginewidgets5 \
-            qtwebengine5-dev
+          zypper --non-interactive in \
+            libicu-devel \
+            libAppStreamQt-devel \
+            libatasmart-devel
       - name: "prepare source"
         uses: actions/checkout@v2
       - name: "prepare build"

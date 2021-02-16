@@ -1,8 +1,8 @@
-name: ci-opensuse
+name: nightly-neon
 
 on:
   schedule:
-    - cron: "32 23 * * *"
+    - cron: "52 23 * * *"
   workflow_dispatch:
 
 env:
@@ -18,50 +18,41 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: docker://opensuse/leap
+      image: docker://kdeneon/plasma:user
       options: --tmpfs /build:rw --user 0:0
     steps:
       - name: "prepare env"
         run: |
-          zypper --non-interactive up
-          zypper --non-interactive in git-core
-          # From deploycala.py
-          zypper --non-interactive in \
-            "autoconf" \
-            "automake" \
-            "bison" \
-            "flex" \
-            "git" \
-            "libtool" \
-            "m4" \
-            "make" \
-            "cmake" \
-            "extra-cmake-modules" \
-            "gcc-c++" \
-            "libqt5-qtbase-devel" \
-            "libqt5-linguist-devel" \
-            "libqt5-qtsvg-devel" \
-            "libqt5-qtdeclarative-devel" \
-            "libqt5-qtwebengine-devel" \
-            "yaml-cpp-devel" \
-            "libpolkit-qt5-1-devel" \
-            "kservice-devel" \
-            "kpackage-devel" \
-            "kparts-devel" \
-            "kcrash-devel" \
-            "kpmcore-devel" \
-            "plasma5-workspace-devel" \
-            "plasma-framework-devel" \
-            "libpwquality-devel" \
-            "parted-devel" \
-            "python3-devel" \
-            "boost-devel" \
-            "libboost_python-py3-*-devel"
-          # Additional dependencies
-          zypper --non-interactive in \
-            libicu-devel \
-            libAppStreamQt-devel \
-            libatasmart-devel
+          sudo apt-get update
+          sudo apt-get -y install git-core
+          sudo apt-get -y install \
+            build-essential \
+            cmake \
+            extra-cmake-modules \
+            gettext \
+            kio-dev \
+            libatasmart-dev \
+            libboost-python-dev \
+            libkf5config-dev \
+            libkf5coreaddons-dev \
+            libkf5i18n-dev \
+            libkf5iconthemes-dev \
+            libkf5parts-dev \
+            libkf5service-dev \
+            libkf5solid-dev \
+            libkpmcore-dev \
+            libparted-dev \
+            libpolkit-qt5-1-dev \
+            libqt5svg5-dev \
+            libqt5webkit5-dev \
+            libyaml-cpp-dev \
+            os-prober \
+            pkg-config \
+            python3-dev \
+            qtbase5-dev \
+            qtdeclarative5-dev \
+            qttools5-dev \
+            qttools5-dev-tools
       - name: "prepare source"
         uses: actions/checkout@v2
       - name: "prepare build"
@@ -79,7 +70,17 @@ jobs:
         run: make -j2 VERBOSE=1
       - name: "Calamares: install"
         working-directory: ${{ env.BUILDDIR }}
-        run: make install VERBOSE=1
+        run: make install VERBOSE=1 DESTDIR=${{ env.BUILDDIR }}/stage
+      - name: "Calamares: archive"
+        working-directory: ${{ env.BUILDDIR }}
+        run: tar czf calamares.tar.gz stage
+      - name: "upload"
+        uses: actions/upload-artifact@v2
+        with:
+          name: calamares-tarball
+          path: ${{ env.BUILDDIR }}/calamares.tar.gz
+          if-no-files-found: error
+          retention-days: 3
       - name: "notify: ok"
         uses: rectalogic/notify-irc@v1
         if: ${{ success() && github.repository == 'calamares/calamares' }}
