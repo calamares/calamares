@@ -62,6 +62,10 @@ ExecutionViewStep::ExecutionViewStep( QObject* parent )
     , m_label( new QLabel )
     , m_slideshow( makeSlideshow( m_widget ) )
 {
+    m_widget->setObjectName( "slideshow" );
+    m_progressBar->setObjectName( "exec-progress" );
+    m_label->setObjectName( "exec-message" );
+
     QVBoxLayout* layout = new QVBoxLayout( m_widget );
     QVBoxLayout* innerLayout = new QVBoxLayout;
 
