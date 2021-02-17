@@ -59,7 +59,7 @@ dumpWidgetTree( QDebug& deb, const QWidget* widget, int depth )
     {
         deb << ' ';
     }
-    deb << widget->objectName();
+    deb << widget->metaObject()->className() << widget->objectName();
 
     for ( const auto* w : widget->findChildren< QWidget* >( QString(), Qt::FindDirectChildrenOnly ) )
     {
