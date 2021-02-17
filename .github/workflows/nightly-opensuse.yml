@@ -87,7 +87,7 @@ jobs:
           server: chat.freenode.net
           nickname: cala-ci
           channel: "#calamares"
-          message: "SCHEDULED ${{ github.workflow }} OK ${{ steps.pre_build.outputs.message }}"
+          message: "OK ${{ github.workflow }} in ${{ github.repository }} ${{ steps.pre_build.outputs.message }}"
       - name: "notify: fail"
         uses: rectalogic/notify-irc@v1
         if: ${{ failure() && github.repository == 'calamares/calamares' }}
@@ -95,4 +95,4 @@ jobs:
           server: chat.freenode.net
           nickname: cala-ci
           channel: "#calamares"
-          message: "SCHEDULED ${{ github.workflow }} FAIL ${{ steps.pre_build.outputs.message }}"
+          message: "FAIL ${{ github.workflow }} in ${{ github.repository }} ${{ steps.pre_build.outputs.message }}"
