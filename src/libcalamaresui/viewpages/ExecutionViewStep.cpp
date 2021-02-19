@@ -24,7 +24,6 @@
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Dirs.h"
 #include "utils/Logger.h"
-#include "utils/Qml.h"
 #include "utils/Retranslator.h"
 
 #include <QDir>
