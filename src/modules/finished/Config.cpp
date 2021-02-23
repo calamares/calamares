@@ -34,10 +34,54 @@ Config::Config( QObject* parent )
 }
 
 void
+Config::setRestartNowMode( Config::RestartMode m )
+{
+    // Can only go "down" in state (Always > UserDefaultChecked > .. > Never)
+    if ( m > m_restartNowMode )
+    {
+        return;
+    }
+
+    // If changing to an unconditional mode, also set other flag
+    if ( m == RestartMode::Always || m == RestartMode::Never )
+    {
+        setRestartNowWanted( m == RestartMode::Always );
+    }
+
+    if ( m != m_restartNowMode )
+    {
+        m_restartNowMode = m;
+        emit restartModeChanged( m );
+    }
+}
+
+void
+Config::setRestartNowWanted( bool w )
+{
+    // Follow the mode which may affect @p w
+    if ( m_restartNowMode == RestartMode::Always )
+    {
+        w = true;
+    }
+    if ( m_restartNowMode == RestartMode::Never )
+    {
+        w = false;
+    }
+
+    if ( w != m_userWantsRestart )
+    {
+        m_userWantsRestart = w;
+        emit restartNowWantedChanged( w );
+    }
+}
+
+
+void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
 {
     RestartMode mode = RestartMode::Never;
 
+    //TODO:3.3 remove deprecated restart settings
     QString restartMode = CalamaresUtils::getString( configurationMap, "restartNowMode" );
     if ( restartMode.isEmpty() )
     {
@@ -69,6 +113,9 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     }
 
     m_restartNowMode = mode;
+    m_userWantsRestart = ( mode == RestartMode::Always || mode == RestartMode::UserDefaultChecked );
+    emit restartModeChanged( m_restartNowMode );
+    emit restartNowWantedChanged( m_userWantsRestart );
 
     if ( mode != RestartMode::Never )
     {

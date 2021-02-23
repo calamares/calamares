@@ -28,7 +28,7 @@
 FinishedViewStep::FinishedViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_config( new Config( this ) )
-    , m_widget( new FinishedPage() )
+    , m_widget( new FinishedPage( m_config ) )
     , m_installFailed( false )
 {
     auto jq = Calamares::JobQueue::instance();
@@ -128,10 +128,29 @@ FinishedViewStep::sendNotification()
 }
 
 
+#if 0
+void
+FinishedPage::setUpRestart()
+{
+    cDebug() << "FinishedPage::setUpRestart(), Quit button"
+             << "setup=" << restartModes().find( m_mode ) << "command=" << m_restartNowCommand;
+
+    connect( qApp, &QApplication::aboutToQuit, [this]()
+    {
+        if ( ui->restartCheckBox->isVisible() && ui->restartCheckBox->isChecked() )
+        {
+            cDebug() << "Running restart command" << m_restartNowCommand;
+            QProcess::execute( "/bin/sh", { "-c", m_restartNowCommand } );
+        }
+    } );
+}
+#endif
+
+
 void
 FinishedViewStep::onActivate()
 {
-    m_widget->setUpRestart();
+    // m_widget->setUpRestart();
 
     if ( m_config->notifyOnFinished() )
     {
@@ -158,12 +177,6 @@ void
 FinishedViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     m_config->setConfigurationMap( configurationMap );
-    m_widget->setRestart( m_config->restartNowMode() );
-
-    if ( m_config->restartNowMode() != Config::RestartMode::Never )
-    {
-        m_widget->setRestartNowCommand( m_config->restartNowCommand() );
-    }
 }
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( FinishedViewStepFactory, registerPlugin< FinishedViewStep >(); )

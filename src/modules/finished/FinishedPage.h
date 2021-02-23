@@ -16,6 +16,8 @@
 
 #include <QWidget>
 
+#include <optional>
+
 namespace Ui
 {
 class FinishedPage;
@@ -25,24 +27,19 @@ class FinishedPage : public QWidget
 {
     Q_OBJECT
 public:
-    explicit FinishedPage( QWidget* parent = nullptr );
+    explicit FinishedPage( Config* config, QWidget* parent = nullptr );
 
-    void setRestart( Config::RestartMode mode );
-    void setRestartNowCommand( const QString& command );
-
-    void setUpRestart();
 
 public slots:
     void onInstallationFailed( const QString& message, const QString& details );
+    void retranslate();
 
 protected:
     void focusInEvent( QFocusEvent* e ) override;  //choose the child widget to focus
 
 private:
     Ui::FinishedPage* ui;
-
-    Config::RestartMode m_mode;
-    QString m_restartNowCommand;
+    std::optional< QString > m_failure;
 };
 
 #endif  // FINISHEDPAGE_H
