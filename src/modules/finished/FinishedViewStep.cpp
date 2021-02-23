@@ -20,7 +20,7 @@
 #include "utils/NamedEnum.h"
 #include "utils/Variant.h"
 
-#include <QVariantMap>
+#include <QApplication>
 #include <QtDBus/QDBusConnection>
 #include <QtDBus/QDBusInterface>
 #include <QtDBus/QDBusReply>
@@ -128,34 +128,14 @@ FinishedViewStep::sendNotification()
 }
 
 
-#if 0
-void
-FinishedPage::setUpRestart()
-{
-    cDebug() << "FinishedPage::setUpRestart(), Quit button"
-             << "setup=" << restartModes().find( m_mode ) << "command=" << m_restartNowCommand;
-
-    connect( qApp, &QApplication::aboutToQuit, [this]()
-    {
-        if ( ui->restartCheckBox->isVisible() && ui->restartCheckBox->isChecked() )
-        {
-            cDebug() << "Running restart command" << m_restartNowCommand;
-            QProcess::execute( "/bin/sh", { "-c", m_restartNowCommand } );
-        }
-    } );
-}
-#endif
-
-
 void
 FinishedViewStep::onActivate()
 {
-    // m_widget->setUpRestart();
-
     if ( m_config->notifyOnFinished() )
     {
         sendNotification();
     }
+    connect( qApp, &QApplication::aboutToQuit, m_config, &Config::doRestart );
 }
 
 

@@ -12,6 +12,8 @@
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
+#include <QProcess>
+
 const NamedEnumTable< Config::RestartMode >&
 restartModes()
 {
@@ -72,6 +74,16 @@ Config::setRestartNowWanted( bool w )
     {
         m_userWantsRestart = w;
         emit restartNowWantedChanged( w );
+    }
+}
+
+void
+Config::doRestart()
+{
+    if ( restartNowMode() != RestartMode::Never && restartNowWanted() )
+    {
+        cDebug() << "Running restart command" << m_restartNowCommand;
+        QProcess::execute( "/bin/sh", { "-c", m_restartNowCommand } );
     }
 }
 

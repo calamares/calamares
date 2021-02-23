@@ -14,8 +14,6 @@
 
 #include <QObject>
 
-#include <memory>
-
 class Config : public QObject
 {
     Q_OBJECT
@@ -49,6 +47,14 @@ public:
 public slots:
     void setRestartNowMode( RestartMode m );
     void setRestartNowWanted( bool w );
+
+    /** @brief Run the restart command, if desired.
+     *
+     * This should generally not be called somewhere during the
+     * application's execution, but only in response to QApplication::quit()
+     * or something like that when the user expects the system to restart.
+     */
+    void doRestart();
 
 signals:
     void restartModeChanged( RestartMode m );
