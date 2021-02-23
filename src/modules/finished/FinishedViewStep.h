@@ -46,15 +46,6 @@ public slots:
     void onInstallationFailed( const QString& message, const QString& details );
 
 private:
-    /**
-     * @brief Send notification at the end via DBus
-     *
-     * At the end of installation (when this step is activated),
-     * send a desktop notification via DBus that the install is done.
-     * If the installation failed, no notification is sent.
-     */
-    void sendNotification();
-
     Config* m_config;
     FinishedPage* m_widget;
     bool m_installFailed;  // Track if onInstallationFailed() was called

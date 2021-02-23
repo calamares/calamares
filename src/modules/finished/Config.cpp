@@ -9,10 +9,15 @@
 
 #include "Config.h"
 
+#include "Branding.h"
+#include "Settings.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
 #include <QProcess>
+#include <QtDBus/QDBusConnection>
+#include <QtDBus/QDBusInterface>
+#include <QtDBus/QDBusReply>
 
 const NamedEnumTable< Config::RestartMode >&
 restartModes()
@@ -84,6 +89,38 @@ Config::doRestart()
     {
         cDebug() << "Running restart command" << m_restartNowCommand;
         QProcess::execute( "/bin/sh", { "-c", m_restartNowCommand } );
+    }
+}
+
+
+void
+Config::doNotify()
+{
+    QDBusInterface notify(
+        "org.freedesktop.Notifications", "/org/freedesktop/Notifications", "org.freedesktop.Notifications" );
+    if ( notify.isValid() )
+    {
+        const auto* branding = Calamares::Branding::instance();
+        QDBusReply< uint > r = notify.call(
+            "Notify",
+            QString( "Calamares" ),
+            QVariant( 0U ),
+            QString( "calamares" ),
+            Calamares::Settings::instance()->isSetupMode() ? tr( "Setup Complete" ) : tr( "Installation Complete" ),
+            Calamares::Settings::instance()->isSetupMode()
+                ? tr( "The setup of %1 is complete." ).arg( branding->versionedName() )
+                : tr( "The installation of %1 is complete." ).arg( branding->versionedName() ),
+            QStringList(),
+            QVariantMap(),
+            QVariant( 0 ) );
+        if ( !r.isValid() )
+        {
+            cWarning() << "Could not call org.freedesktop.Notifications.Notify at end of installation." << r.error();
+        }
+    }
+    else
+    {
+        cWarning() << "Could not get dbus interface for notifications at end of installation." << notify.lastError();
     }
 }
 
