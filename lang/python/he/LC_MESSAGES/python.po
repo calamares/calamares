@@ -5,7 +5,7 @@
 # 
 # Translators:
 # Eli Shleifer <eligator@gmail.com>, 2017
-# Omeritzics Games <omeritzicschwartz@gmail.com>, 2020
+# Omer I.S. <omeritzicschwartz@gmail.com>, 2020
 # Yaron Shahrabani <sh.yaron@gmail.com>, 2020
 # 
 #, fuzzy
