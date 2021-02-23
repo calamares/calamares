@@ -7,16 +7,36 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.37 (unreleased) #
+# 3.2.37 (2021-02-23) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - benne-dee
 
 ## Core ##
- - No core changes yet
+ - Calamares has a table of 'best guess' languages for each country
+   and when GeoIP is enabled, it will automatically select that
+   country's language as default -- the user can of course pick
+   a different one. The 'best guess' is based on Unicode / ISO
+   data, which is sometimes dubious. Based on some personal notes,
+   the 'best guess' language for Belarus has been changed to Russian.
+ - Calamares has a table of 'best guess' keyboard mappings,
+   allowing native language input. However, usernames and
+   passwords should be in US-ASCII (this is a limitation of
+   the login system -- **some** parts of the system will support
+   non-ASCII input, but it's better safe than sorry).
+   Add Greek to the list of languages that needs US-ASCII
+   in addition to native input.
+ - The CI infrastructure now builds Calamares and Calamares-extensions
+   on a nightly basis.
 
 ## Modules ##
- - No module changes yet
+ - The *netinstall* module has a YAML schema, allowing packagers
+   to validate and verify their netinstall configurations before
+   shipping an ISO (or writing bug reports). Thanks benne-dee.
+ - The *finished* module has been heavily refactored, opening
+   the way to a QML-based version of the same module. This is
+   also preparatory work for allowing packagers (e.g. PostmarketOS)
+   to customize the messages on the finished page.
 
 
 # 3.2.36 (2021-02-03) #
