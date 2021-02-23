@@ -11,15 +11,11 @@
 #ifndef FINISHEDVIEWSTEP_H
 #define FINISHEDVIEWSTEP_H
 
-#include "Config.h"
-
 #include "DllMacro.h"
 #include "utils/PluginFactory.h"
 #include "viewpages/ViewStep.h"
 
-
-#include <QObject>
-
+class Config;
 class FinishedPage;
 
 class PLUGINDLLEXPORT FinishedViewStep : public Calamares::ViewStep

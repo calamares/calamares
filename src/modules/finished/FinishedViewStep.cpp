@@ -10,12 +10,13 @@
  */
 
 #include "FinishedViewStep.h"
+
+#include "Config.h"
 #include "FinishedPage.h"
 
 #include "Branding.h"
 #include "JobQueue.h"
 #include "Settings.h"
-
 #include "utils/Logger.h"
 #include "utils/NamedEnum.h"
 #include "utils/Variant.h"

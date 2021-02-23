@@ -10,21 +10,15 @@
  */
 
 #include "FinishedPage.h"
+
+#include "Config.h"
 #include "ui_FinishedPage.h"
 
 #include "Branding.h"
-#include "CalamaresVersion.h"
 #include "Settings.h"
-#include "ViewManager.h"
-#include "utils/CalamaresUtilsGui.h"
-#include "utils/Logger.h"
 #include "utils/Retranslator.h"
 
-#include <QApplication>
-#include <QBoxLayout>
 #include <QFocusEvent>
-#include <QLabel>
-#include <QProcess>
 
 
 FinishedPage::FinishedPage( Config* config, QWidget* parent )

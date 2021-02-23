@@ -12,12 +12,11 @@
 #define FINISHEDPAGE_H
 
 
-#include "Config.h"
-
 #include <QWidget>
 
 #include <optional>
 
+class Config;
 namespace Ui
 {
 class FinishedPage;
