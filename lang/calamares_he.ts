@@ -145,7 +145,7 @@
     <message>
       <location filename="../src/libcalamares/JobQueue.cpp" line="196"/>
       <source>Done</source>
-      <translation>בוצע</translation>
+      <translation>סיום</translation>
     </message>
   </context>
   <context>
@@ -2504,7 +2504,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="159"/>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="199"/>
       <source>Free Space</source>
-      <translation>זכרון פנוי</translation>
+      <translation>שטח פנוי</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="163"/>
@@ -2931,7 +2931,7 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="41"/>
       <source>Unpartitioned space or unknown partition table</source>
-      <translation>הזכרון לא מחולק למחיצות או שטבלת המחיצות אינה מוכרת</translation>
+      <translation>השטח לא מחולק למחיצות או שטבלת המחיצות אינה מוכרת</translation>
     </message>
   </context>
   <context>
@@ -2991,7 +2991,7 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="157"/>
       <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
-      <translation>לא ניתן להתקין את %1 על זכרון ריק. אנא בחר מחיצה קיימת.</translation>
+      <translation>לא ניתן להתקין את %1 על שטח ריק. נא לבחור מחיצה קיימת.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="167"/>
