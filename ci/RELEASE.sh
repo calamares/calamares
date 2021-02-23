@@ -7,6 +7,8 @@
 #
 # Release script for Calamares
 #
+# NOTE: this script contains Linuxisms (in particular, expects GNU mktemp(1))
+#
 # This attempts to perform the different steps of the RELEASE.md
 # document automatically. It's not tested on other machines or
 # setups other than [ade]'s development VM.
