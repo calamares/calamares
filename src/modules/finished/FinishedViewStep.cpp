@@ -29,7 +29,7 @@ FinishedViewStep::FinishedViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_config( new Config( this ) )
     , m_widget( new FinishedPage() )
-    , installFailed( false )
+    , m_installFailed( false )
 {
     auto jq = Calamares::JobQueue::instance();
     connect( jq, &Calamares::JobQueue::failed, m_widget, &FinishedPage::onInstallationFailed );
@@ -94,7 +94,7 @@ FinishedViewStep::sendNotification()
 {
     // If the installation failed, don't send notification popup;
     // there's a (modal) dialog popped up with the failure notice.
-    if ( installFailed )
+    if ( m_installFailed )
     {
         return;
     }
@@ -151,7 +151,7 @@ FinishedViewStep::onInstallationFailed( const QString& message, const QString& d
 {
     Q_UNUSED( message )
     Q_UNUSED( details )
-    installFailed = true;
+    m_installFailed = true;
 }
 
 void
