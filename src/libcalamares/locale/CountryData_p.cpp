@@ -29,7 +29,8 @@
 /*  MODIFICATIONS
  *
  * Edited anyway:
- *      20191211 India changed to AnyLanguage, since Hindi doesn't make sense. #1284
+ *      20191211 India (IN) changed to AnyLanguage, since Hindi doesn't make sense. #1284
+ *      20210207 Belarus (BY) changed to Russian, as the more-common-language. #1634
  *
  */
 
@@ -77,7 +78,7 @@ static const CountryData country_data_table[] = {
 { QLocale::Language::Portuguese, QLocale::Country::Brazil, 'B', 'R' },
 { QLocale::Language::Dzongkha, QLocale::Country::Bhutan, 'B', 'T' },
 { QLocale::Language::AnyLanguage, QLocale::Country::BouvetIsland, 'B', 'V' },
-{ QLocale::Language::Belarusian, QLocale::Country::Belarus, 'B', 'Y' },
+{ QLocale::Language::Russian, QLocale::Country::Belarus, 'B', 'Y' },
 { QLocale::Language::Swahili, QLocale::Country::CongoKinshasa, 'C', 'D' },
 { QLocale::Language::French, QLocale::Country::CentralAfricanRepublic, 'C', 'F' },
 { QLocale::Language::French, QLocale::Country::CongoBrazzaville, 'C', 'G' },
