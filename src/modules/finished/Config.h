@@ -62,10 +62,8 @@ public slots:
      *
      * At the end of installation (when the FinishedViewStep is activated),
      * send a desktop notification via DBus that the install is done.
-     * If the installation failed, don't call this method because
-     * the notification is a positive one.
      */
-    void doNotify();
+    void doNotify( bool hasFailed = false );
 
 signals:
     void restartModeChanged( RestartMode m );

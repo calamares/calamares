@@ -94,25 +94,41 @@ Config::doRestart()
 
 
 void
-Config::doNotify()
+Config::doNotify( bool hasFailed )
 {
     QDBusInterface notify(
         "org.freedesktop.Notifications", "/org/freedesktop/Notifications", "org.freedesktop.Notifications" );
     if ( notify.isValid() )
     {
+        cDebug() << "Sending notification of completion. Failed?" << hasFailed;
+
+        QString title;
+        QString message;
+        if ( hasFailed )
+        {
+            title = Calamares::Settings::instance()->isSetupMode() ? tr( "Setup Failed" ) : tr( "Installation Failed" );
+            message = Calamares::Settings::instance()->isSetupMode()
+                ? tr( "The setup of %1 did not complete successfully." )
+                : tr( "The installation of %1 did not complete successfully." );
+        }
+        else
+        {
+            title = Calamares::Settings::instance()->isSetupMode() ? tr( "Setup Complete" )
+                                                                   : tr( "Installation Complete" );
+            message = Calamares::Settings::instance()->isSetupMode() ? tr( "The setup of %1 is complete." )
+                                                                     : tr( "The installation of %1 is complete." );
+        }
+
         const auto* branding = Calamares::Branding::instance();
-        QDBusReply< uint > r = notify.call(
-            "Notify",
-            QString( "Calamares" ),
-            QVariant( 0U ),
-            QString( "calamares" ),
-            Calamares::Settings::instance()->isSetupMode() ? tr( "Setup Complete" ) : tr( "Installation Complete" ),
-            Calamares::Settings::instance()->isSetupMode()
-                ? tr( "The setup of %1 is complete." ).arg( branding->versionedName() )
-                : tr( "The installation of %1 is complete." ).arg( branding->versionedName() ),
-            QStringList(),
-            QVariantMap(),
-            QVariant( 0 ) );
+        QDBusReply< uint > r = notify.call( "Notify",
+                                            QString( "Calamares" ),
+                                            QVariant( 0U ),
+                                            QString( "calamares" ),
+                                            title,
+                                            message.arg( branding->versionedName() ),
+                                            QStringList(),
+                                            QVariantMap(),
+                                            QVariant( 0 ) );
         if ( !r.isValid() )
         {
             cWarning() << "Could not call org.freedesktop.Notifications.Notify at end of installation." << r.error();
