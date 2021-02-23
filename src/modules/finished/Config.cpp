@@ -96,6 +96,11 @@ Config::doRestart()
 void
 Config::doNotify( bool hasFailed )
 {
+    if ( !notifyOnFinished() )
+    {
+        return;
+    }
+
     QDBusInterface notify(
         "org.freedesktop.Notifications", "/org/freedesktop/Notifications", "org.freedesktop.Notifications" );
     if ( notify.isValid() )
