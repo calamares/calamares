@@ -299,7 +299,7 @@ def install_systemd_boot(efi_directory):
 
     # find all the installed kernels and generate default and fallback entries for each
     # This is Arch-specific and may need adjustment for other distros
-    for root, dirs, files in os.walk(os.path.join(install_path, kernel_search_path)): 
+    for root, dirs, files in os.walk(os.path.join(install_path, kernel_search_path.lstrip('/'))): 
         for file in files:  
             if file == source_kernel_name:
                 rel_root = os.path.relpath(root, install_path)
