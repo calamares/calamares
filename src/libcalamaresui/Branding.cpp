@@ -4,6 +4,7 @@
  *   SPDX-FileCopyrightText: 2017-2019 Adriaan de Groot <groot@kde.org>
  *   SPDX-FileCopyrightText: 2018 Raul Rodrigo Segura (raurodse)
  *   SPDX-FileCopyrightText: 2019 Camilo Higuita <milo.h@aol.com>
+ *   SPDX-FileCopyrightText: 2021 Anubhav Choudhary <ac.10edu@gmail.com>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -85,6 +86,13 @@ const QStringList Branding::s_styleEntryStrings =
     "sidebarText",
     "sidebarTextSelect",
     "sidebarTextHighlight"
+};
+
+const QStringList Branding::s_uploadServerStrings =
+{
+    "type",
+    "url",
+    "port"
 };
 // clang-format on
 // *INDENT-ON*
@@ -218,6 +226,12 @@ Branding::Branding( const QString& brandingFilePath, QObject* parent )
                 return imageFi.absoluteFilePath();
             } );
             loadStrings( m_style, doc, "style", []( const QString& s ) -> QString { return s; } );
+
+            const QVariantMap temp = CalamaresUtils::yamlMapToVariant( doc[ "uploadServer" ] );
+            for ( auto it = temp.constBegin(); it != temp.constEnd(); ++it )
+            {
+                m_uploadServer.insert( it.key(), it.value().toString() );
+            }
         }
         catch ( YAML::Exception& e )
         {
@@ -278,6 +292,11 @@ Branding::imagePath( Branding::ImageEntry imageEntry ) const
     return m_images.value( s_imageEntryStrings.value( imageEntry ) );
 }
 
+QString
+Branding::uploadServer( Branding::UploadServerEntry uploadServerEntry ) const
+{
+    return m_uploadServer.value( s_uploadServerStrings.value( uploadServerEntry ) );
+}
 
 QPixmap
 Branding::image( Branding::ImageEntry imageEntry, const QSize& size ) const

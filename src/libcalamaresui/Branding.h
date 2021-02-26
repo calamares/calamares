@@ -4,6 +4,7 @@
  *   SPDX-FileCopyrightText: 2017-2018 Adriaan de Groot <groot@kde.org>
  *   SPDX-FileCopyrightText: 2018 Raul Rodrigo Segura (raurodse)
  *   SPDX-FileCopyrightText: 2019 Camilo Higuita <milo.h@aol.com>
+ *   SPDX-FileCopyrightText: 2021 Anubhav Choudhary <ac.10edu@gmail.com>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -22,6 +23,7 @@
 #include <QPixmap>
 #include <QSize>
 #include <QStringList>
+#include <QUrl>
 
 namespace YAML
 {
@@ -42,6 +44,7 @@ public:
      * e.g. *Branding::ProductName to get the string value for
      * the product name.
      */
+
     enum StringEntry
     {
         ProductName,
@@ -79,6 +82,14 @@ public:
         SidebarBackgroundSelected = SidebarTextHighlight  // TODO:3.3:Remove SidebarTextHighlight
     };
     Q_ENUM( StyleEntry )
+
+    enum UploadServerEntry : short
+    {
+        Type,
+        URL,
+        Port
+    };
+    Q_ENUM( UploadServerEntry )
 
     /** @brief Setting for how much the main window may expand. */
     enum class WindowExpansion
@@ -223,6 +234,7 @@ public slots:
 
     QString styleString( StyleEntry styleEntry ) const;
     QString imagePath( ImageEntry imageEntry ) const;
+    QString uploadServer( UploadServerEntry uploadServerEntry ) const;
 
     PanelSide sidebarSide() const { return m_sidebarSide; }
     PanelSide navigationSide() const { return m_navigationSide; }
@@ -233,12 +245,14 @@ private:
     static const QStringList s_stringEntryStrings;
     static const QStringList s_imageEntryStrings;
     static const QStringList s_styleEntryStrings;
+    static const QStringList s_uploadServerStrings;
 
     QString m_descriptorPath;  // Path to descriptor (e.g. "/etc/calamares/default/branding.desc")
     QString m_componentName;  // Matches last part of full path to containing directory
     QMap< QString, QString > m_strings;
     QMap< QString, QString > m_images;
     QMap< QString, QString > m_style;
+    QMap< QString, QString > m_uploadServer;
 
     /* The slideshow can be done in one of two ways:
      *  - as a sequence of images

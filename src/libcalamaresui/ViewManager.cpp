@@ -4,6 +4,7 @@
  *   SPDX-FileCopyrightText: 2017-2018 Adriaan de Groot <groot@kde.org>
  *   SPDX-FileCopyrightText: 2019 Dominic Hayes <ferenosdev@outlook.com>
  *   SPDX-FileCopyrightText: 2019 Gabriel Craciunescu <crazy@frugalware.org>
+ *   SPDX-FileCopyrightText: 2021 Anubhav Choudhary <ac.10edu@gmail.com>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -141,7 +142,8 @@ ViewManager::insertViewStep( int before, ViewStep* step )
 void
 ViewManager::onInstallationFailed( const QString& message, const QString& details )
 {
-    bool shouldOfferWebPaste = false;  // TODO: config var
+    QString serverType = Calamares::Branding::instance()->uploadServer( Calamares::Branding::Type );
+    bool shouldOfferWebPaste = CalamaresUtils::UploadServersList.contains( serverType );
 
     cError() << "Installation failed:" << message;
     cDebug() << Logger::SubEntry << "- message:" << message;
@@ -187,8 +189,16 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
     connect( msgBox, &QMessageBox::buttonClicked, [msgBox]( QAbstractButton* button ) {
         if ( msgBox->buttonRole( button ) == QMessageBox::ButtonRole::YesRole )
         {
-            // TODO: host and port should be configurable
-            QString pasteUrlMsg = CalamaresUtils::sendLogToPastebin( msgBox, QStringLiteral( "termbin.com" ), 9999 );
+            QString pasteUrlMsg;
+            QString serverType = Calamares::Branding::instance()->uploadServer( Calamares::Branding::Type );
+            if ( serverType == "fiche" )
+            {
+                pasteUrlMsg = CalamaresUtils::ficheLogUpload( msgBox );
+            }
+            else
+            {
+                pasteUrlMsg = QString();
+            }
 
             QString pasteUrlTitle = tr( "Install Log Paste URL" );
             if ( pasteUrlMsg.isEmpty() )
