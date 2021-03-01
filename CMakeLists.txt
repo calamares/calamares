@@ -686,3 +686,16 @@ feature_summary(
     DESCRIPTION "The following REQUIRED packages were not found:"
     QUIET_ON_EMPTY
 )
+
+### PACKAGING
+#
+# Note: most distro's will do distro-specific packaging rather than
+#       using CPack, and this duplicates information in the AppStream, too.
+# TODO:3.3 With newer CMake, move HOMEPAGE_URL to the project()call
+set(CPACK_PACKAGE_VENDOR calamares)
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "A Linux system installer")
+set(CPACK_PACKAGE_DESCRIPTION "Calamares is a Linux system installer, intended for Linux distributions to use on their ISOs and other bootable media to install the distribution to the end-user's computer. Calamares can also be used as an OEM configuration tool. It is modular, extensible and highly-configurable for Linux distributions from all five major Linux families.")
+set(CPACK_PACKAGE_HOMEPAGE_URL "https://calamares.io")
+set(CPACK_PACKAGE_ICON "data/images/squid.png")
+
+include(CPack)
