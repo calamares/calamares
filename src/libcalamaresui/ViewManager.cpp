@@ -252,6 +252,8 @@ ViewManager::onInitComplete()
     {
         m_steps.first()->onActivate();
     }
+
+    emit currentStepChanged();
 }
 
 void
