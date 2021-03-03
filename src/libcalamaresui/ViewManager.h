@@ -50,6 +50,11 @@ class UIDLLEXPORT ViewManager : public QAbstractListModel
     ///@brief Sides on which the ViewManager has side-panels
     Q_PROPERTY( Qt::Orientations panelSides READ panelSides WRITE setPanelSides MEMBER m_panelSides )
 
+    // Global properties, where ViewManager proxies to Settings
+    Q_PROPERTY( bool isDebugMode READ isDebugMode CONSTANT FINAL )
+    Q_PROPERTY( bool isChrootMode READ isChrootMode CONSTANT FINAL )
+    Q_PROPERTY( bool isSetupMode READ isSetupMode CONSTANT FINAL )
+
 public:
     /**
      * @brief instance access to the ViewManager singleton.
@@ -196,6 +201,13 @@ public Q_SLOTS:
 
     /// @brief Connected to ViewStep::nextStatusChanged for all steps
     void updateNextStatus( bool enabled );
+
+    /// @brief Proxy to Settings::debugMode() default @c false
+    bool isDebugMode() const;
+    /// @brief Proxy to Settings::doChroot() default @c true
+    bool isChrootMode() const;
+    /// @brief Proxy to Settings::isSetupMode() default @c false
+    bool isSetupMode() const;
 
 signals:
     void currentStepChanged();

@@ -608,4 +608,25 @@ ViewManager::rowCount( const QModelIndex& parent ) const
     return m_steps.length();
 }
 
+bool
+ViewManager::isChrootMode() const
+{
+    const auto* s = Settings::instance();
+    return s ? s->doChroot() : true;
+}
+
+bool
+ViewManager::isDebugMode() const
+{
+    const auto* s = Settings::instance();
+    return s ? s->debugMode() : false;
+}
+
+bool
+ViewManager::isSetupMode() const
+{
+    const auto* s = Settings::instance();
+    return s ? s->isSetupMode() : false;
+}
+
 }  // namespace Calamares
