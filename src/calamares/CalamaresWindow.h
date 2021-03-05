@@ -30,7 +30,7 @@ public:
     CalamaresWindow( QWidget* parent = nullptr );
     ~CalamaresWindow() override {}
 
-public slots:
+public Q_SLOTS:
     /**
      * This asks the main window to grow to accomodate @p size pixels, to accomodate
      * larger-than-expected window contents. The enlargement may be silently
@@ -38,18 +38,21 @@ public slots:
      */
     void ensureSize( QSize size );
 
+    /** @brief Set visibility of debug window
+     *
+     * Shows or hides the debug window, depending on @p show.
+     * If Calamares is not in debug mode, nothing happens and the debug
+     * window remains hidden.
+     */
+    void showDebugWindow( bool show );
+
+Q_SIGNALS:
+    void debugWindowShown( bool show );
+
 protected:
     virtual void closeEvent( QCloseEvent* e ) override;
 
 private:
-    // Two variations on sidebar (the progress view)
-    QWidget* getWidgetSidebar( QWidget* parent, int desiredWidth );
-    QWidget* getQmlSidebar( QWidget* parent, int desiredWidth );
-
-    // Two variations on navigation (buttons at bottom)
-    QWidget* getWidgetNavigation( QWidget* parent );
-    QWidget* getQmlNavigation( QWidget* parent );
-
     QPointer< Calamares::DebugWindow > m_debugWindow;  // Managed by self
     Calamares::ViewManager* m_viewManager;
 };
