@@ -22,10 +22,9 @@ CALAMARES_PLUGIN_FACTORY_DEFINITION( FinishedQmlViewStepFactory, registerPlugin<
 FinishedQmlViewStep::FinishedQmlViewStep( QObject* parent )
     : Calamares::QmlViewStep( parent )
     , m_config( new Config( this ) )
-    , m_installFailed( false )
 {
     auto jq = Calamares::JobQueue::instance();
-    connect( jq, &Calamares::JobQueue::failed, this, &FinishedQmlViewStep::onInstallationFailed );
+    connect( jq, &Calamares::JobQueue::failed, m_config, &Config::onInstallationFailed );
 
     emit nextStatusChanged( true );
 }
@@ -67,8 +66,7 @@ FinishedQmlViewStep::isAtEnd() const
 void
 FinishedQmlViewStep::onActivate()
 {
-    m_config->doNotify( m_installFailed );
-    //connect( qApp, &QApplication::aboutToQuit, m_config, &Config::doRestart );
+    m_config->doNotify();
     QmlViewStep::onActivate();
 }
 
@@ -83,13 +81,6 @@ QObject*
 FinishedQmlViewStep::getConfig()
 {
     return m_config;
-}
-
-void
-FinishedQmlViewStep::onInstallationFailed( const QString& message, const QString& details )
-{
-    m_installFailed = true;
-    m_config->setRestartNowMode( Config::RestartMode::Never );
 }
 
 void
