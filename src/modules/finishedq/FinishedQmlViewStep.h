@@ -46,9 +46,6 @@ public:
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
     QObject* getConfig() override;
 
-public slots:
-    void onInstallationFailed( const QString& message, const QString& details );
-
 private:
     Config* m_config;
 

@@ -83,9 +83,36 @@ Config::setRestartNowWanted( bool w )
 }
 
 void
+Config::onInstallationFailed( const QString& message, const QString& details )
+{
+    const bool msgChange = message != m_failureMessage;
+    const bool detChange = details != m_failureDetails;
+    m_failureMessage = message;
+    m_failureDetails = details;
+    if ( msgChange )
+    {
+        emit failureMessageChanged( message );
+    }
+    if ( detChange )
+    {
+        emit failureDetailsChanged( message );
+    }
+    if ( ( msgChange || detChange ) )
+    {
+        emit failureChanged( hasFailed() );
+        if ( hasFailed() )
+        {
+            setRestartNowMode( Config::RestartMode::Never );
+        }
+    }
+}
+
+
+void
 Config::doRestart()
 {
-    if ( restartNowMode() != RestartMode::Never && restartNowWanted() )
+    cDebug() << "Restart requested, mode=" << restartModes().find( restartNowMode() ) << " want?" << restartNowWanted();
+    if ( restartNowWanted() )
     {
         cDebug() << "Running restart command" << m_restartNowCommand;
         QProcess::execute( "/bin/sh", { "-c", m_restartNowCommand } );

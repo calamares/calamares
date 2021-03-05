@@ -42,13 +42,9 @@ public:
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
-public slots:
-    void onInstallationFailed( const QString& message, const QString& details );
-
 private:
     Config* m_config;
     FinishedPage* m_widget;
-    bool m_installFailed;  // Track if onInstallationFailed() was called
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( FinishedViewStepFactory )

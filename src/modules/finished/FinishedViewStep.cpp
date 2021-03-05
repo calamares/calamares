@@ -22,10 +22,10 @@ FinishedViewStep::FinishedViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_config( new Config( this ) )
     , m_widget( new FinishedPage( m_config ) )
-    , m_installFailed( false )
 {
     auto jq = Calamares::JobQueue::instance();
-    connect( jq, &Calamares::JobQueue::failed, this, &FinishedViewStep::onInstallationFailed );
+    connect( jq, &Calamares::JobQueue::failed, m_config, &Config::onInstallationFailed );
+    connect( jq, &Calamares::JobQueue::failed, m_widget, &FinishedPage::onInstallationFailed );
 
     emit nextStatusChanged( true );
 }
@@ -85,7 +85,7 @@ FinishedViewStep::isAtEnd() const
 void
 FinishedViewStep::onActivate()
 {
-    m_config->doNotify( m_installFailed );
+    m_config->doNotify();
     connect( qApp, &QApplication::aboutToQuit, m_config, &Config::doRestart );
 }
 
@@ -94,14 +94,6 @@ Calamares::JobList
 FinishedViewStep::jobs() const
 {
     return Calamares::JobList();
-}
-
-void
-FinishedViewStep::onInstallationFailed( const QString& message, const QString& details )
-{
-    m_installFailed = true;
-    m_config->setRestartNowMode( Config::RestartMode::Never );
-    m_widget->onInstallationFailed( message, details );
 }
 
 void
