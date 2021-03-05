@@ -1,0 +1,6 @@
+<RCC>
+    <qresource>
+        <file>finishedq.qml</file>
+        <file>seedling.svg</file>
+    </qresource>
+</RCC>
