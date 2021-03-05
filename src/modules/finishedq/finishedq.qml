@@ -18,8 +18,6 @@ import org.kde.kirigami 2.7 as Kirigami
 import QtGraphicalEffects 1.0
 import QtQuick.Window 2.3
 
-import org.kde.plasma.core 2.0 as PlasmaCore
-
 Page {
 
     id: finished
@@ -62,27 +60,17 @@ Page {
         anchors.centerIn: parent
         spacing: 6
 
-        PlasmaCore.DataSource {
-            id: executer
-            engine: "executable"
-            onNewData: {executer.disconnectSource(sourceName);}
-        }
-
         Button {
             id: button
             text: qsTr("Close Installer")
             icon.name: "application-exit"
             onClicked: { ViewManager.quit(); }
-            //onClicked: console.log("close calamares");
         }
 
         Button {
             text: qsTr("Restart System")
             icon.name: "system-reboot"
-            //onClicked: { config.doRestart(); }
-            onClicked: {
-                executer.connectSource("systemctl -i reboot");
-            }
+            onClicked: { config.doRestart(); }
         }
     }
 
