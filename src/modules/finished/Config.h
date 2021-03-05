@@ -24,6 +24,10 @@ class Config : public QObject
     Q_PROPERTY( QString restartNowCommand READ restartNowCommand CONSTANT FINAL )
     Q_PROPERTY( bool notifyOnFinished READ notifyOnFinished CONSTANT FINAL )
 
+    Q_PROPERTY( QString failureMessage READ failureMessage NOTIFY failureMessageChanged )
+    Q_PROPERTY( QString failureDetails READ failureDetails NOTIFY failureDetailsChanged )
+    Q_PROPERTY( bool failed READ hasFailed NOTIFY failureChanged )
+
 public:
     Config( QObject* parent = nullptr );
 
@@ -36,17 +40,22 @@ public:
     };
     Q_ENUM( RestartMode )
 
+    void setConfigurationMap( const QVariantMap& configurationMap );
+
+public Q_SLOTS:
     RestartMode restartNowMode() const { return m_restartNowMode; }
+    void setRestartNowMode( RestartMode m );
+
     bool restartNowWanted() const { return m_userWantsRestart; }
+    void setRestartNowWanted( bool w );
 
     QString restartNowCommand() const { return m_restartNowCommand; }
     bool notifyOnFinished() const { return m_notifyOnFinished; }
 
-    void setConfigurationMap( const QVariantMap& configurationMap );
-
-public slots:
-    void setRestartNowMode( RestartMode m );
-    void setRestartNowWanted( bool w );
+    QString failureMessage() const { return m_failureMessage; }
+    QString failureDetails() const { return m_failureDetails; }
+    /// Failure is if any of the failure messages is non-empty
+    bool hasFailed() const { return !m_failureMessage.isEmpty() || !m_failureDetails.isEmpty(); }
 
     /** @brief Run the restart command, if desired.
      *
@@ -63,17 +72,34 @@ public slots:
      * At the end of installation (when the FinishedViewStep is activated),
      * send a desktop notification via DBus that the install is done.
      */
-    void doNotify( bool hasFailed = false );
+    void doNotify( bool hasFailed );
+    void doNotify() { doNotify( hasFailed() ); }
+
+    /** @brief Tell the config the install failed
+     *
+     * This should be connected to the JobQueue and is called by
+     * the queue when the installation fails, with a suitable message.
+     */
+    void onInstallationFailed( const QString& message, const QString& details );
 
 signals:
     void restartModeChanged( RestartMode m );
     void restartNowWantedChanged( bool w );
+    void failureMessageChanged( const QString& );
+    void failureDetailsChanged( const QString& );
+    void failureChanged( bool );
 
 private:
+    // Configuration parts
     QString m_restartNowCommand;
     RestartMode m_restartNowMode = RestartMode::Never;
     bool m_userWantsRestart = false;
     bool m_notifyOnFinished = false;
+
+    // Dynamic parts
+    bool m_hasFailed = false;
+    QString m_failureMessage;
+    QString m_failureDetails;
 };
 
 const NamedEnumTable< Config::RestartMode >& restartModes();
