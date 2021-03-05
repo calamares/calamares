@@ -53,14 +53,6 @@ protected:
     virtual void closeEvent( QCloseEvent* e ) override;
 
 private:
-    // Two variations on sidebar (the progress view)
-    QWidget* getWidgetSidebar( QWidget* parent, int desiredWidth );
-    QWidget* getQmlSidebar( QWidget* parent, int desiredWidth );
-
-    // Two variations on navigation (buttons at bottom)
-    QWidget* getWidgetNavigation( QWidget* parent );
-    QWidget* getQmlNavigation( QWidget* parent );
-
     QPointer< Calamares::DebugWindow > m_debugWindow;  // Managed by self
     Calamares::ViewManager* m_viewManager;
 };

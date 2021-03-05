@@ -55,9 +55,25 @@ windowDimensionToPixels( const Calamares::Branding::WindowDimension& u )
     return 0;
 }
 
+/** @brief Get a button-sized icon. */
+static inline QPixmap
+getButtonIcon( const QString& name )
+{
+    return Calamares::Branding::instance()->image( name, QSize( 22, 22 ) );
+}
 
-QWidget*
-CalamaresWindow::getWidgetSidebar( QWidget* parent, int desiredWidth )
+static inline void
+setButtonIcon( QPushButton* button, const QString& name )
+{
+    auto icon = getButtonIcon( name );
+    if ( button && !icon.isNull() )
+    {
+        button->setIcon( icon );
+    }
+}
+
+static QWidget*
+getWidgetSidebar( CalamaresWindow* window, Calamares::ViewManager* viewManager, QWidget* parent, int desiredWidth )
 {
     const Calamares::Branding* const branding = Calamares::Branding::instance();
 
@@ -91,7 +107,7 @@ CalamaresWindow::getWidgetSidebar( QWidget* parent, int desiredWidth )
     logoLayout->addStretch();
 
     ProgressTreeView* tv = new ProgressTreeView( sideBox );
-    tv->setModel( Calamares::ViewManager::instance() );
+    tv->setModel( viewManager );
     tv->setFocusPolicy( Qt::NoFocus );
     sideLayout->addWidget( tv );
 
@@ -99,37 +115,22 @@ CalamaresWindow::getWidgetSidebar( QWidget* parent, int desiredWidth )
     {
         QPushButton* debugWindowBtn = new QPushButton;
         debugWindowBtn->setObjectName( "debugButton" );
-        CALAMARES_RETRANSLATE( debugWindowBtn->setText( tr( "Show debug information" ) ); )
+        CALAMARES_RETRANSLATE_WIDGET( debugWindowBtn,
+                                      debugWindowBtn->setText( QCoreApplication::translate(
+                                          CalamaresWindow::staticMetaObject.className(), "Show debug information" ) ); )
         sideLayout->addWidget( debugWindowBtn );
         debugWindowBtn->setFlat( true );
         debugWindowBtn->setCheckable( true );
-        connect( debugWindowBtn, &QPushButton::clicked, this, &CalamaresWindow::showDebugWindow );
-        connect( this, &CalamaresWindow::debugWindowShown, debugWindowBtn, &QPushButton::setChecked );
+        QObject::connect( debugWindowBtn, &QPushButton::clicked, window, &CalamaresWindow::showDebugWindow );
+        QObject::connect( window, &CalamaresWindow::debugWindowShown, debugWindowBtn, &QPushButton::setChecked );
     }
 
     CalamaresUtils::unmarginLayout( sideLayout );
     return sideBox;
 }
 
-/** @brief Get a button-sized icon. */
-static inline QPixmap
-getButtonIcon( const QString& name )
-{
-    return Calamares::Branding::instance()->image( name, QSize( 22, 22 ) );
-}
-
-static inline void
-setButtonIcon( QPushButton* button, const QString& name )
-{
-    auto icon = getButtonIcon( name );
-    if ( button && !icon.isNull() )
-    {
-        button->setIcon( icon );
-    }
-}
-
-QWidget*
-CalamaresWindow::getWidgetNavigation( QWidget* parent )
+static QWidget*
+getWidgetNavigation( CalamaresWindow*, Calamares::ViewManager* viewManager, QWidget* parent )
 {
     QWidget* navigation = new QWidget( parent );
     QBoxLayout* bottomLayout = new QHBoxLayout;
@@ -137,43 +138,51 @@ CalamaresWindow::getWidgetNavigation( QWidget* parent )
 
     // Create buttons and sets an initial icon; the icons may change
     {
-        auto* back = new QPushButton( getButtonIcon( QStringLiteral( "go-previous" ) ), tr( "&Back" ), navigation );
+        auto* back
+            = new QPushButton( getButtonIcon( QStringLiteral( "go-previous" ) ),
+                               QCoreApplication::translate( CalamaresWindow::staticMetaObject.className(), "&Back" ),
+                               navigation );
         back->setObjectName( "view-button-back" );
-        back->setEnabled( m_viewManager->backEnabled() );
-        connect( back, &QPushButton::clicked, m_viewManager, &Calamares::ViewManager::back );
-        connect( m_viewManager, &Calamares::ViewManager::backEnabledChanged, back, &QPushButton::setEnabled );
-        connect( m_viewManager, &Calamares::ViewManager::backLabelChanged, back, &QPushButton::setText );
-        connect( m_viewManager, &Calamares::ViewManager::backIconChanged, this, [=]( QString n ) {
-            setButtonIcon( back, n );
-        } );
-        connect( m_viewManager, &Calamares::ViewManager::backAndNextVisibleChanged, back, &QPushButton::setVisible );
+        back->setEnabled( viewManager->backEnabled() );
+        QObject::connect( back, &QPushButton::clicked, viewManager, &Calamares::ViewManager::back );
+        QObject::connect( viewManager, &Calamares::ViewManager::backEnabledChanged, back, &QPushButton::setEnabled );
+        QObject::connect( viewManager, &Calamares::ViewManager::backLabelChanged, back, &QPushButton::setText );
+        QObject::connect(
+            viewManager, &Calamares::ViewManager::backIconChanged, [=]( QString n ) { setButtonIcon( back, n ); } );
+        QObject::connect(
+            viewManager, &Calamares::ViewManager::backAndNextVisibleChanged, back, &QPushButton::setVisible );
         bottomLayout->addWidget( back );
     }
     {
-        auto* next = new QPushButton( getButtonIcon( QStringLiteral( "go-next" ) ), tr( "&Next" ), navigation );
+        auto* next
+            = new QPushButton( getButtonIcon( QStringLiteral( "go-next" ) ),
+                               QCoreApplication::translate( CalamaresWindow::staticMetaObject.className(), "&Next" ),
+                               navigation );
         next->setObjectName( "view-button-next" );
-        next->setEnabled( m_viewManager->nextEnabled() );
-        connect( next, &QPushButton::clicked, m_viewManager, &Calamares::ViewManager::next );
-        connect( m_viewManager, &Calamares::ViewManager::nextEnabledChanged, next, &QPushButton::setEnabled );
-        connect( m_viewManager, &Calamares::ViewManager::nextLabelChanged, next, &QPushButton::setText );
-        connect( m_viewManager, &Calamares::ViewManager::nextIconChanged, this, [=]( QString n ) {
-            setButtonIcon( next, n );
-        } );
-        connect( m_viewManager, &Calamares::ViewManager::backAndNextVisibleChanged, next, &QPushButton::setVisible );
+        next->setEnabled( viewManager->nextEnabled() );
+        QObject::connect( next, &QPushButton::clicked, viewManager, &Calamares::ViewManager::next );
+        QObject::connect( viewManager, &Calamares::ViewManager::nextEnabledChanged, next, &QPushButton::setEnabled );
+        QObject::connect( viewManager, &Calamares::ViewManager::nextLabelChanged, next, &QPushButton::setText );
+        QObject::connect(
+            viewManager, &Calamares::ViewManager::nextIconChanged, [=]( QString n ) { setButtonIcon( next, n ); } );
+        QObject::connect(
+            viewManager, &Calamares::ViewManager::backAndNextVisibleChanged, next, &QPushButton::setVisible );
         bottomLayout->addWidget( next );
     }
     bottomLayout->addSpacing( 12 );
     {
-        auto* quit = new QPushButton( getButtonIcon( QStringLiteral( "dialog-cancel" ) ), tr( "&Cancel" ), navigation );
+        auto* quit
+            = new QPushButton( getButtonIcon( QStringLiteral( "dialog-cancel" ) ),
+                               QCoreApplication::translate( CalamaresWindow::staticMetaObject.className(), "&Cancel" ),
+                               navigation );
         quit->setObjectName( "view-button-cancel" );
-        connect( quit, &QPushButton::clicked, m_viewManager, &Calamares::ViewManager::quit );
-        connect( m_viewManager, &Calamares::ViewManager::quitEnabledChanged, quit, &QPushButton::setEnabled );
-        connect( m_viewManager, &Calamares::ViewManager::quitLabelChanged, quit, &QPushButton::setText );
-        connect( m_viewManager, &Calamares::ViewManager::quitIconChanged, this, [=]( QString n ) {
-            setButtonIcon( quit, n );
-        } );
-        connect( m_viewManager, &Calamares::ViewManager::quitTooltipChanged, quit, &QPushButton::setToolTip );
-        connect( m_viewManager, &Calamares::ViewManager::quitVisibleChanged, quit, &QPushButton::setVisible );
+        QObject::connect( quit, &QPushButton::clicked, viewManager, &Calamares::ViewManager::quit );
+        QObject::connect( viewManager, &Calamares::ViewManager::quitEnabledChanged, quit, &QPushButton::setEnabled );
+        QObject::connect( viewManager, &Calamares::ViewManager::quitLabelChanged, quit, &QPushButton::setText );
+        QObject::connect(
+            viewManager, &Calamares::ViewManager::quitIconChanged, [=]( QString n ) { setButtonIcon( quit, n ); } );
+        QObject::connect( viewManager, &Calamares::ViewManager::quitTooltipChanged, quit, &QPushButton::setToolTip );
+        QObject::connect( viewManager, &Calamares::ViewManager::quitVisibleChanged, quit, &QPushButton::setVisible );
         bottomLayout->addWidget( quit );
     }
 
@@ -183,8 +192,8 @@ CalamaresWindow::getWidgetNavigation( QWidget* parent )
 }
 
 #ifdef WITH_QML
-QWidget*
-CalamaresWindow::getQmlSidebar( QWidget* parent, int desiredWidth )
+static QWidget*
+getQmlSidebar( CalamaresWindow*, Calamares::ViewManager*, QWidget* parent, int desiredWidth )
 {
     CalamaresUtils::registerQmlModels();
     QQuickWidget* w = new QQuickWidget( parent );
@@ -196,8 +205,8 @@ CalamaresWindow::getQmlSidebar( QWidget* parent, int desiredWidth )
     return w;
 }
 
-QWidget*
-CalamaresWindow::getQmlNavigation( QWidget* parent )
+static QWidget*
+getQmlNavigation( CalamaresWindow*, Calamares::ViewManager*, QWidget* parent )
 {
     CalamaresUtils::registerQmlModels();
     QQuickWidget* w = new QQuickWidget( parent );
@@ -219,18 +228,19 @@ CalamaresWindow::getQmlNavigation( QWidget* parent )
 }
 #else
 // Bogus to keep the linker happy
-QWidget*
-CalamaresWindow::getQmlSidebar( QWidget*, int )
+//
+// Calls to flavoredWidget() still refer to these *names*
+// even if they are subsequently not used.
+static QWidget*
+getQmlSidebar( CalamaresWindow*, Calamares::ViewManager*, QWidget* parent, int desiredWidth )
 {
     return nullptr;
 }
-QWidget*
-CalamaresWindow::getQmlNavigation( QWidget* )
+static QWidget*
+getQmlNavigation( CalamaresWindow*, Calamares::ViewManager*, QWidget* parent )
 {
     return nullptr;
 }
-
-
 #endif
 
 /**@brief Picks one of two methods to call
@@ -250,14 +260,14 @@ flavoredWidget( Calamares::Branding::PanelFlavor flavor,
 #ifndef WITH_QML
     Q_UNUSED( qml )
 #endif
-    // Member-function calling syntax is (object.*member)(args)
+    auto* viewManager = Calamares::ViewManager::instance();
     switch ( flavor )
     {
     case Calamares::Branding::PanelFlavor::Widget:
-        return ( w->*widget )( parent, a... );
+        return widget( w, viewManager, parent, a... );
 #ifdef WITH_QML
     case Calamares::Branding::PanelFlavor::Qml:
-        return ( w->*qml )( parent, a... );
+        return qml( w, viewManager, parent, a... );
 #endif
     case Calamares::Branding::PanelFlavor::None:
         return nullptr;
@@ -361,14 +371,11 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
         branding->sidebarFlavor(),
         this,
         baseWidget,
-        &CalamaresWindow::getWidgetSidebar,
-        &CalamaresWindow::getQmlSidebar,
+        ::getWidgetSidebar,
+        ::getQmlSidebar,
         qBound( 100, CalamaresUtils::defaultFontHeight() * 12, w < windowPreferredWidth ? 100 : 190 ) );
-    QWidget* navigation = flavoredWidget( branding->navigationFlavor(),
-                                          this,
-                                          baseWidget,
-                                          &CalamaresWindow::getWidgetNavigation,
-                                          &CalamaresWindow::getQmlNavigation );
+    QWidget* navigation
+        = flavoredWidget( branding->navigationFlavor(), this, baseWidget, ::getWidgetNavigation, ::getQmlNavigation );
 
     // Build up the contentsLayout (a VBox) top-to-bottom
     // .. note that the bottom is mirrored wrt. the top
