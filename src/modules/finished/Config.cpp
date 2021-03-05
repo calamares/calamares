@@ -112,7 +112,7 @@ void
 Config::doRestart()
 {
     cDebug() << "Restart requested, mode=" << restartModes().find( restartNowMode() ) << " want?" << restartNowWanted();
-    if ( restartNowMode() != RestartMode::Never && restartNowWanted() )
+    if ( restartNowWanted() )
     {
         cDebug() << "Running restart command" << m_restartNowCommand;
         QProcess::execute( "/bin/sh", { "-c", m_restartNowCommand } );

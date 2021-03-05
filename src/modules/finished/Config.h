@@ -46,7 +46,14 @@ public Q_SLOTS:
     RestartMode restartNowMode() const { return m_restartNowMode; }
     void setRestartNowMode( RestartMode m );
 
-    bool restartNowWanted() const { return m_userWantsRestart; }
+    bool restartNowWanted() const
+    {
+        if ( restartNowMode() == RestartMode::Never )
+        {
+            return false;
+        }
+        return ( restartNowMode() == RestartMode::Always ) || m_userWantsRestart;
+    }
     void setRestartNowWanted( bool w );
 
     QString restartNowCommand() const { return m_restartNowCommand; }
@@ -62,6 +69,10 @@ public Q_SLOTS:
      * This should generally not be called somewhere during the
      * application's execution, but only in response to QApplication::quit()
      * or something like that when the user expects the system to restart.
+     *
+     * The "if desired" part is: only if the restart mode allows it,
+     * **and** the user has checked the box (or done whatever to
+     * turn on restartNowWanted()).
      */
     void doRestart();
 
