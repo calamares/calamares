@@ -103,24 +103,8 @@ CalamaresWindow::getWidgetSidebar( QWidget* parent, int desiredWidth )
         sideLayout->addWidget( debugWindowBtn );
         debugWindowBtn->setFlat( true );
         debugWindowBtn->setCheckable( true );
-        connect( debugWindowBtn, &QPushButton::clicked, this, [=]( bool checked ) {
-            if ( checked )
-            {
-                m_debugWindow = new Calamares::DebugWindow();
-                m_debugWindow->show();
-                connect( m_debugWindow.data(), &Calamares::DebugWindow::closed, this, [=]() {
-                    m_debugWindow->deleteLater();
-                    debugWindowBtn->setChecked( false );
-                } );
-            }
-            else
-            {
-                if ( m_debugWindow )
-                {
-                    m_debugWindow->deleteLater();
-                }
-            }
-        } );
+        connect( debugWindowBtn, &QPushButton::clicked, this, &CalamaresWindow::showDebugWindow );
+        connect( this, &CalamaresWindow::debugWindowShown, debugWindowBtn, &QPushButton::setChecked );
     }
 
     CalamaresUtils::unmarginLayout( sideLayout );
@@ -428,6 +412,29 @@ CalamaresWindow::ensureSize( QSize size )
     auto w = this->size().width();
 
     resize( w, h );
+}
+
+void
+CalamaresWindow::showDebugWindow( bool show )
+{
+    if ( show )
+    {
+        m_debugWindow = new Calamares::DebugWindow();
+        m_debugWindow->show();
+        connect( m_debugWindow.data(), &Calamares::DebugWindow::closed, this, [=]() {
+            m_debugWindow->deleteLater();
+            emit debugWindowShown( false );
+        } );
+        emit debugWindowShown( true );
+    }
+    else
+    {
+        if ( m_debugWindow )
+        {
+            m_debugWindow->deleteLater();
+        }
+        emit debugWindowShown( false );
+    }
 }
 
 void

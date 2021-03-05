@@ -30,13 +30,24 @@ public:
     CalamaresWindow( QWidget* parent = nullptr );
     ~CalamaresWindow() override {}
 
-public slots:
+public Q_SLOTS:
     /**
      * This asks the main window to grow to accomodate @p size pixels, to accomodate
      * larger-than-expected window contents. The enlargement may be silently
      * ignored.
      */
     void ensureSize( QSize size );
+
+    /** @brief Set visibility of debug window
+     *
+     * Shows or hides the debug window, depending on @p show.
+     * If Calamares is not in debug mode, nothing happens and the debug
+     * window remains hidden.
+     */
+    void showDebugWindow( bool show );
+
+Q_SIGNALS:
+    void debugWindowShown( bool show );
 
 protected:
     virtual void closeEvent( QCloseEvent* e ) override;
