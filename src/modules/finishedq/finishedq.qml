@@ -91,4 +91,16 @@ Page {
         }
     }
 
+    function onActivate()
+    {
+        // This QML page has a **button** for restarting,
+        // so just pretend the setting is clicked; this is a
+        // poor solution, recommended is to set restartNowMode to Always
+        // in the config.
+        config.setRestartNowWanted(true);
+    }
+
+    function onLeave()
+    {
+    }
 }
