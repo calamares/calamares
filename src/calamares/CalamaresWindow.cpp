@@ -55,6 +55,19 @@ windowDimensionToPixels( const Calamares::Branding::WindowDimension& u )
     return 0;
 }
 
+/** @brief Expected orientation of the panels, based on their side
+ *
+ * Panels on the left and right are expected to be "vertical" style,
+ * top and bottom should be "horizontal bars". This function maps
+ * the sides to expected orientation.
+ */
+static inline Qt::Orientation
+orientation( const Calamares::Branding::PanelSide s )
+{
+    using Side = Calamares::Branding::PanelSide;
+    return ( s == Side::Left || s == Side::Right ) ? Qt::Orientation::Vertical : Qt::Orientation::Horizontal;
+}
+
 /** @brief Get a button-sized icon. */
 static inline QPixmap
 getButtonIcon( const QString& name )
@@ -73,7 +86,11 @@ setButtonIcon( QPushButton* button, const QString& name )
 }
 
 static QWidget*
-getWidgetSidebar( CalamaresWindow* window, Calamares::ViewManager* viewManager, QWidget* parent, int desiredWidth )
+getWidgetSidebar( CalamaresWindow* window,
+                  Calamares::ViewManager* viewManager,
+                  QWidget* parent,
+                  Qt::Orientation,
+                  int desiredWidth )
 {
     const Calamares::Branding* const branding = Calamares::Branding::instance();
 
@@ -130,7 +147,7 @@ getWidgetSidebar( CalamaresWindow* window, Calamares::ViewManager* viewManager, 
 }
 
 static QWidget*
-getWidgetNavigation( CalamaresWindow*, Calamares::ViewManager* viewManager, QWidget* parent )
+getWidgetNavigation( CalamaresWindow*, Calamares::ViewManager* viewManager, QWidget* parent, Qt::Orientation, int )
 {
     QWidget* navigation = new QWidget( parent );
     QBoxLayout* bottomLayout = new QHBoxLayout;
@@ -193,7 +210,7 @@ getWidgetNavigation( CalamaresWindow*, Calamares::ViewManager* viewManager, QWid
 
 #ifdef WITH_QML
 static QWidget*
-getQmlSidebar( CalamaresWindow*, Calamares::ViewManager*, QWidget* parent, int desiredWidth )
+getQmlSidebar( CalamaresWindow*, Calamares::ViewManager*, QWidget* parent, Qt::Orientation, int desiredWidth )
 {
     CalamaresUtils::registerQmlModels();
     QQuickWidget* w = new QQuickWidget( parent );
@@ -206,7 +223,7 @@ getQmlSidebar( CalamaresWindow*, Calamares::ViewManager*, QWidget* parent, int d
 }
 
 static QWidget*
-getQmlNavigation( CalamaresWindow*, Calamares::ViewManager*, QWidget* parent )
+getQmlNavigation( CalamaresWindow*, Calamares::ViewManager*, QWidget* parent, Qt::Orientation, int )
 {
     CalamaresUtils::registerQmlModels();
     QQuickWidget* w = new QQuickWidget( parent );
@@ -232,12 +249,12 @@ getQmlNavigation( CalamaresWindow*, Calamares::ViewManager*, QWidget* parent )
 // Calls to flavoredWidget() still refer to these *names*
 // even if they are subsequently not used.
 static QWidget*
-getQmlSidebar( CalamaresWindow*, Calamares::ViewManager*, QWidget* parent, int desiredWidth )
+getQmlSidebar( CalamaresWindow*, Calamares::ViewManager*, QWidget* parent, Qt::Orientation, int desiredWidth )
 {
     return nullptr;
 }
 static QWidget*
-getQmlNavigation( CalamaresWindow*, Calamares::ViewManager*, QWidget* parent )
+getQmlNavigation( CalamaresWindow*, Calamares::ViewManager*, QWidget* parent, Qt::Orientation, int desiredWidth )
 {
     return nullptr;
 }
@@ -251,6 +268,7 @@ getQmlNavigation( CalamaresWindow*, Calamares::ViewManager*, QWidget* parent )
 template < typename widgetMaker, typename... args >
 QWidget*
 flavoredWidget( Calamares::Branding::PanelFlavor flavor,
+                Qt::Orientation o,
                 CalamaresWindow* w,
                 QWidget* parent,
                 widgetMaker widget,
@@ -264,10 +282,10 @@ flavoredWidget( Calamares::Branding::PanelFlavor flavor,
     switch ( flavor )
     {
     case Calamares::Branding::PanelFlavor::Widget:
-        return widget( w, viewManager, parent, a... );
+        return widget( w, viewManager, parent, o, a... );
 #ifdef WITH_QML
     case Calamares::Branding::PanelFlavor::Qml:
-        return qml( w, viewManager, parent, a... );
+        return qml( w, viewManager, parent, o, a... );
 #endif
     case Calamares::Branding::PanelFlavor::None:
         return nullptr;
@@ -369,13 +387,19 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
 
     QWidget* sideBox = flavoredWidget(
         branding->sidebarFlavor(),
+        ::orientation( branding->sidebarSide() ),
         this,
         baseWidget,
         ::getWidgetSidebar,
         ::getQmlSidebar,
         qBound( 100, CalamaresUtils::defaultFontHeight() * 12, w < windowPreferredWidth ? 100 : 190 ) );
-    QWidget* navigation
-        = flavoredWidget( branding->navigationFlavor(), this, baseWidget, ::getWidgetNavigation, ::getQmlNavigation );
+    QWidget* navigation = flavoredWidget( branding->navigationFlavor(),
+                                          ::orientation( branding->sidebarSide() ),
+                                          this,
+                                          baseWidget,
+                                          ::getWidgetNavigation,
+                                          ::getQmlNavigation,
+                                          64 );
 
     // Build up the contentsLayout (a VBox) top-to-bottom
     // .. note that the bottom is mirrored wrt. the top
