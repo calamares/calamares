@@ -10,13 +10,18 @@ website will have to do for older versions.
 # 3.2.38 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - Anke Boersma
+ - Anubhav Choudhary
 
 ## Core ##
- - No core changes yet
+ - Uploading your log files (in case of installation failure) has been
+   expanded and is now more
+   configurable. Users should still take care when uploading logs,
+   and distro's should configure a URL with no public viewing
+   for the uploading of those logs. (Thanks Anubhav)
 
 ## Modules ##
- - No module changes yet
+ - A new QML-based *finishedq* module has been added. (Thanks Anke)
 
 
 # 3.2.37 (2021-02-23) #
