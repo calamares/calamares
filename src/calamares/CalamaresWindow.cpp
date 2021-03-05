@@ -209,38 +209,50 @@ getWidgetNavigation( CalamaresWindow*, Calamares::ViewManager* viewManager, QWid
 }
 
 #ifdef WITH_QML
+
+static inline void
+setDimension( QQuickWidget* w, Qt::Orientation o, int desiredWidth )
+{
+    w->setSizePolicy( o == Qt::Orientation::Vertical ? QSizePolicy::MinimumExpanding : QSizePolicy::Expanding,
+                      o == Qt::Orientation::Horizontal ? QSizePolicy::MinimumExpanding : QSizePolicy::Expanding );
+    if ( o == Qt::Orientation::Vertical )
+    {
+        w->setFixedWidth( desiredWidth );
+    }
+    else
+    {
+        // If the QML itself sets a height, use that, otherwise go to 48 pixels
+        // which seems to match what the widget navigation would use for height
+        // (with *my* specific screen, style, etc. so YMMV).
+        //
+        // Bound between (16, 64) with a default of 48.
+        qreal minimumHeight = qBound( qreal( 16 ), w->rootObject() ? w->rootObject()->height() : 48, qreal( 64 ) );
+        w->setMinimumHeight( int( minimumHeight ) );
+        w->setFixedHeight( int( minimumHeight ) );
+    }
+    w->setResizeMode( QQuickWidget::SizeRootObjectToView );
+}
+
+
 static QWidget*
-getQmlSidebar( CalamaresWindow*, Calamares::ViewManager*, QWidget* parent, Qt::Orientation, int desiredWidth )
+getQmlSidebar( CalamaresWindow*, Calamares::ViewManager*, QWidget* parent, Qt::Orientation o, int desiredWidth )
 {
     CalamaresUtils::registerQmlModels();
     QQuickWidget* w = new QQuickWidget( parent );
-    w->setFixedWidth( desiredWidth );
-    w->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
-    w->setResizeMode( QQuickWidget::SizeRootObjectToView );
     w->setSource( QUrl(
         CalamaresUtils::searchQmlFile( CalamaresUtils::QmlSearch::Both, QStringLiteral( "calamares-sidebar" ) ) ) );
+    setDimension( w, o, desiredWidth );
     return w;
 }
 
 static QWidget*
-getQmlNavigation( CalamaresWindow*, Calamares::ViewManager*, QWidget* parent, Qt::Orientation, int )
+getQmlNavigation( CalamaresWindow*, Calamares::ViewManager*, QWidget* parent, Qt::Orientation o, int desiredWidth )
 {
     CalamaresUtils::registerQmlModels();
     QQuickWidget* w = new QQuickWidget( parent );
-    w->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::MinimumExpanding );
-    w->setResizeMode( QQuickWidget::SizeRootObjectToView );
     w->setSource( QUrl(
         CalamaresUtils::searchQmlFile( CalamaresUtils::QmlSearch::Both, QStringLiteral( "calamares-navigation" ) ) ) );
-
-    // If the QML itself sets a height, use that, otherwise go to 48 pixels
-    // which seems to match what the widget navigation would use for height
-    // (with *my* specific screen, style, etc. so YMMV).
-    //
-    // Bound between (16, 64) with a default of 48.
-    qreal minimumHeight = qBound( qreal( 16 ), w->rootObject() ? w->rootObject()->height() : 48, qreal( 64 ) );
-    w->setMinimumHeight( int( minimumHeight ) );
-    w->setFixedHeight( int( minimumHeight ) );
-
+    setDimension( w, o, desiredWidth );
     return w;
 }
 #else
