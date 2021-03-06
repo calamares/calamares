@@ -8,13 +8,11 @@ if( NOT WITH_QML )
     return()
 endif()
 
-find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED DBus Network )
-
-find_package( KF5Plasma CONFIG)
-set_package_properties(KF5Plasma PROPERTIES
-    DESCRIPTION "Used for running commands in QML"
-    TYPE RUNTIME
-)
+find_package( Qt5 ${QT_VERSION} CONFIG DBus Network )
+if ( NOT TARGET Qt5::DBus OR NOT TARGET Qt5::Network )
+    calamares_skip_module( "finishedq (missing DBus or Network)" )
+    return()
+endif()
 
 set( _finished ${CMAKE_CURRENT_SOURCE_DIR}/../finished )
 include_directories( ${_finished} )
