@@ -1,6 +1,7 @@
 /* Sample of QML progress tree.
 
    SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+   SPDX-FileCopyrightText: 2021 Anke Boersma <demm@kaosx.us>
    SPDX-License-Identifier: GPL-3.0-or-later
 
 
@@ -58,6 +59,30 @@ Rectangle {
 
         Item {
             Layout.fillHeight: true;
+        }
+
+        Rectangle {
+            Layout.fillWidth: true;
+            height: 35
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
+            color: Branding.styleString( mouseArea.containsMouse ? Branding.SidebarTextHighlight : Branding.SidebarBackground);
+            visible: debug.enabled
+
+            MouseArea {
+                id: mouseArea
+                anchors.fill: parent;
+                cursorShape: Qt.PointingHandCursor
+                hoverEnabled: true
+                Text {
+                    anchors.verticalCenter: parent.verticalCenter;
+                    x: parent.x + 4;
+                    text: qsTr("Show debug information")
+                    color: Branding.styleString( mouseArea.containsMouse ? Branding.SidebarTextSelect : Branding.SidebarBackground );
+                    font.pointSize : 9
+                }
+
+                onClicked: debug.toggle()
+            }
         }
     }
 }

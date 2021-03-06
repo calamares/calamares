@@ -274,5 +274,11 @@ DebugWindowManager::show( bool visible )
     }
 }
 
+void
+DebugWindowManager::toggle()
+{
+    show( !m_visible );
+}
+
 
 }  // namespace Calamares

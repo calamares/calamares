@@ -32,6 +32,8 @@
 #include <QFileInfo>
 #include <QLabel>
 #ifdef WITH_QML
+#include <QQmlContext>
+#include <QQmlEngine>
 #include <QQuickItem>
 #include <QQuickWidget>
 #endif
@@ -240,7 +242,7 @@ setDimension( QQuickWidget* w, Qt::Orientation o, int desiredWidth )
 
 
 static QWidget*
-getQmlSidebar( Calamares::DebugWindowManager*,
+getQmlSidebar( Calamares::DebugWindowManager* debug,
                Calamares::ViewManager*,
                QWidget* parent,
                Qt::Orientation o,
@@ -248,6 +250,11 @@ getQmlSidebar( Calamares::DebugWindowManager*,
 {
     CalamaresUtils::registerQmlModels();
     QQuickWidget* w = new QQuickWidget( parent );
+    if ( debug )
+    {
+        w->engine()->rootContext()->setContextProperty( "debug", debug );
+    }
+
     w->setSource( QUrl(
         CalamaresUtils::searchQmlFile( CalamaresUtils::QmlSearch::Both, QStringLiteral( "calamares-sidebar" ) ) ) );
     setDimension( w, o, desiredWidth );
@@ -255,7 +262,7 @@ getQmlSidebar( Calamares::DebugWindowManager*,
 }
 
 static QWidget*
-getQmlNavigation( Calamares::DebugWindowManager*,
+getQmlNavigation( Calamares::DebugWindowManager* debug,
                   Calamares::ViewManager*,
                   QWidget* parent,
                   Qt::Orientation o,
@@ -263,6 +270,10 @@ getQmlNavigation( Calamares::DebugWindowManager*,
 {
     CalamaresUtils::registerQmlModels();
     QQuickWidget* w = new QQuickWidget( parent );
+    if ( debug )
+    {
+        w->engine()->rootContext()->setContextProperty( "debug", debug );
+    }
     w->setSource( QUrl(
         CalamaresUtils::searchQmlFile( CalamaresUtils::QmlSearch::Both, QStringLiteral( "calamares-navigation" ) ) ) );
     setDimension( w, o, desiredWidth );

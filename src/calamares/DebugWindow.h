@@ -77,6 +77,7 @@ public Q_SLOTS:
     bool enabled() const;
     bool visible() const { return m_visible; }
     void show( bool visible );
+    void toggle();
 
 signals:
     void visibleChanged( bool visible );
