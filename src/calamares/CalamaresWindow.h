@@ -11,12 +11,13 @@
 #ifndef CALAMARESWINDOW_H
 #define CALAMARESWINDOW_H
 
-#include <QPointer>
 #include <QWidget>
+
+#include <memory>
 
 namespace Calamares
 {
-class DebugWindow;
+class DebugWindowManager;
 class ViewManager;
 }  // namespace Calamares
 
@@ -38,23 +39,12 @@ public Q_SLOTS:
      */
     void ensureSize( QSize size );
 
-    /** @brief Set visibility of debug window
-     *
-     * Shows or hides the debug window, depending on @p show.
-     * If Calamares is not in debug mode, nothing happens and the debug
-     * window remains hidden.
-     */
-    void showDebugWindow( bool show );
-
-Q_SIGNALS:
-    void debugWindowShown( bool show );
-
 protected:
     virtual void closeEvent( QCloseEvent* e ) override;
 
 private:
-    QPointer< Calamares::DebugWindow > m_debugWindow;  // Managed by self
-    Calamares::ViewManager* m_viewManager;
+    Calamares::DebugWindowManager* m_debugManager = nullptr;
+    Calamares::ViewManager* m_viewManager = nullptr;
 };
 
 #endif  // CALAMARESWINDOW_H
