@@ -121,10 +121,11 @@ Config::doRestart()
 
 
 void
-Config::doNotify( bool hasFailed )
+Config::doNotify( bool hasFailed, bool sendAnyway )
 {
-    if ( !notifyOnFinished() )
+    if ( !sendAnyway )
     {
+        cDebug() << "Notification failed?" << hasFailed << "not sent.";
         return;
     }
 
