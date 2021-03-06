@@ -406,7 +406,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
         ::getQmlSidebar,
         qBound( 100, CalamaresUtils::defaultFontHeight() * 12, w < windowPreferredWidth ? 100 : 190 ) );
     QWidget* navigation = flavoredWidget( branding->navigationFlavor(),
-                                          ::orientation( branding->sidebarSide() ),
+                                          ::orientation( branding->navigationSide() ),
                                           this,
                                           baseWidget,
                                           ::getWidgetNavigation,
