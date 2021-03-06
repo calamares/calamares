@@ -73,8 +73,13 @@ public Q_SLOTS:
      * The "if desired" part is: only if the restart mode allows it,
      * **and** the user has checked the box (or done whatever to
      * turn on restartNowWanted()).
+     *
+     * - The one-argument form ignores what the user wants and restarts
+     *   if @p restartAnyway is @c true **unless** the mode is Never
+     * - The no-argument form uses the user setting
      */
-    void doRestart();
+    void doRestart( bool restartAnyway );
+    void doRestart() { doRestart( restartNowWanted() ); }
 
     /** @brief Send DBus notification
      *

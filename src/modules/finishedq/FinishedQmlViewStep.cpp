@@ -67,6 +67,7 @@ void
 FinishedQmlViewStep::onActivate()
 {
     m_config->doNotify();
+    connect( qApp, &QApplication::aboutToQuit, m_config, qOverload<>( &Config::doRestart ) );
     QmlViewStep::onActivate();
 }
 

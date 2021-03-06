@@ -70,7 +70,7 @@ Page {
         Button {
             text: qsTr("Restart System")
             icon.name: "system-reboot"
-            onClicked: { config.doRestart(); }
+            onClicked: { config.doRestart(true); }
         }
     }
 
@@ -93,11 +93,6 @@ Page {
 
     function onActivate()
     {
-        // This QML page has a **button** for restarting,
-        // so just pretend the setting is clicked; this is a
-        // poor solution, recommended is to set restartNowMode to Always
-        // in the config.
-        config.setRestartNowWanted(true);
     }
 
     function onLeave()
