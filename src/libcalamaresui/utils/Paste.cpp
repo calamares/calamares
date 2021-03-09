@@ -20,6 +20,23 @@
 #include <QTcpSocket>
 #include <QUrl>
 
+/** @brief Reads the logfile, returns its contents.
+ *
+ * Returns an empty QByteArray() on any kind of error.
+ */
+static QByteArray
+logFileContents()
+{
+    QFile pasteSourceFile( Logger::logFile() );
+    if ( !pasteSourceFile.open( QIODevice::ReadOnly | QIODevice::Text ) )
+    {
+        cError() << "Could not open log file";
+        return QByteArray();
+    }
+    // TODO: read the **last** 16kiB?
+    return pasteSourceFile.read( 16384 /* bytes */ );
+}
+
 namespace CalamaresUtils
 {
 
@@ -32,23 +49,16 @@ QStringList UploadServersList = {
 QString
 ficheLogUpload( QObject* parent )
 {
-
     const QString& ficheHost = Calamares::Branding::instance()->uploadServer( Calamares::Branding::URL );
     quint16 fichePort = Calamares::Branding::instance()->uploadServer( Calamares::Branding::Port ).toInt();
 
     QString pasteUrlFmt = parent->tr( "Install log posted to\n\n%1\n\nLink copied to clipboard" );
 
-    QFile pasteSourceFile( Logger::logFile() );
-    if ( !pasteSourceFile.open( QIODevice::ReadOnly | QIODevice::Text ) )
+    QByteArray pasteData = logFileContents();
+    if ( pasteData.isEmpty() )
     {
-        cError() << "Could not open log file";
+        // An error has already been logged
         return QString();
-    }
-
-    QByteArray pasteData;
-    while ( !pasteSourceFile.atEnd() )
-    {
-        pasteData += pasteSourceFile.readLine();
     }
 
     QTcpSocket* socket = new QTcpSocket( parent );
