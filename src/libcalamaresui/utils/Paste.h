@@ -10,7 +10,7 @@
 #ifndef UTILS_PASTE_H
 #define UTILS_PASTE_H
 
-#include<QStringList>
+#include <QStringList>
 
 class QObject;
 class QString;

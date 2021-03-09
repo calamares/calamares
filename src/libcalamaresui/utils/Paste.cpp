@@ -12,13 +12,13 @@
 #include "Branding.h"
 #include "utils/Logger.h"
 
+#include <QApplication>
+#include <QClipboard>
 #include <QFile>
 #include <QRegularExpression>
+#include <QStringList>
 #include <QTcpSocket>
 #include <QUrl>
-#include <QClipboard>
-#include <QApplication>
-#include <QStringList>
 
 namespace CalamaresUtils
 {
@@ -96,11 +96,11 @@ ficheLogUpload( QObject* parent )
     if ( nBytesRead >= 8 && pasteUrl.isValid() && pasteUrlRegex.match( pasteUrlStr ).hasMatch() )
     {
         QClipboard* clipboard = QApplication::clipboard();
-        clipboard->setText(pasteUrlStr, QClipboard::Clipboard);
+        clipboard->setText( pasteUrlStr, QClipboard::Clipboard );
 
-        if (clipboard->supportsSelection())
+        if ( clipboard->supportsSelection() )
         {
-             clipboard->setText(pasteUrlStr, QClipboard::Selection);
+            clipboard->setText( pasteUrlStr, QClipboard::Selection );
         }
     }
     else
