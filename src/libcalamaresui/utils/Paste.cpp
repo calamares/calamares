@@ -52,7 +52,6 @@ ficheLogUpload( QObject* parent )
     const QString& ficheHost = Calamares::Branding::instance()->uploadServer( Calamares::Branding::URL );
     quint16 fichePort = Calamares::Branding::instance()->uploadServer( Calamares::Branding::Port ).toInt();
 
-
     QByteArray pasteData = logFileContents();
     if ( pasteData.isEmpty() )
     {
@@ -70,7 +69,7 @@ ficheLogUpload( QObject* parent )
         return QString();
     }
 
-    cDebug() << "Connected to paste server";
+    cDebug() << "Connected to paste server" << ficheHost;
 
     socket->write( pasteData );
 
