@@ -10,6 +10,7 @@
 #include "Paste.h"
 
 #include "Branding.h"
+#include "DllMacro.h"
 #include "utils/Logger.h"
 
 #include <QFile>
@@ -20,7 +21,7 @@
  *
  * Returns an empty QByteArray() on any kind of error.
  */
-static QByteArray
+STATICTEST QByteArray
 logFileContents()
 {
     QFile pasteSourceFile( Logger::logFile() );
@@ -34,16 +35,9 @@ logFileContents()
 }
 
 
-static QString
-ficheLogUpload( const QUrl& serverUrl, QObject* parent )
+STATICTEST QString
+ficheLogUpload( const QByteArray& pasteData, QUrl& serverUrl, QObject* parent )
 {
-    QByteArray pasteData = logFileContents();
-    if ( pasteData.isEmpty() )
-    {
-        // An error has already been logged
-        return QString();
-    }
-
     QTcpSocket* socket = new QTcpSocket( parent );
     socket->connectToHost( serverUrl.host(), serverUrl.port() );
 
@@ -100,6 +94,18 @@ CalamaresUtils::Paste::doLogUpload( QObject* parent )
         cWarning() << "Upload configure with invalid URL";
         return QString();
     }
+    if ( type == Calamares::Branding::UploadServerType::None )
+    {
+        // Early return to avoid reading the log file
+        return QString();
+    }
+
+    QByteArray pasteData = logFileContents();
+    if ( pasteData.isEmpty() )
+    {
+        // An error has already been logged
+        return QString();
+    }
 
     switch ( type )
     {
@@ -107,7 +113,7 @@ CalamaresUtils::Paste::doLogUpload( QObject* parent )
         cWarning() << "No upload configured.";
         return QString();
     case Calamares::Branding::UploadServerType::Fiche:
-        return ficheLogUpload( serverUrl, parent );
+        return ficheLogUpload( pasteData, serverUrl, parent );
     }
     return QString();
 }
