@@ -15,7 +15,6 @@
 #include <QApplication>
 #include <QClipboard>
 #include <QFile>
-#include <QRegularExpression>
 #include <QStringList>
 #include <QTcpSocket>
 #include <QUrl>
@@ -95,12 +94,11 @@ ficheLogUpload( QObject* parent )
 
     QUrl pasteUrl = QUrl( QString( responseText ).trimmed(), QUrl::StrictMode );
     QString pasteUrlStr = pasteUrl.toString();
-    QRegularExpression pasteUrlRegex( "^http[s]?://" + ficheHost );
 
     QString pasteUrlFmt = parent->tr( "Install log posted to\n\n%1\n\nLink copied to clipboard" );
     QString pasteUrlMsg = pasteUrlFmt.arg( pasteUrlStr );
 
-    if ( pasteUrl.isValid() && pasteUrlRegex.match( pasteUrlStr ).hasMatch() )
+    if ( pasteUrl.isValid() && pasteUrl.host() == ficheHost )
     {
         QClipboard* clipboard = QApplication::clipboard();
         clipboard->setText( pasteUrlStr, QClipboard::Clipboard );
