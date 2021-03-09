@@ -52,7 +52,6 @@ ficheLogUpload( QObject* parent )
     const QString& ficheHost = Calamares::Branding::instance()->uploadServer( Calamares::Branding::URL );
     quint16 fichePort = Calamares::Branding::instance()->uploadServer( Calamares::Branding::Port ).toInt();
 
-    QString pasteUrlFmt = parent->tr( "Install log posted to\n\n%1\n\nLink copied to clipboard" );
 
     QByteArray pasteData = logFileContents();
     if ( pasteData.isEmpty() )
@@ -101,7 +100,9 @@ ficheLogUpload( QObject* parent )
     QUrl pasteUrl = QUrl( QString( resp ).trimmed(), QUrl::StrictMode );
     QString pasteUrlStr = pasteUrl.toString();
     QRegularExpression pasteUrlRegex( "^http[s]?://" + ficheHost );
-    QString pasteUrlMsg = QString( pasteUrlFmt ).arg( pasteUrlStr );
+
+    QString pasteUrlFmt = parent->tr( "Install log posted to\n\n%1\n\nLink copied to clipboard" );
+    QString pasteUrlMsg = pasteUrlFmt.arg( pasteUrlStr );
 
     if ( nBytesRead >= 8 && pasteUrl.isValid() && pasteUrlRegex.match( pasteUrlStr ).hasMatch() )
     {
