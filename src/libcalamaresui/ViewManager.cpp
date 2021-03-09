@@ -186,11 +186,10 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
     msgBox->show();
 
     cDebug() << "Calamares will quit when the dialog closes.";
-    connect( msgBox, &QMessageBox::buttonClicked, [msgBox]( QAbstractButton* button ) {
+    connect( msgBox, &QMessageBox::buttonClicked, [msgBox, serverType]( QAbstractButton* button ) {
         if ( msgBox->buttonRole( button ) == QMessageBox::ButtonRole::YesRole )
         {
             QString pasteUrlMsg;
-            QString serverType = Calamares::Branding::instance()->uploadServer( Calamares::Branding::Type );
             if ( serverType == "fiche" )
             {
                 pasteUrlMsg = CalamaresUtils::ficheLogUpload( msgBox );
