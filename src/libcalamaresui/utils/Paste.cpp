@@ -36,7 +36,7 @@ logFileContents()
 
 
 STATICTEST QString
-ficheLogUpload( const QByteArray& pasteData, QUrl& serverUrl, QObject* parent )
+ficheLogUpload( const QByteArray& pasteData, const QUrl& serverUrl, QObject* parent )
 {
     QTcpSocket* socket = new QTcpSocket( parent );
     socket->connectToHost( serverUrl.host(), serverUrl.port() );
