@@ -226,7 +226,8 @@ public:
      * This is both the type (which may be none, in which case the URL
      * is irrelevant and usually empty) and the URL for the upload.
      */
-    QPair< UploadServerType, QUrl > uploadServer() const { return m_uploadServer; }
+    using UploadServerInfo = QPair< UploadServerType, QUrl >;
+    UploadServerInfo uploadServer() const { return m_uploadServer; }
 
     /**
      * Creates a map called "branding" in the global storage, and inserts an
@@ -261,7 +262,7 @@ private:
     QMap< QString, QString > m_strings;
     QMap< QString, QString > m_images;
     QMap< QString, QString > m_style;
-    QPair< UploadServerType, QUrl > m_uploadServer;
+    UploadServerInfo m_uploadServer;
 
     /* The slideshow can be done in one of two ways:
      *  - as a sequence of images
