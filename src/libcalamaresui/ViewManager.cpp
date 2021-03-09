@@ -142,8 +142,7 @@ ViewManager::insertViewStep( int before, ViewStep* step )
 void
 ViewManager::onInstallationFailed( const QString& message, const QString& details )
 {
-    QString serverType = Calamares::Branding::instance()->uploadServer( Calamares::Branding::Type );
-    bool shouldOfferWebPaste = CalamaresUtils::UploadServersList.contains( serverType );
+    bool shouldOfferWebPaste = Calamares::Branding::instance()->uploadServer().first != Calamares::Branding::UploadServerType::None;
 
     cError() << "Installation failed:" << message;
     cDebug() << Logger::SubEntry << "- message:" << message;
@@ -186,18 +185,10 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
     msgBox->show();
 
     cDebug() << "Calamares will quit when the dialog closes.";
-    connect( msgBox, &QMessageBox::buttonClicked, [msgBox, serverType]( QAbstractButton* button ) {
+    connect( msgBox, &QMessageBox::buttonClicked, [msgBox]( QAbstractButton* button ) {
         if ( msgBox->buttonRole( button ) == QMessageBox::ButtonRole::YesRole )
         {
-            QString pasteUrlMsg;
-            if ( serverType == "fiche" )
-            {
-                pasteUrlMsg = CalamaresUtils::ficheLogUpload( msgBox );
-            }
-            else
-            {
-                pasteUrlMsg = QString();
-            }
+            QString pasteUrlMsg = CalamaresUtils::Paste::doLogUpload();
 
             QString pasteUrlTitle = tr( "Install Log Paste URL" );
             if ( pasteUrlMsg.isEmpty() )
