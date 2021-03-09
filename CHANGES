@@ -15,10 +15,9 @@ This release contains contributions from (alphabetically by first name):
 
 ## Core ##
  - Uploading your log files (in case of installation failure) has been
-   expanded and is now more
-   configurable. Users should still take care when uploading logs,
-   and distro's should configure a URL with no public viewing
-   for the uploading of those logs. (Thanks Anubhav)
+   expanded and is now more configurable. Users should still take care
+   when uploading logs, and distro's should configure a URL with
+   no public viewing of those logs. (Thanks Anubhav)
 
 ## Modules ##
  - A new QML-based *finishedq* module has been added. (Thanks Anke)
