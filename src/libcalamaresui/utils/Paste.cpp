@@ -90,20 +90,17 @@ ficheLogUpload( QObject* parent )
     }
 
     cDebug() << Logger::SubEntry << "Reading response from paste server";
-
-    char resp[ 1024 ];
-    resp[ 0 ] = '\0';
-    qint64 nBytesRead = socket->readLine( resp, 1024 );
+    QByteArray responseText = socket->readLine( 1024 );
     socket->close();
 
-    QUrl pasteUrl = QUrl( QString( resp ).trimmed(), QUrl::StrictMode );
+    QUrl pasteUrl = QUrl( QString( responseText ).trimmed(), QUrl::StrictMode );
     QString pasteUrlStr = pasteUrl.toString();
     QRegularExpression pasteUrlRegex( "^http[s]?://" + ficheHost );
 
     QString pasteUrlFmt = parent->tr( "Install log posted to\n\n%1\n\nLink copied to clipboard" );
     QString pasteUrlMsg = pasteUrlFmt.arg( pasteUrlStr );
 
-    if ( nBytesRead >= 8 && pasteUrl.isValid() && pasteUrlRegex.match( pasteUrlStr ).hasMatch() )
+    if ( pasteUrl.isValid() && pasteUrlRegex.match( pasteUrlStr ).hasMatch() )
     {
         QClipboard* clipboard = QApplication::clipboard();
         clipboard->setText( pasteUrlStr, QClipboard::Clipboard );
