@@ -12,10 +12,7 @@
 #include "Branding.h"
 #include "utils/Logger.h"
 
-#include <QApplication>
-#include <QClipboard>
 #include <QFile>
-#include <QStringList>
 #include <QTcpSocket>
 #include <QUrl>
 
@@ -82,29 +79,16 @@ ficheLogUpload( const QUrl& serverUrl, QObject* parent )
     socket->close();
 
     QUrl pasteUrl = QUrl( QString( responseText ).trimmed(), QUrl::StrictMode );
-    QString pasteUrlStr = pasteUrl.toString();
-
-    QString pasteUrlFmt = parent->tr( "Install log posted to\n\n%1\n\nLink copied to clipboard" );
-    QString pasteUrlMsg = pasteUrlFmt.arg( pasteUrlStr );
-
     if ( pasteUrl.isValid() && pasteUrl.host() == serverUrl.host() )
     {
-        QClipboard* clipboard = QApplication::clipboard();
-        clipboard->setText( pasteUrlStr, QClipboard::Clipboard );
-
-        if ( clipboard->supportsSelection() )
-        {
-            clipboard->setText( pasteUrlStr, QClipboard::Selection );
-        }
+        cDebug() << Logger::SubEntry << "Paste server results:" << pasteUrl;
+        return pasteUrl.toString();
     }
     else
     {
         cError() << "No data from paste server";
         return QString();
     }
-
-    cDebug() << Logger::SubEntry << "Paste server results:" << pasteUrlMsg;
-    return pasteUrlMsg;
 }
 
 QString

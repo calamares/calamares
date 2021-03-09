@@ -27,6 +27,7 @@
 
 #include <QApplication>
 #include <QBoxLayout>
+#include <QClipboard>
 #include <QFile>
 #include <QMessageBox>
 #include <QMetaObject>
@@ -189,16 +190,26 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
     connect( msgBox, &QMessageBox::buttonClicked, [msgBox]( QAbstractButton* button ) {
         if ( msgBox->buttonRole( button ) == QMessageBox::ButtonRole::YesRole )
         {
-            QString pasteUrlMsg = CalamaresUtils::Paste::doLogUpload( msgBox );
-
-            QString pasteUrlTitle = tr( "Install Log Paste URL" );
-            if ( pasteUrlMsg.isEmpty() )
+            QString pasteUrl = CalamaresUtils::Paste::doLogUpload( msgBox );
+            QString pasteUrlMessage;
+            if ( pasteUrl.isEmpty() )
             {
-                pasteUrlMsg = tr( "The upload was unsuccessful. No web-paste was done." );
+                pasteUrlMessage = tr( "The upload was unsuccessful. No web-paste was done." );
+            }
+            else
+            {
+                QClipboard* clipboard = QApplication::clipboard();
+                clipboard->setText( pasteUrl, QClipboard::Clipboard );
+
+                if ( clipboard->supportsSelection() )
+                {
+                    clipboard->setText( pasteUrl, QClipboard::Selection );
+                }
+                QString pasteUrlFmt = tr( "Install log posted to\n\n%1\n\nLink copied to clipboard" );
+                pasteUrlMessage = pasteUrlFmt.arg( pasteUrl );
             }
 
-            // TODO: make the URL clickable, or copy it to the clipboard automatically
-            QMessageBox::critical( nullptr, pasteUrlTitle, pasteUrlMsg );
+            QMessageBox::critical( nullptr, tr( "Install Log Paste URL" ), pasteUrlMessage );
         }
         QApplication::quit();
     } );
