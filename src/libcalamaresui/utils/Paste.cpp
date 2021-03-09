@@ -72,7 +72,7 @@ ficheLogUpload( QObject* parent )
         return QString();
     }
 
-    cDebug() << "Paste data written to paste server";
+    cDebug() << Logger::SubEntry << "Paste data written to paste server";
 
     if ( !socket->waitForReadyRead() )
     {
@@ -81,7 +81,7 @@ ficheLogUpload( QObject* parent )
         return QString();
     }
 
-    cDebug() << "Reading response from paste server";
+    cDebug() << Logger::SubEntry << "Reading response from paste server";
 
     char resp[ 1024 ];
     resp[ 0 ] = '\0';
@@ -109,7 +109,7 @@ ficheLogUpload( QObject* parent )
         return QString();
     }
 
-    cDebug() << "Paste server results:" << pasteUrlMsg;
+    cDebug() << Logger::SubEntry << "Paste server results:" << pasteUrlMsg;
     return pasteUrlMsg;
 }
 }  // namespace CalamaresUtils
