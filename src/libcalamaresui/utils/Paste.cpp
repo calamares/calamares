@@ -10,49 +10,36 @@
 #include "Paste.h"
 
 #include "Branding.h"
+#include "DllMacro.h"
 #include "utils/Logger.h"
 
 #include <QFile>
-#include <QRegularExpression>
 #include <QTcpSocket>
 #include <QUrl>
-#include <QClipboard>
-#include <QApplication>
-#include <QStringList>
 
-namespace CalamaresUtils
+/** @brief Reads the logfile, returns its contents.
+ *
+ * Returns an empty QByteArray() on any kind of error.
+ */
+STATICTEST QByteArray
+logFileContents()
 {
-
-QStringList UploadServersList = {
-    "fiche"
-    // In future more serverTypes can be added as Calamares support them
-    // "none" serverType is explicitly not mentioned here
-};
-
-QString
-ficheLogUpload( QObject* parent )
-{
-
-    const QString& ficheHost = Calamares::Branding::instance()->uploadServer( Calamares::Branding::URL );
-    quint16 fichePort = Calamares::Branding::instance()->uploadServer( Calamares::Branding::Port ).toInt();
-
-    QString pasteUrlFmt = parent->tr( "Install log posted to\n\n%1\n\nLink copied to clipboard" );
-
     QFile pasteSourceFile( Logger::logFile() );
     if ( !pasteSourceFile.open( QIODevice::ReadOnly | QIODevice::Text ) )
     {
         cError() << "Could not open log file";
-        return QString();
+        return QByteArray();
     }
+    // TODO: read the **last** 16kiB?
+    return pasteSourceFile.read( 16384 /* bytes */ );
+}
 
-    QByteArray pasteData;
-    while ( !pasteSourceFile.atEnd() )
-    {
-        pasteData += pasteSourceFile.readLine();
-    }
 
+STATICTEST QString
+ficheLogUpload( const QByteArray& pasteData, const QUrl& serverUrl, QObject* parent )
+{
     QTcpSocket* socket = new QTcpSocket( parent );
-    socket->connectToHost( ficheHost, fichePort );
+    socket->connectToHost( serverUrl.host(), serverUrl.port() );
 
     if ( !socket->waitForConnected() )
     {
@@ -61,7 +48,7 @@ ficheLogUpload( QObject* parent )
         return QString();
     }
 
-    cDebug() << "Connected to paste server";
+    cDebug() << "Connected to paste server" << serverUrl.host();
 
     socket->write( pasteData );
 
@@ -72,7 +59,7 @@ ficheLogUpload( QObject* parent )
         return QString();
     }
 
-    cDebug() << "Paste data written to paste server";
+    cDebug() << Logger::SubEntry << "Paste data written to paste server";
 
     if ( !socket->waitForReadyRead() )
     {
@@ -81,35 +68,52 @@ ficheLogUpload( QObject* parent )
         return QString();
     }
 
-    cDebug() << "Reading response from paste server";
-
-    char resp[ 1024 ];
-    resp[ 0 ] = '\0';
-    qint64 nBytesRead = socket->readLine( resp, 1024 );
+    cDebug() << Logger::SubEntry << "Reading response from paste server";
+    QByteArray responseText = socket->readLine( 1024 );
     socket->close();
 
-    QUrl pasteUrl = QUrl( QString( resp ).trimmed(), QUrl::StrictMode );
-    QString pasteUrlStr = pasteUrl.toString();
-    QRegularExpression pasteUrlRegex( "^http[s]?://" + ficheHost );
-    QString pasteUrlMsg = QString( pasteUrlFmt ).arg( pasteUrlStr );
-
-    if ( nBytesRead >= 8 && pasteUrl.isValid() && pasteUrlRegex.match( pasteUrlStr ).hasMatch() )
+    QUrl pasteUrl = QUrl( QString( responseText ).trimmed(), QUrl::StrictMode );
+    if ( pasteUrl.isValid() && pasteUrl.host() == serverUrl.host() )
     {
-        QClipboard* clipboard = QApplication::clipboard();
-        clipboard->setText(pasteUrlStr, QClipboard::Clipboard);
-
-        if (clipboard->supportsSelection())
-        {
-             clipboard->setText(pasteUrlStr, QClipboard::Selection);
-        }
+        cDebug() << Logger::SubEntry << "Paste server results:" << pasteUrl;
+        return pasteUrl.toString();
     }
     else
     {
         cError() << "No data from paste server";
         return QString();
     }
-
-    cDebug() << "Paste server results:" << pasteUrlMsg;
-    return pasteUrlMsg;
 }
-}  // namespace CalamaresUtils
+
+QString
+CalamaresUtils::Paste::doLogUpload( QObject* parent )
+{
+    auto [ type, serverUrl ] = Calamares::Branding::instance()->uploadServer();
+    if ( !serverUrl.isValid() )
+    {
+        cWarning() << "Upload configure with invalid URL";
+        return QString();
+    }
+    if ( type == Calamares::Branding::UploadServerType::None )
+    {
+        // Early return to avoid reading the log file
+        return QString();
+    }
+
+    QByteArray pasteData = logFileContents();
+    if ( pasteData.isEmpty() )
+    {
+        // An error has already been logged
+        return QString();
+    }
+
+    switch ( type )
+    {
+    case Calamares::Branding::UploadServerType::None:
+        cWarning() << "No upload configured.";
+        return QString();
+    case Calamares::Branding::UploadServerType::Fiche:
+        return ficheLogUpload( pasteData, serverUrl, parent );
+    }
+    return QString();
+}

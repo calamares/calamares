@@ -83,13 +83,16 @@ public:
     };
     Q_ENUM( StyleEntry )
 
-    enum UploadServerEntry : short
+    /** @brief Supported log-upload servers.
+     *
+     * 'None' is here as a fallback.
+     */
+    enum UploadServerType : short
     {
-        Type,
-        URL,
-        Port
+        None,
+        Fiche
     };
-    Q_ENUM( UploadServerEntry )
+    Q_ENUM( UploadServerType )
 
     /** @brief Setting for how much the main window may expand. */
     enum class WindowExpansion
@@ -218,6 +221,14 @@ public:
     ///@brief Which navigation flavor is configured
     PanelFlavor navigationFlavor() const { return m_navigationFlavor; }
 
+    /** @brief Upload server configuration
+     *
+     * This is both the type (which may be none, in which case the URL
+     * is irrelevant and usually empty) and the URL for the upload.
+     */
+    using UploadServerInfo = QPair< UploadServerType, QUrl >;
+    UploadServerInfo uploadServer() const { return m_uploadServer; }
+
     /**
      * Creates a map called "branding" in the global storage, and inserts an
      * entry for each of the branding strings. This makes the branding
@@ -234,7 +245,6 @@ public slots:
 
     QString styleString( StyleEntry styleEntry ) const;
     QString imagePath( ImageEntry imageEntry ) const;
-    QString uploadServer( UploadServerEntry uploadServerEntry ) const;
 
     PanelSide sidebarSide() const { return m_sidebarSide; }
     PanelSide navigationSide() const { return m_navigationSide; }
@@ -252,7 +262,7 @@ private:
     QMap< QString, QString > m_strings;
     QMap< QString, QString > m_images;
     QMap< QString, QString > m_style;
-    QMap< QString, QString > m_uploadServer;
+    UploadServerInfo m_uploadServer;
 
     /* The slideshow can be done in one of two ways:
      *  - as a sequence of images
