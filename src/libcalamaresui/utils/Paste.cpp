@@ -12,10 +12,14 @@
 #include "Branding.h"
 #include "DllMacro.h"
 #include "utils/Logger.h"
+#include "utils/Units.h"
 
 #include <QFile>
+#include <QFileInfo>
 #include <QTcpSocket>
 #include <QUrl>
+
+using namespace CalamaresUtils::Units;
 
 /** @brief Reads the logfile, returns its contents.
  *
@@ -30,8 +34,12 @@ logFileContents()
         cError() << "Could not open log file";
         return QByteArray();
     }
-    // TODO: read the **last** 16kiB?
-    return pasteSourceFile.read( 16384 /* bytes */ );
+    QFileInfo fi( pasteSourceFile );
+    if ( fi.size() > 16_KiB )
+    {
+        pasteSourceFile.seek( fi.size() - 16_KiB );
+    }
+    return pasteSourceFile.read( 16_KiB );
 }
 
 
