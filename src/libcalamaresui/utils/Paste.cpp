@@ -39,17 +39,10 @@ logFileContents()
 namespace CalamaresUtils
 {
 
-QStringList UploadServersList = {
-    "fiche"
-    // In future more serverTypes can be added as Calamares support them
-    // "none" serverType is explicitly not mentioned here
-};
-
 QString
 ficheLogUpload( QObject* parent )
 {
-    const QString& ficheHost = Calamares::Branding::instance()->uploadServer( Calamares::Branding::URL );
-    quint16 fichePort = Calamares::Branding::instance()->uploadServer( Calamares::Branding::Port ).toInt();
+    auto [ type, serverUrl ] = Calamares::Branding::instance()->uploadServer();
 
     QByteArray pasteData = logFileContents();
     if ( pasteData.isEmpty() )
@@ -59,7 +52,7 @@ ficheLogUpload( QObject* parent )
     }
 
     QTcpSocket* socket = new QTcpSocket( parent );
-    socket->connectToHost( ficheHost, fichePort );
+    socket->connectToHost( serverUrl.host(), serverUrl.port() );
 
     if ( !socket->waitForConnected() )
     {
@@ -68,7 +61,7 @@ ficheLogUpload( QObject* parent )
         return QString();
     }
 
-    cDebug() << "Connected to paste server" << ficheHost;
+    cDebug() << "Connected to paste server" << serverUrl.host();
 
     socket->write( pasteData );
 
@@ -98,7 +91,7 @@ ficheLogUpload( QObject* parent )
     QString pasteUrlFmt = parent->tr( "Install log posted to\n\n%1\n\nLink copied to clipboard" );
     QString pasteUrlMsg = pasteUrlFmt.arg( pasteUrlStr );
 
-    if ( pasteUrl.isValid() && pasteUrl.host() == ficheHost )
+    if ( pasteUrl.isValid() && pasteUrl.host() == serverUrl.host() )
     {
         QClipboard* clipboard = QApplication::clipboard();
         clipboard->setText( pasteUrlStr, QClipboard::Clipboard );
