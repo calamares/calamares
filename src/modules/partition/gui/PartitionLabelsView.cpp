@@ -27,7 +27,7 @@
 #include <QMouseEvent>
 #include <QPainter>
 
-using CalamaresUtils::operator""_MiB;
+using namespace CalamaresUtils::Units;
 
 static const int LAYOUT_MARGIN = 4;
 static const int LABEL_PARTITION_SQUARE_MARGIN = qMax( QFontMetrics( CalamaresUtils::defaultFont() ).ascent() - 2, 18 );

@@ -28,8 +28,7 @@
 QTEST_GUILESS_MAIN( PartitionJobTests )
 
 using namespace Calamares;
-using CalamaresUtils::operator""_MiB;
-using CalamaresUtils::Partition::isPartitionFreeSpace;
+using namespace CalamaresUtils::Units;
 
 class PartitionMounter
 {
@@ -104,7 +103,7 @@ static Partition*
 firstFreePartition( PartitionNode* parent )
 {
     for ( auto child : parent->children() )
-        if ( isPartitionFreeSpace( child ) )
+        if ( CalamaresUtils::Partition::isPartitionFreeSpace( child ) )
         {
             return child;
         }
