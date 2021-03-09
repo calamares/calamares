@@ -17,7 +17,6 @@
 #include "utils/Retranslator.h"
 
 #ifndef WITH_KF5DBus
-#warning "KDSingleApplicationGuard is deprecated"
 #include "3rdparty/kdsingleapplicationguard/kdsingleapplicationguard.h"
 #endif
 
