@@ -36,14 +36,10 @@ logFileContents()
     return pasteSourceFile.read( 16384 /* bytes */ );
 }
 
-namespace CalamaresUtils
-{
 
-QString
-ficheLogUpload( QObject* parent )
+static QString
+ficheLogUpload( const QUrl& serverUrl, QObject* parent )
 {
-    auto [ type, serverUrl ] = Calamares::Branding::instance()->uploadServer();
-
     QByteArray pasteData = logFileContents();
     if ( pasteData.isEmpty() )
     {
@@ -110,4 +106,24 @@ ficheLogUpload( QObject* parent )
     cDebug() << Logger::SubEntry << "Paste server results:" << pasteUrlMsg;
     return pasteUrlMsg;
 }
-}  // namespace CalamaresUtils
+
+QString
+CalamaresUtils::Paste::doLogUpload( QObject* parent )
+{
+    auto [ type, serverUrl ] = Calamares::Branding::instance()->uploadServer();
+    if ( !serverUrl.isValid() )
+    {
+        cWarning() << "Upload configure with invalid URL";
+        return QString();
+    }
+
+    switch ( type )
+    {
+    case Calamares::Branding::UploadServerType::None:
+        cWarning() << "No upload configured.";
+        return QString();
+    case Calamares::Branding::UploadServerType::Fiche:
+        return ficheLogUpload( serverUrl, parent );
+    }
+    return QString();
+}

@@ -142,7 +142,8 @@ ViewManager::insertViewStep( int before, ViewStep* step )
 void
 ViewManager::onInstallationFailed( const QString& message, const QString& details )
 {
-    bool shouldOfferWebPaste = Calamares::Branding::instance()->uploadServer().first != Calamares::Branding::UploadServerType::None;
+    bool shouldOfferWebPaste
+        = Calamares::Branding::instance()->uploadServer().first != Calamares::Branding::UploadServerType::None;
 
     cError() << "Installation failed:" << message;
     cDebug() << Logger::SubEntry << "- message:" << message;
@@ -188,7 +189,7 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
     connect( msgBox, &QMessageBox::buttonClicked, [msgBox]( QAbstractButton* button ) {
         if ( msgBox->buttonRole( button ) == QMessageBox::ButtonRole::YesRole )
         {
-            QString pasteUrlMsg = CalamaresUtils::Paste::doLogUpload();
+            QString pasteUrlMsg = CalamaresUtils::Paste::doLogUpload( msgBox );
 
             QString pasteUrlTitle = tr( "Install Log Paste URL" );
             if ( pasteUrlMsg.isEmpty() )
