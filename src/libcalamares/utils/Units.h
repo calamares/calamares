@@ -18,6 +18,9 @@
 namespace CalamaresUtils
 {
 
+namespace Units
+{
+
 /** User defined literals, 1_KB is 1 KiloByte (= 10^3 bytes) */
 constexpr qint64 operator""_KB( unsigned long long m )
 {
@@ -54,40 +57,42 @@ constexpr qint64 operator""_GiB( unsigned long long m )
     return operator""_MiB(m)*1024;
 }
 
+}
+
 constexpr qint64
 KBtoBytes( unsigned long long m )
 {
-    return operator""_KB( m );
+    return Units::operator""_KB( m );
 }
 
 constexpr qint64
 KiBtoBytes( unsigned long long m )
 {
-    return operator""_KiB( m );
+    return Units::operator""_KiB( m );
 }
 
 constexpr qint64
 MBtoBytes( unsigned long long m )
 {
-    return operator""_MB( m );
+    return Units::operator""_MB( m );
 }
 
 constexpr qint64
 MiBtoBytes( unsigned long long m )
 {
-    return operator""_MiB( m );
+    return Units::operator""_MiB( m );
 }
 
 constexpr qint64
 GBtoBytes( unsigned long long m )
 {
-    return operator""_GB( m );
+    return Units::operator""_GB( m );
 }
 
 constexpr qint64
 GiBtoBytes( unsigned long long m )
 {
-    return operator""_GiB( m );
+    return Units::operator""_GiB( m );
 }
 
 constexpr qint64
@@ -157,4 +162,5 @@ bytesToSectors( qint64 bytes, qint64 blocksize )
 }
 
 }  // namespace CalamaresUtils
+
 #endif
