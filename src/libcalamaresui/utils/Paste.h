@@ -10,10 +10,9 @@
 #ifndef UTILS_PASTE_H
 #define UTILS_PASTE_H
 
-#include <QStringList>
+#include <QString>
 
 class QObject;
-class QString;
 
 namespace CalamaresUtils
 {
@@ -23,8 +22,6 @@ namespace CalamaresUtils
  * Returns the (string) URL that the pastebin gives us.
  */
 QString ficheLogUpload( QObject* parent );
-
-extern QStringList UploadServersList;
 
 }  // namespace CalamaresUtils
 
