@@ -356,26 +356,6 @@ class PMPortage(PackageManager):
         pass
 
 
-class PMUrpmi(PackageManager):
-    backend = "urpmi"
-
-    def install(self, pkgs, from_local=False):
-        check_target_env_call(["urpmi", "--download-all", "--no-suggests",
-                               "--no-verify-rpm", "--fastunsafe",
-                               "--ignoresize", "--nolock",
-                               "--auto"] + pkgs)
-
-    def remove(self, pkgs):
-        check_target_env_call(["urpme", "--auto"] + pkgs)
-
-    def update_db(self):
-        check_target_env_call(["urpmi.update", "-a"])
-
-    def update_system(self):
-        # Doesn't need to update the system explicitly
-        pass
-
-
 class PMXbps(PackageManager):
     backend = "xbps"
 
