@@ -16,7 +16,6 @@
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
-#include "modulesystem/Preset.h"
 #include "utils/Logger.h"
 #include "utils/String.h"
 #include "utils/Variant.h"
@@ -92,7 +91,7 @@ hostNameActionNames()
 }
 
 Config::Config( QObject* parent )
-    : QObject( parent )
+    : Calamares::ModuleSystem::Config( parent )
 {
     emit readyChanged( m_isReady );  // false
 
@@ -838,9 +837,11 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     updateGSAutoLogin( doAutoLogin(), loginName() );
     checkReady();
 
-    bool bogus = true;
-    Calamares::ModuleSystem::Presets p( CalamaresUtils::getSubMap( configurationMap, "presets", bogus ),
-                                        { "fullname", "loginname", } );
+    loadPresets( configurationMap,
+                 {
+                     "fullname",
+                     "loginname",
+                 } );
 }
 
 void
