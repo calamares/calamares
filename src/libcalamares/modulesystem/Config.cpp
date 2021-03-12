@@ -64,6 +64,28 @@ Config::ApplyPresets::ApplyPresets( Calamares::ModuleSystem::Config& c, const QV
     }
 }
 
+Config::ApplyPresets::~ApplyPresets()
+{
+    m_c.m_unlocked = false;
+
+    // Check that there's no **settings** (from the configuration map)
+    // that have not been consumed by apply() -- if they are there,
+    // that means the configuration map specifies things that the
+    // Config object does not expect.
+    bool haveWarned = false;
+    for ( const auto& k : m_map.keys() )
+    {
+        if ( !m_c.d->m_presets->find( k ).isValid() )
+        {
+            if ( !haveWarned )
+            {
+                cWarning() << "Preset configuration contains unused keys";
+                haveWarned = true;
+            }
+            cDebug() << Logger::SubEntry << "Unused key" << k;
+        }
+    }
+}
 
 Config::ApplyPresets&
 Config::ApplyPresets::apply( const char* fieldName )
@@ -76,7 +98,11 @@ Config::ApplyPresets::apply( const char* fieldName )
     else
     {
         const QString key( fieldName );
-        if ( !key.isEmpty() && m_map.contains( key ) )
+        if ( !key.isEmpty() && m_c.d->m_presets->find( key ).isValid() )
+        {
+            cWarning() << "Applying duplicate property" << fieldName;
+        }
+        else if ( !key.isEmpty() && m_map.contains( key ) )
         {
             QVariantMap m = CalamaresUtils::getSubMap( m_map, key, m_bogus );
             QVariant value = m[ "value" ];

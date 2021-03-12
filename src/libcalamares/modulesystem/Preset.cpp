@@ -38,8 +38,6 @@ namespace Calamares
 namespace ModuleSystem
 {
 Presets::Presets( const QVariantMap& configurationMap )
-
-
 {
     reserve( configurationMap.count() );
     loadPresets( *this, configurationMap, []( const QString& ) { return true; } );
@@ -66,6 +64,19 @@ Presets::isEditable( const QString& fieldName ) const
     return true;
 }
 
+PresetField
+Presets::find( const QString& fieldName ) const
+{
+    for ( const auto& p : *this )
+    {
+        if ( p.fieldName == fieldName )
+        {
+            return p;
+        }
+    }
+
+    return PresetField();
+}
 
 }  // namespace ModuleSystem
 }  // namespace Calamares

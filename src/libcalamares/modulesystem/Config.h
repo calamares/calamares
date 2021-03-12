@@ -70,10 +70,25 @@ protected:
     class ApplyPresets
     {
     public:
+        /** @brief Create a preset-applier for this config
+         *
+         * The @p configurationMap should be the one passed in to
+         * setConfigurationMap() . Presets are extracted from the
+         * standard key *presets* and can be applied to the configuration
+         * with apply() or operator<<.
+         */
         ApplyPresets( Config& c, const QVariantMap& configurationMap );
-        ~ApplyPresets() { m_c.m_unlocked = false; }
+        ~ApplyPresets();
 
+        /** @brief Add a preset for the given @p fieldName
+         *
+         * This checks for preset-entries in the configuration map that was
+         * passed in to the constructor.
+         */
         ApplyPresets& apply( const char* fieldName );
+        /** @brief Alternate way of writing apply()
+         */
+        ApplyPresets& operator<<( const char* fieldName ) { return apply( fieldName ); }
 
     private:
         Config& m_c;

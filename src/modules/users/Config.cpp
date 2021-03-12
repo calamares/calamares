@@ -842,7 +842,8 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     updateGSAutoLogin( doAutoLogin(), loginName() );
     checkReady();
 
-    ApplyPresets( *this, configurationMap ).apply( "fullName" ).apply( "loginName" );
+    ApplyPresets( *this, configurationMap ) << "fullName"
+                                            << "loginName";
 }
 
 void

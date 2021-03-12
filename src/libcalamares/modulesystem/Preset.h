@@ -78,6 +78,12 @@ public:
      * returns @c true.
      */
     bool isEditable( const QString& fieldName ) const;
+
+    /** @brief Finds the settings for a field @p fieldName
+     *
+     * If there is no such field, returns an invalid PresetField.
+     */
+    PresetField find( const QString& fieldName ) const;
 };
 }  // namespace ModuleSystem
 }  // namespace Calamares
