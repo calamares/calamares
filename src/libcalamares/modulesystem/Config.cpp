@@ -10,6 +10,7 @@
 #include "Config.h"
 
 #include "Preset.h"
+#include "utils/Logger.h"
 #include "utils/Variant.h"
 
 namespace Calamares
@@ -33,33 +34,6 @@ Config::Config( QObject* parent )
 
 Config::~Config() {}
 
-void
-Config::loadPresets( const QVariantMap& configurationMap )
-{
-    const QString key( "presets" );
-    if ( !configurationMap.contains( key ) )
-    {
-        d->m_presets.reset();
-        return;
-    }
-    bool bogus = true;
-    d->m_presets = std::make_unique< Presets >( CalamaresUtils::getSubMap( configurationMap, key, bogus ) );
-}
-
-void
-Config::loadPresets( const QVariantMap& configurationMap, const QStringList& recognizedKeys )
-{
-    const QString key( "presets" );
-    if ( !configurationMap.contains( key ) )
-    {
-        d->m_presets.reset();
-        return;
-    }
-    bool bogus = true;
-    d->m_presets
-        = std::make_unique< Presets >( CalamaresUtils::getSubMap( configurationMap, key, bogus ), recognizedKeys );
-}
-
 bool
 Config::isEditable( const QString& fieldName ) const
 {
@@ -71,9 +45,52 @@ Config::isEditable( const QString& fieldName ) const
     {
         return d->m_presets->isEditable( fieldName );
     }
+    else
+    {
+        cWarning() << "Checking isEditable, but no presets are configured.";
+    }
     return true;
 }
 
+Config::ApplyPresets::ApplyPresets( Calamares::ModuleSystem::Config& c, const QVariantMap& configurationMap )
+    : m_c( c )
+    , m_bogus( true )
+    , m_map( CalamaresUtils::getSubMap( configurationMap, "presets", m_bogus ) )
+{
+    c.m_unlocked = true;
+    if ( !c.d->m_presets )
+    {
+        c.d->m_presets = std::make_unique< Presets >();
+    }
+}
+
+
+Config::ApplyPresets&
+Config::ApplyPresets::apply( const char* fieldName )
+{
+    const auto prop = m_c.property( fieldName );
+    if ( !prop.isValid() )
+    {
+        cWarning() << "Applying invalid property" << fieldName;
+    }
+    else
+    {
+        const QString key( fieldName );
+        if ( !key.isEmpty() && m_map.contains( key ) )
+        {
+            QVariantMap m = CalamaresUtils::getSubMap( m_map, key, m_bogus );
+            QVariant value = m[ "value" ];
+            bool editable = CalamaresUtils::getBool( m, "editable", true );
+
+            if ( value.isValid() )
+            {
+                m_c.setProperty( fieldName, value );
+            }
+            m_c.d->m_presets->append( PresetField { key, value, editable } );
+        }
+    }
+    return *this;
+}
 
 }  // namespace ModuleSystem
 }  // namespace Calamares

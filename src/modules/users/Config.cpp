@@ -183,7 +183,7 @@ Config::setSudoersGroup( const QString& group )
 void
 Config::setLoginName( const QString& login )
 {
-    if ( login != m_loginName )
+    if ( login != m_loginName && isEditable( QStringLiteral( "loginName" ) ) )
     {
         m_customLoginName = !login.isEmpty();
         m_loginName = login;
@@ -393,6 +393,11 @@ makeHostnameSuggestion( const QStringList& parts )
 void
 Config::setFullName( const QString& name )
 {
+    if ( !isEditable( QStringLiteral( "fullName" ) ) )
+    {
+        return;
+    }
+
     if ( name.isEmpty() && !m_fullName.isEmpty() )
     {
         if ( !m_customHostName )
@@ -837,11 +842,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     updateGSAutoLogin( doAutoLogin(), loginName() );
     checkReady();
 
-    loadPresets( configurationMap,
-                 {
-                     "fullname",
-                     "loginname",
-                 } );
+    ApplyPresets( *this, configurationMap ).apply( "fullName" ).apply( "loginName" );
 }
 
 void

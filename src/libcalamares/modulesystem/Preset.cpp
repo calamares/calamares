@@ -62,6 +62,7 @@ Presets::isEditable( const QString& fieldName ) const
             return p.editable;
         }
     }
+    cWarning() << "Checking isEditable for unknown field" << fieldName;
     return true;
 }
 

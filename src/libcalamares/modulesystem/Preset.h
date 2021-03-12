@@ -36,8 +36,10 @@ namespace ModuleSystem
 struct PresetField
 {
     QString fieldName;
-    QString value;
+    QVariant value;
     bool editable = true;
+
+    bool isValid() const { return !fieldName.isEmpty(); }
 };
 
 /** @brief All the presets for one UI entity
@@ -61,6 +63,14 @@ public:
      * are kept; others are discarded.
      */
     Presets( const QVariantMap& configurationMap, const QStringList& recognizedKeys );
+
+    /** @brief Creates an empty presets map
+     *
+     * This constructor is primarily intended for use by the ApplyPresets
+     * helper class, which will reserve suitable space and load
+     * presets on-demand.
+     */
+    Presets() = default;
 
     /** @brief Is the given @p fieldName editable?
      *

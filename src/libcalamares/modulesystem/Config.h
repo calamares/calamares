@@ -58,8 +58,28 @@ public Q_SLOTS:
     bool isEditable( const QString& fieldName ) const;
 
 protected:
-    void loadPresets( const QVariantMap& configurationMap );
-    void loadPresets( const QVariantMap& configurationMap, const QStringList& recognizedKeys );
+    friend class ApplyPresets;
+    /** @brief "Builder" class for presets
+     *
+     * Derived classes should instantiate this (with themselves,
+     * and the whole configuration map that is passed to
+     * setConfigurationMap()) and then call .apply() to apply
+     * the presets specified in the configuration to the **named**
+     * QObject properties.
+     */
+    class ApplyPresets
+    {
+    public:
+        ApplyPresets( Config& c, const QVariantMap& configurationMap );
+        ~ApplyPresets() { m_c.m_unlocked = false; }
+
+        ApplyPresets& apply( const char* fieldName );
+
+    private:
+        Config& m_c;
+        bool m_bogus = true;
+        const QVariantMap m_map;
+    };
 
 private:
     class Private;
