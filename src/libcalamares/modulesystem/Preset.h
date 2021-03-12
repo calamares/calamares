@@ -48,8 +48,26 @@ struct PresetField
 class Presets : public QVector< PresetField >
 {
 public:
+    /** @brief Reads preset entries from the map
+     *
+     * The map's keys are used as field name, and each value entry
+     * should specify an initial value and whether the entry is editable.
+     * Fields are editable by default.
+     */
     explicit Presets( const QVariantMap& configurationMap );
+    /** @brief Reads preset entries from the @p configurationMap
+     *
+     * As above, but only field names that occur in @p recognizedKeys
+     * are kept; others are discarded.
+     */
     Presets( const QVariantMap& configurationMap, const QStringList& recognizedKeys );
+
+    /** @brief Is the given @p fieldName editable?
+     *
+     * Fields are editable by default, so if there is no explicit setting,
+     * returns @c true.
+     */
+    bool isEditable( const QString& fieldName ) const;
 };
 }  // namespace ModuleSystem
 }  // namespace Calamares

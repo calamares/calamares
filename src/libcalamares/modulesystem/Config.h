@@ -34,6 +34,7 @@ namespace ModuleSystem
  */
 class DLLEXPORT Config : public QObject
 {
+    Q_OBJECT
 public:
     Config( QObject* parent = nullptr );
     ~Config() override;
@@ -46,6 +47,16 @@ public:
      */
     virtual void setConfigurationMap( const QVariantMap& ) = 0;
 
+public Q_SLOTS:
+    /** @brief Checks if a @p fieldName is editable according to presets
+     *
+     * If the field is named as a preset, **and** the field is set
+     * to not-editable, returns @c false. Otherwise, return @c true.
+     * Calling this with an unknown field (one for which no presets
+     * are accepted) will print a warning and return @c true.
+     */
+    bool isEditable( const QString& fieldName ) const;
+
 protected:
     void loadPresets( const QVariantMap& configurationMap );
     void loadPresets( const QVariantMap& configurationMap, const QStringList& recognizedKeys );
@@ -53,6 +64,7 @@ protected:
 private:
     class Private;
     std::unique_ptr< Private > d;
+    bool m_unlocked = false;
 };
 }  // namespace ModuleSystem
 }  // namespace Calamares

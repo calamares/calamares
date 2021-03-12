@@ -33,7 +33,11 @@ loadPresets( Calamares::ModuleSystem::Presets& preset,
     }
 }
 
-Calamares::ModuleSystem::Presets::Presets( const QVariantMap& configurationMap )
+namespace Calamares
+{
+namespace ModuleSystem
+{
+Presets::Presets( const QVariantMap& configurationMap )
 
 
 {
@@ -41,9 +45,26 @@ Calamares::ModuleSystem::Presets::Presets( const QVariantMap& configurationMap )
     loadPresets( *this, configurationMap, []( const QString& ) { return true; } );
 }
 
-Calamares::ModuleSystem::Presets::Presets( const QVariantMap& configurationMap, const QStringList& recognizedKeys )
+Presets::Presets( const QVariantMap& configurationMap, const QStringList& recognizedKeys )
 {
     reserve( recognizedKeys.size() );
     loadPresets(
         *this, configurationMap, [&recognizedKeys]( const QString& s ) { return recognizedKeys.contains( s ); } );
 }
+
+bool
+Presets::isEditable( const QString& fieldName ) const
+{
+    for ( const auto& p : *this )
+    {
+        if ( p.fieldName == fieldName )
+        {
+            return p.editable;
+        }
+    }
+    return true;
+}
+
+
+}  // namespace ModuleSystem
+}  // namespace Calamares

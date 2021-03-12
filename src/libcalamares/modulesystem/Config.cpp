@@ -60,5 +60,20 @@ Config::loadPresets( const QVariantMap& configurationMap, const QStringList& rec
         = std::make_unique< Presets >( CalamaresUtils::getSubMap( configurationMap, key, bogus ), recognizedKeys );
 }
 
+bool
+Config::isEditable( const QString& fieldName ) const
+{
+    if ( m_unlocked )
+    {
+        return true;
+    }
+    if ( d && d->m_presets )
+    {
+        return d->m_presets->isEditable( fieldName );
+    }
+    return true;
+}
+
+
 }  // namespace ModuleSystem
 }  // namespace Calamares
