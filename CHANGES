@@ -21,6 +21,7 @@ This release contains contributions from (alphabetically by first name):
 
 ## Modules ##
  - A new QML-based *finishedq* module has been added. (Thanks Anke)
+ - The *users* module now can set a fixed username and prevent editing.
 
 
 # 3.2.37 (2021-02-23) #
