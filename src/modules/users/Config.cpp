@@ -16,6 +16,7 @@
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "modulesystem/Preset.h"
 #include "utils/Logger.h"
 #include "utils/String.h"
 #include "utils/Variant.h"
@@ -105,7 +106,7 @@ Config::Config( QObject* parent )
     connect( this, &Config::requireStrongPasswordsChanged, this, &Config::checkReady );
 }
 
-Config::~Config() { }
+Config::~Config() {}
 
 void
 Config::setUserShell( const QString& shell )
@@ -836,6 +837,10 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
 
     updateGSAutoLogin( doAutoLogin(), loginName() );
     checkReady();
+
+    bool bogus = true;
+    Calamares::ModuleSystem::Presets p( CalamaresUtils::getSubMap( configurationMap, "presets", bogus ),
+                                        { "fullname", "loginname", } );
 }
 
 void
