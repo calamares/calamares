@@ -12,6 +12,7 @@ website will have to do for older versions.
 This release contains contributions from (alphabetically by first name):
  - Anke Boersma
  - Anubhav Choudhary
+ - Neal Gompa
 
 ## Core ##
  - Uploading your log files (in case of installation failure) has been
@@ -23,6 +24,8 @@ This release contains contributions from (alphabetically by first name):
 
 ## Modules ##
  - A new QML-based *finishedq* module has been added. (Thanks Anke)
+ - The *packages* module no longer supports *urpmi*; no Calamares-
+   consumers with that package manager seem to exist. (Thanks Neal)
  - The *users* module now can set a fixed username and prevent editing.
    The *presets* configuration entry in `users.conf` can set a *loginName*
    and a *fullName* and (independently) enable or disable editing of
