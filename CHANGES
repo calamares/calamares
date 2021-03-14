@@ -10,13 +10,17 @@ website will have to do for older versions.
 # 3.2.39 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - Matti Hyttinen
 
 ## Core ##
  - No core changes yet
 
 ## Modules ##
- - No module changes yet
+ - The *mount* module has gained a configurable setup for btrfs volumes.
+   If your distro has a default-to-btrfs setup, it can skip the hard-
+   coded setup (which Calamares has had for a long time with @home
+   and similar) and introduce a custom btrfs configuration through the
+   `mount.conf` file.
 
 
 # 3.2.38 (2021-03-14) #
