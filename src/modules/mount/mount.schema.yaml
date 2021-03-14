@@ -29,3 +29,12 @@ properties:
                 mountPoint: { type: string }
                 options: { type: string }
             required: [ device, mountPoint ]
+    btrfsSubvolumes:
+        type: array
+        items:
+            type: object
+            additionalProperties: false
+            properties:
+                mountPoint: { type: string }
+                subvolume: { type: string }
+            required: [ subvolume, mountPoint ]
