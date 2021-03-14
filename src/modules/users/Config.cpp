@@ -22,7 +22,9 @@
 
 #include <QCoreApplication>
 #include <QFile>
+#include <QMetaProperty>
 #include <QRegExp>
+#include <QTimer>
 
 #ifdef HAVE_ICU
 #include <unicode/translit.h>
@@ -91,7 +93,7 @@ hostNameActionNames()
 }
 
 Config::Config( QObject* parent )
-    : QObject( parent )
+    : Calamares::ModuleSystem::Config( parent )
 {
     emit readyChanged( m_isReady );  // false
 
@@ -105,7 +107,7 @@ Config::Config( QObject* parent )
     connect( this, &Config::requireStrongPasswordsChanged, this, &Config::checkReady );
 }
 
-Config::~Config() { }
+Config::~Config() {}
 
 void
 Config::setUserShell( const QString& shell )
@@ -183,6 +185,7 @@ Config::setSudoersGroup( const QString& group )
 void
 Config::setLoginName( const QString& login )
 {
+    CONFIG_PREVENT_EDITING( QString, "loginName" );
     if ( login != m_loginName )
     {
         m_customLoginName = !login.isEmpty();
@@ -393,6 +396,8 @@ makeHostnameSuggestion( const QStringList& parts )
 void
 Config::setFullName( const QString& name )
 {
+    CONFIG_PREVENT_EDITING( QString, "fullName" );
+
     if ( name.isEmpty() && !m_fullName.isEmpty() )
     {
         if ( !m_customHostName )
@@ -836,6 +841,9 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
 
     updateGSAutoLogin( doAutoLogin(), loginName() );
     checkReady();
+
+    ApplyPresets( *this, configurationMap ) << "fullName"
+                                            << "loginName";
 }
 
 void

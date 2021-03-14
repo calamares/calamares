@@ -101,6 +101,7 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
     connect( config, &Config::rootPasswordSecondaryChanged, ui->textBoxVerifiedRootPassword, &QLineEdit::setText );
     connect( config, &Config::rootPasswordStatusChanged, this, &UsersPage::reportRootPasswordStatus );
 
+    ui->textBoxFullName->setText( config->fullName() );
     connect( ui->textBoxFullName, &QLineEdit::textEdited, config, &Config::setFullName );
     connect( config, &Config::fullNameChanged, this, &UsersPage::onFullNameTextEdited );
 
@@ -108,6 +109,7 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
     connect( config, &Config::hostNameChanged, ui->textBoxHostName, &QLineEdit::setText );
     connect( config, &Config::hostNameStatusChanged, this, &UsersPage::reportHostNameStatus );
 
+    ui->textBoxLoginName->setText( config->loginName() );
     connect( ui->textBoxLoginName, &QLineEdit::textEdited, config, &Config::setLoginName );
     connect( config, &Config::loginNameChanged, ui->textBoxLoginName, &QLineEdit::setText );
     connect( config, &Config::loginNameStatusChanged, this, &UsersPage::reportLoginNameStatus );
@@ -140,6 +142,11 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
     CALAMARES_RETRANSLATE_SLOT( &UsersPage::retranslate )
 
     onReuseUserPasswordChanged( m_config->reuseUserPasswordForRoot() );
+    onFullNameTextEdited( m_config->fullName() );
+    reportLoginNameStatus( m_config->loginNameStatus() );
+
+    ui->textBoxLoginName->setEnabled( m_config->isEditable( "loginName" ) );
+    ui->textBoxFullName->setEnabled( m_config->isEditable( "fullName" ) );
 }
 
 UsersPage::~UsersPage()

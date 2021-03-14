@@ -13,6 +13,7 @@
 #include "CheckPWQuality.h"
 
 #include "Job.h"
+#include "modulesystem/Config.h"
 #include "utils/NamedEnum.h"
 
 #include <QList>
@@ -85,7 +86,7 @@ private:
 };
 
 
-class PLUGINDLLEXPORT Config : public QObject
+class PLUGINDLLEXPORT Config : public Calamares::ModuleSystem::Config
 {
     Q_OBJECT
 
@@ -161,7 +162,7 @@ public:
     Config( QObject* parent = nullptr );
     ~Config() override;
 
-    void setConfigurationMap( const QVariantMap& );
+    void setConfigurationMap( const QVariantMap& ) override;
 
     /** @brief Fill Global Storage with some settings
      *
