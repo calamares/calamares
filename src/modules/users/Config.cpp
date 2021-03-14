@@ -23,6 +23,7 @@
 #include <QCoreApplication>
 #include <QFile>
 #include <QRegExp>
+#include <QTimer>
 
 #ifdef HAVE_ICU
 #include <unicode/translit.h>
@@ -183,7 +184,13 @@ Config::setSudoersGroup( const QString& group )
 void
 Config::setLoginName( const QString& login )
 {
-    if ( login != m_loginName && isEditable( QStringLiteral( "loginName" ) ) )
+    if ( !isEditable( QStringLiteral( "loginName" ) ) )
+    {
+        // Should not have arrived here anyway
+        QTimer::singleShot( 0, this, [=]() { emit loginNameChanged( m_loginName ); } );
+        return;
+    }
+    if ( login != m_loginName )
     {
         m_customLoginName = !login.isEmpty();
         m_loginName = login;
@@ -395,6 +402,8 @@ Config::setFullName( const QString& name )
 {
     if ( !isEditable( QStringLiteral( "fullName" ) ) )
     {
+        // Should not have arrived here anyway
+        QTimer::singleShot( 0, this, [=]() { emit fullNameChanged( m_fullName ); } );
         return;
     }
 
