@@ -7,7 +7,7 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.38 (unreleased) #
+# 3.2.38 (2021-03-14) #
 
 This release contains contributions from (alphabetically by first name):
  - Anke Boersma
@@ -22,6 +22,11 @@ This release contains contributions from (alphabetically by first name):
 ## Modules ##
  - A new QML-based *finishedq* module has been added. (Thanks Anke)
  - The *users* module now can set a fixed username and prevent editing.
+   The *presets* configuration entry in `users.conf` can set a *loginName*
+   and a *fullName* and (independently) enable or disable editing of
+   that value. You can, for instance, set *loginName* to "manjaro" if
+   you like; the user can change it afterwards. You could set the
+   *loginName* to "oem" and prevent editing it as well. #942
 
 
 # 3.2.37 (2021-02-23) #
