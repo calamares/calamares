@@ -1,3 +1,4 @@
+#!/usr/bin/env xdg-open
 [Desktop Entry]
 Type=Application
 Version=1.0
@@ -5,7 +6,7 @@ Name=Install System
 GenericName=System Installer
 Keywords=calamares;system;installer;
 TryExec=calamares
-Exec=pkexec /usr/bin/calamares
+Exec=sh -c "pkexec calamares"
 Comment=Calamares — System Installer
 Icon=calamares
 Terminal=false
