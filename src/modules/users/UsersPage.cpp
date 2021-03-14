@@ -142,6 +142,8 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
     CALAMARES_RETRANSLATE_SLOT( &UsersPage::retranslate )
 
     onReuseUserPasswordChanged( m_config->reuseUserPasswordForRoot() );
+    onFullNameTextEdited( m_config->fullName() );
+    reportLoginNameStatus( m_config->loginNameStatus() );
 }
 
 UsersPage::~UsersPage()
