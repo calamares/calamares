@@ -12,14 +12,14 @@
 #ifndef USERSQMLVIEWSTEP_H
 #define USERSQMLVIEWSTEP_H
 
-#include <QObject>
-
-#include <utils/PluginFactory.h>
-#include <viewpages/QmlViewStep.h>
-
-#include <DllMacro.h>
-
+// Config from users module
 #include "Config.h"
+
+#include "DllMacro.h"
+#include "utils/PluginFactory.h"
+#include "viewpages/QmlViewStep.h"
+
+#include <QObject>
 #include <QVariant>
 
 class PLUGINDLLEXPORT UsersQmlViewStep : public Calamares::QmlViewStep
@@ -37,9 +37,8 @@ public:
     bool isAtBeginning() const override;
     bool isAtEnd() const override;
 
-    QList< Calamares::job_ptr > jobs() const override;
+    Calamares::JobList jobs() const override;
 
-    void onActivate() override;
     void onLeave() override;
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
@@ -48,7 +47,6 @@ public:
 
 private:
     Config* m_config;
-    Calamares::JobList m_jobs;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( UsersQmlViewStepFactory )
