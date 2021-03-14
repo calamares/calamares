@@ -35,15 +35,16 @@ private Q_SLOTS:
 void
 TestPaste::testGetLogFile()
 {
+    QFile::remove( Logger::logFile() );
     // This test assumes nothing **else** has set up logging yet
-    QByteArray b = logFileContents();
-    QVERIFY( b.isEmpty() );
+    QByteArray contentsOfLogfileBefore = logFileContents();
+    QVERIFY( contentsOfLogfileBefore.isEmpty() );
 
     Logger::setupLogLevel( Logger::LOGDEBUG );
     Logger::setupLogfile();
 
-    b = logFileContents();
-    QVERIFY( !b.isEmpty() );
+    QByteArray contentsOfLogfileAfterSetup = logFileContents();
+    QVERIFY( !contentsOfLogfileAfterSetup.isEmpty() );
 }
 
 void

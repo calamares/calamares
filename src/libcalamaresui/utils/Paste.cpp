@@ -28,10 +28,11 @@ using namespace CalamaresUtils::Units;
 STATICTEST QByteArray
 logFileContents()
 {
-    QFile pasteSourceFile( Logger::logFile() );
+    const QString name = Logger::logFile();
+    QFile pasteSourceFile( name );
     if ( !pasteSourceFile.open( QIODevice::ReadOnly | QIODevice::Text ) )
     {
-        cError() << "Could not open log file";
+        cWarning() << "Could not open log file" << name;
         return QByteArray();
     }
     QFileInfo fi( pasteSourceFile );
