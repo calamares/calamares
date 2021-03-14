@@ -54,6 +54,25 @@ public Q_SLOTS:
      * to not-editable, returns @c false. Otherwise, return @c true.
      * Calling this with an unknown field (one for which no presets
      * are accepted) will print a warning and return @c true.
+     *
+     * @see CONFIG_PREVENT_EDITING
+     *
+     * Most setters will call isEditable() to check if the field should
+     * be editable. Do not count on the setter not being called: the
+     * UI might not have set the field to fixed / constant / not-editable
+     * and then you can have the setter called by changes in the UI.
+     *
+     * To prevent the UI from changing **and** to make sure that the UI
+     * reflects the unchanged value (rather than the changed value it
+     * sent to the Config object), use CONFIG_PREVENT_EDITING, like so:
+     *
+     *  CONFIG_PREVENT_EDITING( type, "propertyName" );
+     *
+     * The ; is necessary. <type> is the type of the property; for instance
+     * QString. The name of the property is a (constant) string. The
+     * macro will return (out of the setter it is used in) if the field
+     * is not editable, and will send a notification event with the old
+     * value as soon as the event loop resumes.
      */
     bool isEditable( const QString& fieldName ) const;
 
@@ -103,5 +122,26 @@ private:
 };
 }  // namespace ModuleSystem
 }  // namespace Calamares
+
+/// @see Config::isEditable()
+//
+// This needs to be a macro, because Q_ARG() is a macro that stringifies
+// the type name.
+#define CONFIG_PREVENT_EDITING( type, fieldName ) \
+    do \
+    { \
+        if ( !isEditable( QStringLiteral( fieldName ) ) ) \
+        { \
+            auto prop = property( fieldName ); \
+            const auto& metaobject = metaObject(); \
+            auto metaprop = metaobject->property( metaobject->indexOfProperty( fieldName ) ); \
+            if ( metaprop.hasNotifySignal() ) \
+            { \
+                metaprop.notifySignal().invoke( this, Qt::QueuedConnection, Q_ARG( type, prop.value< type >() ) ); \
+            } \
+            return; \
+        } \
+    } while ( 0 )
+
 
 #endif

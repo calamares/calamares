@@ -22,6 +22,7 @@
 
 #include <QCoreApplication>
 #include <QFile>
+#include <QMetaProperty>
 #include <QRegExp>
 #include <QTimer>
 
@@ -184,12 +185,7 @@ Config::setSudoersGroup( const QString& group )
 void
 Config::setLoginName( const QString& login )
 {
-    if ( !isEditable( QStringLiteral( "loginName" ) ) )
-    {
-        // Should not have arrived here anyway
-        QTimer::singleShot( 0, this, [=]() { emit loginNameChanged( m_loginName ); } );
-        return;
-    }
+    CONFIG_PREVENT_EDITING( QString, "loginName" );
     if ( login != m_loginName )
     {
         m_customLoginName = !login.isEmpty();
@@ -400,12 +396,7 @@ makeHostnameSuggestion( const QStringList& parts )
 void
 Config::setFullName( const QString& name )
 {
-    if ( !isEditable( QStringLiteral( "fullName" ) ) )
-    {
-        // Should not have arrived here anyway
-        QTimer::singleShot( 0, this, [=]() { emit fullNameChanged( m_fullName ); } );
-        return;
-    }
+    CONFIG_PREVENT_EDITING( QString, "fullName" );
 
     if ( name.isEmpty() && !m_fullName.isEmpty() )
     {
