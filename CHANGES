@@ -18,6 +18,8 @@ This release contains contributions from (alphabetically by first name):
    expanded and is now more configurable. Users should still take care
    when uploading logs, and distro's should configure a URL with
    no public viewing of those logs. (Thanks Anubhav)
+ - The .desktop file for Calamares now makes a longer trip, calling
+   `sh -c "pkexec calamares"`; distributions may still need to adjust.
 
 ## Modules ##
  - A new QML-based *finishedq* module has been added. (Thanks Anke)
