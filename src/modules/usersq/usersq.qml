@@ -56,10 +56,9 @@ Kirigami.ScrollablePage {
 
                 id: _userNameField
                 width: parent.width
+                text: config.fullName
                 placeholderText: qsTr("Your Full Name")
-                onTextChanged: config.fullNameChanged(text)
                 background: Rectangle {
-
                     color: "#FBFBFB" // Kirigami.Theme.backgroundColor
                     radius: 2
                     opacity: 0.9
@@ -85,8 +84,7 @@ Kirigami.ScrollablePage {
                 id: _userLoginField
                 width: parent.width
                 placeholderText: qsTr("Login Name")
-                //text: config.userName
-                onTextEdited: config.loginNameStatusChanged(text)
+                text: config.loginName
 
                 background: Rectangle {
 
@@ -167,7 +165,7 @@ Kirigami.ScrollablePage {
                     echoMode: TextInput.Password
                     passwordMaskDelay: 300
                     inputMethodHints: Qt.ImhNoAutoUppercase
-                    onTextChanged: config.userPasswordStatusChanged(text, _verificationPasswordField.text)
+                    text: config.userPassword
 
                     background: Rectangle {
 
@@ -186,7 +184,7 @@ Kirigami.ScrollablePage {
                     echoMode: TextInput.Password
                     passwordMaskDelay: 300
                     inputMethodHints: Qt.ImhNoAutoUppercase
-                    onTextChanged: config.userPasswordSecondaryChanged(_passwordField.text, text)
+                    text: config.userPasswordSecondary
 
                     background: Rectangle {
 
@@ -211,17 +209,13 @@ Kirigami.ScrollablePage {
 
         CheckBox {
 
-            visible: config.allowWeakPasswords
-            //visible: false
+            visible: config.permitWeakPasswords
             text: qsTr("Validate passwords quality")
-            checked: config.allowWeakPasswordsDefault
-            onToggled: config.allowWeakPasswordsDefault = !config.allowWeakPasswordsDefault
+            checked: config.requireStrongPasswords
         }
 
         Label {
-
-            visible: config.allowWeakPasswords
-            //visible: false
+            visible: config.permitWeakPasswords
             width: parent.width
             text: qsTr("When this box is checked, password-strength checking is done and you will not be able to use a weak password.")
             font.weight: Font.Thin
@@ -230,24 +224,18 @@ Kirigami.ScrollablePage {
         }
 
         CheckBox {
-
             text: qsTr("Log in automatically without asking for the password")
-            checked: config.doAutologin
-            onToggled: config.doAutologin = !config.doAutologin
+            checked: config.doAutoLogin
         }
 
         CheckBox {
-
             id: root
-            visible: config.doReusePassword
+            visible: config.writeRootPassword
             text: qsTr("Reuse user password as root password")
             checked: config.reuseUserPasswordForRoot
-            //checked: false
-            onToggled: config.reuseUserPasswordForRoot = !config.reuseUserPasswordForRoot
         }
 
         Label {
-
             visible: root.checked
             width: parent.width
             text: qsTr("Use the same password for the administrator account.")
@@ -280,7 +268,7 @@ Kirigami.ScrollablePage {
                     echoMode: TextInput.Password
                     passwordMaskDelay: 300
                     inputMethodHints: Qt.ImhNoAutoUppercase
-                    onTextChanged: config.rootPasswordChanged(text, _verificationRootPasswordField.text)
+                    text: config.rootPassword
 
                     background: Rectangle {
 
@@ -299,7 +287,7 @@ Kirigami.ScrollablePage {
                     echoMode: TextInput.Password
                     passwordMaskDelay: 300
                     inputMethodHints: Qt.ImhNoAutoUppercase
-                    onTextChanged: config.rootPasswordSecondaryChanged(_rootPasswordField.text, text)
+                    text: config.rootPasswordSecondary
 
                     background: Rectangle {
 
