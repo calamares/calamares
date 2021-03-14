@@ -39,7 +39,7 @@ public:
     bool isAtBeginning() const override;
     bool isAtEnd() const override;
 
-    QList< Calamares::job_ptr > jobs() const override;
+    Calamares::JobList jobs() const override;
 
     void onActivate() override;
     void onLeave() override;
@@ -48,8 +48,6 @@ public:
 
 private:
     UsersPage* m_widget;
-    Calamares::JobList m_jobs;
-
     Config* m_config;
 };
 
