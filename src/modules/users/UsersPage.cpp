@@ -144,6 +144,9 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
     onReuseUserPasswordChanged( m_config->reuseUserPasswordForRoot() );
     onFullNameTextEdited( m_config->fullName() );
     reportLoginNameStatus( m_config->loginNameStatus() );
+
+    ui->textBoxLoginName->setEnabled( m_config->isEditable( "loginName" ) );
+    ui->textBoxFullName->setEnabled( m_config->isEditable( "fullName" ) );
 }
 
 UsersPage::~UsersPage()
