@@ -83,13 +83,13 @@ UserTests::testGetSet()
     }
     {
         const QString al( "autolg" );
-        QCOMPARE( c.autologinGroup(), QString() );
-        c.setAutologinGroup( al );
-        QCOMPARE( c.autologinGroup(), al );
+        QCOMPARE( c.autoLoginGroup(), QString() );
+        c.setAutoLoginGroup( al );
+        QCOMPARE( c.autoLoginGroup(), al );
         QVERIFY( !c.doAutoLogin() );
         c.setAutoLogin( true );
         QVERIFY( c.doAutoLogin() );
-        QCOMPARE( c.autologinGroup(), al );
+        QCOMPARE( c.autoLoginGroup(), al );
     }
     {
         const QString su( "sudogrp" );

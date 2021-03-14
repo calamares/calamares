@@ -59,11 +59,11 @@ updateGSAutoLogin( bool doAutoLogin, const QString& login )
 
     if ( doAutoLogin && !login.isEmpty() )
     {
-        gs->insert( "autologinUser", login );
+        gs->insert( "autoLoginUser", login );
     }
     else
     {
-        gs->remove( "autologinUser" );
+        gs->remove( "autoLoginUser" );
     }
 
     if ( login.isEmpty() )
@@ -142,13 +142,13 @@ insertInGlobalStorage( const QString& key, const QString& group )
 }
 
 void
-Config::setAutologinGroup( const QString& group )
+Config::setAutoLoginGroup( const QString& group )
 {
-    if ( group != m_autologinGroup )
+    if ( group != m_autoLoginGroup )
     {
-        m_autologinGroup = group;
-        insertInGlobalStorage( QStringLiteral( "autologinGroup" ), group );
-        emit autologinGroupChanged( group );
+        m_autoLoginGroup = group;
+        insertInGlobalStorage( QStringLiteral( "autoLoginGroup" ), group );
+        emit autoLoginGroupChanged( group );
     }
 }
 
@@ -162,9 +162,9 @@ Config::groupsForThisUser() const
     {
         l << g.name();
     }
-    if ( doAutoLogin() && !autologinGroup().isEmpty() )
+    if ( doAutoLogin() && !autoLoginGroup().isEmpty() )
     {
-        l << autologinGroup();
+        l << autoLoginGroup();
     }
 
     return l;
@@ -814,13 +814,13 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     // Now it might be explicitly set to empty, which is ok
     setUserShell( shell );
 
-    setAutologinGroup( CalamaresUtils::getString( configurationMap, "autologinGroup" ) );
+    setAutoLoginGroup( CalamaresUtils::getString( configurationMap, "autoLoginGroup" ) );
     setSudoersGroup( CalamaresUtils::getString( configurationMap, "sudoersGroup" ) );
 
     m_hostNameActions = getHostNameActions( configurationMap );
 
     setConfigurationDefaultGroups( configurationMap, m_defaultGroups );
-    m_doAutoLogin = CalamaresUtils::getBool( configurationMap, "doAutologin", false );
+    m_doAutoLogin = CalamaresUtils::getBool( configurationMap, "doAutoLogin", false );
 
     m_writeRootPassword = CalamaresUtils::getBool( configurationMap, "setRootPassword", true );
     Calamares::JobQueue::instance()->globalStorage()->insert( "setRootPassword", m_writeRootPassword );
