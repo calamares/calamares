@@ -65,7 +65,7 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="28"/>
       <source>GlobalStorage</source>
-      <translation>Globaali-tallennus</translation>
+      <translation>Tallennustila</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="38"/>
@@ -106,12 +106,12 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="117"/>
       <source>Widget Tree</source>
-      <translation>Widget puu</translation>
+      <translation>Widget puurakenne</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.cpp" line="217"/>
       <source>Debug information</source>
-      <translation>Virheenkorjaustiedot</translation>
+      <translation>Vianetsinnän tiedot</translation>
     </message>
   </context>
   <context>
@@ -137,7 +137,7 @@
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="30"/>
       <source>Programmed job failure was explicitly requested.</source>
-      <translation>Ohjelmoitua työn epäonnistumista pyydettiin erikseen.</translation>
+      <translation>Ohjelmoitu työn epäonnistuminen pyydettiin erikseen.</translation>
     </message>
   </context>
   <context>
@@ -184,7 +184,7 @@
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="221"/>
       <source>Bad working directory path</source>
-      <translation>Epäkelpo työskentelyhakemiston polku</translation>
+      <translation>Virheellinen työkansion polku</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="222"/>
@@ -194,12 +194,12 @@
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="228"/>
       <source>Bad main script file</source>
-      <translation>Huono pää-skripti tiedosto</translation>
+      <translation>Virheellinen komentosarjan tiedosto</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="229"/>
       <source>Main script file %1 for python job %2 is not readable.</source>
-      <translation>Pääskriptitiedosto %1 pythonin työlle %2 ei ole luettavissa.</translation>
+      <translation>Komentosarjan tiedosto %1 python työlle %2 ei ole luettavissa.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="297"/>
@@ -237,7 +237,7 @@
       <source>Waiting for %n module(s).</source>
       <translation>
         <numerusform>Odotetaan %n moduuli(t).</numerusform>
-        <numerusform>Odotetaan %n moduuli(t).</numerusform>
+        <numerusform>Odotetaan %n moduulia.</numerusform>
       </translation>
     </message>
     <message numerus="yes">
@@ -245,13 +245,13 @@
       <source>(%n second(s))</source>
       <translation>
         <numerusform>(%n sekunti(a))</numerusform>
-        <numerusform>(%n sekunti(a))</numerusform>
+        <numerusform>(%n sekuntia)</numerusform>
       </translation>
     </message>
     <message>
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="121"/>
       <source>System-requirements checking is complete.</source>
-      <translation>Järjestelmävaatimusten tarkistus on valmis.</translation>
+      <translation>Järjestelmän vaatimusten tarkistus on valmis.</translation>
     </message>
   </context>
   <context>
@@ -264,7 +264,7 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="150"/>
       <source>Installation Failed</source>
-      <translation>Asennus Epäonnistui</translation>
+      <translation>Asentaminen epäonnistui</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="151"/>
@@ -306,12 +306,12 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="208"/>
       <source>Calamares Initialization Failed</source>
-      <translation>Calamares-alustustaminen epäonnistui</translation>
+      <translation>Calamaresin alustaminen epäonnistui</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="209"/>
       <source>%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution.</source>
-      <translation>%1 ei voida asentaa. Calamares ei voinut ladata kaikkia määritettyjä moduuleja. Ongelma on siinä, miten jakelu käyttää Calamaresia.</translation>
+      <translation>%1 ei voi asentaa. Calamares ei voinut ladata kaikkia määritettyjä moduuleja. Ongelma on siinä, miten jakelu käyttää Calamaresia.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="215"/>
@@ -321,7 +321,7 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="327"/>
       <source>Continue with setup?</source>
-      <translation>Jatka asennusta?</translation>
+      <translation>Jatketaanko asennusta?</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="327"/>
