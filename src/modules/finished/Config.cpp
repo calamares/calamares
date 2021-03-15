@@ -111,8 +111,8 @@ Config::onInstallationFailed( const QString& message, const QString& details )
 void
 Config::doRestart( bool restartAnyway )
 {
-    cDebug() << "mode=" << restartModes().find( restartNowMode() ) << " user?" << restartNowWanted() << "arg?"
-             << restartAnyway;
+    cDebug() << "mode=" << restartModes().find( restartNowMode() ) << " user wants restart?" << restartNowWanted()
+             << "force restart?" << restartAnyway;
     if ( restartNowMode() != RestartMode::Never && restartAnyway )
     {
         cDebug() << Logger::SubEntry << "Running restart command" << m_restartNowCommand;
@@ -124,9 +124,11 @@ Config::doRestart( bool restartAnyway )
 void
 Config::doNotify( bool hasFailed, bool sendAnyway )
 {
+    const char* const failName = hasFailed ? "failed" : "succeeded";
+
     if ( !sendAnyway )
     {
-        cDebug() << "Notification failed?" << hasFailed << "not sent.";
+        cDebug() << "Notification not sent; completion:" << failName;
         return;
     }
 
@@ -134,7 +136,7 @@ Config::doNotify( bool hasFailed, bool sendAnyway )
         "org.freedesktop.Notifications", "/org/freedesktop/Notifications", "org.freedesktop.Notifications" );
     if ( notify.isValid() )
     {
-        cDebug() << "Sending notification of completion. Failed?" << hasFailed;
+        cDebug() << "Sending notification of completion:" << failName;
 
         QString title;
         QString message;
