@@ -7,6 +7,17 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
+# 3.2.38.1 (2021-03-15) #
+
+This hotfix release is for this item in the release notes of 3.2.38:
+ - The .desktop file for Calamares now makes a longer trip, calling
+   `sh -c "pkexec calamares"`; distributions may still need to adjust.
+The change had been lost while updating other files. It has been
+restored in `calamares.desktop` and `calamares.desktop.in`. There is
+no other difference in this release. (Reported by Erik)
+
+
+
 # 3.2.38 (2021-03-14) #
 
 This release contains contributions from (alphabetically by first name):
