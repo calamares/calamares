@@ -48,9 +48,11 @@ set( libSources
     locale/TranslatableString.cpp
 
     # Modules
+    modulesystem/Config.cpp
     modulesystem/Descriptor.cpp
     modulesystem/InstanceKey.cpp
     modulesystem/Module.cpp
+    modulesystem/Preset.cpp
     modulesystem/RequirementsChecker.cpp
     modulesystem/RequirementsModel.cpp
 

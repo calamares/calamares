@@ -7,20 +7,98 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.37 (unreleased) #
+# 3.2.39 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - Matti Hyttinen
 
 ## Core ##
  - No core changes yet
 
 ## Modules ##
+ - The *mount* module has gained a configurable setup for btrfs volumes.
+   If your distro has a default-to-btrfs setup, it can skip the hard-
+   coded setup (which Calamares has had for a long time with @home
+   and similar) and introduce a custom btrfs configuration through the
+   `mount.conf` file.
  - *netinstall* now supports fallbacks for the groups data.
    Instead of a single URL, multiple URLs may be specified in
    a list and Calamares goes through them until one is successfully
    retrieved. Older configurations with a single string are
    treated like a one-item list. #1579
+ - The *usersq* module now connects to the internal configuration
+   object and may be usable for regular installations.
+
+
+# 3.2.38.1 (2021-03-15) #
+
+This hotfix release is for this item in the release notes of 3.2.38:
+ - The .desktop file for Calamares now makes a longer trip, calling
+   `sh -c "pkexec calamares"`; distributions may still need to adjust.
+The change had been lost while updating other files. It has been restored
+in `calamares.desktop` and `calamares.desktop.in`. (Reported by Erik)
+Other minor changes and fixes:
+ - presets in the *users* module show the hostname, too,
+ - translations update for Korean, Ukranian and Chinese (zh_TW).
+
+
+# 3.2.38 (2021-03-14) #
+
+This release contains contributions from (alphabetically by first name):
+ - Anke Boersma
+ - Anubhav Choudhary
+ - Neal Gompa
+
+## Core ##
+ - Uploading your log files (in case of installation failure) has been
+   expanded and is now more configurable. Users should still take care
+   when uploading logs, and distro's should configure a URL with
+   no public viewing of those logs. (Thanks Anubhav)
+ - The .desktop file for Calamares now makes a longer trip, calling
+   `sh -c "pkexec calamares"`; distributions may still need to adjust.
+
+## Modules ##
+ - A new QML-based *finishedq* module has been added. (Thanks Anke)
+ - The *packages* module no longer supports *urpmi*; no Calamares-
+   consumers with that package manager seem to exist. (Thanks Neal)
+ - The *users* module now can set a fixed username and prevent editing.
+   The *presets* configuration entry in `users.conf` can set a *loginName*
+   and a *fullName* and (independently) enable or disable editing of
+   that value. You can, for instance, set *loginName* to "manjaro" if
+   you like; the user can change it afterwards. You could set the
+   *loginName* to "oem" and prevent editing it as well. #942
+
+
+# 3.2.37 (2021-02-23) #
+
+This release contains contributions from (alphabetically by first name):
+ - benne-dee
+
+## Core ##
+ - Calamares has a table of 'best guess' languages for each country
+   and when GeoIP is enabled, it will automatically select that
+   country's language as default -- the user can of course pick
+   a different one. The 'best guess' is based on Unicode / ISO
+   data, which is sometimes dubious. Based on some personal notes,
+   the 'best guess' language for Belarus has been changed to Russian.
+ - Calamares has a table of 'best guess' keyboard mappings,
+   allowing native language input. However, usernames and
+   passwords should be in US-ASCII (this is a limitation of
+   the login system -- **some** parts of the system will support
+   non-ASCII input, but it's better safe than sorry).
+   Add Greek to the list of languages that needs US-ASCII
+   in addition to native input.
+ - The CI infrastructure now builds Calamares and Calamares-extensions
+   on a nightly basis.
+
+## Modules ##
+ - The *netinstall* module has a YAML schema, allowing packagers
+   to validate and verify their netinstall configurations before
+   shipping an ISO (or writing bug reports). Thanks benne-dee.
+ - The *finished* module has been heavily refactored, opening
+   the way to a QML-based version of the same module. This is
+   also preparatory work for allowing packagers (e.g. PostmarketOS)
+   to customize the messages on the finished page.
 
 
 # 3.2.36 (2021-02-03) #

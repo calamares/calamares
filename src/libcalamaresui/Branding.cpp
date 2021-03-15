@@ -4,6 +4,7 @@
  *   SPDX-FileCopyrightText: 2017-2019 Adriaan de Groot <groot@kde.org>
  *   SPDX-FileCopyrightText: 2018 Raul Rodrigo Segura (raurodse)
  *   SPDX-FileCopyrightText: 2019 Camilo Higuita <milo.h@aol.com>
+ *   SPDX-FileCopyrightText: 2021 Anubhav Choudhary <ac.10edu@gmail.com>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -86,6 +87,13 @@ const QStringList Branding::s_styleEntryStrings =
     "sidebarTextSelect",
     "sidebarTextHighlight"
 };
+
+const QStringList Branding::s_uploadServerStrings =
+{
+    "type",
+    "url",
+    "port"
+};
 // clang-format on
 // *INDENT-ON*
 
@@ -128,6 +136,32 @@ loadStrings( QMap< QString, QString >& map,
     {
         map.insert( it.key(), transform( it.value().toString() ) );
     }
+}
+
+static Branding::UploadServerInfo
+uploadServerFromMap( const QVariantMap& map )
+{
+    using Type = Branding::UploadServerType;
+    // *INDENT-OFF*
+    // clang-format off
+    static const NamedEnumTable< Type > names {
+        { "none", Type::None },
+        { "fiche", Type::Fiche }
+    };
+    // clang-format on
+    // *INDENT-ON*
+
+    QString typestring = map[ "type" ].toString();
+    QString urlstring = map[ "url" ].toString();
+
+    if ( typestring.isEmpty() || urlstring.isEmpty() )
+    {
+        return Branding::UploadServerInfo( Branding::UploadServerType::None, QUrl() );
+    }
+
+    bool bogus = false;  // we don't care about type-name lookup success here
+    return Branding::UploadServerInfo( names.find( typestring, bogus ),
+                                       QUrl( urlstring, QUrl::ParsingMode::StrictMode ) );
 }
 
 /** @brief Load the @p map with strings from @p config
@@ -218,6 +252,8 @@ Branding::Branding( const QString& brandingFilePath, QObject* parent )
                 return imageFi.absoluteFilePath();
             } );
             loadStrings( m_style, doc, "style", []( const QString& s ) -> QString { return s; } );
+
+            m_uploadServer = uploadServerFromMap( CalamaresUtils::yamlMapToVariant( doc[ "uploadServer" ] ) );
         }
         catch ( YAML::Exception& e )
         {
@@ -277,7 +313,6 @@ Branding::imagePath( Branding::ImageEntry imageEntry ) const
 {
     return m_images.value( s_imageEntryStrings.value( imageEntry ) );
 }
-
 
 QPixmap
 Branding::image( Branding::ImageEntry imageEntry, const QSize& size ) const

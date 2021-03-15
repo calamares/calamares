@@ -43,6 +43,18 @@ properties:
     setHostname: { type: string, enum: [ None, EtcFile, Hostnamed ] }
     writeHostsFile: { type: boolean, default: true }
 
+    # Presets
+    #
+    # TODO: lift up somewhere, since this will return in many modules;
+    #       the type for each field (fullName, loginName) is a
+    #       preset-description (value, editable).
+    presets:
+        type: object
+        additionalProperties: false
+        properties:
+            fullName: { type: object }
+            loginName: { type: object }
+
 required:
     - defaultGroups
     - autologinGroup

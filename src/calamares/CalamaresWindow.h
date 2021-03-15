@@ -11,12 +11,13 @@
 #ifndef CALAMARESWINDOW_H
 #define CALAMARESWINDOW_H
 
-#include <QPointer>
 #include <QWidget>
+
+#include <memory>
 
 namespace Calamares
 {
-class DebugWindow;
+class DebugWindowManager;
 class ViewManager;
 }  // namespace Calamares
 
@@ -30,7 +31,7 @@ public:
     CalamaresWindow( QWidget* parent = nullptr );
     ~CalamaresWindow() override {}
 
-public slots:
+public Q_SLOTS:
     /**
      * This asks the main window to grow to accomodate @p size pixels, to accomodate
      * larger-than-expected window contents. The enlargement may be silently
@@ -42,16 +43,8 @@ protected:
     virtual void closeEvent( QCloseEvent* e ) override;
 
 private:
-    // Two variations on sidebar (the progress view)
-    QWidget* getWidgetSidebar( QWidget* parent, int desiredWidth );
-    QWidget* getQmlSidebar( QWidget* parent, int desiredWidth );
-
-    // Two variations on navigation (buttons at bottom)
-    QWidget* getWidgetNavigation( QWidget* parent );
-    QWidget* getQmlNavigation( QWidget* parent );
-
-    QPointer< Calamares::DebugWindow > m_debugWindow;  // Managed by self
-    Calamares::ViewManager* m_viewManager;
+    Calamares::DebugWindowManager* m_debugManager = nullptr;
+    Calamares::ViewManager* m_viewManager = nullptr;
 };
 
 #endif  // CALAMARESWINDOW_H

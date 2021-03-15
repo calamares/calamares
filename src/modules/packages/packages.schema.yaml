@@ -17,7 +17,6 @@ properties:
             - pacman
             - pamac
             - portage
-            - urpmi
             - yum
             - zypp
             - dummy

@@ -11,6 +11,7 @@ calamares_add_plugin( finished
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
+        Config.cpp
         FinishedViewStep.cpp
         FinishedPage.cpp
     UI

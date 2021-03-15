@@ -11,7 +11,28 @@
 >
 > Most things are automated through the release script [RELEASE.sh](RELEASE.sh)
 
+## (0) During a release cycle
+
+* Fetch latest translations from Transifex. We only push / pull translations
+  from *calamares* branch, so longer-lived branches (e.g. 3.1.x) don't get
+  translation updates. This is to keep the translation workflow simple.
+  The script automatically commits changes to the translations. It's ok
+  to do this during a release cycle. Run `sh ci/txpull.sh`
+  to fetch translations and commit the changes in one go.
+* Push the strings to Transifex. From a checkout, run `ci/txpush.sh`
+* Update the list of enabled translation languages in `CMakeLists.txt`.
+  Check the [translation site][transifex] for the list of languages with
+  fairly complete translations, or use `ci/txstats.py --edit` for an automated
+  suggestion. If there are changes, commit them.
+
 ## (1) Preparation
+
+* Drop the RC variable to 0 in `CMakeLists.txt`, *CALAMARES_VERSION_RC*.
+* Edit `CHANGES` and set the date of the release.
+* Commit both. This is usually done with commit-message
+  *Changes: pre-release housekeeping*.
+
+## (2) Release Preparation
 
 * Make sure all tests pass.
   ```
@@ -22,27 +43,16 @@
   an additional environment variable to be set for some tests, which will
   destroy an attached disk. This is not always desirable. There are some
   sample config-files that are empty and which fail the config-tests.
-* Pull latest translations from Transifex. We only push / pull translations
-  from master, so longer-lived branches (e.g. 3.1.x) don't get translation
-  updates. This is to keep the translation workflow simple. The script
-  automatically commits changes to the translations.
-  ```
-    sh ci/txpull.sh
-  ```
-* Update the list of enabled translation languages in `CMakeLists.txt`.
-  Check the [translation site][transifex] for the list of languages with
-  fairly complete translations, or use `ci/txstats.py` for an automated
-  suggestion. If there are changes, commit them.
-* Push the changes.
-* Check defaults in `settings.conf` and other configuration files.
-* Drop the RC variable to 0 in `CMakeLists.txt`, *CALAMARES_VERSION_RC*.
-* Edit `CHANGES` and set the date of the release.
-* Commit both. This is usually done with commit-message
-  *Changes: pre-release housekeeping*.
-
-
-## (2) Release Day
-
+  Note that the release script (see below) also runs the tests and
+  will bail out if any fail.
+* Make sure the translations are up-to-date. There is logic to check
+  for changes in translations: a movable tag *translations* indicates
+  when translations were last pushed, and the logic tries to enforce a
+  week of latency between push-translations and a release, to allow
+  translators to catch up. Run `ci/txcheck.sh` to confirm this.
+  Run `ci/txcheck.sh --cleanup` to tidy up afterwards, and possibly pass
+  `-T` to the release script to skip the translation-age check if you
+  feel it is warranted.
 * Run the helper script `ci/RELEASE.sh` or follow steps below.
   The script checks:
   - for uncommitted local changes,
@@ -119,7 +129,7 @@ ssb  rsa3072/0xCFDDC96F12B1915C
   the Calmares site or as part of a release announcement).
   - Send the updated key to keyservers with `gpg --send-keys <keyid>`
   - Optional: sanitize the keyring for use in development machines.
-    Export the current subkeys of the master key and keep **only** those
+    Export the current subkeys of the primary key and keep **only** those
     secret keys around. There is documentation
     [here](https://blog.tinned-software.net/create-gnupg-key-with-sub-keys-to-sign-encrypt-authenticate/)
     but be careful.

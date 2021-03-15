@@ -227,7 +227,7 @@ registerQmlModels()
                 return Calamares::Branding::instance();
             } );
         qmlRegisterSingletonType< Calamares::ViewManager >(
-            "io.calamares.core", 1, 0, "ViewManager", []( QQmlEngine*, QJSEngine* ) -> QObject* {
+            "io.calamares.ui", 1, 0, "ViewManager", []( QQmlEngine*, QJSEngine* ) -> QObject* {
                 return Calamares::ViewManager::instance();
             } );
         qmlRegisterSingletonType< Calamares::GlobalStorage >(

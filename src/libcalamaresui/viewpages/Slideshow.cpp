@@ -43,6 +43,8 @@ SlideshowQML::SlideshowQML( QWidget* parent )
     , m_qmlComponent( nullptr )
     , m_qmlObject( nullptr )
 {
+    m_qmlShow->setObjectName("qml");
+
     CalamaresUtils::registerQmlModels();
 
     m_qmlShow->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
@@ -203,6 +205,8 @@ SlideshowPictures::SlideshowPictures( QWidget* parent )
     , m_imageIndex( 0 )
     , m_images( Branding::instance()->slideshowImages() )
 {
+    m_label->setObjectName("image");
+
     m_label->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
     m_label->setAlignment( Qt::AlignCenter );
     m_timer->setInterval( std::chrono::milliseconds( 2000 ) );

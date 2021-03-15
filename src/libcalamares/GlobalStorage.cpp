@@ -19,7 +19,7 @@
 #include <QJsonDocument>
 #include <QMutexLocker>
 
-using CalamaresUtils::operator""_MiB;
+using namespace CalamaresUtils::Units;
 
 namespace Calamares
 {

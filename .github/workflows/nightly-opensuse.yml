@@ -1,0 +1,98 @@
+name: nightly-opensuse
+
+on:
+  schedule:
+    - cron: "32 23 * * *"
+  workflow_dispatch:
+
+env:
+  BUILDDIR: /build
+  SRCDIR: ${{ github.workspace }}
+  CMAKE_ARGS: |
+    -DWEBVIEW_FORCE_WEBKIT=1
+    -DKDE_INSTALL_USE_QT_SYS_PATHS=ON
+    -DWITH_PYTHONQT=OFF"
+    -DCMAKE_BUILD_TYPE=Debug
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: docker://opensuse/leap
+      options: --tmpfs /build:rw --user 0:0
+    steps:
+      - name: "prepare env"
+        run: |
+          zypper --non-interactive up
+          zypper --non-interactive in git-core
+          # From deploycala.py
+          zypper --non-interactive in \
+            "autoconf" \
+            "automake" \
+            "bison" \
+            "flex" \
+            "git" \
+            "libtool" \
+            "m4" \
+            "make" \
+            "cmake" \
+            "extra-cmake-modules" \
+            "gcc-c++" \
+            "libqt5-qtbase-devel" \
+            "libqt5-linguist-devel" \
+            "libqt5-qtsvg-devel" \
+            "libqt5-qtdeclarative-devel" \
+            "libqt5-qtwebengine-devel" \
+            "yaml-cpp-devel" \
+            "libpolkit-qt5-1-devel" \
+            "kservice-devel" \
+            "kpackage-devel" \
+            "kparts-devel" \
+            "kcrash-devel" \
+            "kpmcore-devel" \
+            "plasma5-workspace-devel" \
+            "plasma-framework-devel" \
+            "libpwquality-devel" \
+            "parted-devel" \
+            "python3-devel" \
+            "boost-devel" \
+            "libboost_python-py3-*-devel"
+          # Additional dependencies
+          zypper --non-interactive in \
+            libicu-devel \
+            libAppStreamQt-devel \
+            libatasmart-devel
+      - name: "prepare source"
+        uses: actions/checkout@v2
+      - name: "prepare build"
+        id: pre_build
+        run: |
+          test -n "$BUILDDIR" || { echo "! \$BUILDDIR not set" ; exit 1 ; }
+          mkdir -p $BUILDDIR
+          test -f $SRCDIR/CMakeLists.txt || { echo "! Missing $SRCDIR/CMakeLists.txt" ; exit 1 ; }
+          echo "::set-output name=message::"`git log -1 --abbrev-commit --pretty=oneline --no-decorate ${{ github.event.head_commit.id }}`
+      - name: "Calamares: cmake"
+        working-directory: ${{ env.BUILDDIR }}
+        run: cmake $CMAKE_ARGS $SRCDIR
+      - name: "Calamares: make"
+        working-directory: ${{ env.BUILDDIR }}
+        run: make -j2 VERBOSE=1
+      - name: "Calamares: install"
+        working-directory: ${{ env.BUILDDIR }}
+        run: make install VERBOSE=1
+      - name: "notify: ok"
+        uses: rectalogic/notify-irc@v1
+        if: ${{ success() && github.repository == 'calamares/calamares' }}
+        with:
+          server: chat.freenode.net
+          nickname: cala-ci
+          channel: "#calamares"
+          message: "OK ${{ github.workflow }} in ${{ github.repository }} ${{ steps.pre_build.outputs.message }}"
+      - name: "notify: fail"
+        uses: rectalogic/notify-irc@v1
+        if: ${{ failure() && github.repository == 'calamares/calamares' }}
+        with:
+          server: chat.freenode.net
+          nickname: cala-ci
+          channel: "#calamares"
+          message: "FAIL ${{ github.workflow }} in ${{ github.repository }} ${{ steps.pre_build.outputs.message }}"

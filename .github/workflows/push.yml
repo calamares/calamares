@@ -1,8 +1,14 @@
-name: ci-debian-10
+name: ci-push
 
 on:
-  schedule:
-    - cron: "12 23 * * *"
+  push:
+    branches:
+      - calamares
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
   workflow_dispatch:
 
 env:
@@ -18,14 +24,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: docker://debian:10
+      image: docker://kdeneon/plasma:user
       options: --tmpfs /build:rw --user 0:0
     steps:
       - name: "prepare env"
         run: |
-          apt-get update
-          apt-get -y install git-core
-          apt-get -y install \
+          sudo apt-get update
+          sudo apt-get -y install git-core
+          sudo apt-get -y install \
             build-essential \
             cmake \
             extra-cmake-modules \
@@ -40,6 +46,7 @@ jobs:
             libkf5parts-dev \
             libkf5service-dev \
             libkf5solid-dev \
+            libkpmcore-dev \
             libparted-dev \
             libpolkit-qt5-1-dev \
             libqt5svg5-dev \
@@ -52,18 +59,6 @@ jobs:
             qtdeclarative5-dev \
             qttools5-dev \
             qttools5-dev-tools
-          # Same name as on KDE neon, different version
-          apt-get -y install libkpmcore-dev
-          # Additional dependencies
-          apt-get -y install \
-            libappstreamqt-dev \
-            libicu-dev \
-            libkf5crash-dev \
-            libkf5package-dev \
-            libkf5plasma-dev \
-            libpwquality-dev \
-            libqt5webenginewidgets5 \
-            qtwebengine5-dev
       - name: "prepare source"
         uses: actions/checkout@v2
       - name: "prepare build"
@@ -89,7 +84,7 @@ jobs:
           server: chat.freenode.net
           nickname: cala-ci
           channel: "#calamares"
-          message: "SCHEDULED ${{ github.workflow }} OK ${{ steps.pre_build.outputs.message }}"
+          message: "OK ${{ github.workflow }} in ${{ github.repository }} ${{ github.actor }} on ${{ github.event.ref }}\n.. ${{ steps.pre_build.outputs.message }}"
       - name: "notify: fail"
         uses: rectalogic/notify-irc@v1
         if: ${{ failure() && github.repository == 'calamares/calamares' }}
@@ -97,4 +92,4 @@ jobs:
           server: chat.freenode.net
           nickname: cala-ci
           channel: "#calamares"
-          message: "SCHEDULED ${{ github.workflow }} FAIL ${{ steps.pre_build.outputs.message }}"
+          message: "FAIL ${{ github.workflow }} in ${{ github.repository }} ${{ github.actor }} on ${{ github.event.ref }}\n.. ${{ steps.pre_build.outputs.message }}\n.. DIFF ${{ github.event.compare }}"

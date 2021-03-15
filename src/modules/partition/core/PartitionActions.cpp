@@ -29,10 +29,10 @@
 
 #include <QDir>
 
+using namespace CalamaresUtils::Units;
+
 namespace PartitionActions
 {
-using CalamaresUtils::operator""_GiB;
-using CalamaresUtils::operator""_MiB;
 
 qint64
 swapSuggestion( const qint64 availableSpaceB, Config::SwapChoice swap )

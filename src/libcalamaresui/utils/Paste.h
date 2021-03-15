@@ -10,19 +10,21 @@
 #ifndef UTILS_PASTE_H
 #define UTILS_PASTE_H
 
-#include <qglobal.h>  // for quint16
+#include <QString>
 
 class QObject;
-class QString;
 
 namespace CalamaresUtils
+{
+namespace Paste
 {
 
 /** @brief Send the current log file to a pastebin
  *
  * Returns the (string) URL that the pastebin gives us.
  */
-QString sendLogToPastebin( QObject* parent, const QString& ficheHost, quint16 fichePort );
+QString doLogUpload( QObject* parent );
+}  // namespace Paste
 
 }  // namespace CalamaresUtils
 

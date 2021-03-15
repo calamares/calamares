@@ -29,6 +29,11 @@ Files: .github/ISSUE_TEMPLATE/*
 License: CC0-1.0
 Copyright: no
 
+# GitHub actions are not part of the source
+Files: .github/workflows/*.yml
+License: CC0-1.0
+Copyright: no
+
 # Packaging information
 #
 Files: data/FreeBSD/distinfo data/FreeBSD/pkg-descr data/FreeBSD/pkg-plist

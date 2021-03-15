@@ -13,6 +13,7 @@
 #include "CheckPWQuality.h"
 
 #include "Job.h"
+#include "modulesystem/Config.h"
 #include "utils/NamedEnum.h"
 
 #include <QList>
@@ -85,13 +86,13 @@ private:
 };
 
 
-class PLUGINDLLEXPORT Config : public QObject
+class PLUGINDLLEXPORT Config : public Calamares::ModuleSystem::Config
 {
     Q_OBJECT
 
     Q_PROPERTY( QString userShell READ userShell WRITE setUserShell NOTIFY userShellChanged )
 
-    Q_PROPERTY( QString autologinGroup READ autologinGroup WRITE setAutologinGroup NOTIFY autologinGroupChanged )
+    Q_PROPERTY( QString autoLoginGroup READ autoLoginGroup WRITE setAutoLoginGroup NOTIFY autoLoginGroupChanged )
     Q_PROPERTY( QString sudoersGroup READ sudoersGroup WRITE setSudoersGroup NOTIFY sudoersGroupChanged )
 
     Q_PROPERTY( bool doAutoLogin READ doAutoLogin WRITE setAutoLogin NOTIFY autoLoginChanged )
@@ -161,7 +162,7 @@ public:
     Config( QObject* parent = nullptr );
     ~Config() override;
 
-    void setConfigurationMap( const QVariantMap& );
+    void setConfigurationMap( const QVariantMap& ) override;
 
     /** @brief Fill Global Storage with some settings
      *
@@ -184,7 +185,7 @@ public:
     QString userShell() const { return m_userShell; }
 
     /// The group of which auto-login users must be a member
-    QString autologinGroup() const { return m_autologinGroup; }
+    QString autoLoginGroup() const { return m_autoLoginGroup; }
     /// The group of which users who can "sudo" must be a member
     QString sudoersGroup() const { return m_sudoersGroup; }
 
@@ -216,7 +217,7 @@ public:
     const QList< GroupDescription >& defaultGroups() const { return m_defaultGroups; }
     /** @brief the names of all the groups for the current user
      *
-     * Takes into account defaultGroups and autologin behavior.
+     * Takes into account defaultGroups and autoLogin behavior.
      */
     QStringList groupsForThisUser() const;
 
@@ -252,8 +253,8 @@ public Q_SLOTS:
      */
     void setUserShell( const QString& path );
 
-    /// Sets the autologin group; empty is ignored
-    void setAutologinGroup( const QString& group );
+    /// Sets the autoLogin group; empty is ignored
+    void setAutoLoginGroup( const QString& group );
     /// Sets the sudoer group; empty is ignored
     void setSudoersGroup( const QString& group );
 
@@ -265,7 +266,7 @@ public Q_SLOTS:
     /// Sets the host name (flags it as "custom")
     void setHostName( const QString& host );
 
-    /// Sets the autologin flag
+    /// Sets the autoLogin flag
     void setAutoLogin( bool b );
 
     /// Set to true to use the user password, unchanged, for root too
@@ -280,7 +281,7 @@ public Q_SLOTS:
 
 signals:
     void userShellChanged( const QString& );
-    void autologinGroupChanged( const QString& );
+    void autoLoginGroupChanged( const QString& );
     void sudoersGroupChanged( const QString& );
     void fullNameChanged( const QString& );
     void loginNameChanged( const QString& );
@@ -304,7 +305,7 @@ private:
 
     QList< GroupDescription > m_defaultGroups;
     QString m_userShell;
-    QString m_autologinGroup;
+    QString m_autoLoginGroup;
     QString m_sudoersGroup;
     QString m_fullName;
     QString m_loginName;

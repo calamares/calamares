@@ -13,6 +13,7 @@ JSON-representable, anyway.
 
 Usage:
     configvalidator.py <schema> <file> ...
+    configvalidator.py -m <module>
     configvalidator.py -x
 
 Exits with value 0 on success, otherwise:
@@ -22,6 +23,8 @@ Exits with value 0 on success, otherwise:
     4 if files have invalid syntax
     5 if files fail to validate
 Use -x as only command-line argument to check the imports only.
+
+Use -m <module> as shorthand for standard paths in src/modules/<module>/
 """
 
 # The schemata originally lived outside the Calamares repository,
@@ -65,8 +68,13 @@ if len(sys.argv) < 3:
     print(usage)
     exit(ERR_USAGE)
 
-schema_file_name = sys.argv[1]
-config_file_names = sys.argv[2:]
+if len(sys.argv) == 3 and sys.argv[1] == "-m":
+    module = sys.argv[2]
+    schema_file_name = f"src/modules/{module}/{module}.schema.yaml"
+    config_file_names = [ f"src/modules/{module}/{module}.conf" ]
+else:
+    schema_file_name = sys.argv[1]
+    config_file_names = sys.argv[2:]
 
 if not exists(schema_file_name):
     print(usage)

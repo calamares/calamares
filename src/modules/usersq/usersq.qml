@@ -56,10 +56,12 @@ Kirigami.ScrollablePage {
 
                 id: _userNameField
                 width: parent.width
+                enabled: config.isEditable("fullName")
                 placeholderText: qsTr("Your Full Name")
-                onTextChanged: config.fullNameChanged(text)
-                background: Rectangle {
+                text: config.fullName
+                onTextChanged: config.setFullName(text);
 
+                background: Rectangle {
                     color: "#FBFBFB" // Kirigami.Theme.backgroundColor
                     radius: 2
                     opacity: 0.9
@@ -84,9 +86,10 @@ Kirigami.ScrollablePage {
 
                 id: _userLoginField
                 width: parent.width
+                enabled: config.isEditable("loginName")
                 placeholderText: qsTr("Login Name")
-                //text: config.userName
-                onTextEdited: config.loginNameStatusChanged(text)
+                text: config.loginName
+                onTextChanged: config.setLoginName(text)
 
                 background: Rectangle {
 
@@ -124,7 +127,8 @@ Kirigami.ScrollablePage {
                 width: parent.width
                 placeholderText: qsTr("Computer Name")
                 text: config.hostName
-                onTextEdited: config.hostNameStatusChanged(text)
+                onTextChanged: config.setHostName(text)
+
                 background: Rectangle {
 
                     color: "#FBFBFB" // Kirigami.Theme.backgroundColor
@@ -164,10 +168,12 @@ Kirigami.ScrollablePage {
                     id: _passwordField
                     width: parent.width / 2 - 10
                     placeholderText: qsTr("Password")
+                    text: config.userPassword
+                    onTextChanged: config.setUserPassword(text)
+
                     echoMode: TextInput.Password
                     passwordMaskDelay: 300
                     inputMethodHints: Qt.ImhNoAutoUppercase
-                    onTextChanged: config.userPasswordStatusChanged(text, _verificationPasswordField.text)
 
                     background: Rectangle {
 
@@ -183,10 +189,12 @@ Kirigami.ScrollablePage {
                     id: _verificationPasswordField
                     width: parent.width / 2 - 10
                     placeholderText: qsTr("Repeat Password")
+                    text: config.userPasswordSecondary
+                    onTextChanged: config.setUserPasswordSecondary(text)
+
                     echoMode: TextInput.Password
                     passwordMaskDelay: 300
                     inputMethodHints: Qt.ImhNoAutoUppercase
-                    onTextChanged: config.userPasswordSecondaryChanged(_passwordField.text, text)
 
                     background: Rectangle {
 
@@ -211,17 +219,14 @@ Kirigami.ScrollablePage {
 
         CheckBox {
 
-            visible: config.allowWeakPasswords
-            //visible: false
+            visible: config.permitWeakPasswords
             text: qsTr("Validate passwords quality")
-            checked: config.allowWeakPasswordsDefault
-            onToggled: config.allowWeakPasswordsDefault = !config.allowWeakPasswordsDefault
+            checked: config.requireStrongPasswords
+            onCheckedChanged: config.setRequireStrongPasswords(checked)
         }
 
         Label {
-
-            visible: config.allowWeakPasswords
-            //visible: false
+            visible: config.permitWeakPasswords
             width: parent.width
             text: qsTr("When this box is checked, password-strength checking is done and you will not be able to use a weak password.")
             font.weight: Font.Thin
@@ -230,24 +235,20 @@ Kirigami.ScrollablePage {
         }
 
         CheckBox {
-
             text: qsTr("Log in automatically without asking for the password")
-            checked: config.doAutologin
-            onToggled: config.doAutologin = !config.doAutologin
+            checked: config.doAutoLogin
+            onCheckedChanged: config.setAutoLogin(checked)
         }
 
         CheckBox {
-
             id: root
-            visible: config.doReusePassword
+            visible: config.writeRootPassword
             text: qsTr("Reuse user password as root password")
             checked: config.reuseUserPasswordForRoot
-            //checked: false
-            onToggled: config.reuseUserPasswordForRoot = !config.reuseUserPasswordForRoot
+            onCheckedChanged: config.setReuseUserPasswordForRoot(checked)
         }
 
         Label {
-
             visible: root.checked
             width: parent.width
             text: qsTr("Use the same password for the administrator account.")
@@ -277,10 +278,12 @@ Kirigami.ScrollablePage {
                     id: _rootPasswordField
                     width: parent.width / 2 -10
                     placeholderText: qsTr("Root Password")
+                    text: config.rootPassword
+                    onTextChanged: config.setRootPassword(text)
+
                     echoMode: TextInput.Password
                     passwordMaskDelay: 300
                     inputMethodHints: Qt.ImhNoAutoUppercase
-                    onTextChanged: config.rootPasswordChanged(text, _verificationRootPasswordField.text)
 
                     background: Rectangle {
 
@@ -296,10 +299,12 @@ Kirigami.ScrollablePage {
                     id: _verificationRootPasswordField
                     width: parent.width / 2 -10
                     placeholderText: qsTr("Repeat Root Password")
+                    text: config.rootPasswordSecondary
+                    onTextChanged: config.setRootPasswordSecondary(text)
+
                     echoMode: TextInput.Password
                     passwordMaskDelay: 300
                     inputMethodHints: Qt.ImhNoAutoUppercase
-                    onTextChanged: config.rootPasswordSecondaryChanged(_rootPasswordField.text, text)
 
                     background: Rectangle {
 

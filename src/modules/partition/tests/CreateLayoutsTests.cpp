@@ -19,6 +19,8 @@
 
 #include <QtTest/QtTest>
 
+using namespace CalamaresUtils::Units;
+
 class PartitionTable;
 class SmartStatus;
 
@@ -26,9 +28,6 @@ QTEST_GUILESS_MAIN( CreateLayoutsTests )
 
 static CalamaresUtils::Partition::KPMManager* kpmcore = nullptr;
 static Calamares::JobQueue* jobqueue = nullptr;
-
-using CalamaresUtils::operator""_MiB;
-using CalamaresUtils::operator""_GiB;
 
 #define LOGICAL_SIZE 512
 

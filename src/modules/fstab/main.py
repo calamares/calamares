@@ -183,37 +183,19 @@ class FstabGenerator(object):
             print(FSTAB_HEADER, file=fstab_file)
 
             for partition in self.partitions:
-                # Special treatment for a btrfs root with @, @home and @swap
-                # subvolumes
+                # Special treatment for a btrfs subvolumes
                 if (partition["fs"] == "btrfs"
                    and partition["mountPoint"] == "/"):
-                    output = subprocess.check_output(['btrfs',
-                                                      'subvolume',
-                                                      'list',
-                                                      self.root_mount_point])
-                    output_lines = output.splitlines()
-                    for line in output_lines:
-                        if line.endswith(b'path @'):
-                            root_entry = partition
-                            root_entry["subvol"] = "@"
-                            dct = self.generate_fstab_line_info(root_entry)
-                            if dct:
+                    # Subvolume list has been created in mount.conf and curated in mount module,
+                    # so all subvolumes here should be safe to add to fstab
+                    btrfs_subvolumes = libcalamares.globalstorage.value("btrfsSubvolumes")
+                    for s in btrfs_subvolumes:
+                        mount_entry = partition
+                        mount_entry["mountPoint"] = s["mountPoint"]
+                        mount_entry["subvol"] = s["subvolume"]
+                        dct = self.generate_fstab_line_info(mount_entry)
+                        if dct:
                                 self.print_fstab_line(dct, file=fstab_file)
-                        elif line.endswith(b'path @home'):
-                            home_entry = partition
-                            home_entry["mountPoint"] = "/home"
-                            home_entry["subvol"] = "@home"
-                            dct = self.generate_fstab_line_info(home_entry)
-                            if dct:
-                                self.print_fstab_line(dct, file=fstab_file)
-                        elif line.endswith(b'path @swap'):
-                            swap_part_entry = partition
-                            swap_part_entry["mountPoint"] = "/swap"
-                            swap_part_entry["subvol"] = "@swap"
-                            dct = self.generate_fstab_line_info(swap_part_entry)
-                            if dct:
-                                self.print_fstab_line(dct, file=fstab_file)
-
                 else:
                     dct = self.generate_fstab_line_info(partition)
                     if dct:

@@ -111,3 +111,12 @@ foreach( subdir modulesystem utils viewpages widgets )
     file( GLOB subdir_headers "${subdir}/*.h" )
     install( FILES ${subdir_headers} DESTINATION include/libcalamares/${subdir} )
 endforeach()
+
+calamares_add_test(
+    test_libcalamaresuipaste
+    SOURCES
+        utils/TestPaste.cpp
+        utils/Paste.cpp
+    LIBRARIES
+        calamaresui
+)

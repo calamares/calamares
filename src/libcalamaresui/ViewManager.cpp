@@ -4,6 +4,7 @@
  *   SPDX-FileCopyrightText: 2017-2018 Adriaan de Groot <groot@kde.org>
  *   SPDX-FileCopyrightText: 2019 Dominic Hayes <ferenosdev@outlook.com>
  *   SPDX-FileCopyrightText: 2019 Gabriel Craciunescu <crazy@frugalware.org>
+ *   SPDX-FileCopyrightText: 2021 Anubhav Choudhary <ac.10edu@gmail.com>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -26,6 +27,7 @@
 
 #include <QApplication>
 #include <QBoxLayout>
+#include <QClipboard>
 #include <QFile>
 #include <QMessageBox>
 #include <QMetaObject>
@@ -141,7 +143,8 @@ ViewManager::insertViewStep( int before, ViewStep* step )
 void
 ViewManager::onInstallationFailed( const QString& message, const QString& details )
 {
-    bool shouldOfferWebPaste = false;  // TODO: config var
+    bool shouldOfferWebPaste
+        = Calamares::Branding::instance()->uploadServer().first != Calamares::Branding::UploadServerType::None;
 
     cError() << "Installation failed:" << message;
     cDebug() << Logger::SubEntry << "- message:" << message;
@@ -187,17 +190,26 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
     connect( msgBox, &QMessageBox::buttonClicked, [msgBox]( QAbstractButton* button ) {
         if ( msgBox->buttonRole( button ) == QMessageBox::ButtonRole::YesRole )
         {
-            // TODO: host and port should be configurable
-            QString pasteUrlMsg = CalamaresUtils::sendLogToPastebin( msgBox, QStringLiteral( "termbin.com" ), 9999 );
-
-            QString pasteUrlTitle = tr( "Install Log Paste URL" );
-            if ( pasteUrlMsg.isEmpty() )
+            QString pasteUrl = CalamaresUtils::Paste::doLogUpload( msgBox );
+            QString pasteUrlMessage;
+            if ( pasteUrl.isEmpty() )
             {
-                pasteUrlMsg = tr( "The upload was unsuccessful. No web-paste was done." );
+                pasteUrlMessage = tr( "The upload was unsuccessful. No web-paste was done." );
+            }
+            else
+            {
+                QClipboard* clipboard = QApplication::clipboard();
+                clipboard->setText( pasteUrl, QClipboard::Clipboard );
+
+                if ( clipboard->supportsSelection() )
+                {
+                    clipboard->setText( pasteUrl, QClipboard::Selection );
+                }
+                QString pasteUrlFmt = tr( "Install log posted to\n\n%1\n\nLink copied to clipboard" );
+                pasteUrlMessage = pasteUrlFmt.arg( pasteUrl );
             }
 
-            // TODO: make the URL clickable, or copy it to the clipboard automatically
-            QMessageBox::critical( nullptr, pasteUrlTitle, pasteUrlMsg );
+            QMessageBox::critical( nullptr, tr( "Install Log Paste URL" ), pasteUrlMessage );
         }
         QApplication::quit();
     } );
@@ -242,6 +254,8 @@ ViewManager::onInitComplete()
     {
         m_steps.first()->onActivate();
     }
+
+    emit currentStepChanged();
 }
 
 void
@@ -594,6 +608,27 @@ ViewManager::rowCount( const QModelIndex& parent ) const
         return 0;
     }
     return m_steps.length();
+}
+
+bool
+ViewManager::isChrootMode() const
+{
+    const auto* s = Settings::instance();
+    return s ? s->doChroot() : true;
+}
+
+bool
+ViewManager::isDebugMode() const
+{
+    const auto* s = Settings::instance();
+    return s ? s->debugMode() : false;
+}
+
+bool
+ViewManager::isSetupMode() const
+{
+    const auto* s = Settings::instance();
+    return s ? s->isSetupMode() : false;
 }
 
 }  // namespace Calamares

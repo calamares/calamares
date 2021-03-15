@@ -18,7 +18,7 @@
 
 #include <QFile>
 
-using CalamaresUtils::operator""_MiB;
+using namespace CalamaresUtils::Units;
 
 QString
 targetPrefix()
