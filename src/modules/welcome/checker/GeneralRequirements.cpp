@@ -107,14 +107,12 @@ GeneralRequirements::checkRequirements()
         && ( availableSize.height() >= CalamaresUtils::windowMinimumHeight );
 
     qint64 requiredStorageB = CalamaresUtils::GiBtoBytes( m_requiredStorageGiB );
-    cDebug() << "Need at least storage bytes:" << requiredStorageB;
     if ( m_entriesToCheck.contains( "storage" ) )
     {
         enoughStorage = checkEnoughStorage( requiredStorageB );
     }
 
     qint64 requiredRamB = CalamaresUtils::GiBtoBytes( m_requiredRamGiB );
-    cDebug() << "Need at least ram bytes:" << requiredRamB;
     if ( m_entriesToCheck.contains( "ram" ) )
     {
         enoughRam = checkEnoughRam( requiredRamB );
@@ -135,10 +133,18 @@ GeneralRequirements::checkRequirements()
         isRoot = checkIsRoot();
     }
 
+    using TNum = Logger::DebugRow< const char*, qint64 >;
     using TR = Logger::DebugRow< const char*, MaybeChecked >;
-    cDebug() << "GeneralRequirements output:" << TR( "enoughStorage", enoughStorage ) << TR( "enoughRam", enoughRam )
-             << TR( "hasPower", hasPower ) << TR( "hasInternet", hasInternet ) << TR( "isRoot", isRoot );
-
+    // clang-format off
+    cDebug() << "GeneralRequirements output:"
+             << TNum( "storage", requiredStorageB )
+             << TR( "enoughStorage", enoughStorage )
+             << TNum( "RAM", requiredRamB )
+             << TR( "enoughRam", enoughRam )
+             << TR( "hasPower", hasPower )
+             << TR( "hasInternet", hasInternet )
+             << TR( "isRoot", isRoot );
+    // clang-format on
     Calamares::RequirementsList checkEntries;
     foreach ( const QString& entry, m_entriesToCheck )
     {

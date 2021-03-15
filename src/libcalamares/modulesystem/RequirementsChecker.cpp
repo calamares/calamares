@@ -85,9 +85,9 @@ void
 RequirementsChecker::addCheckedRequirements( Module* m )
 {
     RequirementsList l = m->checkRequirements();
-    cDebug() << "Got" << l.count() << "requirement results from" << m->name();
     if ( l.count() > 0 )
     {
+        cDebug() << "Got" << l.count() << "requirement results from" << m->name();
         m_model->addRequirementsList( l );
     }
 
