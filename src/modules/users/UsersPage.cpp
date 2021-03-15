@@ -105,6 +105,7 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
     connect( ui->textBoxFullName, &QLineEdit::textEdited, config, &Config::setFullName );
     connect( config, &Config::fullNameChanged, this, &UsersPage::onFullNameTextEdited );
 
+    ui->textBoxHostName->setText( config->hostName() );
     connect( ui->textBoxHostName, &QLineEdit::textEdited, config, &Config::setHostName );
     connect( config, &Config::hostNameChanged, ui->textBoxHostName, &QLineEdit::setText );
     connect( config, &Config::hostNameStatusChanged, this, &UsersPage::reportHostNameStatus );
@@ -144,9 +145,12 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
     onReuseUserPasswordChanged( m_config->reuseUserPasswordForRoot() );
     onFullNameTextEdited( m_config->fullName() );
     reportLoginNameStatus( m_config->loginNameStatus() );
+    reportHostNameStatus( m_config->hostNameStatus() );
 
     ui->textBoxLoginName->setEnabled( m_config->isEditable( "loginName" ) );
     ui->textBoxFullName->setEnabled( m_config->isEditable( "fullName" ) );
+
+    retranslate();
 }
 
 UsersPage::~UsersPage()
