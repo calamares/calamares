@@ -6,7 +6,7 @@
     <message>
       <location filename="../src/modules/partition/jobs/AutoMountManagementJob.cpp" line="22"/>
       <source>Manage auto-mount settings</source>
-      <translation type="unfinished"/>
+      <translation>Керування параметрами автомонтування</translation>
     </message>
   </context>
   <context>
@@ -322,7 +322,11 @@
 %1
 
 Link copied to clipboard</source>
-      <translation type="unfinished"/>
+      <translation>Журнал встановлення записано до
+
+%1
+
+Посилання скопійовано до буфера обміну</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="224"/>
@@ -858,12 +862,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="145"/>
       <source>The setup of %1 did not complete successfully.</source>
-      <translation type="unfinished"/>
+      <translation>Налаштування %1 не завершено успішно.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="146"/>
       <source>The installation of %1 did not complete successfully.</source>
-      <translation type="unfinished"/>
+      <translation>Встановлення %1 не завершено успішно.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="150"/>
@@ -977,12 +981,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="117"/>
       <source>Create new %1MiB partition on %3 (%2) with entries %4.</source>
-      <translation type="unfinished"/>
+      <translation>Створити розділ %1МіБ на %3 (%2) із записами %4.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="125"/>
       <source>Create new %1MiB partition on %3 (%2).</source>
-      <translation type="unfinished"/>
+      <translation>Створити розділ %1МіБ на %3 (%2).</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="132"/>
@@ -992,12 +996,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="149"/>
       <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2) with entries &lt;em&gt;%4&lt;/em&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Створити розділ &lt;strong&gt;%1МіБ&lt;/strong&gt; на &lt;strong&gt;%3&lt;/strong&gt; (%2) із записами &lt;em&gt;%4&lt;/em&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="157"/>
       <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2).</source>
-      <translation type="unfinished"/>
+      <translation>Створити розділ &lt;strong&gt;%1МіБ&lt;/strong&gt; на &lt;strong&gt;%3&lt;/strong&gt; (%2).</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="164"/>
@@ -1345,7 +1349,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="195"/>
       <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition with features &lt;em&gt;%3&lt;/em&gt;</source>
-      <translation type="unfinished"/>
+      <translation>Встановити %1 на &lt;strong&gt;новий&lt;/strong&gt; системний розділ %2 із можливостями &lt;em&gt;%3&lt;/em&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="203"/>
@@ -1355,27 +1359,27 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="212"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt; and features &lt;em&gt;%3&lt;/em&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Налаштувати  &lt;strong&gt;новий&lt;/strong&gt; розділ %2 із точкою монтування &lt;strong&gt;%1&lt;/strong&gt; і можливостями &lt;em&gt;%3&lt;/em&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="220"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;%3.</source>
-      <translation type="unfinished"/>
+      <translation>Налаштувати &lt;strong&gt;новий&lt;/strong&gt; розділ %2 із точкою монтування &lt;strong&gt;%1&lt;/strong&gt;%3.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="234"/>
       <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt; with features &lt;em&gt;%4&lt;/em&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Встановити %2 на системний розділ %3 &lt;strong&gt;%1&lt;/strong&gt; із можливостями &lt;em&gt;%4&lt;/em&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="253"/>
       <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt; and features &lt;em&gt;%4&lt;/em&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Налаштувати розділ %3 &lt;strong&gt;%1&lt;/strong&gt; із точкою монтування &lt;strong&gt;%2&lt;/strong&gt; і можливостями &lt;em&gt;%4&lt;/em&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="262"/>
       <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;%4.</source>
-      <translation type="unfinished"/>
+      <translation>Налаштувати розділ %3 &lt;strong&gt;%1&lt;/strong&gt; із точкою монтування &lt;strong&gt;%2&lt;/strong&gt;%4.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="243"/>
@@ -3983,29 +3987,31 @@ Output:
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="36"/>
       <source>Installation Completed</source>
-      <translation type="unfinished"/>
+      <translation>Встановлення завершено</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="43"/>
       <source>%1 has been installed on your computer.&lt;br/&gt;
             You may now restart into your new system, or continue using the Live environment.</source>
-      <translation type="unfinished"/>
+      <translation>На ваш комп'ютер встановлено %1.&lt;br/&gt;
+            Тепер ви можете перезапустити вашу нову систему або продовжити користуватися середовищем портативної системи.</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="65"/>
       <source>Close Installer</source>
-      <translation type="unfinished"/>
+      <translation>Закрити засіб встановлення</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="71"/>
       <source>Restart System</source>
-      <translation type="unfinished"/>
+      <translation>Перезапустити систему</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="89"/>
       <source>&lt;p&gt;A full log of the install is available as installation.log in the home directory of the Live user.&lt;br/&gt;
             This log is copied to /var/log/installation.log of the target system.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;Повний журнал встановлення записано до файла installation.log у домашньому каталозі користувача портативної системи.&lt;br/&gt;
+            Цей журнал скопійовано до /var/log/installation.log системи призначення.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>

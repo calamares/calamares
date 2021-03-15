@@ -6,7 +6,7 @@
     <message>
       <location filename="../src/modules/partition/jobs/AutoMountManagementJob.cpp" line="22"/>
       <source>Manage auto-mount settings</source>
-      <translation type="unfinished"/>
+      <translation>管理自動掛載設定</translation>
     </message>
   </context>
   <context>
@@ -316,7 +316,11 @@
 %1
 
 Link copied to clipboard</source>
-      <translation type="unfinished"/>
+      <translation>安裝紀錄檔已張貼到：
+
+%1
+
+連結已複製到剪貼簿</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="224"/>
@@ -852,12 +856,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="145"/>
       <source>The setup of %1 did not complete successfully.</source>
-      <translation type="unfinished"/>
+      <translation>%1 的設定並未成功完成。</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="146"/>
       <source>The installation of %1 did not complete successfully.</source>
-      <translation type="unfinished"/>
+      <translation>%1 的安裝並未成功完成。</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="150"/>
@@ -971,12 +975,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="117"/>
       <source>Create new %1MiB partition on %3 (%2) with entries %4.</source>
-      <translation type="unfinished"/>
+      <translation>在 %3 (%2) 上使用項目 %4 建立新的 %1MiB 分割區。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="125"/>
       <source>Create new %1MiB partition on %3 (%2).</source>
-      <translation type="unfinished"/>
+      <translation>在 %3 (%2) 上建立新的 %1MiB 分割區。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="132"/>
@@ -986,12 +990,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="149"/>
       <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2) with entries &lt;em&gt;%4&lt;/em&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>在 &lt;strong&gt;%3&lt;/strong&gt; (%2) 上使用項目 &lt;em&gt;%4&lt;/em&gt; 建立新的 &lt;strong&gt;%1MiB&lt;/strong&gt; 分割區。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="157"/>
       <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2).</source>
-      <translation type="unfinished"/>
+      <translation>在 &lt;strong&gt;%3&lt;/strong&gt; (%2) 上建立新的 &lt;strong&gt;%1MiB&lt;/strong&gt; 分割區。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="164"/>
@@ -1339,7 +1343,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="195"/>
       <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition with features &lt;em&gt;%3&lt;/em&gt;</source>
-      <translation type="unfinished"/>
+      <translation>在有 &lt;em&gt;%3&lt;/em&gt; 功能的&lt;strong&gt;新&lt;/strong&gt; %2 系統分割區上安裝 %1</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="203"/>
@@ -1349,27 +1353,27 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="212"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt; and features &lt;em&gt;%3&lt;/em&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>設定有掛載點 &lt;strong&gt;%1&lt;/strong&gt; 與 &lt;em&gt;%3&lt;/em&gt; 的&lt;strong&gt;新&lt;/strong&gt; %2 分割區。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="220"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;%3.</source>
-      <translation type="unfinished"/>
+      <translation>設定有掛載點 &lt;strong&gt;%1&lt;/strong&gt; %3 的&lt;strong&gt;新&lt;/strong&gt; %2 分割區。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="234"/>
       <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt; with features &lt;em&gt;%4&lt;/em&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>在有功能 &lt;em&gt;%4&lt;/em&gt; 的 %3 系統分割區 &lt;strong&gt;%1&lt;/strong&gt; 上安裝 %2。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="253"/>
       <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt; and features &lt;em&gt;%4&lt;/em&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>為分割區 %3  &lt;strong&gt;%1&lt;/strong&gt; 設定掛載點 &lt;strong&gt;%2&lt;/strong&gt; 與功能 &lt;em&gt;%4&lt;/em&gt;。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="262"/>
       <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;%4.</source>
-      <translation type="unfinished"/>
+      <translation>為分割區 %3  &lt;strong&gt;%1&lt;/strong&gt; 設定掛載點 &lt;strong&gt;%2&lt;/strong&gt; %4。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="243"/>
@@ -3950,29 +3954,31 @@ Output:
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="36"/>
       <source>Installation Completed</source>
-      <translation type="unfinished"/>
+      <translation>安裝完成</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="43"/>
       <source>%1 has been installed on your computer.&lt;br/&gt;
             You may now restart into your new system, or continue using the Live environment.</source>
-      <translation type="unfinished"/>
+      <translation>%1 已安裝到您的電腦上。&lt;br/&gt;
+            現在，您可以重新啟動到您的新系統，或繼續使用 Live 環境。</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="65"/>
       <source>Close Installer</source>
-      <translation type="unfinished"/>
+      <translation>關閉安裝程式</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="71"/>
       <source>Restart System</source>
-      <translation type="unfinished"/>
+      <translation>重新啟動系統</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="89"/>
       <source>&lt;p&gt;A full log of the install is available as installation.log in the home directory of the Live user.&lt;br/&gt;
             This log is copied to /var/log/installation.log of the target system.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;完整安裝紀錄檔可在 Live 使用者的家目錄中以 installation.log 的名稱取得。&lt;br/&gt;
+            此紀錄檔已複製到目標系統的 /var/log/installation.log。&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
