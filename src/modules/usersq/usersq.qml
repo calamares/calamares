@@ -56,8 +56,10 @@ Kirigami.ScrollablePage {
 
                 id: _userNameField
                 width: parent.width
-                text: config.fullName
                 placeholderText: qsTr("Your Full Name")
+                text: config.fullName
+                onTextChanged: config.setFullName(text);
+
                 background: Rectangle {
                     color: "#FBFBFB" // Kirigami.Theme.backgroundColor
                     radius: 2
@@ -85,6 +87,7 @@ Kirigami.ScrollablePage {
                 width: parent.width
                 placeholderText: qsTr("Login Name")
                 text: config.loginName
+                onTextChanged: config.setLoginName(text)
 
                 background: Rectangle {
 
@@ -122,7 +125,8 @@ Kirigami.ScrollablePage {
                 width: parent.width
                 placeholderText: qsTr("Computer Name")
                 text: config.hostName
-                onTextEdited: config.hostNameStatusChanged(text)
+                onTextEdited: config.setHostName(text)
+
                 background: Rectangle {
 
                     color: "#FBFBFB" // Kirigami.Theme.backgroundColor
@@ -162,10 +166,12 @@ Kirigami.ScrollablePage {
                     id: _passwordField
                     width: parent.width / 2 - 10
                     placeholderText: qsTr("Password")
+                    text: config.userPassword
+                    onTextChanged: config.setUserPassword(text)
+
                     echoMode: TextInput.Password
                     passwordMaskDelay: 300
                     inputMethodHints: Qt.ImhNoAutoUppercase
-                    text: config.userPassword
 
                     background: Rectangle {
 
@@ -181,10 +187,12 @@ Kirigami.ScrollablePage {
                     id: _verificationPasswordField
                     width: parent.width / 2 - 10
                     placeholderText: qsTr("Repeat Password")
+                    text: config.userPasswordSecondary
+                    onTextChanged: config.setUserPasswordSecondary(text)
+
                     echoMode: TextInput.Password
                     passwordMaskDelay: 300
                     inputMethodHints: Qt.ImhNoAutoUppercase
-                    text: config.userPasswordSecondary
 
                     background: Rectangle {
 
