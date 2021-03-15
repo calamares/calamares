@@ -184,11 +184,11 @@ SetupGroupsJob::exec()
             tr( "These groups are missing in the target system: %1" ).arg( missingGroups.join( ',' ) ) );
     }
 
-    if ( m_config->doAutoLogin() && !m_config->autologinGroup().isEmpty() )
+    if ( m_config->doAutoLogin() && !m_config->autoLoginGroup().isEmpty() )
     {
-        const QString autologinGroup = m_config->autologinGroup();
+        const QString autoLoginGroup = m_config->autoLoginGroup();
         (void)ensureGroupsExistInTarget(
-            QList< GroupDescription >() << GroupDescription( autologinGroup ), availableGroups, missingGroups );
+            QList< GroupDescription >() << GroupDescription( autoLoginGroup ), availableGroups, missingGroups );
     }
 
     return Calamares::JobResult::ok();

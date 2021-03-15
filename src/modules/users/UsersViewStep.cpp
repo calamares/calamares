@@ -88,10 +88,10 @@ UsersViewStep::isAtEnd() const
 }
 
 
-QList< Calamares::job_ptr >
+Calamares::JobList
 UsersViewStep::jobs() const
 {
-    return m_jobs;
+    return m_config->createJobs();
 }
 
 
@@ -108,7 +108,6 @@ UsersViewStep::onActivate()
 void
 UsersViewStep::onLeave()
 {
-    m_jobs = m_config->createJobs();
     m_config->finalizeGlobalStorage();
 }
 
