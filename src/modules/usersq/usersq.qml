@@ -56,6 +56,7 @@ Kirigami.ScrollablePage {
 
                 id: _userNameField
                 width: parent.width
+                enabled: config.isEditable("fullName")
                 placeholderText: qsTr("Your Full Name")
                 text: config.fullName
                 onTextChanged: config.setFullName(text);
@@ -85,6 +86,7 @@ Kirigami.ScrollablePage {
 
                 id: _userLoginField
                 width: parent.width
+                enabled: config.isEditable("loginName")
                 placeholderText: qsTr("Login Name")
                 text: config.loginName
                 onTextChanged: config.setLoginName(text)

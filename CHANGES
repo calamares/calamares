@@ -21,6 +21,8 @@ This release contains contributions from (alphabetically by first name):
    coded setup (which Calamares has had for a long time with @home
    and similar) and introduce a custom btrfs configuration through the
    `mount.conf` file.
+ - The *usersq* module now connects to the internal configuration
+   object and may be usable for regular installations.
 
 
 # 3.2.38.1 (2021-03-15) #
