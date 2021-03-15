@@ -168,7 +168,7 @@ QmlViewStep::loadComplete()
     }
     if ( m_qmlComponent->isReady() && !m_qmlObject )
     {
-        cDebug() << "QML component complete" << m_qmlFileName;
+        cDebug() << Logger::SubEntry << "QML component complete" << m_qmlFileName << "creating object";
         // Don't do this again
         disconnect( m_qmlComponent, &QQmlComponent::statusChanged, this, &QmlViewStep::loadComplete );
 
@@ -196,7 +196,7 @@ QmlViewStep::showQml()
 {
     if ( !m_qmlWidget || !m_qmlObject )
     {
-        cDebug() << "showQml() called but no QML object";
+        cWarning() << "showQml() called but no QML object";
         return;
     }
     if ( m_spinner )
@@ -208,7 +208,7 @@ QmlViewStep::showQml()
     }
     else
     {
-        cDebug() << "showQml() called twice";
+        cWarning() << "showQml() called twice";
     }
 
     if ( ViewManager::instance()->currentStep() == this )
@@ -228,7 +228,7 @@ QmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         = CalamaresUtils::qmlSearchNames().find( CalamaresUtils::getString( configurationMap, "qmlSearch" ), ok );
     if ( !ok )
     {
-        cDebug() << "Bad QML search mode.";
+        cWarning() << "Bad QML search mode set for" << moduleInstanceKey();
     }
 
     QString qmlFile = CalamaresUtils::getString( configurationMap, "qmlFilename" );
@@ -253,7 +253,7 @@ QmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     }
     else
     {
-        cWarning() << "QML configuration set after component has loaded.";
+        cWarning() << "QML configuration set after component" << moduleInstanceKey() << "has loaded.";
     }
 }
 
