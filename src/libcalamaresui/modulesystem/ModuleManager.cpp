@@ -61,7 +61,6 @@ ModuleManager::init()
     QTimer::singleShot( 0, this, &ModuleManager::doInit );
 }
 
-
 void
 ModuleManager::doInit()
 {
@@ -72,6 +71,7 @@ ModuleManager::doInit()
     // the module name, and must contain a settings file named module.desc.
     // If at any time the module loading procedure finds something unexpected, it
     // silently skips to the next module or search path. --Teo 6/2014
+    Logger::Once deb;
     for ( const QString& path : m_paths )
     {
         QDir currentDir( path );
@@ -88,12 +88,12 @@ ModuleManager::doInit()
                     QFileInfo descriptorFileInfo( currentDir.absoluteFilePath( QLatin1String( "module.desc" ) ) );
                     if ( !descriptorFileInfo.exists() )
                     {
-                        cDebug() << bad_descriptor << descriptorFileInfo.absoluteFilePath() << "(missing)";
+                        cDebug() << deb << bad_descriptor << descriptorFileInfo.absoluteFilePath() << "(missing)";
                         continue;
                     }
                     if ( !descriptorFileInfo.isReadable() )
                     {
-                        cDebug() << bad_descriptor << descriptorFileInfo.absoluteFilePath() << "(unreadable)";
+                        cDebug() << deb << bad_descriptor << descriptorFileInfo.absoluteFilePath() << "(unreadable)";
                         continue;
                     }
 
@@ -118,12 +118,12 @@ ModuleManager::doInit()
         }
         else
         {
-            cDebug() << "ModuleManager module search path does not exist:" << path;
+            cDebug() << deb << "ModuleManager module search path does not exist:" << path;
         }
     }
     // At this point m_availableDescriptorsByModuleName is filled with
     // the modules that were found in the search paths.
-    cDebug() << "Found" << m_availableDescriptorsByModuleName.count() << "modules";
+    cDebug() << deb << "Found" << m_availableDescriptorsByModuleName.count() << "modules";
     QTimer::singleShot( 10, this, &ModuleManager::initDone );
 }
 

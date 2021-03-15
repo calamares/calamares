@@ -22,6 +22,8 @@
 
 namespace Logger
 {
+class Once;
+
 struct FuncSuppressor
 {
     explicit constexpr FuncSuppressor( const char[] );
@@ -58,6 +60,7 @@ public:
     virtual ~CDebug();
 
     friend CDebug& operator<<( CDebug&&, const FuncSuppressor& );
+    friend CDebug& operator<<( CDebug&&, Once& );
 
 private:
     QString m_msg;
@@ -286,6 +289,33 @@ operator<<( QDebug& s, const Pointer& p )
     s << '@' << p.ptr << Quote;
     return s;
 }
+
+class Once
+{
+public:
+    Once()
+        : m( true )
+    {
+    }
+    friend CDebug& operator<<( CDebug&&, Once& );
+
+private:
+    bool m = false;
+};
+
+inline CDebug&
+operator<<( CDebug&& s, Once& o )
+{
+    if ( o.m )
+    {
+        o.m = false;
+        return s;
+    }
+    s.m_funcinfo = nullptr;
+    s << SubEntry;
+    return s;
+}
+
 }  // namespace Logger
 
 #define cDebug() Logger::CDebug( Logger::LOGDEBUG, Q_FUNC_INFO )
