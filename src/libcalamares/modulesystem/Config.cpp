@@ -123,6 +123,13 @@ Config::ApplyPresets::apply( const char* fieldName )
         }
         m_c.d->m_presets->append( PresetField { key, value, editable } );
     }
+    else
+    {
+        // There is no setting, but since we apply() this field,
+        // we do know about it; put in a preset so that looking
+        // it up won't complani.
+        m_c.d->m_presets->append( PresetField { key, QVariant(), true } );
+    }
     return *this;
 }
 
