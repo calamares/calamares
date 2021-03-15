@@ -125,7 +125,7 @@ Kirigami.ScrollablePage {
                 width: parent.width
                 placeholderText: qsTr("Computer Name")
                 text: config.hostName
-                onTextEdited: config.setHostName(text)
+                onTextChanged: config.setHostName(text)
 
                 background: Rectangle {
 
@@ -220,6 +220,7 @@ Kirigami.ScrollablePage {
             visible: config.permitWeakPasswords
             text: qsTr("Validate passwords quality")
             checked: config.requireStrongPasswords
+            onCheckedChanged: config.setRequireStrongPasswords(checked)
         }
 
         Label {
@@ -234,6 +235,7 @@ Kirigami.ScrollablePage {
         CheckBox {
             text: qsTr("Log in automatically without asking for the password")
             checked: config.doAutoLogin
+            onCheckedChanged: config.setAutoLogin(checked)
         }
 
         CheckBox {
@@ -241,6 +243,7 @@ Kirigami.ScrollablePage {
             visible: config.writeRootPassword
             text: qsTr("Reuse user password as root password")
             checked: config.reuseUserPasswordForRoot
+            onCheckedChanged: config.setReuseUserPasswordForRoot(checked)
         }
 
         Label {
@@ -273,10 +276,12 @@ Kirigami.ScrollablePage {
                     id: _rootPasswordField
                     width: parent.width / 2 -10
                     placeholderText: qsTr("Root Password")
+                    text: config.rootPassword
+                    onTextChanged: config.setRootPassword(text)
+
                     echoMode: TextInput.Password
                     passwordMaskDelay: 300
                     inputMethodHints: Qt.ImhNoAutoUppercase
-                    text: config.rootPassword
 
                     background: Rectangle {
 
@@ -292,10 +297,12 @@ Kirigami.ScrollablePage {
                     id: _verificationRootPasswordField
                     width: parent.width / 2 -10
                     placeholderText: qsTr("Repeat Root Password")
+                    text: config.rootPasswordSecondary
+                    onTextChanged: config.setRootPasswordSecondary(text)
+
                     echoMode: TextInput.Password
                     passwordMaskDelay: 300
                     inputMethodHints: Qt.ImhNoAutoUppercase
-                    text: config.rootPasswordSecondary
 
                     background: Rectangle {
 
