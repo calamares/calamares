@@ -57,7 +57,7 @@ public:
     explicit CDebug( unsigned int debugLevel = LOGDEBUG, const char* func = nullptr );
     virtual ~CDebug();
 
-    friend QDebug& operator<<( CDebug&&, const FuncSuppressor& );
+    friend CDebug& operator<<( CDebug&&, const FuncSuppressor& );
 
 private:
     QString m_msg;
@@ -65,11 +65,12 @@ private:
     const char* m_funcinfo = nullptr;
 };
 
-inline QDebug&
+inline CDebug&
 operator<<( CDebug&& s, const FuncSuppressor& f )
 {
     s.m_funcinfo = nullptr;
-    return s << f.m_s;
+    s << f.m_s;
+    return s;
 }
 
 inline QDebug&
