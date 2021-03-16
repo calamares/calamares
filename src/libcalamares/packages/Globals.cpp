@@ -25,7 +25,7 @@ CalamaresUtils::Packages::setGSPackageAdditions( Calamares::GlobalStorage* gs,
     QVariantList packageOperations = gs->contains( PACKAGEOP ) ? gs->value( PACKAGEOP ).toList() : QVariantList();
     cDebug() << "Existing package operations length" << packageOperations.length();
 
-    const QString key = module.toString() + QStringLiteral( ";add" );
+    const QString key = module.toString();
 
     // Clear out existing operations for this module, going backwards:
     // Sometimes we remove an item, and we don't want the index to

@@ -24,6 +24,7 @@ private Q_SLOTS:
     void initTestCase();
 
     void testEmpty();
+    void testAdd();
 };
 
 void
@@ -45,6 +46,38 @@ PackagesTests::testEmpty()
     // Adding nothing at all does nothing
     QVERIFY( !CalamaresUtils::Packages::setGSPackageAdditions( &gs, k, QVariantList(), QVariantList() ) );
     QVERIFY( !gs.contains( topKey ) );
+}
+
+void
+PackagesTests::testAdd()
+{
+    Calamares::GlobalStorage gs;
+    const QString topKey( "packageOperations" );
+    Calamares::ModuleSystem::InstanceKey k( "this", "that" );
+
+    QVERIFY( !gs.contains( topKey ) );
+    QVERIFY(
+        CalamaresUtils::Packages::setGSPackageAdditions( &gs, k, QVariantList { QString( "vim" ) }, QVariantList() ) );
+    QVERIFY( gs.contains( topKey ) );
+    auto actionList = gs.value( topKey ).toList();
+    QCOMPARE( actionList.length(), 1 );
+    auto action = actionList[ 0 ].toMap();
+    QVERIFY( action.contains( "install" ) );
+    auto op = action[ "install" ].toList();
+    QCOMPARE( op.length(), 1 );
+    cDebug() << op;
+
+    QVERIFY( CalamaresUtils::Packages::setGSPackageAdditions(
+        &gs, k, QVariantList { QString( "vim" ), QString( "emacs" ) }, QVariantList() ) );
+    QVERIFY( gs.contains( topKey ) );
+    actionList = gs.value( topKey ).toList();
+    QCOMPARE( actionList.length(), 1 );
+    action = actionList[ 0 ].toMap();
+    QVERIFY( action.contains( "install" ) );
+    op = action[ "install" ].toList();
+    QCOMPARE( op.length(), 2 );
+    QCOMPARE( action[ "source" ].toString(), k.toString() );
+    cDebug() << op;
 }
 
 
