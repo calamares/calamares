@@ -53,7 +53,7 @@ BootInfoWidget::BootInfoWidget( QWidget* parent )
     m_bootIcon->setPalette( palette );
     m_bootLabel->setPalette( palette );
 
-    CALAMARES_RETRANSLATE( retranslateUi(); )
+    CALAMARES_RETRANSLATE( retranslateUi(); );
 }
 
 void

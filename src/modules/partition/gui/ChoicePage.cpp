@@ -119,7 +119,7 @@ ChoicePage::ChoicePage( Config* config, QWidget* parent )
     // Drive selector + preview
     CALAMARES_RETRANSLATE( retranslateUi( this ); m_drivesLabel->setText( tr( "Select storage de&vice:" ) );
                            m_previewBeforeLabel->setText( tr( "Current:" ) );
-                           m_previewAfterLabel->setText( tr( "After:" ) ); )
+                           m_previewAfterLabel->setText( tr( "After:" ) ); );
 
     m_previewBeforeFrame->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Expanding );
     m_previewAfterFrame->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Expanding );
@@ -298,7 +298,7 @@ ChoicePage::setupChoices()
 
     CALAMARES_RETRANSLATE( m_somethingElseButton->setText( tr( "<strong>Manual partitioning</strong><br/>"
                                                                "You can create or resize partitions yourself." ) );
-                           updateSwapChoicesTr( m_eraseSwapChoiceComboBox ); )
+                           updateSwapChoicesTr( m_eraseSwapChoiceComboBox ); );
 }
 
 
@@ -360,13 +360,12 @@ ChoicePage::applyDeviceChoice()
 
     if ( m_core->isDirty() )
     {
-        ScanningDialog::run(
-            QtConcurrent::run( [=] {
-                QMutexLocker locker( &m_coreMutex );
-                m_core->revertAllDevices();
-            } ),
-            [this] { continueApplyDeviceChoice(); },
-            this );
+        ScanningDialog::run( QtConcurrent::run( [=] {
+                                 QMutexLocker locker( &m_coreMutex );
+                                 m_core->revertAllDevices();
+                             } ),
+                             [this] { continueApplyDeviceChoice(); },
+                             this );
     }
     else
     {
@@ -453,16 +452,15 @@ ChoicePage::applyActionChoice( InstallChoice choice )
 
         if ( m_core->isDirty() )
         {
-            ScanningDialog::run(
-                QtConcurrent::run( [=] {
-                    QMutexLocker locker( &m_coreMutex );
-                    m_core->revertDevice( selectedDevice() );
-                } ),
-                [=] {
-                    PartitionActions::doAutopartition( m_core, selectedDevice(), options );
-                    emit deviceChosen();
-                },
-                this );
+            ScanningDialog::run( QtConcurrent::run( [=] {
+                                     QMutexLocker locker( &m_coreMutex );
+                                     m_core->revertDevice( selectedDevice() );
+                                 } ),
+                                 [=] {
+                                     PartitionActions::doAutopartition( m_core, selectedDevice(), options );
+                                     emit deviceChosen();
+                                 },
+                                 this );
         }
         else
         {
@@ -474,13 +472,12 @@ ChoicePage::applyActionChoice( InstallChoice choice )
     case InstallChoice::Replace:
         if ( m_core->isDirty() )
         {
-            ScanningDialog::run(
-                QtConcurrent::run( [=] {
-                    QMutexLocker locker( &m_coreMutex );
-                    m_core->revertDevice( selectedDevice() );
-                } ),
-                [] {},
-                this );
+            ScanningDialog::run( QtConcurrent::run( [=] {
+                                     QMutexLocker locker( &m_coreMutex );
+                                     m_core->revertDevice( selectedDevice() );
+                                 } ),
+                                 [] {},
+                                 this );
         }
         updateNextEnabled();
 
@@ -494,18 +491,17 @@ ChoicePage::applyActionChoice( InstallChoice choice )
     case InstallChoice::Alongside:
         if ( m_core->isDirty() )
         {
-            ScanningDialog::run(
-                QtConcurrent::run( [=] {
-                    QMutexLocker locker( &m_coreMutex );
-                    m_core->revertDevice( selectedDevice() );
-                } ),
-                [this] {
-                    // We need to reupdate after reverting because the splitter widget is
-                    // not a true view.
-                    updateActionChoicePreview( m_config->installChoice() );
-                    updateNextEnabled();
-                },
-                this );
+            ScanningDialog::run( QtConcurrent::run( [=] {
+                                     QMutexLocker locker( &m_coreMutex );
+                                     m_core->revertDevice( selectedDevice() );
+                                 } ),
+                                 [this] {
+                                     // We need to reupdate after reverting because the splitter widget is
+                                     // not a true view.
+                                     updateActionChoicePreview( m_config->installChoice() );
+                                     updateNextEnabled();
+                                 },
+                                 this );
         }
         updateNextEnabled();
 
@@ -1037,23 +1033,22 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
                     Calamares::restoreSelectedBootLoader( *m_bootloaderComboBox, m_core->bootLoaderInstallPath() );
                 }
             } );
-            connect(
-                m_core,
-                &PartitionCoreModule::deviceReverted,
-                this,
-                [this]( Device* dev ) {
-                    Q_UNUSED( dev )
-                    if ( !m_bootloaderComboBox.isNull() )
-                    {
-                        if ( m_bootloaderComboBox->model() != m_core->bootLoaderModel() )
-                        {
-                            m_bootloaderComboBox->setModel( m_core->bootLoaderModel() );
-                        }
+            connect( m_core,
+                     &PartitionCoreModule::deviceReverted,
+                     this,
+                     [this]( Device* dev ) {
+                         Q_UNUSED( dev )
+                         if ( !m_bootloaderComboBox.isNull() )
+                         {
+                             if ( m_bootloaderComboBox->model() != m_core->bootLoaderModel() )
+                             {
+                                 m_bootloaderComboBox->setModel( m_core->bootLoaderModel() );
+                             }
 
-                        m_bootloaderComboBox->setCurrentIndex( m_lastSelectedDeviceIndex );
-                    }
-                },
-                Qt::QueuedConnection );
+                             m_bootloaderComboBox->setCurrentIndex( m_lastSelectedDeviceIndex );
+                         }
+                     },
+                     Qt::QueuedConnection );
             // ^ Must be Queued so it's sure to run when the widget is already visible.
 
             eraseLayout->addWidget( m_bootloaderComboBox );
@@ -1303,7 +1298,7 @@ ChoicePage::setupActions()
 
             m_replaceButton->setText( tr( "<strong>Replace a partition</strong><br/>"
                                           "Replaces a partition with %1." )
-                                          .arg( Calamares::Branding::instance()->shortVersionedName() ) ); )
+                                          .arg( Calamares::Branding::instance()->shortVersionedName() ) ); );
 
         m_replaceButton->hide();
         m_alongsideButton->hide();
@@ -1337,7 +1332,7 @@ ChoicePage::setupActions()
 
                 m_replaceButton->setText( tr( "<strong>Replace a partition</strong><br/>"
                                               "Replaces a partition with %1." )
-                                              .arg( Calamares::Branding::instance()->shortVersionedName() ) ); )
+                                              .arg( Calamares::Branding::instance()->shortVersionedName() ) ); );
         }
         else
         {
@@ -1358,7 +1353,7 @@ ChoicePage::setupActions()
 
                 m_replaceButton->setText( tr( "<strong>Replace a partition</strong><br/>"
                                               "Replaces a partition with %1." )
-                                              .arg( Calamares::Branding::instance()->shortVersionedName() ) ); )
+                                              .arg( Calamares::Branding::instance()->shortVersionedName() ) ); );
         }
     }
     else
@@ -1383,7 +1378,7 @@ ChoicePage::setupActions()
 
             m_replaceButton->setText( tr( "<strong>Replace a partition</strong><br/>"
                                           "Replaces a partition with %1." )
-                                          .arg( Calamares::Branding::instance()->shortVersionedName() ) ); )
+                                          .arg( Calamares::Branding::instance()->shortVersionedName() ) ); );
     }
 
 #ifdef DEBUG_PARTITION_UNSAFE
