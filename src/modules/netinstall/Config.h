@@ -15,6 +15,7 @@
 #include "PackageModel.h"
 
 #include "locale/TranslatableConfiguration.h"
+#include "modulesystem/InstanceKey.h"
 
 #include <QObject>
 #include <QQueue>
@@ -74,6 +75,12 @@ public:
      */
     void loadGroupList( const QVariantList& groupData );
 
+    /** @brief Write the selected package lists to global storage
+     *
+     * Since the config doesn't know what module it is for,
+     * pass in an instance key.
+     */
+    void finalizeGlobalStorage( const Calamares::ModuleSystem::InstanceKey& key );
 
 signals:
     void statusChanged( QString status );  ///< Something changed

@@ -15,6 +15,7 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "network/Manager.h"
+#include "packages/Globals.h"
 #include "utils/Logger.h"
 #include "utils/RAII.h"
 #include "utils/Retranslator.h"
@@ -25,11 +26,12 @@
 
 Config::Config( QObject* parent )
     : QObject( parent )
-    , m_model( new PackageModel( this ) ) { CALAMARES_RETRANSLATE_SLOT( &Config::retranslate ) }
-
-    Config::~Config()
+    , m_model( new PackageModel( this ) )
 {
+    CALAMARES_RETRANSLATE_SLOT( &Config::retranslate );
 }
+
+Config::~Config() {}
 
 void
 Config::retranslate()
@@ -237,4 +239,30 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
             loadGroupList( groupsUrl );
         }
     }
+}
+
+void
+Config::finalizeGlobalStorage( const Calamares::ModuleSystem::InstanceKey& key )
+{
+    auto packages = model()->getPackages();
+
+    // This netinstall module may add two sub-steps to the packageOperations,
+    // one for installing and one for try-installing.
+    QVariantList installPackages;
+    QVariantList tryInstallPackages;
+
+    for ( const auto& package : packages )
+    {
+        if ( package->isCritical() )
+        {
+            installPackages.append( package->toOperation() );
+        }
+        else
+        {
+            tryInstallPackages.append( package->toOperation() );
+        }
+    }
+
+    CalamaresUtils::Packages::setGSPackageAdditions(
+        Calamares::JobQueue::instance()->globalStorage(), key, installPackages, tryInstallPackages );
 }

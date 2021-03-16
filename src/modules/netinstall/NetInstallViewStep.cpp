@@ -11,11 +11,6 @@
 
 #include "NetInstallViewStep.h"
 
-#include "JobQueue.h"
-#include "packages/Globals.h"
-#include "utils/Logger.h"
-#include "utils/Variant.h"
-
 #include "NetInstallPage.h"
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( NetInstallViewStepFactory, registerPlugin< NetInstallViewStep >(); )
@@ -125,27 +120,7 @@ NetInstallViewStep::onActivate()
 void
 NetInstallViewStep::onLeave()
 {
-    auto packages = m_config.model()->getPackages();
-
-    // This netinstall module may add two sub-steps to the packageOperations,
-    // one for installing and one for try-installing.
-    QVariantList installPackages;
-    QVariantList tryInstallPackages;
-
-    for ( const auto& package : packages )
-    {
-        if ( package->isCritical() )
-        {
-            installPackages.append( package->toOperation() );
-        }
-        else
-        {
-            tryInstallPackages.append( package->toOperation() );
-        }
-    }
-
-    CalamaresUtils::Packages::setGSPackageAdditions(
-        Calamares::JobQueue::instance()->globalStorage(), moduleInstanceKey(), installPackages, tryInstallPackages );
+    m_config.finalizeGlobalStorage( moduleInstanceKey() );
 }
 
 void
