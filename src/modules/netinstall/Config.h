@@ -17,8 +17,8 @@
 #include "locale/TranslatableConfiguration.h"
 
 #include <QObject>
-#include <QUrl>
 #include <QQueue>
+#include <QUrl>
 #include <QVariantMap>
 
 class QNetworkReply;
@@ -99,7 +99,7 @@ private:
         bool isUrl() const { return url.isValid(); }
         bool isLocal() const { return !data.isEmpty(); }
         bool isValid() const { return isUrl() || isLocal(); }
-        static SourceItem makeSourceItem( const QVariantMap& configurationMap, const QString& groupsUrl);
+        static SourceItem makeSourceItem( const QVariantMap& configurationMap, const QString& groupsUrl );
     };
 
     QQueue< SourceItem > m_urls;

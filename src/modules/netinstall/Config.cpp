@@ -170,15 +170,16 @@ Config::receivedGroupData()
     }
 }
 
-Config::SourceItem Config::SourceItem::makeSourceItem(const QVariantMap& configurationMap, const QString& groupsUrl)
+Config::SourceItem
+Config::SourceItem::makeSourceItem( const QVariantMap& configurationMap, const QString& groupsUrl )
 {
     if ( groupsUrl == QStringLiteral( "local" ) )
     {
-        return SourceItem{ QUrl(), configurationMap.value( "groups" ).toList() };
+        return SourceItem { QUrl(), configurationMap.value( "groups" ).toList() };
     }
     else
     {
-        return SourceItem{ QUrl{ groupsUrl }, QVariantList() };
+        return SourceItem { QUrl { groupsUrl }, QVariantList() };
     }
 }
 
