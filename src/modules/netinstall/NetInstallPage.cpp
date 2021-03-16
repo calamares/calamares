@@ -33,8 +33,12 @@ NetInstallPage::NetInstallPage( Config* c, QWidget* parent )
     ui->setupUi( this );
     ui->groupswidget->header()->setSectionResizeMode( QHeaderView::ResizeToContents );
     ui->groupswidget->setModel( c->model() );
-    connect( c, &Config::statusChanged, this, &NetInstallPage::setStatus );
-    connect( c, &Config::titleLabelChanged, this, &NetInstallPage::setTitle );
+    connect( c, &Config::statusChanged, ui->netinst_status, &QLabel::setText );
+    connect( c, &Config::titleLabelChanged, [ui = this->ui]( const QString title ) {
+        ui->label->setVisible( !title.isEmpty() );
+        ui->label->setText( title );
+    } );
+
     connect( c, &Config::statusReady, this, &NetInstallPage::expandGroups );
 }
 
@@ -52,26 +56,6 @@ NetInstallPage::expandGroups()
         {
             ui->groupswidget->setExpanded( index, true );
         }
-    }
-}
-
-void
-NetInstallPage::setStatus( QString s )
-{
-    ui->netinst_status->setText( s );
-}
-
-void
-NetInstallPage::setTitle( QString title )
-{
-    if ( title.isEmpty() )
-    {
-        ui->label->hide();
-    }
-    else
-    {
-        ui->label->setText( title );  // That's get() on the TranslatedString
-        ui->label->show();
     }
 }
 

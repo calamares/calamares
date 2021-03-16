@@ -39,10 +39,6 @@ public:
 
     void onActivate();
 
-public slots:
-    void setStatus( QString s );
-    void setTitle( QString title );
-
     /** @brief Expand entries that should be pre-expanded.
      *
      * Follows the *expanded* key / the startExpanded field in the
