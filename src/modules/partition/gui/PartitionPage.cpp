@@ -117,7 +117,7 @@ PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
         m_ui->label_3->hide();
     }
 
-    CALAMARES_RETRANSLATE( m_ui->retranslateUi( this ); )
+    CALAMARES_RETRANSLATE( m_ui->retranslateUi( this ); );
 }
 
 PartitionPage::~PartitionPage() {}

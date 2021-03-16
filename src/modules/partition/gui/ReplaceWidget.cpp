@@ -50,7 +50,7 @@ ReplaceWidget::ReplaceWidget( PartitionCoreModule* core, QComboBox* devicesCombo
         updateFromCurrentDevice( devicesComboBox );
     } );
 
-    CALAMARES_RETRANSLATE( onPartitionSelected(); )
+    CALAMARES_RETRANSLATE( onPartitionSelected(); );
 }
 
 

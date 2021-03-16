@@ -54,7 +54,7 @@ DeviceInfoWidget::DeviceInfoWidget( QWidget* parent )
     m_ptIcon->setPalette( palette );
     m_ptLabel->setPalette( palette );
 
-    CALAMARES_RETRANSLATE_SLOT( &DeviceInfoWidget::retranslateUi )
+    CALAMARES_RETRANSLATE_SLOT( &DeviceInfoWidget::retranslateUi );
 }
 
 

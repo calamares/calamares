@@ -35,7 +35,7 @@ EncryptWidget::EncryptWidget( QWidget* parent )
     setFixedHeight( m_ui->m_passphraseLineEdit->height() );  // Avoid jumping up and down
     updateState();
 
-    CALAMARES_RETRANSLATE_SLOT( &EncryptWidget::retranslate )
+    CALAMARES_RETRANSLATE_SLOT( &EncryptWidget::retranslate );
 }
 
 
