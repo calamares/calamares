@@ -10,11 +10,11 @@
 #include "Globals.h"
 
 #include "GlobalStorage.h"
-#include "JobQueue.h"
 #include "utils/Logger.h"
 
 bool
-CalamaresUtils::Packages::setGSPackageAdditions( const Calamares::ModuleSystem::InstanceKey& module,
+CalamaresUtils::Packages::setGSPackageAdditions( Calamares::GlobalStorage* gs,
+                                                 const Calamares::ModuleSystem::InstanceKey& module,
                                                  const QVariantList& installPackages,
                                                  const QVariantList& tryInstallPackages )
 {
@@ -22,7 +22,6 @@ CalamaresUtils::Packages::setGSPackageAdditions( const Calamares::ModuleSystem::
 
     // Check if there's already a PACAKGEOP entry in GS, and if so we'll
     // extend that one (overwriting the value in GS at the end of this method)
-    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
     QVariantList packageOperations = gs->contains( PACKAGEOP ) ? gs->value( PACKAGEOP ).toList() : QVariantList();
     cDebug() << "Existing package operations length" << packageOperations.length();
 

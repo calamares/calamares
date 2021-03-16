@@ -10,6 +10,7 @@
 #ifndef LIBCALAMARES_PACKAGES_GLOBALS_H
 #define LIBCALAMARES_PACKAGES_GLOBALS_H
 
+#include "GlobalStorage.h"
 #include "modulesystem/InstanceKey.h"
 
 namespace CalamaresUtils
@@ -20,8 +21,11 @@ namespace Packages
  *
  * This replaces previously-set install-packages lists for the
  * given module by the two new lists.
+ *
+ * Returns @c true if anything was changed, @c false otherwise.
  */
-bool setGSPackageAdditions( const Calamares::ModuleSystem::InstanceKey& module,
+bool setGSPackageAdditions( Calamares::GlobalStorage* gs,
+                            const Calamares::ModuleSystem::InstanceKey& module,
                             const QVariantList& installPackages,
                             const QVariantList& tryInstallPackages );
 // void setGSPackageRemovals( const Calamares::ModuleSystem::InstanceKey& key, const QVariantList& removePackages );

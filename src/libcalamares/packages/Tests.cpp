@@ -7,9 +7,10 @@
  *
  */
 
-#include "utils/Logger.h"
+#include "Globals.h"
 
 #include "GlobalStorage.h"
+#include "utils/Logger.h"
 
 #include <QtTest/QtTest>
 
@@ -34,6 +35,16 @@ PackagesTests::initTestCase()
 void
 PackagesTests::testEmpty()
 {
+    Calamares::GlobalStorage gs;
+    const QString topKey( "packageOperations" );
+    Calamares::ModuleSystem::InstanceKey k( "this", "that" );
+
+    QVERIFY( !gs.contains( topKey ) );
+    QCOMPARE( k.toString(), "this@that" );
+
+    // Adding nothing at all does nothing
+    QVERIFY( !CalamaresUtils::Packages::setGSPackageAdditions( &gs, k, QVariantList(), QVariantList() ) );
+    QVERIFY( !gs.contains( topKey ) );
 }
 
 
