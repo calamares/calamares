@@ -36,7 +36,12 @@ test -x "$AS" || { echo "! $AS is not executable."; exit 1 ; }
 test -x "$CF" || { echo "! $CF is not executable."; exit 1 ; }
 
 unmangle_clang_format=""
-if expr `"$CF" --version | tr -dc '[^.0-9]' | cut  -d . -f 1` '<' 10 > /dev/null ; then
+format_version=`"$CF" --version | tr -dc '[^.0-9]' | cut  -d . -f 1`
+if expr "$format_version" '<' 8 > /dev/null ; then
+	echo "! Clang-format version 8+ required"
+	exit 1
+fi
+if expr "$format_version" '<' 10 > /dev/null ; then
 	:
 else
 	unmangle_clang_format=$( dirname $0 )/../.clang-format
