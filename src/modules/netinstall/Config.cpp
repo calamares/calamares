@@ -171,7 +171,7 @@ Config::receivedGroupData()
 }
 
 Config::SourceItem
-Config::SourceItem::makeSourceItem( const QVariantMap& configurationMap, const QString& groupsUrl )
+Config::SourceItem::makeSourceItem( const QString& groupsUrl, const QVariantMap& configurationMap )
 {
     if ( groupsUrl == QStringLiteral( "local" ) )
     {
@@ -211,13 +211,13 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     const auto& groupsUrlVariant = configurationMap.value( key );
     if ( groupsUrlVariant.type() == QVariant::String )
     {
-        m_urls.append( SourceItem::makeSourceItem( configurationMap, groupsUrlVariant.toString() ) );
+        m_urls.append( SourceItem::makeSourceItem( groupsUrlVariant.toString(), configurationMap ) );
     }
     else if ( groupsUrlVariant.type() == QVariant::StringList )
     {
         for ( const auto& s : groupsUrlVariant.toStringList() )
         {
-            m_urls.append( SourceItem::makeSourceItem( configurationMap, s ) );
+            m_urls.append( SourceItem::makeSourceItem( s, configurationMap ) );
         }
     }
 

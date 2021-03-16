@@ -99,7 +99,13 @@ private:
         bool isUrl() const { return url.isValid(); }
         bool isLocal() const { return !data.isEmpty(); }
         bool isValid() const { return isUrl() || isLocal(); }
-        static SourceItem makeSourceItem( const QVariantMap& configurationMap, const QString& groupsUrl );
+        /** @brief Create a SourceItem
+         *
+         * If the @p groupsUrl is @c "local" then the *groups* key in
+         * the @p configurationMap is used as the source; otherwise the
+         * string is used as an actual URL.
+         */
+        static SourceItem makeSourceItem( const QString& groupsUrl, const QVariantMap& configurationMap );
     };
 
     QQueue< SourceItem > m_urls;
