@@ -48,7 +48,7 @@ SummaryPage::SummaryPage( const SummaryViewStep* thisViewStep, QWidget* parent )
                                headerLabel->setText( tr( "This is an overview of what will happen once you start "
                                                          "the setup procedure." ) );
                            else headerLabel->setText( tr( "This is an overview of what will happen once you start "
-                                                          "the install procedure." ) ); )
+                                                          "the install procedure." ) ); );
     layout->addWidget( headerLabel );
     layout->addWidget( m_scrollArea );
     m_scrollArea->setWidgetResizable( true );

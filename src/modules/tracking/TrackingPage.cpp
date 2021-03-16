@@ -28,7 +28,7 @@ TrackingPage::TrackingPage( Config* config, QWidget* parent )
     , ui( new Ui::TrackingPage )
 {
     ui->setupUi( this );
-    CALAMARES_RETRANSLATE_SLOT( &TrackingPage::retranslate )
+    CALAMARES_RETRANSLATE_SLOT( &TrackingPage::retranslate );
 
     ui->noneCheckBox->setChecked( true );
     ui->noneCheckBox->setEnabled( false );

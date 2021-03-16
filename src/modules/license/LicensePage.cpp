@@ -105,7 +105,7 @@ LicensePage::LicensePage( QWidget* parent )
 
     connect( ui->acceptCheckBox, &QCheckBox::toggled, this, &LicensePage::checkAcceptance );
 
-    CALAMARES_RETRANSLATE_SLOT( &LicensePage::retranslate )
+    CALAMARES_RETRANSLATE_SLOT( &LicensePage::retranslate );
 }
 
 void

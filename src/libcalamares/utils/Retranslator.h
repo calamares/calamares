@@ -91,15 +91,16 @@ private:
 
 }  // namespace CalamaresUtils
 
-#define CALAMARES_RETRANSLATE( body ) CalamaresUtils::Retranslator::attachRetranslator( this, [=] { body } );
+#define CALAMARES_RETRANSLATE( body ) CalamaresUtils::Retranslator::attachRetranslator( this, [=] { body } )
 #define CALAMARES_RETRANSLATE_WIDGET( widget, body ) \
-    CalamaresUtils::Retranslator::attachRetranslator( widget, [=] { body } );
+    CalamaresUtils::Retranslator::attachRetranslator( widget, [=] { body } )
 #define CALAMARES_RETRANSLATE_SLOT( slotfunc ) \
+    do \
     { \
         this->connect( CalamaresUtils::Retranslator::retranslatorFor( this ), \
                        &CalamaresUtils::Retranslator::languageChange, \
                        this, \
                        slotfunc ); \
-    }
+    } while ( 0 )
 
 #endif

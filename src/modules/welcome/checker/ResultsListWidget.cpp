@@ -121,7 +121,7 @@ ResultsListDialog::ResultsListDialog( const Calamares::RequirementsModel& model,
 
     connect( buttonBox, &QDialogButtonBox::clicked, this, &QDialog::close );
 
-    CALAMARES_RETRANSLATE_SLOT( &ResultsListDialog::retranslate )
+    CALAMARES_RETRANSLATE_SLOT( &ResultsListDialog::retranslate );
     retranslate();  // Do it now to fill in the texts
 }
 
@@ -216,7 +216,7 @@ ResultsListWidget::ResultsListWidget( const Calamares::RequirementsModel& model,
         m_explanation->setAlignment( Qt::AlignCenter );
     }
 
-    CALAMARES_RETRANSLATE_SLOT( &ResultsListWidget::retranslate )
+    CALAMARES_RETRANSLATE_SLOT( &ResultsListWidget::retranslate );
     retranslate();
 }
 

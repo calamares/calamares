@@ -213,7 +213,7 @@ DebugWindow::DebugWindow()
         }
     } );
 
-    CALAMARES_RETRANSLATE( m_ui->retranslateUi( this ); setWindowTitle( tr( "Debug information" ) ); )
+    CALAMARES_RETRANSLATE( m_ui->retranslateUi( this ); setWindowTitle( tr( "Debug information" ) ); );
 }
 
 

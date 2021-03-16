@@ -140,7 +140,7 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
             config, &Config::requireStrongPasswordsChanged, ui->checkBoxRequireStrongPassword, &QCheckBox::setChecked );
     }
 
-    CALAMARES_RETRANSLATE_SLOT( &UsersPage::retranslate )
+    CALAMARES_RETRANSLATE_SLOT( &UsersPage::retranslate );
 
     onReuseUserPasswordChanged( m_config->reuseUserPasswordForRoot() );
     onFullNameTextEdited( m_config->fullName() );

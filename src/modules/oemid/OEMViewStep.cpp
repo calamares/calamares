@@ -29,7 +29,7 @@ public:
     {
         m_ui->setupUi( this );
 
-        CALAMARES_RETRANSLATE( m_ui->retranslateUi( this ); )
+        CALAMARES_RETRANSLATE( m_ui->retranslateUi( this ); );
     }
 
     ~OEMPage() override;

@@ -75,7 +75,7 @@ WelcomePage::WelcomePage( Config* conf, QWidget* parent )
 
     initLanguages();
 
-    CALAMARES_RETRANSLATE_SLOT( &WelcomePage::retranslate )
+    CALAMARES_RETRANSLATE_SLOT( &WelcomePage::retranslate );
 
     connect( ui->aboutButton, &QPushButton::clicked, this, &WelcomePage::showAboutBox );
     connect( Calamares::ModuleManager::instance(),

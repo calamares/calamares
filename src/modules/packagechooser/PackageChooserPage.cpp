@@ -28,7 +28,7 @@ PackageChooserPage::PackageChooserPage( PackageChooserMode mode, QWidget* parent
     m_introduction.screenshot = QPixmap( QStringLiteral( ":/images/no-selection.png" ) );
 
     ui->setupUi( this );
-    CALAMARES_RETRANSLATE( updateLabels(); )
+    CALAMARES_RETRANSLATE( updateLabels(); );
 
     switch ( mode )
     {

@@ -30,7 +30,7 @@ Config::Config( QObject* parent )
 {
     initLanguages();
 
-    CALAMARES_RETRANSLATE_SLOT( &Config::retranslate )
+    CALAMARES_RETRANSLATE_SLOT( &Config::retranslate );
 }
 
 void

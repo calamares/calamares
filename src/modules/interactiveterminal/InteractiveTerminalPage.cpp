@@ -99,5 +99,6 @@ void
 InteractiveTerminalPage::setCommand( const QString& command )
 {
     m_command = command;
-    CALAMARES_RETRANSLATE( m_headerLabel->setText( tr( "Executing script: &nbsp;<code>%1</code>" ).arg( m_command ) ); )
+    CALAMARES_RETRANSLATE(
+        m_headerLabel->setText( tr( "Executing script: &nbsp;<code>%1</code>" ).arg( m_command ) ); );
 }

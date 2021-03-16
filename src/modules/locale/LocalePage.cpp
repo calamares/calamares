@@ -117,7 +117,7 @@ LocalePage::LocalePage( Config* config, QWidget* parent )
     connect( m_localeChangeButton, &QPushButton::clicked, this, &LocalePage::changeLocale );
     connect( m_formatsChangeButton, &QPushButton::clicked, this, &LocalePage::changeFormats );
 
-    CALAMARES_RETRANSLATE_SLOT( &LocalePage::updateLocaleLabels )
+    CALAMARES_RETRANSLATE_SLOT( &LocalePage::updateLocaleLabels );
 }
 
 

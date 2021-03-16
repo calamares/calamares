@@ -134,9 +134,10 @@ getWidgetSidebar( Calamares::DebugWindowManager* debug,
     {
         QPushButton* debugWindowBtn = new QPushButton;
         debugWindowBtn->setObjectName( "debugButton" );
-        CALAMARES_RETRANSLATE_WIDGET( debugWindowBtn,
-                                      debugWindowBtn->setText( QCoreApplication::translate(
-                                          CalamaresWindow::staticMetaObject.className(), "Show debug information" ) ); )
+        CALAMARES_RETRANSLATE_WIDGET(
+            debugWindowBtn,
+            debugWindowBtn->setText( QCoreApplication::translate( CalamaresWindow::staticMetaObject.className(),
+                                                                  "Show debug information" ) ); );
         sideLayout->addWidget( debugWindowBtn );
         debugWindowBtn->setFlat( true );
         debugWindowBtn->setCheckable( true );
@@ -365,7 +366,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     CALAMARES_RETRANSLATE( const auto* branding = Calamares::Branding::instance();
                            setWindowTitle( Calamares::Settings::instance()->isSetupMode()
                                                ? tr( "%1 Setup Program" ).arg( branding->productName() )
-                                               : tr( "%1 Installer" ).arg( branding->productName() ) ); )
+                                               : tr( "%1 Installer" ).arg( branding->productName() ) ); );
 
     const Calamares::Branding* const branding = Calamares::Branding::instance();
     using ImageEntry = Calamares::Branding::ImageEntry;

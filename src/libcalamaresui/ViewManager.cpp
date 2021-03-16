@@ -81,7 +81,7 @@ ViewManager::ViewManager( QObject* parent )
     connect( JobQueue::instance(), &JobQueue::failed, this, &ViewManager::onInstallationFailed );
     connect( JobQueue::instance(), &JobQueue::finished, this, &ViewManager::next );
 
-    CALAMARES_RETRANSLATE_SLOT( &ViewManager::updateButtonLabels )
+    CALAMARES_RETRANSLATE_SLOT( &ViewManager::updateButtonLabels );
 }
 
 
