@@ -18,11 +18,11 @@
 #include "modulesystem/InstanceKey.h"
 
 #include <QObject>
-#include <QQueue>
-#include <QUrl>
 #include <QVariantMap>
 
-class QNetworkReply;
+#include <memory>
+
+class LoaderQueue;
 
 class Config : public QObject
 {
@@ -61,13 +61,6 @@ public:
     QString sidebarLabel() const;
     QString titleLabel() const;
 
-    /** @brief Retrieves the groups, with name, description and packages
-     *
-     * Loads data from the given URL. Once done, the data is parsed
-     * and passed on to the other loadGroupList() method.
-     */
-    void loadGroupList( const QUrl& url );
-
     /** @brief Fill model from parsed data.
      *
      * Fills the model with a list of groups -- which can contain
@@ -82,44 +75,20 @@ public:
      */
     void finalizeGlobalStorage( const Calamares::ModuleSystem::InstanceKey& key );
 
-signals:
+Q_SIGNALS:
     void statusChanged( QString status );  ///< Something changed
     void sidebarLabelChanged( QString label );
     void titleLabelChanged( QString label );
     void statusReady();  ///< Loading groups is complete
 
-private slots:
-    void receivedGroupData();  ///< From async-loading group data
+private Q_SLOTS:
     void retranslate();
 
 private:
-    /** @brief Data about an entry in *groupsUrl*
-     *
-     * This can be a specific URL, or "local" which uses data stored
-     * in the configuration file itself.
-     */
-    struct SourceItem
-    {
-        QUrl url;
-        QVariantList data;
-
-        bool isUrl() const { return url.isValid(); }
-        bool isLocal() const { return !data.isEmpty(); }
-        bool isValid() const { return isUrl() || isLocal(); }
-        /** @brief Create a SourceItem
-         *
-         * If the @p groupsUrl is @c "local" then the *groups* key in
-         * the @p configurationMap is used as the source; otherwise the
-         * string is used as an actual URL.
-         */
-        static SourceItem makeSourceItem( const QString& groupsUrl, const QVariantMap& configurationMap );
-    };
-
-    QQueue< SourceItem > m_urls;
     CalamaresUtils::Locale::TranslatedString* m_sidebarLabel = nullptr;  // As it appears in the sidebar
     CalamaresUtils::Locale::TranslatedString* m_titleLabel = nullptr;
     PackageModel* m_model = nullptr;
-    QNetworkReply* m_reply = nullptr;  // For fetching data
+    LoaderQueue* m_queue;
     Status m_status = Status::Ok;
     bool m_required = false;
 };
