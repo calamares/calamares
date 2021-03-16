@@ -360,12 +360,13 @@ ChoicePage::applyDeviceChoice()
 
     if ( m_core->isDirty() )
     {
-        ScanningDialog::run( QtConcurrent::run( [=] {
-                                 QMutexLocker locker( &m_coreMutex );
-                                 m_core->revertAllDevices();
-                             } ),
-                             [this] { continueApplyDeviceChoice(); },
-                             this );
+        ScanningDialog::run(
+            QtConcurrent::run( [=] {
+                QMutexLocker locker( &m_coreMutex );
+                m_core->revertAllDevices();
+            } ),
+            [this] { continueApplyDeviceChoice(); },
+            this );
     }
     else
     {
@@ -452,15 +453,16 @@ ChoicePage::applyActionChoice( InstallChoice choice )
 
         if ( m_core->isDirty() )
         {
-            ScanningDialog::run( QtConcurrent::run( [=] {
-                                     QMutexLocker locker( &m_coreMutex );
-                                     m_core->revertDevice( selectedDevice() );
-                                 } ),
-                                 [=] {
-                                     PartitionActions::doAutopartition( m_core, selectedDevice(), options );
-                                     emit deviceChosen();
-                                 },
-                                 this );
+            ScanningDialog::run(
+                QtConcurrent::run( [=] {
+                    QMutexLocker locker( &m_coreMutex );
+                    m_core->revertDevice( selectedDevice() );
+                } ),
+                [=] {
+                    PartitionActions::doAutopartition( m_core, selectedDevice(), options );
+                    emit deviceChosen();
+                },
+                this );
         }
         else
         {
@@ -472,12 +474,13 @@ ChoicePage::applyActionChoice( InstallChoice choice )
     case InstallChoice::Replace:
         if ( m_core->isDirty() )
         {
-            ScanningDialog::run( QtConcurrent::run( [=] {
-                                     QMutexLocker locker( &m_coreMutex );
-                                     m_core->revertDevice( selectedDevice() );
-                                 } ),
-                                 [] {},
-                                 this );
+            ScanningDialog::run(
+                QtConcurrent::run( [=] {
+                    QMutexLocker locker( &m_coreMutex );
+                    m_core->revertDevice( selectedDevice() );
+                } ),
+                [] {},
+                this );
         }
         updateNextEnabled();
 
@@ -491,17 +494,18 @@ ChoicePage::applyActionChoice( InstallChoice choice )
     case InstallChoice::Alongside:
         if ( m_core->isDirty() )
         {
-            ScanningDialog::run( QtConcurrent::run( [=] {
-                                     QMutexLocker locker( &m_coreMutex );
-                                     m_core->revertDevice( selectedDevice() );
-                                 } ),
-                                 [this] {
-                                     // We need to reupdate after reverting because the splitter widget is
-                                     // not a true view.
-                                     updateActionChoicePreview( m_config->installChoice() );
-                                     updateNextEnabled();
-                                 },
-                                 this );
+            ScanningDialog::run(
+                QtConcurrent::run( [=] {
+                    QMutexLocker locker( &m_coreMutex );
+                    m_core->revertDevice( selectedDevice() );
+                } ),
+                [this] {
+                    // We need to reupdate after reverting because the splitter widget is
+                    // not a true view.
+                    updateActionChoicePreview( m_config->installChoice() );
+                    updateNextEnabled();
+                },
+                this );
         }
         updateNextEnabled();
 
@@ -1033,22 +1037,23 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
                     Calamares::restoreSelectedBootLoader( *m_bootloaderComboBox, m_core->bootLoaderInstallPath() );
                 }
             } );
-            connect( m_core,
-                     &PartitionCoreModule::deviceReverted,
-                     this,
-                     [this]( Device* dev ) {
-                         Q_UNUSED( dev )
-                         if ( !m_bootloaderComboBox.isNull() )
-                         {
-                             if ( m_bootloaderComboBox->model() != m_core->bootLoaderModel() )
-                             {
-                                 m_bootloaderComboBox->setModel( m_core->bootLoaderModel() );
-                             }
+            connect(
+                m_core,
+                &PartitionCoreModule::deviceReverted,
+                this,
+                [this]( Device* dev ) {
+                    Q_UNUSED( dev )
+                    if ( !m_bootloaderComboBox.isNull() )
+                    {
+                        if ( m_bootloaderComboBox->model() != m_core->bootLoaderModel() )
+                        {
+                            m_bootloaderComboBox->setModel( m_core->bootLoaderModel() );
+                        }
 
-                             m_bootloaderComboBox->setCurrentIndex( m_lastSelectedDeviceIndex );
-                         }
-                     },
-                     Qt::QueuedConnection );
+                        m_bootloaderComboBox->setCurrentIndex( m_lastSelectedDeviceIndex );
+                    }
+                },
+                Qt::QueuedConnection );
             // ^ Must be Queued so it's sure to run when the widget is already visible.
 
             eraseLayout->addWidget( m_bootloaderComboBox );
