@@ -94,6 +94,17 @@ Config::loadGroupList( const QVariantList& groupData )
 }
 
 void
+Config::loadingDone()
+{
+    if ( m_queue )
+    {
+        m_queue->deleteLater();
+        m_queue = nullptr;
+    }
+}
+
+
+void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
 {
     setRequired( CalamaresUtils::getBool( configurationMap, "required", false ) );
@@ -133,11 +144,8 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     }
     if ( m_queue )
     {
-        connect( m_queue, &LoaderQueue::done, [this]() {
-            m_queue->deleteLater();
-            m_queue = nullptr;
-        } );
-        m_queue->fetchNext();
+        connect( m_queue, &LoaderQueue::done, this, &Config::loadingDone );
+        QMetaObject::invokeMethod( m_queue, "fetchNext", Qt::QueuedConnection );
     }
 }
 

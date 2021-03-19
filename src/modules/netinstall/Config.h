@@ -83,12 +83,13 @@ Q_SIGNALS:
 
 private Q_SLOTS:
     void retranslate();
+    void loadingDone();
 
 private:
     CalamaresUtils::Locale::TranslatedString* m_sidebarLabel = nullptr;  // As it appears in the sidebar
     CalamaresUtils::Locale::TranslatedString* m_titleLabel = nullptr;
     PackageModel* m_model = nullptr;
-    LoaderQueue* m_queue;
+    LoaderQueue* m_queue = nullptr;
     Status m_status = Status::Ok;
     bool m_required = false;
 };

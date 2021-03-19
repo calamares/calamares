@@ -95,6 +95,12 @@ LoaderQueue::fetch( const QUrl& url )
     }
 }
 
+/** @brief Call fetchNext() on the queue if it can
+ *
+ * On destruction, a new call to fetchNext() is queued, so that
+ * the queue continues loading. Calling release() before the
+ * destructor skips the fetchNext(), ending the queue-loading.
+ */
 class FetchNextUnless
 {
 public:
