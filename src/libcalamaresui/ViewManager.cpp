@@ -190,26 +190,7 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
     connect( msgBox, &QMessageBox::buttonClicked, [msgBox]( QAbstractButton* button ) {
         if ( msgBox->buttonRole( button ) == QMessageBox::ButtonRole::YesRole )
         {
-            QString pasteUrl = CalamaresUtils::Paste::doLogUpload( msgBox );
-            QString pasteUrlMessage;
-            if ( pasteUrl.isEmpty() )
-            {
-                pasteUrlMessage = tr( "The upload was unsuccessful. No web-paste was done." );
-            }
-            else
-            {
-                QClipboard* clipboard = QApplication::clipboard();
-                clipboard->setText( pasteUrl, QClipboard::Clipboard );
-
-                if ( clipboard->supportsSelection() )
-                {
-                    clipboard->setText( pasteUrl, QClipboard::Selection );
-                }
-                QString pasteUrlFmt = tr( "Install log posted to\n\n%1\n\nLink copied to clipboard" );
-                pasteUrlMessage = pasteUrlFmt.arg( pasteUrl );
-            }
-
-            QMessageBox::critical( nullptr, tr( "Install Log Paste URL" ), pasteUrlMessage );
+            CalamaresUtils::Paste::doLogUploadUI( msgBox );
         }
         QApplication::quit();
     } );

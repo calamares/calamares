@@ -216,7 +216,7 @@ DebugWindow::DebugWindow()
 
     // Send Log button only if it would be useful
     m_ui->sendLogButton->setVisible( CalamaresUtils::Paste::isEnabled() );
-    connect( m_ui->sendLogButton, &QPushButton::clicked, [this]() { CalamaresUtils::Paste::doLogUpload( this ); } );
+    connect( m_ui->sendLogButton, &QPushButton::clicked, [this]() { CalamaresUtils::Paste::doLogUploadUI( this ); } );
 
     CALAMARES_RETRANSLATE( m_ui->retranslateUi( this ); setWindowTitle( tr( "Debug information" ) ); );
 }
