@@ -33,39 +33,15 @@ NetInstallPage::NetInstallPage( Config* c, QWidget* parent )
     ui->setupUi( this );
     ui->groupswidget->header()->setSectionResizeMode( QHeaderView::ResizeToContents );
     ui->groupswidget->setModel( c->model() );
-    connect( c, &Config::statusChanged, this, &NetInstallPage::setStatus );
+    connect( c, &Config::statusChanged, ui->netinst_status, &QLabel::setText );
+    connect( c, &Config::titleLabelChanged, [ui = this->ui]( const QString title ) {
+        ui->label->setVisible( !title.isEmpty() );
+        ui->label->setText( title );
+    } );
     connect( c, &Config::statusReady, this, &NetInstallPage::expandGroups );
-
-    setPageTitle( nullptr );
-    CALAMARES_RETRANSLATE_SLOT( &NetInstallPage::retranslate );
 }
 
 NetInstallPage::~NetInstallPage() {}
-
-void
-NetInstallPage::setPageTitle( CalamaresUtils::Locale::TranslatedString* t )
-{
-    m_title.reset( t );
-    if ( !m_title )
-    {
-        ui->label->hide();
-    }
-    else
-    {
-        ui->label->show();
-    }
-    retranslate();
-}
-
-void
-NetInstallPage::retranslate()
-{
-    if ( m_title )
-    {
-        ui->label->setText( m_title->get() );  // That's get() on the TranslatedString
-    }
-    ui->netinst_status->setText( m_config->status() );
-}
 
 void
 NetInstallPage::expandGroups()
@@ -80,12 +56,6 @@ NetInstallPage::expandGroups()
             ui->groupswidget->setExpanded( index, true );
         }
     }
-}
-
-void
-NetInstallPage::setStatus( QString s )
-{
-    ui->netinst_status->setText( s );
 }
 
 void

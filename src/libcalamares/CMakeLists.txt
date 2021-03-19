@@ -59,6 +59,9 @@ set( libSources
     # Network service
     network/Manager.cpp
 
+    # Packages service
+    packages/Globals.cpp
+
     # Partition service
     partition/Mount.cpp
     partition/PartitionSize.cpp
@@ -226,6 +229,12 @@ calamares_add_test(
     libcalamaresnetworktest
     SOURCES
         network/Tests.cpp
+)
+
+calamares_add_test(
+    libcalamarespackagestest
+    SOURCES
+        packages/Tests.cpp
 )
 
 calamares_add_test(

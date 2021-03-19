@@ -21,6 +21,11 @@ This release contains contributions from (alphabetically by first name):
    coded setup (which Calamares has had for a long time with @home
    and similar) and introduce a custom btrfs configuration through the
    `mount.conf` file.
+ - *netinstall* now supports fallbacks for the groups data.
+   Instead of a single URL, multiple URLs may be specified in
+   a list and Calamares goes through them until one is successfully
+   retrieved. Older configurations with a single string are
+   treated like a one-item list. #1579
  - The *usersq* module now connects to the internal configuration
    object and may be usable for regular installations.
 

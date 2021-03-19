@@ -14,7 +14,6 @@
 #include "Config.h"
 
 #include "DllMacro.h"
-#include "locale/TranslatableConfiguration.h"
 #include "utils/PluginFactory.h"
 #include "viewpages/ViewStep.h"
 
@@ -56,7 +55,6 @@ private:
     Config m_config;
 
     NetInstallPage* m_widget;
-    CalamaresUtils::Locale::TranslatedString* m_sidebarLabel;  // As it appears in the sidebar
     bool m_nextEnabled = false;
 };
 
