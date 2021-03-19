@@ -21,7 +21,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="globalStorageTab">
       <attribute name="title">
@@ -115,6 +115,13 @@ SPDX-License-Identifier: GPL-3.0-or-later
         <widget class="QPushButton" name="widgetTreeButton">
          <property name="text">
           <string>Widget Tree</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="sendLogButton">
+         <property name="text">
+          <string>Send Session Log</string>
          </property>
         </widget>
        </item>
