@@ -304,12 +304,12 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="212"/>
       <source>Install Log Paste URL</source>
-      <translation type="unfinished"/>
+      <translation>Retadreso de la alglua servilo</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="197"/>
       <source>The upload was unsuccessful. No web-paste was done.</source>
-      <translation type="unfinished"/>
+      <translation>Alŝuto malsukcesinta. Neniu transpoŝigis al la reto.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="208"/>
@@ -318,7 +318,11 @@
 %1
 
 Link copied to clipboard</source>
-      <translation type="unfinished"/>
+      <translation>La protokolo de instalado estis enpoŝtita al:
+
+%1
+
+La retadreso estis copiita al vian tondujon.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="224"/>
