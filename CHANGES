@@ -7,7 +7,7 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.39 (unreleased) #
+# 3.2.39 (2021-03-19) #
 
 This release contains contributions from (alphabetically by first name):
  - Matti Hyttinen
@@ -20,7 +20,8 @@ This release contains contributions from (alphabetically by first name):
    If your distro has a default-to-btrfs setup, it can skip the hard-
    coded setup (which Calamares has had for a long time with @home
    and similar) and introduce a custom btrfs configuration through the
-   `mount.conf` file.
+   `mount.conf` file. See issues #1659 and #1661 for warnings about
+   using this in production.
  - *netinstall* now supports fallbacks for the groups data.
    Instead of a single URL, multiple URLs may be specified in
    a list and Calamares goes through them until one is successfully
