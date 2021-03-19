@@ -18,12 +18,17 @@ namespace CalamaresUtils
 {
 namespace Paste
 {
-
 /** @brief Send the current log file to a pastebin
  *
  * Returns the (string) URL that the pastebin gives us.
  */
 QString doLogUpload( QObject* parent );
+
+/** @brief Is paste enabled?
+ *
+ * Checks the branding instance if paste can be done.
+ */
+bool isEnabled();
 }  // namespace Paste
 
 }  // namespace CalamaresUtils

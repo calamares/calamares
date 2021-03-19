@@ -126,3 +126,10 @@ CalamaresUtils::Paste::doLogUpload( QObject* parent )
     }
     return QString();
 }
+
+bool
+CalamaresUtils::Paste::isEnabled()
+{
+    auto [ type, serverUrl ] = Calamares::Branding::instance()->uploadServer();
+    return type != Calamares::Branding::UploadServerType::None;
+}
