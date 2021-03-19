@@ -7,13 +7,27 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
+# 3.2.40 (unreleased) #
+
+This release contains contributions from (alphabetically by first name):
+ - No external contributors yet
+
+## Core ##
+ - No core changes yet
+
+## Modules ##
+ - No module changes yet
+
+
 # 3.2.39 (2021-03-19) #
 
 This release contains contributions from (alphabetically by first name):
  - Matti Hyttinen
 
 ## Core ##
- - No core changes yet
+ - A *packages* service has been added to the core, for use by
+   *netinstall* module and any others that need to set up
+   package information for the *packages* module.
 
 ## Modules ##
  - The *mount* module has gained a configurable setup for btrfs volumes.
