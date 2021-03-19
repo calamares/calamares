@@ -41,7 +41,14 @@ struct SourceItem
     static SourceItem makeSourceItem( const QString& groupsUrl, const QVariantMap& configurationMap );
 };
 
-
+/** @brief Queue of source items to load
+ *
+ * Queue things up by calling append() and then kick things off
+ * by calling load(). This will try to load the items, in order;
+ * the first one that succeeds will end the loading process.
+ *
+ * Signal done() is emitted when done (also when all of the items fail).
+ */
 class LoaderQueue : public QObject
 {
     Q_OBJECT
@@ -49,9 +56,12 @@ public:
     LoaderQueue( Config* parent );
 
     void append( SourceItem&& i );
-    void fetchNext();
+    int count() const { return m_queue.count(); }
 
 public Q_SLOTS:
+    void load();
+
+    void fetchNext();
     void fetch( const QUrl& url );
     void dataArrived();
 

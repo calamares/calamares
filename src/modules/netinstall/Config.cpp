@@ -54,9 +54,11 @@ Config::status() const
     case Status::FailedBadData:
         return tr( "Network Installation. (Disabled: Received invalid groups data)" );
     case Status::FailedInternalError:
-        return tr( "Network Installation. (Disabled: internal error)" );
+        return tr( "Network Installation. (Disabled: Internal error)" );
     case Status::FailedNetworkError:
         return tr( "Network Installation. (Disabled: Unable to fetch package lists, check your network connection)" );
+    case Status::FailedNoData:
+        return tr( "Network Installation. (Disabled: No package list)" );
     }
     __builtin_unreachable();
 }
@@ -89,6 +91,11 @@ Config::loadGroupList( const QVariantList& groupData )
     if ( m_model->rowCount() < 1 )
     {
         cWarning() << "NetInstall groups data was empty.";
+        setStatus( Status::FailedNoData );
+    }
+    else
+    {
+        setStatus( Status::Ok );
     }
     emit statusReady();
 }
@@ -134,7 +141,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         m_queue = new LoaderQueue( this );
         m_queue->append( SourceItem::makeSourceItem( groupsUrlVariant.toString(), configurationMap ) );
     }
-    else if ( groupsUrlVariant.type() == QVariant::StringList )
+    else if ( groupsUrlVariant.type() == QVariant::List )
     {
         m_queue = new LoaderQueue( this );
         for ( const auto& s : groupsUrlVariant.toStringList() )
@@ -142,10 +149,11 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
             m_queue->append( SourceItem::makeSourceItem( s, configurationMap ) );
         }
     }
-    if ( m_queue )
+    if ( m_queue && m_queue->count() > 0 )
     {
+        cDebug() << "Loading netinstall from" << m_queue->count() << "alternate sources.";
         connect( m_queue, &LoaderQueue::done, this, &Config::loadingDone );
-        QMetaObject::invokeMethod( m_queue, "fetchNext", Qt::QueuedConnection );
+        m_queue->load();
     }
 }
 

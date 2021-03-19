@@ -20,6 +20,32 @@
 #include <QNetworkReply>
 #include <QTimer>
 
+/** @brief Call fetchNext() on the queue if it can
+ *
+ * On destruction, a new call to fetchNext() is queued, so that
+ * the queue continues loading. Calling release() before the
+ * destructor skips the fetchNext(), ending the queue-loading.
+ */
+class FetchNextUnless
+{
+public:
+    FetchNextUnless( LoaderQueue* q )
+        : m_q( q )
+    {
+    }
+    ~FetchNextUnless()
+    {
+        if ( m_q )
+        {
+            QMetaObject::invokeMethod( m_q, "fetchNext", Qt::QueuedConnection );
+        }
+    }
+    void release() { m_q = nullptr; }
+
+private:
+    LoaderQueue* m_q = nullptr;
+};
+
 SourceItem
 SourceItem::makeSourceItem( const QString& groupsUrl, const QVariantMap& configurationMap )
 {
@@ -46,6 +72,13 @@ LoaderQueue::append( SourceItem&& i )
 }
 
 void
+LoaderQueue::load()
+{
+    QMetaObject::invokeMethod( this, "fetchNext", Qt::QueuedConnection );
+}
+
+
+void
 LoaderQueue::fetchNext()
 {
     if ( m_queue.isEmpty() )
@@ -67,13 +100,16 @@ LoaderQueue::fetchNext()
     }
 }
 
-
 void
 LoaderQueue::fetch( const QUrl& url )
 {
+    FetchNextUnless next( this );
+
     if ( !url.isValid() )
     {
         m_config->setStatus( Config::Status::FailedBadConfiguration );
+        cDebug() << "Invalid URL" << url;
+        return;
     }
 
     using namespace CalamaresUtils::Network;
@@ -85,41 +121,19 @@ LoaderQueue::fetch( const QUrl& url )
 
     if ( !reply )
     {
-        cDebug() << Logger::Continuation << "request failed immediately.";
+        cDebug() << Logger::SubEntry << "Request failed immediately.";
+        // If nobody sets a different status, this will remain
         m_config->setStatus( Config::Status::FailedBadConfiguration );
     }
     else
     {
+        // When the network request is done, **then** we might
+        // do the next item from the queue, so don't call fetchNext() now.
+        next.release();
         m_reply = reply;
         connect( reply, &QNetworkReply::finished, this, &LoaderQueue::dataArrived );
     }
 }
-
-/** @brief Call fetchNext() on the queue if it can
- *
- * On destruction, a new call to fetchNext() is queued, so that
- * the queue continues loading. Calling release() before the
- * destructor skips the fetchNext(), ending the queue-loading.
- */
-class FetchNextUnless
-{
-public:
-    FetchNextUnless( LoaderQueue* q )
-        : m_q( q )
-    {
-    }
-    ~FetchNextUnless()
-    {
-        if ( m_q )
-        {
-            QMetaObject::invokeMethod( m_q, "fetchNext", Qt::QueuedConnection );
-        }
-    }
-    void release() { m_q = nullptr; }
-
-private:
-    LoaderQueue* m_q = nullptr;
-};
 
 void
 LoaderQueue::dataArrived()

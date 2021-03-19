@@ -47,7 +47,9 @@ public:
         FailedBadConfiguration,
         FailedInternalError,
         FailedNetworkError,
-        FailedBadData
+        FailedBadData,
+        FailedNoData
+
     };
 
     QString status() const;
