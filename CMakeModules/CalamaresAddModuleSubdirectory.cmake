@@ -59,10 +59,10 @@ function( calamares_add_module_subdirectory )
         if( _dirname )
             # Remove the dirname and any leftover leading /s
             string( REGEX REPLACE "^${_dirname}/*" "" _modulename "${SUBDIRECTORY}" )
-            set( MODULE_DESTINATION ${MODULES_DIR}/${_modulename} )
         else()
-            set( MODULE_DESTINATION ${MODULES_DIR}/${SUBDIRECTORY} )
+            set( _modulename ${SUBDIRECTORY} )
         endif()
+        set( MODULE_DESTINATION ${MODULES_DIR}/${_modulename} )
 
         # Read module.desc, check that the interface type is supported.
         #
@@ -114,7 +114,7 @@ function( calamares_add_module_subdirectory )
                 endif()
             endforeach()
 
-            message( "-- ${BoldYellow}Found ${CALAMARES_APPLICATION_NAME} module: ${BoldRed}${SUBDIRECTORY}${ColorReset}" )
+            message( "-- ${BoldYellow}Found ${CALAMARES_APPLICATION_NAME} module: ${BoldRed}${_modulename}${ColorReset}" )
             message( "   ${Green}TYPE:${ColorReset} jobmodule" )
             message( "   ${Green}MODULE_DESTINATION:${ColorReset} ${MODULE_DESTINATION}" )
             if( MODULE_CONFIG_FILES )
