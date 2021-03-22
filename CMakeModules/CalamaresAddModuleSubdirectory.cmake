@@ -32,9 +32,46 @@ function( calamares_explain_skipped_modules )
     endif()
 endfunction()
 
+# Globally, SKIP_MODULES and USE_* affect what modules are built.
+# Check if *modulename* should be skipped, and if so, set *outvar* to
+# a human-readable reason for skipping it.
+function( calamares_check_skip modulename outvar )
+    # Globally-defined SKIP_MODULES may be space- or semicolon- separated
+    # so convert it to a list-variable.
+    string( REPLACE " " ";" SKIP_LIST "${SKIP_MODULES}" )
+
+    list( FIND SKIP_LIST "${modulename}" DO_SKIP )
+    if( NOT DO_SKIP EQUAL -1 )
+        set( ${outvar} "user request" PARENT_SCOPE )
+        return()
+    endif()
+
+    # Not skipped by the global check, see if it has an applicable USE_*
+    if( "${modulename}" MATCHES "^[a-zA-Z0-9_]+-" )
+        # Split the name into <category>-<implementation>
+        string( REGEX REPLACE "-.*" "" _category "${modulename}" )
+        string( REGEX REPLACE "^[^-]+-" "" _implementation "${modulename}" )
+    else()
+        # Not a module to which USE_* applies
+        return()
+    endif()
+
+    if( NOT "${UsE_${_category}}" )
+        # Category not set at all or nonexistent
+        return()
+    elseif( "${USE_${_category}}" STREQUAL "none" )
+        set( ${outvar} "category ${_category} disabled" PARENT_SCOPE )
+    elseif( NOT "${USE_${_category}}" STREQUAL "${modulename}" )
+        set( ${outvar} "category ${_category} selects ${USE_${_category}}" PARENT_SCOPE )
+    endif()
+endfunction()
+
 function( calamares_add_module_subdirectory )
     set( SUBDIRECTORY ${ARGV0} )
 
+    # Set SKIPPED_MODULES here, so CMake-based modules have a
+    # parent scope to set it in; this function, in turn sets it
+    # in **its** parent scope.
     set( SKIPPED_MODULES )
     set( MODULE_CONFIG_FILES "" )
 
@@ -64,13 +101,19 @@ function( calamares_add_module_subdirectory )
         endif()
         set( MODULE_DESTINATION ${MODULES_DIR}/${_modulename} )
 
+        calamares_check_skip( ${_modulename} SKIPPED_MODULES )
+
         # Read module.desc, check that the interface type is supported.
         #
         # _mod_enabled boolean if the module should be built (only if the interface is supported)
         # _mod_reason is a human-readable explanation why it isn't built
         # _mod_testing boolean if the module should be added to the loadmodule tests
         file(STRINGS "${_mod_dir}/module.desc" MODULE_INTERFACE REGEX "^interface")
-        if ( MODULE_INTERFACE MATCHES "pythonqt" )
+        if ( SKIPPED_MODULES )
+            set( _mod_enabled OFF )
+            set( _mod_reason "${SKIPPED_MODULES}" )
+            set( _mod_testing OFF )
+        elseif ( MODULE_INTERFACE MATCHES "pythonqt" )
             set( _mod_enabled ${Calamares_WITH_PYTHONQT} )
             set( _mod_reason "No PythonQt support" )
             set( _mod_testing OFF )
@@ -159,7 +202,9 @@ function( calamares_add_module_subdirectory )
         endforeach()
     endif()
 
-    # Check that the module can be loaded. Since this calls exec(), the module
+    # Adding general tests
+    #
+    # Add a check that the module can be loaded. Since this calls exec(), the module
     # may try to do things to the running system. Needs work to make that a
     # safe thing to do.
     #
