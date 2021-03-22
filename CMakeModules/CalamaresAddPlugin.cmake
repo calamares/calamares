@@ -59,9 +59,17 @@
 #       If this is set, writes an explicit weight into the module.desc;
 #       module weights are used in progress reporting.
 #
+#
+# This function follows the global SKIP_MODULES and USE_* settings, so
+# a plugin may be skipped -- then nothing will be built. In that case,
+# SKIPPED_MODULES is set in the parent (i.e. caller's) scope with the
+# reason why. This should rarely be a concern as AddModuleSubdirectory
+# already handles skip-reasons and collects them for reporting.
 
 include( CMakeParseArguments )
+
 include( CalamaresAddLibrary  )
+include( CalamaresCheckModuleSelection )
 include( CMakeColors )
 
 function( calamares_add_plugin )
@@ -79,6 +87,12 @@ function( calamares_add_plugin )
     set( CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}" )
     set( CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}" )
     set( CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}" )
+
+    calamares_check_skip( ${NAME} _skip)
+    if ( _skip )
+        set( SKIPPED_MODULES "${_skip}" PARENT_SCOPE )
+        return()
+    endif()
 
     message( "-- ${BoldYellow}Found ${CALAMARES_APPLICATION_NAME} module: ${BoldRed}${PLUGIN_NAME}${ColorReset}" )
     message( "   ${Green}TYPE:${ColorReset} ${PLUGIN_TYPE}" )

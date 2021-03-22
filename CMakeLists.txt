@@ -606,6 +606,7 @@ install(
         "CMakeModules/CalamaresAddTest.cmake"
         "CMakeModules/CalamaresAddTranslations.cmake"
         "CMakeModules/CalamaresAutomoc.cmake"
+        "CMakeModules/CalamaresCheckModuleSelection.cmake"
         "CMakeModules/CMakeColors.cmake"
         "CMakeModules/FindYAMLCPP.cmake"
     DESTINATION

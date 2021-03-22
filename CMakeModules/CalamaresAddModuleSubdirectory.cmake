@@ -12,67 +12,38 @@
 # Function and support code for adding a Calamares module (either a Qt / C++ plugin,
 # or a Python module, or whatever) to the build.
 #
+# # Usage
+#
+# The public API is one single function:
+#
+# - calamares_add_module_subdirectory(subdirectory [skiplistvar])
+#   Adds a given *subdirectory* to the modules list, building the
+#   module that is there. The *subdirectory* must contain a `module.desc`
+#   (generally non-C++ modules) or a `CMakeLists.txt` (for C++ modules,
+#   or special cases). The module is assumed to be named after the
+#   (last component of) the subdirectory.
+#
+#   If the module would be skipped (by the global SKIP_MODULES setting
+#   or a USE_* setting) or the module itself sets a reason to skip
+#   via the calamares_skip_module() function, the module is added to
+#   the list of skipped-modules in *skiplistvar*. If no variable is
+#   given, the reason is set in the parent scope variable
+#   SKIPPED_MODULES . Do **not** use SKIPPED_MODULES as the name of
+#   *skiplistvar*, things will get weird.
+#
+
 include( CalamaresAddTranslations )
+include( CalamaresCheckModuleSelection )
 
 set( MODULE_DATA_DESTINATION share/calamares/modules )
 
-# Convenience function to indicate that a module has been skipped
-# (optionally also why). Call this in the module's CMakeLists.txt
-macro( calamares_skip_module )
-    set( SKIPPED_MODULES ${SKIPPED_MODULES} ${ARGV} PARENT_SCOPE )
-endmacro()
-
-function( calamares_explain_skipped_modules )
-    if ( ARGN )
-        message( "${ColorReset}-- Skipped modules:" )
-        foreach( SUBDIRECTORY ${ARGN} )
-            message( "${ColorReset}--   Skipped ${BoldRed}${SUBDIRECTORY}${ColorReset}." )
-        endforeach()
-        message( "" )
-    endif()
-endfunction()
-
-# Globally, SKIP_MODULES and USE_* affect what modules are built.
-# Check if *modulename* should be skipped, and if so, set *outvar* to
-# a human-readable reason for skipping it.
-function( calamares_check_skip modulename outvar )
-    # Globally-defined SKIP_MODULES may be space- or semicolon- separated
-    # so convert it to a list-variable.
-    string( REPLACE " " ";" SKIP_LIST "${SKIP_MODULES}" )
-
-    list( FIND SKIP_LIST "${modulename}" DO_SKIP )
-    if( NOT DO_SKIP EQUAL -1 )
-        set( ${outvar} "user request" PARENT_SCOPE )
-        return()
-    endif()
-
-    # Not skipped by the global check, see if it has an applicable USE_*
-    if( "${modulename}" MATCHES "^[a-zA-Z0-9_]+-" )
-        # Split the name into <category>-<implementation>
-        string( REGEX REPLACE "-.*" "" _category "${modulename}" )
-        string( REGEX REPLACE "^[^-]+-" "" _implementation "${modulename}" )
-    else()
-        # Not a module to which USE_* applies
-        return()
-    endif()
-
-    if( NOT "${UsE_${_category}}" )
-        # Category not set at all or nonexistent
-        return()
-    elseif( "${USE_${_category}}" STREQUAL "none" )
-        set( ${outvar} "category ${_category} disabled" PARENT_SCOPE )
-    elseif( NOT "${USE_${_category}}" STREQUAL "${modulename}" )
-        set( ${outvar} "category ${_category} selects ${USE_${_category}}" PARENT_SCOPE )
-    endif()
-endfunction()
-
-function( calamares_add_module_subdirectory )
+function( _calamares_add_module_subdirectory_impl )
     set( SUBDIRECTORY ${ARGV0} )
 
     # Set SKIPPED_MODULES here, so CMake-based modules have a
     # parent scope to set it in; this function, in turn sets it
     # in **its** parent scope.
-    set( SKIPPED_MODULES )
+    set( SKIPPED_MODULES "" )
     set( MODULE_CONFIG_FILES "" )
 
     set( _mod_dir "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}" )
@@ -85,6 +56,16 @@ function( calamares_add_module_subdirectory )
         if ( SKIPPED_MODULES )
             set( SKIPPED_MODULES ${SKIPPED_MODULES} PARENT_SCOPE )
             set( MODULE_CONFIG_FILES "" )
+        else()
+            # The SKIPPED_MODULES may be set in the directory itself
+            get_directory_property( _skip DIRECTORY ${SUBDIRECTORY} DEFINITION SKIPPED_MODULES )
+            if ( _skip )
+                set( SKIPPED_MODULES ${_skip} PARENT_SCOPE )
+                set( MODULE_CONFIG_FILES "" )
+            endif()
+        endif()
+        if ( SKIPPED_MODULES )
+            return()
         endif()
     # ...otherwise, we look for a module.desc.
     elseif( EXISTS "${_mod_dir}/module.desc" )
@@ -110,9 +91,10 @@ function( calamares_add_module_subdirectory )
         # _mod_testing boolean if the module should be added to the loadmodule tests
         file(STRINGS "${_mod_dir}/module.desc" MODULE_INTERFACE REGEX "^interface")
         if ( SKIPPED_MODULES )
-            set( _mod_enabled OFF )
-            set( _mod_reason "${SKIPPED_MODULES}" )
-            set( _mod_testing OFF )
+            # If it's skipped by infrastucture, the message already includes the module
+            # name. We don't need to do any further checking.
+            set( SKIPPED_MODULES "${SKIPPED_MODULES}" PARENT_SCOPE )
+            return()
         elseif ( MODULE_INTERFACE MATCHES "pythonqt" )
             set( _mod_enabled ${Calamares_WITH_PYTHONQT} )
             set( _mod_reason "No PythonQt support" )
@@ -245,6 +227,22 @@ function( calamares_add_module_subdirectory )
         endwhile()
         if ( EXISTS ${_testdir}/CMakeTests.txt AND NOT EXISTS ${_mod_dir}/CMakeLists.txt )
             include( ${_testdir}/CMakeTests.txt )
+        endif()
+    endif()
+endfunction()
+
+function( calamares_add_module_subdirectory )
+    set( SUBDIRECTORY ${ARGV0} )
+    set( _ams_SKIP_LIST ${ARGV1} )
+
+    set( SKIPPED_MODULES "" )
+    _calamares_add_module_subdirectory_impl( ${SUBDIRECTORY} )
+    if ( SKIPPED_MODULES )
+        if ( _ams_SKIP_LIST )
+            list( APPEND ${_ams_SKIP_LIST} "${SKIPPED_MODULES}" )
+            set( ${_ams_SKIP_LIST} "${${_ams_SKIP_LIST}}" PARENT_SCOPE )
+        else()
+            set( SKIPPED_MODULES "${SKIPPED_MODULES}" PARENT_SCOPE )
         endif()
     endif()
 endfunction()
