@@ -187,6 +187,7 @@ file( GLOB rootHeaders "*.h" )
 install(
     FILES
         ${CMAKE_CURRENT_BINARY_DIR}/CalamaresConfig.h
+        ${CMAKE_CURRENT_BINARY_DIR}/CalamaresVersion.h
         ${rootHeaders}
     DESTINATION include/libcalamares
 )
