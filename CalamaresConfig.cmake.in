@@ -23,6 +23,9 @@
 #
 include(${CMAKE_CURRENT_LIST_DIR}/CalamaresConfigVersion.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/CalamaresTargets.cmake)
+if (NOT TARGET Calamares::calamares OR NOT TARGET Calamares::calamaresui)
+    message(FATAL_ERROR "Calamares found with missing CMake targets")
+endif()
 
 ### Dependencies
 #
