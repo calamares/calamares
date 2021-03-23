@@ -175,7 +175,6 @@ desktop_environments = [
         '/usr/bin/budgie-session', 'budgie-desktop'  # Budgie v8
         ),
     DesktopEnvironment('/usr/bin/gnome-session', 'gnome'),
-    DesktopEnvironment('/usr/bin/startxfce4', 'xfce'),
     DesktopEnvironment('/usr/bin/cinnamon-session-cinnamon', 'cinnamon'),
     DesktopEnvironment('/usr/bin/mate-session', 'mate'),
     DesktopEnvironment('/usr/bin/enlightenment_start', 'enlightenment'),
@@ -184,9 +183,18 @@ desktop_environments = [
     DesktopEnvironment('/usr/bin/lxqt-session', 'lxqt'),
     DesktopEnvironment('/usr/bin/pekwm', 'pekwm'),
     DesktopEnvironment('/usr/bin/pantheon-session', 'pantheon'),
-    DesktopEnvironment('/usr/bin/i3', 'i3'),
     DesktopEnvironment('/usr/bin/startdde', 'deepin'),
-    DesktopEnvironment('/usr/bin/openbox-session', 'openbox')
+    DesktopEnvironment('/usr/bin/startxfce4', 'xfce'),
+    DesktopEnvironment('/usr/bin/openbox-session', 'openbox'),
+    DesktopEnvironment('/usr/bin/i3', 'i3'),
+    DesktopEnvironment('/usr/bin/awesome', 'awesome'),
+    DesktopEnvironment('/usr/bin/bspwm', 'bspwm'),
+    DesktopEnvironment('/usr/bin/herbstluftwm', 'herbstluftwm'),
+    DesktopEnvironment('/usr/bin/qtile', 'qtile'),
+    DesktopEnvironment('/usr/bin/xmonad', 'xmonad'),
+    DesktopEnvironment('/usr/bin/dwm', 'dmw'),
+    DesktopEnvironment('/usr/bin/jwm', 'jwm'),
+    DesktopEnvironment('/usr/bin/icewm-session', 'icewm-session'),
 ]
 
 
