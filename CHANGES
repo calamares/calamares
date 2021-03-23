@@ -10,13 +10,22 @@ website will have to do for older versions.
 # 3.2.40 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - Erik Dubois
 
 ## Core ##
- - No core changes yet
+ - The CMake modules for consumption by external modules (e.g. the
+   calamares-extensions repository, but also any other modules built
+   by distro's for internal use) now support consistent skip-module
+   behavior and reporting. #1641 (one tiny part of this change)
+ - In global storage, the *filesystem_use* key now has an API in
+   libcalamares to systematically mark filesystem (types) as "in use"
+   or not. This, in turn, means that modules can depend on that information
+   for other work (e.g. removing drivers for unused filesystems). #1635
 
 ## Modules ##
- - No module changes yet
+ - *displaymanager* example configuration has been shuffled around a bit,
+   for better results when the live image is running XFCE. Also lists
+   more potential display managers. #1205 (Thanks Erik)
 
 
 # 3.2.39 (2021-03-19) #
