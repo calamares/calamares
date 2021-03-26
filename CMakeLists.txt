@@ -44,6 +44,14 @@ cmake_minimum_required( VERSION 3.3 FATAL_ERROR )
 set( CALAMARES_VERSION 3.2.40 )
 set( CALAMARES_RELEASE_MODE OFF )
 
+if ( CMAKE_SCRIPT_MODE_FILE )
+    include( ${CMAKE_CURRENT_LIST_DIR}/CMakeModules/ExtendedVersion.cmake )
+    set( CMAKE_SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR} )
+    extend_version( ${CALAMARES_VERSION} OFF _vshort _vlong )
+    message( "${_vlong}" )
+    return()
+endif()
+
 project( CALAMARES
     VERSION ${CALAMARES_VERSION}
     LANGUAGES C CXX
@@ -182,6 +190,7 @@ include( FeatureSummary )
 
 # Calamares Modules
 include( CMakeColors )
+include( ExtendedVersion )
 
 ### C++ SETUP
 #
@@ -497,25 +506,7 @@ add_feature_info( ExampleDistro ${mksquashfs_FOUND} "Create example-distro targe
 ### CALAMARES PROPER
 #
 #
-set( CALAMARES_VERSION_SHORT "${CALAMARES_VERSION}" )
-
-# Additional info for non-release builds. The "extended" version information
-# with date and git information (commit, dirty status) is used only
-# by CalamaresVersionX.h, which is included by consumers that need a full
-# version number with all that information; normal consumers can include
-# CalamaresVersion.h with more stable numbers.
-if( NOT CALAMARES_RELEASE_MODE AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.git/" )
-    include( CMakeDateStamp )
-    set( CALAMARES_VERSION_DATE "${CMAKE_DATESTAMP_YEAR}${CMAKE_DATESTAMP_MONTH}${CMAKE_DATESTAMP_DAY}" )
-    if( CALAMARES_VERSION_DATE GREATER 0 )
-        set( CALAMARES_VERSION ${CALAMARES_VERSION}.${CALAMARES_VERSION_DATE} )
-    endif()
-
-    include( CMakeVersionSource )
-    if( CMAKE_VERSION_SOURCE )
-        set( CALAMARES_VERSION ${CALAMARES_VERSION}-${CMAKE_VERSION_SOURCE} )
-    endif()
-endif()
+extend_version( "${CALAMARES_VERSION}" ${CALAMARES_RELEASE_MODE} CALAMARES_VERSION_SHORT CALAMARES_VERSION )
 
 # Special target for displaying the version. In RC (might-be-release)
 # builds, use the short version (3.x.y), otherwise show the long version.
