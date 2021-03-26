@@ -500,16 +500,13 @@ if( CALAMARES_VERSION_TWEAK )
     set( CALAMARES_VERSION "${CALAMARES_VERSION}.${CALAMARES_VERSION_TWEAK}" )
 endif()
 set( CALAMARES_VERSION_SHORT "${CALAMARES_VERSION}" )
-if( CALAMARES_VERSION_RC )
-    set( CALAMARES_VERSION ${CALAMARES_VERSION}rc${CALAMARES_VERSION_RC} )
-endif()
 
 # Additional info for non-release builds. The "extended" version information
 # with date and git information (commit, dirty status) is used only
 # by CalamaresVersionX.h, which is included by consumers that need a full
 # version number with all that information; normal consumers can include
 # CalamaresVersion.h with more stable numbers.
-if( NOT BUILD_RELEASE AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.git/" )
+if( NOT CALAMARES_VERSION_RC EQUAL 0 AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.git/" )
     include( CMakeDateStamp )
     set( CALAMARES_VERSION_DATE "${CMAKE_DATESTAMP_YEAR}${CMAKE_DATESTAMP_MONTH}${CMAKE_DATESTAMP_DAY}" )
     if( CALAMARES_VERSION_DATE GREATER 0 )
