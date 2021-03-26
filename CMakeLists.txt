@@ -40,12 +40,14 @@
 
 # TODO:3.3: Require CMake 3.12
 cmake_minimum_required( VERSION 3.3 FATAL_ERROR )
+
+set( CALAMARES_VERSION 3.2.40 )
+set( CALAMARES_RELEASE_MODE OFF )
+
 project( CALAMARES
-    VERSION 3.2.40
+    VERSION ${CALAMARES_VERSION}
     LANGUAGES C CXX
 )
-
-set( CALAMARES_VERSION_RC 1 )  # Set to 0 during release cycle, 1 during development
 
 ### OPTIONS
 #
@@ -494,11 +496,7 @@ add_feature_info( ExampleDistro ${mksquashfs_FOUND} "Create example-distro targe
 
 ### CALAMARES PROPER
 #
-set( CALAMARES_VERSION ${CALAMARES_VERSION_MAJOR}.${CALAMARES_VERSION_MINOR}.${CALAMARES_VERSION_PATCH} )
-# In rare cases we have hotfix-releases with a tweak
-if( CALAMARES_VERSION_TWEAK )
-    set( CALAMARES_VERSION "${CALAMARES_VERSION}.${CALAMARES_VERSION_TWEAK}" )
-endif()
+#
 set( CALAMARES_VERSION_SHORT "${CALAMARES_VERSION}" )
 
 # Additional info for non-release builds. The "extended" version information
@@ -506,7 +504,7 @@ set( CALAMARES_VERSION_SHORT "${CALAMARES_VERSION}" )
 # by CalamaresVersionX.h, which is included by consumers that need a full
 # version number with all that information; normal consumers can include
 # CalamaresVersion.h with more stable numbers.
-if( NOT CALAMARES_VERSION_RC EQUAL 0 AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.git/" )
+if( NOT CALAMARES_RELEASE_MODE AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.git/" )
     include( CMakeDateStamp )
     set( CALAMARES_VERSION_DATE "${CMAKE_DATESTAMP_YEAR}${CMAKE_DATESTAMP_MONTH}${CMAKE_DATESTAMP_DAY}" )
     if( CALAMARES_VERSION_DATE GREATER 0 )
@@ -521,7 +519,7 @@ endif()
 
 # Special target for displaying the version. In RC (might-be-release)
 # builds, use the short version (3.x.y), otherwise show the long version.
-if ( CALAMARES_VERSION_RC EQUAL 0 )
+if ( CALAMARES_RELEASE_MODE )
     add_custom_target(show-version
         ${CMAKE_COMMAND} -E echo CALAMARES_VERSION=${CALAMARES_VERSION_SHORT}
         USES_TERMINAL
