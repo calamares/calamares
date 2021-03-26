@@ -31,6 +31,11 @@
 #   SKIPPED_MODULES . Do **not** use SKIPPED_MODULES as the name of
 #   *skiplistvar*, things will get weird.
 #
+#   Do note that the name of a module must be the same as the name of
+#   the directory containing it (as documented in src/modules/README.md).
+#   This applies to both C++ and Python modules, and allows the use of
+#   the subdirectory as a proxy for the module name inside.
+#
 
 include( CalamaresAddTranslations )
 include( CalamaresCheckModuleSelection )
@@ -46,7 +51,32 @@ function( _calamares_add_module_subdirectory_impl )
     set( SKIPPED_MODULES "" )
     set( MODULE_CONFIG_FILES "" )
 
+    # The module subdirectory may be given as a/b/c, but the module
+    # needs to be installed as "c", so we split off any intermediate
+    # directories.
+    #
+    # Compute _modulename (the last directory name) and _mod_dir
+    # (the full path to the module sources).
+    get_filename_component(_dirname "${SUBDIRECTORY}" DIRECTORY)
+    if( _dirname )
+        # Remove the dirname and any leftover leading /s
+        string( REGEX REPLACE "^${_dirname}/*" "" _modulename "${SUBDIRECTORY}" )
+    else()
+        set( _modulename ${SUBDIRECTORY} )
+    endif()
+    # Strip any remaining /
+    string( REGEX REPLACE "/" "" _modulename "${_modulename}" )
     set( _mod_dir "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}" )
+
+    # Skip list check applies to all kinds of modules
+    calamares_check_skip( ${_modulename} SKIPPED_MODULES )
+    if ( SKIPPED_MODULES )
+        # If it's skipped by infrastucture, the message already includes the module
+        # name. We don't need to do any further checking.
+        set( SKIPPED_MODULES "${SKIPPED_MODULES}" PARENT_SCOPE )
+        return()
+    endif()
+
     # If this subdirectory has a CMakeLists.txt, we add_subdirectory it...
     if( EXISTS "${_mod_dir}/CMakeLists.txt" )
         add_subdirectory( ${SUBDIRECTORY} )
@@ -70,19 +100,7 @@ function( _calamares_add_module_subdirectory_impl )
     # ...otherwise, we look for a module.desc.
     elseif( EXISTS "${_mod_dir}/module.desc" )
         set( MODULES_DIR ${CMAKE_INSTALL_LIBDIR}/calamares/modules )
-        # The module subdirectory may be given as a/b/c, but the module
-        # needs to be installed as "c", so we split off any intermediate
-        # directories.
-        get_filename_component(_dirname "${SUBDIRECTORY}" DIRECTORY)
-        if( _dirname )
-            # Remove the dirname and any leftover leading /s
-            string( REGEX REPLACE "^${_dirname}/*" "" _modulename "${SUBDIRECTORY}" )
-        else()
-            set( _modulename ${SUBDIRECTORY} )
-        endif()
         set( MODULE_DESTINATION ${MODULES_DIR}/${_modulename} )
-
-        calamares_check_skip( ${_modulename} SKIPPED_MODULES )
 
         # Read module.desc, check that the interface type is supported.
         #
@@ -90,12 +108,7 @@ function( _calamares_add_module_subdirectory_impl )
         # _mod_reason is a human-readable explanation why it isn't built
         # _mod_testing boolean if the module should be added to the loadmodule tests
         file(STRINGS "${_mod_dir}/module.desc" MODULE_INTERFACE REGEX "^interface")
-        if ( SKIPPED_MODULES )
-            # If it's skipped by infrastucture, the message already includes the module
-            # name. We don't need to do any further checking.
-            set( SKIPPED_MODULES "${SKIPPED_MODULES}" PARENT_SCOPE )
-            return()
-        elseif ( MODULE_INTERFACE MATCHES "pythonqt" )
+        if ( MODULE_INTERFACE MATCHES "pythonqt" )
             set( _mod_enabled ${Calamares_WITH_PYTHONQT} )
             set( _mod_reason "No PythonQt support" )
             set( _mod_testing OFF )
