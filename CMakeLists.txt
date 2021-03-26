@@ -522,11 +522,16 @@ if( NOT BUILD_RELEASE AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.git/" )
     endif()
 endif()
 
-# Special target for not-RC (e.g. might-be-release) builds.
-# This is used by the release script to get the version.
+# Special target for displaying the version. In RC (might-be-release)
+# builds, use the short version (3.x.y), otherwise show the long version.
 if ( CALAMARES_VERSION_RC EQUAL 0 )
     add_custom_target(show-version
         ${CMAKE_COMMAND} -E echo CALAMARES_VERSION=${CALAMARES_VERSION_SHORT}
+        USES_TERMINAL
+    )
+else()
+    add_custom_target(show-version
+        ${CMAKE_COMMAND} -E echo CALAMARES_VERSION=${CALAMARES_VERSION}
         USES_TERMINAL
     )
 endif()
