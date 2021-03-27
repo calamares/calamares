@@ -33,7 +33,7 @@ CreatePartitionJob::CreatePartitionJob( Device* device, Partition* partition )
 {
 }
 
-static const QMap < QString, QString > gptTypePrettyStrings = {
+static const QMap< QString, QString > gptTypePrettyStrings = {
     { "44479540-f297-41b2-9af7-d131d5f0458a", "Linux Root Partition (x86)" },
     { "4f68bce3-e8cd-4db1-96e7-fbcaf984b709", "Linux Root Partition (x86-64)" },
     { "69dad710-2ce4-4e3c-b16c-21a1d49abed3", "Linux Root Partition (32-bit ARM)" },
@@ -115,17 +115,17 @@ CreatePartitionJob::prettyName() const
         if ( !entries.isEmpty() )
         {
             return tr( "Create new %1MiB partition on %3 (%2) with entries %4." )
-                       .arg( CalamaresUtils::BytesToMiB( m_partition->capacity() ) )
-                       .arg( m_device->name() )
-                       .arg( m_device->deviceNode() )
-                       .arg( entries );
+                .arg( CalamaresUtils::BytesToMiB( m_partition->capacity() ) )
+                .arg( m_device->name() )
+                .arg( m_device->deviceNode() )
+                .arg( entries );
         }
         else
         {
             return tr( "Create new %1MiB partition on %3 (%2)." )
-                       .arg( CalamaresUtils::BytesToMiB( m_partition->capacity() ) )
-                       .arg( m_device->name() )
-                       .arg( m_device->deviceNode() );
+                .arg( CalamaresUtils::BytesToMiB( m_partition->capacity() ) )
+                .arg( m_device->name() )
+                .arg( m_device->deviceNode() );
         }
     }
 
@@ -146,18 +146,19 @@ CreatePartitionJob::prettyDescription() const
         QString entries = prettyGptEntries( m_partition );
         if ( !entries.isEmpty() )
         {
-            return tr( "Create new <strong>%1MiB</strong> partition on <strong>%3</strong> (%2) with entries <em>%4</em>." )
-                       .arg( CalamaresUtils::BytesToMiB( m_partition->capacity() ) )
-                       .arg( m_device->name() )
-                       .arg( m_device->deviceNode() )
-                       .arg( entries );
+            return tr( "Create new <strong>%1MiB</strong> partition on <strong>%3</strong> (%2) with entries "
+                       "<em>%4</em>." )
+                .arg( CalamaresUtils::BytesToMiB( m_partition->capacity() ) )
+                .arg( m_device->name() )
+                .arg( m_device->deviceNode() )
+                .arg( entries );
         }
         else
         {
             return tr( "Create new <strong>%1MiB</strong> partition on <strong>%3</strong> (%2)." )
-                       .arg( CalamaresUtils::BytesToMiB( m_partition->capacity() ) )
-                       .arg( m_device->name() )
-                       .arg( m_device->deviceNode() );
+                .arg( CalamaresUtils::BytesToMiB( m_partition->capacity() ) )
+                .arg( m_device->name() )
+                .arg( m_device->deviceNode() );
         }
     }
 
@@ -186,9 +187,7 @@ CreatePartitionJob::prettyStatusMessage() const
             type = userVisibleFS( m_partition->fileSystem() );
         }
 
-        return tr( "Creating new %1 partition on %2." )
-                   .arg( type )
-                   .arg( m_device->deviceNode() );
+        return tr( "Creating new %1 partition on %2." ).arg( type ).arg( m_device->deviceNode() );
     }
 
     return tr( "Creating new %1 partition on %2." )

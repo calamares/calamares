@@ -132,6 +132,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
                                                                   *dev,
                                                                   PartitionRole( PartitionRole::Primary ),
                                                                   FileSystem::Fat32,
+                                                                  QString(),
                                                                   firstFreeSector,
                                                                   lastSector,
                                                                   KPM_PARTITION_FLAG( None ) );
@@ -180,6 +181,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
                                                             *dev,
                                                             PartitionRole( PartitionRole::Primary ),
                                                             FileSystem::LinuxSwap,
+                                                            QStringLiteral( "swap" ),
                                                             lastSectorForRoot + 1,
                                                             dev->totalLogical() - 1,
                                                             KPM_PARTITION_FLAG( None ) );
@@ -190,6 +192,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
                                                                      *dev,
                                                                      PartitionRole( PartitionRole::Primary ),
                                                                      FileSystem::LinuxSwap,
+                                                                     QStringLiteral( "swap" ),
                                                                      lastSectorForRoot + 1,
                                                                      dev->totalLogical() - 1,
                                                                      o.luksPassphrase,

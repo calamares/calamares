@@ -9,8 +9,8 @@
 
 #include "jobs/AutoMountManagementJob.h"
 
-#include "utils/Logger.h"
 #include "JobQueue.h"
+#include "utils/Logger.h"
 
 #include <QObject>
 #include <QtTest/QtTest>
@@ -52,7 +52,8 @@ AutoMountJobTests::testRunThrice()
     CalamaresUtils::Partition::automountRestore( original );
 }
 
-void AutoMountJobTests::testRunQueue()
+void
+AutoMountJobTests::testRunQueue()
 {
     Calamares::JobQueue q;
     Calamares::job_ptr jp( new AutoMountManagementJob( false ) );
@@ -68,8 +69,8 @@ void AutoMountJobTests::testRunQueue()
     QVERIFY( !q.isRunning() );
 
     QEventLoop loop;
-    QTimer::singleShot( std::chrono::milliseconds( 100 ), [&q](){ q.start(); } );
-    QTimer::singleShot( std::chrono::milliseconds( 5000 ), [&loop](){ loop.quit(); } );
+    QTimer::singleShot( std::chrono::milliseconds( 100 ), [&q]() { q.start(); } );
+    QTimer::singleShot( std::chrono::milliseconds( 5000 ), [&loop]() { loop.quit(); } );
     connect( &q, &Calamares::JobQueue::finished, &loop, &QEventLoop::quit );
     loop.exec();
 

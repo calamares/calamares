@@ -377,6 +377,7 @@ PartitionJobTests::testResizePartition()
                                                                *m_device,
                                                                PartitionRole( PartitionRole::Primary ),
                                                                FileSystem::Ext4,
+                                                               QStringLiteral( "testp" ),
                                                                oldFirst,
                                                                oldLast,
                                                                KPM_PARTITION_FLAG( None ) );

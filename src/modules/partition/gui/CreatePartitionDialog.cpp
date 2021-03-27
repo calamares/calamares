@@ -202,17 +202,19 @@ CreatePartitionDialog::createPartition()
     FileSystem::Type fsType = m_role.has( PartitionRole::Extended )
         ? FileSystem::Extended
         : FileSystem::typeForName( m_ui->fsComboBox->currentText() );
+    const QString fsLabel = m_ui->filesystemLabelEdit->text();
 
     Partition* partition = nullptr;
     QString luksPassphrase = m_ui->encryptWidget->passphrase();
     if ( m_ui->encryptWidget->state() == EncryptWidget::Encryption::Confirmed && !luksPassphrase.isEmpty() )
     {
         partition = KPMHelpers::createNewEncryptedPartition(
-            m_parent, *m_device, m_role, fsType, first, last, luksPassphrase, newFlags() );
+            m_parent, *m_device, m_role, fsType, fsLabel, first, last, luksPassphrase, newFlags() );
     }
     else
     {
-        partition = KPMHelpers::createNewPartition( m_parent, *m_device, m_role, fsType, first, last, newFlags() );
+        partition
+            = KPMHelpers::createNewPartition( m_parent, *m_device, m_role, fsType, fsLabel, first, last, newFlags() );
     }
 
     if ( m_device->type() == Device::Type::LVM_Device )

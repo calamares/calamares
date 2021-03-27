@@ -167,6 +167,10 @@ PartitionModel::data( const QModelIndex& index, int role ) const
         {
             return CalamaresUtils::Partition::prettyNameForFileSystemType( partition->fileSystem().type() );
         }
+        if ( col == FileSystemLabelColumn )
+        {
+            return partition->fileSystem().label();
+        }
         if ( col == MountPointColumn )
         {
             return PartitionInfo::mountPoint( partition );
@@ -296,6 +300,8 @@ PartitionModel::headerData( int section, Qt::Orientation, int role ) const
         return tr( "Name" );
     case FileSystemColumn:
         return tr( "File System" );
+    case FileSystemLabelColumn:
+        return tr( "File System Label" );
     case MountPointColumn:
         return tr( "Mount Point" );
     case SizeColumn:
