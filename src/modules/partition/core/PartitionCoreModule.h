@@ -147,7 +147,7 @@ public:
 
     void formatPartition( Device* device, Partition* partition );
 
-    void setFilesystemLabel( Device* device, Partition* partition, const QString& newLabel);
+    void setFilesystemLabel( Device* device, Partition* partition, const QString& newLabel );
 
     void resizePartition( Device* device, Partition* partition, qint64 first, qint64 last );
 

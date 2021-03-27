@@ -37,4 +37,4 @@ private:
     QString m_label;
 };
 
-#endif // CHANGEFILESYSTEMLABELJOB_H
+#endif  // CHANGEFILESYSTEMLABELJOB_H

@@ -225,8 +225,9 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
             // In this case, we are not formatting the partition, but we are setting the
             // label on the current filesystem, if any. We only create the job if the
             // label actually changed.
-            if (m_partition->fileSystem().type() != FileSystem::Type::Unformatted &&
-                fsLabel != m_partition->fileSystem().label()) {
+            if ( m_partition->fileSystem().type() != FileSystem::Type::Unformatted
+                 && fsLabel != m_partition->fileSystem().label() )
+            {
                 core->setFilesystemLabel( m_device, m_partition, fsLabel );
             }
             core->refreshPartition( m_device, m_partition );

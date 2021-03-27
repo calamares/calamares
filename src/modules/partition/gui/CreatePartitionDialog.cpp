@@ -213,7 +213,8 @@ CreatePartitionDialog::createPartition()
     }
     else
     {
-        partition = KPMHelpers::createNewPartition( m_parent, *m_device, m_role, fsType, fsLabel, first, last, newFlags() );
+        partition
+            = KPMHelpers::createNewPartition( m_parent, *m_device, m_role, fsType, fsLabel, first, last, newFlags() );
     }
 
     if ( m_device->type() == Device::Type::LVM_Device )
