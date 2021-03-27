@@ -185,7 +185,7 @@ ThemesModel::setThemeImage( const QMap< QString, QString >& images )
         QSignalBlocker b( this );
         for ( auto k = images.constKeyValueBegin(); k != images.constKeyValueEnd(); ++k )
         {
-            setThemeImage( (*k).first, (*k).second );
+            setThemeImage( ( *k ).first, ( *k ).second );
         }
     }
     emit dataChanged( index( 0, 0 ), index( m_themes->count() - 1 ), { ImageRole } );
