@@ -57,7 +57,7 @@ constexpr qint64 operator""_GiB( unsigned long long m )
     return operator""_MiB(m)*1024;
 }
 
-}
+}  // namespace Units
 
 constexpr qint64
 KBtoBytes( unsigned long long m )

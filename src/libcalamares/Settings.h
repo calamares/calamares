@@ -179,7 +179,7 @@ private:
     bool m_promptInstall = false;
     bool m_disableCancel = false;
     bool m_disableCancelDuringExec = false;
-    bool m_hideBackAndNextDuringExec=false;
+    bool m_hideBackAndNextDuringExec = false;
     bool m_quitAtEnd = false;
 };
 
