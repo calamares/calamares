@@ -984,50 +984,8 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
         m_previewAfterFrame->show();
         m_previewAfterLabel->show();
 
-
-        {
-            QWidget* alongsideWidget = new QWidget;
-
-            QHBoxLayout* alongsideLayout = new QHBoxLayout;
-            alongsideWidget->setLayout( alongsideLayout );
-            alongsideLayout->setContentsMargins( 0, 0, 0, 0 );
-            QLabel* alongsideBootloaderLabel = new QLabel( alongsideWidget );
-            alongsideLayout->addWidget( alongsideBootloaderLabel );
-            alongsideBootloaderLabel->setText( tr( "Boot loader location:" ) );
-
-            m_bootloaderComboBox = createBootloaderComboBox( alongsideWidget );
-            connect( m_core->bootLoaderModel(), &QAbstractItemModel::modelReset, [this]() {
-                if ( !m_bootloaderComboBox.isNull() )
-                {
-                    Calamares::restoreSelectedBootLoader( *m_bootloaderComboBox, m_core->bootLoaderInstallPath() );
-                }
-            } );
-            connect(
-                m_core,
-                &PartitionCoreModule::deviceReverted,
-                this,
-                [this]( Device* dev ) {
-                    Q_UNUSED( dev )
-                    if ( !m_bootloaderComboBox.isNull() )
-                    {
-                        if ( m_bootloaderComboBox->model() != m_core->bootLoaderModel() )
-                        {
-                            m_bootloaderComboBox->setModel( m_core->bootLoaderModel() );
-                        }
-
-                        m_bootloaderComboBox->setCurrentIndex( m_lastSelectedDeviceIndex );
-                    }
-                },
-                Qt::QueuedConnection );
-            // ^ Must be Queued so it's sure to run when the widget is already visible.
-
-            alongsideLayout->addWidget( m_bootloaderComboBox );
-            alongsideBootloaderLabel->setBuddy( m_bootloaderComboBox );
-            alongsideLayout->addStretch();
-
-            layout->addWidget( alongsideWidget );
-        }
-
+        auto mainWidget = bootloaderDropdown();
+        layout->addWidget( mainWidget );
 
         SelectionFilter filter = []( const QModelIndex& index ) {
             return PartUtils::canBeResized(
@@ -1067,46 +1025,8 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
 
         if ( !m_isEfi )
         {
-            QWidget* eraseWidget = new QWidget;
-
-            QHBoxLayout* eraseLayout = new QHBoxLayout;
-            eraseWidget->setLayout( eraseLayout );
-            eraseLayout->setContentsMargins( 0, 0, 0, 0 );
-            QLabel* eraseBootloaderLabel = new QLabel( eraseWidget );
-            eraseLayout->addWidget( eraseBootloaderLabel );
-            eraseBootloaderLabel->setText( tr( "Boot loader location:" ) );
-
-            m_bootloaderComboBox = createBootloaderComboBox( eraseWidget );
-            connect( m_core->bootLoaderModel(), &QAbstractItemModel::modelReset, [this]() {
-                if ( !m_bootloaderComboBox.isNull() )
-                {
-                    Calamares::restoreSelectedBootLoader( *m_bootloaderComboBox, m_core->bootLoaderInstallPath() );
-                }
-            } );
-            connect(
-                m_core,
-                &PartitionCoreModule::deviceReverted,
-                this,
-                [this]( Device* dev ) {
-                    Q_UNUSED( dev )
-                    if ( !m_bootloaderComboBox.isNull() )
-                    {
-                        if ( m_bootloaderComboBox->model() != m_core->bootLoaderModel() )
-                        {
-                            m_bootloaderComboBox->setModel( m_core->bootLoaderModel() );
-                        }
-
-                        m_bootloaderComboBox->setCurrentIndex( m_lastSelectedDeviceIndex );
-                    }
-                },
-                Qt::QueuedConnection );
-            // ^ Must be Queued so it's sure to run when the widget is already visible.
-
-            eraseLayout->addWidget( m_bootloaderComboBox );
-            eraseBootloaderLabel->setBuddy( m_bootloaderComboBox );
-            eraseLayout->addStretch();
-
-            layout->addWidget( eraseWidget );
+            auto mainWidget = bootloaderDropdown();
+            layout->addWidget( mainWidget );
         }
 
         m_previewAfterFrame->show();
@@ -1677,4 +1597,49 @@ ChoicePage::setLastSelectedDeviceIndex( int index )
 {
     m_lastSelectedDeviceIndex = index;
     m_drivesCombo->setCurrentIndex( m_lastSelectedDeviceIndex );
+}
+
+QWidget*
+ChoicePage::bootloaderDropdown()
+{
+    QWidget* mainWidget = new QWidget;
+
+    QHBoxLayout* mainLayout = new QHBoxLayout;
+    mainWidget->setLayout( mainLayout );
+    mainLayout->setContentsMargins( 0, 0, 0, 0 );
+    QLabel* widgetLabel = new QLabel( mainWidget );
+    mainLayout->addWidget( widgetLabel );
+    widgetLabel->setText( tr( "Boot loader location:" ) );
+
+    m_bootloaderComboBox = createBootloaderComboBox( mainWidget );
+    connect( m_core->bootLoaderModel(), &QAbstractItemModel::modelReset, [this]() {
+        if ( !m_bootloaderComboBox.isNull() )
+        {
+            Calamares::restoreSelectedBootLoader( *m_bootloaderComboBox, m_core->bootLoaderInstallPath() );
+        }
+    } );
+    connect(
+        m_core,
+        &PartitionCoreModule::deviceReverted,
+        this,
+        [this]( Device* dev ) {
+            Q_UNUSED( dev )
+            if ( !m_bootloaderComboBox.isNull() )
+            {
+                if ( m_bootloaderComboBox->model() != m_core->bootLoaderModel() )
+                {
+                    m_bootloaderComboBox->setModel( m_core->bootLoaderModel() );
+                }
+
+                m_bootloaderComboBox->setCurrentIndex( m_lastSelectedDeviceIndex );
+            }
+        },
+        Qt::QueuedConnection );
+    // ^ Must be Queued so it's sure to run when the widget is already visible.
+
+    mainLayout->addWidget( m_bootloaderComboBox );
+    widgetLabel->setBuddy( m_bootloaderComboBox );
+    mainLayout->addStretch();
+
+    return mainWidget;
 }
