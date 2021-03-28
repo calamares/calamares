@@ -192,7 +192,7 @@ desktop_environments = [
     DesktopEnvironment('/usr/bin/herbstluftwm', 'herbstluftwm'),
     DesktopEnvironment('/usr/bin/qtile', 'qtile'),
     DesktopEnvironment('/usr/bin/xmonad', 'xmonad'),
-    DesktopEnvironment('/usr/bin/dwm', 'dmw'),
+    DesktopEnvironment('/usr/bin/dwm', 'dwm'),
     DesktopEnvironment('/usr/bin/jwm', 'jwm'),
     DesktopEnvironment('/usr/bin/icewm-session', 'icewm-session'),
 ]
