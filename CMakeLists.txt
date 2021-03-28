@@ -154,7 +154,7 @@ set( _tx_incomplete eo es_PE fr_CH gu id_ID ie kk kn ko_KR lo lv mk
 ### Required versions
 #
 # See DEPENDENCIES section below.
-set( QT_VERSION 5.9.0 )
+set( QT_VERSION 5.15.0 )
 set( YAMLCPP_VERSION 0.5.1 )
 set( ECM_VERSION 5.18 )
 set( PYTHONLIBS_VERSION 3.3 )
