@@ -100,6 +100,3 @@ ChangeFilesystemLabelJob::exec()
     backendPartitionTable->commit();
     return Calamares::JobResult::ok();
 }
-
-
-#include "ChangeFilesystemLabelJob.moc"
