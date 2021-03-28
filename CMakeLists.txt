@@ -38,14 +38,23 @@
 # One special target is "show-version", which can be built
 # to obtain the version number from here.
 
-# TODO:3.3: Require CMake 3.12
-cmake_minimum_required( VERSION 3.3 FATAL_ERROR )
+cmake_minimum_required( VERSION 3.16 FATAL_ERROR )
+
+set( CALAMARES_VERSION 3.3.0 )
+set( CALAMARES_RELEASE_MODE OFF ) # Set to ON during a release
+
+if ( CMAKE_SCRIPT_MODE_FILE )
+    include( ${CMAKE_CURRENT_LIST_DIR}/CMakeModules/ExtendedVersion.cmake )
+    set( CMAKE_SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR} )
+    extend_version( ${CALAMARES_VERSION} OFF _vshort _vlong )
+    message( "${_vlong}" )
+    return()
+endif()
+
 project( CALAMARES
-    VERSION 3.2.43
+    VERSION ${CALAMARES_VERSION}
     LANGUAGES C CXX
 )
-
-set( CALAMARES_VERSION_RC 1 )  # Set to 0 during release cycle, 1 during development
 
 ### OPTIONS
 #
