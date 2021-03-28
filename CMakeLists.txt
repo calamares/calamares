@@ -280,6 +280,8 @@ if( CMAKE_COMPILER_IS_GNUCXX )
     endif()
 endif()
 
+# API that was deprecated before Qt 5.15 causes a compile error
+add_compile_definitions( QT_DISABLE_DEPRECATED_BEFORE=0x050f00 )
 
 ### DEPENDENCIES
 #
