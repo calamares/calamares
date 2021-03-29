@@ -40,19 +40,25 @@ variantToPyObject( const QVariant& variant )
 
     case QVariant::Int:
         return bp::object( variant.toInt() );
+    case QVariant::UInt:
+        return bp::object( variant.toUInt() );
 
     case QVariant::LongLong:
         return bp::object( variant.toLongLong() );
+    case QVariant::ULongLong:
+        return bp::object( variant.toULongLong() );
 
     case QVariant::Double:
         return bp::object( variant.toDouble() );
 
+    case QVariant::Char:
     case QVariant::String:
         return bp::object( variant.toString().toStdString() );
 
     case QVariant::Bool:
         return bp::object( variant.toBool() );
 
+    case QVariant::Invalid:
     default:
         return bp::object();
     }
