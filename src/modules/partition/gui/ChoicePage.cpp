@@ -482,8 +482,6 @@ ChoicePage::applyActionChoice( InstallChoice choice )
                 [] {},
                 this );
         }
-        updateNextEnabled();
-
         connect( m_beforePartitionBarsView->selectionModel(),
                  SIGNAL( currentRowChanged( QModelIndex, QModelIndex ) ),
                  this,
@@ -507,7 +505,6 @@ ChoicePage::applyActionChoice( InstallChoice choice )
                 },
                 this );
         }
-        updateNextEnabled();
 
         connect( m_beforePartitionBarsView->selectionModel(),
                  SIGNAL( currentRowChanged( QModelIndex, QModelIndex ) ),
@@ -517,9 +514,9 @@ ChoicePage::applyActionChoice( InstallChoice choice )
         break;
     case InstallChoice::NoChoice:
     case InstallChoice::Manual:
-        updateNextEnabled();
         break;
     }
+    updateNextEnabled();
     updateActionChoicePreview( choice );
 }
 
