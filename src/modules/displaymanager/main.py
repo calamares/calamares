@@ -954,7 +954,7 @@ def run():
     else:
         enable_basic_setup = False
 
-    username = libcalamares.globalstorage.value("autologinUser")
+    username = libcalamares.globalstorage.value("autoLoginUser")
     if username is not None:
         do_autologin = True
         libcalamares.utils.debug("Setting up autologin for user {!s}.".format(username))
