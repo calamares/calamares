@@ -60,7 +60,7 @@ public:
     virtual ~CDebug();
 
     friend CDebug& operator<<( CDebug&&, const FuncSuppressor& );
-    friend CDebug& operator<<( CDebug&&, Once& );
+    friend CDebug& operator<<( CDebug&&, const Once& );
 
 private:
     QString m_msg;
@@ -297,14 +297,14 @@ public:
         : m( true )
     {
     }
-    friend CDebug& operator<<( CDebug&&, Once& );
+    friend CDebug& operator<<( CDebug&&, const Once& );
 
 private:
-    bool m = false;
+    mutable bool m = false;
 };
 
 inline CDebug&
-operator<<( CDebug&& s, Once& o )
+operator<<( CDebug&& s, const Once& o )
 {
     if ( o.m )
     {
