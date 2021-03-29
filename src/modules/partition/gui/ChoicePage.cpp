@@ -1402,7 +1402,7 @@ ChoicePage::setupActions()
     }
     else
     {
-        cDebug() << "Replace button suppressed because none can be replaced.";
+        cDebug() << "No partitions available for replace-action.";
         force_uncheck( m_grp, m_replaceButton );
     }
 
@@ -1412,7 +1412,7 @@ ChoicePage::setupActions()
     }
     else
     {
-        cDebug() << "Alongside button suppressed because none can be resized.";
+        cDebug() << "No partitions available for resize-action.";
         force_uncheck( m_grp, m_alongsideButton );
     }
 
@@ -1422,8 +1422,8 @@ ChoicePage::setupActions()
     }
     else
     {
-        cDebug() << "Erase button suppressed"
-                 << "mount?" << atLeastOneIsMounted << "raid?" << isInactiveRAID;
+        cDebug() << "No partitions ("
+                 << "any-mounted?" << atLeastOneIsMounted << "is-raid?" << isInactiveRAID << ") for erase-action.";
         force_uncheck( m_grp, m_eraseButton );
     }
 
