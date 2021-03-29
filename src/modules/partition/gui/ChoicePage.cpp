@@ -986,7 +986,7 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
 
         SelectionFilter filter = []( const QModelIndex& index ) {
             return PartUtils::canBeResized(
-                static_cast< Partition* >( index.data( PartitionModel::PartitionPtrRole ).value< void* >() ) );
+                static_cast< Partition* >( index.data( PartitionModel::PartitionPtrRole ).value< void* >() ), Logger::Once() );
         };
         m_beforePartitionBarsView->setSelectionFilter( filter );
         m_beforePartitionLabelsView->setSelectionFilter( filter );
@@ -1075,7 +1075,7 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
         {
             SelectionFilter filter = []( const QModelIndex& index ) {
                 return PartUtils::canBeReplaced(
-                    static_cast< Partition* >( index.data( PartitionModel::PartitionPtrRole ).value< void* >() ) );
+                    static_cast< Partition* >( index.data( PartitionModel::PartitionPtrRole ).value< void* >() ), Logger::Once() );
             };
             m_beforePartitionBarsView->setSelectionFilter( filter );
             m_beforePartitionLabelsView->setSelectionFilter( filter );
@@ -1220,10 +1220,12 @@ operator<<( QDebug& s, PartitionIterator& it )
 void
 ChoicePage::setupActions()
 {
+    Logger::Once o;
+
     Device* currentDevice = selectedDevice();
     OsproberEntryList osproberEntriesForCurrentDevice = getOsproberEntriesForDevice( currentDevice );
 
-    cDebug() << "Setting up actions for" << currentDevice->deviceNode() << "with"
+    cDebug() << o << "Setting up actions for" << currentDevice->deviceNode() << "with"
              << osproberEntriesForCurrentDevice.count() << "entries.";
 
     if ( currentDevice->partitionTable() )
@@ -1269,12 +1271,12 @@ ChoicePage::setupActions()
 
     for ( auto it = PartitionIterator::begin( currentDevice ); it != PartitionIterator::end( currentDevice ); ++it )
     {
-        if ( PartUtils::canBeResized( *it ) )
+        if ( PartUtils::canBeResized( *it, o ) )
         {
             cDebug() << Logger::SubEntry << "contains resizable" << it;
             atLeastOneCanBeResized = true;
         }
-        if ( PartUtils::canBeReplaced( *it ) )
+        if ( PartUtils::canBeReplaced( *it, o ) )
         {
             cDebug() << Logger::SubEntry << "contains replaceable" << it;
             atLeastOneCanBeReplaced = true;
