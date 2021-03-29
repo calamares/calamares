@@ -659,10 +659,10 @@ PartitionCoreModule::dumpQueue() const
     cDebug() << "# Queue:";
     for ( auto info : m_deviceInfos )
     {
-        cDebug() << "## Device:" << info->device->name();
+        cDebug() << Logger::SubEntry << "## Device:" << info->device->name();
         for ( const auto& job : info->jobs() )
         {
-            cDebug() << "-" << job->prettyName();
+            cDebug() << Logger::SubEntry << "-" << job->prettyName();
         }
     }
 }
