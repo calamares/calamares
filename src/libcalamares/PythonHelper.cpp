@@ -437,14 +437,24 @@ GlobalStoragePythonWrapper::keys() const
 int
 GlobalStoragePythonWrapper::remove( const std::string& key )
 {
-    return m_gs->remove( QString::fromStdString( key ) );
+    const QString gsKey( QString::fromStdString( key ) );
+    if ( !m_gs->contains( gsKey ) )
+    {
+        cWarning() << "Unknown GS key" << key.c_str();
+    }
+    return m_gs->remove( gsKey );
 }
 
 
 bp::object
 GlobalStoragePythonWrapper::value( const std::string& key ) const
 {
-    return CalamaresPython::variantToPyObject( m_gs->value( QString::fromStdString( key ) ) );
+    const QString gsKey( QString::fromStdString( key ) );
+    if ( !m_gs->contains( gsKey ) )
+    {
+        cWarning() << "Unknown GS key" << key.c_str();
+    }
+    return CalamaresPython::variantToPyObject( m_gs->value( gsKey ) );
 }
 
 }  // namespace CalamaresPython
