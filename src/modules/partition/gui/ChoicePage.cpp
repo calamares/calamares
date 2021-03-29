@@ -517,6 +517,7 @@ ChoicePage::applyActionChoice( InstallChoice choice )
         break;
     case InstallChoice::NoChoice:
     case InstallChoice::Manual:
+        updateNextEnabled();
         break;
     }
     updateActionChoicePreview( choice );
