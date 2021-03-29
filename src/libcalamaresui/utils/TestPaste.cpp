@@ -16,7 +16,7 @@
 #include <QDateTime>
 #include <QtTest/QtTest>
 
-extern QByteArray logFileContents();
+extern QByteArray logFileContents( qint64 sizeLimit );
 extern QString ficheLogUpload( const QByteArray& pasteData, const QUrl& serverUrl, QObject* parent );
 
 class TestPaste : public QObject
@@ -37,13 +37,13 @@ TestPaste::testGetLogFile()
 {
     QFile::remove( Logger::logFile() );
     // This test assumes nothing **else** has set up logging yet
-    QByteArray contentsOfLogfileBefore = logFileContents();
+    QByteArray contentsOfLogfileBefore = logFileContents( 16 );
     QVERIFY( contentsOfLogfileBefore.isEmpty() );
 
     Logger::setupLogLevel( Logger::LOGDEBUG );
     Logger::setupLogfile();
 
-    QByteArray contentsOfLogfileAfterSetup = logFileContents();
+    QByteArray contentsOfLogfileAfterSetup = logFileContents( 16 );
     QVERIFY( !contentsOfLogfileAfterSetup.isEmpty() );
 }
 

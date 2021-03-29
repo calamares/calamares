@@ -144,7 +144,7 @@ void
 ViewManager::onInstallationFailed( const QString& message, const QString& details )
 {
     bool shouldOfferWebPaste
-        = Calamares::Branding::instance()->uploadServer().first != Calamares::Branding::UploadServerType::None;
+        = std::get<2>(Calamares::Branding::instance()->uploadServer()) != Calamares::Branding::UploadServerType::None;
 
     cError() << "Installation failed:" << message;
     cDebug() << Logger::SubEntry << "- message:" << message;

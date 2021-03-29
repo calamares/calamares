@@ -226,7 +226,7 @@ public:
      * This is both the type (which may be none, in which case the URL
      * is irrelevant and usually empty) and the URL for the upload.
      */
-    using UploadServerInfo = QPair< UploadServerType, QUrl >;
+    using UploadServerInfo = std::tuple< UploadServerType, QUrl, qint64 >;
     UploadServerInfo uploadServer() const { return m_uploadServer; }
 
     /**

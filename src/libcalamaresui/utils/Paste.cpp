@@ -30,7 +30,7 @@ using namespace CalamaresUtils::Units;
  * Returns an empty QByteArray() on any kind of error.
  */
 STATICTEST QByteArray
-logFileContents()
+logFileContents( qint64 sizeLimit )
 {
     const QString name = Logger::logFile();
     QFile pasteSourceFile( name );
@@ -40,11 +40,15 @@ logFileContents()
         return QByteArray();
     }
     QFileInfo fi( pasteSourceFile );
-    if ( fi.size() > 16_KiB )
+    sizeLimit *= 1024;            //For KiB to bytes
+    cDebug() << "Log upload size limit was set to " << sizeLimit << " bytes";
+    if ( fi.size() > sizeLimit and sizeLimit > 0 )
     {
-        pasteSourceFile.seek( fi.size() - 16_KiB );
+        // Fixme : this following line is not getting pasted
+        cDebug() << "Only last " << sizeLimit << " bytes of log file (" << fi.size() << ") uploaded" ;
+        pasteSourceFile.seek( fi.size() - sizeLimit );
     }
-    return pasteSourceFile.read( 16_KiB );
+    return pasteSourceFile.read( sizeLimit );
 }
 
 
@@ -101,7 +105,7 @@ ficheLogUpload( const QByteArray& pasteData, const QUrl& serverUrl, QObject* par
 QString
 CalamaresUtils::Paste::doLogUpload( QObject* parent )
 {
-    auto [ type, serverUrl ] = Calamares::Branding::instance()->uploadServer();
+    auto [ type, serverUrl, sizeLimit ] = Calamares::Branding::instance()->uploadServer();
     if ( !serverUrl.isValid() )
     {
         cWarning() << "Upload configure with invalid URL";
@@ -113,7 +117,7 @@ CalamaresUtils::Paste::doLogUpload( QObject* parent )
         return QString();
     }
 
-    QByteArray pasteData = logFileContents();
+    QByteArray pasteData = logFileContents( sizeLimit );
     if ( pasteData.isEmpty() )
     {
         // An error has already been logged
@@ -165,6 +169,6 @@ CalamaresUtils::Paste::doLogUploadUI( QWidget* parent )
 bool
 CalamaresUtils::Paste::isEnabled()
 {
-    auto [ type, serverUrl ] = Calamares::Branding::instance()->uploadServer();
+    auto [ type, serverUrl, sizeLimit ] = Calamares::Branding::instance()->uploadServer();
     return type != Calamares::Branding::UploadServerType::None;
 }
