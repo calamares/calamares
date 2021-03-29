@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-14 16:14+0100\n"
+"POT-Creation-Date: 2021-03-19 14:27+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Lajos Pasztor <mrlajos@gmail.com>, 2019\n"
 "Language-Team: Hungarian (https://www.transifex.com/calamares/teams/20061/hu/)\n"
@@ -32,22 +32,22 @@ msgstr "GRUB konfigurálása."
 msgid "Mounting partitions."
 msgstr "Partíciók csatolása."
 
-#: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:198
+#: src/modules/mount/main.py:125 src/modules/initcpiocfg/main.py:198
 #: src/modules/initcpiocfg/main.py:202
 #: src/modules/luksopenswaphookcfg/main.py:86
 #: src/modules/luksopenswaphookcfg/main.py:90 src/modules/rawfs/main.py:164
 #: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
 #: src/modules/openrcdmcryptcfg/main.py:72
-#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/fstab/main.py:373
-#: src/modules/fstab/main.py:379 src/modules/localecfg/main.py:135
+#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/fstab/main.py:355
+#: src/modules/fstab/main.py:361 src/modules/localecfg/main.py:135
 #: src/modules/networkcfg/main.py:39
 msgid "Configuration Error"
 msgstr "Konfigurációs hiba"
 
-#: src/modules/mount/main.py:146 src/modules/initcpiocfg/main.py:199
+#: src/modules/mount/main.py:126 src/modules/initcpiocfg/main.py:199
 #: src/modules/luksopenswaphookcfg/main.py:87 src/modules/rawfs/main.py:165
 #: src/modules/initramfscfg/main.py:86 src/modules/openrcdmcryptcfg/main.py:73
-#: src/modules/fstab/main.py:374
+#: src/modules/fstab/main.py:356
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "Nincsenek partíciók meghatározva a <pre>{!s}</pre> használatához."
 
@@ -219,7 +219,7 @@ msgstr "mkinitcpio konfigurálása."
 #: src/modules/initcpiocfg/main.py:203
 #: src/modules/luksopenswaphookcfg/main.py:91
 #: src/modules/initramfscfg/main.py:90 src/modules/openrcdmcryptcfg/main.py:77
-#: src/modules/fstab/main.py:380 src/modules/localecfg/main.py:136
+#: src/modules/fstab/main.py:362 src/modules/localecfg/main.py:136
 #: src/modules/networkcfg/main.py:40
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
 msgstr "Nincs root csatolási pont megadva a <pre>{!s}</pre> használatához."
