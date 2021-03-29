@@ -11,6 +11,7 @@ website will have to do for older versions.
 
 This release contains contributions from (alphabetically by first name):
  - Erik Dubois
+ - Lisa Vitolo
 
 ## Core ##
  - The CMake modules for consumption by external modules (e.g. the
@@ -26,6 +27,9 @@ This release contains contributions from (alphabetically by first name):
  - *displaymanager* example configuration has been shuffled around a bit,
    for better results when the live image is running XFCE. Also lists
    more potential display managers. #1205 (Thanks Erik)
+ - A long-neglected pull request from Lisa Vitolo for the *partition*
+   module -- allowing to set filesystem labels during manual partitioning --
+   has been revived and merged.
 
 
 # 3.2.39 (2021-03-19) #
