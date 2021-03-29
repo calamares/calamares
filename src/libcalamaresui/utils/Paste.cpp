@@ -40,7 +40,7 @@ logFileContents( qint64 sizeLimit )
         return QByteArray();
     }
     QFileInfo fi( pasteSourceFile );
-    sizeLimit *= 1024;            //For KiB to bytes
+    sizeLimit = ( sizeLimit < 0 ) ? 1024*1024 : sizeLimit * 1024;            //For KiB to bytes
     cDebug() << "Log upload size limit was set to " << sizeLimit << " bytes";
     if ( fi.size() > sizeLimit and sizeLimit > 0 )
     {
