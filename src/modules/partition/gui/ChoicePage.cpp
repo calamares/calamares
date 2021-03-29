@@ -1111,7 +1111,7 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
     }
 
     // Also handle selection behavior on beforeFrame.
-    QAbstractItemView::SelectionMode previewSelectionMode;
+    QAbstractItemView::SelectionMode previewSelectionMode = QAbstractItemView::NoSelection;
     switch ( m_config->installChoice() )
     {
     case InstallChoice::Replace:
