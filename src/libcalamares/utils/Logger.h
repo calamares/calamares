@@ -290,6 +290,17 @@ operator<<( QDebug& s, const Pointer& p )
     return s;
 }
 
+/** @brief Convenience object for supplying SubEntry to a debug stream
+ *
+ * In a function with convoluted control paths, it may be unclear
+ * when to supply SubEntry to a debug stream -- it is convenient
+ * for the **first** debug statement from a given function to print
+ * the function header, and all subsequent onces to get SubEntry.
+ *
+ * Create an object of type Once and send it (first) to all CDebug
+ * objects; this will print the function header only once within the
+ * lifetime of that Once object.
+ */
 class Once
 {
 public:
