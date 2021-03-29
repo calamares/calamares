@@ -518,6 +518,8 @@ PartitionViewStep::onLeave()
 void
 PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
+    Logger::Once o;
+
     m_config->setConfigurationMap( configurationMap );
 
     // Copy the efiSystemPartition setting to the global storage. It is needed not only in
@@ -528,7 +530,7 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 
     // Set up firmwareType global storage entry. This is used, e.g. by the bootloader module.
     QString firmwareType( PartUtils::isEfiSystem() ? QStringLiteral( "efi" ) : QStringLiteral( "bios" ) );
-    cDebug() << "Setting firmwareType to" << firmwareType;
+    cDebug() << o << "Setting firmwareType to" << firmwareType;
     gs->insert( "firmwareType", firmwareType );
 
     // Read and parse key efiSystemPartitionSize
@@ -568,7 +570,7 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     QString fsRealName = PartUtils::findFS( fsName, &fsType );
     if ( fsRealName == fsName )
     {
-        cDebug() << "Partition-module setting *defaultFileSystemType*" << fsRealName;
+        cDebug() << o << "Partition-module setting *defaultFileSystemType*" << fsRealName;
     }
     else if ( fsType != FileSystem::Unknown )
     {
