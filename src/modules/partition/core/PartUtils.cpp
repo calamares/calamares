@@ -481,7 +481,6 @@ findFS( QString fsName, FileSystem::Type* fsType )
     FileSystem::Type tmpType = FileSystem::typeForName( fsName, fsLanguage );
     if ( tmpType != FileSystem::Unknown )
     {
-        cDebug() << "Found filesystem" << fsName;
         if ( fsType )
         {
             *fsType = tmpType;
@@ -496,7 +495,6 @@ findFS( QString fsName, FileSystem::Type* fsType )
         if ( 0 == QString::compare( fsName, FileSystem::nameForType( t, fsLanguage ), Qt::CaseInsensitive ) )
         {
             QString fsRealName = FileSystem::nameForType( t, fsLanguage );
-            cDebug() << "Filesystem name" << fsName << "translated to" << fsRealName;
             if ( fsType )
             {
                 *fsType = t;
@@ -505,7 +503,7 @@ findFS( QString fsName, FileSystem::Type* fsType )
         }
     }
 
-    cDebug() << "Filesystem" << fsName << "not found, using ext4";
+    cWarning() << "Filesystem" << fsName << "not found, using ext4";
     fsName = QStringLiteral( "ext4" );
     // fsType can be used to check whether fsName was a valid filesystem.
     if ( fsType )
