@@ -201,6 +201,15 @@ set( CMAKE_C_FLAGS_RELWITHDEBINFO   "-O2 -g" )
 
 set( CMAKE_SHARED_LINKER_FLAGS      "-Wl,--no-undefined -Wl,--fatal-warnings" )
 
+# If no build type is set, pick a reasonable one
+if( NOT CMAKE_BUILD_TYPE )
+    if ( CALAMARES_RELEASE_MODE )
+        set( CMAKE_BUILD_TYPE "RelWithDebInfo" )
+    else()
+        set( CMAKE_BUILD_TYPE "Debug" )
+    endif()
+endif()
+
 if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
     message( STATUS "Found Clang ${CMAKE_CXX_COMPILER_VERSION}, setting up Clang-specific compiler flags." )
 
