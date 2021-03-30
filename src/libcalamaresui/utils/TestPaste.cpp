@@ -16,7 +16,7 @@
 #include <QDateTime>
 #include <QtTest/QtTest>
 
-extern QByteArray logFileContents( qint64 sizeLimit );
+extern QByteArray logFileContents( qint64 sizeLimitKiB );
 extern QString ficheLogUpload( const QByteArray& pasteData, const QUrl& serverUrl, QObject* parent );
 
 class TestPaste : public QObject

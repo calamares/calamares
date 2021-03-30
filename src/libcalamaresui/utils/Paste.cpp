@@ -108,7 +108,7 @@ ficheLogUpload( const QByteArray& pasteData, const QUrl& serverUrl, QObject* par
 QString
 CalamaresUtils::Paste::doLogUpload( QObject* parent )
 {
-    auto [ type, serverUrl, sizeLimit ] = Calamares::Branding::instance()->uploadServer();
+    auto [ type, serverUrl, sizeLimitKiB ] = Calamares::Branding::instance()->uploadServer();
     if ( !serverUrl.isValid() )
     {
         cWarning() << "Upload configure with invalid URL";
@@ -120,7 +120,7 @@ CalamaresUtils::Paste::doLogUpload( QObject* parent )
         return QString();
     }
 
-    QByteArray pasteData = logFileContents( sizeLimit );
+    QByteArray pasteData = logFileContents( sizeLimitKiB );
     if ( pasteData.isEmpty() )
     {
         // An error has already been logged
@@ -172,6 +172,6 @@ CalamaresUtils::Paste::doLogUploadUI( QWidget* parent )
 bool
 CalamaresUtils::Paste::isEnabled()
 {
-    auto [ type, serverUrl, sizeLimit ] = Calamares::Branding::instance()->uploadServer();
+    auto [ type, serverUrl, sizeLimitKiB ] = Calamares::Branding::instance()->uploadServer();
     return type != Calamares::Branding::UploadServerType::None;
 }
