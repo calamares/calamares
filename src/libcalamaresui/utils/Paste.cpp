@@ -30,8 +30,10 @@ using namespace CalamaresUtils::Units;
  * Returns an empty QByteArray() on any kind of error.
  */
 STATICTEST QByteArray
-logFileContents( qint64 sizeLimit )
+logFileContents( qint64 sizeLimitKiB )
 {
+    if( sizeLimitKiB == 0 )
+        return QByteArray();
     const QString name = Logger::logFile();
     QFile pasteSourceFile( name );
     if ( !pasteSourceFile.open( QIODevice::ReadOnly | QIODevice::Text ) )
@@ -40,15 +42,16 @@ logFileContents( qint64 sizeLimit )
         return QByteArray();
     }
     QFileInfo fi( pasteSourceFile );
-    sizeLimit = ( sizeLimit < 0 ) ? 1024*1024 : sizeLimit * 1024;            //For KiB to bytes
-    cDebug() << "Log upload size limit was set to " << sizeLimit << " bytes";
-    if ( fi.size() > sizeLimit and sizeLimit > 0 )
+    if( sizeLimitKiB < 0 )
+        sizeLimitKiB = 1024;
+    qint64 sizeLimitBytes = CalamaresUtils::KiBtoBytes( ( unsigned long long ) sizeLimitKiB );
+    cDebug() << "Log upload size limit was set to" << sizeLimitKiB << "KiB";
+    if ( fi.size() > sizeLimitBytes and sizeLimitBytes > 0 )
     {
-        // Fixme : this following line is not getting pasted
-        cDebug() << "Only last " << sizeLimit << " bytes of log file (" << fi.size() << ") uploaded" ;
-        pasteSourceFile.seek( fi.size() - sizeLimit );
+        cDebug() << "Only last" << sizeLimitBytes << "bytes of log file (sized" << fi.size() << "bytes) uploaded" ;
+        pasteSourceFile.seek( fi.size() - sizeLimitBytes + 1_KiB );
     }
-    return pasteSourceFile.read( sizeLimit );
+    return pasteSourceFile.read( sizeLimitBytes + 1_KiB );
 }
 
 

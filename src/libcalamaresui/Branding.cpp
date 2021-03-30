@@ -153,7 +153,7 @@ uploadServerFromMap( const QVariantMap& map )
 
     QString typestring = map[ "type" ].toString();
     QString urlstring = map[ "url" ].toString();
-    qint64 sizeLimit = map[ "sizeLimit" ].toLongLong();
+    qint64 sizeLimitKiB = map[ "sizeLimit" ].toLongLong();
 
     if ( typestring.isEmpty() || urlstring.isEmpty() )
     {
@@ -163,7 +163,7 @@ uploadServerFromMap( const QVariantMap& map )
     bool bogus = false;  // we don't care about type-name lookup success here
     return Branding::UploadServerInfo( names.find( typestring, bogus ),
                                        QUrl( urlstring, QUrl::ParsingMode::StrictMode ),
-                                       sizeLimit );
+                                       sizeLimitKiB );
 }
 
 /** @brief Load the @p map with strings from @p config
