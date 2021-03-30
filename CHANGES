@@ -32,6 +32,14 @@ This release contains contributions from (alphabetically by first name):
    has been revived and merged.
 
 
+# 3.2.39.1 (2021-03-30) #
+
+This hotfix release corrects a regression in the *displaymanager*
+module caused by changes in the *users* module; autologin was
+internally renamed and no longer recognized by the *displaymanager*
+module. (Reported by Erik Dubois, #1665)
+
+
 # 3.2.39 (2021-03-19) #
 
 This release contains contributions from (alphabetically by first name):
