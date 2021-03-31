@@ -139,6 +139,8 @@ private:
     Calamares::PrettyRadioButton* m_replaceButton;
     Calamares::PrettyRadioButton* m_somethingElseButton;
     QComboBox* m_eraseSwapChoiceComboBox;  // UI, see also m_eraseSwapChoice
+    QComboBox* m_eraseFsTypesChoiceComboBox;  // UI, see also m_eraseSwapChoice
+
 
     DeviceInfoWidget* m_deviceInfoWidget;
 

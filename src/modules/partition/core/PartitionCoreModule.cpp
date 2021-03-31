@@ -381,6 +381,7 @@ PartitionCoreModule::createPartitionTable( Device* device, PartitionTable::Table
 
         OperationHelper helper( partitionModelForDevice( device ), this );
         deviceInfo->makeJob< CreatePartitionTableJob >( type );
+
     }
 }
 
