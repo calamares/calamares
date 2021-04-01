@@ -32,9 +32,9 @@ using namespace CalamaresUtils::Units;
 STATICTEST QByteArray
 logFileContents( const qint64 sizeLimitBytes )
 {
-    if( sizeLimitBytes != -1 )
+    if ( sizeLimitBytes != -1 )
     {
-        cDebug() << "Log upload size limit was limited to" <<  sizeLimitBytes << "bytes";
+        cDebug() << "Log upload size limit was limited to" << sizeLimitBytes << "bytes";
     }
     const QString name = Logger::logFile();
     QFile pasteSourceFile( name );
@@ -43,14 +43,14 @@ logFileContents( const qint64 sizeLimitBytes )
         cWarning() << "Could not open log file" << name;
         return QByteArray();
     }
-    if( sizeLimitBytes == -1 )
+    if ( sizeLimitBytes == -1 )
     {
         return pasteSourceFile.readAll();
     }
     QFileInfo fi( pasteSourceFile );
     if ( fi.size() > sizeLimitBytes )
     {
-        cDebug() << "Only last" << sizeLimitBytes << "bytes of log file (sized" << fi.size() << "bytes) uploaded" ;
+        cDebug() << "Only last" << sizeLimitBytes << "bytes of log file (sized" << fi.size() << "bytes) uploaded";
         fi.refresh();
         pasteSourceFile.seek( fi.size() - sizeLimitBytes );
     }
