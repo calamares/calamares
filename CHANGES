@@ -32,6 +32,13 @@ This release contains contributions from (alphabetically by first name):
    has been revived and merged.
 
 
+# 3.2.39.2 (2021-04-02) #
+
+This is **another** hotfix release for issues around autologin ..
+autoLogin, really, since the whole problem is that internal capitalization
+changed. (Reported by pcrepix, #1668)
+
+
 # 3.2.39.1 (2021-03-30) #
 
 This hotfix release corrects a regression in the *displaymanager*
