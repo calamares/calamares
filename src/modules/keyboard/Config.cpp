@@ -210,6 +210,10 @@ Config::Config( QObject* parent )
         m_setxkbmapTimer.start( QApplication::keyboardInputInterval() );
         emit prettyStatusChanged();
     } );
+
+    m_selectedModel = m_keyboardModelsModel->key( m_keyboardModelsModel->currentIndex() );
+    m_selectedLayout = m_keyboardLayoutsModel->item( m_keyboardLayoutsModel->currentIndex() ).first;
+    m_selectedVariant = m_keyboardVariantsModel->key( m_keyboardVariantsModel->currentIndex() );
 }
 
 KeyboardModelsModel*
