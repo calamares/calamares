@@ -10,7 +10,7 @@
 #include "CalamaresApplication.h"
 
 #include "CalamaresConfig.h"
-#include "CalamaresVersion.h"
+#include "CalamaresVersionX.h"
 #include "CalamaresWindow.h"
 #include "progresstree/ProgressTreeView.h"
 
