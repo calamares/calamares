@@ -528,37 +528,14 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
 {
     using namespace CalamaresUtils;
 
-    if ( configurationMap.contains( "xOrgConfFileName" )
-         && configurationMap.value( "xOrgConfFileName" ).type() == QVariant::String
-         && !getString( configurationMap, "xOrgConfFileName" ).isEmpty() )
+    const auto xorgConfDefault = QStringLiteral( "00-keyboard.conf" );
+    m_xOrgConfFileName = getString( configurationMap, "xOrgConfFileName", xorgConfDefault );
+    if ( m_xOrgConfFileName.isEmpty() )
     {
-        m_xOrgConfFileName = getString( configurationMap, "xOrgConfFileName" );
+        m_xOrgConfFileName = xorgConfDefault;
     }
-    else
-    {
-        m_xOrgConfFileName = "00-keyboard.conf";
-    }
-
-    if ( configurationMap.contains( "convertedKeymapPath" )
-         && configurationMap.value( "convertedKeymapPath" ).type() == QVariant::String
-         && !getString( configurationMap, "convertedKeymapPath" ).isEmpty() )
-    {
-        m_convertedKeymapPath = getString( configurationMap, "convertedKeymapPath" );
-    }
-    else
-    {
-        m_convertedKeymapPath = QString();
-    }
-
-    if ( configurationMap.contains( "writeEtcDefaultKeyboard" )
-         && configurationMap.value( "writeEtcDefaultKeyboard" ).type() == QVariant::Bool )
-    {
-        m_writeEtcDefaultKeyboard = getBool( configurationMap, "writeEtcDefaultKeyboard", true );
-    }
-    else
-    {
-        m_writeEtcDefaultKeyboard = true;
-    }
+    m_convertedKeymapPath = getString( configurationMap, "convertedKeymapPath" );
+    m_writeEtcDefaultKeyboard = getBool( configurationMap, "writeEtcDefaultKeyboard", true );
 }
 
 void
