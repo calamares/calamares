@@ -7,23 +7,12 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.40 (unreleased) #
-
-This release contains contributions from (alphabetically by first name):
- - No external contributors yet
-
-## Core ##
- - No core changes yet
-
-## Modules ##
- - No module changes yet
-
-
 # 3.2.39.2 (2021-04-02) #
 
 This is **another** hotfix release for issues around autologin ..
 autoLogin, really, since the whole problem is that internal capitalization
-changed. (Reported by pcrepix, #1668)
+changed. An unrelated bug in writing /etc/default/keyboard was
+also fixed. (Reported by pcrepix, #1668)
 
 
 # 3.2.39.1 (2021-03-30) #
