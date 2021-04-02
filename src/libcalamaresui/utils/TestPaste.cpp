@@ -37,14 +37,18 @@ TestPaste::testGetLogFile()
 {
     QFile::remove( Logger::logFile() );
     // This test assumes nothing **else** has set up logging yet
-    QByteArray contentsOfLogfileBefore = logFileContents( 16 );
-    QVERIFY( contentsOfLogfileBefore.isEmpty() );
+    QByteArray logLimitedBefore = logFileContents( 16 );
+    QVERIFY( logLimitedBefore.isEmpty() );
+    QByteArray logUnlimitedBefore = logFileContents( -1 );
+    QVERIFY( logUnlimitedBefore.isEmpty() );
 
     Logger::setupLogLevel( Logger::LOGDEBUG );
     Logger::setupLogfile();
 
-    QByteArray contentsOfLogfileAfterSetup = logFileContents( 16 );
-    QVERIFY( !contentsOfLogfileAfterSetup.isEmpty() );
+    QByteArray logLimitedAfter = logFileContents( 16 );
+    QVERIFY( !logLimitedAfter.isEmpty() );
+    QByteArray logUnlimitedAfter = logFileContents( -1 );
+    QVERIFY( !logUnlimitedAfter.isEmpty() );
 }
 
 void

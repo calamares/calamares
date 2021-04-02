@@ -18,6 +18,7 @@
 #include "utils/ImageRegistry.h"
 #include "utils/Logger.h"
 #include "utils/NamedEnum.h"
+#include "utils/Units.h"
 #include "utils/Yaml.h"
 
 #include <QDir>
@@ -161,9 +162,10 @@ uploadServerFromMap( const QVariantMap& map )
     }
 
     bool bogus = false;  // we don't care about type-name lookup success here
-    return Branding::UploadServerInfo( names.find( typestring, bogus ),
-                                       QUrl( urlstring, QUrl::ParsingMode::StrictMode ),
-                                       ( sizeLimitKiB >= 0 ) ? sizeLimitKiB * 1024 : -1 );
+    return Branding::UploadServerInfo(
+        names.find( typestring, bogus ),
+        QUrl( urlstring, QUrl::ParsingMode::StrictMode ),
+        sizeLimitKiB >= 0 ? CalamaresUtils::KiBtoBytes( static_cast< unsigned long long >( sizeLimitKiB ) ) : -1 );
 }
 
 /** @brief Load the @p map with strings from @p config
