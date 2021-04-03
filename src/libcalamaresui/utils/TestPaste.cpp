@@ -10,6 +10,7 @@
  */
 
 #include "Paste.h"
+#include "network/Manager.h"
 
 #include "utils/Logger.h"
 
@@ -30,6 +31,7 @@ public:
 private Q_SLOTS:
     void testGetLogFile();
     void testFichePaste();
+    void testUploadSize();
 };
 
 void
@@ -64,7 +66,19 @@ TestPaste::testFichePaste()
     QVERIFY( !s.isEmpty() );
 }
 
+void
+TestPaste::testUploadSize()
+{
+    QByteArray logContent = logFileContents( 100 );
+    QString s = ficheLogUpload( logContent, QUrl( "http://termbin.com:9999" ), nullptr );
 
+    QVERIFY( !s.isEmpty() );
+
+    QUrl url( s );
+    QByteArray returnedData = CalamaresUtils::Network::Manager::instance().synchronousGet( url );
+
+    QCOMPARE( returnedData.size(), 100 );
+}
 QTEST_GUILESS_MAIN( TestPaste )
 
 #include "utils/moc-warnings.h"
