@@ -5,7 +5,7 @@
 # 
 # Translators:
 # Adriaan de Groot <groot@kde.org>, 2020
-# Christian Spaan, 2020
+# Gustav Gyges, 2020
 # Andreas Eitel <github-aneitel@online.de>, 2020
 # 
 #, fuzzy
