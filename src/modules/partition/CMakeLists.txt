@@ -8,8 +8,9 @@
 # want to allow unsafe partitioning choices (e.g. doing things to the
 # current disk). Set DEBUG_PARTITION_UNSAFE to allow that (it turns off
 # some filtering of devices). If you **do** allow unsafe partitioning,
-# it will error out unless you **also** switch **off** DEBUG_PARTITION_LAME,
-# at which point you are welcome to shoot yourself in the foot.
+# it will error out at runtime unless you **also** switch **off**
+# DEBUG_PARTITION_LAME, at which point you are welcome to shoot
+# yourself in the foot.
 option( DEBUG_PARTITION_UNSAFE "Allow unsafe partitioning choices." OFF )
 option( DEBUG_PARTITION_LAME   "Unsafe partitioning will error out on exec." ON )
 

@@ -118,8 +118,6 @@ erase( DeviceList& l, DeviceList::iterator& it )
 QList< Device* >
 getDevices( DeviceType which )
 {
-    bool writableOnly = ( which == DeviceType::WritableOnly );
-
     CoreBackend* backend = CoreBackendManager::self()->backend();
 #if defined( WITH_KPMCORE4API )
     DeviceList devices = backend->scanDevices( /* not includeReadOnly, not includeLoopback */ ScanFlag( 0 ) );
@@ -129,14 +127,18 @@ getDevices( DeviceType which )
 
 #ifdef DEBUG_PARTITION_UNSAFE
     cWarning() << "Allowing unsafe partitioning choices." << devices.count() << "candidates.";
+    DeviceList unsafeDevices = devices;
 #ifdef DEBUG_PARTITION_LAME
     cDebug() << Logger::SubEntry << "it has been lamed, and will fail.";
 #endif
-#else
+#endif
+
     cDebug() << "Removing unsuitable devices:" << devices.count() << "candidates.";
 
+    bool writableOnly = ( which == DeviceType::WritableOnly );
     // Remove the device which contains / from the list
     for ( DeviceList::iterator it = devices.begin(); it != devices.end(); )
+    {
         if ( !( *it ) )
         {
             cDebug() << Logger::SubEntry << "Skipping nullptr device";
@@ -166,9 +168,13 @@ getDevices( DeviceType which )
         {
             ++it;
         }
-#endif
-
+    }
+    cDebug() << Logger::SubEntry << "there are" << devices.count() << "devices left.";
+#ifdef DEBUG_PARTITION_UNSAFE
+    return unsafeDevices;
+#else
     return devices;
+#endif
 }
 
 }  // namespace PartUtils
