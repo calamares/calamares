@@ -259,8 +259,7 @@ Config::setCurrentLocation( const CalamaresUtils::Locale::TimeZoneData* location
         auto newLocale = automaticLocaleConfiguration();
         if ( !m_selectedLocaleConfiguration.explicit_lang )
         {
-            m_selectedLocaleConfiguration.setLanguage( newLocale.language() );
-            emit currentLanguageStatusChanged( currentLanguageStatus() );
+            setLanguage( newLocale.language() );
         }
         if ( !m_selectedLocaleConfiguration.explicit_lc )
         {
@@ -302,11 +301,20 @@ Config::localeConfiguration() const
 void
 Config::setLanguageExplicitly( const QString& language )
 {
-    m_selectedLocaleConfiguration.setLanguage( language );
     m_selectedLocaleConfiguration.explicit_lang = true;
+    setLanguage( language );
+}
 
-    emit currentLanguageStatusChanged( currentLanguageStatus() );
-    emit currentLanguageCodeChanged( currentLanguageCode() );
+void
+Config::setLanguage( const QString& language )
+{
+    if ( language != m_selectedLocaleConfiguration.language() )
+    {
+        m_selectedLocaleConfiguration.setLanguage( language );
+
+        emit currentLanguageStatusChanged( currentLanguageStatus() );
+        emit currentLanguageCodeChanged( currentLanguageCode() );
+    }
 }
 
 void
