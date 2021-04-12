@@ -95,6 +95,8 @@ private:
     }
 
 public Q_SLOTS:
+    /// Set the language, but do not mark it as user-choice
+    void setLanguage( const QString& language );
     /// Set a language by user-choice, overriding future location changes
     void setLanguageExplicitly( const QString& language );
     /// Set LC (formats) by user-choice, overriding future location changes
