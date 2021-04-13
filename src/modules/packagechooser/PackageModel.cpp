@@ -35,23 +35,19 @@ roleNames()
 PackageItem::PackageItem() {}
 
 PackageItem::PackageItem( const QString& a_id,
-                          const QString& a_package,
                           const QString& a_name,
                           const QString& a_description )
     : id( a_id )
-    , package( a_package )
     , name( a_name )
     , description( a_description )
 {
 }
 
 PackageItem::PackageItem( const QString& a_id,
-                          const QString& a_package,
                           const QString& a_name,
                           const QString& a_description,
                           const QString& screenshotPath )
     : id( a_id )
-    , package( a_package )
     , name( a_name )
     , description( a_description )
     , screenshot( screenshotPath )
@@ -60,7 +56,6 @@ PackageItem::PackageItem( const QString& a_id,
 
 PackageItem::PackageItem::PackageItem( const QVariantMap& item_map )
     : id( CalamaresUtils::getString( item_map, "id" ) )
-    , package( CalamaresUtils::getString( item_map, "package" ) )
     , name( CalamaresUtils::Locale::TranslatedString( item_map, "name" ) )
     , description( CalamaresUtils::Locale::TranslatedString( item_map, "description" ) )
     , screenshot( CalamaresUtils::getString( item_map, "screenshot" ) )

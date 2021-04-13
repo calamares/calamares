@@ -31,8 +31,6 @@ const NamedEnumTable< PackageChooserMode >& roleNames();
 struct PackageItem
 {
     QString id;
-    // FIXME: unused
-    QString package;
     CalamaresUtils::Locale::TranslatedString name;
     CalamaresUtils::Locale::TranslatedString description;
     QPixmap screenshot;
@@ -44,7 +42,7 @@ struct PackageItem
      * This constructor sets all the text members,
      * but leaves the screenshot blank. Set that separately.
      */
-    PackageItem( const QString& id, const QString& package, const QString& name, const QString& description );
+    PackageItem( const QString& id, const QString& name, const QString& description );
 
     /** @brief Creates a PackageItem from given strings.
      *
@@ -53,7 +51,6 @@ struct PackageItem
      * a filesystem path, whatever QPixmap understands.
      */
     PackageItem( const QString& id,
-                 const QString& package,
                  const QString& name,
                  const QString& description,
                  const QString& screenshotPath );
