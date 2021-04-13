@@ -41,7 +41,7 @@
 # TODO:3.3: Require CMake 3.12
 cmake_minimum_required( VERSION 3.3 FATAL_ERROR )
 project( CALAMARES
-    VERSION 3.2.39
+    VERSION 3.2.40
     LANGUAGES C CXX
 )
 
@@ -92,22 +92,13 @@ option( BUILD_SCHEMA_TESTING "Enable schema-validation-tests" ON )
 #
 # To explicitly disable a set of modules, set USE_<foo>=none
 # (e.g. the literal string none), which won't match any of the
-# modules but is handled specially. This is the default for
-# USE_os, which are modules for specialty non-Linux distributions.
+# modules but is handled specially.
 #
 # The following USE_* functionalities are available:
 #  - *services* picks one of the two service-configuration modules,
 #    for either systemd or openrc. This defaults to empty so that
 #    **both** modules are available.
-#  - *os* picks an OS-specific module for things-that-are-not-Linux.
-#    It is generally discouraged to use this unless your distro is
-#    completely unable to use standard Linux tools for configuration.
-#    This defaults to *none* so that nothing gets picked up and nothing
-#    is packaged -- you must explicitly set it to empty to get all of
-#    the modules, but that hardly makes sense. Note, too that there
-#    are currently no os-* modules shipped with Calamares.
 set( USE_services "" CACHE STRING "Select the services module to use" )
-set( USE_os "none" CACHE STRING "Select the OS-specific module to include" )
 
 ### Calamares application info
 #
@@ -509,9 +500,6 @@ if( CALAMARES_VERSION_TWEAK )
     set( CALAMARES_VERSION "${CALAMARES_VERSION}.${CALAMARES_VERSION_TWEAK}" )
 endif()
 set( CALAMARES_VERSION_SHORT "${CALAMARES_VERSION}" )
-if( CALAMARES_VERSION_RC )
-    set( CALAMARES_VERSION ${CALAMARES_VERSION}rc${CALAMARES_VERSION_RC} )
-endif()
 
 # Additional info for non-release builds. The "extended" version information
 # with date and git information (commit, dirty status) is used only
@@ -519,16 +507,8 @@ endif()
 # version number with all that information; normal consumers can include
 # CalamaresVersion.h with more stable numbers.
 if( NOT BUILD_RELEASE AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.git/" )
-    include( CMakeDateStamp )
-    set( CALAMARES_VERSION_DATE "${CMAKE_DATESTAMP_YEAR}${CMAKE_DATESTAMP_MONTH}${CMAKE_DATESTAMP_DAY}" )
-    if( CALAMARES_VERSION_DATE GREATER 0 )
-        set( CALAMARES_VERSION ${CALAMARES_VERSION}.${CALAMARES_VERSION_DATE} )
-    endif()
-
-    include( CMakeVersionSource )
-    if( CMAKE_VERSION_SOURCE )
-        set( CALAMARES_VERSION ${CALAMARES_VERSION}-${CMAKE_VERSION_SOURCE} )
-    endif()
+    include( ExtendedVersion )
+    extend_version( "${CALAMARES_VERSION}" OFF CALAMARES_VERSION_SHORT CALAMARES_VERSION )
 endif()
 
 # Special target for not-RC (e.g. might-be-release) builds.
@@ -615,6 +595,7 @@ install(
         "CMakeModules/CalamaresAddTest.cmake"
         "CMakeModules/CalamaresAddTranslations.cmake"
         "CMakeModules/CalamaresAutomoc.cmake"
+        "CMakeModules/CalamaresCheckModuleSelection.cmake"
         "CMakeModules/CMakeColors.cmake"
         "CMakeModules/FindYAMLCPP.cmake"
     DESTINATION

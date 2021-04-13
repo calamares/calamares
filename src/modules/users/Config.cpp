@@ -820,7 +820,19 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     m_hostNameActions = getHostNameActions( configurationMap );
 
     setConfigurationDefaultGroups( configurationMap, m_defaultGroups );
-    m_doAutoLogin = CalamaresUtils::getBool( configurationMap, "doAutoLogin", false );
+
+    // Renaming of Autologin -> AutoLogin in 4ffa79d4cf also affected
+    // configuration keys, which was not intended. Accept both.
+    const auto oldKey = QStringLiteral( "doAutologin" );
+    const auto newKey = QStringLiteral( "doAutoLogin" );
+    if ( configurationMap.contains( oldKey ) )
+    {
+        m_doAutoLogin = CalamaresUtils::getBool( configurationMap, oldKey, false );
+    }
+    else
+    {
+        m_doAutoLogin = CalamaresUtils::getBool( configurationMap, newKey, false );
+    }
 
     m_writeRootPassword = CalamaresUtils::getBool( configurationMap, "setRootPassword", true );
     Calamares::JobQueue::instance()->globalStorage()->insert( "setRootPassword", m_writeRootPassword );

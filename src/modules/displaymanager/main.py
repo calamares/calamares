@@ -192,7 +192,7 @@ desktop_environments = [
     DesktopEnvironment('/usr/bin/herbstluftwm', 'herbstluftwm'),
     DesktopEnvironment('/usr/bin/qtile', 'qtile'),
     DesktopEnvironment('/usr/bin/xmonad', 'xmonad'),
-    DesktopEnvironment('/usr/bin/dwm', 'dmw'),
+    DesktopEnvironment('/usr/bin/dwm', 'dwm'),
     DesktopEnvironment('/usr/bin/jwm', 'jwm'),
     DesktopEnvironment('/usr/bin/icewm-session', 'icewm-session'),
 ]
@@ -954,7 +954,7 @@ def run():
     else:
         enable_basic_setup = False
 
-    username = libcalamares.globalstorage.value("autologinUser")
+    username = libcalamares.globalstorage.value("autoLoginUser")
     if username is not None:
         do_autologin = True
         libcalamares.utils.debug("Setting up autologin for user {!s}.".format(username))

@@ -22,6 +22,7 @@
 #include "core/PartitionInfo.h"
 #include "core/PartitionModel.h"
 #include "jobs/AutoMountManagementJob.h"
+#include "jobs/ChangeFilesystemLabelJob.h"
 #include "jobs/ClearMountsJob.h"
 #include "jobs/ClearTempMountsJob.h"
 #include "jobs/CreatePartitionJob.h"
@@ -542,6 +543,16 @@ PartitionCoreModule::formatPartition( Device* device, Partition* partition )
 }
 
 void
+PartitionCoreModule::setFilesystemLabel( Device* device, Partition* partition, const QString& newLabel )
+{
+    auto deviceInfo = infoForDevice( device );
+    Q_ASSERT( deviceInfo );
+
+    OperationHelper helper( partitionModelForDevice( device ), this );
+    deviceInfo->makeJob< ChangeFilesystemLabelJob >( partition, newLabel );
+}
+
+void
 PartitionCoreModule::resizePartition( Device* device, Partition* partition, qint64 first, qint64 last )
 {
     auto* deviceInfo = infoForDevice( device );
@@ -911,6 +922,14 @@ PartitionCoreModule::layoutApply( Device* dev,
         = std::find_if( partList.constBegin(), partList.constEnd(), is_boot ) != partList.constEnd();
     for ( Partition* part : partList )
     {
+        if ( is_boot( part ) )
+        {
+            part->setLabel( "boot" );
+        }
+        if ( is_root( part ) )
+        {
+            part->setLabel( "root" );
+        }
         if ( ( separate_boot_partition && is_boot( part ) ) || ( !separate_boot_partition && is_root( part ) ) )
         {
             createPartition(

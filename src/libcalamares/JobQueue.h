@@ -27,7 +27,22 @@ public:
     explicit JobQueue( QObject* parent = nullptr );
     ~JobQueue() override;
 
+    /** @brief Returns the most-recently-created instance.
+     *
+     * It is possible for instance() to be @c nullptr, since you must
+     * call the constructor explicitly first.
+     */
     static JobQueue* instance();
+    /* @brief Returns the GlobalStorage object for the instance.
+     *
+     * It is possible for instanceGlobalStorage() to be @c nullptr,
+     * since there might not be an instance to begin with.
+     */
+    static GlobalStorage* instanceGlobalStorage()
+    {
+        auto* jq = instance();
+        return jq ? jq->globalStorage() : nullptr;
+    }
 
     GlobalStorage* globalStorage() const;
 

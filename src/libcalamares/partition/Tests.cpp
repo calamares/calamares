@@ -8,32 +8,50 @@
  *
  */
 
-#include "Tests.h"
-
+#include "Global.h"
 #include "PartitionSize.h"
+
+#include "GlobalStorage.h"
+#include "utils/Logger.h"
+
+#include <QObject>
+#include <QtTest/QtTest>
 
 using SizeUnit = CalamaresUtils::Partition::SizeUnit;
 using PartitionSize = CalamaresUtils::Partition::PartitionSize;
 
 Q_DECLARE_METATYPE( SizeUnit )
 
-#include "utils/Logger.h"
+class PartitionServiceTests : public QObject
+{
+    Q_OBJECT
+public:
+    PartitionServiceTests();
+    ~PartitionServiceTests() override;
 
-#include <QtTest/QtTest>
+private Q_SLOTS:
+    void initTestCase();
 
-QTEST_GUILESS_MAIN( PartitionSizeTests )
+    void testUnitComparison_data();
+    void testUnitComparison();
 
-PartitionSizeTests::PartitionSizeTests() {}
+    void testUnitNormalisation_data();
+    void testUnitNormalisation();
 
-PartitionSizeTests::~PartitionSizeTests() {}
+    void testFilesystemGS();
+};
+
+PartitionServiceTests::PartitionServiceTests() {}
+
+PartitionServiceTests::~PartitionServiceTests() {}
 
 void
-PartitionSizeTests::initTestCase()
+PartitionServiceTests::initTestCase()
 {
 }
 
 void
-PartitionSizeTests::testUnitComparison_data()
+PartitionServiceTests::testUnitComparison_data()
 {
     QTest::addColumn< SizeUnit >( "u1" );
     QTest::addColumn< SizeUnit >( "u2" );
@@ -71,7 +89,7 @@ original_compare( SizeUnit m_unit, SizeUnit other_m_unit )
 }
 
 void
-PartitionSizeTests::testUnitComparison()
+PartitionServiceTests::testUnitComparison()
 {
     QFETCH( SizeUnit, u1 );
     QFETCH( SizeUnit, u2 );
@@ -98,7 +116,7 @@ constexpr qint64 operator""_qi( unsigned long long m )
 }
 
 void
-PartitionSizeTests::testUnitNormalisation_data()
+PartitionServiceTests::testUnitNormalisation_data()
 {
     QTest::addColumn< SizeUnit >( "u1" );
     QTest::addColumn< int >( "v" );
@@ -131,7 +149,7 @@ PartitionSizeTests::testUnitNormalisation_data()
 }
 
 void
-PartitionSizeTests::testUnitNormalisation()
+PartitionServiceTests::testUnitNormalisation()
 {
     QFETCH( SizeUnit, u1 );
     QFETCH( int, v );
@@ -139,3 +157,70 @@ PartitionSizeTests::testUnitNormalisation()
 
     QCOMPARE( PartitionSize( v, u1 ).toBytes(), bytes );
 }
+
+void
+PartitionServiceTests::testFilesystemGS()
+{
+    using CalamaresUtils::Partition::isFilesystemUsedGS;
+    using CalamaresUtils::Partition::useFilesystemGS;
+
+    // Some filesystems names, they don't have to be real
+    const QStringList fsNames { "ext4", "zfs", "berries", "carrot" };
+    // Predicate to return whether we consider this FS in use
+    auto pred = []( const QString& s ) { return !s.startsWith( 'z' ); };
+
+    // Fill the GS
+    Calamares::GlobalStorage gs;
+    for ( const auto& s : fsNames )
+    {
+        useFilesystemGS( &gs, s, pred( s ) );
+    }
+
+    QVERIFY( gs.contains( "filesystem_use" ) );
+    {
+        const auto map = gs.value( "filesystem_use" ).toMap();
+        QCOMPARE( map.count(), fsNames.count() );
+    }
+
+    for ( const auto& s : fsNames )
+    {
+        QCOMPARE( isFilesystemUsedGS( &gs, s ), pred( s ) );
+    }
+    QCOMPARE( isFilesystemUsedGS( &gs, QStringLiteral( "derp" ) ), false );
+    QCOMPARE( isFilesystemUsedGS( &gs, QString() ), false );
+    // But I can set a value for QString!
+    useFilesystemGS( &gs, QString(), true );
+    QCOMPARE( isFilesystemUsedGS( &gs, QString() ), true );
+    // .. and replace it again
+    useFilesystemGS( &gs, QString(), false );
+    QCOMPARE( isFilesystemUsedGS( &gs, QString() ), false );
+    // Now there is one more key
+    {
+        const auto map = gs.value( "filesystem_use" ).toMap();
+        QCOMPARE( map.count(), fsNames.count() + 1 );
+    }
+
+    // The API says that it it case-insensitive
+    QVERIFY( !isFilesystemUsedGS( &gs, "ZFS" ) );
+    QVERIFY( isFilesystemUsedGS( &gs, "EXT4" ) );
+    QCOMPARE( isFilesystemUsedGS( &gs, "ZFS" ), isFilesystemUsedGS( &gs, "zfs" ) );
+    QCOMPARE( isFilesystemUsedGS( &gs, "EXT4" ), isFilesystemUsedGS( &gs, "ext4" ) );
+
+    useFilesystemGS( &gs, "EXT4", false );
+    QVERIFY( !isFilesystemUsedGS( &gs, "EXT4" ) );
+    QCOMPARE( isFilesystemUsedGS( &gs, "EXT4" ), isFilesystemUsedGS( &gs, "ext4" ) );
+    useFilesystemGS( &gs, "ext4", true );
+    QVERIFY( isFilesystemUsedGS( &gs, "EXT4" ) );
+
+    CalamaresUtils::Partition::clearFilesystemGS( &gs );
+    QVERIFY( !isFilesystemUsedGS( &gs, "ZFS" ) );
+    QVERIFY( !isFilesystemUsedGS( &gs, "EXT4" ) );
+    QVERIFY( !isFilesystemUsedGS( &gs, "ext4" ) );
+}
+
+
+QTEST_GUILESS_MAIN( PartitionServiceTests )
+
+#include "utils/moc-warnings.h"
+
+#include "Tests.moc"

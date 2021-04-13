@@ -27,7 +27,8 @@
 
 ## (1) Preparation
 
-* Drop the RC variable to 0 in `CMakeLists.txt`, *CALAMARES_VERSION_RC*.
+* Double-check the *CALAMARES_VERSION* value at the top of `CMakeLists.txt`.
+* Set *CALAMARES_RELEASE_MODE* to `ON` in `CMakeLists.txt`.
 * Edit `CHANGES` and set the date of the release.
 * Commit both. This is usually done with commit-message
   *Changes: pre-release housekeeping*.
@@ -78,8 +79,8 @@ Follow the instructions printed by the release script.
 
 ## (4) Post-Release
 
-* Bump the version number in `CMakeLists.txt` in the `project()` command.
-* Set *CALAMARES_VERSION_RC* back to 1.
+* Bump the version number in `CMakeLists.txt` in *CALAMARES_VERSION*.
+* Set *CALAMARES_RELEASE_MODE* back to `OFF`.
 * Add a placeholder entry for the next release in `CHANGES` with date
   text *not released yet*.
 * Commit and push that, usually with the message

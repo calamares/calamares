@@ -8,6 +8,7 @@ calamares_add_plugin( netinstall
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
         Config.cpp
+        LoaderQueue.cpp
         NetInstallViewStep.cpp
         NetInstallPage.cpp
         PackageTreeItem.cpp

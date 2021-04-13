@@ -14,10 +14,14 @@
 #include "utils/Logger.h"
 #include "utils/Units.h"
 
+#include <QApplication>
+#include <QClipboard>
 #include <QFile>
 #include <QFileInfo>
+#include <QMessageBox>
 #include <QTcpSocket>
 #include <QUrl>
+#include <QWidget>
 
 using namespace CalamaresUtils::Units;
 
@@ -125,4 +129,42 @@ CalamaresUtils::Paste::doLogUpload( QObject* parent )
         return ficheLogUpload( pasteData, serverUrl, parent );
     }
     return QString();
+}
+
+QString
+CalamaresUtils::Paste::doLogUploadUI( QWidget* parent )
+{
+    // These strings originated in the ViewManager class
+    QString pasteUrl = CalamaresUtils::Paste::doLogUpload( parent );
+    QString pasteUrlMessage;
+    if ( pasteUrl.isEmpty() )
+    {
+        pasteUrlMessage = QCoreApplication::translate( "Calamares::ViewManager",
+                                                       "The upload was unsuccessful. No web-paste was done." );
+    }
+    else
+    {
+        QClipboard* clipboard = QApplication::clipboard();
+        clipboard->setText( pasteUrl, QClipboard::Clipboard );
+
+        if ( clipboard->supportsSelection() )
+        {
+            clipboard->setText( pasteUrl, QClipboard::Selection );
+        }
+        QString pasteUrlFmt = QCoreApplication::translate( "Calamares::ViewManager",
+                                                           "Install log posted to\n\n%1\n\nLink copied to clipboard" );
+        pasteUrlMessage = pasteUrlFmt.arg( pasteUrl );
+    }
+
+    QMessageBox::critical(
+        nullptr, QCoreApplication::translate( "Calamares::ViewManager", "Install Log Paste URL" ), pasteUrlMessage );
+    return pasteUrl;
+}
+
+
+bool
+CalamaresUtils::Paste::isEnabled()
+{
+    auto [ type, serverUrl ] = Calamares::Branding::instance()->uploadServer();
+    return type != Calamares::Branding::UploadServerType::None;
 }
