@@ -7,12 +7,16 @@
  *
  */
 
+#include "Config.h"
 #include "PackageModel.h"
 #include "PackageTreeItem.h"
 
 #include "utils/Logger.h"
+#include "utils/NamedEnum.h"
 #include "utils/Variant.h"
 #include "utils/Yaml.h"
+
+#include <KMacroExpander>
 
 #include <QtTest/QtTest>
 
@@ -40,6 +44,9 @@ private Q_SLOTS:
     void testCompare();
     void testModel();
     void testExampleFiles();
+
+    void testUrlFallback_data();
+    void testUrlFallback();
 };
 
 ItemTests::ItemTests() {}
@@ -324,6 +331,68 @@ ItemTests::testExampleFiles()
 
         // TODO: should test *something* about this file :/
     }
+}
+
+void
+ItemTests::testUrlFallback_data()
+{
+    QTest::addColumn< QString >( "filename" );
+    QTest::addColumn< int >( "status" );
+    QTest::addColumn< int >( "count" );
+
+    using S = Config::Status;
+
+    QTest::newRow( "first" ) << "tests/1a-single-bad.conf" << smash( S::FailedNoData ) << 0;
+    QTest::newRow( "second" ) << "tests/1b-single-small.conf" << smash( S::Ok ) << 2;
+}
+
+void
+ItemTests::testUrlFallback()
+{
+    Logger::setupLogLevel( Logger::LOGDEBUG );
+    QFETCH( QString, filename );
+    QFETCH( int, status );
+    QFETCH( int, count );
+
+    cDebug() << "Loading" << filename;
+
+    // BUILD_AS_TEST is the source-directory path
+    QFile fi( QString( "%1/%2" ).arg( BUILD_AS_TEST, filename ) );
+    QVERIFY( fi.exists() );
+
+    Config c;
+
+    QFile yamlFile( fi.fileName() );
+    if ( yamlFile.exists() && yamlFile.open( QFile::ReadOnly | QFile::Text ) )
+    {
+        QString ba( yamlFile.readAll() );
+        QVERIFY( ba.length() > 0 );
+        QHash< QString, QString > replace;
+        replace.insert( "TESTDIR", BUILD_AS_TEST );
+        QString correctedDocument = KMacroExpander::expandMacros( ba, replace, '$' );
+
+        try
+        {
+            YAML::Node yamldoc = YAML::Load( correctedDocument.toUtf8() );
+            auto map = CalamaresUtils::yamlToVariant( yamldoc ).toMap();
+            QVERIFY( map.count() > 0 );
+            c.setConfigurationMap( map );
+        }
+        catch ( YAML::Exception& e )
+        {
+            bool badYaml = true;
+            QVERIFY( !badYaml );
+        }
+    }
+    else
+    {
+        QCOMPARE( QStringLiteral( "not found" ), fi.fileName() );
+    }
+
+    // Each of the configs sets required to **true**, which is not the default
+    QVERIFY( c.required() );
+    QCOMPARE( smash( c.statusCode() ), status );
+    QCOMPARE( c.model()->rowCount(), count );
 }
 
 

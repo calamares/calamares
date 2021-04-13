@@ -26,6 +26,8 @@ calamares_add_test(
     netinstalltest
     SOURCES
         Tests.cpp
+        Config.cpp
+        LoaderQueue.cpp
         PackageTreeItem.cpp
         PackageModel.cpp
     LIBRARIES
