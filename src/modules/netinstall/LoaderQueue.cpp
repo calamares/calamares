@@ -25,6 +25,9 @@
  * On destruction, a new call to fetchNext() is queued, so that
  * the queue continues loading. Calling release() before the
  * destructor skips the fetchNext(), ending the queue-loading.
+ *
+ * Calling done(b) is the same as release(), **plus** done()
+ * is called on the queue if @p b is @c true.
  */
 class FetchNextUnless
 {
@@ -41,6 +44,14 @@ public:
         }
     }
     void release() { m_q = nullptr; }
+    void done( bool b )
+    {
+        if ( b && m_q )
+        {
+            QMetaObject::invokeMethod( m_q, "done", Qt::QueuedConnection );
+        }
+        release();
+    }
 
 private:
     LoaderQueue* m_q = nullptr;
@@ -138,7 +149,7 @@ LoaderQueue::fetch( const QUrl& url )
 void
 LoaderQueue::dataArrived()
 {
-    FetchNextUnless finished( this );
+    FetchNextUnless next( this );
 
     if ( !m_reply || !m_reply->isFinished() )
     {
@@ -170,16 +181,14 @@ LoaderQueue::dataArrived()
 
         if ( groups.IsSequence() )
         {
-            finished.release();
             m_config->loadGroupList( CalamaresUtils::yamlSequenceToVariant( groups ) );
-            emit done();
+            next.done( m_config->statusCode() == Config::Status::Ok );
         }
         else if ( groups.IsMap() )
         {
-            finished.release();
             auto map = CalamaresUtils::yamlMapToVariant( groups );
             m_config->loadGroupList( map.value( "groups" ).toList() );
-            emit done();
+            next.done( m_config->statusCode() == Config::Status::Ok );
         }
         else
         {
