@@ -26,7 +26,7 @@ enum class PackageChooserMode
     RequiredMultiple  // one or more
 };
 
-const NamedEnumTable< PackageChooserMode >& roleNames();
+const NamedEnumTable< PackageChooserMode >& packageChooserModeNames();
 
 struct PackageItem
 {

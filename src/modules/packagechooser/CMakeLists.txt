@@ -45,6 +45,7 @@ calamares_add_plugin( packagechooser
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
+        Config.cpp
         PackageChooserPage.cpp
         PackageChooserViewStep.cpp
         PackageModel.cpp

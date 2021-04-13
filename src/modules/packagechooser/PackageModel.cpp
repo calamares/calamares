@@ -13,7 +13,7 @@
 #include "utils/Variant.h"
 
 const NamedEnumTable< PackageChooserMode >&
-roleNames()
+packageChooserModeNames()
 {
     static const NamedEnumTable< PackageChooserMode > names {
         { "optional", PackageChooserMode::Optional },

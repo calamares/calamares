@@ -1,0 +1,61 @@
+/* === This file is part of Calamares - <https://calamares.io> ===
+ *
+ *   SPDX-FileCopyrightText: 2021 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
+ *
+ *   Calamares is Free Software: see the License-Identifier above.
+ *
+ */
+
+#ifndef PACKAGECHOOSER_CONFIG_H
+#define PACKAGECHOOSER_CONFIG_H
+
+#include "PackageModel.h"
+
+#include "modulesystem/Config.h"
+
+#include <memory>
+
+class Config : public Calamares::ModuleSystem::Config
+{
+    Q_OBJECT
+
+public:
+    Config( const QString& defaultId, QObject* parent = nullptr );
+    ~Config() override;
+
+    void setConfigurationMap( const QVariantMap& ) override;
+
+    PackageChooserMode mode() const { return m_mode; }
+    PackageListModel* model() const { return m_model; }
+    QModelIndex defaultSelectionIndex() const { return m_defaultModelIndex; }
+
+    /** @brief Returns an "introductory package" which describes packagechooser
+     *
+     * If the model contains a "none" package, returns that one on
+     * the assumption that it is one to describe the whole; otherwise
+     * returns a totally generic description.
+     */
+    const PackageItem& introductionPackage() const;
+
+    /** @brief Write selection to global storage
+     *
+     * Updates the GS keys for this packagechooser, marking all
+     * (and only) the packages in @p selected as selected.
+     */
+    void updateGlobalStorage( const QStringList& selected ) const;
+    /// As updateGlobalStorage() with an empty selection list
+    void updateGlobalStorage() const { updateGlobalStorage( QStringList() ); }
+
+private:
+    PackageListModel* m_model = nullptr;
+    QModelIndex m_defaultModelIndex;
+
+    // Configuration
+    PackageChooserMode m_mode = PackageChooserMode::Optional;
+    QString m_id;
+    QString m_defaultId;
+};
+
+
+#endif
