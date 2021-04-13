@@ -7,6 +7,15 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
+# 3.2.39.3 (2021-04-14) #
+
+A minor bugfix tweak release. Since this contains yet **another**
+autologin-related fix, and there is nothing large enough to justify
+a 3.2.40 release yet, add it to the growing tail of 3.2.39. (Reported
+by Joe Kamprad, #1672). Also fixes a regression from 3.2.28 in
+localized packages (e.g. *package-LOCALE* did not work).
+
+
 # 3.2.39.2 (2021-04-02) #
 
 This is **another** hotfix release for issues around autologin ..
