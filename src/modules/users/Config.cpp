@@ -803,6 +803,29 @@ addPasswordCheck( const QString& key, const QVariant& value, PasswordCheckList& 
     return true;
 }
 
+/** @brief Returns a value of either key from the map
+ *
+ * Takes a function (e.g. getBool, or getString) and two keys,
+ * returning the value in the map of the one that is there (or @p defaultArg)
+ */
+template < typename T, typename U >
+T
+either( T ( *f )( const QVariantMap&, const QString&, U ),
+        const QVariantMap& configurationMap,
+        const QString& oldKey,
+        const QString& newKey,
+        U defaultArg )
+{
+    if ( configurationMap.contains( oldKey ) )
+    {
+        return f( configurationMap, oldKey, defaultArg );
+    }
+    else
+    {
+        return f( configurationMap, newKey, defaultArg );
+    }
+}
+
 void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
 {
@@ -814,7 +837,8 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     // Now it might be explicitly set to empty, which is ok
     setUserShell( shell );
 
-    setAutoLoginGroup( CalamaresUtils::getString( configurationMap, "autoLoginGroup" ) );
+    setAutoLoginGroup( either< QString, const QString& >(
+        CalamaresUtils::getString, configurationMap, "autologinGroup", "autoLoginGroup", QString() ) );
     setSudoersGroup( CalamaresUtils::getString( configurationMap, "sudoersGroup" ) );
 
     m_hostNameActions = getHostNameActions( configurationMap );
@@ -823,16 +847,11 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
 
     // Renaming of Autologin -> AutoLogin in 4ffa79d4cf also affected
     // configuration keys, which was not intended. Accept both.
-    const auto oldKey = QStringLiteral( "doAutologin" );
-    const auto newKey = QStringLiteral( "doAutoLogin" );
-    if ( configurationMap.contains( oldKey ) )
-    {
-        m_doAutoLogin = CalamaresUtils::getBool( configurationMap, oldKey, false );
-    }
-    else
-    {
-        m_doAutoLogin = CalamaresUtils::getBool( configurationMap, newKey, false );
-    }
+    m_doAutoLogin = either( CalamaresUtils::getBool,
+                            configurationMap,
+                            QStringLiteral( "doAutologin" ),
+                            QStringLiteral( "doAutoLogin" ),
+                            false );
 
     m_writeRootPassword = CalamaresUtils::getBool( configurationMap, "setRootPassword", true );
     Calamares::JobQueue::instance()->globalStorage()->insert( "setRootPassword", m_writeRootPassword );
