@@ -97,7 +97,6 @@ Config::loadGroupList( const QVariantList& groupData )
     {
         setStatus( Status::Ok );
     }
-    emit statusReady();
 }
 
 void
@@ -108,6 +107,7 @@ Config::loadingDone()
         m_queue->deleteLater();
         m_queue = nullptr;
     }
+    emit statusReady();
 }
 
 
