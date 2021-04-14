@@ -342,8 +342,9 @@ ItemTests::testUrlFallback_data()
 
     using S = Config::Status;
 
-    QTest::newRow( "first" ) << "tests/1a-single-bad.conf" << smash( S::FailedNoData ) << 0;
-    QTest::newRow( "second" ) << "tests/1b-single-small.conf" << smash( S::Ok ) << 2;
+    QTest::newRow( "bad" ) << "1a-single-bad.conf" << smash( S::FailedBadData ) << 0;
+    QTest::newRow( "empty" ) << "1a-single-empty.conf" << smash( S::FailedNoData ) << 0;
+    QTest::newRow( "second" ) << "1b-single-small.conf" << smash( S::Ok ) << 2;
 }
 
 void
@@ -357,7 +358,8 @@ ItemTests::testUrlFallback()
     cDebug() << "Loading" << filename;
 
     // BUILD_AS_TEST is the source-directory path
-    QFile fi( QString( "%1/%2" ).arg( BUILD_AS_TEST, filename ) );
+    QString testdir = QString( "%1/tests" ).arg( BUILD_AS_TEST );
+    QFile fi( QString( "%1/%2" ).arg( testdir, filename ) );
     QVERIFY( fi.exists() );
 
     Config c;
@@ -368,7 +370,7 @@ ItemTests::testUrlFallback()
         QString ba( yamlFile.readAll() );
         QVERIFY( ba.length() > 0 );
         QHash< QString, QString > replace;
-        replace.insert( "TESTDIR", BUILD_AS_TEST );
+        replace.insert( "TESTDIR", testdir );
         QString correctedDocument = KMacroExpander::expandMacros( ba, replace, '$' );
 
         try
@@ -391,6 +393,13 @@ ItemTests::testUrlFallback()
 
     // Each of the configs sets required to **true**, which is not the default
     QVERIFY( c.required() );
+
+    // Now give the loader time to complete
+    QEventLoop loop;
+    connect( &c, &Config::statusReady, &loop, &QEventLoop::quit );
+    QTimer::singleShot( std::chrono::seconds(1), &loop, &QEventLoop::quit );
+    loop.exec();
+
     QCOMPARE( smash( c.statusCode() ), status );
     QCOMPARE( c.model()->rowCount(), count );
 }
