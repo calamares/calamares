@@ -397,9 +397,13 @@ ItemTests::testUrlFallback()
     // Now give the loader time to complete
     QEventLoop loop;
     connect( &c, &Config::statusReady, &loop, &QEventLoop::quit );
+    QSignalSpy spy( &c, &Config::statusReady );
     QTimer::singleShot( std::chrono::seconds(1), &loop, &QEventLoop::quit );
     loop.exec();
 
+    // Check it didn't time out
+    QCOMPARE( spy.count(), 1 );
+    // Check YAML-loading results
     QCOMPARE( smash( c.statusCode() ), status );
     QCOMPARE( c.model()->rowCount(), count );
 }
