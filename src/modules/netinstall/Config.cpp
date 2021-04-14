@@ -152,6 +152,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     if ( m_queue && m_queue->count() > 0 )
     {
         cDebug() << "Loading netinstall from" << m_queue->count() << "alternate sources.";
+        setStatus( required() ? Status::FailedNoData : Status::Ok );
         connect( m_queue, &LoaderQueue::done, this, &Config::loadingDone );
         m_queue->load();
     }
