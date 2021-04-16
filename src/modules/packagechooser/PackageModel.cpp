@@ -12,26 +12,6 @@
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
-const NamedEnumTable< PackageChooserMode >&
-packageChooserModeNames()
-{
-    static const NamedEnumTable< PackageChooserMode > names {
-        { "optional", PackageChooserMode::Optional },
-        { "required", PackageChooserMode::Required },
-        { "optionalmultiple", PackageChooserMode::OptionalMultiple },
-        { "requiredmultiple", PackageChooserMode::RequiredMultiple },
-        // and a bunch of aliases
-        { "zero-or-one", PackageChooserMode::Optional },
-        { "radio", PackageChooserMode::Required },
-        { "one", PackageChooserMode::Required },
-        { "set", PackageChooserMode::OptionalMultiple },
-        { "zero-or-more", PackageChooserMode::OptionalMultiple },
-        { "multiple", PackageChooserMode::RequiredMultiple },
-        { "one-or-more", PackageChooserMode::RequiredMultiple }
-    };
-    return names;
-}
-
 PackageItem::PackageItem() {}
 
 PackageItem::PackageItem( const QString& a_id, const QString& a_name, const QString& a_description )

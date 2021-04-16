@@ -18,15 +18,6 @@
 #include <QPixmap>
 #include <QVector>
 
-enum class PackageChooserMode
-{
-    Optional,  // zero or one
-    Required,  // exactly one
-    OptionalMultiple,  // zero or more
-    RequiredMultiple  // one or more
-};
-
-const NamedEnumTable< PackageChooserMode >& packageChooserModeNames();
 
 struct PackageItem
 {

@@ -10,6 +10,7 @@
 #ifndef PACKAGECHOOSERPAGE_H
 #define PACKAGECHOOSERPAGE_H
 
+#include "Config.h"
 #include "PackageModel.h"
 
 #include <QAbstractItemModel>

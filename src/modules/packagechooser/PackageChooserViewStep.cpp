@@ -37,7 +37,7 @@ CALAMARES_PLUGIN_FACTORY_DEFINITION( PackageChooserViewStepFactory, registerPlug
 
 PackageChooserViewStep::PackageChooserViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
-    , m_config( new Config( moduleInstanceKey().id(), this ) )
+    , m_config( new Config( moduleInstanceKey(), this ) )
     , m_widget( nullptr )
     , m_stepName( nullptr )
 {

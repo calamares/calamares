@@ -13,15 +13,34 @@
 #include "PackageModel.h"
 
 #include "modulesystem/Config.h"
+#include "modulesystem/InstanceKey.h"
 
 #include <memory>
+
+enum class PackageChooserMode
+{
+    Optional,  // zero or one
+    Required,  // exactly one
+    OptionalMultiple,  // zero or more
+    RequiredMultiple  // one or more
+};
+
+const NamedEnumTable< PackageChooserMode >& packageChooserModeNames();
+
+enum class PackageChooserMethod
+{
+    Legacy,  // use contextualprocess or other custom
+    Packages,  // use the packages module
+};
+
+const NamedEnumTable< PackageChooserMethod >& PackageChooserMethodNames();
 
 class Config : public Calamares::ModuleSystem::Config
 {
     Q_OBJECT
 
 public:
-    Config( const QString& defaultId, QObject* parent = nullptr );
+    Config( const Calamares::ModuleSystem::InstanceKey& defaultId, QObject* parent = nullptr );
     ~Config() override;
 
     void setConfigurationMap( const QVariantMap& ) override;
@@ -51,10 +70,14 @@ private:
     PackageListModel* m_model = nullptr;
     QModelIndex m_defaultModelIndex;
 
-    // Configuration
+    /// Selection mode for this module
     PackageChooserMode m_mode = PackageChooserMode::Optional;
+    /// How this module stores to GS
+    PackageChooserMethod m_method = PackageChooserMethod::Legacy;
+    /// Id (used to identify settings from this module in GS)
     QString m_id;
-    QString m_defaultId;
+    /// Value to use for id if none is set in the config file
+    Calamares::ModuleSystem::InstanceKey m_defaultId;
 };
 
 

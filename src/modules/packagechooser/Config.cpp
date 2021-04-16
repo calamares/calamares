@@ -15,11 +15,43 @@
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "packages/Globals.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
+const NamedEnumTable< PackageChooserMode >&
+packageChooserModeNames()
+{
+    static const NamedEnumTable< PackageChooserMode > names {
+        { "optional", PackageChooserMode::Optional },
+        { "required", PackageChooserMode::Required },
+        { "optionalmultiple", PackageChooserMode::OptionalMultiple },
+        { "requiredmultiple", PackageChooserMode::RequiredMultiple },
+        // and a bunch of aliases
+        { "zero-or-one", PackageChooserMode::Optional },
+        { "radio", PackageChooserMode::Required },
+        { "one", PackageChooserMode::Required },
+        { "set", PackageChooserMode::OptionalMultiple },
+        { "zero-or-more", PackageChooserMode::OptionalMultiple },
+        { "multiple", PackageChooserMode::RequiredMultiple },
+        { "one-or-more", PackageChooserMode::RequiredMultiple }
+    };
+    return names;
+}
 
-Config::Config( const QString& defaultId, QObject* parent )
+const NamedEnumTable< PackageChooserMethod >&
+PackageChooserMethodNames()
+{
+    static const NamedEnumTable< PackageChooserMethod > names {
+        { "legacy", PackageChooserMethod::Legacy },
+        { "custom", PackageChooserMethod::Legacy },
+        { "contextualprocess", PackageChooserMethod::Legacy },
+        { "packages", PackageChooserMethod::Packages },
+    };
+    return names;
+}
+
+Config::Config( const Calamares::ModuleSystem::InstanceKey& defaultId, QObject* parent )
     : Calamares::ModuleSystem::Config( parent )
     , m_model( new PackageListModel( this ) )
     , m_mode( PackageChooserMode::Required )
@@ -44,14 +76,14 @@ Config::introductionPackage() const
     static PackageItem* defaultIntroduction = nullptr;
     if ( !defaultIntroduction )
     {
-        defaultIntroduction = new PackageItem(
-            QString(),
-            QT_TR_NOOP( "Package Selection" ),
-            QT_TR_NOOP( "Please pick a product from the list. The selected product will be installed." ) );
+        const auto name = QT_TR_NOOP( "Package Selection" );
+        const auto description
+            = QT_TR_NOOP( "Please pick a product from the list. The selected product will be installed." );
+        defaultIntroduction = new PackageItem( QString(), name, description );
         defaultIntroduction->screenshot = QPixmap( QStringLiteral( ":/images/no-selection.png" ) );
-        // TODO: enable better translation
-        // defaultIntroduction->name.setContext( metaObject()->className() );
-        // defaultIntroduction->description.setContext( metaObject()->className() );
+        defaultIntroduction->name = CalamaresUtils::Locale::TranslatedString( name, metaObject()->className() );
+        defaultIntroduction->description
+            = CalamaresUtils::Locale::TranslatedString( description, metaObject()->className() );
     }
     return *defaultIntroduction;
 }
@@ -60,10 +92,23 @@ void
 Config::updateGlobalStorage( const QStringList& selected ) const
 {
     QString key = QStringLiteral( "packagechooser_%1" ).arg( m_id );
-    QString value = selected.join( ',' );
-    Calamares::JobQueue::instance()->globalStorage()->insert( key, value );
 
-    cDebug() << "PackageChooser" << key << "selected" << value;
+    if ( m_method == PackageChooserMethod::Legacy )
+    {
+        QString value = selected.join( ',' );
+        Calamares::JobQueue::instance()->globalStorage()->insert( key, value );
+
+        cDebug() << "PackageChooser" << key << "selected" << value;
+    }
+    else if ( m_method == PackageChooserMethod::Packages )
+    {
+        CalamaresUtils::Packages::setGSPackageAdditions(
+            Calamares::JobQueue::instance()->globalStorage(), m_defaultId, selected );
+    }
+    else
+    {
+        cWarning() << "Unknown packagechooser method" << smash( m_method );
+    }
 }
 
 
@@ -142,7 +187,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     m_id = CalamaresUtils::getString( configurationMap, "id" );
     if ( m_id.isEmpty() )
     {
-        m_id = m_defaultId;
+        m_id = m_defaultId.id();
     }
 
     m_defaultModelIndex = QModelIndex();
