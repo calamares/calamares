@@ -98,7 +98,6 @@ LoaderQueue::fetchNext()
 {
     if ( m_queue.isEmpty() )
     {
-        m_config->setStatus( Config::Status::FailedNoData );
         emit done();
         return;
     }
