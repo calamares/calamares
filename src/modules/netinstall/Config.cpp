@@ -136,26 +136,23 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     // Lastly, load the groups data
     const QString key = QStringLiteral( "groupsUrl" );
     const auto& groupsUrlVariant = configurationMap.value( key );
+    m_queue = new LoaderQueue( this );
     if ( groupsUrlVariant.type() == QVariant::String )
     {
-        m_queue = new LoaderQueue( this );
         m_queue->append( SourceItem::makeSourceItem( groupsUrlVariant.toString(), configurationMap ) );
     }
     else if ( groupsUrlVariant.type() == QVariant::List )
     {
-        m_queue = new LoaderQueue( this );
         for ( const auto& s : groupsUrlVariant.toStringList() )
         {
             m_queue->append( SourceItem::makeSourceItem( s, configurationMap ) );
         }
     }
-    if ( m_queue && m_queue->count() > 0 )
-    {
-        cDebug() << "Loading netinstall from" << m_queue->count() << "alternate sources.";
-        setStatus( required() ? Status::FailedNoData : Status::Ok );
-        connect( m_queue, &LoaderQueue::done, this, &Config::loadingDone );
-        m_queue->load();
-    }
+
+    setStatus( required() ? Status::FailedNoData : Status::Ok );
+    cDebug() << "Loading netinstall from" << m_queue->count() << "alternate sources.";
+    connect( m_queue, &LoaderQueue::done, this, &Config::loadingDone );
+    m_queue->load();
 }
 
 void

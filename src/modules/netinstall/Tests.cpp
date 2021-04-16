@@ -347,6 +347,7 @@ ItemTests::testUrlFallback_data()
     QTest::newRow( "error" ) << "1a-single-error.conf" << smash( S::FailedBadData ) << 0;
     QTest::newRow( "second" ) << "1b-single-small.conf" << smash( S::Ok ) << 2;
     QTest::newRow( "none" ) << "1c-none.conf" << smash( S::FailedNoData ) << 0;
+    QTest::newRow( "unset" ) << "1c-unset.conf" << smash( S::FailedNoData ) << 0;
 }
 
 void
