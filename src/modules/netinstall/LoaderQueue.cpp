@@ -26,8 +26,9 @@
  * the queue continues loading. Calling release() before the
  * destructor skips the fetchNext(), ending the queue-loading.
  *
- * Calling done(b) is the same as release(), **plus** done()
- * is called on the queue if @p b is @c true.
+ * Calling done(b) is a conditional release: if @p b is @c true,
+ * queues a call to done() on the queue and releases it; otherwise,
+ * does nothing.
  */
 class FetchNextUnless
 {
@@ -46,11 +47,14 @@ public:
     void release() { m_q = nullptr; }
     void done( bool b )
     {
-        if ( b && m_q )
+        if ( b )
         {
-            QMetaObject::invokeMethod( m_q, "done", Qt::QueuedConnection );
+            if ( m_q )
+            {
+                QMetaObject::invokeMethod( m_q, "done", Qt::QueuedConnection );
+            }
+            release();
         }
-        release();
     }
 
 private:
@@ -94,7 +98,7 @@ LoaderQueue::fetchNext()
 {
     if ( m_queue.isEmpty() )
     {
-        m_config->setStatus( Config::Status::FailedBadData );
+        m_config->setStatus( Config::Status::FailedNoData );
         emit done();
         return;
     }
