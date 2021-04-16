@@ -34,6 +34,7 @@ struct PackageItem
     CalamaresUtils::Locale::TranslatedString name;
     CalamaresUtils::Locale::TranslatedString description;
     QPixmap screenshot;
+    QStringList packageNames;
 
     /// @brief Create blank PackageItem
     PackageItem();
@@ -50,16 +51,21 @@ struct PackageItem
      * @p screenshotPath, which may be a QRC path (:/path/in/qrc) or
      * a filesystem path, whatever QPixmap understands.
      */
-    PackageItem( const QString& id,
-                 const QString& name,
-                 const QString& description,
-                 const QString& screenshotPath );
+    PackageItem( const QString& id, const QString& name, const QString& description, const QString& screenshotPath );
 
     /** @brief Creates a PackageItem from a QVariantMap
      *
      * This is intended for use when loading PackageItems from a
      * configuration map. It will look up the various keys in the map
      * and handle translation strings as well.
+     *
+     * The following keys are used:
+     *  - *id*: the identifier for this item; if it is the empty string
+     *    then this is the special "no-package".
+     *  - *name* (and *name[lang]*): for the name and its translations
+     *  - *description* (and *description[lang]*)
+     *  - *screenshot*: a path to a screenshot for this package
+     *  - *packages*: a list of package names
      */
     PackageItem( const QVariantMap& map );
 

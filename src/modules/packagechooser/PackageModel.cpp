@@ -34,9 +34,7 @@ packageChooserModeNames()
 
 PackageItem::PackageItem() {}
 
-PackageItem::PackageItem( const QString& a_id,
-                          const QString& a_name,
-                          const QString& a_description )
+PackageItem::PackageItem( const QString& a_id, const QString& a_name, const QString& a_description )
     : id( a_id )
     , name( a_name )
     , description( a_description )
@@ -59,6 +57,7 @@ PackageItem::PackageItem::PackageItem( const QVariantMap& item_map )
     , name( CalamaresUtils::Locale::TranslatedString( item_map, "name" ) )
     , description( CalamaresUtils::Locale::TranslatedString( item_map, "description" ) )
     , screenshot( CalamaresUtils::getString( item_map, "screenshot" ) )
+    , packageNames( CalamaresUtils::getStringList( item_map, "packages" ) )
 {
     if ( name.isEmpty() && id.isEmpty() )
     {
