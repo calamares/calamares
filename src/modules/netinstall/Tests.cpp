@@ -342,9 +342,11 @@ ItemTests::testUrlFallback_data()
 
     using S = Config::Status;
 
-    QTest::newRow( "bad" ) << "1a-single-bad.conf" << smash( S::FailedBadData ) << 0;
+    QTest::newRow( "bad" ) << "1a-single-bad.conf" << smash( S::FailedBadConfiguration ) << 0;
     QTest::newRow( "empty" ) << "1a-single-empty.conf" << smash( S::FailedNoData ) << 0;
+    QTest::newRow( "error" ) << "1a-single-error.conf" << smash( S::FailedBadData ) << 0;
     QTest::newRow( "second" ) << "1b-single-small.conf" << smash( S::Ok ) << 2;
+    QTest::newRow( "none" ) << "1c-none.conf" << smash( S::FailedNoData ) << 0;
 }
 
 void
