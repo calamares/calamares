@@ -345,9 +345,12 @@ ItemTests::testUrlFallback_data()
     QTest::newRow( "bad" ) << "1a-single-bad.conf" << smash( S::FailedBadConfiguration ) << 0;
     QTest::newRow( "empty" ) << "1a-single-empty.conf" << smash( S::FailedNoData ) << 0;
     QTest::newRow( "error" ) << "1a-single-error.conf" << smash( S::FailedBadData ) << 0;
-    QTest::newRow( "second" ) << "1b-single-small.conf" << smash( S::Ok ) << 2;
+    QTest::newRow( "two" ) << "1b-single-small.conf" << smash( S::Ok ) << 2;
+    QTest::newRow( "five" ) << "1b-single-large.conf" << smash( S::Ok ) << 5;
     QTest::newRow( "none" ) << "1c-none.conf" << smash( S::FailedNoData ) << 0;
     QTest::newRow( "unset" ) << "1c-unset.conf" << smash( S::FailedNoData ) << 0;
+    QTest::newRow( "fallback-small" ) << "1d-fallback-small.conf" << smash( S::Ok ) << 2;
+    QTest::newRow( "fallback-large" ) << "1d-fallback-large.conf" << smash( S::Ok ) << 5;
 }
 
 void
