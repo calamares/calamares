@@ -102,8 +102,9 @@ Config::updateGlobalStorage( const QStringList& selected ) const
     }
     else if ( m_method == PackageChooserMethod::Packages )
     {
+        QStringList packageNames = m_model->getInstallPackagesForNames( selected );
         CalamaresUtils::Packages::setGSPackageAdditions(
-            Calamares::JobQueue::instance()->globalStorage(), m_defaultId, selected );
+            Calamares::JobQueue::instance()->globalStorage(), m_defaultId, packageNames );
     }
     else
     {
