@@ -79,6 +79,33 @@ PackageListModel::addPackage( PackageItem&& p )
     }
 }
 
+QStringList
+PackageListModel::getInstallPackagesForName( const QString& id ) const
+{
+    for ( const auto& p : qAsConst( m_packages ) )
+    {
+        if ( p.id == id )
+        {
+            return p.packageNames;
+        }
+    }
+    return QStringList();
+}
+
+QStringList
+PackageListModel::getInstallPackagesForNames( const QStringList& ids ) const
+{
+    QStringList l;
+    for ( const auto& p : qAsConst( m_packages ) )
+    {
+        if ( ids.contains( p.id ) )
+        {
+            l.append( p.packageNames );
+        }
+    }
+    return l;
+}
+
 int
 PackageListModel::rowCount( const QModelIndex& index ) const
 {

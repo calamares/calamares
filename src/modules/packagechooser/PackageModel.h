@@ -98,6 +98,19 @@ public:
     /// @brief Direct (non-abstract) count of package data
     int packageCount() const { return m_packages.count(); }
 
+    /** @brief Does a name lookup (based on id) and returns the packages member
+     *
+     * If there is a package with the given @p id, returns its packages
+     * (e.g. the names of underlying packages to install for it); returns
+     * an empty list if the id is not found.
+     */
+    QStringList getInstallPackagesForName( const QString& id ) const;
+    /** @brief Name-lookup all the @p ids and returns the packages members
+     *
+     * Concatenates installPackagesForName() for each id in @p ids.
+     */
+    QStringList getInstallPackagesForNames( const QStringList& ids ) const;
+
     enum Roles : int
     {
         NameRole = Qt::DisplayRole,
