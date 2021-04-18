@@ -16,6 +16,7 @@
 #include "CalamaresVersion.h"
 #include "GlobalStorage.h"
 #include "utils/Logger.h"
+#include "utils/Retranslator.h"
 
 #include <QtTest/QtTest>
 
@@ -33,6 +34,7 @@ private Q_SLOTS:
     void testTranslatableLanguages();
     void testTranslatableConfig1();
     void testTranslatableConfig2();
+    void testTranslatableConfigContext();
     void testLanguageScripts();
 
     void testEsperanto();
@@ -245,6 +247,32 @@ LocaleTests::testTranslatableConfig2()
     QVERIFY( ts3.isEmpty() );
     QCOMPARE( ts3.count(), 1 );  // The empty string
 }
+
+void
+LocaleTests::testTranslatableConfigContext()
+{
+    using TS = CalamaresUtils::Locale::TranslatedString;
+
+    const QString original( "Quit" );
+    TS quitUntranslated( original );
+    TS quitTranslated( original, metaObject()->className() );
+
+    QCOMPARE( quitUntranslated.get(), original );
+    QCOMPARE( quitTranslated.get(), original );
+
+    // Load translation data from QRC
+    QVERIFY( QFile::exists( ":/lang/localetest_nl.qm" ) );
+    QTranslator t;
+    QVERIFY( t.load( QString( ":/lang/localetest_nl" ) ) );
+    QCoreApplication::installTranslator( &t );
+
+    // Translation doesn't affect the one without context
+    QCOMPARE( quitUntranslated.get(), original );
+    // But the translation **does** affect this class' context
+    QCOMPARE( quitTranslated.get(), QStringLiteral( "Ophouden" ) );
+    QCOMPARE( tr( "Quit" ), QStringLiteral( "Ophouden" ) );
+}
+
 
 void
 LocaleTests::testRegions()

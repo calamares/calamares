@@ -215,10 +215,29 @@ calamares_add_test(
         ${geoip_src}
 )
 
+# Build up translations for this one test
+set( trans_file "localetest" )
+set( trans_infile ${CMAKE_CURRENT_BINARY_DIR}/${trans_file}.qrc )
+set( trans_outfile ${CMAKE_CURRENT_BINARY_DIR}/qrc_${trans_file}.cxx )
+set( calamares_i18n_qrc_content "<file>localetest_nl.qm</file>" )
+configure_file( ${CMAKE_SOURCE_DIR}/lang/calamares_i18n.qrc.in ${trans_infile} @ONLY )
+
+qt5_add_translation(QM_FILES "${CMAKE_CURRENT_SOURCE_DIR}/testdata/localetest_nl.ts")
+
+# Run the resource compiler (rcc_options should already be set)
+add_custom_command(
+    OUTPUT ${trans_outfile}
+    COMMAND "${Qt5Core_RCC_EXECUTABLE}"
+    ARGS ${rcc_options} --format-version 1 -name ${trans_file} -o ${trans_outfile} ${trans_infile}
+    MAIN_DEPENDENCY ${trans_infile}
+    DEPENDS ${QM_FILES}
+)
+
 calamares_add_test(
     libcalamareslocaletest
     SOURCES
         locale/Tests.cpp
+        ${trans_outfile}
 )
 
 calamares_add_test(
