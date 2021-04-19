@@ -265,7 +265,7 @@ FillGlobalStorageJob::prettyDescription() const
                                           .arg( path )
                                           .arg( mountPoint )
                                           .arg( fsType )
-                                          .arg( QString() );
+                                          .arg( QString() ) );
                     }
                 }
             }
