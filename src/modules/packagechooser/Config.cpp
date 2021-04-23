@@ -169,6 +169,7 @@ fillModel( PackageListModel* model, const QVariantList& items )
             model->addPackage( PackageItem( item_map ) );
         }
     }
+    cDebug() << Logger::SubEntry << "Loaded PackageChooser with" << model->packageCount() << "entries.";
 }
 
 void

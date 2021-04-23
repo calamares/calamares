@@ -71,6 +71,7 @@ PackageChooserViewStep::widget()
         connect( m_widget, &PackageChooserPage::selectionChanged, [=]() {
             emit nextStatusChanged( this->isNextEnabled() );
         } );
+        hookupModel();
     }
     return m_widget;
 }
