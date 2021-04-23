@@ -13,6 +13,7 @@ properties:
             - apt
             - dnf
             - entropy
+            - luet
             - packagekit
             - pacman
             - pamac
