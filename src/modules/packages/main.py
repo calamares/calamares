@@ -255,7 +255,8 @@ class PMEntropy(PackageManager):
         # Doesn't need to update the system explicitly
         pass
 
-    class PMLuet(PackageManager):
+
+class PMLuet(PackageManager):
     backend = "luet"
 
     def install(self, pkgs, from_local=False):
@@ -270,7 +271,7 @@ class PMEntropy(PackageManager):
 
     def update_system(self):
         check_target_env_call(["luet", "upgrade", "-y"])
-        
+
 
 class PMPackageKit(PackageManager):
     backend = "packagekit"
