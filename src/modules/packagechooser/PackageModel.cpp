@@ -12,46 +12,20 @@
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
-const NamedEnumTable< PackageChooserMode >&
-roleNames()
-{
-    static const NamedEnumTable< PackageChooserMode > names {
-        { "optional", PackageChooserMode::Optional },
-        { "required", PackageChooserMode::Required },
-        { "optionalmultiple", PackageChooserMode::OptionalMultiple },
-        { "requiredmultiple", PackageChooserMode::RequiredMultiple },
-        // and a bunch of aliases
-        { "zero-or-one", PackageChooserMode::Optional },
-        { "radio", PackageChooserMode::Required },
-        { "one", PackageChooserMode::Required },
-        { "set", PackageChooserMode::OptionalMultiple },
-        { "zero-or-more", PackageChooserMode::OptionalMultiple },
-        { "multiple", PackageChooserMode::RequiredMultiple },
-        { "one-or-more", PackageChooserMode::RequiredMultiple }
-    };
-    return names;
-}
-
 PackageItem::PackageItem() {}
 
-PackageItem::PackageItem( const QString& a_id,
-                          const QString& a_package,
-                          const QString& a_name,
-                          const QString& a_description )
+PackageItem::PackageItem( const QString& a_id, const QString& a_name, const QString& a_description )
     : id( a_id )
-    , package( a_package )
     , name( a_name )
     , description( a_description )
 {
 }
 
 PackageItem::PackageItem( const QString& a_id,
-                          const QString& a_package,
                           const QString& a_name,
                           const QString& a_description,
                           const QString& screenshotPath )
     : id( a_id )
-    , package( a_package )
     , name( a_name )
     , description( a_description )
     , screenshot( screenshotPath )
@@ -60,10 +34,10 @@ PackageItem::PackageItem( const QString& a_id,
 
 PackageItem::PackageItem::PackageItem( const QVariantMap& item_map )
     : id( CalamaresUtils::getString( item_map, "id" ) )
-    , package( CalamaresUtils::getString( item_map, "package" ) )
     , name( CalamaresUtils::Locale::TranslatedString( item_map, "name" ) )
     , description( CalamaresUtils::Locale::TranslatedString( item_map, "description" ) )
     , screenshot( CalamaresUtils::getString( item_map, "screenshot" ) )
+    , packageNames( CalamaresUtils::getStringList( item_map, "packages" ) )
 {
     if ( name.isEmpty() && id.isEmpty() )
     {
@@ -103,6 +77,33 @@ PackageListModel::addPackage( PackageItem&& p )
         m_packages.append( p );
         endInsertRows();
     }
+}
+
+QStringList
+PackageListModel::getInstallPackagesForName( const QString& id ) const
+{
+    for ( const auto& p : qAsConst( m_packages ) )
+    {
+        if ( p.id == id )
+        {
+            return p.packageNames;
+        }
+    }
+    return QStringList();
+}
+
+QStringList
+PackageListModel::getInstallPackagesForNames( const QStringList& ids ) const
+{
+    QStringList l;
+    for ( const auto& p : qAsConst( m_packages ) )
+    {
+        if ( ids.contains( p.id ) )
+        {
+            l.append( p.packageNames );
+        }
+    }
+    return l;
 }
 
 int

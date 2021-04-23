@@ -10,8 +10,11 @@ website will have to do for older versions.
 # 3.2.40 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
+ - Anubhav Choudhary (SoK success!)
  - Erik Dubois
- - Lisa Vitolo
+ - Jerrod Frost (new contributor! welcome!)
+ - Joe Kamprad
+ - Lisa Vitolo (blast from the past!)
 
 ## Core ##
  - The CMake modules for consumption by external modules (e.g. the
@@ -22,14 +25,48 @@ This release contains contributions from (alphabetically by first name):
    libcalamares to systematically mark filesystem (types) as "in use"
    or not. This, in turn, means that modules can depend on that information
    for other work (e.g. removing drivers for unused filesystems). #1635
+ - The "upload log file" now has a configurable log-file-size. (Thanks Anubhav)
 
 ## Modules ##
  - *displaymanager* example configuration has been shuffled around a bit,
    for better results when the live image is running XFCE. Also lists
    more potential display managers. #1205 (Thanks Erik)
+ - The *netinstall* module can now fall back to alternative URLs when
+   loading groups data. The first URL to yield a non-empty groups
+   collection is accepted. No changes are needed in the configuration. #1673
+ - *packagechooser* can now integrate with the *packages* module; that
+   means you can specify package names to install for a given selection,
+   and the regular package-installation mechanism will take care of it.
+   Legacy configurations that use *contextualprocess* are still supported.
+   See the `packagechooser.conf` file for details. #1550
  - A long-neglected pull request from Lisa Vitolo for the *partition*
    module -- allowing to set filesystem labels during manual partitioning --
    has been revived and merged.
+
+
+# 3.2.39.3 (2021-04-14) #
+
+A minor bugfix tweak release. Since this contains yet **another**
+autologin-related fix, and there is nothing large enough to justify
+a 3.2.40 release yet, add it to the growing tail of 3.2.39. (Reported
+by Joe Kamprad, #1672). Also fixes a regression from 3.2.28 in
+localized packages (e.g. *package-LOCALE* did not work).
+
+
+# 3.2.39.2 (2021-04-02) #
+
+This is **another** hotfix release for issues around autologin ..
+autoLogin, really, since the whole problem is that internal capitalization
+changed. An unrelated bug in writing /etc/default/keyboard was
+also fixed. (Reported by pcrepix, #1668)
+
+
+# 3.2.39.1 (2021-03-30) #
+
+This hotfix release corrects a regression in the *displaymanager*
+module caused by changes in the *users* module; autologin was
+internally renamed and no longer recognized by the *displaymanager*
+module. (Reported by Erik Dubois, #1665)
 
 
 # 3.2.39 (2021-03-19) #

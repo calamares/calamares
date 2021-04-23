@@ -27,6 +27,16 @@ def pretty_name():
     return _("Configure Plymouth theme")
 
 
+def detect_plymouth():
+    """
+    Checks existence (runnability) of plymouth in the target system.
+
+    @return True if plymouth exists in the target, False otherwise
+    """
+    # Used to only check existence of path /usr/bin/plymouth in target
+    return target_env_call(["sh", "-c", "which plymouth"]) == 0
+
+
 class PlymouthController:
 
     def __init__(self):
@@ -42,14 +52,8 @@ class PlymouthController:
                          plymouth_theme + '|', "-i",
                          "/etc/plymouth/plymouthd.conf"])
 
-    def detect(self):
-        isPlymouth = target_env_call(["sh", "-c", "which plymouth"])
-        debug("which plymouth exit code: {!s}".format(isPlymouth))
-
-        return isPlymouth
-
     def run(self):
-        if self.detect() == 0:
+        if detect_plymouth():
             if (("plymouth_theme" in libcalamares.job.configuration) and
                (libcalamares.job.configuration["plymouth_theme"] is not None)):
                 self.setTheme()

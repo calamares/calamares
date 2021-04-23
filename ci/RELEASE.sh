@@ -75,6 +75,12 @@ fi
 #
 #
 BUILDDIR=$(mktemp -d --suffix=-build --tmpdir=.)
+KEY_ID="CFDDC96F12B1915C"
+
+# Try to make gpg cache the signing key, so we can leave the process
+# to run and sign.
+rm -f CHANGES.gpg
+gpg -s -u $KEY_ID CHANGES
 
 ### Build with default compiler
 #
@@ -124,7 +130,6 @@ test -n "$V" || { echo "Could not obtain version in $BUILDDIR ." ; exit 1 ; }
 #
 # This is the signing key ID associated with the GitHub account adriaandegroot,
 # which is used to create all "verified" tags in the Calamares repo.
-KEY_ID="CFDDC96F12B1915C"
 git tag -u "$KEY_ID" -m "Release v$V" "v$V" || { echo "Could not sign tag v$V." ; exit 1 ; }
 
 ### Create the tarball
@@ -145,6 +150,7 @@ test -d "$TMPDIR" || { echo "Could not create tarball-build directory." ; exit 1
 tar xzf "$TAR_FILE" -C "$TMPDIR" || { echo "Could not unpack tarball." ; exit 1 ; }
 test -d "$TMPDIR/$TAR_V" || { echo "Tarball did not contain source directory." ; exit 1 ; }
 ( cd "$TMPDIR/$TAR_V" && cmake . && make -j4 && make test ) || { echo "Tarball build failed in $TMPDIR ." ; exit 1 ; }
+gpg -s -u $KEY_ID --detach --armor $TAR_FILE  # Sign the tarball
 
 ### Cleanup
 #
@@ -157,7 +163,6 @@ rm -rf "$TMPDIR"  # From tarball
 cat <<EOF
 # Next steps for this release:
   git push origin v$V
-  gpg -s -u $KEY_ID --detach --armor $TAR_FILE  # Sign the tarball
   # Upload tarball $TAR_FILE and the signature $TAR_FILE.asc
   # Announce via https://github.com/calamares/calamares/releases/new
   # SHA256: $SHA256

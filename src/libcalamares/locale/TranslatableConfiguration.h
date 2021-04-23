@@ -50,11 +50,23 @@ public:
      * metaObject()->className() as context (from a QObject based class)
      * to give the TranslatedString the same context as other calls
      * to tr() within that class.
+     *
+     * The @p context, if any, should point to static data; it is
+     * **not** owned by the TranslatedString.
      */
     TranslatedString( const QVariantMap& map, const QString& key, const char* context = nullptr );
     /** @brief Not-actually-translated string.
      */
     TranslatedString( const QString& string );
+    /** @brief Proxy for calling QObject::tr()
+     *
+     * This is like the two constructors above, with an empty map an a
+     * non-null context. It will end up calling tr() with that context.
+     *
+     * The @p context, if any, should point to static data; it is
+     * **not** owned by the TranslatedString.
+     */
+    TranslatedString( const QString& key, const char* context );
     /// @brief Empty string
     TranslatedString()
         : TranslatedString( QString() )

@@ -1,0 +1,17 @@
+# SPDX-FileCopyrightText: no
+# SPDX-License-Identifier: CC0-1.0
+#
+- name: "Default"
+  description: "Default group"
+  hidden: false
+  selected: true
+  critical: false
+  packages:
+    - base
+- name: "Second"
+  description: "Second group"
+  hidden: false
+  selected: true
+  critical: false
+  packages:
+    - chakra-live-skel

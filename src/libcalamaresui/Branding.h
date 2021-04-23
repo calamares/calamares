@@ -223,10 +223,11 @@ public:
 
     /** @brief Upload server configuration
      *
-     * This is both the type (which may be none, in which case the URL
-     * is irrelevant and usually empty) and the URL for the upload.
+     * This object has 3 items : the type (which may be none, in which case the URL
+     * is irrelevant and usually empty), the URL for the upload and the size limit of upload
+     * in bytes (for configuration value < 0, it serves -1, which stands for having no limit).
      */
-    using UploadServerInfo = QPair< UploadServerType, QUrl >;
+    using UploadServerInfo = std::tuple< UploadServerType, QUrl, qint64 >;
     UploadServerInfo uploadServer() const { return m_uploadServer; }
 
     /**

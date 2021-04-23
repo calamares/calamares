@@ -10,7 +10,7 @@
 #include "CalamaresApplication.h"
 
 #include "CalamaresConfig.h"
-#include "CalamaresVersion.h"
+#include "CalamaresVersionX.h"
 #include "CalamaresWindow.h"
 #include "progresstree/ProgressTreeView.h"
 
@@ -68,7 +68,7 @@ CalamaresApplication::init()
     Logger::setupLogfile();
     cDebug() << "Calamares version:" << CALAMARES_VERSION;
     cDebug() << Logger::SubEntry
-             << "        languages:" << QString( CALAMARES_TRANSLATION_LANGUAGES ).replace( ";", ", " );
+             << "languages:" << QString( CALAMARES_TRANSLATION_LANGUAGES ).replace( ";", ", " );
 
     if ( !Calamares::Settings::instance() )
     {

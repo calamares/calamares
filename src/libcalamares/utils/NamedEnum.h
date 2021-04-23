@@ -174,6 +174,22 @@ struct NamedEnumTable
         return table.begin()->second;
     }
 
+    /** @brief Find a name @p s in the table.
+     *
+     * Searches case-insensitively.
+     *
+     * If the name @p s is not found, the value @p d is returned as
+     * a default. Otherwise the value corresponding to @p s is returned.
+     * This is a shortcut over find() using a bool to distinguish
+     * successful and unsuccesful lookups.
+     */
+    enum_t find( const string_t& s, enum_t d ) const
+    {
+        bool ok = false;
+        enum_t e = find( s, ok );
+        return ok ? e : d;
+    }
+
     /** @brief Find a value @p s in the table and return its name.
      *
      * If @p s is an enum value in the table, return the corresponding

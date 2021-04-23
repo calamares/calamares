@@ -30,8 +30,12 @@ using namespace CalamaresUtils::Units;
  * Returns an empty QByteArray() on any kind of error.
  */
 STATICTEST QByteArray
-logFileContents()
+logFileContents( const qint64 sizeLimitBytes )
 {
+    if ( sizeLimitBytes != -1 )
+    {
+        cDebug() << "Log upload size limit was limited to" << sizeLimitBytes << "bytes";
+    }
     const QString name = Logger::logFile();
     QFile pasteSourceFile( name );
     if ( !pasteSourceFile.open( QIODevice::ReadOnly | QIODevice::Text ) )
@@ -39,12 +43,18 @@ logFileContents()
         cWarning() << "Could not open log file" << name;
         return QByteArray();
     }
-    QFileInfo fi( pasteSourceFile );
-    if ( fi.size() > 16_KiB )
+    if ( sizeLimitBytes == -1 )
     {
-        pasteSourceFile.seek( fi.size() - 16_KiB );
+        return pasteSourceFile.readAll();
     }
-    return pasteSourceFile.read( 16_KiB );
+    QFileInfo fi( pasteSourceFile );
+    if ( fi.size() > sizeLimitBytes )
+    {
+        cDebug() << "Only last" << sizeLimitBytes << "bytes of log file (sized" << fi.size() << "bytes) uploaded";
+        fi.refresh();
+        pasteSourceFile.seek( fi.size() - sizeLimitBytes );
+    }
+    return pasteSourceFile.read( sizeLimitBytes );
 }
 
 
@@ -101,7 +111,7 @@ ficheLogUpload( const QByteArray& pasteData, const QUrl& serverUrl, QObject* par
 QString
 CalamaresUtils::Paste::doLogUpload( QObject* parent )
 {
-    auto [ type, serverUrl ] = Calamares::Branding::instance()->uploadServer();
+    auto [ type, serverUrl, sizeLimitBytes ] = Calamares::Branding::instance()->uploadServer();
     if ( !serverUrl.isValid() )
     {
         cWarning() << "Upload configure with invalid URL";
@@ -113,7 +123,7 @@ CalamaresUtils::Paste::doLogUpload( QObject* parent )
         return QString();
     }
 
-    QByteArray pasteData = logFileContents();
+    QByteArray pasteData = logFileContents( sizeLimitBytes );
     if ( pasteData.isEmpty() )
     {
         // An error has already been logged
@@ -165,6 +175,6 @@ CalamaresUtils::Paste::doLogUploadUI( QWidget* parent )
 bool
 CalamaresUtils::Paste::isEnabled()
 {
-    auto [ type, serverUrl ] = Calamares::Branding::instance()->uploadServer();
+    auto [ type, serverUrl, sizeLimitBytes ] = Calamares::Branding::instance()->uploadServer();
     return type != Calamares::Branding::UploadServerType::None;
 }

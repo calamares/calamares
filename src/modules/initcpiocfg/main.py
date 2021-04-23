@@ -92,6 +92,7 @@ def write_mkinitcpio_lines(hooks, modules, files, root_mount_point):
     with open(path, "w") as mkinitcpio_file:
         mkinitcpio_file.write("\n".join(mklins) + "\n")
 
+
 def detect_plymouth():
     """
     Checks existence (runnability) of plymouth in the target system.
@@ -99,10 +100,8 @@ def detect_plymouth():
     @return True if plymouth exists in the target, False otherwise
     """
     # Used to only check existence of path /usr/bin/plymouth in target
-    isPlymouth = target_env_call(["sh", "-c", "which plymouth"])
-    debug("which plymouth exit code: {!s}".format(isPlymouth))
+    return target_env_call(["sh", "-c", "which plymouth"]) == 0
 
-    return isPlymouth == 0
 
 def modify_mkinitcpio_conf(partitions, root_mount_point):
     """

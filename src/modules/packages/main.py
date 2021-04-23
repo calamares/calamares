@@ -256,6 +256,23 @@ class PMEntropy(PackageManager):
         pass
 
 
+class PMLuet(PackageManager):
+    backend = "luet"
+
+    def install(self, pkgs, from_local=False):
+        check_target_env_call(["luet", "install", "-y"] + pkgs)
+
+    def remove(self, pkgs):
+        check_target_env_call(["luet", "uninstall", "-y"] + pkgs)
+
+    def update_db(self):
+          # Luet checks for DB update everytime its ran.
+        pass
+
+    def update_system(self):
+        check_target_env_call(["luet", "upgrade", "-y"])
+
+
 class PMPackageKit(PackageManager):
     backend = "packagekit"
 

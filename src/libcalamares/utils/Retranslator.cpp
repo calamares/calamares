@@ -113,7 +113,7 @@ BrandingLoader::tryLoad( QTranslator* translator )
         }
         else
         {
-            cDebug() << Logger::SubEntry << "Branding using default, system locale not found:" << m_localeName;
+            cDebug() << Logger::SubEntry << "Branding no translation for" << m_localeName << "using default (en)";
             // TODO: this loads something completely different
             return translator->load( m_prefix + "en" );
         }

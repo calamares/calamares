@@ -12,11 +12,11 @@
 #include "GlobalStorage.h"
 #include "utils/Logger.h"
 
-bool
-CalamaresUtils::Packages::setGSPackageAdditions( Calamares::GlobalStorage* gs,
-                                                 const Calamares::ModuleSystem::InstanceKey& module,
-                                                 const QVariantList& installPackages,
-                                                 const QVariantList& tryInstallPackages )
+static bool
+additions( Calamares::GlobalStorage* gs,
+           const QString& key,
+           const QVariantList& installPackages,
+           const QVariantList& tryInstallPackages )
 {
     static const char PACKAGEOP[] = "packageOperations";
 
@@ -24,8 +24,6 @@ CalamaresUtils::Packages::setGSPackageAdditions( Calamares::GlobalStorage* gs,
     // extend that one (overwriting the value in GS at the end of this method)
     QVariantList packageOperations = gs->contains( PACKAGEOP ) ? gs->value( PACKAGEOP ).toList() : QVariantList();
     cDebug() << "Existing package operations length" << packageOperations.length();
-
-    const QString key = module.toString();
 
     // Clear out existing operations for this module, going backwards:
     // Sometimes we remove an item, and we don't want the index to
@@ -65,4 +63,26 @@ CalamaresUtils::Packages::setGSPackageAdditions( Calamares::GlobalStorage* gs,
         return true;
     }
     return false;
+}
+
+bool
+CalamaresUtils::Packages::setGSPackageAdditions( Calamares::GlobalStorage* gs,
+                                                 const Calamares::ModuleSystem::InstanceKey& module,
+                                                 const QVariantList& installPackages,
+                                                 const QVariantList& tryInstallPackages )
+{
+    return additions( gs, module.toString(), installPackages, tryInstallPackages );
+}
+
+bool
+CalamaresUtils::Packages::setGSPackageAdditions( Calamares::GlobalStorage* gs,
+                                                 const Calamares::ModuleSystem::InstanceKey& module,
+                                                 const QStringList& installPackages )
+{
+    QVariantList l;
+    for ( const auto& s : installPackages )
+    {
+        l << s;
+    }
+    return additions( gs, module.toString(), l, QVariantList() );
 }

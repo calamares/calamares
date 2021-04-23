@@ -10,13 +10,14 @@
  */
 
 #include "Paste.h"
+#include "network/Manager.h"
 
 #include "utils/Logger.h"
 
 #include <QDateTime>
 #include <QtTest/QtTest>
 
-extern QByteArray logFileContents();
+extern QByteArray logFileContents( qint64 sizeLimitBytes );
 extern QString ficheLogUpload( const QByteArray& pasteData, const QUrl& serverUrl, QObject* parent );
 
 class TestPaste : public QObject
@@ -30,6 +31,7 @@ public:
 private Q_SLOTS:
     void testGetLogFile();
     void testFichePaste();
+    void testUploadSize();
 };
 
 void
@@ -37,14 +39,18 @@ TestPaste::testGetLogFile()
 {
     QFile::remove( Logger::logFile() );
     // This test assumes nothing **else** has set up logging yet
-    QByteArray contentsOfLogfileBefore = logFileContents();
-    QVERIFY( contentsOfLogfileBefore.isEmpty() );
+    QByteArray logLimitedBefore = logFileContents( 16 );
+    QVERIFY( logLimitedBefore.isEmpty() );
+    QByteArray logUnlimitedBefore = logFileContents( -1 );
+    QVERIFY( logUnlimitedBefore.isEmpty() );
 
     Logger::setupLogLevel( Logger::LOGDEBUG );
     Logger::setupLogfile();
 
-    QByteArray contentsOfLogfileAfterSetup = logFileContents();
-    QVERIFY( !contentsOfLogfileAfterSetup.isEmpty() );
+    QByteArray logLimitedAfter = logFileContents( 16 );
+    QVERIFY( !logLimitedAfter.isEmpty() );
+    QByteArray logUnlimitedAfter = logFileContents( -1 );
+    QVERIFY( !logUnlimitedAfter.isEmpty() );
 }
 
 void
@@ -60,7 +66,19 @@ TestPaste::testFichePaste()
     QVERIFY( !s.isEmpty() );
 }
 
+void
+TestPaste::testUploadSize()
+{
+    QByteArray logContent = logFileContents( 100 );
+    QString s = ficheLogUpload( logContent, QUrl( "http://termbin.com:9999" ), nullptr );
 
+    QVERIFY( !s.isEmpty() );
+
+    QUrl url( s );
+    QByteArray returnedData = CalamaresUtils::Network::Manager::instance().synchronousGet( url );
+
+    QCOMPARE( returnedData.size(), 100 );
+}
 QTEST_GUILESS_MAIN( TestPaste )
 
 #include "utils/moc-warnings.h"

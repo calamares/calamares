@@ -49,10 +49,12 @@ public:
         FailedNetworkError,
         FailedBadData,
         FailedNoData
-
     };
 
+    /// Human-readable, translated representation of the status
     QString status() const;
+    /// Internal code for the status
+    Status statusCode() const { return m_status; }
     void setStatus( Status s );
 
     bool required() const { return m_required; }
