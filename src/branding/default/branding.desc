@@ -220,13 +220,19 @@ slideshowAPI: 2
 
 
 # These options are to customize online uploading of logs to pastebins:
-#  - type : Defines the kind of pastebin service to be used. Currently
-#           it accepts two values:
-#           - none    :    disables the pastebin functionality
-#           - fiche   :    use fiche pastebin server
-#  - url  : Defines the address of pastebin service to be used.
-#           Takes string as input. Important bits are the host and port,
-#           the scheme is not used.
+#  - type      : Defines the kind of pastebin service to be used. Currently
+#                it accepts two values:
+#                - none    :    disables the pastebin functionality
+#                - fiche   :    use fiche pastebin server
+#  - url       : Defines the address of pastebin service to be used.
+#                Takes string as input. Important bits are the host and port,
+#                the scheme is not used.
+#  - sizeLimit : Defines maximum size limit (in KiB) of log file to be pasted.
+#                Takes integer as input. If < 0, no limit will be forced,
+#                else only last (approximately) 'n' KiB of log file will be pasted.
+#                Please note that upload size may be slightly over the limit (due
+#                to last minute logging), so provide a suitable value.
 uploadServer :
     type :    "fiche"
     url :     "http://termbin.com:9999"
+    sizeLimit : -1
