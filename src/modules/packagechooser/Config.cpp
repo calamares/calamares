@@ -90,20 +90,16 @@ Config::introductionPackage() const
 void
 Config::updateGlobalStorage( const QStringList& selected ) const
 {
-    const QString& key = m_id;
-    cDebug() << "Writing to GS" << key;
-
     if ( m_method == PackageChooserMethod::Legacy )
     {
         QString value = selected.join( ',' );
-        Calamares::JobQueue::instance()->globalStorage()->insert( key, value );
-
-        cDebug() << Logger::SubEntry << "PackageChooser" << key << "selected" << value;
+        Calamares::JobQueue::instance()->globalStorage()->insert( m_id, value );
+        cDebug() << m_id<< "selected" << value;
     }
     else if ( m_method == PackageChooserMethod::Packages )
     {
         QStringList packageNames = m_model->getInstallPackagesForNames( selected );
-        cDebug() << Logger::SubEntry << "Got packages" << packageNames;
+        cDebug() << m_defaultId << "packages to install" << packageNames;
         CalamaresUtils::Packages::setGSPackageAdditions(
             Calamares::JobQueue::instance()->globalStorage(), m_defaultId, packageNames );
     }
@@ -181,20 +177,27 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     m_method = PackageChooserMethodNames().find( CalamaresUtils::getString( configurationMap, "method" ),
                                                  PackageChooserMethod::Legacy );
 
+    if ( m_method == PackageChooserMethod::Legacy )
     {
         const QString configId = CalamaresUtils::getString( configurationMap, "id" );
+        const QString base = QStringLiteral( "packagechooser_" );
         if ( configId.isEmpty() )
         {
-            m_id = m_defaultId.toString();
-            if ( m_id.isEmpty() )
+            if ( m_defaultId.id().isEmpty() )
             {
-                m_id = QString( "packagechooser" );
+                // We got nothing to work with
+                m_id = base;
+            }
+            else
+            {
+                m_id = base + m_defaultId.id();
             }
             cDebug() << "Using default ID" << m_id << "from" << m_defaultId.toString();
         }
         else
         {
-            m_id = QStringLiteral( "packagechooser_" ) + configId;
+            m_id = base + configId;
+            cDebug() << "Using configured ID" << m_id;
         }
     }
 
