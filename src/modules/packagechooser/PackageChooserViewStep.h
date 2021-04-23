@@ -15,12 +15,9 @@
 #include "utils/PluginFactory.h"
 #include "viewpages/ViewStep.h"
 
-#include "PackageModel.h"
-
-#include <QObject>
-#include <QUrl>
 #include <QVariantMap>
 
+class Config;
 class PackageChooserPage;
 
 class PLUGINDLLEXPORT PackageChooserViewStep : public Calamares::ViewStep
@@ -49,17 +46,11 @@ public:
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
 private:
-    void fillModel( const QVariantList& items );
     void hookupModel();
 
+    Config* m_config;
     PackageChooserPage* m_widget;
-    PackageListModel* m_model;
-
-    // Configuration
-    PackageChooserMode m_mode;
-    QString m_id;
     CalamaresUtils::Locale::TranslatedString* m_stepName;  // As it appears in the sidebar
-    QModelIndex m_defaultIdx;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( PackageChooserViewStepFactory )
