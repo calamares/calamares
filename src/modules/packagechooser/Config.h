@@ -40,9 +40,17 @@ class Config : public Calamares::ModuleSystem::Config
     Q_OBJECT
 
 public:
-    Config( const Calamares::ModuleSystem::InstanceKey& defaultId, QObject* parent = nullptr );
+    Config( QObject* parent = nullptr );
     ~Config() override;
 
+    /** @brief Sets the default Id for this Config
+     *
+     * The default Id is the (owning) module identifier for the config,
+     * and it is used when the Id read from the config file is empty.
+     * The **usual** configuration when using method *packages* is
+     * to rely on the default Id.
+     */
+    void setDefaultId( const Calamares::ModuleSystem::InstanceKey& defaultId ) { m_defaultId = defaultId; }
     void setConfigurationMap( const QVariantMap& ) override;
 
     PackageChooserMode mode() const { return m_mode; }

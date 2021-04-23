@@ -51,11 +51,10 @@ PackageChooserMethodNames()
     return names;
 }
 
-Config::Config( const Calamares::ModuleSystem::InstanceKey& defaultId, QObject* parent )
+Config::Config( QObject* parent )
     : Calamares::ModuleSystem::Config( parent )
     , m_model( new PackageListModel( this ) )
     , m_mode( PackageChooserMode::Required )
-    , m_defaultId( defaultId )
 {
 }
 
@@ -91,7 +90,7 @@ Config::introductionPackage() const
 void
 Config::updateGlobalStorage( const QStringList& selected ) const
 {
-    QString key = QStringLiteral( "packagechooser_%1" ).arg( m_id );
+    const QString& key = m_id;
     cDebug() << "Writing to GS" << key;
 
     if ( m_method == PackageChooserMethod::Legacy )
@@ -177,24 +176,34 @@ fillModel( PackageListModel* model, const QVariantList& items )
 void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    m_mode = packageChooserModeNames().find( CalamaresUtils::getString( configurationMap, "mode" ), PackageChooserMode::Required );
-    m_method = PackageChooserMethodNames().find( CalamaresUtils::getString( configurationMap, "method" ), PackageChooserMethod::Legacy );
+    m_mode = packageChooserModeNames().find( CalamaresUtils::getString( configurationMap, "mode" ),
+                                             PackageChooserMode::Required );
+    m_method = PackageChooserMethodNames().find( CalamaresUtils::getString( configurationMap, "method" ),
+                                                 PackageChooserMethod::Legacy );
 
-    m_id = CalamaresUtils::getString( configurationMap, "id" );
-    if ( m_id.isEmpty() )
     {
-        m_id = m_defaultId.id();
-        cDebug() << "Using default ID" << m_id << "from" << m_defaultId.toString();
+        const QString configId = CalamaresUtils::getString( configurationMap, "id" );
+        if ( configId.isEmpty() )
+        {
+            m_id = m_defaultId.toString();
+            if ( m_id.isEmpty() )
+            {
+                m_id = QString( "packagechooser" );
+            }
+            cDebug() << "Using default ID" << m_id << "from" << m_defaultId.toString();
+        }
+        else
+        {
+            m_id = QStringLiteral( "packagechooser_" ) + configId;
+        }
     }
 
-    m_defaultModelIndex = QModelIndex();
     if ( configurationMap.contains( "items" ) )
     {
         fillModel( m_model, configurationMap.value( "items" ).toList() );
     }
 
     QString default_item_id = CalamaresUtils::getString( configurationMap, "default" );
-    // find default item
     if ( !default_item_id.isEmpty() )
     {
         for ( int item_n = 0; item_n < m_model->packageCount(); ++item_n )
