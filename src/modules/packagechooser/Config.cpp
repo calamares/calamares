@@ -92,17 +92,19 @@ void
 Config::updateGlobalStorage( const QStringList& selected ) const
 {
     QString key = QStringLiteral( "packagechooser_%1" ).arg( m_id );
+    cDebug() << "Writing to GS" << key;
 
     if ( m_method == PackageChooserMethod::Legacy )
     {
         QString value = selected.join( ',' );
         Calamares::JobQueue::instance()->globalStorage()->insert( key, value );
 
-        cDebug() << "PackageChooser" << key << "selected" << value;
+        cDebug() << Logger::SubEntry << "PackageChooser" << key << "selected" << value;
     }
     else if ( m_method == PackageChooserMethod::Packages )
     {
         QStringList packageNames = m_model->getInstallPackagesForNames( selected );
+        cDebug() << Logger::SubEntry << "Got packages" << packageNames;
         CalamaresUtils::Packages::setGSPackageAdditions(
             Calamares::JobQueue::instance()->globalStorage(), m_defaultId, packageNames );
     }
@@ -175,21 +177,14 @@ fillModel( PackageListModel* model, const QVariantList& items )
 void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    QString mode = CalamaresUtils::getString( configurationMap, "mode" );
-    bool mode_ok = false;
-    if ( !mode.isEmpty() )
-    {
-        m_mode = packageChooserModeNames().find( mode, mode_ok );
-    }
-    if ( !mode_ok )
-    {
-        m_mode = PackageChooserMode::Required;
-    }
+    m_mode = packageChooserModeNames().find( CalamaresUtils::getString( configurationMap, "mode" ), PackageChooserMode::Required );
+    m_method = PackageChooserMethodNames().find( CalamaresUtils::getString( configurationMap, "method" ), PackageChooserMethod::Legacy );
 
     m_id = CalamaresUtils::getString( configurationMap, "id" );
     if ( m_id.isEmpty() )
     {
         m_id = m_defaultId.id();
+        cDebug() << "Using default ID" << m_id << "from" << m_defaultId.toString();
     }
 
     m_defaultModelIndex = QModelIndex();
