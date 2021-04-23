@@ -10,10 +10,11 @@ website will have to do for older versions.
 # 3.2.40 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - Anubhav Choudhary
+ - Anubhav Choudhary (SoK success!)
  - Erik Dubois
+ - Jerrod Frost (new contributor! welcome!)
  - Joe Kamprad
- - Lisa Vitolo
+ - Lisa Vitolo (blast from the past!)
 
 ## Core ##
  - The CMake modules for consumption by external modules (e.g. the
