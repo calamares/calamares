@@ -392,7 +392,7 @@ ItemTests::testUrlFallback()
             QVERIFY( map.count() > 0 );
             c.setConfigurationMap( map );
         }
-        catch ( YAML::Exception& e )
+        catch ( YAML::Exception& )
         {
             bool badYaml = true;
             QVERIFY( !badYaml );
