@@ -9,7 +9,7 @@
 
 #include "Tests.h"
 
-#ifdef HAVE_XML
+#ifdef HAVE_APPDATA
 #include "ItemAppData.h"
 #endif
 #ifdef HAVE_APPSTREAM

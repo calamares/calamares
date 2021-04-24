@@ -13,16 +13,6 @@
 #include "PackageChooserPage.h"
 #include "PackageModel.h"
 
-#ifdef HAVE_XML
-#include "ItemAppData.h"
-#endif
-
-#ifdef HAVE_APPSTREAM
-#include "ItemAppStream.h"
-#include <AppStreamQt/pool.h>
-#include <memory>
-#endif
-
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "locale/TranslatableConfiguration.h"

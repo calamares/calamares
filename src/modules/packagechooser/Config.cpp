@@ -9,9 +9,16 @@
 
 #include "Config.h"
 
-#ifdef HAVE_XML
+#ifdef HAVE_APPDATA
 #include "ItemAppData.h"
 #endif
+
+#ifdef HAVE_APPSTREAM
+#include "ItemAppStream.h"
+#include <AppStreamQt/pool.h>
+#include <memory>
+#endif
+
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
