@@ -15,7 +15,7 @@ option( WITH_APPDATA "Support appdata: items in PackageChooser (requires QtXml)"
 if ( WITH_APPDATA )
     find_package(Qt5 COMPONENTS Xml)
     if ( Qt5Xml_FOUND )
-        add_definitions( -DHAVE_XML )
+        add_definitions( -DHAVE_APPDATA )
         list( APPEND _extra_libraries Qt5::Xml )
         list( APPEND _extra_src ItemAppData.cpp )
     endif()
