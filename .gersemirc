@@ -1,0 +1,6 @@
+color: false
+definitions: [ CMakeModules/CalamaresAddTest.cmake ]
+line_length: 120
+quiet: false
+unsafe: false
+
