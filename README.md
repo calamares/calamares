@@ -47,7 +47,7 @@ The dependencies are explained in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 Calamares welcomes PRs. New issues are welcome, too.
 There are both the Calamares **core** repository (this one),
-and an *extensions** repository ([Calamares extensions](https://github.com/calamares/calamares-extensions).
+and an *extensions** repository ([Calamares extensions](https://github.com/calamares/calamares-extensions)).
 
 Contributions to code, modules, documentation, the wiki and the website are all welcome.
 There is more information in the [CONTRIBUTING.md](CONTRIBUTING.md) file.
