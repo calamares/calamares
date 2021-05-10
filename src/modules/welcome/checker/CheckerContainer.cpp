@@ -64,6 +64,7 @@ CheckerContainer::requirementsComplete( bool ok )
     m_waitingWidget = nullptr;  // Don't delete in destructor
 
     m_checkerWidget = new ResultsListWidget( m_model, this );
+    m_checkerWidget->setObjectName( "requirementsChecker" );
     layout()->addWidget( m_checkerWidget );
 
     m_verdict = ok;

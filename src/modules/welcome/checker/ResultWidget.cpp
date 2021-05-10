@@ -29,11 +29,14 @@ ResultWidget::ResultWidget( bool satisfied, bool required, QWidget* parent )
     setLayout( mainLayout );
 
     m_iconLabel = new QLabel( this );
-    mainLayout->addWidget( m_iconLabel );
     m_iconLabel->setFixedSize( CalamaresUtils::defaultIconSize() );
+    m_iconLabel->setObjectName( "resultIcon" );
+    mainLayout->addWidget( m_iconLabel );
+
     m_textLabel = new QLabel( this );
-    mainLayout->addWidget( m_textLabel );
     m_textLabel->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
+    m_textLabel->setObjectName( "resultText" );
+    mainLayout->addWidget( m_textLabel );
 
     if ( satisfied )
     {

@@ -52,9 +52,12 @@ createResultWidgets( QLayout* layout,
             continue;
         }
 
+        const QString checkName = model.data( index, Calamares::RequirementsModel::Name ).toString();
         const bool is_satisfied = model.data( index, Calamares::RequirementsModel::Satisfied ).toBool();
         const bool is_mandatory = model.data( index, Calamares::RequirementsModel::Mandatory ).toBool();
         ResultWidget* ciw = new ResultWidget( is_satisfied, is_mandatory );
+        ciw->setObjectName( checkName );
+
         layout->addWidget( ciw );
         ciw->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
 
@@ -105,6 +108,7 @@ ResultsListDialog::ResultsListDialog( const Calamares::RequirementsModel& model,
     auto* entriesLayout = new QVBoxLayout;
 
     m_title = new QLabel( this );
+    m_title->setObjectName( "resultDialogTitle" );
 
     createResultWidgets(
         entriesLayout, m_resultWidgets, model, []( const Calamares::RequirementsModel& m, QModelIndex i ) {
@@ -112,6 +116,7 @@ ResultsListDialog::ResultsListDialog( const Calamares::RequirementsModel& model,
         } );
 
     QDialogButtonBox* buttonBox = new QDialogButtonBox( QDialogButtonBox::Close, Qt::Horizontal, this );
+    buttonBox->setObjectName( "resultDialogButtons" );
 
     mainLayout->addWidget( m_title );
     mainLayout->addLayout( entriesLayout );
@@ -168,6 +173,7 @@ ResultsListWidget::ResultsListWidget( const Calamares::RequirementsModel& model,
     m_explanation->setWordWrap( true );
     m_explanation->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
     m_explanation->setOpenExternalLinks( false );
+    m_explanation->setObjectName( "resultsExplanation" );
     connect( m_explanation, &QLabel::linkActivated, this, &ResultsListWidget::linkClicked );
     entriesLayout->addWidget( m_explanation );
 
@@ -208,9 +214,10 @@ ResultsListWidget::ResultsListWidget( const Calamares::RequirementsModel& model,
                 }
 
                 imageLabel->setContentsMargins( 4, CalamaresUtils::defaultFontHeight() * 3 / 4, 4, 4 );
-                mainLayout->addWidget( imageLabel );
                 imageLabel->setAlignment( Qt::AlignCenter );
                 imageLabel->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
+                imageLabel->setObjectName( "welcomeLogo" );
+                mainLayout->addWidget( imageLabel );
             }
         }
         m_explanation->setAlignment( Qt::AlignCenter );
