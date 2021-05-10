@@ -44,6 +44,7 @@ SummaryPage::SummaryPage( const SummaryViewStep* thisViewStep, QWidget* parent )
     layout->setContentsMargins( 0, 0, 0, 0 );
 
     QLabel* headerLabel = new QLabel( this );
+    headerLabel->setObjectName( "summaryTitle" );
     CALAMARES_RETRANSLATE( if ( Calamares::Settings::instance()->isSetupMode() )
                                headerLabel->setText( tr( "This is an overview of what will happen once you start "
                                                          "the setup procedure." ) );
@@ -169,6 +170,7 @@ QLabel*
 SummaryPage::createTitleLabel( const QString& text ) const
 {
     QLabel* label = new QLabel( text );
+    label->setObjectName( "summaryItemTitle" );
     QFont fnt = font();
     fnt.setWeight( QFont::Light );
     fnt.setPointSize( CalamaresUtils::defaultFontSize() * 2 );
@@ -182,6 +184,7 @@ QLabel*
 SummaryPage::createBodyLabel( const QString& text ) const
 {
     QLabel* label = new QLabel;
+    label->setObjectName( "summaryItemBody" );
     label->setMargin( CalamaresUtils::defaultFontHeight() / 2 );
     QPalette pal( palette() );
     pal.setColor( WindowBackground, palette().window().color().lighter( 108 ) );
