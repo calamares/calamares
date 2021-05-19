@@ -29,7 +29,7 @@ a "ready to use" application: distributions apply a huge amount of customisation
 and configuration to Calamares, and the target audience for this repository
 is those distributions, and the people who make those Linux distro's.
 
-Calamares has some [generic user documentation](https://github.com/calamares/calamares/wiki/Use-Guide)
+Calamares has some [generic user documentation](https://calamares.io/docs/users-guide/)
 for end-users, but most of what we have is for distro developers.
 
 ## Getting Calamares
