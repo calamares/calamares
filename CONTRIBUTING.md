@@ -35,8 +35,8 @@ in Europe, but feel free to idle. **DO NOT** ask-and-leave. Keep
 that chat window open because it can easily take a few hours for
 someone to notice a message.
 
-[![Visit our IRC channel](https://kiwiirc.com/buttons/webchat.freenode.net/calamares.png)](https://webchat.freenode.net/?channel=#calamares?nick=guest)
-
+- [![Visit our IRC channel](https://kiwiirc.com/buttons/webchat.freenode.net/calamares.png)](https://webchat.freenode.net/?channel=#calamares?nick=guest)
+- [Join us on Matrix](https://webchat.kde.org/#/room/%23calamares:kde.org)
 
 ## General Guidelines
 
