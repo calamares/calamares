@@ -12,7 +12,7 @@
 [![GitHub license](https://img.shields.io/github/license/calamares/calamares.svg)](https://github.com/calamares/calamares/blob/calamares/LICENSE)
 
 
-| [Report a Bug](https://github.com/calamares/calamares/issues/new) | [Translate](https://www.transifex.com/projects/p/calamares/) | [Contribute](CONTRIBUTING.md) | [Freenode (IRC): #calamares](https://webchat.freenode.net/?channel=#calamares?nick=guest) | [Matrix](https://webchat.kde.org/#/room/%23calamares:kde.org) | [Wiki](https://github.com/calamares/calamares/wiki) |
+| [Report a Bug](https://github.com/calamares/calamares/issues/new) | [Translate](https://www.transifex.com/projects/p/calamares/) | [Contribute](CONTRIBUTING.md) | [IRC: Freenode #calamares](https://webchat.freenode.net/?channel=#calamares?nick=guest) | [Matrix: #calamares:kde.org](https://webchat.kde.org/#/room/%23calamares:kde.org) | [Wiki](https://github.com/calamares/calamares/wiki) |
 |:--:|:--:|:--:|:--:|:--:|:--:|
 
 
@@ -61,5 +61,5 @@ Regular Calamares development chit-chat happens on old-school IRC
 (no registration required). Responsiveness is best during the day
 in Europe, but feel free to idle. The Matrix room is relatively new.
 
-- [![Visit our IRC channel](https://kiwiirc.com/buttons/webchat.freenode.net/calamares.png)](https://webchat.freenode.net/?channel=#calamares?nick=guest|)
-- [![Join us on Matrix](https://img.shields.io/badge/Matrix-%23calamares-blue?logo=matrix)](https://webchat.kde.org/#/room/%23calamares:kde.org)
+* [![Chat on IRC](https://img.shields.io/badge/IRC-Freenode%20%23calamares-green)](https://webchat.freenode.net/?randomnick=1&channels=%23calamares)
+* [![Join us on Matrix](https://img.shields.io/badge/Matrix-%23calamares:kde.org-blue)](https://webchat.kde.org/#/room/%23calamares:kde.org)
