@@ -37,7 +37,7 @@ someone to notice a message.
 The Matrix room is relatively new.
 
 - [![Visit our IRC channel](https://kiwiirc.com/buttons/webchat.freenode.net/calamares.png)](https://webchat.freenode.net/?channel=#calamares?nick=guest)
-- [Join us on Matrix](https://webchat.kde.org/#/room/%23calamares:kde.org)
+- [![Join us on Matrix](https://img.shields.io/badge/Matrix-%23calamares-blue?logo=matrix)](https://webchat.kde.org/#/room/%23calamares:kde.org)
 
 ## General Guidelines
 

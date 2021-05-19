@@ -13,7 +13,7 @@
 
 
 | [Report a Bug](https://github.com/calamares/calamares/issues/new) | [Translate](https://www.transifex.com/projects/p/calamares/) | [Contribute](CONTRIBUTING.md) | [Freenode (IRC): #calamares](https://webchat.freenode.net/?channel=#calamares?nick=guest) | [Matrix](https://webchat.kde.org/#/room/%23calamares:kde.org) | [Wiki](https://github.com/calamares/calamares/wiki) |
-|:--:|:--:|:--:|:--:|:--:|
+|:--:|:--:|:--:|:--:|:--:|:--:|
 
 
 > Calamares is a distribution-independent system installer, with an advanced partitioning
@@ -47,7 +47,7 @@ The dependencies are explained in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 Calamares welcomes PRs. New issues are welcome, too.
 There are both the Calamares **core** repository (this one),
-and an *extensions** repository ([Calamares extensions](https://github.com/calamares/calamares-extensions)).
+and an **extensions** repository ([Calamares extensions](https://github.com/calamares/calamares-extensions)).
 
 Contributions to code, modules, documentation, the wiki and the website are all welcome.
 There is more information in the [CONTRIBUTING.md](CONTRIBUTING.md) file.
@@ -62,4 +62,4 @@ Regular Calamares development chit-chat happens on old-school IRC
 in Europe, but feel free to idle. The Matrix room is relatively new.
 
 - [![Visit our IRC channel](https://kiwiirc.com/buttons/webchat.freenode.net/calamares.png)](https://webchat.freenode.net/?channel=#calamares?nick=guest|)
-- [Join us on Matrix](https://webchat.kde.org/#/room/%23calamares:kde.org)
+- [![Join us on Matrix](https://img.shields.io/badge/Matrix-%23calamares-blue?logo=matrix)](https://webchat.kde.org/#/room/%23calamares:kde.org)
