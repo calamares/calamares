@@ -474,6 +474,14 @@ def run():
             libcalamares.utils.warning( "EFI system, but nothing mounted on {!s}".format(efi_system_partition) )
             return None
 
-    prepare_bootloader(fw_type)
+    try:
+        prepare_bootloader(fw_type)
+    except subprocess.CalledProcessError as e:
+        libcalamares.utils.warning(str(e))
+        libcalamares.utils.debug("stdout:" + str(e.stdout))
+        libcalamares.utils.debug("stderr:" + str(e.stderr))
+        return (_("Bootloader installation error"),
+                _("The bootloader could not be installed. The installation command <pre>{!s}</pre> returned error code {!s}.")
+                .format(e.cmd, e.returncode))
 
     return None
