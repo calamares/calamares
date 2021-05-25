@@ -122,7 +122,7 @@ public:
      * The single BootLoaderModel instance belongs to the PCM.
      * @return the BootLoaderModel.
      */
-    QAbstractItemModel* bootLoaderModel() const;
+    BootLoaderModel* bootLoaderModel() const;
 
     void createPartitionTable( Device* device, PartitionTable::TableType type );
 
