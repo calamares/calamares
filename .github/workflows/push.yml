@@ -36,6 +36,7 @@ jobs:
             cmake \
             extra-cmake-modules \
             gettext \
+            jq \
             kio-dev \
             libatasmart-dev \
             libboost-python-dev \
