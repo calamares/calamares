@@ -85,3 +85,11 @@ jobs:
         if: ${{ failure() && github.repository == 'calamares/calamares' }}
         run: |
             curl -s -XPOST -d '{"msgtype":"m.text", "body": "FAIL ${{ github.workflow }} in ${{ github.repository }} ${{ github.actor }} on ${{ github.event.ref }}\n.. ${{ steps.pre_build.outputs.message }}\n.. DIFF ${{ github.event.compare }}" }' 'https://matrix.org/_matrix/client/r0/rooms/%21${{ secrets.MATRIX_ROOM }}/send/m.room.message?access_token=${{ secrets.MATRIX_TOKEN }}' > /dev/null
+      - name: "notify: check"
+        env:
+          MATRIX_TOKEN: ${{ secrets.MATRIX_TOKEN }}
+          MATRIX_ROOM: ${{ secrets.MATRIX_ROOM }}
+        run: |
+          "$SRCDIR/ci/notify.sh" OK '${{ github.workflow }}' '${{ github.repository }}' '${{ github.actor }}' '${{ github.event.ref }}' \
+            '(test)${{ steps.pre_build.outputs.message }}' \
+            '${{ github.event.compare }}'
