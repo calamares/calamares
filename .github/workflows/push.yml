@@ -79,19 +79,20 @@ jobs:
         run: make install VERBOSE=1
       - name: "notify: ok"
         if: ${{ success() && github.repository == 'calamares/calamares' }}
-        env:
-          MATRIX_TOKEN: ${{ secrets.MATRIX_TOKEN }}
-          MATRIX_ROOM: ${{ secrets.MATRIX_ROOM }}
-        run: |
-          "$SRCDIR/ci/notify.sh" OK '${{ github.workflow }}' '${{ github.repository }}' '${{ github.actor }}' '${{ github.event.ref }}' \
-            '${{ steps.pre_build.outputs.message }}' \
-            ''
+        uses: ./.github/actions/notify-push
+        with:
+          TOKEN: ${{ secrets.MATRIX_TOKEN }}
+          ROOM: ${{ secrets.MATRIX_ROOM }}
+          MESSAGE: |
+            OK ${{ github.workflow }} in ${{ github.repository }} by ${{ github.actor }} on ${{ github.event.ref }}
+            .. ${{ steps.pre_build.outputs.message }}
       - name: "notify: fail"
         if: ${{ failure() && github.repository == 'calamares/calamares' }}
-        env:
-          MATRIX_TOKEN: ${{ secrets.MATRIX_TOKEN }}
-          MATRIX_ROOM: ${{ secrets.MATRIX_ROOM }}
-        run: |
-          "$SRCDIR/ci/notify.sh" FAIL '${{ github.workflow }}' '${{ github.repository }}' '${{ github.actor }}' '${{ github.event.ref }}' \
-            '${{ steps.pre_build.outputs.message }}' \
-            '${{ github.event.compare }}'
+        uses: ./.github/actions/notify-push
+        with:
+          TOKEN: ${{ secrets.MATRIX_TOKEN }}
+          ROOM: ${{ secrets.MATRIX_ROOM }}
+          MESSAGE: |
+            FAIL ${{ github.workflow }} in ${{ github.repository }} by ${{ github.actor }} on ${{ github.event.ref }}
+              .. ${{ steps.pre_build.outputs.message }}
+              .. ${{ github.event.compare }}
