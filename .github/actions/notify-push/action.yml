@@ -16,5 +16,4 @@ runs:
   using: "composite"
   steps:
     - shell: bash
-      run: |
-        curl -s -XPOST -d $( echo "$INPUT_MESSAGE" | jq -Rs '{"msgtype": "m.text", "body":@text}' ) "https://matrix.org/_matrix/client/r0/rooms/%21${INPUT_ROOM}/send/m.room.message?access_token=${INPUT_TOKEN}" > /dev/null
+      run: echo "$INPUT_MESSAGE"
