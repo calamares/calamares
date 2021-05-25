@@ -18,6 +18,7 @@
 
 // KPMcore
 #include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
 
 #include <QComboBox>
 
@@ -148,28 +149,39 @@ BootLoaderModel::data( const QModelIndex& index, int role ) const
     return QStandardItemModel::data( index, role );
 }
 
-namespace Calamares
+std::pair< int, Device* >
+BootLoaderModel::findBootLoader( const QString& path ) const
 {
-int
-findBootloader( const QAbstractItemModel* model, const QString& path )
-{
-    for ( int i = 0; i < model->rowCount(); ++i )
+    int r = 0;
+    for ( Device* d : m_devices )
     {
-        const auto index = model->index( i, 0, QModelIndex() );
-        if ( !index.isValid() )
+        if ( d && d->deviceNode() == path )
         {
-            continue;
+            return std::make_pair( r, d );
         }
-        QVariant var = model->data( index, BootLoaderModel::BootLoaderPathRole );
-        if ( var.isValid() && var.toString() == path )
-        {
-            return i;
-        }
+        r++;
     }
 
-    return -1;
+    Partition* partition = KPMHelpers::findPartitionByMountPoint( m_devices, path );
+    if ( partition )
+    {
+        const QString partition_device_path = partition->deviceNode();
+        r = 0;
+        for ( Device* d : m_devices )
+        {
+            if ( d && d->deviceNode() == partition_device_path )
+            {
+                return std::make_pair( r, d );
+            }
+            r++;
+        }
+    }
+    return std::make_pair( -1, nullptr );
 }
 
+
+namespace Calamares
+{
 void
 restoreSelectedBootLoader( QComboBox& combo, const QString& path )
 {
@@ -180,12 +192,16 @@ restoreSelectedBootLoader( QComboBox& combo, const QString& path )
         return;
     }
 
-    int r = -1;
     if ( path.isEmpty() )
     {
+        cDebug() << "No path to restore, choosing default";
         combo.setCurrentIndex( 0 );
+        return;
     }
-    else if ( ( r = findBootloader( model, path ) ) >= 0 )
+
+    const BootLoaderModel* bmodel = qobject_cast< const BootLoaderModel* >( model );
+    int r = bmodel ? bmodel->findBootLoader( path ).first : -1;
+    if ( r >= 0 )
     {
         combo.setCurrentIndex( r );
     }
