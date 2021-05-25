@@ -420,7 +420,8 @@ shouldWarnForGPTOnBIOS( const PartitionCoreModule* core )
                      && ( partition->fileSystem().type() == FileSystem::Unformatted )
                      && ( partition->capacity() >= 8_MiB ) )
                 {
-                    cDebug() << Logger::SubEntry << "Partition" << partition->partitionPath()
+                    cDebug() << Logger::SubEntry << "Partition" << partition->devicePath()
+                             << partition->partitionPath()
                              << "is a suitable bios_grub partition";
                     return false;
                 }
