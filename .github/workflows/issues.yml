@@ -9,18 +9,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "notify: new"
-        uses: rectalogic/notify-irc@v1
         if: github.event.issue.state == 'open'
+        uses: ./.github/actions/notify-push
         with:
-          server: chat.freenode.net
-          nickname: cala-issues
-          channel: "#calamares"
+          token: ${{ secrets.MATRIX_TOKEN }}
+          room: ${{ secrets.MATRIX_ROOM }}
           message: "OPENED ${{ github.event.issue.html_url }} by ${{ github.actor }} ${{ github.event.issue.title }}"
       - name: "notify: closed"
-        uses: rectalogic/notify-irc@v1
         if: github.event.issue.state != 'open'
+        uses: ./.github/actions/notify-push
         with:
-          server: chat.freenode.net
-          nickname: cala-issues
-          channel: "#calamares"
+          token: ${{ secrets.MATRIX_TOKEN }}
+          room: ${{ secrets.MATRIX_ROOM }}
           message: "CLOSED ${{ github.event.issue.html_url }} by ${{ github.actor }} ${{ github.event.issue.title }}"
