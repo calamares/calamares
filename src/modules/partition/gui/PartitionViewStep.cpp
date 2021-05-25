@@ -13,6 +13,7 @@
 
 #include "gui/PartitionViewStep.h"
 
+#include "core/BootLoaderModel.h"
 #include "core/Config.h"
 #include "core/DeviceModel.h"
 #include "core/KPMHelpers.h"
@@ -36,6 +37,7 @@
 #include "utils/NamedEnum.h"
 #include "utils/QtCompat.h"
 #include "utils/Retranslator.h"
+#include "utils/Units.h"
 #include "utils/Variant.h"
 #include "widgets/WaitingWidget.h"
 
@@ -403,8 +405,33 @@ shouldWarnForGPTOnBIOS( const PartitionCoreModule* core )
         return false;
     }
 
-    cDebug() << core->bootLoaderInstallPath();
-
+    auto [ r, device ] = core->bootLoaderModel()->findBootLoader( core->bootLoaderInstallPath() );
+    if ( device )
+    {
+        auto* table = device->partitionTable();
+        cDebug() << "Found device for bootloader" << device->deviceNode();
+        if ( table && table->type() == PartitionTable::TableType::gpt )
+        {
+            // So this is a BIOS system, and the bootloader will be installed on a GPT system
+            for ( const auto& partition : qAsConst( table->children() ) )
+            {
+                using CalamaresUtils::Units::operator""_MiB;
+                if ( ( partition->activeFlags() & PartitionTable::Flag::BiosGrub )
+                     && ( partition->fileSystem().type() == FileSystem::Unformatted )
+                     && ( partition->capacity() >= 8_MiB ) )
+                {
+                    cDebug() << Logger::SubEntry << "Partition" << partition->partitionPath()
+                             << "is a suitable bios_grub partition";
+                    return false;
+                }
+            }
+        }
+        cDebug() << Logger::SubEntry << "No suitable partition for bios_grub found";
+    }
+    else
+    {
+        cDebug() << "Found no device for" << core->bootLoaderInstallPath();
+    }
     return true;
 }
 
