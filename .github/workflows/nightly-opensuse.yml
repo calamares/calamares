@@ -24,7 +24,7 @@ jobs:
       - name: "prepare env"
         run: |
           zypper --non-interactive up
-          zypper --non-interactive in git-core
+          zypper --non-interactive in git-core jq
           # From deploycala.py
           zypper --non-interactive in \
             "autoconf" \

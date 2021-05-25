@@ -24,7 +24,7 @@ jobs:
       - name: "prepare env"
         run: |
           apt-get update
-          apt-get -y install git-core
+          apt-get -y install git-core jq
           apt-get -y install \
             build-essential \
             cmake \
