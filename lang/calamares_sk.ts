@@ -312,18 +312,18 @@
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="178"/>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="518"/>
       <source>&amp;Yes</source>
-      <translation>_Áno</translation>
+      <translation>Án&amp;o</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="179"/>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="519"/>
       <source>&amp;No</source>
-      <translation>_Nie</translation>
+      <translation>&amp;Nie</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="185"/>
       <source>&amp;Close</source>
-      <translation>_Zavrieť</translation>
+      <translation>&amp;Zavrieť</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/utils/Paste.cpp" line="160"/>
@@ -402,7 +402,7 @@ Link copied to clipboard</source>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="392"/>
       <source>&amp;Install</source>
-      <translation>_Inštalovať</translation>
+      <translation>&amp;Inštalovať</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="394"/>
@@ -437,7 +437,7 @@ Link copied to clipboard</source>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="419"/>
       <source>&amp;Done</source>
-      <translation>_Dokončiť</translation>
+      <translation>&amp;Dokončiť</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="438"/>

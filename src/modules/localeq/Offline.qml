@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   SPDX-FileCopyrightText: 2020 Anke Boersma <demm@kaosx.us>
+ *   SPDX-FileCopyrightText: 2020-2021 Anke Boersma <demm@kaosx.us>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -21,6 +21,10 @@ Page {
     width: 800 //parent.width
     height: 500
 
+    id: control
+    property string currentRegion
+    property string currentZone
+
      StackView {
         id: stack
         anchors.fill: parent
@@ -34,7 +38,7 @@ Page {
                 anchors.horizontalCenter: parent.horizontalCenter
                 color: Kirigami.Theme.textColor
                 horizontalAlignment: Text.AlignCenter
-                text: qsTr("Select your preferred Region, or use the default one based on your current location.")
+                text: qsTr("Select your preferred Region, or use the default settings.")
             }
 
             ListView {
@@ -45,7 +49,7 @@ Page {
                 }
 
                 width: parent.width / 2
-                height: 250
+                height: parent.height / 1.5
                 anchors.centerIn: parent
                 anchors.verticalCenterOffset: -30
                 focus: true
@@ -62,20 +66,19 @@ Page {
                     opacity: 0.7
                 }
 
-                // model loads, dozens of variations tried for currentIndex all fail
                 model: config.regionModel
-                currentIndex: config.currentIndex
+                currentIndex: -1
                 delegate: ItemDelegate {
-                    
+
                     hoverEnabled: true
                     width: parent.width
                     highlighted: ListView.isCurrentItem
 
                     Label {
 
-                        text: name
-                        Layout.fillHeight: true
-                        Layout.fillWidth: true
+                        text: model.name
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
                         width: parent.width
                         height: 30
                         color: highlighted ? Kirigami.Theme.highlightedTextColor : Kirigami.Theme.textColor
@@ -89,8 +92,9 @@ Page {
 
                     onClicked: {
 
-                        list.model.currentIndex = index
-                        // correct to use config.currentTimezoneName when index is updated?
+                        list.currentIndex = index
+                        control.currentRegion = model.name
+                        config.regionalZonesModel.region = control.currentRegion
                         tztext.text = qsTr("Timezone: %1").arg(config.currentTimezoneName)
                         stack.push(zoneView)
                     }
@@ -119,7 +123,7 @@ Page {
                     }
 
                     width: parent.width / 2
-                    height: 250
+                    height: parent.height / 1.5
                     anchors.centerIn: parent
                     anchors.verticalCenterOffset: -30
                     focus: true
@@ -136,9 +140,8 @@ Page {
                         opacity: 0.7
                     }
 
-                    // model loads, dozens of variations tried for currentIndex all fail
                     model: config.regionalZonesModel
-                    currentIndex: config.currentIndex
+                    currentIndex : -1
                     delegate: ItemDelegate {
 
                         hoverEnabled: true
@@ -147,9 +150,9 @@ Page {
 
                         Label {
 
-                            text: name
-                            Layout.fillHeight: true
-                            Layout.fillWidth: true
+                            text: model.name
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
                             width: parent.width
                             height: 30
                             color: highlighted ? Kirigami.Theme.highlightedTextColor : Kirigami.Theme.textColor
@@ -163,20 +166,21 @@ Page {
 
                         onClicked: {
 
-                            list2.model.currentIndex = index
+                            list2.currentIndex = index
                             list2.positionViewAtIndex(index, ListView.Center)
-                            // correct to use config.currentTimezoneName when index is updated?
+                            control.currentZone = model.name
+                            config.setCurrentLocation(control.currentRegion, control.currentZone)
                             tztext.text = qsTr("Timezone: %1").arg(config.currentTimezoneName)
                         }
                     }
                 }
-                
+
                 Button {
 
                     Layout.fillWidth: true
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.verticalCenterOffset: -30
-                    anchors.left: parent.left 
+                    anchors.left: parent.left
                     anchors.leftMargin: parent.width / 15
                     icon.name: "go-previous"
                     text: qsTr("Zones")

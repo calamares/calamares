@@ -59,7 +59,7 @@ def run():
                 continue
 
             try:
-                shutil.copy(source_network, target_network)
+                shutil.copy(source_network, target_network, follow_symlinks=False)
             except FileNotFoundError:
                 libcalamares.utils.debug(
                     "Can't copy network configuration files in "
@@ -80,7 +80,7 @@ def run():
                 )
 
         try:
-            shutil.copy(source_resolv, target_resolv)
+            shutil.copy(source_resolv, target_resolv, follow_symlinks=False)
         except Exception as err:
             libcalamares.utils.debug(
                 "Can't copy resolv.conf from {}: {}".format(source_resolv, err)

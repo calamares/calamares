@@ -12,8 +12,8 @@
 [![GitHub license](https://img.shields.io/github/license/calamares/calamares.svg)](https://github.com/calamares/calamares/blob/calamares/LICENSE)
 
 
-| [Report a Bug](https://github.com/calamares/calamares/issues/new) | [Translate](https://www.transifex.com/projects/p/calamares/) | [Contribute](CONTRIBUTING.md) | [Freenode (IRC): #calamares](https://webchat.freenode.net/?channel=#calamares?nick=guest) | [Wiki](https://github.com/calamares/calamares/wiki) |
-|:--:|:--:|:--:|:--:|:--:|
+| [Report a Bug](https://github.com/calamares/calamares/issues/new) | [Translate](https://www.transifex.com/projects/p/calamares/) | [Contribute](CONTRIBUTING.md) | [IRC: Libera.Chat #calamares](https://kiwiirc.com/client/irc.libera.chat/#calamares) | [Matrix: #calamares:kde.org](https://webchat.kde.org/#/room/%23calamares:kde.org) | [Wiki](https://github.com/calamares/calamares/wiki) |
+|:--:|:--:|:--:|:--:|:--:|:--:|
 
 
 > Calamares is a distribution-independent system installer, with an advanced partitioning
@@ -29,7 +29,7 @@ a "ready to use" application: distributions apply a huge amount of customisation
 and configuration to Calamares, and the target audience for this repository
 is those distributions, and the people who make those Linux distro's.
 
-Calamares has some [generic user documentation](https://github.com/calamares/calamares/wiki/Use-Guide)
+Calamares has some [generic user documentation](https://calamares.io/docs/users-guide/)
 for end-users, but most of what we have is for distro developers.
 
 ## Getting Calamares
@@ -47,7 +47,7 @@ The dependencies are explained in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 Calamares welcomes PRs. New issues are welcome, too.
 There are both the Calamares **core** repository (this one),
-and an *extensions** repository ([Calamares extensions](https://github.com/calamares/calamares-extensions).
+and an **extensions** repository ([Calamares extensions](https://github.com/calamares/calamares-extensions)).
 
 Contributions to code, modules, documentation, the wiki and the website are all welcome.
 There is more information in the [CONTRIBUTING.md](CONTRIBUTING.md) file.
@@ -59,6 +59,7 @@ problems or a new feature to discuss.
 
 Regular Calamares development chit-chat happens on old-school IRC
 (no registration required). Responsiveness is best during the day
-in Europe, but feel free to idle.
+in Europe, but feel free to idle. The Matrix room is relatively new.
 
-[![Visit our IRC channel](https://kiwiirc.com/buttons/webchat.freenode.net/calamares.png)](https://webchat.freenode.net/?channel=#calamares?nick=guest|)
+* [![Join us on Matrix](https://img.shields.io/badge/Matrix-%23calamares:kde.org-blue)](https://webchat.kde.org/#/room/%23calamares:kde.org)
+* [![Chat on IRC](https://img.shields.io/badge/IRC-Libera.Chat%20%23calamares-green)](https://kiwiirc.com/client/irc.libera.chat/#calamares)

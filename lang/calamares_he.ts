@@ -6,7 +6,7 @@
     <message>
       <location filename="../src/modules/partition/jobs/AutoMountManagementJob.cpp" line="22"/>
       <source>Manage auto-mount settings</source>
-      <translation type="unfinished"/>
+      <translation>ניהול הגדרות העיגון האוטומטי</translation>
     </message>
   </context>
   <context>
@@ -412,17 +412,17 @@ Link copied to clipboard</source>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="395"/>
       <source>The installation is complete. Close the installer.</source>
-      <translation>תהליך ההתקנה הושלם. נא לסגור את תכנית ההתקנה.</translation>
+      <translation>ההתקנה הושלמה. נא לסגור את אשף ההתקנה.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="397"/>
       <source>Cancel setup without changing the system.</source>
-      <translation>ביטול ההתקנה ללא שינוי המערכת.</translation>
+      <translation>ביטול ההתקנה ללא ביצוע שינוי במערכת.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="398"/>
       <source>Cancel installation without changing the system.</source>
-      <translation>ביטול התקנה ללא ביצוע שינוי במערכת.</translation>
+      <translation>ביטול ההתקנה ללא ביצוע שינוי במערכת.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="408"/>
@@ -458,14 +458,14 @@ Link copied to clipboard</source>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="512"/>
       <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
-      <translation>לבטל את תהליך ההתקנה הנוכחי?
-תכנית ההתקנה תצא וכל השינויים יאבדו.</translation>
+      <translation>האם לבטל את תהליך ההתקנה הנוכחי?
+אשף ההתקנה ייסגר וכל השינויים יאבדו.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="514"/>
       <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
-      <translation>האם אכן ברצונך לבטל את תהליך ההתקנה?
+      <translation>האם לבטל את תהליך ההתקנה הנוכחי?
 אשף ההתקנה ייסגר וכל השינויים יאבדו.</translation>
     </message>
   </context>
@@ -893,7 +893,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="148"/>
       <source>The installation of %1 did not complete successfully.</source>
-      <translation type="unfinished"/>
+      <translation>ההתקנה של %1 לא הסתיימה בהצלחה.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="152"/>
@@ -2683,7 +2683,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="219"/>
       <source>Are you sure you want to create a new partition table on %1?</source>
-      <translation>ליצור טבלת מחיצות חדשה על %1?</translation>
+      <translation>האם ליצור טבלת מחיצות חדשה על %1?</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="254"/>
@@ -4012,7 +4012,7 @@ Output:
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="36"/>
       <source>Installation Completed</source>
-      <translation type="unfinished"/>
+      <translation>ההתקנה הושלמה</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="43"/>
@@ -4023,12 +4023,12 @@ Output:
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="65"/>
       <source>Close Installer</source>
-      <translation type="unfinished"/>
+      <translation>סגירת אשף ההתקנה</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="71"/>
       <source>Restart System</source>
-      <translation type="unfinished"/>
+      <translation>הפעלת המערכת מחדש</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="89"/>

@@ -26,6 +26,8 @@ class BootLoaderModel : public QStandardItemModel
 {
     Q_OBJECT
 public:
+    using DeviceList = QList< Device* >;
+
     enum
     {
         BootLoaderPathRole = Qt::UserRole + 1,
@@ -39,13 +41,19 @@ public:
      * Init the model with the list of devices. Does *not* take ownership of the
      * devices.
      */
-    void init( const QList< Device* >& devices );
+    void init( const DeviceList& devices );
 
     void update();
 
     QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const override;
 
-    using DeviceList = QList< Device* >;
+    /** @brief Looks up a boot-loader by device-name @p path (e.g. /dev/sda)
+    *
+    * Returns a row number (index) in the model and a Device*: if there **is** a
+    * device for the given @p path, index will be in range of the model and
+    * Device* non-null. Returns (-1, nullptr) otherwise.
+    */
+    std::pair< int, Device* > findBootLoader( const QString& path ) const;
 
 private:
     DeviceList m_devices;
@@ -57,13 +65,6 @@ private:
 
 namespace Calamares
 {
-/** @brief Returns the row number of boot-loader @p path (e.g. /dev/sda)
- *
- * Assuming the @p model is a BootLoaderModel, will return a row number
- * in the model. Returns -1 otherwise.
- */
-int findBootloader( const QAbstractItemModel* model, const QString& path );
-
 /** @brief Tries to set @p path as selected item in @p combo
  *
  * Matches a boot-loader install path (e.g. /dev/sda) with a model

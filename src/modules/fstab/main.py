@@ -372,15 +372,23 @@ def run():
             root_btrfs = (root_partitions[0] == "btrfs") if root_partitions else False
             if root_btrfs:
                 partitions.append( dict(fs="swap", mountPoint=None, claimed=True, device="/swap/swapfile", uuid=None) )
-            else:    
+            else:
                 partitions.append( dict(fs="swap", mountPoint=None, claimed=True, device="/swapfile", uuid=None) )
         else:
             swap_choice = None
 
     libcalamares.job.setprogress(0.1)
-    mount_options = conf["mountOptions"]
+    mount_options = conf.get("mountOptions", {})
     ssd_extra_mount_options = conf.get("ssdExtraMountOptions", {})
     crypttab_options = conf.get("crypttabOptions", "luks")
+
+    # We rely on mount_options having a default; if there wasn't one,
+    # bail out with a meaningful error.
+    if not mount_options:
+        return (_("Configuration Error"),
+                _("No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use.")
+                .format("mountOptions", "fstab"))
+
     generator = FstabGenerator(partitions,
                                root_mount_point,
                                mount_options,

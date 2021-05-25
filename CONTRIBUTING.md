@@ -34,8 +34,10 @@ Regular Calamares development chit-chat happens on old-school IRC
 in Europe, but feel free to idle. **DO NOT** ask-and-leave. Keep
 that chat window open because it can easily take a few hours for
 someone to notice a message.
+The Matrix room is relatively new.
 
-[![Visit our IRC channel](https://kiwiirc.com/buttons/webchat.freenode.net/calamares.png)](https://webchat.freenode.net/?channel=#calamares?nick=guest)
+* [![Join us on Matrix](https://img.shields.io/badge/Matrix-%23calamares:kde.org-blue)](https://webchat.kde.org/#/room/%23calamares:kde.org)
+* [![Chat on IRC](https://img.shields.io/badge/IRC-Libera.Chat%20%23calamares-green)](https://kiwiirc.com/client/irc.libera.chat/#calamares)
 
 
 ## General Guidelines

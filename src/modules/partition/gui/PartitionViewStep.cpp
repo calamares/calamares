@@ -13,6 +13,7 @@
 
 #include "gui/PartitionViewStep.h"
 
+#include "core/BootLoaderModel.h"
 #include "core/Config.h"
 #include "core/DeviceModel.h"
 #include "core/KPMHelpers.h"
@@ -36,6 +37,7 @@
 #include "utils/NamedEnum.h"
 #include "utils/QtCompat.h"
 #include "utils/Retranslator.h"
+#include "utils/Units.h"
 #include "utils/Variant.h"
 #include "widgets/WaitingWidget.h"
 
@@ -395,6 +397,45 @@ PartitionViewStep::onActivate()
     }
 }
 
+static bool
+shouldWarnForGPTOnBIOS( const PartitionCoreModule* core )
+{
+    if ( PartUtils::isEfiSystem() )
+    {
+        return false;
+    }
+
+    auto [ r, device ] = core->bootLoaderModel()->findBootLoader( core->bootLoaderInstallPath() );
+    Q_UNUSED(r);
+    if ( device )
+    {
+        auto* table = device->partitionTable();
+        cDebug() << "Found device for bootloader" << device->deviceNode();
+        if ( table && table->type() == PartitionTable::TableType::gpt )
+        {
+            // So this is a BIOS system, and the bootloader will be installed on a GPT system
+            for ( const auto& partition : qAsConst( table->children() ) )
+            {
+                using CalamaresUtils::Units::operator""_MiB;
+                if ( ( partition->activeFlags() & KPM_PARTITION_FLAG( BiosGrub ) )
+                     && ( partition->fileSystem().type() == FileSystem::Unformatted )
+                     && ( partition->capacity() >= 8_MiB ) )
+                {
+                    cDebug() << Logger::SubEntry << "Partition" << partition->devicePath()
+                             << partition->partitionPath()
+                             << "is a suitable bios_grub partition";
+                    return false;
+                }
+            }
+        }
+        cDebug() << Logger::SubEntry << "No suitable partition for bios_grub found";
+    }
+    else
+    {
+        cDebug() << "Found no device for" << core->bootLoaderInstallPath();
+    }
+    return true;
+}
 
 void
 PartitionViewStep::onLeave()
@@ -462,24 +503,25 @@ PartitionViewStep::onLeave()
         {
 
             cDebug() << "device: BIOS";
-            // TODO: this *always* warns, which might be annoying, so it'd be
-            //       best to find a way to detect that bios_grub partition.
 
-            QString message = tr( "Option to use GPT on BIOS" );
-            QString description = tr( "A GPT partition table is the best option for all "
-                                      "systems. This installer supports such a setup for "
-                                      "BIOS systems too."
-                                      "<br/><br/>"
-                                      "To configure a GPT partition table on BIOS, "
-                                      "(if not done so already) go back "
-                                      "and set the partition table to GPT, next create a 8 MB "
-                                      "unformatted partition with the "
-                                      "<strong>bios_grub</strong> flag enabled.<br/><br/>"
-                                      "An unformatted 8 MB partition is necessary "
-                                      "to start %1 on a BIOS system with GPT." )
-                                      .arg( branding->shortProductName() );
+            if ( shouldWarnForGPTOnBIOS( m_core ) )
+            {
+                QString message = tr( "Option to use GPT on BIOS" );
+                QString description = tr( "A GPT partition table is the best option for all "
+                                          "systems. This installer supports such a setup for "
+                                          "BIOS systems too."
+                                          "<br/><br/>"
+                                          "To configure a GPT partition table on BIOS, "
+                                          "(if not done so already) go back "
+                                          "and set the partition table to GPT, next create a 8 MB "
+                                          "unformatted partition with the "
+                                          "<strong>bios_grub</strong> flag enabled.<br/><br/>"
+                                          "An unformatted 8 MB partition is necessary "
+                                          "to start %1 on a BIOS system with GPT." )
+                                          .arg( branding->shortProductName() );
 
-            QMessageBox::information( m_manualPartitionPage, message, description );
+                QMessageBox::information( m_manualPartitionPage, message, description );
+            }
         }
 
         Partition* root_p = m_core->findPartitionByMountPoint( "/" );
@@ -595,7 +637,7 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     // because it could take a while. Then when it's done, we can set up the widgets
     // and remove the spinner.
     m_future = new QFutureWatcher< void >();
-    connect( m_future, &QFutureWatcher< void >::finished, this, [this] {
+    connect( m_future, &QFutureWatcher< void >::finished, this, [ this ] {
         continueLoading();
         this->m_future->deleteLater();
         this->m_future = nullptr;

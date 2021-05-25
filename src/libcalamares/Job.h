@@ -35,7 +35,8 @@ public:
         NoError = 0,
         GenericError = -1,
         PythonUncaughtException = 1,
-        InvalidConfiguration = 2
+        InvalidConfiguration = 2,
+        MissingRequirements = 3,
     };
 
     // Can't copy, but you can keep a temporary
