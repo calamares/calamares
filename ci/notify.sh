@@ -42,14 +42,11 @@ test -z "$EVENT" && { echo "! No event data" ; exit 1 ; }
 # It's ok for summary or the compare URL to be empty
 
 url="https://matrix.org/_matrix/client/r0/rooms/%21${MATRIX_ROOM}/send/m.room.message?access_token=${MATRIX_TOKEN}"
-
-status_line="${STATUS} ${WORKFLOW} in ${REPOSITORY} ${ACTOR} on ${EVENT}"
-summary_line=""
-compare_line=""
-
-test -n "$SUMMARY" && summary_line="\n.. ${SUMMARY}"
-test -n "$COMPARE" && compare_line="\n.. DIFF ${COMPARE}"
-
-message_data=$(jq -Rs --arg body "${status_line}${summary_line}${compare_line}" '{"msgtype": "m.text", $body}' < /dev/null)
+message_data=$(
+{
+	echo "${STATUS} ${WORKFLOW} in ${REPOSITORY} ${ACTOR} on ${EVENT}"
+	test -n "$SUMMARY" && echo ".. ${SUMMARY}"
+	test -n "$COMPARE" && echo ".. DIFF ${COMPARE}"
+} | jq -Rs '{"msgtype": "m.text", "body":@text}' )
 
 curl -s -XPOST -d "$message_data" "$url" > /dev/null
