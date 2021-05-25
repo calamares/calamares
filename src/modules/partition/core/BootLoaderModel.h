@@ -26,6 +26,8 @@ class BootLoaderModel : public QStandardItemModel
 {
     Q_OBJECT
 public:
+    using DeviceList = QList< Device* >;
+
     enum
     {
         BootLoaderPathRole = Qt::UserRole + 1,
@@ -39,13 +41,11 @@ public:
      * Init the model with the list of devices. Does *not* take ownership of the
      * devices.
      */
-    void init( const QList< Device* >& devices );
+    void init( const DeviceList& devices );
 
     void update();
 
     QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const override;
-
-    using DeviceList = QList< Device* >;
 
 private:
     DeviceList m_devices;
