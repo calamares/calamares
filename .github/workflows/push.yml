@@ -81,18 +81,18 @@ jobs:
         if: ${{ success() && github.repository == 'calamares/calamares' }}
         uses: ./.github/actions/notify-push
         with:
-          TOKEN: ${{ secrets.MATRIX_TOKEN }}
-          ROOM: ${{ secrets.MATRIX_ROOM }}
-          MESSAGE: |
+          token: ${{ secrets.MATRIX_TOKEN }}
+          room: ${{ secrets.MATRIX_ROOM }}
+          message: |
             OK ${{ github.workflow }} in ${{ github.repository }} by ${{ github.actor }} on ${{ github.event.ref }}
             .. ${{ steps.pre_build.outputs.message }}
       - name: "notify: fail"
         if: ${{ failure() && github.repository == 'calamares/calamares' }}
         uses: ./.github/actions/notify-push
         with:
-          TOKEN: ${{ secrets.MATRIX_TOKEN }}
-          ROOM: ${{ secrets.MATRIX_ROOM }}
-          MESSAGE: |
+          token: ${{ secrets.MATRIX_TOKEN }}
+          room: ${{ secrets.MATRIX_ROOM }}
+          message: |
             FAIL ${{ github.workflow }} in ${{ github.repository }} by ${{ github.actor }} on ${{ github.event.ref }}
               .. ${{ steps.pre_build.outputs.message }}
               .. ${{ github.event.compare }}
