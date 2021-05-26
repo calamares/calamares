@@ -49,7 +49,7 @@ Page {
                 }
 
                 width: parent.width / 2
-                height: 250
+                height: parent.height / 1.5
                 anchors.centerIn: parent
                 anchors.verticalCenterOffset: -30
                 focus: true
@@ -77,8 +77,8 @@ Page {
                     Label {
 
                         text: model.name
-                        Layout.fillHeight: true
-                        Layout.fillWidth: true
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
                         width: parent.width
                         height: 30
                         color: highlighted ? Kirigami.Theme.highlightedTextColor : Kirigami.Theme.textColor
@@ -123,7 +123,7 @@ Page {
                     }
 
                     width: parent.width / 2
-                    height: 250
+                    height: parent.height / 1.5
                     anchors.centerIn: parent
                     anchors.verticalCenterOffset: -30
                     focus: true
@@ -151,8 +151,8 @@ Page {
                         Label {
 
                             text: model.name
-                            Layout.fillHeight: true
-                            Layout.fillWidth: true
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
                             width: parent.width
                             height: 30
                             color: highlighted ? Kirigami.Theme.highlightedTextColor : Kirigami.Theme.textColor
