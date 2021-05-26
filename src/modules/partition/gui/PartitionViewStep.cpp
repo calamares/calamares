@@ -406,6 +406,7 @@ shouldWarnForGPTOnBIOS( const PartitionCoreModule* core )
     }
 
     auto [ r, device ] = core->bootLoaderModel()->findBootLoader( core->bootLoaderInstallPath() );
+    Q_UNUSED(r);
     if ( device )
     {
         auto* table = device->partitionTable();
@@ -416,7 +417,7 @@ shouldWarnForGPTOnBIOS( const PartitionCoreModule* core )
             for ( const auto& partition : qAsConst( table->children() ) )
             {
                 using CalamaresUtils::Units::operator""_MiB;
-                if ( ( partition->activeFlags() & PartitionTable::Flag::BiosGrub )
+                if ( ( partition->activeFlags() & KPM_PARTITION_FLAG( BiosGrub ) )
                      && ( partition->fileSystem().type() == FileSystem::Unformatted )
                      && ( partition->capacity() >= 8_MiB ) )
                 {
