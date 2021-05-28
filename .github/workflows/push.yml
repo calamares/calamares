@@ -79,7 +79,7 @@ jobs:
         run: make install VERBOSE=1
       - name: "notify: ok"
         if: ${{ success() && github.repository == 'calamares/calamares' }}
-        uses: ./.github/actions/notify-push
+        uses: calamares/actions/matrix-notify@v1
         with:
           token: ${{ secrets.MATRIX_TOKEN }}
           room: ${{ secrets.MATRIX_ROOM }}
@@ -88,7 +88,7 @@ jobs:
             .. ${{ steps.pre_build.outputs.message }}
       - name: "notify: fail"
         if: ${{ failure() && github.repository == 'calamares/calamares' }}
-        uses: ./.github/actions/notify-push
+        uses: calamares/actions/matrix-notify@v1
         with:
           token: ${{ secrets.MATRIX_TOKEN }}
           room: ${{ secrets.MATRIX_ROOM }}
