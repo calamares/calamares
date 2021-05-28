@@ -36,7 +36,7 @@ jobs:
         uses: calamares/actions/generic-build@v2
       - name: "notify: ok"
         if: ${{ success() && github.repository == 'calamares/calamares' }}
-        uses: calamares/actions/matrix-notify@v1
+        uses: calamares/actions/matrix-notify@v2
         with:
           token: ${{ secrets.MATRIX_TOKEN }}
           room: ${{ secrets.MATRIX_ROOM }}
@@ -45,7 +45,7 @@ jobs:
             .. ${{ steps.build.outputs.git-summary }}
       - name: "notify: fail"
         if: ${{ failure() && github.repository == 'calamares/calamares' }}
-        uses: calamares/actions/matrix-notify@v1
+        uses: calamares/actions/matrix-notify@v2
         with:
           token: ${{ secrets.MATRIX_TOKEN }}
           room: ${{ secrets.MATRIX_ROOM }}

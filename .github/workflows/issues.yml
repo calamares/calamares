@@ -10,14 +10,14 @@ jobs:
     steps:
       - name: "notify: new"
         if: github.event.issue.state == 'open'
-        uses: calamares/actions/matrix-notify@v1
+        uses: calamares/actions/matrix-notify@v2
         with:
           token: ${{ secrets.MATRIX_TOKEN }}
           room: ${{ secrets.MATRIX_ROOM }}
           message: "OPENED ${{ github.event.issue.html_url }} by ${{ github.actor }} ${{ github.event.issue.title }}"
       - name: "notify: closed"
         if: github.event.issue.state != 'open'
-        uses: calamares/actions/matrix-notify@v1
+        uses: calamares/actions/matrix-notify@v2
         with:
           token: ${{ secrets.MATRIX_TOKEN }}
           room: ${{ secrets.MATRIX_ROOM }}
