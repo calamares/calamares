@@ -17,6 +17,10 @@ This release contains contributions from (alphabetically by first name):
  - Joe Kamprad
  - Lisa Vitolo (blast from the past!)
 
+In project news, chat (instant-messaging) communications has largely
+moved to Matrix and Libera.Chat. CI notifications -- issues and build
+results -- are sent to Matrix only.
+
 ## Core ##
  - The CMake modules for consumption by external modules (e.g. the
    calamares-extensions repository, but also any other modules built
