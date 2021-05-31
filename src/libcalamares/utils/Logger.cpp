@@ -33,7 +33,7 @@ static unsigned int s_threshold =
 #ifdef QT_NO_DEBUG
     Logger::LOG_DISABLE;
 #else
-    Logger::LOGEXTRA + 1;  // Comparison is < in log() function
+    Logger::LOGDEBUG;  // Comparison is < in log() function
 #endif
 static QMutex s_mutex;
 
@@ -105,20 +105,21 @@ CalamaresLogHandler( QtMsgType type, const QMessageLogContext&, const QString& m
     const char* message = ba.constData();
 
     QMutexLocker locker( &s_mutex );
+
     switch ( type )
     {
-    case QtDebugMsg:
+    case QtInfoMsg:
         log( message, LOGVERBOSE );
         break;
-
-    case QtInfoMsg:
-        log( message, 1 );
+    case QtDebugMsg:
+        log( message, LOGDEBUG );
         break;
-
-    case QtCriticalMsg:
     case QtWarningMsg:
+        log( message, LOGWARNING );
+        break;
+    case QtCriticalMsg:
     case QtFatalMsg:
-        log( message, 0 );
+        log( message, LOGERROR );
         break;
     }
 }
