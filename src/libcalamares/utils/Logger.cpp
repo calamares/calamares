@@ -69,7 +69,7 @@ logLevel()
 static void
 log( const char* msg, unsigned int debugLevel, bool withTime = true )
 {
-    if ( true )
+    if ( logLevelEnabled( debugLevel ) )
     {
         QMutexLocker lock( &s_mutex );
 
@@ -81,11 +81,7 @@ log( const char* msg, unsigned int debugLevel, bool withTime = true )
                 << QString::number( debugLevel ).toUtf8().data() << "]: " << msg << std::endl;
 
         logfile.flush();
-    }
 
-    if ( logLevelEnabled( debugLevel ) )
-    {
-        QMutexLocker lock( &s_mutex );
         if ( withTime )
         {
             std::cout << QTime::currentTime().toString().toUtf8().data() << " ["
