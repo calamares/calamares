@@ -5,7 +5,7 @@ on:
     types: [opened, reopened, closed]
 
 jobs:
-  irc:
+  notify:
     runs-on: ubuntu-latest
     steps:
       - name: "notify: new"
@@ -22,3 +22,11 @@ jobs:
           token: ${{ secrets.MATRIX_TOKEN }}
           room: ${{ secrets.MATRIX_ROOM }}
           message: "CLOSED ${{ github.event.issue.html_url }} by ${{ github.actor }} ${{ github.event.issue.title }}"
+      - name: "remove in-progress label"
+        if: github.event.issue.state != 'open'
+        run: |
+          curl -X DELETE \
+            -H 'Accept: application/vnd.github.v3+json' \
+            -H 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+            https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.id }}/labels/hacking%3A+in-progress
+
