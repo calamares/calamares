@@ -574,7 +574,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1150"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
-      <translation>%1 上のEFIシステムパーテイションは %2 のスタートに使用されます。</translation>
+      <translation>%1 の EFI システム パーティションは、%2 の起動に使用されます。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1158"/>

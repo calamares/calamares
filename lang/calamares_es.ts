@@ -6,7 +6,7 @@
     <message>
       <location filename="../src/modules/partition/jobs/AutoMountManagementJob.cpp" line="22"/>
       <source>Manage auto-mount settings</source>
-      <translation type="unfinished"/>
+      <translation>Gestionar la configuración de montaje automático</translation>
     </message>
   </context>
   <context>
@@ -14,7 +14,7 @@
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="62"/>
       <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
-      <translation>El &lt;strong&gt;entorno de arranque&lt;strong&gt; de este sistema.&lt;br&gt;&lt;br&gt;Los sistemas x86 sólo soportan &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Los sistemas modernos habitualmente usan &lt;strong&gt;EFI&lt;/strong&gt;, pero también pueden mostrarse como BIOS si se inician en modo de compatibildiad.</translation>
+      <translation>El &lt;strong&gt;entorno de arranque&lt;strong&gt; de este sistema.&lt;br&gt;&lt;br&gt;Los sistemas x86 sólo tienen soporte para &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Los sistemas modernos habitualmente usan &lt;strong&gt;EFI&lt;/strong&gt;, pero también pueden mostrarse como BIOS si se inician en modo de compatibildiad.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="72"/>
@@ -115,12 +115,12 @@ Para configurar el arranque desde un entorno BIOS, este instalador debe instalar
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="141"/>
       <source>Uploads the session log to the configured pastebin.</source>
-      <translation type="unfinished"/>
+      <translation>Sube el log de la sesión hacia el pastebin configurado.</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="144"/>
       <source>Send Session Log</source>
-      <translation type="unfinished"/>
+      <translation>Envía el Log de la Sesión.</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="118"/>

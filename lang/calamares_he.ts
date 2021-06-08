@@ -119,7 +119,7 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="144"/>
       <source>Send Session Log</source>
-      <translation type="unfinished"/>
+      <translation>שליחת קובץ היומן של ההפעלה</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="118"/>
@@ -758,7 +758,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="53"/>
       <source>Network Installation. (Disabled: Incorrect configuration)</source>
-      <translation>התקנת רשת. (מושבתת: תצורה שגויה)</translation>
+      <translation>התקנה מהרשת. (מושבתת: תצורה שגויה)</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="55"/>
@@ -768,7 +768,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="57"/>
       <source>Network Installation. (Disabled: Internal error)</source>
-      <translation type="unfinished"/>
+      <translation>התקנה מהרשת. (מושבתת: שגיאה פנימית)</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="61"/>
@@ -888,12 +888,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="147"/>
       <source>The setup of %1 did not complete successfully.</source>
-      <translation type="unfinished"/>
+      <translation>התקנת %1 לא הושלמה בהצלחה.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="148"/>
       <source>The installation of %1 did not complete successfully.</source>
-      <translation>ההתקנה של %1 לא הסתיימה בהצלחה.</translation>
+      <translation>התקנת %1 לא הושלמה בהצלחה.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="152"/>
@@ -1012,7 +1012,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="125"/>
       <source>Create new %1MiB partition on %3 (%2).</source>
-      <translation type="unfinished"/>
+      <translation>יצירת מחיצה חדשה בגודל %1MiB על גבי %3 ‏(%2).</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="132"/>
@@ -1027,7 +1027,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="157"/>
       <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2).</source>
-      <translation type="unfinished"/>
+      <translation>יצירת מחיצה חדשה בגודל &lt;strong&gt;%1MiB&lt;/strong&gt; על גבי &lt;strong&gt;%3&lt;/strong&gt; ‏(%2).</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="164"/>

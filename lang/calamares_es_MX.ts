@@ -1882,7 +1882,7 @@ El instalador terminará y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="53"/>
       <source>Configuration Error</source>
-      <translation type="unfinished"/>
+      <translation>Error de configuración</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="54"/>

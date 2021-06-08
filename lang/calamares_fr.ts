@@ -104,7 +104,7 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="102"/>
       <source>Crashes Calamares, so that Dr. Konqui can look at it.</source>
-      <translation>Crashes Calamares, pour que le Dr. Konqui puisse les regarder.</translation>
+      <translation>Accidents de Calamares, pour que le Dr. Konqui puisse les regarder.</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="115"/>
