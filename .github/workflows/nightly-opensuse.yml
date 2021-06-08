@@ -22,7 +22,7 @@ jobs:
       options: --tmpfs /build:rw --user 0:0
     steps:
       - name: "prepare env"
-        uses: calamares/actions/prepare-opensuse@v2
+        uses: calamares/actions/prepare-opensuse@0d294e557d4d2f0fa179eff3ac97b45aaffe53cf
       - name: "prepare source"
         uses: actions/checkout@v2
       - name: "build"
@@ -30,15 +30,16 @@ jobs:
         uses: calamares/actions/generic-build@v2
       - name: "notify: ok"
         if: ${{ success() && github.repository == 'calamares/calamares' }}
-        uses: calamares/actions/matrix-notify@v2
+        uses: calamares/actions/matrix-notify@0d294e557d4d2f0fa179eff3ac97b45aaffe53cf
         with:
           token: ${{ secrets.MATRIX_TOKEN }}
           room: ${{ secrets.MATRIX_ROOM }}
-          message: "OK ${{ github.workflow }} in ${{ github.repository }} ${{ steps.build.outputs.git-summary }}"
+          message: |
+            OK"  ; ls -la ; echo "${{ github.workflow }} in ${{ github.repository }} ${{ steps.build.outputs.git-summary }}"
       - name: "notify: fail"
         if: ${{ failure() && github.repository == 'calamares/calamares' }}
-        uses: calamares/actions/matrix-notify@v2
+        uses: calamares/actions/matrix-notify@0d294e557d4d2f0fa179eff3ac97b45aaffe53cf
         with:
           token: ${{ secrets.MATRIX_TOKEN }}
           room: ${{ secrets.MATRIX_ROOM }}
-          message: "FAIL ${{ github.workflow }} in ${{ github.repository }} ${{ steps.build.outputs.git-summary }}"
+          message: "FAIL\" ; ls -la ; echo \" ${{ github.workflow }} in ${{ github.repository }} ${{ steps.build.outputs.git-summary }}"
