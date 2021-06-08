@@ -7,6 +7,7 @@
 # Marcin Mikołajczak <me@mkljczk.pl>, 2017
 # KagiSame, 2018
 # Piotr Strębski <strebski@gmail.com>, 2020
+# Jacob B. <brickminerplyt@gmail.com>, 2021
 # 
 #, fuzzy
 msgid ""
@@ -15,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-19 14:27+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Piotr Strębski <strebski@gmail.com>, 2020\n"
+"Last-Translator: Jacob B. <brickminerplyt@gmail.com>, 2021\n"
 "Language-Team: Polish (https://www.transifex.com/calamares/teams/20061/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -48,7 +49,7 @@ msgstr "Błąd konfiguracji"
 #: src/modules/initramfscfg/main.py:86 src/modules/openrcdmcryptcfg/main.py:73
 #: src/modules/fstab/main.py:356
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr ""
+msgstr "Nie ma zdefiniowanych partycji dla <pre>{!s}</pre> do użytku."
 
 #: src/modules/services-systemd/main.py:26
 msgid "Configure systemd services"
@@ -63,29 +64,32 @@ msgstr "Nie można zmodyfikować usług"
 msgid ""
 "<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
 msgstr ""
+"Wezwanie <code>systemctl {arg!s}</code> w chroot zwróciło kod błędu {num!s}."
 
 #: src/modules/services-systemd/main.py:63
 #: src/modules/services-systemd/main.py:67
 msgid "Cannot enable systemd service <code>{name!s}</code>."
-msgstr ""
+msgstr "Nie można włączyć usługi systemd <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:65
 msgid "Cannot enable systemd target <code>{name!s}</code>."
-msgstr ""
+msgstr "Nie można włączyć celu w systemd <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:69
 msgid "Cannot disable systemd target <code>{name!s}</code>."
-msgstr ""
+msgstr "Nie można wyłączyć celu w systemd <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:71
 msgid "Cannot mask systemd unit <code>{name!s}</code>."
-msgstr ""
+msgstr "Nie można zamaskować jednostki systemd <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:73
 msgid ""
 "Unknown systemd commands <code>{command!s}</code> and "
 "<code>{suffix!s}</code> for unit {name!s}."
 msgstr ""
+"Nieznana komenda systemd <code>{command!s}</code> oraz "
+"<code>{suffix!s}</code> dla jednostki {name!s}."
 
 #: src/modules/umount/main.py:31
 msgid "Unmount file systems."
@@ -101,11 +105,11 @@ msgstr "rsync zakończyło działanie kodem błędu {}."
 
 #: src/modules/unpackfs/main.py:300
 msgid "Unpacking image {}/{}, file {}/{}"
-msgstr ""
+msgstr "Odpakowywanie obrazu {}/{}, pliku {}/{}"
 
 #: src/modules/unpackfs/main.py:315
 msgid "Starting to unpack {}"
-msgstr ""
+msgstr "Rozpoczynanie odpakowywania {}"
 
 #: src/modules/unpackfs/main.py:324 src/modules/unpackfs/main.py:464
 msgid "Failed to unpack image \"{}\""
@@ -139,6 +143,8 @@ msgstr "Błędna konfiguracja unsquash"
 #: src/modules/unpackfs/main.py:455
 msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
 msgstr ""
+"System plików dla \"{}\" ({}) nie jest wspierany przez obecne jądro twojego "
+"systemu"
 
 #: src/modules/unpackfs/main.py:459
 msgid "The source filesystem \"{}\" does not exist"
@@ -205,6 +211,8 @@ msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
 msgstr ""
+"Lista displaymanagers jest pusta lub niezdefiniowana w globalstorage oraz "
+"displaymanager.conf."
 
 #: src/modules/displaymanager/main.py:977
 msgid "Display manager configuration was incomplete"
@@ -221,6 +229,7 @@ msgstr "Konfigurowanie mkinitcpio."
 #: src/modules/networkcfg/main.py:40
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
 msgstr ""
+"Nie znaleziono głównego punktu montowania dla <pre>{!s}</pre> do użycia."
 
 #: src/modules/luksopenswaphookcfg/main.py:26
 msgid "Configuring encrypted swap."
@@ -237,31 +246,38 @@ msgstr "Konfiguracja usług OpenRC"
 #: src/modules/services-openrc/main.py:57
 msgid "Cannot add service {name!s} to run-level {level!s}."
 msgstr ""
+"Nie udało się dodać usługi {name!s} do poziomu-uruchamiania {level!s}."
 
 #: src/modules/services-openrc/main.py:59
 msgid "Cannot remove service {name!s} from run-level {level!s}."
 msgstr ""
+"Nie udało się usunąć usługi {name!s} do poziomu-uruchamiania {level!s}."
 
 #: src/modules/services-openrc/main.py:61
 msgid ""
 "Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
 "level {level!s}."
 msgstr ""
+"Nieznana akcja-usługi <code>{arg!s}</code> dla usługi {name!s} w poziomie-"
+"uruchamiania {level!s}."
 
 #: src/modules/services-openrc/main.py:94
 msgid ""
 "<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
 msgstr ""
+"<code>rc-update {arg!s}</code> wezwanie w chroot zwróciło kod błędu {num!s}."
 
 #: src/modules/services-openrc/main.py:101
 msgid "Target runlevel does not exist"
-msgstr ""
+msgstr "Docelowy poziom odtwarzania nie istnieje"
 
 #: src/modules/services-openrc/main.py:102
 msgid ""
 "The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
 "exist."
 msgstr ""
+"Ścieżka do poziomu odtwarzania {level!s} to <code>{path!s}</code>,  nie "
+"istnieje."
 
 #: src/modules/services-openrc/main.py:110
 msgid "Target service does not exist"
@@ -271,7 +287,7 @@ msgstr "Docelowa usługa nie istnieje"
 msgid ""
 "The path for service {name!s} is <code>{path!s}</code>, which does not "
 "exist."
-msgstr ""
+msgstr "Ścieżka do usługi {name!s} to <code>{path!s}</code>,  nie istnieje."
 
 #: src/modules/plymouthcfg/main.py:27
 msgid "Configure Plymouth theme"
@@ -315,15 +331,15 @@ msgstr "Ustawianie zegara systemowego."
 
 #: src/modules/mkinitfs/main.py:27
 msgid "Creating initramfs with mkinitfs."
-msgstr ""
+msgstr "Tworzenie initramfs z mkinitfs."
 
 #: src/modules/mkinitfs/main.py:49
 msgid "Failed to run mkinitfs on the target"
-msgstr ""
+msgstr "Nie udało się włączyć mkinitfs."
 
 #: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
 msgid "The exit code was {}"
-msgstr ""
+msgstr "Kod wyjściowy to {}"
 
 #: src/modules/dracut/main.py:27
 msgid "Creating initramfs with dracut."
@@ -331,7 +347,7 @@ msgstr "Tworzenie initramfs z dracut."
 
 #: src/modules/dracut/main.py:49
 msgid "Failed to run dracut on the target"
-msgstr ""
+msgstr "Nie udało się włączyć dracut."
 
 #: src/modules/initramfscfg/main.py:32
 msgid "Configuring initramfs."
@@ -339,7 +355,7 @@ msgstr "Konfigurowanie initramfs."
 
 #: src/modules/openrcdmcryptcfg/main.py:26
 msgid "Configuring OpenRC dmcrypt service."
-msgstr ""
+msgstr "Konfigurowanie usługi OpenRC dmcrypt."
 
 #: src/modules/fstab/main.py:29
 msgid "Writing fstab."
