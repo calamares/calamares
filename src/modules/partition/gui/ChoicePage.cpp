@@ -134,6 +134,28 @@ ChoicePage::ChoicePage( Config* config, QWidget* parent )
 ChoicePage::~ChoicePage() {}
 
 
+/** @brief Sets the @p model for the given @p box and adjusts UI sizes to match.
+ *
+ * The model provides data for drawing the items in the model; the
+ * drawing itself is done by the delegate, which may end up drawing a
+ * different width in the popup than in the collapsed combo box.
+ *
+ * Make the box wide enough to accomodate the whole expanded delegate;
+ * this avoids cases where the popup would truncate data being drawn
+ * because the overall box is sized too narrow.
+ */
+void setModelToComboBox( QComboBox* box, QAbstractItemModel* model )
+{
+    box->setModel( model );
+    if ( model->rowCount() > 0 )
+    {
+        QStyleOptionViewItem options;
+        options.initFrom( box );
+        auto delegateSize = box->itemDelegate()->sizeHint(options, model->index(0, 0) );
+        box->setMinimumWidth( delegateSize.width() );
+    }
+}
+
 void
 ChoicePage::init( PartitionCoreModule* core )
 {
@@ -145,10 +167,10 @@ ChoicePage::init( PartitionCoreModule* core )
 
     // We need to do this because a PCM revert invalidates the deviceModel.
     connect( core, &PartitionCoreModule::reverted, this, [=] {
-        m_drivesCombo->setModel( core->deviceModel() );
+        setModelToComboBox( m_drivesCombo, core->deviceModel() );
         m_drivesCombo->setCurrentIndex( m_lastSelectedDeviceIndex );
     } );
-    m_drivesCombo->setModel( core->deviceModel() );
+    setModelToComboBox( m_drivesCombo, core->deviceModel() );
 
     connect( m_drivesCombo,
              static_cast< void ( QComboBox::* )( int ) >( &QComboBox::currentIndexChanged ),
