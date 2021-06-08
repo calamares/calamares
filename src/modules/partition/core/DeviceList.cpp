@@ -138,7 +138,7 @@ getDevices( DeviceType which )
 #else
     // Safe partitioning
     auto removeInAllModes = []( DeviceList& l, DeviceList::iterator& it) { return erase(l, it); };
-    auto& removeInSafeMode = removeFromAll;
+    auto& removeInSafeMode = removeInAllModes;
 #endif
 
     cDebug() << "Removing unsuitable devices:" << devices.count() << "candidates.";
