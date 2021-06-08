@@ -28,5 +28,5 @@ jobs:
           curl -X DELETE \
             -H 'Accept: application/vnd.github.v3+json' \
             -H 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-            https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels/hacking%3A+in-progress
+            "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels/hacking: in-progress"
 
