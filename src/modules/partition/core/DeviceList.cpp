@@ -10,14 +10,8 @@
 
 #include "DeviceList.h"
 
-#include "PartitionCoreModule.h"
-#include "core/DeviceModel.h"
-#include "core/KPMHelpers.h"
-
-#include "GlobalStorage.h"
-#include "JobQueue.h"
-#include "partition/PartitionIterator.h"
 #include "utils/Logger.h"
+#include "partition/PartitionIterator.h"
 
 #include <kpmcore/backend/corebackend.h>
 #include <kpmcore/backend/corebackendmanager.h>
@@ -25,7 +19,6 @@
 #include <kpmcore/core/partition.h>
 
 #include <QProcess>
-#include <QTemporaryDir>
 
 using CalamaresUtils::Partition::PartitionIterator;
 
