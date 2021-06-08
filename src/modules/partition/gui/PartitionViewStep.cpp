@@ -16,45 +16,27 @@
 #include "core/BootLoaderModel.h"
 #include "core/Config.h"
 #include "core/DeviceModel.h"
-#include "core/KPMHelpers.h"
-#include "core/OsproberEntry.h"
-#include "core/PartUtils.h"
-#include "core/PartitionActions.h"
 #include "core/PartitionCoreModule.h"
-#include "core/PartitionModel.h"
 #include "gui/ChoicePage.h"
 #include "gui/PartitionBarsView.h"
 #include "gui/PartitionLabelsView.h"
 #include "gui/PartitionPage.h"
 
 #include "Branding.h"
-#include "CalamaresVersion.h"
 #include "GlobalStorage.h"
-#include "Job.h"
 #include "JobQueue.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
-#include "utils/NamedEnum.h"
 #include "utils/QtCompat.h"
 #include "utils/Retranslator.h"
-#include "utils/Units.h"
 #include "utils/Variant.h"
 #include "widgets/WaitingWidget.h"
 
-
-#include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
-#include <kpmcore/fs/filesystem.h>
 
-#include <QApplication>
-#include <QDir>
 #include <QFormLayout>
-#include <QFutureWatcher>
-#include <QLabel>
 #include <QMessageBox>
-#include <QProcess>
 #include <QStackedWidget>
-#include <QTimer>
 #include <QtConcurrent/QtConcurrent>
 
 PartitionViewStep::PartitionViewStep( QObject* parent )

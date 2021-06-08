@@ -20,7 +20,6 @@ class PartitionCoreModule;
 class Ui_PartitionPage;
 
 class Device;
-class DeviceModel;
 class Partition;
 
 /**
