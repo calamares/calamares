@@ -72,15 +72,15 @@ getRequiredStorageGiB( bool& ok )
 }
 
 bool
-canBeReplaced( Partition* candidate )
+canBeReplaced( Partition* candidate, const Logger::Once& o )
 {
     if ( !candidate )
     {
-        cDebug() << "Partition* is NULL";
+        cDebug() << o << "Partition* is NULL";
         return false;
     }
 
-    cDebug() << "Checking if" << convenienceName( candidate ) << "can be replaced.";
+    cDebug() << o << "Checking if" << convenienceName( candidate ) << "can be replaced.";
     if ( candidate->isMounted() )
     {
         cDebug() << Logger::SubEntry << "NO, it is mounted.";
@@ -100,7 +100,7 @@ canBeReplaced( Partition* candidate )
 
     if ( availableStorageB > requiredStorageB )
     {
-        cDebug() << "Partition" << convenienceName( candidate ) << "authorized for replace install.";
+        cDebug() << o << "Partition" << convenienceName( candidate ) << "authorized for replace install.";
         return true;
     }
     else
@@ -117,15 +117,15 @@ canBeReplaced( Partition* candidate )
 
 
 bool
-canBeResized( Partition* candidate )
+canBeResized( Partition* candidate, const Logger::Once& o )
 {
     if ( !candidate )
     {
-        cDebug() << "Partition* is NULL";
+        cDebug() << o << "Partition* is NULL";
         return false;
     }
 
-    cDebug() << "Checking if" << convenienceName( candidate ) << "can be resized.";
+    cDebug() << o << "Checking if" << convenienceName( candidate ) << "can be resized.";
     if ( !candidate->fileSystem().supportGrow() || !candidate->fileSystem().supportShrink() )
     {
         cDebug() << Logger::SubEntry << "NO, filesystem" << candidate->fileSystem().name()
@@ -177,7 +177,7 @@ canBeResized( Partition* candidate )
 
     if ( availableStorageB > advisedStorageB )
     {
-        cDebug() << "Partition" << convenienceName( candidate ) << "authorized for resize + autopartition install.";
+        cDebug() << o << "Partition" << convenienceName( candidate ) << "authorized for resize + autopartition install.";
         return true;
     }
     else
@@ -196,9 +196,9 @@ canBeResized( Partition* candidate )
 
 
 bool
-canBeResized( DeviceModel* dm, const QString& partitionPath )
+canBeResized( DeviceModel* dm, const QString& partitionPath, const Logger::Once& o )
 {
-    cDebug() << "Checking if" << partitionPath << "can be resized.";
+    cDebug() << o << "Checking if" << partitionPath << "can be resized.";
     QString partitionWithOs = partitionPath;
     if ( partitionWithOs.startsWith( "/dev/" ) )
     {
@@ -208,7 +208,7 @@ canBeResized( DeviceModel* dm, const QString& partitionPath )
             Partition* candidate = CalamaresUtils::Partition::findPartitionByPath( { dev }, partitionWithOs );
             if ( candidate )
             {
-                return canBeResized( candidate );
+                return canBeResized( candidate, o );
             }
         }
         cDebug() << Logger::SubEntry << "no Partition* found for" << partitionWithOs;
@@ -357,6 +357,8 @@ findPartitionPathForMountPoint( const FstabEntryList& fstab, const QString& moun
 OsproberEntryList
 runOsprober( DeviceModel* dm )
 {
+    Logger::Once o;
+
     QString osproberOutput;
     QProcess osprober;
     osprober.setProgram( "os-prober" );
@@ -411,18 +413,18 @@ runOsprober( DeviceModel* dm )
             QString homePath = findPartitionPathForMountPoint( fstabEntries, "/home" );
 
             osproberEntries.append(
-                { prettyName, path, file, QString(), canBeResized( dm, path ), lineColumns, fstabEntries, homePath } );
+                { prettyName, path, file, QString(), canBeResized( dm, path, o ), lineColumns, fstabEntries, homePath } );
             osproberCleanLines.append( line );
         }
     }
 
     if ( osproberCleanLines.count() > 0 )
     {
-        cDebug() << "os-prober lines after cleanup:" << Logger::DebugList( osproberCleanLines );
+        cDebug() << o << "os-prober lines after cleanup:" << Logger::DebugList( osproberCleanLines );
     }
     else
     {
-        cDebug() << "os-prober gave no output.";
+        cDebug() << o << "os-prober gave no output.";
     }
 
     Calamares::JobQueue::instance()->globalStorage()->insert( "osproberLines", osproberCleanLines );
@@ -481,7 +483,6 @@ findFS( QString fsName, FileSystem::Type* fsType )
     FileSystem::Type tmpType = FileSystem::typeForName( fsName, fsLanguage );
     if ( tmpType != FileSystem::Unknown )
     {
-        cDebug() << "Found filesystem" << fsName;
         if ( fsType )
         {
             *fsType = tmpType;
@@ -496,7 +497,6 @@ findFS( QString fsName, FileSystem::Type* fsType )
         if ( 0 == QString::compare( fsName, FileSystem::nameForType( t, fsLanguage ), Qt::CaseInsensitive ) )
         {
             QString fsRealName = FileSystem::nameForType( t, fsLanguage );
-            cDebug() << "Filesystem name" << fsName << "translated to" << fsRealName;
             if ( fsType )
             {
                 *fsType = t;
@@ -505,7 +505,7 @@ findFS( QString fsName, FileSystem::Type* fsType )
         }
     }
 
-    cDebug() << "Filesystem" << fsName << "not found, using ext4";
+    cWarning() << "Filesystem" << fsName << "not found, using ext4";
     fsName = QStringLiteral( "ext4" );
     // fsType can be used to check whether fsName was a valid filesystem.
     if ( fsType )

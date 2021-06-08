@@ -134,6 +134,28 @@ ChoicePage::ChoicePage( Config* config, QWidget* parent )
 ChoicePage::~ChoicePage() {}
 
 
+/** @brief Sets the @p model for the given @p box and adjusts UI sizes to match.
+ *
+ * The model provides data for drawing the items in the model; the
+ * drawing itself is done by the delegate, which may end up drawing a
+ * different width in the popup than in the collapsed combo box.
+ *
+ * Make the box wide enough to accomodate the whole expanded delegate;
+ * this avoids cases where the popup would truncate data being drawn
+ * because the overall box is sized too narrow.
+ */
+void setModelToComboBox( QComboBox* box, QAbstractItemModel* model )
+{
+    box->setModel( model );
+    if ( model->rowCount() > 0 )
+    {
+        QStyleOptionViewItem options;
+        options.initFrom( box );
+        auto delegateSize = box->itemDelegate()->sizeHint(options, model->index(0, 0) );
+        box->setMinimumWidth( delegateSize.width() );
+    }
+}
+
 void
 ChoicePage::init( PartitionCoreModule* core )
 {
@@ -145,10 +167,10 @@ ChoicePage::init( PartitionCoreModule* core )
 
     // We need to do this because a PCM revert invalidates the deviceModel.
     connect( core, &PartitionCoreModule::reverted, this, [=] {
-        m_drivesCombo->setModel( core->deviceModel() );
+        setModelToComboBox( m_drivesCombo, core->deviceModel() );
         m_drivesCombo->setCurrentIndex( m_lastSelectedDeviceIndex );
     } );
-    m_drivesCombo->setModel( core->deviceModel() );
+    setModelToComboBox( m_drivesCombo, core->deviceModel() );
 
     connect( m_drivesCombo,
              static_cast< void ( QComboBox::* )( int ) >( &QComboBox::currentIndexChanged ),
@@ -482,8 +504,6 @@ ChoicePage::applyActionChoice( InstallChoice choice )
                 [] {},
                 this );
         }
-        updateNextEnabled();
-
         connect( m_beforePartitionBarsView->selectionModel(),
                  SIGNAL( currentRowChanged( QModelIndex, QModelIndex ) ),
                  this,
@@ -507,7 +527,6 @@ ChoicePage::applyActionChoice( InstallChoice choice )
                 },
                 this );
         }
-        updateNextEnabled();
 
         connect( m_beforePartitionBarsView->selectionModel(),
                  SIGNAL( currentRowChanged( QModelIndex, QModelIndex ) ),
@@ -519,6 +538,7 @@ ChoicePage::applyActionChoice( InstallChoice choice )
     case InstallChoice::Manual:
         break;
     }
+    updateNextEnabled();
     updateActionChoicePreview( choice );
 }
 
@@ -985,7 +1005,7 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
 
         SelectionFilter filter = []( const QModelIndex& index ) {
             return PartUtils::canBeResized(
-                static_cast< Partition* >( index.data( PartitionModel::PartitionPtrRole ).value< void* >() ) );
+                static_cast< Partition* >( index.data( PartitionModel::PartitionPtrRole ).value< void* >() ), Logger::Once() );
         };
         m_beforePartitionBarsView->setSelectionFilter( filter );
         m_beforePartitionLabelsView->setSelectionFilter( filter );
@@ -1074,7 +1094,7 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
         {
             SelectionFilter filter = []( const QModelIndex& index ) {
                 return PartUtils::canBeReplaced(
-                    static_cast< Partition* >( index.data( PartitionModel::PartitionPtrRole ).value< void* >() ) );
+                    static_cast< Partition* >( index.data( PartitionModel::PartitionPtrRole ).value< void* >() ), Logger::Once() );
             };
             m_beforePartitionBarsView->setSelectionFilter( filter );
             m_beforePartitionLabelsView->setSelectionFilter( filter );
@@ -1219,10 +1239,12 @@ operator<<( QDebug& s, PartitionIterator& it )
 void
 ChoicePage::setupActions()
 {
+    Logger::Once o;
+
     Device* currentDevice = selectedDevice();
     OsproberEntryList osproberEntriesForCurrentDevice = getOsproberEntriesForDevice( currentDevice );
 
-    cDebug() << "Setting up actions for" << currentDevice->deviceNode() << "with"
+    cDebug() << o << "Setting up actions for" << currentDevice->deviceNode() << "with"
              << osproberEntriesForCurrentDevice.count() << "entries.";
 
     if ( currentDevice->partitionTable() )
@@ -1268,12 +1290,12 @@ ChoicePage::setupActions()
 
     for ( auto it = PartitionIterator::begin( currentDevice ); it != PartitionIterator::end( currentDevice ); ++it )
     {
-        if ( PartUtils::canBeResized( *it ) )
+        if ( PartUtils::canBeResized( *it, o ) )
         {
             cDebug() << Logger::SubEntry << "contains resizable" << it;
             atLeastOneCanBeResized = true;
         }
-        if ( PartUtils::canBeReplaced( *it ) )
+        if ( PartUtils::canBeReplaced( *it, o ) )
         {
             cDebug() << Logger::SubEntry << "contains replaceable" << it;
             atLeastOneCanBeReplaced = true;
@@ -1402,7 +1424,7 @@ ChoicePage::setupActions()
     }
     else
     {
-        cDebug() << "Replace button suppressed because none can be replaced.";
+        cDebug() << "No partitions available for replace-action.";
         force_uncheck( m_grp, m_replaceButton );
     }
 
@@ -1412,7 +1434,7 @@ ChoicePage::setupActions()
     }
     else
     {
-        cDebug() << "Alongside button suppressed because none can be resized.";
+        cDebug() << "No partitions available for resize-action.";
         force_uncheck( m_grp, m_alongsideButton );
     }
 
@@ -1422,8 +1444,8 @@ ChoicePage::setupActions()
     }
     else
     {
-        cDebug() << "Erase button suppressed"
-                 << "mount?" << atLeastOneIsMounted << "raid?" << isInactiveRAID;
+        cDebug() << "No partitions ("
+                 << "any-mounted?" << atLeastOneIsMounted << "is-raid?" << isInactiveRAID << ") for erase-action.";
         force_uncheck( m_grp, m_eraseButton );
     }
 

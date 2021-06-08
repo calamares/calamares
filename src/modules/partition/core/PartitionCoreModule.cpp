@@ -255,13 +255,22 @@ PartitionCoreModule::doInit()
     DeviceList devices = PartUtils::getDevices( PartUtils::DeviceType::WritableOnly );
 
     cDebug() << "LIST OF DETECTED DEVICES:";
-    cDebug() << "node\tcapacity\tname\tprettyName";
+    cDebug() << Logger::SubEntry << "node\tcapacity\tname\tprettyName";
     for ( auto device : devices )
     {
-        // Gives ownership of the Device* to the DeviceInfo object
-        auto deviceInfo = new DeviceInfo( device );
-        m_deviceInfos << deviceInfo;
-        cDebug() << device->deviceNode() << device->capacity() << device->name() << device->prettyName();
+        cDebug() << Logger::SubEntry << Logger::Pointer(device);
+        if ( device )
+        {
+            // Gives ownership of the Device* to the DeviceInfo object
+            auto deviceInfo = new DeviceInfo( device );
+            m_deviceInfos << deviceInfo;
+            cDebug() << Logger::SubEntry << device->deviceNode() << device->capacity() << device->name()
+                     << device->prettyName();
+        }
+        else
+        {
+            cDebug() << Logger::SubEntry << "(skipped null device)";
+        }
     }
     cDebug() << Logger::SubEntry << devices.count() << "devices detected.";
     m_deviceModel->init( devices );
@@ -659,10 +668,10 @@ PartitionCoreModule::dumpQueue() const
     cDebug() << "# Queue:";
     for ( auto info : m_deviceInfos )
     {
-        cDebug() << "## Device:" << info->device->name();
+        cDebug() << Logger::SubEntry << "## Device:" << info->device->name();
         for ( const auto& job : info->jobs() )
         {
-            cDebug() << "-" << job->prettyName();
+            cDebug() << Logger::SubEntry << "-" << job->prettyName();
         }
     }
 }

@@ -24,6 +24,10 @@
 
 class DeviceModel;
 class Partition;
+namespace Logger
+{
+    class Once;
+}
 
 namespace PartUtils
 {
@@ -41,26 +45,29 @@ QString convenienceName( const Partition* const candidate );
  * @brief canBeReplaced checks whether the given Partition satisfies the criteria
  * for replacing it with the new OS.
  * @param candidate the candidate partition to replace.
+ * @param o applied to debug-logging.
  * @return true if the criteria are met, otherwise false.
  */
-bool canBeReplaced( Partition* candidate );
+bool canBeReplaced( Partition* candidate, const Logger::Once& o );
 
 /**
  * @brief canBeReplaced checks whether the given Partition satisfies the criteria
  * for resizing (shrinking) it to make room for a new OS.
  * @param candidate the candidate partition to resize.
+ * @param o applied to debug-logging.
  * @return true if the criteria are met, otherwise false.
  */
-bool canBeResized( Partition* candidate );
+bool canBeResized( Partition* candidate, const Logger::Once& o );
 
 /**
  * @brief canBeReplaced checks whether the given Partition satisfies the criteria
  * for resizing (shrinking) it to make room for a new OS.
  * @param dm the DeviceModel instance.
  * @param partitionPath the device path of the candidate partition to resize.
+ * @param o applied to debug-logging.
  * @return true if the criteria are met, otherwise false.
  */
-bool canBeResized( DeviceModel* dm, const QString& partitionPath );
+bool canBeResized( DeviceModel* dm, const QString& partitionPath, const Logger::Once& o );
 
 /**
  * @brief runOsprober executes os-prober, parses the output and writes relevant
