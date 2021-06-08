@@ -99,7 +99,7 @@ DeviceModel::data( const QModelIndex& index, int role ) const
         return CalamaresUtils::defaultPixmap(
             CalamaresUtils::PartitionDisk,
             CalamaresUtils::Original,
-            QSize( CalamaresUtils::defaultIconSize().width() * 3, CalamaresUtils::defaultIconSize().height() * 3 ) );
+            QSize( CalamaresUtils::defaultIconSize().width() * 2, CalamaresUtils::defaultIconSize().height() * 2 ) );
     default:
         return QVariant();
     }
