@@ -10,14 +10,14 @@ jobs:
     steps:
       - name: "notify: new"
         if: github.event.issue.state == 'open'
-        uses: calamares/actions/matrix-notify@v2
+        uses: calamares/actions/matrix-notify@v3
         with:
           token: ${{ secrets.MATRIX_TOKEN }}
           room: ${{ secrets.MATRIX_ROOM }}
           message: "OPENED ${{ github.event.issue.html_url }} by ${{ github.actor }} ${{ github.event.issue.title }}"
       - name: "notify: closed"
         if: github.event.issue.state != 'open'
-        uses: calamares/actions/matrix-notify@v2
+        uses: calamares/actions/matrix-notify@v3
         with:
           token: ${{ secrets.MATRIX_TOKEN }}
           room: ${{ secrets.MATRIX_ROOM }}
@@ -28,5 +28,5 @@ jobs:
           curl -X DELETE \
             -H 'Accept: application/vnd.github.v3+json' \
             -H 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-            https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.id }}/labels/hacking%3A+in-progress
+            https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels/hacking%3A+in-progress
 

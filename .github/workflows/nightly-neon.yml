@@ -22,12 +22,12 @@ jobs:
       options: --tmpfs /build:rw --user 0:0
     steps:
       - name: "prepare env"
-        uses: calamares/actions/prepare-neon@v2
+        uses: calamares/actions/prepare-neon@v3
       - name: "prepare source"
         uses: actions/checkout@v2
       - name: "build"
         id: build
-        uses: calamares/actions/generic-build@v2
+        uses: calamares/actions/generic-build@v3
       - name: "Calamares: archive"
         working-directory: ${{ env.BUILDDIR }}
         run: |
@@ -42,14 +42,14 @@ jobs:
           retention-days: 3
       - name: "notify: ok"
         if: ${{ success() && github.repository == 'calamares/calamares' }}
-        uses: calamares/actions/matrix-notify@v2
+        uses: calamares/actions/matrix-notify@v3
         with:
           token: ${{ secrets.MATRIX_TOKEN }}
           room: ${{ secrets.MATRIX_ROOM }}
           message: "OK ${{ github.workflow }} in ${{ github.repository }} ${{ steps.build.outputs.git-summary }}"
       - name: "notify: fail"
         if: ${{ failure() && github.repository == 'calamares/calamares' }}
-        uses: calamares/actions/matrix-notify@v2
+        uses: calamares/actions/matrix-notify@v3
         with:
           token: ${{ secrets.MATRIX_TOKEN }}
           room: ${{ secrets.MATRIX_ROOM }}
