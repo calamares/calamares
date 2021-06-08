@@ -125,12 +125,27 @@ getDevices( DeviceType which )
     DeviceList devices = backend->scanDevices( /* excludeReadOnly */ true );
 #endif
 
+    /* The list of devices is cleaned up for use:
+     *  - some devices can **never** be used (e.g. floppies, nullptr)
+     *  - some devices can be used if unsafe mode is on, but not in normal operation
+     * Two lambda's are defined,
+     *  - removeInAllModes()
+     *  - removeInSafeMode()
+     * To handle the difference.
+     */
 #ifdef DEBUG_PARTITION_UNSAFE
     cWarning() << "Allowing unsafe partitioning choices." << devices.count() << "candidates.";
-    DeviceList unsafeDevices = devices;
 #ifdef DEBUG_PARTITION_LAME
-    cDebug() << Logger::SubEntry << "it has been lamed, and will fail.";
+    cDebug() << Logger::SubEntry << "unsafe partitioning has been lamed, and will fail.";
 #endif
+
+    // Unsafe partitioning
+    auto removeInAllModes = []( DeviceList& l, DeviceList::iterator& it) { return erase(l, it); };
+    auto removeInSafeMode = []( DeviceList&, DeviceList::iterator& it) { return ++it; };
+#else
+    // Safe partitioning
+    auto removeInAllModes = []( DeviceList& l, DeviceList::iterator& it) { return erase(l, it); };
+    auto& removeInSafeMode = removeFromAll;
 #endif
 
     cDebug() << "Removing unsuitable devices:" << devices.count() << "candidates.";
@@ -142,27 +157,27 @@ getDevices( DeviceType which )
         if ( !( *it ) )
         {
             cDebug() << Logger::SubEntry << "Skipping nullptr device";
-            it = erase( devices, it );
+            it = removeInAllModes( devices, it );
         }
         else if ( isZRam( *it ) )
         {
             cDebug() << Logger::SubEntry << "Removing zram" << it;
-            it = erase( devices, it );
+            it = removeInAllModes( devices, it );
         }
         else if ( isFloppyDrive( ( *it ) ) )
         {
             cDebug() << Logger::SubEntry << "Removing floppy disk" << it;
-            it = erase( devices, it );
+            it = removeInAllModes( devices, it );
         }
         else if ( writableOnly && hasRootPartition( *it ) )
         {
             cDebug() << Logger::SubEntry << "Removing device with root filesystem (/) on it" << it;
-            it = erase( devices, it );
+            it = removeInSafeMode( devices, it );
         }
         else if ( writableOnly && isIso9660( *it ) )
         {
             cDebug() << Logger::SubEntry << "Removing device with iso9660 filesystem (probably a CD) on it" << it;
-            it = erase( devices, it );
+            it = removeInSafeMode( devices, it );
         }
         else
         {
@@ -170,11 +185,7 @@ getDevices( DeviceType which )
         }
     }
     cDebug() << Logger::SubEntry << "there are" << devices.count() << "devices left.";
-#ifdef DEBUG_PARTITION_UNSAFE
-    return unsafeDevices;
-#else
     return devices;
-#endif
 }
 
 }  // namespace PartUtils
