@@ -321,7 +321,7 @@ load_module( const ModuleConfig& moduleConfig )
     QString configFile( moduleConfig.configFile().isEmpty() ? moduleDirectory + '/' + name + ".conf"
                                                             : moduleConfig.configFile() );
 
-    cDebug() << "Module" << moduleName << "job-configuration:" << configFile;
+    cDebug() << Logger::SubEntry << "Module" << moduleName << "job-configuration:" << configFile;
 
     Calamares::Module* module = Calamares::moduleFromDescriptor(
         Calamares::ModuleSystem::Descriptor::fromDescriptorData( descriptor ), name, configFile, moduleDirectory );
@@ -406,7 +406,7 @@ main( int argc, char* argv[] )
         return 1;
     }
 
-    cDebug() << " .. got" << m->name() << m->typeString() << m->interfaceString();
+    cDebug() << Logger::SubEntry << " .. got" << m->name() << m->typeString() << m->interfaceString();
     if ( m->type() == Calamares::Module::Type::View )
     {
         // If we forgot the --ui, any ViewModule will core dump as it
@@ -455,7 +455,6 @@ main( int argc, char* argv[] )
     cDebug() << "Module metadata" << TR( "name", m->name() ) << TR( "type", m->typeString() )
              << TR( "interface", m->interfaceString() );
 
-    cDebug() << "Job outputs:";
     Calamares::JobList jobList = m->jobs();
     unsigned int failure_count = 0;
     unsigned int count = 1;
