@@ -18,6 +18,7 @@
 #include "GlobalStorage.h"
 #include "Job.h"
 #include "JobQueue.h"
+#include "PythonJob.h"
 #include "Settings.h"
 #include "ViewManager.h"
 #include "modulesystem/Module.h"
@@ -365,6 +366,27 @@ createApplication( int& argc, char* argv[] )
     return new QCoreApplication( argc, argv );
 }
 
+static const char pythonPreScript[] = R"(
+# This is Python code executed by Python modules *before* the
+# script file (e.g. main.py) is executed. Beware " before )
+# because it's a C++ raw-string.
+_calamares_subprocess = __import__("subprocess", globals(), locals(), [], 0)
+import sys
+import libcalamares
+class fake_subprocess(object):
+    @staticmethod
+    def call(*args, **kwargs):
+        libcalamares.utils.debug("subprocess.call(%r,%r) X run normally" % (args, kwargs))
+        return 0
+    @staticmethod
+    def check_call(*args, **kwargs):
+        libcalamares.utils.debug("subprocess.check_call(%r,%r) X subverted to call" % (args, kwargs))
+        return 0
+sys.modules["subprocess"] = fake_subprocess
+libcalamares.utils.debug('pre-script for testing purposes injected')
+
+)";
+
 int
 main( int argc, char* argv[] )
 {
@@ -397,6 +419,7 @@ main( int argc, char* argv[] )
 #ifdef WITH_QML
     CalamaresUtils::initQmlModulesDir();  // don't care if failed
 #endif
+    Calamares::PythonJob::setInjectedPreScript(pythonPreScript);
 
     cDebug() << "Calamares module-loader testing" << module.moduleName();
     Calamares::Module* m = load_module( module );
