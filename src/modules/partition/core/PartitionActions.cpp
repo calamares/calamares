@@ -109,6 +109,10 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
         partType = isEfi ? PartitionTable::gpt : PartitionTable::msdos;
     }
 
+    FileSystem::Type type;
+    PartUtils::findFS(o.defaultFsType, &type);
+    core->initLayout( type == FileSystem::Unknown ? FileSystem::Ext4 : type);
+
     core->createPartitionTable( dev, partType );
 
     if ( isEfi )

@@ -54,6 +54,8 @@ public:
     static const NamedEnumTable< SwapChoice >& swapChoiceNames();
     using SwapChoiceSet = QSet< SwapChoice >;
 
+    using EraseFsTypesSet = QStringList;
+
     void setConfigurationMap( const QVariantMap& );
     void updateGlobalStorage() const;
 
@@ -94,6 +96,11 @@ public:
      */
     SwapChoice swapChoice() const { return m_swapChoice; }
 
+    EraseFsTypesSet eraseFsTypes() const {return m_eraseFsTypes; }
+
+    QString eraseFsType() const {return m_eraseFsTypeChoice; }
+
+
     ///@brief Is manual partitioning allowed (not explicitly disnabled in the config file)?
     bool allowManualPartitioning() const;
 
@@ -102,6 +109,7 @@ public Q_SLOTS:
     void setInstallChoice( InstallChoice );
     void setSwapChoice( int );  ///< Translates a button ID or so to SwapChoice
     void setSwapChoice( SwapChoice );
+    void setEraseFsTypeChoice( const QString& );
 
 Q_SIGNALS:
     void installChoiceChanged( InstallChoice );
@@ -109,6 +117,8 @@ Q_SIGNALS:
 
 private:
     SwapChoiceSet m_swapChoices;
+    EraseFsTypesSet m_eraseFsTypes;
+    QString m_eraseFsTypeChoice;
     SwapChoice m_initialSwapChoice = NoSwap;
     SwapChoice m_swapChoice = NoSwap;
     InstallChoice m_initialInstallChoice = NoChoice;

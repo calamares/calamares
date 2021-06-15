@@ -268,6 +268,14 @@ ChoicePage::setupChoices()
         m_eraseButton->addOptionsComboBox( m_eraseSwapChoiceComboBox );
     }
 
+    if ( m_config->eraseFsTypes().count() > 1)
+    {
+        m_eraseFsTypesChoiceComboBox = new QComboBox;
+        m_eraseFsTypesChoiceComboBox->addItems(m_config->eraseFsTypes());
+        connect(m_eraseFsTypesChoiceComboBox, &QComboBox::currentTextChanged, [this](const auto& currentString){m_config->setEraseFsTypeChoice(currentString); onActionChanged();});
+        m_eraseButton->addOptionsComboBox( m_eraseFsTypesChoiceComboBox );
+    }
+
     m_itemsLayout->addWidget( m_alongsideButton );
     m_itemsLayout->addWidget( m_replaceButton );
     m_itemsLayout->addWidget( m_eraseButton );
@@ -464,9 +472,8 @@ ChoicePage::applyActionChoice( InstallChoice choice )
     case InstallChoice::Erase:
     {
         auto gs = Calamares::JobQueue::instance()->globalStorage();
-
         PartitionActions::Choices::AutoPartitionOptions options { gs->value( "defaultPartitionTableType" ).toString(),
-                                                                  gs->value( "defaultFileSystemType" ).toString(),
+                                                                  m_config->eraseFsType(),
                                                                   m_encryptWidget->passphrase(),
                                                                   gs->value( "efiSystemPartition" ).toString(),
                                                                   CalamaresUtils::GiBtoBytes(
