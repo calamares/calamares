@@ -31,6 +31,7 @@
  * Edited anyway:
  *      20191211 India (IN) changed to AnyLanguage, since Hindi doesn't make sense. #1284
  *      20210207 Belarus (BY) changed to Russian, as the more-common-language. #1634
+ *      20210615 Tokelau and Tuvalu country enum values changed to avoid deprecation warning.
  *
  */
 
@@ -224,13 +225,13 @@ static const CountryData country_data_table[] = {
 { QLocale::Language::French, QLocale::Country::Togo, 'T', 'G' },
 { QLocale::Language::Thai, QLocale::Country::Thailand, 'T', 'H' },
 { QLocale::Language::Tajik, QLocale::Country::Tajikistan, 'T', 'J' },
-{ QLocale::Language::TokelauLanguage, QLocale::Country::Tokelau, 'T', 'K' },
+{ QLocale::Language::TokelauLanguage, QLocale::Country::TokelauCountry, 'T', 'K' },
 { QLocale::Language::Portuguese, QLocale::Country::EastTimor, 'T', 'L' },
 { QLocale::Language::Turkmen, QLocale::Country::Turkmenistan, 'T', 'M' },
 { QLocale::Language::Arabic, QLocale::Country::Tunisia, 'T', 'N' },
 { QLocale::Language::Tongan, QLocale::Country::Tonga, 'T', 'O' },
 { QLocale::Language::Turkish, QLocale::Country::Turkey, 'T', 'R' },
-{ QLocale::Language::TuvaluLanguage, QLocale::Country::Tuvalu, 'T', 'V' },
+{ QLocale::Language::TuvaluLanguage, QLocale::Country::TuvaluCountry, 'T', 'V' },
 { QLocale::Language::Chinese, QLocale::Country::Taiwan, 'T', 'W' },
 { QLocale::Language::Swahili, QLocale::Country::Tanzania, 'T', 'Z' },
 { QLocale::Language::Ukrainian, QLocale::Country::Ukraine, 'U', 'A' },
