@@ -19,6 +19,8 @@
 
 #include <QDir>
 
+static const char* s_preScript = nullptr;
+
 namespace bp = boost::python;
 
 BOOST_PYTHON_FUNCTION_OVERLOADS( mount_overloads, CalamaresPython::mount, 2, 4 );
@@ -242,6 +244,11 @@ PythonJob::exec()
         calamaresNamespace[ "globalstorage" ]
             = CalamaresPython::GlobalStoragePythonWrapper( JobQueue::instance()->globalStorage() );
 
+        if ( s_preScript )
+        {
+            bp::exec( s_preScript, scriptNamespace, scriptNamespace );
+        }
+
         cDebug() << "Job file" << scriptFI.absoluteFilePath();
         bp::object execResult
             = bp::exec_file( scriptFI.absoluteFilePath().toLocal8Bit().data(), scriptNamespace, scriptNamespace );
@@ -317,6 +324,13 @@ PythonJob::emitProgress( qreal progressValue )
         }
     }
     emit progress( progressValue );
+}
+
+void
+PythonJob::setInjectedPreScript( const char* preScript )
+{
+    s_preScript = preScript;
+    cDebug() << "Python pre-script set to" << Logger::Pointer( preScript );
 }
 
 }  // namespace Calamares

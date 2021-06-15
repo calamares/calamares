@@ -74,7 +74,14 @@ def mount_partition(root_mount_point, partition, partitions):
     # Special handling for btrfs subvolumes. Create the subvolumes listed in mount.conf
     if fstype == "btrfs" and partition["mountPoint"] == '/':
         # Root has been mounted to btrfs volume -> create subvolumes from configuration
-        btrfs_subvolumes = libcalamares.job.configuration.get("btrfsSubvolumes") or []
+        btrfs_subvolumes = libcalamares.job.configuration.get("btrfsSubvolumes", None)
+        # Warn if there's no configuration at all, and empty configurations are
+        # replaced by a simple root-only layout.
+        if btrfs_subvolumes is None:
+            libcalamares.utils.warning("No configuration for btrfsSubvolumes")
+        if not btrfs_subvolumes:
+            btrfs_subvolumes = [ dict(mountPoint="/", subvolume="/@") ]
+
         subvolume_mountpoints = [d['mountPoint'] for d in btrfs_subvolumes]
         # Check if listed mountpoints besides / are already present and don't create subvolume for those
         for p in partitions:
