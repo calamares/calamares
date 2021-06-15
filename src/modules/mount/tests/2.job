@@ -1,0 +1,5 @@
+# SPDX-FileCopyrightText: no
+# SPDX-License-Identifier: CC0-1.0
+
+# Expect a complaint and a default btrfs layout because the
+# partitions use btrfs
