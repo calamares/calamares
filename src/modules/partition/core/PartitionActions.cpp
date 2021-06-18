@@ -16,13 +16,12 @@
 #include "core/PartitionCoreModule.h"
 #include "core/PartitionInfo.h"
 
-#include "utils/CalamaresUtilsSystem.h"
-#include "utils/NamedEnum.h"
-#include "utils/Units.h"
-
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
+#include "utils/NamedEnum.h"
+#include "utils/Units.h"
 
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
@@ -110,8 +109,8 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
     }
 
     FileSystem::Type type;
-    PartUtils::findFS(o.defaultFsType, &type);
-    core->initLayout( type == FileSystem::Unknown ? FileSystem::Ext4 : type);
+    PartUtils::findFS( o.defaultFsType, &type );
+    core->initLayout( type == FileSystem::Unknown ? FileSystem::Ext4 : type );
 
     core->createPartitionTable( dev, partType );
 
