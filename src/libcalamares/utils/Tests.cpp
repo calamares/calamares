@@ -56,6 +56,7 @@ private Q_SLOTS:
 
     /** @brief Tests the RAII bits. */
     void testBoolSetter();
+    void testPointerSetter();
 
     /** @brief Tests the Traits bits. */
     void testTraits();
@@ -359,6 +360,50 @@ LibCalamaresTests::testBoolSetter()
     }
     QVERIFY( b );
 }
+
+void
+LibCalamaresTests::testPointerSetter()
+{
+    int special = 17;
+
+    QCOMPARE( special, 17 );
+    {
+        cPointerSetter p( &special );
+    }
+    QCOMPARE( special, 17 );
+    {
+        cPointerSetter p( &special );
+        p = 18;
+    }
+    QCOMPARE( special, 18 );
+    {
+        cPointerSetter p( &special );
+        p = 20;
+        p = 3;
+    }
+    QCOMPARE( special, 3 );
+    {
+        cPointerSetter<int> p( nullptr );
+    }
+    QCOMPARE( special, 3 );
+    {
+        // "don't do this" .. order of destructors is important
+        cPointerSetter p( &special );
+        cPointerSetter q( &special );
+        p = 17;
+    }
+    QCOMPARE( special, 17 );
+    {
+        // "don't do this" .. order of destructors is important
+        cPointerSetter p( &special );
+        cPointerSetter q( &special );
+        p = 34;
+        q = 2;
+        // q destroyed first, then p
+    }
+    QCOMPARE( special, 34 );
+}
+
 
 /* Demonstration of Traits support for has-a-method or not.
  *
