@@ -23,10 +23,14 @@
 QStringList
 standardMountPoints()
 {
-    QStringList mountPoints { "/", "/boot", "/home", "/opt", "/srv", "/usr", "/var" };
+    QStringList mountPoints { "/", "/home", "/opt", "/srv", "/usr", "/var" };
     if ( PartUtils::isEfiSystem() )
     {
         mountPoints << Calamares::JobQueue::instance()->globalStorage()->value( "efiSystemPartition" ).toString();
+    }
+    else
+    {
+        mountPoints << QStringLiteral( "/boot" );
     }
     mountPoints.removeDuplicates();
     mountPoints.sort();
@@ -68,11 +72,13 @@ setSelectedMountPoint( QComboBox& combo, const QString& selected )
     else
     {
         for ( int i = 0; i < combo.count(); ++i )
+        {
             if ( selected == combo.itemText( i ) )
             {
                 combo.setCurrentIndex( i );
                 return;
             }
+        }
         combo.addItem( selected );
         combo.setCurrentIndex( combo.count() - 1 );
     }
@@ -85,10 +91,12 @@ flagsFromList( const QListWidget& list )
     PartitionTable::Flags flags;
 
     for ( int i = 0; i < list.count(); i++ )
+    {
         if ( list.item( i )->checkState() == Qt::Checked )
         {
             flags |= static_cast< PartitionTable::Flag >( list.item( i )->data( Qt::UserRole ).toInt() );
         }
+    }
 
     return flags;
 }
