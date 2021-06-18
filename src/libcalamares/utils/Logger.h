@@ -327,6 +327,7 @@ operator<<( CDebug&& s, const Once& o )
 
 }  // namespace Logger
 
+#define cVerbose() Logger::CDebug( Logger::LOGVERBOSE, Q_FUNC_INFO )
 #define cDebug() Logger::CDebug( Logger::LOGDEBUG, Q_FUNC_INFO )
 #define cWarning() Logger::CDebug( Logger::LOGWARNING, Q_FUNC_INFO )
 #define cError() Logger::CDebug( Logger::LOGERROR, Q_FUNC_INFO )

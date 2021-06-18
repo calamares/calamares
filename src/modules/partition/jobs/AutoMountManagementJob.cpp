@@ -25,8 +25,8 @@ AutoMountManagementJob::prettyName() const
 Calamares::JobResult
 AutoMountManagementJob::exec()
 {
-    Logger::CDebug( Logger::LOGVERBOSE ) << "this" << Logger::Pointer( this ) << "value" << Logger::Pointer( m_stored )
-                                         << ( m_stored ? "restore" : m_disable ? "disable" : "enable" );
+    cVerbose() << "this" << Logger::Pointer( this ) << "value" << Logger::Pointer( m_stored )
+               << ( m_stored ? "restore" : m_disable ? "disable" : "enable" );
     if ( m_stored )
     {
         CalamaresUtils::Partition::automountRestore( m_stored );
