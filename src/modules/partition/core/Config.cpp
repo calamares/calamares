@@ -212,7 +212,9 @@ Config::setEraseFsTypeChoice( const QString& choice )
 {
     if ( choice != m_eraseFsTypeChoice )
     {
+        // FIXME: shouldn't this be a canonical fs name?
         m_eraseFsTypeChoice = choice;
+        Q_EMIT eraseModeFilesystemChanged( choice );
     }
 }
 
