@@ -60,14 +60,6 @@ CreatePartitionTableJob::prettyStatusMessage() const
 }
 
 
-static inline QDebug&
-operator<<( QDebug&& s, PartitionIterator& it )
-{
-    s << ( ( *it ) ? ( *it )->deviceNode() : QString( "<null device>" ) );
-    return s;
-}
-
-
 Calamares::JobResult
 CreatePartitionTableJob::exec()
 {
@@ -81,7 +73,7 @@ CreatePartitionTableJob::exec()
         cDebug() << "Creating new partition table of type" << table->typeName() << ", uncommitted partitions:";
         for ( auto it = PartitionIterator::begin( table ); it != PartitionIterator::end( table ); ++it )
         {
-            cDebug() << Logger::SubEntry << it;
+            cDebug() << Logger::SubEntry << ( ( *it ) ? ( *it )->deviceNode() : QString( "<null device>" ) );
         }
 
         QProcess lsblk;
