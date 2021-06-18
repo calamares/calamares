@@ -9,6 +9,8 @@
 
 #include "Config.h"
 
+#include "PartUtils.h"
+
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "utils/Logger.h"
@@ -210,11 +212,11 @@ Config::setSwapChoice( Config::SwapChoice c )
 void
 Config::setEraseFsTypeChoice( const QString& choice )
 {
-    if ( choice != m_eraseFsTypeChoice )
+    QString canonicalChoice = PartUtils::canonicalFilesystemName( choice, nullptr );
+    if ( canonicalChoice != m_eraseFsTypeChoice )
     {
-        // FIXME: shouldn't this be a canonical fs name?
-        m_eraseFsTypeChoice = choice;
-        Q_EMIT eraseModeFilesystemChanged( choice );
+        m_eraseFsTypeChoice = canonicalChoice;
+        Q_EMIT eraseModeFilesystemChanged( canonicalChoice );
     }
 }
 
