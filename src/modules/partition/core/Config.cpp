@@ -256,16 +256,22 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
 
     if ( configurationMap.contains( "availableFileSystemTypes" ) )
     {
+        QStringList fsTypes;
+
         if ( configurationMap.value( "availableFileSystemTypes" ).type() == QVariant::List )
         {
-            m_eraseFsTypes.clear();
-            m_eraseFsTypes.append( configurationMap.value( "availableFileSystemTypes" ).toStringList() );
-            m_eraseFsTypeChoice = m_eraseFsTypes[ 0 ];
+            fsTypes = CalamaresUtils::getStringList( configurationMap, "availableFileSystemTypes" );
         }
         else if ( configurationMap.value( "availableFileSystemTypes" ).type() == QVariant::String )
         {
-            m_eraseFsTypes.append( configurationMap.value( "availableFileSystemTypes" ).toString() );
-            m_eraseFsTypeChoice = m_eraseFsTypes[ 0 ];
+            fsTypes = QStringList { CalamaresUtils::getString( configurationMap, "availableFileSystemTypes" ) };
+        }
+
+        m_eraseFsTypes = fsTypes;
+        if ( !fsTypes.empty() )
+        {
+            m_eraseFsTypeChoice = m_eraseFsTypes.first();
+            Q_EMIT eraseModeFilesystemChanged( m_eraseFsTypeChoice );
         }
     }
 
