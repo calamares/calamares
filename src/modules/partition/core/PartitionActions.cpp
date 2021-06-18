@@ -108,8 +108,10 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
         partType = isEfi ? PartitionTable::gpt : PartitionTable::msdos;
     }
 
-    FileSystem::Type type;
-    PartUtils::findFS( o.defaultFsType, &type );
+    // Looking up the defaultFsType (which should name a filesystem type)
+    // will log an error and set the type to Unknown if there's something wrong.
+    FileSystem::Type type = FileSystem::Unknown;
+    PartUtils::canonicalFilesystemName( o.defaultFsType, &type );
     core->initLayout( type == FileSystem::Unknown ? FileSystem::Ext4 : type );
 
     core->createPartitionTable( dev, partType );

@@ -75,7 +75,7 @@ PartitionLayout::PartitionEntry::PartitionEntry( const QString& label,
     , partMinSize( minSize )
     , partMaxSize( maxSize )
 {
-    PartUtils::findFS( fs, &partFileSystem );
+    PartUtils::canonicalFilesystemName( fs, &partFileSystem );
 }
 
 

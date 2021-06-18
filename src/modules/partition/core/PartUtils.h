@@ -91,11 +91,13 @@ bool isEfiBootable( const Partition* candidate );
 /** @brief translate @p fsName into a recognized name and type
  *
  * Makes several attempts to translate the string into a
- * name that KPMCore will recognize.
+ * name that KPMCore will recognize. Returns the canonical
+ * filesystem name (e.g. asking for "EXT4" will return "ext4").
+ *
  * The corresponding filesystem type is stored in @p fsType, and
  * its value is FileSystem::Unknown if @p fsName is not recognized.
  */
-QString findFS( QString fsName, FileSystem::Type* fsType );
+QString canonicalFilesystemName( const QString& fsName, FileSystem::Type* fsType );
 
 }  // namespace PartUtils
 
