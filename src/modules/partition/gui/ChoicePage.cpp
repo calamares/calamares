@@ -272,7 +272,8 @@ ChoicePage::setupChoices()
     {
         m_eraseFsTypesChoiceComboBox = new QComboBox;
         m_eraseFsTypesChoiceComboBox->addItems(m_config->eraseFsTypes());
-        connect(m_eraseFsTypesChoiceComboBox, &QComboBox::currentTextChanged, [this](const auto& currentString){m_config->setEraseFsTypeChoice(currentString); onActionChanged();});
+        connect( m_eraseFsTypesChoiceComboBox, &QComboBox::currentTextChanged, m_config, &Config::setEraseFsTypeChoice );
+        connect( m_config, &Config::eraseModeFilesystemChanged, this, &ChoicePage::onActionChanged );
         m_eraseButton->addOptionsComboBox( m_eraseFsTypesChoiceComboBox );
     }
 
