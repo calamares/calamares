@@ -208,9 +208,10 @@ Config::setSwapChoice( Config::SwapChoice c )
 }
 
 void
-Config::setEraseFsTypeChoice(const QString& choice)
+Config::setEraseFsTypeChoice( const QString& choice )
 {
-    if(choice != m_eraseFsTypeChoice){
+    if ( choice != m_eraseFsTypeChoice )
+    {
         m_eraseFsTypeChoice = choice;
     }
 }
@@ -249,14 +250,18 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     gs->insert( "allowManualPartitioning",
                 CalamaresUtils::getBool( configurationMap, "allowManualPartitioning", true ) );
 
-    if ( configurationMap.contains( "availableFileSystemTypes" ) ) {
-        if(configurationMap.value(  "availableFileSystemTypes" ).type() == QVariant::List ){
+    if ( configurationMap.contains( "availableFileSystemTypes" ) )
+    {
+        if ( configurationMap.value( "availableFileSystemTypes" ).type() == QVariant::List )
+        {
             m_eraseFsTypes.clear();
-            m_eraseFsTypes.append(configurationMap.value(  "availableFileSystemTypes" ).toStringList());
-            m_eraseFsTypeChoice = m_eraseFsTypes[0];
-        } else if ( configurationMap.value(  "availableFileSystemTypes" ).type() == QVariant::String  ){
-            m_eraseFsTypes.append(configurationMap.value(  "availableFileSystemTypes" ).toString());
-            m_eraseFsTypeChoice = m_eraseFsTypes[0];
+            m_eraseFsTypes.append( configurationMap.value( "availableFileSystemTypes" ).toStringList() );
+            m_eraseFsTypeChoice = m_eraseFsTypes[ 0 ];
+        }
+        else if ( configurationMap.value( "availableFileSystemTypes" ).type() == QVariant::String )
+        {
+            m_eraseFsTypes.append( configurationMap.value( "availableFileSystemTypes" ).toString() );
+            m_eraseFsTypeChoice = m_eraseFsTypes[ 0 ];
         }
     }
 

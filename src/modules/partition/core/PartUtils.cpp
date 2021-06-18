@@ -177,7 +177,8 @@ canBeResized( Partition* candidate, const Logger::Once& o )
 
     if ( availableStorageB > advisedStorageB )
     {
-        cDebug() << o << "Partition" << convenienceName( candidate ) << "authorized for resize + autopartition install.";
+        cDebug() << o << "Partition" << convenienceName( candidate )
+                 << "authorized for resize + autopartition install.";
         return true;
     }
     else
@@ -412,8 +413,14 @@ runOsprober( DeviceModel* dm )
             FstabEntryList fstabEntries = lookForFstabEntries( path );
             QString homePath = findPartitionPathForMountPoint( fstabEntries, "/home" );
 
-            osproberEntries.append(
-                { prettyName, path, file, QString(), canBeResized( dm, path, o ), lineColumns, fstabEntries, homePath } );
+            osproberEntries.append( { prettyName,
+                                      path,
+                                      file,
+                                      QString(),
+                                      canBeResized( dm, path, o ),
+                                      lineColumns,
+                                      fstabEntries,
+                                      homePath } );
             osproberCleanLines.append( line );
         }
     }

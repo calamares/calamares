@@ -10,8 +10,8 @@
 
 #include "DeviceList.h"
 
-#include "utils/Logger.h"
 #include "partition/PartitionIterator.h"
+#include "utils/Logger.h"
 
 #include <kpmcore/backend/corebackend.h>
 #include <kpmcore/backend/corebackendmanager.h>
@@ -133,11 +133,11 @@ getDevices( DeviceType which )
 #endif
 
     // Unsafe partitioning
-    auto removeInAllModes = []( DeviceList& l, DeviceList::iterator& it) { return erase(l, it); };
-    auto removeInSafeMode = []( DeviceList&, DeviceList::iterator& it) { return ++it; };
+    auto removeInAllModes = []( DeviceList& l, DeviceList::iterator& it ) { return erase( l, it ); };
+    auto removeInSafeMode = []( DeviceList&, DeviceList::iterator& it ) { return ++it; };
 #else
     // Safe partitioning
-    auto removeInAllModes = []( DeviceList& l, DeviceList::iterator& it) { return erase(l, it); };
+    auto removeInAllModes = []( DeviceList& l, DeviceList::iterator& it ) { return erase( l, it ); };
     auto& removeInSafeMode = removeInAllModes;
 #endif
 

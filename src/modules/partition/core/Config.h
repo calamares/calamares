@@ -96,9 +96,9 @@ public:
      */
     SwapChoice swapChoice() const { return m_swapChoice; }
 
-    EraseFsTypesSet eraseFsTypes() const {return m_eraseFsTypes; }
+    EraseFsTypesSet eraseFsTypes() const { return m_eraseFsTypes; }
 
-    QString eraseFsType() const {return m_eraseFsTypeChoice; }
+    QString eraseFsType() const { return m_eraseFsTypeChoice; }
 
 
     ///@brief Is manual partitioning allowed (not explicitly disnabled in the config file)?
