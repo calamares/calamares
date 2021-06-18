@@ -60,6 +60,8 @@ public:
     friend CDebug& operator<<( CDebug&&, const FuncSuppressor& );
     friend CDebug& operator<<( CDebug&&, const Once& );
 
+    inline unsigned int level() const { return m_debugLevel; }
+
 private:
     QString m_msg;
     unsigned int m_debugLevel;
@@ -315,6 +317,12 @@ private:
 inline CDebug&
 operator<<( CDebug&& s, const Once& o )
 {
+    if ( !logLevelEnabled( s.level() ) )
+    {
+        // This won't print, so it's not using the "onceness"
+        return s;
+    }
+
     if ( o.m )
     {
         o.m = false;
