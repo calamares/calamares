@@ -41,7 +41,7 @@ public:
     /**
      * This helper class must be instantiated on the stack *before* making
      * changes to the device represented by this model. It will cause the model
-     * to emit modelAboutToBeReset() when instantiated and modelReset() when
+     * to Q_EMIT modelAboutToBeReset() when instantiated and modelReset() when
      * destructed.
      */
     class ResetHelper

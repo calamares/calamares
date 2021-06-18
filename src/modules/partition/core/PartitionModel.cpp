@@ -327,5 +327,5 @@ PartitionModel::partitionForIndex( const QModelIndex& index ) const
 void
 PartitionModel::update()
 {
-    emit dataChanged( index( 0, 0 ), index( rowCount() - 1, columnCount() - 1 ) );
+    Q_EMIT dataChanged( index( 0, 0 ), index( rowCount() - 1, columnCount() - 1 ) );
 }

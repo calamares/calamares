@@ -327,7 +327,7 @@ PartitionViewStep::isNextEnabled() const
 void
 PartitionViewStep::nextPossiblyChanged( bool )
 {
-    emit nextStatusChanged( isNextEnabled() );
+    Q_EMIT nextStatusChanged( isNextEnabled() );
 }
 
 bool

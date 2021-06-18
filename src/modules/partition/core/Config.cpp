@@ -180,7 +180,7 @@ Config::setInstallChoice( InstallChoice c )
     if ( c != m_installChoice )
     {
         m_installChoice = c;
-        emit installChoiceChanged( c );
+        Q_EMIT installChoiceChanged( c );
         ::updateGlobalStorage( c, m_swapChoice );
     }
 }
@@ -202,7 +202,7 @@ Config::setSwapChoice( Config::SwapChoice c )
     if ( c != m_swapChoice )
     {
         m_swapChoice = c;
-        emit swapChoiceChanged( c );
+        Q_EMIT swapChoiceChanged( c );
         ::updateGlobalStorage( m_installChoice, c );
     }
 }

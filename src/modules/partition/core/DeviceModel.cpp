@@ -132,7 +132,7 @@ DeviceModel::swapDevice( Device* oldDevice, Device* newDevice )
 
     m_devices[ indexOfOldDevice ] = newDevice;
 
-    emit dataChanged( index( indexOfOldDevice ), index( indexOfOldDevice ) );
+    Q_EMIT dataChanged( index( indexOfOldDevice ), index( indexOfOldDevice ) );
 }
 
 void

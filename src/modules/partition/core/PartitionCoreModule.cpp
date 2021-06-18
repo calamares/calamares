@@ -687,7 +687,7 @@ void
 PartitionCoreModule::refreshPartition( Device* device, Partition* )
 {
     // Keep it simple for now: reset the model. This can be improved to cause
-    // the model to emit dataChanged() for the affected row instead, avoiding
+    // the model to Q_EMIT dataChanged() for the affected row instead, avoiding
     // the loss of the current selection.
     auto model = partitionModelForDevice( device );
     Q_ASSERT( model );
@@ -966,7 +966,7 @@ PartitionCoreModule::revert()
     m_deviceInfos.clear();
     doInit();
     updateIsDirty();
-    emit reverted();
+    Q_EMIT reverted();
 }
 
 
@@ -1040,7 +1040,7 @@ PartitionCoreModule::revertDevice( Device* dev, bool individualRevert )
     {
         refreshAfterModelChange();
     }
-    emit deviceReverted( newDev );
+    Q_EMIT deviceReverted( newDev );
 }
 
 

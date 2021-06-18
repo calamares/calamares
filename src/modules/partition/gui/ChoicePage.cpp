@@ -300,7 +300,7 @@ ChoicePage::setupChoices()
             m_config->setInstallChoice( id );
             updateNextEnabled();
 
-            emit actionChosen();
+            Q_EMIT actionChosen();
         }
         else  // An action was unpicked, either on its own or because of another selection.
         {
@@ -310,7 +310,7 @@ ChoicePage::setupChoices()
                 m_config->setInstallChoice( InstallChoice::NoChoice );
                 updateNextEnabled();
 
-                emit actionChosen();
+                Q_EMIT actionChosen();
             }
         }
     } );
@@ -433,8 +433,8 @@ ChoicePage::continueApplyDeviceChoice()
         checkInstallChoiceRadioButton( m_config->installChoice() );
     }
 
-    emit actionChosen();
-    emit deviceChosen();
+    Q_EMIT actionChosen();
+    Q_EMIT deviceChosen();
 }
 
 
@@ -489,14 +489,14 @@ ChoicePage::applyActionChoice( InstallChoice choice )
                 } ),
                 [=] {
                     PartitionActions::doAutopartition( m_core, selectedDevice(), options );
-                    emit deviceChosen();
+                    Q_EMIT deviceChosen();
                 },
                 this );
         }
         else
         {
             PartitionActions::doAutopartition( m_core, selectedDevice(), options );
-            emit deviceChosen();
+            Q_EMIT deviceChosen();
         }
     }
     break;
@@ -1599,7 +1599,7 @@ ChoicePage::updateNextEnabled()
     if ( enabled != m_nextEnabled )
     {
         m_nextEnabled = enabled;
-        emit nextStatusChanged( enabled );
+        Q_EMIT nextStatusChanged( enabled );
     }
 }
 
