@@ -43,6 +43,7 @@ ClearTempMountsJob::prettyStatusMessage() const
 Calamares::JobResult
 ClearTempMountsJob::exec()
 {
+    Logger::Once o;
     // Fetch a list of current mounts to Calamares temporary directories.
     QList< QPair< QString, QString > > lst;
     QFile mtab( "/etc/mtab" );
@@ -51,21 +52,25 @@ ClearTempMountsJob::exec()
         return Calamares::JobResult::error( tr( "Cannot get list of temporary mounts." ) );
     }
 
-    cDebug() << "Opened mtab. Lines:";
+    cVerbose() << o << "Opened mtab. Lines:";
     QTextStream in( &mtab );
     QString lineIn = in.readLine();
     while ( !lineIn.isNull() )
     {
         QStringList line = lineIn.split( ' ', SplitSkipEmptyParts );
-        cDebug() << line.join( ' ' );
+        cVerbose() << o << line.join( ' ' );
         QString device = line.at( 0 );
         QString mountPoint = line.at( 1 );
         if ( mountPoint.startsWith( "/tmp/calamares-" ) )
         {
-            cDebug() << "INSERTING pair (device, mountPoint)" << device << mountPoint;
             lst.append( qMakePair( device, mountPoint ) );
         }
         lineIn = in.readLine();
+    }
+
+    if ( lst.empty() )
+    {
+        return Calamares::JobResult::ok();
     }
 
     std::sort(
@@ -76,10 +81,10 @@ ClearTempMountsJob::exec()
     QStringList goodNews;
     QProcess process;
 
-    foreach ( auto line, lst )
+    for ( const auto& line : qAsConst( lst ) )
     {
         QString partPath = line.second;
-        cDebug() << "Will try to umount path" << partPath;
+        cDebug() << o << "Will try to umount path" << partPath;
         process.start( "umount", { "-lv", partPath } );
         process.waitForFinished();
         if ( process.exitCode() == 0 )
@@ -92,7 +97,7 @@ ClearTempMountsJob::exec()
     ok.setMessage( tr( "Cleared all temporary mounts." ) );
     ok.setDetails( goodNews.join( "\n" ) );
 
-    cDebug() << "ClearTempMountsJob finished. Here's what was done:\n" << goodNews.join( "\n" );
+    cDebug() << o << "ClearTempMountsJob finished. Here's what was done:\n" << Logger::DebugList( goodNews );
 
     return ok;
 }
