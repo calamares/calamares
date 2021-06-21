@@ -33,31 +33,48 @@ class Ui_CreatePartitionDialog;
 class CreatePartitionDialog : public QDialog
 {
     Q_OBJECT
-public:
-    /**
-     * @brief Dialog for editing a new partition.
+
+private:
+    /** @brief Delegated constructor
      *
-     * For the (unlikely) case that a newly created partition is being re-edited,
-     * pass a pointer to that @p partition, otherwise pass nullptr.
+     * This does all the shared UI setup.
      */
     CreatePartitionDialog( Device* device,
                            PartitionNode* parentPartition,
-                           Partition* partition,
+                           const QStringList& usedMountPoints,
+                           QWidget* parentWidget );
+
+public:
+    struct FreeSpace
+    {
+        Partition* p;
+    };
+    struct FreshPartition
+    {
+        Partition* p;
+    };
+
+    /** @brief Dialog for editing a new partition based on free space.
+     *
+     * Creating from free space makes a wholly new partition with
+     * no flags set at all.
+     */
+    CreatePartitionDialog( Device* device,
+                           const FreeSpace& freeSpacePartition,
+                           const QStringList& usedMountPoints,
+                           QWidget* parentWidget = nullptr );
+    /** @brief Dialog for editing a newly-created partition.
+     *
+     * A partition previously newly created (e.g. via this dialog
+     * and the constructor above) can be re-edited.
+     */
+    CreatePartitionDialog( Device* device,
+                           const FreshPartition& existingNewPartition,
                            const QStringList& usedMountPoints,
                            QWidget* parentWidget = nullptr );
     ~CreatePartitionDialog() override;
 
-    /**
-     * Must be called when user wants to create a partition in
-     * freeSpacePartition.
-     */
-    void initFromFreeSpace( Partition* freeSpacePartition );
-
-    /**
-     * Must be called when user wants to edit a to-be-created partition.
-     */
-    void initFromPartitionToCreate( Partition* partition );
-    Partition* createPartition();
+    Partition* getNewlyCreatedPartition();
 
     PartitionTable::Flags newFlags() const;
 

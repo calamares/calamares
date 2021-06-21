@@ -47,6 +47,9 @@ results -- are sent to Matrix only.
  - A long-neglected pull request from Lisa Vitolo for the *partition*
    module -- allowing to set filesystem labels during manual partitioning --
    has been revived and merged.
+ - The *partition* manager has had a long-standing bug with partition-flags
+   and manual partitioning resolved. This may help resolve some installation
+   issues on UEFI systems. #1724
 
 
 # 3.2.39.3 (2021-04-14) #

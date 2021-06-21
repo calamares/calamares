@@ -52,7 +52,6 @@ static QSet< FileSystem::Type > s_unmountableFS( { FileSystem::Unformatted,
 
 CreatePartitionDialog::CreatePartitionDialog( Device* device,
                                               PartitionNode* parentPartition,
-                                              Partition* partition,
                                               const QStringList& usedMountPoints,
                                               QWidget* parentWidget )
     : QDialog( parentWidget )
@@ -80,9 +79,6 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device,
         QRegularExpressionValidator* validator = new QRegularExpressionValidator( re, this );
         m_ui->lvNameLineEdit->setValidator( validator );
     }
-
-    standardMountPoints( *( m_ui->mountPointComboBox ),
-                         partition ? PartitionInfo::mountPoint( partition ) : QString() );
 
     if ( device->partitionTable()->type() == PartitionTable::msdos
          || device->partitionTable()->type() == PartitionTable::msdos_sectorbased )
@@ -132,13 +128,47 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device,
     // Select a default
     m_ui->fsComboBox->setCurrentIndex( defaultFsIndex );
     updateMountPointUi();
+    checkMountPointSelection();
+}
 
+CreatePartitionDialog::CreatePartitionDialog( Device* device,
+                                              const FreeSpace& freeSpacePartition,
+                                              const QStringList& usedMountPoints,
+                                              QWidget* parentWidget )
+    : CreatePartitionDialog( device, freeSpacePartition.p->parent(), usedMountPoints, parentWidget )
+{
+    standardMountPoints( *( m_ui->mountPointComboBox ), QString() );
     setFlagList( *( m_ui->m_listFlags ),
                  static_cast< PartitionTable::Flags >( ~PartitionTable::Flags::Int( 0 ) ),
-                 partition ? PartitionInfo::flags( partition ) : PartitionTable::Flags() );
+                 PartitionTable::Flags() );
+    initPartResizerWidget( freeSpacePartition.p );
+}
 
-    // Checks the initial selection.
-    checkMountPointSelection();
+CreatePartitionDialog::CreatePartitionDialog( Device* device,
+                                              const FreshPartition& existingNewPartition,
+                                              const QStringList& usedMountPoints,
+                                              QWidget* parentWidget )
+    : CreatePartitionDialog( device, existingNewPartition.p->parent(), usedMountPoints, parentWidget )
+{
+    standardMountPoints( *( m_ui->mountPointComboBox ), PartitionInfo::mountPoint( existingNewPartition.p ) );
+    setFlagList( *( m_ui->m_listFlags ),
+                 static_cast< PartitionTable::Flags >( ~PartitionTable::Flags::Int( 0 ) ),
+                 PartitionInfo::flags( existingNewPartition.p ) );
+
+    const bool isExtended = existingNewPartition.p->roles().has( PartitionRole::Extended );
+    if ( isExtended )
+    {
+        cDebug() << "Editing extended partitions is not supported.";
+        return;
+    }
+
+    initPartResizerWidget( existingNewPartition.p );
+
+    FileSystem::Type fsType = existingNewPartition.p->fileSystem().type();
+    m_ui->fsComboBox->setCurrentText( FileSystem::nameForType( fsType ) );
+
+    setSelectedMountPoint( m_ui->mountPointComboBox, PartitionInfo::mountPoint( existingNewPartition.p ) );
+    updateMountPointUi();
 }
 
 CreatePartitionDialog::~CreatePartitionDialog() {}
@@ -188,7 +218,7 @@ CreatePartitionDialog::initGptPartitionTypeUi()
 }
 
 Partition*
-CreatePartitionDialog::createPartition()
+CreatePartitionDialog::getNewlyCreatedPartition()
 {
     if ( m_role.roles() == PartitionRole::None )
     {
@@ -204,17 +234,21 @@ CreatePartitionDialog::createPartition()
         : FileSystem::typeForName( m_ui->fsComboBox->currentText() );
     const QString fsLabel = m_ui->filesystemLabelEdit->text();
 
+    // The newly-created partitions have no flags set (no **active** flags),
+    // because they're new. The desired flags can be retrieved from
+    // newFlags() and the consumer (see PartitionPage::onCreateClicked)
+    // does so, to set up the partition for create-and-then-set-flags.
     Partition* partition = nullptr;
     QString luksPassphrase = m_ui->encryptWidget->passphrase();
     if ( m_ui->encryptWidget->state() == EncryptWidget::Encryption::Confirmed && !luksPassphrase.isEmpty() )
     {
         partition = KPMHelpers::createNewEncryptedPartition(
-            m_parent, *m_device, m_role, fsType, fsLabel, first, last, luksPassphrase, newFlags() );
+            m_parent, *m_device, m_role, fsType, fsLabel, first, last, luksPassphrase, PartitionTable::Flags() );
     }
     else
     {
-        partition
-            = KPMHelpers::createNewPartition( m_parent, *m_device, m_role, fsType, fsLabel, first, last, newFlags() );
+        partition = KPMHelpers::createNewPartition(
+            m_parent, *m_device, m_role, fsType, fsLabel, first, last, PartitionTable::Flags() );
     }
 
     if ( m_device->type() == Device::Type::LVM_Device )
@@ -283,35 +317,4 @@ CreatePartitionDialog::initPartResizerWidget( Partition* partition )
     m_partitionSizeController->init( m_device, partition, color );
     m_partitionSizeController->setPartResizerWidget( m_ui->partResizerWidget );
     m_partitionSizeController->setSpinBox( m_ui->sizeSpinBox );
-}
-
-void
-CreatePartitionDialog::initFromFreeSpace( Partition* freeSpacePartition )
-{
-    initPartResizerWidget( freeSpacePartition );
-}
-
-void
-CreatePartitionDialog::initFromPartitionToCreate( Partition* partition )
-{
-    Q_ASSERT( partition );
-
-    bool isExtended = partition->roles().has( PartitionRole::Extended );
-    Q_ASSERT( !isExtended );
-    if ( isExtended )
-    {
-        cDebug() << "Editing extended partitions is not supported for now";
-        return;
-    }
-
-    initPartResizerWidget( partition );
-
-    // File System
-    FileSystem::Type fsType = partition->fileSystem().type();
-    m_ui->fsComboBox->setCurrentText( FileSystem::nameForType( fsType ) );
-
-    // Mount point
-    setSelectedMountPoint( m_ui->mountPointComboBox, PartitionInfo::mountPoint( partition ) );
-
-    updateMountPointUi();
 }

@@ -26,7 +26,7 @@ class DeviceModel;
 class Partition;
 namespace Logger
 {
-    class Once;
+class Once;
 }
 
 namespace PartUtils

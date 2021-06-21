@@ -391,13 +391,14 @@ PartitionPage::onCreateClicked()
         return;
     }
 
-    CreatePartitionDialog dlg( model->device(), partition->parent(), nullptr, getCurrentUsedMountpoints(), this );
-    dlg.initFromFreeSpace( partition );
-    if ( dlg.exec() == QDialog::Accepted )
+    QPointer< CreatePartitionDialog > dlg = new CreatePartitionDialog(
+        model->device(), CreatePartitionDialog::FreeSpace { partition }, getCurrentUsedMountpoints(), this );
+    if ( dlg->exec() == QDialog::Accepted )
     {
-        Partition* newPart = dlg.createPartition();
-        m_core->createPartition( model->device(), newPart, dlg.newFlags() );
+        Partition* newPart = dlg->getNewlyCreatedPartition();
+        m_core->createPartition( model->device(), newPart, dlg->newFlags() );
     }
+    delete dlg;
 }
 
 void
@@ -492,11 +493,10 @@ PartitionPage::updatePartitionToCreate( Device* device, Partition* partition )
     mountPoints.removeOne( PartitionInfo::mountPoint( partition ) );
 
     QPointer< CreatePartitionDialog > dlg
-        = new CreatePartitionDialog( device, partition->parent(), partition, mountPoints, this );
-    dlg->initFromPartitionToCreate( partition );
+        = new CreatePartitionDialog( device, CreatePartitionDialog::FreshPartition { partition }, mountPoints, this );
     if ( dlg->exec() == QDialog::Accepted )
     {
-        Partition* newPartition = dlg->createPartition();
+        Partition* newPartition = dlg->getNewlyCreatedPartition();
         m_core->deletePartition( device, partition );
         m_core->createPartition( device, newPartition, dlg->newFlags() );
     }

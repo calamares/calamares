@@ -144,14 +144,15 @@ ChoicePage::~ChoicePage() {}
  * this avoids cases where the popup would truncate data being drawn
  * because the overall box is sized too narrow.
  */
-void setModelToComboBox( QComboBox* box, QAbstractItemModel* model )
+void
+setModelToComboBox( QComboBox* box, QAbstractItemModel* model )
 {
     box->setModel( model );
     if ( model->rowCount() > 0 )
     {
         QStyleOptionViewItem options;
         options.initFrom( box );
-        auto delegateSize = box->itemDelegate()->sizeHint(options, model->index(0, 0) );
+        auto delegateSize = box->itemDelegate()->sizeHint( options, model->index( 0, 0 ) );
         box->setMinimumWidth( delegateSize.width() );
     }
 }
@@ -1005,7 +1006,8 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
 
         SelectionFilter filter = []( const QModelIndex& index ) {
             return PartUtils::canBeResized(
-                static_cast< Partition* >( index.data( PartitionModel::PartitionPtrRole ).value< void* >() ), Logger::Once() );
+                static_cast< Partition* >( index.data( PartitionModel::PartitionPtrRole ).value< void* >() ),
+                Logger::Once() );
         };
         m_beforePartitionBarsView->setSelectionFilter( filter );
         m_beforePartitionLabelsView->setSelectionFilter( filter );
@@ -1094,7 +1096,8 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
         {
             SelectionFilter filter = []( const QModelIndex& index ) {
                 return PartUtils::canBeReplaced(
-                    static_cast< Partition* >( index.data( PartitionModel::PartitionPtrRole ).value< void* >() ), Logger::Once() );
+                    static_cast< Partition* >( index.data( PartitionModel::PartitionPtrRole ).value< void* >() ),
+                    Logger::Once() );
             };
             m_beforePartitionBarsView->setSelectionFilter( filter );
             m_beforePartitionLabelsView->setSelectionFilter( filter );
