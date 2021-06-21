@@ -18,18 +18,25 @@
 #include "GlobalStorage.h"
 #include "Job.h"
 #include "JobQueue.h"
-#include "PythonJob.h"
 #include "Settings.h"
 #include "ViewManager.h"
 #include "modulesystem/Module.h"
 #include "modulesystem/ModuleManager.h"
 #include "modulesystem/ViewModule.h"
 #include "utils/Logger.h"
+#include "utils/Yaml.h"
+#include "viewpages/ExecutionViewStep.h"
+
+// Optional features of Calamares
+// - Python support
+// - QML support
+#ifdef WITH_PYTHON
+#include "PythonJob.h"
+#endif
 #ifdef WITH_QML
 #include "utils/Qml.h"
 #endif
-#include "utils/Yaml.h"
-#include "viewpages/ExecutionViewStep.h"
+
 
 #include <QApplication>
 #include <QCommandLineOption>
@@ -366,10 +373,15 @@ createApplication( int& argc, char* argv[] )
     return new QCoreApplication( argc, argv );
 }
 
+#ifdef WITH_PYTHON
 static const char pythonPreScript[] = R"(
 # This is Python code executed by Python modules *before* the
 # script file (e.g. main.py) is executed. Beware " before )
 # because it's a C++ raw-string.
+#
+# Calls to suprocess methods that execute something are
+# suppressed and logged -- scripts should really be using libcalamares
+# methods instead.
 _calamares_subprocess = __import__("subprocess", globals(), locals(), [], 0)
 import sys
 import libcalamares
@@ -386,6 +398,7 @@ sys.modules["subprocess"] = fake_subprocess
 libcalamares.utils.debug('pre-script for testing purposes injected')
 
 )";
+#endif
 
 int
 main( int argc, char* argv[] )
@@ -416,10 +429,12 @@ main( int argc, char* argv[] )
         gs->insert( "localeConf", vm );
     }
 
+#ifdef WITH_PYTHON
+    Calamares::PythonJob::setInjectedPreScript(pythonPreScript);
+#endif
 #ifdef WITH_QML
     CalamaresUtils::initQmlModulesDir();  // don't care if failed
 #endif
-    Calamares::PythonJob::setInjectedPreScript(pythonPreScript);
 
     cDebug() << "Calamares module-loader testing" << module.moduleName();
     Calamares::Module* m = load_module( module );
