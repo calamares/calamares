@@ -204,17 +204,21 @@ CreatePartitionDialog::getNewlyCreatedPartition()
         : FileSystem::typeForName( m_ui->fsComboBox->currentText() );
     const QString fsLabel = m_ui->filesystemLabelEdit->text();
 
+    // The newly-created partitions have no flags set (no **active** flags),
+    // because they're new. The desired flags can be retrieved from
+    // newFlags() and the consumer (see PartitionPage::onCreateClicked)
+    // does so, to set up the partition for create-and-then-set-flags.
     Partition* partition = nullptr;
     QString luksPassphrase = m_ui->encryptWidget->passphrase();
     if ( m_ui->encryptWidget->state() == EncryptWidget::Encryption::Confirmed && !luksPassphrase.isEmpty() )
     {
         partition = KPMHelpers::createNewEncryptedPartition(
-            m_parent, *m_device, m_role, fsType, fsLabel, first, last, luksPassphrase, newFlags() );
+            m_parent, *m_device, m_role, fsType, fsLabel, first, last, luksPassphrase, PartitionTable::Flags() );
     }
     else
     {
         partition
-            = KPMHelpers::createNewPartition( m_parent, *m_device, m_role, fsType, fsLabel, first, last, newFlags() );
+            = KPMHelpers::createNewPartition( m_parent, *m_device, m_role, fsType, fsLabel, first, last, PartitionTable::Flags() );
     }
 
     if ( m_device->type() == Device::Type::LVM_Device )
