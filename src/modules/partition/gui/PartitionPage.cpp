@@ -395,7 +395,7 @@ PartitionPage::onCreateClicked()
     dlg.initFromFreeSpace( partition );
     if ( dlg.exec() == QDialog::Accepted )
     {
-        Partition* newPart = dlg.createPartition();
+        Partition* newPart = dlg.getNewlyCreatedPartition();
         m_core->createPartition( model->device(), newPart, dlg.newFlags() );
     }
 }
@@ -496,7 +496,7 @@ PartitionPage::updatePartitionToCreate( Device* device, Partition* partition )
     dlg->initFromPartitionToCreate( partition );
     if ( dlg->exec() == QDialog::Accepted )
     {
-        Partition* newPartition = dlg->createPartition();
+        Partition* newPartition = dlg->getNewlyCreatedPartition();
         m_core->deletePartition( device, partition );
         m_core->createPartition( device, newPartition, dlg->newFlags() );
     }

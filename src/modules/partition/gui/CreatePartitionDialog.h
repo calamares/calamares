@@ -57,7 +57,7 @@ public:
      * Must be called when user wants to edit a to-be-created partition.
      */
     void initFromPartitionToCreate( Partition* partition );
-    Partition* createPartition();
+    Partition* getNewlyCreatedPartition();
 
     PartitionTable::Flags newFlags() const;
 

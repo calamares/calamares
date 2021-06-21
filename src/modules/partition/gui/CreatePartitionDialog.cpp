@@ -188,7 +188,7 @@ CreatePartitionDialog::initGptPartitionTypeUi()
 }
 
 Partition*
-CreatePartitionDialog::createPartition()
+CreatePartitionDialog::getNewlyCreatedPartition()
 {
     if ( m_role.roles() == PartitionRole::None )
     {
