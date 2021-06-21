@@ -40,13 +40,19 @@ private:
      * This does all the shared UI setup.
      */
     CreatePartitionDialog( Device* device,
-                              PartitionNode* parentPartition,
-                              const QStringList& usedMountPoints,
-                              QWidget* parentWidget );
+                           PartitionNode* parentPartition,
+                           const QStringList& usedMountPoints,
+                           QWidget* parentWidget );
 
 public:
-    struct FreeSpace { Partition* p; };
-    struct FreshPartition { Partition* p; };
+    struct FreeSpace
+    {
+        Partition* p;
+    };
+    struct FreshPartition
+    {
+        Partition* p;
+    };
 
     /** @brief Dialog for editing a new partition based on free space.
      *

@@ -135,7 +135,7 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device,
                                               const FreeSpace& freeSpacePartition,
                                               const QStringList& usedMountPoints,
                                               QWidget* parentWidget )
-    : CreatePartitionDialog(device, freeSpacePartition.p->parent(), usedMountPoints, parentWidget )
+    : CreatePartitionDialog( device, freeSpacePartition.p->parent(), usedMountPoints, parentWidget )
 {
     standardMountPoints( *( m_ui->mountPointComboBox ), QString() );
     setFlagList( *( m_ui->m_listFlags ),
@@ -148,10 +148,9 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device,
                                               const FreshPartition& existingNewPartition,
                                               const QStringList& usedMountPoints,
                                               QWidget* parentWidget )
-    : CreatePartitionDialog(device, existingNewPartition.p->parent(), usedMountPoints, parentWidget )
+    : CreatePartitionDialog( device, existingNewPartition.p->parent(), usedMountPoints, parentWidget )
 {
-    standardMountPoints( *( m_ui->mountPointComboBox ),
-                         PartitionInfo::mountPoint( existingNewPartition.p ) );
+    standardMountPoints( *( m_ui->mountPointComboBox ), PartitionInfo::mountPoint( existingNewPartition.p ) );
     setFlagList( *( m_ui->m_listFlags ),
                  static_cast< PartitionTable::Flags >( ~PartitionTable::Flags::Int( 0 ) ),
                  PartitionInfo::flags( existingNewPartition.p ) );
@@ -248,8 +247,8 @@ CreatePartitionDialog::getNewlyCreatedPartition()
     }
     else
     {
-        partition
-            = KPMHelpers::createNewPartition( m_parent, *m_device, m_role, fsType, fsLabel, first, last, PartitionTable::Flags() );
+        partition = KPMHelpers::createNewPartition(
+            m_parent, *m_device, m_role, fsType, fsLabel, first, last, PartitionTable::Flags() );
     }
 
     if ( m_device->type() == Device::Type::LVM_Device )
