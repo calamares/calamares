@@ -613,4 +613,10 @@ ViewManager::isSetupMode() const
     return s ? s->isSetupMode() : false;
 }
 
+QString
+ViewManager::logFilePath() const
+{
+    return Logger::logFile();
+}
+
 }  // namespace Calamares

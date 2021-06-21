@@ -54,6 +54,7 @@ class UIDLLEXPORT ViewManager : public QAbstractListModel
     Q_PROPERTY( bool isDebugMode READ isDebugMode CONSTANT FINAL )
     Q_PROPERTY( bool isChrootMode READ isChrootMode CONSTANT FINAL )
     Q_PROPERTY( bool isSetupMode READ isSetupMode CONSTANT FINAL )
+    Q_PROPERTY( QString logFilePath READ logFilePath CONSTANT FINAL )
 
 public:
     /**
@@ -208,6 +209,8 @@ public Q_SLOTS:
     bool isChrootMode() const;
     /// @brief Proxy to Settings::isSetupMode() default @c false
     bool isSetupMode() const;
+    /// @brief Proxy to Logger::logFile(), default empty
+    QString logFilePath() const;
 
 signals:
     void currentStepChanged();
