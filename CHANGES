@@ -16,6 +16,7 @@ This release contains contributions from (alphabetically by first name):
  - Jerrod Frost (new contributor! welcome!)
  - Joe Kamprad
  - Lisa Vitolo (blast from the past!)
+ - Omer I.S.
 
 In project news, chat (instant-messaging) communications has largely
 moved to Matrix and Libera.Chat. CI notifications -- issues and build
@@ -36,6 +37,8 @@ results -- are sent to Matrix only.
  - *displaymanager* example configuration has been shuffled around a bit,
    for better results when the live image is running XFCE. Also lists
    more potential display managers. #1205 (Thanks Erik)
+ - *keyboard* now switches on an alternate `en_US` keyboard layout when
+   Arabic or Hebrew is selected as primary layout. (Thanks Omer)
  - The *netinstall* module can now fall back to alternative URLs when
    loading groups data. The first URL to yield a non-empty groups
    collection is accepted. No changes are needed in the configuration. #1673
