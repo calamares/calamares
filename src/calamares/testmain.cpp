@@ -409,6 +409,8 @@ class fake_subprocess(object):
     def check_call(*args, **kwargs):
         libcalamares.utils.debug("subprocess.check_call(%r,%r) X subverted to call" % (args, kwargs))
         return 0
+for attr in ("CalledProcessError",):
+    setattr(fake_subprocess,attr,getattr(_calamares_subprocess,attr))
 sys.modules["subprocess"] = fake_subprocess
 libcalamares.utils.debug('pre-script for testing purposes injected')
 
