@@ -24,6 +24,8 @@ import os
 import shutil
 import subprocess
 
+import platform
+
 import libcalamares
 
 from libcalamares.utils import check_target_env_call
@@ -299,14 +301,21 @@ def install_grub(efi_directory, fw_type):
         efi_bootloader_id = efi_label()
         efi_bitness = efi_word_size()
 
+        cpu_type = platform.machine()
+
         if efi_bitness == "32":
             efi_target = "i386-efi"
             efi_grub_file = "grubia32.efi"
             efi_boot_file = "bootia32.efi"
         elif efi_bitness == "64":
-            efi_target = "x86_64-efi"
-            efi_grub_file = "grubx64.efi"
-            efi_boot_file = "bootx64.efi"
+            if cpu_type == "aarch64":
+                efi_target = "arm64-efi"
+                efi_grub_file = "grubaa64.efi"
+                efi_boot_file = "bootaa64.efi"
+            else:
+                efi_target = "x86_64-efi"
+                efi_grub_file = "grubx64.efi"
+                efi_boot_file = "bootx64.efi"
 
         check_target_env_call([libcalamares.job.configuration["grubInstall"],
                                "--target=" + efi_target,
