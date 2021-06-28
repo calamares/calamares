@@ -10,6 +10,7 @@ website will have to do for older versions.
 # 3.2.40 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
+ - Anke Boersma
  - Anubhav Choudhary (SoK success!)
  - Emmanuel Arias (new contributor! welcome!)
  - Erik Dubois
@@ -39,6 +40,8 @@ results -- are sent to Matrix only.
    more potential display managers. #1205 (Thanks Erik)
  - *keyboard* now switches on an alternate `en_US` keyboard layout when
    Arabic or Hebrew is selected as primary layout. (Thanks Omer)
+ - *localeq* now has a fully functional offline option (alongside the default
+   interactive map option, which requires internet).
  - The *netinstall* module can now fall back to alternative URLs when
    loading groups data. The first URL to yield a non-empty groups
    collection is accepted. No changes are needed in the configuration. #1673
@@ -53,6 +56,8 @@ results -- are sent to Matrix only.
  - The *partition* manager has had a long-standing bug with partition-flags
    and manual partitioning resolved. This may help resolve some installation
    issues on UEFI systems. #1724
+ - *usersq* is further implemented and can now be used for a successful install.
+   Not all warning messages available in the regular users module are implemented.
 
 
 # 3.2.39.3 (2021-04-14) #
