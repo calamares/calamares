@@ -15,9 +15,10 @@ This release contains contributions from (alphabetically by first name):
  - Emmanuel Arias (new contributor! welcome!)
  - Erik Dubois
  - Jerrod Frost (new contributor! welcome!)
+ - Jia Chao (new contributor! welcome!)
  - Joe Kamprad
  - Lisa Vitolo (blast from the past!)
- - Omer I.S.
+ - Omer I.S. (new contributor! welcome!)
 
 In project news, chat (instant-messaging) communications has largely
 moved to Matrix and Libera.Chat. CI notifications -- issues and build
@@ -35,6 +36,7 @@ results -- are sent to Matrix only.
  - The "upload log file" now has a configurable log-file-size. (Thanks Anubhav)
 
 ## Modules ##
+ - *bootloader* can now install an aarch64 (ARM) compatible EFI GRUB. (Thanks Jia)
  - *displaymanager* example configuration has been shuffled around a bit,
    for better results when the live image is running XFCE. Also lists
    more potential display managers. #1205 (Thanks Erik)
