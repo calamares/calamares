@@ -62,6 +62,7 @@ struct ModuleConfig
     QString m_language;
     QString m_branding;
     bool m_ui;
+    bool m_pythonInjection;
 };
 
 static ModuleConfig
@@ -86,7 +87,6 @@ handle_args( QCoreApplication& a )
                                  QStringLiteral( "Enable UI" ) );
     QCommandLineOption slideshowOption( QStringList() << QStringLiteral( "s" ) << QStringLiteral( "slideshow" ),
                                         QStringLiteral( "Run slideshow module" ) );
-
     QCommandLineParser parser;
     parser.setApplicationDescription( "Calamares module tester" );
     parser.addHelpOption();
@@ -99,6 +99,12 @@ handle_args( QCoreApplication& a )
     parser.addOption( brandOption );
     parser.addOption( uiOption );
     parser.addOption( slideshowOption );
+#ifdef WITH_PYTHON
+    QCommandLineOption pythonOption( QStringList() << QStringLiteral( "P" ) << QStringLiteral( "no-injected-python" ),
+                                     QStringLiteral( "Do not disable potentially-harmful Python commands" ) );
+    parser.addOption( pythonOption );
+#endif
+
     parser.addPositionalArgument( "module", "Path or name of module to run." );
     parser.addPositionalArgument( "job.yaml", "Path of job settings document to use.", "[job.yaml]" );
 
@@ -123,12 +129,21 @@ handle_args( QCoreApplication& a )
             jobSettings = args.at( 1 );
         }
 
+        bool pythonInjection = true;
+#ifdef WITH_PYTHON
+        if ( parser.isSet( pythonOption ) )
+        {
+            pythonInjection = false;
+        }
+#endif
         return ModuleConfig { parser.isSet( slideshowOption ) ? QStringLiteral( "-" ) : args.first(),
                               jobSettings,
                               parser.value( globalOption ),
                               parser.value( langOption ),
                               parser.value( brandOption ),
-                              parser.isSet( slideshowOption ) || parser.isSet( uiOption ) };
+                              parser.isSet( slideshowOption ) || parser.isSet( uiOption ),
+                              pythonInjection
+        };
     }
 }
 
@@ -430,7 +445,10 @@ main( int argc, char* argv[] )
     }
 
 #ifdef WITH_PYTHON
-    Calamares::PythonJob::setInjectedPreScript(pythonPreScript);
+    if ( module.m_pythonInjection )
+    {
+        Calamares::PythonJob::setInjectedPreScript(pythonPreScript);
+    }
 #endif
 #ifdef WITH_QML
     CalamaresUtils::initQmlModulesDir();  // don't care if failed
