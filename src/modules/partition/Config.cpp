@@ -228,6 +228,28 @@ Config::allowManualPartitioning() const
     return gs->value( "allowManualPartitioning" ).toBool();
 }
 
+static void
+fillGSConfigurationEFI( Calamares::GlobalStorage* gs, const QVariantMap& configurationMap )
+{
+    // Set up firmwareType global storage entry. This is used, e.g. by the bootloader module.
+    QString firmwareType( PartUtils::isEfiSystem() ? QStringLiteral( "efi" ) : QStringLiteral( "bios" ) );
+    gs->insert( "firmwareType", firmwareType );
+
+    gs->insert( "efiSystemPartition", CalamaresUtils::getString( configurationMap, "efiSystemPartition", QStringLiteral( "/boot/efi" ) ) );
+
+    // Read and parse key efiSystemPartitionSize
+    if ( configurationMap.contains( "efiSystemPartitionSize" ) )
+    {
+        gs->insert( "efiSystemPartitionSize", CalamaresUtils::getString( configurationMap, "efiSystemPartitionSize" ) );
+    }
+
+    // Read and parse key efiSystemPartitionName
+    if ( configurationMap.contains( "efiSystemPartitionName" ) )
+    {
+        gs->insert( "efiSystemPartitionName", CalamaresUtils::getString( configurationMap, "efiSystemPartitionName" ) );
+    }
+}
+
 
 void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
@@ -288,6 +310,8 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         m_requiredPartitionTableType.append( configurationMap.value( "requiredPartitionTableType" ).toString() );
     }
     gs->insert( "requiredPartitionTableType", m_requiredPartitionTableType );
+
+    fillGSConfigurationEFI(gs, configurationMap);
 }
 
 void
