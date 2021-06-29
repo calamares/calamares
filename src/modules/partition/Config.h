@@ -60,7 +60,16 @@ public:
     using EraseFsTypesSet = QStringList;
 
     void setConfigurationMap( const QVariantMap& );
-    void updateGlobalStorage() const;
+    /** @brief Set GS values where other modules configuration has priority
+     *
+     * Some "required" values are duplicated between modules; if some
+     * othe module hasn't already set the GS value, take a value from
+     * the partitioning configuration.
+     *
+     * Applicable GS keys:
+     *  - requiredStorageGiB
+     */
+    void fillGSSecondaryConfiguration() const;
 
     /** @brief What kind of installation (partitioning) is requested **initially**?
      *

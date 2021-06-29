@@ -295,7 +295,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
 }
 
 void
-Config::updateGlobalStorage() const
+Config::fillGSSecondaryConfiguration() const
 {
     // If there's no setting (e.g. from the welcome page) for required storage
     // then use ours, if it was set.

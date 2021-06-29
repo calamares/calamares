@@ -368,7 +368,7 @@ PartitionViewStep::isAtEnd() const
 void
 PartitionViewStep::onActivate()
 {
-    m_config->updateGlobalStorage();
+    m_config->fillGSSecondaryConfiguration();
 
     // if we're coming back to PVS from the next VS
     if ( m_widget->currentWidget() == m_choicePage && m_config->installChoice() == Config::InstallChoice::Alongside )
