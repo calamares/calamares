@@ -541,8 +541,6 @@ PartitionViewStep::onLeave()
 void
 PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    Logger::Once o;
-
     m_config->setConfigurationMap( configurationMap );
 
     // Copy the efiSystemPartition setting to the global storage. It is needed not only in
@@ -562,30 +560,6 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
                 CalamaresUtils::getBool( configurationMap, "alwaysShowPartitionLabels", true ) );
     gs->insert( "enableLuksAutomatedPartitioning",
                 CalamaresUtils::getBool( configurationMap, "enableLuksAutomatedPartitioning", true ) );
-
-    // The defaultFileSystemType setting needs a bit more processing,
-    // as we want to cover various cases (such as different cases)
-    QString fsName = CalamaresUtils::getString( configurationMap, "defaultFileSystemType" );
-    FileSystem::Type fsType;
-    if ( fsName.isEmpty() )
-    {
-        cWarning() << "Partition-module setting *defaultFileSystemType* is missing, will use ext4";
-    }
-    QString fsRealName = PartUtils::canonicalFilesystemName( fsName, &fsType );
-    if ( fsRealName == fsName )
-    {
-        cDebug() << o << "Partition-module setting *defaultFileSystemType*" << fsRealName;
-    }
-    else if ( fsType != FileSystem::Unknown )
-    {
-        cWarning() << "Partition-module setting *defaultFileSystemType* changed" << fsRealName;
-    }
-    else
-    {
-        cWarning() << "Partition-module setting *defaultFileSystemType* is bad (" << fsName << ") using" << fsRealName
-                   << "instead.";
-    }
-    gs->insert( "defaultFileSystemType", fsRealName );
 
     QString partitionTableName = CalamaresUtils::getString( configurationMap, "defaultPartitionTableType" );
     if ( partitionTableName.isEmpty() )
@@ -608,7 +582,7 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     QFuture< void > future = QtConcurrent::run( this, &PartitionViewStep::initPartitionCoreModule );
     m_future->setFuture( future );
 
-    m_core->initLayout( fsType == FileSystem::Unknown ? FileSystem::Ext4 : fsType,
+    m_core->initLayout( m_config->defaultFsType(),
                         configurationMap.value( "partitionLayout" ).toList() );
 }
 

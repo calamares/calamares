@@ -242,6 +242,61 @@ fillGSConfigurationEFI( Calamares::GlobalStorage* gs, const QVariantMap& configu
     }
 }
 
+void
+Config::fillConfigurationFSTypes(const QVariantMap& configurationMap)
+{
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+
+
+    // The defaultFileSystemType setting needs a bit more processing,
+    // as we want to cover various cases (such as different cases)
+    QString fsName = CalamaresUtils::getString( configurationMap, "defaultFileSystemType" );
+    QString fsRealName;
+    FileSystem::Type fsType = FileSystem::Type::Unknown;
+    if ( fsName.isEmpty() )
+    {
+        cWarning() << "Partition-module setting *defaultFileSystemType* is missing, will use ext4";
+        fsRealName = PartUtils::canonicalFilesystemName( QStringLiteral("ext4"), &fsType );
+    }
+    else
+    {
+        fsRealName = PartUtils::canonicalFilesystemName( fsName, &fsType );
+        if ( fsType == FileSystem::Type::Unknown )
+        {
+            cWarning() << "Partition-module setting *defaultFileSystemType* is bad (" << fsName << ") using ext4 instead";
+            fsRealName = PartUtils::canonicalFilesystemName( QStringLiteral("ext4"), &fsType );
+        }
+        else if ( fsRealName != fsName )
+        {
+            cWarning() << "Partition-module setting *defaultFileSystemType* changed to" << fsRealName;
+        }
+    }
+    Q_ASSERT( fsType != FileSystem::Type::Unknown );
+    m_defaultFsType = fsType;
+    gs->insert( "defaultFileSystemType", fsRealName );
+
+    // TODO: canonicalize the names? How is translation supposed to work?
+    m_eraseFsTypes = CalamaresUtils::getStringList( configurationMap, "availableFileSystemTypes" );
+    if ( !m_eraseFsTypes.contains( fsRealName ) )
+    {
+        if ( !m_eraseFsTypes.isEmpty() )
+        {
+            // Explicitly set, and doesn't include the default
+            cWarning() << "Partition-module *availableFileSystemTypes* does not contain the default" << fsRealName;
+            m_eraseFsTypes.prepend( fsRealName );
+        }
+        else
+        {
+            // Not explicitly set, so it's empty; don't complain
+            m_eraseFsTypes = QStringList { fsRealName };
+        }
+    }
+
+    Q_ASSERT( !m_eraseFsTypes.isEmpty() );
+    m_eraseFsTypeChoice = m_eraseFsTypes.first();
+    Q_EMIT eraseModeFilesystemChanged( m_eraseFsTypeChoice );
+}
+
 
 void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
@@ -266,23 +321,12 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
 
     m_allowManualPartitioning = CalamaresUtils::getBool( configurationMap, "allowManualPartitioning", true );
 
-    if ( configurationMap.contains( "availableFileSystemTypes" ) )
-    {
-        QStringList fsTypes = CalamaresUtils::getStringList( configurationMap, "availableFileSystemTypes" );
-
-        m_eraseFsTypes = fsTypes;
-        if ( !fsTypes.empty() )
-        {
-            m_eraseFsTypeChoice = m_eraseFsTypes.first();
-            Q_EMIT eraseModeFilesystemChanged( m_eraseFsTypeChoice );
-        }
-    }
-
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
     m_requiredPartitionTableType = CalamaresUtils::getStringList( configurationMap, "requiredPartitionTableType" );
     gs->insert( "requiredPartitionTableType", m_requiredPartitionTableType );
 
     fillGSConfigurationEFI(gs, configurationMap);
+    fillConfigurationFSTypes( configurationMap );
 }
 
 void

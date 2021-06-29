@@ -12,6 +12,8 @@
 
 #include "utils/NamedEnum.h"
 
+#include <kpmcore/fs/filesystem.h>
+
 #include <QObject>
 #include <QSet>
 
@@ -108,9 +110,21 @@ public:
      */
     SwapChoice swapChoice() const { return m_swapChoice; }
 
+    /** @brief Get the list of configured FS types to use with *erase* mode
+     *
+     * This list is not empty.
+     */
     EraseFsTypesSet eraseFsTypes() const { return m_eraseFsTypes; }
 
+    /** @brief Currently-selected FS type for *erase* mode
+     */
     QString eraseFsType() const { return m_eraseFsTypeChoice; }
+
+    /** @brief Configured default FS type (for other modes than erase)
+     *
+     * This is not "Unknown" or "Unformatted"
+     */
+    FileSystem::Type defaultFsType() const { return m_defaultFsType; }
 
     ///@brief Is manual partitioning allowed (not explicitly disabled in the config file)?
     bool allowManualPartitioning() const { return m_allowManualPartitioning; }
@@ -128,9 +142,13 @@ Q_SIGNALS:
     void eraseModeFilesystemChanged( const QString& );
 
 private:
-    SwapChoiceSet m_swapChoices;
+    /** @brief Handle FS-type configuration, for erase and default */
+    void fillConfigurationFSTypes( const QVariantMap& configurationMap );
     EraseFsTypesSet m_eraseFsTypes;
     QString m_eraseFsTypeChoice;
+    FileSystem::Type m_defaultFsType;
+
+    SwapChoiceSet m_swapChoices;
     SwapChoice m_initialSwapChoice = NoSwap;
     SwapChoice m_swapChoice = NoSwap;
     InstallChoice m_initialInstallChoice = NoChoice;
