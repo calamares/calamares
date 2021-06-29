@@ -168,7 +168,7 @@ Column {
                 hoverEnabled: true
                 property var coordinate: map.toCoordinate(Qt.point(mouseX, mouseY))
                 Label {
-                    x: parent.mouseX - width
+                    x: parent.mouseX - width -5
                     y: parent.mouseY - height - 5
                     text: "%1, %2".arg(
                         parent.coordinate.latitude).arg(parent.coordinate.longitude)
