@@ -112,9 +112,8 @@ public:
 
     QString eraseFsType() const { return m_eraseFsTypeChoice; }
 
-
-    ///@brief Is manual partitioning allowed (not explicitly disnabled in the config file)?
-    bool allowManualPartitioning() const;
+    ///@brief Is manual partitioning allowed (not explicitly disabled in the config file)?
+    bool allowManualPartitioning() const { return m_allowManualPartitioning; }
 
 public Q_SLOTS:
     void setInstallChoice( int );  ///< Translates a button ID or so to InstallChoice
@@ -138,6 +137,8 @@ private:
     InstallChoice m_installChoice = NoChoice;
     qreal m_requiredStorageGiB = 0.0;  // May duplicate setting in the welcome module
     QStringList m_requiredPartitionTableType;
+
+    bool m_allowManualPartitioning = true;
 };
 
 /** @brief Given a set of swap choices, return a sensible value from it.

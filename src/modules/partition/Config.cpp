@@ -220,14 +220,6 @@ Config::setEraseFsTypeChoice( const QString& choice )
     }
 }
 
-
-bool
-Config::allowManualPartitioning() const
-{
-    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-    return gs->value( "allowManualPartitioning" ).toBool();
-}
-
 static void
 fillGSConfigurationEFI( Calamares::GlobalStorage* gs, const QVariantMap& configurationMap )
 {
@@ -272,9 +264,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     }
     setSwapChoice( m_initialSwapChoice );
 
-    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-    gs->insert( "allowManualPartitioning",
-                CalamaresUtils::getBool( configurationMap, "allowManualPartitioning", true ) );
+    m_allowManualPartitioning = CalamaresUtils::getBool( configurationMap, "allowManualPartitioning", true );
 
     if ( configurationMap.contains( "availableFileSystemTypes" ) )
     {
@@ -288,6 +278,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         }
     }
 
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
     m_requiredPartitionTableType = CalamaresUtils::getStringList( configurationMap, "requiredPartitionTableType" );
     gs->insert( "requiredPartitionTableType", m_requiredPartitionTableType );
 
