@@ -46,26 +46,27 @@ private Q_SLOTS:
 
     void testCommands();
 
-    /** @brief Test that all the UMask objects work correctly. */
+    /** @section Test that all the UMask objects work correctly. */
     void testUmask();
 
-    /** @brief Tests the entropy functions. */
+    /** @section Tests the entropy functions. */
     void testEntropy();
     void testPrintableEntropy();
     void testOddSizedPrintable();
 
-    /** @brief Tests the RAII bits. */
+    /** @section Tests the RAII bits. */
     void testBoolSetter();
     void testPointerSetter();
 
-    /** @brief Tests the Traits bits. */
+    /** @section Tests the Traits bits. */
     void testTraits();
 
+    /** @section Testing the variants-methods */
     void testVariantStringListCode();
     void testVariantStringListYAMLDashed();
     void testVariantStringListYAMLBracketed();
 
-    /** @brief Test smart string truncation. */
+    /** @section Test smart string truncation. */
     void testStringTruncation();
     void testStringTruncationShorter();
     void testStringTruncationDegenerate();
@@ -476,17 +477,31 @@ LibCalamaresTests::testVariantStringListCode()
         QCOMPARE( getStringList( m, key ), QStringList {} );
         m.insert( key, 17 );
         QCOMPARE( getStringList( m, key ), QStringList {} );
-        m.insert( key, QString( "more strings" ) );
-        QCOMPARE( getStringList( m, key ),
-                  QStringList { "more strings" } );  // A single string **can** be considered a stringlist!
         m.insert( key, QVariant {} );
         QCOMPARE( getStringList( m, key ), QStringList {} );
     }
 
     {
-        // Things that are stringlists
+        // Things that are **like** stringlists
+        QVariantMap m;
+        m.insert( key, QString( "astring" ) );
+        QCOMPARE( getStringList( m, key ).count(), 1 );
+        QCOMPARE( getStringList( m, key ),
+                  QStringList { "astring" } );  // A single string **can** be considered a stringlist!
+        m.insert( key, QString( "more strings" ) );
+        QCOMPARE( getStringList( m, key ).count(), 1 );
+        QCOMPARE( getStringList( m, key ),
+                  QStringList { "more strings" } );
+        m.insert( key, QString() );
+        QCOMPARE( getStringList( m, key ).count(), 1 );
+        QCOMPARE( getStringList( m, key ), QStringList { QString() } );
+    }
+
+    {
+        // Things that are definitely stringlists
         QVariantMap m;
         m.insert( key, QStringList { "aap", "noot" } );
+        QCOMPARE( getStringList( m, key ).count(), 2 );
         QVERIFY( getStringList( m, key ).contains( "aap" ) );
         QVERIFY( !getStringList( m, key ).contains( "mies" ) );
     }

@@ -25,13 +25,17 @@ namespace CalamaresUtils
  */
 DLLEXPORT bool getBool( const QVariantMap& map, const QString& key, bool d = false );
 
-/**
- * Get a string value from a mapping with a given key; returns @p d if no value.
+/** @brief Get a string value from a mapping with a given key; returns @p d if no value.
+ *
+ * The value must be an actual string; numbers are not automatically converted to strings,
+ * nor are lists flattened or converted.
  */
 DLLEXPORT QString getString( const QVariantMap& map, const QString& key, const QString& d = QString() );
 
-/**
- * Get a string list from a mapping with a given key; returns @p d if no value.
+/** @brief Get a string list from a mapping with a given key; returns @p d if no value.
+ *
+ * This is slightly more lenient that getString(), and a single-string value will
+ * be returned as a 1-item list.
  */
 DLLEXPORT QStringList getStringList( const QVariantMap& map, const QString& key, const QStringList& d = QStringList() );
 
