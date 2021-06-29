@@ -293,7 +293,8 @@ Config::fillConfigurationFSTypes(const QVariantMap& configurationMap)
     }
 
     Q_ASSERT( !m_eraseFsTypes.isEmpty() );
-    m_eraseFsTypeChoice = m_eraseFsTypes.first();
+    Q_ASSERT( m_eraseFsTypes.contains( fsRealName ) );
+    m_eraseFsTypeChoice = fsRealName;
     Q_EMIT eraseModeFilesystemChanged( m_eraseFsTypeChoice );
 }
 
