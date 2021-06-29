@@ -278,16 +278,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
 
     if ( configurationMap.contains( "availableFileSystemTypes" ) )
     {
-        QStringList fsTypes;
-
-        if ( configurationMap.value( "availableFileSystemTypes" ).type() == QVariant::List )
-        {
-            fsTypes = CalamaresUtils::getStringList( configurationMap, "availableFileSystemTypes" );
-        }
-        else if ( configurationMap.value( "availableFileSystemTypes" ).type() == QVariant::String )
-        {
-            fsTypes = QStringList { CalamaresUtils::getString( configurationMap, "availableFileSystemTypes" ) };
-        }
+        QStringList fsTypes = CalamaresUtils::getStringList( configurationMap, "availableFileSystemTypes" );
 
         m_eraseFsTypes = fsTypes;
         if ( !fsTypes.empty() )
@@ -297,18 +288,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         }
     }
 
-    if ( configurationMap.contains( "requiredPartitionTableType" )
-         && configurationMap.value( "requiredPartitionTableType" ).type() == QVariant::List )
-    {
-        m_requiredPartitionTableType.clear();
-        m_requiredPartitionTableType.append( configurationMap.value( "requiredPartitionTableType" ).toStringList() );
-    }
-    else if ( configurationMap.contains( "requiredPartitionTableType" )
-              && configurationMap.value( "requiredPartitionTableType" ).type() == QVariant::String )
-    {
-        m_requiredPartitionTableType.clear();
-        m_requiredPartitionTableType.append( configurationMap.value( "requiredPartitionTableType" ).toString() );
-    }
+    m_requiredPartitionTableType = CalamaresUtils::getStringList( configurationMap, "requiredPartitionTableType" );
     gs->insert( "requiredPartitionTableType", m_requiredPartitionTableType );
 
     fillGSConfigurationEFI(gs, configurationMap);
