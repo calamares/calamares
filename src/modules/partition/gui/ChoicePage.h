@@ -15,7 +15,7 @@
 #include "ui_ChoicePage.h"
 
 
-#include "core/Config.h"
+#include "Config.h"
 #include "core/OsproberEntry.h"
 
 #include <QMutex>

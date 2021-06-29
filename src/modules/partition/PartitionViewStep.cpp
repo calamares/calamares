@@ -11,10 +11,10 @@
  *
  */
 
-#include "gui/PartitionViewStep.h"
+#include "PartitionViewStep.h"
 
+#include "Config.h"
 #include "core/BootLoaderModel.h"
-#include "core/Config.h"
 #include "core/DeviceModel.h"
 #include "core/PartitionCoreModule.h"
 #include "gui/ChoicePage.h"

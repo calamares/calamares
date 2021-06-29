@@ -11,15 +11,9 @@
 
 #include "ChoicePage.h"
 
-#include "BootInfoWidget.h"
-#include "DeviceInfoWidget.h"
-#include "PartitionBarsView.h"
-#include "PartitionLabelsView.h"
-#include "PartitionSplitterWidget.h"
-#include "ReplaceWidget.h"
-#include "ScanningDialog.h"
+#include "Config.h"
+
 #include "core/BootLoaderModel.h"
-#include "core/Config.h"
 #include "core/DeviceModel.h"
 #include "core/KPMHelpers.h"
 #include "core/OsproberEntry.h"
@@ -28,6 +22,13 @@
 #include "core/PartitionCoreModule.h"
 #include "core/PartitionInfo.h"
 #include "core/PartitionModel.h"
+#include "gui/BootInfoWidget.h"
+#include "gui/DeviceInfoWidget.h"
+#include "gui/PartitionBarsView.h"
+#include "gui/PartitionLabelsView.h"
+#include "gui/PartitionSplitterWidget.h"
+#include "gui/ReplaceWidget.h"
+#include "gui/ScanningDialog.h"
 
 #include "Branding.h"
 #include "GlobalStorage.h"

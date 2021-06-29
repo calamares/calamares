@@ -9,7 +9,7 @@
 
 #include "Config.h"
 
-#include "PartUtils.h"
+#include "core/PartUtils.h"
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
