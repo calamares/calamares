@@ -55,7 +55,8 @@ Kirigami.ScrollablePage {
                 enabled: config.isEditable("fullName")
                 placeholderText: qsTr("Your Full Name")
                 text: config.fullName
-                onTextChanged: config.setFullName(text);
+                onTextChanged: config.setFullName(text)
+
                 palette.base: _userNameField.text.length ? "#f0fff0" : "#FBFBFB"
                 palette.highlight : _userNameField.text.length ? "#dcffdc" : "#FBFBFB"
             }
@@ -77,9 +78,18 @@ Kirigami.ScrollablePage {
                 placeholderText: qsTr("Login Name")
                 text: config.loginName
                 validator: RegularExpressionValidator { regularExpression: /[a-z_][a-z0-9_-]*[$]?$/ }
-                onTextChanged: acceptableInput ? ( _userLoginField.text === "root" ? forbiddenMessage.visible=true : ( config.setLoginName(text),userMessage.visible = false,forbiddenMessage.visible=false ) ) : ( userMessage.visible = true,console.log("Invalid") )
 
-                palette.base: _userLoginField.text.length ? ( acceptableInput ? ( _userLoginField.text === "root" ? "#ffdae0" : "#f0fff0" ) : "#ffdae0") : "#FBFBFB"
+                onTextChanged: acceptableInput
+                    ? ( _userLoginField.text === "root"
+                    ? forbiddenMessage.visible=true
+                    : ( config.setLoginName(text),
+                    userMessage.visible = false,forbiddenMessage.visible=false ) )
+                    : ( userMessage.visible = true,console.log("Invalid") )
+
+                palette.base: _userLoginField.text.length
+                    ? ( acceptableInput
+                    ? ( _userLoginField.text === "root"
+                    ? "#ffdae0" : "#f0fff0" ) : "#ffdae0" ) : "#FBFBFB"
                 palette.highlight : _userLoginField.text.length ? "#dcffdc" : "#FBFBFB"
             }
 
@@ -123,9 +133,19 @@ Kirigami.ScrollablePage {
                 placeholderText: qsTr("Computer Name")
                 text: config.hostName
                 validator: RegularExpressionValidator { regularExpression: /[a-zA-Z0-9][-a-zA-Z0-9_]+/ }
-                onTextChanged: acceptableInput ? ( _hostName.text === "localhost" ? forbiddenHost.visible=true : (config.setHostName(text),hostMessage.visible = false,forbiddenHost.visible = false) ) : hostMessage.visible = true
 
-                palette.base: _hostName.text.length ? ( acceptableInput ? ( _hostName.text === "localhost" ? "#ffdae0" : "#f0fff0" ) : "#ffdae0") : "#FBFBFB"
+                onTextChanged: acceptableInput
+                    ? ( _hostName.text === "localhost"
+                    ? forbiddenHost.visible=true
+                    : ( config.setHostName(text),
+                    hostMessage.visible = false,forbiddenHost.visible = false ) )
+                    : hostMessage.visible = true
+
+                palette.base: _hostName.text.length
+                    ? ( acceptableInput
+                    ? ( _hostName.text === "localhost" ? "#ffdae0" : "#f0fff0" )
+                    : "#ffdae0")
+                    : "#FBFBFB"
                 palette.highlight : _hostName.text.length ? "#dcffdc" : "#FBFBFB"
             }
 
@@ -173,6 +193,7 @@ Kirigami.ScrollablePage {
                     placeholderText: qsTr("Password")
                     text: config.userPassword
                     onTextChanged: config.setUserPassword(text)
+
                     palette.base: _passwordField.text.length ? "#f0fff0" : "#FBFBFB"
                     palette.highlight : _passwordField.text.length ? "#dcffdc" : "#FBFBFB"
 
@@ -186,9 +207,18 @@ Kirigami.ScrollablePage {
                     width: parent.width / 2 - 10
                     placeholderText: qsTr("Repeat Password")
                     text: config.userPasswordSecondary
-                    onTextChanged: _passwordField.text === _verificationPasswordField.text ? (config.setUserPasswordSecondary(text),passMessage.visible = false) : passMessage.visible = true
 
-                    palette.base: _verificationPasswordField.text.length ? ( _passwordField.text === _verificationPasswordField.text ? "#f0fff0" : "#ffdae0") : "#FBFBFB"
+                    onTextChanged: _passwordField.text === _verificationPasswordField.text
+                        ? ( config.setUserPasswordSecondary(text),
+                        passMessage.visible = false,
+                        validityMessage.visible = true )
+                        : ( passMessage.visible = true,
+                        validityMessage.visible = false )
+
+                    palette.base: _verificationPasswordField.text.length
+                        ? ( _passwordField.text === _verificationPasswordField.text
+                        ? "#f0fff0" : "#ffdae0" )
+                        : "#FBFBFB"
                     palette.highlight : _verificationPasswordField.text.length ? "#dcffdc" : "#FBFBFB"
 
                     echoMode: TextInput.Password
@@ -212,7 +242,18 @@ Kirigami.ScrollablePage {
             Layout.fillWidth: true
             visible: false
             type: Kirigami.MessageType.Error
-            text: qsTr("Your passwords do not match!")
+            text: config.userPasswordMessage
+        }
+
+        Kirigami.InlineMessage {
+            id: validityMessage
+            Layout.fillWidth: true
+            visible: false
+            type:  config.userPasswordValidity
+                ? ( config.requireStrongPasswords
+                ? Kirigami.MessageType.Error : Kirigami.MessageType.Warning )
+                : Kirigami.MessageType.Positive
+            text: config.userPasswordMessage
         }
 
         CheckBox {
@@ -251,7 +292,9 @@ Kirigami.ScrollablePage {
                     width: parent.width / 2 -10
                     placeholderText: qsTr("Root Password")
                     text: config.rootPassword
+
                     onTextChanged: config.setRootPassword(text)
+
                     palette.base: _rootPasswordField.text.length ? "#f0fff0" : "#FBFBFB"
                     palette.highlight : _rootPasswordField.text.length ? "#dcffdc" : "#FBFBFB"
 
@@ -265,10 +308,17 @@ Kirigami.ScrollablePage {
                     width: parent.width / 2 -10
                     placeholderText: qsTr("Repeat Root Password")
                     text: config.rootPasswordSecondary
-                    //onTextChanged: config.setRootPasswordSecondary(text)
-                    onTextChanged: _rootPasswordField.text === _verificationRootPasswordField.text ? (config.setRootPasswordSecondary(text),rootPassMessage.visible = false) : rootPassMessage.visible = true
 
-                    palette.base: _verificationRootPasswordField.text.length ? ( _rootPasswordField.text === _verificationRootPasswordField.text ? "#f0fff0" : "#ffdae0") : "#FBFBFB"
+                    onTextChanged: _rootPasswordField.text === _verificationRootPasswordField.text
+                        ? ( config.setRootPasswordSecondary(text),
+                        rootPassMessage.visible = false,
+                        rootValidityMessage.visible = true )
+                        : ( rootPassMessage.visible = true,
+                        rootValidityMessage.visible = false )
+
+                    palette.base: _verificationRootPasswordField.text.length
+                        ? ( _rootPasswordField.text === _verificationRootPasswordField.text
+                        ? "#f0fff0" : "#ffdae0") : "#FBFBFB"
                     palette.highlight : _verificationRootPasswordField.text.length ? "#dcffdc" : "#FBFBFB"
 
                     echoMode: TextInput.Password
@@ -292,7 +342,19 @@ Kirigami.ScrollablePage {
             Layout.fillWidth: true
             visible: false
             type: Kirigami.MessageType.Error
-            text: qsTr("Your passwords do not match!")
+            text: config.rootPasswordMessage
+        }
+
+        Kirigami.InlineMessage {
+            id: rootValidityMessage
+            Layout.fillWidth: true
+            showCloseButton: true
+            visible: false
+            type:  config.rootPasswordValidity
+                ? ( config.requireStrongPasswords
+                ? Kirigami.MessageType.Error : Kirigami.MessageType.Warning )
+                : Kirigami.MessageType.Positive
+            text: config.rootPasswordMessage
         }
 
         CheckBox {
@@ -307,7 +369,8 @@ Kirigami.ScrollablePage {
             Layout.alignment: Qt.AlignCenter
             text: qsTr("Validate passwords quality")
             checked: config.requireStrongPasswords
-            onCheckedChanged: config.setRequireStrongPasswords(checked)
+            onCheckedChanged: config.setRequireStrongPasswords(checked),
+                rootPassMessage.visible = false
         }
 
         Label {
