@@ -240,6 +240,7 @@ Kirigami.ScrollablePage {
         Kirigami.InlineMessage {
             id: passMessage
             Layout.fillWidth: true
+            showCloseButton: true
             visible: false
             type: Kirigami.MessageType.Error
             text: config.userPasswordMessage
@@ -248,6 +249,7 @@ Kirigami.ScrollablePage {
         Kirigami.InlineMessage {
             id: validityMessage
             Layout.fillWidth: true
+            showCloseButton: true
             visible: false
             type:  config.userPasswordValidity
                 ? ( config.requireStrongPasswords
@@ -340,6 +342,7 @@ Kirigami.ScrollablePage {
         Kirigami.InlineMessage {
             id: rootPassMessage
             Layout.fillWidth: true
+            showCloseButton: true
             visible: false
             type: Kirigami.MessageType.Error
             text: config.rootPasswordMessage
