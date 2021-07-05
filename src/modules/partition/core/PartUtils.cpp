@@ -451,13 +451,12 @@ isEfiBootable( const Partition* candidate )
 {
     const auto flags = PartitionInfo::flags( candidate );
 
-    // TODO: with KPMCore 4, this comment is wrong: the flags
-    //       are remapped, and the ESP flag is the same as Boot.
 #if defined( WITH_KPMCORE4API )
+    // In KPMCore4, the flags are remapped, and the ESP flag is the same as Boot.
     static_assert( KPM_PARTITION_FLAG_ESP == KPM_PARTITION_FLAG( Boot ), "KPMCore API enum changed" );
     return flags.testFlag( KPM_PARTITION_FLAG_ESP );
 #else
-    /* If bit 17 is set, old-style Esp flag, it's OK */
+    // In KPMCore3, bit 17 is the old-style Esp flag, and it's OK
     if ( flags.testFlag( KPM_PARTITION_FLAG_ESP ) )
     {
         return true;
