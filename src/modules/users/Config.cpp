@@ -545,7 +545,7 @@ Config::passwordStatus( const QString& pw1, const QString& pw2 ) const
         }
     }
 
-    return qMakePair( PasswordValidity::Valid, QString() );
+    return qMakePair( PasswordValidity::Valid, tr( "OK!" ) );
 }
 
 

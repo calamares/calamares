@@ -11,7 +11,7 @@
 import io.calamares.core 1.0
 import io.calamares.ui 1.0
 
-import QtQuick 2.10
+import QtQuick 2.15
 import QtQuick.Controls 2.10
 import QtQuick.Layouts 1.3
 import org.kde.kirigami 2.7 as Kirigami
@@ -55,14 +55,10 @@ Kirigami.ScrollablePage {
                 enabled: config.isEditable("fullName")
                 placeholderText: qsTr("Your Full Name")
                 text: config.fullName
-                onTextChanged: config.setFullName(text);
+                onTextChanged: config.setFullName(text)
 
-                background: Rectangle {
-                    radius: 2
-                    opacity: 0.9
-                    //border.color: _userNameField.text === "" ? Kirigami.Theme.backgroundColor : ( config.fullNameReady ? Kirigami.Theme.backgroundColor : Kirigami.Theme.negativeTextColor)
-                    color: _userNameField.text.length ? ( config.fullNameChanged ? "#f0fff0" : "#ffdae0") : "#FBFBFB"
-                }
+                palette.base: _userNameField.text.length ? "#f0fff0" : "#FBFBFB"
+                palette.highlight : _userNameField.text.length ? "#dcffdc" : "#FBFBFB"
             }
         }
 
@@ -81,14 +77,20 @@ Kirigami.ScrollablePage {
                 enabled: config.isEditable("loginName")
                 placeholderText: qsTr("Login Name")
                 text: config.loginName
-                //onTextChanged: config.setLoginName(text)
-                onTextChanged: config.loginNameStatusChanged ? ( config.setLoginName(text),userMessage.visible = false ) : ( userMessage.visible = true )
+                validator: RegularExpressionValidator { regularExpression: /[a-z_][a-z0-9_-]*[$]?$/ }
 
-                background: Rectangle {
-                    opacity: 0.9
-                    //border.color: _userLoginField.text === "" ? Kirigami.Theme.backgroundColor : ( config.userNameReady ? Kirigami.Theme.backgroundColor : Kirigami.Theme.negativeTextColor)
-                    color: _userLoginField.text.length ? ( config.loginNameStatusChanged ? "#f0fff0" : "#ffdae0") : "#FBFBFB"
-                }
+                onTextChanged: acceptableInput
+                    ? ( _userLoginField.text === "root"
+                    ? forbiddenMessage.visible=true
+                    : ( config.setLoginName(text),
+                    userMessage.visible = false,forbiddenMessage.visible=false ) )
+                    : ( userMessage.visible = true,console.log("Invalid") )
+
+                palette.base: _userLoginField.text.length
+                    ? ( acceptableInput
+                    ? ( _userLoginField.text === "root"
+                    ? "#ffdae0" : "#f0fff0" ) : "#ffdae0" ) : "#FBFBFB"
+                palette.highlight : _userLoginField.text.length ? "#dcffdc" : "#FBFBFB"
             }
 
             Label {
@@ -105,7 +107,15 @@ Kirigami.ScrollablePage {
             Layout.fillWidth: true
             visible: false
             type: Kirigami.MessageType.Error
-            text: qsTr("Your username must start with a lowercase letter or underscore.")
+            text: qsTr("Only lowercase letters, numbers, underscore and hyphen are allowed.")
+        }
+
+        Kirigami.InlineMessage {
+            id: forbiddenMessage
+            Layout.fillWidth: true
+            visible: false
+            type: Kirigami.MessageType.Error
+            text: qsTr("root is not allowed as username.")
         }
 
         Column {
@@ -122,13 +132,21 @@ Kirigami.ScrollablePage {
                 width: parent.width
                 placeholderText: qsTr("Computer Name")
                 text: config.hostName
-                onTextChanged: config.hostNameStatusChanged ? (config.setHostName(text),hostMessage.visible = false) : hostMessage.visible = true
+                validator: RegularExpressionValidator { regularExpression: /[a-zA-Z0-9][-a-zA-Z0-9_]+/ }
 
-                background: Rectangle {
-                    opacity: 0.9
-                    //border.color: _hostName.text === "" ? Kirigami.Theme.backgroundColor : ( config.hostNameStatusChanged ? Kirigami.Theme.backgroundColor : Kirigami.Theme.negativeTextColor)
-                    color: _hostName.text.length ? ( config.hostNameStatusChanged ? "#f0fff0" : "#ffdae0") : "#FBFBFB"
-                }
+                onTextChanged: acceptableInput
+                    ? ( _hostName.text === "localhost"
+                    ? forbiddenHost.visible=true
+                    : ( config.setHostName(text),
+                    hostMessage.visible = false,forbiddenHost.visible = false ) )
+                    : hostMessage.visible = true
+
+                palette.base: _hostName.text.length
+                    ? ( acceptableInput
+                    ? ( _hostName.text === "localhost" ? "#ffdae0" : "#f0fff0" )
+                    : "#ffdae0")
+                    : "#FBFBFB"
+                palette.highlight : _hostName.text.length ? "#dcffdc" : "#FBFBFB"
             }
 
             Label {
@@ -145,7 +163,15 @@ Kirigami.ScrollablePage {
             Layout.fillWidth: true
             visible: false
             type: Kirigami.MessageType.Error
-            text: qsTr("Only letter, numbers, underscore and hyphen are allowed.")
+            text: qsTr("Only letter, numbers, underscore and hyphen are allowed, minimal of two characters.")
+        }
+
+        Kirigami.InlineMessage {
+            id: forbiddenHost
+            Layout.fillWidth: true
+            visible: false
+            type: Kirigami.MessageType.Error
+            text: qsTr("localhost is not allowed as hostname.")
         }
 
         Column {
@@ -168,15 +194,12 @@ Kirigami.ScrollablePage {
                     text: config.userPassword
                     onTextChanged: config.setUserPassword(text)
 
+                    palette.base: _passwordField.text.length ? "#f0fff0" : "#FBFBFB"
+                    palette.highlight : _passwordField.text.length ? "#dcffdc" : "#FBFBFB"
+
                     echoMode: TextInput.Password
                     passwordMaskDelay: 300
                     inputMethodHints: Qt.ImhNoAutoUppercase
-
-                    background: Rectangle {
-                        opacity: 0.9
-                        //border.color: _passwordField.text === "" ? Kirigami.Theme.backgroundColor : ( config.passwordReady ? Kirigami.Theme.backgroundColor : Kirigami.Theme.negativeTextColor)
-                        color: _passwordField.text.length ? ( config.userPasswordStatusChanged ? "#f0fff0" : "#ffdae0") : "#FBFBFB"
-                    }
                 }
 
                 TextField {
@@ -184,17 +207,23 @@ Kirigami.ScrollablePage {
                     width: parent.width / 2 - 10
                     placeholderText: qsTr("Repeat Password")
                     text: config.userPasswordSecondary
-                    onTextChanged: config.setUserPasswordSecondary(text)
+
+                    onTextChanged: _passwordField.text === _verificationPasswordField.text
+                        ? ( config.setUserPasswordSecondary(text),
+                        passMessage.visible = false,
+                        validityMessage.visible = true )
+                        : ( passMessage.visible = true,
+                        validityMessage.visible = false )
+
+                    palette.base: _verificationPasswordField.text.length
+                        ? ( _passwordField.text === _verificationPasswordField.text
+                        ? "#f0fff0" : "#ffdae0" )
+                        : "#FBFBFB"
+                    palette.highlight : _verificationPasswordField.text.length ? "#dcffdc" : "#FBFBFB"
 
                     echoMode: TextInput.Password
                     passwordMaskDelay: 300
                     inputMethodHints: Qt.ImhNoAutoUppercase
-
-                    background: Rectangle {
-                        opacity: 0.9
-                        //border.color: _verificationpasswordField.text === "" ? Kirigami.Theme.backgroundColor : ( config.passwordReady ? Kirigami.Theme.backgroundColor : Kirigami.Theme.negativeTextColor)
-                        color: _verificationPasswordField.text.length ? ( config.userPasswordSecondaryChanged ? "#f0fff0" : "#ffdae0") : "#FBFBFB"
-                    }
                 }
             }
 
@@ -206,6 +235,27 @@ Kirigami.ScrollablePage {
                 wrapMode: Text.WordWrap
                 color: "#6D6D6D"
             }
+        }
+
+        Kirigami.InlineMessage {
+            id: passMessage
+            Layout.fillWidth: true
+            showCloseButton: true
+            visible: false
+            type: Kirigami.MessageType.Error
+            text: config.userPasswordMessage
+        }
+
+        Kirigami.InlineMessage {
+            id: validityMessage
+            Layout.fillWidth: true
+            showCloseButton: true
+            visible: false
+            type:  config.userPasswordValidity
+                ? ( config.requireStrongPasswords
+                ? Kirigami.MessageType.Error : Kirigami.MessageType.Warning )
+                : Kirigami.MessageType.Positive
+            text: config.userPasswordMessage
         }
 
         CheckBox {
@@ -244,17 +294,15 @@ Kirigami.ScrollablePage {
                     width: parent.width / 2 -10
                     placeholderText: qsTr("Root Password")
                     text: config.rootPassword
+
                     onTextChanged: config.setRootPassword(text)
+
+                    palette.base: _rootPasswordField.text.length ? "#f0fff0" : "#FBFBFB"
+                    palette.highlight : _rootPasswordField.text.length ? "#dcffdc" : "#FBFBFB"
 
                     echoMode: TextInput.Password
                     passwordMaskDelay: 300
                     inputMethodHints: Qt.ImhNoAutoUppercase
-
-                    background: Rectangle {
-                        opacity: 0.9
-                        //border.color: _rootPasswordField.text === "" ? Kirigami.Theme.backgroundColor : ( config.rootPasswordReady ? Kirigami.Theme.backgroundColor : Kirigami.Theme.negativeTextColor)
-                        color: _rootPasswordField.text.length ? ( config.rootPasswordReady ? "#f0fff0" : "#ffdae0") : "#FBFBFB"
-                    }
                 }
 
                 TextField {
@@ -262,17 +310,22 @@ Kirigami.ScrollablePage {
                     width: parent.width / 2 -10
                     placeholderText: qsTr("Repeat Root Password")
                     text: config.rootPasswordSecondary
-                    onTextChanged: config.setRootPasswordSecondary(text)
+
+                    onTextChanged: _rootPasswordField.text === _verificationRootPasswordField.text
+                        ? ( config.setRootPasswordSecondary(text),
+                        rootPassMessage.visible = false,
+                        rootValidityMessage.visible = true )
+                        : ( rootPassMessage.visible = true,
+                        rootValidityMessage.visible = false )
+
+                    palette.base: _verificationRootPasswordField.text.length
+                        ? ( _rootPasswordField.text === _verificationRootPasswordField.text
+                        ? "#f0fff0" : "#ffdae0") : "#FBFBFB"
+                    palette.highlight : _verificationRootPasswordField.text.length ? "#dcffdc" : "#FBFBFB"
 
                     echoMode: TextInput.Password
                     passwordMaskDelay: 300
                     inputMethodHints: Qt.ImhNoAutoUppercase
-
-                    background: Rectangle {
-                        opacity: 0.9
-                        //border.color: _verificationRootPasswordField.text === "" ? Kirigami.Theme.backgroundColor : ( config.rootPasswordReady ? Kirigami.Theme.backgroundColor : Kirigami.Theme.negativeTextColor)
-                        color: _verificationRootPasswordField.text.length ? ( config.rootPasswordReady ? "#f0fff0" : "#ffdae0") : "#FBFBFB"
-                    }
                 }
             }
 
@@ -284,6 +337,27 @@ Kirigami.ScrollablePage {
                 font.pointSize: 8
                 color: "#6D6D6D"
             }
+        }
+
+        Kirigami.InlineMessage {
+            id: rootPassMessage
+            Layout.fillWidth: true
+            showCloseButton: true
+            visible: false
+            type: Kirigami.MessageType.Error
+            text: config.rootPasswordMessage
+        }
+
+        Kirigami.InlineMessage {
+            id: rootValidityMessage
+            Layout.fillWidth: true
+            showCloseButton: true
+            visible: false
+            type:  config.rootPasswordValidity
+                ? ( config.requireStrongPasswords
+                ? Kirigami.MessageType.Error : Kirigami.MessageType.Warning )
+                : Kirigami.MessageType.Positive
+            text: config.rootPasswordMessage
         }
 
         CheckBox {
@@ -298,7 +372,8 @@ Kirigami.ScrollablePage {
             Layout.alignment: Qt.AlignCenter
             text: qsTr("Validate passwords quality")
             checked: config.requireStrongPasswords
-            onCheckedChanged: config.setRequireStrongPasswords(checked)
+            onCheckedChanged: config.setRequireStrongPasswords(checked),
+                rootPassMessage.visible = false
         }
 
         Label {
