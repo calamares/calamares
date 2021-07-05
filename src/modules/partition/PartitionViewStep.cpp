@@ -11,10 +11,10 @@
  *
  */
 
-#include "gui/PartitionViewStep.h"
+#include "PartitionViewStep.h"
 
+#include "Config.h"
 #include "core/BootLoaderModel.h"
-#include "core/Config.h"
 #include "core/DeviceModel.h"
 #include "core/PartitionCoreModule.h"
 #include "gui/ChoicePage.h"
@@ -327,7 +327,7 @@ PartitionViewStep::isNextEnabled() const
 void
 PartitionViewStep::nextPossiblyChanged( bool )
 {
-    emit nextStatusChanged( isNextEnabled() );
+    Q_EMIT nextStatusChanged( isNextEnabled() );
 }
 
 bool
@@ -368,7 +368,7 @@ PartitionViewStep::isAtEnd() const
 void
 PartitionViewStep::onActivate()
 {
-    m_config->updateGlobalStorage();
+    m_config->fillGSSecondaryConfiguration();
 
     // if we're coming back to PVS from the next VS
     if ( m_widget->currentWidget() == m_choicePage && m_config->installChoice() == Config::InstallChoice::Alongside )
@@ -541,32 +541,11 @@ PartitionViewStep::onLeave()
 void
 PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    Logger::Once o;
-
     m_config->setConfigurationMap( configurationMap );
 
     // Copy the efiSystemPartition setting to the global storage. It is needed not only in
     // the EraseDiskPage, but also in the bootloader configuration modules (grub, bootloader).
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-    QString efiSP = CalamaresUtils::getString( configurationMap, "efiSystemPartition", QStringLiteral( "/boot/efi" ) );
-    gs->insert( "efiSystemPartition", efiSP );
-
-    // Set up firmwareType global storage entry. This is used, e.g. by the bootloader module.
-    QString firmwareType( PartUtils::isEfiSystem() ? QStringLiteral( "efi" ) : QStringLiteral( "bios" ) );
-    cDebug() << o << "Setting firmwareType to" << firmwareType;
-    gs->insert( "firmwareType", firmwareType );
-
-    // Read and parse key efiSystemPartitionSize
-    if ( configurationMap.contains( "efiSystemPartitionSize" ) )
-    {
-        gs->insert( "efiSystemPartitionSize", CalamaresUtils::getString( configurationMap, "efiSystemPartitionSize" ) );
-    }
-
-    // Read and parse key efiSystemPartitionName
-    if ( configurationMap.contains( "efiSystemPartitionName" ) )
-    {
-        gs->insert( "efiSystemPartitionName", CalamaresUtils::getString( configurationMap, "efiSystemPartitionName" ) );
-    }
 
     // Read and parse key swapPartitionName
     if ( configurationMap.contains( "swapPartitionName" ) )
@@ -581,30 +560,6 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
                 CalamaresUtils::getBool( configurationMap, "alwaysShowPartitionLabels", true ) );
     gs->insert( "enableLuksAutomatedPartitioning",
                 CalamaresUtils::getBool( configurationMap, "enableLuksAutomatedPartitioning", true ) );
-
-    // The defaultFileSystemType setting needs a bit more processing,
-    // as we want to cover various cases (such as different cases)
-    QString fsName = CalamaresUtils::getString( configurationMap, "defaultFileSystemType" );
-    FileSystem::Type fsType;
-    if ( fsName.isEmpty() )
-    {
-        cWarning() << "Partition-module setting *defaultFileSystemType* is missing, will use ext4";
-    }
-    QString fsRealName = PartUtils::findFS( fsName, &fsType );
-    if ( fsRealName == fsName )
-    {
-        cDebug() << o << "Partition-module setting *defaultFileSystemType*" << fsRealName;
-    }
-    else if ( fsType != FileSystem::Unknown )
-    {
-        cWarning() << "Partition-module setting *defaultFileSystemType* changed" << fsRealName;
-    }
-    else
-    {
-        cWarning() << "Partition-module setting *defaultFileSystemType* is bad (" << fsName << ") using" << fsRealName
-                   << "instead.";
-    }
-    gs->insert( "defaultFileSystemType", fsRealName );
 
     QString partitionTableName = CalamaresUtils::getString( configurationMap, "defaultPartitionTableType" );
     if ( partitionTableName.isEmpty() )
@@ -627,7 +582,7 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     QFuture< void > future = QtConcurrent::run( this, &PartitionViewStep::initPartitionCoreModule );
     m_future->setFuture( future );
 
-    m_core->initLayout( fsType == FileSystem::Unknown ? FileSystem::Ext4 : fsType,
+    m_core->initLayout( m_config->defaultFsType(),
                         configurationMap.value( "partitionLayout" ).toList() );
 }
 

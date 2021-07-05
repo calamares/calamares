@@ -11,15 +11,9 @@
 
 #include "ChoicePage.h"
 
-#include "BootInfoWidget.h"
-#include "DeviceInfoWidget.h"
-#include "PartitionBarsView.h"
-#include "PartitionLabelsView.h"
-#include "PartitionSplitterWidget.h"
-#include "ReplaceWidget.h"
-#include "ScanningDialog.h"
+#include "Config.h"
+
 #include "core/BootLoaderModel.h"
-#include "core/Config.h"
 #include "core/DeviceModel.h"
 #include "core/KPMHelpers.h"
 #include "core/OsproberEntry.h"
@@ -28,6 +22,13 @@
 #include "core/PartitionCoreModule.h"
 #include "core/PartitionInfo.h"
 #include "core/PartitionModel.h"
+#include "gui/BootInfoWidget.h"
+#include "gui/DeviceInfoWidget.h"
+#include "gui/PartitionBarsView.h"
+#include "gui/PartitionLabelsView.h"
+#include "gui/PartitionSplitterWidget.h"
+#include "gui/ReplaceWidget.h"
+#include "gui/ScanningDialog.h"
 
 #include "Branding.h"
 #include "GlobalStorage.h"
@@ -269,6 +270,15 @@ ChoicePage::setupChoices()
         m_eraseButton->addOptionsComboBox( m_eraseSwapChoiceComboBox );
     }
 
+    if ( m_config->eraseFsTypes().count() > 1)
+    {
+        m_eraseFsTypesChoiceComboBox = new QComboBox;
+        m_eraseFsTypesChoiceComboBox->addItems(m_config->eraseFsTypes());
+        connect( m_eraseFsTypesChoiceComboBox, &QComboBox::currentTextChanged, m_config, &Config::setEraseFsTypeChoice );
+        connect( m_config, &Config::eraseModeFilesystemChanged, this, &ChoicePage::onActionChanged );
+        m_eraseButton->addOptionsComboBox( m_eraseFsTypesChoiceComboBox );
+    }
+
     m_itemsLayout->addWidget( m_alongsideButton );
     m_itemsLayout->addWidget( m_replaceButton );
     m_itemsLayout->addWidget( m_eraseButton );
@@ -293,7 +303,7 @@ ChoicePage::setupChoices()
             m_config->setInstallChoice( id );
             updateNextEnabled();
 
-            emit actionChosen();
+            Q_EMIT actionChosen();
         }
         else  // An action was unpicked, either on its own or because of another selection.
         {
@@ -303,7 +313,7 @@ ChoicePage::setupChoices()
                 m_config->setInstallChoice( InstallChoice::NoChoice );
                 updateNextEnabled();
 
-                emit actionChosen();
+                Q_EMIT actionChosen();
             }
         }
     } );
@@ -426,8 +436,8 @@ ChoicePage::continueApplyDeviceChoice()
         checkInstallChoiceRadioButton( m_config->installChoice() );
     }
 
-    emit actionChosen();
-    emit deviceChosen();
+    Q_EMIT actionChosen();
+    Q_EMIT deviceChosen();
 }
 
 
@@ -465,9 +475,8 @@ ChoicePage::applyActionChoice( InstallChoice choice )
     case InstallChoice::Erase:
     {
         auto gs = Calamares::JobQueue::instance()->globalStorage();
-
         PartitionActions::Choices::AutoPartitionOptions options { gs->value( "defaultPartitionTableType" ).toString(),
-                                                                  gs->value( "defaultFileSystemType" ).toString(),
+                                                                  m_config->eraseFsType(),
                                                                   m_encryptWidget->passphrase(),
                                                                   gs->value( "efiSystemPartition" ).toString(),
                                                                   CalamaresUtils::GiBtoBytes(
@@ -483,14 +492,14 @@ ChoicePage::applyActionChoice( InstallChoice choice )
                 } ),
                 [=] {
                     PartitionActions::doAutopartition( m_core, selectedDevice(), options );
-                    emit deviceChosen();
+                    Q_EMIT deviceChosen();
                 },
                 this );
         }
         else
         {
             PartitionActions::doAutopartition( m_core, selectedDevice(), options );
-            emit deviceChosen();
+            Q_EMIT deviceChosen();
         }
     }
     break;
@@ -1595,7 +1604,7 @@ ChoicePage::updateNextEnabled()
     if ( enabled != m_nextEnabled )
     {
         m_nextEnabled = enabled;
-        emit nextStatusChanged( enabled );
+        Q_EMIT nextStatusChanged( enabled );
     }
 }
 

@@ -72,7 +72,7 @@ public:
      */
     void updateGlobalStorage( const QStringList& selected ) const;
     /// As updateGlobalStorage() with an empty selection list
-    void updateGlobalStorage() const { updateGlobalStorage( QStringList() ); }
+    void fillGSSecondaryConfiguration() const { updateGlobalStorage( QStringList() ); }
 
 private:
     PackageListModel* m_model = nullptr;

@@ -68,5 +68,5 @@ void
 ScanningDialog::setVisible( bool visible )
 {
     QDialog::setVisible( visible );
-    emit visibilityChanged();
+    Q_EMIT visibilityChanged();
 }

@@ -16,13 +16,12 @@
 #include "core/PartitionCoreModule.h"
 #include "core/PartitionInfo.h"
 
-#include "utils/CalamaresUtilsSystem.h"
-#include "utils/NamedEnum.h"
-#include "utils/Units.h"
-
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
+#include "utils/NamedEnum.h"
+#include "utils/Units.h"
 
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
@@ -108,6 +107,12 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
     {
         partType = isEfi ? PartitionTable::gpt : PartitionTable::msdos;
     }
+
+    // Looking up the defaultFsType (which should name a filesystem type)
+    // will log an error and set the type to Unknown if there's something wrong.
+    FileSystem::Type type = FileSystem::Unknown;
+    PartUtils::canonicalFilesystemName( o.defaultFsType, &type );
+    core->initLayout( type == FileSystem::Unknown ? FileSystem::Ext4 : type );
 
     core->createPartitionTable( dev, partType );
 

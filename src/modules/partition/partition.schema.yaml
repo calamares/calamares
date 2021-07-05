@@ -18,6 +18,8 @@ properties:
     alwaysShowPartitionLabels: { type: boolean, default: true }
 
     defaultFileSystemType: { type: string }
+    availableFileSystemTypes: { type: array, items: { type: string } }
+
     enableLuksAutomatedPartitioning: { type: boolean, default: false }
     allowManualPartitioning: { type: boolean, default: true }
     partitionLayout: { type: array }  # TODO: specify items

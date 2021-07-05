@@ -49,9 +49,11 @@ if ( KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND
         TYPE viewmodule
         EXPORT_MACRO PLUGINDLLEXPORT_PRO
         SOURCES
+            Config.cpp
+            PartitionViewStep.cpp
+
             core/BootLoaderModel.cpp
             core/ColorUtils.cpp
-            core/Config.cpp
             core/DeviceList.cpp
             core/DeviceModel.cpp
             core/KPMHelpers.cpp
@@ -75,7 +77,6 @@ if ( KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND
             gui/PartitionLabelsView.cpp
             gui/PartitionSizeController.cpp
             gui/PartitionSplitterWidget.cpp
-            gui/PartitionViewStep.cpp
             gui/ResizeVolumeGroupDialog.cpp
             gui/ScanningDialog.cpp
             gui/ReplaceWidget.cpp

@@ -12,6 +12,8 @@
 
 #include "utils/NamedEnum.h"
 
+#include <kpmcore/fs/filesystem.h>
+
 #include <QObject>
 #include <QSet>
 
@@ -23,6 +25,9 @@ class Config : public QObject
 
     ///@brief The swap choice (None, Small, Hibernate, ...) which only makes sense when Erase is chosen
     Q_PROPERTY( SwapChoice swapChoice READ swapChoice WRITE setSwapChoice NOTIFY swapChoiceChanged )
+
+    ///@brief Name of the FS that will be used when erasing type disk (e.g. "default filesystem")
+    Q_PROPERTY( QString eraseModeFilesystem READ eraseFsType WRITE setEraseFsTypeChoice NOTIFY eraseModeFilesystemChanged )
 
     Q_PROPERTY( bool allowManualPartitioning READ allowManualPartitioning CONSTANT FINAL )
 
@@ -54,8 +59,19 @@ public:
     static const NamedEnumTable< SwapChoice >& swapChoiceNames();
     using SwapChoiceSet = QSet< SwapChoice >;
 
+    using EraseFsTypesSet = QStringList;
+
     void setConfigurationMap( const QVariantMap& );
-    void updateGlobalStorage() const;
+    /** @brief Set GS values where other modules configuration has priority
+     *
+     * Some "required" values are duplicated between modules; if some
+     * othe module hasn't already set the GS value, take a value from
+     * the partitioning configuration.
+     *
+     * Applicable GS keys:
+     *  - requiredStorageGiB
+     */
+    void fillGSSecondaryConfiguration() const;
 
     /** @brief What kind of installation (partitioning) is requested **initially**?
      *
@@ -94,20 +110,44 @@ public:
      */
     SwapChoice swapChoice() const { return m_swapChoice; }
 
-    ///@brief Is manual partitioning allowed (not explicitly disnabled in the config file)?
-    bool allowManualPartitioning() const;
+    /** @brief Get the list of configured FS types to use with *erase* mode
+     *
+     * This list is not empty.
+     */
+    EraseFsTypesSet eraseFsTypes() const { return m_eraseFsTypes; }
+
+    /** @brief Currently-selected FS type for *erase* mode
+     */
+    QString eraseFsType() const { return m_eraseFsTypeChoice; }
+
+    /** @brief Configured default FS type (for other modes than erase)
+     *
+     * This is not "Unknown" or "Unformatted"
+     */
+    FileSystem::Type defaultFsType() const { return m_defaultFsType; }
+
+    ///@brief Is manual partitioning allowed (not explicitly disabled in the config file)?
+    bool allowManualPartitioning() const { return m_allowManualPartitioning; }
 
 public Q_SLOTS:
     void setInstallChoice( int );  ///< Translates a button ID or so to InstallChoice
     void setInstallChoice( InstallChoice );
     void setSwapChoice( int );  ///< Translates a button ID or so to SwapChoice
     void setSwapChoice( SwapChoice );
+    void setEraseFsTypeChoice( const QString& filesystemName ); ///< See property eraseModeFilesystem
 
 Q_SIGNALS:
     void installChoiceChanged( InstallChoice );
     void swapChoiceChanged( SwapChoice );
+    void eraseModeFilesystemChanged( const QString& );
 
 private:
+    /** @brief Handle FS-type configuration, for erase and default */
+    void fillConfigurationFSTypes( const QVariantMap& configurationMap );
+    EraseFsTypesSet m_eraseFsTypes;
+    QString m_eraseFsTypeChoice;
+    FileSystem::Type m_defaultFsType;
+
     SwapChoiceSet m_swapChoices;
     SwapChoice m_initialSwapChoice = NoSwap;
     SwapChoice m_swapChoice = NoSwap;
@@ -115,6 +155,8 @@ private:
     InstallChoice m_installChoice = NoChoice;
     qreal m_requiredStorageGiB = 0.0;  // May duplicate setting in the welcome module
     QStringList m_requiredPartitionTableType;
+
+    bool m_allowManualPartitioning = true;
 };
 
 /** @brief Given a set of swap choices, return a sensible value from it.

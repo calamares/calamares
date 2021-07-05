@@ -10,7 +10,7 @@
 #ifndef PARTITIONACTIONS_H
 #define PARTITIONACTIONS_H
 
-#include "core/Config.h"
+#include "Config.h"
 
 #include <QSet>
 #include <QString>

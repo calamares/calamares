@@ -136,7 +136,7 @@ EncryptWidget::updateState()
     if ( newState != m_state )
     {
         m_state = newState;
-        emit stateChanged( m_state );
+        Q_EMIT stateChanged( m_state );
     }
 }
 

@@ -97,7 +97,7 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device,
     m_ui->fileSystemComboBox->addItems( fsNames );
 
     FileSystem::Type defaultFSType;
-    QString untranslatedFSName = PartUtils::findFS(
+    QString untranslatedFSName = PartUtils::canonicalFilesystemName(
         Calamares::JobQueue::instance()->globalStorage()->value( "defaultFileSystemType" ).toString(), &defaultFSType );
     if ( defaultFSType == FileSystem::Type::Unknown )
     {

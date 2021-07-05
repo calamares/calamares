@@ -225,7 +225,7 @@ PartitionSplitterWidget::setSplitPartition( const QString& path, qint64 minSize,
         }
     }
 
-    emit partitionResized( m_itemToResize.itemPath, m_itemToResize.size, m_itemToResizeNext.size );
+    Q_EMIT partitionResized( m_itemToResize.itemPath, m_itemToResize.size, m_itemToResizeNext.size );
 
     cDebug() << "Items updated. Status:";
     foreach ( const PartitionSplitterItem& item, m_items )
@@ -374,7 +374,7 @@ PartitionSplitterWidget::mouseMoveEvent( QMouseEvent* event )
 
         repaint();
 
-        emit partitionResized( itemPath, m_itemToResize.size, m_itemToResizeNext.size );
+        Q_EMIT partitionResized( itemPath, m_itemToResize.size, m_itemToResizeNext.size );
     }
     else
     {

@@ -25,5 +25,5 @@ PartitionJob::iprogress( int percent )
     {
         percent = 100;
     }
-    emit progress( qreal( percent / 100.0 ) );
+    Q_EMIT progress( qreal( percent / 100.0 ) );
 }

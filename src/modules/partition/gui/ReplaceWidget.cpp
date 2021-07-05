@@ -311,7 +311,7 @@ ReplaceWidget::setNextEnabled( bool enabled )
     }
 
     m_nextEnabled = enabled;
-    emit nextStatusChanged( enabled );
+    Q_EMIT nextStatusChanged( enabled );
 }
 
 

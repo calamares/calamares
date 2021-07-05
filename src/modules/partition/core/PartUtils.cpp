@@ -22,6 +22,7 @@
 #include "partition/PartitionQuery.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
+#include "utils/RAII.h"
 
 #include <kpmcore/backend/corebackend.h>
 #include <kpmcore/backend/corebackendmanager.h>
@@ -479,21 +480,19 @@ isEfiBootable( const Partition* candidate )
 }
 
 QString
-findFS( QString fsName, FileSystem::Type* fsType )
+canonicalFilesystemName( const QString& fsName, FileSystem::Type* fsType )
 {
-    QStringList fsLanguage { QLatin1String( "C" ) };  // Required language list to turn off localization
+    cPointerSetter type( fsType );
     if ( fsName.isEmpty() )
     {
-        fsName = QStringLiteral( "ext4" );
+        type = FileSystem::Ext4;
+        return QStringLiteral( "ext4" );
     }
 
-    FileSystem::Type tmpType = FileSystem::typeForName( fsName, fsLanguage );
-    if ( tmpType != FileSystem::Unknown )
+    QStringList fsLanguage { QLatin1String( "C" ) };  // Required language list to turn off localization
+
+    if ( ( type = FileSystem::typeForName( fsName, fsLanguage ) ) != FileSystem::Unknown )
     {
-        if ( fsType )
-        {
-            *fsType = tmpType;
-        }
         return fsName;
     }
 
@@ -513,7 +512,6 @@ findFS( QString fsName, FileSystem::Type* fsType )
     }
 
     cWarning() << "Filesystem" << fsName << "not found, using ext4";
-    fsName = QStringLiteral( "ext4" );
     // fsType can be used to check whether fsName was a valid filesystem.
     if ( fsType )
     {
@@ -533,7 +531,8 @@ findFS( QString fsName, FileSystem::Type* fsType )
         }
     }
 #endif
-    return fsName;
+    type = FileSystem::Unknown;
+    return QStringLiteral( "ext4" );
 }
 
 }  // namespace PartUtils

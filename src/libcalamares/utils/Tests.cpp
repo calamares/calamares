@@ -46,25 +46,27 @@ private Q_SLOTS:
 
     void testCommands();
 
-    /** @brief Test that all the UMask objects work correctly. */
+    /** @section Test that all the UMask objects work correctly. */
     void testUmask();
 
-    /** @brief Tests the entropy functions. */
+    /** @section Tests the entropy functions. */
     void testEntropy();
     void testPrintableEntropy();
     void testOddSizedPrintable();
 
-    /** @brief Tests the RAII bits. */
+    /** @section Tests the RAII bits. */
     void testBoolSetter();
+    void testPointerSetter();
 
-    /** @brief Tests the Traits bits. */
+    /** @section Tests the Traits bits. */
     void testTraits();
 
+    /** @section Testing the variants-methods */
     void testVariantStringListCode();
     void testVariantStringListYAMLDashed();
     void testVariantStringListYAMLBracketed();
 
-    /** @brief Test smart string truncation. */
+    /** @section Test smart string truncation. */
     void testStringTruncation();
     void testStringTruncationShorter();
     void testStringTruncationDegenerate();
@@ -360,6 +362,50 @@ LibCalamaresTests::testBoolSetter()
     QVERIFY( b );
 }
 
+void
+LibCalamaresTests::testPointerSetter()
+{
+    int special = 17;
+
+    QCOMPARE( special, 17 );
+    {
+        cPointerSetter p( &special );
+    }
+    QCOMPARE( special, 17 );
+    {
+        cPointerSetter p( &special );
+        p = 18;
+    }
+    QCOMPARE( special, 18 );
+    {
+        cPointerSetter p( &special );
+        p = 20;
+        p = 3;
+    }
+    QCOMPARE( special, 3 );
+    {
+        cPointerSetter<int> p( nullptr );
+    }
+    QCOMPARE( special, 3 );
+    {
+        // "don't do this" .. order of destructors is important
+        cPointerSetter p( &special );
+        cPointerSetter q( &special );
+        p = 17;
+    }
+    QCOMPARE( special, 17 );
+    {
+        // "don't do this" .. order of destructors is important
+        cPointerSetter p( &special );
+        cPointerSetter q( &special );
+        p = 34;
+        q = 2;
+        // q destroyed first, then p
+    }
+    QCOMPARE( special, 34 );
+}
+
+
 /* Demonstration of Traits support for has-a-method or not.
  *
  * We have two classes, c1 and c2; one has a method do_the_thing() and the
@@ -431,17 +477,31 @@ LibCalamaresTests::testVariantStringListCode()
         QCOMPARE( getStringList( m, key ), QStringList {} );
         m.insert( key, 17 );
         QCOMPARE( getStringList( m, key ), QStringList {} );
-        m.insert( key, QString( "more strings" ) );
-        QCOMPARE( getStringList( m, key ),
-                  QStringList { "more strings" } );  // A single string **can** be considered a stringlist!
         m.insert( key, QVariant {} );
         QCOMPARE( getStringList( m, key ), QStringList {} );
     }
 
     {
-        // Things that are stringlists
+        // Things that are **like** stringlists
+        QVariantMap m;
+        m.insert( key, QString( "astring" ) );
+        QCOMPARE( getStringList( m, key ).count(), 1 );
+        QCOMPARE( getStringList( m, key ),
+                  QStringList { "astring" } );  // A single string **can** be considered a stringlist!
+        m.insert( key, QString( "more strings" ) );
+        QCOMPARE( getStringList( m, key ).count(), 1 );
+        QCOMPARE( getStringList( m, key ),
+                  QStringList { "more strings" } );
+        m.insert( key, QString() );
+        QCOMPARE( getStringList( m, key ).count(), 1 );
+        QCOMPARE( getStringList( m, key ), QStringList { QString() } );
+    }
+
+    {
+        // Things that are definitely stringlists
         QVariantMap m;
         m.insert( key, QStringList { "aap", "noot" } );
+        QCOMPARE( getStringList( m, key ).count(), 2 );
         QVERIFY( getStringList( m, key ).contains( "aap" ) );
         QVERIFY( !getStringList( m, key ).contains( "mies" ) );
     }

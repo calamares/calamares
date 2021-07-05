@@ -87,10 +87,27 @@ public:
      *
      * @p config is a list of partition entries (in QVariant form,
      * read from YAML). If no entries are given, then a single
-     * partition is created with the given @p defaultFsType
+     * partition is created with type Unkown.
+     *
+     * Any partitions with FS type Unknown will get the default filesystem
+     * that is set at **apply** time (e.g. when createPartitions() is
+     * called as well.
+     *
+     * @see setDefaultFsType()
      */
     void init( FileSystem::Type defaultFsType, const QVariantList& config );
+    /** @brief add an entry as if it had been listed in the config
+     *
+     * The same comments about filesystem type apply.
+     */
     bool addEntry( const PartitionEntry& entry );
+
+    /** @brief set the default filesystem type
+     *
+     * Any partitions in the layout with type Unknown will get
+     * the default type when createPartitions() is called.
+     */
+    void setDefaultFsType( FileSystem::Type defaultFsType );
 
     /**
      * @brief Apply the current partition layout to the selected drive space.
@@ -105,6 +122,7 @@ public:
 
 private:
     QList< PartitionEntry > m_partLayout;
+    FileSystem::Type m_defaultFsType = FileSystem::Type::Unknown;
 };
 
 #endif /* PARTITIONLAYOUT_H */

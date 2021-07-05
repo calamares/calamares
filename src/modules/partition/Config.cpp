@@ -9,6 +9,8 @@
 
 #include "Config.h"
 
+#include "core/PartUtils.h"
+
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "utils/Logger.h"
@@ -180,7 +182,7 @@ Config::setInstallChoice( InstallChoice c )
     if ( c != m_installChoice )
     {
         m_installChoice = c;
-        emit installChoiceChanged( c );
+        Q_EMIT installChoiceChanged( c );
         ::updateGlobalStorage( c, m_swapChoice );
     }
 }
@@ -202,16 +204,98 @@ Config::setSwapChoice( Config::SwapChoice c )
     if ( c != m_swapChoice )
     {
         m_swapChoice = c;
-        emit swapChoiceChanged( c );
+        Q_EMIT swapChoiceChanged( c );
         ::updateGlobalStorage( m_installChoice, c );
     }
 }
 
-bool
-Config::allowManualPartitioning() const
+void
+Config::setEraseFsTypeChoice( const QString& choice )
+{
+    QString canonicalChoice = PartUtils::canonicalFilesystemName( choice, nullptr );
+    if ( canonicalChoice != m_eraseFsTypeChoice )
+    {
+        m_eraseFsTypeChoice = canonicalChoice;
+        Q_EMIT eraseModeFilesystemChanged( canonicalChoice );
+    }
+}
+
+static void
+fillGSConfigurationEFI( Calamares::GlobalStorage* gs, const QVariantMap& configurationMap )
+{
+    // Set up firmwareType global storage entry. This is used, e.g. by the bootloader module.
+    QString firmwareType( PartUtils::isEfiSystem() ? QStringLiteral( "efi" ) : QStringLiteral( "bios" ) );
+    gs->insert( "firmwareType", firmwareType );
+
+    gs->insert( "efiSystemPartition", CalamaresUtils::getString( configurationMap, "efiSystemPartition", QStringLiteral( "/boot/efi" ) ) );
+
+    // Read and parse key efiSystemPartitionSize
+    if ( configurationMap.contains( "efiSystemPartitionSize" ) )
+    {
+        gs->insert( "efiSystemPartitionSize", CalamaresUtils::getString( configurationMap, "efiSystemPartitionSize" ) );
+    }
+
+    // Read and parse key efiSystemPartitionName
+    if ( configurationMap.contains( "efiSystemPartitionName" ) )
+    {
+        gs->insert( "efiSystemPartitionName", CalamaresUtils::getString( configurationMap, "efiSystemPartitionName" ) );
+    }
+}
+
+void
+Config::fillConfigurationFSTypes(const QVariantMap& configurationMap)
 {
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-    return gs->value( "allowManualPartitioning" ).toBool();
+
+
+    // The defaultFileSystemType setting needs a bit more processing,
+    // as we want to cover various cases (such as different cases)
+    QString fsName = CalamaresUtils::getString( configurationMap, "defaultFileSystemType" );
+    QString fsRealName;
+    FileSystem::Type fsType = FileSystem::Type::Unknown;
+    if ( fsName.isEmpty() )
+    {
+        cWarning() << "Partition-module setting *defaultFileSystemType* is missing, will use ext4";
+        fsRealName = PartUtils::canonicalFilesystemName( QStringLiteral("ext4"), &fsType );
+    }
+    else
+    {
+        fsRealName = PartUtils::canonicalFilesystemName( fsName, &fsType );
+        if ( fsType == FileSystem::Type::Unknown )
+        {
+            cWarning() << "Partition-module setting *defaultFileSystemType* is bad (" << fsName << ") using ext4 instead";
+            fsRealName = PartUtils::canonicalFilesystemName( QStringLiteral("ext4"), &fsType );
+        }
+        else if ( fsRealName != fsName )
+        {
+            cWarning() << "Partition-module setting *defaultFileSystemType* changed to" << fsRealName;
+        }
+    }
+    Q_ASSERT( fsType != FileSystem::Type::Unknown );
+    m_defaultFsType = fsType;
+    gs->insert( "defaultFileSystemType", fsRealName );
+
+    // TODO: canonicalize the names? How is translation supposed to work?
+    m_eraseFsTypes = CalamaresUtils::getStringList( configurationMap, "availableFileSystemTypes" );
+    if ( !m_eraseFsTypes.contains( fsRealName ) )
+    {
+        if ( !m_eraseFsTypes.isEmpty() )
+        {
+            // Explicitly set, and doesn't include the default
+            cWarning() << "Partition-module *availableFileSystemTypes* does not contain the default" << fsRealName;
+            m_eraseFsTypes.prepend( fsRealName );
+        }
+        else
+        {
+            // Not explicitly set, so it's empty; don't complain
+            m_eraseFsTypes = QStringList { fsRealName };
+        }
+    }
+
+    Q_ASSERT( !m_eraseFsTypes.isEmpty() );
+    Q_ASSERT( m_eraseFsTypes.contains( fsRealName ) );
+    m_eraseFsTypeChoice = fsRealName;
+    Q_EMIT eraseModeFilesystemChanged( m_eraseFsTypeChoice );
 }
 
 
@@ -236,27 +320,18 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     }
     setSwapChoice( m_initialSwapChoice );
 
-    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-    gs->insert( "allowManualPartitioning",
-                CalamaresUtils::getBool( configurationMap, "allowManualPartitioning", true ) );
+    m_allowManualPartitioning = CalamaresUtils::getBool( configurationMap, "allowManualPartitioning", true );
 
-    if ( configurationMap.contains( "requiredPartitionTableType" )
-         && configurationMap.value( "requiredPartitionTableType" ).type() == QVariant::List )
-    {
-        m_requiredPartitionTableType.clear();
-        m_requiredPartitionTableType.append( configurationMap.value( "requiredPartitionTableType" ).toStringList() );
-    }
-    else if ( configurationMap.contains( "requiredPartitionTableType" )
-              && configurationMap.value( "requiredPartitionTableType" ).type() == QVariant::String )
-    {
-        m_requiredPartitionTableType.clear();
-        m_requiredPartitionTableType.append( configurationMap.value( "requiredPartitionTableType" ).toString() );
-    }
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+    m_requiredPartitionTableType = CalamaresUtils::getStringList( configurationMap, "requiredPartitionTableType" );
     gs->insert( "requiredPartitionTableType", m_requiredPartitionTableType );
+
+    fillGSConfigurationEFI(gs, configurationMap);
+    fillConfigurationFSTypes( configurationMap );
 }
 
 void
-Config::updateGlobalStorage() const
+Config::fillGSSecondaryConfiguration() const
 {
     // If there's no setting (e.g. from the welcome page) for required storage
     // then use ours, if it was set.

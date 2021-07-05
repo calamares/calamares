@@ -15,7 +15,7 @@
 #include "ui_ChoicePage.h"
 
 
-#include "core/Config.h"
+#include "Config.h"
 #include "core/OsproberEntry.h"
 
 #include <QMutex>
@@ -138,7 +138,9 @@ private:
     Calamares::PrettyRadioButton* m_eraseButton;
     Calamares::PrettyRadioButton* m_replaceButton;
     Calamares::PrettyRadioButton* m_somethingElseButton;
-    QComboBox* m_eraseSwapChoiceComboBox;  // UI, see also m_eraseSwapChoice
+    QComboBox* m_eraseSwapChoiceComboBox = nullptr;  // UI, see also Config's swap choice
+    QComboBox* m_eraseFsTypesChoiceComboBox = nullptr;  // UI, see also Config's erase-mode FS
+
 
     DeviceInfoWidget* m_deviceInfoWidget;
 
