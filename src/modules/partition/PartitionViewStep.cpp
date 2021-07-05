@@ -432,14 +432,15 @@ PartitionViewStep::onLeave()
     {
         if ( PartUtils::isEfiSystem() )
         {
-            QString espMountPoint
+            const QString espMountPoint
                 = Calamares::JobQueue::instance()->globalStorage()->value( "efiSystemPartition" ).toString();
+            const QString espFlagName = PartitionTable::flagName(
 #ifdef WITH_KPMCORE4API
-            auto espFlag = PartitionTable::Flag::Boot;
+                PartitionTable::Flag::Boot
 #else
-            auto espFlag = PartitionTable::FlagEsp;
+                PartitionTable::FlagEsp
 #endif
-            QString espFlagName = PartitionTable::flagName( espFlag );
+                                                        );
             Partition* esp = m_core->findPartitionByMountPoint( espMountPoint );
 
             QString message;

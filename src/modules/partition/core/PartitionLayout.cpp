@@ -140,55 +140,55 @@ PartitionLayout::init( FileSystem::Type defaultFsType, const QVariantList& confi
 void
 PartitionLayout::setDefaultFsType(FileSystem::Type defaultFsType)
 {
-    using T = FileSystem::Type;
+    using FileSystem = FileSystem::Type;
     switch ( defaultFsType )
     {
-        case T::Unknown:
-        case T::Unformatted:
-        case T::Extended:
-        case T::LinuxSwap:
-        case T::Luks:
-        case T::Ocfs2:
-        case T::Lvm2_PV:
-        case T::Udf:
-        case T::Iso9660:
-        case T::Luks2:
-        case T::LinuxRaidMember:
-        case T::BitLocker:
+        case FileSystem::Unknown:
+        case FileSystem::Unformatted:
+        case FileSystem::Extended:
+        case FileSystem::LinuxSwap:
+        case FileSystem::Luks:
+        case FileSystem::Ocfs2:
+        case FileSystem::Lvm2_PV:
+        case FileSystem::Udf:
+        case FileSystem::Iso9660:
+        case FileSystem::Luks2:
+        case FileSystem::LinuxRaidMember:
+        case FileSystem::BitLocker:
             // bad bad
             cWarning() << "The selected default FS" << defaultFsType << "is not suitable." << "Using ext4 instead.";
-            defaultFsType = T::Ext4;
+            defaultFsType = FileSystem::Ext4;
             break;
-        case T::Ext2:
-        case T::Ext3:
-        case T::Ext4:
-        case T::Fat32:
-        case T::Ntfs:
-        case T::Reiser4:
-        case T::ReiserFS:
-        case T::Xfs:
-        case T::Jfs:
-        case T::Btrfs:
-        case T::Exfat:
-        case T::F2fs:
+        case FileSystem::Ext2:
+        case FileSystem::Ext3:
+        case FileSystem::Ext4:
+        case FileSystem::Fat32:
+        case FileSystem::Ntfs:
+        case FileSystem::Reiser4:
+        case FileSystem::ReiserFS:
+        case FileSystem::Xfs:
+        case FileSystem::Jfs:
+        case FileSystem::Btrfs:
+        case FileSystem::Exfat:
+        case FileSystem::F2fs:
             // ok
             break;
-        case T::Fat12:
-        case T::Fat16:
-        case T::Hfs:
-        case T::HfsPlus:
-        case T::Ufs:
-        case T::Hpfs:
-        case T::Zfs:
-        case T::Nilfs2:
-        case T::Apfs:
-        case T::Minix:
+        case FileSystem::Fat12:
+        case FileSystem::Fat16:
+        case FileSystem::Hfs:
+        case FileSystem::HfsPlus:
+        case FileSystem::Ufs:
+        case FileSystem::Hpfs:
+        case FileSystem::Zfs:
+        case FileSystem::Nilfs2:
+        case FileSystem::Apfs:
+        case FileSystem::Minix:
             // weird
             cWarning() << "The selected default FS" << defaultFsType << "is unusual, but not wrong.";
             break;
         default:
             cWarning() << "The selected default FS" << defaultFsType << "is not known to Calamares." << "Using ext4 instead.";
-            defaultFsType = T::Ext4;
+            defaultFsType = FileSystem::Ext4;
     }
 
     m_defaultFsType = defaultFsType;
