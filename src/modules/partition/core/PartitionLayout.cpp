@@ -152,9 +152,11 @@ PartitionLayout::setDefaultFsType(FileSystem::Type defaultFsType)
         case FileSystem::Lvm2_PV:
         case FileSystem::Udf:
         case FileSystem::Iso9660:
+#ifdef WITH_KPMCORE4API
         case FileSystem::Luks2:
         case FileSystem::LinuxRaidMember:
         case FileSystem::BitLocker:
+#endif
             // bad bad
             cWarning() << "The selected default FS" << defaultFsType << "is not suitable." << "Using ext4 instead.";
             defaultFsType = FileSystem::Ext4;
@@ -173,7 +175,6 @@ PartitionLayout::setDefaultFsType(FileSystem::Type defaultFsType)
         case FileSystem::F2fs:
             // ok
             break;
-        case FileSystem::Fat12:
         case FileSystem::Fat16:
         case FileSystem::Hfs:
         case FileSystem::HfsPlus:
@@ -181,8 +182,11 @@ PartitionLayout::setDefaultFsType(FileSystem::Type defaultFsType)
         case FileSystem::Hpfs:
         case FileSystem::Zfs:
         case FileSystem::Nilfs2:
+#ifdef WITH_KPMCORE4API
+        case FileSystem::Fat12:
         case FileSystem::Apfs:
         case FileSystem::Minix:
+#endif
             // weird
             cWarning() << "The selected default FS" << defaultFsType << "is unusual, but not wrong.";
             break;

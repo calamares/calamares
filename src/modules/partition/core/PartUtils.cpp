@@ -463,7 +463,9 @@ isEfiFilesystemSuitable(const Partition* candidate)
             }
             cWarning() << "FAT32 filesystem is too small (" << size << "bytes)";
             return false;
+#ifdef WITH_KPMCORE4API
         case FileSystem::Type::Fat12:
+#endif
         case FileSystem::Type::Fat16:
             cWarning() << "FAT12 and FAT16 are probably not supported by EFI";
             return false;
