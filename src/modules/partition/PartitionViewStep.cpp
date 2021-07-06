@@ -445,7 +445,7 @@ PartitionViewStep::onLeave()
 
             QString message;
             QString description;
-            if ( !esp )
+            if ( !esp || ( esp && !PartUtils::isEfiFilesystemSuitable( esp ) ) )
             {
                 message = tr( "No EFI system partition configured" );
                 description = tr( "An EFI system partition is necessary to start %1."

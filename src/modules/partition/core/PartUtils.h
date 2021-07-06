@@ -83,6 +83,12 @@ OsproberEntryList runOsprober( DeviceModel* dm );
 bool isEfiSystem();
 
 /**
+ * @brief Is the @p partition suitable as an EFI boot partition?
+ * Checks for filesystem type (FAT32) and size (300MiB at least).
+ */
+bool isEfiFilesystemSuitable( const Partition* candidate );
+
+/**
  * @brief Is the given @p partition bootable in EFI? Depending on
  * the partition table layout, this may mean different flags.
  */
