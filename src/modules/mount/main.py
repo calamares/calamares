@@ -53,6 +53,11 @@ def get_btrfs_subvolumes(partitions):
     non_root_partition_mounts = [ m for m in [ p.get("mountPoint", None) for p in partitions ] if m is not None and m != '/' ]
     btrfs_subvolumes = filter(lambda s : s["mountPoint"] in non_root_partition_mounts, btrfs_subvolumes)
 
+    # If we have a swap **file**, give it a separate subvolume.
+    swap_choice = libcalamares.globalstorage.value( "partitionChoices" )
+    if swap_choice and swap_choice.get( "swap", None ) == "file":
+        btrfs_subvolumes.append({'mountPoint': '/swap', 'subvolume': '/@swap'})
+
     return btrfs_subvolumes
 
 
@@ -62,7 +67,6 @@ def mount_partition(root_mount_point, partition, partitions):
     """
     # Create mount point with `+` rather than `os.path.join()` because
     # `partition["mountPoint"]` starts with a '/'.
-    global_storage = libcalamares.globalstorage
     raw_mount_point = partition["mountPoint"]
     if not raw_mount_point:
         return
@@ -103,12 +107,6 @@ def mount_partition(root_mount_point, partition, partitions):
         # Root has been mounted to btrfs volume -> create subvolumes from configuration
         btrfs_subvolumes = get_btrfs_subvolumes(partitions)
 
-        # Check if we need a subvolume for swap file
-        swap_choice = global_storage.value( "partitionChoices" )
-        if swap_choice:
-            swap_choice = swap_choice.get( "swap", None )
-            if swap_choice and swap_choice == "file":
-                btrfs_subvolumes.append({'mountPoint': '/swap', 'subvolume': '/@swap'})
         # Store created list in global storage so it can be used in the fstab module
         libcalamares.globalstorage.insert("btrfsSubvolumes", btrfs_subvolumes)
         # Create the subvolumes that are in the completed list
