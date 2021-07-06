@@ -30,11 +30,16 @@ def pretty_name():
     return _("Mounting partitions.")
 
 
-def get_btrfs_subvolumes():
+def get_btrfs_subvolumes(partitions):
     """
     Gets the job-configuration for btrfs subvolumes, or if there is
     none given, returns a default configuration that matches
     the setup (/ and /home) from before configurability was introduced.
+
+    @param partitions
+        The partitions (from the partitioning module) that will exist on disk.
+        This is used to filter out subvolumes that don't need to be created
+        because they get a dedicated partition instead.
     """
     btrfs_subvolumes = libcalamares.job.configuration.get("btrfsSubvolumes", None)
     # Warn if there's no configuration at all, and empty configurations are
@@ -43,6 +48,10 @@ def get_btrfs_subvolumes():
         libcalamares.utils.warning("No configuration for btrfsSubvolumes")
     if not btrfs_subvolumes:
         btrfs_subvolumes = [ dict(mountPoint="/", subvolume="/@"), dict(mountPoint="/home", subvolume="/@home") ]
+
+    # Filter out the subvolumes which have a dedicated partition
+    non_root_partition_mounts = [ m for m in [ p.get("mountPoint", None) for p in partitions ] if m is not None and m != '/' ]
+    btrfs_subvolumes = filter(lambda s : s["mountPoint"] in non_root_partition_mounts, btrfs_subvolumes)
 
     return btrfs_subvolumes
 
@@ -92,15 +101,8 @@ def mount_partition(root_mount_point, partition, partitions):
     # Special handling for btrfs subvolumes. Create the subvolumes listed in mount.conf
     if fstype == "btrfs" and partition["mountPoint"] == '/':
         # Root has been mounted to btrfs volume -> create subvolumes from configuration
-        btrfs_subvolumes = get_btrfs_subvolumes()
+        btrfs_subvolumes = get_btrfs_subvolumes(partitions)
 
-        subvolume_mountpoints = [d['mountPoint'] for d in btrfs_subvolumes]
-        # Check if listed mountpoints besides / are already present and don't create subvolume for those
-        for p in partitions:
-            if "mountPoint" not in p or not p["mountPoint"]:
-                continue
-            if p["mountPoint"] in subvolume_mountpoints and p["mountPoint"] != '/':
-                btrfs_subvolumes = [d for d in btrfs_subvolumes if d['mountPoint'] != p["mountPoint"]]
         # Check if we need a subvolume for swap file
         swap_choice = global_storage.value( "partitionChoices" )
         if swap_choice:
