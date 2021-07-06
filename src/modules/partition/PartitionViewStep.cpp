@@ -109,6 +109,96 @@ PartitionViewStep::prettyName() const
     return tr( "Partitions" );
 }
 
+QString
+PartitionViewStep::prettyStatus() const
+{
+    //return tr( "Create new GPT partition table on /dev/sdb" ); //includes %1" ); .arg ( m_pkgc );
+    QString jobsLabel, modeText, diskInfoLabel;
+
+    Config::InstallChoice choice = m_config->installChoice();
+    const auto* branding = Calamares::Branding::instance();
+
+    QList< PartitionCoreModule::SummaryInfo > list = m_core->createSummaryInfo();
+
+    cDebug() << "Summary for Partition" << list.length() << choice;
+    if ( list.length() > 1 )  // There are changes on more than one disk
+    {
+//         NOTE: all of this should only happen when Manual partitioning is active.
+//         Any other choice should result in a list.length() == 1.
+        switch ( choice )
+        {
+            case Config::Alongside:
+                modeText = tr( "Install %1 <strong>alongside</strong> another operating system." )
+                .arg( branding->shortVersionedName() );
+                break;
+            case Config::Erase:
+                modeText
+                = tr( "<strong>Erase</strong> disk and install %1." ).arg( branding->shortVersionedName() );
+                break;
+            case Config::Replace:
+                modeText
+                = tr( "<strong>Replace</strong> a partition with %1." ).arg( branding->shortVersionedName() );
+                break;
+            case Config::NoChoice:
+            case Config::Manual:
+                modeText = tr( "<strong>Manual</strong> partitioning." );
+        }
+    }
+
+    for ( const auto& info : list )
+    {
+        if ( list.length() == 1 )  // this is the only disk preview
+        {
+            switch ( choice )
+            {
+                case Config::Alongside:
+                    diskInfoLabel = tr( "Install %1 <strong>alongside</strong> another operating system on disk "
+                    "<strong>%2</strong> (%3)." )
+                    .arg( branding->shortVersionedName() )
+                    .arg( info.deviceNode )
+                    .arg( info.deviceName );
+                    break;
+                case Config::Erase:
+                    diskInfoLabel = tr( "<strong>Erase</strong> disk <strong>%2</strong> (%3) and install %1." )
+                    .arg( branding->shortVersionedName() )
+                    .arg( info.deviceNode )
+                    .arg( info.deviceName );
+                    break;
+                case Config::Replace:
+                    diskInfoLabel = tr( "<strong>Replace</strong> a partition on disk <strong>%2</strong> (%3) with %1." )
+                    .arg( branding->shortVersionedName() )
+                    .arg( info.deviceNode )
+                    .arg( info.deviceName );
+                    break;
+                case Config::NoChoice:
+                case Config::Manual:
+                    diskInfoLabel = tr( "<strong>Manual</strong> partitioning on disk <strong>%1</strong> (%2)." )
+                    .arg( info.deviceNode )
+                    .arg( info.deviceName );
+            }
+        }
+        else  // multiple disk previews!
+        {
+            diskInfoLabel =  tr( "Disk <strong>%1</strong> (%2)" ).arg( info.deviceNode ).arg( info.deviceName ) ;
+        }
+    }
+
+    QStringList jobsLines;
+    foreach ( const Calamares::job_ptr& job, jobs() )
+    {
+        if ( !job->prettyDescription().isEmpty() )
+        {
+            jobsLines.append( job->prettyDescription() );
+        }
+    }
+    if ( !jobsLines.isEmpty() )
+    {
+        jobsLabel = jobsLines.join( "<br/>" );
+    }
+
+    return diskInfoLabel + "<br/>" + jobsLabel;
+}
+
 
 QWidget*
 PartitionViewStep::widget()
