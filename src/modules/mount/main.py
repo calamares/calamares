@@ -42,7 +42,7 @@ def get_btrfs_subvolumes():
     if btrfs_subvolumes is None:
         libcalamares.utils.warning("No configuration for btrfsSubvolumes")
     if not btrfs_subvolumes:
-        btrfs_subvolumes = [ dict(mountPoint="/", subvolume="/@") ]
+        btrfs_subvolumes = [ dict(mountPoint="/", subvolume="/@"), dict(mountPoint="/home", subvolume="/@home") ]
 
     return btrfs_subvolumes
 
