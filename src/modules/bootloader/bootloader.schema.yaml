@@ -7,10 +7,10 @@ additionalProperties: false
 type: object
 properties:
     efiBootLoader: { type: string }
-    kernel:  { type: string }
-    img:  { type: string }
-    fallback:  { type: string }
+    kernelSearchPath:  { type: string }
+    kernelName:  { type: string }
     timeout:  { type: string }  # Inserted verbatim
+    additionalInitrdFiles:  { type: string }
     bootloaderEntryName:  { type: string }
     kernelLine:  { type: string }
     fallbackKernelLine:  { type: string }
@@ -27,8 +27,8 @@ properties:
 
 required:
     - efiBootLoader
-    - kernel
-    - img
+    - kernelSearchPath
+    - kernelName
     - grubInstall
     - grubMkconfig
     - grubCfg
