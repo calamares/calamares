@@ -83,6 +83,7 @@ public:
 
     int lastSelectedDeviceIndex();
     void setLastSelectedDeviceIndex( int index );
+    QWidget* bootloaderDropdown();
 
 signals:
     void nextStatusChanged( bool );
