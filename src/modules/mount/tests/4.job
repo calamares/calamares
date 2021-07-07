@@ -1,0 +1,12 @@
+# SPDX-FileCopyrightText: no
+# SPDX-License-Identifier: CC0-1.0
+
+btrfsSubvolumes:
+    - mountPoint: /
+      subvolume: /@
+    - mountPoint: /home
+      subvolume: /@home
+    - mountPoint: /var/cache
+      subvolume: /@cache
+    - mountPoint: /var/log
+      subvolume: /@log

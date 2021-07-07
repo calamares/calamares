@@ -1,0 +1,11 @@
+# SPDX-FileCopyrightText: no
+# SPDX-License-Identifier: CC0-1.0
+partitions:
+    - device: "/dev/sdb1"
+      mountPoint: "/"
+      fs: "btrfs"
+    - device: "/dev/sdb2"
+      mountPoint: "/home"
+      fs: "ext4"
+partitionChoices:
+    swap: file
