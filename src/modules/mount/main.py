@@ -51,7 +51,7 @@ def get_btrfs_subvolumes(partitions):
 
     # Filter out the subvolumes which have a dedicated partition
     non_root_partition_mounts = [ m for m in [ p.get("mountPoint", None) for p in partitions ] if m is not None and m != '/' ]
-    btrfs_subvolumes = filter(lambda s : s["mountPoint"] in non_root_partition_mounts, btrfs_subvolumes)
+    btrfs_subvolumes = list(filter(lambda s : s["mountPoint"] not in non_root_partition_mounts, btrfs_subvolumes))
 
     # If we have a swap **file**, give it a separate subvolume.
     swap_choice = libcalamares.globalstorage.value( "partitionChoices" )
