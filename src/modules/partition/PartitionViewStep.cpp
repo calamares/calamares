@@ -109,6 +109,19 @@ PartitionViewStep::prettyName() const
     return tr( "Partitions" );
 }
 
+static QStringList jobDescriptions( const Calamares::JobList& jobs )
+{
+    QStringList jobsLines;
+    for( const Calamares::job_ptr& job : qAsConst( jobs ) )
+    {
+        if ( !job->prettyDescription().isEmpty() )
+        {
+            jobsLines.append( job->prettyDescription() );
+        }
+    }
+    return jobsLines;
+}
+
 QString
 PartitionViewStep::prettyStatus() const
 {
@@ -182,14 +195,7 @@ PartitionViewStep::prettyStatus() const
         }
     }
 
-    QStringList jobsLines;
-    foreach ( const Calamares::job_ptr& job, jobs() )
-    {
-        if ( !job->prettyDescription().isEmpty() )
-        {
-            jobsLines.append( job->prettyDescription() );
-        }
-    }
+    const QStringList jobsLines = jobDescriptions( jobs() );
     if ( !jobsLines.isEmpty() )
     {
         jobsLabel = jobsLines.join( "<br/>" );
@@ -324,14 +330,7 @@ PartitionViewStep::createSummaryWidget() const
         field->addWidget( previewLabels );
         formLayout->addRow( tr( "After:" ), field );
     }
-    QStringList jobsLines;
-    foreach ( const Calamares::job_ptr& job, jobs() )
-    {
-        if ( !job->prettyDescription().isEmpty() )
-        {
-            jobsLines.append( job->prettyDescription() );
-        }
-    }
+    const QStringList jobsLines = jobDescriptions( jobs() );
     if ( !jobsLines.isEmpty() )
     {
         QLabel* jobsLabel = new QLabel( widget );
