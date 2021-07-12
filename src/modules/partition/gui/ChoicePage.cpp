@@ -175,7 +175,7 @@ ChoicePage::init( PartitionCoreModule* core )
     setModelToComboBox( m_drivesCombo, core->deviceModel() );
 
     connect( m_drivesCombo,
-             static_cast< void ( QComboBox::* )( int ) >( &QComboBox::currentIndexChanged ),
+             qOverload<int>( &QComboBox::currentIndexChanged ),
              this,
              &ChoicePage::applyDeviceChoice );
 
