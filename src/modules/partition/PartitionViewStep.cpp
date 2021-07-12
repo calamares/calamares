@@ -112,7 +112,6 @@ PartitionViewStep::prettyName() const
 QString
 PartitionViewStep::prettyStatus() const
 {
-    //return tr( "Create new GPT partition table on /dev/sdb" ); //includes %1" ); .arg ( m_pkgc );
     QString jobsLabel, modeText, diskInfoLabel;
 
     Config::InstallChoice choice = m_config->installChoice();
@@ -123,8 +122,8 @@ PartitionViewStep::prettyStatus() const
     cDebug() << "Summary for Partition" << list.length() << choice;
     if ( list.length() > 1 )  // There are changes on more than one disk
     {
-//         NOTE: all of this should only happen when Manual partitioning is active.
-//         Any other choice should result in a list.length() == 1.
+        // NOTE: all of this should only happen when Manual partitioning is active.
+        //       Any other choice should result in a list.length() == 1.
         switch ( choice )
         {
             case Config::Alongside:
@@ -198,14 +197,6 @@ PartitionViewStep::prettyStatus() const
 
     return diskInfoLabel + "<br/>" + jobsLabel;
 }
-
-
-QWidget*
-PartitionViewStep::widget()
-{
-    return m_widget;
-}
-
 
 QWidget*
 PartitionViewStep::createSummaryWidget() const
@@ -355,6 +346,11 @@ PartitionViewStep::createSummaryWidget() const
     return widget;
 }
 
+QWidget*
+PartitionViewStep::widget()
+{
+    return m_widget;
+}
 
 void
 PartitionViewStep::next()
