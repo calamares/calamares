@@ -122,6 +122,30 @@ static QStringList jobDescriptions( const Calamares::JobList& jobs )
     return jobsLines;
 }
 
+static QString modeDescription( Config::InstallChoice choice )
+{
+    const auto* branding = Calamares::Branding::instance();
+    static const char context[] = "PartitionViewStep";
+
+    switch ( choice )
+    {
+    case Config::InstallChoice::Alongside:
+        return QCoreApplication::translate( context, "Install %1 <strong>alongside</strong> another operating system." )
+                        .arg( branding->shortVersionedName() );
+        break;
+    case Config::InstallChoice::Erase:
+        return QCoreApplication::translate( context, "<strong>Erase</strong> disk and install %1." ).arg( branding->shortVersionedName() );
+        break;
+    case Config::InstallChoice::Replace:
+        return QCoreApplication::translate( context, "<strong>Replace</strong> a partition with %1." ).arg( branding->shortVersionedName() );
+        break;
+    case Config::InstallChoice::NoChoice:
+    case Config::InstallChoice::Manual:
+        return QCoreApplication::translate( context, "<strong>Manual</strong> partitioning." );
+    }
+    return QString();
+}
+
 QString
 PartitionViewStep::prettyStatus() const
 {
@@ -135,26 +159,7 @@ PartitionViewStep::prettyStatus() const
     cDebug() << "Summary for Partition" << list.length() << choice;
     if ( list.length() > 1 )  // There are changes on more than one disk
     {
-        // NOTE: all of this should only happen when Manual partitioning is active.
-        //       Any other choice should result in a list.length() == 1.
-        switch ( choice )
-        {
-            case Config::Alongside:
-                modeText = tr( "Install %1 <strong>alongside</strong> another operating system." )
-                .arg( branding->shortVersionedName() );
-                break;
-            case Config::Erase:
-                modeText
-                = tr( "<strong>Erase</strong> disk and install %1." ).arg( branding->shortVersionedName() );
-                break;
-            case Config::Replace:
-                modeText
-                = tr( "<strong>Replace</strong> a partition with %1." ).arg( branding->shortVersionedName() );
-                break;
-            case Config::NoChoice:
-            case Config::Manual:
-                modeText = tr( "<strong>Manual</strong> partitioning." );
-        }
+        modeText = modeDescription(choice);
     }
 
     for ( const auto& info : list )
@@ -227,24 +232,7 @@ PartitionViewStep::createSummaryWidget() const
         //      Any other choice should result in a list.length() == 1.
         QLabel* modeLabel = new QLabel;
         formLayout->addRow( modeLabel );
-        QString modeText;
-        switch ( choice )
-        {
-        case Config::InstallChoice::Alongside:
-            modeText = tr( "Install %1 <strong>alongside</strong> another operating system." )
-                           .arg( branding->shortVersionedName() );
-            break;
-        case Config::InstallChoice::Erase:
-            modeText = tr( "<strong>Erase</strong> disk and install %1." ).arg( branding->shortVersionedName() );
-            break;
-        case Config::InstallChoice::Replace:
-            modeText = tr( "<strong>Replace</strong> a partition with %1." ).arg( branding->shortVersionedName() );
-            break;
-        case Config::InstallChoice::NoChoice:
-        case Config::InstallChoice::Manual:
-            modeText = tr( "<strong>Manual</strong> partitioning." );
-        }
-        modeLabel->setText( modeText );
+        modeLabel->setText( modeDescription( choice ) );
     }
     for ( const auto& info : list )
     {
