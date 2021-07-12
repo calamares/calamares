@@ -270,11 +270,12 @@ ChoicePage::setupChoices()
         m_eraseButton->addOptionsComboBox( m_eraseSwapChoiceComboBox );
     }
 
-    if ( m_config->eraseFsTypes().count() > 1)
+    if ( m_config->eraseFsTypes().count() > 1 )
     {
         m_eraseFsTypesChoiceComboBox = new QComboBox;
-        m_eraseFsTypesChoiceComboBox->addItems(m_config->eraseFsTypes());
-        connect( m_eraseFsTypesChoiceComboBox, &QComboBox::currentTextChanged, m_config, &Config::setEraseFsTypeChoice );
+        m_eraseFsTypesChoiceComboBox->addItems( m_config->eraseFsTypes() );
+        connect(
+            m_eraseFsTypesChoiceComboBox, &QComboBox::currentTextChanged, m_config, &Config::setEraseFsTypeChoice );
         connect( m_config, &Config::eraseModeFilesystemChanged, this, &ChoicePage::onActionChanged );
         m_eraseButton->addOptionsComboBox( m_eraseFsTypesChoiceComboBox );
     }

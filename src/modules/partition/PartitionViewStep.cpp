@@ -115,10 +115,11 @@ PartitionViewStep::prettyName() const
  * empty strings and duplicates. The list is in-order of how the
  * jobs will be run.
  */
-static QStringList jobDescriptions( const Calamares::JobList& jobs )
+static QStringList
+jobDescriptions( const Calamares::JobList& jobs )
 {
     QStringList jobsLines;
-    for( const Calamares::job_ptr& job : qAsConst( jobs ) )
+    for ( const Calamares::job_ptr& job : qAsConst( jobs ) )
     {
         if ( !job->prettyDescription().isEmpty() )
         {
@@ -132,7 +133,8 @@ static QStringList jobDescriptions( const Calamares::JobList& jobs )
  *
  * Returns a (branded) string describing what @p choice will do.
  */
-static QString modeDescription( Config::InstallChoice choice )
+static QString
+modeDescription( Config::InstallChoice choice )
 {
     const auto* branding = Calamares::Branding::instance();
     static const char context[] = "PartitionViewStep";
@@ -141,13 +143,15 @@ static QString modeDescription( Config::InstallChoice choice )
     {
     case Config::InstallChoice::Alongside:
         return QCoreApplication::translate( context, "Install %1 <strong>alongside</strong> another operating system." )
-                        .arg( branding->shortVersionedName() );
+            .arg( branding->shortVersionedName() );
         break;
     case Config::InstallChoice::Erase:
-        return QCoreApplication::translate( context, "<strong>Erase</strong> disk and install %1." ).arg( branding->shortVersionedName() );
+        return QCoreApplication::translate( context, "<strong>Erase</strong> disk and install %1." )
+            .arg( branding->shortVersionedName() );
         break;
     case Config::InstallChoice::Replace:
-        return QCoreApplication::translate( context, "<strong>Replace</strong> a partition with %1." ).arg( branding->shortVersionedName() );
+        return QCoreApplication::translate( context, "<strong>Replace</strong> a partition with %1." )
+            .arg( branding->shortVersionedName() );
         break;
     case Config::InstallChoice::NoChoice:
     case Config::InstallChoice::Manual:
@@ -163,7 +167,8 @@ static QString modeDescription( Config::InstallChoice choice )
  * is used to provide context; when more than one disk is in use, the description
  * works differently.
  */
-static QString diskDescription( int listLength, const PartitionCoreModule::SummaryInfo& info, Config::InstallChoice choice )
+static QString
+diskDescription( int listLength, const PartitionCoreModule::SummaryInfo& info, Config::InstallChoice choice )
 {
     const auto* branding = Calamares::Branding::instance();
     static const char context[] = "PartitionViewStep";
@@ -172,28 +177,33 @@ static QString diskDescription( int listLength, const PartitionCoreModule::Summa
     {
         switch ( choice )
         {
-            case Config::Alongside:
-                return QCoreApplication::translate( context, "Install %1 <strong>alongside</strong> another operating system on disk "
-                "<strong>%2</strong> (%3)." )
+        case Config::Alongside:
+            return QCoreApplication::translate(
+                       context,
+                       "Install %1 <strong>alongside</strong> another operating system on disk "
+                       "<strong>%2</strong> (%3)." )
                 .arg( branding->shortVersionedName() )
                 .arg( info.deviceNode )
                 .arg( info.deviceName );
-                break;
-            case Config::Erase:
-                return QCoreApplication::translate( context, "<strong>Erase</strong> disk <strong>%2</strong> (%3) and install %1." )
+            break;
+        case Config::Erase:
+            return QCoreApplication::translate( context,
+                                                "<strong>Erase</strong> disk <strong>%2</strong> (%3) and install %1." )
                 .arg( branding->shortVersionedName() )
                 .arg( info.deviceNode )
                 .arg( info.deviceName );
-                break;
-            case Config::Replace:
-                return QCoreApplication::translate( context, "<strong>Replace</strong> a partition on disk <strong>%2</strong> (%3) with %1." )
+            break;
+        case Config::Replace:
+            return QCoreApplication::translate(
+                       context, "<strong>Replace</strong> a partition on disk <strong>%2</strong> (%3) with %1." )
                 .arg( branding->shortVersionedName() )
                 .arg( info.deviceNode )
                 .arg( info.deviceName );
-                break;
-            case Config::NoChoice:
-            case Config::Manual:
-                return QCoreApplication::translate( context, "<strong>Manual</strong> partitioning on disk <strong>%1</strong> (%2)." )
+            break;
+        case Config::NoChoice:
+        case Config::Manual:
+            return QCoreApplication::translate(
+                       context, "<strong>Manual</strong> partitioning on disk <strong>%1</strong> (%2)." )
                 .arg( info.deviceNode )
                 .arg( info.deviceName );
         }
@@ -201,7 +211,9 @@ static QString diskDescription( int listLength, const PartitionCoreModule::Summa
     }
     else  // multiple disk previews!
     {
-        return QCoreApplication::translate( context, "Disk <strong>%1</strong> (%2)" ).arg( info.deviceNode ).arg( info.deviceName ) ;
+        return QCoreApplication::translate( context, "Disk <strong>%1</strong> (%2)" )
+            .arg( info.deviceNode )
+            .arg( info.deviceName );
     }
 }
 
@@ -216,7 +228,7 @@ PartitionViewStep::prettyStatus() const
     cDebug() << "Summary for Partition" << list.length() << choice;
     if ( list.length() > 1 )  // There are changes on more than one disk
     {
-        modeText = modeDescription(choice);
+        modeText = modeDescription( choice );
     }
 
     for ( const auto& info : list )
@@ -501,7 +513,7 @@ PartitionViewStep::onLeave()
 #else
                 PartitionTable::FlagEsp
 #endif
-                                                        );
+            );
             Partition* esp = m_core->findPartitionByMountPoint( espMountPoint );
 
             QString message;
@@ -644,8 +656,7 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     QFuture< void > future = QtConcurrent::run( this, &PartitionViewStep::initPartitionCoreModule );
     m_future->setFuture( future );
 
-    m_core->initLayout( m_config->defaultFsType(),
-                        configurationMap.value( "partitionLayout" ).toList() );
+    m_core->initLayout( m_config->defaultFsType(), configurationMap.value( "partitionLayout" ).toList() );
 }
 
 
