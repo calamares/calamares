@@ -48,7 +48,7 @@ SummaryModel::rowCount( const QModelIndex& ) const
 }
 
 void
-SummaryModel::setSummary( const Calamares::ViewStepList& steps, bool withWidgets )
+SummaryModel::setSummaryList( const Calamares::ViewStepList& steps, bool withWidgets )
 {
     Q_EMIT beginResetModel();
     m_summary.clear();
@@ -106,27 +106,23 @@ Config::componentComplete()
 void
 Config::refresh()
 {
-    m_summary->setSummary( stepsForSummary( Calamares::ViewManager::instance()->viewSteps() ) );
-}
-
-void
-Config::init()
-{
-    refresh();
-}
-
-Calamares::ViewStepList
-Config::stepsForSummary( const Calamares::ViewStepList& allSteps ) const
-{
     Calamares::ViewStepList steps;
-    for ( Calamares::ViewStep* step : allSteps )
+    for ( Calamares::ViewStep* step : Calamares::ViewManager::instance()->viewSteps() )
     {
+        // *Assume* that if there's an exec step in the sequence,
+        // we don't need a summary for steps before it. This works in
+        // practice if there's a summary step before each exec --
+        // and in practice, there's only one of each.
         if ( qobject_cast< Calamares::ExecutionViewStep* >( step ) )
         {
             steps.clear();
             continue;
         }
 
+        // Having reached the parent view-step of the Config object,
+        // we know we're providing a summary of steps up until this
+        // view step, so we now have steps since the previous exec, up
+        // to this summary.
         if ( m_thisViewStep == step )
         {
             break;
@@ -135,5 +131,11 @@ Config::stepsForSummary( const Calamares::ViewStepList& allSteps ) const
         steps.append( step );
     }
 
-    return steps;
+    m_summary->setSummaryList( steps );
+}
+
+void
+Config::init()
+{
+    refresh();
 }
