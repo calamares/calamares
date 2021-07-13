@@ -12,9 +12,9 @@
 #define SUMMARYQMLVIEWSTEP_H
 
 #include "Config.h"
+#include "DllMacro.h"
 #include "utils/PluginFactory.h"
 #include "viewpages/QmlViewStep.h"
-#include "DllMacro.h"
 
 #include <QObject>
 
@@ -41,15 +41,12 @@ public:
 
     void onActivate() override;
 
-    QObject * getConfig() override
-    {
-        return m_config;
-    }
+    QObject* getConfig() override { return m_config; }
 
 private:
-    Config *m_config;
+    Config* m_config;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( SummaryQmlViewStepFactory )
 
-#endif // SUMMARYQMLVIEWSTEP_H
+#endif  // SUMMARYQMLVIEWSTEP_H

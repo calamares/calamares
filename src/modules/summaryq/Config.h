@@ -11,10 +11,10 @@
 #ifndef SUMMARY_CONFIG_H
 #define SUMMARY_CONFIG_H
 
-#include <QObject>
-#include <QAbstractListModel>
-#include <QQmlParserStatus>
 #include "viewpages/ViewStep.h"
+#include <QAbstractListModel>
+#include <QObject>
+#include <QQmlParserStatus>
 
 class SummaryQmlViewStep;
 
@@ -26,44 +26,42 @@ struct StepSummary
 
 class SummaryModel : public QAbstractListModel
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-    explicit SummaryModel(QObject *parent = nullptr);
+    explicit SummaryModel( QObject* parent = nullptr );
     int rowCount( const QModelIndex& = QModelIndex() ) const override;
     QVariant data( const QModelIndex& index, int role ) const override;
 
-    void setSummary(const Calamares::ViewStepList &steps);
+    void setSummary( const Calamares::ViewStepList& steps );
 
 protected:
     QHash< int, QByteArray > roleNames() const override;
+
 private:
-    QVector<StepSummary*> m_summary;
+    QVector< StepSummary* > m_summary;
 };
 
 class Config : public QObject, public QQmlParserStatus
 {
     Q_OBJECT
-    Q_PROPERTY(QString message MEMBER m_message NOTIFY messageChanged CONSTANT)
-    Q_PROPERTY(QString title MEMBER m_title NOTIFY titleChanged CONSTANT)
-    Q_PROPERTY(SummaryModel * summaryModel READ summaryModel CONSTANT FINAL)
+    Q_PROPERTY( QString message MEMBER m_message NOTIFY messageChanged CONSTANT )
+    Q_PROPERTY( QString title MEMBER m_title NOTIFY titleChanged CONSTANT )
+    Q_PROPERTY( SummaryModel* summaryModel READ summaryModel CONSTANT FINAL )
 
 public:
-    explicit Config(QObject *parent = nullptr);
+    explicit Config( QObject* parent = nullptr );
     virtual void componentComplete() override;
     virtual void classBegin() override {}
 
     void refresh();
     void init();
 
-    SummaryModel * summaryModel() const
-    {
-        return m_summary;
-    }
+    SummaryModel* summaryModel() const { return m_summary; }
 
 private:
     Calamares::ViewStepList stepsForSummary( const Calamares::ViewStepList& allSteps ) const;
     const SummaryQmlViewStep* m_thisViewStep;
-    SummaryModel *m_summary;
+    SummaryModel* m_summary;
 
     QString m_message;
     QString m_title;

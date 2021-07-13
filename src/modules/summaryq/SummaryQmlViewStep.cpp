@@ -10,7 +10,7 @@
 
 #include "SummaryQmlViewStep.h"
 
-CALAMARES_PLUGIN_FACTORY_DEFINITION( SummaryQmlViewStepFactory, registerPlugin<SummaryQmlViewStep>(); )
+CALAMARES_PLUGIN_FACTORY_DEFINITION( SummaryQmlViewStepFactory, registerPlugin< SummaryQmlViewStep >(); )
 
 SummaryQmlViewStep::SummaryQmlViewStep( QObject* parent )
     : Calamares::QmlViewStep( parent )
@@ -20,10 +20,7 @@ SummaryQmlViewStep::SummaryQmlViewStep( QObject* parent )
 }
 
 
-SummaryQmlViewStep::~SummaryQmlViewStep()
-{
-
-}
+SummaryQmlViewStep::~SummaryQmlViewStep() {}
 
 QString
 SummaryQmlViewStep::prettyName() const
@@ -72,4 +69,3 @@ SummaryQmlViewStep::onActivate()
 {
     m_config->init();
 }
-
