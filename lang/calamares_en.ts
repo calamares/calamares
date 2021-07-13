@@ -510,17 +510,17 @@ The installer will quit and all changes will be lost.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="32"/>
       <source>Set filesystem label on %1.</source>
-      <translation type="unfinished"/>
+      <translation>Set filesystem label on %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="39"/>
       <source>Set filesystem label &lt;strong&gt;%1&lt;/strong&gt; to partition &lt;strong&gt;%2&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Set filesystem label &lt;strong&gt;%1&lt;/strong&gt; to partition &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="70"/>
       <source>The installer failed to update partition table on disk '%1'.</source>
-      <translation type="unfinished"/>
+      <translation>The installer failed to update partition table on disk '%1'.</translation>
     </message>
   </context>
   <context>
@@ -896,7 +896,7 @@ The installer will quit and all changes will be lost.</translation>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="548"/>
       <source>OK!</source>
-      <translation type="unfinished"/>
+      <translation>OK!</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="145"/>
@@ -941,12 +941,12 @@ The installer will quit and all changes will be lost.</translation>
     <message>
       <location filename="../src/modules/packagechooser/Config.cpp" line="85"/>
       <source>Package Selection</source>
-      <translation type="unfinished">Package Selection</translation>
+      <translation>Package Selection</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/Config.cpp" line="87"/>
       <source>Please pick a product from the list. The selected product will be installed.</source>
-      <translation type="unfinished">Please pick a product from the list. The selected product will be installed.</translation>
+      <translation>Please pick a product from the list. The selected product will be installed.</translation>
     </message>
   </context>
   <context>
@@ -1012,12 +1012,12 @@ The installer will quit and all changes will be lost.</translation>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="231"/>
       <source>Label for the filesystem</source>
-      <translation type="unfinished"/>
+      <translation>Label for the filesystem</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="241"/>
       <source>FS Label:</source>
-      <translation type="unfinished"/>
+      <translation>FS Label:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="65"/>
@@ -1376,12 +1376,12 @@ The installer will quit and all changes will be lost.</translation>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="186"/>
       <source>Label for the filesystem</source>
-      <translation type="unfinished"/>
+      <translation>Label for the filesystem</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="196"/>
       <source>FS Label:</source>
-      <translation type="unfinished"/>
+      <translation>FS Label:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="291"/>
@@ -1889,7 +1889,7 @@ The installer will quit and all changes will be lost.</translation>
     <message>
       <location filename="../src/libcalamares/locale/Tests.cpp" line="273"/>
       <source>Quit</source>
-      <translation type="unfinished"/>
+      <translation>Quit</translation>
     </message>
   </context>
   <context>
@@ -2113,7 +2113,7 @@ The installer will quit and all changes will be lost.</translation>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="41"/>
       <source>Select your preferred Region, or use the default settings.</source>
-      <translation type="unfinished"/>
+      <translation>Select your preferred Region, or use the default settings.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="98"/>
@@ -2653,7 +2653,7 @@ The installer will quit and all changes will be lost.</translation>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="304"/>
       <source>File System Label</source>
-      <translation type="unfinished"/>
+      <translation>File System Label</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="306"/>
@@ -4258,12 +4258,12 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="110"/>
       <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
-      <translation type="unfinished">Only lowercase letters, numbers, underscore and hyphen are allowed.</translation>
+      <translation>Only lowercase letters, numbers, underscore and hyphen are allowed.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="118"/>
       <source>root is not allowed as username.</source>
-      <translation type="unfinished"/>
+      <translation>root is not allowed as username.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="127"/>
@@ -4283,12 +4283,12 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="166"/>
       <source>Only letter, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
-      <translation type="unfinished"/>
+      <translation>Only letter, numbers, underscore and hyphen are allowed, minimal of two characters.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="174"/>
       <source>localhost is not allowed as hostname.</source>
-      <translation type="unfinished"/>
+      <translation>localhost is not allowed as hostname.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="183"/>
