@@ -18,10 +18,18 @@
 
 class SummaryQmlViewStep;
 
+
+/** @brief Data for one step
+ *
+ * A step generally has a text description, but **may** have a
+ * QWidget. There is no ownership of the QWidget, that is assumed
+ * to be handed off to some owning parent-widget.
+ */
 struct StepSummary
 {
     QString title;
     QString message;
+    QWidget* widget = nullptr;
 };
 
 class SummaryModel : public QAbstractListModel
@@ -32,13 +40,13 @@ public:
     int rowCount( const QModelIndex& = QModelIndex() ) const override;
     QVariant data( const QModelIndex& index, int role ) const override;
 
-    void setSummary( const Calamares::ViewStepList& steps );
+    void setSummary( const Calamares::ViewStepList& steps, bool withWidgets = false );
 
 protected:
     QHash< int, QByteArray > roleNames() const override;
 
 private:
-    QVector< StepSummary* > m_summary;
+    QVector< StepSummary > m_summary;
 };
 
 class Config : public QObject, public QQmlParserStatus

@@ -39,7 +39,7 @@ SummaryModel::data( const QModelIndex& index, int role ) const
         return QVariant();
     }
     const auto item = m_summary.at( index.row() );
-    return role == Qt::DisplayRole ? item->title : item->message;
+    return role == Qt::DisplayRole ? item.title : item.message;
 }
 
 int
@@ -49,22 +49,22 @@ SummaryModel::rowCount( const QModelIndex& ) const
 }
 
 void
-SummaryModel::setSummary( const Calamares::ViewStepList& steps )
+SummaryModel::setSummary( const Calamares::ViewStepList& steps, bool withWidgets )
 {
-    m_summary.clear();
     Q_EMIT beginResetModel();
+    m_summary.clear();
 
     for ( Calamares::ViewStep* step : steps )
     {
         QString text = step->prettyStatus();
-        QWidget* widget = step->createSummaryWidget();
+        QWidget* widget = withWidgets ? step->createSummaryWidget() : nullptr;
 
         if ( text.isEmpty() && !widget )
         {
             continue;
         }
 
-        m_summary << new StepSummary { step->prettyName(), text };
+        m_summary << StepSummary { step->prettyName(), text, widget };
     }
     Q_EMIT endResetModel();
 }
