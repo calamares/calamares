@@ -56,7 +56,7 @@ class Config : public QObject, public QQmlParserStatus
     ///@brief Description of what the summary means
     Q_PROPERTY( QString message MEMBER m_message NOTIFY messageChanged )
 
-    Q_PROPERTY( SummaryModel* summaryModel READ summaryModel CONSTANT FINAL )
+    Q_PROPERTY( QAbstractListModel* summaryModel READ summaryModel CONSTANT FINAL )
 
 public:
     explicit Config( Calamares::ViewStep* parent = nullptr );
@@ -66,7 +66,7 @@ public:
     void refresh();
     void init();
 
-    SummaryModel* summaryModel() const { return m_summary; }
+    QAbstractListModel* summaryModel() const { return m_summary; }
 
 private:
     Calamares::ViewStepList stepsForSummary( const Calamares::ViewStepList& allSteps ) const;
