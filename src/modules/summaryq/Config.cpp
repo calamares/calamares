@@ -14,7 +14,6 @@
 #include "Branding.h"
 #include "Settings.h"
 #include "ViewManager.h"
-
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
@@ -73,15 +72,29 @@ Config::Config( QObject* parent )
     : QObject( parent )
     , m_thisViewStep( static_cast< SummaryQmlViewStep* >( parent ) )
     , m_summary( new SummaryModel( this ) )
+
+{
+    CALAMARES_RETRANSLATE_SLOT( &Config::retranslate );
+    retranslate();
+}
+
+void
+Config::retranslate()
 {
     m_title = m_thisViewStep->prettyName();
 
     if ( Calamares::Settings::instance()->isSetupMode() )
+    {
         m_message = ( tr( "This is an overview of what will happen once you start "
                           "the setup procedure." ) );
+    }
     else
+    {
         m_message = ( tr( "This is an overview of what will happen once you start "
                           "the install procedure." ) );
+    }
+    Q_EMIT titleChanged();
+    Q_EMIT messageChanged();
 }
 
 void

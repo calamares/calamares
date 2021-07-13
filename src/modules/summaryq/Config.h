@@ -52,8 +52,12 @@ private:
 class Config : public QObject, public QQmlParserStatus
 {
     Q_OBJECT
-    Q_PROPERTY( QString message MEMBER m_message NOTIFY messageChanged CONSTANT )
-    Q_PROPERTY( QString title MEMBER m_title NOTIFY titleChanged CONSTANT )
+
+    ///@brief Name of this summary (generally, "Summary")
+    Q_PROPERTY( QString title MEMBER m_title NOTIFY titleChanged )
+    ///@brief Description of what the summary means
+    Q_PROPERTY( QString message MEMBER m_message NOTIFY messageChanged )
+
     Q_PROPERTY( SummaryModel* summaryModel READ summaryModel CONSTANT FINAL )
 
 public:
@@ -68,6 +72,8 @@ public:
 
 private:
     Calamares::ViewStepList stepsForSummary( const Calamares::ViewStepList& allSteps ) const;
+    void retranslate();
+
     const SummaryQmlViewStep* m_thisViewStep;
     SummaryModel* m_summary;
 
