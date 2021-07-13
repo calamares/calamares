@@ -98,13 +98,7 @@ Config::retranslate()
 }
 
 void
-Config::componentComplete()
-{
-    refresh();
-}
-
-void
-Config::refresh()
+Config::init()
 {
     Calamares::ViewStepList steps;
     for ( Calamares::ViewStep* step : Calamares::ViewManager::instance()->viewSteps() )
@@ -132,10 +126,4 @@ Config::refresh()
     }
 
     m_summary->setSummaryList( steps );
-}
-
-void
-Config::init()
-{
-    refresh();
 }

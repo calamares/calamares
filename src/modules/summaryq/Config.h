@@ -58,7 +58,7 @@ private:
     QVector< StepSummary > m_summary;
 };
 
-class Config : public QObject, public QQmlParserStatus
+class Config : public QObject
 {
     Q_OBJECT
 
@@ -71,10 +71,8 @@ class Config : public QObject, public QQmlParserStatus
 
 public:
     explicit Config( Calamares::ViewStep* parent = nullptr );
-    virtual void componentComplete() override;
-    virtual void classBegin() override {}
 
-    void refresh();
+    ///@brief Called later, to load the model once all viewsteps are there
     void init();
 
     QAbstractListModel* summaryModel() const { return m_summary; }
