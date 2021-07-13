@@ -163,7 +163,7 @@ Kirigami.ScrollablePage {
             Layout.fillWidth: true
             visible: false
             type: Kirigami.MessageType.Error
-            text: qsTr("Only letter, numbers, underscore and hyphen are allowed, minimal of two characters.")
+            text: qsTr("Only letters, numbers, underscore and hyphen are allowed, minimal of two characters.")
         }
 
         Kirigami.InlineMessage {
