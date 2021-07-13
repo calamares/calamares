@@ -12,12 +12,10 @@
 #define SUMMARY_CONFIG_H
 
 #include "viewpages/ViewStep.h"
+
 #include <QAbstractListModel>
 #include <QObject>
 #include <QQmlParserStatus>
-
-class SummaryQmlViewStep;
-
 
 /** @brief Data for one step
  *
@@ -61,7 +59,7 @@ class Config : public QObject, public QQmlParserStatus
     Q_PROPERTY( SummaryModel* summaryModel READ summaryModel CONSTANT FINAL )
 
 public:
-    explicit Config( QObject* parent = nullptr );
+    explicit Config( Calamares::ViewStep* parent = nullptr );
     virtual void componentComplete() override;
     virtual void classBegin() override {}
 
@@ -74,7 +72,7 @@ private:
     Calamares::ViewStepList stepsForSummary( const Calamares::ViewStepList& allSteps ) const;
     void retranslate();
 
-    const SummaryQmlViewStep* m_thisViewStep;
+    const Calamares::ViewStep* m_thisViewStep;
     SummaryModel* m_summary;
 
     QString m_message;

@@ -68,7 +68,7 @@ SummaryModel::setSummary( const Calamares::ViewStepList& steps, bool withWidgets
     Q_EMIT endResetModel();
 }
 
-Config::Config( QObject* parent )
+Config::Config( Calamares::ViewStep* parent )
     : QObject( parent )
     , m_thisViewStep( static_cast< SummaryQmlViewStep* >( parent ) )
     , m_summary( new SummaryModel( this ) )
