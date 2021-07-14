@@ -4,16 +4,16 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Panwar108 <caspian7pena@gmail.com>, 2020
+# Panwar108 <caspian7pena@gmail.com>, 2021
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-12 14:14+0200\n"
+"POT-Creation-Date: 2021-07-14 12:55+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Panwar108 <caspian7pena@gmail.com>, 2020\n"
+"Last-Translator: Panwar108 <caspian7pena@gmail.com>, 2021\n"
 "Language-Team: Hindi (https://www.transifex.com/calamares/teams/20061/hi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,284 +21,41 @@ msgstr ""
 "Language: hi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/modules/bootloader/main.py:43
-msgid "Install bootloader."
-msgstr "बूट लोडर इंस्टॉल करना।"
-
-#: src/modules/bootloader/main.py:502
-msgid "Bootloader installation error"
-msgstr ""
-
-#: src/modules/bootloader/main.py:503
-msgid ""
-"The bootloader could not be installed. The installation command "
-"<pre>{!s}</pre> returned error code {!s}."
-msgstr ""
-
-#: src/modules/displaymanager/main.py:526
-msgid "Cannot write KDM configuration file"
-msgstr "KDM विन्यास फ़ाइल राइट नहीं की जा सकती"
-
-#: src/modules/displaymanager/main.py:527
-msgid "KDM config file {!s} does not exist"
-msgstr "KDM विन्यास फ़ाइल {!s} मौजूद नहीं है"
-
-#: src/modules/displaymanager/main.py:588
-msgid "Cannot write LXDM configuration file"
-msgstr "LXDM विन्यास फ़ाइल राइट नहीं की जा सकती"
-
-#: src/modules/displaymanager/main.py:589
-msgid "LXDM config file {!s} does not exist"
-msgstr "LXDM विन्यास फ़ाइल {!s} मौजूद नहीं है"
-
-#: src/modules/displaymanager/main.py:672
-msgid "Cannot write LightDM configuration file"
-msgstr "LightDM विन्यास फ़ाइल राइट नहीं की जा सकती"
-
-#: src/modules/displaymanager/main.py:673
-msgid "LightDM config file {!s} does not exist"
-msgstr "LightDM विन्यास फ़ाइल {!s} मौजूद नहीं है"
-
-#: src/modules/displaymanager/main.py:747
-msgid "Cannot configure LightDM"
-msgstr "LightDM को विन्यस्त नहीं किया जा सकता"
-
-#: src/modules/displaymanager/main.py:748
-msgid "No LightDM greeter installed."
-msgstr "कोई LightDM लॉगिन स्क्रीन इंस्टॉल नहीं है।"
-
-#: src/modules/displaymanager/main.py:779
-msgid "Cannot write SLIM configuration file"
-msgstr "SLIM विन्यास फ़ाइल राइट नहीं की जा सकती"
-
-#: src/modules/displaymanager/main.py:780
-msgid "SLIM config file {!s} does not exist"
-msgstr "SLIM विन्यास फ़ाइल {!s} मौजूद नहीं है"
-
-#: src/modules/displaymanager/main.py:906
-msgid "No display managers selected for the displaymanager module."
-msgstr "चयनित डिस्प्ले प्रबंधक मॉड्यूल हेतु कोई डिस्प्ले प्रबंधक नहीं मिला।"
-
-#: src/modules/displaymanager/main.py:907
-msgid ""
-"The displaymanagers list is empty or undefined in both globalstorage and "
-"displaymanager.conf."
-msgstr ""
-"globalstorage व displaymanager.conf में डिस्प्ले प्रबंधक सूची रिक्त या "
-"अपरिभाषित है।"
-
-#: src/modules/displaymanager/main.py:989
-msgid "Display manager configuration was incomplete"
-msgstr "डिस्प्ले प्रबंधक विन्यास अधूरा था"
-
-#: src/modules/dracut/main.py:27
-msgid "Creating initramfs with dracut."
-msgstr "dracut के साथ initramfs बनाना।"
-
-#: src/modules/dracut/main.py:49
-msgid "Failed to run dracut on the target"
-msgstr "लक्ष्य पर dracut निष्पादन विफल"
-
-#: src/modules/dracut/main.py:50 src/modules/mkinitfs/main.py:50
-msgid "The exit code was {}"
-msgstr "त्रुटि कोड  {}"
-
-#: src/modules/dummypython/main.py:35
-msgid "Dummy python job."
-msgstr "डमी पाइथन प्रक्रिया ।"
-
-#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
-#: src/modules/dummypython/main.py:94
-msgid "Dummy python step {}"
-msgstr "डमी पाइथन प्रक्रिया की चरण संख्या {}"
-
-#: src/modules/fstab/main.py:29
-msgid "Writing fstab."
-msgstr "fstab पर राइट करना।"
-
-#: src/modules/fstab/main.py:355 src/modules/fstab/main.py:361
-#: src/modules/fstab/main.py:388 src/modules/initcpiocfg/main.py:197
-#: src/modules/initcpiocfg/main.py:201 src/modules/initramfscfg/main.py:85
-#: src/modules/initramfscfg/main.py:89 src/modules/localecfg/main.py:135
-#: src/modules/luksopenswaphookcfg/main.py:86
-#: src/modules/luksopenswaphookcfg/main.py:90 src/modules/mount/main.py:144
-#: src/modules/networkcfg/main.py:39 src/modules/openrcdmcryptcfg/main.py:72
-#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/rawfs/main.py:164
-msgid "Configuration Error"
-msgstr "विन्यास त्रुटि"
-
-#: src/modules/fstab/main.py:356 src/modules/initcpiocfg/main.py:198
-#: src/modules/initramfscfg/main.py:86
-#: src/modules/luksopenswaphookcfg/main.py:87 src/modules/mount/main.py:145
-#: src/modules/openrcdmcryptcfg/main.py:73 src/modules/rawfs/main.py:165
-msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr "<pre>{!s}</pre> के उपयोग हेतु कोई विभाजन परिभाषित नहीं हैं।"
-
-#: src/modules/fstab/main.py:362 src/modules/initcpiocfg/main.py:202
-#: src/modules/initramfscfg/main.py:90 src/modules/localecfg/main.py:136
-#: src/modules/luksopenswaphookcfg/main.py:91
-#: src/modules/networkcfg/main.py:40 src/modules/openrcdmcryptcfg/main.py:77
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr ""
-"<pre>{!s}</pre> के उपयोग हेतु कोई रुट माउंट पॉइंट प्रदान नहीं किया गया।"
-
-#: src/modules/fstab/main.py:389
-msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
-msgstr ""
-
 #: src/modules/grubcfg/main.py:28
 msgid "Configure GRUB."
 msgstr "GRUB विन्यस्त करना।"
-
-#: src/modules/hwclock/main.py:26
-msgid "Setting hardware clock."
-msgstr "हार्डवेयर घड़ी सेट करना।"
-
-#: src/modules/initcpiocfg/main.py:28
-msgid "Configuring mkinitcpio."
-msgstr "mkinitcpio को विन्यस्त करना।"
-
-#: src/modules/initramfscfg/main.py:32
-msgid "Configuring initramfs."
-msgstr "initramfs को विन्यस्त करना। "
-
-#: src/modules/localecfg/main.py:30
-msgid "Configuring locales."
-msgstr "स्थानिकी को विन्यस्त करना।"
-
-#: src/modules/luksopenswaphookcfg/main.py:26
-msgid "Configuring encrypted swap."
-msgstr "एन्क्रिप्टेड स्वैप को विन्यस्त करना।"
-
-#: src/modules/mkinitfs/main.py:27
-msgid "Creating initramfs with mkinitfs."
-msgstr "mkinitfs के साथ initramfs बनाना।"
-
-#: src/modules/mkinitfs/main.py:49
-msgid "Failed to run mkinitfs on the target"
-msgstr "लक्ष्य पर mkinitfs निष्पादन विफल"
 
 #: src/modules/mount/main.py:30
 msgid "Mounting partitions."
 msgstr "विभाजन माउंट करना।"
 
-#: src/modules/networkcfg/main.py:28
-msgid "Saving network configuration."
-msgstr "नेटवर्क विन्यास सेटिंग्स संचित करना।"
+#: src/modules/mount/main.py:144 src/modules/initcpiocfg/main.py:197
+#: src/modules/initcpiocfg/main.py:201
+#: src/modules/luksopenswaphookcfg/main.py:86
+#: src/modules/luksopenswaphookcfg/main.py:90 src/modules/rawfs/main.py:164
+#: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
+#: src/modules/openrcdmcryptcfg/main.py:72
+#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/fstab/main.py:355
+#: src/modules/fstab/main.py:361 src/modules/fstab/main.py:388
+#: src/modules/localecfg/main.py:135 src/modules/networkcfg/main.py:39
+msgid "Configuration Error"
+msgstr "विन्यास त्रुटि"
 
-#: src/modules/openrcdmcryptcfg/main.py:26
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "OpenRC dmcrypt सेवा विन्यस्त करना।"
-
-#: src/modules/packages/main.py:50 src/modules/packages/main.py:59
-#: src/modules/packages/main.py:69
-msgid "Install packages."
-msgstr "पैकेज इंस्टॉल करना।"
-
-#: src/modules/packages/main.py:57
-#, python-format
-msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "पैकेज (%(count)d / %(total)d) संसाधित किए जा रहे हैं"
-
-#: src/modules/packages/main.py:62
-#, python-format
-msgid "Installing one package."
-msgid_plural "Installing %(num)d packages."
-msgstr[0] "एक पैकेज इंस्टॉल किया जा रहा है।"
-msgstr[1] "%(num)d पैकेज इंस्टॉल किए जा रहे हैं।"
-
-#: src/modules/packages/main.py:65
-#, python-format
-msgid "Removing one package."
-msgid_plural "Removing %(num)d packages."
-msgstr[0] "एक पैकेज हटाया जा रहा है।"
-msgstr[1] "%(num)d पैकेज हटाए जा रहे हैं।"
-
-#: src/modules/packages/main.py:588 src/modules/packages/main.py:600
-#: src/modules/packages/main.py:628
-msgid "Package Manager error"
-msgstr ""
-
-#: src/modules/packages/main.py:589
-msgid ""
-"The package manager could not prepare updates. The command <pre>{!s}</pre> "
-"returned error code {!s}."
-msgstr ""
-
-#: src/modules/packages/main.py:601
-msgid ""
-"The package manager could not update the system. The command <pre>{!s}</pre>"
-" returned error code {!s}."
-msgstr ""
-
-#: src/modules/packages/main.py:629
-msgid ""
-"The package manager could make changes to the installed system. The command "
-"<pre>{!s}</pre> returned error code {!s}."
-msgstr ""
-
-#: src/modules/plymouthcfg/main.py:27
-msgid "Configure Plymouth theme"
-msgstr "Plymouth थीम विन्यस्त करना "
-
-#: src/modules/rawfs/main.py:26
-msgid "Installing data."
-msgstr "डाटा इंस्टॉल करना।"
-
-#: src/modules/services-openrc/main.py:29
-msgid "Configure OpenRC services"
-msgstr "OpenRC सेवाएँ विन्यस्त करना"
-
-#: src/modules/services-openrc/main.py:57
-msgid "Cannot add service {name!s} to run-level {level!s}."
-msgstr "रन-लेवल {level!s} में सेवा {name!s} को जोड़ा नहीं जा सका।"
-
-#: src/modules/services-openrc/main.py:59
-msgid "Cannot remove service {name!s} from run-level {level!s}."
-msgstr "रन-लेवल {level!s} में सेवा {name!s} को हटाया नहीं जा सका।"
-
-#: src/modules/services-openrc/main.py:61
-msgid ""
-"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
-"level {level!s}."
-msgstr ""
-"रन-लेवल {level!s} में सेवा {name!s} हेतु अज्ञात सेवा-कार्य "
-"<code>{arg!s}</code>।"
-
-#: src/modules/services-openrc/main.py:93
-#: src/modules/services-systemd/main.py:59
-msgid "Cannot modify service"
-msgstr "सेवा को संशोधित नहीं किया जा सकता"
-
-#: src/modules/services-openrc/main.py:94
-msgid ""
-"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr "chroot में <code> rc-update {arg!s}</code> कॉल त्रुटि कोड {num!s}।"
-
-#: src/modules/services-openrc/main.py:101
-msgid "Target runlevel does not exist"
-msgstr "लक्षित रनलेवल मौजूद नहीं है"
-
-#: src/modules/services-openrc/main.py:102
-msgid ""
-"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr ""
-"रनलेवल {level!s} हेतु पथ <code>{path!s}</code> है, जो कि मौजूद नहीं है।"
-
-#: src/modules/services-openrc/main.py:110
-msgid "Target service does not exist"
-msgstr "लक्षित सेवा मौजूद नहीं है"
-
-#: src/modules/services-openrc/main.py:111
-msgid ""
-"The path for service {name!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr "सेवा {name!s} हेतु पथ <code>{path!s}</code> है, जो कि मौजूद नहीं है।"
+#: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:198
+#: src/modules/luksopenswaphookcfg/main.py:87 src/modules/rawfs/main.py:165
+#: src/modules/initramfscfg/main.py:86 src/modules/openrcdmcryptcfg/main.py:73
+#: src/modules/fstab/main.py:356
+msgid "No partitions are defined for <pre>{!s}</pre> to use."
+msgstr "<pre>{!s}</pre> के उपयोग हेतु कोई विभाजन परिभाषित नहीं हैं।"
 
 #: src/modules/services-systemd/main.py:26
 msgid "Configure systemd services"
 msgstr "systemd सेवाएँ विन्यस्त करना"
+
+#: src/modules/services-systemd/main.py:59
+#: src/modules/services-openrc/main.py:93
+msgid "Cannot modify service"
+msgstr "सेवा को संशोधित नहीं किया जा सकता"
 
 #: src/modules/services-systemd/main.py:60
 msgid ""
@@ -393,3 +150,258 @@ msgstr ""
 #: src/modules/unpackfs/main.py:479
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "लक्षित सिस्टम में \"{}\" स्थान कोई डायरेक्टरी नहीं है"
+
+#: src/modules/displaymanager/main.py:526
+msgid "Cannot write KDM configuration file"
+msgstr "KDM विन्यास फ़ाइल राइट नहीं की जा सकती"
+
+#: src/modules/displaymanager/main.py:527
+msgid "KDM config file {!s} does not exist"
+msgstr "KDM विन्यास फ़ाइल {!s} मौजूद नहीं है"
+
+#: src/modules/displaymanager/main.py:588
+msgid "Cannot write LXDM configuration file"
+msgstr "LXDM विन्यास फ़ाइल राइट नहीं की जा सकती"
+
+#: src/modules/displaymanager/main.py:589
+msgid "LXDM config file {!s} does not exist"
+msgstr "LXDM विन्यास फ़ाइल {!s} मौजूद नहीं है"
+
+#: src/modules/displaymanager/main.py:672
+msgid "Cannot write LightDM configuration file"
+msgstr "LightDM विन्यास फ़ाइल राइट नहीं की जा सकती"
+
+#: src/modules/displaymanager/main.py:673
+msgid "LightDM config file {!s} does not exist"
+msgstr "LightDM विन्यास फ़ाइल {!s} मौजूद नहीं है"
+
+#: src/modules/displaymanager/main.py:747
+msgid "Cannot configure LightDM"
+msgstr "LightDM को विन्यस्त नहीं किया जा सकता"
+
+#: src/modules/displaymanager/main.py:748
+msgid "No LightDM greeter installed."
+msgstr "कोई LightDM लॉगिन स्क्रीन इंस्टॉल नहीं है।"
+
+#: src/modules/displaymanager/main.py:779
+msgid "Cannot write SLIM configuration file"
+msgstr "SLIM विन्यास फ़ाइल राइट नहीं की जा सकती"
+
+#: src/modules/displaymanager/main.py:780
+msgid "SLIM config file {!s} does not exist"
+msgstr "SLIM विन्यास फ़ाइल {!s} मौजूद नहीं है"
+
+#: src/modules/displaymanager/main.py:906
+msgid "No display managers selected for the displaymanager module."
+msgstr "चयनित डिस्प्ले प्रबंधक मॉड्यूल हेतु कोई डिस्प्ले प्रबंधक नहीं मिला।"
+
+#: src/modules/displaymanager/main.py:907
+msgid ""
+"The displaymanagers list is empty or undefined in both globalstorage and "
+"displaymanager.conf."
+msgstr ""
+"globalstorage व displaymanager.conf में डिस्प्ले प्रबंधक सूची रिक्त या "
+"अपरिभाषित है।"
+
+#: src/modules/displaymanager/main.py:989
+msgid "Display manager configuration was incomplete"
+msgstr "डिस्प्ले प्रबंधक विन्यास अधूरा था"
+
+#: src/modules/initcpiocfg/main.py:28
+msgid "Configuring mkinitcpio."
+msgstr "mkinitcpio को विन्यस्त करना।"
+
+#: src/modules/initcpiocfg/main.py:202
+#: src/modules/luksopenswaphookcfg/main.py:91
+#: src/modules/initramfscfg/main.py:90 src/modules/openrcdmcryptcfg/main.py:77
+#: src/modules/fstab/main.py:362 src/modules/localecfg/main.py:136
+#: src/modules/networkcfg/main.py:40
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr ""
+"<pre>{!s}</pre> के उपयोग हेतु कोई रुट माउंट पॉइंट प्रदान नहीं किया गया।"
+
+#: src/modules/luksopenswaphookcfg/main.py:26
+msgid "Configuring encrypted swap."
+msgstr "एन्क्रिप्टेड स्वैप को विन्यस्त करना।"
+
+#: src/modules/rawfs/main.py:26
+msgid "Installing data."
+msgstr "डाटा इंस्टॉल करना।"
+
+#: src/modules/services-openrc/main.py:29
+msgid "Configure OpenRC services"
+msgstr "OpenRC सेवाएँ विन्यस्त करना"
+
+#: src/modules/services-openrc/main.py:57
+msgid "Cannot add service {name!s} to run-level {level!s}."
+msgstr "रन-लेवल {level!s} में सेवा {name!s} को जोड़ा नहीं जा सका।"
+
+#: src/modules/services-openrc/main.py:59
+msgid "Cannot remove service {name!s} from run-level {level!s}."
+msgstr "रन-लेवल {level!s} में सेवा {name!s} को हटाया नहीं जा सका।"
+
+#: src/modules/services-openrc/main.py:61
+msgid ""
+"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
+"level {level!s}."
+msgstr ""
+"रन-लेवल {level!s} में सेवा {name!s} हेतु अज्ञात सेवा-कार्य "
+"<code>{arg!s}</code>।"
+
+#: src/modules/services-openrc/main.py:94
+msgid ""
+"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr "chroot में <code> rc-update {arg!s}</code> कॉल त्रुटि कोड {num!s}।"
+
+#: src/modules/services-openrc/main.py:101
+msgid "Target runlevel does not exist"
+msgstr "लक्षित रनलेवल मौजूद नहीं है"
+
+#: src/modules/services-openrc/main.py:102
+msgid ""
+"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr ""
+"रनलेवल {level!s} हेतु पथ <code>{path!s}</code> है, जो कि मौजूद नहीं है।"
+
+#: src/modules/services-openrc/main.py:110
+msgid "Target service does not exist"
+msgstr "लक्षित सेवा मौजूद नहीं है"
+
+#: src/modules/services-openrc/main.py:111
+msgid ""
+"The path for service {name!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr "सेवा {name!s} हेतु पथ <code>{path!s}</code> है, जो कि मौजूद नहीं है।"
+
+#: src/modules/plymouthcfg/main.py:27
+msgid "Configure Plymouth theme"
+msgstr "Plymouth थीम विन्यस्त करना "
+
+#: src/modules/packages/main.py:50 src/modules/packages/main.py:59
+#: src/modules/packages/main.py:69
+msgid "Install packages."
+msgstr "पैकेज इंस्टॉल करना।"
+
+#: src/modules/packages/main.py:57
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "पैकेज (%(count)d / %(total)d) संसाधित किए जा रहे हैं"
+
+#: src/modules/packages/main.py:62
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] "एक पैकेज इंस्टॉल किया जा रहा है।"
+msgstr[1] "%(num)d पैकेज इंस्टॉल किए जा रहे हैं।"
+
+#: src/modules/packages/main.py:65
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] "एक पैकेज हटाया जा रहा है।"
+msgstr[1] "%(num)d पैकेज हटाए जा रहे हैं।"
+
+#: src/modules/packages/main.py:588 src/modules/packages/main.py:600
+#: src/modules/packages/main.py:628
+msgid "Package Manager error"
+msgstr "पैकेज प्रबंधक त्रुटि"
+
+#: src/modules/packages/main.py:589
+msgid ""
+"The package manager could not prepare updates. The command <pre>{!s}</pre> "
+"returned error code {!s}."
+msgstr ""
+"पैकेज प्रबंधक द्वारा अपडेट तैयार करना विफल। कमांड <pre>{!s}</pre> हेतु "
+"त्रुटि कोड {!s} प्राप्त।"
+
+#: src/modules/packages/main.py:601
+msgid ""
+"The package manager could not update the system. The command <pre>{!s}</pre>"
+" returned error code {!s}."
+msgstr ""
+"पैकेज प्रबंधक द्वारा सिस्टम अपडेट करना विफल। कमांड <pre>{!s}</pre> हेतु "
+"त्रुटि कोड {!s} प्राप्त।"
+
+#: src/modules/packages/main.py:629
+msgid ""
+"The package manager could not make changes to the installed system. The "
+"command <pre>{!s}</pre> returned error code {!s}."
+msgstr ""
+"पैकेज प्रबंधक द्वारा इंस्टॉल हो रखें सिस्टम पर परिवर्तन करना विफल। कमांड "
+"<pre>{!s}</pre> हेतु त्रुटि कोड {!s} प्राप्त।"
+
+#: src/modules/bootloader/main.py:43
+msgid "Install bootloader."
+msgstr "बूट लोडर इंस्टॉल करना।"
+
+#: src/modules/bootloader/main.py:502
+msgid "Bootloader installation error"
+msgstr "बूट लोडर इंस्टॉल त्रुटि"
+
+#: src/modules/bootloader/main.py:503
+msgid ""
+"The bootloader could not be installed. The installation command "
+"<pre>{!s}</pre> returned error code {!s}."
+msgstr ""
+"बूट लोडर इंस्टॉल करना विफल। इंस्टॉल कमांड <pre>{!s}</pre> हेतु त्रुटि कोड "
+"{!s} प्राप्त।"
+
+#: src/modules/hwclock/main.py:26
+msgid "Setting hardware clock."
+msgstr "हार्डवेयर घड़ी सेट करना।"
+
+#: src/modules/mkinitfs/main.py:27
+msgid "Creating initramfs with mkinitfs."
+msgstr "mkinitfs के साथ initramfs बनाना।"
+
+#: src/modules/mkinitfs/main.py:49
+msgid "Failed to run mkinitfs on the target"
+msgstr "लक्ष्य पर mkinitfs निष्पादन विफल"
+
+#: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
+msgid "The exit code was {}"
+msgstr "त्रुटि कोड  {}"
+
+#: src/modules/dracut/main.py:27
+msgid "Creating initramfs with dracut."
+msgstr "dracut के साथ initramfs बनाना।"
+
+#: src/modules/dracut/main.py:49
+msgid "Failed to run dracut on the target"
+msgstr "लक्ष्य पर dracut निष्पादन विफल"
+
+#: src/modules/initramfscfg/main.py:32
+msgid "Configuring initramfs."
+msgstr "initramfs को विन्यस्त करना। "
+
+#: src/modules/openrcdmcryptcfg/main.py:26
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "OpenRC dmcrypt सेवा विन्यस्त करना।"
+
+#: src/modules/fstab/main.py:29
+msgid "Writing fstab."
+msgstr "fstab पर राइट करना।"
+
+#: src/modules/fstab/main.py:389
+msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
+msgstr ""
+"कोई <pre>{!s}</pre> विन्यास प्रदान नहीं किया गया <pre>{!s}</pre> के उपयोग "
+"हेतु।"
+
+#: src/modules/dummypython/main.py:35
+msgid "Dummy python job."
+msgstr "डमी पाइथन प्रक्रिया ।"
+
+#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
+#: src/modules/dummypython/main.py:94
+msgid "Dummy python step {}"
+msgstr "डमी पाइथन प्रक्रिया की चरण संख्या {}"
+
+#: src/modules/localecfg/main.py:30
+msgid "Configuring locales."
+msgstr "स्थानिकी को विन्यस्त करना।"
+
+#: src/modules/networkcfg/main.py:28
+msgid "Saving network configuration."
+msgstr "नेटवर्क विन्यास सेटिंग्स संचित करना।"
