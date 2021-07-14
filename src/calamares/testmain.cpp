@@ -389,10 +389,9 @@ createApplication( int& argc, char* argv[] )
 }
 
 #ifdef WITH_PYTHON
-static const char pythonPreScript[] = R"(
+static const char pythonPreScript[] = R"%(
 # This is Python code executed by Python modules *before* the
-# script file (e.g. main.py) is executed. Beware " before )
-# because it's a C++ raw-string.
+# script file (e.g. main.py) is executed.
 #
 # Calls to suprocess methods that execute something are
 # suppressed and logged -- scripts should really be using libcalamares
@@ -401,20 +400,32 @@ _calamares_subprocess = __import__("subprocess", globals(), locals(), [], 0)
 import sys
 import libcalamares
 class fake_subprocess(object):
+    PIPE = object()
+    STDOUT = object()
+    STDERR = object()
+    class CompletedProcess(object):
+        returncode = 0
+        stdout = ""
+        stderr = ""
     @staticmethod
     def call(*args, **kwargs):
-        libcalamares.utils.debug("subprocess.call(%r,%r) X run normally" % (args, kwargs))
+        libcalamares.utils.debug("subprocess.call(%r,%r) X ignored" % (args, kwargs))
         return 0
     @staticmethod
     def check_call(*args, **kwargs):
-        libcalamares.utils.debug("subprocess.check_call(%r,%r) X subverted to call" % (args, kwargs))
+        libcalamares.utils.debug("subprocess.check_call(%r,%r) X ignored" % (args, kwargs))
         return 0
+    # This is a 3.5-and-later method, is supposed to return a CompletedProcess
+    @staticmethod
+    def run(*args, **kwargs):
+        libcalamares.utils.debug("subprocess.run(%r,%r) X ignored" % (args, kwargs))
+        return fake_subprocess.CompletedProcess()
 for attr in ("CalledProcessError",):
     setattr(fake_subprocess,attr,getattr(_calamares_subprocess,attr))
 sys.modules["subprocess"] = fake_subprocess
 libcalamares.utils.debug('pre-script for testing purposes injected')
 
-)";
+)%";
 #endif
 
 int
