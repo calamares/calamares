@@ -626,7 +626,7 @@ def run():
             libcalamares.utils.debug("stdout:" + str(e.stdout))
             libcalamares.utils.debug("stderr:" + str(e.stderr))
             return (_("Package Manager error"),
-                    _("The package manager could make changes to the installed system. The command <pre>{!s}</pre> returned error code {!s}.")
+                    _("The package manager could not make changes to the installed system. The command <pre>{!s}</pre> returned error code {!s}.")
                     .format(e.cmd, e.returncode))
 
     mode_packages = None
