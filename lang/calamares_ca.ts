@@ -4281,11 +4281,6 @@ La configuració pot continuar, però algunes característiques podrien estar in
       <translation>Aquest nom s'usarà si feu visible aquest ordinador per a altres en una xarxa.</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="166"/>
-      <source>Only letter, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
-      <translation>Només es permeten lletres, números, guionets, guionets baixos i un mínim de dos caràcters.</translation>
-    </message>
-    <message>
       <location filename="../src/modules/usersq/usersq.qml" line="174"/>
       <source>localhost is not allowed as hostname.</source>
       <translation>No es permet localhost com a nom d'amfitrió.</translation>
@@ -4324,6 +4319,11 @@ La configuració pot continuar, però algunes característiques podrien estar in
       <location filename="../src/modules/usersq/usersq.qml" line="365"/>
       <source>Log in automatically without asking for the password</source>
       <translation>Entra automàticament sense demanar la contrasenya.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="166"/>
+      <source>Only letters, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
+      <translation>Només es permeten lletres, números, guionets, guionets baixos i un mínim de dos caràcters.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="264"/>

@@ -4281,11 +4281,6 @@ Saída de Dados:
       <translation>Este nome será utilizado se tornar o computador visível a outros numa rede.</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="166"/>
-      <source>Only letter, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
-      <translation>Apenas letras, números, sublinhado e hífen são permitidos, com um mínimo de dois caracteres.</translation>
-    </message>
-    <message>
       <location filename="../src/modules/usersq/usersq.qml" line="174"/>
       <source>localhost is not allowed as hostname.</source>
       <translation>localhost não é permitido como "hostname".</translation>
@@ -4324,6 +4319,11 @@ Saída de Dados:
       <location filename="../src/modules/usersq/usersq.qml" line="365"/>
       <source>Log in automatically without asking for the password</source>
       <translation>Iniciar sessão automaticamente sem pedir a palavra-passe</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="166"/>
+      <source>Only letters, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="264"/>

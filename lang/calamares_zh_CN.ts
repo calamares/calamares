@@ -4273,11 +4273,6 @@ Output:
       <translation>将计算机设置为对其他网络上计算机可见时将使用此名称。</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="166"/>
-      <source>Only letter, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
       <location filename="../src/modules/usersq/usersq.qml" line="174"/>
       <source>localhost is not allowed as hostname.</source>
       <translation type="unfinished"/>
@@ -4316,6 +4311,11 @@ Output:
       <location filename="../src/modules/usersq/usersq.qml" line="365"/>
       <source>Log in automatically without asking for the password</source>
       <translation>不询问密码自动登录</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="166"/>
+      <source>Only letters, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="264"/>

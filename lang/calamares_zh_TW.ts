@@ -4270,11 +4270,6 @@ Output:
       <translation>若您將此電腦設定為讓網路上的其他電腦可見時將會使用此名稱。</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="166"/>
-      <source>Only letter, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
-      <translation>僅允許字母、數字、底線與連接號，最少兩個字元。</translation>
-    </message>
-    <message>
       <location filename="../src/modules/usersq/usersq.qml" line="174"/>
       <source>localhost is not allowed as hostname.</source>
       <translation>不允許使用 localhost 作為主機名稱。</translation>
@@ -4313,6 +4308,11 @@ Output:
       <location filename="../src/modules/usersq/usersq.qml" line="365"/>
       <source>Log in automatically without asking for the password</source>
       <translation>自動登入，無需輸入密碼</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="166"/>
+      <source>Only letters, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
+      <translation>僅允許字母、數字、底線與連接號，最少兩個字元。</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="264"/>

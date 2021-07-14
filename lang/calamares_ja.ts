@@ -508,12 +508,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="32"/>
       <source>Set filesystem label on %1.</source>
-      <translation type="unfinished"/>
+      <translation>ファイルシステムのラベルを %1 に設定する。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="39"/>
       <source>Set filesystem label &lt;strong&gt;%1&lt;/strong&gt; to partition &lt;strong&gt;%2&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>ファイルシステムのラベル &lt;strong&gt;%1&lt;/strong&gt; をパーティション &lt;strong&gt;%2&lt;/strong&gt; に設定する。 </translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="70"/>
@@ -894,7 +894,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="548"/>
       <source>OK!</source>
-      <translation type="unfinished"/>
+      <translation>OK!</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="145"/>
@@ -1011,12 +1011,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="231"/>
       <source>Label for the filesystem</source>
-      <translation type="unfinished"/>
+      <translation>ファイルシステムのラベル</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="241"/>
       <source>FS Label:</source>
-      <translation type="unfinished"/>
+      <translation>FSラベル:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="65"/>
@@ -1375,12 +1375,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="186"/>
       <source>Label for the filesystem</source>
-      <translation type="unfinished"/>
+      <translation>ファイルシステムのラベル</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="196"/>
       <source>FS Label:</source>
-      <translation type="unfinished"/>
+      <translation>FSラベル:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="291"/>
@@ -1427,47 +1427,47 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="196"/>
       <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition with features &lt;em&gt;%3&lt;/em&gt;</source>
-      <translation>&lt;em&gt;%3&lt;/em&gt; 機能の&lt;strong&gt;新しい&lt;/strong&gt; %2 システムパーティションに、%1 をインストールする</translation>
+      <translation>&lt;strong&gt;新規の&lt;/strong&gt; %2 システムパーティション (機能 &lt;em&gt;%3&lt;/em&gt;) に %1 をインストールする</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="204"/>
       <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
-      <translation>&lt;strong&gt;新しい&lt;/strong&gt; %2 システムパーティションに %1 をインストールする。</translation>
+      <translation>&lt;strong&gt;新規の&lt;/strong&gt; %2 システムパーティションに %1 をインストールする。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="213"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt; and features &lt;em&gt;%3&lt;/em&gt;.</source>
-      <translation>マウントポイント &lt;strong&gt;%1&lt;/strong&gt; に、&lt;em&gt;%3&lt;/em&gt; 機能の&lt;strong&gt;新しい&lt;/strong&gt; %2 パーティションをセットアップする。</translation>
+      <translation>&lt;strong&gt;新規の&lt;/strong&gt; %2 パーティション (マウントポイント &lt;strong&gt;%1&lt;/strong&gt;、機能 &lt;em&gt;%3&lt;/em&gt;) をセットアップする。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="221"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;%3.</source>
-      <translation>マウントポイント &lt;strong&gt;%1&lt;/strong&gt; %3 に&lt;strong&gt;新しい&lt;/strong&gt; %2 パーティションをセットアップする。</translation>
+      <translation>&lt;strong&gt;新規の&lt;/strong&gt; %2 パーティション (マウントポイント &lt;strong&gt;%1&lt;/strong&gt; %3) をセットアップする。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="235"/>
       <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt; with features &lt;em&gt;%4&lt;/em&gt;.</source>
-      <translation>&lt;em&gt;%4&lt;/em&gt; 機能の %3 システムパーティション &lt;strong&gt;%1&lt;/strong&gt; に %2 をインストールする。</translation>
+      <translation>%3 システムパーティション &lt;strong&gt;%1&lt;/strong&gt; (機能 &lt;em&gt;%4&lt;/em&gt;) に %2 をインストールする。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="254"/>
       <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt; and features &lt;em&gt;%4&lt;/em&gt;.</source>
-      <translation>マウントポイント &lt;strong&gt;%2&lt;/strong&gt; に、&lt;em&gt;%4&lt;/em&gt; 機能の %3 パーティション &lt;strong&gt;%1&lt;/strong&gt; をセットアップする。</translation>
+      <translation>パーティション %3 &lt;strong&gt;%1&lt;/strong&gt; (マウントポイント &lt;strong&gt;%2&lt;/strong&gt;、機能 &lt;em&gt;%4&lt;/em&gt;) をセットアップする。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="263"/>
       <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;%4.</source>
-      <translation>マウントポイント &lt;strong&gt;%2&lt;/strong&gt; %4 に、%3 パーティション &lt;strong&gt;%1&lt;/strong&gt; をセットアップする。</translation>
+      <translation>%3 パーティション &lt;strong&gt;%1&lt;/strong&gt; (マウントポイント &lt;strong&gt;%2&lt;/strong&gt; %4) をセットアップする。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="244"/>
       <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>%3 システムパーティション &lt;strong&gt;%1&lt;/strong&gt; に%2 をインストール。</translation>
+      <translation>%3 システムパーティション &lt;strong&gt;%1&lt;/strong&gt; に%2 をインストールする。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="278"/>
       <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>&lt;strong&gt;%1&lt;/strong&gt; にブートローダーをインストール</translation>
+      <translation>&lt;strong&gt;%1&lt;/strong&gt; にブートローダーをインストールする。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="287"/>
@@ -1888,7 +1888,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/libcalamares/locale/Tests.cpp" line="273"/>
       <source>Quit</source>
-      <translation type="unfinished"/>
+      <translation>終了</translation>
     </message>
   </context>
   <context>
@@ -2113,7 +2113,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="41"/>
       <source>Select your preferred Region, or use the default settings.</source>
-      <translation type="unfinished"/>
+      <translation>希望する地域を選択するか、デフォルトの設定を使用してください。</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="98"/>
@@ -2644,7 +2644,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="304"/>
       <source>File System Label</source>
-      <translation type="unfinished"/>
+      <translation>ファイルシステムのラベル</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="306"/>
@@ -4254,7 +4254,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="118"/>
       <source>root is not allowed as username.</source>
-      <translation type="unfinished"/>
+      <translation>root はユーザー名として許可されていません。</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="127"/>
@@ -4272,14 +4272,9 @@ Output:
       <translation>この名前は、コンピューターをネットワーク上の他のユーザーに表示する場合に使用されます。</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="166"/>
-      <source>Only letter, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
       <location filename="../src/modules/usersq/usersq.qml" line="174"/>
       <source>localhost is not allowed as hostname.</source>
-      <translation type="unfinished"/>
+      <translation>localhost はユーザー名として許可されていません。</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="183"/>
@@ -4315,6 +4310,11 @@ Output:
       <location filename="../src/modules/usersq/usersq.qml" line="365"/>
       <source>Log in automatically without asking for the password</source>
       <translation>パスワードを要求せずに自動的にログインする</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="166"/>
+      <source>Only letters, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
+      <translation>使用できるのはアルファベットと数字と _ と - で、2文字以上必要です。</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="264"/>

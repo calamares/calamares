@@ -4279,11 +4279,6 @@ Përfundim:
       <translation>Ky emër do të përdoret nëse e bëni kompjuterin të dukshëm për të tjerët në një rrjet.</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="166"/>
-      <source>Only letter, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
-      <translation>Lejohen vetëm shkronja, numra, nënvijë dhe vijë ndarëse. minimumi dy shenja.</translation>
-    </message>
-    <message>
       <location filename="../src/modules/usersq/usersq.qml" line="174"/>
       <source>localhost is not allowed as hostname.</source>
       <translation>“localhost” s’lejohet si strehëemër.</translation>
@@ -4322,6 +4317,11 @@ Përfundim:
       <location filename="../src/modules/usersq/usersq.qml" line="365"/>
       <source>Log in automatically without asking for the password</source>
       <translation>Kryej hyrje vetvetiu, pa kërkuar fjalëkalimin.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="166"/>
+      <source>Only letters, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="264"/>
