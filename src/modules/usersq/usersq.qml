@@ -19,6 +19,9 @@ import QtGraphicalEffects 1.0
 import QtQuick.Window 2.3
 
 Kirigami.ScrollablePage {
+    // You can hard-code a color here, or bind to a Kirigami theme color,
+    // or use a color from Calamares branding, or ..
+    readonly property color unfilledFieldColor : "#FBFBFB"; // Kirigami.Theme.backgroundColor;
 
     width: parent.width
     height: parent.height
@@ -57,8 +60,8 @@ Kirigami.ScrollablePage {
                 text: config.fullName
                 onTextChanged: config.setFullName(text)
 
-                palette.base: _userNameField.text.length ? "#f0fff0" : "#FBFBFB"
-                palette.highlight : _userNameField.text.length ? "#dcffdc" : "#FBFBFB"
+                palette.base: _userNameField.text.length ? "#f0fff0" : unfilledFieldColor
+                palette.highlight : _userNameField.text.length ? "#dcffdc" : unfilledFieldColor
             }
         }
 
@@ -89,8 +92,8 @@ Kirigami.ScrollablePage {
                 palette.base: _userLoginField.text.length
                     ? ( acceptableInput
                     ? ( _userLoginField.text === "root"
-                    ? "#ffdae0" : "#f0fff0" ) : "#ffdae0" ) : "#FBFBFB"
-                palette.highlight : _userLoginField.text.length ? "#dcffdc" : "#FBFBFB"
+                    ? "#ffdae0" : "#f0fff0" ) : "#ffdae0" ) : unfilledFieldColor
+                palette.highlight : _userLoginField.text.length ? "#dcffdc" : unfilledFieldColor
             }
 
             Label {
@@ -145,8 +148,8 @@ Kirigami.ScrollablePage {
                     ? ( acceptableInput
                     ? ( _hostName.text === "localhost" ? "#ffdae0" : "#f0fff0" )
                     : "#ffdae0")
-                    : "#FBFBFB"
-                palette.highlight : _hostName.text.length ? "#dcffdc" : "#FBFBFB"
+                    : unfilledFieldColor
+                palette.highlight : _hostName.text.length ? "#dcffdc" : unfilledFieldColor
             }
 
             Label {
@@ -194,8 +197,8 @@ Kirigami.ScrollablePage {
                     text: config.userPassword
                     onTextChanged: config.setUserPassword(text)
 
-                    palette.base: _passwordField.text.length ? "#f0fff0" : "#FBFBFB"
-                    palette.highlight : _passwordField.text.length ? "#dcffdc" : "#FBFBFB"
+                    palette.base: _passwordField.text.length ? "#f0fff0" : unfilledFieldColor
+                    palette.highlight : _passwordField.text.length ? "#dcffdc" : unfilledFieldColor
 
                     echoMode: TextInput.Password
                     passwordMaskDelay: 300
@@ -218,8 +221,8 @@ Kirigami.ScrollablePage {
                     palette.base: _verificationPasswordField.text.length
                         ? ( _passwordField.text === _verificationPasswordField.text
                         ? "#f0fff0" : "#ffdae0" )
-                        : "#FBFBFB"
-                    palette.highlight : _verificationPasswordField.text.length ? "#dcffdc" : "#FBFBFB"
+                        : unfilledFieldColor
+                    palette.highlight : _verificationPasswordField.text.length ? "#dcffdc" : unfilledFieldColor
 
                     echoMode: TextInput.Password
                     passwordMaskDelay: 300
@@ -297,8 +300,8 @@ Kirigami.ScrollablePage {
 
                     onTextChanged: config.setRootPassword(text)
 
-                    palette.base: _rootPasswordField.text.length ? "#f0fff0" : "#FBFBFB"
-                    palette.highlight : _rootPasswordField.text.length ? "#dcffdc" : "#FBFBFB"
+                    palette.base: _rootPasswordField.text.length ? "#f0fff0" : unfilledFieldColor
+                    palette.highlight : _rootPasswordField.text.length ? "#dcffdc" : unfilledFieldColor
 
                     echoMode: TextInput.Password
                     passwordMaskDelay: 300
@@ -320,8 +323,8 @@ Kirigami.ScrollablePage {
 
                     palette.base: _verificationRootPasswordField.text.length
                         ? ( _rootPasswordField.text === _verificationRootPasswordField.text
-                        ? "#f0fff0" : "#ffdae0") : "#FBFBFB"
-                    palette.highlight : _verificationRootPasswordField.text.length ? "#dcffdc" : "#FBFBFB"
+                        ? "#f0fff0" : "#ffdae0") : unfilledFieldColor
+                    palette.highlight : _verificationRootPasswordField.text.length ? "#dcffdc" : unfilledFieldColor
 
                     echoMode: TextInput.Password
                     passwordMaskDelay: 300
