@@ -57,15 +57,17 @@ SummaryQmlViewStep::isAtEnd() const
 }
 
 
-QList< Calamares::job_ptr >
+Calamares::JobList
 SummaryQmlViewStep::jobs() const
 {
-    return QList< Calamares::job_ptr >();
+    return {};
 }
 
 
 void
 SummaryQmlViewStep::onActivate()
 {
+    // Collect the steps before this one: those need to have their
+    // summary (text or widget) displayed.
     m_config->init();
 }

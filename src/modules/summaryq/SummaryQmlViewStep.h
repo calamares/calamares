@@ -12,13 +12,10 @@
 #define SUMMARYQMLVIEWSTEP_H
 
 #include "Config.h"
+
 #include "DllMacro.h"
 #include "utils/PluginFactory.h"
 #include "viewpages/QmlViewStep.h"
-
-#include <QObject>
-
-class SummaryPage;
 
 class PLUGINDLLEXPORT SummaryQmlViewStep : public Calamares::QmlViewStep
 {
@@ -37,7 +34,7 @@ public:
     bool isAtBeginning() const override;
     bool isAtEnd() const override;
 
-    QList< Calamares::job_ptr > jobs() const override;
+    Calamares::JobList jobs() const override;
 
     void onActivate() override;
 
