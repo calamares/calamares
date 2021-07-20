@@ -4,15 +4,14 @@ if( NOT WITH_QML )
 endif()
 
 set( _summary ${CMAKE_CURRENT_SOURCE_DIR}/../summary )
-include_directories( ${_finished} )
+include_directories( ${_summary} )
 
-include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
 calamares_add_plugin( summaryq
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
         SummaryQmlViewStep.cpp
-        Config.cpp
+        ${_summary}/Config.cpp
     UI
     RESOURCES
         summaryq.qrc

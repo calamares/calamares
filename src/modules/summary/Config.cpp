@@ -9,7 +9,6 @@
  */
 
 #include "Config.h"
-#include "SummaryQmlViewStep.h"
 
 #include "Branding.h"
 #include "Settings.h"
@@ -70,7 +69,7 @@ SummaryModel::setSummaryList( const Calamares::ViewStepList& steps, bool withWid
 
 Config::Config( Calamares::ViewStep* parent )
     : QObject( parent )
-    , m_thisViewStep( static_cast< SummaryQmlViewStep* >( parent ) )
+    , m_thisViewStep( parent )
     , m_summary( new SummaryModel( this ) )
 
 {
