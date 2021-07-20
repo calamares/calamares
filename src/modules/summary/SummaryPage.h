@@ -61,9 +61,6 @@ private:
     QVBoxLayout* m_layout = nullptr;
     QWidget* m_contentWidget = nullptr;
 
-    QLabel* createTitleLabel( const QString& text ) const;
-    QLabel* createBodyLabel( const QString& text ) const;
-
     QScrollArea* m_scrollArea;
 };
 
