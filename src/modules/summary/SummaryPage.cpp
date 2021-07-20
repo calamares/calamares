@@ -89,7 +89,10 @@ createBodyLabel( const QString& text, const QPalette& bodyPalette )
 void
 SummaryPage::onActivate()
 {
-    createContentWidget();
+    delete m_contentWidget;  // It might have been created previously
+    m_contentWidget = new QWidget;
+    m_layout = new QVBoxLayout( m_contentWidget );
+    CalamaresUtils::unmarginLayout( m_layout );
 
     QFont titleFont = font();
     titleFont.setWeight( QFont::Light );
@@ -182,16 +185,6 @@ SummaryPage::stepsForSummary( const Calamares::ViewStepList& allSteps ) const
     }
 
     return steps;
-}
-
-
-void
-SummaryPage::createContentWidget()
-{
-    delete m_contentWidget;
-    m_contentWidget = new QWidget;
-    m_layout = new QVBoxLayout( m_contentWidget );
-    CalamaresUtils::unmarginLayout( m_layout );
 }
 
 void

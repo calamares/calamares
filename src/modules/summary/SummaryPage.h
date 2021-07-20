@@ -54,7 +54,6 @@ public:
 
 private:
     Calamares::ViewStepList stepsForSummary( const Calamares::ViewStepList& allSteps ) const;
-    void createContentWidget();
 
     const SummaryViewStep* m_thisViewStep;
 
