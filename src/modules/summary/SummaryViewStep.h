@@ -10,6 +10,8 @@
 #ifndef SUMMARYPAGEPLUGIN_H
 #define SUMMARYPAGEPLUGIN_H
 
+#include "Config.h"
+
 #include "DllMacro.h"
 #include "utils/PluginFactory.h"
 #include "viewpages/ViewStep.h"
@@ -40,7 +42,8 @@ public:
     void onLeave() override;
 
 private:
-    SummaryPage* m_widget;
+    SummaryPage* m_widget = nullptr;
+    Config* m_config = nullptr;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( SummaryViewStepFactory )

@@ -166,6 +166,13 @@ SummaryPage::createContentWidget()
     CalamaresUtils::unmarginLayout( m_layout );
 }
 
+void
+SummaryPage::onLeave()
+{
+    delete m_contentWidget;
+    m_contentWidget = nullptr;
+}
+
 QLabel*
 SummaryPage::createTitleLabel( const QString& text ) const
 {

@@ -44,11 +44,14 @@ class SummaryPage : public QWidget
 public:
     explicit SummaryPage( const SummaryViewStep* thisViewStep, QWidget* parent = nullptr );
 
+    /// @brief Create contents showing all of the summary
     void onActivate();
-    void createContentWidget();
+    /// @brief Clean up the widgets
+    void onLeave();
 
 private:
     Calamares::ViewStepList stepsForSummary( const Calamares::ViewStepList& allSteps ) const;
+    void createContentWidget();
 
     const SummaryViewStep* m_thisViewStep;
 
