@@ -72,10 +72,10 @@ SummaryViewStep::isAtEnd() const
 }
 
 
-QList< Calamares::job_ptr >
+Calamares::JobList
 SummaryViewStep::jobs() const
 {
-    return QList< Calamares::job_ptr >();
+    return {};
 }
 
 

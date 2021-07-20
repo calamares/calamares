@@ -10,12 +10,9 @@
 #ifndef SUMMARYPAGEPLUGIN_H
 #define SUMMARYPAGEPLUGIN_H
 
-#include <QObject>
-
+#include "DllMacro.h"
 #include "utils/PluginFactory.h"
 #include "viewpages/ViewStep.h"
-
-#include "DllMacro.h"
 
 class SummaryPage;
 
@@ -37,7 +34,7 @@ public:
     bool isAtBeginning() const override;
     bool isAtEnd() const override;
 
-    QList< Calamares::job_ptr > jobs() const override;
+    Calamares::JobList jobs() const override;
 
     void onActivate() override;
     void onLeave() override;
