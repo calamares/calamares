@@ -70,10 +70,10 @@ class Config : public QObject
     Q_PROPERTY( QAbstractListModel* summaryModel READ summaryModel CONSTANT FINAL )
 
 public:
-    explicit Config( Calamares::ViewStep* parent = nullptr );
+    explicit Config( QObject* parent = nullptr );
 
     ///@brief Called later, to load the model once all viewsteps are there
-    void init();
+    void collectSummaries( const Calamares::ViewStep* upToHere );
 
     QAbstractListModel* summaryModel() const { return m_summary; }
 
@@ -84,7 +84,6 @@ private:
     Calamares::ViewStepList stepsForSummary( const Calamares::ViewStepList& allSteps ) const;
     void retranslate();
 
-    const Calamares::ViewStep* m_thisViewStep;
     SummaryModel* m_summary;
 
     QString m_title;

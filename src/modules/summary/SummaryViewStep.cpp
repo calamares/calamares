@@ -35,7 +35,7 @@ SummaryViewStep::~SummaryViewStep()
 QString
 SummaryViewStep::prettyName() const
 {
-    return tr( "Summary" );
+    return m_config->title();
 }
 
 
@@ -84,7 +84,7 @@ SummaryViewStep::jobs() const
 void
 SummaryViewStep::onActivate()
 {
-    m_config->init();
+    m_config->collectSummaries( this );
     m_widget->onActivate();
 }
 

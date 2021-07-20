@@ -67,9 +67,8 @@ SummaryModel::setSummaryList( const Calamares::ViewStepList& steps, bool withWid
     Q_EMIT endResetModel();
 }
 
-Config::Config( Calamares::ViewStep* parent )
+Config::Config( QObject* parent )
     : QObject( parent )
-    , m_thisViewStep( parent )
     , m_summary( new SummaryModel( this ) )
 
 {
@@ -80,24 +79,24 @@ Config::Config( Calamares::ViewStep* parent )
 void
 Config::retranslate()
 {
-    m_title = m_thisViewStep->prettyName();
+    m_title = tr( "Summary" );
 
     if ( Calamares::Settings::instance()->isSetupMode() )
     {
-        m_message = ( tr( "This is an overview of what will happen once you start "
-                          "the setup procedure." ) );
+        m_message = tr( "This is an overview of what will happen once you start "
+                          "the setup procedure." );
     }
     else
     {
-        m_message = ( tr( "This is an overview of what will happen once you start "
-                          "the install procedure." ) );
+        m_message = tr( "This is an overview of what will happen once you start "
+                          "the install procedure." );
     }
     Q_EMIT titleChanged( m_title );
     Q_EMIT messageChanged( m_message );
 }
 
 void
-Config::init()
+Config::collectSummaries( const Calamares::ViewStep* upToHere )
 {
     Calamares::ViewStepList steps;
     for ( Calamares::ViewStep* step : Calamares::ViewManager::instance()->viewSteps() )
@@ -116,7 +115,7 @@ Config::init()
         // we know we're providing a summary of steps up until this
         // view step, so we now have steps since the previous exec, up
         // to this summary.
-        if ( m_thisViewStep == step )
+        if ( upToHere == step )
         {
             break;
         }
