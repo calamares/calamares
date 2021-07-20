@@ -14,10 +14,13 @@
 
 #include <QWidget>
 
+class Config;
+class SummaryViewStep;
+
 class QLabel;
 class QScrollArea;
 class QVBoxLayout;
-class SummaryViewStep;
+
 
 /** @brief Provide a summary view with to-be-done action descriptions.
 *
@@ -42,7 +45,7 @@ class SummaryPage : public QWidget
 {
     Q_OBJECT
 public:
-    explicit SummaryPage( const SummaryViewStep* thisViewStep, QWidget* parent = nullptr );
+    explicit SummaryPage( Config* config, const SummaryViewStep* thisViewStep, QWidget* parent = nullptr );
 
     /// @brief Create contents showing all of the summary
     void onActivate();

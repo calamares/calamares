@@ -63,9 +63,9 @@ class Config : public QObject
     Q_OBJECT
 
     ///@brief Name of this summary (generally, "Summary")
-    Q_PROPERTY( QString title MEMBER m_title NOTIFY titleChanged )
+    Q_PROPERTY( QString title READ title NOTIFY titleChanged )
     ///@brief Description of what the summary means
-    Q_PROPERTY( QString message MEMBER m_message NOTIFY messageChanged )
+    Q_PROPERTY( QString message READ message NOTIFY messageChanged )
 
     Q_PROPERTY( QAbstractListModel* summaryModel READ summaryModel CONSTANT FINAL )
 
@@ -77,6 +77,9 @@ public:
 
     QAbstractListModel* summaryModel() const { return m_summary; }
 
+    QString title() const { return m_title; }
+    QString message() const { return m_message; }
+
 private:
     Calamares::ViewStepList stepsForSummary( const Calamares::ViewStepList& allSteps ) const;
     void retranslate();
@@ -84,11 +87,11 @@ private:
     const Calamares::ViewStep* m_thisViewStep;
     SummaryModel* m_summary;
 
-    QString m_message;
     QString m_title;
+    QString m_message;
 
-signals:
-    void messageChanged();
-    void titleChanged();
+Q_SIGNALS:
+    void titleChanged( QString title );
+    void messageChanged( QString message );
 };
 #endif

@@ -92,8 +92,8 @@ Config::retranslate()
         m_message = ( tr( "This is an overview of what will happen once you start "
                           "the install procedure." ) );
     }
-    Q_EMIT titleChanged();
-    Q_EMIT messageChanged();
+    Q_EMIT titleChanged( m_title );
+    Q_EMIT messageChanged( m_message );
 }
 
 void

@@ -29,13 +29,14 @@
 
 static const int SECTION_SPACING = 12;
 
-SummaryPage::SummaryPage( const SummaryViewStep* thisViewStep, QWidget* parent )
+SummaryPage::SummaryPage( Config* config, const SummaryViewStep* thisViewStep, QWidget* parent )
     : QWidget()
     , m_thisViewStep( thisViewStep )
     , m_contentWidget( nullptr )
     , m_scrollArea( new QScrollArea( this ) )
 {
     Q_UNUSED( parent )
+
 
     this->setObjectName( "summaryStep" );
 
@@ -45,11 +46,8 @@ SummaryPage::SummaryPage( const SummaryViewStep* thisViewStep, QWidget* parent )
 
     QLabel* headerLabel = new QLabel( this );
     headerLabel->setObjectName( "summaryTitle" );
-    CALAMARES_RETRANSLATE( if ( Calamares::Settings::instance()->isSetupMode() )
-                               headerLabel->setText( tr( "This is an overview of what will happen once you start "
-                                                         "the setup procedure." ) );
-                           else headerLabel->setText( tr( "This is an overview of what will happen once you start "
-                                                          "the install procedure." ) ); );
+    headerLabel->setText( config->message() );
+    connect( config, &Config::messageChanged, headerLabel, &QLabel::setText );
     layout->addWidget( headerLabel );
     layout->addWidget( m_scrollArea );
     m_scrollArea->setWidgetResizable( true );

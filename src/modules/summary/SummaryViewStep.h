@@ -42,8 +42,8 @@ public:
     void onLeave() override;
 
 private:
-    SummaryPage* m_widget = nullptr;
     Config* m_config = nullptr;
+    SummaryPage* m_widget = nullptr;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( SummaryViewStepFactory )

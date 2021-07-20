@@ -15,8 +15,8 @@ CALAMARES_PLUGIN_FACTORY_DEFINITION( SummaryViewStepFactory, registerPlugin< Sum
 
 SummaryViewStep::SummaryViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
-    , m_widget( new SummaryPage( this ) )
     , m_config( new Config( this ) )
+    , m_widget( new SummaryPage( m_config, this ) )
 {
     emit nextStatusChanged( true );
 }
