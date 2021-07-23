@@ -72,12 +72,11 @@ calamares_add_library( calamaresui
     EXPORT_MACRO UIDLLEXPORT_PRO
     LINK_LIBRARIES
         Qt5::Svg
-        yamlcpp
     RESOURCES libcalamaresui.qrc
     EXPORT Calamares
     VERSION ${CALAMARES_VERSION_SHORT}
 )
-
+target_link_libraries( calamaresui PRIVATE yamlcpp )
 if( KF5CoreAddons_FOUND AND KF5CoreAddons_VERSION VERSION_GREATER_EQUAL 5.58 )
     target_compile_definitions( calamaresui PRIVATE WITH_KOSRelease )
 endif()
