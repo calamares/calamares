@@ -73,9 +73,6 @@ public:
     /// @brief What retranslator belongs to @p parent (may create one)
     static Retranslator* retranslatorFor( QObject* parent );
 
-    /// @brief Call @p retranslateFunc when the language changes
-    void addRetranslateFunc( std::function< void( void ) > retranslateFunc );
-
 signals:
     void languageChange();
 
