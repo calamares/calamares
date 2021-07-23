@@ -27,6 +27,9 @@ if (NOT TARGET Calamares::calamares OR NOT TARGET Calamares::calamaresui)
     message(FATAL_ERROR "Calamares found with missing CMake targets")
 endif()
 
+# Need various CMake files that are installed alongside this one.
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR})
+
 ### Dependencies
 #
 # The libraries can depend on a variety of Qt and KDE Frameworks
@@ -60,6 +63,8 @@ if(kf5_required)
     endif()
 endif()
 
+find_package(YAMLCPP REQUIRED)
+
 ### Legacy support
 #
 #
@@ -70,8 +75,6 @@ set(Calamares_LIBRARIES Calamares::calamares)
 ### CMake support
 #
 #
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR})
-
 include(CalamaresAddBrandingSubdirectory)
 include(CalamaresAddLibrary)
 include(CalamaresAddModuleSubdirectory)
