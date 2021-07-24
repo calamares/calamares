@@ -36,6 +36,8 @@ Config::Config( QObject* parent )
 void
 Config::retranslate()
 {
+    cWarning() << "Retranslated to" << QLocale().name();
+
     m_genericWelcomeMessage = genericWelcomeMessage().arg( Calamares::Branding::instance()->versionedName() );
     emit genericWelcomeMessageChanged( m_genericWelcomeMessage );
 
