@@ -357,6 +357,8 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     , m_debugManager( new Calamares::DebugWindowManager( this ) )
     , m_viewManager( nullptr )
 {
+    installEventFilter( CalamaresUtils::Retranslator::instance() );
+
     // If we can never cancel, don't show the window-close button
     if ( Calamares::Settings::instance()->disableCancel() )
     {

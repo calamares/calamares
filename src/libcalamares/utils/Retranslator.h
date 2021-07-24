@@ -64,40 +64,64 @@ DLLEXPORT bool loadTranslator( const QLocale& locale, const QString& prefix, QTr
  */
 DLLEXPORT void setAllowLocalTranslation( bool allow );
 
+
+/** @brief Handles change-of-language events
+ *
+ * There is one single Retranslator object. Use `instance()` to get it.
+ * The top-level widget of the application should call
+ *      `installEventFilter( Retranslator::instance() )`
+ * to set up event-handling for translation events. The Retranslator
+ * will emit signal `languageChanged()` if there is such an event.
+ *
+ * Normal consumers should not have to use the Retranslator directly,
+ * but use the macros `CALAMARES_RETRANSLATE*` to set things up
+ * in code -- the macros will connect to the Retranslator's signals.
+ */
 class Retranslator : public QObject
 {
     Q_OBJECT
 public:
-    /// @brief Call @p retranslateFunc when the language changes
-    static void attachRetranslator( QObject* parent, std::function< void( void ) > retranslateFunc );
-    /// @brief What retranslator belongs to @p parent (may create one)
-    static Retranslator* retranslatorFor( QObject* parent );
+    static Retranslator* instance();
 
 signals:
-    void languageChange();
+    void languageChanged();
 
 protected:
     bool eventFilter( QObject* obj, QEvent* e ) override;
 
 private:
     explicit Retranslator( QObject* parent );
-
-    QList< std::function< void( void ) > > m_retranslateFuncList;
 };
 
 
 }  // namespace CalamaresUtils
 
-#define CALAMARES_RETRANSLATE( body ) CalamaresUtils::Retranslator::attachRetranslator( this, [=] { body } )
-#define CALAMARES_RETRANSLATE_WIDGET( widget, body ) \
-    CalamaresUtils::Retranslator::attachRetranslator( widget, [=] { body } )
-#define CALAMARES_RETRANSLATE_SLOT( slotfunc ) \
-    do \
-    { \
-        this->connect( CalamaresUtils::Retranslator::retranslatorFor( this ), \
-                       &CalamaresUtils::Retranslator::languageChange, \
-                       this, \
-                       slotfunc ); \
-    } while ( 0 )
+// Implementation detail: connects the retranslator to a slot or function
+#define CALAMARES_RETRANSLATE_FOR( object, body ) \
+    QObject::connect( CalamaresUtils::Retranslator::instance(), &CalamaresUtils::Retranslator::languageChanged, object, body )
+
+/** @brief Call code for this object when language changes
+ *
+ * @p body should be a code block (it does not need braces) that can be wrapped
+ * up as a lambda. When the language changes, the lambda is called. Note that
+ * this macro should be used in constructors or other code that is run only
+ * once, since otherwise you will end up with multiple calls to @p body.
+ */
+#define CALAMARES_RETRANSLATE( body ) CALAMARES_RETRANSLATE_FOR( this, [=] { body } )
+/** @brief Call code for the given object (widget) when language changes
+ *
+ * This is identical to CALAMARES_RETRANSLATE, except the @p body is called
+ * for the given widget, not this object.
+ *
+ * NOTE: this macro is deprecated.
+ */
+#define CALAMARES_RETRANSLATE_WIDGET( widget, body ) CALAMARES_RETRANSLATE_FOR( widget, [=] { body } )
+/** @brief Call a slot in this object when language changes
+ *
+ * Given a slot (in method-function-pointer notation), call that slot when the
+ * language changes. This is shorthand for connecting the Retranslator's
+ * signal to the given slot.
+ */
+#define CALAMARES_RETRANSLATE_SLOT( slotfunc ) CALAMARES_RETRANSLATE_FOR( this, slotfunc )
 
 #endif
