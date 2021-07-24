@@ -27,7 +27,7 @@ class WelcomePage : public QWidget
 {
     Q_OBJECT
 public:
-    explicit WelcomePage( Config* conf, QWidget* parent = nullptr );
+    WelcomePage( Config* config, QWidget* parent = nullptr );
 
     enum class Button
     {

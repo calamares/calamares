@@ -63,11 +63,11 @@ Config::retranslate()
             message = setup ? tr( "This computer does not satisfy some of the "
                                   "recommended requirements for setting up %1.<br/>"
                                   "Setup can continue, but some features "
-                                  "might be disabled." )
+                                  "might be reduced." )
                             : tr( "This computer does not satisfy some of the "
                                   "recommended requirements for installing %1.<br/>"
                                   "Installation can continue, but some features "
-                                  "might be disabled." );
+                                  "might be reduced." );
         }
 
         m_warningMessage = message.arg( Calamares::Branding::instance()->shortVersionedName() );

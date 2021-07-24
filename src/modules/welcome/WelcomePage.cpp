@@ -36,12 +36,12 @@
 #include <QLabel>
 #include <QMessageBox>
 
-WelcomePage::WelcomePage( Config* conf, QWidget* parent )
+WelcomePage::WelcomePage( Config* config, QWidget* parent )
     : QWidget( parent )
     , ui( new Ui::WelcomePage )
-    , m_checkingWidget( new CheckerContainer( *( conf->requirementsModel() ), this ) )
+    , m_checkingWidget( new CheckerContainer( config, this ) )
     , m_languages( nullptr )
-    , m_conf( conf )
+    , m_conf( config )
 {
     using Branding = Calamares::Branding;
 

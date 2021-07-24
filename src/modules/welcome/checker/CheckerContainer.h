@@ -15,6 +15,7 @@
 #define CHECKERCONTAINER_H
 
 #include "Config.h"
+
 #include <QWidget>
 
 class ResultsListWidget;
@@ -31,7 +32,7 @@ class CheckerContainer : public QWidget
 {
     Q_OBJECT
 public:
-    explicit CheckerContainer( const Calamares::RequirementsModel& model, QWidget* parent = nullptr );
+    explicit CheckerContainer( Config* config, QWidget* parent = nullptr );
     ~CheckerContainer() override;
 
     bool verdict() const;
@@ -49,7 +50,7 @@ protected:
     bool m_verdict;
 
 private:
-    const Calamares::RequirementsModel& m_model;
+    Config* m_config = nullptr;
 };
 
 #endif
