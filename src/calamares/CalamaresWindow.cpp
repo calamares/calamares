@@ -134,7 +134,7 @@ getWidgetSidebar( Calamares::DebugWindowManager* debug,
     {
         QPushButton* debugWindowBtn = new QPushButton;
         debugWindowBtn->setObjectName( "debugButton" );
-        CALAMARES_RETRANSLATE_WIDGET(
+        CALAMARES_RETRANSLATE_FOR(
             debugWindowBtn,
             debugWindowBtn->setText( QCoreApplication::translate( CalamaresWindow::staticMetaObject.className(),
                                                                   "Show debug information" ) ); );

@@ -81,7 +81,11 @@ class Retranslator : public QObject
 {
     Q_OBJECT
 public:
+    /// @brief Gets the global (single) Retranslator object
     static Retranslator* instance();
+
+    /// @brief Helper function for attaching lambdas
+    static void attach( QObject* o, std::function< void( void ) > f);
 
 signals:
     void languageChanged();
@@ -96,32 +100,43 @@ private:
 
 }  // namespace CalamaresUtils
 
-// Implementation detail: connects the retranslator to a slot or function
-#define CALAMARES_RETRANSLATE_FOR( object, body ) \
-    QObject::connect( CalamaresUtils::Retranslator::instance(), &CalamaresUtils::Retranslator::languageChanged, object, body )
-
 /** @brief Call code for this object when language changes
  *
  * @p body should be a code block (it does not need braces) that can be wrapped
  * up as a lambda. When the language changes, the lambda is called. Note that
  * this macro should be used in constructors or other code that is run only
  * once, since otherwise you will end up with multiple calls to @p body.
+ *
+ * NOTE: unlike plain QObject::connect(), the body is **also** called
+ *       immediately after setting up the connection. This allows
+ *       setup and translation code to be mixed together.
  */
-#define CALAMARES_RETRANSLATE( body ) CALAMARES_RETRANSLATE_FOR( this, [=] { body } )
+#define CALAMARES_RETRANSLATE( body ) CalamaresUtils::Retranslator::attach( this, [=] { body } )
 /** @brief Call code for the given object (widget) when language changes
  *
  * This is identical to CALAMARES_RETRANSLATE, except the @p body is called
- * for the given widget, not this object.
+ * for the given object, not this object.
  *
- * NOTE: this macro is deprecated.
+ * NOTE: unlike plain QObject::connect(), the body is **also** called
+ *       immediately after setting up the connection. This allows
+ *       setup and translation code to be mixed together.
  */
-#define CALAMARES_RETRANSLATE_WIDGET( widget, body ) CALAMARES_RETRANSLATE_FOR( widget, [=] { body } )
+#define CALAMARES_RETRANSLATE_FOR( object, body ) CalamaresUtils::Retranslator::attach( object, [=] { body } )
 /** @brief Call a slot in this object when language changes
  *
  * Given a slot (in method-function-pointer notation), call that slot when the
  * language changes. This is shorthand for connecting the Retranslator's
  * signal to the given slot.
+ *
+ * NOTE: unlike plain QObject::connect(), the slot is **also** called
+ *       immediately after setting up the connection. This allows
+ *       setup and translation code to be mixed together.
  */
-#define CALAMARES_RETRANSLATE_SLOT( slotfunc ) CALAMARES_RETRANSLATE_FOR( this, slotfunc )
+#define CALAMARES_RETRANSLATE_SLOT( slotfunc ) \
+    do \
+    { \
+        connect( CalamaresUtils::Retranslator::instance(), &CalamaresUtils::Retranslator::languageChanged, this, slotfunc ); \
+        (this->*slotfunc)(); \
+    } while ( false )
 
 #endif

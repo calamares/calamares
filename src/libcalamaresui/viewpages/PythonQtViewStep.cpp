@@ -48,7 +48,7 @@ PythonQtViewStep::PythonQtViewStep( PythonQtObjectPtr cxt, QObject* parent )
     CalamaresUtils::unmarginLayout( m_widget->layout() );
     m_cxt.addObject( "_calamares_module_basewidget", m_widget );
 
-    CALAMARES_RETRANSLATE_WIDGET(
+    CALAMARES_RETRANSLATE_FOR(
         m_widget,
         CalamaresUtils::lookupAndCall( m_obj, { "retranslate" }, { CalamaresUtils::translatorLocaleName() } ); )
 }

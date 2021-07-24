@@ -233,6 +233,11 @@ Retranslator* Retranslator::instance()
     return &s_instance;
 }
 
+void Retranslator::attach(QObject* o, std::function<void ()> f)
+{
+    connect( instance(), &Retranslator::languageChanged, o, f );
+    f();
+}
 
 void
 setAllowLocalTranslation( bool allow )
