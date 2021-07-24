@@ -134,7 +134,7 @@ getWidgetSidebar( Calamares::DebugWindowManager* debug,
     {
         QPushButton* debugWindowBtn = new QPushButton;
         debugWindowBtn->setObjectName( "debugButton" );
-        CALAMARES_RETRANSLATE_WIDGET(
+        CALAMARES_RETRANSLATE_FOR(
             debugWindowBtn,
             debugWindowBtn->setText( QCoreApplication::translate( CalamaresWindow::staticMetaObject.className(),
                                                                   "Show debug information" ) ); );
@@ -357,6 +357,8 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     , m_debugManager( new Calamares::DebugWindowManager( this ) )
     , m_viewManager( nullptr )
 {
+    installEventFilter( CalamaresUtils::Retranslator::instance() );
+
     // If we can never cancel, don't show the window-close button
     if ( Calamares::Settings::instance()->disableCancel() )
     {

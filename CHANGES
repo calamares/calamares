@@ -7,6 +7,24 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
+# 3.2.41 (unreleased) #
+
+This release contains contributions from (alphabetically by first name):
+ - Anke Boersma
+
+## Core ##
+ - The (re)translation framework has been internally re-vamped to be
+   less resource-intensive and to work with all QObjects, not just
+   widgets. Consumers of the translations framework are expected to
+   set up the event filter on the top-level widget(s) manually.
+
+## Modules ##
+ - The *usersq* module has had a fair bit of QML rewritten to make it easier
+   to customize the colors used by the module in a consistent way.
+   (Thanks Anke)
+
+
+
 # 3.2.40 (2021-07-14) #
 
 This release contains contributions from (alphabetically by first name):

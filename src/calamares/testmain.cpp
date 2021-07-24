@@ -24,6 +24,7 @@
 #include "modulesystem/ModuleManager.h"
 #include "modulesystem/ViewModule.h"
 #include "utils/Logger.h"
+#include "utils/Retranslator.h"
 #include "utils/Yaml.h"
 #include "viewpages/ExecutionViewStep.h"
 
@@ -489,6 +490,10 @@ main( int argc, char* argv[] )
             aw = replace_app;
         }
         mw = module.m_ui ? new QMainWindow() : nullptr;
+        if ( mw )
+        {
+            mw->installEventFilter( CalamaresUtils::Retranslator::instance() );
+        }
 
         (void)new Calamares::Branding( module.m_branding );
         auto* modulemanager = new Calamares::ModuleManager( QStringList(), nullptr );
