@@ -31,6 +31,8 @@ Config::Config( QObject* parent )
     initLanguages();
 
     CALAMARES_RETRANSLATE_SLOT( &Config::retranslate );
+    // But also when the requirements model changes, update the messages
+    connect( requirementsModel(), &Calamares::RequirementsModel::progressMessageChanged, this, &Config::retranslate );
 }
 
 void
@@ -63,11 +65,11 @@ Config::retranslate()
             message = setup ? tr( "This computer does not satisfy some of the "
                                   "recommended requirements for setting up %1.<br/>"
                                   "Setup can continue, but some features "
-                                  "might be reduced." )
+                                  "might be disabled." )
                             : tr( "This computer does not satisfy some of the "
                                   "recommended requirements for installing %1.<br/>"
                                   "Installation can continue, but some features "
-                                  "might be reduced." );
+                                  "might be disabled." );
         }
 
         m_warningMessage = message.arg( Calamares::Branding::instance()->shortVersionedName() );

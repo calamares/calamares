@@ -127,7 +127,6 @@ ResultsListDialog::ResultsListDialog( const Calamares::RequirementsModel& model,
     connect( buttonBox, &QDialogButtonBox::clicked, this, &QDialog::close );
 
     CALAMARES_RETRANSLATE_SLOT( &ResultsListDialog::retranslate );
-    retranslate();  // Do it now to fill in the texts
 }
 
 ResultsListDialog::~ResultsListDialog() {}
@@ -169,15 +168,15 @@ ResultsListWidget::ResultsListWidget( Config* config, QWidget* parent )
     spacerLayout->addSpacing( paddingSize );
     CalamaresUtils::unmarginLayout( spacerLayout );
 
-    auto* explanation = new QLabel;
+    auto* explanation = new QLabel( m_config->warningMessage() );
     explanation->setWordWrap( true );
     explanation->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
     explanation->setOpenExternalLinks( false );
     explanation->setObjectName( "resultsExplanation" );
-    connect( explanation, &QLabel::linkActivated, this, &ResultsListWidget::linkClicked );
     entriesLayout->addWidget( explanation );
 
     connect( config, &Config::warningMessageChanged, explanation, &QLabel::setText );
+    connect( explanation, &QLabel::linkActivated, this, &ResultsListWidget::linkClicked );
 
     // Check that all are satisfied (gives warnings if not) and
     // all *mandatory* entries are satisfied (gives errors if not).
@@ -226,7 +225,6 @@ ResultsListWidget::ResultsListWidget( Config* config, QWidget* parent )
     }
 
     CALAMARES_RETRANSLATE_SLOT( &ResultsListWidget::retranslate );
-    retranslate();
 }
 
 
