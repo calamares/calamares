@@ -56,15 +56,15 @@ Label::getLocale( const QString& localeName )
     {
         return QLocale();
     }
-    if ( localeName.contains( "@latin" ) )
+
+    // Special cases
+    if ( localeName == QStringLiteral( "sr@latin" ) )
     {
         QLocale loc( localeName );  // Ignores @latin
         return QLocale( loc.language(), QLocale::Script::LatinScript, loc.country() );
     }
-    else
-    {
-        return QLocale( localeName );
-    }
+
+    return QLocale( localeName );
 }
 
 }  // namespace Locale

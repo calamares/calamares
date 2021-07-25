@@ -86,8 +86,9 @@ public:
 
     /** @brief Get a Qt locale for the given @p localeName
      *
-     * This special-cases `sr@latin`, which is used as a translation
-     * name in Calamares, while Qt recognizes `sr@latn`.
+     * This handles special-cases in Calamares translations:
+     * - `sr@latin` is the name which Qt recognizes as `sr@latn`,
+     *   Serbian written with Latin characters (not Cyrillic).
      */
     static QLocale getLocale( const QString& localeName );
 
