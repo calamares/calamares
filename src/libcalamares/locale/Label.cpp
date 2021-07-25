@@ -63,6 +63,10 @@ Label::getLocale( const QString& localeName )
         QLocale loc( localeName );  // Ignores @latin
         return QLocale( loc.language(), QLocale::Script::LatinScript, loc.country() );
     }
+    if ( localeName == QStringLiteral( "ca@valencia" ) )
+    {
+        return QLocale( localeName );  // Ignores @valencia, but there is **really** no way to handle this
+    }
 
     return QLocale( localeName );
 }

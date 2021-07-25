@@ -27,6 +27,12 @@ namespace Locale
  * Support class to turn locale names (as used by Calamares's
  * translation system) into QLocales, and also into consistent
  * human-readable text labels.
+ *
+ * This handles special-cases in Calamares translations:
+ * - `sr@latin` is the name which Qt recognizes as `sr@latn`,
+ *   Serbian written with Latin characters (not Cyrillic).
+ * - `ca@valencia` is the Catalan dialect spoken in Valencia.
+ *   There is no Qt code for it.
  */
 class Label : public QObject
 {
@@ -86,9 +92,7 @@ public:
 
     /** @brief Get a Qt locale for the given @p localeName
      *
-     * This handles special-cases in Calamares translations:
-     * - `sr@latin` is the name which Qt recognizes as `sr@latn`,
-     *   Serbian written with Latin characters (not Cyrillic).
+     * This obeys special cases as described in the class documentation.
      */
     static QLocale getLocale( const QString& localeName );
 
