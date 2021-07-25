@@ -11,6 +11,35 @@
 
 #include "Label.h"
 
+#include <memory>
+
+/** @brief Handle special cases of Calamares language names
+ *
+ * If a given @p localeName (e.g. en_US, or sr@latin) has special handling,
+ * returns a pair of pointers:
+ * - a pointer to a QLocale; this is the locale to use, or may be @c nullptr
+ *   to indicate that the Qt locale derived from @p localeName is accepatable.
+ * - a pointer to a QString; this is the native language name to use, or may
+ *   be @c nullptr to indicate that the Qt value is acceptable.
+ *
+ * Returns a pair of nullptrs for non-special cases.
+ */
+static std::pair< QLocale*, QString* > specialCase( const QString& localeName )
+{
+    if ( localeName == "sr@latin" )
+    {
+        static QLocale loc( QLocale::Language::Serbian, QLocale::Script::LatinScript, QLocale::Country::Serbia );
+        return { &loc, nullptr };
+    }
+    if ( localeName == "ca@valencia" )
+    {
+        static QString name = QStringLiteral( "Català (Valencia)" );
+        return { nullptr, &name };
+    }
+
+    return { nullptr, nullptr };
+}
+
 namespace CalamaresUtils
 {
 namespace Locale
@@ -26,11 +55,12 @@ Label::Label( const QString& locale, LabelFormat format, QObject* parent )
     , m_locale( Label::getLocale( locale ) )
     , m_localeId( locale.isEmpty() ? m_locale.name() : locale )
 {
+    auto special = specialCase( locale );
+
     QString longFormat = QObject::tr( "%1 (%2)" );
 
-    QString languageName = m_locale.nativeLanguageName();
+    QString languageName = special.second ? *special.second : m_locale.nativeLanguageName();
     QString englishName = m_locale.languageToString( m_locale.language() );
-    QString countryName;
 
     if ( languageName.isEmpty() )
     {
@@ -39,11 +69,10 @@ Label::Label( const QString& locale, LabelFormat format, QObject* parent )
 
     bool needsCountryName = ( format == LabelFormat::AlwaysWithCountry )
         || ( locale.contains( '_' ) && QLocale::countriesForLanguage( m_locale.language() ).count() > 1 );
+    QString countryName =
+    ( needsCountryName ?
 
-    if ( needsCountryName )
-    {
-        countryName = m_locale.nativeCountryName();
-    }
+        m_locale.nativeCountryName() : QString() );
     m_label = needsCountryName ? longFormat.arg( languageName, countryName ) : languageName;
     m_englishLabel = needsCountryName ? longFormat.arg( englishName, QLocale::countryToString( m_locale.country() ) )
                                       : englishName;
@@ -57,18 +86,8 @@ Label::getLocale( const QString& localeName )
         return QLocale();
     }
 
-    // Special cases
-    if ( localeName == QStringLiteral( "sr@latin" ) )
-    {
-        QLocale loc( localeName );  // Ignores @latin
-        return QLocale( loc.language(), QLocale::Script::LatinScript, loc.country() );
-    }
-    if ( localeName == QStringLiteral( "ca@valencia" ) )
-    {
-        return QLocale( localeName );  // Ignores @valencia, but there is **really** no way to handle this
-    }
-
-    return QLocale( localeName );
+    auto special = specialCase( localeName );
+    return special.first ? *special.first : QLocale( localeName );
 }
 
 }  // namespace Locale
