@@ -166,6 +166,8 @@ target_link_libraries( calamares
         ${OPTIONAL_PUBLIC_LIBRARIES}
 )
 
+add_library(Calamares::calamares ALIAS calamares)
+
 ### Installation
 #
 #

@@ -89,6 +89,8 @@ if( WITH_QML )
     target_link_libraries( calamaresui PUBLIC Qt5::QuickWidgets )
 endif()
 
+add_library(Calamares::calamaresui ALIAS calamaresui)
+
 
 ### Installation
 #
