@@ -123,5 +123,5 @@ if( BUILD_TESTING )
     target_link_libraries( loadmodule PRIVATE Qt5::Core Qt5::Widgets calamares calamaresui )
 
     add_executable( test_conf test_conf.cpp )
-    target_link_libraries( test_conf PUBLIC yamlcpp Qt5::Core )
+    target_link_libraries( test_conf PUBLIC yamlcpp::yamlcpp Qt5::Core )
 endif()

@@ -160,7 +160,7 @@ target_link_libraries( calamares
     LINK_PRIVATE
         ${OPTIONAL_PRIVATE_LIBRARIES}
     LINK_PUBLIC
-        yamlcpp
+        yamlcpp::yamlcpp
         Qt5::Core
         KF5::CoreAddons
         ${OPTIONAL_PUBLIC_LIBRARIES}
@@ -315,7 +315,7 @@ calamares_add_test(
 # This is not an actual test, it's a test / demo application
 # for experimenting with GeoIP.
 add_executable( test_geoip geoip/test_geoip.cpp ${geoip_src} )
-target_link_libraries( test_geoip calamares Qt5::Network yamlcpp )
+target_link_libraries( test_geoip calamares Qt5::Network yamlcpp::yamlcpp )
 calamares_automoc( test_geoip )
 
 if ( Qt5DBus_FOUND )

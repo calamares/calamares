@@ -42,5 +42,5 @@ calamares_add_test(
         Tests.cpp
         HostInfoJob.cpp
     LIBRARIES
-        yamlcpp
+        yamlcpp::yamlcpp
 )

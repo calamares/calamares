@@ -16,5 +16,5 @@ calamares_add_test(
     SOURCES
         Tests.cpp
     LIBRARIES
-        yamlcpp
+        yamlcpp::yamlcpp
 )

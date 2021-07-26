@@ -17,5 +17,5 @@ calamares_add_test(
         Tests.cpp
     LIBRARIES
         calamares_job_initcpio # From above
-        yamlcpp
+        yamlcpp::yamlcpp
 )

@@ -31,7 +31,7 @@ if ( KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND
             Tests.cpp
         LIBRARIES
             calamares_job_fsresizer  # From above
-            yamlcpp
+            yamlcpp::yamlcpp
         DEFINITIONS ${KPMcore_API_DEFINITIONS}
     )
 else()

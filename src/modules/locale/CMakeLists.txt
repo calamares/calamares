@@ -33,7 +33,7 @@ calamares_add_plugin( locale
     LINK_PRIVATE_LIBRARIES
         Qt5::Network
         ${geoip_libs}
-        yamlcpp
+        yamlcpp::yamlcpp
     SHARED_LIB
 )
 
