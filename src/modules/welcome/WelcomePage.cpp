@@ -20,7 +20,6 @@
 #include "Settings.h"
 #include "ViewManager.h"
 
-#include "locale/LabelModel.h"
 #include "modulesystem/ModuleManager.h"
 #include "modulesystem/RequirementsModel.h"
 #include "utils/CalamaresUtilsGui.h"

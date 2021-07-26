@@ -15,7 +15,7 @@
 #include "JobQueue.h"
 #include "Settings.h"
 #include "locale/Global.h"
-#include "locale/Label.h"
+#include "locale/Translation.h"
 #include "modulesystem/ModuleManager.h"
 #include "network/Manager.h"
 #include "utils/Logger.h"

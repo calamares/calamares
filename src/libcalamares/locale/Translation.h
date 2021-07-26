@@ -9,8 +9,8 @@
  *
  */
 
-#ifndef LOCALE_LABEL_H
-#define LOCALE_LABEL_H
+#ifndef LOCALE_TRANSLATION_H
+#define LOCALE_TRANSLATION_H
 
 #include <QLocale>
 #include <QObject>
@@ -56,8 +56,8 @@ public:
      * in the label (human-readable form) or only if needed for disambiguation.
      */
     Translation( const QString& localeName,
-           LabelFormat format = LabelFormat::IfNeededWithCountry,
-           QObject* parent = nullptr );
+                 LabelFormat format = LabelFormat::IfNeededWithCountry,
+                 QObject* parent = nullptr );
 
 
     /** @brief Define a sorting order.

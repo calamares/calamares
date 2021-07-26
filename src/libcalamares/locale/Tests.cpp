@@ -9,9 +9,9 @@
  */
 
 #include "locale/Global.h"
-#include "locale/LabelModel.h"
 #include "locale/TimeZone.h"
 #include "locale/TranslatableConfiguration.h"
+#include "locale/TranslationsModel.h"
 
 #include "CalamaresVersion.h"
 #include "GlobalStorage.h"

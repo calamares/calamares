@@ -10,7 +10,7 @@
 #ifndef WELCOME_CONFIG_H
 #define WELCOME_CONFIG_H
 
-#include "locale/LabelModel.h"
+#include "locale/TranslationsModel.h"
 #include "modulesystem/RequirementsModel.h"
 
 #include <QObject>

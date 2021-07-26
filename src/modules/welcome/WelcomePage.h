@@ -11,7 +11,7 @@
 #ifndef WELCOMEPAGE_H
 #define WELCOMEPAGE_H
 
-#include "locale/LabelModel.h"
+#include "locale/TranslationsModel.h"
 
 #include <QStyledItemDelegate>
 #include <QWidget>

@@ -9,7 +9,7 @@
  *
  */
 
-#include "LabelModel.h"
+#include "TranslationsModel.h"
 
 #include "Lookup.h"
 
@@ -121,7 +121,8 @@ TranslationsModel::find( const QString& countryCode ) const
     }
 
     auto c_l = countryData( countryCode );
-    int r = find( [&]( const Translation& l ) { return ( l.language() == c_l.second ) && ( l.country() == c_l.first ); } );
+    int r = find(
+        [&]( const Translation& l ) { return ( l.language() == c_l.second ) && ( l.country() == c_l.first ); } );
     if ( r >= 0 )
     {
         return r;
@@ -132,7 +133,8 @@ TranslationsModel::find( const QString& countryCode ) const
 TranslationsModel*
 availableTranslations()
 {
-    static TranslationsModel* model = new TranslationsModel( QStringLiteral( CALAMARES_TRANSLATION_LANGUAGES ).split( ';' ) );
+    static TranslationsModel* model
+        = new TranslationsModel( QStringLiteral( CALAMARES_TRANSLATION_LANGUAGES ).split( ';' ) );
     return model;
 }
 

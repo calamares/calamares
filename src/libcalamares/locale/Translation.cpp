@@ -9,7 +9,7 @@
  *
  */
 
-#include "Label.h"
+#include "Translation.h"
 
 #include <memory>
 

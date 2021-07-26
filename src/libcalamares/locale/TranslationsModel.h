@@ -9,11 +9,11 @@
  *
  */
 
-#ifndef LOCALE_LABELMODEL_H
-#define LOCALE_LABELMODEL_H
+#ifndef LOCALE_TRANSLATIONSMODEL_H
+#define LOCALE_TRANSLATIONSMODEL_H
 
 #include "DllMacro.h"
-#include "Label.h"
+#include "Translation.h"
 
 #include <QAbstractListModel>
 #include <QVector>
