@@ -118,7 +118,7 @@ ChoicePage::ChoicePage( Config* config, QWidget* parent )
     CalamaresUtils::unmarginLayout( m_itemsLayout );
 
     // Drive selector + preview
-    CALAMARES_RETRANSLATE_SLOT( retranslate );
+    CALAMARES_RETRANSLATE_SLOT( &ChoicePage::retranslate );
 
     m_previewBeforeFrame->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Expanding );
     m_previewAfterFrame->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Expanding );
