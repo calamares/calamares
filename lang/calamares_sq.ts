@@ -4321,7 +4321,7 @@ Përfundim:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="166"/>
       <source>Only letters, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
-      <translation type="unfinished"/>
+      <translation>Lejohen vetëm shkronja, numra, nënvijë dhe vijë ndarëse. minimumi dy shenja.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="264"/>

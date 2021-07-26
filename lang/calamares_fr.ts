@@ -515,7 +515,7 @@ L'installateur se fermera et les changements seront perdus.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="39"/>
       <source>Set filesystem label &lt;strong&gt;%1&lt;/strong&gt; to partition &lt;strong&gt;%2&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Mettre le nom du système de fichier &lt;strong&gt;%1&lt;/strong&gt; à la partition &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="70"/>
@@ -896,7 +896,7 @@ L'installateur se fermera et les changements seront perdus.</translation>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="548"/>
       <source>OK!</source>
-      <translation type="unfinished"/>
+      <translation>OK!</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="145"/>
@@ -1889,7 +1889,7 @@ L'installateur se fermera et les changements seront perdus.</translation>
     <message>
       <location filename="../src/libcalamares/locale/Tests.cpp" line="273"/>
       <source>Quit</source>
-      <translation type="unfinished"/>
+      <translation>Quiter</translation>
     </message>
   </context>
   <context>
@@ -4262,7 +4262,7 @@ Sortie
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="118"/>
       <source>root is not allowed as username.</source>
-      <translation type="unfinished"/>
+      <translation>root n'est pas autorisé en tant que nom d'utilisateur.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="127"/>
@@ -4282,7 +4282,7 @@ Sortie
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="174"/>
       <source>localhost is not allowed as hostname.</source>
-      <translation type="unfinished"/>
+      <translation>localhost n'est pas autorisé en tant que nom d'utilisateur.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="183"/>
@@ -4322,7 +4322,7 @@ Sortie
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="166"/>
       <source>Only letters, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
-      <translation type="unfinished"/>
+      <translation>Seuls les lettres, les chiffres, les underscores et les trait d'union sont autorisés et un minimum de deux caractères.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="264"/>

@@ -787,12 +787,12 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="57"/>
       <source>Network Installation. (Disabled: Internal error)</source>
-      <translation type="unfinished"/>
+      <translation>Sieťová inštalácia. (Zakázaná: vnútorná chyba)</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="61"/>
       <source>Network Installation. (Disabled: No package list)</source>
-      <translation type="unfinished"/>
+      <translation>Sieťová inštalácia. (Zakázaná: bez zoznamu balíkov)</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="77"/>
@@ -897,7 +897,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="548"/>
       <source>OK!</source>
-      <translation type="unfinished"/>
+      <translation>OK!</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="145"/>
@@ -912,12 +912,12 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="147"/>
       <source>The setup of %1 did not complete successfully.</source>
-      <translation type="unfinished"/>
+      <translation>Inštalácia distribúcie %1 nebola úspešne dokončená.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="148"/>
       <source>The installation of %1 did not complete successfully.</source>
-      <translation type="unfinished"/>
+      <translation>Inštalácia distribúcie %1 bola úspešne dokončená.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="152"/>
@@ -1013,12 +1013,12 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="231"/>
       <source>Label for the filesystem</source>
-      <translation type="unfinished"/>
+      <translation>Menovka systému súborov</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="241"/>
       <source>FS Label:</source>
-      <translation type="unfinished"/>
+      <translation>Menovka SS:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="65"/>
@@ -1051,12 +1051,12 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="113"/>
       <source>Create new %1MiB partition on %3 (%2) with entries %4.</source>
-      <translation type="unfinished"/>
+      <translation>Vytvorenie nového %1MiB oddielu na zariadení %3 (%2) so záznamami %4.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="121"/>
       <source>Create new %1MiB partition on %3 (%2).</source>
-      <translation type="unfinished"/>
+      <translation>Vytvorenie nového %1MiB oddielu na zariadení %3 (%2).</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="128"/>
@@ -1066,12 +1066,12 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="145"/>
       <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2) with entries &lt;em&gt;%4&lt;/em&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Vytvorenie nového &lt;strong&gt;%1MiB&lt;/strong&gt; oddielu na zariadení &lt;strong&gt;%3&lt;/strong&gt; (%2) so záznamami &lt;em&gt;%4&lt;/em&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="154"/>
       <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2).</source>
-      <translation type="unfinished"/>
+      <translation>Vytvorenie nového &lt;strong&gt;%1MiB&lt;/strong&gt; oddielu na zariadení &lt;strong&gt;%3&lt;/strong&gt; (%2).</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="161"/>
@@ -1377,12 +1377,12 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="186"/>
       <source>Label for the filesystem</source>
-      <translation type="unfinished"/>
+      <translation>Menovka systému súborov</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="196"/>
       <source>FS Label:</source>
-      <translation type="unfinished"/>
+      <translation>Menovka SS:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="291"/>
@@ -1890,7 +1890,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
       <location filename="../src/libcalamares/locale/Tests.cpp" line="273"/>
       <source>Quit</source>
-      <translation type="unfinished"/>
+      <translation>Ukončiť</translation>
     </message>
   </context>
   <context>
@@ -2113,7 +2113,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="41"/>
       <source>Select your preferred Region, or use the default settings.</source>
-      <translation type="unfinished"/>
+      <translation>Vyberte vami uprednostňovanú oblasť, alebo použite predvolené nastavenia.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="98"/>
@@ -2671,7 +2671,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="304"/>
       <source>File System Label</source>
-      <translation type="unfinished"/>
+      <translation>Menovka systému súborov</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="306"/>
@@ -4077,23 +4077,24 @@ Výstup:
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="36"/>
       <source>Installation Completed</source>
-      <translation type="unfinished"/>
+      <translation>Inštalácia dokončená</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="43"/>
       <source>%1 has been installed on your computer.&lt;br/&gt;
             You may now restart into your new system, or continue using the Live environment.</source>
-      <translation type="unfinished"/>
+      <translation>Distribúcia %1 bola nainštalovaná do vášho počítača.&lt;br/&gt;
+            Teraz môžete reštartovať váš počítač a spustiť nový systém, alebo pokračovať v používaní živého prostredia.</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="65"/>
       <source>Close Installer</source>
-      <translation type="unfinished"/>
+      <translation>Zavrieť inštalátor</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="71"/>
       <source>Restart System</source>
-      <translation type="unfinished"/>
+      <translation>Reštartovať systém</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="89"/>
