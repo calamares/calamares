@@ -75,4 +75,6 @@ struct cPointerSetter
 
     const T& operator=(const T& v) { m_value = v; return v; }
 };
+
+template < typename T > cPointerSetter( T p ) -> cPointerSetter<decltype(*p)>;
 #endif
