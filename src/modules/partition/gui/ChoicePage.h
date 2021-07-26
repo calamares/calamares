@@ -101,6 +101,8 @@ private slots:
     /// @brief Calls onActionChanged() as needed.
     void onEraseSwapChoiceChanged();
 
+    void retranslate();
+
 private:
     bool calculateNextEnabled() const;
     void updateNextEnabled();

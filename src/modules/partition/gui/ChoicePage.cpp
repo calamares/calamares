@@ -118,9 +118,7 @@ ChoicePage::ChoicePage( Config* config, QWidget* parent )
     CalamaresUtils::unmarginLayout( m_itemsLayout );
 
     // Drive selector + preview
-    CALAMARES_RETRANSLATE( retranslateUi( this ); m_drivesLabel->setText( tr( "Select storage de&vice:" ) );
-                           m_previewBeforeLabel->setText( tr( "Current:" ) );
-                           m_previewAfterLabel->setText( tr( "After:" ) ); );
+    CALAMARES_RETRANSLATE_SLOT( retranslate );
 
     m_previewBeforeFrame->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Expanding );
     m_previewAfterFrame->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Expanding );
@@ -133,6 +131,15 @@ ChoicePage::ChoicePage( Config* config, QWidget* parent )
 
 
 ChoicePage::~ChoicePage() {}
+
+void
+ChoicePage::retranslate()
+{
+    retranslateUi( this );
+    m_drivesLabel->setText( tr( "Select storage de&vice:" ) );
+    m_previewBeforeLabel->setText( tr( "Current:" ) );
+    m_previewAfterLabel->setText( tr( "After:" ) );
+}
 
 
 /** @brief Sets the @p model for the given @p box and adjusts UI sizes to match.
@@ -174,10 +181,7 @@ ChoicePage::init( PartitionCoreModule* core )
     } );
     setModelToComboBox( m_drivesCombo, core->deviceModel() );
 
-    connect( m_drivesCombo,
-             qOverload<int>( &QComboBox::currentIndexChanged ),
-             this,
-             &ChoicePage::applyDeviceChoice );
+    connect( m_drivesCombo, qOverload< int >( &QComboBox::currentIndexChanged ), this, &ChoicePage::applyDeviceChoice );
 
     connect( m_encryptWidget, &EncryptWidget::stateChanged, this, &ChoicePage::onEncryptWidgetStateChanged );
     connect( m_reuseHomeCheckBox, &QCheckBox::stateChanged, this, &ChoicePage::onHomeCheckBoxStateChanged );
@@ -270,11 +274,12 @@ ChoicePage::setupChoices()
         m_eraseButton->addOptionsComboBox( m_eraseSwapChoiceComboBox );
     }
 
-    if ( m_config->eraseFsTypes().count() > 1)
+    if ( m_config->eraseFsTypes().count() > 1 )
     {
         m_eraseFsTypesChoiceComboBox = new QComboBox;
-        m_eraseFsTypesChoiceComboBox->addItems(m_config->eraseFsTypes());
-        connect( m_eraseFsTypesChoiceComboBox, &QComboBox::currentTextChanged, m_config, &Config::setEraseFsTypeChoice );
+        m_eraseFsTypesChoiceComboBox->addItems( m_config->eraseFsTypes() );
+        connect(
+            m_eraseFsTypesChoiceComboBox, &QComboBox::currentTextChanged, m_config, &Config::setEraseFsTypeChoice );
         connect( m_config, &Config::eraseModeFilesystemChanged, this, &ChoicePage::onActionChanged );
         m_eraseButton->addOptionsComboBox( m_eraseFsTypesChoiceComboBox );
     }
