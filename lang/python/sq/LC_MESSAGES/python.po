@@ -337,6 +337,8 @@ msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."
 msgstr ""
+"Përgjegjësi i paketave s’bëri dot ndryshime te sistemi i instaluar. Urdhri "
+"<pre>{!s}</pre> u përgjigj me kod gabimi {!s}."
 
 #: src/modules/bootloader/main.py:43
 msgid "Install bootloader."
