@@ -46,6 +46,11 @@ public:
         IfNeededWithCountry
     };
 
+    struct Id
+    {
+        QString name;
+    };
+
     /** @brief Empty locale. This uses the system-default locale. */
     Translation( QObject* parent = nullptr );
 
@@ -82,7 +87,7 @@ public:
     QLocale locale() const { return m_locale; }
 
     QString name() const { return m_locale.name(); }
-    QString id() const { return m_localeId; }
+    Id id() const { return { m_localeId }; }
 
     /// @brief Convenience accessor to the language part of the locale
     QLocale::Language language() const { return m_locale.language(); }

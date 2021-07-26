@@ -12,8 +12,8 @@
 #define UTILS_RETRANSLATOR_H
 
 #include "DllMacro.h"
+#include "locale/Translation.h"
 
-#include <QList>
 #include <QObject>
 #include <QString>
 
@@ -25,12 +25,15 @@ class QTranslator;
 
 namespace CalamaresUtils
 {
-/**
- * @brief installTranslator changes the application language.
- * @param locale the new locale.
+/** @brief changes the application language.
+ * @param locale the new locale (names as defined by Calamares).
  * @param brandingTranslationsPrefix the branding path prefix, from Calamares::Branding.
  */
-DLLEXPORT void installTranslator( const QLocale& locale, const QString& brandingTranslationsPrefix );
+DLLEXPORT void installTranslator( const CalamaresUtils::Locale::Translation::Id& locale, const QString& brandingTranslationsPrefix );
+
+/** @brief Initializes the translations with the current system settings
+ */
+DLLEXPORT void installTranslator();
 
 /** @brief The name of the (locale of the) most recently installed translator
  *
@@ -38,7 +41,7 @@ DLLEXPORT void installTranslator( const QLocale& locale, const QString& branding
  * QLocale passed in, because Calamares will munge some names and
  * may remap translations.
  */
-DLLEXPORT QString translatorLocaleName();
+DLLEXPORT CalamaresUtils::Locale::Translation::Id translatorLocaleName();
 
 /** @brief Loads <prefix><locale> translations into the given @p translator
  *
@@ -53,7 +56,7 @@ DLLEXPORT QString translatorLocaleName();
  *
  * @returns @c true on success
  */
-DLLEXPORT bool loadTranslator( const QLocale& locale, const QString& prefix, QTranslator* translator );
+DLLEXPORT bool loadTranslator( const CalamaresUtils::Locale::Translation::Id& locale, const QString& prefix, QTranslator* translator );
 
 /** @brief Set @p allow to true to load translations from current dir.
  *
