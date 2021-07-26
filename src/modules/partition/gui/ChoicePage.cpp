@@ -139,6 +139,10 @@ ChoicePage::retranslate()
     m_drivesLabel->setText( tr( "Select storage de&vice:" ) );
     m_previewBeforeLabel->setText( tr( "Current:" ) );
     m_previewAfterLabel->setText( tr( "After:" ) );
+
+    m_somethingElseButton->setText( tr( "<strong>Manual partitioning</strong><br/>"
+                                        "You can create or resize partitions yourself." ) );
+    updateSwapChoicesTr( m_eraseSwapChoiceComboBox );
 }
 
 
@@ -329,14 +333,12 @@ ChoicePage::setupChoices()
 
     connect( this, &ChoicePage::actionChosen, this, &ChoicePage::onActionChanged );
     if ( m_eraseSwapChoiceComboBox )
+    {
         connect( m_eraseSwapChoiceComboBox,
                  QOverload< int >::of( &QComboBox::currentIndexChanged ),
                  this,
                  &ChoicePage::onEraseSwapChoiceChanged );
-
-    CALAMARES_RETRANSLATE( m_somethingElseButton->setText( tr( "<strong>Manual partitioning</strong><br/>"
-                                                               "You can create or resize partitions yourself." ) );
-                           updateSwapChoicesTr( m_eraseSwapChoiceComboBox ); );
+    }
 }
 
 
