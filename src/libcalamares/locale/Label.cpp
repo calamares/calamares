@@ -46,14 +46,14 @@ namespace CalamaresUtils
 namespace Locale
 {
 
-Label::Label( QObject* parent )
-    : Label( QString(), LabelFormat::IfNeededWithCountry, parent )
+Translation::Translation( QObject* parent )
+    : Translation( QString(), LabelFormat::IfNeededWithCountry, parent )
 {
 }
 
-Label::Label( const QString& locale, LabelFormat format, QObject* parent )
+Translation::Translation( const QString& locale, LabelFormat format, QObject* parent )
     : QObject( parent )
-    , m_locale( Label::getLocale( locale ) )
+    , m_locale( getLocale( locale ) )
     , m_localeId( locale.isEmpty() ? m_locale.name() : locale )
 {
     auto special = specialCase( locale );
@@ -80,7 +80,7 @@ Label::Label( const QString& locale, LabelFormat format, QObject* parent )
 }
 
 QLocale
-Label::getLocale( const QString& localeName )
+Translation::getLocale( const QString& localeName )
 {
     if ( localeName.isEmpty() )
     {

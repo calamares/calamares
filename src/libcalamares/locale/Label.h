@@ -34,7 +34,7 @@ namespace Locale
  * - `ca@valencia` is the Catalan dialect spoken in Valencia.
  *   There is no Qt code for it.
  */
-class Label : public QObject
+class Translation : public QObject
 {
     Q_OBJECT
 
@@ -47,7 +47,7 @@ public:
     };
 
     /** @brief Empty locale. This uses the system-default locale. */
-    Label( QObject* parent = nullptr );
+    Translation( QObject* parent = nullptr );
 
     /** @brief Construct from a locale name.
      *
@@ -55,7 +55,7 @@ public:
      * The @p format determines whether the country name is always present
      * in the label (human-readable form) or only if needed for disambiguation.
      */
-    Label( const QString& localeName,
+    Translation( const QString& localeName,
            LabelFormat format = LabelFormat::IfNeededWithCountry,
            QObject* parent = nullptr );
 
@@ -64,7 +64,7 @@ public:
      *
      * Locales are sorted by their id, which means the ISO 2-letter code + country.
      */
-    bool operator<( const Label& other ) const { return m_localeId < other.m_localeId; }
+    bool operator<( const Translation& other ) const { return m_localeId < other.m_localeId; }
 
     /** @brief Is this locale English?
      *
@@ -96,7 +96,7 @@ public:
      */
     static QLocale getLocale( const QString& localeName );
 
-protected:
+private:
     QLocale m_locale;
     QString m_localeId;  // the locale identifier, e.g. "en_GB"
     QString m_label;  // the native name of the locale

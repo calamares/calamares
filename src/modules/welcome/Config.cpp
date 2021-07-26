@@ -84,7 +84,7 @@ Config::retranslate()
     emit warningMessageChanged( m_warningMessage );
 }
 
-CalamaresUtils::Locale::LabelModel*
+CalamaresUtils::Locale::TranslationsModel*
 Config::languagesModel() const
 {
     return m_languages;

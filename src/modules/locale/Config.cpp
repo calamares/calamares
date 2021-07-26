@@ -368,9 +368,9 @@ Config::currentTimezoneName() const
 static inline QString
 localeLabel( const QString& s )
 {
-    using CalamaresUtils::Locale::Label;
+    using CalamaresUtils::Locale::Translation;
 
-    Label lang( s, Label::LabelFormat::AlwaysWithCountry );
+    Translation lang( s, Translation::LabelFormat::AlwaysWithCountry );
     return lang.label();
 }
 
