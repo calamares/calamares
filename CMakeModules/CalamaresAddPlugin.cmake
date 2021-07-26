@@ -126,6 +126,15 @@ function( calamares_add_plugin )
     # create target name once for convenience
     set( target "calamares_${PLUGIN_TYPE}_${PLUGIN_NAME}" )
 
+    # automatic library linkage
+    if(PLUGIN_TYPE STREQUAL "view" OR PLUGIN_TYPE STREQUAL "viewmodule")
+        list(APPEND PLUGIN_LINK_PRIVATE_LIBRARIES Calamares::calamaresui)
+    elseif(PLUGIN_TYPE STREQUAL "job")
+        list(APPEND PLUGIN_LINK_PRIVATE_LIBRARIES Calamares::calamares)
+    else()
+        message(FATAL_ERROR "Unknown plugin type ${PLUGIN_TYPE}")
+    endif()
+
     # determine target type
     if( NOT ${PLUGIN_SHARED_LIB} )
         set( target_type "MODULE" )

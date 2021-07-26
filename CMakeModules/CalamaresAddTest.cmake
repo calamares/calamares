@@ -36,7 +36,7 @@ function( calamares_add_test )
             TEST_NAME
                 ${TEST_NAME}
             LINK_LIBRARIES
-                calamares
+                Calamares::calamares
                 ${TEST_LIBRARIES}
                 Qt5::Core
                 Qt5::Test
@@ -46,7 +46,7 @@ function( calamares_add_test )
         # compiled, so that it can find test-files in that source dir.
         target_compile_definitions( ${TEST_NAME} PRIVATE -DBUILD_AS_TEST="${CMAKE_CURRENT_SOURCE_DIR}"  ${TEST_DEFINITIONS} )
         if( TEST_GUI )
-            target_link_libraries( ${TEST_NAME} calamaresui Qt5::Gui )
+            target_link_libraries( ${TEST_NAME} Calamares::calamaresui Qt5::Gui )
         endif()
         if( TEST_RESOURCES )
             calamares_autorcc( ${TEST_NAME} ${TEST_RESOURCES} )
