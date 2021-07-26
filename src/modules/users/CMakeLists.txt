@@ -71,7 +71,6 @@ calamares_add_plugin( users
         users.qrc
     LINK_PRIVATE_LIBRARIES
         users_internal
-        calamaresui
         ${CRYPT_LIBRARIES}
         ${USER_EXTRA_LIB}
     SHARED_LIB

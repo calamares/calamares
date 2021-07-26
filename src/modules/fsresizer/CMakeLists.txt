@@ -21,7 +21,6 @@ if ( KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND
             ResizeFSJob.cpp
         LINK_PRIVATE_LIBRARIES
             kpmcore
-            calamares
         COMPILE_DEFINITIONS ${KPMcore_API_DEFINITIONS}
         SHARED_LIB
     )

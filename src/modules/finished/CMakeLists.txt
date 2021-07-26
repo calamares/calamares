@@ -17,7 +17,6 @@ calamares_add_plugin( finished
     UI
         FinishedPage.ui
     LINK_PRIVATE_LIBRARIES
-        calamaresui
         Qt5::DBus
     SHARED_LIB
 )

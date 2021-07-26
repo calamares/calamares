@@ -23,7 +23,5 @@ calamares_add_plugin( keyboardq
         ${_keyboard}/keyboardwidget/keyboardglobal.cpp
     RESOURCES
         keyboardq.qrc
-    LINK_PRIVATE_LIBRARIES
-        calamaresui
     SHARED_LIB
 )

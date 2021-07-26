@@ -10,8 +10,6 @@ calamares_add_plugin( preservefiles
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
         PreserveFiles.cpp
-    LINK_PRIVATE_LIBRARIES
-        calamares
     # REQUIRES mount  # To set the rootMountPoint
     SHARED_LIB
     EMERGENCY

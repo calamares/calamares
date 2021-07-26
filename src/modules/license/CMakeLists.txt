@@ -14,7 +14,5 @@ calamares_add_plugin( license
         LicenseWidget.cpp
     UI
         LicensePage.ui
-    LINK_PRIVATE_LIBRARIES
-        calamaresui
     SHARED_LIB
 )

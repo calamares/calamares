@@ -26,7 +26,6 @@ calamares_add_plugin( finishedq
     RESOURCES
         finishedq.qrc
     LINK_PRIVATE_LIBRARIES
-        calamaresui
         Qt5::DBus
     SHARED_LIB
 )

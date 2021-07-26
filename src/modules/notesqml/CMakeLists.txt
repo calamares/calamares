@@ -15,7 +15,5 @@ calamares_add_plugin( notesqml
         NotesQmlViewStep.cpp
     RESOURCES
         notesqml.qrc
-    LINK_PRIVATE_LIBRARIES
-        calamaresui
     SHARED_LIB
 )

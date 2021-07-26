@@ -44,7 +44,6 @@ if ( KF5Plasma_FOUND AND KF5Package_FOUND )
         UI
             page_plasmalnf.ui
         LINK_PRIVATE_LIBRARIES
-            calamaresui
             KF5::Package
             KF5::Plasma
         SHARED_LIB

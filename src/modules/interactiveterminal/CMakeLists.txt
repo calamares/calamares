@@ -25,8 +25,6 @@ if ( KF5Parts_FOUND AND KF5Service_FOUND )
         SOURCES
             InteractiveTerminalViewStep.cpp
             InteractiveTerminalPage.cpp
-        LINK_PRIVATE_LIBRARIES
-            calamaresui
         LINK_LIBRARIES
             KF5::Service
             KF5::Parts

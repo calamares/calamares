@@ -43,7 +43,6 @@ calamares_add_plugin( localeq
     RESOURCES
         localeq.qrc
     LINK_PRIVATE_LIBRARIES
-        calamaresui
         Qt5::Network
     SHARED_LIB
 )

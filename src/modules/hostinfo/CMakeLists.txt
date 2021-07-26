@@ -28,8 +28,6 @@ calamares_add_plugin( hostinfo
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
         HostInfoJob.cpp
-    LINK_PRIVATE_LIBRARIES
-        calamares
     SHARED_LIB
     NO_CONFIG
 )

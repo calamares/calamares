@@ -108,7 +108,6 @@ if ( KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND
             gui/VolumeGroupBaseDialog.ui
         LINK_PRIVATE_LIBRARIES
             kpmcore
-            calamaresui
             KF5::CoreAddons
         COMPILE_DEFINITIONS ${_partition_defs}
         SHARED_LIB

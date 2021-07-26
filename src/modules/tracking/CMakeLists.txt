@@ -15,8 +15,6 @@ calamares_add_plugin( tracking
         page_trackingstep.ui
     RESOURCES
         page_trackingstep.qrc
-    LINK_PRIVATE_LIBRARIES
-        calamaresui
     SHARED_LIB
 )
 

@@ -37,7 +37,6 @@ calamares_add_plugin( welcome
     RESOURCES
         welcome.qrc
     LINK_PRIVATE_LIBRARIES
-        calamaresui
         ${CHECKER_LINK_LIBRARIES}
         Qt5::DBus
         Qt5::Network

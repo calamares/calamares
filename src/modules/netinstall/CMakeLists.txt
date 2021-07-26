@@ -16,9 +16,7 @@ calamares_add_plugin( netinstall
     UI
         page_netinst.ui
     LINK_PRIVATE_LIBRARIES
-        calamaresui
         Qt5::Network
-        yamlcpp
     SHARED_LIB
 )
 
@@ -32,6 +30,5 @@ calamares_add_test(
         PackageModel.cpp
     LIBRARIES
         Qt5::Gui
-        yamlcpp
 )
 

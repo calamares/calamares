@@ -9,8 +9,6 @@ calamares_add_plugin( machineid
     SOURCES
         MachineIdJob.cpp
         Workers.cpp
-    LINK_PRIVATE_LIBRARIES
-        calamares
     SHARED_LIB
 )
 

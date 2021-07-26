@@ -11,8 +11,6 @@ calamares_add_plugin( summary
         SummaryViewStep.cpp
         SummaryPage.cpp
     UI
-    LINK_PRIVATE_LIBRARIES
-        calamaresui
     SHARED_LIB
     NO_CONFIG
 )

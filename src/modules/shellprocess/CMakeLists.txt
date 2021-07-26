@@ -8,8 +8,6 @@ calamares_add_plugin( shellprocess
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
         ShellProcessJob.cpp
-    LINK_PRIVATE_LIBRARIES
-        calamares
     SHARED_LIB
 )
 

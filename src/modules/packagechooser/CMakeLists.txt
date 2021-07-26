@@ -55,7 +55,6 @@ calamares_add_plugin( packagechooser
     UI
         page_package.ui
     LINK_PRIVATE_LIBRARIES
-        calamaresui
         ${_extra_libraries}
     SHARED_LIB
 )

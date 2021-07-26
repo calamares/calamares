@@ -18,8 +18,6 @@ calamares_add_plugin( keyboard
         KeyboardPage.ui
     RESOURCES
         keyboard.qrc
-    LINK_PRIVATE_LIBRARIES
-        calamaresui
     SHARED_LIB
 )
 
