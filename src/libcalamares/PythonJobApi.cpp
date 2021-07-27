@@ -136,16 +136,18 @@ check_target_env_output( const bp::list& args, const std::string& stdin, int tim
     return ec.second.toStdString();
 }
 
+static const char output_prefix[] = "[PYTHON JOB]:";
+
 void
 debug( const std::string& s )
 {
-    Logger::CDebug( Logger::LOGDEBUG ) << "[PYTHON JOB]: " << QString::fromStdString( s );
+    Logger::CDebug( Logger::LOGDEBUG ) << output_prefix << QString::fromStdString( s );
 }
 
 void
 warning( const std::string& s )
 {
-    cWarning() << "[PYTHON JOB]: " << QString::fromStdString( s );
+    Logger::CDebug( Logger::LOGWARNING )  << output_prefix << QString::fromStdString( s );
 }
 
 PythonJobInterface::PythonJobInterface( Calamares::PythonJob* parent )
@@ -167,7 +169,6 @@ PythonJobInterface::setprogress( qreal progress )
         m_parent->emitProgress( progress );
     }
 }
-
 
 std::string
 obscure( const std::string& string )
