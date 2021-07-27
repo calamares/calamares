@@ -63,6 +63,12 @@ public:
     boost::python::dict configuration;
 
     void setprogress( qreal progress );
+    /** @brief Run the command @p args and process lines of output
+     *
+     * Calls the function @p callback from the job module on each
+     * line of output. Returns the exit code of the command.
+     */
+    int target_env_output( const boost::python::list& args, const std::string& callback, const std::string& stdin = std::string(), int timeout = 10 );
 
 private:
     Calamares::PythonJob* m_parent;

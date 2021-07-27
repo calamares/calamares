@@ -36,6 +36,11 @@ BOOST_PYTHON_FUNCTION_OVERLOADS( check_target_env_output_list_overloads,
                                  CalamaresPython::check_target_env_output,
                                  1,
                                  3 );
+BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS( target_env_output_overloads,
+                                        target_env_output,
+                                        2,
+                                        4 );
+
 BOOST_PYTHON_MODULE( libcalamares )
 {
     bp::object package = bp::scope();
@@ -56,7 +61,11 @@ BOOST_PYTHON_MODULE( libcalamares )
               &CalamaresPython::PythonJobInterface::setprogress,
               bp::args( "progress" ),
               "Reports the progress status of this job to Calamares, "
-              "as a real number between 0 and 1." );
+              "as a real number between 0 and 1." )
+        .def( "target_env_output",
+              &CalamaresPython::PythonJobInterface::target_env_output,
+              target_env_output_overloads( bp::args( "args", "callback", "stdin", "timeout" ), "docstring"))
+        ;
 
     bp::class_< CalamaresPython::GlobalStoragePythonWrapper >( "GlobalStorage",
                                                                bp::init< Calamares::GlobalStorage* >() )
