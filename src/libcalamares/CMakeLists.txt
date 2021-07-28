@@ -315,10 +315,10 @@ calamares_add_test(
 # This is not an actual test, it's a test / demo application
 # for experimenting with GeoIP.
 add_executable( test_geoip geoip/test_geoip.cpp ${geoip_src} )
-target_link_libraries( test_geoip calamares Qt5::Network yamlcpp::yamlcpp )
+target_link_libraries( test_geoip Calamares::calamares Qt5::Network yamlcpp::yamlcpp )
 calamares_automoc( test_geoip )
 
 if ( Qt5DBus_FOUND )
     add_executable( test_automount partition/calautomount.cpp )
-    target_link_libraries( test_automount calamares Qt5::DBus )
+    target_link_libraries( test_automount Calamares::calamares Qt5::DBus )
 endif()
