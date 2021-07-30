@@ -366,22 +366,22 @@ Config::createJobs()
     return list;
 }
 
-void
-Config::guessLayout( const QStringList& langParts )
+static void
+guessLayout( const QStringList& langParts, KeyboardLayoutModel* layouts, KeyboardVariantsModel* variants )
 {
     bool foundCountryPart = false;
     for ( auto countryPart = langParts.rbegin(); !foundCountryPart && countryPart != langParts.rend(); ++countryPart )
     {
         cDebug() << Logger::SubEntry << "looking for locale part" << *countryPart;
-        for ( int i = 0; i < m_keyboardLayoutsModel->rowCount(); ++i )
+        for ( int i = 0; i < layouts->rowCount(); ++i )
         {
-            QModelIndex idx = m_keyboardLayoutsModel->index( i );
+            QModelIndex idx = layouts->index( i );
             QString name
                 = idx.isValid() ? idx.data( KeyboardLayoutModel::KeyboardLayoutKeyRole ).toString() : QString();
             if ( idx.isValid() && ( name.compare( *countryPart, Qt::CaseInsensitive ) == 0 ) )
             {
                 cDebug() << Logger::SubEntry << "matched" << name;
-                m_keyboardLayoutsModel->setCurrentIndex( i );
+                layouts->setCurrentIndex( i );
                 foundCountryPart = true;
                 break;
             }
@@ -392,14 +392,13 @@ Config::guessLayout( const QStringList& langParts )
             if ( countryPart != langParts.rend() )
             {
                 cDebug() << "Next level:" << *countryPart;
-                for ( int variantnumber = 0; variantnumber < m_keyboardVariantsModel->rowCount(); ++variantnumber )
+                for ( int variantnumber = 0; variantnumber < variants->rowCount(); ++variantnumber )
                 {
-                    if ( m_keyboardVariantsModel->key( variantnumber ).compare( *countryPart, Qt::CaseInsensitive )
-                         == 0 )
+                    if ( variants->key( variantnumber ).compare( *countryPart, Qt::CaseInsensitive ) == 0 )
                     {
-                        m_keyboardVariantsModel->setCurrentIndex( variantnumber );
+                        variants->setCurrentIndex( variantnumber );
                         cDebug() << Logger::SubEntry << "matched variant" << *countryPart << ' '
-                                 << m_keyboardVariantsModel->key( variantnumber );
+                                 << variants->key( variantnumber );
                     }
                 }
             }
@@ -408,7 +407,7 @@ Config::guessLayout( const QStringList& langParts )
 }
 
 void
-Config::onActivate()
+Config::guessLocaleKeyboardLayout()
 {
     /* Guessing a keyboard layout based on the locale means
      * mapping between language identifiers in <lang>_<country>
@@ -495,7 +494,7 @@ Config::onActivate()
         QString country = QLocale::countryToString( QLocale( lang ).country() );
         cDebug() << Logger::SubEntry << "extracted country" << country << "::" << langParts;
 
-        guessLayout( langParts );
+        guessLayout( langParts, m_keyboardLayoutsModel, m_keyboardVariantsModel );
     }
 }
 

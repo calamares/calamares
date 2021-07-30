@@ -32,15 +32,16 @@ class Config : public QObject
 public:
     Config( QObject* parent = nullptr );
 
+    /// @brief Based on current xkb settings, pick a layout
     void detectCurrentKeyboardLayout();
+    /// @brief Based on current locale, pick a layout
+    void guessLocaleKeyboardLayout();
 
     Calamares::JobList createJobs();
     QString prettyStatus() const;
 
-    void onActivate();
+    /// @brief When leaving the page, write to GS
     void finalize();
-
-    void setConfigurationMap( const QVariantMap& configurationMap );
 
     static AdditionalLayoutInfo getAdditionalLayoutInfo( const QString& layout );
 
@@ -69,11 +70,12 @@ public:
      */
     void retranslate();
 
+    void setConfigurationMap( const QVariantMap& configurationMap );
+
 signals:
     void prettyStatusChanged();
 
 private:
-    void guessLayout( const QStringList& langParts );
     void updateVariants( const QPersistentModelIndex& currentItem, QString currentVariant = QString() );
 
     /* These two methods are used in tandem to apply changes to the
