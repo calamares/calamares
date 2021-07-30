@@ -11,18 +11,26 @@ website will have to do for older versions.
 
 This release contains contributions from (alphabetically by first name):
  - Anke Boersma
+ - Camilo Higuita
 
 ## Core ##
  - The (re)translation framework has been internally re-vamped to be
    less resource-intensive and to work with all QObjects, not just
    widgets. Consumers of the translations framework are expected to
-   set up the event filter on the top-level widget(s) manually.
+   set up the event filter on the top-level widget(s) manually. Since
+   Calamares and the Calamares-test-applications have been adjusted already,
+   no further action is needed.
 
 ## Modules ##
+ - Logic for handling installation lists has been moved around in the
+   *packages* module so that package managers can, in principle,
+   adjust how to handle critical and non-critical package lists.
+ - In the *partition* module, translation code has been simplified.
  - The *usersq* module has had a fair bit of QML rewritten to make it easier
    to customize the colors used by the module in a consistent way.
    (Thanks Anke)
-
+ - *Welcome* now uses a translated message from the Config object,
+   increasing the sharing between widgets- and QML-modules.
 
 
 # 3.2.40 (2021-07-14) #
