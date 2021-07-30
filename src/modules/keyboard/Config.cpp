@@ -16,6 +16,7 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "utils/Logger.h"
+#include "utils/RAII.h"
 #include "utils/Retranslator.h"
 #include "utils/String.h"
 #include "utils/Variant.h"
@@ -170,6 +171,12 @@ Config::Config( QObject* parent )
 
     connect( m_keyboardVariantsModel, &KeyboardVariantsModel::currentIndexChanged, this, &Config::xkbChanged );
 
+    // If the user picks something explicitly -- not a consequence of
+    // a guess -- then move to UserSelected state and stay there.
+    connect( m_keyboardModelsModel, &KeyboardModelsModel::currentIndexChanged, this, &Config::selectionChange );
+    connect( m_keyboardLayoutsModel, &KeyboardLayoutModel::currentIndexChanged, this, &Config::selectionChange );
+    connect( m_keyboardVariantsModel, &KeyboardVariantsModel::currentIndexChanged, this, &Config::selectionChange );
+
     m_selectedModel = m_keyboardModelsModel->key( m_keyboardModelsModel->currentIndex() );
     m_selectedLayout = m_keyboardLayoutsModel->item( m_keyboardLayoutsModel->currentIndex() ).first;
     m_selectedVariant = m_keyboardVariantsModel->key( m_keyboardVariantsModel->currentIndex() );
@@ -264,6 +271,13 @@ findLayout( const KeyboardLayoutModel* klm, const QString& currentLayout )
 void
 Config::detectCurrentKeyboardLayout()
 {
+    if ( m_state != State::Initial )
+    {
+        return;
+    }
+    cPointerSetter returnToIntial( &m_state, State::Initial );
+    m_state = State::Guessing;
+
     //### Detect current keyboard layout and variant
     QString currentLayout;
     QString currentVariant;
@@ -409,6 +423,13 @@ guessLayout( const QStringList& langParts, KeyboardLayoutModel* layouts, Keyboar
 void
 Config::guessLocaleKeyboardLayout()
 {
+    if ( m_state != State::Initial )
+    {
+        return;
+    }
+    cPointerSetter returnToIntial( &m_state, State::Initial );
+    m_state = State::Guessing;
+
     /* Guessing a keyboard layout based on the locale means
      * mapping between language identifiers in <lang>_<country>
      * format to keyboard mappings, which are <country>_<layout>
@@ -555,4 +576,13 @@ void
 Config::retranslate()
 {
     retranslateKeyboardModels();
+}
+
+void
+Config::selectionChange()
+{
+    if ( m_state == State::Initial )
+    {
+        m_state = State::UserSelected;
+    }
 }

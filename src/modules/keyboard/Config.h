@@ -107,6 +107,24 @@ private:
     QString m_xOrgConfFileName;
     QString m_convertedKeymapPath;
     bool m_writeEtcDefaultKeyboard = true;
+
+    // The state determines whether we guess settings or preserve them:
+    // - Initial -> Guessing
+    // - Initial -> UserSelected
+    // - Guessing -> Initial
+    enum class State
+    {
+        Initial,  // after configuration, nothing special going on
+        Guessing,  // on activation
+        UserSelected  // explicit choice is made, preserve that
+    };
+    State m_state = State::Initial;
+
+    /** @brief Handles state change when selections in model, variant, layout
+     *
+     * This handles the Initial -> UserSelected transition in particular.
+     */
+    void selectionChange();
 };
 
 
