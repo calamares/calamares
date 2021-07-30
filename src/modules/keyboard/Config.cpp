@@ -168,53 +168,63 @@ Config::Config( QObject* parent )
         emit prettyStatusChanged();
     } );
 
-    connect( m_keyboardVariantsModel, &KeyboardVariantsModel::currentIndexChanged, [&]( int index ) {
-        // Set Xorg keyboard layout + variant
-        m_selectedVariant = m_keyboardVariantsModel->key( index );
-
-        if ( m_setxkbmapTimer.isActive() )
-        {
-            m_setxkbmapTimer.stop();
-            m_setxkbmapTimer.disconnect( this );
-        }
-
-        connect( &m_setxkbmapTimer, &QTimer::timeout, this, [=] {
-            m_additionalLayoutInfo = getAdditionalLayoutInfo( m_selectedLayout );
-
-            if ( !m_additionalLayoutInfo.additionalLayout.isEmpty() )
-            {
-                m_additionalLayoutInfo.groupSwitcher = xkbmap_query_grp_option();
-
-                if ( m_additionalLayoutInfo.groupSwitcher.isEmpty() )
-                {
-                    m_additionalLayoutInfo.groupSwitcher = "grp:alt_shift_toggle";
-                }
-
-                QProcess::execute( "setxkbmap",
-                                   xkbmap_layout_args( { m_additionalLayoutInfo.additionalLayout, m_selectedLayout },
-                                                       { m_additionalLayoutInfo.additionalVariant, m_selectedVariant },
-                                                       m_additionalLayoutInfo.groupSwitcher ) );
-
-
-                cDebug() << "xkbmap selection changed to: " << m_selectedLayout << '-' << m_selectedVariant << "(added "
-                         << m_additionalLayoutInfo.additionalLayout << "-" << m_additionalLayoutInfo.additionalVariant
-                         << " since current layout is not ASCII-capable)";
-            }
-            else
-            {
-                QProcess::execute( "setxkbmap", xkbmap_layout_args( m_selectedLayout, m_selectedVariant ) );
-                cDebug() << "xkbmap selection changed to: " << m_selectedLayout << '-' << m_selectedVariant;
-            }
-            m_setxkbmapTimer.disconnect( this );
-        } );
-        m_setxkbmapTimer.start( QApplication::keyboardInputInterval() );
-        emit prettyStatusChanged();
-    } );
+    connect( m_keyboardVariantsModel, &KeyboardVariantsModel::currentIndexChanged, this, &Config::xkbChanged );
 
     m_selectedModel = m_keyboardModelsModel->key( m_keyboardModelsModel->currentIndex() );
     m_selectedLayout = m_keyboardLayoutsModel->item( m_keyboardLayoutsModel->currentIndex() ).first;
     m_selectedVariant = m_keyboardVariantsModel->key( m_keyboardVariantsModel->currentIndex() );
 }
+
+void
+Config::xkbChanged( int index )
+{
+    // Set Xorg keyboard layout + variant
+    m_selectedVariant = m_keyboardVariantsModel->key( index );
+
+    if ( m_setxkbmapTimer.isActive() )
+    {
+        m_setxkbmapTimer.stop();
+        m_setxkbmapTimer.disconnect( this );
+    }
+
+    connect( &m_setxkbmapTimer, &QTimer::timeout, this, &Config::xkbApply );
+
+    m_setxkbmapTimer.start( QApplication::keyboardInputInterval() );
+    emit prettyStatusChanged();
+}
+
+void
+Config::xkbApply()
+{
+    m_additionalLayoutInfo = getAdditionalLayoutInfo( m_selectedLayout );
+
+    if ( !m_additionalLayoutInfo.additionalLayout.isEmpty() )
+    {
+        m_additionalLayoutInfo.groupSwitcher = xkbmap_query_grp_option();
+
+        if ( m_additionalLayoutInfo.groupSwitcher.isEmpty() )
+        {
+            m_additionalLayoutInfo.groupSwitcher = "grp:alt_shift_toggle";
+        }
+
+        QProcess::execute( "setxkbmap",
+                           xkbmap_layout_args( { m_additionalLayoutInfo.additionalLayout, m_selectedLayout },
+                                               { m_additionalLayoutInfo.additionalVariant, m_selectedVariant },
+                                               m_additionalLayoutInfo.groupSwitcher ) );
+
+
+        cDebug() << "xkbmap selection changed to: " << m_selectedLayout << '-' << m_selectedVariant << "(added "
+                 << m_additionalLayoutInfo.additionalLayout << "-" << m_additionalLayoutInfo.additionalVariant
+                 << " since current layout is not ASCII-capable)";
+    }
+    else
+    {
+        QProcess::execute( "setxkbmap", xkbmap_layout_args( m_selectedLayout, m_selectedVariant ) );
+        cDebug() << "xkbmap selection changed to: " << m_selectedLayout << '-' << m_selectedVariant;
+    }
+    m_setxkbmapTimer.disconnect( this );
+}
+
 
 KeyboardModelsModel*
 Config::keyboardModels() const

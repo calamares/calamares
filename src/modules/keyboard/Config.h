@@ -76,6 +76,18 @@ private:
     void guessLayout( const QStringList& langParts );
     void updateVariants( const QPersistentModelIndex& currentItem, QString currentVariant = QString() );
 
+    /* These two methods are used in tandem to apply changes to the
+     * keyboard layout. This introduces a slight delay between selecting
+     * a keyboard, and applying it to the system -- so that if you
+     * scroll through or down-arrow through the list of keyboards,
+     * you don't get buried under xkbset processes.
+     *
+     * xkbChanged() is called when the selection changes, and triggers
+     * a delayed call to xkbApply() which does the actual work.
+     */
+    void xkbChanged( int index );
+    void xkbApply();
+
     KeyboardModelsModel* m_keyboardModelsModel;
     KeyboardLayoutModel* m_keyboardLayoutsModel;
     KeyboardVariantsModel* m_keyboardVariantsModel;
