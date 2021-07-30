@@ -70,11 +70,42 @@ struct cPointerSetter
     std::optional< T > m_value;
     T* m_pointer;
 
-    cPointerSetter( T* p ) : m_pointer(p) {}
-    ~cPointerSetter() { if ( m_pointer && m_value.has_value() ) { *m_pointer = m_value.value(); } }
+    /** @brief Create a setter with no value set
+     *
+     * Until a value is set via operator=(), this pointer-setter
+     * will do nothing on destruction, leaving the pointed-to
+     * value unchanged.
+     */
+    cPointerSetter( T* p )
+        : m_pointer( p )
+    {
+    }
+    /** @brief Create a setter with a value already set
+     *
+     * This ensures that on destruction, the value @p v will be written;
+     * it is equivalent to assigning @p v immediately. The pointed-to
+     * value is **not** changed (until destruction).
+     */
+    cPointerSetter( T* p, T v )
+        : m_value( v )
+        , m_pointer( p )
+    {
+    }
+    ~cPointerSetter()
+    {
+        if ( m_pointer && m_value.has_value() )
+        {
+            *m_pointer = m_value.value();
+        }
+    }
 
-    const T& operator=(const T& v) { m_value = v; return v; }
+    const T& operator=( const T& v )
+    {
+        m_value = v;
+        return v;
+    }
 };
 
-template < typename T > cPointerSetter( T p ) -> cPointerSetter<decltype(*p)>;
+template < typename T >
+cPointerSetter( T p )->cPointerSetter< decltype( *p ) >;
 #endif

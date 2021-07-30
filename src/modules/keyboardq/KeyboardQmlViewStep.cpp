@@ -71,7 +71,7 @@ KeyboardQmlViewStep::jobs() const
 void
 KeyboardQmlViewStep::onActivate()
 {
-    m_config->onActivate();
+    m_config->guessLocaleKeyboardLayout();
 }
 
 void

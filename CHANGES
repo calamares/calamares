@@ -22,6 +22,9 @@ This release contains contributions from (alphabetically by first name):
    no further action is needed.
 
 ## Modules ##
+ - When the *keyboard* module is activated, it no longer replaces
+   an explicit user choice (e.g. for a Belgian layout) by a guessed-for-
+   this-language layout (e.g. Danish if you're installing in Danish).
  - Logic for handling installation lists has been moved around in the
    *packages* module so that package managers can, in principle,
    adjust how to handle critical and non-critical package lists.

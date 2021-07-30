@@ -95,7 +95,7 @@ KeyboardViewStep::jobs() const
 void
 KeyboardViewStep::onActivate()
 {
-    m_config->onActivate();
+    m_config->guessLocaleKeyboardLayout();
 }
 
 

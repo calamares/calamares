@@ -16,6 +16,7 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "utils/Logger.h"
+#include "utils/RAII.h"
 #include "utils/Retranslator.h"
 #include "utils/String.h"
 #include "utils/Variant.h"
@@ -168,53 +169,69 @@ Config::Config( QObject* parent )
         emit prettyStatusChanged();
     } );
 
-    connect( m_keyboardVariantsModel, &KeyboardVariantsModel::currentIndexChanged, [&]( int index ) {
-        // Set Xorg keyboard layout + variant
-        m_selectedVariant = m_keyboardVariantsModel->key( index );
+    connect( m_keyboardVariantsModel, &KeyboardVariantsModel::currentIndexChanged, this, &Config::xkbChanged );
 
-        if ( m_setxkbmapTimer.isActive() )
-        {
-            m_setxkbmapTimer.stop();
-            m_setxkbmapTimer.disconnect( this );
-        }
-
-        connect( &m_setxkbmapTimer, &QTimer::timeout, this, [=] {
-            m_additionalLayoutInfo = getAdditionalLayoutInfo( m_selectedLayout );
-
-            if ( !m_additionalLayoutInfo.additionalLayout.isEmpty() )
-            {
-                m_additionalLayoutInfo.groupSwitcher = xkbmap_query_grp_option();
-
-                if ( m_additionalLayoutInfo.groupSwitcher.isEmpty() )
-                {
-                    m_additionalLayoutInfo.groupSwitcher = "grp:alt_shift_toggle";
-                }
-
-                QProcess::execute( "setxkbmap",
-                                   xkbmap_layout_args( { m_additionalLayoutInfo.additionalLayout, m_selectedLayout },
-                                                       { m_additionalLayoutInfo.additionalVariant, m_selectedVariant },
-                                                       m_additionalLayoutInfo.groupSwitcher ) );
-
-
-                cDebug() << "xkbmap selection changed to: " << m_selectedLayout << '-' << m_selectedVariant << "(added "
-                         << m_additionalLayoutInfo.additionalLayout << "-" << m_additionalLayoutInfo.additionalVariant
-                         << " since current layout is not ASCII-capable)";
-            }
-            else
-            {
-                QProcess::execute( "setxkbmap", xkbmap_layout_args( m_selectedLayout, m_selectedVariant ) );
-                cDebug() << "xkbmap selection changed to: " << m_selectedLayout << '-' << m_selectedVariant;
-            }
-            m_setxkbmapTimer.disconnect( this );
-        } );
-        m_setxkbmapTimer.start( QApplication::keyboardInputInterval() );
-        emit prettyStatusChanged();
-    } );
+    // If the user picks something explicitly -- not a consequence of
+    // a guess -- then move to UserSelected state and stay there.
+    connect( m_keyboardModelsModel, &KeyboardModelsModel::currentIndexChanged, this, &Config::selectionChange );
+    connect( m_keyboardLayoutsModel, &KeyboardLayoutModel::currentIndexChanged, this, &Config::selectionChange );
+    connect( m_keyboardVariantsModel, &KeyboardVariantsModel::currentIndexChanged, this, &Config::selectionChange );
 
     m_selectedModel = m_keyboardModelsModel->key( m_keyboardModelsModel->currentIndex() );
     m_selectedLayout = m_keyboardLayoutsModel->item( m_keyboardLayoutsModel->currentIndex() ).first;
     m_selectedVariant = m_keyboardVariantsModel->key( m_keyboardVariantsModel->currentIndex() );
 }
+
+void
+Config::xkbChanged( int index )
+{
+    // Set Xorg keyboard layout + variant
+    m_selectedVariant = m_keyboardVariantsModel->key( index );
+
+    if ( m_setxkbmapTimer.isActive() )
+    {
+        m_setxkbmapTimer.stop();
+        m_setxkbmapTimer.disconnect( this );
+    }
+
+    connect( &m_setxkbmapTimer, &QTimer::timeout, this, &Config::xkbApply );
+
+    m_setxkbmapTimer.start( QApplication::keyboardInputInterval() );
+    emit prettyStatusChanged();
+}
+
+void
+Config::xkbApply()
+{
+    m_additionalLayoutInfo = getAdditionalLayoutInfo( m_selectedLayout );
+
+    if ( !m_additionalLayoutInfo.additionalLayout.isEmpty() )
+    {
+        m_additionalLayoutInfo.groupSwitcher = xkbmap_query_grp_option();
+
+        if ( m_additionalLayoutInfo.groupSwitcher.isEmpty() )
+        {
+            m_additionalLayoutInfo.groupSwitcher = "grp:alt_shift_toggle";
+        }
+
+        QProcess::execute( "setxkbmap",
+                           xkbmap_layout_args( { m_additionalLayoutInfo.additionalLayout, m_selectedLayout },
+                                               { m_additionalLayoutInfo.additionalVariant, m_selectedVariant },
+                                               m_additionalLayoutInfo.groupSwitcher ) );
+
+
+        cDebug() << "xkbmap selection changed to: " << m_selectedLayout << '-' << m_selectedVariant << "(added "
+                 << m_additionalLayoutInfo.additionalLayout << "-" << m_additionalLayoutInfo.additionalVariant
+                 << " since current layout is not ASCII-capable)";
+    }
+    else
+    {
+        QProcess::execute( "setxkbmap", xkbmap_layout_args( m_selectedLayout, m_selectedVariant ) );
+        cDebug() << "xkbmap selection changed to: " << m_selectedLayout << '-' << m_selectedVariant;
+    }
+    m_setxkbmapTimer.disconnect( this );
+}
+
 
 KeyboardModelsModel*
 Config::keyboardModels() const
@@ -254,6 +271,13 @@ findLayout( const KeyboardLayoutModel* klm, const QString& currentLayout )
 void
 Config::detectCurrentKeyboardLayout()
 {
+    if ( m_state != State::Initial )
+    {
+        return;
+    }
+    cPointerSetter returnToIntial( &m_state, State::Initial );
+    m_state = State::Guessing;
+
     //### Detect current keyboard layout and variant
     QString currentLayout;
     QString currentVariant;
@@ -356,22 +380,22 @@ Config::createJobs()
     return list;
 }
 
-void
-Config::guessLayout( const QStringList& langParts )
+static void
+guessLayout( const QStringList& langParts, KeyboardLayoutModel* layouts, KeyboardVariantsModel* variants )
 {
     bool foundCountryPart = false;
     for ( auto countryPart = langParts.rbegin(); !foundCountryPart && countryPart != langParts.rend(); ++countryPart )
     {
         cDebug() << Logger::SubEntry << "looking for locale part" << *countryPart;
-        for ( int i = 0; i < m_keyboardLayoutsModel->rowCount(); ++i )
+        for ( int i = 0; i < layouts->rowCount(); ++i )
         {
-            QModelIndex idx = m_keyboardLayoutsModel->index( i );
+            QModelIndex idx = layouts->index( i );
             QString name
                 = idx.isValid() ? idx.data( KeyboardLayoutModel::KeyboardLayoutKeyRole ).toString() : QString();
             if ( idx.isValid() && ( name.compare( *countryPart, Qt::CaseInsensitive ) == 0 ) )
             {
                 cDebug() << Logger::SubEntry << "matched" << name;
-                m_keyboardLayoutsModel->setCurrentIndex( i );
+                layouts->setCurrentIndex( i );
                 foundCountryPart = true;
                 break;
             }
@@ -382,14 +406,13 @@ Config::guessLayout( const QStringList& langParts )
             if ( countryPart != langParts.rend() )
             {
                 cDebug() << "Next level:" << *countryPart;
-                for ( int variantnumber = 0; variantnumber < m_keyboardVariantsModel->rowCount(); ++variantnumber )
+                for ( int variantnumber = 0; variantnumber < variants->rowCount(); ++variantnumber )
                 {
-                    if ( m_keyboardVariantsModel->key( variantnumber ).compare( *countryPart, Qt::CaseInsensitive )
-                         == 0 )
+                    if ( variants->key( variantnumber ).compare( *countryPart, Qt::CaseInsensitive ) == 0 )
                     {
-                        m_keyboardVariantsModel->setCurrentIndex( variantnumber );
+                        variants->setCurrentIndex( variantnumber );
                         cDebug() << Logger::SubEntry << "matched variant" << *countryPart << ' '
-                                 << m_keyboardVariantsModel->key( variantnumber );
+                                 << variants->key( variantnumber );
                     }
                 }
             }
@@ -398,8 +421,15 @@ Config::guessLayout( const QStringList& langParts )
 }
 
 void
-Config::onActivate()
+Config::guessLocaleKeyboardLayout()
 {
+    if ( m_state != State::Initial )
+    {
+        return;
+    }
+    cPointerSetter returnToIntial( &m_state, State::Initial );
+    m_state = State::Guessing;
+
     /* Guessing a keyboard layout based on the locale means
      * mapping between language identifiers in <lang>_<country>
      * format to keyboard mappings, which are <country>_<layout>
@@ -485,7 +515,7 @@ Config::onActivate()
         QString country = QLocale::countryToString( QLocale( lang ).country() );
         cDebug() << Logger::SubEntry << "extracted country" << country << "::" << langParts;
 
-        guessLayout( langParts );
+        guessLayout( langParts, m_keyboardLayoutsModel, m_keyboardVariantsModel );
     }
 }
 
@@ -546,4 +576,13 @@ void
 Config::retranslate()
 {
     retranslateKeyboardModels();
+}
+
+void
+Config::selectionChange()
+{
+    if ( m_state == State::Initial )
+    {
+        m_state = State::UserSelected;
+    }
 }
