@@ -34,7 +34,7 @@ DLLEXPORT QString getString( const QVariantMap& map, const QString& key, const Q
 
 /** @brief Get a string list from a mapping with a given key; returns @p d if no value.
  *
- * This is slightly more lenient that getString(), and a single-string value will
+ * This is slightly more lenient than getString(), and a single-string value will
  * be returned as a 1-item list.
  */
 DLLEXPORT QStringList getStringList( const QVariantMap& map, const QString& key, const QStringList& d = QStringList() );
