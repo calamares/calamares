@@ -203,10 +203,21 @@ Manager::checkHasInternet()
 void
 Manager::setCheckHasInternetUrl( const QUrl& url )
 {
-    if ( d->m_hasInternetUrls.empty() )
-    {
-        d->m_lastCheckedUrlIndex = -1;
-    }
+    d->m_lastCheckedUrlIndex = -1;
+    d->m_hasInternetUrls.clear();
+    d->m_hasInternetUrls.append( url );
+}
+
+void
+Manager::setCheckHasInternetUrl( const QVector< QUrl >& urls )
+{
+    d->m_lastCheckedUrlIndex = -1;
+    d->m_hasInternetUrls = urls;
+}
+
+void
+Manager::addCheckHasInternetUrl( const QUrl& url )
+{
     d->m_hasInternetUrls.append( url );
 }
 

@@ -16,6 +16,7 @@
 #include <QDebug>
 #include <QObject>
 #include <QUrl>
+#include <QVector>
 
 #include <chrono>
 #include <memory>
@@ -121,6 +122,12 @@ public:
 
     /// @brief Set the URL which is used for the general "is there internet" check.
     void setCheckHasInternetUrl( const QUrl& url );
+
+    /// @brief Adds an (extra) URL to check
+    void addCheckHasInternetUrl( const QUrl& url );
+
+    /// @brief Set a collection of URLs used for the general "is there internet" check.
+    void setCheckHasInternetUrl( const QVector< QUrl >& urls );
 
     /** @brief Do a network request asynchronously.
      *
