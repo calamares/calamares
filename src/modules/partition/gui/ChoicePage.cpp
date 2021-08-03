@@ -140,12 +140,8 @@ ChoicePage::retranslate()
     m_previewBeforeLabel->setText( tr( "Current:" ) );
     m_previewAfterLabel->setText( tr( "After:" ) );
 
-    if ( m_somethingElseButton )
-    {
-        m_somethingElseButton->setText( tr( "<strong>Manual partitioning</strong><br/>"
-                                            "You can create or resize partitions yourself." ) );
-    }
     updateSwapChoicesTr( m_eraseSwapChoiceComboBox );
+    updateChoiceButtonsTr();
 }
 
 
@@ -342,6 +338,8 @@ ChoicePage::setupChoices()
                  this,
                  &ChoicePage::onEraseSwapChoiceChanged );
     }
+
+    updateChoiceButtonsTr();
 }
 
 
@@ -1661,6 +1659,16 @@ ChoicePage::updateSwapChoicesTr( QComboBox* box )
         default:
             cWarning() << "Box item" << index << box->itemText( index ) << "has role" << value;
         }
+    }
+}
+
+void
+ChoicePage::updateChoiceButtonsTr()
+{
+    if ( m_somethingElseButton )
+    {
+        m_somethingElseButton->setText( tr( "<strong>Manual partitioning</strong><br/>"
+                                            "You can create or resize partitions yourself." ) );
     }
 }
 

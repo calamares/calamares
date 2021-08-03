@@ -125,6 +125,7 @@ private:
 
     // Translations support
     void updateSwapChoicesTr( QComboBox* box );
+    void updateChoiceButtonsTr();
 
     Config* m_config;
     bool m_nextEnabled;
