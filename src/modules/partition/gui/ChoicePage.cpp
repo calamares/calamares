@@ -339,6 +339,7 @@ ChoicePage::setupChoices()
                  &ChoicePage::onEraseSwapChoiceChanged );
     }
 
+    updateSwapChoicesTr();
     updateChoiceButtonsTr();
 }
 
