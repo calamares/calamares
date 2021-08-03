@@ -140,7 +140,7 @@ ChoicePage::retranslate()
     m_previewBeforeLabel->setText( tr( "Current:" ) );
     m_previewAfterLabel->setText( tr( "After:" ) );
 
-    updateSwapChoicesTr( m_eraseSwapChoiceComboBox );
+    updateSwapChoicesTr();
     updateChoiceButtonsTr();
 }
 
@@ -1617,47 +1617,47 @@ ChoicePage::updateNextEnabled()
 }
 
 void
-ChoicePage::updateSwapChoicesTr( QComboBox* box )
+ChoicePage::updateSwapChoicesTr()
 {
-    if ( !box )
+    if ( !m_eraseSwapChoiceComboBox )
     {
         return;
     }
 
     static_assert( SwapChoice::NoSwap == 0, "Enum values out-of-sync" );
-    for ( int index = 0; index < box->count(); ++index )
+    for ( int index = 0; index < m_eraseSwapChoiceComboBox->count(); ++index )
     {
         bool ok = false;
         int value = 0;
 
-        switch ( value = box->itemData( index ).toInt( &ok ) )
+        switch ( value = m_eraseSwapChoiceComboBox->itemData( index ).toInt( &ok ) )
         {
         // case 0:
         case SwapChoice::NoSwap:
             // toInt() returns 0 on failure, so check for ok
             if ( ok )  // It was explicitly set to 0
             {
-                box->setItemText( index, tr( "No Swap" ) );
+                m_eraseSwapChoiceComboBox->setItemText( index, tr( "No Swap" ) );
             }
             else
             {
-                cWarning() << "Box item" << index << box->itemText( index ) << "has non-integer role.";
+                cWarning() << "Box item" << index << m_eraseSwapChoiceComboBox->itemText( index ) << "has non-integer role.";
             }
             break;
         case SwapChoice::ReuseSwap:
-            box->setItemText( index, tr( "Reuse Swap" ) );
+            m_eraseSwapChoiceComboBox->setItemText( index, tr( "Reuse Swap" ) );
             break;
         case SwapChoice::SmallSwap:
-            box->setItemText( index, tr( "Swap (no Hibernate)" ) );
+            m_eraseSwapChoiceComboBox->setItemText( index, tr( "Swap (no Hibernate)" ) );
             break;
         case SwapChoice::FullSwap:
-            box->setItemText( index, tr( "Swap (with Hibernate)" ) );
+            m_eraseSwapChoiceComboBox->setItemText( index, tr( "Swap (with Hibernate)" ) );
             break;
         case SwapChoice::SwapFile:
-            box->setItemText( index, tr( "Swap to file" ) );
+            m_eraseSwapChoiceComboBox->setItemText( index, tr( "Swap to file" ) );
             break;
         default:
-            cWarning() << "Box item" << index << box->itemText( index ) << "has role" << value;
+            cWarning() << "Box item" << index << m_eraseSwapChoiceComboBox->itemText( index ) << "has role" << value;
         }
     }
 }
