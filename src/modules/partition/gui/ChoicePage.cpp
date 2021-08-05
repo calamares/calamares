@@ -140,8 +140,11 @@ ChoicePage::retranslate()
     m_previewBeforeLabel->setText( tr( "Current:" ) );
     m_previewAfterLabel->setText( tr( "After:" ) );
 
-    m_somethingElseButton->setText( tr( "<strong>Manual partitioning</strong><br/>"
-                                        "You can create or resize partitions yourself." ) );
+    if ( m_somethingElseButton )
+    {
+        m_somethingElseButton->setText( tr( "<strong>Manual partitioning</strong><br/>"
+                                            "You can create or resize partitions yourself." ) );
+    }
     updateSwapChoicesTr( m_eraseSwapChoiceComboBox );
 }
 
