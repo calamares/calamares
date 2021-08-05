@@ -52,6 +52,7 @@ calamares_add_test(
         CreateLayoutsTests.cpp
     LIBRARIES
         kpmcore
+        Calamares::calamaresui
     DEFINITIONS ${_partition_defs}
 )
 
