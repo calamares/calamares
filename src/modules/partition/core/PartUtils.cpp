@@ -447,31 +447,31 @@ isEfiSystem()
 }
 
 bool
-isEfiFilesystemSuitable(const Partition* candidate)
+isEfiFilesystemSuitable( const Partition* candidate )
 {
     auto type = candidate->fileSystem().type();
     auto size = candidate->capacity();  // bytes
 
     using CalamaresUtils::Units::operator""_MiB;
 
-    switch( type )
+    switch ( type )
     {
-        case FileSystem::Type::Fat32:
-            if ( size >= 300_MiB )
-            {
-                return true;
-            }
-            cWarning() << "FAT32 filesystem is too small (" << size << "bytes)";
-            return false;
+    case FileSystem::Type::Fat32:
+        if ( size >= 300_MiB )
+        {
+            return true;
+        }
+        cWarning() << "FAT32 filesystem is too small (" << size << "bytes)";
+        return false;
 #ifdef WITH_KPMCORE4API
-        case FileSystem::Type::Fat12:
+    case FileSystem::Type::Fat12:
 #endif
-        case FileSystem::Type::Fat16:
-            cWarning() << "FAT12 and FAT16 are probably not supported by EFI";
-            return false;
-        default:
-            cWarning() << "EFI boot partition must be FAT32";
-            return false;
+    case FileSystem::Type::Fat16:
+        cWarning() << "FAT12 and FAT16 are probably not supported by EFI";
+        return false;
+    default:
+        cWarning() << "EFI boot partition must be FAT32";
+        return false;
     }
 }
 

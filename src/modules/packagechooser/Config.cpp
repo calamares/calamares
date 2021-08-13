@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://calamares.io> ===
  *
  *   SPDX-FileCopyrightText: 2021 Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2021 Anke Boersma <demm@kaosx.us>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -99,7 +100,8 @@ Config::updateGlobalStorage( const QStringList& selected ) const
 {
     if ( m_method == PackageChooserMethod::Legacy )
     {
-        QString value = selected.join( ',' );
+        //QString value = selected.join( ',' );
+        QString value = ( m_pkgc );
         Calamares::JobQueue::instance()->globalStorage()->insert( m_id, value );
         cDebug() << m_id<< "selected" << value;
     }
@@ -116,6 +118,18 @@ Config::updateGlobalStorage( const QStringList& selected ) const
     }
 }
 
+void
+Config::setPkgc( const QString& pkgc )
+{
+    m_pkgc = pkgc;
+    emit pkgcChanged( m_pkgc );
+}
+
+QString
+Config::prettyStatus() const
+{
+    return tr( "Install option: <strong>%1</strong>" ).arg( m_pkgc );
+}
 
 static void
 fillModel( PackageListModel* model, const QVariantList& items )
@@ -183,6 +197,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
                                              PackageChooserMode::Required );
     m_method = PackageChooserMethodNames().find( CalamaresUtils::getString( configurationMap, "method" ),
                                                  PackageChooserMethod::Legacy );
+    m_pkgc = CalamaresUtils::getString( configurationMap, "pkgc" );
 
     if ( m_method == PackageChooserMethod::Legacy )
     {

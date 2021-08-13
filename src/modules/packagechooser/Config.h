@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://calamares.io> ===
  *
  *   SPDX-FileCopyrightText: 2021 Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2021 Anke Boersma <demm@kaosx.us>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -39,6 +40,9 @@ class Config : public Calamares::ModuleSystem::Config
 {
     Q_OBJECT
 
+    Q_PROPERTY( QString pkgc READ pkgc WRITE setPkgc NOTIFY pkgcChanged )
+    Q_PROPERTY( QString prettyStatus READ prettyStatus NOTIFY prettyStatusChanged FINAL )
+
 public:
     Config( QObject* parent = nullptr );
     ~Config() override;
@@ -74,6 +78,15 @@ public:
     /// As updateGlobalStorage() with an empty selection list
     void fillGSSecondaryConfiguration() const { updateGlobalStorage( QStringList() ); }
 
+    QString pkgc() const { return m_pkgc; }
+    void setPkgc( const QString& pkgc );
+
+    QString prettyStatus() const;
+
+signals:
+    void pkgcChanged( QString pkgc );
+    void prettyStatusChanged();
+
 private:
     PackageListModel* m_model = nullptr;
     QModelIndex m_defaultModelIndex;
@@ -86,6 +99,8 @@ private:
     QString m_id;
     /// Value to use for id if none is set in the config file
     Calamares::ModuleSystem::InstanceKey m_defaultId;
+    /// QML selection
+    QString m_pkgc;
 };
 
 

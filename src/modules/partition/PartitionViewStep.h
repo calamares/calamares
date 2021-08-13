@@ -43,6 +43,7 @@ public:
     ~PartitionViewStep() override;
 
     QString prettyName() const override;
+    QString prettyStatus() const override;
     QWidget* createSummaryWidget() const override;
 
     QWidget* widget() override;

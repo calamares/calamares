@@ -1,34 +1,32 @@
 /* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   SPDX-FileCopyrightText: 2014-2015 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2020, Camilo Higuita <milo.h@aol.com>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
  *
  */
 
-#ifndef SUMMARYPAGEPLUGIN_H
-#define SUMMARYPAGEPLUGIN_H
+#ifndef SUMMARYQMLVIEWSTEP_H
+#define SUMMARYQMLVIEWSTEP_H
 
 #include "Config.h"
 
 #include "DllMacro.h"
 #include "utils/PluginFactory.h"
-#include "viewpages/ViewStep.h"
+#include "viewpages/QmlViewStep.h"
 
-class SummaryPage;
-
-class PLUGINDLLEXPORT SummaryViewStep : public Calamares::ViewStep
+class PLUGINDLLEXPORT SummaryQmlViewStep : public Calamares::QmlViewStep
 {
     Q_OBJECT
 
 public:
-    explicit SummaryViewStep( QObject* parent = nullptr );
-    ~SummaryViewStep() override;
+    explicit SummaryQmlViewStep( QObject* parent = nullptr );
+    virtual ~SummaryQmlViewStep() override;
 
     QString prettyName() const override;
 
-    QWidget* widget() override;
 
     bool isNextEnabled() const override;
     bool isBackEnabled() const override;
@@ -39,13 +37,13 @@ public:
     Calamares::JobList jobs() const override;
 
     void onActivate() override;
-    void onLeave() override;
+
+    QObject* getConfig() override { return m_config; }
 
 private:
-    Config* m_config = nullptr;
-    SummaryPage* m_widget = nullptr;
+    Config* m_config;
 };
 
-CALAMARES_PLUGIN_FACTORY_DECLARATION( SummaryViewStepFactory )
+CALAMARES_PLUGIN_FACTORY_DECLARATION( SummaryQmlViewStepFactory )
 
-#endif  // SUMMARYPAGEPLUGIN_H
+#endif  // SUMMARYQMLVIEWSTEP_H
