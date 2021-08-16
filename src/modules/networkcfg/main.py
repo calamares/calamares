@@ -15,7 +15,6 @@
 
 import os
 import shutil
-import getpass
 
 import libcalamares
 
@@ -36,7 +35,7 @@ def run():
     """
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
     user = libcalamares.globalstorage.value("username")
-    live_user = getpass.getuser()
+    live_user = os.getlogin()
 
     if root_mount_point is None:
         libcalamares.utils.warning("rootMountPoint is empty, {!s}".format(root_mount_point))
