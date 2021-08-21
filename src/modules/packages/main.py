@@ -374,7 +374,7 @@ class PMPacman(PackageManager):
         if from_local:
             pacman_flags = "-U"
         else:
-            pacman_flags = "-S"
+            pacman_flags = "-S --needed"
 
         check_target_env_call(["pacman", pacman_flags,
                                "--noconfirm"] + pkgs)
@@ -388,6 +388,47 @@ class PMPacman(PackageManager):
     def update_system(self):
         check_target_env_call(["pacman", "-Su", "--noconfirm"])
 
+class PMYay(PackageManager):
+    backend = "yay"
+
+    def install(self, pkgs, from_local=False):
+        if from_local:
+            yay_flags = "-U"
+        else:
+            yay_flags = "-S --needed"
+
+        check_target_env_call(["yay", yay_flags,
+                               "--noconfirm"] + pkgs)
+
+    def remove(self, pkgs):
+        check_target_env_call(["yay", "-Rs", "--noconfirm"] + pkgs)
+
+    def update_db(self):
+        check_target_env_call(["yay", "-Sy"])
+
+    def update_system(self):
+        check_target_env_call(["yay", "-Su", "--noconfirm"])
+
+class PMParu(PackageManager):
+    backend = "paru"
+
+    def install(self, pkgs, from_local=False):
+        if from_local:
+            paru_flags = "-U"
+        else:
+            paru_flags = "-S --needed"
+
+        check_target_env_call(["paru", paru_flags,
+                               "--noconfirm"] + pkgs)
+
+    def remove(self, pkgs):
+        check_target_env_call(["paru", "-Rs", "--noconfirm"] + pkgs)
+
+    def update_db(self):
+        check_target_env_call(["paru", "-Sy"])
+
+    def update_system(self):
+        check_target_env_call(["paru", "-Su", "--noconfirm"])
 
 class PMPamac(PackageManager):
     backend = "pamac"
