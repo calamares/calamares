@@ -56,6 +56,7 @@ calamares_add_plugin( conditionalpackagechooserq
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
+        Config.cpp 
         PackageChooserQmlViewStep.cpp
         # ${_packagechooser}/Config.cpp
         ${_packagechooser}/PackageModel.cpp

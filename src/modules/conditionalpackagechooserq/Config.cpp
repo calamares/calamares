@@ -99,9 +99,9 @@ void
 Config::updateGlobalStorage( const QStringList& selected ) const
 {
 
-    QString conditionName = m_model -> outputConditionName( );
+    QString conditionName = m_outputConditionName;
     QStringList packageNames = m_model->getInstallPackagesForNames( selected );
-    GlobalStorage::insert( conditionName, packageNames )
+    Calamares::JobQueue::instance()->globalStorage()->insert( conditionName, packageNames );
 
     if ( m_method == PackageChooserMethod::Legacy )
     {
