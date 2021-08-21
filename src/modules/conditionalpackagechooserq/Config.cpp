@@ -119,7 +119,7 @@ Config::updateGlobalStorage( const QStringList& selected ) const
     }
     else
     {
-        cWarning() << "Unknown conditionalpackagechooser method" << smash( m_method );
+        cWarning() << "Unknown packagechooser method" << smash( m_method );
     }
 }
 
@@ -141,7 +141,7 @@ fillModel( PackageListModel* model, const QVariantList& items )
 {
     if ( items.isEmpty() )
     {
-        cWarning() << "No *items* for ConditionalPackageChooser module.";
+        cWarning() << "No *items* for PackageChooser module.";
         return;
     }
 
@@ -150,7 +150,7 @@ fillModel( PackageListModel* model, const QVariantList& items )
     bool poolOk = false;
 #endif
 
-    cDebug() << "Loading ConditionalPackageChooser model items from config";
+    cDebug() << "Loading PackageChooser model items from config";
     int item_index = 0;
     for ( const auto& item_it : items )
     {
@@ -158,7 +158,7 @@ fillModel( PackageListModel* model, const QVariantList& items )
         QVariantMap item_map = item_it.toMap();
         if ( item_map.isEmpty() )
         {
-            cWarning() << "ConditionalPackageChooser entry" << item_index << "is not valid.";
+            cWarning() << "PackageChooser entry" << item_index << "is not valid.";
             continue;
         }
 
@@ -192,7 +192,7 @@ fillModel( PackageListModel* model, const QVariantList& items )
             model->addPackage( PackageItem( item_map ) );
         }
     }
-    cDebug() << Logger::SubEntry << "Loaded ConditionalPackageChooser with" << model->packageCount() << "entries.";
+    cDebug() << Logger::SubEntry << "Loaded PackageChooser with" << model->packageCount() << "entries.";
 }
 
 void
@@ -203,13 +203,12 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     m_method = PackageChooserMethodNames().find( CalamaresUtils::getString( configurationMap, "method" ),
                                                  PackageChooserMethod::Legacy );
     m_pkgc = CalamaresUtils::getString( configurationMap, "pkgc" );
-
     m_outputConditionName = CalamaresUtils::getString( configurationMap, "outputconditionname" );
 
     if ( m_method == PackageChooserMethod::Legacy )
     {
         const QString configId = CalamaresUtils::getString( configurationMap, "id" );
-        const QString base = QStringLiteral( "conditionalpackagechooser_" );
+        const QString base = QStringLiteral( "packagechooser_" );
         if ( configId.isEmpty() )
         {
             if ( m_defaultId.id().isEmpty() )

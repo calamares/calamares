@@ -61,7 +61,7 @@ public:
     PackageListModel* model() const { return m_model; }
     QModelIndex defaultSelectionIndex() const { return m_defaultModelIndex; }
 
-    /** @brief Returns an "introductory package" which describes conditionalpackagechooser
+    /** @brief Returns an "introductory package" which describes packagechooser
      *
      * If the model contains a "none" package, returns that one on
      * the assumption that it is one to describe the whole; otherwise
@@ -71,7 +71,7 @@ public:
 
     /** @brief Write selection to global storage
      *
-     * Updates the GS keys for this conditionalpackagechooser, marking all
+     * Updates the GS keys for this packagechooser, marking all
      * (and only) the packages in @p selected as selected.
      */
     void updateGlobalStorage( const QStringList& selected ) const;
@@ -81,7 +81,7 @@ public:
     QString pkgc() const { return m_pkgc; }
     void setPkgc( const QString& pkgc );
 
-    Qstring outputConditionName() const { return m_outputConditionName; }
+    QString outputConditionName() const { return m_outputConditionName; }
 
     QString prettyStatus() const;
 
@@ -103,8 +103,8 @@ private:
     Calamares::ModuleSystem::InstanceKey m_defaultId;
     /// QML selection
     QString m_pkgc;
-    /// Output condition's name 
-    QString m_outputConditionName = "Packages Chosen";
+    /// Name of the output condition
+    QString m_outputConditionName;
 };
 
 
