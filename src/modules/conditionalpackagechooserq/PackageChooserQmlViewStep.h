@@ -51,6 +51,7 @@ public:
 
 private:
     Config* m_config;
+    CalamaresUtils::Locale::TranslatedString* m_stepName;  // As it appears in the sidebar
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( PackageChooserQmlViewStepFactory )

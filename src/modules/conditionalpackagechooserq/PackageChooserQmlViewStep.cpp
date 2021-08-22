@@ -23,6 +23,7 @@ CALAMARES_PLUGIN_FACTORY_DEFINITION( PackageChooserQmlViewStepFactory, registerP
 PackageChooserQmlViewStep::PackageChooserQmlViewStep( QObject* parent )
     : Calamares::QmlViewStep( parent )
     , m_config( new Config( this ) )
+    , m_stepName( nullptr )
 {
     emit nextStatusChanged( true );
 }
@@ -30,7 +31,7 @@ PackageChooserQmlViewStep::PackageChooserQmlViewStep( QObject* parent )
 QString
 PackageChooserQmlViewStep::prettyName() const
 {
-    return tr( "Packages" );
+    return m_stepName ? m_stepName->get() : tr( "Packages" )
 }
 
 QString
@@ -83,5 +84,16 @@ PackageChooserQmlViewStep::setConfigurationMap( const QVariantMap& configuration
 {
     m_config->setDefaultId( moduleInstanceKey() );
     m_config->setConfigurationMap( configurationMap );
+
+    bool labels_ok = false;
+    auto labels = CalamaresUtils::getSubMap( configurationMap, "labels", labels_ok );
+    if ( labels_ok )
+    {
+        if ( labels.contains( "step" ) )
+        {
+            m_stepName = new CalamaresUtils::Locale::TranslatedString( labels, "step" );
+        }
+    }
+
     Calamares::QmlViewStep::setConfigurationMap( configurationMap );  // call parent implementation last
 }
