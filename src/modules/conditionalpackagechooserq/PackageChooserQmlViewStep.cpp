@@ -31,7 +31,7 @@ PackageChooserQmlViewStep::PackageChooserQmlViewStep( QObject* parent )
 QString
 PackageChooserQmlViewStep::prettyName() const
 {
-    return m_stepName ? m_stepName->get() : tr( "Packages" )
+    return m_stepName ? m_stepName->get() : tr( "Packages" );
 }
 
 QString
