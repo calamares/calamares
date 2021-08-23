@@ -10,13 +10,15 @@ website will have to do for older versions.
 # 3.2.42 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - Anke Boersma
 
 ## Core ##
  - No core changes yet
 
 ## Modules ##
- - No module changes yet
+ - *networkcfg* now translates the "live user" on an ISO to the regular
+   user on the installed system, so that network configuration changes
+   made in the live system are automatically used after installation.
 
 
 # 3.2.41.1 (2021-08-05) #
