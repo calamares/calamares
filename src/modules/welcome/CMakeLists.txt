@@ -42,3 +42,13 @@ calamares_add_plugin( welcome
         Qt5::Network
     SHARED_LIB
 )
+
+calamares_add_test(
+    welcometest
+    SOURCES
+        Config.cpp
+        Tests.cpp
+    LIBRARIES
+        Qt5::Widgets
+        Calamares::calamaresui
+)
