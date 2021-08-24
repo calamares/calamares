@@ -152,8 +152,6 @@ Config::initLanguages()
     {
         QString name = m_languages->locale( matchedLocaleIndex ).name();
         cDebug() << Logger::SubEntry << "Matched with index" << matchedLocaleIndex << name;
-
-        CalamaresUtils::installTranslator( name, Calamares::Branding::instance()->translationsDirectory() );
         setLocaleIndex( matchedLocaleIndex );
     }
     else
@@ -192,7 +190,8 @@ Config::setLocaleIndex( int index )
     cDebug() << "Index" << index << "Selected locale" << selectedLocale;
 
     QLocale::setDefault( selectedLocale );
-    CalamaresUtils::installTranslator( selectedLocale, Calamares::Branding::instance()->translationsDirectory() );
+    const auto* branding = Calamares::Branding::instance();
+    CalamaresUtils::installTranslator( selectedLocale, branding ? branding->translationsDirectory() : QString() );
     if ( Calamares::JobQueue::instance() && Calamares::JobQueue::instance()->globalStorage() )
     {
         CalamaresUtils::Locale::insertGS( *Calamares::JobQueue::instance()->globalStorage(),
