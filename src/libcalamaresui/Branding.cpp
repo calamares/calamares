@@ -49,6 +49,10 @@ Branding* Branding::s_instance = nullptr;
 Branding*
 Branding::instance()
 {
+    if ( !s_instance )
+    {
+        cWarning() << "No Branding instance created yet.";
+    }
     return s_instance;
 }
 
