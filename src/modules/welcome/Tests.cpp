@@ -9,6 +9,9 @@
 
 #include "Config.h"
 
+#include "Branding.h"
+#include "Settings.h"
+#include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 #include "utils/Yaml.h"
 
@@ -34,6 +37,17 @@ WelcomeTests::initTestCase()
 {
     Logger::setupLogLevel( Logger::LOGDEBUG );
     cDebug() << "Welcome test started.";
+
+    // Ensure we have a system object, expect it to be a "bogus" one
+    CalamaresUtils::System* system = CalamaresUtils::System::instance();
+    QVERIFY( system );
+    cDebug() << Logger::SubEntry << "System @" << Logger::Pointer( system );
+
+    const auto* settings = Calamares::Settings::instance();
+    if ( !settings )
+    {
+        (void)new Calamares::Settings( true );
+    }
 }
 
 void
