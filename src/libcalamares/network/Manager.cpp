@@ -20,6 +20,8 @@
 #include <QThread>
 #include <QTimer>
 
+#include <algorithm>
+
 namespace CalamaresUtils
 {
 namespace Network
@@ -205,7 +207,10 @@ Manager::setCheckHasInternetUrl( const QUrl& url )
 {
     d->m_lastCheckedUrlIndex = -1;
     d->m_hasInternetUrls.clear();
-    d->m_hasInternetUrls.append( url );
+    if ( url.isValid() )
+    {
+        d->m_hasInternetUrls.append( url );
+    }
 }
 
 void
@@ -213,12 +218,17 @@ Manager::setCheckHasInternetUrl( const QVector< QUrl >& urls )
 {
     d->m_lastCheckedUrlIndex = -1;
     d->m_hasInternetUrls = urls;
+    std::remove_if(
+        d->m_hasInternetUrls.begin(), d->m_hasInternetUrls.end(), []( const QUrl& u ) { return u.isValid(); } );
 }
 
 void
 Manager::addCheckHasInternetUrl( const QUrl& url )
 {
-    d->m_hasInternetUrls.append( url );
+    if ( url.isValid() )
+    {
+        d->m_hasInternetUrls.append( url );
+    }
 }
 
 /** @brief Does a request asynchronously, returns the (pending) reply
