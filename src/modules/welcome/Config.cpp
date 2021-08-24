@@ -40,14 +40,16 @@ Config::retranslate()
 {
     cWarning() << "Retranslated to" << QLocale().name();
 
-    m_genericWelcomeMessage = genericWelcomeMessage().arg( Calamares::Branding::instance()->versionedName() );
+    const auto* branding = Calamares::Branding::instance();
+    const auto* settings = Calamares::Settings::instance();
+    m_genericWelcomeMessage = genericWelcomeMessage().arg( branding ? branding->versionedName() : QString() );
     emit genericWelcomeMessageChanged( m_genericWelcomeMessage );
 
     const auto* r = requirementsModel();
-    if ( !r->satisfiedRequirements() )
+    if ( r && !r->satisfiedRequirements() )
     {
         QString message;
-        const bool setup = Calamares::Settings::instance()->isSetupMode();
+        const bool setup = settings ? settings->isSetupMode() : false;
 
         if ( !r->satisfiedMandatory() )
         {
@@ -72,13 +74,13 @@ Config::retranslate()
                                   "might be disabled." );
         }
 
-        m_warningMessage = message.arg( Calamares::Branding::instance()->shortVersionedName() );
+        m_warningMessage = message.arg( branding ? branding->shortVersionedName() : QString() );
     }
     else
     {
         m_warningMessage = tr( "This program will ask you some questions and "
                                "set up %2 on your computer." )
-                               .arg( Calamares::Branding::instance()->productName() );
+                               .arg( branding ? branding->productName() : QString() );
     }
 
     emit warningMessageChanged( m_warningMessage );
@@ -93,7 +95,8 @@ Config::languagesModel() const
 Calamares::RequirementsModel*
 Config::requirementsModel() const
 {
-    return Calamares::ModuleManager::instance()->requirementsModel();
+    auto* manager = Calamares::ModuleManager::instance();
+    return manager ? manager->requirementsModel() : nullptr;
 }
 
 QAbstractItemModel*
@@ -241,17 +244,19 @@ Config::genericWelcomeMessage() const
 {
     QString message;
 
-    if ( Calamares::Settings::instance()->isSetupMode() )
+    const auto* settings = Calamares::Settings::instance();
+    const auto* branding = Calamares::Branding::instance();
+    const bool welcomeStyle = branding ? branding->welcomeStyleCalamares() : true;
+
+    if ( settings ? settings->isSetupMode() : false )
     {
-        message = Calamares::Branding::instance()->welcomeStyleCalamares()
-            ? tr( "<h1>Welcome to the Calamares setup program for %1</h1>" )
-            : tr( "<h1>Welcome to %1 setup</h1>" );
+        message = welcomeStyle ? tr( "<h1>Welcome to the Calamares setup program for %1</h1>" )
+                               : tr( "<h1>Welcome to %1 setup</h1>" );
     }
     else
     {
-        message = Calamares::Branding::instance()->welcomeStyleCalamares()
-            ? tr( "<h1>Welcome to the Calamares installer for %1</h1>" )
-            : tr( "<h1>Welcome to the %1 installer</h1>" );
+        message = welcomeStyle ? tr( "<h1>Welcome to the Calamares installer for %1</h1>" )
+                               : tr( "<h1>Welcome to the %1 installer</h1>" );
     }
 
     return message;
