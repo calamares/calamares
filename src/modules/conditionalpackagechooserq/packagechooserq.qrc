@@ -1,0 +1,7 @@
+<RCC>
+    <qresource>
+        <file>conditionalpackagechooserq.qml</file>
+        <file>images/desktops/gnome.png</file>
+        <file>images/desktops/plasma.png</file>
+    </qresource>
+</RCC>
