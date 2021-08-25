@@ -67,7 +67,7 @@ Config::Config( QObject* parent )
     , m_entryIds( QStringList() )
     , m_entryNames( QStringList() )
     , m_entryDescriptions( QStringList() )
-    , m_entryScreenshots( QVector<QPixmap>() )
+    , m_entryScreenshots( QVector<QString>() )
     , m_entryPackages( QVector<QStringList>() )
 {
 }
