@@ -43,6 +43,7 @@ class Config : public Calamares::ModuleSystem::Config
     Q_PROPERTY( QString pkgc READ pkgc WRITE setPkgc NOTIFY pkgcChanged )
     Q_PROPERTY( QString prettyStatus READ prettyStatus NOTIFY prettyStatusChanged FINAL )
 
+    Q_PROPERTY( QStringList entryIds MEMBER m_entryIds)
     Q_PROPERTY( QStringList entryNames MEMBER m_entryNames)
     Q_PROPERTY( QStringList entryDescriptions MEMBER m_entryDescriptions)
     // Q_PROPERTY( QList<QPixmap> entryScreenshots MEMBER m_entryScreenshots)
@@ -91,6 +92,7 @@ public:
     Q_INVOKABLE void addSelection(const QString& selection);
     Q_INVOKABLE void removeSelection(const QString& selection);
 
+    QStringList m_entryIds;
     QStringList m_entryNames;
     QStringList m_entryDescriptions;
     QList<QPixmap> m_entryScreenshots;

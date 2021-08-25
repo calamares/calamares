@@ -64,6 +64,7 @@ Config::Config( QObject* parent )
     , m_model( new PackageListModel( this ) )
     , m_mode( PackageChooserMode::Required )
     , m_selections( QStringList() )
+    , m_entryIds( QStringList() )
     , m_entryNames( QStringList() )
     , m_entryDescriptions( QStringList() )
     , m_entryScreenshots( QList<QPixmap>() )
@@ -115,6 +116,7 @@ Config::updateGlobalStorage() const
     }
     else if ( m_method == PackageChooserMethod::Packages )
     {
+        cDebug() << "m_selections: " << m_selections;
         QStringList packageNames = m_model->getInstallPackagesForNames( m_selections );
         cDebug() << m_defaultId << "packages to install" << packageNames;
         CalamaresUtils::Packages::setGSPackageAdditions(
@@ -256,12 +258,14 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     PackageItem entryData;
     for(int i=0; i< m_model-> packageCount(); i++) {
         entryData = m_model -> packageData(i);
+        m_entryIds.append(entryData.id);  
         m_entryNames.append(entryData.name.get());    
         m_entryDescriptions.append(entryData.description.get());
         m_entryScreenshots.append(entryData.screenshot);
         m_entryPackages.append(entryData.packageNames);
     }
 
+    cDebug() << "entryIds: " << m_entryIds;
     cDebug() << "entryNames: " << m_entryNames;
     cDebug() << "entryDescriptions: " << m_entryDescriptions;
     // cDebug() << "entryScreenshots: " << m_entryScreenshots;
