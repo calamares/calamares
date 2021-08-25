@@ -45,8 +45,8 @@ class Config : public Calamares::ModuleSystem::Config
 
     Q_PROPERTY( QStringList entryNames MEMBER m_entryNames)
     Q_PROPERTY( QStringList entryDescriptions MEMBER m_entryDescriptions)
-    Q_PROPERTY( QStringList entryScreenshots MEMBER m_entryScreenshots)
-    Q_PROPERTY( QStringList entryPackages MEMBER m_entryPackages)
+    Q_PROPERTY( QList<QPixmap> entryScreenshots MEMBER m_entryScreenshots)
+    Q_PROPERTY( QList<QStringList> entryPackages MEMBER m_entryPackages)
 
 public:
     Config( QObject* parent = nullptr );
