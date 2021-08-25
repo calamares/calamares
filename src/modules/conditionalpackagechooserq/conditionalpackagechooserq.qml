@@ -49,7 +49,7 @@ Item {
                     }
 
                     Switch {
-                        id: config.entryIds[index] + "_switch"
+                        id: switch
                         x: 500
                         y: 110
                         width: 187
@@ -62,183 +62,183 @@ Item {
                             implicitWidth: 40
                             implicitHeight: 14
                             radius: 10
-                            color: repeater.itemAt[index].checked ? "#3498db" : "#B9B9B9"
-                            border.color: gnome_switch.checked ? "#3498db" : "#cccccc"
+                            color: switch.checked ? "#3498db" : "#B9B9B9"
+                            border.color: switch.checked ? "#3498db" : "#cccccc"
 
                             Rectangle {
-                                x: gnome_switch.checked ? parent.width - width : 0
+                                x: switch.checked ? parent.width - width : 0
                                 y: (parent.height - height) / 2
                                 width: 20
                                 height: 20
                                 radius: 10
-                                color: gnome_switch.down ? "#cccccc" : "#ffffff"
-                                border.color: gnome_switch.checked ? (gnome_switch.down ? "#3498db" : "#3498db") : "#999999"
+                                color: switch.down ? "#cccccc" : "#ffffff"
+                                border.color: switch.checked ? (switch.down ? "#3498db" : "#3498db") : "#999999"
                             }
                         }
 
                         onCheckedChanged: {
                             if ( checked ) {
-                                config.addSelection("gnome")
+                                config.addSelection(config.entryIds[index])
                             } else {
-                                config.removeSelection("gnome")
+                                config.removeSelection(config.entryIds[index])
                             }
                         }
                     }
 
                     Image {
-                        id: gnome_image
+                        // id: gnome_image
                         x: 8
                         y: 25
                         height: 100
                         fillMode: Image.PreserveAspectFit
-                        source: "images/desktops/gnome.png"
+                        source: ":/images/desktops/" + config.entryIds[index] + ".png"
                     }
                 }
             }
 
-            Rectangle {
-                id: gnome_rectangle
-                width: 700
-                height: 150
-                color: "#ffffff"
-                radius: 10
-                border.width: 0
-                Text {
-                    width: 450
-                    height: 104
-                    anchors.centerIn: parent
-                    text: qsTr("GNOME (GNU Network Object Model Environment, pronounced gah-NOHM) is a graphical user interface (GUI) and set of computer desktop applications for users of the Linux operating system")
-                    font.pointSize: 10
-                    anchors.verticalCenterOffset: -10
-                    anchors.horizontalCenterOffset: 100
-                    wrapMode: Text.WordWrap
-                }
+            // Rectangle {
+            //     id: gnome_rectangle
+            //     width: 700
+            //     height: 150
+            //     color: "#ffffff"
+            //     radius: 10
+            //     border.width: 0
+            //     Text {
+            //         width: 450
+            //         height: 104
+            //         anchors.centerIn: parent
+            //         text: qsTr("GNOME (GNU Network Object Model Environment, pronounced gah-NOHM) is a graphical user interface (GUI) and set of computer desktop applications for users of the Linux operating system")
+            //         font.pointSize: 10
+            //         anchors.verticalCenterOffset: -10
+            //         anchors.horizontalCenterOffset: 100
+            //         wrapMode: Text.WordWrap
+            //     }
 
-                Switch {
-                    id: gnome_switch
-                    x: 500
-                    y: 110
-                    width: 187
-                    height: 14
-                    text: qsTr("Gnome")
-                    checked: true
-                    hoverEnabled: true
+            //     Switch {
+            //         id: gnome_switch
+            //         x: 500
+            //         y: 110
+            //         width: 187
+            //         height: 14
+            //         text: qsTr("Gnome")
+            //         checked: true
+            //         hoverEnabled: true
 
-                    indicator: Rectangle {
-                        implicitWidth: 40
-                        implicitHeight: 14
-                        radius: 10
-                        color: gnome_switch.checked ? "#3498db" : "#B9B9B9"
-                        border.color: gnome_switch.checked ? "#3498db" : "#cccccc"
+            //         indicator: Rectangle {
+            //             implicitWidth: 40
+            //             implicitHeight: 14
+            //             radius: 10
+            //             color: gnome_switch.checked ? "#3498db" : "#B9B9B9"
+            //             border.color: gnome_switch.checked ? "#3498db" : "#cccccc"
 
-                        Rectangle {
-                            x: gnome_switch.checked ? parent.width - width : 0
-                            y: (parent.height - height) / 2
-                            width: 20
-                            height: 20
-                            radius: 10
-                            color: gnome_switch.down ? "#cccccc" : "#ffffff"
-                            border.color: gnome_switch.checked ? (gnome_switch.down ? "#3498db" : "#3498db") : "#999999"
-                        }
-                    }
+            //             Rectangle {
+            //                 x: gnome_switch.checked ? parent.width - width : 0
+            //                 y: (parent.height - height) / 2
+            //                 width: 20
+            //                 height: 20
+            //                 radius: 10
+            //                 color: gnome_switch.down ? "#cccccc" : "#ffffff"
+            //                 border.color: gnome_switch.checked ? (gnome_switch.down ? "#3498db" : "#3498db") : "#999999"
+            //             }
+            //         }
 
-                    onCheckedChanged: {
-                        if ( checked ) {
-                            config.addSelection("gnome")
-                        } else {
-                            config.removeSelection("gnome")
-                        }
-                    }
-                }
+            //         onCheckedChanged: {
+            //             if ( checked ) {
+            //                 config.addSelection("gnome")
+            //             } else {
+            //                 config.removeSelection("gnome")
+            //             }
+            //         }
+            //     }
 
-                Image {
-                    id: gnome_image
-                    x: 8
-                    y: 25
-                    height: 100
-                    fillMode: Image.PreserveAspectFit
-                    source: "images/desktops/gnome.png"
-                }
-            }
+            //     Image {
+            //         id: gnome_image
+            //         x: 8
+            //         y: 25
+            //         height: 100
+            //         fillMode: Image.PreserveAspectFit
+            //         source: "images/desktops/gnome.png"
+            //     }
+            // }
 
-            Rectangle {
-                id: plasma_rectangle
-                width: 700
-                height: 150
-                color: "#ffffff"
-                radius: 10
-                border.width: 0
-                Text {
-                    width: 450
-                    height: 104
-                    anchors.centerIn: parent
-                    text: qsTr("KDE Plasma a graphical workspaces environment created by KDE primarily for Linux systems. The graphical interface was fully migrated to QML, which uses OpenGL for hardware acceleration, which resulted in better performance and reduced power consumption.")
-                    font.pointSize: 10
-                    anchors.verticalCenterOffset: -10
-                    anchors.horizontalCenterOffset: 100
-                    wrapMode: Text.WordWrap
-                }
+            // Rectangle {
+            //     id: plasma_rectangle
+            //     width: 700
+            //     height: 150
+            //     color: "#ffffff"
+            //     radius: 10
+            //     border.width: 0
+            //     Text {
+            //         width: 450
+            //         height: 104
+            //         anchors.centerIn: parent
+            //         text: qsTr("KDE Plasma a graphical workspaces environment created by KDE primarily for Linux systems. The graphical interface was fully migrated to QML, which uses OpenGL for hardware acceleration, which resulted in better performance and reduced power consumption.")
+            //         font.pointSize: 10
+            //         anchors.verticalCenterOffset: -10
+            //         anchors.horizontalCenterOffset: 100
+            //         wrapMode: Text.WordWrap
+            //     }
 
-                Switch {
-                    id: plasma_switch
-                    x: 500
-                    y: 110
-                    width: 187
-                    height: 14
-                    text: qsTr("Plasma")
-                    checked: false
-                    hoverEnabled: true
+            //     Switch {
+            //         id: plasma_switch
+            //         x: 500
+            //         y: 110
+            //         width: 187
+            //         height: 14
+            //         text: qsTr("Plasma")
+            //         checked: false
+            //         hoverEnabled: true
 
-                    indicator: Rectangle {
-                        implicitWidth: 40
-                        implicitHeight: 14
-                        radius: 10
-                        color: plasma_switch.checked ? "#3498db" : "#B9B9B9"
-                        border.color: plasma_switch.checked ? "#3498db" : "#cccccc"
+            //         indicator: Rectangle {
+            //             implicitWidth: 40
+            //             implicitHeight: 14
+            //             radius: 10
+            //             color: plasma_switch.checked ? "#3498db" : "#B9B9B9"
+            //             border.color: plasma_switch.checked ? "#3498db" : "#cccccc"
 
-                        Rectangle {
-                            x: plasma_switch.checked ? parent.width - width : 0
-                            y: (parent.height - height) / 2
-                            width: 20
-                            height: 20
-                            radius: 10
-                            color: plasma_switch.down ? "#cccccc" : "#ffffff"
-                            border.color: plasma_switch.checked ? (plasma_switch.down ? "#3498db" : "#3498db") : "#999999"
-                        }
-                    }
+            //             Rectangle {
+            //                 x: plasma_switch.checked ? parent.width - width : 0
+            //                 y: (parent.height - height) / 2
+            //                 width: 20
+            //                 height: 20
+            //                 radius: 10
+            //                 color: plasma_switch.down ? "#cccccc" : "#ffffff"
+            //                 border.color: plasma_switch.checked ? (plasma_switch.down ? "#3498db" : "#3498db") : "#999999"
+            //             }
+            //         }
 
-                    onCheckedChanged: {
-                        if ( checked ) {
-                            config.addSelection("plasma")
-                        } else {
-                            config.removeSelection("plasma")
-                        }
-                    }
-                }
+            //         onCheckedChanged: {
+            //             if ( checked ) {
+            //                 config.addSelection("plasma")
+            //             } else {
+            //                 config.removeSelection("plasma")
+            //             }
+            //         }
+            //     }
 
-                Image {
-                    id: plasma_image
-                    x: 8
-                    y: 25
-                    height: 100
-                    fillMode: Image.PreserveAspectFit
-                    source: "images/desktops/plasma.png"
-                }
-            }
+            //     Image {
+            //         id: plasma_image
+            //         x: 8
+            //         y: 25
+            //         height: 100
+            //         fillMode: Image.PreserveAspectFit
+            //         source: "images/desktops/plasma.png"
+            //     }
+            // }
 
-            Rectangle {
-                width: 700
-                height: 25
-                color: "#f2f2f2"
-                border.width: 0
-                Text {
-                    height: 25
-                    anchors.centerIn: parent
-                    text: qsTr("Please select a desktop environment to install. Not selecting one will give you a text console with no graphics.")
-                    font.pointSize: 10
-                    wrapMode: Text.WordWrap
-                }
-            }
+            // Rectangle {
+            //     width: 700
+            //     height: 25
+            //     color: "#f2f2f2"
+            //     border.width: 0
+            //     Text {
+            //         height: 25
+            //         anchors.centerIn: parent
+            //         text: qsTr("Please select a desktop environment to install. Not selecting one will give you a text console with no graphics.")
+            //         font.pointSize: 10
+            //         wrapMode: Text.WordWrap
+            //     }
+            // }
         }
     }
 
