@@ -83,9 +83,9 @@ public:
 
     QString prettyStatus() const;
 
-    void addSelection(const QString& selection);
+    Q_INVOKABLE void addSelection(const QString& selection);
 
-    void removeSelection(const QString& selection);
+    Q_INVOKABLE void removeSelection(const QString& selection);
 
 signals:
     void pkgcChanged( QString pkgc );
