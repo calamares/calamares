@@ -66,8 +66,8 @@ Config::Config( QObject* parent )
     , m_selections( QStringList() )
     , m_entryNames( QStringList() )
     , m_entryDescriptions( QStringList() )
-    , m_entryScreenshots( QStringList() )
-    , m_entryPackages( QStringList() )
+    , m_entryScreenshots( QList<QPixmap>() )
+    , m_entryPackages( QList<QStringList>() )
 {
 }
 
