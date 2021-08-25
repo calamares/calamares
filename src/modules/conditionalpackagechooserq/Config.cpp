@@ -104,8 +104,7 @@ void
 Config::updateGlobalStorage() const
 {
 
-    QString conditionName = m_outputConditionName;
-    Calamares::JobQueue::instance()->globalStorage()->insert( conditionName, m_selections );
+    Calamares::JobQueue::instance()->globalStorage()->insert( m_outputConditionName, m_selections );
 
     if ( m_method == PackageChooserMethod::Legacy )
     {
@@ -255,18 +254,19 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     }
 
     PackageItem entryData;
-    for(int i=0; i< m_model-> packageCount; i++) {
+    for(int i=0; i< m_model-> packageCount(); i++) {
         entryData = m_model -> packageData(i);
-        entryNames.append(entryData.name.get());    
-        entryDescriptions.append(entryData.description.get());
-        entryScreenshots.append(entryData.screenshot);
-        entryPackages.append(entryData.packageNames);
+        m_entryNames.append(entryData.name.get());    
+        m_entryDescriptions.append(entryData.description.get());
+        m_entryScreenshots.append(entryData.screenshot);
+        m_entryPackages.append(entryData.packageNames);
     }
 
-    cDebug() << "entryNames: " << entryNames;
-    cDebug() << "entryDescriptions: " << entryDescriptions;
-    // cDebug() << "entryScreenshots: " << entryScreenshots;
-    cDebug() << "entryPackages: " << entryPackages;
+    cDebug() << "entryNames: " << m_entryNames;
+    cDebug() << "entryDescriptions: " << m_entryDescriptions;
+    // cDebug() << "entryScreenshots: " << m_entryScreenshots;
+    cDebug() << "entryPackages: " << m_entryPackages;
+    cDebug() << "m_outputConditionName: " << m_outputConditionName;
 }
 
 void Config::addSelection(const QString& selection)
