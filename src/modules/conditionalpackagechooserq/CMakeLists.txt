@@ -61,8 +61,6 @@ calamares_add_plugin( conditionalpackagechooserq
         # ${_packagechooser}/Config.cpp
         ${_packagechooser}/PackageModel.cpp
         ${_packagechooser}/ItemAppData.cpp
-    RESOURCES
-        packagechooserq.qrc
     LINK_PRIVATE_LIBRARIES
         calamaresui
         ${_extra_libraries}

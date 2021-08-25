@@ -1,8 +1,0 @@
-<RCC>
-    <qresource>
-        <file>conditionalpackagechooserq.qml</file>
-        <file>images/libreoffice.jpg</file>
-        <file>images/no-selection.png</file>
-        <file>images/plasma.png</file>
-    </qresource>
-</RCC>
