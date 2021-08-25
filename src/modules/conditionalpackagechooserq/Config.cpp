@@ -93,7 +93,7 @@ Config::introductionPackage() const
         const auto description
             = QT_TR_NOOP( "Please pick a product from the list. The selected product will be installed." );
         defaultIntroduction = new PackageItem( QString(), name, description );
-        defaultIntroduction->screenshot = QPixmap( QStringLiteral( ":/images/no-selection.png" ) );
+        defaultIntroduction->screenshot = QStringLiteral( ":/images/no-selection.png" );
         defaultIntroduction->name = CalamaresUtils::Locale::TranslatedString( name, metaObject()->className() );
         defaultIntroduction->description
             = CalamaresUtils::Locale::TranslatedString( description, metaObject()->className() );
