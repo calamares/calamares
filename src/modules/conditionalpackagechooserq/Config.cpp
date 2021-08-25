@@ -275,6 +275,7 @@ void Config::addSelection(const QString& selection)
     {
         cDebug() << m_defaultId << " Adding " << selection << " as a selection...";
         m_selections.append(selection);
+        cDebug() << "m_selections: " << m_selections;
     } else {
         cWarning() << m_defaultId << " Selection " << selection << " already exists in the list of selections. This is a bug";
     }
@@ -286,6 +287,7 @@ void Config::removeSelection(const QString& selection)
     {
         cDebug() << m_defaultId << " Removing " << selection << " from selections...";
         m_selections.removeAll(selection);
+        cDebug() << "m_selections: " << m_selections;
     }  else {
         cWarning() << m_defaultId << " Selection " << selection << " did not exist in the list of selections while deselecting. This is a bug";
     }
