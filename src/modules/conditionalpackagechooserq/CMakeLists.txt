@@ -14,9 +14,10 @@ find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Core )
 # Add optional libraries here
 set( USER_EXTRA_LIB )
 
-# include_directories( ${CMAKE_CURRENT_SOURCE_DIR}/../packagechooser )
-set( _packagechooser ${CMAKE_CURRENT_SOURCE_DIR}/../packagechooser )
-include_directories( ${_packagechooser} )
+## include_directories( ${CMAKE_CURRENT_SOURCE_DIR}/../packagechooser )
+
+# set( _packagechooser ${CMAKE_CURRENT_SOURCE_DIR}/../packagechooser )
+# include_directories( ${_packagechooser} )
 
 ### OPTIONAL AppData XML support in PackageModel
 #
@@ -57,10 +58,12 @@ calamares_add_plugin( conditionalpackagechooserq
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
         Config.cpp 
+        PackageModel.cpp
         PackageChooserQmlViewStep.cpp
+        ItemAppData.cpp
         # ${_packagechooser}/Config.cpp
         # ${_packagechooser}/PackageModel.cpp
-        ${_packagechooser}/ItemAppData.cpp
+        # ${_packagechooser}/ItemAppData.cpp
     RESOURCES
         packagechooserq.qrc
     LINK_PRIVATE_LIBRARIES
