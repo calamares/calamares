@@ -70,7 +70,7 @@ Item {
                             y: 25
                             height: 100
                             fillMode: Image.PreserveAspectFit
-                            source: config.entryIds[index]
+                            source: config.entryScreenshots[index]
                         }
                     }
                 }

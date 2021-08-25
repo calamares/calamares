@@ -268,7 +268,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     cDebug() << "entryIds: " << m_entryIds;
     cDebug() << "entryNames: " << m_entryNames;
     cDebug() << "entryDescriptions: " << m_entryDescriptions;
-    // cDebug() << "entryScreenshots: " << m_entryScreenshots;
+    cDebug() << "entryScreenshots: " << m_entryScreenshots;
     cDebug() << "entryPackages: " << m_entryPackages;
     cDebug() << "m_outputConditionName: " << m_outputConditionName;
 }
