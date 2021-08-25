@@ -63,6 +63,7 @@ Config::Config( QObject* parent )
     : Calamares::ModuleSystem::Config( parent )
     , m_model( new PackageListModel( this ) )
     , m_mode( PackageChooserMode::Required )
+    , m_selections( QStringList() )
 {
 }
 
@@ -96,23 +97,23 @@ Config::introductionPackage() const
 }
 
 void
-Config::updateGlobalStorage( const QStringList& selected ) const
+Config::updateGlobalStorage() const
 {
 
     QString conditionName = m_outputConditionName;
-    QStringList packageNames = m_model->getInstallPackagesForNames( selected );
+    QStringList packageNames = m_model->getInstallPackagesForNames( m_selections );
     Calamares::JobQueue::instance()->globalStorage()->insert( conditionName, packageNames );
 
     if ( m_method == PackageChooserMethod::Legacy )
     {
-        //QString value = selected.join( ',' );
+        //QString value = m_selections.join( ',' );
         QString value = ( m_pkgc );
         Calamares::JobQueue::instance()->globalStorage()->insert( m_id, value );
         cDebug() << m_id<< "selected" << value;
     }
     else if ( m_method == PackageChooserMethod::Packages )
     {
-        QStringList packageNames = m_model->getInstallPackagesForNames( selected );
+        QStringList packageNames = m_model->getInstallPackagesForNames( m_selections );
         cDebug() << m_defaultId << "packages to install" << packageNames;
         CalamaresUtils::Packages::setGSPackageAdditions(
             Calamares::JobQueue::instance()->globalStorage(), m_defaultId, packageNames );
@@ -248,5 +249,27 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
                 break;
             }
         }
+    }
+}
+
+void Config::addSelection(const QString& selection)
+{
+    if ( !m_selections.contains(selection) )
+    {
+        cDebug() << m_defaultId << " Adding " << selection << " as a selection...";
+        m_selections.append(selection);
+    } else {
+        cWarning() << m_defaultId << " Selection " << selection << " already exists in the list of selections. This is a bug";
+    }
+}
+
+void Config::removeSelection(const QString& selection)
+{
+    if ( m_selections.contains(selection) )
+    {
+        cDebug() << m_defaultId << " Removing " << selection << " from selections...";
+        m_selections.removeAll(selection);
+    }  else {
+        cWarning() << m_defaultId << " Selection " << selection << " did not exist in the list of selections while deselecting. This is a bug";
     }
 }

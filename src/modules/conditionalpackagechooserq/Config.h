@@ -74,9 +74,7 @@ public:
      * Updates the GS keys for this packagechooser, marking all
      * (and only) the packages in @p selected as selected.
      */
-    void updateGlobalStorage( const QStringList& selected ) const;
-    /// As updateGlobalStorage() with an empty selection list
-    void fillGSSecondaryConfiguration() const { updateGlobalStorage( QStringList() ); }
+    void updateGlobalStorage() const;
 
     QString pkgc() const { return m_pkgc; }
     void setPkgc( const QString& pkgc );
@@ -84,6 +82,10 @@ public:
     QString outputConditionName() const { return m_outputConditionName; }
 
     QString prettyStatus() const;
+
+    void addSelection(const QString& selection);
+
+    void removeSelection(const QString& selection);
 
 signals:
     void pkgcChanged( QString pkgc );
@@ -101,8 +103,9 @@ private:
     QString m_id;
     /// Value to use for id if none is set in the config file
     Calamares::ModuleSystem::InstanceKey m_defaultId;
-    /// QML selection
+    /// QML selections
     QString m_pkgc;
+    QStringList m_selections;
     /// Name of the output condition
     QString m_outputConditionName;
 };

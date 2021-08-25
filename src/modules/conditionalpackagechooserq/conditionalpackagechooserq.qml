@@ -22,17 +22,13 @@ Item {
         anchors.fill: parent
         color: "#f2f2f2"
 
-        ButtonGroup {
-            id: switchGroup
-        }
-
         Column {
             id: column
             anchors.centerIn: parent
             spacing: 5
 
             Rectangle {
-                //id: rectangle
+                id: gnome_rectangle
                 width: 700
                 height: 150
                 color: "#ffffff"
@@ -42,8 +38,7 @@ Item {
                     width: 450
                     height: 104
                     anchors.centerIn: parent
-                    text: qsTr("LibreOffice is a powerful and free office suite, used by millions of people around the world. It includes several applications that make it the most versatile Free and Open Source office suite on the market.<br/>
-                    Default option.")
+                    text: qsTr("GNOME (GNU Network Object Model Environment, pronounced gah-NOHM) is a graphical user interface (GUI) and set of computer desktop applications for users of the Linux operating system")
                     font.pointSize: 10
                     anchors.verticalCenterOffset: -10
                     anchors.horizontalCenterOffset: 100
@@ -51,124 +46,54 @@ Item {
                 }
 
                 Switch {
-                    id: element2
+                    id: gnome_switch
                     x: 500
                     y: 110
                     width: 187
                     height: 14
-                    text: qsTr("LibreOffice")
+                    text: qsTr("Gnome")
                     checked: true
                     hoverEnabled: true
-                    ButtonGroup.group: switchGroup
 
                     indicator: Rectangle {
                         implicitWidth: 40
                         implicitHeight: 14
                         radius: 10
-                        color: element2.checked ? "#3498db" : "#B9B9B9"
-                        border.color: element2.checked ? "#3498db" : "#cccccc"
+                        color: gnome_switch.checked ? "#3498db" : "#B9B9B9"
+                        border.color: gnome_switch.checked ? "#3498db" : "#cccccc"
 
                         Rectangle {
-                            x: element2.checked ? parent.width - width : 0
+                            x: gnome_switch.checked ? parent.width - width : 0
                             y: (parent.height - height) / 2
                             width: 20
                             height: 20
                             radius: 10
-                            color: element2.down ? "#cccccc" : "#ffffff"
-                            border.color: element2.checked ? (element1.down ? "#3498db" : "#3498db") : "#999999"
+                            color: gnome_switch.down ? "#cccccc" : "#ffffff"
+                            border.color: gnome_switch.checked ? (gnome_switch.down ? "#3498db" : "#3498db") : "#999999"
                         }
                     }
 
                     onCheckedChanged: {
-                        if ( ! checked ) {
-                            print("L not used")
-                        }
-                        else {
-                            config.pkgc = "libreoffice"
-                            print( config.pkgc )
+                        if ( checked ) {
+                            config.addSelection("gnome")
+                        } else {
+                            config.removeSelection("gnome")
                         }
                     }
                 }
 
                 Image {
-                    id: image2
+                    id: gnome_image
                     x: 8
                     y: 25
                     height: 100
                     fillMode: Image.PreserveAspectFit
-                    source: "images/libreoffice.jpg"
+                    source: "images/desktops/gnome.png"
                 }
             }
 
             Rectangle {
-                width: 700
-                height: 150
-                radius: 10
-                border.width: 0
-                Text {
-                    width: 450
-                    height: 104
-                    anchors.centerIn: parent
-                    text: qsTr("If you don't want to install an office suite, just select No Office Suite. You can always add one (or more) later on your installed system as the need arrives.")
-                    font.pointSize: 10
-                    anchors.verticalCenterOffset: -10
-                    anchors.horizontalCenterOffset: 100
-                    wrapMode: Text.WordWrap
-                }
-
-                Switch {
-                    id: element1
-                    x: 500
-                    y: 110
-                    width: 187
-                    height: 14
-                    text: qsTr("No Office Suite")
-                    checked: false
-                    hoverEnabled: true
-                    ButtonGroup.group: switchGroup
-
-                    indicator: Rectangle {
-                        implicitWidth: 40
-                        implicitHeight: 14
-                        radius: 10
-                        color: element1.checked ? "#3498db" : "#B9B9B9"
-                        border.color: element1.checked ? "#3498db" : "#cccccc"
-
-                        Rectangle {
-                            x: element1.checked ? parent.width - width : 0
-                            y: (parent.height - height) / 2
-                            width: 20
-                            height: 20
-                            radius: 10
-                            color: element1.down ? "#cccccc" : "#ffffff"
-                            border.color: element1.checked ? (element1.down ? "#3498db" : "#3498db") : "#999999"
-                        }
-                    }
-
-                    onCheckedChanged: {
-                        if ( ! checked ) {
-                            print("not used")
-                            //console.log("removed")
-                        }
-                        else {
-                            print("No Office Suite")
-                            config.pkgc = "no_office_suite"
-                        }
-                    }
-                }
-
-                Image {
-                    id: image
-                    x: 8
-                    y: 25
-                    height: 100
-                    fillMode: Image.PreserveAspectFit
-                    source: "images/no-selection.png"
-                }
-
-            }
-
-            Rectangle {
+                id: plasma_rectangle
                 width: 700
                 height: 150
                 color: "#ffffff"
@@ -178,7 +103,7 @@ Item {
                     width: 450
                     height: 104
                     anchors.centerIn: parent
-                    text: qsTr("Create a minimal Desktop install, remove all extra applications and decide later on what you would like to add to your system. Examples of what won't be on such an install, there will be no Office Suite, no media players, no image viewer or print support.  It will be just a desktop, file browser, package manager, text editor and simple web-browser.")
+                    text: qsTr("KDE Plasma a graphical workspaces environment created by KDE primarily for Linux systems. The graphical interface was fully migrated to QML, which uses OpenGL for hardware acceleration, which resulted in better performance and reduced power consumption.")
                     font.pointSize: 10
                     anchors.verticalCenterOffset: -10
                     anchors.horizontalCenterOffset: 100
@@ -186,52 +111,49 @@ Item {
                 }
 
                 Switch {
-                    id: element3
+                    id: plasma_switch
                     x: 500
                     y: 110
                     width: 187
                     height: 14
-                    text: qsTr("Minimal Install")
+                    text: qsTr("Plasma")
                     checked: false
                     hoverEnabled: true
-                    ButtonGroup.group: switchGroup
 
                     indicator: Rectangle {
                         implicitWidth: 40
                         implicitHeight: 14
                         radius: 10
-                        color: element3.checked ? "#3498db" : "#B9B9B9"
-                        border.color: element3.checked ? "#3498db" : "#cccccc"
+                        color: plasma_switch.checked ? "#3498db" : "#B9B9B9"
+                        border.color: plasma_switch.checked ? "#3498db" : "#cccccc"
 
                         Rectangle {
-                            x: element3.checked ? parent.width - width : 0
+                            x: plasma_switch.checked ? parent.width - width : 0
                             y: (parent.height - height) / 2
                             width: 20
                             height: 20
                             radius: 10
-                            color: element3.down ? "#cccccc" : "#ffffff"
-                            border.color: element3.checked ? (element3.down ? "#3498db" : "#3498db") : "#999999"
+                            color: plasma_switch.down ? "#cccccc" : "#ffffff"
+                            border.color: plasma_switch.checked ? (plasma_switch.down ? "#3498db" : "#3498db") : "#999999"
                         }
                     }
 
                     onCheckedChanged: {
-                        if ( ! checked ) {
-                            print("M not used")
-                        }
-                        else {
-                            print("minimal")
-                            config.pkgc = "minimal_install"
+                        if ( checked ) {
+                            config.addSelection("plasma")
+                        } else {
+                            config.removeSelection("plasma")
                         }
                     }
                 }
 
                 Image {
-                    id: image3
+                    id: plasma_image
                     x: 8
                     y: 25
                     height: 100
                     fillMode: Image.PreserveAspectFit
-                    source: "images/plasma.png"
+                    source: "images/desktops/plasma.png"
                 }
             }
 
@@ -243,7 +165,7 @@ Item {
                 Text {
                     height: 25
                     anchors.centerIn: parent
-                    text: qsTr("Please select an option for your install, or use the default: LibreOffice included.")
+                    text: qsTr("Please select a desktop environment to install. Not selecting one will give you a text console with no graphics.")
                     font.pointSize: 10
                     wrapMode: Text.WordWrap
                 }
