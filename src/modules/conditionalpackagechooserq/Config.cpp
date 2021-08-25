@@ -64,6 +64,10 @@ Config::Config( QObject* parent )
     , m_model( new PackageListModel( this ) )
     , m_mode( PackageChooserMode::Required )
     , m_selections( QStringList() )
+    , m_entryNames( QStringList() )
+    , m_entryDescriptions( QStringList() )
+    , m_entryScreenshots( QStringList() )
+    , m_entryPackages( QStringList() )
 {
 }
 
@@ -101,8 +105,7 @@ Config::updateGlobalStorage() const
 {
 
     QString conditionName = m_outputConditionName;
-    QStringList packageNames = m_model->getInstallPackagesForNames( m_selections );
-    Calamares::JobQueue::instance()->globalStorage()->insert( conditionName, packageNames );
+    Calamares::JobQueue::instance()->globalStorage()->insert( conditionName, m_selections );
 
     if ( m_method == PackageChooserMethod::Legacy )
     {
@@ -142,7 +145,7 @@ fillModel( PackageListModel* model, const QVariantList& items )
 {
     if ( items.isEmpty() )
     {
-        cWarning() << "No *items* for PackageChooser module.";
+        cWarning() << "No *items* for ConditionalPackageChooser module.";
         return;
     }
 
@@ -151,7 +154,7 @@ fillModel( PackageListModel* model, const QVariantList& items )
     bool poolOk = false;
 #endif
 
-    cDebug() << "Loading PackageChooser model items from config";
+    cDebug() << "Loading ConditionalPackageChooser model items from config";
     int item_index = 0;
     for ( const auto& item_it : items )
     {
@@ -159,7 +162,7 @@ fillModel( PackageListModel* model, const QVariantList& items )
         QVariantMap item_map = item_it.toMap();
         if ( item_map.isEmpty() )
         {
-            cWarning() << "PackageChooser entry" << item_index << "is not valid.";
+            cWarning() << "ConditionalPackageChooser entry" << item_index << "is not valid.";
             continue;
         }
 
@@ -202,7 +205,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     m_mode = packageChooserModeNames().find( CalamaresUtils::getString( configurationMap, "mode" ),
                                              PackageChooserMode::Required );
     m_method = PackageChooserMethodNames().find( CalamaresUtils::getString( configurationMap, "method" ),
-                                                 PackageChooserMethod::Legacy );
+                                                 PackageChooserMethod::Packages );
     m_pkgc = CalamaresUtils::getString( configurationMap, "pkgc" );
     m_outputConditionName = CalamaresUtils::getString( configurationMap, "outputconditionname" );
 
@@ -250,6 +253,20 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
             }
         }
     }
+
+    PackageItem entryData;
+    for(int i=0; i< m_model-> packageCount; i++) {
+        entryData = m_model -> packageData(i);
+        entryNames.append(entryData.name.get());    
+        entryDescriptions.append(entryData.description.get());
+        entryScreenshots.append(entryData.screenshot);
+        entryPackages.append(entryData.packageNames);
+    }
+
+    cDebug() << "entryNames: " << entryNames;
+    cDebug() << "entryDescriptions: " << entryDescriptions;
+    // cDebug() << "entryScreenshots: " << entryScreenshots;
+    cDebug() << "entryPackages: " << entryPackages;
 }
 
 void Config::addSelection(const QString& selection)

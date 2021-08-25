@@ -43,6 +43,11 @@ class Config : public Calamares::ModuleSystem::Config
     Q_PROPERTY( QString pkgc READ pkgc WRITE setPkgc NOTIFY pkgcChanged )
     Q_PROPERTY( QString prettyStatus READ prettyStatus NOTIFY prettyStatusChanged FINAL )
 
+    Q_PROPERTY( QStringList entryNames MEMBER m_entryNames)
+    Q_PROPERTY( QStringList entryDescriptions MEMBER m_entryDescriptions)
+    Q_PROPERTY( QStringList entryScreenshots MEMBER m_entryScreenshots)
+    Q_PROPERTY( QStringList entryPackages MEMBER m_entryPackages)
+
 public:
     Config( QObject* parent = nullptr );
     ~Config() override;
@@ -79,13 +84,17 @@ public:
     QString pkgc() const { return m_pkgc; }
     void setPkgc( const QString& pkgc );
 
-    QString outputConditionName() const { return m_outputConditionName; }
-
     QString prettyStatus() const;
 
-    Q_INVOKABLE void addSelection(const QString& selection);
+    QString outputConditionName() const { return m_outputConditionName; }
 
+    Q_INVOKABLE void addSelection(const QString& selection);
     Q_INVOKABLE void removeSelection(const QString& selection);
+
+    QStringList m_entryNames;
+    QStringList m_entryDescriptions;
+    QList<QPixmap> m_entryScreenshots;
+    QList<QStringList> m_entryPackages;
 
 signals:
     void pkgcChanged( QString pkgc );
@@ -105,9 +114,9 @@ private:
     Calamares::ModuleSystem::InstanceKey m_defaultId;
     /// QML selections
     QString m_pkgc;
-    QStringList m_selections;
     /// Name of the output condition
     QString m_outputConditionName;
+    QStringList m_selections;
 };
 
 
