@@ -70,7 +70,7 @@ Item {
                             y: 25
                             height: 100
                             fillMode: Image.PreserveAspectFit
-                            source: ":/images/desktops/" + config.entryIds[index] + ".png"
+                            source: "config.entryIds[index] + ".png"
                         }
                     }
                 }

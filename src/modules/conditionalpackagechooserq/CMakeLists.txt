@@ -59,7 +59,7 @@ calamares_add_plugin( conditionalpackagechooserq
         Config.cpp 
         PackageChooserQmlViewStep.cpp
         # ${_packagechooser}/Config.cpp
-        ${_packagechooser}/PackageModel.cpp
+        # ${_packagechooser}/PackageModel.cpp
         ${_packagechooser}/ItemAppData.cpp
     RESOURCES
         packagechooserq.qrc
