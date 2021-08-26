@@ -57,7 +57,7 @@ class Config : public Calamares::ModuleSystem::Config
     Q_PROPERTY( QStringList selections MEMBER m_selections)
 
 public:
-    void entrySelectedStatesChanged(const QVector<bool> &newEntrySelectedStates);
+    void entrySelectedStatesChanged();
 
     Config( QObject* parent = nullptr );
     ~Config() override;
