@@ -55,7 +55,7 @@ Item {
                             width: 187
                             height: 14
                             text: qsTr(config.entryNames[index])
-                            checked: true
+                            checked: config.entrySelectedStates[index]
                             hoverEnabled: true
                             onCheckedChanged: {
                                 if ( checked ) {
