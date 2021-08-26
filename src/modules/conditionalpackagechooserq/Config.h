@@ -57,8 +57,6 @@ class Config : public Calamares::ModuleSystem::Config
     Q_PROPERTY( QStringList selections MEMBER m_selections)
 
 public:
-    void entrySelectedStatesChanged();
-
     Config( QObject* parent = nullptr );
     ~Config() override;
 
@@ -98,7 +96,7 @@ public:
 
     QString outputConditionName() const { return m_outputConditionName; }
     QString promptMessage() const { return m_promptMessage; }
-    QString selections() const {return m_selections; }
+    QStringList selections() const {return m_selections; }
 
     Q_INVOKABLE void addSelection(const QString& selection);
     Q_INVOKABLE void removeSelection(const QString& selection);
@@ -113,6 +111,7 @@ public:
 signals:
     void pkgcChanged( QString pkgc );
     void prettyStatusChanged();
+    void entrySelectedStatesChanged(QVector<bool> &a_entrySelectedStates);
 
 private:
     PackageListModel* m_model = nullptr;
