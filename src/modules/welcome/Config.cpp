@@ -27,6 +27,7 @@ Config::Config( QObject* parent )
     : QObject( parent )
     , m_languages( CalamaresUtils::Locale::availableTranslations() )
     , m_filtermodel( std::make_unique< QSortFilterProxyModel >() )
+    , m_requirementsChecker( std::make_unique< GeneralRequirements >( this ) )
 {
     initLanguages();
 
@@ -399,4 +400,15 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
 
     ::setLanguageIcon( this, configurationMap );
     ::setGeoIP( this, configurationMap );
+
+    if ( configurationMap.contains( "requirements" )
+         && configurationMap.value( "requirements" ).type() == QVariant::Map )
+    {
+        m_requirementsChecker->setConfigurationMap( configurationMap.value( "requirements" ).toMap() );
+    }
+    else
+    {
+        cWarning() << "no valid requirements map found in welcome "
+                      "module configuration.";
+    }
 }
