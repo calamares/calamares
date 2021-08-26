@@ -11,6 +11,7 @@ website will have to do for older versions.
 
 This release contains contributions from (alphabetically by first name):
  - Anke Boersma
+ - Artem Grinev
 
 ## Core ##
  - No core changes yet
@@ -19,6 +20,8 @@ This release contains contributions from (alphabetically by first name):
  - *networkcfg* now translates the "live user" on an ISO to the regular
    user on the installed system, so that network configuration changes
    made in the live system are automatically used after installation.
+ - *partition* no longer allows you to delete an extended partition with
+   children (which led to crashes). Thanks Artem!
  - *welcome* can now check multiple URLs to determine if internet connectivity
    is available. It is still recommended to check the distro home-page or
    some special "ping" page of the distro, although that has some privacy
