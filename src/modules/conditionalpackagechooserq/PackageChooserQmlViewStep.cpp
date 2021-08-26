@@ -45,7 +45,7 @@ PackageChooserQmlViewStep::prettyStatus() const
 bool
 PackageChooserQmlViewStep::isNextEnabled() const
 {
-    if ( (m_mode == PackageChooserMode::Required || m_mode == PackageChooserMode::RequiredMultiple) && m_selections.length() < 1 )
+    if ( (m_config-> mode() == PackageChooserMode::Required || m_config-> mode() == PackageChooserMode::RequiredMultiple) && m_selections.length() < 1 )
     {
         return false;
     }
