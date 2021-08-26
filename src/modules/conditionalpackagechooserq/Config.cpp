@@ -69,6 +69,7 @@ Config::Config( QObject* parent )
     , m_entryDescriptions( QStringList() )
     , m_entryScreenshots( QVector<QString>() )
     , m_entryPackages( QVector<QStringList>() )
+    , m_entrySelectedStates( QVector<bool>() )
 {
 }
 
@@ -263,6 +264,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         m_entryDescriptions.append(entryData.description.get());
         m_entryScreenshots.append(entryData.screenshot);
         m_entryPackages.append(entryData.packageNames);
+        m_entrySelectedStates.append(entryData.selected);
     }
 
     cDebug() << "entryIds: " << m_entryIds;
@@ -270,7 +272,8 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     cDebug() << "entryDescriptions: " << m_entryDescriptions;
     cDebug() << "entryScreenshots: " << m_entryScreenshots;
     cDebug() << "entryPackages: " << m_entryPackages;
-    cDebug() << "m_outputConditionName: " << m_outputConditionName;
+    cDebug() << "entrySelectedStates: " << m_entrySelectedStates;
+    cDebug() << "outputConditionName: " << m_outputConditionName;
 }
 
 void Config::addSelection(const QString& selection)

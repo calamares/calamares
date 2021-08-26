@@ -18,7 +18,6 @@
 #include <QPixmap>
 #include <QVector>
 
-
 struct PackageItem
 {
     QString id;
@@ -26,6 +25,7 @@ struct PackageItem
     CalamaresUtils::Locale::TranslatedString description;
     QString screenshot;
     QStringList packageNames;
+    bool selected;
 
     /// @brief Create blank PackageItem
     PackageItem();
@@ -56,7 +56,8 @@ struct PackageItem
      *  - *name* (and *name[lang]*): for the name and its translations
      *  - *description* (and *description[lang]*)
      *  - *screenshot*: a path to a screenshot for this package
-     *  - *packages*: a list of package names
+     *  - *packages*: a list of package name
+     *  - *selected*: whether selected by default or not
      */
     PackageItem( const QVariantMap& map );
 
@@ -116,7 +117,8 @@ public:
         NameRole = Qt::DisplayRole,
         DescriptionRole = Qt::UserRole,
         ScreenshotRole,
-        IdRole
+        IdRole,
+        SelectedRole
     };
 
 private:

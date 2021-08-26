@@ -14,21 +14,24 @@
 
 PackageItem::PackageItem() {}
 
-PackageItem::PackageItem( const QString& a_id, const QString& a_name, const QString& a_description )
+PackageItem::PackageItem( const QString& a_id, const QString& a_name, const QString& a_description, const bool a_selected )
     : id( a_id )
     , name( a_name )
     , description( a_description )
+    , selected( a_selected )
 {
 }
 
 PackageItem::PackageItem( const QString& a_id,
                           const QString& a_name,
                           const QString& a_description,
-                          const QString& screenshotPath )
+                          const QString& a_screenshotPath,
+                          const bool a_selected )
     : id( a_id )
     , name( a_name )
     , description( a_description )
-    , screenshot( screenshotPath )
+    , screenshot( a_screenshotPath )
+    , selected( a_selected )
 {
 }
 
@@ -38,6 +41,7 @@ PackageItem::PackageItem::PackageItem( const QVariantMap& item_map )
     , description( CalamaresUtils::Locale::TranslatedString( item_map, "description" ) )
     , screenshot( CalamaresUtils::getString( item_map, "screenshot" ) )
     , packageNames( CalamaresUtils::getStringList( item_map, "packages" ) )
+    , selected( CalamaresUtils::getBool( item_map, "selected" ) )
 {
     if ( name.isEmpty() && id.isEmpty() )
     {
@@ -141,6 +145,10 @@ PackageListModel::data( const QModelIndex& index, int role ) const
     else if ( role == IdRole )
     {
         return m_packages[ row ].id;
+    }
+    else if ( role == SelectedRole )
+    {
+        return m_packages[ row ].selected;
     }
 
     return QVariant();

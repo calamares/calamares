@@ -48,6 +48,7 @@ class Config : public Calamares::ModuleSystem::Config
     Q_PROPERTY( QStringList entryDescriptions MEMBER m_entryDescriptions)
     Q_PROPERTY( QVector<QString> entryScreenshots MEMBER m_entryScreenshots)
     Q_PROPERTY( QVector<QStringList> entryPackages MEMBER m_entryPackages)
+    Q_PROPERTY( QVector<bool> entrySelectedStates MEMBER m_entrySelectedStates)
 
 public:
     Config( QObject* parent = nullptr );
@@ -97,6 +98,7 @@ public:
     QStringList m_entryDescriptions;
     QVector<QString> m_entryScreenshots;
     QVector<QStringList> m_entryPackages;
+    QVector<bool> m_entrySelectedStates;
 
 signals:
     void pkgcChanged( QString pkgc );
