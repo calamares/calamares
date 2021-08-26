@@ -139,6 +139,11 @@ PartitionPage::updateButtons()
         bool isFree = CalamaresUtils::Partition::isPartitionFreeSpace( partition );
         bool isExtended = partition->roles().has( PartitionRole::Extended );
 
+        bool hasChildren = isExtended
+            && ( partition->children().length() > 1
+                 || ( partition->children().length() == 1
+                      && !CalamaresUtils::Partition::isPartitionFreeSpace( partition->children().at( 0 ) ) ) );
+
         bool isInVG = m_core->isInVG( partition );
 
         create = isFree;
@@ -151,7 +156,7 @@ PartitionPage::updateButtons()
         // order.
         // TODO: See if LVM PVs can be edited in Calamares
         edit = !isFree && !isExtended;
-        del = !isFree && !isInVG;
+        del = !isFree && !isInVG && !hasChildren;
     }
 
     if ( m_ui->deviceComboBox->currentIndex() >= 0 )
