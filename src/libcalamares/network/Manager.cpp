@@ -218,8 +218,12 @@ Manager::setCheckHasInternetUrl( const QVector< QUrl >& urls )
 {
     d->m_lastCheckedUrlIndex = -1;
     d->m_hasInternetUrls = urls;
-    std::remove_if(
-        d->m_hasInternetUrls.begin(), d->m_hasInternetUrls.end(), []( const QUrl& u ) { return u.isValid(); } );
+    auto it = std::remove_if(
+        d->m_hasInternetUrls.begin(), d->m_hasInternetUrls.end(), []( const QUrl& u ) { return !u.isValid(); } );
+    if ( it != d->m_hasInternetUrls.end() )
+    {
+        d->m_hasInternetUrls.erase( it );
+    }
 }
 
 void
@@ -229,6 +233,12 @@ Manager::addCheckHasInternetUrl( const QUrl& url )
     {
         d->m_hasInternetUrls.append( url );
     }
+}
+
+QVector< QUrl >
+Manager::getCheckInternetUrls() const
+{
+    return d->m_hasInternetUrls;
 }
 
 /** @brief Does a request asynchronously, returns the (pending) reply

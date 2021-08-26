@@ -90,6 +90,7 @@ class DLLEXPORT Manager : public QObject
 {
     Q_OBJECT
     Q_PROPERTY( bool hasInternet READ hasInternet NOTIFY hasInternetChanged FINAL )
+    Q_PROPERTY( QVector< QUrl > checkInternetUrls READ getCheckInternetUrls WRITE setCheckHasInternetUrl )
 
     Manager();
 
@@ -128,6 +129,9 @@ public:
 
     /// @brief Set a collection of URLs used for the general "is there internet" check.
     void setCheckHasInternetUrl( const QVector< QUrl >& urls );
+
+    /// @brief What URLs are used to check for internet connectivity?
+    QVector< QUrl > getCheckInternetUrls() const;
 
     /** @brief Do a network request asynchronously.
      *
