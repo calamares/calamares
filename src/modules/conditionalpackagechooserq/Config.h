@@ -52,7 +52,7 @@ class Config : public Calamares::ModuleSystem::Config
     Q_PROPERTY( QVector<QStringList> entryPackages MEMBER m_entryPackages)
     Q_PROPERTY( QVector<bool> entrySelectedStates MEMBER m_entrySelectedStates)
 
-    Q_PROPERTY( QString mode MEMBER m_mode)
+    Q_PROPERTY( PackageChooserMode mode MEMBER m_mode)
     Q_PROPERTY( QString promptMessage MEMBER m_promptMessage)
     Q_PROPERTY( QStringList selections MEMBER m_selections)
 
