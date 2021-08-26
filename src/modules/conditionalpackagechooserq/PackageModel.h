@@ -34,7 +34,7 @@ struct PackageItem
      * This constructor sets all the text members,
      * but leaves the screenshot blank. Set that separately.
      */
-    PackageItem( const QString& id, const QString& name, const QString& description );
+    PackageItem( const QString& a_id, const QString& a_name, const QString& a_description, const bool a_selected );
 
     /** @brief Creates a PackageItem from given strings.
      *
@@ -42,7 +42,11 @@ struct PackageItem
      * @p screenshotPath, which may be a QRC path (:/path/in/qrc) or
      * a filesystem path, whatever QPixmap understands.
      */
-    PackageItem( const QString& id, const QString& name, const QString& description, const QString& screenshotPath );
+    PackageItem( const QString& a_id,
+                 const QString& a_name,
+                 const QString& a_description,
+                 const QString& a_screenshotPath,
+                 const bool a_selected );
 
     /** @brief Creates a PackageItem from a QVariantMap
      *
