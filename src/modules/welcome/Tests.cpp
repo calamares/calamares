@@ -11,6 +11,7 @@
 
 #include "Branding.h"
 #include "Settings.h"
+#include "network/Manager.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 #include "utils/Yaml.h"
@@ -57,7 +58,7 @@ WelcomeTests::testOneUrl()
 
     // BUILD_AS_TEST is the source-directory path
     QString filename = QStringLiteral( "1a-checkinternet.conf" );
-    QFile fi( QString( "%1/%2" ).arg( BUILD_AS_TEST, filename ) );
+    QFile fi( QString( "%1/tests/%2" ).arg( BUILD_AS_TEST, filename ) );
     QVERIFY( fi.exists() );
 
     bool ok = false;
@@ -65,6 +66,9 @@ WelcomeTests::testOneUrl()
     QVERIFY( ok );
     QVERIFY( map.count() > 0 );
     QVERIFY( map.contains( "requirements" ) );
+
+    c.setConfigurationMap( map );
+    QCOMPARE( CalamaresUtils::Network::Manager::instance().getCheckInternetUrls().count(), 1 );
 }
 
 
