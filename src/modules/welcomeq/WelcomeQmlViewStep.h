@@ -29,9 +29,7 @@ class Handler;
 }
 }  // namespace CalamaresUtils
 
-class GeneralRequirements;
 
-// TODO: Needs a generic Calamares::QmlViewStep as base class
 // TODO: refactor and move what makes sense to base class
 class PLUGINDLLEXPORT WelcomeQmlViewStep : public Calamares::QmlViewStep
 {
@@ -65,7 +63,6 @@ public:
 
 private:
     Config* m_config;
-    GeneralRequirements* m_requirementsChecker;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( WelcomeQmlViewStepFactory )

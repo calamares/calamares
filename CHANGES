@@ -19,6 +19,11 @@ This release contains contributions from (alphabetically by first name):
  - *networkcfg* now translates the "live user" on an ISO to the regular
    user on the installed system, so that network configuration changes
    made in the live system are automatically used after installation.
+ - *welcome* can now check multiple URLs to determine if internet connectivity
+   is available. It is still recommended to check the distro home-page or
+   some special "ping" page of the distro, although that has some privacy
+   implications; using example.com or google.com may work as well. Listing
+   multiple URLs will ping each of them in turn until one succeeds.
 
 
 # 3.2.41.1 (2021-08-05) #
