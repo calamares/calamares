@@ -281,13 +281,17 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
 
 void Config::addSelection(const QString& selection)
 {
-    if ( (m_mode == PackageChooserMode::Optional || m_mode == PackageChooserMode::Required) && m_selections.length() >= 1){
-        cWarning() << m_defaultId << " Selection " << selection << " cannot be added because `Optional` and `Required` modes can have at most one selection.";
-        return;
-    }
-    else if ( m_selections.contains(selection) ) {
+
+    if ( m_selections.contains(selection) ) {
         cWarning() << m_defaultId << " Selection " << selection << " already exists in the list of selections. This is a bug";
         return;
+    }
+
+    if ( (m_mode == PackageChooserMode::Optional || m_mode == PackageChooserMode::Required) && m_selections.length() >= 1){
+        cDebug() << m_defaultId << "Clearing other selections since at most one entry can be selected...";
+        m_entrySelectedStates.fill(false);
+        m_entrySelectedStates.replace(m_entryIds.indexOf(selection), true);
+        m_selections.clear();
     }
 
     cDebug() << m_defaultId << " Adding " << selection << " as a selection...";
@@ -298,21 +302,18 @@ void Config::addSelection(const QString& selection)
 void Config::removeSelection(const QString& selection)
 {
 
-    if ( (m_mode == PackageChooserMode::Optional || m_mode == PackageChooserMode::Required) && m_selections.length() >= 1){
-        cWarning() << m_defaultId << " Selection " << selection << " cannot be added because `Optional` and `Required` modes can have at most one selection.";
-        return;
-    }
-    else if ( m_selections.contains(selection) ) {
-        cWarning() << m_defaultId << " Selection " << selection << " already exists in the list of selections. This is a bug";
+    if ( !m_selections.contains(selection) ) {
+        cWarning() << m_defaultId << " Selection " << selection << " did not exist in the list of selections while deselecting. This is a bug";
         return;
     }
 
-    if ( m_selections.contains(selection) )
-    {
-        cDebug() << m_defaultId << " Removing " << selection << " from selections...";
-        m_selections.removeAll(selection);
-        cDebug() << "m_selections: " << m_selections;
-    }  else {
-        cWarning() << m_defaultId << " Selection " << selection << " did not exist in the list of selections while deselecting. This is a bug";
-    }
+    // if ( (m_mode == PackageChooserMode::Required || m_mode == PackageChooserMode::RequiredMultiple) && m_selections.length() <= 1){
+    //     cDebug() << m_defaultId << " Not Removing " << selection << " since at least one selection is required...";
+    //     m_entrySelectedStates.replace(m_entryIds.indexOf(selection), true);
+    //     return;
+    // }
+
+    cDebug() << m_defaultId << " Removing " << selection << " from selections...";
+    m_selections.removeAll(selection);
+    cDebug() << "m_selections: " << m_selections;
 }

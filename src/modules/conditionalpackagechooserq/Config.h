@@ -50,13 +50,15 @@ class Config : public Calamares::ModuleSystem::Config
     Q_PROPERTY( QStringList entryDescriptions MEMBER m_entryDescriptions)
     Q_PROPERTY( QVector<QString> entryScreenshots MEMBER m_entryScreenshots)
     Q_PROPERTY( QVector<QStringList> entryPackages MEMBER m_entryPackages)
-    Q_PROPERTY( QVector<bool> entrySelectedStates MEMBER m_entrySelectedStates)
+    Q_PROPERTY( QVector<bool> entrySelectedStates MEMBER m_entrySelectedStates NOTIFY entrySelectedStatesChanged)
 
     Q_PROPERTY( PackageChooserMode mode MEMBER m_mode)
     Q_PROPERTY( QString promptMessage MEMBER m_promptMessage)
     Q_PROPERTY( QStringList selections MEMBER m_selections)
 
 public:
+    void entrySelectedStatesChanged(const QVector<bool> &newEntrySelectedStates);
+
     Config( QObject* parent = nullptr );
     ~Config() override;
 
