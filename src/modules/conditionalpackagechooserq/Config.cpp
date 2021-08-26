@@ -291,7 +291,10 @@ void Config::addSelection(const QString& selection)
         cDebug() << m_defaultId << "Clearing other selections since at most one entry can be selected...";
         m_entrySelectedStates.fill(false);
         m_entrySelectedStates.replace(m_entryIds.indexOf(selection), true);
-        m_selections.clear();
+
+        if (m_mode == PackageChooserMode::Optional) {
+            m_selections.clear();
+        }
     }
 
     cDebug() << m_defaultId << " Adding " << selection << " as a selection...";
