@@ -222,7 +222,7 @@ Manager::setCheckHasInternetUrl( const QVector< QUrl >& urls )
         d->m_hasInternetUrls.begin(), d->m_hasInternetUrls.end(), []( const QUrl& u ) { return !u.isValid(); } );
     if ( it != d->m_hasInternetUrls.end() )
     {
-        d->m_hasInternetUrls.erase( it );
+        d->m_hasInternetUrls.erase( it, d->m_hasInternetUrls.end() );
     }
 }
 

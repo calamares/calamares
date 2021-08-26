@@ -134,4 +134,14 @@ NetworkTests::testCheckMultiUrl()
         QVERIFY( nam.checkHasInternet() );
         QCOMPARE( nam.getCheckInternetUrls().count(), 2 );
     }
+    {
+        QUrl u0( "http://nonexistent.example.com" );
+        QUrl u1;
+        QVERIFY( u0.isValid() );
+        QVERIFY( !u1.isValid() );
+        nam.setCheckHasInternetUrl( { u1, u1, u1, u1 } );
+        QCOMPARE( nam.getCheckInternetUrls().count(), 0 );
+        nam.setCheckHasInternetUrl( { u1, u1, u0, u1 } );
+        QCOMPARE( nam.getCheckInternetUrls().count(), 1 );
+    }
 }
