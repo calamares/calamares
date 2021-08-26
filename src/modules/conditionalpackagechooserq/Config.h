@@ -98,6 +98,7 @@ public:
 
     QString outputConditionName() const { return m_outputConditionName; }
     QString promptMessage() const { return m_promptMessage; }
+    QString selections() const {return m_selections; }
 
     Q_INVOKABLE void addSelection(const QString& selection);
     Q_INVOKABLE void removeSelection(const QString& selection);
