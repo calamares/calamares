@@ -82,7 +82,7 @@ Item {
                     Text {
                         height: 25
                         anchors.centerIn: parent
-                        text: qsTr("Please select a desktop environment to install. Not selecting one will give you a text console with no graphics.")
+                        text: qsTr(config.promptMessage)
                         font.pointSize: 10
                         wrapMode: Text.WordWrap
                     }

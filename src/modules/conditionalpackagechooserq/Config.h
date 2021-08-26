@@ -40,6 +40,8 @@ class Config : public Calamares::ModuleSystem::Config
 {
     Q_OBJECT
 
+    Q_ENUM( PackageChooserMode )
+
     Q_PROPERTY( QString pkgc READ pkgc WRITE setPkgc NOTIFY pkgcChanged )
     Q_PROPERTY( QString prettyStatus READ prettyStatus NOTIFY prettyStatusChanged FINAL )
 
@@ -49,6 +51,10 @@ class Config : public Calamares::ModuleSystem::Config
     Q_PROPERTY( QVector<QString> entryScreenshots MEMBER m_entryScreenshots)
     Q_PROPERTY( QVector<QStringList> entryPackages MEMBER m_entryPackages)
     Q_PROPERTY( QVector<bool> entrySelectedStates MEMBER m_entrySelectedStates)
+
+    Q_PROPERTY( QString mode MEMBER m_mode)
+    Q_PROPERTY( QString promptMessage MEMBER m_promptMessage)
+    Q_PROPERTY( QStringList selections MEMBER m_selections)
 
 public:
     Config( QObject* parent = nullptr );
@@ -89,6 +95,7 @@ public:
     QString prettyStatus() const;
 
     QString outputConditionName() const { return m_outputConditionName; }
+    QString promptMessage() const { return m_promptMessage; }
 
     Q_INVOKABLE void addSelection(const QString& selection);
     Q_INVOKABLE void removeSelection(const QString& selection);
@@ -121,6 +128,7 @@ private:
     /// Name of the output condition
     QString m_outputConditionName;
     QStringList m_selections;
+    QString m_promptMessage; 
 };
 
 

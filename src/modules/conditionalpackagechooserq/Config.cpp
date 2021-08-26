@@ -210,6 +210,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
                                                  PackageChooserMethod::Packages );
     m_pkgc = CalamaresUtils::getString( configurationMap, "pkgc" );
     m_outputConditionName = CalamaresUtils::getString( configurationMap, "outputconditionname" );
+    m_promptMessage = CalamaresUtils::getString( configurationMap, "promptmessage" ); 
 
     if ( m_method == PackageChooserMethod::Legacy )
     {
@@ -273,23 +274,39 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     cDebug() << "entryScreenshots: " << m_entryScreenshots;
     cDebug() << "entryPackages: " << m_entryPackages;
     cDebug() << "entrySelectedStates: " << m_entrySelectedStates;
+
     cDebug() << "outputConditionName: " << m_outputConditionName;
+    cDebug() << "promptMessage: " << m_promptMessage;
 }
 
 void Config::addSelection(const QString& selection)
 {
-    if ( !m_selections.contains(selection) )
-    {
-        cDebug() << m_defaultId << " Adding " << selection << " as a selection...";
-        m_selections.append(selection);
-        cDebug() << "m_selections: " << m_selections;
-    } else {
-        cWarning() << m_defaultId << " Selection " << selection << " already exists in the list of selections. This is a bug";
+    if ( (m_mode == PackageChooserMode::Optional || m_mode == PackageChooserMode::Required) && m_selections.length() >= 1){
+        cWarning() << m_defaultId << " Selection " << selection << " cannot be added because `Optional` and `Required` modes can have at most one selection.";
+        return;
     }
+    else if ( m_selections.contains(selection) ) {
+        cWarning() << m_defaultId << " Selection " << selection << " already exists in the list of selections. This is a bug";
+        return;
+    }
+
+    cDebug() << m_defaultId << " Adding " << selection << " as a selection...";
+    m_selections.append(selection);
+    cDebug() << "m_selections: " << m_selections;
 }
 
 void Config::removeSelection(const QString& selection)
 {
+
+    if ( (m_mode == PackageChooserMode::Optional || m_mode == PackageChooserMode::Required) && m_selections.length() >= 1){
+        cWarning() << m_defaultId << " Selection " << selection << " cannot be added because `Optional` and `Required` modes can have at most one selection.";
+        return;
+    }
+    else if ( m_selections.contains(selection) ) {
+        cWarning() << m_defaultId << " Selection " << selection << " already exists in the list of selections. This is a bug";
+        return;
+    }
+
     if ( m_selections.contains(selection) )
     {
         cDebug() << m_defaultId << " Removing " << selection << " from selections...";
