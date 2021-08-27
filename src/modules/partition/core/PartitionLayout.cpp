@@ -138,61 +138,63 @@ PartitionLayout::init( FileSystem::Type defaultFsType, const QVariantList& confi
 }
 
 void
-PartitionLayout::setDefaultFsType(FileSystem::Type defaultFsType)
+PartitionLayout::setDefaultFsType( FileSystem::Type defaultFsType )
 {
     using FileSystem = FileSystem::Type;
     switch ( defaultFsType )
     {
-        case FileSystem::Unknown:
-        case FileSystem::Unformatted:
-        case FileSystem::Extended:
-        case FileSystem::LinuxSwap:
-        case FileSystem::Luks:
-        case FileSystem::Ocfs2:
-        case FileSystem::Lvm2_PV:
-        case FileSystem::Udf:
-        case FileSystem::Iso9660:
+    case FileSystem::Unknown:
+    case FileSystem::Unformatted:
+    case FileSystem::Extended:
+    case FileSystem::LinuxSwap:
+    case FileSystem::Luks:
+    case FileSystem::Ocfs2:
+    case FileSystem::Lvm2_PV:
+    case FileSystem::Udf:
+    case FileSystem::Iso9660:
 #ifdef WITH_KPMCORE4API
-        case FileSystem::Luks2:
-        case FileSystem::LinuxRaidMember:
-        case FileSystem::BitLocker:
+    case FileSystem::Luks2:
+    case FileSystem::LinuxRaidMember:
+    case FileSystem::BitLocker:
 #endif
-            // bad bad
-            cWarning() << "The selected default FS" << defaultFsType << "is not suitable." << "Using ext4 instead.";
-            defaultFsType = FileSystem::Ext4;
-            break;
-        case FileSystem::Ext2:
-        case FileSystem::Ext3:
-        case FileSystem::Ext4:
-        case FileSystem::Fat32:
-        case FileSystem::Ntfs:
-        case FileSystem::Reiser4:
-        case FileSystem::ReiserFS:
-        case FileSystem::Xfs:
-        case FileSystem::Jfs:
-        case FileSystem::Btrfs:
-        case FileSystem::Exfat:
-        case FileSystem::F2fs:
-            // ok
-            break;
-        case FileSystem::Fat16:
-        case FileSystem::Hfs:
-        case FileSystem::HfsPlus:
-        case FileSystem::Ufs:
-        case FileSystem::Hpfs:
-        case FileSystem::Zfs:
-        case FileSystem::Nilfs2:
+        // bad bad
+        cWarning() << "The selected default FS" << defaultFsType << "is not suitable."
+                   << "Using ext4 instead.";
+        defaultFsType = FileSystem::Ext4;
+        break;
+    case FileSystem::Ext2:
+    case FileSystem::Ext3:
+    case FileSystem::Ext4:
+    case FileSystem::Fat32:
+    case FileSystem::Ntfs:
+    case FileSystem::Reiser4:
+    case FileSystem::ReiserFS:
+    case FileSystem::Xfs:
+    case FileSystem::Jfs:
+    case FileSystem::Btrfs:
+    case FileSystem::Exfat:
+    case FileSystem::F2fs:
+        // ok
+        break;
+    case FileSystem::Fat16:
+    case FileSystem::Hfs:
+    case FileSystem::HfsPlus:
+    case FileSystem::Ufs:
+    case FileSystem::Hpfs:
+    case FileSystem::Zfs:
+    case FileSystem::Nilfs2:
 #ifdef WITH_KPMCORE4API
-        case FileSystem::Fat12:
-        case FileSystem::Apfs:
-        case FileSystem::Minix:
+    case FileSystem::Fat12:
+    case FileSystem::Apfs:
+    case FileSystem::Minix:
 #endif
-            // weird
-            cWarning() << "The selected default FS" << defaultFsType << "is unusual, but not wrong.";
-            break;
-        default:
-            cWarning() << "The selected default FS" << defaultFsType << "is not known to Calamares." << "Using ext4 instead.";
-            defaultFsType = FileSystem::Ext4;
+        // weird
+        cWarning() << "The selected default FS" << defaultFsType << "is unusual, but not wrong.";
+        break;
+    default:
+        cWarning() << "The selected default FS" << defaultFsType << "is not known to Calamares."
+                   << "Using ext4 instead.";
+        defaultFsType = FileSystem::Ext4;
     }
 
     m_defaultFsType = defaultFsType;
@@ -278,7 +280,7 @@ PartitionLayout::createPartitions( Device* dev,
         }
     }
 
-    auto correctFS = [d=m_defaultFsType]( FileSystem::Type t ) { return t == FileSystem::Type::Unknown ? d : t; };
+    auto correctFS = [d = m_defaultFsType]( FileSystem::Type t ) { return t == FileSystem::Type::Unknown ? d : t; };
 
     // Create the partitions.
     currentSector = firstSector;
