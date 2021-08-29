@@ -183,8 +183,8 @@ PartitionPage::updateButtons()
             if ( device->type() == Device::Type::SoftwareRAID_Device
                  && static_cast< SoftwareRAID* >( device )->status() == SoftwareRAID::Status::Inactive )
             {
-                createTable = false;
-                create = false;
+                allow_create_table = false;
+                allow_create = false;
             }
 #endif
         }
