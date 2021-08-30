@@ -12,6 +12,7 @@ website will have to do for older versions.
 This release contains contributions from (alphabetically by first name):
  - Anke Boersma
  - Artem Grinev
+ - Waneon Kim (new contributor, welcome!)
 
 ## Core ##
  - No core changes yet
@@ -19,14 +20,16 @@ This release contains contributions from (alphabetically by first name):
 ## Modules ##
  - *networkcfg* now translates the "live user" on an ISO to the regular
    user on the installed system, so that network configuration changes
-   made in the live system are automatically used after installation.
+   made in the live system are automatically used after installation. #1755
  - *partition* no longer allows you to delete an extended partition with
-   children (which led to crashes). Thanks Artem!
+   children (which led to crashes). Thanks Artem! #1749
+ - *partition* complains in more detail about the state of the UEFI
+   boot partition (under manual partitioning schemes). #1761
  - *welcome* can now check multiple URLs to determine if internet connectivity
    is available. It is still recommended to check the distro home-page or
    some special "ping" page of the distro, although that has some privacy
    implications; using example.com or google.com may work as well. Listing
-   multiple URLs will ping each of them in turn until one succeeds.
+   multiple URLs will ping each of them in turn until one succeeds. #1669
 
 
 # 3.2.41.1 (2021-08-05) #
