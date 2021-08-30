@@ -434,50 +434,66 @@ PartitionViewStep::onLeave()
         {
             const QString espMountPoint
                 = Calamares::JobQueue::instance()->globalStorage()->value( "efiSystemPartition" ).toString();
-            const QString espFlagName = PartitionTable::flagName(
 #ifdef WITH_KPMCORE4API
-                PartitionTable::Flag::Boot
+            const auto espFlag = PartitionTable::Flag::Boot;
 #else
-                PartitionTable::FlagEsp
+            const auto espFlag = PartitionTable::FlagEsp;
 #endif
-                                                        );
             Partition* esp = m_core->findPartitionByMountPoint( espMountPoint );
 
             QString message;
             QString description;
-            if ( !esp || ( esp && !PartUtils::isEfiFilesystemSuitable( esp ) ) )
+
+            Logger::Once o;
+
+            const bool okType = esp && PartUtils::isEfiFilesystemSuitableType( esp );
+            const bool okSize = esp && PartUtils::isEfiFilesystemSuitableSize( esp );
+            const bool okFlag = esp && PartUtils::isEfiBootable( esp );
+
+            if ( !esp )
             {
                 message = tr( "No EFI system partition configured" );
-                description = tr( "An EFI system partition is necessary to start %1."
-                                  "<br/><br/>"
-                                  "To configure an EFI system partition, go back and "
-                                  "select or create a FAT32 filesystem with the "
-                                  "<strong>%3</strong> flag enabled and mount point "
-                                  "<strong>%2</strong>.<br/><br/>"
-                                  "You can continue without setting up an EFI system "
-                                  "partition but your system may fail to start." )
-                                  .arg( branding->shortProductName() )
-                                  .arg( espMountPoint, espFlagName );
             }
-            else if ( esp && !PartUtils::isEfiBootable( esp ) )
+            else if ( !(okType && okSize && okFlag ) )
             {
-                message = tr( "EFI system partition flag not set" );
-                description = tr( "An EFI system partition is necessary to start %1."
-                                  "<br/><br/>"
-                                  "A partition was configured with mount point "
-                                  "<strong>%2</strong> but its <strong>%3</strong> "
-                                  "flag is not set.<br/>"
-                                  "To set the flag, go back and edit the partition."
-                                  "<br/><br/>"
-                                  "You can continue without setting the flag but your "
-                                  "system may fail to start." )
-                                  .arg( branding->shortProductName() )
-                                  .arg( espMountPoint, espFlagName );
+                message = tr( "EFI system partition configured incorrectly" );
             }
 
+            if ( !esp || !(okType&&okSize &&okFlag)) {
+            description = tr( "An EFI system partition is necessary to start %1."
+                                "<br/><br/>"
+                                "To configure an EFI system partition, go back and "
+                                "select or create a suitable filesystem.").arg( branding->shortProductName() );
+            }
+            if (!esp) {
+                cDebug() << o << "No ESP mounted";
+                description.append(' ');
+                description.append(tr("The filesystem must be mounted on <strong>%1</strong>.").arg(espMountPoint));
+            }
+            if (!okType) {
+                cDebug() << o << "ESP wrong type";
+                description.append(' ');
+                description.append(tr("The filesystem must have type FAT32."));
+            }
+            if (!okSize) {
+                cDebug() << o << "ESP too small";
+                description.append(' ');
+                description.append(tr("The filesystem must be at least %1 MiB in size.").arg( PartUtils::efiFilesystemMinimumSize() ));
+            }
+            if (!okFlag)
+            {
+                cDebug() << o << "ESP missing flag";
+                description.append(' ');
+                description.append(tr("The filesystem must have flag <strong>%1</strong> set.").arg(PartitionTable::flagName( espFlag )));
+            }
+            if (!description.isEmpty()) {
+                description.append( "<br/><br/>" );
+                description.append( tr(
+                                  "You can continue without setting up an EFI system "
+                                  "partition but your system may fail to start." ));
+            }
             if ( !message.isEmpty() )
             {
-                cWarning() << message;
                 QMessageBox::warning( m_manualPartitionPage, message, description );
             }
         }
