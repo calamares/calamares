@@ -8,8 +8,9 @@ calamares_add_plugin( summary
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
-        SummaryViewStep.cpp
+        Config.cpp
         SummaryPage.cpp
+        SummaryViewStep.cpp
     UI
     SHARED_LIB
     NO_CONFIG

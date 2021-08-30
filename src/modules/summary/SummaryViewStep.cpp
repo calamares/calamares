@@ -15,7 +15,8 @@ CALAMARES_PLUGIN_FACTORY_DEFINITION( SummaryViewStepFactory, registerPlugin< Sum
 
 SummaryViewStep::SummaryViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
-    , m_widget( new SummaryPage( this ) )
+    , m_config( new Config( this ) )
+    , m_widget( new SummaryPage( m_config, this ) )
 {
     emit nextStatusChanged( true );
 }
@@ -27,13 +28,14 @@ SummaryViewStep::~SummaryViewStep()
     {
         m_widget->deleteLater();
     }
+    delete m_config;
 }
 
 
 QString
 SummaryViewStep::prettyName() const
 {
-    return tr( "Summary" );
+    return m_config->title();
 }
 
 
@@ -72,16 +74,17 @@ SummaryViewStep::isAtEnd() const
 }
 
 
-QList< Calamares::job_ptr >
+Calamares::JobList
 SummaryViewStep::jobs() const
 {
-    return QList< Calamares::job_ptr >();
+    return {};
 }
 
 
 void
 SummaryViewStep::onActivate()
 {
+    m_config->collectSummaries( this );
     m_widget->onActivate();
 }
 
@@ -89,5 +92,5 @@ SummaryViewStep::onActivate()
 void
 SummaryViewStep::onLeave()
 {
-    m_widget->createContentWidget();
+    m_widget->onLeave();
 }

@@ -27,7 +27,8 @@ class Config : public QObject
     Q_PROPERTY( SwapChoice swapChoice READ swapChoice WRITE setSwapChoice NOTIFY swapChoiceChanged )
 
     ///@brief Name of the FS that will be used when erasing type disk (e.g. "default filesystem")
-    Q_PROPERTY( QString eraseModeFilesystem READ eraseFsType WRITE setEraseFsTypeChoice NOTIFY eraseModeFilesystemChanged )
+    Q_PROPERTY(
+        QString eraseModeFilesystem READ eraseFsType WRITE setEraseFsTypeChoice NOTIFY eraseModeFilesystemChanged )
 
     Q_PROPERTY( bool allowManualPartitioning READ allowManualPartitioning CONSTANT FINAL )
 
@@ -134,7 +135,7 @@ public Q_SLOTS:
     void setInstallChoice( InstallChoice );
     void setSwapChoice( int );  ///< Translates a button ID or so to SwapChoice
     void setSwapChoice( SwapChoice );
-    void setEraseFsTypeChoice( const QString& filesystemName ); ///< See property eraseModeFilesystem
+    void setEraseFsTypeChoice( const QString& filesystemName );  ///< See property eraseModeFilesystem
 
 Q_SIGNALS:
     void installChoiceChanged( InstallChoice );
