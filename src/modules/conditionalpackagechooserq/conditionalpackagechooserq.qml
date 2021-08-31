@@ -1,61 +1,109 @@
 /* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   SPDX-FileCopyrightText: 2021 Anke Boersma <demm@kaosx.us>
+ *   SPDX-FileCopyrightText: 2021 shivanandvp <shivanandvp@rebornos.org>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
  *
  */
 
+import 
+
 import io.calamares.core 1.0
 import io.calamares.ui 1.0
 
 import QtQuick 2.15
 import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.3
+import QtQuick.Layouts 1.15
 
 Item {
-    width:  parent.width
-    height: parent.height
-
+    width: 800
+    height: 800
+    property string image_source: ""
     Rectangle {
-        anchors.fill: parent
+        id: page
         color: "#f2f2f2"
-        ScrollView{
+        anchors.fill: parent
+        Column{
+            spacing: 10
+            anchors.topMargin: 10
             anchors.fill: parent
-            ScrollBar.horizontal.policy: ScrollBar.AsNeeded
-            ScrollBar.vertical.policy: ScrollBar.AsNeeded
-            clip: true
-            Column {
-                id: column
-                anchors.centerIn: parent
-                spacing: 10                
-                Repeater {
-                    model: config.entryIds
-                    anchors.centerIn: parent
-                    Rectangle {
-                        width: 700
-                        height: 150
-                        color: "#ffffff"
-                        radius: 10
-                        border.width: 0
+            Text {
+                anchors.leftMargin: 10
+                x: 10
+                id: description_text
+                wrapMode: Text.Wrap
+                text: qsTr(config.promptMessage)
+                font.pixelSize: 14
+            }
+            ListView {
+                id: listView
+                anchors.left: parent.left
+                anchors.right: parent.right
+                height: parent.height - 25
+                clip: true
+                spacing: 10
+                ScrollBar.vertical: ScrollBar {
+                    active: hovered || pressed
+                }
+                model: config.entryIds
+                delegate: Rectangle {
+                    id: rectangle
+                    anchors.leftMargin: 10
+                    anchors.rightMargin: 10
+                    x: 10
+                    //            height: 500
+                    width: listView.width - 20
+                    height: column.implicitHeight + 20
+                    //                        Layout.fillHeight: true
+                    //                        Layout.fillWidth: true
+                    color: "#ffffff"
+                    radius: 10
+                    border.width: 0
+                    Column{
+                        id: column
+                        spacing: 10
+                        anchors.topMargin: 10
+                        anchors.leftMargin: 10
+                        anchors.rightMargin: 10
+                        anchors.fill: parent
                         Text {
-                            width: 450
-                            height: 104
-                            anchors.centerIn: parent
-                            text: qsTr(config.entryDescriptions[index])
-                            font.pointSize: 10
-                            anchors.verticalCenterOffset: -10
-                            anchors.horizontalCenterOffset: 100
-                            wrapMode: Text.WordWrap
+                            anchors.leftMargin: 10
+                            width: parent.width - 30
+                            wrapMode: Text.Wrap
+                            text: qsTr(config.entryNames[index])
+                            font.pixelSize: 16
+                            font.bold: true
+                        }
+                        Row{
+                            id: row
+                            anchors.left: parent.left
+                            anchors.right: parent.right
+                            spacing: 10
+                            Image {
+                                anchors.leftMargin: 10
+                                source: config.entryScreenshots[index]
+                                fillMode: Image.PreserveAspectFit
+                                width: (parent.width - 30) / 3
+                                MouseArea {
+                                    anchors.fill: parent
+                                    onClicked: {
+                                        image_source = config.entryScreenshots[index]
+                                        popup.open()
+                                    }
+                                }
+                            }
+                            Text {
+                                width: (parent.width - 30) * 2/3
+                                anchors.rightMargin: 10
+                                wrapMode: Text.Wrap
+                                text: qsTr(config.entryDescriptions[index])
+                                font.pixelSize: 14
+                            }
                         }
                         Switch {
-                            x: 500
-                            y: 110
-                            width: 187
-                            height: 14
-                            text: qsTr(config.entryNames[index])
-                            checked: config.entrySelectedStates[index]
+                            anchors.right: parent.right
+                            checked: false
                             hoverEnabled: true
                             onCheckedChanged: {
                                 if ( checked ) {
@@ -65,28 +113,31 @@ Item {
                                 }
                             }
                         }
-                        Image {
-                            x: 8
-                            y: 25
-                            height: 100
-                            fillMode: Image.PreserveAspectFit
-                            source: config.entryScreenshots[index]
-                        }
                     }
                 }
-                Rectangle {
-                    width: 700
-                    height: 25
-                    color: "#f2f2f2"
-                    border.width: 0
-                    Text {
-                        height: 25
-                        anchors.centerIn: parent
-                        text: qsTr(config.promptMessage)
-                        font.pointSize: 10
-                        wrapMode: Text.WordWrap
-                    }
-                }
+            }
+        }
+    }
+    Popup {
+        id: popup
+        x: 50
+        y: 50
+        modal: true
+        focus: true
+//        height: enlarged_image.implicitHeight
+//        width: enlarged_image.implicitWidth
+        closePolicy: Popup.CloseOnEscape | Popup.CloseOnReleaseOutside
+        contentItem: ColumnLayout {
+            Image{
+                id: enlarged_image
+                Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                Layout.maximumWidth: page.width - 100
+                Layout.maximumHeight: page.implicitHeight - 100
+                Layout.preferredWidth: page.implicitWidth - 100
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                fillMode: Image.PreserveAspectFit
+                source: image_source
             }
         }
     }
