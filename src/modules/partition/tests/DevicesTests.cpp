@@ -20,6 +20,8 @@
 
 #include <memory>
 
+#include <unistd.h>
+
 class DevicesTests : public QObject
 {
     Q_OBJECT
@@ -33,9 +35,12 @@ private Q_SLOTS:
 
 private:
     std::unique_ptr< CalamaresUtils::Partition::KPMManager > m_d;
+    bool m_isRoot = false;
 };
 
-DevicesTests::DevicesTests() : m_d( std::make_unique< CalamaresUtils::Partition::KPMManager >() )
+DevicesTests::DevicesTests()
+    : m_d( std::make_unique< CalamaresUtils::Partition::KPMManager >() )
+    , m_isRoot( geteuid() == 0 )
 {}
 
 void
@@ -54,6 +59,10 @@ DevicesTests::testKPMScanDevices()
     auto devices = backend->scanDevices( flags ); // These flags try to get "all"
     cDebug() << Logger::SubEntry << "Done getting devices.";
 
+    if ( !m_isRoot )
+    {
+        QEXPECT_FAIL( "", "Test invalid when not root", Continue );
+    }
     QVERIFY( devices.count() > 0 );
 }
 
@@ -66,6 +75,10 @@ DevicesTests::testPartUtilScanDevices()
     auto devices = PartUtils::getDevices();
     cDebug() << Logger::SubEntry << "Done getting devices.";
 
+    if ( !m_isRoot )
+    {
+        QEXPECT_FAIL( "", "Test invalid when not root", Continue );
+    }
     QVERIFY( devices.count() > 0 );
 }
 
