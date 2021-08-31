@@ -18,6 +18,9 @@ This release contains contributions from (alphabetically by first name):
  - No core changes yet
 
 ## Modules ##
+ - The *localeq* module had the i18n.qml rewritten to make it easier
+   to customize. A bug in the layout has been fixed, and the overall
+   look has been updated.
  - *networkcfg* now translates the "live user" on an ISO to the regular
    user on the installed system, so that network configuration changes
    made in the live system are automatically used after installation. #1755
@@ -30,6 +33,12 @@ This release contains contributions from (alphabetically by first name):
    some special "ping" page of the distro, although that has some privacy
    implications; using example.com or google.com may work as well. Listing
    multiple URLs will ping each of them in turn until one succeeds. #1669
+ - The work to make a QML version available for all view modules is almost
+   completed. Two new QML modules have been added *packagechooserq* and *summaryq*.
+   Summaryq brings the option to present the summary page in a customizable
+   way, with a bit more of a contemporary look. Packagechooserq adds the option
+   to preselect an item and displays all options in one overview.
+
 
 
 # 3.2.41.1 (2021-08-05) #
