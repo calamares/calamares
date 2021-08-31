@@ -9,6 +9,7 @@
 
 #include "core/DeviceList.h"
 
+#include "partition/KPMManager.h"
 #include "utils/Logger.h"
 
 #include <kpmcore/backend/corebackend.h>
@@ -16,6 +17,8 @@
 
 #include <QObject>
 #include <QtTest/QtTest>
+
+#include <memory>
 
 class DevicesTests : public QObject
 {
@@ -27,9 +30,13 @@ public:
 private Q_SLOTS:
     void testKPMScanDevices();
     void testPartUtilScanDevices();
+
+private:
+    std::unique_ptr< CalamaresUtils::Partition::KPMManager > m_d;
 };
 
-DevicesTests::DevicesTests() {}
+DevicesTests::DevicesTests() : m_d( std::make_unique< CalamaresUtils::Partition::KPMManager >() )
+{}
 
 void
 DevicesTests::testKPMScanDevices()
@@ -39,7 +46,12 @@ DevicesTests::testKPMScanDevices()
     cDebug() << "Getting devices via KPMCore";
     CoreBackend* backend = CoreBackendManager::self()->backend();
     QVERIFY( backend );
-    auto devices = backend->scanDevices(); // Whatever the default is /* not includeReadOnly, not includeLoopback */ ScanFlag( 0 ) );
+#if defined( WITH_KPMCORE4API )
+    auto flags = ScanFlag( ~0 );
+#else
+    auto flags = true;
+#endif
+    auto devices = backend->scanDevices( flags ); // These flags try to get "all"
     cDebug() << Logger::SubEntry << "Done getting devices.";
 
     QVERIFY( devices.count() > 0 );
