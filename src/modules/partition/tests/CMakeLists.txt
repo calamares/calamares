@@ -52,9 +52,6 @@ calamares_add_test(
         CreateLayoutsTests.cpp
     LIBRARIES
         kpmcore
-        calamares
-        calamaresui
-        Qt5::Gui
     DEFINITIONS ${_partition_defs}
 )
 
@@ -63,6 +60,10 @@ calamares_add_test(
     SOURCES
         ${PartitionModule_SOURCE_DIR}/jobs/AutoMountManagementJob.cpp
         AutoMountTests.cpp
-    LIBRARIES
-        calamares
+)
+
+calamares_add_test(
+    partitiondevicestest
+    SOURCES
+        DevicesTests.cpp
 )
