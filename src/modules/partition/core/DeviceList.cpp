@@ -112,6 +112,11 @@ QList< Device* >
 getDevices( DeviceType which )
 {
     CoreBackend* backend = CoreBackendManager::self()->backend();
+    if ( !backend )
+    {
+        cWarning() << "No KPM backend found.";
+        return {};
+    }
 #if defined( WITH_KPMCORE4API )
     DeviceList devices = backend->scanDevices( /* not includeReadOnly, not includeLoopback */ ScanFlag( 0 ) );
 #else
