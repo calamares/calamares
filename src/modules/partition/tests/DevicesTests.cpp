@@ -11,6 +11,9 @@
 
 #include "utils/Logger.h"
 
+#include <kpmcore/backend/corebackend.h>
+#include <kpmcore/backend/corebackendmanager.h>
+
 #include <QObject>
 #include <QtTest/QtTest>
 
@@ -33,14 +36,13 @@ DevicesTests::testKPMScanDevices()
 {
     Logger::setupLogLevel( Logger::LOGVERBOSE );
 
-#if defined( WITH_KPMCORE4API )
     cDebug() << "Getting devices via KPMCore";
     CoreBackend* backend = CoreBackendManager::self()->backend();
-    DeviceList devices = backend->scanDevices( /* not includeReadOnly, not includeLoopback */ ScanFlag( 0 ) );
+    QVERIFY( backend );
+    auto devices = backend->scanDevices(); // Whatever the default is /* not includeReadOnly, not includeLoopback */ ScanFlag( 0 ) );
     cDebug() << Logger::SubEntry << "Done getting devices.";
-#else
-    cWarning() << "Test skipped; use KPMCore4";
-#endif
+
+    QVERIFY( devices.count() > 0 );
 }
 
 void
@@ -49,8 +51,14 @@ DevicesTests::testPartUtilScanDevices()
     Logger::setupLogLevel( Logger::LOGVERBOSE );
 
     cDebug() << "Getting devices via PartUtils";
-    auto l = PartUtils::getDevices();
+    auto devices = PartUtils::getDevices();
     cDebug() << Logger::SubEntry << "Done getting devices.";
 
-    QVERIFY( l.count() > 0 );
+    QVERIFY( devices.count() > 0 );
 }
+
+QTEST_GUILESS_MAIN( DevicesTests )
+
+#include "utils/moc-warnings.h"
+
+#include "DevicesTests.moc"

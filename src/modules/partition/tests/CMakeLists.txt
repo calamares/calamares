@@ -44,12 +44,12 @@ calamares_add_test(
 calamares_add_test(
     partitioncreatelayoutstest
     SOURCES
+        CreateLayoutsTests.cpp
         ${PartitionModule_SOURCE_DIR}/core/KPMHelpers.cpp
         ${PartitionModule_SOURCE_DIR}/core/PartitionInfo.cpp
         ${PartitionModule_SOURCE_DIR}/core/PartitionLayout.cpp
         ${PartitionModule_SOURCE_DIR}/core/PartUtils.cpp
         ${PartitionModule_SOURCE_DIR}/core/DeviceModel.cpp
-        CreateLayoutsTests.cpp
     LIBRARIES
         kpmcore
         Calamares::calamaresui
@@ -67,4 +67,7 @@ calamares_add_test(
     partitiondevicestest
     SOURCES
         DevicesTests.cpp
+        ${PartitionModule_SOURCE_DIR}/core/DeviceList.cpp
+    LIBRARIES
+        kpmcore
 )
