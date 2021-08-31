@@ -92,7 +92,7 @@ struct TemporaryMount::Private
 
 
 TemporaryMount::TemporaryMount( const QString& devicePath, const QString& filesystemName, const QString& options )
-    : m_d( new Private )
+    : m_d( std::make_unique<Private>() )
 {
     m_d->m_devicePath = devicePath;
     m_d->m_mountDir.setAutoRemove( false );
@@ -100,8 +100,7 @@ TemporaryMount::TemporaryMount( const QString& devicePath, const QString& filesy
     if ( r )
     {
         cWarning() << "Mount of" << devicePath << "on" << m_d->m_mountDir.path() << "failed, code" << r;
-        delete m_d;
-        m_d = nullptr;
+        m_d.reset();
     }
 }
 
@@ -115,8 +114,6 @@ TemporaryMount::~TemporaryMount()
             cWarning() << "UnMount of temporary" << m_d->m_devicePath << "on" << m_d->m_mountDir.path()
                        << "failed, code" << r;
         }
-        delete m_d;
-        m_d = nullptr;
     }
 }
 
