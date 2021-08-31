@@ -7,8 +7,6 @@
  *
  */
 
-import 
-
 import io.calamares.core 1.0
 import io.calamares.ui 1.0
 
@@ -35,6 +33,7 @@ Item {
                 wrapMode: Text.Wrap
                 text: qsTr(config.promptMessage)
                 font.pixelSize: 14
+                width: parent.width - 20
             }
             ListView {
                 id: listView
