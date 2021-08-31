@@ -28,7 +28,7 @@ if ( WITH_APPDATA )
     if ( Qt5Xml_FOUND )
         add_definitions( -DHAVE_APPDATA )
         list( APPEND _extra_libraries Qt5::Xml )
-        list( APPEND _extra_src ItemAppData.cpp )
+        list( APPEND _extra_src ${_packagechooser}/ItemAppData.cpp )
     endif()
 endif()
 
@@ -48,7 +48,7 @@ if ( WITH_APPSTREAM )
     if ( AppStreamQt_FOUND )
         add_definitions( -DHAVE_APPSTREAM )
         list( APPEND _extra_libraries AppStreamQt )
-        list( APPEND _extra_src ItemAppStream.cpp )
+        list( APPEND _extra_src ${_packagechooser}/ItemAppStream.cpp )
     endif()
 endif()
 
@@ -59,7 +59,7 @@ calamares_add_plugin( packagechooserq
         PackageChooserQmlViewStep.cpp
         ${_packagechooser}/Config.cpp
         ${_packagechooser}/PackageModel.cpp
-        ${_packagechooser}/ItemAppData.cpp
+        ${_extra_src}
     RESOURCES
         packagechooserq.qrc
     LINK_PRIVATE_LIBRARIES
