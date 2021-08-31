@@ -41,7 +41,8 @@ private:
 DevicesTests::DevicesTests()
     : m_d( std::make_unique< CalamaresUtils::Partition::KPMManager >() )
     , m_isRoot( geteuid() == 0 )
-{}
+{
+}
 
 void
 DevicesTests::testKPMScanDevices()
@@ -56,7 +57,7 @@ DevicesTests::testKPMScanDevices()
 #else
     auto flags = true;
 #endif
-    auto devices = backend->scanDevices( flags ); // These flags try to get "all"
+    auto devices = backend->scanDevices( flags );  // These flags try to get "all"
     cDebug() << Logger::SubEntry << "Done getting devices.";
 
     if ( !m_isRoot )
