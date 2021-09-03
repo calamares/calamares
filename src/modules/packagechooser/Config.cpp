@@ -98,10 +98,13 @@ Config::introductionPackage() const
 void
 Config::updateGlobalStorage( const QStringList& selected ) const
 {
+    if ( m_packageChoice.has_value() )
+    {
+        cWarning() << "Inconsistent package choices -- both model and single-selection QML";
+    }
     if ( m_method == PackageChooserMethod::Legacy )
     {
         QString value = selected.join( ',' );
-        // QString value = ( m_pkgc );
         Calamares::JobQueue::instance()->globalStorage()->insert( m_id, value );
         cDebug() << m_id << "selected" << value;
     }
@@ -117,6 +120,36 @@ Config::updateGlobalStorage( const QStringList& selected ) const
         cWarning() << "Unknown packagechooser method" << smash( m_method );
     }
 }
+
+void
+Config::updateGlobalStorage() const
+{
+    if ( m_model->packageCount() > 0 )
+    {
+        cWarning() << "Inconsistent package choices -- both model and single-selection QML";
+    }
+    if ( m_method == PackageChooserMethod::Legacy )
+    {
+        auto* gs = Calamares::JobQueue::instance()->globalStorage();
+        if ( m_packageChoice.has_value() )
+        {
+            gs->insert( m_id, m_packageChoice.value() );
+        }
+        else
+        {
+            gs->remove( m_id );
+        }
+    }
+    else if ( m_method == PackageChooserMethod::Packages )
+    {
+        cWarning() << "Unsupported single-selection packagechooser method 'Packages'";
+    }
+    else
+    {
+        cWarning() << "Unknown packagechooser method" << smash( m_method );
+    }
+}
+
 
 void
 Config::setPackageChoice( const QString& packageChoice )
@@ -252,5 +285,9 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     else
     {
         setPackageChoice( CalamaresUtils::getString( configurationMap, "packageChoice" ) );
+        if ( m_method != PackageChooserMethod::Legacy )
+        {
+            cWarning() << "Single-selection QML module must use 'Legacy' method.";
+        }
     }
 }

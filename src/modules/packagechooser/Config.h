@@ -85,8 +85,13 @@ public:
      * (and only) the packages in @p selected as selected.
      */
     void updateGlobalStorage( const QStringList& selected ) const;
-    /// As updateGlobalStorage() with an empty selection list
-    void fillGSSecondaryConfiguration() const { updateGlobalStorage( QStringList() ); }
+    /** @brief Write selection to global storage
+     *
+     * Updates the GS keys for this packagechooser, marking **only**
+     * the package choice as selected. This assumes that the single-
+     * selection QML code is in use.
+     */
+    void updateGlobalStorage() const;
 
     QString packageChoice() const { return m_packageChoice.value_or( QString() ); }
     void setPackageChoice( const QString& packageChoice );
