@@ -110,8 +110,6 @@ private:
     PackageChooserMode m_mode = PackageChooserMode::Optional;
     /// How this module stores to GS
     PackageChooserMethod m_method = PackageChooserMethod::Legacy;
-    /// Id (used to identify settings from this module in GS)
-    QString m_id;
     /// Value to use for id if none is set in the config file
     Calamares::ModuleSystem::InstanceKey m_defaultId;
     /** @brief QML selection (for single-selection approaches)

@@ -95,6 +95,12 @@ Config::introductionPackage() const
     return *defaultIntroduction;
 }
 
+static inline QString
+make_gs_key( const Calamares::ModuleSystem::InstanceKey& key )
+{
+    return QStringLiteral( "packagechooser_" ) + key.id();
+}
+
 void
 Config::updateGlobalStorage( const QStringList& selected ) const
 {
@@ -105,8 +111,8 @@ Config::updateGlobalStorage( const QStringList& selected ) const
     if ( m_method == PackageChooserMethod::Legacy )
     {
         QString value = selected.join( ',' );
-        Calamares::JobQueue::instance()->globalStorage()->insert( m_id, value );
-        cDebug() << m_id << "selected" << value;
+        Calamares::JobQueue::instance()->globalStorage()->insert( make_gs_key( m_defaultId ), value );
+        cDebug() << m_defaultId << "selected" << value;
     }
     else if ( m_method == PackageChooserMethod::Packages )
     {
@@ -133,11 +139,11 @@ Config::updateGlobalStorage() const
         auto* gs = Calamares::JobQueue::instance()->globalStorage();
         if ( m_packageChoice.has_value() )
         {
-            gs->insert( m_id, m_packageChoice.value() );
+            gs->insert( make_gs_key( m_defaultId ), m_packageChoice.value() );
         }
         else
         {
-            gs->remove( m_id );
+            gs->remove( make_gs_key( m_defaultId ) );
         }
     }
     else if ( m_method == PackageChooserMethod::Packages )
@@ -240,26 +246,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
 
     if ( m_method == PackageChooserMethod::Legacy )
     {
-        const QString configId = CalamaresUtils::getString( configurationMap, "id" );
-        const QString base = QStringLiteral( "packagechooser_" );
-        if ( configId.isEmpty() )
-        {
-            if ( m_defaultId.id().isEmpty() )
-            {
-                // We got nothing to work with
-                m_id = base;
-            }
-            else
-            {
-                m_id = base + m_defaultId.id();
-            }
-            cDebug() << "Using default ID" << m_id << "from" << m_defaultId.toString();
-        }
-        else
-        {
-            m_id = base + configId;
-            cDebug() << "Using configured ID" << m_id;
-        }
+        cDebug() << "Using module ID" << m_defaultId;
     }
 
     if ( configurationMap.contains( "items" ) )
