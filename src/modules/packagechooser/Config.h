@@ -17,6 +17,7 @@
 #include "modulesystem/InstanceKey.h"
 
 #include <memory>
+#include <optional>
 
 enum class PackageChooserMode
 {
@@ -40,7 +41,16 @@ class Config : public Calamares::ModuleSystem::Config
 {
     Q_OBJECT
 
-    Q_PROPERTY( QString pkgc READ pkgc WRITE setPkgc NOTIFY pkgcChanged )
+    /** @brief This is the single-select package-choice
+     *
+     * For (QML) modules that support only a single selection and
+     * just want to do things in a straightforward pick-this-one
+     * way, the packageChoice property is a (the) way to go.
+     *
+     * Writing to this property means that any other form of package-
+     * choice or selection is ignored.
+     */
+    Q_PROPERTY( QString packageChoice READ packageChoice WRITE setPackageChoice NOTIFY packageChoiceChanged )
     Q_PROPERTY( QString prettyStatus READ prettyStatus NOTIFY prettyStatusChanged FINAL )
 
 public:
@@ -78,13 +88,13 @@ public:
     /// As updateGlobalStorage() with an empty selection list
     void fillGSSecondaryConfiguration() const { updateGlobalStorage( QStringList() ); }
 
-    QString pkgc() const { return m_pkgc; }
-    void setPkgc( const QString& pkgc );
+    QString packageChoice() const { return m_packageChoice.value_or( QString() ); }
+    void setPackageChoice( const QString& packageChoice );
 
     QString prettyStatus() const;
 
 signals:
-    void pkgcChanged( QString pkgc );
+    void packageChoiceChanged( QString packageChoice );
     void prettyStatusChanged();
 
 private:
@@ -99,8 +109,12 @@ private:
     QString m_id;
     /// Value to use for id if none is set in the config file
     Calamares::ModuleSystem::InstanceKey m_defaultId;
-    /// QML selection
-    QString m_pkgc;
+    /** @brief QML selection (for single-selection approaches)
+     *
+     * If there is no value, then there has been no selection.
+     * Reading the property will return an empty QString.
+     */
+    std::optional< QString > m_packageChoice;
 };
 
 

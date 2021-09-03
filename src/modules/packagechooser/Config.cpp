@@ -100,10 +100,10 @@ Config::updateGlobalStorage( const QStringList& selected ) const
 {
     if ( m_method == PackageChooserMethod::Legacy )
     {
-        //QString value = selected.join( ',' );
-        QString value = ( m_pkgc );
+        QString value = selected.join( ',' );
+        // QString value = ( m_pkgc );
         Calamares::JobQueue::instance()->globalStorage()->insert( m_id, value );
-        cDebug() << m_id<< "selected" << value;
+        cDebug() << m_id << "selected" << value;
     }
     else if ( m_method == PackageChooserMethod::Packages )
     {
@@ -119,16 +119,23 @@ Config::updateGlobalStorage( const QStringList& selected ) const
 }
 
 void
-Config::setPkgc( const QString& pkgc )
+Config::setPackageChoice( const QString& packageChoice )
 {
-    m_pkgc = pkgc;
-    emit pkgcChanged( m_pkgc );
+    if ( packageChoice.isEmpty() )
+    {
+        m_packageChoice.reset();
+    }
+    else
+    {
+        m_packageChoice = packageChoice;
+    }
+    emit packageChoiceChanged( m_packageChoice.value_or( QString() ) );
 }
 
 QString
 Config::prettyStatus() const
 {
-    return tr( "Install option: <strong>%1</strong>" ).arg( m_pkgc );
+    return tr( "Install option: <strong>%1</strong>" ).arg( m_packageChoice.value_or( tr( "None" ) ) );
 }
 
 static void
@@ -197,7 +204,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
                                              PackageChooserMode::Required );
     m_method = PackageChooserMethodNames().find( CalamaresUtils::getString( configurationMap, "method" ),
                                                  PackageChooserMethod::Legacy );
-    m_pkgc = CalamaresUtils::getString( configurationMap, "pkgc" );
+    setPackageChoice( CalamaresUtils::getString( configurationMap, "pkgc" ) );
 
     if ( m_method == PackageChooserMethod::Legacy )
     {
