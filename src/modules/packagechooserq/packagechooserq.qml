@@ -84,8 +84,8 @@ Item {
                             print("L not used")
                         }
                         else {
-                            config.pkgc = "libreoffice"
-                            print( config.pkgc )
+                            config.packageChoice = "libreoffice"
+                            print( config.packageChoice )
                         }
                     }
                 }
@@ -152,7 +152,7 @@ Item {
                         }
                         else {
                             print("No Office Suite")
-                            config.pkgc = "no_office_suite"
+                            config.packageChoice = "no_office_suite"
                         }
                     }
                 }
@@ -220,7 +220,7 @@ Item {
                         }
                         else {
                             print("minimal")
-                            config.pkgc = "minimal_install"
+                            config.packageChoice = "minimal_install"
                         }
                     }
                 }

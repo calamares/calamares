@@ -204,7 +204,6 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
                                              PackageChooserMode::Required );
     m_method = PackageChooserMethodNames().find( CalamaresUtils::getString( configurationMap, "method" ),
                                                  PackageChooserMethod::Legacy );
-    setPackageChoice( CalamaresUtils::getString( configurationMap, "pkgc" ) );
 
     if ( m_method == PackageChooserMethod::Legacy )
     {
@@ -233,21 +232,25 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     if ( configurationMap.contains( "items" ) )
     {
         fillModel( m_model, configurationMap.value( "items" ).toList() );
-    }
 
-    QString default_item_id = CalamaresUtils::getString( configurationMap, "default" );
-    if ( !default_item_id.isEmpty() )
-    {
-        for ( int item_n = 0; item_n < m_model->packageCount(); ++item_n )
+        QString default_item_id = CalamaresUtils::getString( configurationMap, "default" );
+        if ( !default_item_id.isEmpty() )
         {
-            QModelIndex item_idx = m_model->index( item_n, 0 );
-            QVariant item_id = m_model->data( item_idx, PackageListModel::IdRole );
-
-            if ( item_id.toString() == default_item_id )
+            for ( int item_n = 0; item_n < m_model->packageCount(); ++item_n )
             {
-                m_defaultModelIndex = item_idx;
-                break;
+                QModelIndex item_idx = m_model->index( item_n, 0 );
+                QVariant item_id = m_model->data( item_idx, PackageListModel::IdRole );
+
+                if ( item_id.toString() == default_item_id )
+                {
+                    m_defaultModelIndex = item_idx;
+                    break;
+                }
             }
         }
+    }
+    else
+    {
+        setPackageChoice( CalamaresUtils::getString( configurationMap, "packageChoice" ) );
     }
 }
