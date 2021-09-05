@@ -89,6 +89,8 @@ Item {
                                 MouseArea {
                                     anchors.fill: parent
                                     onClicked: {
+                                        image_width = 1
+                                        image_height = 1
                                         image_source = config.entryScreenshots[index]
                                         popup.open()
                                     }
@@ -146,6 +148,10 @@ Item {
         focus: true
         closePolicy: Popup.CloseOnEscape | Popup.CloseOnReleaseOutside | Popup.CloseOnReleaseInside
         padding: 0
+        onAboutToShow: {
+            image_width= enlarged_image.paintedWidth
+            image_height= enlarged_image.paintedHeight
+        }
         contentItem:
             Image{
                 id: enlarged_image
