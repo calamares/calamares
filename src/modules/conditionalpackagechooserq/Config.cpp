@@ -400,8 +400,9 @@ void Config::updateDisplayedData()
     {
         if( m_displayedEntryIds.contains(m_selections[k], Qt::CaseSensitive) )
         {
-            int index = m_displayedEntryIds.indexOf(m_selections[k]);
-            m_displayedEntrySelectedStates[index] = true;
+            QString oldSelection = m_selections.takeAt(k);
+            addSelection(oldSelection); // Needed to properly handle on-screen exclusions and adjustments
+            // No need to decrement the index. Otherwise this will be an infinite loop
         }
         else
         {
