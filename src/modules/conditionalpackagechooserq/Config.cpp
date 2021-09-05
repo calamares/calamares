@@ -359,13 +359,13 @@ void Config::updateDisplayedData()
                 if( !value.startsWith('-') && !globalStorage->value(key).toStringList().contains(value, Qt::CaseInsensitive) )
                 {
                     include_displayedEntry = false;
-                    cDebug() << "Skipping entry \"" << entryData.id << "\" because the value \"" << value << "\" does not exist in the key \"" << key <<"\".";
+                    cDebug() << "Skipping entry \"" << displayedEntryData.id << "\" because the value \"" << value << "\" does not exist in the key \"" << key <<"\".";
                     break;
                 }
                 else if ( value.startsWith('-') && globalStorage->value(key).toStringList().contains(value, Qt::CaseInsensitive) )
                 {
                     include_displayedEntry = false;
-                    cDebug() << "Skipping entry \"" << entryData.id << "\" because the value \"" << value << "\" exists in the key \"" << key <<"\".";
+                    cDebug() << "Skipping entry \"" << displayedEntryData.id << "\" because the value \"" << value << "\" exists in the key \"" << key <<"\".";
                     break;
                 }
                 else
@@ -376,7 +376,7 @@ void Config::updateDisplayedData()
             else 
             {
                 include_displayedEntry = false;
-                cDebug() << "Skipping entry \"" << entryData.id << "\" because the key \"" << key << "\" does not exist.";
+                cDebug() << "Skipping entry \"" << displayedEntryData.id << "\" because the key \"" << key << "\" does not exist.";
                 break;
             }
         }
@@ -416,7 +416,7 @@ void Config::updateDisplayedData()
     cDebug() << "displayedEntrySelectedStates: " << m_displayedEntrySelectedStates;
 }
 
-void Config::resetSelections()
+void Config::resetSelections() const
 {
     m_selections.clear();
 }
