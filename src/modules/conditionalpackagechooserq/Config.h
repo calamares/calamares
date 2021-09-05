@@ -104,7 +104,6 @@ public:
     QVector<bool> m_displayedEntrySelectedStates;
 
     QStringList m_selections;
-    QStringList m_packagesFromOnlyThisInstance;
 
     Q_INVOKABLE void addSelection(const QString& selection);
     Q_INVOKABLE void removeSelection(const QString& selection);
