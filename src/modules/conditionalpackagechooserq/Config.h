@@ -117,11 +117,11 @@ signals:
     void prettyStatusChanged();
     void nextStatusChanged( bool );
 
-    void entryIdsChanged(QStringList entryIds);
-    void entryNamesChanged(QStringList entryNames);
-    void entryDescriptionsChanged(QStringList entryDescriptions);
-    void entryScreenshotsChanged(QVector<QString> entryScreenshots);    
-    void entryPackagesChanged(QVector<QStringList> entryPackages);
+    void entryIdsChanged(QStringList &a_entryIds);
+    void entryNamesChanged(QStringList &a_entryNames);
+    void entryDescriptionsChanged(QStringList &a_entryDescriptions);
+    void entryScreenshotsChanged(QVector<QString> &a_entryScreenshots);    
+    void entryPackagesChanged(QVector<QStringList> &a_entryPackages);
     void entrySelectedStatesChanged(QVector<bool> &a_entrySelectedStates);
 
 private:

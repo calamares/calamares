@@ -344,6 +344,7 @@ void Config::refreshQMLData()
     Calamares::GlobalStorage* globalStorage = Calamares::JobQueue::instance()->globalStorage();
     QString key;
     QString value;
+    bool entries_changed = false;
     for(int i=0; i< m_model-> packageCount(); i++) {
         entryData = m_model -> packageData(i);
         include_entry = true;
@@ -378,6 +379,7 @@ void Config::refreshQMLData()
         }
         if ( include_entry ) 
         {
+            entries_changed = true;
             m_entryIds.append(entryData.id);  
             m_entryNames.append(entryData.name.get());    
             m_entryDescriptions.append(entryData.description.get());
@@ -386,6 +388,16 @@ void Config::refreshQMLData()
             m_entrySelectedStates.append(entryData.selected);
         }
     }
+    if ( entries_changed ) 
+    {
+        emit entryIdsChanged(&m_entryIds);
+        emit entryNamesChanged(&m_entryNames);
+        emit entryDescriptionsChanged(&m_entryDescriptions);
+        emit entryScreenshotsChanged(&m_entryScreenshots);    
+        emit entryPackagesChanged(&m_entryPackages);
+        emit entrySelectedStatesChanged(&m_entrySelectedStates);
+    }
+
     cDebug() << "entryIds: " << m_entryIds;
     cDebug() << "entryNames: " << m_entryNames;
     cDebug() << "entryDescriptions: " << m_entryDescriptions;
