@@ -88,8 +88,8 @@ public:
      * Updates the GS keys for this packagechooser, marking all
      * (and only) the packages in @p selected as selected.
      */
-    void pageLeavingTasks() const;
-    void resetSelections() const;
+    void pageLeavingTasks();
+    void resetSelections();
 
     QString pkgc() const { return m_pkgc; }
     void setPkgc( const QString& pkgc );

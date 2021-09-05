@@ -106,7 +106,7 @@ Config::introductionPackage() const
 }
 
 void
-Config::pageLeavingTasks() const
+Config::pageLeavingTasks()
 {
 
     Calamares::JobQueue::instance()->globalStorage()->insert( m_outputConditionKey, m_selections );
@@ -416,7 +416,7 @@ void Config::updateDisplayedData()
     cDebug() << "displayedEntrySelectedStates: " << m_displayedEntrySelectedStates;
 }
 
-void Config::resetSelections() const
+void Config::resetSelections()
 {
     m_selections.clear();
 }
