@@ -69,13 +69,13 @@ Config::Config( QObject* parent )
     , m_displayedEntryIds( QStringList() )
     , m_displayedEntryNames( QStringList() )
     , m_displayedEntryDescriptions( QStringList() )
-    , m_displayedEntryScreenshots( QVector<QString>() )
-    , m_displayedEntryPackages( QVector<QStringList>() )
-    , m_displayedEntrySelectedStates( QVector<bool>() )
+    , m_displayedEntryScreenshots( QVector< QString >() )
+    , m_displayedEntryPackages( QVector< QStringList >() )
+    , m_displayedEntrySelectedStates( QVector< bool >() )
 {
 }
 
-Config::~Config() {}
+Config::~Config() { }
 
 const PackageItem&
 Config::introductionPackage() const
@@ -112,30 +112,22 @@ Config::pageLeavingTasks()
 
     if ( m_method == PackageChooserMethod::Legacy )
     {
-        //QString value = m_selections.join( ',' );
-        QString value = ( m_pkgc );
+        QString value = m_model->getInstallPackagesForNames( m_selections ).join( ',' );
         Calamares::JobQueue::instance()->globalStorage()->insert( m_id, value );
-        cDebug() << m_id<< "selected" << value;
+        cDebug() << m_id << "selected" << value;
     }
     else if ( m_method == PackageChooserMethod::Packages )
     {
-        cDebug() << "Finalized these selections: " << m_selections;
         QStringList packageNames = m_model->getInstallPackagesForNames( m_selections );
-        cDebug() << m_defaultId << "Adding these packages to the global storage: " << packageNames;
         CalamaresUtils::Packages::setGSPackageAdditions(
             Calamares::JobQueue::instance()->globalStorage(), m_defaultId, packageNames );
+        cDebug() << m_id << "Finalized these selections: " << m_selections;
+        cDebug() << m_id << "Finalized these packages: " << packageNames;
     }
     else
     {
-        cWarning() << "Unknown packagechooser method" << smash( m_method );
+        cWarning() << "Unknown packagechooserq method" << smash( m_method );
     }
-}
-
-void
-Config::setPkgc( const QString& pkgc )
-{
-    m_pkgc = pkgc;
-    emit pkgcChanged( m_pkgc );
 }
 
 QString
@@ -149,7 +141,7 @@ fillModel( PackageListModel* model, const QVariantList& items )
 {
     if ( items.isEmpty() )
     {
-        cWarning() << "No *items* for ConditionalPackageChooser module.";
+        cWarning() << "No *items* for the PackageChooserq module.";
         return;
     }
 
@@ -158,7 +150,7 @@ fillModel( PackageListModel* model, const QVariantList& items )
     bool poolOk = false;
 #endif
 
-    cDebug() << "Loading ConditionalPackageChooser model items from config";
+    cDebug() << "Loading PackageChooserq model items from config";
     int item_index = 0;
     for ( const auto& item_it : items )
     {
@@ -212,7 +204,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
                                                  PackageChooserMethod::Packages );
     m_pkgc = CalamaresUtils::getString( configurationMap, "pkgc" );
     m_outputConditionKey = CalamaresUtils::getString( configurationMap, "outputconditionkey" );
-    m_promptMessage = CalamaresUtils::getString( configurationMap, "promptmessage" ); 
+    m_promptMessage = CalamaresUtils::getString( configurationMap, "promptmessage" );
 
     if ( m_method == PackageChooserMethod::Legacy )
     {
@@ -267,20 +259,26 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     updateDisplayedData();
 }
 
-void Config::addSelection(const QString& selection)
+void
+Config::addSelection( const QString& selection )
 {
 
-    if ( m_selections.contains(selection) ) {
-        cWarning() << m_defaultId << " Selection " << selection << " already exists in the list of selections. This is a bug";
+    if ( m_selections.contains( selection ) )
+    {
+        cWarning() << m_defaultId << " Selection " << selection
+                   << " already exists in the list of selections. This is a bug";
         return;
     }
 
-    if ( (m_mode == PackageChooserMode::Optional || m_mode == PackageChooserMode::Required) && m_selections.length() >= 1){
+    if ( ( m_mode == PackageChooserMode::Optional || m_mode == PackageChooserMode::Required )
+         && m_selections.length() >= 1 )
+    {
         cDebug() << m_defaultId << "Clearing other selections since at most one entry can be selected...";
-        m_displayedEntrySelectedStates.fill(false);
-        m_displayedEntrySelectedStates.replace(m_displayedEntryIds.indexOf(selection), true);
+        m_displayedEntrySelectedStates.fill( false );
+        m_displayedEntrySelectedStates.replace( m_displayedEntryIds.indexOf( selection ), true );
 
-        if (m_mode == PackageChooserMode::Optional) {
+        if ( m_mode == PackageChooserMode::Optional )
+        {
             m_selections.clear();
         }
 
@@ -288,16 +286,19 @@ void Config::addSelection(const QString& selection)
     }
 
     cDebug() << m_defaultId << " Adding " << selection << " as a selection...";
-    m_selections.append(selection);
+    m_selections.append( selection );
     cDebug() << "m_selections: " << m_selections;
     refreshNextButtonStatus();
 }
 
-void Config::removeSelection(const QString& selection)
+void
+Config::removeSelection( const QString& selection )
 {
 
-    if ( !m_selections.contains(selection) ) {
-        cWarning() << m_defaultId << " Selection " << selection << " did not exist in the list of selections while deselecting. This is a bug";
+    if ( !m_selections.contains( selection ) )
+    {
+        cWarning() << m_defaultId << " Selection " << selection
+                   << " did not exist in the list of selections while deselecting. This is a bug";
         return;
     }
 
@@ -308,22 +309,27 @@ void Config::removeSelection(const QString& selection)
     // }
 
     cDebug() << m_defaultId << " Removing " << selection << " from selections...";
-    m_selections.removeAll(selection);
+    m_selections.removeAll( selection );
     cDebug() << "m_selections: " << m_selections;
     refreshNextButtonStatus();
 }
 
-bool Config::refreshNextButtonStatus() {
-    if ( (m_mode == PackageChooserMode::Required || m_mode == PackageChooserMode::RequiredMultiple) && m_selections.length() < 1 )
+bool
+Config::refreshNextButtonStatus()
+{
+    if ( ( m_mode == PackageChooserMode::Required || m_mode == PackageChooserMode::RequiredMultiple )
+         && m_selections.length() < 1 )
     {
         emit nextStatusChanged( false );
         return false;
     }
-    else if ( m_mode == PackageChooserMode::Optional && m_selections.length() > 1 ) {
+    else if ( m_mode == PackageChooserMode::Optional && m_selections.length() > 1 )
+    {
         emit nextStatusChanged( false );
         return false;
     }
-    else {
+    else
+    {
         emit nextStatusChanged( true );
         return true;
     }
@@ -331,7 +337,8 @@ bool Config::refreshNextButtonStatus() {
     return false;
 }
 
-void Config::updateDisplayedData()
+void
+Config::updateDisplayedData()
 {
     if ( !m_configurationMapSet )
     {
@@ -350,24 +357,30 @@ void Config::updateDisplayedData()
     Calamares::GlobalStorage* globalStorage = Calamares::JobQueue::instance()->globalStorage();
     QString key;
     QString value;
-    for(int i=0; i< m_model-> packageCount(); i++) {
-        displayedEntryData = m_model -> packageData(i);
+    for ( int i = 0; i < m_model->packageCount(); i++ )
+    {
+        displayedEntryData = m_model->packageData( i );
         includeEntryForDisplay = true;
-        for(int j=0; j<displayedEntryData.whenKeyValuePairs.length()-1; j += 2) 
+        for ( int j = 0; j < displayedEntryData.whenKeyValuePairs.length() - 1; j += 2 )
         {
-            key = displayedEntryData.whenKeyValuePairs[j];
-            value = displayedEntryData.whenKeyValuePairs[j+1];
-            if( globalStorage->contains(key) ) {
-                if( !value.startsWith('-') && !globalStorage->value(key).toStringList().contains(value, Qt::CaseSensitive) )
+            key = displayedEntryData.whenKeyValuePairs[ j ];
+            value = displayedEntryData.whenKeyValuePairs[ j + 1 ];
+            if ( globalStorage->contains( key ) )
+            {
+                if ( !value.startsWith( '-' )
+                     && !globalStorage->value( key ).toStringList().contains( value, Qt::CaseSensitive ) )
                 {
                     includeEntryForDisplay = false;
-                    cDebug() << "Skipping entry \"" << displayedEntryData.id << "\" because the value \"" << value << "\" does not exist in the key \"" << key <<"\".";
+                    cDebug() << "Skipping entry \"" << displayedEntryData.id << "\" because the value \"" << value
+                             << "\" does not exist in the key \"" << key << "\".";
                     break;
                 }
-                else if ( value.startsWith('-') && globalStorage->value(key).toStringList().contains(value, Qt::CaseInsensitive) )
+                else if ( value.startsWith( '-' )
+                          && globalStorage->value( key ).toStringList().contains( value.remove(0, 1).trimmed(), Qt::CaseSensitive ) )
                 {
                     includeEntryForDisplay = false;
-                    cDebug() << "Skipping entry \"" << displayedEntryData.id << "\" because the value \"" << value << "\" exists in the key \"" << key <<"\".";
+                    cDebug() << "Skipping entry \"" << displayedEntryData.id << "\" because the value \"" << value
+                             << "\" exists in the key \"" << key << "\".";
                     break;
                 }
                 else
@@ -375,32 +388,33 @@ void Config::updateDisplayedData()
                     continue;
                 }
             }
-            else 
+            else
             {
                 includeEntryForDisplay = false;
-                cDebug() << "Skipping entry \"" << displayedEntryData.id << "\" because the key \"" << key << "\" does not exist.";
+                cDebug() << "Skipping entry \"" << displayedEntryData.id << "\" because the key \"" << key
+                         << "\" does not exist.";
                 break;
             }
         }
-        if ( includeEntryForDisplay ) 
+        if ( includeEntryForDisplay )
         {
-            m_displayedEntryIds.append(displayedEntryData.id);  
-            m_displayedEntryNames.append(displayedEntryData.name.get());    
-            m_displayedEntryDescriptions.append(displayedEntryData.description.get());
-            m_displayedEntryScreenshots.append(displayedEntryData.screenshot);
-            m_displayedEntryPackages.append(displayedEntryData.packageNames);
+            m_displayedEntryIds.append( displayedEntryData.id );
+            m_displayedEntryNames.append( displayedEntryData.name.get() );
+            m_displayedEntryDescriptions.append( displayedEntryData.description.get() );
+            m_displayedEntryScreenshots.append( displayedEntryData.screenshot );
+            m_displayedEntryPackages.append( displayedEntryData.packageNames );
 
-            if (m_selections.length() < 1)
+            if ( m_selections.length() < 1 )
             {
-                m_displayedEntrySelectedStates.append(displayedEntryData.selected);
-                if( displayedEntryData.selected )
+                m_displayedEntrySelectedStates.append( displayedEntryData.selected );
+                if ( displayedEntryData.selected )
                 {
-                    addSelection(displayedEntryData.id);
+                    addSelection( displayedEntryData.id );
                 }
             }
             else
             {
-                m_displayedEntrySelectedStates.append(false);
+                m_displayedEntrySelectedStates.append( false );
             }
         }
     }
@@ -408,31 +422,31 @@ void Config::updateDisplayedData()
     // emit displayedEntryIdsChanged(m_displayedEntryIds);
     // emit displayedEntryNamesChanged(m_displayedEntryNames);
     // emit displayedEntryDescriptionsChanged(m_displayedEntryDescriptions);
-    // emit displayedEntryScreenshotsChanged(m_displayedEntryScreenshots);    
+    // emit displayedEntryScreenshotsChanged(m_displayedEntryScreenshots);
     // emit displayedEntryPackagesChanged(m_displayedEntryPackages);
     // emit displayedEntrySelectedStatesChanged(m_displayedEntrySelectedStates);
 
-    for( int k=0; k<m_selections.length(); k++)
+    for ( int k = 0; k < m_selections.length(); k++ )
     {
-        if( m_displayedEntryIds.contains(m_selections[k], Qt::CaseSensitive) )
+        if ( m_displayedEntryIds.contains( m_selections[ k ], Qt::CaseSensitive ) )
         {
-            int index = m_displayedEntryIds.indexOf(m_selections[k]);
-            m_displayedEntrySelectedStates[index] = true;
-            QString oldSelection = m_selections.takeAt(k);
-            addSelection(oldSelection); // Needed to properly handle on-screen exclusions and adjustments
+            int index = m_displayedEntryIds.indexOf( m_selections[ k ] );
+            m_displayedEntrySelectedStates[ index ] = true;
+            QString oldSelection = m_selections.takeAt( k );
+            addSelection( oldSelection );  // Needed to properly handle on-screen exclusions and adjustments
             // No need to decrement the index. Otherwise this will be an infinite loop
         }
         else
         {
-            m_selections.removeAt(k);
-            k = k-1;
+            m_selections.removeAt( k );
+            k = k - 1;
         }
     }
 
     emit displayedEntryIdsChanged();
     emit displayedEntryNamesChanged();
     emit displayedEntryDescriptionsChanged();
-    emit displayedEntryScreenshotsChanged();    
+    emit displayedEntryScreenshotsChanged();
     emit displayedEntryPackagesChanged();
     emit displayedEntrySelectedStatesChanged();
 

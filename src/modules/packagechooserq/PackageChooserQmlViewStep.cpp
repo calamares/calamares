@@ -2,6 +2,7 @@
  *
  *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
  *   SPDX-FileCopyrightText: 2021 Anke Boersma <demm@kaosx.us>
+ *   SPDX-FileCopyrightText: 2021 shivanandvp <shivanandvp@rebornos.org>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -16,20 +17,29 @@
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
+#include "Config.h"
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( PackageChooserQmlViewStepFactory, registerPlugin< PackageChooserQmlViewStep >(); )
 
 PackageChooserQmlViewStep::PackageChooserQmlViewStep( QObject* parent )
     : Calamares::QmlViewStep( parent )
     , m_config( new Config( this ) )
+    , m_stepName( nullptr )
 {
-    emit nextStatusChanged( true );
+    emit nextStatusChanged( false );
+    connect( m_config, &Config::nextStatusChanged, this, &PackageChooserQmlViewStep::nextStatusChanged );
+}
+
+void PackageChooserQmlViewStep::onActivate() {
+    cDebug() << "Activated " << prettyName() << "...";
+    m_config->updateDisplayedData();
+    cDebug() << "Refreshed QML data after activating " << prettyName() << "...";
 }
 
 QString
 PackageChooserQmlViewStep::prettyName() const
 {
-    return tr( "Packages" );
+    return m_stepName ? m_stepName->get() : tr( "Packages" );
 }
 
 QString
@@ -43,7 +53,7 @@ PackageChooserQmlViewStep::prettyStatus() const
 bool
 PackageChooserQmlViewStep::isNextEnabled() const
 {
-    return true;
+    return m_config -> refreshNextButtonStatus();
 }
 
 bool
@@ -74,7 +84,7 @@ PackageChooserQmlViewStep::jobs() const
 void
 PackageChooserQmlViewStep::onLeave()
 {
-    m_config->fillGSSecondaryConfiguration();
+    m_config->pageLeavingTasks();
 }
 
 void
@@ -82,5 +92,17 @@ PackageChooserQmlViewStep::setConfigurationMap( const QVariantMap& configuration
 {
     m_config->setDefaultId( moduleInstanceKey() );
     m_config->setConfigurationMap( configurationMap );
+
+    bool labels_ok = false;
+    auto labels = CalamaresUtils::getSubMap( configurationMap, "labels", labels_ok );
+    if ( labels_ok )
+    {
+        if ( labels.contains( "step" ) )
+        {
+            m_stepName = new CalamaresUtils::Locale::TranslatedString( labels, "step" );
+        }
+    }
+
     Calamares::QmlViewStep::setConfigurationMap( configurationMap );  // call parent implementation last
 }
+
