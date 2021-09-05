@@ -1,5 +1,6 @@
 /* === This file is part of Calamares - <https://calamares.io> ===
  *
+ *   SPDX-FileCopyrightText: 2021 Anke Boersma <demm@kaosx.us>
  *   SPDX-FileCopyrightText: 2021 shivanandvp <shivanandvp@rebornos.org>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -15,8 +16,8 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 
 Item {
-    width: 800
-    height: 800
+    // width: 800
+    // height: 800
     property string image_source: ""
     property int image_width: 1
     property int image_height: 1

@@ -2,6 +2,7 @@
  *
  *   SPDX-FileCopyrightText: 2021 Adriaan de Groot <groot@kde.org>
  *   SPDX-FileCopyrightText: 2021 Anke Boersma <demm@kaosx.us>
+ *   SPDX-FileCopyrightText: 2021 shivanandvp <shivanandvp@rebornos.org>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -94,7 +95,7 @@ public:
 
     QString prettyStatus() const;
 
-    QString outputConditionName() const { return m_outputConditionName; }
+    QString outputConditionKey() const { return m_outputConditionKey; }
     QString promptMessage() const { return m_promptMessage; }
     QStringList selections() const {return m_selections; }
 
@@ -128,7 +129,7 @@ private:
     /// QML selections
     QString m_pkgc;
     /// Name of the output condition
-    QString m_outputConditionName;
+    QString m_outputConditionKey;
     QStringList m_selections;
     QString m_promptMessage; 
 };

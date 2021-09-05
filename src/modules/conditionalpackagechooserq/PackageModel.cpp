@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://calamares.io> ===
  *
  *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2021 shivanandvp <shivanandvp@rebornos.org>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -42,6 +43,7 @@ PackageItem::PackageItem::PackageItem( const QVariantMap& item_map )
     , screenshot( CalamaresUtils::getString( item_map, "screenshot" ) )
     , packageNames( CalamaresUtils::getStringList( item_map, "packages" ) )
     , selected( CalamaresUtils::getBool( item_map, "selected" ) )
+    , whenKeyValuePairs( CalamaresUtils::getStringList( item_map, "whenkeyvaluepairs" ) )
 {
     if ( name.isEmpty() && id.isEmpty() )
     {
@@ -54,6 +56,10 @@ PackageItem::PackageItem::PackageItem( const QVariantMap& item_map )
     if ( description.isEmpty() )
     {
         description = QObject::tr( "No description provided." );
+    }
+    if ( whenKeyValuePairs.length % 2 != 0 )
+    {
+        cWarning() << "Odd number of entries provided as input for key value pairs. The last entry would be ignored.";
     }
 }
 

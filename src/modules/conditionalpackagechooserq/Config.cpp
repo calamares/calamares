@@ -2,6 +2,7 @@
  *
  *   SPDX-FileCopyrightText: 2021 Adriaan de Groot <groot@kde.org>
  *   SPDX-FileCopyrightText: 2021 Anke Boersma <demm@kaosx.us>
+ *   SPDX-FileCopyrightText: 2021 shivanandvp <shivanandvp@rebornos.org>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -106,7 +107,7 @@ void
 Config::updateGlobalStorage() const
 {
 
-    Calamares::JobQueue::instance()->globalStorage()->insert( m_outputConditionName, m_selections );
+    Calamares::JobQueue::instance()->globalStorage()->insert( m_outputConditionKey, m_selections );
 
     if ( m_method == PackageChooserMethod::Legacy )
     {
@@ -209,7 +210,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     m_method = PackageChooserMethodNames().find( CalamaresUtils::getString( configurationMap, "method" ),
                                                  PackageChooserMethod::Packages );
     m_pkgc = CalamaresUtils::getString( configurationMap, "pkgc" );
-    m_outputConditionName = CalamaresUtils::getString( configurationMap, "outputconditionname" );
+    m_outputConditionKey = CalamaresUtils::getString( configurationMap, "outputconditionkey" );
     m_promptMessage = CalamaresUtils::getString( configurationMap, "promptmessage" ); 
 
     if ( m_method == PackageChooserMethod::Legacy )
@@ -258,14 +259,51 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     }
 
     PackageItem entryData;
+    bool include_entry;
+    Calamares::GlobalStorage globalStorage = Calamares::JobQueue::instance()->globalStorage();
+    QString key;
+    QString value;
     for(int i=0; i< m_model-> packageCount(); i++) {
         entryData = m_model -> packageData(i);
-        m_entryIds.append(entryData.id);  
-        m_entryNames.append(entryData.name.get());    
-        m_entryDescriptions.append(entryData.description.get());
-        m_entryScreenshots.append(entryData.screenshot);
-        m_entryPackages.append(entryData.packageNames);
-        m_entrySelectedStates.append(entryData.selected);
+        include_entry = true;
+        for(int j=0; j<entryData.whenKeyValuePairs.length()-1; j += 2) 
+        {
+            key = entryData.whenKeyValuePairs[j];
+            value = entryData.whenKeyValuePairs[j+1];
+            if( globalStorage.contains(key) ) {
+                if( !value.startsWith('-') && !globalStorage->value(key).contains(value, Qt::CaseInsensitive )
+                {
+                    include_entry = false;
+                    cDebug() << "Skipping entry \"" << entryData.id << "\" because the value \"" << value << "\" does not exist in the key \"" << key <<"\".";
+                    break;
+                }
+                else if ( value.startsWith('-') && globalStorage->value(key).contains(value, Qt::CaseInsensitive )
+                {
+                    include_entry = false;
+                    cDebug() << "Skipping entry \"" << entryData.id << "\" because the value \"" << value << "\" exists in the key \"" << key <<"\".";
+                    break;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            else 
+            {
+                include_entry = false;
+                cDebug() << "Skipping entry \"" << entryData.id << "\" because the key \"" << key << "\" does not exist.";
+                break;
+            }
+        }
+        if ( include_entry ) 
+        {
+            m_entryIds.append(entryData.id);  
+            m_entryNames.append(entryData.name.get());    
+            m_entryDescriptions.append(entryData.description.get());
+            m_entryScreenshots.append(entryData.screenshot);
+            m_entryPackages.append(entryData.packageNames);
+            m_entrySelectedStates.append(entryData.selected);
+        }
     }
 
     cDebug() << "entryIds: " << m_entryIds;
@@ -275,7 +313,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     cDebug() << "entryPackages: " << m_entryPackages;
     cDebug() << "entrySelectedStates: " << m_entrySelectedStates;
 
-    cDebug() << "outputConditionName: " << m_outputConditionName;
+    cDebug() << "outputConditionKey: " << m_outputConditionKey;
     cDebug() << "promptMessage: " << m_promptMessage;
 }
 
