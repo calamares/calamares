@@ -5,7 +5,7 @@
 # 
 # Translators:
 # pavelrz, 2017
-# LiberteCzech <liberte.czech@gmail.com>, 2020
+# LiberteCzech <martin.kriz.czech@gmail.com>, 2020
 # Pavel Borecki <pavel.borecki@gmail.com>, 2020
 # 
 #, fuzzy

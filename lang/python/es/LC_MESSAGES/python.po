@@ -7,7 +7,7 @@
 # strel, 2017
 # Francisco Sánchez López de Lerma <fslopezlerma@gmail.com>, 2018
 # Guido Grasso <cuquiman97@gmail.com>, 2018
-# Adolfo Jayme Barrientos, 2019
+# Adolfo Jayme-Barrientos, 2019
 # Miguel Mayol <mitcoes@gmail.com>, 2020
 # Pier Jose Gotta Perez <piegope@protonmail.com>, 2020
 # 
