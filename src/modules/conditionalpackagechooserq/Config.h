@@ -115,6 +115,7 @@ signals:
     void pkgcChanged( QString pkgc );
     void prettyStatusChanged();
     void entrySelectedStatesChanged(QVector<bool> &a_entrySelectedStates);
+    void nextStatusChanged( bool );
 
 private:
     PackageListModel* m_model = nullptr;

@@ -27,6 +27,7 @@
 #include "packages/Globals.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
+#include "viewpages/QmlViewStep.h"
 
 const NamedEnumTable< PackageChooserMode >&
 packageChooserModeNames()
@@ -362,7 +363,7 @@ void Config::removeSelection(const QString& selection)
 }
 
 bool Config::refreshNextButtonStatus() {
-    if ( (m_config-> mode() == PackageChooserMode::Required || m_config-> mode() == PackageChooserMode::RequiredMultiple) && m_config-> selections().length() < 1 )
+    if ( (m_mode == PackageChooserMode::Required || m_mode == PackageChooserMode::RequiredMultiple) && m_selections.length() < 1 )
     {
         emit nextStatusChanged( false );
         return false;
@@ -371,4 +372,6 @@ bool Config::refreshNextButtonStatus() {
         emit nextStatusChanged( true );
         return true;
     }
+    cError() << "This message should not be reachable.";
+    return false;
 }

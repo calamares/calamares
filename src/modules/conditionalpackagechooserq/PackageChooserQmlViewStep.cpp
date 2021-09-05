@@ -26,7 +26,8 @@ PackageChooserQmlViewStep::PackageChooserQmlViewStep( QObject* parent )
     , m_config( new Config( this ) )
     , m_stepName( nullptr )
 {
-    emit nextStatusChanged( true );
+    emit nextStatusChanged( false );
+    connect( m_config, &Config::nextStatusChanged, this, &PackageChooserQmlViewStep::nextStatusChanged );
 }
 
 QString
@@ -98,3 +99,4 @@ PackageChooserQmlViewStep::setConfigurationMap( const QVariantMap& configuration
 
     Calamares::QmlViewStep::setConfigurationMap( configurationMap );  // call parent implementation last
 }
+
