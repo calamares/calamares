@@ -13,9 +13,12 @@
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
-PackageItem::PackageItem() {}
+PackageItem::PackageItem() { }
 
-PackageItem::PackageItem( const QString& a_id, const QString& a_name, const QString& a_description, const bool a_selected )
+PackageItem::PackageItem( const QString& a_id,
+                          const QString& a_name,
+                          const QString& a_description,
+                          const bool a_selected )
     : id( a_id )
     , name( a_name )
     , description( a_description )
@@ -74,7 +77,7 @@ PackageListModel::PackageListModel( PackageList&& items, QObject* parent )
 {
 }
 
-PackageListModel::~PackageListModel() {}
+PackageListModel::~PackageListModel() { }
 
 void
 PackageListModel::addPackage( PackageItem&& p )

@@ -11,13 +11,13 @@
 
 #include "PackageChooserQmlViewStep.h"
 
+#include "Config.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "locale/TranslatableConfiguration.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
-#include "Config.h"
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( PackageChooserQmlViewStepFactory, registerPlugin< PackageChooserQmlViewStep >(); )
 
@@ -30,7 +30,9 @@ PackageChooserQmlViewStep::PackageChooserQmlViewStep( QObject* parent )
     connect( m_config, &Config::nextStatusChanged, this, &PackageChooserQmlViewStep::nextStatusChanged );
 }
 
-void PackageChooserQmlViewStep::onActivate() {
+void
+PackageChooserQmlViewStep::onActivate()
+{
     cDebug() << "Activated " << prettyName() << "...";
     m_config->updateDisplayedData();
     cDebug() << "Refreshed QML data after activating " << prettyName() << "...";
@@ -53,7 +55,7 @@ PackageChooserQmlViewStep::prettyStatus() const
 bool
 PackageChooserQmlViewStep::isNextEnabled() const
 {
-    return m_config -> refreshNextButtonStatus();
+    return m_config->refreshNextButtonStatus();
 }
 
 bool
@@ -105,4 +107,3 @@ PackageChooserQmlViewStep::setConfigurationMap( const QVariantMap& configuration
 
     Calamares::QmlViewStep::setConfigurationMap( configurationMap );  // call parent implementation last
 }
-

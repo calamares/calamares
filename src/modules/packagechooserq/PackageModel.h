@@ -36,10 +36,7 @@ struct PackageItem
      * This constructor sets all the text members,
      * but leaves the screenshot blank. Set that separately.
      */
-    PackageItem( const QString& a_id,
-                 const QString& a_name,
-                 const QString& a_description,
-                 const bool a_selected );
+    PackageItem( const QString& a_id, const QString& a_name, const QString& a_description, const bool a_selected );
 
     /** @brief Creates a PackageItem from given strings.
      *
