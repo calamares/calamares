@@ -390,12 +390,19 @@ void Config::refreshQMLData()
     }
     if ( entries_changed ) 
     {
-        emit entryIdsChanged(m_entryIds);
-        emit entryNamesChanged(m_entryNames);
-        emit entryDescriptionsChanged(m_entryDescriptions);
-        emit entryScreenshotsChanged(m_entryScreenshots);    
-        emit entryPackagesChanged(m_entryPackages);
-        emit entrySelectedStatesChanged(m_entrySelectedStates);
+        // emit entryIdsChanged(m_entryIds);
+        // emit entryNamesChanged(m_entryNames);
+        // emit entryDescriptionsChanged(m_entryDescriptions);
+        // emit entryScreenshotsChanged(m_entryScreenshots);    
+        // emit entryPackagesChanged(m_entryPackages);
+        // emit entrySelectedStatesChanged(m_entrySelectedStates);
+
+        emit entryIdsChanged();
+        emit entryNamesChanged();
+        emit entryDescriptionsChanged();
+        emit entryScreenshotsChanged();    
+        emit entryPackagesChanged();
+        emit entrySelectedStatesChanged();
     }
 
     cDebug() << "entryIds: " << m_entryIds;

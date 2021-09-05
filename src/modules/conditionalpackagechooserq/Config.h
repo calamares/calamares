@@ -117,12 +117,19 @@ signals:
     void prettyStatusChanged();
     void nextStatusChanged( bool );
 
-    void entryIdsChanged(QStringList &a_entryIds);
-    void entryNamesChanged(QStringList &a_entryNames);
-    void entryDescriptionsChanged(QStringList &a_entryDescriptions);
-    void entryScreenshotsChanged(QVector<QString> &a_entryScreenshots);    
-    void entryPackagesChanged(QVector<QStringList> &a_entryPackages);
-    void entrySelectedStatesChanged(QVector<bool> &a_entrySelectedStates);
+    // void entryIdsChanged(QStringList &a_entryIds);
+    // void entryNamesChanged(QStringList &a_entryNames);
+    // void entryDescriptionsChanged(QStringList &a_entryDescriptions);
+    // void entryScreenshotsChanged(QVector<QString> &a_entryScreenshots);    
+    // void entryPackagesChanged(QVector<QStringList> &a_entryPackages);
+    // void entrySelectedStatesChanged(QVector<bool> &a_entrySelectedStates);
+
+    void entryIdsChanged();
+    void entryNamesChanged();
+    void entryDescriptionsChanged();
+    void entryScreenshotsChanged();   
+    void entryPackagesChanged();
+    void entrySelectedStatesChanged();
 
 private:
     PackageListModel* m_model = nullptr;
