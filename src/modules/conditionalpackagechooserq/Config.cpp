@@ -260,7 +260,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
 
     PackageItem entryData;
     bool include_entry;
-    Calamares::GlobalStorage globalStorage = Calamares::JobQueue::instance()->globalStorage();
+    Calamares::GlobalStorage* globalStorage = Calamares::JobQueue::instance()->globalStorage();
     QString key;
     QString value;
     for(int i=0; i< m_model-> packageCount(); i++) {
@@ -270,14 +270,14 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         {
             key = entryData.whenKeyValuePairs[j];
             value = entryData.whenKeyValuePairs[j+1];
-            if( globalStorage.contains(key) ) {
-                if( !value.startsWith('-') && !globalStorage->value(key).contains(value, Qt::CaseInsensitive )
+            if( globalStorage->contains(key) ) {
+                if( !value.startsWith('-') && !globalStorage->value(key).toStringList().contains(value, Qt::CaseInsensitive) )
                 {
                     include_entry = false;
                     cDebug() << "Skipping entry \"" << entryData.id << "\" because the value \"" << value << "\" does not exist in the key \"" << key <<"\".";
                     break;
                 }
-                else if ( value.startsWith('-') && globalStorage->value(key).contains(value, Qt::CaseInsensitive )
+                else if ( value.startsWith('-') && globalStorage->value(key).toStringList().contains(value, Qt::CaseInsensitive) )
                 {
                     include_entry = false;
                     cDebug() << "Skipping entry \"" << entryData.id << "\" because the value \"" << value << "\" exists in the key \"" << key <<"\".";

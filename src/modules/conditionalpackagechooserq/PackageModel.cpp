@@ -57,7 +57,7 @@ PackageItem::PackageItem::PackageItem( const QVariantMap& item_map )
     {
         description = QObject::tr( "No description provided." );
     }
-    if ( whenKeyValuePairs.length % 2 != 0 )
+    if ( whenKeyValuePairs.length() % 2 != 0 )
     {
         cWarning() << "Odd number of entries provided as input for key value pairs. The last entry would be ignored.";
     }
