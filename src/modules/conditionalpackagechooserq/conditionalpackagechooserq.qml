@@ -107,7 +107,7 @@ Item {
                         }
                         Switch {
                             anchors.right: parent.right
-                            checked: false
+                            checked: config.displayedEntrySelectedStates[index]
                             hoverEnabled: true
                             onCheckedChanged: {
                                 if ( checked ) {
