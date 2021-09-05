@@ -89,7 +89,6 @@ public:
      * (and only) the packages in @p selected as selected.
      */
     void pageLeavingTasks();
-    void resetSelections();
 
     QString pkgc() const { return m_pkgc; }
     void setPkgc( const QString& pkgc );

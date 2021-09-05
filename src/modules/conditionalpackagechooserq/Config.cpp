@@ -119,9 +119,9 @@ Config::pageLeavingTasks()
     }
     else if ( m_method == PackageChooserMethod::Packages )
     {
-        cDebug() << "m_selections: " << m_selections;
+        cDebug() << "Finalized these selections: " << m_selections;
         QStringList packageNames = m_model->getInstallPackagesForNames( m_selections );
-        cDebug() << m_defaultId << "packages to install" << packageNames;
+        cDebug() << m_defaultId << "Adding these packages to the global storage: " << packageNames;
         CalamaresUtils::Packages::setGSPackageAdditions(
             Calamares::JobQueue::instance()->globalStorage(), m_defaultId, packageNames );
     }
@@ -342,28 +342,27 @@ void Config::updateDisplayedData()
     m_displayedEntrySelectedStates.clear();
 
     PackageItem displayedEntryData;
-    bool include_displayedEntry;
+    bool includeEntryForDisplay;
     Calamares::GlobalStorage* globalStorage = Calamares::JobQueue::instance()->globalStorage();
     QString key;
     QString value;
-    bool entries_changed = false;
     for(int i=0; i< m_model-> packageCount(); i++) {
         displayedEntryData = m_model -> packageData(i);
-        include_displayedEntry = true;
+        includeEntryForDisplay = true;
         for(int j=0; j<displayedEntryData.whenKeyValuePairs.length()-1; j += 2) 
         {
             key = displayedEntryData.whenKeyValuePairs[j];
             value = displayedEntryData.whenKeyValuePairs[j+1];
             if( globalStorage->contains(key) ) {
-                if( !value.startsWith('-') && !globalStorage->value(key).toStringList().contains(value, Qt::CaseInsensitive) )
+                if( !value.startsWith('-') && !globalStorage->value(key).toStringList().contains(value, Qt::CaseSensitive) )
                 {
-                    include_displayedEntry = false;
+                    includeEntryForDisplay = false;
                     cDebug() << "Skipping entry \"" << displayedEntryData.id << "\" because the value \"" << value << "\" does not exist in the key \"" << key <<"\".";
                     break;
                 }
                 else if ( value.startsWith('-') && globalStorage->value(key).toStringList().contains(value, Qt::CaseInsensitive) )
                 {
-                    include_displayedEntry = false;
+                    includeEntryForDisplay = false;
                     cDebug() << "Skipping entry \"" << displayedEntryData.id << "\" because the value \"" << value << "\" exists in the key \"" << key <<"\".";
                     break;
                 }
@@ -374,14 +373,13 @@ void Config::updateDisplayedData()
             }
             else 
             {
-                include_displayedEntry = false;
+                includeEntryForDisplay = false;
                 cDebug() << "Skipping entry \"" << displayedEntryData.id << "\" because the key \"" << key << "\" does not exist.";
                 break;
             }
         }
-        if ( include_displayedEntry ) 
+        if ( includeEntryForDisplay ) 
         {
-            entries_changed = true;
             m_displayedEntryIds.append(displayedEntryData.id);  
             m_displayedEntryNames.append(displayedEntryData.name.get());    
             m_displayedEntryDescriptions.append(displayedEntryData.description.get());
@@ -390,33 +388,41 @@ void Config::updateDisplayedData()
             m_displayedEntrySelectedStates.append(displayedEntryData.selected);
         }
     }
-    if ( entries_changed ) 
-    {
-        // emit displayedEntryIdsChanged(m_displayedEntryIds);
-        // emit displayedEntryNamesChanged(m_displayedEntryNames);
-        // emit displayedEntryDescriptionsChanged(m_displayedEntryDescriptions);
-        // emit displayedEntryScreenshotsChanged(m_displayedEntryScreenshots);    
-        // emit displayedEntryPackagesChanged(m_displayedEntryPackages);
-        // emit displayedEntrySelectedStatesChanged(m_displayedEntrySelectedStates);
 
-        emit displayedEntryIdsChanged();
-        emit displayedEntryNamesChanged();
-        emit displayedEntryDescriptionsChanged();
-        emit displayedEntryScreenshotsChanged();    
-        emit displayedEntryPackagesChanged();
-        emit displayedEntrySelectedStatesChanged();
+    // emit displayedEntryIdsChanged(m_displayedEntryIds);
+    // emit displayedEntryNamesChanged(m_displayedEntryNames);
+    // emit displayedEntryDescriptionsChanged(m_displayedEntryDescriptions);
+    // emit displayedEntryScreenshotsChanged(m_displayedEntryScreenshots);    
+    // emit displayedEntryPackagesChanged(m_displayedEntryPackages);
+    // emit displayedEntrySelectedStatesChanged(m_displayedEntrySelectedStates);
+
+    for( int k=0; k<m_selections.length(); k++)
+    {
+        if( m_displayedEntryIds.contains(m_selections[k], Qt::CaseSensitive) )
+        {
+            int index = m_displayedEntryIds.indexOf(m_selections[k]);
+            m_displayedEntrySelectedStates[index] = true;
+        }
+        else
+        {
+            m_selections.removeAt(k);
+            k = k-1;
+        }
     }
 
-    cDebug() << "displayedEntryIds: " << m_displayedEntryIds;
-    cDebug() << "displayedEntryNames: " << m_displayedEntryNames;
-    cDebug() << "displayedEntryDescriptions: " << m_displayedEntryDescriptions;
-    cDebug() << "displayedEntryScreenshots: " << m_displayedEntryScreenshots;
-    cDebug() << "displayedEntryPackages: " << m_displayedEntryPackages;
-    cDebug() << "displayedEntrySelectedStates: " << m_displayedEntrySelectedStates;
-}
-
-void Config::resetSelections()
-{
-    m_selections.clear();
+    emit displayedEntryIdsChanged();
+    emit displayedEntryNamesChanged();
+    emit displayedEntryDescriptionsChanged();
+    emit displayedEntryScreenshotsChanged();    
+    emit displayedEntryPackagesChanged();
     emit displayedEntrySelectedStatesChanged();
+
+    cDebug() << "1. displayedEntryIds: " << m_displayedEntryIds;
+    cDebug() << "2. displayedEntryNames: " << m_displayedEntryNames;
+    cDebug() << "3. displayedEntryDescriptions: " << m_displayedEntryDescriptions;
+    cDebug() << "4. displayedEntryScreenshots: " << m_displayedEntryScreenshots;
+    cDebug() << "5. displayedEntryPackages: " << m_displayedEntryPackages;
+    cDebug() << "6. displayedEntrySelectedStates: " << m_displayedEntrySelectedStates;
+
+    cDebug() << "7. selections: " << m_selections;
 }
