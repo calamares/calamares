@@ -109,6 +109,8 @@ public:
     QVector<QStringList> m_entryPackages;
     QVector<bool> m_entrySelectedStates;
 
+    bool refreshNextButtonStatus();
+
 signals:
     void pkgcChanged( QString pkgc );
     void prettyStatusChanged();

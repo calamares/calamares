@@ -46,13 +46,7 @@ PackageChooserQmlViewStep::prettyStatus() const
 bool
 PackageChooserQmlViewStep::isNextEnabled() const
 {
-    if ( (m_config-> mode() == PackageChooserMode::Required || m_config-> mode() == PackageChooserMode::RequiredMultiple) && m_config-> selections().length() < 1 )
-    {
-        return false;
-    }
-    else {
-        return true;
-    }
+    return m_config -> refreshNextButtonStatus();
 }
 
 bool

@@ -338,6 +338,7 @@ void Config::addSelection(const QString& selection)
     cDebug() << m_defaultId << " Adding " << selection << " as a selection...";
     m_selections.append(selection);
     cDebug() << "m_selections: " << m_selections;
+    refreshNextButtonStatus();
 }
 
 void Config::removeSelection(const QString& selection)
@@ -357,4 +358,17 @@ void Config::removeSelection(const QString& selection)
     cDebug() << m_defaultId << " Removing " << selection << " from selections...";
     m_selections.removeAll(selection);
     cDebug() << "m_selections: " << m_selections;
+    refreshNextButtonStatus();
+}
+
+bool Config::refreshNextButtonStatus() {
+    if ( (m_config-> mode() == PackageChooserMode::Required || m_config-> mode() == PackageChooserMode::RequiredMultiple) && m_config-> selections().length() < 1 )
+    {
+        emit nextStatusChanged( false );
+        return false;
+    }
+    else {
+        emit nextStatusChanged( true );
+        return true;
+    }
 }
