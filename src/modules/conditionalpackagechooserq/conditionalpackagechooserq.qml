@@ -18,6 +18,8 @@ Item {
     width: 800
     height: 800
     property string image_source: ""
+    property int image_width: 1
+    property int image_height: 1
     Rectangle {
         id: page
         color: "#f2f2f2"
