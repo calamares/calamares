@@ -32,7 +32,8 @@ PackageChooserQmlViewStep::PackageChooserQmlViewStep( QObject* parent )
 
 void PackageChooserQmlViewStep::onActivate() {
     cDebug() << "Activated " << prettyName() << "...";
-    m_config->refreshQMLData();
+    m_config->resetSelections();
+    m_config->updateDisplayedData();
     cDebug() << "Refreshed QML data after activating " << prettyName() << "...";
 }
 
@@ -84,7 +85,7 @@ PackageChooserQmlViewStep::jobs() const
 void
 PackageChooserQmlViewStep::onLeave()
 {
-    m_config->updateGlobalStorage();
+    m_config->pageLeavingTasks();
 }
 
 void

@@ -46,12 +46,12 @@ class Config : public Calamares::ModuleSystem::Config
     Q_PROPERTY( QString pkgc READ pkgc WRITE setPkgc NOTIFY pkgcChanged )
     Q_PROPERTY( QString prettyStatus READ prettyStatus NOTIFY prettyStatusChanged FINAL )
 
-    Q_PROPERTY( QStringList entryIds MEMBER m_entryIds NOTIFY entryIdsChanged)
-    Q_PROPERTY( QStringList entryNames MEMBER m_entryNames NOTIFY entryNamesChanged)
-    Q_PROPERTY( QStringList entryDescriptions MEMBER m_entryDescriptions NOTIFY entryDescriptionsChanged)
-    Q_PROPERTY( QVector<QString> entryScreenshots MEMBER m_entryScreenshots NOTIFY entryScreenshotsChanged)
-    Q_PROPERTY( QVector<QStringList> entryPackages MEMBER m_entryPackages NOTIFY entryPackagesChanged)
-    Q_PROPERTY( QVector<bool> entrySelectedStates MEMBER m_entrySelectedStates NOTIFY entrySelectedStatesChanged)
+    Q_PROPERTY( QStringList displayedEntryIds MEMBER m_displayedEntryIds NOTIFY displayedEntryIdsChanged)
+    Q_PROPERTY( QStringList displayedEntryNames MEMBER m_displayedEntryNames NOTIFY displayedEntryNamesChanged)
+    Q_PROPERTY( QStringList displayedEntryDescriptions MEMBER m_displayedEntryDescriptions NOTIFY displayedEntryDescriptionsChanged)
+    Q_PROPERTY( QVector<QString> displayedEntryScreenshots MEMBER m_displayedEntryScreenshots NOTIFY displayedEntryScreenshotsChanged)
+    Q_PROPERTY( QVector<QStringList> displayedEntryPackages MEMBER m_displayedEntryPackages NOTIFY displayedEntryPackagesChanged)
+    Q_PROPERTY( QVector<bool> displayedEntrySelectedStates MEMBER m_displayedEntrySelectedStates NOTIFY displayedEntrySelectedStatesChanged)
 
     Q_PROPERTY( PackageChooserMode mode MEMBER m_mode)
     Q_PROPERTY( QString promptMessage MEMBER m_promptMessage)
@@ -88,28 +88,28 @@ public:
      * Updates the GS keys for this packagechooser, marking all
      * (and only) the packages in @p selected as selected.
      */
-    void updateGlobalStorage() const;
+    void pageLeavingTasks() const;
+    void resetSelections() const;
 
     QString pkgc() const { return m_pkgc; }
     void setPkgc( const QString& pkgc );
 
     QString prettyStatus() const;
 
-    QString outputConditionKey() const { return m_outputConditionKey; }
-    QString promptMessage() const { return m_promptMessage; }
-    QStringList selections() const {return m_selections; }
+    QStringList m_displayedEntryIds;
+    QStringList m_displayedEntryNames;
+    QStringList m_displayedEntryDescriptions;
+    QVector<QString> m_displayedEntryScreenshots;
+    QVector<QStringList> m_displayedEntryPackages;
+    QVector<bool> m_displayedEntrySelectedStates;
+
+    QStringList m_selections;
+    QStringList m_packagesFromOnlyThisInstance;
 
     Q_INVOKABLE void addSelection(const QString& selection);
     Q_INVOKABLE void removeSelection(const QString& selection);
 
-    QStringList m_entryIds;
-    QStringList m_entryNames;
-    QStringList m_entryDescriptions;
-    QVector<QString> m_entryScreenshots;
-    QVector<QStringList> m_entryPackages;
-    QVector<bool> m_entrySelectedStates;
-
-    void refreshQMLData();
+    void updateDisplayedData();
     bool refreshNextButtonStatus();
 
 signals:
@@ -117,19 +117,19 @@ signals:
     void prettyStatusChanged();
     void nextStatusChanged( bool );
 
-    // void entryIdsChanged(QStringList &a_entryIds);
-    // void entryNamesChanged(QStringList &a_entryNames);
-    // void entryDescriptionsChanged(QStringList &a_entryDescriptions);
-    // void entryScreenshotsChanged(QVector<QString> &a_entryScreenshots);    
-    // void entryPackagesChanged(QVector<QStringList> &a_entryPackages);
-    // void entrySelectedStatesChanged(QVector<bool> &a_entrySelectedStates);
+    // void displayedEntryIdsChanged(QStringList &a_displayedEntryIds);
+    // void displayedEntryNamesChanged(QStringList &a_displayedEntryNames);
+    // void displayedEntryDescriptionsChanged(QStringList &a_displayedEntryDescriptions);
+    // void displayedEntryScreenshotsChanged(QVector<QString> &a_displayedEntryScreenshots);    
+    // void displayedEntryPackagesChanged(QVector<QStringList> &a_displayedEntryPackages);
+    // void displayedEntrySelectedStatesChanged(QVector<bool> &a_displayedEntrySelectedStates);
 
-    void entryIdsChanged();
-    void entryNamesChanged();
-    void entryDescriptionsChanged();
-    void entryScreenshotsChanged();   
-    void entryPackagesChanged();
-    void entrySelectedStatesChanged();
+    void displayedEntryIdsChanged();
+    void displayedEntryNamesChanged();
+    void displayedEntryDescriptionsChanged();
+    void displayedEntryScreenshotsChanged();   
+    void displayedEntryPackagesChanged();
+    void displayedEntrySelectedStatesChanged();
 
 private:
     PackageListModel* m_model = nullptr;
@@ -147,7 +147,6 @@ private:
     QString m_pkgc;
     /// Name of the output condition
     QString m_outputConditionKey;
-    QStringList m_selections;
     QString m_promptMessage; 
     bool m_configurationMapSet = false;
 };
