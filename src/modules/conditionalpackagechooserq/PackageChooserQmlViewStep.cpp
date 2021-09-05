@@ -33,6 +33,7 @@ PackageChooserQmlViewStep::PackageChooserQmlViewStep( QObject* parent )
 void PackageChooserQmlViewStep::onActivate() {
     cDebug() << "Activated " << prettyName() << "...";
     m_config->refreshQMLData();
+    cDebug() << "Refreshed QML data after activating " << prettyName() << "...";
 }
 
 QString
