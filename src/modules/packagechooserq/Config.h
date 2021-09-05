@@ -43,19 +43,23 @@ class Config : public Calamares::ModuleSystem::Config
 
     Q_ENUM( PackageChooserMode )
 
-    Q_PROPERTY( QString pkgc READ pkgc WRITE setPkgc NOTIFY pkgcChanged )
     Q_PROPERTY( QString prettyStatus READ prettyStatus NOTIFY prettyStatusChanged FINAL )
 
-    Q_PROPERTY( QStringList displayedEntryIds MEMBER m_displayedEntryIds NOTIFY displayedEntryIdsChanged)
-    Q_PROPERTY( QStringList displayedEntryNames MEMBER m_displayedEntryNames NOTIFY displayedEntryNamesChanged)
-    Q_PROPERTY( QStringList displayedEntryDescriptions MEMBER m_displayedEntryDescriptions NOTIFY displayedEntryDescriptionsChanged)
-    Q_PROPERTY( QVector<QString> displayedEntryScreenshots MEMBER m_displayedEntryScreenshots NOTIFY displayedEntryScreenshotsChanged)
-    Q_PROPERTY( QVector<QStringList> displayedEntryPackages MEMBER m_displayedEntryPackages NOTIFY displayedEntryPackagesChanged)
-    Q_PROPERTY( QVector<bool> displayedEntrySelectedStates MEMBER m_displayedEntrySelectedStates NOTIFY displayedEntrySelectedStatesChanged)
+    Q_PROPERTY( PackageChooserMode mode MEMBER m_mode )
+    Q_PROPERTY( QString promptMessage MEMBER m_promptMessage )
 
-    Q_PROPERTY( PackageChooserMode mode MEMBER m_mode)
-    Q_PROPERTY( QString promptMessage MEMBER m_promptMessage)
-    Q_PROPERTY( QStringList selections MEMBER m_selections)
+    Q_PROPERTY( QStringList displayedEntryIds MEMBER m_displayedEntryIds NOTIFY displayedEntryIdsChanged )
+    Q_PROPERTY( QStringList displayedEntryNames MEMBER m_displayedEntryNames NOTIFY displayedEntryNamesChanged )
+    Q_PROPERTY( QStringList displayedEntryDescriptions MEMBER m_displayedEntryDescriptions NOTIFY
+                    displayedEntryDescriptionsChanged )
+    Q_PROPERTY( QVector< QString > displayedEntryScreenshots MEMBER m_displayedEntryScreenshots NOTIFY
+                    displayedEntryScreenshotsChanged )
+    Q_PROPERTY( QVector< QStringList > displayedEntryPackages MEMBER m_displayedEntryPackages NOTIFY
+                    displayedEntryPackagesChanged )
+    Q_PROPERTY( QVector< bool > displayedEntrySelectedStates MEMBER m_displayedEntrySelectedStates NOTIFY
+                    displayedEntrySelectedStatesChanged )
+
+    Q_PROPERTY( QStringList selections MEMBER m_selections )
 
 public:
     Config( QObject* parent = nullptr );
@@ -90,42 +94,37 @@ public:
      */
     void pageLeavingTasks();
 
-    QString pkgc() const { return m_pkgc; }
-    void setPkgc( const QString& pkgc );
-
     QString prettyStatus() const;
 
     QStringList m_displayedEntryIds;
     QStringList m_displayedEntryNames;
     QStringList m_displayedEntryDescriptions;
-    QVector<QString> m_displayedEntryScreenshots;
-    QVector<QStringList> m_displayedEntryPackages;
-    QVector<bool> m_displayedEntrySelectedStates;
+    QVector< QString > m_displayedEntryScreenshots;
+    QVector< QStringList > m_displayedEntryPackages;
+    QVector< bool > m_displayedEntrySelectedStates;
 
     QStringList m_selections;
 
-    Q_INVOKABLE void addSelection(const QString& selection);
-    Q_INVOKABLE void removeSelection(const QString& selection);
-
+    Q_INVOKABLE void addSelection( const QString& selection );
+    Q_INVOKABLE void removeSelection( const QString& selection );
     void updateDisplayedData();
     bool refreshNextButtonStatus();
 
 signals:
-    void pkgcChanged( QString pkgc );
     void prettyStatusChanged();
     void nextStatusChanged( bool );
 
     // void displayedEntryIdsChanged(QStringList &a_displayedEntryIds);
     // void displayedEntryNamesChanged(QStringList &a_displayedEntryNames);
     // void displayedEntryDescriptionsChanged(QStringList &a_displayedEntryDescriptions);
-    // void displayedEntryScreenshotsChanged(QVector<QString> &a_displayedEntryScreenshots);    
+    // void displayedEntryScreenshotsChanged(QVector<QString> &a_displayedEntryScreenshots);
     // void displayedEntryPackagesChanged(QVector<QStringList> &a_displayedEntryPackages);
     // void displayedEntrySelectedStatesChanged(QVector<bool> &a_displayedEntrySelectedStates);
 
     void displayedEntryIdsChanged();
     void displayedEntryNamesChanged();
     void displayedEntryDescriptionsChanged();
-    void displayedEntryScreenshotsChanged();   
+    void displayedEntryScreenshotsChanged();
     void displayedEntryPackagesChanged();
     void displayedEntrySelectedStatesChanged();
 
@@ -141,13 +140,10 @@ private:
     QString m_id;
     /// Value to use for id if none is set in the config file
     Calamares::ModuleSystem::InstanceKey m_defaultId;
-    /// QML selections
-    QString m_pkgc;
     /// Name of the output condition
     QString m_outputConditionKey;
-    QString m_promptMessage; 
+    QString m_promptMessage;
     bool m_configurationMapSet = false;
 };
-
 
 #endif

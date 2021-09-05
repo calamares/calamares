@@ -63,15 +63,15 @@ PackageChooserMethodNames()
 
 Config::Config( QObject* parent )
     : Calamares::ModuleSystem::Config( parent )
-    , m_model( new PackageListModel( this ) )
-    , m_mode( PackageChooserMode::Required )
-    , m_selections( QStringList() )
     , m_displayedEntryIds( QStringList() )
     , m_displayedEntryNames( QStringList() )
     , m_displayedEntryDescriptions( QStringList() )
     , m_displayedEntryScreenshots( QVector< QString >() )
     , m_displayedEntryPackages( QVector< QStringList >() )
     , m_displayedEntrySelectedStates( QVector< bool >() )
+    , m_selections( QStringList() )
+    , m_model( new PackageListModel( this ) )
+    , m_mode( PackageChooserMode::Required )
 {
 }
 
@@ -107,14 +107,12 @@ Config::introductionPackage() const
 void
 Config::pageLeavingTasks()
 {
-
-    Calamares::JobQueue::instance()->globalStorage()->insert( m_outputConditionKey, m_selections );
-
     if ( m_method == PackageChooserMethod::Legacy )
     {
         QString value = m_model->getInstallPackagesForNames( m_selections ).join( ',' );
         Calamares::JobQueue::instance()->globalStorage()->insert( m_id, value );
-        cDebug() << m_id << "selected" << value;
+        cDebug() << m_id << "Finalized these selections: " << m_selections;
+        cDebug() << m_id << "Finalized these packages: " << value;
     }
     else if ( m_method == PackageChooserMethod::Packages )
     {
@@ -128,12 +126,14 @@ Config::pageLeavingTasks()
     {
         cWarning() << "Unknown packagechooserq method" << smash( m_method );
     }
+
+    Calamares::JobQueue::instance()->globalStorage()->insert( m_outputConditionKey, m_selections );
 }
 
 QString
 Config::prettyStatus() const
 {
-    return tr( "Install option: <strong>%1</strong>" ).arg( m_pkgc );
+    return tr( "Install selections: <strong>%1</strong>" ).arg( m_selections.join( ',' ) );
 }
 
 static void
@@ -158,7 +158,7 @@ fillModel( PackageListModel* model, const QVariantList& items )
         QVariantMap item_map = item_it.toMap();
         if ( item_map.isEmpty() )
         {
-            cWarning() << "ConditionalPackageChooser entry" << item_index << "is not valid.";
+            cWarning() << "PackageChooserq entry" << item_index << "is not valid.";
             continue;
         }
 
@@ -202,7 +202,6 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
                                              PackageChooserMode::Required );
     m_method = PackageChooserMethodNames().find( CalamaresUtils::getString( configurationMap, "method" ),
                                                  PackageChooserMethod::Packages );
-    m_pkgc = CalamaresUtils::getString( configurationMap, "pkgc" );
     m_outputConditionKey = CalamaresUtils::getString( configurationMap, "outputconditionkey" );
     m_promptMessage = CalamaresUtils::getString( configurationMap, "promptmessage" );
 
@@ -251,9 +250,6 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         }
     }
 
-    cDebug() << "outputConditionKey: " << m_outputConditionKey;
-    cDebug() << "promptMessage: " << m_promptMessage;
-
     m_configurationMapSet = true;
 
     updateDisplayedData();
@@ -287,7 +283,7 @@ Config::addSelection( const QString& selection )
 
     cDebug() << m_defaultId << " Adding " << selection << " as a selection...";
     m_selections.append( selection );
-    cDebug() << "m_selections: " << m_selections;
+    cDebug() << m_defaultId << "Current selections: " << m_selections;
     refreshNextButtonStatus();
 }
 
@@ -310,7 +306,7 @@ Config::removeSelection( const QString& selection )
 
     cDebug() << m_defaultId << " Removing " << selection << " from selections...";
     m_selections.removeAll( selection );
-    cDebug() << "m_selections: " << m_selections;
+    cDebug() << m_defaultId << "Current selections: " << m_selections;
     refreshNextButtonStatus();
 }
 
@@ -376,7 +372,8 @@ Config::updateDisplayedData()
                     break;
                 }
                 else if ( value.startsWith( '-' )
-                          && globalStorage->value( key ).toStringList().contains( value.remove(0, 1).trimmed(), Qt::CaseSensitive ) )
+                          && globalStorage->value( key ).toStringList().contains( value.remove( 0, 1 ).trimmed(),
+                                                                                  Qt::CaseSensitive ) )
                 {
                     includeEntryForDisplay = false;
                     cDebug() << "Skipping entry \"" << displayedEntryData.id << "\" because the value \"" << value
@@ -419,13 +416,6 @@ Config::updateDisplayedData()
         }
     }
 
-    // emit displayedEntryIdsChanged(m_displayedEntryIds);
-    // emit displayedEntryNamesChanged(m_displayedEntryNames);
-    // emit displayedEntryDescriptionsChanged(m_displayedEntryDescriptions);
-    // emit displayedEntryScreenshotsChanged(m_displayedEntryScreenshots);
-    // emit displayedEntryPackagesChanged(m_displayedEntryPackages);
-    // emit displayedEntrySelectedStatesChanged(m_displayedEntrySelectedStates);
-
     for ( int k = 0; k < m_selections.length(); k++ )
     {
         if ( m_displayedEntryIds.contains( m_selections[ k ], Qt::CaseSensitive ) )
@@ -442,6 +432,13 @@ Config::updateDisplayedData()
             k = k - 1;
         }
     }
+
+    // emit displayedEntryIdsChanged(m_displayedEntryIds);
+    // emit displayedEntryNamesChanged(m_displayedEntryNames);
+    // emit displayedEntryDescriptionsChanged(m_displayedEntryDescriptions);
+    // emit displayedEntryScreenshotsChanged(m_displayedEntryScreenshots);
+    // emit displayedEntryPackagesChanged(m_displayedEntryPackages);
+    // emit displayedEntrySelectedStatesChanged(m_displayedEntrySelectedStates);
 
     emit displayedEntryIdsChanged();
     emit displayedEntryNamesChanged();
