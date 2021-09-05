@@ -389,10 +389,18 @@ void Config::updateDisplayedData()
             m_displayedEntryDescriptions.append(displayedEntryData.description.get());
             m_displayedEntryScreenshots.append(displayedEntryData.screenshot);
             m_displayedEntryPackages.append(displayedEntryData.packageNames);
-            m_displayedEntrySelectedStates.append(displayedEntryData.selected);
-            if( displayedEntryData.selected )
+
+            if (m_selections.length() < 1)
             {
-                addSelection(displayedEntryData.id);
+                m_displayedEntrySelectedStates.append(displayedEntryData.selected);
+                if( displayedEntryData.selected )
+                {
+                    addSelection(displayedEntryData.id);
+                }
+            }
+            else
+            {
+                m_displayedEntrySelectedStates.append(false);
             }
         }
     }
