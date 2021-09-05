@@ -319,6 +319,10 @@ bool Config::refreshNextButtonStatus() {
         emit nextStatusChanged( false );
         return false;
     }
+    else if ( m_mode == PackageChooserMode::Optional && m_selections.length() > 1 ) {
+        emit nextStatusChanged( false );
+        return false;
+    }
     else {
         emit nextStatusChanged( true );
         return true;
@@ -432,4 +436,6 @@ void Config::updateDisplayedData()
     cDebug() << "6. displayedEntrySelectedStates: " << m_displayedEntrySelectedStates;
 
     cDebug() << "7. selections: " << m_selections;
+
+    refreshNextButtonStatus();
 }
