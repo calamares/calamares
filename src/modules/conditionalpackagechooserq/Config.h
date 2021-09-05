@@ -46,11 +46,11 @@ class Config : public Calamares::ModuleSystem::Config
     Q_PROPERTY( QString pkgc READ pkgc WRITE setPkgc NOTIFY pkgcChanged )
     Q_PROPERTY( QString prettyStatus READ prettyStatus NOTIFY prettyStatusChanged FINAL )
 
-    Q_PROPERTY( QStringList entryIds MEMBER m_entryIds)
-    Q_PROPERTY( QStringList entryNames MEMBER m_entryNames)
-    Q_PROPERTY( QStringList entryDescriptions MEMBER m_entryDescriptions)
-    Q_PROPERTY( QVector<QString> entryScreenshots MEMBER m_entryScreenshots)
-    Q_PROPERTY( QVector<QStringList> entryPackages MEMBER m_entryPackages)
+    Q_PROPERTY( QStringList entryIds MEMBER m_entryIds NOTIFY entryIdsChanged)
+    Q_PROPERTY( QStringList entryNames MEMBER m_entryNames NOTIFY entryNamesChanged)
+    Q_PROPERTY( QStringList entryDescriptions MEMBER m_entryDescriptions NOTIFY entryDescriptionsChanged)
+    Q_PROPERTY( QVector<QString> entryScreenshots MEMBER m_entryScreenshots NOTIFY entryScreenshotsChanged)
+    Q_PROPERTY( QVector<QStringList> entryPackages MEMBER m_entryPackages NOTIFY entryPackagesChanged)
     Q_PROPERTY( QVector<bool> entrySelectedStates MEMBER m_entrySelectedStates NOTIFY entrySelectedStatesChanged)
 
     Q_PROPERTY( PackageChooserMode mode MEMBER m_mode)
@@ -115,8 +115,14 @@ public:
 signals:
     void pkgcChanged( QString pkgc );
     void prettyStatusChanged();
-    void entrySelectedStatesChanged(QVector<bool> &a_entrySelectedStates);
     void nextStatusChanged( bool );
+
+    void entryIdsChanged(QStringList entryIds);
+    void entryNamesChanged(QStringList entryNames);
+    void entryDescriptionsChanged(QStringList entryDescriptions);
+    void entryScreenshotsChanged(QVector<QString> entryScreenshots);    
+    void entryPackagesChanged(QVector<QStringList> entryPackages);
+    void entrySelectedStatesChanged(QVector<bool> &a_entrySelectedStates);
 
 private:
     PackageListModel* m_model = nullptr;
