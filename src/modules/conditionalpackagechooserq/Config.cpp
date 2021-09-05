@@ -418,4 +418,5 @@ void Config::updateDisplayedData()
 void Config::resetSelections()
 {
     m_selections.clear();
+    emit displayedEntrySelectedStatesChanged();
 }
