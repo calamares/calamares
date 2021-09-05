@@ -277,7 +277,7 @@
         <numerusform>(% секунда)</numerusform>
         <numerusform>(% секунд)</numerusform>
         <numerusform>(% секунд)</numerusform>
-        <numerusform>(% секунд)</numerusform>
+        <numerusform>(%n секунд)</numerusform>
       </translation>
     </message>
     <message>
@@ -1011,12 +1011,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="231"/>
       <source>Label for the filesystem</source>
-      <translation type="unfinished"/>
+      <translation>Метка файловой системы</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="241"/>
       <source>FS Label:</source>
-      <translation type="unfinished"/>
+      <translation>Метка ФС:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="65"/>
@@ -1054,7 +1054,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="121"/>
       <source>Create new %1MiB partition on %3 (%2).</source>
-      <translation type="unfinished"/>
+      <translation>Создать новый раздел %1МиБ на %3 (%2).</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="128"/>
@@ -1069,7 +1069,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="154"/>
       <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2).</source>
-      <translation type="unfinished"/>
+      <translation>Создать новый раздел &lt;strong&gt;%1МиБ&lt;/strong&gt; на &lt;strong&gt;%3&lt;/strong&gt; (%2).</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="161"/>
@@ -1375,12 +1375,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="186"/>
       <source>Label for the filesystem</source>
-      <translation type="unfinished"/>
+      <translation>Метка файловой системы</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="196"/>
       <source>FS Label:</source>
-      <translation type="unfinished"/>
+      <translation>Метка ФС:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="291"/>
@@ -1442,7 +1442,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="221"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;%3.</source>
-      <translation type="unfinished"/>
+      <translation>Настроить &lt;strong&gt;новый&lt;/strong&gt; %2 раздел с точкой монтирования &lt;strong&gt;%1&lt;/strong&gt; %3.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="235"/>
@@ -1457,7 +1457,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="263"/>
       <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;%4.</source>
-      <translation type="unfinished"/>
+      <translation>Настроить %3 раздел &lt;strong&gt;%1&lt;/strong&gt; с точкой монтирования &lt;strong&gt;%2&lt;/strong&gt;%4.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="244"/>
@@ -2525,7 +2525,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="148"/>
       <source>login</source>
-      <translation type="unfinished"/>
+      <translation>Вход</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="223"/>
@@ -2668,7 +2668,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="304"/>
       <source>File System Label</source>
-      <translation type="unfinished"/>
+      <translation>Метка файловой системы</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="306"/>
@@ -3053,7 +3053,7 @@ Output:
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="83"/>
       <source>Directory not found</source>
-      <translation type="unfinished"/>
+      <translation>Папка  не найдена</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="84"/>
@@ -3088,7 +3088,7 @@ Output:
       <location filename="../src/modules/welcomeq/Recommended.qml" line="40"/>
       <source>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
         Setup can continue, but some features might be disabled.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;Этот компьютер соответствует не всем рекомендуемым требованиям для установки %1.&lt;br/&gt;Можно продолжить установку, но некоторые возможности могут быть недоступны.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -3206,7 +3206,7 @@ Output:
       <location filename="../src/modules/welcomeq/Requirements.qml" line="40"/>
       <source>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
         Setup can continue, but some features might be disabled.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;Этот компьютер соответствует не всем рекомендуемым требованиям для установки %1.&lt;br/&gt;Можно продолжить установку, но некоторые возможности могут быть недоступны.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -3657,7 +3657,7 @@ Output:
       <location filename="../src/qml/calamares/slideshow/SlideCounter.qml" line="27"/>
       <source>%L1 / %L2</source>
       <extracomment>slide counter, %1 of %2 (numeric)</extracomment>
-      <translation type="unfinished"/>
+      <translation>%L1 / %L2</translation>
     </message>
   </context>
   <context>
@@ -3714,13 +3714,13 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="128"/>
       <source>Configuring KDE user feedback.</source>
-      <translation type="unfinished"/>
+      <translation>Настройка обратной связи KDE</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="150"/>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="156"/>
       <source>Error in KDE user feedback configuration.</source>
-      <translation type="unfinished"/>
+      <translation>Ошибка в настройке обратной связи KDE</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="151"/>
@@ -3936,7 +3936,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="153"/>
       <source>&amp;Donate</source>
-      <translation type="unfinished"/>
+      <translation>Пожертвовать</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="163"/>
@@ -4062,7 +4062,7 @@ Output:
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="36"/>
       <source>Installation Completed</source>
-      <translation type="unfinished"/>
+      <translation>Установка завершена </translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="43"/>
@@ -4073,7 +4073,7 @@ Output:
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="65"/>
       <source>Close Installer</source>
-      <translation type="unfinished"/>
+      <translation>Закрыть установщик</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="71"/>
@@ -4117,7 +4117,7 @@ Output:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="377"/>
       <source>Layouts</source>
-      <translation type="unfinished"/>
+      <translation>Раскладки</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="148"/>
@@ -4127,7 +4127,7 @@ Output:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="60"/>
       <source>Click your preferred keyboard model to select layout and variant, or use the default one based on the detected hardware.</source>
-      <translation type="unfinished"/>
+      <translation>Выберете предпочитаемую модель клавиатуры, чтобы выбрать раскладку и вариант, или используйте модель по умолчанию в зависимости от обнаруженного оборудования.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="253"/>
@@ -4231,7 +4231,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="98"/>
       <source>If more than one person will use this computer, you can create multiple accounts after installation.</source>
-      <translation type="unfinished"/>
+      <translation>Если этот компьютер используется несколькими людьми, Вы сможете создать соответствующие учетные записи сразу после установки.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="110"/>
@@ -4241,7 +4241,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="118"/>
       <source>root is not allowed as username.</source>
-      <translation type="unfinished"/>
+      <translation>root не допускается в качестве имени пользователя.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="127"/>
@@ -4261,7 +4261,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="174"/>
       <source>localhost is not allowed as hostname.</source>
-      <translation type="unfinished"/>
+      <translation>localhost не допускается в качестве имени пользователя.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="183"/>
@@ -4296,7 +4296,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="365"/>
       <source>Log in automatically without asking for the password</source>
-      <translation type="unfinished"/>
+      <translation>Входить автоматически, не спрашивая пароль</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="166"/>
@@ -4326,12 +4326,12 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="311"/>
       <source>Repeat Root Password</source>
-      <translation type="unfinished"/>
+      <translation>Повторите пароль от root</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="335"/>
       <source>Enter the same password twice, so that it can be checked for typing errors.</source>
-      <translation type="unfinished"/>
+      <translation>Введите пароль повторно, чтобы не допустить ошибок при вводе</translation>
     </message>
   </context>
   <context>

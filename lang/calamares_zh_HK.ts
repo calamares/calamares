@@ -6,7 +6,7 @@
     <message>
       <location filename="../src/modules/partition/jobs/AutoMountManagementJob.cpp" line="22"/>
       <source>Manage auto-mount settings</source>
-      <translation type="unfinished"/>
+      <translation>管理自動掛載設定</translation>
     </message>
   </context>
   <context>
@@ -14,12 +14,12 @@
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="62"/>
       <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
-      <translation type="unfinished"/>
+      <translation>這個系統的&lt;strong&gt;開機環境&lt;/strong&gt;。&lt;br&gt;&lt;br&gt;較舊的 x86 系統只支援 &lt;strong&gt;BIOS&lt;/strong&gt;。&lt;br&gt;現時的系統則通常使用 &lt;strong&gt;EFI&lt;/strong&gt;，但若使用相容模式 (CSM)，也可能顯示為 BIOS。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="72"/>
       <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-      <translation type="unfinished"/>
+      <translation>這個系統以 &lt;strong&gt;EFI&lt;/strong&gt; 開機。&lt;br&gt;&lt;br&gt;要從 EFI 環境開機，本安裝程式必須安裝開機載入器程式，像是 &lt;strong&gt;GRUB&lt;/strong&gt; 或 &lt;strong&gt;systemd-boot&lt;/strong&gt; 在 &lt;strong&gt;EFI 系統分割區&lt;/strong&gt;。這是自動的，除非選擇手動分割；在這種情況，您必須自行選取或建立它。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="84"/>

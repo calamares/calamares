@@ -105,7 +105,7 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="102"/>
       <source>Crashes Calamares, so that Dr. Konqui can look at it.</source>
-      <translation type="unfinished"/>
+      <translation>使 Calamares 崩溃，以便 Konqui 医生可以查看它。</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="115"/>
@@ -130,7 +130,7 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="128"/>
       <source>Displays the tree of widget names in the log (for stylesheet debugging).</source>
-      <translation type="unfinished"/>
+      <translation>在日志中显示小部件名称树（用于样式表调试）。</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="131"/>
@@ -514,7 +514,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="39"/>
       <source>Set filesystem label &lt;strong&gt;%1&lt;/strong&gt; to partition &lt;strong&gt;%2&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>设置文件系统标签 &lt;strong&gt;%1&lt;/strong&gt; 至分区 &lt;strong&gt;%2&lt;/strong&gt;。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="70"/>
@@ -1056,7 +1056,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="121"/>
       <source>Create new %1MiB partition on %3 (%2).</source>
-      <translation type="unfinished"/>
+      <translation>在 %3 (%2) 上建立新的 %1MiB 分区。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="128"/>
@@ -1071,7 +1071,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="154"/>
       <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2).</source>
-      <translation type="unfinished"/>
+      <translation>在&lt;strong&gt;%3&lt;/strong&gt;(%2)上创建新的&lt;strong&gt;%1MiB&lt;/strong&gt;分区</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="161"/>
@@ -1445,12 +1445,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="221"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;%3.</source>
-      <translation type="unfinished"/>
+      <translation>设置 &lt;strong&gt;新的&lt;/strong&gt; 含挂载点 &lt;strong&gt;%1&lt;/strong&gt;%3 的 %2 分区。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="235"/>
       <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt; with features &lt;em&gt;%4&lt;/em&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>在具有功能&lt;em&gt;%4&lt;/em&gt;的 %3 系统分区&lt;strong&gt;%1&lt;/strong&gt;上安装 %2。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="254"/>
@@ -4319,7 +4319,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="166"/>
       <source>Only letters, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
-      <translation type="unfinished"/>
+      <translation>只允许字母、数组、下划线"_" 和 连字符"-"，最少两个字符。</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="264"/>

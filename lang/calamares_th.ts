@@ -285,7 +285,7 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="155"/>
       <source>Setup Failed</source>
-      <translation type="unfinished"/>
+      <translation>การตั้งค่าล้มเหลว</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="155"/>
@@ -306,18 +306,18 @@
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="179"/>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="519"/>
       <source>&amp;Yes</source>
-      <translation type="unfinished"/>
+      <translation>&amp;ใช่</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="180"/>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="520"/>
       <source>&amp;No</source>
-      <translation type="unfinished"/>
+      <translation>&amp;ไม่</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="186"/>
       <source>&amp;Close</source>
-      <translation type="unfinished"/>
+      <translation>ปิ&amp;ด</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/utils/Paste.cpp" line="170"/>
@@ -376,7 +376,7 @@ Link copied to clipboard</source>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="335"/>
       <source>&amp;Set up now</source>
-      <translation>&amp;ตั้งค่าตอนนี้</translation>
+      <translation>ตั้&amp;งค่าตอนนี้</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="335"/>
@@ -391,12 +391,12 @@ Link copied to clipboard</source>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="393"/>
       <source>&amp;Set up</source>
-      <translation>&amp;ตั้งค่า</translation>
+      <translation>ตั้&amp;งค่า</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="393"/>
       <source>&amp;Install</source>
-      <translation>&amp;ติดตั้ง</translation>
+      <translation>ติ&amp;ดตั้ง</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="395"/>
@@ -534,7 +534,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="121"/>
       <source>Select storage de&amp;vice:</source>
-      <translation type="unfinished"/>
+      <translation>เลือกอุปก&amp;รณ์จัดเก็บ:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="122"/>
@@ -562,7 +562,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="988"/>
       <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;เลือกพาร์ทิชันที่จะลดขนาด แล้วลากแถบด้านล่างเพื่อปรับขนาด&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1005"/>
@@ -597,7 +597,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1325"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation>ดูเหมือนว่าอุปกรณ์จัดเก็บนี้ไม่มีระบบปฏิบัติการ คุณต้องการทำอย่างไร?&lt;br/&gt;คุณจะสามารถทบทวนและยืนยันตัวเลือกของคุณก่อนที่จะกระทำการเปลี่ยนแปลงไปยังอุปกรณ์จัดเก็บของคุณ</translation>
+      <translation>ดูเหมือนว่าอุปกรณ์จัดเก็บข้อมูลนี้ไม่มีระบบปฏิบัติการ คุณต้องการทำอย่างไร?&lt;br/&gt;คุณจะสามารถทบทวนและยืนยันตัวเลือกของคุณก่อนที่จะกระทำการเปลี่ยนแปลงไปยังอุปกรณ์จัดเก็บข้อมูลของคุณ</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1330"/>
@@ -605,7 +605,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1389"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1414"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;ล้างดิสก์&lt;/strong&gt;&lt;br/&gt;การกระทำนี้จะ&lt;font color="red"&gt;ลบ&lt;/font&gt;ข้อมูลทั้งหมดที่อยู่บนอุปกรณ์จัดเก็บข้อมูลที่เลือก</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1334"/>
@@ -626,17 +626,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1357"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation>อุปกรณ์จัดเก็บนี้มีระบบปฏิบัติการ %1 อยู่ คุณต้องการทำอย่างไร?&lt;br/&gt;คุณจะสามารถทบทวนและยืนยันตัวเลือกของคุณก่อนที่จะกระทำการเปลี่ยนแปลงไปยังอุปกรณ์จัดเก็บของคุณ</translation>
+      <translation>อุปกรณ์จัดเก็บข้อมูลนี้มีระบบปฏิบัติการ %1 อยู่ คุณต้องการทำอย่างไร?&lt;br/&gt;คุณจะสามารถทบทวนและยืนยันตัวเลือกของคุณก่อนที่จะกระทำการเปลี่ยนแปลงไปยังอุปกรณ์จัดเก็บข้อมูลของคุณ</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1380"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation>อุปกรณ์จัดเก็บนี้มีระบบปฏิบัติการอยู่แล้ว คุณต้องการทำอย่างไร?&lt;br/&gt;คุณจะสามารถทบทวนและยืนยันตัวเลือกของคุณก่อนที่จะกระทำการเปลี่ยนแปลงไปยังอุปกรณ์จัดเก็บของคุณ</translation>
+      <translation>อุปกรณ์จัดเก็บข้อมูลนี้มีระบบปฏิบัติการอยู่แล้ว คุณต้องการทำอย่างไร?&lt;br/&gt;คุณจะสามารถทบทวนและยืนยันตัวเลือกของคุณก่อนที่จะกระทำการเปลี่ยนแปลงไปยังอุปกรณ์จัดเก็บข้อมูลของคุณ</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1405"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation>อุปกรณ์จัดเก็บนี้มีหลายระบบปฏิบัติการ คุณต้องการทำอย่างไร?&lt;br/&gt;คุณจะสามารถทบทวนและยืนยันตัวเลือกของคุณก่อนที่จะกระทำการเปลี่ยนแปลงไปยังอุปกรณ์จัดเก็บของคุณ</translation>
+      <translation>อุปกรณ์จัดเก็บข้อมูลนี้มีหลายระบบปฏิบัติการ คุณต้องการทำอย่างไร?&lt;br/&gt;คุณจะสามารถทบทวนและยืนยันตัวเลือกของคุณก่อนที่จะกระทำการเปลี่ยนแปลงไปยังอุปกรณ์จัดเก็บข้อมูลของคุณ</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1477"/>
@@ -819,7 +819,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="75"/>
       <source>This program will ask you some questions and set up %2 on your computer.</source>
-      <translation>โปรแกรมนี้จะถามตำถามต่าง ๆ เพื่อติดตั้ง %2 ลงในคอมพิวเตอร์ของคุณ</translation>
+      <translation>โปรแกรมนี้จะถามคำถามต่าง ๆ เพื่อติดตั้ง %2 ลงในคอมพิวเตอร์ของคุณ</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="244"/>
@@ -894,7 +894,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="145"/>
       <source>Setup Failed</source>
-      <translation type="unfinished"/>
+      <translation>การตั้งค่าล้มเหลว</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="145"/>
@@ -3329,7 +3329,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="287"/>
       <source>This program will ask you some questions and set up %2 on your computer.</source>
-      <translation>โปรแกรมนี้จะถามคุณบางอย่าง เพื่อติดตั้ง %2 ไว้ในคอมพิวเตอร์ของคุณ</translation>
+      <translation>โปรแกรมนี้จะถามคำถามต่าง ๆ เพื่อติดตั้ง %2 ลงในคอมพิวเตอร์ของคุณ</translation>
     </message>
   </context>
   <context>
@@ -3889,7 +3889,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="140"/>
       <source>&amp;About</source>
-      <translation>&amp;A เกี่ยวกับ</translation>
+      <translation>&amp;เกี่ยวกับ</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="150"/>

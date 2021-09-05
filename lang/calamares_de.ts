@@ -510,12 +510,13 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="32"/>
       <source>Set filesystem label on %1.</source>
-      <translation type="unfinished"/>
+      <translation>Setze Dateisytem-Label für %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="39"/>
       <source>Set filesystem label &lt;strong&gt;%1&lt;/strong&gt; to partition &lt;strong&gt;%2&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Setze Dateisytem-Label &lt;strong&gt;%1&lt;/strong&gt; für Partition &lt;strong&gt;%2&lt;/strong&gt;.
+</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="70"/>
@@ -896,7 +897,7 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
       <location filename="../src/modules/users/Config.cpp" line="548"/>
       <source>OK!</source>
-      <translation type="unfinished"/>
+      <translation>OK!</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="145"/>
@@ -1012,12 +1013,12 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="231"/>
       <source>Label for the filesystem</source>
-      <translation type="unfinished"/>
+      <translation>Label für das Dateisystem</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="241"/>
       <source>FS Label:</source>
-      <translation type="unfinished"/>
+      <translation>FS Label:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="65"/>
@@ -1376,12 +1377,12 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="186"/>
       <source>Label for the filesystem</source>
-      <translation type="unfinished"/>
+      <translation>Label für das Dateisystem</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="196"/>
       <source>FS Label:</source>
-      <translation type="unfinished"/>
+      <translation>FS Label:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="291"/>
@@ -1889,7 +1890,7 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
       <location filename="../src/libcalamares/locale/Tests.cpp" line="273"/>
       <source>Quit</source>
-      <translation type="unfinished"/>
+      <translation>Beenden</translation>
     </message>
   </context>
   <context>
@@ -2113,7 +2114,7 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="41"/>
       <source>Select your preferred Region, or use the default settings.</source>
-      <translation type="unfinished"/>
+      <translation>Wählen Sie Ihre bevorzugte Region oder nutzen Sie die Standardeinstellungen.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="98"/>
@@ -2653,7 +2654,7 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="304"/>
       <source>File System Label</source>
-      <translation type="unfinished"/>
+      <translation>Dateisystem-Label</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="306"/>
@@ -4263,7 +4264,7 @@ Ausgabe:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="118"/>
       <source>root is not allowed as username.</source>
-      <translation type="unfinished"/>
+      <translation>root ist als Benutzername nicht erlaubt.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="127"/>
@@ -4283,7 +4284,7 @@ Ausgabe:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="174"/>
       <source>localhost is not allowed as hostname.</source>
-      <translation type="unfinished"/>
+      <translation>localhost ist als Computername nicht erlaubt.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="183"/>
@@ -4323,7 +4324,7 @@ Ausgabe:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="166"/>
       <source>Only letters, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
-      <translation type="unfinished"/>
+      <translation>Es sind nur Buchstaben, Zahlen, Unterstrich und Bindestrich erlaubt, minimal zwei Zeichen.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="264"/>
