@@ -148,7 +148,11 @@ Item {
         focus: true
         closePolicy: Popup.CloseOnEscape | Popup.CloseOnReleaseOutside | Popup.CloseOnReleaseInside
         padding: 0
-        onAboutToShow: {
+        // onAboutToShow: {
+        //     image_width= enlarged_image.paintedWidth
+        //     image_height= enlarged_image.paintedHeight
+        // }
+        onOpened: {
             image_width= enlarged_image.paintedWidth
             image_height= enlarged_image.paintedHeight
         }
