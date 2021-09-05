@@ -30,6 +30,10 @@ PackageChooserQmlViewStep::PackageChooserQmlViewStep( QObject* parent )
     connect( m_config, &Config::nextStatusChanged, this, &PackageChooserQmlViewStep::nextStatusChanged );
 }
 
+void PackageChooserQmlViewStep::onActivate() {
+    m_config->refreshQMLData();
+}
+
 QString
 PackageChooserQmlViewStep::prettyName() const
 {

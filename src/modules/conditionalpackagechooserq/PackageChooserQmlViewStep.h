@@ -31,6 +31,8 @@ class PLUGINDLLEXPORT PackageChooserQmlViewStep : public Calamares::QmlViewStep
 public:
     explicit PackageChooserQmlViewStep( QObject* parent = nullptr );
 
+    void onActivate() override;
+
     QString prettyName() const override;
     QString prettyStatus() const override;
 

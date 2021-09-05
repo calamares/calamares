@@ -109,6 +109,7 @@ public:
     QVector<QStringList> m_entryPackages;
     QVector<bool> m_entrySelectedStates;
 
+    void refreshQMLData();
     bool refreshNextButtonStatus();
 
 signals:
@@ -135,6 +136,7 @@ private:
     QString m_outputConditionKey;
     QStringList m_selections;
     QString m_promptMessage; 
+    bool m_configurationMapSet = false;
 };
 
 

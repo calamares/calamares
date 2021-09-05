@@ -259,63 +259,12 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         }
     }
 
-    PackageItem entryData;
-    bool include_entry;
-    Calamares::GlobalStorage* globalStorage = Calamares::JobQueue::instance()->globalStorage();
-    QString key;
-    QString value;
-    for(int i=0; i< m_model-> packageCount(); i++) {
-        entryData = m_model -> packageData(i);
-        include_entry = true;
-        for(int j=0; j<entryData.whenKeyValuePairs.length()-1; j += 2) 
-        {
-            key = entryData.whenKeyValuePairs[j];
-            value = entryData.whenKeyValuePairs[j+1];
-            if( globalStorage->contains(key) ) {
-                if( !value.startsWith('-') && !globalStorage->value(key).toStringList().contains(value, Qt::CaseInsensitive) )
-                {
-                    include_entry = false;
-                    cDebug() << "Skipping entry \"" << entryData.id << "\" because the value \"" << value << "\" does not exist in the key \"" << key <<"\".";
-                    break;
-                }
-                else if ( value.startsWith('-') && globalStorage->value(key).toStringList().contains(value, Qt::CaseInsensitive) )
-                {
-                    include_entry = false;
-                    cDebug() << "Skipping entry \"" << entryData.id << "\" because the value \"" << value << "\" exists in the key \"" << key <<"\".";
-                    break;
-                }
-                else
-                {
-                    continue;
-                }
-            }
-            else 
-            {
-                include_entry = false;
-                cDebug() << "Skipping entry \"" << entryData.id << "\" because the key \"" << key << "\" does not exist.";
-                break;
-            }
-        }
-        if ( include_entry ) 
-        {
-            m_entryIds.append(entryData.id);  
-            m_entryNames.append(entryData.name.get());    
-            m_entryDescriptions.append(entryData.description.get());
-            m_entryScreenshots.append(entryData.screenshot);
-            m_entryPackages.append(entryData.packageNames);
-            m_entrySelectedStates.append(entryData.selected);
-        }
-    }
-
-    cDebug() << "entryIds: " << m_entryIds;
-    cDebug() << "entryNames: " << m_entryNames;
-    cDebug() << "entryDescriptions: " << m_entryDescriptions;
-    cDebug() << "entryScreenshots: " << m_entryScreenshots;
-    cDebug() << "entryPackages: " << m_entryPackages;
-    cDebug() << "entrySelectedStates: " << m_entrySelectedStates;
-
     cDebug() << "outputConditionKey: " << m_outputConditionKey;
     cDebug() << "promptMessage: " << m_promptMessage;
+
+    m_configurationMapSet = true;
+
+    refreshQMLData();
 }
 
 void Config::addSelection(const QString& selection)
@@ -374,4 +323,73 @@ bool Config::refreshNextButtonStatus() {
     }
     cError() << "This message should not be reachable.";
     return false;
+}
+
+void Config::refreshQMLData()
+{
+    if ( !m_configurationMapSet )
+    {
+        return;
+    }
+
+    m_entryIds.clear();
+    m_entryNames.clear();
+    m_entryDescriptions.clear();
+    m_entryScreenshots.clear();
+    m_entryPackages.clear();
+    m_entrySelectedStates.clear();
+
+    PackageItem entryData;
+    bool include_entry;
+    Calamares::GlobalStorage* globalStorage = Calamares::JobQueue::instance()->globalStorage();
+    QString key;
+    QString value;
+    for(int i=0; i< m_model-> packageCount(); i++) {
+        entryData = m_model -> packageData(i);
+        include_entry = true;
+        for(int j=0; j<entryData.whenKeyValuePairs.length()-1; j += 2) 
+        {
+            key = entryData.whenKeyValuePairs[j];
+            value = entryData.whenKeyValuePairs[j+1];
+            if( globalStorage->contains(key) ) {
+                if( !value.startsWith('-') && !globalStorage->value(key).toStringList().contains(value, Qt::CaseInsensitive) )
+                {
+                    include_entry = false;
+                    cDebug() << "Skipping entry \"" << entryData.id << "\" because the value \"" << value << "\" does not exist in the key \"" << key <<"\".";
+                    break;
+                }
+                else if ( value.startsWith('-') && globalStorage->value(key).toStringList().contains(value, Qt::CaseInsensitive) )
+                {
+                    include_entry = false;
+                    cDebug() << "Skipping entry \"" << entryData.id << "\" because the value \"" << value << "\" exists in the key \"" << key <<"\".";
+                    break;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            else 
+            {
+                include_entry = false;
+                cDebug() << "Skipping entry \"" << entryData.id << "\" because the key \"" << key << "\" does not exist.";
+                break;
+            }
+        }
+        if ( include_entry ) 
+        {
+            m_entryIds.append(entryData.id);  
+            m_entryNames.append(entryData.name.get());    
+            m_entryDescriptions.append(entryData.description.get());
+            m_entryScreenshots.append(entryData.screenshot);
+            m_entryPackages.append(entryData.packageNames);
+            m_entrySelectedStates.append(entryData.selected);
+        }
+    }
+    cDebug() << "entryIds: " << m_entryIds;
+    cDebug() << "entryNames: " << m_entryNames;
+    cDebug() << "entryDescriptions: " << m_entryDescriptions;
+    cDebug() << "entryScreenshots: " << m_entryScreenshots;
+    cDebug() << "entryPackages: " << m_entryPackages;
+    cDebug() << "entrySelectedStates: " << m_entrySelectedStates;
 }
