@@ -133,6 +133,12 @@ def create_systemd_boot_conf(install_path, efi_dir, uuid, entry, entry_name, ker
                                   "root=/dev/mapper/"
                                   + partition["luksMapperName"]]
 
+    # systemd-boot with a BTRFS root filesystem needs to be told
+    # about the root subvolume.
+    for partition in partitions:
+        if partition["mountPoint"] == "/" and partition["fs"] == "btrfs":
+            kernel_params.append("rootflags=subvol=@")
+
     if cryptdevice_params:
         kernel_params.extend(cryptdevice_params)
     else:
