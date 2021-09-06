@@ -467,12 +467,12 @@ Config::guessLocaleKeyboardLayout()
         { "ar_TN", arabic },
         { "ar_YE", arabic },
         { "ca_ES", "cat_ES" }, /* Catalan */
-        { "as_ES", "ast_ES" }, /* Asturian */
         { "en_CA", "us" }, /* Canadian English */
         { "el_CY", "gr" }, /* Greek in Cyprus */
-        { "el_GR", "gr" }, /* Greek in Greeze */
+        { "el_GR", "gr" }, /* Greek in Greece */
         { "ig_NG", "igbo_NG" }, /* Igbo in Nigeria */
-        { "ha_NG", "hausa_NG" } /* Hausa */
+        { "ha_NG", "hausa_NG" }, /* Hausa */
+        { "en_IN", "eng_in" }, /* India, English with Rupee */
     } );
 
     // Try to preselect a layout, depending on language and locale
@@ -508,14 +508,7 @@ Config::guessLocaleKeyboardLayout()
     }
     if ( !lang.isEmpty() )
     {
-        const auto langParts = lang.split( '_', SplitSkipEmptyParts );
-
-        // Note that this his string is not fit for display purposes!
-        // It doesn't come from QLocale::nativeCountryName.
-        QString country = QLocale::countryToString( QLocale( lang ).country() );
-        cDebug() << Logger::SubEntry << "extracted country" << country << "::" << langParts;
-
-        guessLayout( langParts, m_keyboardLayoutsModel, m_keyboardVariantsModel );
+        guessLayout( lang.split( '_', SplitSkipEmptyParts ), m_keyboardLayoutsModel, m_keyboardVariantsModel );
     }
 }
 
