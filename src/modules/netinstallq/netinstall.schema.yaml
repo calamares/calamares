@@ -1,0 +1,89 @@
+# SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+# SPDX-FileContributor: benne-dee ( worked on groups schema )
+# SPDX-License-Identifier: GPL-3.0-or-later
+---
+$schema: https://json-schema.org/draft-07/schema#
+$id: https://calamares.io/schemas/netinstall
+definitions:
+    package:
+        $id: '#definitions/package'
+        oneOf:
+        -
+            type: string
+            description: bare package - actual package name as passed to the package manager
+                (e.g. `qt5-creator-dev`).
+        -
+            type: object
+            description: rich package - one with a package-name (for the package-manager) and
+                a description (for the human).
+            properties:
+                name: { type: string }
+                description: { type: string }
+    group:
+        $id: '#definitions/group'
+        type: object
+        description: Longer discussion in `netinstall.conf` file under 'Groups Format'
+        properties:
+            name: { type: string }
+            description: { type: string }
+            packages:
+                type: array
+                items: { $ref: '#definitions/package' }
+            hidden: { type: boolean, default: false }
+            selected: { type: boolean }
+            critical: { type: boolean, default: false }
+            immutable: { type: boolean }
+            expanded: { type: boolean }
+            subgroups:
+                type: array
+                items: { $ref: '#definitions/group' }
+            pre-install:
+                type: string
+                description: an optional command to run within the new system before the group's
+                    packages are installed. It will run before **each** package in the group
+                    is installed.
+            post-install:
+                type: string
+                description: an optional command to run within the new system after the group's
+                    packages are installed. It will run after **each** package in the group
+                    is installed.
+        required: [name, description] # Always required, at any level in the subgroups hirearchy
+        if:
+            properties:
+                subgroups:
+                    maxItems: 0
+        then:
+            required: [name, description, packages] # bottom-most (sub)group requires some package (otherwise, why bother?)
+    # This should validate `netinstall.yaml` also.
+    groups:
+        $id: '#definitions/groups'
+        type: array
+        items: { $ref: '#definitions/group' }
+
+oneOf:
+-   # netinstall.conf
+    type: object
+    description: netinstall.conf schema
+    additionalProperties: false
+    properties:
+        groupsUrl: { type: string }
+        required: { type: boolean, default: false }
+        label:  # Translatable labels
+            type: object
+            additionalProperties: true
+            properties:
+                sidebar: { type: string }
+                title: { type: string }
+        groups: { $ref: '#definitions/groups' }
+    required: [ groupsUrl ]
+    
+-   # Groups file with top level *groups* key
+    type: object
+    description: Groups file with top level *groups* key
+    additionalProperties: false
+    properties:
+        groups: { $ref: '#definitions/groups' }
+    required: [ groups ]
+    
+-   # Groups file bare
+    { $ref: '#definitions/groups' }
