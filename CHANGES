@@ -21,6 +21,9 @@ This release contains contributions from (alphabetically by first name):
 ## Modules ##
  - BTRFS partitions are no longer listed as "check in phase 2" in
    the *fstab* module. (Thanks Nico)
+ - The *keyboard* module (and *keyboardq*) now pick an English layout
+   (with Rupee) for keyboards when the language is English and locale is India,
+   rather than Hindi layout.
  - The *localeq* module had the i18n.qml rewritten to make it easier
    to customize. A bug in the layout has been fixed, and the overall
    look has been updated.
@@ -42,7 +45,6 @@ This release contains contributions from (alphabetically by first name):
    way, with a bit more of a contemporary look. Packagechooserq adds the option
    to preselect an item and displays all options in one overview.
    (Thanks Anke)
-
 
 
 # 3.2.41.1 (2021-08-05) #
