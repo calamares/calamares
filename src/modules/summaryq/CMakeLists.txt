@@ -1,3 +1,8 @@
+# === This file is part of Calamares - <https://calamares.io> ===
+#
+#   SPDX-FileCopyrightText: 2021 Anke Boersma <demm@kaosx.us>
+#   SPDX-License-Identifier: BSD-2-Clause
+#
 if( NOT WITH_QML )
     calamares_skip_module( "summaryq (QML is not supported in this build)" )
     return()

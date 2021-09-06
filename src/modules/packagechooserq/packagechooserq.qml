@@ -80,12 +80,8 @@ Item {
                     }
 
                     onCheckedChanged: {
-                        if ( ! checked ) {
-                            print("L not used")
-                        }
-                        else {
-                            config.pkgc = "libreoffice"
-                            print( config.pkgc )
+                        if ( checked ) {
+                            config.packageChoice = "libreoffice"
                         }
                     }
                 }
@@ -146,13 +142,8 @@ Item {
                     }
 
                     onCheckedChanged: {
-                        if ( ! checked ) {
-                            print("not used")
-                            //console.log("removed")
-                        }
-                        else {
-                            print("No Office Suite")
-                            config.pkgc = "no_office_suite"
+                        if ( checked ) {
+                            config.packageChoice = "no_office_suite"
                         }
                     }
                 }
@@ -215,12 +206,8 @@ Item {
                     }
 
                     onCheckedChanged: {
-                        if ( ! checked ) {
-                            print("M not used")
-                        }
-                        else {
-                            print("minimal")
-                            config.pkgc = "minimal_install"
+                        if ( checked ) {
+                            config.packageChoice = "minimal_install"
                         }
                     }
                 }
