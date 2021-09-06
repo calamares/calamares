@@ -12,12 +12,15 @@ website will have to do for older versions.
 This release contains contributions from (alphabetically by first name):
  - Anke Boersma
  - Artem Grinev
+ - Nico 'dr460nf1r3' (new contributor, welcome!)
  - Waneon Kim (new contributor, welcome!)
 
 ## Core ##
  - No core changes yet
 
 ## Modules ##
+ - BTRFS partitions are no longer listed as "check in phase 2" in
+   the *fstab* module. (Thanks Nico)
  - The *localeq* module had the i18n.qml rewritten to make it easier
    to customize. A bug in the layout has been fixed, and the overall
    look has been updated.
@@ -25,7 +28,7 @@ This release contains contributions from (alphabetically by first name):
    user on the installed system, so that network configuration changes
    made in the live system are automatically used after installation. #1755
  - *partition* no longer allows you to delete an extended partition with
-   children (which led to crashes). Thanks Artem! #1749
+   children (which led to crashes). #1749 (Thanks Artem)
  - *partition* complains in more detail about the state of the UEFI
    boot partition (under manual partitioning schemes). #1761
  - *welcome* can now check multiple URLs to determine if internet connectivity
@@ -38,6 +41,7 @@ This release contains contributions from (alphabetically by first name):
    Summaryq brings the option to present the summary page in a customizable
    way, with a bit more of a contemporary look. Packagechooserq adds the option
    to preselect an item and displays all options in one overview.
+   (Thanks Anke)
 
 
 
