@@ -119,8 +119,8 @@ Config::pageLeavingTasks()
         QStringList packageNames = m_model->getInstallPackagesForNames( m_selections );
         CalamaresUtils::Packages::setGSPackageAdditions(
             Calamares::JobQueue::instance()->globalStorage(), m_defaultId, packageNames );
-        cDebug() << m_id << "Finalized these selections: " << m_selections;
-        cDebug() << m_id << "Finalized these packages: " << packageNames;
+        cDebug() << m_defaultId << "Finalized these selections: " << m_selections;
+        cDebug() << m_defaultId << "Finalized these packages: " << packageNames;
     }
     else
     {
@@ -353,6 +353,7 @@ Config::updateDisplayedData()
     Calamares::GlobalStorage* globalStorage = Calamares::JobQueue::instance()->globalStorage();
     QString key;
     QString value;
+    QStringList selectionsOld = m_selections; // A copy is made because changes in the GUI selections affect m_selections
     for ( int i = 0; i < m_model->packageCount(); i++ )
     {
         displayedEntryData = m_model->packageData( i );
@@ -401,7 +402,7 @@ Config::updateDisplayedData()
             m_displayedEntryScreenshots.append( displayedEntryData.screenshot );
             m_displayedEntryPackages.append( displayedEntryData.packageNames );
 
-            if ( m_selections.length() < 1 )
+            if ( selectionsOld.length() < 1 )
             {
                 m_displayedEntrySelectedStates.append( displayedEntryData.selected );
                 if ( displayedEntryData.selected )
@@ -416,20 +417,17 @@ Config::updateDisplayedData()
         }
     }
 
-    for ( int k = 0; k < m_selections.length(); k++ )
+    for ( int k = 0; k < selectionsOld.length(); k++ )
     {
-        if ( m_displayedEntryIds.contains( m_selections[ k ], Qt::CaseSensitive ) )
+        if ( m_displayedEntryIds.contains( selectionsOld[ k ], Qt::CaseSensitive ) )
         {
-            int index = m_displayedEntryIds.indexOf( m_selections[ k ] );
+            int index = m_displayedEntryIds.indexOf( selectionsOld[ k ] );
             m_displayedEntrySelectedStates[ index ] = true;
-            QString oldSelection = m_selections.takeAt( k );
-            addSelection( oldSelection );  // Needed to properly handle on-screen exclusions and adjustments
-            // No need to decrement the index. Otherwise this will be an infinite loop
+            addSelection( selectionsOld[ k ] );  // Needed to properly handle on-screen exclusions and adjustments
         }
         else
         {
             m_selections.removeAt( k );
-            k = k - 1;
         }
     }
 
