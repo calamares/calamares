@@ -16,6 +16,8 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 
 Item {
+    // width: 800
+    // height: 800
     property string image_source: ""
     property int image_width: 1
     property int image_height: 1
@@ -40,7 +42,7 @@ Item {
                 id: listView
                 anchors.left: parent.left
                 anchors.right: parent.right
-                height: parent.height - 25
+                height: parent.height - 100
                 clip: true
                 spacing: 10
                 ScrollBar.vertical: ScrollBar {
@@ -52,8 +54,11 @@ Item {
                     anchors.leftMargin: 10
                     anchors.rightMargin: 10
                     x: 10
+                    //            height: 500
                     width: listView.width - 20
                     height: column.implicitHeight + 20
+                    //                        Layout.fillHeight: true
+                    //                        Layout.fillWidth: true
                     color: "#ffffff"
                     radius: 10
                     border.width: 0
@@ -124,6 +129,9 @@ Item {
                 page.width - 50
             } else {
                 (page.height - 50) * image_width / image_height
+                // if (new_width >= page.width - 50) {
+                //     page.width - 50
+                // }
             } 
         }
         height: {
@@ -131,6 +139,9 @@ Item {
                 page.height - 50
             } else {
                 (page.width - 50) * image_height / image_width
+                // if (new_height >= page.height - 50) {
+                //     page.height - 50
+                // }
             } 
         }
         anchors.centerIn: parent
@@ -138,6 +149,10 @@ Item {
         focus: true
         closePolicy: Popup.CloseOnEscape | Popup.CloseOnReleaseOutside | Popup.CloseOnReleaseInside
         padding: 0
+        // onAboutToShow: {
+        //     image_width= enlarged_image.paintedWidth
+        //     image_height= enlarged_image.paintedHeight
+        // }
         onOpened: {
             image_width= enlarged_image.paintedWidth
             image_height= enlarged_image.paintedHeight
