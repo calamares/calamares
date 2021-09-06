@@ -1,200 +1,138 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   SPDX-FileCopyrightText: 2020 Anke Boersma <demm@kaosx.us>
+ *   SPDX-FileCopyrightText: 2020 - 2021 Anke Boersma <demm@kaosx.us>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 import io.calamares.core 1.0
 import io.calamares.ui 1.0
 
-import QtQuick 2.10
-import QtQuick.Controls 2.10
+import QtQuick 2.15
+import QtQuick.Controls 2.15
 import QtQuick.Window 2.14
 import QtQuick.Layouts 1.3
 
 import org.kde.kirigami 2.7 as Kirigami
+import "data"
 
-Page {
+Item {
     width: 800 //parent.width
-    height: 500
+    height: 600
 
-     StackView {
-        id: stack
+    readonly property color backgroundColor: "#E6E9EA" //Kirigami.Theme.backgroundColor
+    readonly property color listBackgroundColor: "white"
+    readonly property color textFieldColor: "#121212"
+    readonly property color textFieldBackgroundColor: "#F8F8F8"
+    readonly property color textColor: Kirigami.Theme.textColor
+    readonly property color highlightedTextColor: Kirigami.Theme.highlightedTextColor
+    readonly property color highlightColor: Kirigami.Theme.highlightColor
+
+    property var langXml: ["de", "en", "es", "fr", "ru",]
+    property var arXml: ["Arabic"]
+    property var ruXml: ["Azerba", "Belaru", "Kazakh", "Kyrgyz", "Mongol",
+        "Russia", "Tajik", "Ukrain"]
+    property var frXml: ["Bambar", "Belgia","French", "Wolof"]
+    property var enXml: ["Bikol", "Chines", "Englis", "Irish", "Lithua", "Maori"]
+    property var esXml: ["Spanis"]
+    property var deXml: ["German"]
+    property var ptXml: ["Portug"]
+    property var scanXml: ["Danish", "Finnis", "Norweg", "Swedis"]
+    property var afganiXml: ["Afghan"]
+    property var genericXml: ["Armeni", "Bulgar", "Dutch", "Estoni", "Icelan",
+        "Indone", "Italia", "Latvia", "Maltes", "Moldav", "Romani", "Swahil", "Turkis"]
+    property var genericQzXml: ["Albani", "Bosnia", "Croati", "Czech", "Hungar",
+        "Luxemb", "Monten", "Polish", "Serbia", "Sloven", "Slovak"]
+    property var genericAzXml: []
+
+    property var keyIndex: []
+
+    Rectangle {
+        id: backgroundItem
         anchors.fill: parent
-        clip: true
+        color: backgroundColor
 
-        initialItem: Item {
+        Label {
+            id: header
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: qsTr("To activate keyboard preview, select a layout.")
+            color: textColor
+            font.bold: true
+        }
+
+        Label {
+            id: intro
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: header.bottom
+            color: textColor
+            horizontalAlignment: Text.AlignHCenter
+            width: parent.width / 1.2
+            wrapMode: Text.WordWrap
+            text: ( config.prettyStatus)
+        }
+
+        RowLayout {
+            id: models
+            anchors.top: intro.bottom
+            anchors.topMargin: 10
+            anchors.horizontalCenter: parent.horizontalCenter
+            width: parent.width /1.5
+            spacing: 10
 
             Label {
-
-                id: header
-                anchors.horizontalCenter: parent.horizontalCenter
-                text: qsTr("Keyboard Model")
-                color: Kirigami.Theme.textColor
+                Layout.alignment: Qt.AlignCenter
+                text: qsTr("Keyboard Model:")
+                color: textColor
                 font.bold: true
-                font.weight: Font.Bold
-                font.pointSize: 24
             }
 
-            Label {
-
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.top: header.bottom
-                color: Kirigami.Theme.textColor
-                horizontalAlignment: Text.AlignHCenter
-                width: parent.width / 1.5
-                wrapMode: Text.WordWrap
-                text: qsTr("Click your preferred keyboard model to select layout and variant, or use the default one based on the detected hardware.")
-            }
-
-            ListView {
-
-                id: list1
-
-                ScrollBar.vertical: ScrollBar {
-
-                    active: true
-                }
-
-                width: parent.width / 2
-                height: 250
-                anchors.centerIn: parent
-                anchors.verticalCenterOffset: -30
-                focus: true
-                clip: true
-                boundsBehavior: Flickable.StopAtBounds
-                spacing: 2
-
-                Rectangle {
-
-                    z: parent.z - 1
-                    anchors.fill: parent
-                    color: "#BDC3C7"
-                    radius: 5
-                    opacity: 0.7
-                }
-
+            ComboBox {
+                Layout.fillWidth: true
+                textRole: "label"
                 model: config.keyboardModelsModel
-                //model: ["Africa", "America", "Antarctica", "Arctic", "Asia", "Atlantic", "Australia", "Europe", "Indian", "Pacific"]
-
                 currentIndex: model.currentIndex
-                delegate: ItemDelegate {
-
-                    hoverEnabled: true
-                    width: parent.width
-                    highlighted: ListView.isCurrentItem
-
-                    RowLayout {
-                        anchors.fill: parent
-
-                        Label {
-
-                            text: model.label // modelData
-                            Layout.fillHeight: true
-                            Layout.fillWidth: true
-                            width: parent.width
-                            height: 32
-                            color: highlighted ? Kirigami.Theme.highlightedTextColor : Kirigami.Theme.textColor
-
-                            background: Rectangle {
-
-                                color: highlighted || hovered ? Kirigami.Theme.highlightColor : "white" //Kirigami.Theme.backgroundColor
-                                opacity: highlighted || hovered ? 0.5 : 0.3
-                            }
-                        }
-
-                        Kirigami.Icon {
-
-                            source: "checkmark"
-                            Layout.preferredWidth: 22
-                            Layout.preferredHeight: 22
-                            color: Kirigami.Theme.highlightedTextColor
-                            visible: highlighted
-                        }
-                    }
-
-                    onClicked: {
-
-                        list1.model.currentIndex = index
-                        stack.push(layoutsList)
-                        list1.positionViewAtIndex(index, ListView.Center)
-                    }
-                }
+                onCurrentIndexChanged: config.keyboardModels = currentIndex
             }
         }
 
-        Component {
-            id: layoutsList
+        StackView {
+            id: stack
+            anchors.top: models.bottom
+            anchors.topMargin: 10
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            clip: true
 
-            Item {
-
-                Label {
-
-                id: header
-                anchors.horizontalCenter: parent.horizontalCenter
-                text: qsTr("Keyboard Layout")
-                color: Kirigami.Theme.textColor
-                font.bold: true
-                font.weight: Font.Bold
-                font.pointSize: 24
-                }
-
-                Label {
-
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.top: header.bottom
-                    color: Kirigami.Theme.textColor
-                    horizontalAlignment: Text.AlignHCenter
-                    width: parent.width / 1.5
-                    wrapMode: Text.WordWrap
-                    text: config.prettyStatus
-                    //text: qsTr("Set keyboard model or use the default one based on the detected hardware.")
-                }
+            initialItem: Item {
 
                 ListView {
-
-                    id: list2
+                    id: layouts
 
                     ScrollBar.vertical: ScrollBar {
-
                         active: true
                     }
 
                     width: parent.width / 2
-                    height: 250
-                    anchors.centerIn: parent
-                    anchors.verticalCenterOffset: -30
+                    height: 200
+                    anchors.horizontalCenter: parent.horizontalCenter
                     focus: true
                     clip: true
                     boundsBehavior: Flickable.StopAtBounds
                     spacing: 2
 
                     Rectangle {
-
                         z: parent.z - 1
                         anchors.fill: parent
-                        color: "#BDC3C7"
-                        radius: 5
+                        color: listBackgroundColor
                         opacity: 0.7
                     }
 
                     model: config.keyboardLayoutsModel
-                    //model: ["Brussels", "London", "Madrid", "New York", "Melbourne", "London", "Madrid", "New York", "Brussels", "London", "Madrid", "New York", "Brussels", "London", "Madrid", "New York"]
-
                     currentIndex: model.currentIndex
+                    Component.onCompleted: positionViewAtIndex(model.currentIndex, ListView.Center)
                     delegate: ItemDelegate {
 
                         hoverEnabled: true
@@ -202,203 +140,169 @@ Page {
                         highlighted: ListView.isCurrentItem
 
                         RowLayout {
-                        anchors.fill: parent
+                            anchors.fill: parent
 
                             Label {
-
-                                text: model.label // modelData
+                                id: label1
+                                text: model.label
                                 Layout.fillHeight: true
                                 Layout.fillWidth: true
+                                padding: 10
                                 width: parent.width
-                                height: 30
-                                color: highlighted ? Kirigami.Theme.highlightedTextColor : Kirigami.Theme.textColor
+                                height: 32
+                                color: highlighted ? highlightedTextColor : textColor
 
                                 background: Rectangle {
-
-                                    color: highlighted || hovered ? Kirigami.Theme.highlightColor : "white" //Kirigami.Theme.backgroundColor
+                                    color: highlighted || hovered ? highlightColor : listBackgroundColor
                                     opacity: highlighted || hovered ? 0.5 : 0.3
                                 }
-                            }
-
-                            Kirigami.Icon {
-
-                                source: "checkmark"
-                                Layout.preferredWidth: 22
-                                Layout.preferredHeight: 22
-                                color: Kirigami.Theme.highlightedTextColor
-                                visible: highlighted
                             }
                         }
 
                         onClicked: {
 
-                            list2.model.currentIndex = index
+                            layouts.model.currentIndex = index
+                            keyIndex = label1.text.substring(0,6)
                             stack.push(variantsList)
-                            list2.positionViewAtIndex(index, ListView.Center)
+                            layouts.positionViewAtIndex(index, ListView.Center)
                         }
                     }
                 }
-
-                ColumnLayout {
-
-                    spacing: 2
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.verticalCenterOffset: -30
-                    anchors.left: parent.left 
-                    anchors.leftMargin: parent.width / 15
-
-                    Button {
-
-                        icon.name: "go-previous"
-                        text: qsTr("Models")
-                        onClicked: stack.pop()
-                    }
-
-                    Button {
-
-                        icon.name: "go-next"
-                        text: qsTr("Variants")
-                        onClicked: stack.push(variantsList)
-                    }
-                }
-            }
-        }
-
-        Component {
-            id: variantsList
-
-            Item {
-
-                Label {
-
-                    id: header
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    text: qsTr("Keyboard Variant")
-                    color: Kirigami.Theme.textColor
-                    font.bold: true
-                    font.weight: Font.Bold
-                    font.pointSize: 24
-                }
-
-                Label {
-
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.top: header.bottom
-                    color: Kirigami.Theme.textColor
-                    horizontalAlignment: Text.AlignHCenter
-                    width: parent.width / 1.5
-                    wrapMode: Text.WordWrap
-                    text: config.prettyStatus
-                    //text: qsTr("Variant keyboard model or use the default one based on the detected hardware.")
-                }
-
-                ListView {
-
-                    id: list3
-
-                    ScrollBar.vertical: ScrollBar {
-
-                        active: true
-                    }
-
-                    width: parent.width / 2
-                    height: 250
-                    anchors.centerIn: parent
-                    anchors.verticalCenterOffset: -30
-                    focus: true
-                    clip: true
-                    boundsBehavior: Flickable.StopAtBounds
-                    spacing: 2
-
-                    Rectangle {
-
-                        z: parent.z - 1
-                        anchors.fill: parent
-                        color: "#BDC3C7"
-                        radius: 5
-                        opacity: 0.7
-                    }
-
-                    model: config.keyboardVariantsModel
-                    //model: ["Brussels", "London", "Madrid", "New York", "Melbourne", "London", "Madrid", "New York", "Brussels", "London", "Madrid", "New York", "Brussels", "London", "Madrid", "New York"]
-
-                    currentIndex: model.currentIndex
-                    delegate: ItemDelegate {
-
-                        hoverEnabled: true
-                        width: parent.width
-                        highlighted: ListView.isCurrentItem
-
-                        RowLayout {
-                        anchors.fill: parent
-
-                            Label {
-
-                                text: model.label //modelData
-                                Layout.fillHeight: true
-                                Layout.fillWidth: true
-                                width: parent.width
-                                height: 30
-                                color: highlighted ? Kirigami.Theme.highlightedTextColor : Kirigami.Theme.textColor
-
-                                background: Rectangle {
-
-                                    color: highlighted || hovered ? Kirigami.Theme.highlightColor : "white" //Kirigami.Theme.backgroundColor
-                                    opacity: highlighted || hovered ? 0.5 : 0.3
-                                }
-                            }
-
-                            Kirigami.Icon {
-
-                                source: "checkmark"
-                                Layout.preferredWidth: 22
-                                Layout.preferredHeight: 22
-                                color: Kirigami.Theme.highlightedTextColor
-                                visible: highlighted
-                            }
-                        }
-
-                        onClicked: {
-
-                            list3.model.currentIndex = index
-                            list3.positionViewAtIndex(index, ListView.Center)
-                        }
-                    }
-                }
-                
                 Button {
 
                     Layout.fillWidth: true
                     anchors.verticalCenter: parent.verticalCenter
-                    anchors.verticalCenterOffset: -30
-                    anchors.left: parent.left 
+                    anchors.verticalCenterOffset: -parent.height / 3.5
+                    anchors.left: parent.left
                     anchors.leftMargin: parent.width / 15
-                    icon.name: "go-previous"
-                    text: qsTr("Layouts")
-                    onClicked: stack.pop()
+                    icon.name: "go-next"
+                    text: qsTr("Variants")
+                    onClicked: stack.push(variantsList)
+                }
+            }
+
+            Component {
+                id: variantsList
+
+                Item {
+
+                    ListView {
+                        id: variants
+
+                        ScrollBar.vertical: ScrollBar {
+                            active: true
+                        }
+
+                        width: parent.width / 2
+                        height: 200
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.topMargin: 10
+                        focus: true
+                        clip: true
+                        boundsBehavior: Flickable.StopAtBounds
+                        spacing: 2
+
+                        Rectangle {
+                            z: parent.z - 1
+                            anchors.fill: parent
+                            color: listBackgroundColor
+                            opacity: 0.7
+                        }
+
+                        model: config.keyboardVariantsModel
+                        currentIndex: model.currentIndex
+                        Component.onCompleted: positionViewAtIndex(model.currentIndex, ListView.Center)
+
+                        delegate: ItemDelegate {
+                            hoverEnabled: true
+                            width: parent.width
+                            highlighted: ListView.isCurrentItem
+
+                            RowLayout {
+                            anchors.fill: parent
+
+                                Label {
+                                    text: model.label
+                                    Layout.fillHeight: true
+                                    Layout.fillWidth: true
+                                    padding: 10
+                                    width: parent.width
+                                    height: 30
+                                    color: highlighted ? highlightedTextColor : textColor
+
+                                    background: Rectangle {
+                                        color: highlighted || hovered ? highlightColor : listBackgroundColor
+                                        opacity: highlighted || hovered ? 0.5 : 0.3
+                                    }
+                                }
+                            }
+
+                            onClicked: {
+                                variants.model.currentIndex = index
+                                variants.positionViewAtIndex(index, ListView.Center)
+                            }
+                        }
+                    }
+
+                    Button {
+                        Layout.fillWidth: true
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.verticalCenterOffset: -parent.height / 3.5
+                        anchors.left: parent.left
+                        anchors.leftMargin: parent.width / 15
+                        icon.name: "go-previous"
+                        text: qsTr("Layouts")
+                        onClicked: stack.pop()
+                    }
                 }
             }
         }
-    }
 
-    TextField {
+        TextField {
+            id: textInput
+            placeholderText: qsTr("Type here to test your keyboard")
+            height: 36
+            width: parent.width / 1.5
+            horizontalAlignment: TextInput.AlignHCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottom: keyboard.top
+            anchors.bottomMargin: parent.height / 25
+            color: textFieldColor
 
-        placeholderText: qsTr("Test your keyboard")
-        height: 48
-        width: parent.width / 1.5
-        horizontalAlignment: TextInput.AlignHCenter
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: parent.height / 10
-        color: "#1F1F1F"
+            background:Rectangle {
+                z: parent.z - 1
+                anchors.fill: parent
+                color: textFieldBackgroundColor
+                radius: 2
+            }
+        }
 
-        background:Rectangle {
-
-            z: parent.z - 1
-            anchors.fill: parent
-            color: "#BDC3C7"
-            radius: 2
-            opacity: 0.3
+        Keyboard {
+            id: keyboard
+            width: parent.width
+            height: parent.height / 3
+            anchors.bottom: parent.bottom
+            source: langXml.includes(keyIndex) ? (keyIndex + ".xml") :
+                afganiXml.includes(keyIndex) ? "afgani.xml" :
+                scanXml.includes(keyIndex) ? "scan.xml" :
+                genericXml.includes(keyIndex) ? "generic.xml" :
+                genericQzXml.includes(keyIndex) ? "generic_qz.xml" :
+                arXml.includes(keyIndex) ? "ar.xml" :
+                deXml.includes(keyIndex) ? "de.xml" :
+                enXml.includes(keyIndex) ? "en.xml" :
+                esXml.includes(keyIndex) ? "es.xml" :
+                frXml.includes(keyIndex) ? "fr.xml" :
+                ptXml.includes(keyIndex) ? "pt.xml" :
+                ruXml.includes(keyIndex) ? "ru.xml" :"empty.xml"
+            rows: 4
+            columns: 10
+            keyColor: "transparent"
+            keyPressedColorOpacity: 0.2
+            keyImageLeft: "button_bkg_left.png"
+            keyImageRight: "button_bkg_right.png"
+            keyImageCenter: "button_bkg_center.png"
+            target: textInput
+            onEnterClicked: console.log("Enter!")
         }
     }
 }
