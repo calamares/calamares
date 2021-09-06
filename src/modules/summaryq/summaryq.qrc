@@ -1,0 +1,7 @@
+<RCC>
+    <qresource>
+        <file>summaryq.qml</file>
+        <file>img/keyboard.svg</file>
+        <file>img/lokalize.svg</file>
+    </qresource>
+</RCC>

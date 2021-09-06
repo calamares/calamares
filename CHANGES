@@ -7,22 +7,91 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.41 (unreleased) #
+# 3.2.43 (unreleased) #
+
+This release contains contributions from (alphabetically by first name):
+ - No external contributors yet
+
+## Core ##
+ - No core changes yet
+
+## Modules ##
+ - No module changes yet
+
+
+# 3.2.42 (2021-09-06) #
 
 This release contains contributions from (alphabetically by first name):
  - Anke Boersma
+ - Artem Grinev
+ - Nico 'dr460nf1r3' (new contributor, welcome!)
+ - Waneon Kim (new contributor, welcome!)
+
+## Core ##
+ - No core changes yet
+
+## Modules ##
+ - BTRFS partitions are no longer listed as "check in phase 2" in
+   the *fstab* module. (Thanks Nico)
+ - The *keyboard* module (and *keyboardq*) now pick an English layout
+   (with Rupee) for keyboards when the language is English and locale is India,
+   rather than Hindi layout.
+ - The *localeq* module had the i18n.qml rewritten to make it easier
+   to customize. A bug in the layout has been fixed, and the overall
+   look has been updated.
+ - *networkcfg* now translates the "live user" on an ISO to the regular
+   user on the installed system, so that network configuration changes
+   made in the live system are automatically used after installation. #1755
+ - *partition* no longer allows you to delete an extended partition with
+   children (which led to crashes). #1749 (Thanks Artem)
+ - *partition* complains in more detail about the state of the UEFI
+   boot partition (under manual partitioning schemes). #1761
+ - *welcome* can now check multiple URLs to determine if internet connectivity
+   is available. It is still recommended to check the distro home-page or
+   some special "ping" page of the distro, although that has some privacy
+   implications; using example.com or google.com may work as well. Listing
+   multiple URLs will ping each of them in turn until one succeeds. #1669
+ - The work to make a QML version available for all view modules is almost
+   completed. Two new QML modules have been added *packagechooserq* and *summaryq*.
+   Summaryq brings the option to present the summary page in a customizable
+   way, with a bit more of a contemporary look. Packagechooserq adds the option
+   to preselect an item and displays all options in one overview.
+   (Thanks Anke)
+
+
+# 3.2.41.1 (2021-08-05) #
+
+This is a hotfix release for a crash in the *partition* module, reported on
+KDE neon. #1746
+
+
+# 3.2.41 (2021-07-31) #
+
+This release contains contributions from (alphabetically by first name):
+ - Anke Boersma
+ - Camilo Higuita
 
 ## Core ##
  - The (re)translation framework has been internally re-vamped to be
    less resource-intensive and to work with all QObjects, not just
    widgets. Consumers of the translations framework are expected to
-   set up the event filter on the top-level widget(s) manually.
+   set up the event filter on the top-level widget(s) manually. Since
+   Calamares and the Calamares-test-applications have been adjusted already,
+   no further action is needed.
 
 ## Modules ##
+ - When the *keyboard* module is activated, it no longer replaces
+   an explicit user choice (e.g. for a Belgian layout) by a guessed-for-
+   this-language layout (e.g. Danish if you're installing in Danish).
+ - Logic for handling installation lists has been moved around in the
+   *packages* module so that package managers can, in principle,
+   adjust how to handle critical and non-critical package lists.
+ - In the *partition* module, translation code has been simplified.
  - The *usersq* module has had a fair bit of QML rewritten to make it easier
    to customize the colors used by the module in a consistent way.
    (Thanks Anke)
-
+ - *Welcome* now uses a translated message from the Config object,
+   increasing the sharing between widgets- and QML-modules.
 
 
 # 3.2.40 (2021-07-14) #

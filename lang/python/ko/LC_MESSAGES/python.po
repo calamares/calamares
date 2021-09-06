@@ -320,6 +320,7 @@ msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."
 msgstr ""
+"패키지 관리자가 설치된 시스템을 변경할 수 없습니다. <pre>{!s}</pre> 명령에서  {!s} 오류 코드를 반환했습니다."
 
 #: src/modules/bootloader/main.py:43
 msgid "Install bootloader."

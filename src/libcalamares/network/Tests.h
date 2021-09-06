@@ -24,6 +24,9 @@ private Q_SLOTS:
 
     void testInstance();
     void testPing();
+
+    void testCheckUrl();
+    void testCheckMultiUrl();
 };
 
 #endif

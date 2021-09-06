@@ -29,13 +29,14 @@
 
 static const int SECTION_SPACING = 12;
 
-SummaryPage::SummaryPage( const SummaryViewStep* thisViewStep, QWidget* parent )
+SummaryPage::SummaryPage( Config* config, const SummaryViewStep* thisViewStep, QWidget* parent )
     : QWidget()
     , m_thisViewStep( thisViewStep )
     , m_contentWidget( nullptr )
     , m_scrollArea( new QScrollArea( this ) )
 {
     Q_UNUSED( parent )
+
 
     this->setObjectName( "summaryStep" );
 
@@ -45,11 +46,8 @@ SummaryPage::SummaryPage( const SummaryViewStep* thisViewStep, QWidget* parent )
 
     QLabel* headerLabel = new QLabel( this );
     headerLabel->setObjectName( "summaryTitle" );
-    CALAMARES_RETRANSLATE( if ( Calamares::Settings::instance()->isSetupMode() )
-                               headerLabel->setText( tr( "This is an overview of what will happen once you start "
-                                                         "the setup procedure." ) );
-                           else headerLabel->setText( tr( "This is an overview of what will happen once you start "
-                                                          "the install procedure." ) ); );
+    headerLabel->setText( config->message() );
+    connect( config, &Config::messageChanged, headerLabel, &QLabel::setText );
     layout->addWidget( headerLabel );
     layout->addWidget( m_scrollArea );
     m_scrollArea->setWidgetResizable( true );
@@ -63,12 +61,45 @@ SummaryPage::SummaryPage( const SummaryViewStep* thisViewStep, QWidget* parent )
 }
 
 
+static QLabel*
+createTitleLabel( const QString& text, const QFont& titleFont )
+{
+    QLabel* label = new QLabel( text );
+    label->setObjectName( "summaryItemTitle" );
+    label->setFont( titleFont );
+    label->setContentsMargins( 0, 0, 0, 0 );
+
+    return label;
+}
+
+static QLabel*
+createBodyLabel( const QString& text, const QPalette& bodyPalette )
+{
+    QLabel* label = new QLabel;
+    label->setObjectName( "summaryItemBody" );
+    label->setMargin( CalamaresUtils::defaultFontHeight() / 2 );
+    label->setAutoFillBackground( true );
+    label->setPalette( bodyPalette );
+    label->setText( text );
+    return label;
+}
+
 // Adds a widget for those ViewSteps that want a summary;
 // see SummaryPage documentation and also ViewStep docs.
 void
 SummaryPage::onActivate()
 {
-    createContentWidget();
+    delete m_contentWidget;  // It might have been created previously
+    m_contentWidget = new QWidget;
+    m_layout = new QVBoxLayout( m_contentWidget );
+    CalamaresUtils::unmarginLayout( m_layout );
+
+    QFont titleFont = font();
+    titleFont.setWeight( QFont::Light );
+    titleFont.setPointSize( CalamaresUtils::defaultFontSize() * 2 );
+
+    QPalette bodyPalette( palette() );
+    bodyPalette.setColor( WindowBackground, palette().window().color().lighter( 108 ) );
 
     bool first = true;
     const Calamares::ViewStepList steps = stepsForSummary( Calamares::ViewManager::instance()->viewSteps() );
@@ -92,7 +123,7 @@ SummaryPage::onActivate()
             m_layout->addSpacing( SECTION_SPACING );
         }
 
-        m_layout->addWidget( createTitleLabel( step->prettyName() ) );
+        m_layout->addWidget( createTitleLabel( step->prettyName(), titleFont ) );
         QHBoxLayout* itemBodyLayout = new QHBoxLayout;
         m_layout->addSpacing( CalamaresUtils::defaultFontHeight() / 2 );
         m_layout->addLayout( itemBodyLayout );
@@ -102,7 +133,7 @@ SummaryPage::onActivate()
         CalamaresUtils::unmarginLayout( itemBodyLayout );
         if ( !text.isEmpty() )
         {
-            itemBodyCoreLayout->addWidget( createBodyLabel( text ) );
+            itemBodyCoreLayout->addWidget( createBodyLabel( text, bodyPalette ) );
         }
         if ( widget )
         {
@@ -156,40 +187,9 @@ SummaryPage::stepsForSummary( const Calamares::ViewStepList& allSteps ) const
     return steps;
 }
 
-
 void
-SummaryPage::createContentWidget()
+SummaryPage::onLeave()
 {
     delete m_contentWidget;
-    m_contentWidget = new QWidget;
-    m_layout = new QVBoxLayout( m_contentWidget );
-    CalamaresUtils::unmarginLayout( m_layout );
-}
-
-QLabel*
-SummaryPage::createTitleLabel( const QString& text ) const
-{
-    QLabel* label = new QLabel( text );
-    label->setObjectName( "summaryItemTitle" );
-    QFont fnt = font();
-    fnt.setWeight( QFont::Light );
-    fnt.setPointSize( CalamaresUtils::defaultFontSize() * 2 );
-    label->setFont( fnt );
-    label->setContentsMargins( 0, 0, 0, 0 );
-
-    return label;
-}
-
-QLabel*
-SummaryPage::createBodyLabel( const QString& text ) const
-{
-    QLabel* label = new QLabel;
-    label->setObjectName( "summaryItemBody" );
-    label->setMargin( CalamaresUtils::defaultFontHeight() / 2 );
-    QPalette pal( palette() );
-    pal.setColor( WindowBackground, palette().window().color().lighter( 108 ) );
-    label->setAutoFillBackground( true );
-    label->setPalette( pal );
-    label->setText( text );
-    return label;
+    m_contentWidget = nullptr;
 }

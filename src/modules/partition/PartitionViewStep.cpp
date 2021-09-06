@@ -51,7 +51,7 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
 
     m_waitingWidget = new WaitingWidget( QString() );
     m_widget->addWidget( m_waitingWidget );
-    CALAMARES_RETRANSLATE( m_waitingWidget->setText( tr( "Gathering system information..." ) ); );
+    CALAMARES_RETRANSLATE( if (m_waitingWidget) {  m_waitingWidget->setText( tr( "Gathering system information..." ) ); } );
 
     m_core = new PartitionCoreModule( this );  // Unusable before init is complete!
     // We're not done loading, but we need the configuration map first.
@@ -109,13 +109,142 @@ PartitionViewStep::prettyName() const
     return tr( "Partitions" );
 }
 
-
-QWidget*
-PartitionViewStep::widget()
+/** @brief Gather the pretty descriptions of all the partitioning jobs
+ *
+ * Returns a QStringList of each job's pretty description, including
+ * empty strings and duplicates. The list is in-order of how the
+ * jobs will be run.
+ */
+static QStringList
+jobDescriptions( const Calamares::JobList& jobs )
 {
-    return m_widget;
+    QStringList jobsLines;
+    for ( const Calamares::job_ptr& job : qAsConst( jobs ) )
+    {
+        if ( !job->prettyDescription().isEmpty() )
+        {
+            jobsLines.append( job->prettyDescription() );
+        }
+    }
+    return jobsLines;
 }
 
+/** @brief A top-level description of what @p choice does
+ *
+ * Returns a (branded) string describing what @p choice will do.
+ */
+static QString
+modeDescription( Config::InstallChoice choice )
+{
+    const auto* branding = Calamares::Branding::instance();
+    static const char context[] = "PartitionViewStep";
+
+    switch ( choice )
+    {
+    case Config::InstallChoice::Alongside:
+        return QCoreApplication::translate( context, "Install %1 <strong>alongside</strong> another operating system." )
+            .arg( branding->shortVersionedName() );
+        break;
+    case Config::InstallChoice::Erase:
+        return QCoreApplication::translate( context, "<strong>Erase</strong> disk and install %1." )
+            .arg( branding->shortVersionedName() );
+        break;
+    case Config::InstallChoice::Replace:
+        return QCoreApplication::translate( context, "<strong>Replace</strong> a partition with %1." )
+            .arg( branding->shortVersionedName() );
+        break;
+    case Config::InstallChoice::NoChoice:
+    case Config::InstallChoice::Manual:
+        return QCoreApplication::translate( context, "<strong>Manual</strong> partitioning." );
+    }
+    return QString();
+}
+
+/** @brief A top-level description of what @p choice does to disk @p info
+ *
+ * Returns a (branded, and device-specific) string describing what
+ * will be done to device @p info when @p choice is made. The @p listLength
+ * is used to provide context; when more than one disk is in use, the description
+ * works differently.
+ */
+static QString
+diskDescription( int listLength, const PartitionCoreModule::SummaryInfo& info, Config::InstallChoice choice )
+{
+    const auto* branding = Calamares::Branding::instance();
+    static const char context[] = "PartitionViewStep";
+
+    if ( listLength == 1 )  // this is the only disk preview
+    {
+        switch ( choice )
+        {
+        case Config::Alongside:
+            return QCoreApplication::translate(
+                       context,
+                       "Install %1 <strong>alongside</strong> another operating system on disk "
+                       "<strong>%2</strong> (%3)." )
+                .arg( branding->shortVersionedName() )
+                .arg( info.deviceNode )
+                .arg( info.deviceName );
+            break;
+        case Config::Erase:
+            return QCoreApplication::translate( context,
+                                                "<strong>Erase</strong> disk <strong>%2</strong> (%3) and install %1." )
+                .arg( branding->shortVersionedName() )
+                .arg( info.deviceNode )
+                .arg( info.deviceName );
+            break;
+        case Config::Replace:
+            return QCoreApplication::translate(
+                       context, "<strong>Replace</strong> a partition on disk <strong>%2</strong> (%3) with %1." )
+                .arg( branding->shortVersionedName() )
+                .arg( info.deviceNode )
+                .arg( info.deviceName );
+            break;
+        case Config::NoChoice:
+        case Config::Manual:
+            return QCoreApplication::translate(
+                       context, "<strong>Manual</strong> partitioning on disk <strong>%1</strong> (%2)." )
+                .arg( info.deviceNode )
+                .arg( info.deviceName );
+        }
+        return QString();
+    }
+    else  // multiple disk previews!
+    {
+        return QCoreApplication::translate( context, "Disk <strong>%1</strong> (%2)" )
+            .arg( info.deviceNode )
+            .arg( info.deviceName );
+    }
+}
+
+QString
+PartitionViewStep::prettyStatus() const
+{
+    QString jobsLabel, modeText, diskInfoLabel;
+
+    const Config::InstallChoice choice = m_config->installChoice();
+    const QList< PartitionCoreModule::SummaryInfo > list = m_core->createSummaryInfo();
+
+    cDebug() << "Summary for Partition" << list.length() << choice;
+    if ( list.length() > 1 )  // There are changes on more than one disk
+    {
+        modeText = modeDescription( choice );
+    }
+
+    for ( const auto& info : list )
+    {
+        // TODO: this overwrites each iteration
+        diskInfoLabel = diskDescription( list.length(), info, choice );
+    }
+
+    const QStringList jobsLines = jobDescriptions( jobs() );
+    if ( !jobsLines.isEmpty() )
+    {
+        jobsLabel = jobsLines.join( "<br/>" );
+    }
+
+    return diskInfoLabel + "<br/>" + jobsLabel;
+}
 
 QWidget*
 PartitionViewStep::createSummaryWidget() const
@@ -132,73 +261,19 @@ PartitionViewStep::createSummaryWidget() const
     formLayout->setContentsMargins( MARGIN, 0, MARGIN, MARGIN );
     mainLayout->addLayout( formLayout );
 
-    const auto* branding = Calamares::Branding::instance();
-    QList< PartitionCoreModule::SummaryInfo > list = m_core->createSummaryInfo();
+    const QList< PartitionCoreModule::SummaryInfo > list = m_core->createSummaryInfo();
     if ( list.length() > 1 )  // There are changes on more than one disk
     {
         //NOTE: all of this should only happen when Manual partitioning is active.
         //      Any other choice should result in a list.length() == 1.
         QLabel* modeLabel = new QLabel;
         formLayout->addRow( modeLabel );
-        QString modeText;
-        switch ( choice )
-        {
-        case Config::InstallChoice::Alongside:
-            modeText = tr( "Install %1 <strong>alongside</strong> another operating system." )
-                           .arg( branding->shortVersionedName() );
-            break;
-        case Config::InstallChoice::Erase:
-            modeText = tr( "<strong>Erase</strong> disk and install %1." ).arg( branding->shortVersionedName() );
-            break;
-        case Config::InstallChoice::Replace:
-            modeText = tr( "<strong>Replace</strong> a partition with %1." ).arg( branding->shortVersionedName() );
-            break;
-        case Config::InstallChoice::NoChoice:
-        case Config::InstallChoice::Manual:
-            modeText = tr( "<strong>Manual</strong> partitioning." );
-        }
-        modeLabel->setText( modeText );
+        modeLabel->setText( modeDescription( choice ) );
     }
     for ( const auto& info : list )
     {
         QLabel* diskInfoLabel = new QLabel;
-        if ( list.length() == 1 )  // this is the only disk preview
-        {
-            QString modeText;
-            switch ( choice )
-            {
-            case Config::InstallChoice::Alongside:
-                modeText = tr( "Install %1 <strong>alongside</strong> another operating system on disk "
-                               "<strong>%2</strong> (%3)." )
-                               .arg( branding->shortVersionedName() )
-                               .arg( info.deviceNode )
-                               .arg( info.deviceName );
-                break;
-            case Config::InstallChoice::Erase:
-                modeText = tr( "<strong>Erase</strong> disk <strong>%2</strong> (%3) and install %1." )
-                               .arg( branding->shortVersionedName() )
-                               .arg( info.deviceNode )
-                               .arg( info.deviceName );
-                break;
-            case Config::InstallChoice::Replace:
-                modeText = tr( "<strong>Replace</strong> a partition on disk <strong>%2</strong> (%3) with %1." )
-                               .arg( branding->shortVersionedName() )
-                               .arg( info.deviceNode )
-                               .arg( info.deviceName );
-                break;
-            case Config::InstallChoice::NoChoice:
-            case Config::InstallChoice::Manual:
-                modeText = tr( "<strong>Manual</strong> partitioning on disk <strong>%1</strong> (%2)." )
-                               .arg( info.deviceNode )
-                               .arg( info.deviceName );
-            }
-            diskInfoLabel->setText( modeText );
-        }
-        else  // multiple disk previews!
-        {
-            diskInfoLabel->setText(
-                tr( "Disk <strong>%1</strong> (%2)" ).arg( info.deviceNode ).arg( info.deviceName ) );
-        }
+        diskInfoLabel->setText( diskDescription( list.length(), info, choice ) );
         formLayout->addRow( diskInfoLabel );
 
         PartitionBarsView* preview;
@@ -243,14 +318,7 @@ PartitionViewStep::createSummaryWidget() const
         field->addWidget( previewLabels );
         formLayout->addRow( tr( "After:" ), field );
     }
-    QStringList jobsLines;
-    foreach ( const Calamares::job_ptr& job, jobs() )
-    {
-        if ( !job->prettyDescription().isEmpty() )
-        {
-            jobsLines.append( job->prettyDescription() );
-        }
-    }
+    const QStringList jobsLines = jobDescriptions( jobs() );
     if ( !jobsLines.isEmpty() )
     {
         QLabel* jobsLabel = new QLabel( widget );
@@ -265,6 +333,11 @@ PartitionViewStep::createSummaryWidget() const
     return widget;
 }
 
+QWidget*
+PartitionViewStep::widget()
+{
+    return m_widget;
+}
 
 void
 PartitionViewStep::next()
@@ -434,50 +507,66 @@ PartitionViewStep::onLeave()
         {
             const QString espMountPoint
                 = Calamares::JobQueue::instance()->globalStorage()->value( "efiSystemPartition" ).toString();
-            const QString espFlagName = PartitionTable::flagName(
 #ifdef WITH_KPMCORE4API
-                PartitionTable::Flag::Boot
+            const auto espFlag = PartitionTable::Flag::Boot;
 #else
-                PartitionTable::FlagEsp
+            const auto espFlag = PartitionTable::FlagEsp;
 #endif
-                                                        );
             Partition* esp = m_core->findPartitionByMountPoint( espMountPoint );
 
             QString message;
             QString description;
-            if ( !esp || ( esp && !PartUtils::isEfiFilesystemSuitable( esp ) ) )
+
+            Logger::Once o;
+
+            const bool okType = esp && PartUtils::isEfiFilesystemSuitableType( esp );
+            const bool okSize = esp && PartUtils::isEfiFilesystemSuitableSize( esp );
+            const bool okFlag = esp && PartUtils::isEfiBootable( esp );
+
+            if ( !esp )
             {
                 message = tr( "No EFI system partition configured" );
-                description = tr( "An EFI system partition is necessary to start %1."
-                                  "<br/><br/>"
-                                  "To configure an EFI system partition, go back and "
-                                  "select or create a FAT32 filesystem with the "
-                                  "<strong>%3</strong> flag enabled and mount point "
-                                  "<strong>%2</strong>.<br/><br/>"
-                                  "You can continue without setting up an EFI system "
-                                  "partition but your system may fail to start." )
-                                  .arg( branding->shortProductName() )
-                                  .arg( espMountPoint, espFlagName );
             }
-            else if ( esp && !PartUtils::isEfiBootable( esp ) )
+            else if ( !(okType && okSize && okFlag ) )
             {
-                message = tr( "EFI system partition flag not set" );
-                description = tr( "An EFI system partition is necessary to start %1."
-                                  "<br/><br/>"
-                                  "A partition was configured with mount point "
-                                  "<strong>%2</strong> but its <strong>%3</strong> "
-                                  "flag is not set.<br/>"
-                                  "To set the flag, go back and edit the partition."
-                                  "<br/><br/>"
-                                  "You can continue without setting the flag but your "
-                                  "system may fail to start." )
-                                  .arg( branding->shortProductName() )
-                                  .arg( espMountPoint, espFlagName );
+                message = tr( "EFI system partition configured incorrectly" );
             }
 
+            if ( !esp || !(okType&&okSize &&okFlag)) {
+            description = tr( "An EFI system partition is necessary to start %1."
+                                "<br/><br/>"
+                                "To configure an EFI system partition, go back and "
+                                "select or create a suitable filesystem.").arg( branding->shortProductName() );
+            }
+            if (!esp) {
+                cDebug() << o << "No ESP mounted";
+                description.append(' ');
+                description.append(tr("The filesystem must be mounted on <strong>%1</strong>.").arg(espMountPoint));
+            }
+            if (!okType) {
+                cDebug() << o << "ESP wrong type";
+                description.append(' ');
+                description.append(tr("The filesystem must have type FAT32."));
+            }
+            if (!okSize) {
+                cDebug() << o << "ESP too small";
+                description.append(' ');
+                description.append(tr("The filesystem must be at least %1 MiB in size.").arg( PartUtils::efiFilesystemMinimumSize() ));
+            }
+            if (!okFlag)
+            {
+                cDebug() << o << "ESP missing flag";
+                description.append(' ');
+                description.append(tr("The filesystem must have flag <strong>%1</strong> set.").arg(PartitionTable::flagName( espFlag )));
+            }
+            if (!description.isEmpty()) {
+                description.append( "<br/><br/>" );
+                description.append( tr(
+                                  "You can continue without setting up an EFI system "
+                                  "partition but your system may fail to start." ));
+            }
             if ( !message.isEmpty() )
             {
-                cWarning() << message;
                 QMessageBox::warning( m_manualPartitionPage, message, description );
             }
         }
@@ -583,8 +672,7 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     QFuture< void > future = QtConcurrent::run( this, &PartitionViewStep::initPartitionCoreModule );
     m_future->setFuture( future );
 
-    m_core->initLayout( m_config->defaultFsType(),
-                        configurationMap.value( "partitionLayout" ).toList() );
+    m_core->initLayout( m_config->defaultFsType(), configurationMap.value( "partitionLayout" ).toList() );
 }
 
 

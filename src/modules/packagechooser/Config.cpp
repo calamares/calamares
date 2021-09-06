@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://calamares.io> ===
  *
  *   SPDX-FileCopyrightText: 2021 Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2021 Anke Boersma <demm@kaosx.us>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -94,14 +95,24 @@ Config::introductionPackage() const
     return *defaultIntroduction;
 }
 
+static inline QString
+make_gs_key( const Calamares::ModuleSystem::InstanceKey& key )
+{
+    return QStringLiteral( "packagechooser_" ) + key.id();
+}
+
 void
 Config::updateGlobalStorage( const QStringList& selected ) const
 {
+    if ( m_packageChoice.has_value() )
+    {
+        cWarning() << "Inconsistent package choices -- both model and single-selection QML";
+    }
     if ( m_method == PackageChooserMethod::Legacy )
     {
         QString value = selected.join( ',' );
-        Calamares::JobQueue::instance()->globalStorage()->insert( m_id, value );
-        cDebug() << m_id<< "selected" << value;
+        Calamares::JobQueue::instance()->globalStorage()->insert( make_gs_key( m_defaultId ), value );
+        cDebug() << m_defaultId << "selected" << value;
     }
     else if ( m_method == PackageChooserMethod::Packages )
     {
@@ -116,6 +127,55 @@ Config::updateGlobalStorage( const QStringList& selected ) const
     }
 }
 
+void
+Config::updateGlobalStorage() const
+{
+    if ( m_model->packageCount() > 0 )
+    {
+        cWarning() << "Inconsistent package choices -- both model and single-selection QML";
+    }
+    if ( m_method == PackageChooserMethod::Legacy )
+    {
+        auto* gs = Calamares::JobQueue::instance()->globalStorage();
+        if ( m_packageChoice.has_value() )
+        {
+            gs->insert( make_gs_key( m_defaultId ), m_packageChoice.value() );
+        }
+        else
+        {
+            gs->remove( make_gs_key( m_defaultId ) );
+        }
+    }
+    else if ( m_method == PackageChooserMethod::Packages )
+    {
+        cWarning() << "Unsupported single-selection packagechooser method 'Packages'";
+    }
+    else
+    {
+        cWarning() << "Unknown packagechooser method" << smash( m_method );
+    }
+}
+
+
+void
+Config::setPackageChoice( const QString& packageChoice )
+{
+    if ( packageChoice.isEmpty() )
+    {
+        m_packageChoice.reset();
+    }
+    else
+    {
+        m_packageChoice = packageChoice;
+    }
+    emit packageChoiceChanged( m_packageChoice.value_or( QString() ) );
+}
+
+QString
+Config::prettyStatus() const
+{
+    return tr( "Install option: <strong>%1</strong>" ).arg( m_packageChoice.value_or( tr( "None" ) ) );
+}
 
 static void
 fillModel( PackageListModel* model, const QVariantList& items )
@@ -186,46 +246,35 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
 
     if ( m_method == PackageChooserMethod::Legacy )
     {
-        const QString configId = CalamaresUtils::getString( configurationMap, "id" );
-        const QString base = QStringLiteral( "packagechooser_" );
-        if ( configId.isEmpty() )
-        {
-            if ( m_defaultId.id().isEmpty() )
-            {
-                // We got nothing to work with
-                m_id = base;
-            }
-            else
-            {
-                m_id = base + m_defaultId.id();
-            }
-            cDebug() << "Using default ID" << m_id << "from" << m_defaultId.toString();
-        }
-        else
-        {
-            m_id = base + configId;
-            cDebug() << "Using configured ID" << m_id;
-        }
+        cDebug() << "Using module ID" << m_defaultId;
     }
 
     if ( configurationMap.contains( "items" ) )
     {
         fillModel( m_model, configurationMap.value( "items" ).toList() );
-    }
 
-    QString default_item_id = CalamaresUtils::getString( configurationMap, "default" );
-    if ( !default_item_id.isEmpty() )
-    {
-        for ( int item_n = 0; item_n < m_model->packageCount(); ++item_n )
+        QString default_item_id = CalamaresUtils::getString( configurationMap, "default" );
+        if ( !default_item_id.isEmpty() )
         {
-            QModelIndex item_idx = m_model->index( item_n, 0 );
-            QVariant item_id = m_model->data( item_idx, PackageListModel::IdRole );
-
-            if ( item_id.toString() == default_item_id )
+            for ( int item_n = 0; item_n < m_model->packageCount(); ++item_n )
             {
-                m_defaultModelIndex = item_idx;
-                break;
+                QModelIndex item_idx = m_model->index( item_n, 0 );
+                QVariant item_id = m_model->data( item_idx, PackageListModel::IdRole );
+
+                if ( item_id.toString() == default_item_id )
+                {
+                    m_defaultModelIndex = item_idx;
+                    break;
+                }
             }
+        }
+    }
+    else
+    {
+        setPackageChoice( CalamaresUtils::getString( configurationMap, "packageChoice" ) );
+        if ( m_method != PackageChooserMethod::Legacy )
+        {
+            cWarning() << "Single-selection QML module must use 'Legacy' method.";
         }
     }
 }

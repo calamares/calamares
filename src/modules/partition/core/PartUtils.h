@@ -84,9 +84,24 @@ bool isEfiSystem();
 
 /**
  * @brief Is the @p partition suitable as an EFI boot partition?
- * Checks for filesystem type (FAT32) and size (300MiB at least).
+ * Checks for filesystem type (FAT32).
  */
-bool isEfiFilesystemSuitable( const Partition* candidate );
+bool isEfiFilesystemSuitableType( const Partition* candidate );
+
+/**
+ * @brief Is the @p partition suitable as an EFI boot partition?
+ * Checks for filesystem size (300MiB, see efiFilesystemMinimumSize).
+ */
+bool isEfiFilesystemSuitableSize( const Partition* candidate );
+
+/** @brief Returns the minimum size of an EFI boot partition.
+ *
+ * This is determined as 300MiB, based on the FAT32 standard
+ * and EFI documentation (and not a little discussion in Calamares
+ * issues about what works, what is effective, and what is mandated
+ * by the standard and how all of those are different).
+ */
+size_t efiFilesystemMinimumSize();
 
 /**
  * @brief Is the given @p partition bootable in EFI? Depending on

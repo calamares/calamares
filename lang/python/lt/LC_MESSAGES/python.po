@@ -137,7 +137,7 @@ msgstr "Bloga unsquash konfigūracija"
 
 #: src/modules/unpackfs/main.py:455
 msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
-msgstr "Jūsų branduolys nepalaiko failų sistemos, kuri skirta \"{}\" ({})"
+msgstr "Jūsų branduolys nepalaiko failų sistemos, kuri skirta „{}“ ({})"
 
 #: src/modules/unpackfs/main.py:459
 msgid "The source filesystem \"{}\" does not exist"

@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   SPDX-FileCopyrightText: 2020 Anke Boersma <demm@kaosx.us>
+ *   SPDX-FileCopyrightText: 2020 - 2021 Anke Boersma <demm@kaosx.us>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -16,19 +16,23 @@ import QtQuick.Layouts 1.3
 import org.kde.kirigami 2.7 as Kirigami
 
 Item {
+    readonly property color backgroundColor: Kirigami.Theme.backgroundColor //"#F5F5F5"
+    readonly property color headerBackgroundColor: Kirigami.Theme.alternateBackgroundColor //"#d3d3d3"
+    readonly property color backgroundLighterColor: "#ffffff"
+    readonly property color highlightColor: Kirigami.Theme.highlightColor //"#3498DB"
+    readonly property color textColor: Kirigami.Theme.textColor
+    readonly property color highlightedTextColor: Kirigami.Theme.highlightedTextColor
+
     width: parent.width
     height: parent.height
     focus: true
-    MouseArea {
-        anchors.fill: parent
-    }
 
     Rectangle {
         id: textArea
         x: 28
         y: 14
         anchors.fill: parent
-        Kirigami.Theme.backgroundColor: Kirigami.Theme.backgroundColor
+        color: backgroundColor
 
         Column {
             id: languages
@@ -38,7 +42,7 @@ Item {
             Rectangle {
                 width: 250
                 height: 140
-                color: "#d3d3d3"
+                color: headerBackgroundColor
                 Text {
                     anchors.top: parent.top
                     width: 240
@@ -57,30 +61,43 @@ Item {
                     id: scroll1
                     anchors.fill: parent
                     contentHeight: 800
-                    clip: true
+                    ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
 
                     ListView {
                         id: list1
                         focus: true
+                        clip: true
+                        width: parent.width
 
                         model: config.supportedLocales
 
-                        currentIndex: -1
-                        highlight: Rectangle {
-                            color: Kirigami.Theme.highlightColor
-                        }
-                        delegate: Text {
-                            text: modelData
+                        currentIndex: -1 //model.currentLanguageCodeIndex
+                        delegate: ItemDelegate {
 
-                            MouseArea {
-                                hoverEnabled: true
-                                anchors.fill: parent
-                                cursorShape: Qt.PointingHandCursor
-                                onEntered: {
-                                    color: "#0000ff"
+                            hoverEnabled: true
+                            width: parent.width
+                            implicitHeight: 18
+                            highlighted: ListView.isCurrentItem
+                            Label {
+                                Layout.fillHeight: true
+                                Layout.fillWidth: true
+                                width: parent.width
+                                height: 18
+                                color: highlighted ? highlightedTextColor : textColor
+                                text: modelData
+                                background: Rectangle {
+
+                                    color: highlighted || hovered ? highlightColor : backgroundLighterColor
+                                    opacity: highlighted || hovered ? 0.5 : 0.9
                                 }
-                                onClicked: {
-                                    list1.currentIndex = index
+
+                                MouseArea {
+                                    hoverEnabled: true
+                                    anchors.fill: parent
+                                    cursorShape: Qt.PointingHandCursor
+                                    onClicked: {
+                                        list1.currentIndex = index
+                                    }
                                 }
                             }
                         }
@@ -98,7 +115,7 @@ Item {
             Rectangle {
                 width: 250
                 height: 140
-                color: "#d3d3d3"
+                color: headerBackgroundColor
                 Text {
                     anchors.top: parent.top
                     width: 240
@@ -117,28 +134,42 @@ Item {
                     id: scroll2
                     anchors.fill: parent
                     contentHeight: 800
-                    clip: true
+                    ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
 
                     ListView {
                         id: list2
-                        width: 180; height: 200
                         focus: true
+                        clip: true
 
                         model: config.supportedLocales
 
-                        currentIndex: -1
-                        highlight: Rectangle {
-                            color: Kirigami.Theme.highlightColor
-                        }
-                        delegate: Text {
-                            text: modelData
+                        currentIndex: -1 //model.currentLCCodeIndex
+                        delegate: ItemDelegate {
 
-                            MouseArea {
-                                hoverEnabled: true
-                                anchors.fill: parent
-                                cursorShape: Qt.PointingHandCursor
-                                onClicked: {
-                                    list2.currentIndex = index
+                            hoverEnabled: true
+                            width: parent.width
+                            implicitHeight: 18
+                            highlighted: ListView.isCurrentItem
+                            Label {
+                                Layout.fillHeight: true
+                                Layout.fillWidth: true
+                                width: parent.width
+                                height: 18
+                                color: highlighted ? highlightedTextColor : textColor
+                                text: modelData
+                                background: Rectangle {
+
+                                    color: highlighted || hovered ? highlightColor : backgroundLighterColor
+                                    opacity: highlighted || hovered ? 0.5 : 0.9
+                                }
+
+                                MouseArea {
+                                    hoverEnabled: true
+                                    anchors.fill: parent
+                                    cursorShape: Qt.PointingHandCursor
+                                    onClicked: {
+                                        list2.currentIndex = index
+                                    }
                                 }
                             }
                         }

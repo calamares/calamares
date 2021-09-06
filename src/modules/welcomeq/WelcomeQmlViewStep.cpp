@@ -26,7 +26,6 @@ CALAMARES_PLUGIN_FACTORY_DEFINITION( WelcomeQmlViewStepFactory, registerPlugin< 
 WelcomeQmlViewStep::WelcomeQmlViewStep( QObject* parent )
     : Calamares::QmlViewStep( parent )
     , m_config( new Config( this ) )
-    , m_requirementsChecker( new GeneralRequirements( this ) )
 {
     connect( Calamares::ModuleManager::instance(),
              &Calamares::ModuleManager::requirementsComplete,
@@ -58,7 +57,6 @@ WelcomeQmlViewStep::isBackEnabled() const
 bool
 WelcomeQmlViewStep::isAtBeginning() const
 {
-    // TODO: adjust to "pages" in the QML
     return true;
 }
 
@@ -66,7 +64,6 @@ WelcomeQmlViewStep::isAtBeginning() const
 bool
 WelcomeQmlViewStep::isAtEnd() const
 {
-    // TODO: adjust to "pages" in the QML
     return true;
 }
 
@@ -81,26 +78,13 @@ void
 WelcomeQmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     m_config->setConfigurationMap( configurationMap );
-
-    if ( configurationMap.contains( "requirements" )
-         && configurationMap.value( "requirements" ).type() == QVariant::Map )
-    {
-        m_requirementsChecker->setConfigurationMap( configurationMap.value( "requirements" ).toMap() );
-    }
-    else
-    {
-        cWarning() << "no valid requirements map found in welcomeq "
-                      "module configuration.";
-    }
-
     Calamares::QmlViewStep::setConfigurationMap( configurationMap );  // call parent implementation last
-    setContextProperty( "Welcome", m_config );
 }
 
 Calamares::RequirementsList
 WelcomeQmlViewStep::checkRequirements()
 {
-    return m_requirementsChecker->checkRequirements();
+    return m_config->checkRequirements();
 }
 
 QObject*

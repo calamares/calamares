@@ -5,7 +5,7 @@
 # 
 # Translators:
 # André Marcelo Alvarenga <alvarenga@kde.org>, 2020
-# Guilherme Marçal Silva, 2020
+# Guilherme Marçal Silva, 2021
 # 
 #, fuzzy
 msgid ""
@@ -14,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 12:55+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Guilherme Marçal Silva, 2020\n"
+"Last-Translator: Guilherme Marçal Silva, 2021\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/calamares/teams/20061/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -317,39 +317,47 @@ msgstr[1] "Removendo %(num)d pacotes."
 #: src/modules/packages/main.py:588 src/modules/packages/main.py:600
 #: src/modules/packages/main.py:628
 msgid "Package Manager error"
-msgstr ""
+msgstr "Erro do Gerenciador de Pacotes"
 
 #: src/modules/packages/main.py:589
 msgid ""
 "The package manager could not prepare updates. The command <pre>{!s}</pre> "
 "returned error code {!s}."
 msgstr ""
+"O gerenciador de pacotes não pôde preparar as atualizações. O comando "
+"<pre>{!s}</pre> retornou o código de erro {!s}."
 
 #: src/modules/packages/main.py:601
 msgid ""
 "The package manager could not update the system. The command <pre>{!s}</pre>"
 " returned error code {!s}."
 msgstr ""
+"O gerenciador de pacotes não pôde atualizar o sistema. O comando "
+"<pre>{!s}</pre> retornou o código de erro {!s}."
 
 #: src/modules/packages/main.py:629
 msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."
 msgstr ""
+"O gerenciador de pacotes não pôde fazer mudanças no sistema instalado. O "
+"comando <pre>{!s}</pre> retornou o código de erro {!s}."
 
 #: src/modules/bootloader/main.py:43
 msgid "Install bootloader."
-msgstr "Instalar bootloader."
+msgstr "Instalar carregador de inicialização."
 
 #: src/modules/bootloader/main.py:502
 msgid "Bootloader installation error"
-msgstr ""
+msgstr "Erro de instalação do carregador de inicialização"
 
 #: src/modules/bootloader/main.py:503
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
 msgstr ""
+"O carregador de inicialização não pôde ser instalado. O comando de "
+"instalação <pre>{!s}</pre> retornou o código de erro {!s}."
 
 #: src/modules/hwclock/main.py:26
 msgid "Setting hardware clock."
@@ -390,6 +398,8 @@ msgstr "Escrevendo fstab."
 #: src/modules/fstab/main.py:389
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr ""
+"Nenhuma configuração <pre>{!s}</pre> é dada para que <pre>{!s}</pre> possa "
+"utilizar."
 
 #: src/modules/dummypython/main.py:35
 msgid "Dummy python job."

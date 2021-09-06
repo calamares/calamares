@@ -17,6 +17,8 @@
 #include <QString>
 #include <QStringList>
 
+#include <memory>
+
 namespace CalamaresUtils
 {
 namespace Partition
@@ -58,12 +60,12 @@ public:
     TemporaryMount& operator=( const TemporaryMount& ) = delete;
     ~TemporaryMount();
 
-    bool isValid() const { return m_d; }
+    bool isValid() const { return bool( m_d ); }
     QString path() const;
 
 private:
     struct Private;
-    Private* m_d = nullptr;
+    std::unique_ptr< Private > m_d;
 };
 
 }  // namespace Partition

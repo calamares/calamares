@@ -32,15 +32,16 @@ class Config : public QObject
 public:
     Config( QObject* parent = nullptr );
 
+    /// @brief Based on current xkb settings, pick a layout
     void detectCurrentKeyboardLayout();
+    /// @brief Based on current locale, pick a layout
+    void guessLocaleKeyboardLayout();
 
     Calamares::JobList createJobs();
     QString prettyStatus() const;
 
-    void onActivate();
+    /// @brief When leaving the page, write to GS
     void finalize();
-
-    void setConfigurationMap( const QVariantMap& configurationMap );
 
     static AdditionalLayoutInfo getAdditionalLayoutInfo( const QString& layout );
 
@@ -69,12 +70,25 @@ public:
      */
     void retranslate();
 
+    void setConfigurationMap( const QVariantMap& configurationMap );
+
 signals:
     void prettyStatusChanged();
 
 private:
-    void guessLayout( const QStringList& langParts );
     void updateVariants( const QPersistentModelIndex& currentItem, QString currentVariant = QString() );
+
+    /* These two methods are used in tandem to apply changes to the
+     * keyboard layout. This introduces a slight delay between selecting
+     * a keyboard, and applying it to the system -- so that if you
+     * scroll through or down-arrow through the list of keyboards,
+     * you don't get buried under xkbset processes.
+     *
+     * xkbChanged() is called when the selection changes, and triggers
+     * a delayed call to xkbApply() which does the actual work.
+     */
+    void xkbChanged( int index );
+    void xkbApply();
 
     KeyboardModelsModel* m_keyboardModelsModel;
     KeyboardLayoutModel* m_keyboardLayoutsModel;
@@ -93,6 +107,24 @@ private:
     QString m_xOrgConfFileName;
     QString m_convertedKeymapPath;
     bool m_writeEtcDefaultKeyboard = true;
+
+    // The state determines whether we guess settings or preserve them:
+    // - Initial -> Guessing
+    // - Initial -> UserSelected
+    // - Guessing -> Initial
+    enum class State
+    {
+        Initial,  // after configuration, nothing special going on
+        Guessing,  // on activation
+        UserSelected  // explicit choice is made, preserve that
+    };
+    State m_state = State::Initial;
+
+    /** @brief Handles state change when selections in model, variant, layout
+     *
+     * This handles the Initial -> UserSelected transition in particular.
+     */
+    void selectionChange();
 };
 
 

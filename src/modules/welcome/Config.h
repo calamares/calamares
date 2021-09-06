@@ -10,6 +10,7 @@
 #ifndef WELCOME_CONFIG_H
 #define WELCOME_CONFIG_H
 
+#include "checker/GeneralRequirements.h"
 #include "locale/TranslationsModel.h"
 #include "modulesystem/RequirementsModel.h"
 
@@ -100,6 +101,9 @@ public slots:
 
     QAbstractItemModel* unsatisfiedRequirements() const;
 
+    /// @brief Check the general requirements
+    Calamares::RequirementsList checkRequirements() const { return m_requirementsChecker->checkRequirements(); }
+
 signals:
     void countryCodeChanged( QString countryCode );
     void localeIndexChanged( int localeIndex );
@@ -118,6 +122,7 @@ private:
 
     CalamaresUtils::Locale::TranslationsModel* m_languages = nullptr;
     std::unique_ptr< QSortFilterProxyModel > m_filtermodel;
+    std::unique_ptr< GeneralRequirements > m_requirementsChecker;
 
     QString m_languageIcon;
     QString m_countryCode;

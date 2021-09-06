@@ -32,7 +32,7 @@
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="59"/>
       <source>Master Boot Record of %1</source>
-      <translation>1% মাস্টার বুট রেকর্ড</translation>
+      <translation>%1 মাস্টার বুট রেকর্ড</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="92"/>
@@ -217,7 +217,7 @@
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="224"/>
       <source>Working directory %1 for python job %2 is not readable.</source>
-      <translation>ওয়ার্কিং ডিরেক্টরি 1% পাইথন কাজের জন্য %2 পাঠযোগ্য নয়।</translation>
+      <translation>ওয়ার্কিং ডিরেক্টরি %1 পাইথন কাজের জন্য %2 পাঠযোগ্য নয়।</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="230"/>
@@ -227,12 +227,12 @@
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="231"/>
       <source>Main script file %1 for python job %2 is not readable.</source>
-      <translation>মূল স্ক্রিপ্ট ফাইল 1% পাইথন কাজের জন্য 2% পাঠযোগ্য নয়।</translation>
+      <translation>মূল স্ক্রিপ্ট ফাইল %1 পাইথন কাজের জন্য %2 পাঠযোগ্য নয়।</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="304"/>
       <source>Boost.Python error in job "%1".</source>
-      <translation>বুস্ট.পাইথন কাজে 1% ত্রুটি</translation>
+      <translation>বুস্ট.পাইথন কাজে %1 ত্রুটি</translation>
     </message>
   </context>
   <context>
@@ -497,7 +497,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="369"/>
       <source>%1 Installer</source>
-      <translation>1% ইনস্টল</translation>
+      <translation>%1 ইনস্টল</translation>
     </message>
   </context>
   <context>

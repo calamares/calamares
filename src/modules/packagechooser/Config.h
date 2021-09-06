@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://calamares.io> ===
  *
  *   SPDX-FileCopyrightText: 2021 Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2021 Anke Boersma <demm@kaosx.us>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -16,6 +17,7 @@
 #include "modulesystem/InstanceKey.h"
 
 #include <memory>
+#include <optional>
 
 enum class PackageChooserMode
 {
@@ -38,6 +40,18 @@ const NamedEnumTable< PackageChooserMethod >& PackageChooserMethodNames();
 class Config : public Calamares::ModuleSystem::Config
 {
     Q_OBJECT
+
+    /** @brief This is the single-select package-choice
+     *
+     * For (QML) modules that support only a single selection and
+     * just want to do things in a straightforward pick-this-one
+     * way, the packageChoice property is a (the) way to go.
+     *
+     * Writing to this property means that any other form of package-
+     * choice or selection is ignored.
+     */
+    Q_PROPERTY( QString packageChoice READ packageChoice WRITE setPackageChoice NOTIFY packageChoiceChanged )
+    Q_PROPERTY( QString prettyStatus READ prettyStatus NOTIFY prettyStatusChanged FINAL )
 
 public:
     Config( QObject* parent = nullptr );
@@ -71,8 +85,22 @@ public:
      * (and only) the packages in @p selected as selected.
      */
     void updateGlobalStorage( const QStringList& selected ) const;
-    /// As updateGlobalStorage() with an empty selection list
-    void fillGSSecondaryConfiguration() const { updateGlobalStorage( QStringList() ); }
+    /** @brief Write selection to global storage
+     *
+     * Updates the GS keys for this packagechooser, marking **only**
+     * the package choice as selected. This assumes that the single-
+     * selection QML code is in use.
+     */
+    void updateGlobalStorage() const;
+
+    QString packageChoice() const { return m_packageChoice.value_or( QString() ); }
+    void setPackageChoice( const QString& packageChoice );
+
+    QString prettyStatus() const;
+
+signals:
+    void packageChoiceChanged( QString packageChoice );
+    void prettyStatusChanged();
 
 private:
     PackageListModel* m_model = nullptr;
@@ -82,10 +110,14 @@ private:
     PackageChooserMode m_mode = PackageChooserMode::Optional;
     /// How this module stores to GS
     PackageChooserMethod m_method = PackageChooserMethod::Legacy;
-    /// Id (used to identify settings from this module in GS)
-    QString m_id;
     /// Value to use for id if none is set in the config file
     Calamares::ModuleSystem::InstanceKey m_defaultId;
+    /** @brief QML selection (for single-selection approaches)
+     *
+     * If there is no value, then there has been no selection.
+     * Reading the property will return an empty QString.
+     */
+    std::optional< QString > m_packageChoice;
 };
 
 

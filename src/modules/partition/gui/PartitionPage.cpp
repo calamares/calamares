@@ -125,8 +125,8 @@ PartitionPage::~PartitionPage() {}
 void
 PartitionPage::updateButtons()
 {
-    bool create = false, createTable = false, edit = false, del = false, currentDeviceIsVG = false,
-         isDeactivable = false;
+    bool allow_create = false, allow_create_table = false, allow_edit = false, allow_delete = false;
+    bool currentDeviceIsVG = false, isDeactivable = false;
     bool isRemovable = false, isVGdeactivated = false;
 
     QModelIndex index = m_ui->partitionTreeView->currentIndex();
@@ -136,12 +136,21 @@ PartitionPage::updateButtons()
         Q_ASSERT( model );
         Partition* partition = model->partitionForIndex( index );
         Q_ASSERT( partition );
-        bool isFree = CalamaresUtils::Partition::isPartitionFreeSpace( partition );
-        bool isExtended = partition->roles().has( PartitionRole::Extended );
+        const bool isFree = CalamaresUtils::Partition::isPartitionFreeSpace( partition );
+        const bool isExtended = partition->roles().has( PartitionRole::Extended );
 
-        bool isInVG = m_core->isInVG( partition );
+        // An extended partition can have a "free space" child; that one does
+        // not count as a real child. If there are more children, at least one
+        // is a real one and we should not allow the extended partition to be
+        // deleted.
+        const bool hasChildren = isExtended
+            && ( partition->children().length() > 1
+                 || ( partition->children().length() == 1
+                      && !CalamaresUtils::Partition::isPartitionFreeSpace( partition->children().at( 0 ) ) ) );
 
-        create = isFree;
+        const bool isInVG = m_core->isInVG( partition );
+
+        allow_create = isFree;
 
         // Keep it simple for now: do not support editing extended partitions as
         // it does not work with our current edit implementation which is
@@ -150,8 +159,8 @@ PartitionPage::updateButtons()
         // inside them, so an edit must be applied without altering the job
         // order.
         // TODO: See if LVM PVs can be edited in Calamares
-        edit = !isFree && !isExtended;
-        del = !isFree && !isInVG;
+        allow_edit = !isFree && !isExtended;
+        allow_delete = !isFree && !isInVG && !hasChildren;
     }
 
     if ( m_ui->deviceComboBox->currentIndex() >= 0 )
@@ -168,14 +177,14 @@ PartitionPage::updateButtons()
         }
         else if ( device->type() != Device::Type::LVM_Device )
         {
-            createTable = true;
+            allow_create_table = true;
 
 #ifdef WITH_KPMCORE4API
             if ( device->type() == Device::Type::SoftwareRAID_Device
                  && static_cast< SoftwareRAID* >( device )->status() == SoftwareRAID::Status::Inactive )
             {
-                createTable = false;
-                create = false;
+                allow_create_table = false;
+                allow_create = false;
             }
 #endif
         }
@@ -197,10 +206,10 @@ PartitionPage::updateButtons()
         }
     }
 
-    m_ui->createButton->setEnabled( create );
-    m_ui->editButton->setEnabled( edit );
-    m_ui->deleteButton->setEnabled( del );
-    m_ui->newPartitionTableButton->setEnabled( createTable );
+    m_ui->createButton->setEnabled( allow_create );
+    m_ui->editButton->setEnabled( allow_edit );
+    m_ui->deleteButton->setEnabled( allow_delete );
+    m_ui->newPartitionTableButton->setEnabled( allow_create_table );
     m_ui->resizeVolumeGroupButton->setEnabled( currentDeviceIsVG && !isVGdeactivated );
     m_ui->deactivateVolumeGroupButton->setEnabled( currentDeviceIsVG && isDeactivable && !isVGdeactivated );
     m_ui->removeVolumeGroupButton->setEnabled( currentDeviceIsVG && isRemovable );

@@ -227,7 +227,8 @@ fillGSConfigurationEFI( Calamares::GlobalStorage* gs, const QVariantMap& configu
     QString firmwareType( PartUtils::isEfiSystem() ? QStringLiteral( "efi" ) : QStringLiteral( "bios" ) );
     gs->insert( "firmwareType", firmwareType );
 
-    gs->insert( "efiSystemPartition", CalamaresUtils::getString( configurationMap, "efiSystemPartition", QStringLiteral( "/boot/efi" ) ) );
+    gs->insert( "efiSystemPartition",
+                CalamaresUtils::getString( configurationMap, "efiSystemPartition", QStringLiteral( "/boot/efi" ) ) );
 
     // Read and parse key efiSystemPartitionSize
     if ( configurationMap.contains( "efiSystemPartitionSize" ) )
@@ -243,7 +244,7 @@ fillGSConfigurationEFI( Calamares::GlobalStorage* gs, const QVariantMap& configu
 }
 
 void
-Config::fillConfigurationFSTypes(const QVariantMap& configurationMap)
+Config::fillConfigurationFSTypes( const QVariantMap& configurationMap )
 {
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
 
@@ -256,15 +257,16 @@ Config::fillConfigurationFSTypes(const QVariantMap& configurationMap)
     if ( fsName.isEmpty() )
     {
         cWarning() << "Partition-module setting *defaultFileSystemType* is missing, will use ext4";
-        fsRealName = PartUtils::canonicalFilesystemName( QStringLiteral("ext4"), &fsType );
+        fsRealName = PartUtils::canonicalFilesystemName( QStringLiteral( "ext4" ), &fsType );
     }
     else
     {
         fsRealName = PartUtils::canonicalFilesystemName( fsName, &fsType );
         if ( fsType == FileSystem::Type::Unknown )
         {
-            cWarning() << "Partition-module setting *defaultFileSystemType* is bad (" << fsName << ") using ext4 instead";
-            fsRealName = PartUtils::canonicalFilesystemName( QStringLiteral("ext4"), &fsType );
+            cWarning() << "Partition-module setting *defaultFileSystemType* is bad (" << fsName
+                       << ") using ext4 instead";
+            fsRealName = PartUtils::canonicalFilesystemName( QStringLiteral( "ext4" ), &fsType );
         }
         else if ( fsRealName != fsName )
         {
@@ -326,7 +328,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     m_requiredPartitionTableType = CalamaresUtils::getStringList( configurationMap, "requiredPartitionTableType" );
     gs->insert( "requiredPartitionTableType", m_requiredPartitionTableType );
 
-    fillGSConfigurationEFI(gs, configurationMap);
+    fillGSConfigurationEFI( gs, configurationMap );
     fillConfigurationFSTypes( configurationMap );
 }
 

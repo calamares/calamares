@@ -4312,7 +4312,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="166"/>
       <source>Only letters, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
-      <translation type="unfinished"/>
+      <translation>문자, 숫자, 밑줄 및 하이픈만 허용되며, 최소 2자 이상이어야 합니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="264"/>

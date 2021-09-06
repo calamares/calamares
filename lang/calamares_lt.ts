@@ -232,7 +232,7 @@
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="304"/>
       <source>Boost.Python error in job "%1".</source>
-      <translation>Boost.Python klaida užduotyje "%1".</translation>
+      <translation>Boost.Python klaida užduotyje „%1“.</translation>
     </message>
   </context>
   <context>
@@ -1225,7 +1225,7 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="48"/>
       <source>The installer failed to deactivate a volume group named %1.</source>
-      <translation>Diegimo programai nepavyko pasyvinti tomų grupės, pavadinimu "%1".</translation>
+      <translation>Diegimo programai nepavyko pasyvinti tomų grupės, pavadinimu „%1“.</translation>
     </message>
   </context>
   <context>
@@ -1309,7 +1309,7 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="121"/>
       <source>Skip writing LUKS configuration for Dracut: "/" partition is not encrypted</source>
-      <translation>Praleisti LUKS konfigūracijos, kuri yra skirta Dracut, įrašymą: "/" skaidinys nėra užšifruotas</translation>
+      <translation>Praleisti LUKS konfigūracijos, kuri yra skirta Dracut, įrašymą: „/“ skaidinys nėra užšifruotas</translation>
     </message>
     <message>
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="138"/>
@@ -2162,7 +2162,7 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="196"/>
       <source>Memory allocation error when setting '%1'</source>
-      <translation>Atminties paskirstymo klaida, nustatant "%1"</translation>
+      <translation>Atminties paskirstymo klaida, nustatant „%1“</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="199"/>
@@ -3123,7 +3123,7 @@ Išvestis:
     <message>
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="48"/>
       <source>The installer failed to remove a volume group named '%1'.</source>
-      <translation>Diegimo programai nepavyko pašalinti tomų grupės, pavadinimu "%1".</translation>
+      <translation>Diegimo programai nepavyko pašalinti tomų grupės, pavadinimu „%1“.</translation>
     </message>
   </context>
   <context>

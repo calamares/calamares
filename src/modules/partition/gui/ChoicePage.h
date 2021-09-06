@@ -124,7 +124,8 @@ private:
     void setupEfiSystemPartitionSelector();
 
     // Translations support
-    void updateSwapChoicesTr( QComboBox* box );
+    void updateSwapChoicesTr();
+    void updateChoiceButtonsTr();
 
     Config* m_config;
     bool m_nextEnabled;

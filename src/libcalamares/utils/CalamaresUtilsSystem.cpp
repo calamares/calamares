@@ -102,7 +102,7 @@ System::instance()
     if ( !s_instance )
     {
         cError() << "No Calamares system-object has been created.";
-        cError() << Logger::SubEntry << "using a bogus instance instead.";
+        cDebug() << Logger::SubEntry << "using a bogus instance instead.";
         return new System( true, nullptr );
     }
     return s_instance;

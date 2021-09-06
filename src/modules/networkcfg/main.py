@@ -7,6 +7,7 @@
 #   SPDX-FileCopyrightText: 2014 Teo Mrnjavac <teo@kde.org>
 #   SPDX-FileCopyrightText: 2017 Alf Gaida <agaida@siduction.org>
 #   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
+#   SPDX-FileCopyrightText: 2021 Anke boersma <demm@koasx.us>
 #   SPDX-License-Identifier: GPL-3.0-or-later
 #
 #   Calamares is Free Software: see the License-Identifier above.
@@ -33,6 +34,8 @@ def run():
     Setup network configuration
     """
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
+    user = libcalamares.globalstorage.value("username")
+    live_user = os.getlogin()
 
     if root_mount_point is None:
         libcalamares.utils.warning("rootMountPoint is empty, {!s}".format(root_mount_point))
@@ -60,6 +63,16 @@ def run():
 
             try:
                 shutil.copy(source_network, target_network, follow_symlinks=False)
+                if live_user in open(target_network).read():
+                    text = []
+                    with open(target_network, "r") as network_conf:
+                        text = network_conf.readlines()
+                        with open(target_network, "w") as network_conf:
+                            for line in text:
+                                if 'permissions=user:{}:;'.format(live_user) in line:
+                                    line = 'permissions=user:{}:;\n'.format(user)
+                                network_conf.write(line)
+                    network_conf.close()
             except FileNotFoundError:
                 libcalamares.utils.debug(
                     "Can't copy network configuration files in "

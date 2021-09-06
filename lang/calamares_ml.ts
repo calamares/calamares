@@ -6,7 +6,7 @@
     <message>
       <location filename="../src/modules/partition/jobs/AutoMountManagementJob.cpp" line="22"/>
       <source>Manage auto-mount settings</source>
-      <translation type="unfinished"/>
+      <translation>ഓട്ടോ-മൗണ്ട് ക്രമീകരണങ്ങൾ സജ്ജീകരിക്കുക</translation>
     </message>
   </context>
   <context>
@@ -4024,7 +4024,7 @@ Output:
     <message>
       <location filename="../src/modules/welcomeq/about.qml" line="96"/>
       <source>Back</source>
-      <translation type="unfinished"/>
+      <translation>പുറകോട്ട്</translation>
     </message>
   </context>
   <context>
@@ -4082,7 +4082,7 @@ Output:
     <message>
       <location filename="../src/modules/localeq/i18n.qml" line="158"/>
       <source>Back</source>
-      <translation type="unfinished"/>
+      <translation>പുറകോട്ട്</translation>
     </message>
   </context>
   <context>
@@ -4175,7 +4175,7 @@ Output:
     <message>
       <location filename="../src/modules/welcomeq/release_notes.qml" line="76"/>
       <source>Back</source>
-      <translation type="unfinished"/>
+      <translation>പുറകോട്ട്</translation>
     </message>
   </context>
   <context>
@@ -4203,7 +4203,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="78"/>
       <source>Login Name</source>
-      <translation type="unfinished"/>
+      <translation>പ്രവേശന നാമം</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="98"/>
@@ -4238,7 +4238,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="174"/>
       <source>localhost is not allowed as hostname.</source>
-      <translation type="unfinished"/>
+      <translation>localhost അനുവദനീയമായ ഒരു ഹോസ്റ്റ്‌നെയിം അല്ല.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="183"/>
@@ -4263,7 +4263,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="373"/>
       <source>Validate passwords quality</source>
-      <translation type="unfinished"/>
+      <translation>രഹസ്യവാക്കിന്റെ ഗുണനിലവാരം ഉറപ്പുവരുത്തുക</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="383"/>
@@ -4273,17 +4273,17 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="365"/>
       <source>Log in automatically without asking for the password</source>
-      <translation type="unfinished"/>
+      <translation>രഹസ്യവാക്ക് ചോദിക്കാതെ സ്വയം പ്രവേശിക്കുക</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="166"/>
       <source>Only letters, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
-      <translation type="unfinished"/>
+      <translation>അക്ഷരങ്ങൾ, അക്കങ്ങൾ, ഹൈഫൻ, അണ്ടർസ്കോർ എന്നിവ മാത്രമേ അനുവദിക്കപ്പെട്ടിട്ടുള്ളൂ, കുറഞ്ഞത് രണ്ടെണ്ണമെങ്കിലും.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="264"/>
       <source>Reuse user password as root password</source>
-      <translation type="unfinished"/>
+      <translation>ഉപയോക്തൃ രഹസ്യവാക്ക് റൂട്ട് രഹസ്യവാക്കായി പുനരുപയോഗിക്കുക</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="272"/>
@@ -4293,22 +4293,22 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="285"/>
       <source>Choose a root password to keep your account safe.</source>
-      <translation type="unfinished"/>
+      <translation>താങ്കളുടെ അക്കൗണ്ട് സുരക്ഷിതമാക്കാൻ ഒരു റൂട്ട് രഹസ്യവാക്ക് തിരഞ്ഞെടുക്കുക.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="295"/>
       <source>Root Password</source>
-      <translation type="unfinished"/>
+      <translation>റൂട്ട് രഹസ്യവാക്ക്</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="311"/>
       <source>Repeat Root Password</source>
-      <translation type="unfinished"/>
+      <translation>റൂട്ട് രഹസ്യവാക്ക് വീണ്ടും</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="335"/>
       <source>Enter the same password twice, so that it can be checked for typing errors.</source>
-      <translation type="unfinished"/>
+      <translation>ടൈപ്പിങ്ങ് പിഴവുകളില്ല എന്നുറപ്പിക്കുന്നതിനായി ഒരേ രഹസ്യവാക്ക് രണ്ട് തവണ നൽകുക.</translation>
     </message>
   </context>
   <context>
@@ -4322,27 +4322,27 @@ Output:
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="66"/>
       <source>About</source>
-      <translation type="unfinished"/>
+      <translation>വിവരം</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="80"/>
       <source>Support</source>
-      <translation type="unfinished"/>
+      <translation>സഹായം</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="91"/>
       <source>Known issues</source>
-      <translation type="unfinished"/>
+      <translation>അറിയാവുന്ന പ്രശ്നങ്ങൾ</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="102"/>
       <source>Release notes</source>
-      <translation type="unfinished"/>
+      <translation>പ്രകാശനക്കുറിപ്പുകൾ</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="114"/>
       <source>Donate</source>
-      <translation type="unfinished"/>
+      <translation>സംഭാവന</translation>
     </message>
   </context>
 </TS>

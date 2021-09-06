@@ -42,16 +42,11 @@ ShellProcessTests::testProcessListSampleConfig()
 {
     YAML::Node doc;
 
-    QStringList dirs { "src/modules/shellprocess", "." };
-    for ( const auto& dir : dirs )
-    {
-        QString filename = dir + "/shellprocess.conf";
-        if ( QFileInfo::exists( filename ) )
-        {
-            doc = YAML::LoadFile( filename.toStdString() );
-            break;
-        }
-    }
+    QString filename = QStringLiteral( "shellprocess.conf" );
+    QFile fi( QString( "%1/%2" ).arg( BUILD_AS_TEST, filename ) );
+
+    QVERIFY( fi.exists() );
+    doc = YAML::LoadFile( fi.fileName().toStdString() );
 
     CommandList cl( CalamaresUtils::yamlMapToVariant( doc ).value( "script" ) );
     QVERIFY( !cl.isEmpty() );

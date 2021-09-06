@@ -215,6 +215,58 @@ GeneralRequirements::checkRequirements()
     return checkEntries;
 }
 
+/** @brief Loads the check-internet URLs
+ *
+ * There may be zero or one or more URLs specified; returns
+ * @c true if the configuration is incomplete or damaged in some way.
+ */
+static bool
+getCheckInternetUrls( const QVariantMap& configurationMap )
+{
+    const QString exampleUrl = QStringLiteral( "http://example.com" );
+
+    bool incomplete = false;
+    QStringList checkInternetSetting = CalamaresUtils::getStringList( configurationMap, "internetCheckUrl" );
+    if ( !checkInternetSetting.isEmpty() )
+    {
+        QVector< QUrl > urls;
+        for ( const auto& urlString : qAsConst( checkInternetSetting ) )
+        {
+            QUrl url( urlString.trimmed() );
+            if ( url.isValid() )
+            {
+                urls.append( url );
+            }
+            else
+            {
+                cWarning() << "GeneralRequirements entry 'internetCheckUrl' in welcome.conf contains invalid"
+                           << urlString;
+            }
+        }
+
+        if ( urls.empty() )
+        {
+            cWarning() << "GeneralRequirements entry 'internetCheckUrl' contains no valid URLs, "
+                       << "reverting to default (" << exampleUrl << ").";
+            CalamaresUtils::Network::Manager::instance().setCheckHasInternetUrl( QUrl( exampleUrl ) );
+            incomplete = true;
+        }
+        else
+        {
+            CalamaresUtils::Network::Manager::instance().setCheckHasInternetUrl( urls );
+        }
+    }
+    else
+    {
+        cWarning() << "GeneralRequirements entry 'internetCheckUrl' is undefined in welcome.conf, "
+                      "reverting to default ("
+                   << exampleUrl << ").";
+        CalamaresUtils::Network::Manager::instance().setCheckHasInternetUrl( QUrl( exampleUrl ) );
+        incomplete = true;
+    }
+    return incomplete;
+}
+
 
 void
 GeneralRequirements::setConfigurationMap( const QVariantMap& configurationMap )
@@ -302,30 +354,7 @@ GeneralRequirements::setConfigurationMap( const QVariantMap& configurationMap )
         incompleteConfiguration = true;
     }
 
-    QUrl checkInternetUrl;
-    QString checkInternetSetting = CalamaresUtils::getString( configurationMap, "internetCheckUrl" );
-    if ( !checkInternetSetting.isEmpty() )
-    {
-        checkInternetUrl = QUrl( checkInternetSetting.trimmed() );
-        if ( !checkInternetUrl.isValid() )
-        {
-            cWarning() << "GeneralRequirements entry 'internetCheckUrl' is invalid in welcome.conf"
-                       << checkInternetSetting << "reverting to default (http://example.com).";
-            checkInternetUrl = QUrl( "http://example.com" );
-            incompleteConfiguration = true;
-        }
-    }
-    else
-    {
-        cWarning() << "GeneralRequirements entry 'internetCheckUrl' is undefined in welcome.conf,"
-                      "reverting to default (http://example.com).";
-        checkInternetUrl = "http://example.com";
-        incompleteConfiguration = true;
-    }
-    if ( checkInternetUrl.isValid() )
-    {
-        CalamaresUtils::Network::Manager::instance().setCheckHasInternetUrl( checkInternetUrl );
-    }
+    incompleteConfiguration |= getCheckInternetUrls( configurationMap );
 
     if ( incompleteConfiguration )
     {

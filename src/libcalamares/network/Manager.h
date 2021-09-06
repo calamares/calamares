@@ -16,6 +16,7 @@
 #include <QDebug>
 #include <QObject>
 #include <QUrl>
+#include <QVector>
 
 #include <chrono>
 #include <memory>
@@ -89,6 +90,7 @@ class DLLEXPORT Manager : public QObject
 {
     Q_OBJECT
     Q_PROPERTY( bool hasInternet READ hasInternet NOTIFY hasInternetChanged FINAL )
+    Q_PROPERTY( QVector< QUrl > checkInternetUrls READ getCheckInternetUrls WRITE setCheckHasInternetUrl )
 
     Manager();
 
@@ -121,6 +123,15 @@ public:
 
     /// @brief Set the URL which is used for the general "is there internet" check.
     void setCheckHasInternetUrl( const QUrl& url );
+
+    /// @brief Adds an (extra) URL to check
+    void addCheckHasInternetUrl( const QUrl& url );
+
+    /// @brief Set a collection of URLs used for the general "is there internet" check.
+    void setCheckHasInternetUrl( const QVector< QUrl >& urls );
+
+    /// @brief What URLs are used to check for internet connectivity?
+    QVector< QUrl > getCheckInternetUrls() const;
 
     /** @brief Do a network request asynchronously.
      *
