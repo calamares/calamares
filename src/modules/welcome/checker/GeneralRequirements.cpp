@@ -215,7 +215,7 @@ GeneralRequirements::checkRequirements()
     return checkEntries;
 }
 
-/** @brief Loads the check-internel URLs
+/** @brief Loads the check-internet URLs
  *
  * There may be zero or one or more URLs specified; returns
  * @c true if the configuration is incomplete or damaged in some way.
@@ -246,8 +246,8 @@ getCheckInternetUrls( const QVariantMap& configurationMap )
 
         if ( urls.empty() )
         {
-            cWarning() << "GeneralRequirements entry 'internetCheckUrl' contains no valid URLs,"
-                       << "reverting to default (http://example.com).";
+            cWarning() << "GeneralRequirements entry 'internetCheckUrl' contains no valid URLs, "
+                       << "reverting to default (" << exampleUrl << ").";
             CalamaresUtils::Network::Manager::instance().setCheckHasInternetUrl( QUrl( exampleUrl ) );
             incomplete = true;
         }
@@ -258,8 +258,9 @@ getCheckInternetUrls( const QVariantMap& configurationMap )
     }
     else
     {
-        cWarning() << "GeneralRequirements entry 'internetCheckUrl' is undefined in welcome.conf,"
-                      "reverting to default (http://example.com).";
+        cWarning() << "GeneralRequirements entry 'internetCheckUrl' is undefined in welcome.conf, "
+                      "reverting to default ("
+                   << exampleUrl << ").";
         CalamaresUtils::Network::Manager::instance().setCheckHasInternetUrl( QUrl( exampleUrl ) );
         incomplete = true;
     }
