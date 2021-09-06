@@ -162,6 +162,15 @@ Manager::checkHasInternet()
     {
         return false;
     }
+    // It's possible that access was switched off (see below, if the check
+    // fails) so we want to turn it back on first. Otherwise all the
+    // checks will fail **anyway**, defeating the point of the checks.
+#if ( QT_VERSION < QT_VERSION_CHECK( 5, 15, 0 ) )
+    if ( !d->m_hasInternet )
+    {
+        d->nam()->setNetworkAccessible( QNetworkAccessManager::Accessible );
+    }
+#endif
     if ( d->m_lastCheckedUrlIndex < 0 )
     {
         d->m_lastCheckedUrlIndex = 0;
@@ -189,8 +198,7 @@ Manager::checkHasInternet()
 // For earlier Qt versions (< 5.15.0), set the accessibility flag to
 // NotAccessible if synchronous ping has failed, so that any module
 // using Qt's networkAccessible method to determine whether or not
-// internet connection is actually avaialable won't get confused over
-// virtualization technologies.
+// internet connection is actually available won't get confused.
 #if ( QT_VERSION < QT_VERSION_CHECK( 5, 15, 0 ) )
     if ( !d->m_hasInternet )
     {
@@ -261,6 +269,7 @@ asynchronousRun( QNetworkAccessManager* nam, const QUrl& url, const RequestOptio
     // Bail out early if the request is bad
     if ( reply->error() )
     {
+        cWarning() << "Early reply error" << reply->error() << reply->errorString();
         reply->deleteLater();
         return nullptr;
     }
