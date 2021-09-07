@@ -86,7 +86,16 @@ public:
     /** @brief Get the Qt locale. */
     QLocale locale() const { return m_locale; }
 
+    /** @brief Get the Qt-internal name (code) of the locale
+     *
+     * This is not necessarily the same as what is in id().
+     */
     QString name() const { return m_locale.name(); }
+    /** @brief Gets the Calamares internal name (code) of the locale.
+     *
+     * This is a strongly-typed return to avoid it ending up all over
+     * the place as a QString.
+     */
     Id id() const { return { m_localeId }; }
 
     /// @brief Convenience accessor to the language part of the locale
