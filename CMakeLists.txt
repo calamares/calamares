@@ -404,7 +404,10 @@ set(Calamares_WITH_QML ${WITH_QML})
 
 ### Transifex Translation status
 #
-# Construct language lists for use.
+# Construct language lists for use. This massages the language lists
+# for use with older Qt (which does not support Esperanto) and checks
+# for some obvious error. The actual work of compiling translations
+# is done in the lang/ directory.
 #
 if( Qt5_VERSION VERSION_GREATER 5.12.1 )
     # At least Qt 5.12.2 seems to support Esperanto in QLocale
