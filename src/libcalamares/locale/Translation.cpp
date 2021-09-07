@@ -56,11 +56,11 @@ Translation::Translation( const QString& locale, LabelFormat format, QObject* pa
     , m_locale( getLocale( locale ) )
     , m_localeId( locale.isEmpty() ? m_locale.name() : locale )
 {
-    auto special = specialCase( locale );
+    auto [ _, name ] = specialCase( locale );
 
     QString longFormat = QObject::tr( "%1 (%2)" );
 
-    QString languageName = special.second ? *special.second : m_locale.nativeLanguageName();
+    QString languageName = name ? *name : m_locale.nativeLanguageName();
     QString englishName = m_locale.languageToString( m_locale.language() );
 
     if ( languageName.isEmpty() )
@@ -87,8 +87,8 @@ Translation::getLocale( const QString& localeName )
         return QLocale();
     }
 
-    auto special = specialCase( localeName );
-    return special.first ? *special.first : QLocale( localeName );
+    auto [ locale, _ ] = specialCase( localeName );
+    return locale ? *locale : QLocale( localeName );
 }
 
 }  // namespace Locale
