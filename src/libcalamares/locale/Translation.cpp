@@ -38,6 +38,18 @@ specialCase( const CalamaresUtils::Locale::Translation::Id& locale )
         static QString name = QStringLiteral( "Català (València)" );
         return { nullptr, &name };
     }
+    if ( localeName == "zh_CN" )
+    {
+        // Simplified Chinese, but drop the (China) from the name
+        static QString name = QStringLiteral( "简体中文" );
+        return { nullptr, &name };
+    }
+    if ( localeName == "zh_TW" )
+    {
+        // Traditional Chinese, but drop (Taiwan) from the name
+        static QString name = QStringLiteral( "繁體中文" );
+        return { nullptr, &name };
+    }
 
     return { nullptr, nullptr };
 }
@@ -70,11 +82,9 @@ Translation::Translation( const Id& localeId, LabelFormat format, QObject* paren
     }
 
     bool needsCountryName = ( format == LabelFormat::AlwaysWithCountry )
-        || ( localeId.name.contains( '_' ) && QLocale::countriesForLanguage( m_locale.language() ).count() > 1 );
-    QString countryName = ( needsCountryName ?
-
-                                             m_locale.nativeCountryName()
-                                             : QString() );
+        || ( !name && localeId.name.contains( '_' )
+             && QLocale::countriesForLanguage( m_locale.language() ).count() > 1 );
+    QString countryName = needsCountryName ? m_locale.nativeCountryName() : QString();
     m_label = needsCountryName ? longFormat.arg( languageName, countryName ) : languageName;
     m_englishLabel = needsCountryName ? longFormat.arg( englishName, QLocale::countryToString( m_locale.country() ) )
                                       : englishName;
