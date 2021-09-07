@@ -25,8 +25,9 @@
  * Returns a pair of nullptrs for non-special cases.
  */
 static std::pair< QLocale*, QString* >
-specialCase( const QString& localeName )
+specialCase( const CalamaresUtils::Locale::Translation::Id& locale )
 {
+    const QString localeName = locale.name;
     if ( localeName == "sr@latin" )
     {
         static QLocale loc( QLocale::Language::Serbian, QLocale::Script::LatinScript, QLocale::Country::Serbia );
@@ -47,16 +48,16 @@ namespace Locale
 {
 
 Translation::Translation( QObject* parent )
-    : Translation( QString(), LabelFormat::IfNeededWithCountry, parent )
+    : Translation( { QString() }, LabelFormat::IfNeededWithCountry, parent )
 {
 }
 
-Translation::Translation( const QString& locale, LabelFormat format, QObject* parent )
+Translation::Translation( const Id& localeId, LabelFormat format, QObject* parent )
     : QObject( parent )
-    , m_locale( getLocale( locale ) )
-    , m_localeId( locale.isEmpty() ? m_locale.name() : locale )
+    , m_locale( getLocale( localeId ) )
+    , m_localeId( localeId.name.isEmpty() ? m_locale.name() : localeId.name )
 {
-    auto [ _, name ] = specialCase( locale );
+    auto [ _, name ] = specialCase( localeId );
 
     QString longFormat = QObject::tr( "%1 (%2)" );
 
@@ -65,11 +66,11 @@ Translation::Translation( const QString& locale, LabelFormat format, QObject* pa
 
     if ( languageName.isEmpty() )
     {
-        languageName = QString( "* %1 (%2)" ).arg( locale, englishName );
+        languageName = QString( "* %1 (%2)" ).arg( localeId.name, englishName );
     }
 
     bool needsCountryName = ( format == LabelFormat::AlwaysWithCountry )
-        || ( locale.contains( '_' ) && QLocale::countriesForLanguage( m_locale.language() ).count() > 1 );
+        || ( localeId.name.contains( '_' ) && QLocale::countriesForLanguage( m_locale.language() ).count() > 1 );
     QString countryName = ( needsCountryName ?
 
                                              m_locale.nativeCountryName()
@@ -80,14 +81,15 @@ Translation::Translation( const QString& locale, LabelFormat format, QObject* pa
 }
 
 QLocale
-Translation::getLocale( const QString& localeName )
+Translation::getLocale( const Id& localeId )
 {
+    const QString& localeName = localeId.name;
     if ( localeName.isEmpty() )
     {
         return QLocale();
     }
 
-    auto [ locale, _ ] = specialCase( localeName );
+    auto [ locale, _ ] = specialCase( localeId );
     return locale ? *locale : QLocale( localeName );
 }
 

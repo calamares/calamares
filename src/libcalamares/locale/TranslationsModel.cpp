@@ -29,7 +29,7 @@ TranslationsModel::TranslationsModel( const QStringList& locales, QObject* paren
 
     for ( const auto& l : locales )
     {
-        m_locales.push_back( new Translation( l, Translation::LabelFormat::IfNeededWithCountry, this ) );
+        m_locales.push_back( new Translation( { l }, Translation::LabelFormat::IfNeededWithCountry, this ) );
     }
 }
 

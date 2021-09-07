@@ -370,7 +370,7 @@ localeLabel( const QString& s )
 {
     using CalamaresUtils::Locale::Translation;
 
-    Translation lang( s, Translation::LabelFormat::AlwaysWithCountry );
+    Translation lang( { s }, Translation::LabelFormat::AlwaysWithCountry );
     return lang.label();
 }
 

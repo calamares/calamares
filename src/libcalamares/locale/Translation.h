@@ -60,9 +60,7 @@ public:
      * The @p format determines whether the country name is always present
      * in the label (human-readable form) or only if needed for disambiguation.
      */
-    Translation( const QString& localeName,
-                 LabelFormat format = LabelFormat::IfNeededWithCountry,
-                 QObject* parent = nullptr );
+    Translation( const Id& localeId, LabelFormat format = LabelFormat::IfNeededWithCountry, QObject* parent = nullptr );
 
 
     /** @brief Define a sorting order.
@@ -103,7 +101,7 @@ public:
      *
      * This obeys special cases as described in the class documentation.
      */
-    static QLocale getLocale( const QString& localeName );
+    static QLocale getLocale( const Id& localeId );
 
 private:
     QLocale m_locale;
