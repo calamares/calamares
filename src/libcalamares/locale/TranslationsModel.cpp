@@ -9,7 +9,7 @@
  *
  */
 
-#include "LabelModel.h"
+#include "TranslationsModel.h"
 
 #include "Lookup.h"
 
@@ -20,7 +20,7 @@ namespace CalamaresUtils
 namespace Locale
 {
 
-LabelModel::LabelModel( const QStringList& locales, QObject* parent )
+TranslationsModel::TranslationsModel( const QStringList& locales, QObject* parent )
     : QAbstractListModel( parent )
     , m_localeIds( locales )
 {
@@ -29,20 +29,20 @@ LabelModel::LabelModel( const QStringList& locales, QObject* parent )
 
     for ( const auto& l : locales )
     {
-        m_locales.push_back( new Label( l, Label::LabelFormat::IfNeededWithCountry, this ) );
+        m_locales.push_back( new Translation( { l }, Translation::LabelFormat::IfNeededWithCountry, this ) );
     }
 }
 
-LabelModel::~LabelModel() {}
+TranslationsModel::~TranslationsModel() {}
 
 int
-LabelModel::rowCount( const QModelIndex& ) const
+TranslationsModel::rowCount( const QModelIndex& ) const
 {
     return m_locales.count();
 }
 
 QVariant
-LabelModel::data( const QModelIndex& index, int role ) const
+TranslationsModel::data( const QModelIndex& index, int role ) const
 {
     if ( ( role != LabelRole ) && ( role != EnglishLabelRole ) )
     {
@@ -67,13 +67,13 @@ LabelModel::data( const QModelIndex& index, int role ) const
 }
 
 QHash< int, QByteArray >
-LabelModel::roleNames() const
+TranslationsModel::roleNames() const
 {
     return { { LabelRole, "label" }, { EnglishLabelRole, "englishLabel" } };
 }
 
-const Label&
-LabelModel::locale( int row ) const
+const Translation&
+TranslationsModel::locale( int row ) const
 {
     if ( ( row < 0 ) || ( row >= m_locales.count() ) )
     {
@@ -88,7 +88,7 @@ LabelModel::locale( int row ) const
 }
 
 int
-LabelModel::find( std::function< bool( const Label& ) > predicate ) const
+TranslationsModel::find( std::function< bool( const Translation& ) > predicate ) const
 {
     for ( int row = 0; row < m_locales.count(); ++row )
     {
@@ -101,19 +101,19 @@ LabelModel::find( std::function< bool( const Label& ) > predicate ) const
 }
 
 int
-LabelModel::find( std::function< bool( const QLocale& ) > predicate ) const
+TranslationsModel::find( std::function< bool( const QLocale& ) > predicate ) const
 {
-    return find( [&]( const Label& l ) { return predicate( l.locale() ); } );
+    return find( [&]( const Translation& l ) { return predicate( l.locale() ); } );
 }
 
 int
-LabelModel::find( const QLocale& locale ) const
+TranslationsModel::find( const QLocale& locale ) const
 {
-    return find( [&]( const Label& l ) { return locale == l.locale(); } );
+    return find( [&]( const Translation& l ) { return locale == l.locale(); } );
 }
 
 int
-LabelModel::find( const QString& countryCode ) const
+TranslationsModel::find( const QString& countryCode ) const
 {
     if ( countryCode.length() != 2 )
     {
@@ -121,18 +121,20 @@ LabelModel::find( const QString& countryCode ) const
     }
 
     auto c_l = countryData( countryCode );
-    int r = find( [&]( const Label& l ) { return ( l.language() == c_l.second ) && ( l.country() == c_l.first ); } );
+    int r = find(
+        [&]( const Translation& l ) { return ( l.language() == c_l.second ) && ( l.country() == c_l.first ); } );
     if ( r >= 0 )
     {
         return r;
     }
-    return find( [&]( const Label& l ) { return l.language() == c_l.second; } );
+    return find( [&]( const Translation& l ) { return l.language() == c_l.second; } );
 }
 
-LabelModel*
+TranslationsModel*
 availableTranslations()
 {
-    static LabelModel* model = new LabelModel( QStringLiteral( CALAMARES_TRANSLATION_LANGUAGES ).split( ';' ) );
+    static TranslationsModel* model
+        = new TranslationsModel( QStringLiteral( CALAMARES_TRANSLATION_LANGUAGES ).split( ';' ) );
     return model;
 }
 

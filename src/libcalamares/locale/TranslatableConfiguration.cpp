@@ -10,7 +10,7 @@
 
 #include "TranslatableConfiguration.h"
 
-#include "LabelModel.h"
+#include "TranslationsModel.h"
 
 #include "utils/Logger.h"
 #include "utils/Variant.h"
@@ -69,6 +69,7 @@ TranslatedString::get() const
 QString
 TranslatedString::get( const QLocale& locale ) const
 {
+    // TODO: keep track of special cases like sr@latin and ca@valencia
     QString localeName = locale.name();
     // Special case, sr@latin doesn't have the @latin reflected in the name
     if ( locale.language() == QLocale::Language::Serbian && locale.script() == QLocale::Script::LatinScript )

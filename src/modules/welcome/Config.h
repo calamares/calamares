@@ -11,8 +11,7 @@
 #define WELCOME_CONFIG_H
 
 #include "checker/GeneralRequirements.h"
-
-#include "locale/LabelModel.h"
+#include "locale/TranslationsModel.h"
 #include "modulesystem/RequirementsModel.h"
 
 #include <QObject>
@@ -29,7 +28,7 @@ class Config : public QObject
      * This is a list-model, with names and descriptions for the translations
      * available to Calamares.
      */
-    Q_PROPERTY( CalamaresUtils::Locale::LabelModel* languagesModel READ languagesModel CONSTANT FINAL )
+    Q_PROPERTY( CalamaresUtils::Locale::TranslationsModel* languagesModel READ languagesModel CONSTANT FINAL )
     /** @brief The requirements (from modules) and their checked-status
      *
      * The model grows rows over time as each module is checked and its
@@ -94,7 +93,7 @@ public:
     QString warningMessage() const;
 
 public slots:
-    CalamaresUtils::Locale::LabelModel* languagesModel() const;
+    CalamaresUtils::Locale::TranslationsModel* languagesModel() const;
     void retranslate();
 
     ///@brief The **global** requirements model, from ModuleManager
@@ -121,7 +120,7 @@ signals:
 private:
     void initLanguages();
 
-    CalamaresUtils::Locale::LabelModel* m_languages = nullptr;
+    CalamaresUtils::Locale::TranslationsModel* m_languages = nullptr;
     std::unique_ptr< QSortFilterProxyModel > m_filtermodel;
     std::unique_ptr< GeneralRequirements > m_requirementsChecker;
 

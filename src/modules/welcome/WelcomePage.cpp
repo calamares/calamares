@@ -20,7 +20,6 @@
 #include "Settings.h"
 #include "ViewManager.h"
 
-#include "locale/LabelModel.h"
 #include "modulesystem/ModuleManager.h"
 #include "modulesystem/RequirementsModel.h"
 #include "utils/CalamaresUtilsGui.h"
@@ -275,5 +274,5 @@ LocaleTwoColumnDelegate::paint( QPainter* painter, const QStyleOptionViewItem& o
         Qt::AlignRight | Qt::AlignVCenter,
         option.palette,
         false,
-        index.data( CalamaresUtils::Locale::LabelModel::EnglishLabelRole ).toString() );
+        index.data( CalamaresUtils::Locale::TranslationsModel::EnglishLabelRole ).toString() );
 }

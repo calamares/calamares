@@ -85,7 +85,7 @@ Config::retranslate()
     emit warningMessageChanged( m_warningMessage );
 }
 
-CalamaresUtils::Locale::LabelModel*
+CalamaresUtils::Locale::TranslationsModel*
 Config::languagesModel() const
 {
     return m_languages;
@@ -152,8 +152,6 @@ Config::initLanguages()
 
     if ( matchedLocaleIndex >= 0 )
     {
-        QString name = m_languages->locale( matchedLocaleIndex ).name();
-        cDebug() << Logger::SubEntry << "Matched with index" << matchedLocaleIndex << name;
         setLocaleIndex( matchedLocaleIndex );
     }
     else
@@ -188,17 +186,17 @@ Config::setLocaleIndex( int index )
 
     m_localeIndex = index;
 
-    const auto& selectedLocale = m_languages->locale( m_localeIndex ).locale();
-    cDebug() << "Index" << index << "Selected locale" << selectedLocale;
+    const auto& selectedTranslation = m_languages->locale( m_localeIndex );
+    cDebug() << "Index" << index << "Selected locale" << selectedTranslation.id().name;
 
-    QLocale::setDefault( selectedLocale );
+    QLocale::setDefault( selectedTranslation.locale() );
     const auto* branding = Calamares::Branding::instance();
-    CalamaresUtils::installTranslator( selectedLocale, branding ? branding->translationsDirectory() : QString() );
+    CalamaresUtils::installTranslator( selectedTranslation.id(), branding ? branding->translationsDirectory() : QString() );
     if ( Calamares::JobQueue::instance() && Calamares::JobQueue::instance()->globalStorage() )
     {
         CalamaresUtils::Locale::insertGS( *Calamares::JobQueue::instance()->globalStorage(),
                                           QStringLiteral( "LANG" ),
-                                          CalamaresUtils::translatorLocaleName() );
+                                          CalamaresUtils::translatorLocaleName().name );
     }
     emit localeIndexChanged( m_localeIndex );
 }

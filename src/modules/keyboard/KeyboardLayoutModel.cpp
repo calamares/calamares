@@ -27,7 +27,7 @@ retranslateKeyboardModels()
     {
         s_kbtranslator = new QTranslator;
     }
-    (void)CalamaresUtils::loadTranslator( QLocale(), QStringLiteral( "kb_" ), s_kbtranslator );
+    (void)CalamaresUtils::loadTranslator( CalamaresUtils::translatorLocaleName(), QStringLiteral( "kb_" ), s_kbtranslator );
 }
 
 

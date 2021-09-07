@@ -12,7 +12,7 @@
 
 #include "checker/GeneralRequirements.h"
 
-#include "locale/LabelModel.h"
+#include "locale/TranslationsModel.h"
 #include "utils/Dirs.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
