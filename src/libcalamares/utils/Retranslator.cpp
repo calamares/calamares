@@ -19,6 +19,9 @@
 #include <QEvent>
 #include <QTranslator>
 
+namespace
+{
+
 static bool s_allowLocalTranslations = false;
 
 /** @brief Helper class for loading translations
@@ -159,6 +162,8 @@ loadSingletonTranslator( TranslationLoader&& loader, QTranslator*& translator_p 
     }
 }
 
+}  // namespace
+
 namespace CalamaresUtils
 {
 static QTranslator* s_brandingTranslator = nullptr;
@@ -211,13 +216,15 @@ Retranslator::eventFilter( QObject* obj, QEvent* e )
     return QObject::eventFilter( obj, e );
 }
 
-Retranslator* Retranslator::instance()
+Retranslator*
+Retranslator::instance()
 {
-    static Retranslator s_instance(nullptr);
+    static Retranslator s_instance( nullptr );
     return &s_instance;
 }
 
-void Retranslator::attach(QObject* o, std::function<void ()> f)
+void
+Retranslator::attach( QObject* o, std::function< void() > f )
 {
     connect( instance(), &Retranslator::languageChanged, o, f );
     f();
