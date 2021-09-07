@@ -26,6 +26,7 @@
 #include "utils/Logger.h"
 #include "utils/NamedEnum.h"
 #include "utils/Retranslator.h"
+#include "widgets/TranslationFix.h"
 
 #include <QApplication>
 #include <QBoxLayout>
@@ -251,6 +252,7 @@ WelcomePage::showAboutBox()
                         .arg( Calamares::Branding::instance()->versionedName() ),
                     QMessageBox::Ok,
                     this );
+    Calamares::fixButtonLabels( &mb );
     mb.setIconPixmap( CalamaresUtils::defaultPixmap(
         CalamaresUtils::Squid,
         CalamaresUtils::Original,

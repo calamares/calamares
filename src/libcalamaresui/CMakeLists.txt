@@ -29,6 +29,7 @@ set( calamaresui_SOURCES
     widgets/ClickableLabel.cpp
     widgets/FixedAspectRatioLabel.cpp
     widgets/PrettyRadioButton.cpp
+    widgets/TranslationFix.cpp
     widgets/WaitingWidget.cpp
     ${CMAKE_SOURCE_DIR}/3rdparty/waitingspinnerwidget.cpp
 
