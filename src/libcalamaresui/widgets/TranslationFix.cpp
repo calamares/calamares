@@ -24,8 +24,13 @@ fixButtonLabels( QMessageBox* box )
         return;
     }
 
-    static std::pair< decltype( QMessageBox::Ok ), const char* > maps[]
-        = { { QMessageBox::Ok, QT_TRANSLATE_NOOP( "StandardButtons", "&OK" ) } };
+    static std::pair< decltype( QMessageBox::Ok ), const char* > maps[] = {
+        { QMessageBox::Ok, QT_TRANSLATE_NOOP( "StandardButtons", "&OK" ) },
+        { QMessageBox::Yes, QT_TRANSLATE_NOOP( "StandardButtons", "&Yes" ) },
+        { QMessageBox::No, QT_TRANSLATE_NOOP( "StandardButtons", "&No" ) },
+        { QMessageBox::Cancel, QT_TRANSLATE_NOOP( "StandardButtons", "&Cancel" ) },
+        { QMessageBox::Close, QT_TRANSLATE_NOOP( "StandardButtons", "&Close" ) },
+    };
 
     for ( auto [ sb, label ] : maps )
     {
