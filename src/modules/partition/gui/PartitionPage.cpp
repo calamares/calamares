@@ -258,13 +258,16 @@ PartitionPage::checkCanCreate( Device* device )
 
         if ( ( table->numPrimaries() >= table->maxPrimaries() ) && !table->hasExtended() )
         {
-            QMessageBox::warning(
-                this,
+            QMessageBox mb(
+                QMessageBox::Warning,
                 tr( "Can not create new partition" ),
                 tr( "The partition table on %1 already has %2 primary partitions, and no more can be added. "
                     "Please remove one primary partition and add an extended partition, instead." )
                     .arg( device->name() )
-                    .arg( table->numPrimaries() ) );
+                    .arg( table->numPrimaries() ),
+                QMessageBox::Ok );
+            Calamares::fixButtonLabels( &mb );
+            mb.exec();
             return false;
         }
         return true;
