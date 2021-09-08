@@ -19,10 +19,75 @@
 
 #include <KMacroExpander>
 
-#include <QSemaphore>
-#include <QTimer>
-
 #include <chrono>
+
+
+// Namespace keeps all the actual jobs anonymous, the
+// public API is the addJob() functions below the namespace.
+namespace
+{
+
+/** @brief Install-tracking job (gets a URL)
+ *
+ * The install-tracking job (there is only one kind) does a GET
+ * on a configured URL with some additional information about
+ * the machine (if configured into the URL).
+ *
+ * No persistent tracking is done.
+ */
+class TrackingInstallJob : public Calamares::Job
+{
+    Q_OBJECT
+public:
+    TrackingInstallJob( const QString& url );
+    ~TrackingInstallJob() override;
+
+    QString prettyName() const override;
+    QString prettyStatusMessage() const override;
+    Calamares::JobResult exec() override;
+
+private:
+    const QString m_url;
+};
+
+/** @brief Tracking machines, update-manager style
+ *
+ * The machine has a machine-id, and this is sed(1)'ed into the
+ * update-manager configuration, to report the machine-id back
+ * to distro servers.
+ */
+class TrackingMachineUpdateManagerJob : public Calamares::Job
+{
+    Q_OBJECT
+public:
+    ~TrackingMachineUpdateManagerJob() override;
+
+    QString prettyName() const override;
+    QString prettyStatusMessage() const override;
+    Calamares::JobResult exec() override;
+};
+
+/** @brief Turn on KUserFeedback in target system
+ *
+ * This writes suitable files for turning on KUserFeedback for the
+ * normal user configured in Calamares. The feedback can be reconfigured
+ * by the user through Plasma's user-feedback dialog.
+ */
+class TrackingKUserFeedbackJob : public Calamares::Job
+{
+    Q_OBJECT
+public:
+    TrackingKUserFeedbackJob( const QString& username, const QStringList& areas );
+    ~TrackingKUserFeedbackJob() override;
+
+    QString prettyName() const override;
+    QString prettyStatusMessage() const override;
+    Calamares::JobResult exec() override;
+
+private:
+    QString m_username;
+    QStringList m_areas;
+};
 
 TrackingInstallJob::TrackingInstallJob( const QString& url )
     : m_url( url )
@@ -161,6 +226,8 @@ FeedbackLevel=16
     return Calamares::JobResult::ok();
 }
 
+} // namespace
+
 void
 addJob( Calamares::JobList& list, InstallTrackingConfig* config )
 {
@@ -223,3 +290,7 @@ addJob( Calamares::JobList& list, UserTrackingConfig* config )
         }
     }
 }
+
+#include "utils/moc-warnings.h"
+
+#include "TrackingJobs.moc"
