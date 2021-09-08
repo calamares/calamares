@@ -31,7 +31,6 @@
 #include <QDesktopServices>
 #include <QFocusEvent>
 #include <QLabel>
-#include <QMessageBox>
 
 #include <algorithm>
 

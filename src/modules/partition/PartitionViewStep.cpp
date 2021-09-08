@@ -30,6 +30,7 @@
 #include "utils/QtCompat.h"
 #include "utils/Retranslator.h"
 #include "utils/Variant.h"
+#include "widgets/TranslationFix.h"
 #include "widgets/WaitingWidget.h"
 
 #include <kpmcore/core/partition.h>
@@ -51,7 +52,8 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
 
     m_waitingWidget = new WaitingWidget( QString() );
     m_widget->addWidget( m_waitingWidget );
-    CALAMARES_RETRANSLATE( if (m_waitingWidget) {  m_waitingWidget->setText( tr( "Gathering system information..." ) ); } );
+    CALAMARES_RETRANSLATE(
+        if ( m_waitingWidget ) { m_waitingWidget->setText( tr( "Gathering system information..." ) ); } );
 
     m_core = new PartitionCoreModule( this );  // Unusable before init is complete!
     // We're not done loading, but we need the configuration map first.
@@ -527,47 +529,57 @@ PartitionViewStep::onLeave()
             {
                 message = tr( "No EFI system partition configured" );
             }
-            else if ( !(okType && okSize && okFlag ) )
+            else if ( !( okType && okSize && okFlag ) )
             {
                 message = tr( "EFI system partition configured incorrectly" );
             }
 
-            if ( !esp || !(okType&&okSize &&okFlag)) {
-            description = tr( "An EFI system partition is necessary to start %1."
-                                "<br/><br/>"
-                                "To configure an EFI system partition, go back and "
-                                "select or create a suitable filesystem.").arg( branding->shortProductName() );
+            if ( !esp || !( okType && okSize && okFlag ) )
+            {
+                description = tr( "An EFI system partition is necessary to start %1."
+                                  "<br/><br/>"
+                                  "To configure an EFI system partition, go back and "
+                                  "select or create a suitable filesystem." )
+                                  .arg( branding->shortProductName() );
             }
-            if (!esp) {
+            if ( !esp )
+            {
                 cDebug() << o << "No ESP mounted";
-                description.append(' ');
-                description.append(tr("The filesystem must be mounted on <strong>%1</strong>.").arg(espMountPoint));
+                description.append( ' ' );
+                description.append(
+                    tr( "The filesystem must be mounted on <strong>%1</strong>." ).arg( espMountPoint ) );
             }
-            if (!okType) {
+            if ( !okType )
+            {
                 cDebug() << o << "ESP wrong type";
-                description.append(' ');
-                description.append(tr("The filesystem must have type FAT32."));
+                description.append( ' ' );
+                description.append( tr( "The filesystem must have type FAT32." ) );
             }
-            if (!okSize) {
+            if ( !okSize )
+            {
                 cDebug() << o << "ESP too small";
-                description.append(' ');
-                description.append(tr("The filesystem must be at least %1 MiB in size.").arg( PartUtils::efiFilesystemMinimumSize() ));
+                description.append( ' ' );
+                description.append( tr( "The filesystem must be at least %1 MiB in size." )
+                                        .arg( PartUtils::efiFilesystemMinimumSize() ) );
             }
-            if (!okFlag)
+            if ( !okFlag )
             {
                 cDebug() << o << "ESP missing flag";
-                description.append(' ');
-                description.append(tr("The filesystem must have flag <strong>%1</strong> set.").arg(PartitionTable::flagName( espFlag )));
+                description.append( ' ' );
+                description.append( tr( "The filesystem must have flag <strong>%1</strong> set." )
+                                        .arg( PartitionTable::flagName( espFlag ) ) );
             }
-            if (!description.isEmpty()) {
+            if ( !description.isEmpty() )
+            {
                 description.append( "<br/><br/>" );
-                description.append( tr(
-                                  "You can continue without setting up an EFI system "
-                                  "partition but your system may fail to start." ));
+                description.append( tr( "You can continue without setting up an EFI system "
+                                        "partition but your system may fail to start." ) );
             }
             if ( !message.isEmpty() )
             {
-                QMessageBox::warning( m_manualPartitionPage, message, description );
+                QMessageBox mb( QMessageBox::Warning, message, description, QMessageBox::Ok, m_manualPartitionPage );
+                Calamares::fixButtonLabels( &mb );
+                mb.exec();
             }
         }
         else
@@ -591,7 +603,10 @@ PartitionViewStep::onLeave()
                                           "to start %1 on a BIOS system with GPT." )
                                           .arg( branding->shortProductName() );
 
-                QMessageBox::information( m_manualPartitionPage, message, description );
+                QMessageBox mb(
+                    QMessageBox::Information, message, description, QMessageBox::Ok, m_manualPartitionPage );
+                Calamares::fixButtonLabels( &mb );
+                mb.exec();
             }
         }
 
@@ -621,7 +636,9 @@ PartitionViewStep::onLeave()
                                   "recreate it, selecting <strong>Encrypt</strong> "
                                   "in the partition creation window." );
 
-                QMessageBox::warning( m_manualPartitionPage, message, description );
+                QMessageBox mb( QMessageBox::Warning, message, description, QMessageBox::Ok, m_manualPartitionPage );
+                Calamares::fixButtonLabels( &mb );
+                mb.exec();
             }
         }
     }

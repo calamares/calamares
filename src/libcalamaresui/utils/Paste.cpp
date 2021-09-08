@@ -13,6 +13,7 @@
 #include "DllMacro.h"
 #include "utils/Logger.h"
 #include "utils/Units.h"
+#include "widgets/TranslationFix.h"
 
 #include <QApplication>
 #include <QClipboard>
@@ -166,8 +167,12 @@ CalamaresUtils::Paste::doLogUploadUI( QWidget* parent )
         pasteUrlMessage = pasteUrlFmt.arg( pasteUrl );
     }
 
-    QMessageBox::critical(
-        nullptr, QCoreApplication::translate( "Calamares::ViewManager", "Install Log Paste URL" ), pasteUrlMessage );
+    QMessageBox mb( QMessageBox::Critical,
+                    QCoreApplication::translate( "Calamares::ViewManager", "Install Log Paste URL" ),
+                    pasteUrlMessage,
+                    QMessageBox::Ok );
+    Calamares::fixButtonLabels( &mb );
+    mb.exec();
     return pasteUrl;
 }
 
