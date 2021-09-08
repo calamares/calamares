@@ -13,6 +13,7 @@
  */
 #include "PackageModel.h"
 
+#include "locale/TranslationsModel.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
