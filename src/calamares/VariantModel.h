@@ -30,6 +30,7 @@
  */
 class VariantModel : public QAbstractItemModel
 {
+    Q_OBJECT
 public:
     /** @brief Auxiliary data
      *

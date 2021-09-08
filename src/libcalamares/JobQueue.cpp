@@ -47,6 +47,7 @@ using WeightedJobList = QList< WeightedJob >;
 
 class JobThread : public QThread
 {
+    Q_OBJECT
 public:
     JobThread( JobQueue* queue )
         : QThread( queue )
@@ -288,3 +289,7 @@ JobQueue::globalStorage() const
 }
 
 }  // namespace Calamares
+
+#include "utils/moc-warnings.h"
+
+#include "JobQueue.moc"

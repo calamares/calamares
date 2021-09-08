@@ -23,6 +23,7 @@ namespace Calamares
  */
 class DLLEXPORT NamedJob : public Job
 {
+    Q_OBJECT
 public:
     explicit NamedJob( const QString& name, QObject* parent = nullptr )
         : Job( parent )
@@ -39,6 +40,7 @@ protected:
 /// @brief Job does nothing, always succeeds
 class DLLEXPORT GoodJob : public NamedJob
 {
+    Q_OBJECT
 public:
     explicit GoodJob( const QString& name, QObject* parent = nullptr )
         : NamedJob( name, parent )
@@ -52,6 +54,7 @@ public:
 /// @brief Job does nothing, always fails
 class DLLEXPORT FailJob : public NamedJob
 {
+    Q_OBJECT
 public:
     explicit FailJob( const QString& name, QObject* parent = nullptr )
         : NamedJob( name, parent )
