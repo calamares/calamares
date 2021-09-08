@@ -31,13 +31,13 @@
 #include "ui_CreatePartitionTableDialog.h"
 #include "ui_PartitionPage.h"
 
+#include "Branding.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "partition/PartitionQuery.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
-
-#include "Branding.h"
+#include "widgets/TranslationFix.h"
 
 // KPMcore
 #include <kpmcore/core/device.h>
