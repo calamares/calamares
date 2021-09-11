@@ -3,6 +3,7 @@
  *   SPDX-FileCopyrightText: 2016 Lisa Vitolo     <shainer@chakraos.org>
  *   SPDX-FileCopyrightText: 2017 Kyle Robbertze  <krobbertze@gmail.com>
  *   SPDX-FileCopyrightText: 2017-2018 2020, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2021, shivanandvp <shivanandvp@rebornos.org>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -28,7 +29,7 @@ class Config : public QObject
 {
     Q_OBJECT
 
-    Q_PROPERTY( PackageModel* packageModel MEMBER m_model FINAL )
+    Q_PROPERTY( PackageModel* packageModel MEMBER m_model NOTIFY packageModelChanged)
     Q_PROPERTY( QString status READ status NOTIFY statusChanged FINAL )
 
     // Translations, of the module name (for sidebar) and above the list
@@ -84,6 +85,7 @@ Q_SIGNALS:
     void sidebarLabelChanged( QString label );
     void titleLabelChanged( QString label );
     void statusReady();  ///< Loading groups is complete
+    void packageModelChanged();
 
 private Q_SLOTS:
     void retranslate();
