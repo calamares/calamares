@@ -171,7 +171,7 @@
   <context>
     <name>Calamares::JobThread</name>
     <message>
-      <location filename="../src/libcalamares/JobQueue.cpp" line="198"/>
+      <location filename="../src/libcalamares/JobQueue.cpp" line="199"/>
       <source>Done</source>
       <translation>Xong</translation>
     </message>
@@ -283,54 +283,52 @@
   <context>
     <name>Calamares::ViewManager</name>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="155"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="162"/>
       <source>Setup Failed</source>
       <translation>Thiết lập không thành công</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="155"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="162"/>
       <source>Installation Failed</source>
       <translation>Cài đặt thất bại</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="156"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="163"/>
       <source>Would you like to paste the install log to the web?</source>
       <translation>Bạn có muốn gửi nhật ký cài đặt lên web không?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="172"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="179"/>
       <source>Error</source>
       <translation>Lỗi</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="179"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="519"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="88"/>
       <source>&amp;Yes</source>
       <translation>&amp;Có</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="180"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="520"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="89"/>
       <source>&amp;No</source>
       <translation>&amp;Không</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="186"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="90"/>
       <source>&amp;Close</source>
       <translation>Đón&amp;g</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/utils/Paste.cpp" line="170"/>
+      <location filename="../src/libcalamaresui/utils/Paste.cpp" line="171"/>
       <source>Install Log Paste URL</source>
       <translation>URL để gửi nhật ký cài đặt</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/utils/Paste.cpp" line="152"/>
+      <location filename="../src/libcalamaresui/utils/Paste.cpp" line="153"/>
       <source>The upload was unsuccessful. No web-paste was done.</source>
       <translation>Tải lên không thành công. Không có quá trình gửi lên web nào được thực hiện.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/utils/Paste.cpp" line="164"/>
+      <location filename="../src/libcalamaresui/utils/Paste.cpp" line="165"/>
       <source>Install log posted to
 
 %1
@@ -339,124 +337,124 @@ Link copied to clipboard</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="206"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="211"/>
       <source>Calamares Initialization Failed</source>
       <translation>Khởi tạo không thành công</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="207"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="212"/>
       <source>%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution.</source>
       <translation>%1 không thể được cài đặt.Không thể tải tất cả các mô-đun đã định cấu hình. Đây là vấn đề với cách phân phối sử dụng.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="213"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="218"/>
       <source>&lt;br/&gt;The following modules could not be loaded:</source>
       <translation>&lt;br/&gt; Không thể tải các mô-đun sau:</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="327"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="332"/>
       <source>Continue with setup?</source>
       <translation>Tiếp tục thiết lập?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="327"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="332"/>
       <source>Continue with installation?</source>
       <translation>Tiếp tục cài đặt?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="329"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="334"/>
       <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
       <translation>Chương trình thiết lập %1 sắp thực hiện các thay đổi đối với đĩa của bạn để thiết lập %2. &lt;br/&gt; &lt;strong&gt; Bạn sẽ không thể hoàn tác các thay đổi này. &lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="332"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="337"/>
       <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
       <translation>Trình cài đặt %1 sắp thực hiện các thay đổi đối với đĩa của bạn để cài đặt %2. &lt;br/&gt; &lt;strong&gt; Bạn sẽ không thể hoàn tác các thay đổi này. &lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="335"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="340"/>
       <source>&amp;Set up now</source>
       <translation>&amp;Thiết lập ngay</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="335"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="340"/>
       <source>&amp;Install now</source>
       <translation>&amp;Cài đặt ngay</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="343"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="348"/>
       <source>Go &amp;back</source>
       <translation>&amp;Quay lại</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="393"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="398"/>
       <source>&amp;Set up</source>
       <translation>&amp;Thiết lập</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="393"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="398"/>
       <source>&amp;Install</source>
       <translation>&amp;Cài đặt</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="395"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="400"/>
       <source>Setup is complete. Close the setup program.</source>
       <translation>Thiết lập hoàn tất. Đóng chương trình cài đặt.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="396"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="401"/>
       <source>The installation is complete. Close the installer.</source>
       <translation>Quá trình cài đặt hoàn tất. Đóng trình cài đặt.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="398"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="403"/>
       <source>Cancel setup without changing the system.</source>
       <translation>Hủy thiết lập mà không thay đổi hệ thống.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="399"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="404"/>
       <source>Cancel installation without changing the system.</source>
       <translation>Hủy cài đặt mà không thay đổi hệ thống.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="409"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="414"/>
       <source>&amp;Next</source>
       <translation>&amp;Tiếp</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="414"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="419"/>
       <source>&amp;Back</source>
       <translation>&amp;Quay lại</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="420"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="425"/>
       <source>&amp;Done</source>
       <translation>&amp;Xong</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="439"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="444"/>
       <source>&amp;Cancel</source>
       <translation>&amp;Hủy</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="512"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="517"/>
       <source>Cancel setup?</source>
       <translation>Hủy thiết lập?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="512"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="517"/>
       <source>Cancel installation?</source>
       <translation>Hủy cài đặt?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="513"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="518"/>
       <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
       <translation>Bạn có thực sự muốn hủy quá trình thiết lập hiện tại không?
 Chương trình thiết lập sẽ thoát và tất cả các thay đổi sẽ bị mất.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="515"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="520"/>
       <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
       <translation>Bạn có thực sự muốn hủy quá trình cài đặt hiện tại không?
@@ -823,22 +821,22 @@ Trình cài đặt sẽ thoát và tất cả các thay đổi sẽ bị mất.<
       <translation>Chương trình này sẽ hỏi bạn vài câu hỏi và thiết lập %2 trên máy tính của bạn.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="252"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="250"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Chào mừng đến với chương trình Calamares để thiết lập %1&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="253"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="251"/>
       <source>&lt;h1&gt;Welcome to %1 setup&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Chào mừng đến với thiết lập %1 &lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="257"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="255"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Chào mừng đến với chương trình Calamares để cài đặt %1&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="258"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="256"/>
       <source>&lt;h1&gt;Welcome to the %1 installer&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Chào mừng đến với bộ cài đặt %1 &lt;/h1&gt;</translation>
     </message>
@@ -1703,17 +1701,17 @@ Trình cài đặt sẽ thoát và tất cả các thay đổi sẽ bị mất.<
   <context>
     <name>InteractiveTerminalPage</name>
     <message>
-      <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="44"/>
+      <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="45"/>
       <source>Konsole not installed</source>
       <translation>Konsole chưa được cài đặt</translation>
     </message>
     <message>
-      <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="44"/>
+      <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="45"/>
       <source>Please install KDE Konsole and try again!</source>
       <translation>Vui lòng cài đặt KDE Konsole rồi thử lại!</translation>
     </message>
     <message>
-      <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="103"/>
+      <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="106"/>
       <source>Executing script: &amp;nbsp;&lt;code&gt;%1&lt;/code&gt;</source>
       <translation>Đang thực thi kịch bản: &amp;nbsp;&lt;code&gt;%1&lt;/code&gt;</translation>
     </message>
@@ -1778,32 +1776,32 @@ Trình cài đặt sẽ thoát và tất cả các thay đổi sẽ bị mất.<
       <translation>&lt;h1&gt;Điều khoản giấy phép&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicensePage.cpp" line="136"/>
+      <location filename="../src/modules/license/LicensePage.cpp" line="135"/>
       <source>I accept the terms and conditions above.</source>
       <translation>Tôi đồng ý với điều khoản và điều kiện trên.</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicensePage.cpp" line="138"/>
+      <location filename="../src/modules/license/LicensePage.cpp" line="137"/>
       <source>Please review the End User License Agreements (EULAs).</source>
       <translation>Vui lòng đọc thoả thuận giấy phép người dùng cuối (EULAs).</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicensePage.cpp" line="143"/>
+      <location filename="../src/modules/license/LicensePage.cpp" line="142"/>
       <source>This setup procedure will install proprietary software that is subject to licensing terms.</source>
       <translation>Quy trình thiết lập này sẽ cài đặt phần mềm độc quyền tuân theo các điều khoản cấp phép.</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicensePage.cpp" line="146"/>
+      <location filename="../src/modules/license/LicensePage.cpp" line="145"/>
       <source>If you do not agree with the terms, the setup procedure cannot continue.</source>
       <translation>Nếu bạn không đồng ý với các điều khoản, quy trình thiết lập không thể tiếp tục.</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicensePage.cpp" line="151"/>
+      <location filename="../src/modules/license/LicensePage.cpp" line="150"/>
       <source>This setup procedure can install proprietary software that is subject to licensing terms in order to provide additional features and enhance the user experience.</source>
       <translation>Quy trình thiết lập này có thể cài đặt phần mềm độc quyền tuân theo các điều khoản cấp phép để cung cấp các tính năng bổ sung và nâng cao trải nghiệm người dùng.</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicensePage.cpp" line="156"/>
+      <location filename="../src/modules/license/LicensePage.cpp" line="155"/>
       <source>If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
       <translation>Nếu bạn không đồng ý với các điều khoản, phần mềm độc quyền sẽ không được cài đặt và các giải pháp thay thế nguồn mở sẽ được sử dụng thay thế.</translation>
     </message>
@@ -2765,92 +2763,92 @@ Trình cài đặt sẽ thoát và tất cả các thay đổi sẽ bị mất.<
   <context>
     <name>PartitionViewStep</name>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="54"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="56"/>
       <source>Gathering system information...</source>
       <translation>Thu thập thông tin hệ thống ...</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="109"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="111"/>
       <source>Partitions</source>
       <translation>Phân vùng</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="301"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="303"/>
       <source>Current:</source>
       <translation>Hiện tại:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="319"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="321"/>
       <source>After:</source>
       <translation>Sau:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="528"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="530"/>
       <source>No EFI system partition configured</source>
       <translation>Không có hệ thống phân vùng EFI được cài đặt</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="532"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="534"/>
       <source>EFI system partition configured incorrectly</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="536"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="539"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a suitable filesystem.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="544"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="550"/>
       <source>The filesystem must be mounted on &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="549"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="556"/>
       <source>The filesystem must have type FAT32.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="554"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="562"/>
       <source>The filesystem must be at least %1 MiB in size.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="560"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="569"/>
       <source>The filesystem must have flag &lt;strong&gt;%1&lt;/strong&gt; set.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="564"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="575"/>
       <source>You can continue without setting up an EFI system partition but your system may fail to start.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="580"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="592"/>
       <source>Option to use GPT on BIOS</source>
       <translation>Lựa chọn dùng GPT trên BIOS</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="581"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="593"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
       <translation>Bảng phân vùng GPT là lựa chọn tốt nhất cho tất cả các hệ thống. Trình cài đặt này cũng hỗ trợ thiết lập như vậy cho các hệ thống BIOS. &lt;br/&gt; &lt;br/&gt; Để định cấu hình bảng phân vùng GPT trên BIOS, (nếu chưa thực hiện xong) hãy quay lại và đặt bảng phân vùng thành GPT, tiếp theo tạo 8 MB phân vùng chưa định dạng với cờ &lt;strong&gt; bios_grub &lt;/strong&gt; được bật. &lt;br/&gt; &lt;br/&gt; Cần có phân vùng 8 MB chưa được định dạng để khởi động %1 trên hệ thống BIOS có GPT.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="610"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="625"/>
       <source>Boot partition not encrypted</source>
       <translation>Phân vùng khởi động không được mã hóa</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="611"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="626"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
       <translation>Một phân vùng khởi động riêng biệt đã được thiết lập cùng với một phân vùng gốc được mã hóa, nhưng phân vùng khởi động không được mã hóa. &lt;br/&gt; &lt;br/&gt; Có những lo ngại về bảo mật với loại thiết lập này, vì các tệp hệ thống quan trọng được lưu giữ trên một phân vùng không được mã hóa . &lt;br/&gt; Bạn có thể tiếp tục nếu muốn, nhưng việc mở khóa hệ thống tệp sẽ diễn ra sau trong quá trình khởi động hệ thống. &lt;br/&gt; Để mã hóa phân vùng khởi động, hãy quay lại và tạo lại nó, chọn &lt;strong&gt; Mã hóa &lt;/strong&gt; trong phân vùng cửa sổ tạo.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="696"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="713"/>
       <source>has at least one disk device available.</source>
       <translation>có sẵn ít nhất một thiết bị đĩa.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="697"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="714"/>
       <source>There are no partitions to install on.</source>
       <translation>Không có phân vùng để cài đặt.</translation>
     </message>
@@ -2985,7 +2983,7 @@ Output:
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../src/libcalamares/locale/Label.cpp" line="61"/>
+      <location filename="../src/libcalamares/locale/Translation.cpp" line="74"/>
       <source>%1 (%2)</source>
       <translation>%1 (%2)</translation>
     </message>
@@ -3613,24 +3611,52 @@ Output:
     </message>
   </context>
   <context>
+    <name>StandardButtons</name>
+    <message>
+      <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="28"/>
+      <source>&amp;OK</source>
+      <translation>&amp;OK</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="29"/>
+      <source>&amp;Yes</source>
+      <translation>&amp;Có</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="30"/>
+      <source>&amp;No</source>
+      <translation>&amp;Không</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="31"/>
+      <source>&amp;Cancel</source>
+      <translation>&amp;Huỷ bỏ</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="32"/>
+      <source>&amp;Close</source>
+      <translation>Đón&amp;g</translation>
+    </message>
+  </context>
+  <context>
     <name>TrackingInstallJob</name>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="37"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="102"/>
       <source>Installation feedback</source>
       <translation>Phản hồi cài đặt</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="43"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="108"/>
       <source>Sending installation feedback.</source>
       <translation>Gửi phản hồi cài đặt.</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="60"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="125"/>
       <source>Internal error in install-tracking.</source>
       <translation>Lỗi nội bộ trong theo dõi cài đặt.</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="61"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="126"/>
       <source>HTTP request timed out.</source>
       <translation>Yêu cầu HTTP đã hết thời gian chờ.</translation>
     </message>
@@ -3638,28 +3664,28 @@ Output:
   <context>
     <name>TrackingKUserFeedbackJob</name>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="122"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="187"/>
       <source>KDE user feedback</source>
       <translation>Người dùng KDE phản hồi</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="128"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="193"/>
       <source>Configuring KDE user feedback.</source>
       <translation>Định cấu hình phản hồi của người dùng KDE.</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="150"/>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="156"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="215"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="221"/>
       <source>Error in KDE user feedback configuration.</source>
       <translation>Lỗi trong cấu hình phản hồi của người dùng KDE.</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="151"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="216"/>
       <source>Could not configure KDE user feedback correctly, script error %1.</source>
       <translation>Không thể định cấu hình phản hồi của người dùng KDE một cách chính xác, lỗi tập lệnh %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="157"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="222"/>
       <source>Could not configure KDE user feedback correctly, Calamares error %1.</source>
       <translation>Không thể định cấu hình phản hồi của người dùng KDE một cách chính xác, lỗi Calamares %1.</translation>
     </message>
@@ -3667,28 +3693,28 @@ Output:
   <context>
     <name>TrackingMachineUpdateManagerJob</name>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="71"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="136"/>
       <source>Machine feedback</source>
       <translation>Phản hồi máy</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="77"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="142"/>
       <source>Configuring machine feedback.</source>
       <translation>Cấu hình phản hồi máy.</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="100"/>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="106"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="165"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="171"/>
       <source>Error in machine feedback configuration.</source>
       <translation>Lỗi cấu hình phản hồi máy.</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="101"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="166"/>
       <source>Could not configure machine feedback correctly, script error %1.</source>
       <translation>Không thể cấu hình phản hồi máy chính xác, kịch bản lỗi %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="107"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="172"/>
       <source>Could not configure machine feedback correctly, Calamares error %1.</source>
       <translation>Không thể cấu hình phản hồi máy chính xác, lỗi %1.</translation>
     </message>
@@ -4053,44 +4079,29 @@ Output:
   <context>
     <name>keyboardq</name>
     <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="45"/>
-      <source>Keyboard Model</source>
-      <translation>Mẫu bàn phím</translation>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="60"/>
+      <source>To activate keyboard preview, select a layout.</source>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="377"/>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="86"/>
+      <source>Keyboard Model:</source>
+      <translation>Mẫu bàn phím:</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="254"/>
       <source>Layouts</source>
       <translation>Bố cục</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="148"/>
-      <source>Keyboard Layout</source>
-      <translation>Bố cục bàn phím</translation>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="263"/>
+      <source>Type here to test your keyboard</source>
+      <translation>Gõ vào đây để thử bàn phím</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="60"/>
-      <source>Click your preferred keyboard model to select layout and variant, or use the default one based on the detected hardware.</source>
-      <translation>Nhấp vào kiểu bàn phím ưa thích của bạn để chọn bố cục và biến thể hoặc sử dụng kiểu mặc định dựa trên phần cứng được phát hiện.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="253"/>
-      <source>Models</source>
-      <translation>Mẫu</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="260"/>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="179"/>
       <source>Variants</source>
       <translation>Các biến thể</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="276"/>
-      <source>Keyboard Variant</source>
-      <translation>Các biến thể bàn phím</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="386"/>
-      <source>Test your keyboard</source>
-      <translation>Thử bàn phím</translation>
     </message>
   </context>
   <context>
