@@ -51,6 +51,7 @@ public:
 
 private:
     Config* m_config;
+    QString m_prettyName;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( PackageChooserQmlViewStepFactory )
