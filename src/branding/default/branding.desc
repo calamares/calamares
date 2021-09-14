@@ -228,6 +228,7 @@ slideshowAPI: 2
 #                Takes string as input. Important bits are the host and port,
 #                the scheme is not used.
 #  - sizeLimit : Defines maximum size limit (in KiB) of log file to be pasted.
+#                The option must be set, to have the log option work.
 #                Takes integer as input. If < 0, no limit will be forced,
 #                else only last (approximately) 'n' KiB of log file will be pasted.
 #                Please note that upload size may be slightly over the limit (due
