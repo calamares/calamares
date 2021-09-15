@@ -10,10 +10,13 @@ website will have to do for older versions.
 # 3.2.43 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - Joe Kamprad
 
 ## Core ##
- - No core changes yet
+ - Translations have been made more consistent. In particular, some *OK*,
+   *Yes*, *No* and *Cancel* buttons that were previously untranslated
+   or "stuck" in the language that Calamares started in, are now
+   changed to the current language as selected in the welcome page.
 
 ## Modules ##
  - No module changes yet
