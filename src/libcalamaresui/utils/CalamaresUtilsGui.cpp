@@ -181,7 +181,6 @@ void
 unmarginLayout( QLayout* layout )
 {
     layout->setContentsMargins( 0, 0, 0, 0 );
-    layout->setMargin( 0 );
     layout->setSpacing( 0 );
 
     for ( int i = 0; i < layout->count(); i++ )
