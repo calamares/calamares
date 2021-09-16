@@ -98,7 +98,12 @@ LicensePage::LicensePage( QWidget* parent )
     CalamaresUtils::unmarginLayout( ui->verticalLayout );
 
     ui->acceptFrame->setStyleSheet( mustAccept );
-    ui->acceptFrame->layout()->setMargin( CalamaresUtils::defaultFontHeight() / 2 );
+    {
+        // The inner frame was unmargined (above), reinstate margins so all are
+        // the same *x* (an x-height, approximately).
+        const auto x = CalamaresUtils::defaultFontHeight() / 2;
+        ui->acceptFrame->layout()->setContentsMargins( x, x, x, x );
+    }
 
     updateGlobalStorage( false );  // Have not agreed yet
 
