@@ -4099,7 +4099,7 @@ Systems nationella inställningar påverkar nummer och datumformat. Den nuvarand
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="60"/>
       <source>To activate keyboard preview, select a layout.</source>
-      <translation type="unfinished"/>
+      <translation>Välj en layout för att aktivera förhandsgranskning av tangentbord.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="86"/>

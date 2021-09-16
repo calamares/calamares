@@ -2825,17 +2825,17 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="562"/>
       <source>The filesystem must be at least %1 MiB in size.</source>
-      <translation type="unfinished"/>
+      <translation>O sistema de ficheiros deve ter pelo menos %1 MiB de tamanho.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="569"/>
       <source>The filesystem must have flag &lt;strong&gt;%1&lt;/strong&gt; set.</source>
-      <translation type="unfinished"/>
+      <translation>O sistema de ficheiros deve ter a "flag" %1 definida.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="575"/>
       <source>You can continue without setting up an EFI system partition but your system may fail to start.</source>
-      <translation type="unfinished"/>
+      <translation>Pode continuar sem configurar uma partição do sistema EFI, mas o seu sistema pode não arrancar.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="592"/>
@@ -4099,7 +4099,7 @@ Saída de Dados:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="60"/>
       <source>To activate keyboard preview, select a layout.</source>
-      <translation type="unfinished"/>
+      <translation>Para ativar a pré-visualização do teclado, selecione um esquema.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="86"/>
@@ -4146,7 +4146,8 @@ Saída de Dados:
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="45"/>
       <source>LibreOffice is a powerful and free office suite, used by millions of people around the world. It includes several applications that make it the most versatile Free and Open Source office suite on the market.&lt;br/&gt;
                     Default option.</source>
-      <translation type="unfinished"/>
+      <translation>O LibreOffice é um programa de produtividade poderoso e gratuito, utilizado por milhões de pessoas em todo o mundo. Inclui várias aplicações que o tornam o mais versátil programa de produtividade Livre e de Código Aberto do mercado.&lt;br/&gt;
+                    Opção predefinida.</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="59"/>
@@ -4156,27 +4157,27 @@ Saída de Dados:
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="108"/>
       <source>If you don't want to install an office suite, just select No Office Suite. You can always add one (or more) later on your installed system as the need arrives.</source>
-      <translation type="unfinished"/>
+      <translation>Se não quiser instalar um programa de produtividade, basta selecionar Sem programa de produtividade. Pode sempre adicionar uma (ou mais) mais tarde no sistema instalado, à medida que houver a necessidade.</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="121"/>
       <source>No Office Suite</source>
-      <translation type="unfinished"/>
+      <translation>Sem programa de produtividade</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="172"/>
       <source>Create a minimal Desktop install, remove all extra applications and decide later on what you would like to add to your system. Examples of what won't be on such an install, there will be no Office Suite, no media players, no image viewer or print support.  It will be just a desktop, file browser, package manager, text editor and simple web-browser.</source>
-      <translation type="unfinished"/>
+      <translation>Crie uma instalação mínima do Ambiente de trabalho, remova todas as aplicações extra e decida mais tarde o que gostaria de adicionar ao sistema. Exemplos do que não estará em tal instalação, não haverá nenhum programa de produtividade, nenhum reprodutor multimédia, nenhum visualizador de imagens ou suporte de impressão. Será apenas um ambiente de trabalho, navegador de ficheiros, gestor de pacotes, editor de texto e um simples navegador da web.</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="185"/>
       <source>Minimal Install</source>
-      <translation type="unfinished"/>
+      <translation>Instalação Mínima</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="233"/>
       <source>Please select an option for your install, or use the default: LibreOffice included.</source>
-      <translation type="unfinished"/>
+      <translation>Selecione uma opção para a sua instalação, ou utilize o predefinido: LibreOffice incluído.</translation>
     </message>
   </context>
   <context>
@@ -4332,7 +4333,7 @@ Saída de Dados:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="190"/>
       <source>Only letters, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
-      <translation type="unfinished"/>
+      <translation>Apenas são permitidas letras, números, sublinhado e hífen, mínimo de dois caracteres.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="293"/>
