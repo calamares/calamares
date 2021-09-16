@@ -16,17 +16,6 @@ set( calamaresSources
     progresstree/ProgressTreeView.cpp
 )
 
-if( NOT WITH_KF5DBus )
-    set( kdsagSources
-        ${CMAKE_SOURCE_DIR}/3rdparty/kdsingleapplicationguard/kdsingleapplicationguard.cpp
-        ${CMAKE_SOURCE_DIR}/3rdparty/kdsingleapplicationguard/kdsharedmemorylocker.cpp
-        ${CMAKE_SOURCE_DIR}/3rdparty/kdsingleapplicationguard/kdtoolsglobal.cpp
-        ${CMAKE_SOURCE_DIR}/3rdparty/kdsingleapplicationguard/kdlockedsharedmemorypointer.cpp
-    )
-    mark_thirdparty_code( ${kdsagSources} )
-    list( APPEND calamaresSources ${kdsagSources} )
-endif()
-
 include_directories(
     ${CMAKE_SOURCE_DIR}/src/libcalamares
     ${CMAKE_SOURCE_DIR}/src/libcalamaresui
@@ -65,14 +54,11 @@ target_link_libraries( calamares_bin
         Qt5::Core
         Qt5::Widgets
         KF5::CoreAddons
+        KF5::DBusAddons
 )
 if( WITH_KF5Crash )
     target_link_libraries( calamares_bin PRIVATE KF5::Crash )
     target_compile_definitions( calamares_bin PRIVATE WITH_KF5Crash )
-endif()
-if( WITH_KF5DBus )
-    target_link_libraries( calamares_bin PRIVATE KF5::DBusAddons )
-    target_compile_definitions( calamares_bin PRIVATE WITH_KF5DBus )
 endif()
 
 install( TARGETS calamares_bin

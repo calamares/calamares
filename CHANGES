@@ -13,7 +13,12 @@ This release contains contributions from (alphabetically by first name):
  - No external contributors yet
 
 ## Core ##
- - No core changes yet
+ - KDE Framework "DBusAddons" is now required, and is used to "activate"
+   Calamares; the KDAB Single Application Guard is no longer used.
+   KDSAG needed patching to chase Qt 5.15 deprecations, and the DBus
+   activation code is tried and tested in Frameworks (tier 1).
+   Running `calamares -d` no longer enforces a single-application
+   (it is for debugging purposes, after all).
 
 ## Modules ##
  - No module changes yet

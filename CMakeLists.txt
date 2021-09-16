@@ -63,7 +63,6 @@ option( INSTALL_POLKIT "Install Polkit configuration" ON )
 option( INSTALL_COMPLETION "Install shell completions" OFF )
 # Options for the calamares executable
 option( WITH_KF5Crash "Enable crash reporting with KCrash." ON )  # TODO:3.3: WITH->BUILD (this isn't an ABI thing)
-option( WITH_KF5DBus "Use DBus service for unique-application." OFF )  # TODO:3.3: WITH->BUILD
 # When adding WITH_* that affects the ABI offered by libcalamares,
 # also update libcalamares/CalamaresConfig.h.in
 option( WITH_PYTHON "Enable Python modules API (requires Boost.Python)." ON )
@@ -329,17 +328,18 @@ set_package_properties(
     URL "https://api.kde.org/frameworks/kcoreaddons/"
     PURPOSE "About Calamares"
 )
+set_package_properties(
+    KF5::DBusAddons PROPERTIES
+    TYPE REQUIRED
+    DESCRIPTION "Classes for DBus activation"
+    URL "https://api.kde.org/frameworks/dbusaddons/"
+    PURPOSE "Unique instance of Calamares"
+)
 if( NOT KF5Crash_FOUND )
     if( WITH_KF5Crash )
         message(WARNING "WITH_KF5Crash is set, but KF5::Crash is not available.")
     endif()
     set( WITH_KF5Crash OFF )
-endif()
-if( NOT KF5DBusAddons_FOUND )
-    if( WITH_KF5DBus )
-        message(WARNING "WITH_KF5DBus is set, but KF5::DBusAddons is not available.")
-    endif()
-    set( WITH_KF5DBus OFF )
 endif()
 
 # TODO:3.3: Use FindPython3 instead
@@ -576,7 +576,6 @@ add_feature_info(Python ${WITH_PYTHON} "Python job modules")
 add_feature_info(PythonQt ${WITH_PYTHONQT} "Python view modules")
 add_feature_info(Config ${INSTALL_CONFIG} "Install Calamares configuration")
 add_feature_info(KCrash ${WITH_KF5Crash} "Crash dumps via KCrash")
-add_feature_info(KDBusAddons ${WITH_KF5DBus} "Unique-application via DBus")
 
 ### CMake infrastructure installation
 #
