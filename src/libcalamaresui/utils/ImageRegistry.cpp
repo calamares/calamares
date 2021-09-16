@@ -8,6 +8,7 @@
 
 #include "ImageRegistry.h"
 
+#include <QHash>
 #include <QIcon>
 #include <QPainter>
 #include <QSvgRenderer>
