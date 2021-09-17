@@ -10,6 +10,7 @@ website will have to do for older versions.
 # 3.2.43 (2021-09-17) #
 
 This release contains contributions from (alphabetically by first name):
+ - Anke Boersma
  - Joe Kamprad
 
 ## Core ##
@@ -22,7 +23,8 @@ This release contains contributions from (alphabetically by first name):
    disables log uploads.
 
 ## Modules ##
- - No module changes
+ - The *keyboardq* module (QML-based UI for keyboard-layout-selection)
+   now displays a better keyboard preview. (Thanks Anke)
 
 
 # 3.2.42 (2021-09-06) #
