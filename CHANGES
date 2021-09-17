@@ -7,7 +7,7 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.43 (unreleased) #
+# 3.2.43 (2021-09-17) #
 
 This release contains contributions from (alphabetically by first name):
  - Joe Kamprad
@@ -17,9 +17,12 @@ This release contains contributions from (alphabetically by first name):
    *Yes*, *No* and *Cancel* buttons that were previously untranslated
    or "stuck" in the language that Calamares started in, are now
    changed to the current language as selected in the welcome page.
+ - Documentation improvements from Joe Kamprad. A *sizeLimit* of zero
+   (which is the default if nothing is set in the branding configuration)
+   disables log uploads.
 
 ## Modules ##
- - No module changes yet
+ - No module changes
 
 
 # 3.2.42 (2021-09-06) #
