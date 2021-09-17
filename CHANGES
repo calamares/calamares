@@ -24,7 +24,8 @@ This release contains contributions from (alphabetically by first name):
 
 ## Modules ##
  - The *keyboardq* module (QML-based UI for keyboard-layout-selection)
-   now displays a better keyboard preview. (Thanks Anke)
+   now features an interactive keyboard preview and has the
+   layout adjusted. (Thanks Anke)
 
 
 # 3.2.42 (2021-09-06) #
