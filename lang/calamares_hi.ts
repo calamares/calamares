@@ -949,12 +949,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/packagechooser/Config.cpp" line="177"/>
       <source>Install option: &lt;strong&gt;%1&lt;/strong&gt;</source>
-      <translation type="unfinished"/>
+      <translation>इंस्टॉल विकल्प : &lt;strong&gt;%1&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/Config.cpp" line="177"/>
       <source>None</source>
-      <translation type="unfinished"/>
+      <translation>कोई नहीं</translation>
     </message>
     <message>
       <location filename="../src/modules/summary/Config.cpp" line="82"/>
@@ -2805,37 +2805,37 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="534"/>
       <source>EFI system partition configured incorrectly</source>
-      <translation type="unfinished"/>
+      <translation>EFI सिस्टम विभाजन उचित रूप से विन्यस्त नहीं है</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="539"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a suitable filesystem.</source>
-      <translation type="unfinished"/>
+      <translation>%1 आरंभ करने हेतु EFI सिस्टम विभाजन आवश्यक है। &lt;br/&gt;&lt;br/&gt; EFI सिस्टम विभाजन विन्यस्त करने हेतु, वापस जाएँ व एक उपयुक्त फाइल सिस्टम चुनें या बनाएँ।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="550"/>
       <source>The filesystem must be mounted on &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>फाइल सिस्टम का &lt;strong&gt;%1&lt;/strong&gt; पर माउंट होना आवश्यक है।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="556"/>
       <source>The filesystem must have type FAT32.</source>
-      <translation type="unfinished"/>
+      <translation>फाइल सिस्टम का प्रकार FAT32 होना आवश्यक है।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="562"/>
       <source>The filesystem must be at least %1 MiB in size.</source>
-      <translation type="unfinished"/>
+      <translation>फाइल सिस्टम का आकार कम-से-कम %1 एमबी होना आवश्यक है।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="569"/>
       <source>The filesystem must have flag &lt;strong&gt;%1&lt;/strong&gt; set.</source>
-      <translation type="unfinished"/>
+      <translation>फाइल सिस्टम पर &lt;strong&gt;%1&lt;/strong&gt; फ्लैग सेट होना आवश्यक है।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="575"/>
       <source>You can continue without setting up an EFI system partition but your system may fail to start.</source>
-      <translation type="unfinished"/>
+      <translation>आप बिना EFI सिस्टम विभाजन सेट करें भी प्रक्रिया जारी रख सकते हैं परन्तु सम्भवतः ऐसा करने से आपका सिस्टम आरंभ नहीं होगा।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="592"/>
@@ -4099,7 +4099,7 @@ Output:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="60"/>
       <source>To activate keyboard preview, select a layout.</source>
-      <translation type="unfinished"/>
+      <translation>कुंजीपटल पूर्वावलोकन सक्रिय करने हेतु एक अभिन्यास चुनें।</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="86"/>
@@ -4114,7 +4114,7 @@ Output:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="263"/>
       <source>Type here to test your keyboard</source>
-      <translation>अपना कुंजीपटल जाँचने के लिए यहां टाइप करें</translation>
+      <translation>अपना कुंजीपटल जाँचने के लिए यहाँ टाइप करें</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="179"/>
@@ -4146,37 +4146,38 @@ Output:
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="45"/>
       <source>LibreOffice is a powerful and free office suite, used by millions of people around the world. It includes several applications that make it the most versatile Free and Open Source office suite on the market.&lt;br/&gt;
                     Default option.</source>
-      <translation type="unfinished"/>
+      <translation>लिब्रे-ऑफिस एक सशक्त और निःशुल्क ऑफिस सॉफ्टवेयर है जिसका उपयोग दुनिया भर के लाखों लोग करते हैं। इसमें कई अनुप्रयोग सम्मिलित हैं जो इसे उपलब्ध विकल्पों में सबसे बहुमुखी निःशुल्क व मुक्त स्रोत ऑफिस सॉफ्टवेयर बनाते हैं।&lt;br/&gt;
+डिफ़ॉल्ट विकल्प।</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="59"/>
       <source>LibreOffice</source>
-      <translation type="unfinished"/>
+      <translation>लिब्रे-ऑफिस</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="108"/>
       <source>If you don't want to install an office suite, just select No Office Suite. You can always add one (or more) later on your installed system as the need arrives.</source>
-      <translation type="unfinished"/>
+      <translation>यदि आप ऑफिस सॉफ्टवेयर इंस्टॉल नहीं करना चाहते हैं, तो कोई ऑफिस सॉफ्टवेयर नहीं का विकल्प चुनें। आप आवश्यकता अनुसार बाद में अपने इंस्टॉल किए गए सिस्टम पर एक (या अधिक) ऐसे सॉफ्टवेयर जोड़ सकते हैं।</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="121"/>
       <source>No Office Suite</source>
-      <translation type="unfinished"/>
+      <translation>कोई ऑफिस सॉफ्टवेयर नहीं</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="172"/>
       <source>Create a minimal Desktop install, remove all extra applications and decide later on what you would like to add to your system. Examples of what won't be on such an install, there will be no Office Suite, no media players, no image viewer or print support.  It will be just a desktop, file browser, package manager, text editor and simple web-browser.</source>
-      <translation type="unfinished"/>
+      <translation>एक संक्षिप्त डेस्कटॉप इंस्टॉल का सृजन करें, सभी अतिरिक्त अनुप्रयोग हटाएँ एवं इंस्टॉल उपरांत तय करें कि आप सिस्टम में कौन से सॉफ्टवेयर जोड़ना चाहते हैं। इस प्रकार के इंस्टॉल में उदाहरण के तौर पर कोई ऑफिस सॉफ्टवेयर, कोई मीडिया प्लेयर, कोई चित्र प्रदर्शक या प्रिंटर समर्थन नहीं होगा। इसमें केवल एक डेस्कटॉप, फाइल प्रबंधक, पैकेज प्रबंधक, लेख संपादक व सरल वेब-ब्राउज़र होगा।</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="185"/>
       <source>Minimal Install</source>
-      <translation type="unfinished"/>
+      <translation>संक्षिप्त इंस्टॉल</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="233"/>
       <source>Please select an option for your install, or use the default: LibreOffice included.</source>
-      <translation type="unfinished"/>
+      <translation>कृपया अपने इंस्टॉल हेतु एक विकल्प चुनें या फिर डिफ़ॉल्ट ही उपयोग करें : इसमें लिब्रे-ऑफिस सम्मिलित है।</translation>
     </message>
   </context>
   <context>
