@@ -120,9 +120,9 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     bool bogus = false;
     auto label = CalamaresUtils::getSubMap( configurationMap, "label", bogus );
     // Use a different class name for translation lookup because the
-    // .. table of strings lives in NetInstallViewStep.cpp and moving them
+    // .. table of strings lives in NetInstallQmlViewStep.cpp and moving them
     // .. around is annoying for translators.
-    static const char className[] = "NetInstallViewStep";
+    static const char className[] = "NetInstallQmlViewStep";
 
     if ( label.contains( "sidebar" ) )
     {

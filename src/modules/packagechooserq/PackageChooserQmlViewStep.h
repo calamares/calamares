@@ -11,7 +11,6 @@
 #ifndef PACKAGECHOOSERQMLVIEWSTEP_H
 #define PACKAGECHOOSERQMLVIEWSTEP_H
 
-// Config from packagechooser module
 #include "Config.h"
 
 #include "DllMacro.h"
