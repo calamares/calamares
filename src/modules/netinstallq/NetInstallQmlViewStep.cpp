@@ -98,7 +98,7 @@ NetInstallQmlViewStep::setConfigurationMap( const QVariantMap& configurationMap 
     m_config->setConfigurationMap( configurationMap );
 
     if ( !this->getConfig() ) {
-        cDebug() << "Config not valid!";
+        cDebug() << "Error: Config not valid!";
     }
 
     Calamares::QmlViewStep::setConfigurationMap( configurationMap );
