@@ -23,6 +23,8 @@ calamares_add_plugin( netinstallq
         NetInstallQmlViewStep.cpp
         PackageTreeItem.cpp
         PackageModel.cpp
+    RESOURCES
+        netinstallq.qrc
     LINK_PRIVATE_LIBRARIES
         calamaresui
         ${_extra_libraries}
