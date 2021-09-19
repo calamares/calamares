@@ -108,6 +108,7 @@ Config::loadingDone()
         m_queue = nullptr;
     }
     emit statusReady();
+    emit packageModelChanged();
 }
 
 
