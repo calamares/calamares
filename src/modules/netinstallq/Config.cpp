@@ -25,7 +25,7 @@
 #include <QNetworkReply>
 
 Config::Config( QObject* parent )
-    : QObject( parent )
+    : Calamares::ModuleSystem::Config( parent )
     , m_model( new PackageModel( this ) )
 {
     CALAMARES_RETRANSLATE_SLOT( &Config::retranslate );
@@ -180,3 +180,11 @@ Config::finalizeGlobalStorage( const Calamares::ModuleSystem::InstanceKey& key )
     CalamaresUtils::Packages::setGSPackageAdditions(
         Calamares::JobQueue::instance()->globalStorage(), key, installPackages, tryInstallPackages );
 }
+
+bool
+Config::refreshNextButtonStatus()
+{
+    emit nextStatusChanged( true );
+    return !this->required();
+}
+

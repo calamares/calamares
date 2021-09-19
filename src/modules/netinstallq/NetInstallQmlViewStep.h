@@ -34,6 +34,8 @@ public:
 
     void onActivate() override;
 
+    bool m_nextEnabled = false;
+
     QString prettyName() const override;
     QString prettyStatus() const override;
 
@@ -54,7 +56,7 @@ public slots:
     void nextIsReady();
 
 private:
-    Config m_config;
+    Config* m_config;
     CalamaresUtils::Locale::TranslatedString* m_stepName; 
 };
 

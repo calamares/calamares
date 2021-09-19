@@ -13,6 +13,7 @@
 #include "NetInstallQmlViewStep.h"
 
 #include "Config.h"
+#include "utils/Logger.h"
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( NetInstallQmlViewStepFactory, registerPlugin< NetInstallQmlViewStep >(); )
 
@@ -29,8 +30,9 @@ void
 NetInstallQmlViewStep::onActivate()
 {
     cDebug() << "Activated " << prettyName() << "...";
-    m_config->updateDisplayedData();
-    cDebug() << "Refreshed QML data after activating " << prettyName() << "...";
+    // TODO
+    // m_config->updateDisplayedData();
+    // cDebug() << "Refreshed QML data after activating " << prettyName() << "...";
 }
 
 QString
@@ -40,15 +42,15 @@ NetInstallQmlViewStep::prettyName() const
 }
 
 QString
-PackageChooserQmlViewStep::prettyStatus() const
+NetInstallQmlViewStep::prettyStatus() const
 {
-    return m_config->prettyStatus();
+    return m_config->status();
 }
 
 bool
 NetInstallQmlViewStep::isNextEnabled() const
 {
-    return !m_config.required();
+    return !m_config->required();
 }
 
 
@@ -85,11 +87,18 @@ NetInstallQmlViewStep::jobs() const
 void
 NetInstallQmlViewStep::onLeave()
 {
-    m_config.finalizeGlobalStorage( moduleInstanceKey() );
+    m_config->finalizeGlobalStorage( moduleInstanceKey() );
 }
 
 void
 NetInstallQmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    m_config.setConfigurationMap( configurationMap );
+    m_config->setConfigurationMap( configurationMap );
+}
+
+void
+NetInstallQmlViewStep::nextIsReady()
+{
+    m_nextEnabled = true;
+    emit nextStatusChanged( true );
 }

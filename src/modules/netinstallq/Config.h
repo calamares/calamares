@@ -17,6 +17,7 @@
 
 #include "locale/TranslatableConfiguration.h"
 #include "modulesystem/InstanceKey.h"
+#include "modulesystem/Config.h"
 
 #include <QObject>
 #include <QVariantMap>
@@ -25,7 +26,7 @@
 
 class LoaderQueue;
 
-class Config : public QObject
+class Config : public Calamares::ModuleSystem::Config
 {
     Q_OBJECT
 
@@ -80,12 +81,15 @@ public:
      */
     void finalizeGlobalStorage( const Calamares::ModuleSystem::InstanceKey& key );
 
+    bool refreshNextButtonStatus();
+
 Q_SIGNALS:
     void statusChanged( QString status );  ///< Something changed
     void sidebarLabelChanged( QString label );
     void titleLabelChanged( QString label );
     void statusReady();  ///< Loading groups is complete
     void packageModelChanged();
+    void nextStatusChanged( bool );
 
 private Q_SLOTS:
     void retranslate();

@@ -20,7 +20,7 @@ calamares_add_plugin( netinstallq
     SOURCES
         Config.cpp
         LoaderQueue.cpp
-        NetInstallQqmlViewStep.cpp
+        NetInstallQmlViewStep.cpp
         PackageTreeItem.cpp
         PackageModel.cpp
     LINK_PRIVATE_LIBRARIES
