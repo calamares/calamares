@@ -13,7 +13,12 @@
 #include "NetInstallQmlViewStep.h"
 
 #include "Config.h"
+#include "GlobalStorage.h"
+#include "JobQueue.h"
+#include "locale/TranslatableConfiguration.h"
+#include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
+#include "utils/Variant.h"
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( NetInstallQmlViewStepFactory, registerPlugin< NetInstallQmlViewStep >(); )
 
@@ -80,9 +85,6 @@ NetInstallQmlViewStep::jobs() const
 {
     return Calamares::JobList();
 }
-
-
-
 
 void
 NetInstallQmlViewStep::onLeave()
