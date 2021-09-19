@@ -119,7 +119,7 @@ static bool
 setupLuks( const LuksDevice& d )
 {
     auto r = CalamaresUtils::System::instance()->targetEnvCommand(
-        { "cryptsetup", "luksAddKey", d.device, keyfile }, QString(), d.passphrase, std::chrono::seconds( 15 ) );
+        { "cryptsetup", "luksAddKey", d.device, keyfile }, QString(), d.passphrase, std::chrono::seconds( 60 ) );
     if ( r.getExitCode() != 0 )
     {
         cWarning() << "Could not configure LUKS keyfile on" << d.device << ':' << r.getOutput() << "(exit code"
