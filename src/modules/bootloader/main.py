@@ -73,18 +73,17 @@ def get_bootloader_entry_name():
         return branding["bootloaderEntryName"]
 
 
-def create_systemd_boot_conf(install_path, efi_dir, uuid, entry, entry_name, kernel, kernel_type, kernel_version):
+def create_systemd_boot_conf(installation_root_path, efi_dir, uuid, entry, kernel, kernel_type, kernel_version):
     """
     Creates systemd-boot configuration files based on given parameters.
 
-    :param install_path:
-    :param efi_dir:
-    :param uuid:
-    :param entry:
-    :param entry_name:
-    :param kernel:
-    :param kernel_type:
-    :param kernel_version:
+    :param installation_root_path: A string containing the absolute path to the root of the installation
+    :param efi_dir: A string containing the path to the efi dir relative to the root of the installation
+    :param uuid: A string containing the UUID of the root volume
+    :param entry: A string containing the name of the entry as it will be displayed on boot
+    :param kernel: A string containing the path to the kernel relative to the root of the installation
+    :param kernel_type: A string which should be set if there is a special version of the entry, for example "fallback"
+    :param kernel_version: The kernel version string
     """
     kernel_params = ["quiet"]
 
@@ -133,53 +132,29 @@ def create_systemd_boot_conf(install_path, efi_dir, uuid, entry, entry_name, ker
         kernel_params.append("resume=/dev/mapper/{!s}".format(
             swap_outer_mappername))
 
-    kernel_line = entry_name + " " + kernel_version
-    libcalamares.utils.debug("Configure: \"{!s}\"".format(kernel_line))
+    libcalamares.utils.debug("Configure: \"{!s}\"".format(f"{entry} {kernel_version}"))
 
     if kernel_type == "fallback":
         version_string = kernel_version + "-fallback"
         initrd = "initrd-fallback"
-        mkinitcpio_option = "-S autodetect"
     else:
         version_string = kernel_version
         initrd = "initrd"
-        mkinitcpio_option = ""
 
     # get the machine-id
-    with open(os.path.join(install_path, "etc", "machine-id"), 'r') as machineid_file:
+    with open(os.path.join(installation_root_path, "etc", "machine-id"), 'r') as machineid_file:
         machine_id = machineid_file.read().rstrip('\n')
 
     # Copy kernel to a subdirectory of /efi partition
-    machine_dir = os.path.join(install_path + efi_dir, machine_id)
-    try:
-        os.mkdir(machine_dir)
-    except FileExistsError: # We can ignore errors caused by the directory existing already
-        pass
+    machine_dir = os.path.join(installation_root_path + efi_dir, machine_id)
+    os.makedirs(machine_dir, exist_ok=True)
 
-    files_dir = os.path.join(machine_dir, kernel_version)
-    try:
-        os.mkdir(files_dir)
-    except FileExistsError: # We can ignore errors caused by the directory existing already
-        pass
+    target_efi_files_dir = os.path.join(machine_dir, kernel_version)
+    os.makedirs(target_efi_files_dir, exist_ok=True) 
     
-    kernel_path = os.path.join(install_path, kernel)
+    kernel_path = os.path.join(installation_root_path, kernel)
     kernel_name = os.path.basename(kernel_path)
-    shutil.copyfile(kernel_path, os.path.join(files_dir, "linux"))
-
-    # generate the initramfs - this is Arch specific and should be replaced for other distros
-    try:
-        subprocess.run(["chroot " +
-                        install_path + 
-                        " mkinitcpio -k " + kernel_version + " -g " + os.path.join("/", os.path.relpath(files_dir, install_path), initrd)],
-                        shell=True,
-                        capture_output=True,
-                        check=True)
-    except subprocess.CalledProcessError as cpe:
-        libcalamares.utils.debug("mkiniticpio failed")
-        libcalamares.utils.debug("STDOUT: " + cpe.stdout.decode())
-        libcalamares.utils.debug("STDERR: " + cpe.stderr.decode())
-        raise
-
+    shutil.copyfile(kernel_path, os.path.join(target_efi_files_dir, "linux"))
 
     # write the entry
     lines = [
@@ -195,9 +170,9 @@ def create_systemd_boot_conf(install_path, efi_dir, uuid, entry, entry_name, ker
         additional_initrd_files = libcalamares.job.configuration["additionalInitrdFiles"]
         for initrd_file in additional_initrd_files.split(','):
             libcalamares.utils.debug("Attempting to handle initrd image " + initrd_file)
-            if os.path.isfile(os.path.join(install_path, initrd_file)):
+            if os.path.isfile(os.path.join(installation_root_path, initrd_file.lstrip('/'))):
                 libcalamares.utils.debug("Found image " + initrd_file)
-                shutil.copyfile(os.path.join(install_path, initrd_file), os.path.join(files_dir, os.path.basename(initrd_file)))
+                shutil.copyfile(os.path.join(installation_root_path, initrd_file.lstrip('/')), os.path.join(target_efi_files_dir, os.path.basename(initrd_file)))
                 lines.append("initrd     {!s}\n".format(os.path.join("/", machine_id, kernel_version, os.path.basename(initrd_file))))
     except KeyError: # If the configuration option isn't set, we can just move on
         libcalamares.utils.debug("Failed to find key additionalInitrdFiles")
@@ -206,7 +181,7 @@ def create_systemd_boot_conf(install_path, efi_dir, uuid, entry, entry_name, ker
     lines.append("initrd     {!s}\n".format(os.path.join("/", machine_id, kernel_version, initrd)))
     lines.append("options    {!s} rw\n".format(" ".join(kernel_params)))
 
-    conf_path = os.path.join(install_path + efi_dir,
+    conf_path = os.path.join(installation_root_path + efi_dir,
                              "loader",
                              "entries",
                              machine_id + "-" + version_string + ".conf")
@@ -275,6 +250,30 @@ def efi_boot_next():
     if boot_entry:
         subprocess.call([boot_mgr, "-n", boot_entry])
 
+def get_kernels(installation_root_path):
+    """
+    Gets a list of kernels and associated values for each kernel.  This will work as is for many distros.
+    If not, it should be safe to modify it to better support your distro
+
+    :param installation_root_path: A string with the absolute path to the root of the installation
+
+    Returns a list of 3-tuples
+
+    Each 3-tuple contains the kernel, kernel_type and kernel_version
+    """
+    kernel_search_path = libcalamares.job.configuration["kernelSearchPath"]
+    source_kernel_name = libcalamares.job.configuration["kernelName"]
+    kernel_list = []
+
+    # find all the installed kernels and generate default and fallback entries for each
+    for root, dirs, files in os.walk(os.path.join(installation_root_path, kernel_search_path.lstrip('/'))): 
+        for file in files:  
+            if file == source_kernel_name:
+                rel_root = os.path.relpath(root, installation_root_path)
+                kernel_list.append((os.path.join(rel_root, file),"default",os.path.basename(root)))
+                kernel_list.append((os.path.join(rel_root, file),"fallback",os.path.basename(root)))
+
+    return kernel_list
 
 def install_systemd_boot(efi_directory):
     """
@@ -283,10 +282,8 @@ def install_systemd_boot(efi_directory):
     :param efi_directory:
     """
     libcalamares.utils.debug("Bootloader: systemd-boot")
-    install_path = libcalamares.globalstorage.value("rootMountPoint")
-    kernel_search_path = libcalamares.job.configuration["kernelSearchPath"]
-    source_kernel_name = libcalamares.job.configuration["kernelName"]
-    install_efi_directory = install_path + efi_directory
+    installation_root_path = libcalamares.globalstorage.value("rootMountPoint")
+    install_efi_directory = installation_root_path + efi_directory
     uuid = get_uuid()
     distribution = get_bootloader_entry_name()
     distribution_translated = distribution.translate(file_name_sanitizer)
@@ -297,31 +294,16 @@ def install_systemd_boot(efi_directory):
                      "--path={!s}".format(install_efi_directory),
                      "install"])
 
-    # find all the installed kernels and generate default and fallback entries for each
-    # This is Arch-specific and may need adjustment for other distros
-    for root, dirs, files in os.walk(os.path.join(install_path, kernel_search_path.lstrip('/'))): 
-        for file in files:  
-            if file == source_kernel_name:
-                rel_root = os.path.relpath(root, install_path)
-                create_systemd_boot_conf(install_path,
-                                        efi_directory,
-                                        uuid,
-                                        distribution,
-                                        distribution_translated,
-                                        os.path.join(rel_root, file),
-                                        "default",
-                                        os.path.basename(root))
-                create_systemd_boot_conf(install_path,
-                                        efi_directory,
-                                        uuid,
-                                        distribution,
-                                        distribution_translated,
-                                        os.path.join(rel_root, file),
-                                        "fallback",
-                                        os.path.basename(root))
+    for (kernel, kernel_type, kernel_version) in get_kernels(installation_root_path):
+        create_systemd_boot_conf(installation_root_path,
+                                efi_directory,
+                                uuid,
+                                distribution,
+                                kernel,
+                                kernel_type,
+                                kernel_version)
 
     create_loader(loader_path, distribution_translated)
-
 
 def get_grub_efi_parameters():
     """
@@ -359,8 +341,8 @@ def install_grub(efi_directory, fw_type):
     """
     if fw_type == "efi":
         libcalamares.utils.debug("Bootloader: grub (efi)")
-        install_path = libcalamares.globalstorage.value("rootMountPoint")
-        install_efi_directory = install_path + efi_directory
+        installation_root_path = libcalamares.globalstorage.value("rootMountPoint")
+        install_efi_directory = installation_root_path + efi_directory
 
         if not os.path.isdir(install_efi_directory):
             os.makedirs(install_efi_directory)
@@ -430,8 +412,8 @@ def install_secureboot(efi_directory):
     """
     efi_bootloader_id = efi_label()
 
-    install_path = libcalamares.globalstorage.value("rootMountPoint")
-    install_efi_directory = install_path + efi_directory
+    installation_root_path = libcalamares.globalstorage.value("rootMountPoint")
+    install_efi_directory = installation_root_path + efi_directory
 
     if efi_word_size() == "64":
         install_efi_bin = "shimx64.efi"

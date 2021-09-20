@@ -33,3 +33,4 @@ required:
     - grubMkconfig
     - grubCfg
     - grubProbe
+    - machineid
