@@ -123,8 +123,10 @@ generateTargetKeyfile()
         return false;
     }
 
-    // Give ample time to check that the file was created correctly
-    auto r = CalamaresUtils::System::instance()->targetEnvCommand( { "ls", "-la", "/" } );
+    // Give ample time to check that the file was created correctly;
+    // we actually expect ls to return pretty-much-instantly.
+    auto r = CalamaresUtils::System::instance()->targetEnvCommand(
+        { "ls", "-la", "/" }, QString(), QString(), std::chrono::seconds( 5 ) );
     cDebug() << "In target system after creating LUKS file" << r.getOutput();
     return true;
 }
@@ -132,8 +134,10 @@ generateTargetKeyfile()
 static bool
 setupLuks( const LuksDevice& d )
 {
+    // Adding the key can take some times, measured around 15 seconds with
+    // a HDD (spinning rust) and a slow-ish computer. Give it a minute.
     auto r = CalamaresUtils::System::instance()->targetEnvCommand(
-        { "cryptsetup", "luksAddKey", d.device, keyfile }, QString(), d.passphrase, std::chrono::seconds( 15 ) );
+        { "cryptsetup", "luksAddKey", d.device, keyfile }, QString(), d.passphrase, std::chrono::seconds( 60 ) );
     if ( r.getExitCode() != 0 )
     {
         cWarning() << "Could not configure LUKS keyfile on" << d.device << ':' << r.getOutput() << "(exit code"
