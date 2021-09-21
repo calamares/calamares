@@ -206,8 +206,8 @@ msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
 msgstr ""
-"Seznam správců displejů je prázdný nebo není definován v jak "
-"bothglobalstorage, tak v displaymanager.conf."
+"Seznam správců displejů je prázdný nebo není definován v jak globalstorage, "
+"tak v displaymanager.conf."
 
 #: src/modules/displaymanager/main.py:989
 msgid "Display manager configuration was incomplete"
@@ -343,7 +343,7 @@ msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."
 msgstr ""
-"Nástroji pro správu balíčků se nepodařilo udělat změny v nainstalovaném "
+"Nástroji pro správu balíčků se nepodařilo udělat změny v instalovaném "
 "systému. Příkaz <pre>{!s}</pre> vrátil chybový kód {!s}."
 
 #: src/modules/bootloader/main.py:43
