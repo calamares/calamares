@@ -28,35 +28,57 @@ def pretty_name():
     return _("Configuring mkinitcpio.")
 
 
-def cpuinfo():
+class cpuinfo(object):
     """
-    Return the information in /proc/cpuinfo as a dictionary in the following
-    format:
+    Object describing the current CPU's characteristics. It may be
+    be considered a named tuple, there's no behavior here.
 
-    cpu_info['proc0']={...}
-    cpu_info['proc1']={...}
+    Fields in the object:
+        - is_intel (if it's definitely an Intel CPU)
+        - is_amd (if it's definitely an AMD CPU)
+        - number_of_cores
+    It is possible for both is_* fields to be False.
     """
-    cpu_info = OrderedDict()
-    procinfo = OrderedDict()
+    def __init__(self):
+        self.is_intel = False
+        self.is_amd = False
+        self.number_of_cores = 0
 
-    nprocs = 0
+        cpu = self._cpuinfo()
+        self.is_intel = cpu['proc0']['vendor_id'].lower() == "genuineintel"
+        self.is_amd = cpu['proc0']['vendor_id'].lower() == "authenticamd"
+        self.number_of_cores = len(cpu)
 
-    with open('/proc/cpuinfo') as cpuinfo_file:
-        for line in cpuinfo_file:
-            if not line.strip():
-                # end of one processor
-                cpu_info["proc{!s}".format(nprocs)] = procinfo
-                nprocs += 1
-                # Reset
-                procinfo = OrderedDict()
-            else:
-                if len(line.split(':')) == 2:
-                    splitted_line = line.split(':')[1].strip()
-                    procinfo[line.split(':')[0].strip()] = splitted_line
+    @staticmethod
+    def _cpuinfo():
+        """
+        Return the information in /proc/cpuinfo as a dictionary in the following
+        format:
+
+        cpu_info['proc0']={...}
+        cpu_info['proc1']={...}
+        """
+        cpu_info = OrderedDict()
+        procinfo = OrderedDict()
+
+        nprocs = 0
+
+        with open('/proc/cpuinfo') as cpuinfo_file:
+            for line in cpuinfo_file:
+                if not line.strip():
+                    # end of one processor
+                    cpu_info["proc{!s}".format(nprocs)] = procinfo
+                    nprocs += 1
+                    # Reset
+                    procinfo = OrderedDict()
                 else:
-                    procinfo[line.split(':')[0].strip()] = ''
+                    if len(line.split(':')) == 2:
+                        splitted_line = line.split(':')[1].strip()
+                        procinfo[line.split(':')[0].strip()] = splitted_line
+                    else:
+                        procinfo[line.split(':')[0].strip()] = ''
 
-    return cpu_info
+        return cpu_info
 
 
 def write_mkinitcpio_lines(hooks, modules, files, root_mount_point):
@@ -172,10 +194,9 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
     else:
         hooks.extend(["filesystems"])
 
-    if btrfs == "yes" and cpu['proc0']['vendor_id'].lower() != "genuineintel":
+    if btrfs == "yes" and  not cpu.is_intel:
         modules.append("crc32c")
-    elif (btrfs == "yes"
-          and cpu['proc0']['vendor_id'].lower() == "genuineintel"):
+    elif (btrfs == "yes" and cpu.is_intel):
         modules.append("crc32c-intel")
     else:
         hooks.append("fsck")
