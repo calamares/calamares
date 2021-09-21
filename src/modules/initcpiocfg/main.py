@@ -125,12 +125,16 @@ def write_mkinitcpio_lines(hooks, modules, files, root_mount_point):
         mkinitcpio_file.write("\n".join(mklins) + "\n")
 
 
-def modify_mkinitcpio_conf(partitions, root_mount_point):
+def find_initcpio_features(partitions, root_mount_point):
     """
-    Modifies mkinitcpio.conf
+    Returns a tuple (hooks, modules, files) needed to support
+    the given @p partitions (filesystems types, encryption, etc)
+    in the target.
 
-    :param partitions:
-    :param root_mount_point:
+    :param partitions: (from GS)
+    :param root_mount_point: (from GS)
+
+    :return 3-tuple of lists
     """
     hooks = ["base", "udev", "autodetect", "modconf", "block", "keyboard", "keymap"]
     modules = []
@@ -198,7 +202,7 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
     else:
         hooks.append("fsck")
 
-    write_mkinitcpio_lines(hooks, modules, files, root_mount_point)
+    return (hooks, modules, files)
 
 
 def run():
@@ -219,6 +223,7 @@ def run():
         return (_("Configuration Error"),
                 _("No root mount point is given for <pre>{!s}</pre> to use." ).format("initcpiocfg"))
 
-    modify_mkinitcpio_conf(partitions, root_mount_point)
+    hooks, modules, files = find_initcpio_features(partitions, root_mount_point)
+    write_mkinitcpio_lines(hooks, modules, files, root_mount_point)
 
     return None
