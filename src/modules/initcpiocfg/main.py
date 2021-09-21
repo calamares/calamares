@@ -119,21 +119,18 @@ def write_mkinitcpio_lines(hooks, modules, files, root_mount_point):
     """
     mklins = get_host_initcpio()
 
-    for i in range(len(mklins)):
-        if mklins[i].startswith("HOOKS"):
-            joined_hooks = ' '.join(hooks)
-            mklins[i] = "HOOKS=\"{!s}\"".format(joined_hooks)
-        elif mklins[i].startswith("MODULES"):
-            joined_modules = ' '.join(modules)
-            mklins[i] = "MODULES=\"{!s}\"".format(joined_modules)
-        elif mklins[i].startswith("FILES"):
-            joined_files = ' '.join(files)
-            mklins[i] = "FILES=\"{!s}\"".format(joined_files)
-
-    path = os.path.join(root_mount_point, "etc/mkinitcpio.conf")
-
-    with open(path, "w") as mkinitcpio_file:
-        mkinitcpio_file.write("\n".join(mklins) + "\n")
+    target_path = os.path.join(root_mount_point, "etc/mkinitcpio.conf")
+    with open(target_path, "w") as mkinitcpio_file:
+        for line in mklins:
+            # Replace HOOKS, MODULES and FILES lines with what we
+            # have found via find_initcpio_features()
+            if line.startswith("HOOKS"):
+                line = "HOOKS=\"{!s}\"".format(' '.join(hooks))
+            elif line.startswith("MODULES"):
+                line = "MODULES=\"{!s}\"".format(' '.join(modules))
+            elif lines.startswith("FILES"):
+                line = "FILES=\"{!s}\"".format(' '.join(files))
+            mkinitcpio_file.write(line + "\n")
 
 
 def find_initcpio_features(partitions, root_mount_point):
