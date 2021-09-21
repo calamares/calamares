@@ -10,13 +10,15 @@ website will have to do for older versions.
 # 3.2.44 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - whorfin (new contributor, welcome!)
 
 ## Core ##
  - No core changes yet
 
 ## Modules ##
- - No module changes yet
+ - The *luksbootkeyfile* module was reported to be too quick to declare
+   a timeout when applying the keyfile. The timeout has been increased
+   to one minute. (Thanks whorfin)
 
 
 # 3.2.43 (2021-09-17) #

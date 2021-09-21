@@ -18,15 +18,17 @@
 CalamaresUtils::EntropySource
 CalamaresUtils::getEntropy( int size, QByteArray& b )
 {
+    constexpr const char filler = char( 0xcb );
+
+    b.fill( filler );
     b.clear();
     if ( size < 1 )
     {
         return EntropySource::None;
     }
 
-    b.resize( size );
+    b.fill( filler, size );
     char* buffer = b.data();
-    std::fill( buffer, buffer + size, 0xcb );
 
     qint64 readSize = 0;
     QFile urandom( "/dev/urandom" );
