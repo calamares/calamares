@@ -91,6 +91,23 @@ class cpuinfo(object):
         return cpu_info
 
 
+def get_host_initcpio():
+    """
+    Reads the host system mkinitcpio.conf and returns all
+    the lines from that file, or an empty list if it does
+    not exist.
+    """
+    hostfile = "/etc/mkinitcpio.conf"
+    try:
+        with open(hostfile, "r") as mkinitcpio_file:
+            mklins = [x.strip() for x in mkinitcpio_file.readlines()]
+    except FileNotFoundError:
+        libcalamares.utils.debug("Could not open host file '%s'" % hostfile)
+        mklins = []
+
+    return mklins
+
+
 def write_mkinitcpio_lines(hooks, modules, files, root_mount_point):
     """
     Set up mkinitcpio.conf.
@@ -100,13 +117,7 @@ def write_mkinitcpio_lines(hooks, modules, files, root_mount_point):
     :param files:
     :param root_mount_point:
     """
-    hostfile = "/etc/mkinitcpio.conf"
-    try:
-        with open(hostfile, "r") as mkinitcpio_file:
-            mklins = [x.strip() for x in mkinitcpio_file.readlines()]
-    except FileNotFoundError:
-        libcalamares.utils.debug("Could not open host file '%s'" % hostfile)
-        mklins = []
+    mklins = get_host_initcpio()
 
     for i in range(len(mklins)):
         if mklins[i].startswith("HOOKS"):
