@@ -101,7 +101,7 @@ Module::loadConfigurationFile( const QString& configFileName )  //throws YAML::E
             YAML::Node doc = YAML::Load( ba.constData() );
             if ( doc.IsNull() )
             {
-                cDebug() << "Found empty module configuration" << path;
+                cWarning() << "Found empty module configuration" << path;
                 // Special case: empty config files are valid,
                 // but aren't a map.
                 return;
@@ -112,14 +112,13 @@ Module::loadConfigurationFile( const QString& configFileName )  //throws YAML::E
                 return;
             }
 
-            cDebug() << "Loaded module configuration" << path;
             m_configurationMap = CalamaresUtils::yamlMapToVariant( doc );
             m_emergency = m_maybe_emergency && m_configurationMap.contains( EMERGENCY )
                 && m_configurationMap[ EMERGENCY ].toBool();
             return;
         }
     }
-    cDebug() << "No config file for" << name() << "found anywhere at" << Logger::DebugList( configCandidates );
+    cWarning() << "No config file for" << name() << "found anywhere at" << Logger::DebugList( configCandidates );
 }
 
 
