@@ -250,8 +250,6 @@ lookForFstabEntries( const QString& partitionPath )
     {
         QFile fstabFile( mount.path() + "/etc/fstab" );
 
-        cDebug() << Logger::SubEntry << "reading" << fstabFile.fileName();
-
         if ( fstabFile.open( QIODevice::ReadOnly | QIODevice::Text ) )
         {
             const QStringList fstabLines = QString::fromLocal8Bit( fstabFile.readAll() ).split( '\n' );
@@ -261,10 +259,10 @@ lookForFstabEntries( const QString& partitionPath )
                 fstabEntries.append( FstabEntry::fromEtcFstab( rawLine ) );
             }
             fstabFile.close();
-            cDebug() << Logger::SubEntry << "got" << fstabEntries.count() << "lines.";
+            const int lineCount = fstabEntries.count();
             std::remove_if(
                 fstabEntries.begin(), fstabEntries.end(), []( const FstabEntry& x ) { return !x.isValid(); } );
-            cDebug() << Logger::SubEntry << "got" << fstabEntries.count() << "fstab entries.";
+            cDebug() << Logger::SubEntry << "got" << fstabEntries.count() << "fstab entries from" << lineCount << "lines in" << fstabFile.fileName();
         }
         else
         {
