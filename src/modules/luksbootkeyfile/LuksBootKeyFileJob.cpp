@@ -8,7 +8,9 @@
 #include "LuksBootKeyFileJob.h"
 
 #include "utils/CalamaresUtilsSystem.h"
+#include "utils/Entropy.h"
 #include "utils/Logger.h"
+#include "utils/NamedEnum.h"
 #include "utils/UMask.h"
 #include "utils/Variant.h"
 
@@ -102,15 +104,27 @@ static bool
 generateTargetKeyfile()
 {
     CalamaresUtils::UMask m( CalamaresUtils::UMask::Safe );
-    auto r = CalamaresUtils::System::instance()->targetEnvCommand(
-        { "dd", "bs=512", "count=4", "if=/dev/urandom", QString( "of=%1" ).arg( keyfile ) } );
-    if ( r.getExitCode() != 0 )
+
+    // Get the data
+    QByteArray entropy;
+    auto entropySource = CalamaresUtils::getEntropy( 2048, entropy );
+    if ( entropySource != CalamaresUtils::EntropySource::URandom )
     {
-        cWarning() << "Could not create LUKS keyfile:" << r.getOutput() << "(exit code" << r.getExitCode() << ')';
+        cWarning() << "Could not get entropy from /dev/urandom for LUKS.";
         return false;
     }
+
+    auto fileResult = CalamaresUtils::System::instance()->createTargetFile(
+        keyfile, entropy, CalamaresUtils::System::WriteMode::Overwrite );
+    entropy.fill( 'A' );
+    if ( !fileResult )
+    {
+        cWarning() << "Could not create LUKS keyfile:" << smash( fileResult.code() );
+        return false;
+    }
+
     // Give ample time to check that the file was created correctly
-    r = CalamaresUtils::System::instance()->targetEnvCommand( { "ls", "-la", "/" } );
+    auto r = CalamaresUtils::System::instance()->targetEnvCommand( { "ls", "-la", "/" } );
     cDebug() << "In target system after creating LUKS file" << r.getOutput();
     return true;
 }
