@@ -28,6 +28,16 @@ def pretty_name():
     return _("Configuring mkinitcpio.")
 
 
+def detect_plymouth():
+    """
+    Checks existence (runnability) of plymouth in the target system.
+
+    @return True if plymouth exists in the target, False otherwise
+    """
+    # Used to only check existence of path /usr/bin/plymouth in target
+    return target_env_call(["sh", "-c", "which plymouth"]) == 0
+
+
 class cpuinfo(object):
     """
     Object describing the current CPU's characteristics. It may be
@@ -115,16 +125,6 @@ def write_mkinitcpio_lines(hooks, modules, files, root_mount_point):
         mkinitcpio_file.write("\n".join(mklins) + "\n")
 
 
-def detect_plymouth():
-    """
-    Checks existence (runnability) of plymouth in the target system.
-
-    @return True if plymouth exists in the target, False otherwise
-    """
-    # Used to only check existence of path /usr/bin/plymouth in target
-    return target_env_call(["sh", "-c", "which plymouth"]) == 0
-
-
 def modify_mkinitcpio_conf(partitions, root_mount_point):
     """
     Modifies mkinitcpio.conf
@@ -132,13 +132,13 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
     :param partitions:
     :param root_mount_point:
     """
+    hooks = ["base", "udev", "autodetect", "modconf", "block", "keyboard", "keymap"]
+    modules = []
+    files = []
+
     swap_uuid = ""
     uses_btrfs = False
     uses_lvm2 = False
-    hooks = ["base", "udev", "autodetect", "modconf", "block", "keyboard",
-             "keymap"]
-    modules = []
-    files = []
     encrypt_hook = False
     openswap_hook = False
     unencrypted_separate_boot = False
