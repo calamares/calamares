@@ -132,9 +132,8 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
     :param partitions:
     :param root_mount_point:
     """
-    cpu = cpuinfo()
     swap_uuid = ""
-    btrfs = ""
+    uses_btrfs = False
     lvm2 = ""
     hooks = ["base", "udev", "autodetect", "modconf", "block", "keyboard",
              "keymap"]
@@ -159,7 +158,7 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
                 openswap_hook = True
 
         if partition["fs"] == "btrfs":
-            btrfs = "yes"
+            uses_btrfs = True
 
         if "lvm2" in partition["fs"]:
             lvm2 = "yes"
@@ -194,10 +193,8 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
     else:
         hooks.extend(["filesystems"])
 
-    if btrfs == "yes" and  not cpu.is_intel:
-        modules.append("crc32c")
-    elif (btrfs == "yes" and cpu.is_intel):
-        modules.append("crc32c-intel")
+    if uses_btrfs:
+        modules.append("crc32c-intel" if cpuinfo().is_intel else "crc32c")
     else:
         hooks.append("fsck")
 
