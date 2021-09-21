@@ -126,23 +126,22 @@ canBeResized( Partition* candidate, const Logger::Once& o )
         return false;
     }
 
-    cDebug() << o << "Checking if" << convenienceName( candidate ) << "can be resized.";
     if ( !candidate->fileSystem().supportGrow() || !candidate->fileSystem().supportShrink() )
     {
-        cDebug() << Logger::SubEntry << "NO, filesystem" << candidate->fileSystem().name()
-                 << "does not support resize.";
+        cDebug() << o << "Can not resize" << convenienceName( candidate ) << ", filesystem"
+                 << candidate->fileSystem().name() << "does not support resize.";
         return false;
     }
 
     if ( isPartitionFreeSpace( candidate ) )
     {
-        cDebug() << Logger::SubEntry << "NO, partition is free space";
+        cDebug() << o << "Can not resize" << convenienceName( candidate ) << ", partition is free space";
         return false;
     }
 
     if ( candidate->isMounted() )
     {
-        cDebug() << Logger::SubEntry << "NO, partition is mounted";
+        cDebug() << o << "Can not resize" << convenienceName( candidate ) << ", partition is mounted";
         return false;
     }
 
@@ -151,14 +150,14 @@ canBeResized( Partition* candidate, const Logger::Once& o )
         PartitionTable* table = dynamic_cast< PartitionTable* >( candidate->parent() );
         if ( !table )
         {
-            cDebug() << Logger::SubEntry << "NO, no partition table found";
+            cDebug() << o << "Can not resize" << convenienceName( candidate ) << ", no partition table found";
             return false;
         }
 
         if ( table->numPrimaries() >= table->maxPrimaries() )
         {
-            cDebug() << Logger::SubEntry << "NO, partition table already has" << table->maxPrimaries()
-                     << "primary partitions.";
+            cDebug() << o << "Can not resize" << convenienceName( candidate ) << ", partition table already has"
+                     << table->maxPrimaries() << "primary partitions.";
             return false;
         }
     }
@@ -167,7 +166,8 @@ canBeResized( Partition* candidate, const Logger::Once& o )
     double requiredStorageGiB = getRequiredStorageGiB( ok );
     if ( !ok )
     {
-        cDebug() << Logger::SubEntry << "NO, requiredStorageGiB is not set correctly.";
+        cDebug() << o << "Can not resize" << convenienceName( candidate )
+                 << ", requiredStorageGiB is not set correctly.";
         return false;
     }
 
@@ -200,24 +200,25 @@ canBeResized( Partition* candidate, const Logger::Once& o )
 bool
 canBeResized( DeviceModel* dm, const QString& partitionPath, const Logger::Once& o )
 {
-    cDebug() << o << "Checking if" << partitionPath << "can be resized.";
-    QString partitionWithOs = partitionPath;
-    if ( partitionWithOs.startsWith( "/dev/" ) )
+    if ( partitionPath.startsWith( "/dev/" ) )
     {
         for ( int i = 0; i < dm->rowCount(); ++i )
         {
             Device* dev = dm->deviceForIndex( dm->index( i ) );
-            Partition* candidate = CalamaresUtils::Partition::findPartitionByPath( { dev }, partitionWithOs );
+            Partition* candidate = CalamaresUtils::Partition::findPartitionByPath( { dev }, partitionPath );
             if ( candidate )
             {
                 return canBeResized( candidate, o );
             }
         }
-        cDebug() << Logger::SubEntry << "no Partition* found for" << partitionWithOs;
+        cWarning() << "Can not resize" << partitionPath << ", no Partition* found.";
+        return false;
     }
-
-    cDebug() << Logger::SubEntry << "Partition" << partitionWithOs << "CANNOT BE RESIZED FOR AUTOINSTALL.";
-    return false;
+    else
+    {
+        cWarning() << "Can not resize" << partitionPath << ", does not start with /dev";
+        return false;
+    }
 }
 
 
@@ -262,7 +263,8 @@ lookForFstabEntries( const QString& partitionPath )
             const int lineCount = fstabEntries.count();
             std::remove_if(
                 fstabEntries.begin(), fstabEntries.end(), []( const FstabEntry& x ) { return !x.isValid(); } );
-            cDebug() << Logger::SubEntry << "got" << fstabEntries.count() << "fstab entries from" << lineCount << "lines in" << fstabFile.fileName();
+            cDebug() << Logger::SubEntry << "got" << fstabEntries.count() << "fstab entries from" << lineCount
+                     << "lines in" << fstabFile.fileName();
         }
         else
         {
