@@ -134,7 +134,7 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
     """
     swap_uuid = ""
     uses_btrfs = False
-    lvm2 = ""
+    uses_lvm2 = False
     hooks = ["base", "udev", "autodetect", "modconf", "block", "keyboard",
              "keymap"]
     modules = []
@@ -161,7 +161,7 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
             uses_btrfs = True
 
         if "lvm2" in partition["fs"]:
-            lvm2 = "yes"
+            uses_lvm2 = True
 
         if partition["mountPoint"] == "/" and "luksMapperName" in partition:
             encrypt_hook = True
@@ -183,7 +183,7 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
                ):
             files.append("/crypto_keyfile.bin")
 
-    if lvm2:
+    if uses_lvm2:
         hooks.append("lvm2")
 
     if swap_uuid != "":
