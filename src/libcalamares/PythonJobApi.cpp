@@ -244,7 +244,7 @@ gettext_path()
 {
     // Going to log informatively just once
     static bool first_time = true;
-    cPointerSetter( &first_time, false );
+    cScopedAssignment( &first_time, false );
 
     // TODO: distinguish between -d runs and normal runs
     // TODO: can we detect DESTDIR-installs?

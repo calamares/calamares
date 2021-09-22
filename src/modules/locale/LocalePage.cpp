@@ -174,8 +174,7 @@ LocalePage::locationChanged( const CalamaresUtils::Locale::TimeZoneData* locatio
     {
         return;
     }
-    m_blockTzWidgetSet = true;  // Blocked until we go out of scope
-    cPointerSetter b( &m_blockTzWidgetSet, false );
+    cScopedAssignment b( &m_blockTzWidgetSet, true, false );
 
     // Set region index
     int index = m_regionCombo->findData( location->region() );

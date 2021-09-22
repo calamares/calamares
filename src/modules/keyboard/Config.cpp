@@ -275,7 +275,7 @@ Config::detectCurrentKeyboardLayout()
     {
         return;
     }
-    cPointerSetter returnToIntial( &m_state, State::Initial );
+    cScopedAssignment returnToIntial( &m_state, State::Initial );
     m_state = State::Guessing;
 
     //### Detect current keyboard layout and variant
@@ -427,7 +427,7 @@ Config::guessLocaleKeyboardLayout()
     {
         return;
     }
-    cPointerSetter returnToIntial( &m_state, State::Initial );
+    cScopedAssignment returnToIntial( &m_state, State::Initial );
     m_state = State::Guessing;
 
     /* Guessing a keyboard layout based on the locale means

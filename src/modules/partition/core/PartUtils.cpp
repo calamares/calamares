@@ -529,7 +529,7 @@ efiFilesystemMinimumSize()
 QString
 canonicalFilesystemName( const QString& fsName, FileSystem::Type* fsType )
 {
-    cPointerSetter type( fsType );
+    cScopedAssignment type( fsType );
     if ( fsName.isEmpty() )
     {
         type = FileSystem::Ext4;
