@@ -134,7 +134,7 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="131"/>
       <source>Widget Tree</source>
-      <translation>Strom widgetu</translation>
+      <translation>Strom ovládacích prvků</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.cpp" line="221"/>
@@ -217,7 +217,7 @@
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="224"/>
       <source>Working directory %1 for python job %2 is not readable.</source>
-      <translation>Pracovní složku %1 pro Python skript %2 se nedaří otevřít pro čtení.</translation>
+      <translation>Pracovní složka %1 pro Python skript %2 není přístupná pro čtení.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="230"/>
@@ -227,7 +227,7 @@
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="231"/>
       <source>Main script file %1 for python job %2 is not readable.</source>
-      <translation>Hlavní soubor s python skriptem %1 pro úlohu %2 se nedaří otevřít pro čtení..</translation>
+      <translation>Hlavní soubor Python skriptu %1 pro úlohu %2 není přístupný pro čtení.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="304"/>
@@ -504,7 +504,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="371"/>
       <source>%1 Installer</source>
-      <translation>%1 instalátor</translation>
+      <translation>Instalátor %1</translation>
     </message>
   </context>
   <context>
@@ -660,7 +660,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1514"/>
       <source>This storage device is a part of an &lt;strong&gt;inactive RAID&lt;/strong&gt; device.</source>
-      <translation>Toto úložné zařízení je součástí &lt;strong&gt;Neaktivního RAID&lt;/strong&gt; zařízení.</translation>
+      <translation>Toto úložné zařízení je součástí &lt;strong&gt;neaktivního RAID&lt;/strong&gt; zařízení.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1641"/>
@@ -758,7 +758,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
       <location filename="../src/modules/keyboard/Config.cpp" line="361"/>
       <source>Set keyboard layout to %1/%2.</source>
-      <translation>Nastavit rozložení klávesnice na %1/%2.</translation>
+      <translation>Nastavit rozvržení klávesnice na %1/%2.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="342"/>
@@ -808,7 +808,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="55"/>
       <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
-      <translation>Počítač nesplňuje minimální požadavky pro instalaci %1.&lt;br/&gt;Instalace nemůže pokračovat &lt;a href="#details"&gt;Podrobnosti…&lt;/a&gt;</translation>
+      <translation>Počítač nesplňuje minimální požadavky pro instalaci %1.&lt;br/&gt;Nastavování nemůže pokračovat &lt;a href="#details"&gt;Podrobnosti…&lt;/a&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="59"/>
@@ -953,7 +953,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
       <location filename="../src/modules/packagechooser/Config.cpp" line="177"/>
       <source>Install option: &lt;strong&gt;%1&lt;/strong&gt;</source>
-      <translation>Možnost instalace: &lt;strong&gt;%1&lt;/strong&gt;</translation>
+      <translation>Volba instalace: &lt;strong&gt;%1&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/Config.cpp" line="177"/>
@@ -1182,7 +1182,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="126"/>
       <source>Preserving home directory</source>
-      <translation>Zachování domovské složky</translation>
+      <translation>Zachovává se domovská složka</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="50"/>
@@ -1198,7 +1198,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="159"/>
       <source>Setting file permissions</source>
-      <translation>Nastavení oprávnění souboru</translation>
+      <translation>Nastavují se přístupová práva k souboru</translation>
     </message>
   </context>
   <context>
@@ -1755,7 +1755,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="23"/>
       <source>System locale setting</source>
-      <translation>Místní a jazykové nastavení systému</translation>
+      <translation>Místní a jazyková nastavení systému</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="30"/>
@@ -1986,7 +1986,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
       <location filename="../src/modules/localeq/Map.qml" line="243"/>
       <source>Timezone: %1</source>
-      <translation>Časová zóna: %1</translation>
+      <translation>Časové pásmo: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Map.qml" line="264"/>
@@ -2152,12 +2152,12 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="115"/>
       <source>Select your preferred Zone within your Region.</source>
-      <translation>Vyberte preferovanou zónu ve vašem regionu.</translation>
+      <translation>Vyberte upřednostňované pásmo ve svém regionu.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="186"/>
       <source>Zones</source>
-      <translation>Zóny</translation>
+      <translation>Pásma</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="233"/>
@@ -2283,7 +2283,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
       <translation>
         <numerusform>Heslo obsahuje méně než %1 číslici</numerusform>
         <numerusform>Heslo obsahuje méně než %1 číslice</numerusform>
-        <numerusform>Heslo obsahuje méně než %1 číslice</numerusform>
+        <numerusform>Heslo obsahuje méně než %1 číslic</numerusform>
         <numerusform>Heslo obsahuje méně než %1 číslice</numerusform>
       </translation>
     </message>
@@ -2463,7 +2463,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="24"/>
       <source>Form</source>
-      <translation>Form</translation>
+      <translation>Formulář</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="44"/>
@@ -2724,7 +2724,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="18"/>
       <source>Form</source>
-      <translation>Form</translation>
+      <translation>Formulář</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="26"/>
@@ -3609,7 +3609,7 @@ Výstup:
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="184"/>
       <source>These groups are missing in the target system: %1</source>
-      <translation>Tyto skupiny chybí v cílovém systému chybí: %1</translation>
+      <translation>Tyto skupiny v cílovém systému chybí: %1</translation>
     </message>
   </context>
   <context>
@@ -3703,7 +3703,7 @@ Výstup:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="187"/>
       <source>KDE user feedback</source>
-      <translation>Zpětná vazba uživatele KDE</translation>
+      <translation>Zpětná vazba od uživatele pro KDE</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="193"/>
@@ -3719,12 +3719,12 @@ Výstup:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="216"/>
       <source>Could not configure KDE user feedback correctly, script error %1.</source>
-      <translation>Nepodařilo se správně nastavit zpětnou vazbu KDE uživatele, chyba ve skriptu %1.</translation>
+      <translation>Nepodařilo se správně nastavit zpětnou vazbu od uživatele pro KDE, chyba ve skriptu %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="222"/>
       <source>Could not configure KDE user feedback correctly, Calamares error %1.</source>
-      <translation>Nepodařilo se správně nastavit zpětnou vazbu KDE uživatele, chyba Calamares %1.</translation>
+      <translation>Nepodařilo se správně nastavit zpětnou vazbu od uživatel pro KDE, chyba Calamares %1.</translation>
     </message>
   </context>
   <context>
@@ -3732,28 +3732,28 @@ Výstup:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="136"/>
       <source>Machine feedback</source>
-      <translation>Zpětná vazba stroje</translation>
+      <translation>Zpětná vazba ze stroje</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="142"/>
       <source>Configuring machine feedback.</source>
-      <translation>Nastavování zpětné vazby stroje</translation>
+      <translation>Nastavování zpětné vazby ze stroje</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="165"/>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="171"/>
       <source>Error in machine feedback configuration.</source>
-      <translation>Chyba v nastavení zpětné vazby stroje.</translation>
+      <translation>Chyba v nastavení zpětné vazby ze stroje.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="166"/>
       <source>Could not configure machine feedback correctly, script error %1.</source>
-      <translation>Nepodařilo se správně nastavit zpětnou vazbu stroje, chyba skriptu %1.</translation>
+      <translation>Nepodařilo se správně nastavit zpětnou vazbu ze stroje, chyba skriptu %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="172"/>
       <source>Could not configure machine feedback correctly, Calamares error %1.</source>
-      <translation>Nepodařilo se správně nastavit zpětnou vazbu stroje, chyba Calamares %1.</translation>
+      <translation>Nepodařilo se správně nastavit zpětnou vazbu ze stroje, chyba Calamares %1.</translation>
     </message>
   </context>
   <context>
@@ -3786,7 +3786,7 @@ Výstup:
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="91"/>
       <source>By selecting this you will send information about your installation and hardware. This information will only be sent &lt;b&gt;once&lt;/b&gt; after the installation finishes.</source>
-      <translation>Výběrem tohoto pošlete informace o své instalaci a hardware. Tyto údaje budou poslány &lt;b&gt;pouze jednorázově&lt;/b&gt; po dokončení instalace.</translation>
+      <translation>Výběrem tohoto pošlete informace o své instalaci a hardware. Tyto údaje budou odeslány &lt;b&gt;pouze jednorázově&lt;/b&gt; po dokončení instalace.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="94"/>
@@ -3975,7 +3975,7 @@ Výstup:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="222"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Vítejte v Calamares,  instalačním programu (nejen) pro %1.&lt;/h1&gt;</translation>
+      <translation>&lt;h1&gt;Vítejte v Calamares, instalačním programu (nejen) pro %1.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="223"/>
@@ -4121,7 +4121,7 @@ Výstup:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="60"/>
       <source>To activate keyboard preview, select a layout.</source>
-      <translation type="unfinished"/>
+      <translation>Pokud chcete aktivovat náhled klávesnice, vyberte rozvržení.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="86"/>
@@ -4131,7 +4131,7 @@ Výstup:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="254"/>
       <source>Layouts</source>
-      <translation>Rovzržení</translation>
+      <translation>Rozvržení</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="263"/>
@@ -4179,7 +4179,7 @@ Výstup:
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="108"/>
       <source>If you don't want to install an office suite, just select No Office Suite. You can always add one (or more) later on your installed system as the need arrives.</source>
-      <translation>Pokud nechcete nainstalovat žádnou sadu kancelářských aplikací, stačí jen zvolit Žádná sada kancelářských aplikací. V případě potřeby je možné kdykoli nějakou přidat na už nainstalovaný systém.</translation>
+      <translation>Pokud nechcete nainstalovat žádnou sadu kancelářských aplikací, stačí jen zvolit Žádná sada kancelářských aplikací. V případě potřeby je možné kdykoli nějakou přidat do už nainstalovaného systému.</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="121"/>
@@ -4310,7 +4310,7 @@ Výstup:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="178"/>
       <source>This name will be used if you make the computer visible to others on a network.</source>
-      <translation>Tento název se použije, pokud počítač zviditelníte ostatním v síti.</translation>
+      <translation>Pod tímto názvem se bude počítač případně zobrazovat ostatním počítačům v síti.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="198"/>
@@ -4335,7 +4335,7 @@ Výstup:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="261"/>
       <source>Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.</source>
-      <translation>Zadejte dvakrát stejné heslo, aby bylo možné zkontrolovat chyby při psaní. Dobré heslo by mělo obsahovat směs písmen, čísel a interpunkce a mělo by mít alespoň osm znaků. Zvažte také jeho pravidelnou změnu.</translation>
+      <translation>Zadání hesla zopakujte i do kontrolní kolonky, abyste měli jistotu, že jste napsali, co zamýšleli (že nedošlo k překlepu). Dobré heslo se bude skládat z písmen, číslic a interpunkce a mělo by být alespoň osm znaků dlouhé. Heslo byste také měli pravidelně měnit (prevence škod z jeho případného prozrazení).</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="406"/>
@@ -4350,7 +4350,7 @@ Výstup:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="398"/>
       <source>Log in automatically without asking for the password</source>
-      <translation>Přihlaste se automaticky bez zadávání hesla</translation>
+      <translation>Přihlašovat se automaticky bez zadávání hesla</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="190"/>
@@ -4360,7 +4360,7 @@ Výstup:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="293"/>
       <source>Reuse user password as root password</source>
-      <translation>Použijte uživatelské heslo zároveň jako heslo root</translation>
+      <translation>Použijte heslo uživatele i pro účet správce (root)</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="301"/>
@@ -4380,12 +4380,12 @@ Výstup:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="342"/>
       <source>Repeat Root Password</source>
-      <translation>Opakujte root heslo</translation>
+      <translation>Zopakujte zadání hesla pro správce systému (root)</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="368"/>
       <source>Enter the same password twice, so that it can be checked for typing errors.</source>
-      <translation>Zadejte dvakrát stejné heslo, aby bylo možné zkontrolovat chyby při psaní.</translation>
+      <translation>Zadání hesla zopakujte i do kontrolní kolonky, abyste měli jistotu, že jste napsali, co zamýšleli (že nedošlo k překlepu).</translation>
     </message>
   </context>
   <context>

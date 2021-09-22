@@ -310,6 +310,14 @@ public:
     }
     friend CDebug& operator<<( CDebug&&, const Once& );
 
+    /** @brief Restore the object to "fresh" state
+     *
+     * It may be necessary to allow the Once object to stream the
+     * function header again -- for instance, after logging an error,
+     * any following debug log might want to re-introduce the header.
+     */
+    void refresh() { m = true; }
+
 private:
     mutable bool m = false;
 };

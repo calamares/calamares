@@ -16,6 +16,7 @@
 #include "partition/Mount.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
+#include "utils/RAII.h"
 #include "utils/String.h"
 
 #include <QCoreApplication>
@@ -147,7 +148,7 @@ debug( const std::string& s )
 void
 warning( const std::string& s )
 {
-    Logger::CDebug( Logger::LOGWARNING )  << output_prefix << QString::fromStdString( s );
+    Logger::CDebug( Logger::LOGWARNING ) << output_prefix << QString::fromStdString( s );
 }
 
 PythonJobInterface::PythonJobInterface( Calamares::PythonJob* parent )
@@ -241,6 +242,10 @@ _add_localedirs( QStringList& pathList, const QString& candidate )
 bp::object
 gettext_path()
 {
+    // Going to log informatively just once
+    static bool first_time = true;
+    cScopedAssignment( &first_time, false );
+
     // TODO: distinguish between -d runs and normal runs
     // TODO: can we detect DESTDIR-installs?
     QStringList candidatePaths
@@ -257,21 +262,26 @@ gettext_path()
     }
     _add_localedirs( candidatePaths, QDir().canonicalPath() );  // .
 
-    cDebug() << "Determining gettext path from" << candidatePaths;
+    if ( first_time )
+    {
+        cDebug() << "Determining gettext path from" << candidatePaths;
+    }
 
     QStringList candidateLanguages = _gettext_languages();
-
     for ( const auto& lang : candidateLanguages )
+    {
         for ( auto localedir : candidatePaths )
         {
             QDir ldir( localedir );
             if ( ldir.cd( lang ) )
             {
-                cDebug() << Logger::SubEntry << "Found" << lang << "in" << ldir.canonicalPath();
+                Logger::CDebug( Logger::LOGDEBUG )
+                    << output_prefix << "Found gettext" << lang << "in" << ldir.canonicalPath();
                 return bp::object( localedir.toStdString() );
             }
         }
-    cDebug() << Logger::SubEntry << "No translation found for languages" << candidateLanguages;
+    }
+    cWarning() << "No translation found for languages" << candidateLanguages;
     return bp::object();  // None
 }
 

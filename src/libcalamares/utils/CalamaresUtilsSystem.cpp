@@ -169,7 +169,7 @@ System::runCommand( System::RunLocation location,
         }
     }
 
-    cDebug() << "Running" << program << RedactedList( arguments );
+    cDebug() << Logger::SubEntry << "Running" << program << RedactedList( arguments );
     process.start();
     if ( !process.waitForStarted() )
     {
@@ -207,10 +207,6 @@ System::runCommand( System::RunLocation location,
         if ( showDebug && !output.isEmpty() )
         {
             cDebug() << Logger::SubEntry << "Finished. Exit code:" << r << "output:\n" << Logger::NoQuote << output;
-        }
-        else
-        {
-            cDebug() << Logger::SubEntry << "Finished. Exit code:" << r;
         }
     }
     else  // if ( r != 0 )

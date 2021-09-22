@@ -55,7 +55,6 @@ private Q_SLOTS:
     void testOddSizedPrintable();
 
     /** @section Tests the RAII bits. */
-    void testBoolSetter();
     void testPointerSetter();
 
     /** @section Tests the Traits bits. */
@@ -341,63 +340,41 @@ LibCalamaresTests::testOddSizedPrintable()
 }
 
 void
-LibCalamaresTests::testBoolSetter()
-{
-    bool b = false;
-
-    QVERIFY( !b );
-    {
-        QVERIFY( !b );
-        cBoolSetter< true > x( b );
-        QVERIFY( b );
-    }
-    QVERIFY( !b );
-
-    QVERIFY( !b );
-    {
-        QVERIFY( !b );
-        cBoolSetter< false > x( b );
-        QVERIFY( !b );  // Still!
-    }
-    QVERIFY( b );
-}
-
-void
 LibCalamaresTests::testPointerSetter()
 {
     int special = 17;
 
     QCOMPARE( special, 17 );
     {
-        cPointerSetter p( &special );
+        cScopedAssignment p( &special );
     }
     QCOMPARE( special, 17 );
     {
-        cPointerSetter p( &special );
+        cScopedAssignment p( &special );
         p = 18;
     }
     QCOMPARE( special, 18 );
     {
-        cPointerSetter p( &special );
+        cScopedAssignment p( &special );
         p = 20;
         p = 3;
     }
     QCOMPARE( special, 3 );
     {
-        cPointerSetter<int> p( nullptr );
+        cScopedAssignment< int > p( nullptr );
     }
     QCOMPARE( special, 3 );
     {
         // "don't do this" .. order of destructors is important
-        cPointerSetter p( &special );
-        cPointerSetter q( &special );
+        cScopedAssignment p( &special );
+        cScopedAssignment q( &special );
         p = 17;
     }
     QCOMPARE( special, 17 );
     {
         // "don't do this" .. order of destructors is important
-        cPointerSetter p( &special );
-        cPointerSetter q( &special );
+        cScopedAssignment p( &special );
+        cScopedAssignment q( &special );
         p = 34;
         q = 2;
         // q destroyed first, then p
@@ -490,8 +467,7 @@ LibCalamaresTests::testVariantStringListCode()
                   QStringList { "astring" } );  // A single string **can** be considered a stringlist!
         m.insert( key, QString( "more strings" ) );
         QCOMPARE( getStringList( m, key ).count(), 1 );
-        QCOMPARE( getStringList( m, key ),
-                  QStringList { "more strings" } );
+        QCOMPARE( getStringList( m, key ), QStringList { "more strings" } );
         m.insert( key, QString() );
         QCOMPARE( getStringList( m, key ).count(), 1 );
         QCOMPARE( getStringList( m, key ), QStringList { QString() } );

@@ -1,10 +1,10 @@
-<!-- === This file is part of Calamares - <https://github.com/calamares> ===
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- === This file is part of Calamares - <https://calamares.io> ===
 
- *   Copyright 2021, Anke Boersma <demm@kaosx.us>
+ *   SPDX-FileCopyrightText: 2021 Anke Boersma <demm@kaosx.us>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above. -->
-
-<?xml version="1.0" encoding="UTF-8"?>
 <Keyboard>
     <Row>
         <Key labels = " |" ratio = ".6"/>
