@@ -42,20 +42,6 @@ struct cqDeleter
     }
 };
 
-/// @brief Sets a bool to @p value and resets to !value on destruction
-template < bool value >
-struct cBoolSetter
-{
-    bool& m_b;
-
-    cBoolSetter( bool& b )
-        : m_b( b )
-    {
-        m_b = value;
-    }
-    ~cBoolSetter() { m_b = !value; }
-};
-
 /// @brief Blocks signals on a QObject until destruction
 using cSignalBlocker = QSignalBlocker;
 

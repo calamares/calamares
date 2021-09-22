@@ -55,7 +55,6 @@ private Q_SLOTS:
     void testOddSizedPrintable();
 
     /** @section Tests the RAII bits. */
-    void testBoolSetter();
     void testPointerSetter();
 
     /** @section Tests the Traits bits. */
@@ -341,28 +340,6 @@ LibCalamaresTests::testOddSizedPrintable()
 }
 
 void
-LibCalamaresTests::testBoolSetter()
-{
-    bool b = false;
-
-    QVERIFY( !b );
-    {
-        QVERIFY( !b );
-        cBoolSetter< true > x( b );
-        QVERIFY( b );
-    }
-    QVERIFY( !b );
-
-    QVERIFY( !b );
-    {
-        QVERIFY( !b );
-        cBoolSetter< false > x( b );
-        QVERIFY( !b );  // Still!
-    }
-    QVERIFY( b );
-}
-
-void
 LibCalamaresTests::testPointerSetter()
 {
     int special = 17;
@@ -384,7 +361,7 @@ LibCalamaresTests::testPointerSetter()
     }
     QCOMPARE( special, 3 );
     {
-        cPointerSetter<int> p( nullptr );
+        cPointerSetter< int > p( nullptr );
     }
     QCOMPARE( special, 3 );
     {
@@ -490,8 +467,7 @@ LibCalamaresTests::testVariantStringListCode()
                   QStringList { "astring" } );  // A single string **can** be considered a stringlist!
         m.insert( key, QString( "more strings" ) );
         QCOMPARE( getStringList( m, key ).count(), 1 );
-        QCOMPARE( getStringList( m, key ),
-                  QStringList { "more strings" } );
+        QCOMPARE( getStringList( m, key ), QStringList { "more strings" } );
         m.insert( key, QString() );
         QCOMPARE( getStringList( m, key ).count(), 1 );
         QCOMPARE( getStringList( m, key ), QStringList { QString() } );
