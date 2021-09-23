@@ -201,6 +201,10 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
                 // but nearly all its native speakers also speak English,
                 // and migrants are likely to use English.
                 { "IE", "en" },
+                // India has many languages even though Hindi is known as
+                // national language but English is used in all computer
+                // and mobile devices.
+                { "IN", "en" },
                 { "IT", "it" },
                 { "MA", "ar" },
                 { "MK", "mk" },

@@ -10,12 +10,15 @@ website will have to do for older versions.
 # 3.2.44 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
+ - Shrinivas Vishnu Kumbhar (new contributor, welcome!)
  - whorfin (new contributor, welcome!)
 
 ## Core ##
  - No core changes yet
 
 ## Modules ##
+ - Both *locale* and *keyboard* have received some tweaks for configurations
+   in India; unless the user selects otherwise, English is preferred.
  - The *luksbootkeyfile* module was reported to be too quick to declare
    a timeout when applying the keyfile. The timeout has been increased
    to one minute. (Thanks whorfin)
