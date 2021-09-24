@@ -29,6 +29,34 @@ def pretty_name():
     return _("Saving network configuration.")
 
 
+def live_user():
+    """
+    Gets the "live user" login. This might be "live", or "nitrux",
+    or something similar: it is the login name used *right now*,
+    and network configurations saved for that user, should be applied
+    also for the installed user (which probably has a different name).
+    """
+    # getlogin() is a thin-wrapper, and depends on getlogin(3),
+    # which reads utmp -- and utmp isn't always set up right.
+    try:
+        return os.getlogin()
+    except OSError:
+        pass
+    # getpass will return the **current** user, which is generally root.
+    # That isn't very useful, because the network settings have been
+    # made outside of Calamares-running-as-root, as a different user.
+    #
+    # If Calamares is running as non-root, though, this is fine.
+    import getpass
+    name = getpass.getuser()
+    if name != "root":
+        return name
+
+    # TODO: other mechanisms, e.g. guessing that "live" is the name
+    # TODO: support a what-is-the-live-user setting
+    return None
+
+
 def run():
     """
     Setup network configuration
