@@ -7,6 +7,15 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
+# 3.2.44.1 (2021-09-24) #
+
+This release contains contributions from (alphabetically by first name):
+ - Anke Boersma
+
+This is a hotfix for a typo -- not a syntax error -- that affects the
+*initcpiocfg* module. Reported and fixed by Anke.
+
+
 # 3.2.44 (2021-09-24) #
 
 This release contains contributions from (alphabetically by first name):
