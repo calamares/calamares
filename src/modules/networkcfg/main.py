@@ -29,7 +29,7 @@ def pretty_name():
     return _("Saving network configuration.")
 
 
-def live_user():
+def get_live_user():
     """
     Gets the "live user" login. This might be "live", or "nitrux",
     or something similar: it is the login name used *right now*,
@@ -57,13 +57,41 @@ def live_user():
     return None
 
 
+def replace_username(nm_config_filename, live_user, target_user):
+    """
+    If @p live_user isn't None, then go through the given
+    file and replace @p live_user by the @p target_user.
+
+    Reads the file, then (re-)writes it with new permissions lives.
+    """
+    # FIXME: Perhaps if live_user is None, we should just replace **all**
+    #        permissions lines? After all, this is supposed to be a live
+    #        system so **whatever** NM networks are configured, should be
+    #        available to the new user.
+    if live_user is None:
+        return
+    if not os.path.exists(nm_config_filename):
+        return
+
+    with open(target_network, "r") as network_conf:
+        text = network_conf.readlines()
+
+    live_permissions = 'permissions=user:{}:;'.format(live_user)
+    target_permissions = 'permissions=user:{}:;\n'.format(user)
+    with open(target_network, "w") as network_conf:
+        for line in text:
+            if live_permissions in line:
+                line = target_permissions
+            network_conf.write(line)
+
+
 def run():
     """
     Setup network configuration
     """
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
     user = libcalamares.globalstorage.value("username")
-    live_user = os.getlogin()
+    live_user = get_live_user()
 
     if root_mount_point is None:
         libcalamares.utils.warning("rootMountPoint is empty, {!s}".format(root_mount_point))
@@ -91,16 +119,7 @@ def run():
 
             try:
                 shutil.copy(source_network, target_network, follow_symlinks=False)
-                if live_user in open(target_network).read():
-                    text = []
-                    with open(target_network, "r") as network_conf:
-                        text = network_conf.readlines()
-                        with open(target_network, "w") as network_conf:
-                            for line in text:
-                                if 'permissions=user:{}:;'.format(live_user) in line:
-                                    line = 'permissions=user:{}:;\n'.format(user)
-                                network_conf.write(line)
-                    network_conf.close()
+                replace_username(target_network, live_user, user)
             except FileNotFoundError:
                 libcalamares.utils.debug(
                     "Can't copy network configuration files in "
