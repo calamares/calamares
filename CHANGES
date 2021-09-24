@@ -7,21 +7,27 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.44 (unreleased) #
+# 3.2.44 (2021-09-24) #
 
 This release contains contributions from (alphabetically by first name):
+ - Anke Boersma
  - Shrinivas Vishnu Kumbhar (new contributor, welcome!)
  - whorfin (new contributor, welcome!)
 
 ## Core ##
- - No core changes yet
+ - "Log spam" has been reduced a little in the partitioning module.
 
 ## Modules ##
+ - *initcpiocfg* has had a number of internal code-fixes, and now adds
+   the `consolefont` hook by default as well. (Thanks Shrinivas)
  - Both *locale* and *keyboard* have received some tweaks for configurations
    in India; unless the user selects otherwise, English is preferred.
  - The *luksbootkeyfile* module was reported to be too quick to declare
    a timeout when applying the keyfile. The timeout has been increased
    to one minute. (Thanks whorfin)
+ - *networkcfg* tries harder to find the live-user login for re-working
+   networking settings. This fixes a regression on FerenOS, where the
+   installer was crashing because it could not find the live-user login.
 
 
 # 3.2.43 (2021-09-17) #
