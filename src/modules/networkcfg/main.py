@@ -85,6 +85,13 @@ def replace_username(nm_config_filename, live_user, target_user):
             network_conf.write(line)
 
 
+def path_pair(root_mount_point, relative_path):
+    """
+    Returns /relative_path and the relative path in the target system.
+    """
+    return ("/" + relative_path, os.path.join(root_mount_point, relative_path))
+
+
 def run():
     """
     Setup network configuration
@@ -98,9 +105,7 @@ def run():
         return (_("Configuration Error"),
                 _("No root mount point is given for <pre>{!s}</pre> to use." ).format("networkcfg"))
 
-    nm_connections = "etc/NetworkManager/system-connections/"
-    source_nm = "/" + nm_connections
-    target_nm = os.path.join(root_mount_point, nm_connections)
+    source_nm, target_nm = path_pair(root_mount_point, "etc/NetworkManager/system-connections/")
 
     # Sanity checks.  We don't want to do anything if a network
     # configuration already exists on the target
@@ -127,8 +132,7 @@ def run():
                 pass
 
     # We need to overwrite the default resolv.conf in the chroot.
-    source_resolv = "/etc/resolv.conf"
-    target_resolv = os.path.join(root_mount_point, "etc/resolv.conf")
+    source_resolv, target_resolv = path_pair(root_mount_point, "etc/resolv.conf")
     if source_resolv != target_resolv and os.path.exists(source_resolv):
         try:
             os.remove(target_resolv)
