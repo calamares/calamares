@@ -144,7 +144,7 @@ def find_initcpio_features(partitions, root_mount_point):
 
     :return 3-tuple of lists
     """
-    hooks = ["base", "udev", "autodetect", "modconf", "block", "keyboard", "keymap"]
+    hooks = ["base", "udev", "autodetect", "modconf", "block", "keyboard", "keymap", "consolefont"]
     modules = []
     files = []
 
