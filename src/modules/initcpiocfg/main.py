@@ -128,7 +128,7 @@ def write_mkinitcpio_lines(hooks, modules, files, root_mount_point):
                 line = "HOOKS=\"{!s}\"".format(' '.join(hooks))
             elif line.startswith("MODULES"):
                 line = "MODULES=\"{!s}\"".format(' '.join(modules))
-            elif lines.startswith("FILES"):
+            elif line.startswith("FILES"):
                 line = "FILES=\"{!s}\"".format(' '.join(files))
             mkinitcpio_file.write(line + "\n")
 
