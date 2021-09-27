@@ -71,22 +71,20 @@ handle_args( QCoreApplication& a )
 {
     QCommandLineOption debugLevelOption(
         QStringLiteral( "D" ), "Verbose output for debugging purposes (0-8), ignored.", "level" );
-    QCommandLineOption globalOption( QStringList() << QStringLiteral( "g" ) << QStringLiteral( "global " ),
+    QCommandLineOption globalOption( { QStringLiteral( "g" ), QStringLiteral( "global" ) },
                                      QStringLiteral( "Global settings document" ),
                                      "global.yaml" );
-    QCommandLineOption jobOption( QStringList() << QStringLiteral( "j" ) << QStringLiteral( "job" ),
-                                  QStringLiteral( "Job settings document" ),
-                                  "job.yaml" );
-    QCommandLineOption langOption( QStringList() << QStringLiteral( "l" ) << QStringLiteral( "language" ),
+    QCommandLineOption jobOption(
+        { QStringLiteral( "j" ), QStringLiteral( "job" ) }, QStringLiteral( "Job settings document" ), "job.yaml" );
+    QCommandLineOption langOption( { QStringLiteral( "l" ), QStringLiteral( "language" ) },
                                    QStringLiteral( "Language (global)" ),
                                    "languagecode" );
-    QCommandLineOption brandOption( QStringList() << QStringLiteral( "b" ) << QStringLiteral( "branding" ),
+    QCommandLineOption brandOption( { QStringLiteral( "b" ), QStringLiteral( "branding" ) },
                                     QStringLiteral( "Branding directory" ),
                                     "path/to/branding.desc",
                                     "src/branding/default/branding.desc" );
-    QCommandLineOption uiOption( QStringList() << QStringLiteral( "U" ) << QStringLiteral( "ui" ),
-                                 QStringLiteral( "Enable UI" ) );
-    QCommandLineOption slideshowOption( QStringList() << QStringLiteral( "s" ) << QStringLiteral( "slideshow" ),
+    QCommandLineOption uiOption( { QStringLiteral( "U" ), QStringLiteral( "ui" ) }, QStringLiteral( "Enable UI" ) );
+    QCommandLineOption slideshowOption( { QStringLiteral( "s" ), QStringLiteral( "slideshow" ) },
                                         QStringLiteral( "Run slideshow module" ) );
     QCommandLineParser parser;
     parser.setApplicationDescription( "Calamares module tester" );
@@ -101,7 +99,7 @@ handle_args( QCoreApplication& a )
     parser.addOption( uiOption );
     parser.addOption( slideshowOption );
 #ifdef WITH_PYTHON
-    QCommandLineOption pythonOption( QStringList() << QStringLiteral( "P" ) << QStringLiteral( "no-injected-python" ),
+    QCommandLineOption pythonOption( { QStringLiteral( "P" ), QStringLiteral( "no-injected-python" ) },
                                      QStringLiteral( "Do not disable potentially-harmful Python commands" ) );
     parser.addOption( pythonOption );
 #endif
@@ -143,8 +141,7 @@ handle_args( QCoreApplication& a )
                               parser.value( langOption ),
                               parser.value( brandOption ),
                               parser.isSet( slideshowOption ) || parser.isSet( uiOption ),
-                              pythonInjection
-        };
+                              pythonInjection };
     }
 }
 
@@ -299,7 +296,8 @@ load_module( const ModuleConfig& moduleConfig )
     bool ok = false;
     QVariantMap descriptor;
 
-    for ( const QString& prefix : QStringList { "./", "src/modules/", "modules/" } )
+    QStringList moduleDirectories { "./", "src/modules/", "modules/", CMAKE_INSTALL_FULL_LIBDIR "/calamares/modules/" };
+    for ( const QString& prefix : qAsConst( moduleDirectories ) )
     {
         // Could be a complete path, eg. src/modules/dummycpp/module.desc
         fi = QFileInfo( prefix + moduleName );
@@ -325,12 +323,23 @@ load_module( const ModuleConfig& moduleConfig )
             {
                 break;
             }
+            else
+            {
+                if ( !fi.exists() )
+                {
+                    cDebug() << "Expected a descriptor file" << fi.path();
+                }
+                else
+                {
+                    cDebug() << "Read descriptor" << fi.path() << "and it was empty.";
+                }
+            }
         }
     }
 
     if ( !ok )
     {
-        cWarning() << "No suitable module descriptor found.";
+        cWarning() << "No suitable module descriptor found in" << Logger::DebugList( moduleDirectories );
         return nullptr;
     }
 
@@ -461,7 +470,7 @@ main( int argc, char* argv[] )
 #ifdef WITH_PYTHON
     if ( module.m_pythonInjection )
     {
-        Calamares::PythonJob::setInjectedPreScript(pythonPreScript);
+        Calamares::PythonJob::setInjectedPreScript( pythonPreScript );
     }
 #endif
 #ifdef WITH_QML
