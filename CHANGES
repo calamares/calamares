@@ -10,10 +10,10 @@ website will have to do for older versions.
 # 3.2.44.2 (2021-09-27) #
 
 This release contains contributions from (alphabetically by first name):
- -
+ - Corey Lang (new contributor, welcome!)
 
 This is a hotfix for a typo -- not a syntax error -- that affects the
-*networkcfg* module. Reported and fixed by .
+*networkcfg* module. Reported and fixed by Corey.
 
 
 # 3.2.44.1 (2021-09-24) #
