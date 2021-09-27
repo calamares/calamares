@@ -143,8 +143,7 @@ handle_args( QCoreApplication& a )
                               parser.value( langOption ),
                               parser.value( brandOption ),
                               parser.isSet( slideshowOption ) || parser.isSet( uiOption ),
-                              pythonInjection
-        };
+                              pythonInjection };
     }
 }
 
@@ -299,7 +298,8 @@ load_module( const ModuleConfig& moduleConfig )
     bool ok = false;
     QVariantMap descriptor;
 
-    for ( const QString& prefix : QStringList { "./", "src/modules/", "modules/" } )
+    QStringList moduleDirectories { "./", "src/modules/", "modules/" };
+    for ( const QString& prefix : qAsConst( moduleDirectories ) )
     {
         // Could be a complete path, eg. src/modules/dummycpp/module.desc
         fi = QFileInfo( prefix + moduleName );
@@ -330,7 +330,7 @@ load_module( const ModuleConfig& moduleConfig )
 
     if ( !ok )
     {
-        cWarning() << "No suitable module descriptor found.";
+        cWarning() << "No suitable module descriptor found in" << Logger::DebugList( moduleDirectories );
         return nullptr;
     }
 
@@ -461,7 +461,7 @@ main( int argc, char* argv[] )
 #ifdef WITH_PYTHON
     if ( module.m_pythonInjection )
     {
-        Calamares::PythonJob::setInjectedPreScript(pythonPreScript);
+        Calamares::PythonJob::setInjectedPreScript( pythonPreScript );
     }
 #endif
 #ifdef WITH_QML
