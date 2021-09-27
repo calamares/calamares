@@ -42,6 +42,18 @@ include( CalamaresCheckModuleSelection )
 
 set( MODULE_DATA_DESTINATION share/calamares/modules )
 
+# We look for Pylint (just once) so that unittests can be added that
+# check the syntax / variables of Python modules. This should help
+# avoid more typo's-in-releases.
+if(BUILD_TESTING AND NOT PYLINT_COMMAND_SEARCHED)
+    set(PYLINT_COMMAND_SEARCHED TRUE)
+    find_program(
+        PYLINT_COMMAND
+        NAMES pylint3 pylint
+        PATHS $ENV{HOME}/.local/bin
+        )
+endif()
+
 function( _calamares_add_module_subdirectory_impl )
     set( SUBDIRECTORY ${ARGV0} )
 
@@ -240,6 +252,19 @@ function( _calamares_add_module_subdirectory_impl )
         endwhile()
         if ( EXISTS ${_testdir}/CMakeTests.txt AND NOT EXISTS ${_mod_dir}/CMakeLists.txt )
             include( ${_testdir}/CMakeTests.txt )
+        endif()
+        if ( PYLINT_COMMAND AND MODULE_INTERFACE MATCHES "python" )
+            # Python modules get an additional test via pylint; this
+            # needs to run at top-level because the ci/libcalamares directory
+            # contains API stubs.
+            #
+            # TODO: the entry point is assumed to be `main.py`, but that is
+            #       configurable through module.desc
+            add_test(
+                NAME lint-${SUBDIRECTORY}
+                COMMAND env PYTHONPATH=ci: ${PYLINT_COMMAND} -E ${_mod_dir}/main.py
+                WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+                )
         endif()
     endif()
 endfunction()

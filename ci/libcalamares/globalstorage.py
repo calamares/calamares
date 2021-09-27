@@ -6,4 +6,19 @@
 # Boost::Python, not as a bare C-extension) so that
 # pylint doesn't complain about libcalamares internals.
 
-def value(_): return 1
+def count(): return 1
+
+def keys(): return []
+
+def contains(_): return True
+
+def value(key):
+    if key in ("branding",):
+        return dict()
+    if key in ("partitions",):
+        return list()
+    return ""
+
+def insert(key, value): pass
+
+def remove(_): pass

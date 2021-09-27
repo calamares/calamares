@@ -10,6 +10,14 @@ def debug(_): pass
 
 def warning(_): pass
 
+def error(_): pass
+
 def gettext_path(): pass
 
 def gettext_languages(): pass
+
+def target_env_call(_): return 0
+
+def check_target_env_call(_): pass
+
+def mount(device, mountpoint, fstype, options): return 0

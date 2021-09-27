@@ -6,4 +6,4 @@
 # Boost::Python, not as a bare C-extension) so that
 # pylint doesn't complain about libcalamares internals.
 
-pass
+VERSION_SHORT="1.0"
