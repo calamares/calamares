@@ -325,6 +325,17 @@ load_module( const ModuleConfig& moduleConfig )
             {
                 break;
             }
+            else
+            {
+                if ( !fi.exists() )
+                {
+                    cDebug() << "Expected a descriptor file" << fi.path();
+                }
+                else
+                {
+                    cDebug() << "Read descriptor" << fi.path() << "and it was empty.";
+                }
+            }
         }
     }
 
