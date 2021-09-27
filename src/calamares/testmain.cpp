@@ -71,22 +71,20 @@ handle_args( QCoreApplication& a )
 {
     QCommandLineOption debugLevelOption(
         QStringLiteral( "D" ), "Verbose output for debugging purposes (0-8), ignored.", "level" );
-    QCommandLineOption globalOption( QStringList() << QStringLiteral( "g" ) << QStringLiteral( "global " ),
+    QCommandLineOption globalOption( { QStringLiteral( "g" ), QStringLiteral( "global" ) },
                                      QStringLiteral( "Global settings document" ),
                                      "global.yaml" );
-    QCommandLineOption jobOption( QStringList() << QStringLiteral( "j" ) << QStringLiteral( "job" ),
-                                  QStringLiteral( "Job settings document" ),
-                                  "job.yaml" );
-    QCommandLineOption langOption( QStringList() << QStringLiteral( "l" ) << QStringLiteral( "language" ),
+    QCommandLineOption jobOption(
+        { QStringLiteral( "j" ), QStringLiteral( "job" ) }, QStringLiteral( "Job settings document" ), "job.yaml" );
+    QCommandLineOption langOption( { QStringLiteral( "l" ), QStringLiteral( "language" ) },
                                    QStringLiteral( "Language (global)" ),
                                    "languagecode" );
-    QCommandLineOption brandOption( QStringList() << QStringLiteral( "b" ) << QStringLiteral( "branding" ),
+    QCommandLineOption brandOption( { QStringLiteral( "b" ), QStringLiteral( "branding" ) },
                                     QStringLiteral( "Branding directory" ),
                                     "path/to/branding.desc",
                                     "src/branding/default/branding.desc" );
-    QCommandLineOption uiOption( QStringList() << QStringLiteral( "U" ) << QStringLiteral( "ui" ),
-                                 QStringLiteral( "Enable UI" ) );
-    QCommandLineOption slideshowOption( QStringList() << QStringLiteral( "s" ) << QStringLiteral( "slideshow" ),
+    QCommandLineOption uiOption( { QStringLiteral( "U" ), QStringLiteral( "ui" ) }, QStringLiteral( "Enable UI" ) );
+    QCommandLineOption slideshowOption( { QStringLiteral( "s" ), QStringLiteral( "slideshow" ) },
                                         QStringLiteral( "Run slideshow module" ) );
     QCommandLineParser parser;
     parser.setApplicationDescription( "Calamares module tester" );
@@ -101,7 +99,7 @@ handle_args( QCoreApplication& a )
     parser.addOption( uiOption );
     parser.addOption( slideshowOption );
 #ifdef WITH_PYTHON
-    QCommandLineOption pythonOption( QStringList() << QStringLiteral( "P" ) << QStringLiteral( "no-injected-python" ),
+    QCommandLineOption pythonOption( { QStringLiteral( "P" ), QStringLiteral( "no-injected-python" ) },
                                      QStringLiteral( "Do not disable potentially-harmful Python commands" ) );
     parser.addOption( pythonOption );
 #endif
