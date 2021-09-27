@@ -460,8 +460,9 @@ def run():
             if shutil.which("unsquashfs") is None:
                 libcalamares.utils.warning("Failed to find unsquashfs")
 
-                return (_("Failed to unpack image \"{}\"").format(self.source),
-                        _("Failed to find unsquashfs, make sure you have the squashfs-tools package installed"))
+                return (_("Bad unsquash configuration"),
+                        _("Failed to find unsquashfs, make sure you have the squashfs-tools package installed.") +
+                        " " + _("Failed to unpack image \"{}\"").format(source))
 
     unpack = list()
 
