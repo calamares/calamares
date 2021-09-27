@@ -298,7 +298,7 @@ load_module( const ModuleConfig& moduleConfig )
     bool ok = false;
     QVariantMap descriptor;
 
-    QStringList moduleDirectories { "./", "src/modules/", "modules/" };
+    QStringList moduleDirectories { "./", "src/modules/", "modules/", CMAKE_INSTALL_FULL_LIBDIR "/calamares/modules/" };
     for ( const QString& prefix : qAsConst( moduleDirectories ) )
     {
         // Could be a complete path, eg. src/modules/dummycpp/module.desc
