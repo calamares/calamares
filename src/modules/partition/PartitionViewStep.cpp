@@ -559,7 +559,7 @@ PartitionViewStep::onLeave()
             {
                 cDebug() << o << "ESP too small";
                 const auto atLeastBytes = PartUtils::efiFilesystemMinimumSize();
-                const auto atLeastMiB = CalamaresUtils::Units::BytesToMiB( atLeastBytes );
+                const auto atLeastMiB = CalamaresUtils::BytesToMiB( atLeastBytes );
                 description.append( ' ' );
                 description.append( tr( "The filesystem must be at least %1 MiB in size." ).arg( atLeastMiB ) );
             }
