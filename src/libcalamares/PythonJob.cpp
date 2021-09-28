@@ -330,7 +330,8 @@ void
 PythonJob::setInjectedPreScript( const char* preScript )
 {
     s_preScript = preScript;
-    cDebug() << "Python pre-script set to" << Logger::Pointer( preScript );
+    cDebug() << "Python pre-script set to string" << Logger::Pointer( preScript ) << "length"
+             << ( preScript ? strlen( preScript ) : 0 );
 }
 
 }  // namespace Calamares

@@ -198,7 +198,7 @@ desktop_environments = [
     DesktopEnvironment('/usr/bin/fvwm3', 'fvwm3'),
     DesktopEnvironment('/usr/bin/sway', 'sway'),
     DesktopEnvironment('/usr/bin/ukui-session', 'ukui'),
-    DesktopEnvironment('/usr/bin/cutefish-session', 'cutefish-xsession'),    
+    DesktopEnvironment('/usr/bin/cutefish-session', 'cutefish-xsession'),
 ]
 
 
@@ -923,7 +923,7 @@ def run():
             else:
                 dm_instance = None
         else:
-            libcalamares.utils.debug("{!s} has {!d} implementation classes.".format(dm).format(len(impl)))
+            libcalamares.utils.debug("{!s} has {!s} implementation classes.".format(dm, len(impl)))
 
         if dm_instance is None:
             libcalamares.utils.debug("{!s} selected but not installed".format(dm))

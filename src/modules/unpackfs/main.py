@@ -22,13 +22,12 @@ import subprocess
 import sys
 import tempfile
 
-from libcalamares import *
-from libcalamares.utils import mount
+import libcalamares
 
 import gettext
 _ = gettext.translation("calamares-python",
-                        localedir=utils.gettext_path(),
-                        languages=utils.gettext_languages(),
+                        localedir=libcalamares.utils.gettext_path(),
+                        languages=libcalamares.utils.gettext_languages(),
                         fallback=True).gettext
 
 def pretty_name():
@@ -123,14 +122,14 @@ class UnpackEntry:
             return
 
         if os.path.isdir(self.source):
-            r = mount(self.source, imgmountdir, "", "--bind")
+            r = libcalamares.utils.mount(self.source, imgmountdir, "", "--bind")
         elif os.path.isfile(self.source):
-            r = mount(self.source, imgmountdir, self.sourcefs, "loop")
+            r = libcalamares.utils.mount(self.source, imgmountdir, self.sourcefs, "loop")
         else: # self.source is a device
-            r = mount(self.source, imgmountdir, self.sourcefs, "")
+            r = libcalamares.utils.mount(self.source, imgmountdir, self.sourcefs, "")
 
         if r != 0:
-            utils.debug("Failed to mount '{}' (fs={}) (target={})".format(self.source, self.sourcefs, imgmountdir))
+            libcalamares.utils.debug("Failed to mount '{}' (fs={}) (target={})".format(self.source, self.sourcefs, imgmountdir))
             raise subprocess.CalledProcessError(r, "mount")
 
 
@@ -142,7 +141,7 @@ def global_excludes():
     List excludes for rsync.
     """
     lst = []
-    extra_mounts = globalstorage.value("extraMounts")
+    extra_mounts = libcalamares.globalstorage.value("extraMounts")
     if extra_mounts is None:
         extra_mounts = []
 
@@ -251,7 +250,7 @@ def file_copy(source, entry, progress_cb):
     # https://bugzilla.redhat.com/show_bug.cgi?id=868755#c50
     # for the same issue in Anaconda, which uses a similar workaround.
     if process.returncode != 0 and process.returncode != 23:
-        utils.warning("rsync failed with error code {}.".format(process.returncode))
+        libcalamares.utils.warning("rsync failed with error code {}.".format(process.returncode))
         return _("rsync failed with error code {}.").format(process.returncode)
 
     return None
@@ -298,7 +297,7 @@ class UnpackOperation:
 
         global status
         status = _("Unpacking image {}/{}, file {}/{}").format((complete_count+1), len(self.entries), current_done, current_total)
-        job.setprogress(progress)
+        libcalamares.job.setprogress(progress)
 
     def run(self):
         """
@@ -313,7 +312,7 @@ class UnpackOperation:
             complete = 0
             for entry in self.entries:
                 status = _("Starting to unpack {}").format(entry.source)
-                job.setprogress( ( 1.0 * complete ) / len(self.entries) )
+                libcalamares.job.setprogress( ( 1.0 * complete ) / len(self.entries) )
                 entry.do_mount(source_mount_path)
                 entry.do_count()  # Fill in the entry.total
 
@@ -398,7 +397,7 @@ def repair_root_permissions(root_mount_point):
         try:
             os.chmod(root_mount_point, 0o755)  # Want / to be rwxr-xr-x
         except OSError as e:
-            utils.warning("Could not set / to safe permissions: {}".format(e))
+            libcalamares.utils.warning("Could not set / to safe permissions: {}".format(e))
             # But ignore it
 
 
@@ -414,9 +413,9 @@ def extract_weight(entry):
             wi = int(w)
             return wi if wi > 0 else 1
         except ValueError:
-            utils.warning("*weight* setting {!r} is not valid.".format(w))
+            libcalamares.utils.warning("*weight* setting {!r} is not valid.".format(w))
         except TypeError:
-            utils.warning("*weight* setting {!r} must be number.".format(w))
+            libcalamares.utils.warning("*weight* setting {!r} must be number.".format(w))
     return 1
 
 
@@ -424,16 +423,16 @@ def run():
     """
     Unsquash filesystem.
     """
-    root_mount_point = globalstorage.value("rootMountPoint")
+    root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
 
     if not root_mount_point:
-        utils.warning("No mount point for root partition")
+        libcalamares.utils.warning("No mount point for root partition")
         return (_("No mount point for root partition"),
                 _("globalstorage does not contain a \"rootMountPoint\" key, "
                 "doing nothing"))
 
     if not os.path.exists(root_mount_point):
-        utils.warning("Bad root mount point \"{}\"".format(root_mount_point))
+        libcalamares.utils.warning("Bad root mount point \"{}\"".format(root_mount_point))
         return (_("Bad mount point for root partition"),
                 _("rootMountPoint is \"{}\", which does not "
                 "exist, doing nothing").format(root_mount_point))
@@ -444,41 +443,42 @@ def run():
     #   - unsupported filesystems
     #   - non-existent sources
     #   - missing tools for specific FS
-    for entry in job.configuration["unpack"]:
+    for entry in libcalamares.job.configuration["unpack"]:
         source = os.path.abspath(entry["source"])
         sourcefs = entry["sourcefs"]
 
         if sourcefs not in supported_filesystems:
-            utils.warning("The filesystem for \"{}\" ({}) is not supported by your current kernel".format(source, sourcefs))
-            utils.warning(" ... modprobe {} may solve the problem".format(sourcefs))
+            libcalamares.utils.warning("The filesystem for \"{}\" ({}) is not supported by your current kernel".format(source, sourcefs))
+            libcalamares.utils.warning(" ... modprobe {} may solve the problem".format(sourcefs))
             return (_("Bad unsquash configuration"),
                     _("The filesystem for \"{}\" ({}) is not supported by your current kernel").format(source, sourcefs))
         if not os.path.exists(source):
-            utils.warning("The source filesystem \"{}\" does not exist".format(source))
+            libcalamares.utils.warning("The source filesystem \"{}\" does not exist".format(source))
             return (_("Bad unsquash configuration"),
                     _("The source filesystem \"{}\" does not exist").format(source))
         if sourcefs == "squashfs":
             if shutil.which("unsquashfs") is None:
-                utils.warning("Failed to find unsquashfs")
+                libcalamares.utils.warning("Failed to find unsquashfs")
 
-                return (_("Failed to unpack image \"{}\"").format(self.source),
-                        _("Failed to find unsquashfs, make sure you have the squashfs-tools package installed"))
+                return (_("Bad unsquash configuration"),
+                        _("Failed to find unsquashfs, make sure you have the squashfs-tools package installed.") +
+                        " " + _("Failed to unpack image \"{}\"").format(source))
 
     unpack = list()
 
     is_first = True
-    for entry in job.configuration["unpack"]:
+    for entry in libcalamares.job.configuration["unpack"]:
         source = os.path.abspath(entry["source"])
         sourcefs = entry["sourcefs"]
         destination = os.path.abspath(root_mount_point + entry["destination"])
 
         if not os.path.isdir(destination) and sourcefs != "file":
-            utils.warning(("The destination \"{}\" in the target system is not a directory").format(destination))
+            libcalamares.utils.warning(("The destination \"{}\" in the target system is not a directory").format(destination))
             if is_first:
                 return (_("Bad unsquash configuration"),
                         _("The destination \"{}\" in the target system is not a directory").format(destination))
             else:
-                utils.debug(".. assuming that the previous targets will create that directory.")
+                libcalamares.utils.debug(".. assuming that the previous targets will create that directory.")
 
         unpack.append(UnpackEntry(source, sourcefs, destination))
         # Optional settings

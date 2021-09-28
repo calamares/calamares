@@ -94,12 +94,18 @@ bool isEfiFilesystemSuitableType( const Partition* candidate );
  */
 bool isEfiFilesystemSuitableSize( const Partition* candidate );
 
-/** @brief Returns the minimum size of an EFI boot partition.
+/** @brief Returns the minimum size of an EFI boot partition in bytes.
  *
  * This is determined as 300MiB, based on the FAT32 standard
  * and EFI documentation (and not a little discussion in Calamares
  * issues about what works, what is effective, and what is mandated
  * by the standard and how all of those are different).
+ *
+ * This can be configured through the `partition.conf` file,
+ * key *efiSystemPartitionSize*, which will then apply to both
+ * automatic partitioning **and** the warning for manual partitioning.
+ *
+ * A minimum of 32MiB (which is bonkers-small) is enforced.
  */
 size_t efiFilesystemMinimumSize();
 

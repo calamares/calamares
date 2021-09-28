@@ -471,9 +471,12 @@ bool
 isEfiFilesystemSuitableSize( const Partition* candidate )
 {
     auto size = candidate->capacity();  // bytes
+    if ( size <= 0 )
+    {
+        return false;
+    }
 
-    using CalamaresUtils::Units::operator""_MiB;
-    if ( size >= 300_MiB )
+    if ( size_t( size ) >= efiFilesystemMinimumSize() )
     {
         return true;
     }
@@ -522,7 +525,22 @@ size_t
 efiFilesystemMinimumSize()
 {
     using CalamaresUtils::Units::operator""_MiB;
-    return 300_MiB;
+
+    auto uefisys_part_sizeB = 300_MiB;
+
+    // The default can be overridden; the key used here comes
+    // from the partition module Config.cpp
+    auto* gs = Calamares::JobQueue::instance()->globalStorage();
+    if ( gs->contains( "efiSystemPartitionSize_i" ) )
+    {
+        uefisys_part_sizeB = gs->value( "efiSystemPartitionSize_i" ).toLongLong();
+    }
+    // There is a lower limit of what can be configured
+    if ( uefisys_part_sizeB < 32_MiB )
+    {
+        uefisys_part_sizeB = 32_MiB;
+    }
+    return uefisys_part_sizeB;
 }
 
 

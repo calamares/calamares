@@ -150,7 +150,8 @@ def find_initcpio_features(partitions, root_mount_point):
         "modconf",
         "block",
         "keyboard",
-        "keymap"
+        "keymap",
+        "consolefont",
     ]
     modules = []
     files = []

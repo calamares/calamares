@@ -472,7 +472,7 @@ Config::guessLocaleKeyboardLayout()
         { "el_GR", "gr" }, /* Greek in Greece */
         { "ig_NG", "igbo_NG" }, /* Igbo in Nigeria */
         { "ha_NG", "hausa_NG" }, /* Hausa */
-        { "en_IN", "eng_in" }, /* India, English with Rupee */
+        { "en_IN", "us" }, /* India, US English keyboards are common in India */
     } );
 
     // Try to preselect a layout, depending on language and locale
