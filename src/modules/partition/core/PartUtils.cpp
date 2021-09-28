@@ -472,8 +472,7 @@ isEfiFilesystemSuitableSize( const Partition* candidate )
 {
     auto size = candidate->capacity();  // bytes
 
-    using CalamaresUtils::Units::operator""_MiB;
-    if ( size >= 300_MiB )
+    if ( size >= efiFilesystemMinimumSize() )
     {
         return true;
     }
