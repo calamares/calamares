@@ -86,7 +86,6 @@ Main:
 * KDE extra-cmake-modules >= 5.18 (recommended; required for some modules;
   required for some tests)
 * KDE Frameworks KCoreAddons (>= 5.58 recommended)
-* PythonQt (optional, deprecated)
 
 Individual modules may have their own requirements;
 these are listed in CMake output.

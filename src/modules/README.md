@@ -283,17 +283,6 @@ description if something went wrong.
 **TODO:** this needs documentation
 
 
-
-## PythonQt modules (deprecated)
-
-> Type: viewmodule, jobmodule
-> Interface: pythonqt
-
-The PythonQt modules are deprecated and will be removed in Calamares 3.3.
-Their documentation is also almost completely lacking.
-
-
-
 ## Process modules
 
 Use of this kind of module is **not** recommended.

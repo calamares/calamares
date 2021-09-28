@@ -25,7 +25,6 @@
 #                     CMake once. These affect the ABI offered by Calamares.
 #                       - PYTHON (enable Python Job modules)
 #                       - QML (enable QML UI View modules)
-#                       - PYTHONQT # TODO:3.3: remove
 #   BUILD_<foo>     : choose additional things to build
 #                       - TESTING (standard CMake option)
 #                       - SCHEMA_TESTING (requires Python, see ci/configvalidator.py)
@@ -66,7 +65,6 @@ option( WITH_KF5Crash "Enable crash reporting with KCrash." ON )  # TODO:3.3: WI
 # When adding WITH_* that affects the ABI offered by libcalamares,
 # also update libcalamares/CalamaresConfig.h.in
 option( WITH_PYTHON "Enable Python modules API (requires Boost.Python)." ON )
-option( WITH_PYTHONQT "Enable Python view modules API (deprecated, requires PythonQt)." OFF )  # TODO:3.3: remove
 option( WITH_QML "Enable QML UI options." ON )
 #
 # Additional parts to build
@@ -397,29 +395,17 @@ if ( PYTHONLIBS_FOUND )
         Boost PROPERTIES
         PURPOSE "Boost.Python is used for Python job modules."
     )
-    # TODO:3.3: Remove PythonQt support
-    find_package( PythonQt )
-    set_package_properties( PythonQt PROPERTIES
-        DESCRIPTION "A Python embedding solution for Qt applications."
-        URL "http://pythonqt.sourceforge.net"
-        PURPOSE "PythonQt is used for Python view modules."
-    )
 endif()
 
 if( NOT PYTHONLIBS_FOUND OR NOT CALAMARES_BOOST_PYTHON3_FOUND )
     message(STATUS "Disabling Boost::Python modules")
     set( WITH_PYTHON OFF )
 endif()
-if( NOT PYTHONLIBS_FOUND OR NOT PYTHONQT_FOUND )
-    message(STATUS "Disabling PythonQt modules")
-    set( WITH_PYTHONQT OFF )
-endif()
 
 # Now we know the state of the ABI-options, copy them into "Calamares_"
 # prefixed variables, to match how the variables would-be-named
 # when building out-of-tree.
 set(Calamares_WITH_PYTHON ${WITH_PYTHON})
-set(Calamares_WITH_PYTHONQT ${WITH_PYTHONQT})
 set(Calamares_WITH_QML ${WITH_QML})
 
 ### Transifex Translation status
@@ -573,7 +559,6 @@ set( Calamares_LIBRARIES calamares )
 add_subdirectory( src )
 
 add_feature_info(Python ${WITH_PYTHON} "Python job modules")
-add_feature_info(PythonQt ${WITH_PYTHONQT} "Python view modules")
 add_feature_info(Config ${INSTALL_CONFIG} "Install Calamares configuration")
 add_feature_info(KCrash ${WITH_KF5Crash} "Crash dumps via KCrash")
 

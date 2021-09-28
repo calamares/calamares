@@ -50,17 +50,6 @@ if( WITH_PYTHON )
     )
 endif()
 
-if( WITH_PYTHONQT )
-    list( APPEND calamaresui_SOURCES
-        modulesystem/PythonQtViewModule.cpp
-        utils/PythonQtUtils.cpp
-        viewpages/PythonQtJob.cpp
-        viewpages/PythonQtViewStep.cpp
-        viewpages/PythonQtGlobalStorageWrapper.cpp
-        viewpages/PythonQtUtilsWrapper.cpp
-    )
-endif()
-
 if( WITH_QML )
     list( APPEND calamaresui_SOURCES
         utils/Qml.cpp
@@ -80,11 +69,6 @@ calamares_add_library( calamaresui
 target_link_libraries( calamaresui PRIVATE yamlcpp::yamlcpp )
 if( KF5CoreAddons_FOUND AND KF5CoreAddons_VERSION VERSION_GREATER_EQUAL 5.58 )
     target_compile_definitions( calamaresui PRIVATE WITH_KOSRelease )
-endif()
-if( WITH_PYTHONQT )
-    # *_DIRS because we also use extensions
-    target_include_directories( calamaresui PRIVATE ${PYTHON_INCLUDE_DIRS} ${PYTHONQT_INCLUDE_DIRS} )
-    target_link_libraries( calamaresui PRIVATE ${PYTHON_LIBRARIES} ${PYTHONQT_LIBRARIES} )
 endif()
 if( WITH_QML )
     target_link_libraries( calamaresui PUBLIC Qt5::QuickWidgets )
