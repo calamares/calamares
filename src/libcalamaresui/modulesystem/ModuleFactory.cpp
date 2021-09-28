@@ -55,10 +55,6 @@ moduleFromDescriptor( const Calamares::ModuleSystem::Descriptor& moduleDescripto
         {
             m.reset( new ViewModule() );
         }
-        else if ( moduleDescriptor.interface() == Interface::PythonQt )
-        {
-            cError() << "PythonQt view modules are not supported in this version of Calamares.";
-        }
         else
         {
             cError() << "Bad interface"
