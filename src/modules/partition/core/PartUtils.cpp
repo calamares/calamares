@@ -527,6 +527,9 @@ efiFilesystemMinimumSize()
     using CalamaresUtils::Units::operator""_MiB;
 
     auto uefisys_part_sizeB = 300_MiB;
+
+    // The default can be overridden; the key used here comes
+    // from the partition module Config.cpp
     auto* gs = Calamares::JobQueue::instance()->globalStorage();
     if ( gs->contains( "efiSystemPartitionSize_i" ) )
     {
