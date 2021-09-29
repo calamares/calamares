@@ -97,6 +97,8 @@ Config::loadGroupList( const QVariantList& groupData )
     {
         setStatus( Status::Ok );
     }
+    cDebug() << "Row count: " << m_model->rowCount();
+    emit packageModelChanged();
 }
 
 void
@@ -108,7 +110,6 @@ Config::loadingDone()
         m_queue = nullptr;
     }
     emit statusReady();
-    emit packageModelChanged();
 }
 
 

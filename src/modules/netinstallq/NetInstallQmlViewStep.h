@@ -52,6 +52,11 @@ public:
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
+    QObject* getConfig() override
+    {
+        return m_config;
+    }
+
 public slots:
     void nextIsReady();
 
