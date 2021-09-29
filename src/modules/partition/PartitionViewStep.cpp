@@ -248,7 +248,7 @@ PartitionViewStep::createSummaryWidget() const
     QWidget* widget = new QWidget;
     QVBoxLayout* mainLayout = new QVBoxLayout;
     widget->setLayout( mainLayout );
-    mainLayout->setMargin( 0 );
+    CalamaresUtils::unmarginLayout( mainLayout );
 
     Config::InstallChoice choice = m_config->installChoice();
 
