@@ -146,15 +146,12 @@ modeDescription( Config::InstallChoice choice )
     case Config::InstallChoice::Alongside:
         return QCoreApplication::translate( context, "Install %1 <strong>alongside</strong> another operating system." )
             .arg( branding->shortVersionedName() );
-        break;
     case Config::InstallChoice::Erase:
         return QCoreApplication::translate( context, "<strong>Erase</strong> disk and install %1." )
             .arg( branding->shortVersionedName() );
-        break;
     case Config::InstallChoice::Replace:
         return QCoreApplication::translate( context, "<strong>Replace</strong> a partition with %1." )
             .arg( branding->shortVersionedName() );
-        break;
     case Config::InstallChoice::NoChoice:
     case Config::InstallChoice::Manual:
         return QCoreApplication::translate( context, "<strong>Manual</strong> partitioning." );
@@ -187,21 +184,18 @@ diskDescription( int listLength, const PartitionCoreModule::SummaryInfo& info, C
                 .arg( branding->shortVersionedName() )
                 .arg( info.deviceNode )
                 .arg( info.deviceName );
-            break;
         case Config::Erase:
             return QCoreApplication::translate( context,
                                                 "<strong>Erase</strong> disk <strong>%2</strong> (%3) and install %1." )
                 .arg( branding->shortVersionedName() )
                 .arg( info.deviceNode )
                 .arg( info.deviceName );
-            break;
         case Config::Replace:
             return QCoreApplication::translate(
                        context, "<strong>Replace</strong> a partition on disk <strong>%2</strong> (%3) with %1." )
                 .arg( branding->shortVersionedName() )
                 .arg( info.deviceNode )
                 .arg( info.deviceName );
-            break;
         case Config::NoChoice:
         case Config::Manual:
             return QCoreApplication::translate(
