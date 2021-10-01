@@ -4,6 +4,7 @@
  *   SPDX-FileCopyrightText: 2017 Kyle Robbertze  <krobbertze@gmail.com>
  *   SPDX-FileCopyrightText: 2017-2018 2020, Adriaan de Groot <groot@kde.org>
  *   SPDX-FileCopyrightText: 2017 Gabriel Craciunescu <crazy@frugalware.org>
+ *   SPDX-FileCopyrightText: 2021 shivanandvp <shivanandvp@rebornos.org>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
