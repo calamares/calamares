@@ -25,6 +25,8 @@
 
 #include <QNetworkReply>
 
+#include <QAbstractItemModelTester>
+
 Config::Config( QObject* parent )
     : Calamares::ModuleSystem::Config( parent )
     , m_model( new PackageModel( this ) )
@@ -109,6 +111,8 @@ Config::loadGroupList( const QVariantList& groupData )
             cDebug() << "Netinstallq: "<< m_model->data( index, Qt::DisplayRole );
         }
     }
+
+    auto tester = new QAbstractItemModelTester(m_model, QAbstractItemModelTester::FailureReportingMode::Fatal);
 
     emit packageModelChanged();
 }

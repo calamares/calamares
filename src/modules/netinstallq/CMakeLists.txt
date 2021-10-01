@@ -14,6 +14,8 @@ find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Core )
 # Add optional libraries here
 set( USER_EXTRA_LIB )
 
+find_package(Qt5 COMPONENTS Test REQUIRED)
+
 calamares_add_plugin( netinstallq
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
@@ -28,6 +30,7 @@ calamares_add_plugin( netinstallq
     LINK_PRIVATE_LIBRARIES
         calamaresui
         ${_extra_libraries}
+        Qt5::Test
     SHARED_LIB
 )
 

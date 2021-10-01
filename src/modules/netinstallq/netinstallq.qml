@@ -20,14 +20,14 @@ Item {
     anchors.fill:parent
     OldControls.TreeView {
         anchors.fill: parent
-        TableViewColumn {
+        OldControls.TableViewColumn {
             title: "Name"
-            role: "DisplayRole"
+            role: "display"
             width: 100
         }
-        TableViewColumn {
+        OldControls.TableViewColumn {
             title: "Description"
-            role: "DisplayRole"
+            role: "display"
             width: 300
         }
         model: config.packageModel
