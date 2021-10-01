@@ -97,7 +97,18 @@ Config::loadGroupList( const QVariantList& groupData )
     {
         setStatus( Status::Ok );
     }
-    cDebug() << "Row count: " << m_model->rowCount();
+
+    cDebug() << "Netinstallq: "<< "Printing packagemodel contents";
+    for ( int i = m_model->rowCount() - 1; i >= 0; --i )
+    {
+        cDebug() << "Netinstallq: "<< "Handling row "<< i+1;
+        auto index = m_model->index( i, 0 );
+        if ( m_model->data( index, Qt::DisplayRole ).toBool() )
+        {
+            cDebug() << "Netinstallq: "<< m_model->data( index, Qt::DisplayRole );
+        }
+    }
+
     emit packageModelChanged();
 }
 

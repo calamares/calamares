@@ -22,13 +22,13 @@ Item {
         anchors.fill: parent
         TableViewColumn {
             title: "Name"
-            role: "fileName"
-            width: 300
+            role: "DisplayRole"
+            width: 100
         }
         TableViewColumn {
-            title: "Permissions"
-            role: "filePermissions"
-            width: 100
+            title: "Description"
+            role: "DisplayRole"
+            width: 300
         }
         model: config.packageModel
     }
