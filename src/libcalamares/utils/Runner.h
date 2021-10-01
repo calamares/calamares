@@ -13,6 +13,7 @@
 
 #include "CalamaresUtilsSystem.h"
 
+#include <QDir>
 #include <QObject>
 #include <QStringList>
 
@@ -27,6 +28,7 @@ namespace Utils
 
 using RunLocation = CalamaresUtils::System::RunLocation;
 
+/** @brief A Runner wraps a process and handles running it and signalling */
 class Runner : public QObject
 {
     Q_OBJECT
@@ -39,7 +41,7 @@ public:
     Runner& setCommand( const QStringList& command );
     Runner& setLocation( RunLocation r );
     Runner& setWorkingDirectory( const QString& directory );
-    // TODO: maybe with QDir as well?
+    Runner& setWorkingDirectory( const QDir& directory );
     Runner& setTimeout( std::chrono::seconds timeout );
     Runner& setInput( const QString& stdin );
 

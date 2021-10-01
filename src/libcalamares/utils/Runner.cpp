@@ -22,6 +22,7 @@ namespace Utils
 struct Runner::Private
 {
     QStringList m_command;
+    RunLocation m_location = RunLocation::RunInHost;
 };
 
 Runner::Runner() {}
@@ -33,6 +34,12 @@ Runner::Runner( const QStringList& command )
 
 Runner::~Runner() {}
 
+Runner&
+Runner::setCommand( const QStringList& command )
+{
+    d->m_command = command;
+    return *this;
+}
 
 }  // namespace Utils
 }  // namespace Calamares
