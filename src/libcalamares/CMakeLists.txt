@@ -77,6 +77,7 @@ set( libSources
     utils/Permissions.cpp
     utils/PluginFactory.cpp
     utils/Retranslator.cpp
+    utils/Runner.cpp
     utils/String.cpp
     utils/UMask.cpp
     utils/Variant.cpp
