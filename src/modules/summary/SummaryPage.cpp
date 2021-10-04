@@ -27,18 +27,15 @@
 #include <QLabel>
 #include <QScrollArea>
 
-SummaryPage::SummaryPage( Config* config, const SummaryViewStep* thisViewStep, QWidget* parent )
+SummaryPage::SummaryPage( Config* config, QWidget* parent )
     : QWidget()
-    , m_thisViewStep( thisViewStep )
     , m_contentWidget( nullptr )
     , m_scrollArea( new QScrollArea( this ) )
 {
     Q_UNUSED( parent )
 
-
     this->setObjectName( "summaryStep" );
 
-    Q_ASSERT( m_thisViewStep );
     QVBoxLayout* layout = new QVBoxLayout( this );
     layout->setContentsMargins( 0, 0, 0, 0 );
 
@@ -85,7 +82,7 @@ createBodyLabel( const QString& text, const QPalette& bodyPalette )
 // Adds a widget for those ViewSteps that want a summary;
 // see SummaryPage documentation and also ViewStep docs.
 void
-SummaryPage::onActivate()
+SummaryPage::buildWidgets( Config* config, SummaryViewStep* viewstep )
 {
     const int SECTION_SPACING = 12;
 
@@ -102,7 +99,7 @@ SummaryPage::onActivate()
     bodyPalette.setColor( WindowBackground, palette().window().color().lighter( 108 ) );
 
     bool first = true;
-    const Calamares::ViewStepList steps = stepsForSummary( Calamares::ViewManager::instance()->viewSteps() );
+    const Calamares::ViewStepList steps = stepsForSummary( Calamares::ViewManager::instance()->viewSteps(), viewstep );
 
     for ( Calamares::ViewStep* step : steps )
     {
@@ -151,12 +148,12 @@ SummaryPage::onActivate()
 
         cDebug() << "Summary widget is larger than viewport, enlarge by" << enlarge << "to" << widgetSize;
 
-        emit m_thisViewStep->ensureSize( widgetSize );  // Only expand height
+        emit viewstep->ensureSize( widgetSize );  // Only expand height
     }
 }
 
 Calamares::ViewStepList
-SummaryPage::stepsForSummary( const Calamares::ViewStepList& allSteps ) const
+SummaryPage::stepsForSummary( const Calamares::ViewStepList& allSteps, SummaryViewStep* viewstep ) const
 {
     Calamares::ViewStepList steps;
     for ( Calamares::ViewStep* step : allSteps )
@@ -173,7 +170,7 @@ SummaryPage::stepsForSummary( const Calamares::ViewStepList& allSteps ) const
 
         // If we reach the parent step of this page, we're done collecting the list of
         // steps to summarize.
-        if ( m_thisViewStep == step )
+        if ( viewstep == step )
         {
             break;
         }
@@ -185,7 +182,7 @@ SummaryPage::stepsForSummary( const Calamares::ViewStepList& allSteps ) const
 }
 
 void
-SummaryPage::onLeave()
+SummaryPage::cleanup()
 {
     delete m_contentWidget;
     m_contentWidget = nullptr;
