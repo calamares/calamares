@@ -84,12 +84,12 @@ Config::retranslate()
     if ( Calamares::Settings::instance()->isSetupMode() )
     {
         m_message = tr( "This is an overview of what will happen once you start "
-                          "the setup procedure." );
+                        "the setup procedure." );
     }
     else
     {
         m_message = tr( "This is an overview of what will happen once you start "
-                          "the install procedure." );
+                        "the install procedure." );
     }
     Q_EMIT titleChanged( m_title );
     Q_EMIT messageChanged( m_message );
@@ -124,4 +124,10 @@ Config::collectSummaries( const Calamares::ViewStep* upToHere )
     }
 
     m_summary->setSummaryList( steps );
+}
+
+void
+Config::clearSummaries()
+{
+    m_summary->setSummaryList( {} );
 }

@@ -74,6 +74,8 @@ public:
 
     ///@brief Called later, to load the model once all viewsteps are there
     void collectSummaries( const Calamares::ViewStep* upToHere );
+    ///@brief Clear the model of steps (to avoid dangling widgets)
+    void clearSummaries();
 
     QAbstractListModel* summaryModel() const { return m_summary; }
 

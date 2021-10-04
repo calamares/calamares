@@ -92,5 +92,6 @@ SummaryViewStep::onActivate()
 void
 SummaryViewStep::onLeave()
 {
+    m_config->clearSummaries();
     m_widget->onLeave();
 }
