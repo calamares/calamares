@@ -140,26 +140,27 @@ SummaryPage::buildWidgets( Config* config, SummaryViewStep* viewstep )
     QPalette bodyPalette( palette() );
     bodyPalette.setColor( WindowBackground, palette().window().color().lighter( 108 ) );
 
-    bool first = true;
-    const Calamares::ViewStepList steps = Config::stepsForSummary( viewstep );
+    const auto* model = config->summaryModel();
+    const auto rowCount = model->rowCount();
 
-    for ( Calamares::ViewStep* step : steps )
+    for ( int row = 0; row < rowCount; row++ )
     {
-        QString text = step->prettyStatus();
-        QWidget* widget = step->createSummaryWidget();
+        const auto rowIndex = model->index( row );
+        QString title = model->data( rowIndex, SummaryModel::TitleRole ).toString();
+        QString text = model->data( rowIndex, SummaryModel::MessageRole ).toString();
+        QWidget* widget = model->data( rowIndex, SummaryModel::WidgetRole ).value< QWidget* >();
 
         if ( text.isEmpty() && !widget )
         {
             continue;
         }
 
-        if ( !first )
+        if ( row > 0 )
         {
             m_layout->addSpacing( SECTION_SPACING );
         }
-        first = false;
 
-        m_layout->addWidget( createTitleLabel( step->prettyName(), titleFont ) );
+        m_layout->addWidget( createTitleLabel( title, titleFont ) );
         m_layout->addWidget( createStepWidget( text, widget, bodyPalette ) );
     }
     m_layout->addStretch();
