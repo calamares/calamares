@@ -38,6 +38,13 @@ class SummaryModel : public QAbstractListModel
     friend class Config;
 
 public:
+    enum Roles : int
+    {
+        TitleRole = Qt::DisplayRole,  // Name of the step
+        MessageRole = Qt::UserRole,  // String saying what it will do
+        WidgetRole,  // Pointer to widget
+    };
+
     explicit SummaryModel( QObject* parent = nullptr );
     int rowCount( const QModelIndex& = QModelIndex() ) const override;
     QVariant data( const QModelIndex& index, int role ) const override;

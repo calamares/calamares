@@ -26,7 +26,9 @@ SummaryModel::SummaryModel( QObject* parent )
 QHash< int, QByteArray >
 SummaryModel::roleNames() const
 {
-    return { { Qt::DisplayRole, "title" }, { Qt::UserRole, "message" } };
+    // Not including WidgetRole here because that wouldn't make sense
+    // in a QML context which is where the roleNames are important.
+    return { { TitleRole, "title" }, { MessageRole, "message" } };
 }
 
 QVariant
@@ -36,8 +38,18 @@ SummaryModel::data( const QModelIndex& index, int role ) const
     {
         return QVariant();
     }
-    const auto item = m_summary.at( index.row() );
-    return role == Qt::DisplayRole ? item.title : item.message;
+    auto& item = m_summary.at( index.row() );
+    switch ( role )
+    {
+    case TitleRole:
+        return item.title;
+    case MessageRole:
+        return item.message;
+    case WidgetRole:
+        return item.widget ? QVariant::fromValue( item.widget ) : QVariant();
+    default:
+        return QVariant();
+    }
 }
 
 int
