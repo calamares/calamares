@@ -7,13 +7,11 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.45 (unreleased) #
+# 3.2.44.3 (2021-10-04) #
 
-This release contains contributions from (alphabetically by first name):
- - No external contributors yet
-
-## Core ##
- - No core changes yet
+This is not a hotfix release, but a tiny-tiny incremental improvement
+that fixes one hugely annoying -- user-facing message presenting
+bytes as mebibytes -- bug in the partition module.
 
 ## Modules ##
  - The *partition* module now consistently uses the configured EFI
