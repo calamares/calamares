@@ -27,8 +27,6 @@
 #include <QLabel>
 #include <QScrollArea>
 
-static const int SECTION_SPACING = 12;
-
 SummaryPage::SummaryPage( Config* config, const SummaryViewStep* thisViewStep, QWidget* parent )
     : QWidget()
     , m_thisViewStep( thisViewStep )
@@ -89,6 +87,8 @@ createBodyLabel( const QString& text, const QPalette& bodyPalette )
 void
 SummaryPage::onActivate()
 {
+    const int SECTION_SPACING = 12;
+
     delete m_contentWidget;  // It might have been created previously
     m_contentWidget = new QWidget;
     m_layout = new QVBoxLayout( m_contentWidget );
@@ -114,14 +114,11 @@ SummaryPage::onActivate()
             continue;
         }
 
-        if ( first )
-        {
-            first = false;
-        }
-        else
+        if ( !first )
         {
             m_layout->addSpacing( SECTION_SPACING );
         }
+        first = false;
 
         m_layout->addWidget( createTitleLabel( step->prettyName(), titleFont ) );
         QHBoxLayout* itemBodyLayout = new QHBoxLayout;
