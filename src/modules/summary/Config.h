@@ -72,8 +72,15 @@ class Config : public QObject
 public:
     explicit Config( QObject* parent = nullptr );
 
+    ///@brief Include widgets in the model?
+    enum class Widgets
+    {
+        Disabled,
+        Enabled
+    };
+
     ///@brief Called later, to load the model once all viewsteps are there
-    void collectSummaries( const Calamares::ViewStep* upToHere );
+    void collectSummaries( const Calamares::ViewStep* upToHere, Widgets withWidgets );
     ///@brief Clear the model of steps (to avoid dangling widgets)
     void clearSummaries();
 

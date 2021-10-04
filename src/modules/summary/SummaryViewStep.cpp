@@ -84,7 +84,7 @@ SummaryViewStep::jobs() const
 void
 SummaryViewStep::onActivate()
 {
-    m_config->collectSummaries( this );
+    m_config->collectSummaries( this, Config::Widgets::Enabled );
     m_widget->onActivate();
 }
 
