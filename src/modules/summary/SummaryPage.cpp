@@ -79,6 +79,22 @@ createBodyLabel( const QString& text, const QPalette& bodyPalette )
     return label;
 }
 
+static void
+ensureSize( QWidget* parent, QScrollArea* container, Calamares::ViewStep* viewstep )
+{
+    auto summarySize = container->widget()->sizeHint();
+    if ( summarySize.height() > container->size().height() )
+    {
+        auto enlarge = 2 + summarySize.height() - container->size().height();
+        auto widgetSize = parent->size();
+        widgetSize.setHeight( widgetSize.height() + enlarge );
+
+        cDebug() << "Summary widget is larger than viewport, enlarge by" << enlarge << "to" << widgetSize;
+
+        emit viewstep->ensureSize( widgetSize );  // Only expand height
+    }
+}
+
 // Adds a widget for those ViewSteps that want a summary;
 // see SummaryPage documentation and also ViewStep docs.
 void
@@ -99,7 +115,7 @@ SummaryPage::buildWidgets( Config* config, SummaryViewStep* viewstep )
     bodyPalette.setColor( WindowBackground, palette().window().color().lighter( 108 ) );
 
     bool first = true;
-    const Calamares::ViewStepList steps = stepsForSummary( Calamares::ViewManager::instance()->viewSteps(), viewstep );
+    const Calamares::ViewStepList steps = Config::stepsForSummary( viewstep );
 
     for ( Calamares::ViewStep* step : steps )
     {
@@ -138,47 +154,7 @@ SummaryPage::buildWidgets( Config* config, SummaryViewStep* viewstep )
     m_layout->addStretch();
 
     m_scrollArea->setWidget( m_contentWidget );
-
-    auto summarySize = m_contentWidget->sizeHint();
-    if ( summarySize.height() > m_scrollArea->size().height() )
-    {
-        auto enlarge = 2 + summarySize.height() - m_scrollArea->size().height();
-        auto widgetSize = this->size();
-        widgetSize.setHeight( widgetSize.height() + enlarge );
-
-        cDebug() << "Summary widget is larger than viewport, enlarge by" << enlarge << "to" << widgetSize;
-
-        emit viewstep->ensureSize( widgetSize );  // Only expand height
-    }
-}
-
-Calamares::ViewStepList
-SummaryPage::stepsForSummary( const Calamares::ViewStepList& allSteps, SummaryViewStep* viewstep ) const
-{
-    Calamares::ViewStepList steps;
-    for ( Calamares::ViewStep* step : allSteps )
-    {
-        // We start from the beginning of the complete steps list. If we encounter any
-        // ExecutionViewStep, it means there was an execution phase in the past, and any
-        // jobs from before that phase were already executed, so we can safely clear the
-        // list of steps to summarize and start collecting from scratch.
-        if ( qobject_cast< Calamares::ExecutionViewStep* >( step ) )
-        {
-            steps.clear();
-            continue;
-        }
-
-        // If we reach the parent step of this page, we're done collecting the list of
-        // steps to summarize.
-        if ( viewstep == step )
-        {
-            break;
-        }
-
-        steps.append( step );
-    }
-
-    return steps;
+    ensureSize( this, m_scrollArea, viewstep );
 }
 
 void

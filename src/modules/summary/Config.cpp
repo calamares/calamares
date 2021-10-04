@@ -95,8 +95,8 @@ Config::retranslate()
     Q_EMIT messageChanged( m_message );
 }
 
-void
-Config::collectSummaries( const Calamares::ViewStep* upToHere, Widgets withWidgets )
+Calamares::ViewStepList
+Config::stepsForSummary( const Calamares::ViewStep* upToHere )
 {
     Calamares::ViewStepList steps;
     for ( Calamares::ViewStep* step : Calamares::ViewManager::instance()->viewSteps() )
@@ -122,8 +122,14 @@ Config::collectSummaries( const Calamares::ViewStep* upToHere, Widgets withWidge
 
         steps.append( step );
     }
+    return steps;
+}
 
-    m_summary->setSummaryList( steps, withWidgets == Widgets::Enabled );
+
+void
+Config::collectSummaries( const Calamares::ViewStep* upToHere, Widgets withWidgets )
+{
+    m_summary->setSummaryList( stepsForSummary( upToHere ), withWidgets == Widgets::Enabled );
 }
 
 void

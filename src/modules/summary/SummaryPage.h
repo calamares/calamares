@@ -53,8 +53,6 @@ public:
     void cleanup();
 
 private:
-    Calamares::ViewStepList stepsForSummary( const Calamares::ViewStepList& allSteps, SummaryViewStep* viewstep ) const;
-
     QVBoxLayout* m_layout = nullptr;
     QWidget* m_contentWidget = nullptr;
     QScrollArea* m_scrollArea = nullptr;

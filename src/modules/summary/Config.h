@@ -79,6 +79,8 @@ public:
         Enabled
     };
 
+    static Calamares::ViewStepList stepsForSummary( const Calamares::ViewStep* upToHere );
+
     ///@brief Called later, to load the model once all viewsteps are there
     void collectSummaries( const Calamares::ViewStep* upToHere, Widgets withWidgets );
     ///@brief Clear the model of steps (to avoid dangling widgets)
@@ -90,7 +92,6 @@ public:
     QString message() const { return m_message; }
 
 private:
-    Calamares::ViewStepList stepsForSummary( const Calamares::ViewStepList& allSteps ) const;
     void retranslate();
 
     SummaryModel* m_summary;
