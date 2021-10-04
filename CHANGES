@@ -18,6 +18,8 @@ This release contains contributions from (alphabetically by first name):
 ## Modules ##
  - The *partition* module now consistently uses the configured EFI
    partition size (defaults to 300MiB).
+ - Internal changes in the *summary* module to increase consistency
+   between *summary* and *summaryq*.
 
 
 # 3.2.44.2 (2021-09-27) #
