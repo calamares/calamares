@@ -79,6 +79,32 @@ createBodyLabel( const QString& text, const QPalette& bodyPalette )
     return label;
 }
 
+static QWidget*
+createStepWidget( const QString& description, QWidget* innerWidget, const QPalette& palette )
+{
+    QWidget* w = new QWidget();
+    QHBoxLayout* itemBodyLayout = new QHBoxLayout;
+    w->setLayout( itemBodyLayout );
+
+    // Indent the inner box by a bit
+    itemBodyLayout->addSpacing( CalamaresUtils::defaultFontHeight() * 2 );
+    QVBoxLayout* itemBodyCoreLayout = new QVBoxLayout;
+    itemBodyLayout->addLayout( itemBodyCoreLayout );
+    CalamaresUtils::unmarginLayout( itemBodyLayout );
+
+    itemBodyCoreLayout->addSpacing( CalamaresUtils::defaultFontHeight() / 2 );
+    if ( !description.isEmpty() )
+    {
+        itemBodyCoreLayout->addWidget( createBodyLabel( description, palette ) );
+    }
+    if ( innerWidget )
+    {
+        itemBodyCoreLayout->addWidget( innerWidget );
+    }
+
+    return w;
+}
+
 static void
 ensureSize( QWidget* parent, QScrollArea* container, Calamares::ViewStep* viewstep )
 {
@@ -134,22 +160,7 @@ SummaryPage::buildWidgets( Config* config, SummaryViewStep* viewstep )
         first = false;
 
         m_layout->addWidget( createTitleLabel( step->prettyName(), titleFont ) );
-        QHBoxLayout* itemBodyLayout = new QHBoxLayout;
-        m_layout->addSpacing( CalamaresUtils::defaultFontHeight() / 2 );
-        m_layout->addLayout( itemBodyLayout );
-        itemBodyLayout->addSpacing( CalamaresUtils::defaultFontHeight() * 2 );
-        QVBoxLayout* itemBodyCoreLayout = new QVBoxLayout;
-        itemBodyLayout->addLayout( itemBodyCoreLayout );
-        CalamaresUtils::unmarginLayout( itemBodyLayout );
-        if ( !text.isEmpty() )
-        {
-            itemBodyCoreLayout->addWidget( createBodyLabel( text, bodyPalette ) );
-        }
-        if ( widget )
-        {
-            itemBodyCoreLayout->addWidget( widget );
-        }
-        itemBodyLayout->addSpacing( CalamaresUtils::defaultFontHeight() * 2 );
+        m_layout->addWidget( createStepWidget( text, widget, bodyPalette ) );
     }
     m_layout->addStretch();
 
