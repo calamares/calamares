@@ -5,16 +5,16 @@
 # 
 # Translators:
 # Ji-Hyeon Gim <potatogim@potatogim.net>, 2018
-# JungHee Lee <daemul72@gmail.com>, 2021
+# 이정희 <daemul72@gmail.com>, 2021
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-08 13:31+0200\n"
+"POT-Creation-Date: 2021-09-22 11:02+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: JungHee Lee <daemul72@gmail.com>, 2021\n"
+"Last-Translator: 이정희 <daemul72@gmail.com>, 2021\n"
 "Language-Team: Korean (https://www.transifex.com/calamares/teams/20061/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,8 +30,8 @@ msgstr "GRUB 구성"
 msgid "Mounting partitions."
 msgstr "파티션 마운트 중."
 
-#: src/modules/mount/main.py:144 src/modules/initcpiocfg/main.py:197
-#: src/modules/initcpiocfg/main.py:201
+#: src/modules/mount/main.py:144 src/modules/initcpiocfg/main.py:227
+#: src/modules/initcpiocfg/main.py:231
 #: src/modules/luksopenswaphookcfg/main.py:86
 #: src/modules/luksopenswaphookcfg/main.py:90 src/modules/rawfs/main.py:164
 #: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
@@ -42,7 +42,7 @@ msgstr "파티션 마운트 중."
 msgid "Configuration Error"
 msgstr "구성 오류"
 
-#: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:198
+#: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:228
 #: src/modules/luksopenswaphookcfg/main.py:87 src/modules/rawfs/main.py:165
 #: src/modules/initramfscfg/main.py:86 src/modules/openrcdmcryptcfg/main.py:73
 #: src/modules/fstab/main.py:356
@@ -211,7 +211,7 @@ msgstr "디스플레이 관리자 구성이 완료되지 않았습니다."
 msgid "Configuring mkinitcpio."
 msgstr "mkinitcpio 구성 중."
 
-#: src/modules/initcpiocfg/main.py:202
+#: src/modules/initcpiocfg/main.py:232
 #: src/modules/luksopenswaphookcfg/main.py:91
 #: src/modules/initramfscfg/main.py:90 src/modules/openrcdmcryptcfg/main.py:77
 #: src/modules/fstab/main.py:362 src/modules/localecfg/main.py:136
