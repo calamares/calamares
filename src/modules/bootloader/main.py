@@ -168,7 +168,7 @@ def create_systemd_boot_conf(installation_root_path, efi_dir, uuid, entry, kerne
 
     try:
         additional_initrd_files = libcalamares.job.configuration["additionalInitrdFiles"]
-        for initrd_file in additional_initrd_files.split(','):
+        for initrd_file in additional_initrd_files:
             libcalamares.utils.debug("Attempting to handle initrd image " + initrd_file)
             if os.path.isfile(os.path.join(installation_root_path, initrd_file.lstrip('/'))):
                 libcalamares.utils.debug("Found image " + initrd_file)

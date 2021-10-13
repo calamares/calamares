@@ -10,7 +10,10 @@ properties:
     kernelSearchPath:  { type: string }
     kernelName:  { type: string }
     timeout:  { type: string }  # Inserted verbatim
-    additionalInitrdFiles:  { type: string }
+    additionalInitrdFiles:
+        type: array
+        items:
+            type: string
     bootloaderEntryName:  { type: string }
     kernelLine:  { type: string }
     fallbackKernelLine:  { type: string }
