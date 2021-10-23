@@ -152,8 +152,12 @@ public:
      */
     bool isSetupMode() const { return m_isSetupMode; }
 
+    /** @brief Returns true if the named module is enabled */
+    bool isModuleEnabled( QString module );
+
     /** @brief Global setting of disable-cancel: can't cancel ever. */
     bool disableCancel() const { return m_disableCancel; }
+
     /** @brief Temporary setting of disable-cancel: can't cancel during exec. */
     bool disableCancelDuringExec() const { return m_disableCancelDuringExec; }
 
