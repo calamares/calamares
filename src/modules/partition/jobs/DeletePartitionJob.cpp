@@ -10,6 +10,7 @@
  */
 
 #include "DeletePartitionJob.h"
+#include "utils/CalamaresUtilsSystem.h"
 
 // KPMcore
 #include <kpmcore/core/device.h>
@@ -18,6 +19,7 @@
 #include <kpmcore/fs/filesystem.h>
 #include <kpmcore/ops/deleteoperation.h>
 #include <kpmcore/util/report.h>
+
 
 DeletePartitionJob::DeletePartitionJob( Device* device, Partition* partition )
     : PartitionJob( partition )
@@ -49,6 +51,29 @@ DeletePartitionJob::prettyStatusMessage() const
 Calamares::JobResult
 DeletePartitionJob::exec()
 {
+    // Special handling for zfs
+    if ( m_partition->fileSystem().type() == FileSystem::Type::Zfs )
+    {
+        // Since deletion of a zfs partition can happen even if the distro doesn't support zfs,
+        // we need to check if the installation has a working zfs.  If not, just remove the partition.
+        auto r = CalamaresUtils::System::instance()->runCommand( { "zpool", "status" }, std::chrono::seconds( 5 ) );
+
+        if ( r.getExitCode() != 0 )
+        {
+            r = CalamaresUtils::System::instance()->runCommand( { "sfdisk",
+                                                                  "--delete",
+                                                                  "--force",
+                                                                  m_partition->devicePath(),
+                                                                  QString::number( m_partition->number() ) },
+                                                                std::chrono::seconds( 5 ) );
+            if ( r.getExitCode() != 0 )
+                return Calamares::JobResult::error( "message",
+                                                    "Failed to delete zfs partition with output: " + r.getOutput() );
+            else
+                return Calamares::JobResult::ok();
+        }
+    }
+
     Report report( nullptr );
     DeleteOperation op( *m_device, m_partition );
     op.setStatus( Operation::StatusRunning );
