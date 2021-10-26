@@ -9,13 +9,26 @@
 
 #include "PackageModel.h"
 
+#include "Branding.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
-static QPixmap loadScreenshot( const QString& path )
+#include <QFileInfo>
+
+static QPixmap
+loadScreenshot( const QString& path )
 {
-    cDebug() << path;
-    return QPixmap( path );
+    if ( QFileInfo::exists( path ) )
+    {
+        return QPixmap( path );
+    }
+
+    const auto* branding = Calamares::Branding::instance();
+    if ( !branding )
+    {
+        return QPixmap();
+    }
+    return QPixmap( branding->componentDirectory() + QStringLiteral( "/" ) + path );
 }
 
 PackageItem::PackageItem() {}
