@@ -74,7 +74,7 @@ smartClip( const QPixmap& pixmap, QSize size )
         return pixmap.copy( x, y, new_width, new_height );
     }
 
-    return pixmap.scaled( size, Qt::KeepAspectRatio );
+    return pixmap.scaled( size, Qt::KeepAspectRatio, Qt::SmoothTransformation );
 }
 
 void
@@ -83,7 +83,7 @@ PackageChooserPage::currentChanged( const QModelIndex& index )
     if ( !index.isValid() || !ui->products->selectionModel()->hasSelection() )
     {
         ui->productName->setText( m_introduction.name.get() );
-        ui->productScreenshot->setPixmap( m_introduction.screenshot );
+        ui->productScreenshot->setPixmap( smartClip( m_introduction.screenshot, ui->productScreenshot->size() ) );
         ui->productDescription->setText( m_introduction.description.get() );
     }
     else
@@ -96,7 +96,7 @@ PackageChooserPage::currentChanged( const QModelIndex& index )
         QPixmap currentScreenshot = model->data( index, PackageListModel::ScreenshotRole ).value< QPixmap >();
         if ( currentScreenshot.isNull() )
         {
-            ui->productScreenshot->setPixmap( m_introduction.screenshot );
+            ui->productScreenshot->setPixmap( smartClip( m_introduction.screenshot, ui->productScreenshot->size() ) );
         }
         else
         {
@@ -136,8 +136,8 @@ PackageChooserPage::setSelection( const QModelIndex& index )
     if ( index.isValid() )
     {
         ui->products->selectionModel()->select( index, QItemSelectionModel::Select );
-        currentChanged( index );
     }
+    currentChanged( index );
 }
 
 bool
