@@ -15,6 +15,7 @@
 
 #include "DllMacro.h"
 
+#include <QList>
 #include <QString>
 #include <QVariantMap>
 
@@ -38,6 +39,12 @@ DLLEXPORT QString getString( const QVariantMap& map, const QString& key, const Q
  * be returned as a 1-item list.
  */
 DLLEXPORT QStringList getStringList( const QVariantMap& map, const QString& key, const QStringList& d = QStringList() );
+
+/**
+ * Get a list from a mapping with a given key; returns @p d if no value.
+ */
+DLLEXPORT QList< QVariant >
+getList( const QVariantMap& map, const QString& key, const QList< QVariant >& d = QList< QVariant >() );
 
 /**
  * Get an integer value from a mapping with a given key; returns @p d if no value.

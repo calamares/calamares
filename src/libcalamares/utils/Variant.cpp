@@ -65,6 +65,20 @@ getStringList( const QVariantMap& map, const QString& key, const QStringList& d 
     return d;
 }
 
+QList< QVariant >
+getList( const QVariantMap& map, const QString& key, const QList< QVariant >& d )
+{
+    if ( map.contains( key ) )
+    {
+        auto v = map.value( key );
+        if ( v.canConvert( QVariant::List ) )
+        {
+            return v.toList();
+        }
+    }
+    return d;
+}
+
 qint64
 getInteger( const QVariantMap& map, const QString& key, qint64 d )
 {
