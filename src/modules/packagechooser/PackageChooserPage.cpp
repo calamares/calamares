@@ -74,7 +74,7 @@ smartClip( const QPixmap& pixmap, QSize size )
         return pixmap.copy( x, y, new_width, new_height );
     }
 
-    return pixmap.scaled( size, Qt::KeepAspectRatio );
+    return pixmap.scaled( size, Qt::KeepAspectRatio, Qt::SmoothTransformation );
 }
 
 void
