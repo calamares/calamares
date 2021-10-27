@@ -17,7 +17,7 @@
 
 import abc
 import os
-import re
+import toml
 import libcalamares
 import configparser
 
@@ -833,6 +833,74 @@ class DMsddm(DisplayManager):
 
     def greeter_setup(self):
         pass
+
+
+class DMgreetd(DisplayManager):
+    name = "greetd"
+    executable = "greetd"
+    config_data = {}
+
+    def os_path(self, path):
+        return os.path.join(self.root_mount_point, path)
+
+    def config_path(self):
+        return self.os_path("etc/greetd/config.toml")
+
+    def environments_path(self):
+        return self.os_path("etc/greetd/environments")
+
+    def config_load(self):
+        self.config_data = toml.loads(self.config_path())
+
+    def config_write(self):
+        toml.dump(self.config_data, self.config_path())
+
+    def basic_setup(self):
+        if libcalamares.utils.target_env_call(
+                ['getent', 'group', 'greetd']
+                ) != 0:
+            libcalamares.utils.target_env_call(
+                ['groupadd', 'greetd']
+                )
+
+        if libcalamares.utils.target_env_call(
+                ['getent', 'passwd', 'greeter']
+                ) != 0:
+            libcalamares.utils.target_env_call(
+                ['useradd',
+                    '-c', '"Greeter User"',
+                    '-g', 'greetd',
+                    '-s', '/bin/bash',
+                    'greeter'
+                    ]
+                )
+        self.config_load()
+        self.config_data['terminal']['vt'] = "next"
+        self.config_write()
+
+    def desktop_environment_setup(self, default_desktop_environment):
+        with open(self.environments_path(), 'w') as envs_file:
+            envs_file.write(default_desktop_environment)
+
+    def greeter_setup(self):
+        pass
+
+    def set_autologin(self, username, do_autologin, default_desktop_environment):
+        self.config_load()
+
+        if (os.path.exists(self.os_path("usr/bin/tuigreet"))):
+            tuigreet_base_cmd = "tuigreet --remember --time --issue --asterisks --cmd "
+            self.config_data['default_session']['command'] = tuigreet_base_cmd + default_desktop_environment
+        else:
+            print("no greeter detected")
+
+        if (do_autologin == True):
+            self.config_data['initial_session'] = {}
+            self.config_data['initial_session']['command'] = default_desktop_environment
+            self.config_data['initial_session']['user'] = username
+
+        self.config_write()
+
 
 
 class DMsysconfig(DisplayManager):
