@@ -844,13 +844,17 @@ class DMgreetd(DisplayManager):
         return os.path.join(self.root_mount_point, path)
 
     def config_path(self):
-        return self.os_path("etc/greetd/config.toml")
+        path = self.os_path("etc/greetd/config.toml")
+        if not os.path.exists(path):
+            open(path, 'a').close()
+        return path
 
     def environments_path(self):
         return self.os_path("etc/greetd/environments")
 
     def config_load(self):
         self.config_data = toml.loads(self.config_path())
+        return self.config_data
 
     def config_write(self):
         toml.dump(self.config_data, self.config_path())
@@ -888,13 +892,17 @@ class DMgreetd(DisplayManager):
     def set_autologin(self, username, do_autologin, default_desktop_environment):
         self.config_load()
 
-        if (os.path.exists(self.os_path("usr/bin/tuigreet"))):
+        if os.path.exists(self.os_path("usr/bin/gtkgreed") and os.path.exists(self.os_path("usr/bin/cage")):
+            self.config_data['default_session']['command'] = "cage gtkgreet"
+        elif os.path.exists(self.os_path("usr/bin/tuigreet")):
             tuigreet_base_cmd = "tuigreet --remember --time --issue --asterisks --cmd "
             self.config_data['default_session']['command'] = tuigreet_base_cmd + default_desktop_environment
+        elif os.path.exists(self.os_path("usr/bin/ddlm")):
+            self.config_data['default_session']['command'] = "ddlm --target sway"
         else:
-            print("no greeter detected")
+            self.config_data['default_session']['command'] = "agreety --cmd " + default_desktop_environment
 
-        if (do_autologin == True):
+        if do_autologin == True:
             self.config_data['initial_session'] = {}
             self.config_data['initial_session']['command'] = default_desktop_environment
             self.config_data['initial_session']['user'] = username
