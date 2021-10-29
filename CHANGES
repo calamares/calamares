@@ -10,13 +10,16 @@ website will have to do for older versions.
 # 3.2.45 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - Dalto (new contributor, welcome!)
+ - Evan James (new contributor, welcome!)
 
 ## Core ##
- - No core changes yet
+ - New internal convenience functions from Evan
 
 ## Modules ##
- - No module changes yet
+ - *packagechooser* now displays screenshots nicely-scaled
+   rather than jagged. (#1807)
+ - *services-systemd* supports timers, e.g. for weekly trim on SSDs.
+   (Thanks Evan)
 
 
 # 3.2.44.3 (2021-10-04) #
