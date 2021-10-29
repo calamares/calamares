@@ -162,7 +162,7 @@ public:
      *  full module key+id (e.g. packagechooser@packagechooser)
      *
     */
-    const bool isModuleEnabled( const QString& module );
+    bool isModuleEnabled( const QString& module ) const;
 
     /** @brief Global setting of disable-cancel: can't cancel ever. */
     bool disableCancel() const { return m_disableCancel; }
