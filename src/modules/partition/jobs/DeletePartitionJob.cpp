@@ -20,6 +20,44 @@
 #include <kpmcore/ops/deleteoperation.h>
 #include <kpmcore/util/report.h>
 
+#include <QCoreApplication>
+
+/** @brief Determine if the given partition is of type Zfs
+ *
+ * Returns true if @p partition is of type Zfs
+ *
+ */
+static bool
+isZfs( Partition* partition )
+{
+    return partition->fileSystem().type() == FileSystem::Type::Zfs;
+}
+
+/** @brief Remove the given partition manually
+ *
+ * Uses sfdisk to remove @p partition.  This should only be used in cases
+ * where using kpmcore to remove the partition would not be appropriate
+ *
+ */
+static Calamares::JobResult
+removePartition( Partition* partition )
+{
+    auto r = CalamaresUtils::System::instance()->runCommand(
+        { "sfdisk", "--delete", "--force", partition->devicePath(), QString::number( partition->number() ) },
+        std::chrono::seconds( 5 ) );
+    if ( r.getExitCode() !=0 || r.getOutput().contains("failed") )
+    {
+        return Calamares::JobResult::error(
+            QCoreApplication::translate( DeletePartitionJob::staticMetaObject.className(), "Deletion Failed" ),
+            QCoreApplication::translate( DeletePartitionJob::staticMetaObject.className(),
+                                         "Failed to delete the partition with output: " )
+                + r.getOutput() );
+    }
+    else
+    {
+        return Calamares::JobResult::ok();
+    }
+}
 
 DeletePartitionJob::DeletePartitionJob( Device* device, Partition* partition )
     : PartitionJob( partition )
@@ -51,27 +89,11 @@ DeletePartitionJob::prettyStatusMessage() const
 Calamares::JobResult
 DeletePartitionJob::exec()
 {
-    // Special handling for zfs
-    if ( m_partition->fileSystem().type() == FileSystem::Type::Zfs )
+    // The current implementation of remove() for zfs in kpmcore trys to destroy the zpool by label
+    // This isn't what we want here so we delete the partition instead.
+    if ( isZfs( m_partition ) )
     {
-        // Since deletion of a zfs partition can happen even if the distro doesn't support zfs,
-        // we need to check if the installation has a working zfs.  If not, just remove the partition.
-        auto r = CalamaresUtils::System::instance()->runCommand( { "zpool", "status" }, std::chrono::seconds( 5 ) );
-
-        if ( r.getExitCode() != 0 )
-        {
-            r = CalamaresUtils::System::instance()->runCommand( { "sfdisk",
-                                                                  "--delete",
-                                                                  "--force",
-                                                                  m_partition->devicePath(),
-                                                                  QString::number( m_partition->number() ) },
-                                                                std::chrono::seconds( 5 ) );
-            if ( r.getExitCode() != 0 )
-                return Calamares::JobResult::error( "message",
-                                                    "Failed to delete zfs partition with output: " + r.getOutput() );
-            else
-                return Calamares::JobResult::ok();
-        }
+        return removePartition( m_partition );
     }
 
     Report report( nullptr );
