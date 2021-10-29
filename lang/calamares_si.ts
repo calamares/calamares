@@ -6,7 +6,7 @@
     <message>
       <location filename="../src/modules/partition/jobs/AutoMountManagementJob.cpp" line="22"/>
       <source>Manage auto-mount settings</source>
-      <translation type="unfinished"/>
+      <translation>ස්වයංක්‍රීය සවිකිරීම් සැකසීම් කළමනාකරණය කරන්න</translation>
     </message>
   </context>
   <context>
@@ -73,7 +73,7 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="28"/>
       <source>GlobalStorage</source>
-      <translation>ගෝලීය ආචයනය</translation>
+      <translation>ගෝලීය ගබඩාව</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="38"/>
@@ -152,7 +152,7 @@
     <message>
       <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="88"/>
       <source>Install</source>
-      <translation type="unfinished"/>
+      <translation>ස්ථාපනය</translation>
     </message>
   </context>
   <context>
@@ -194,7 +194,7 @@
     <message>
       <location filename="../src/libcalamares/ProcessJob.cpp" line="43"/>
       <source> Run command '%1'.</source>
-      <translation type="unfinished"/>
+      <translation>'%1' විධානය ධාවනය කරන්න.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/ProcessJob.cpp" line="50"/>
@@ -3626,7 +3626,7 @@ Output:
     <message>
       <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="30"/>
       <source>&amp;No</source>
-      <translation>නැහැ (N)</translation>
+      <translation>නැත (N)</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="31"/>
