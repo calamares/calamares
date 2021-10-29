@@ -269,6 +269,21 @@ Settings::Settings( const QString& settingsFilePath, bool debugMode )
     s_instance = this;
 }
 
+const bool
+Settings::isModuleEnabled( const QString& module )
+{
+    // Iterate over the list of modules searching for a match
+    for ( const auto& moduleInstance : qAsConst( m_moduleInstances ) )
+    {
+        if ( moduleInstance.key().module() == module )
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 void
 Settings::reconcileInstancesAndSequence()
 {
