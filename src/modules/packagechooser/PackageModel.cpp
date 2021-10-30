@@ -9,8 +9,27 @@
 
 #include "PackageModel.h"
 
+#include "Branding.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
+
+#include <QFileInfo>
+
+static QPixmap
+loadScreenshot( const QString& path )
+{
+    if ( QFileInfo::exists( path ) )
+    {
+        return QPixmap( path );
+    }
+
+    const auto* branding = Calamares::Branding::instance();
+    if ( !branding )
+    {
+        return QPixmap();
+    }
+    return QPixmap( branding->componentDirectory() + QStringLiteral( "/" ) + path );
+}
 
 PackageItem::PackageItem() {}
 
@@ -36,7 +55,7 @@ PackageItem::PackageItem::PackageItem( const QVariantMap& item_map )
     : id( CalamaresUtils::getString( item_map, "id" ) )
     , name( CalamaresUtils::Locale::TranslatedString( item_map, "name" ) )
     , description( CalamaresUtils::Locale::TranslatedString( item_map, "description" ) )
-    , screenshot( CalamaresUtils::getString( item_map, "screenshot" ) )
+    , screenshot( loadScreenshot( CalamaresUtils::getString( item_map, "screenshot" ) ) )
     , packageNames( CalamaresUtils::getStringList( item_map, "packages" ) )
 {
     if ( name.isEmpty() && id.isEmpty() )
