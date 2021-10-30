@@ -7,7 +7,7 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.45 (unreleased) #
+# 3.2.45 (2021-10-31) #
 
 This release contains contributions from (alphabetically by first name):
  - Evan James (new contributor, welcome!)
@@ -18,6 +18,9 @@ This release contains contributions from (alphabetically by first name):
 ## Modules ##
  - *packagechooser* now displays screenshots nicely-scaled
    rather than jagged. (#1807)
+ - *partition* module removes ZFS partitions directly. At install-time,
+   we think that the partitions should be handled separately from a
+   zpool that potentially includes those partitions. (Thanks Evan)
  - *services-systemd* supports timers, e.g. for weekly trim on SSDs.
    (Thanks Evan)
 
