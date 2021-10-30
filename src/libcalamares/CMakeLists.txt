@@ -304,6 +304,7 @@ calamares_add_test(
     libcalamaresutilstest
     SOURCES
         utils/Tests.cpp
+        utils/Runner.cpp
 )
 
 calamares_add_test(

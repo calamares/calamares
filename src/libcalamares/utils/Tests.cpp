@@ -70,6 +70,9 @@ private Q_SLOTS:
     void testStringTruncationShorter();
     void testStringTruncationDegenerate();
 
+    /** @section Test Runner directory-manipulation. */
+    void testRunnerDirs();
+
 private:
     void recursiveCompareMap( const QVariantMap& a, const QVariantMap& b, int depth );
 };
@@ -742,6 +745,94 @@ LibCalamaresTests::testStringTruncationDegenerate()
 
         auto t = truncateMultiLine( longString, LinesStartEnd { 2, 2 }, CharCount { quiteShort } );
         QCOMPARE( s, t );
+    }
+}
+
+
+static QString
+dirname( const QTemporaryDir& d )
+{
+    return d.path().split( '/' ).last();
+}
+static QString
+dirname( const QDir& d )
+{
+    return d.absolutePath().split( '/' ).last();
+}
+
+// Method under test
+extern bool relativeChangeDirectory( QDir& directory, const QString& subdir );
+
+void
+LibCalamaresTests::testRunnerDirs()
+{
+    Logger::setupLogLevel( Logger::LOGDEBUG );
+
+    QDir startDir( QDir::current() );
+    QTemporaryDir tempDir( "./utilstest" );
+    QVERIFY( tempDir.isValid() );
+    QVERIFY( startDir.isReadable() );
+
+    // Test changing "downward"
+    {
+        QDir testDir( QDir::current() );
+        QCOMPARE( startDir, testDir );
+    }
+
+    {
+        QDir testDir( QDir::current() );
+        const bool could_change_to_dot = relativeChangeDirectory( testDir, QStringLiteral( "." ) );
+        QVERIFY( could_change_to_dot );
+        QCOMPARE( startDir, testDir );
+    }
+
+    {
+        // The tempDir was created inside the current directory, we want only the subdir-name
+        QDir testDir( QDir::current() );
+        const bool could_change_to_temp = relativeChangeDirectory( testDir, dirname( tempDir ) );
+        QVERIFY( could_change_to_temp );
+        QVERIFY( startDir != testDir );
+        QVERIFY( testDir.absolutePath().startsWith( startDir.absolutePath() ) );
+    }
+
+    // Test changing to something that doesn't exist
+    {
+        QDir testDir( QDir::current() );
+        const bool could_change_to_bogus = relativeChangeDirectory( testDir, QStringLiteral( "bogus" ) );
+        QVERIFY( !could_change_to_bogus );
+        QCOMPARE( startDir, testDir );  // Must be unchanged
+    }
+
+    // Testing escape-from-start
+    {
+        // Escape briefly from the start
+        QDir testDir( QDir::current() );
+        const bool could_change_to_current
+            = relativeChangeDirectory( testDir, QStringLiteral( "../" ) + dirname( startDir ) );
+        QVERIFY( could_change_to_current );
+        QCOMPARE( startDir, testDir );  // The change succeeded, but net effect is zero
+
+        const bool could_change_to_temp = relativeChangeDirectory(
+            testDir, QStringLiteral( "../" ) + dirname( startDir ) + QStringLiteral( "/./" ) + dirname( tempDir ) );
+        QVERIFY( could_change_to_temp );
+        QVERIFY( startDir != testDir );
+        QVERIFY( testDir.absolutePath().startsWith( startDir.absolutePath() ) );
+    }
+
+    {
+        // Escape?
+        QDir testDir( QDir::current() );
+        const bool could_change_to_parent = relativeChangeDirectory( testDir, QStringLiteral( "../" ) );
+        QVERIFY( !could_change_to_parent );
+        QCOMPARE( startDir, testDir );  // Change failed
+
+        const bool could_change_to_tmp = relativeChangeDirectory( testDir, QStringLiteral( "/tmp" ) );
+        QVERIFY( !could_change_to_tmp );
+        QCOMPARE( startDir, testDir );
+
+        const bool could_change_to_elsewhere = relativeChangeDirectory( testDir, QStringLiteral( "../src" ) );
+        QVERIFY( !could_change_to_elsewhere );
+        QCOMPARE( startDir, testDir );
     }
 }
 
