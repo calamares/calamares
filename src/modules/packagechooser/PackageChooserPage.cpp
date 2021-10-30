@@ -46,37 +46,6 @@ PackageChooserPage::PackageChooserPage( PackageChooserMode mode, QWidget* parent
     ui->products->setMinimumWidth( 10 * CalamaresUtils::defaultFontHeight() );
 }
 
-/** @brief size the given @p pixmap to @p size
- *
- * This is "smart" in the sense that it tries to keep the image un-scaled
- * (if it's just a little too big) and otherwise scales as needed.
- *
- * Returns a copy if any modifications are done.
- */
-static QPixmap
-smartClip( const QPixmap& pixmap, QSize size )
-{
-    auto pixSize = pixmap.size();
-    if ( ( pixSize.width() <= size.width() ) && ( pixSize.height() <= size.height() ) )
-    {
-        return pixmap;
-    }
-
-    // only slightly bigger? Trim the edges
-    constexpr int margin = 16;
-    if ( ( pixSize.width() <= size.width() + margin ) && ( pixSize.height() <= size.height() + margin ) )
-    {
-        int x = pixSize.width() <= size.width() ? 0 : ( pixSize.width() - size.width() / 2 );
-        int new_width = pixSize.width() <= size.width() ? pixSize.width() : size.width();
-        int y = pixSize.height() <= size.height() ? 0 : ( pixSize.height() - size.height() / 2 );
-        int new_height = pixSize.height() <= size.height() ? pixSize.height() : size.height();
-
-        return pixmap.copy( x, y, new_width, new_height );
-    }
-
-    return pixmap.scaled( size, Qt::KeepAspectRatio );
-}
-
 void
 PackageChooserPage::currentChanged( const QModelIndex& index )
 {
@@ -100,7 +69,7 @@ PackageChooserPage::currentChanged( const QModelIndex& index )
         }
         else
         {
-            ui->productScreenshot->setPixmap( smartClip( currentScreenshot, ui->productScreenshot->size() ) );
+            ui->productScreenshot->setPixmap( currentScreenshot );
         }
     }
 }
@@ -136,8 +105,8 @@ PackageChooserPage::setSelection( const QModelIndex& index )
     if ( index.isValid() )
     {
         ui->products->selectionModel()->select( index, QItemSelectionModel::Select );
-        currentChanged( index );
     }
+    currentChanged( index );
 }
 
 bool

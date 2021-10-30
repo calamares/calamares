@@ -38,6 +38,13 @@ class SummaryModel : public QAbstractListModel
     friend class Config;
 
 public:
+    enum Roles : int
+    {
+        TitleRole = Qt::DisplayRole,  // Name of the step
+        MessageRole = Qt::UserRole,  // String saying what it will do
+        WidgetRole,  // Pointer to widget
+    };
+
     explicit SummaryModel( QObject* parent = nullptr );
     int rowCount( const QModelIndex& = QModelIndex() ) const override;
     QVariant data( const QModelIndex& index, int role ) const override;
@@ -72,8 +79,19 @@ class Config : public QObject
 public:
     explicit Config( QObject* parent = nullptr );
 
+    ///@brief Include widgets in the model?
+    enum class Widgets
+    {
+        Disabled,
+        Enabled
+    };
+
+    static Calamares::ViewStepList stepsForSummary( const Calamares::ViewStep* upToHere );
+
     ///@brief Called later, to load the model once all viewsteps are there
-    void collectSummaries( const Calamares::ViewStep* upToHere );
+    void collectSummaries( const Calamares::ViewStep* upToHere, Widgets withWidgets );
+    ///@brief Clear the model of steps (to avoid dangling widgets)
+    void clearSummaries();
 
     QAbstractListModel* summaryModel() const { return m_summary; }
 
@@ -81,7 +99,6 @@ public:
     QString message() const { return m_message; }
 
 private:
-    Calamares::ViewStepList stepsForSummary( const Calamares::ViewStepList& allSteps ) const;
     void retranslate();
 
     SummaryModel* m_summary;

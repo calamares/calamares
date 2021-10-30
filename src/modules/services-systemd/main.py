@@ -63,6 +63,8 @@ def systemctl(targets, command, suffix):
                     description = _("Cannot enable systemd service <code>{name!s}</code>.")
                 elif command == "enable" and suffix == ".target":
                     description = _("Cannot enable systemd target <code>{name!s}</code>.")
+                elif command == "enable" and suffix == ".timer":
+                    description = _("Cannot enable systemd timer <code>{name!s}</code>.")
                 elif command == "disable" and suffix == ".service":
                     description = _("Cannot enable systemd service <code>{name!s}</code>.")
                 elif command == "disable" and suffix == ".target":
@@ -94,6 +96,10 @@ def run():
         return r
 
     r = systemctl(cfg.get("targets", []), "enable", ".target")
+    if r is not None:
+        return r
+
+    r = systemctl(cfg.get("timers", []), "enable", ".timer")
     if r is not None:
         return r
 

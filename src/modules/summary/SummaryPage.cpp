@@ -27,20 +27,15 @@
 #include <QLabel>
 #include <QScrollArea>
 
-static const int SECTION_SPACING = 12;
-
-SummaryPage::SummaryPage( Config* config, const SummaryViewStep* thisViewStep, QWidget* parent )
+SummaryPage::SummaryPage( Config* config, QWidget* parent )
     : QWidget()
-    , m_thisViewStep( thisViewStep )
     , m_contentWidget( nullptr )
     , m_scrollArea( new QScrollArea( this ) )
 {
     Q_UNUSED( parent )
 
-
     this->setObjectName( "summaryStep" );
 
-    Q_ASSERT( m_thisViewStep );
     QVBoxLayout* layout = new QVBoxLayout( this );
     layout->setContentsMargins( 0, 0, 0, 0 );
 
@@ -84,11 +79,55 @@ createBodyLabel( const QString& text, const QPalette& bodyPalette )
     return label;
 }
 
+static QWidget*
+createStepWidget( const QString& description, QWidget* innerWidget, const QPalette& palette )
+{
+    QWidget* w = new QWidget();
+    QHBoxLayout* itemBodyLayout = new QHBoxLayout;
+    w->setLayout( itemBodyLayout );
+
+    // Indent the inner box by a bit
+    itemBodyLayout->addSpacing( CalamaresUtils::defaultFontHeight() * 2 );
+    QVBoxLayout* itemBodyCoreLayout = new QVBoxLayout;
+    itemBodyLayout->addLayout( itemBodyCoreLayout );
+    CalamaresUtils::unmarginLayout( itemBodyLayout );
+
+    itemBodyCoreLayout->addSpacing( CalamaresUtils::defaultFontHeight() / 2 );
+    if ( !description.isEmpty() )
+    {
+        itemBodyCoreLayout->addWidget( createBodyLabel( description, palette ) );
+    }
+    if ( innerWidget )
+    {
+        itemBodyCoreLayout->addWidget( innerWidget );
+    }
+
+    return w;
+}
+
+static void
+ensureSize( QWidget* parent, QScrollArea* container, Calamares::ViewStep* viewstep )
+{
+    auto summarySize = container->widget()->sizeHint();
+    if ( summarySize.height() > container->size().height() )
+    {
+        auto enlarge = 2 + summarySize.height() - container->size().height();
+        auto widgetSize = parent->size();
+        widgetSize.setHeight( widgetSize.height() + enlarge );
+
+        cDebug() << "Summary widget is larger than viewport, enlarge by" << enlarge << "to" << widgetSize;
+
+        emit viewstep->ensureSize( widgetSize );  // Only expand height
+    }
+}
+
 // Adds a widget for those ViewSteps that want a summary;
 // see SummaryPage documentation and also ViewStep docs.
 void
-SummaryPage::onActivate()
+SummaryPage::buildWidgets( Config* config, SummaryViewStep* viewstep )
 {
+    const int SECTION_SPACING = 12;
+
     delete m_contentWidget;  // It might have been created previously
     m_contentWidget = new QWidget;
     m_layout = new QVBoxLayout( m_contentWidget );
@@ -101,94 +140,37 @@ SummaryPage::onActivate()
     QPalette bodyPalette( palette() );
     bodyPalette.setColor( WindowBackground, palette().window().color().lighter( 108 ) );
 
-    bool first = true;
-    const Calamares::ViewStepList steps = stepsForSummary( Calamares::ViewManager::instance()->viewSteps() );
+    const auto* model = config->summaryModel();
+    const auto rowCount = model->rowCount();
 
-    for ( Calamares::ViewStep* step : steps )
+    for ( int row = 0; row < rowCount; row++ )
     {
-        QString text = step->prettyStatus();
-        QWidget* widget = step->createSummaryWidget();
+        const auto rowIndex = model->index( row );
+        QString title = model->data( rowIndex, SummaryModel::TitleRole ).toString();
+        QString text = model->data( rowIndex, SummaryModel::MessageRole ).toString();
+        QWidget* widget = model->data( rowIndex, SummaryModel::WidgetRole ).value< QWidget* >();
 
         if ( text.isEmpty() && !widget )
         {
             continue;
         }
 
-        if ( first )
-        {
-            first = false;
-        }
-        else
+        if ( row > 0 )
         {
             m_layout->addSpacing( SECTION_SPACING );
         }
 
-        m_layout->addWidget( createTitleLabel( step->prettyName(), titleFont ) );
-        QHBoxLayout* itemBodyLayout = new QHBoxLayout;
-        m_layout->addSpacing( CalamaresUtils::defaultFontHeight() / 2 );
-        m_layout->addLayout( itemBodyLayout );
-        itemBodyLayout->addSpacing( CalamaresUtils::defaultFontHeight() * 2 );
-        QVBoxLayout* itemBodyCoreLayout = new QVBoxLayout;
-        itemBodyLayout->addLayout( itemBodyCoreLayout );
-        CalamaresUtils::unmarginLayout( itemBodyLayout );
-        if ( !text.isEmpty() )
-        {
-            itemBodyCoreLayout->addWidget( createBodyLabel( text, bodyPalette ) );
-        }
-        if ( widget )
-        {
-            itemBodyCoreLayout->addWidget( widget );
-        }
-        itemBodyLayout->addSpacing( CalamaresUtils::defaultFontHeight() * 2 );
+        m_layout->addWidget( createTitleLabel( title, titleFont ) );
+        m_layout->addWidget( createStepWidget( text, widget, bodyPalette ) );
     }
     m_layout->addStretch();
 
     m_scrollArea->setWidget( m_contentWidget );
-
-    auto summarySize = m_contentWidget->sizeHint();
-    if ( summarySize.height() > m_scrollArea->size().height() )
-    {
-        auto enlarge = 2 + summarySize.height() - m_scrollArea->size().height();
-        auto widgetSize = this->size();
-        widgetSize.setHeight( widgetSize.height() + enlarge );
-
-        cDebug() << "Summary widget is larger than viewport, enlarge by" << enlarge << "to" << widgetSize;
-
-        emit m_thisViewStep->ensureSize( widgetSize );  // Only expand height
-    }
-}
-
-Calamares::ViewStepList
-SummaryPage::stepsForSummary( const Calamares::ViewStepList& allSteps ) const
-{
-    Calamares::ViewStepList steps;
-    for ( Calamares::ViewStep* step : allSteps )
-    {
-        // We start from the beginning of the complete steps list. If we encounter any
-        // ExecutionViewStep, it means there was an execution phase in the past, and any
-        // jobs from before that phase were already executed, so we can safely clear the
-        // list of steps to summarize and start collecting from scratch.
-        if ( qobject_cast< Calamares::ExecutionViewStep* >( step ) )
-        {
-            steps.clear();
-            continue;
-        }
-
-        // If we reach the parent step of this page, we're done collecting the list of
-        // steps to summarize.
-        if ( m_thisViewStep == step )
-        {
-            break;
-        }
-
-        steps.append( step );
-    }
-
-    return steps;
+    ensureSize( this, m_scrollArea, viewstep );
 }
 
 void
-SummaryPage::onLeave()
+SummaryPage::cleanup()
 {
     delete m_contentWidget;
     m_contentWidget = nullptr;

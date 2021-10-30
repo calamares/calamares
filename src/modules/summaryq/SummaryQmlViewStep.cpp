@@ -69,5 +69,5 @@ SummaryQmlViewStep::onActivate()
 {
     // Collect the steps before this one: those need to have their
     // summary (text or widget) displayed.
-    m_config->collectSummaries( this );
+    m_config->collectSummaries( this, Config::Widgets::Disabled );
 }

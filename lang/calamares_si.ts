@@ -6,7 +6,7 @@
     <message>
       <location filename="../src/modules/partition/jobs/AutoMountManagementJob.cpp" line="22"/>
       <source>Manage auto-mount settings</source>
-      <translation type="unfinished"/>
+      <translation>ස්වයංක්‍රීය සවිකිරීම් සැකසීම් කළමනාකරණය කරන්න</translation>
     </message>
   </context>
   <context>
@@ -14,17 +14,17 @@
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="62"/>
       <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
-      <translation type="unfinished"/>
+      <translation>මෙම පද්ධතියේ &lt;strong&gt;ඇරඹුම් පරිසරය&lt;/srong&gt; පැරණි x86 පද්ධති සහය දක්වන්නේ &lt;strong&gt;BIOS&lt;/strong&gt; සඳහා පමණි. &lt;br&gt;නවීන පද්ධති සාමාන්‍යයෙන් &lt;strong&gt;EFI&lt;/strong&gt; භාවිතා කරයි, නමුත් ගැළපුම් මාදිලියෙන් ආරම්භ කළහොත් මෙය BIOS ලෙසද පෙන්විය හැක.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="72"/>
       <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-      <translation type="unfinished"/>
+      <translation>මෙම පද්ධතිය &lt;strong&gt;EFI&lt;/strong&gt; ඇරඹුම් පරිසරයකින් ආරම්භ කරන ලදී. &lt;stron&gt;EFI&lt;/strong&gt; පරිසරයකින් ආරම්භය සැකසුම් කිරීම සඳහා, මෙම ස්ථාපකය &lt;strong&gt;EFI&lt;/strong&gt; පද්ධති කොටසක &lt;strong&gt;GRUB&lt;/strong&gt; හෝ &lt;strong&gt;systemd-boot&lt;/strong&gt; වැනි ඇරඹුම් කාරක යෙදුමක් යෙදවිය යුතුය. ඔබ අතින් කොටස් කිරීම තෝරා නොගතහොත් (manual partitioning) මෙය ස්වයංක්‍රීය වේ, මෙම අවස්ථාවේදී ඔබ එය තෝරාගත යුතුය හෝ එය ඔබම නිර්මාණය කළ යුතුය.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="84"/>
       <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-      <translation type="unfinished"/>
+      <translation>මෙම පද්ධතිය &lt;strong&gt;BIOS&lt;/strong&gt; ඇරඹුම් පරිසරයකින් ආරම්භ කරන ලදී. &lt;br&gt;&lt;br&gt;&lt;strong&gt;BIOS&lt;/strong&gt; පරිසරයකින් ආරම්භය සැකසුම් කිරීම සඳහා, මෙම ස්ථාපකය &lt;strong&gt;GRUB&lt;strong&gt; වැනි ඇරඹුම් කාරකයක් ස්ථාපනය කළ යුතුය.&lt;br&gt; එක්කෝ කොටසක ආරම්භයේදී හෝ කොටස් වගුවේ ආරම්භයට ආසන්නයේ (වඩාත් සුදුසු) &lt;strong&gt;ප්‍රධාන ඇරඹුම් වාර්තාව&lt;/strong&gt; මත මෙය සැකසිය යුතුය. මෙය ස්වයංක්‍රීය ක්‍රියාදාමයක් වේ, ඔබ අතින් කොටස් කිරීම තෝරා ගතහොත්, ඔබ විසින්ම එය සැකසිය යුතුය.</translation>
     </message>
   </context>
   <context>
@@ -32,22 +32,22 @@
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="59"/>
       <source>Master Boot Record of %1</source>
-      <translation type="unfinished"/>
+      <translation>%1 හි ප්‍රධාන ඇරඹුම් වාර්තාව</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="92"/>
       <source>Boot Partition</source>
-      <translation type="unfinished"/>
+      <translation>ඇරඹුම් කොටස</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="99"/>
       <source>System Partition</source>
-      <translation type="unfinished"/>
+      <translation>පද්ධති කොටස</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="129"/>
       <source>Do not install a boot loader</source>
-      <translation type="unfinished"/>
+      <translation>ඇරඹුම් කාරකයක් ස්ථාපනය නොකරන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="147"/>
@@ -60,7 +60,7 @@
     <message>
       <location filename="../src/libcalamaresui/viewpages/BlankViewStep.cpp" line="61"/>
       <source>Blank Page</source>
-      <translation type="unfinished"/>
+      <translation>හිස් පිටුව</translation>
     </message>
   </context>
   <context>
@@ -68,22 +68,22 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="18"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>සිට</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="28"/>
       <source>GlobalStorage</source>
-      <translation>ගෝලීය ආචයනය</translation>
+      <translation>ගෝලීය ගබඩාව</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="38"/>
       <source>JobQueue</source>
-      <translation type="unfinished"/>
+      <translation>ක්‍රියදාම පෝලිම</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="48"/>
       <source>Modules</source>
-      <translation type="unfinished"/>
+      <translation>මොඩියුල</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="61"/>
@@ -94,7 +94,7 @@
       <location filename="../src/calamares/DebugWindow.ui" line="68"/>
       <location filename="../src/calamares/DebugWindow.ui" line="82"/>
       <source>none</source>
-      <translation type="unfinished"/>
+      <translation>කිසිවක් නැත</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="75"/>
@@ -104,42 +104,42 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="102"/>
       <source>Crashes Calamares, so that Dr. Konqui can look at it.</source>
-      <translation type="unfinished"/>
+      <translation>වෛද්‍ය කොන්කිට එය දෙස බැලීමට හැකි වන පරිදි, Calamares කඩා වැටෙන ලදී.</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="115"/>
       <source>Reloads the stylesheet from the branding directory.</source>
-      <translation type="unfinished"/>
+      <translation>සන්නාම නාමාවලියෙන් මෝස්තර පත්‍රය නැවත පූරණය කරයි.</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="141"/>
       <source>Uploads the session log to the configured pastebin.</source>
-      <translation type="unfinished"/>
+      <translation>සැසි ලඝු සැකසුම් පේස්ට්බින් වෙත උඩුගත කරයි.</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="144"/>
       <source>Send Session Log</source>
-      <translation type="unfinished"/>
+      <translation>සැසි ලඝු යවන්න</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="118"/>
       <source>Reload Stylesheet</source>
-      <translation type="unfinished"/>
+      <translation>මෝස්තර පත්‍රිකාව නැවත පූරණය කරන්න</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="128"/>
       <source>Displays the tree of widget names in the log (for stylesheet debugging).</source>
-      <translation type="unfinished"/>
+      <translation>ලොගයේ විජට් නම් ගස පෙන්වයි (විලාසිතා පත්‍ර නිදොස්කරණය සඳහා).</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="131"/>
       <source>Widget Tree</source>
-      <translation type="unfinished"/>
+      <translation>විජට් ගස</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.cpp" line="221"/>
       <source>Debug information</source>
-      <translation type="unfinished"/>
+      <translation>දෝශ නිරාකරණ තොරතුරු</translation>
     </message>
   </context>
   <context>
@@ -147,12 +147,12 @@
     <message>
       <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="88"/>
       <source>Set up</source>
-      <translation type="unfinished"/>
+      <translation>පිහිටුවීම</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="88"/>
       <source>Install</source>
-      <translation type="unfinished"/>
+      <translation>ස්ථාපනය</translation>
     </message>
   </context>
   <context>
@@ -160,20 +160,20 @@
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="29"/>
       <source>Job failed (%1)</source>
-      <translation type="unfinished"/>
+      <translation>කාර්යය අසාර්ථක විය (%1)</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="30"/>
       <source>Programmed job failure was explicitly requested.</source>
-      <translation type="unfinished"/>
+      <translation>වැඩසටහන්ගත ක්‍රියා අසාර්ථකත්වය පැහැදිලිවම ඉල්ලා ඇත.</translation>
     </message>
   </context>
   <context>
     <name>Calamares::JobThread</name>
     <message>
-      <location filename="../src/libcalamares/JobQueue.cpp" line="199"/>
+      <location filename="../src/libcalamares/JobQueue.cpp" line="201"/>
       <source>Done</source>
-      <translation type="unfinished"/>
+      <translation>අවසන්</translation>
     </message>
   </context>
   <context>
@@ -181,7 +181,7 @@
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="17"/>
       <source>Example job (%1)</source>
-      <translation type="unfinished"/>
+      <translation>උදාහරණ කාර්යය (%1)</translation>
     </message>
   </context>
   <context>
@@ -189,17 +189,17 @@
     <message>
       <location filename="../src/libcalamares/ProcessJob.cpp" line="43"/>
       <source>Run command '%1' in target system.</source>
-      <translation type="unfinished"/>
+      <translation>ඉලක්කගත පද්ධතිය තුළ '%1' විධානය ක්‍රියාත්මක කරන්න.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/ProcessJob.cpp" line="43"/>
       <source> Run command '%1'.</source>
-      <translation type="unfinished"/>
+      <translation>'%1' විධානය ධාවනය කරන්න.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/ProcessJob.cpp" line="50"/>
       <source>Running command %1 %2</source>
-      <translation type="unfinished"/>
+      <translation>ක්‍රියාත්මක වන විධානය %1 %2</translation>
     </message>
   </context>
   <context>
@@ -207,32 +207,32 @@
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="194"/>
       <source>Running %1 operation.</source>
-      <translation type="unfinished"/>
+      <translation>%1 මෙහෙයුම ක්‍රියාත්මක වේ.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="223"/>
       <source>Bad working directory path</source>
-      <translation type="unfinished"/>
+      <translation>නොසදුසු වැඩ කරන ෆෝල්ඩර් මාර්ගයකි.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="224"/>
       <source>Working directory %1 for python job %2 is not readable.</source>
-      <translation type="unfinished"/>
+      <translation>පයිතොන් ක්‍රියාකාරීත්ව %2 සඳහා %1 ෆෝල්ඩර් මාර්ගය කියවිය නොහැක.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="230"/>
       <source>Bad main script file</source>
-      <translation type="unfinished"/>
+      <translation>නොසදුසු ප්‍රධාන ස්ක්‍රිප්ට් ගොනුව</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="231"/>
       <source>Main script file %1 for python job %2 is not readable.</source>
-      <translation type="unfinished"/>
+      <translation>පයිතොන් ක්‍රියාකාරීත්ව %2 සඳහා %1 ප්‍රධාන ස්ක්‍රිප්ට් ගොනුව කියවිය නොහැක.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="304"/>
       <source>Boost.Python error in job "%1".</source>
-      <translation type="unfinished"/>
+      <translation>"%1" කාර්යයේ Boost.පයිතොන් දෝෂයකි.</translation>
     </message>
   </context>
   <context>
@@ -245,12 +245,12 @@
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="88"/>
       <source>QML Step &lt;i&gt;%1&lt;/i&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>QML පියවර &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="268"/>
       <source>Loading failed.</source>
-      <translation type="unfinished"/>
+      <translation>පූරණය අසාර්ථකයි.</translation>
     </message>
   </context>
   <context>
@@ -258,28 +258,28 @@
     <message>
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="94"/>
       <source>Requirements checking for module &lt;i&gt;%1&lt;/i&gt; is complete.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%1&lt;/strong&gt; මොඩියුලය සඳහා අවශ්‍යතා පරීක්ෂා කිරීම සම්පූර්ණයි.</translation>
     </message>
     <message numerus="yes">
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="115"/>
       <source>Waiting for %n module(s).</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>%n මොඩියුල(ය) සඳහා රැඳී සිටිමි</numerusform>
+        <numerusform>%n මොඩියුල(ය) සඳහා රැඳී සිටිමි</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="116"/>
       <source>(%n second(s))</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>(තත්පර %n)</numerusform>
+        <numerusform>(තත්පර %n)</numerusform>
       </translation>
     </message>
     <message>
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="121"/>
       <source>System-requirements checking is complete.</source>
-      <translation type="unfinished"/>
+      <translation>පද්ධති අවශ්‍යතා පරීක්ෂා කිරීම සම්පූර්ණයි.</translation>
     </message>
   </context>
   <context>
@@ -320,17 +320,17 @@
       <translation>වසන්න (C)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/utils/Paste.cpp" line="171"/>
+      <location filename="../src/libcalamaresui/utils/Paste.cpp" line="183"/>
       <source>Install Log Paste URL</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/utils/Paste.cpp" line="153"/>
+      <location filename="../src/libcalamaresui/utils/Paste.cpp" line="165"/>
       <source>The upload was unsuccessful. No web-paste was done.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/utils/Paste.cpp" line="165"/>
+      <location filename="../src/libcalamaresui/utils/Paste.cpp" line="177"/>
       <source>Install log posted to
 
 %1
@@ -528,7 +528,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.ui" line="18"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>පෝරමය</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="139"/>
@@ -1411,7 +1411,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="18"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>පෝරමය</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="36"/>
@@ -1498,7 +1498,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/FinishedPage.ui" line="18"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>පෝරමය</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.ui" line="102"/>
@@ -1768,7 +1768,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/license/LicensePage.ui" line="18"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>පෝරමය</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.ui" line="26"/>
@@ -1920,35 +1920,35 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>LuksBootKeyFileJob</name>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="28"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="30"/>
       <source>Configuring LUKS key file.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="168"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="176"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="186"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="194"/>
       <source>No partitions are defined.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="211"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="218"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="226"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="229"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="236"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="244"/>
       <source>Encrypted rootfs setup error</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="212"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="230"/>
       <source>Root partition %1 is LUKS but no passphrase has been set.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="219"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="237"/>
       <source>Could not create LUKS key file for root partition %1.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="227"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="245"/>
       <source>Could not configure LUKS key file on partition %1.</source>
       <translation type="unfinished"/>
     </message>
@@ -2433,7 +2433,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="24"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>පෝරමය</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="44"/>
@@ -2495,7 +2495,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/keyboard/KeyboardPage.ui" line="18"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>පෝරමය</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/KeyboardPage.ui" line="74"/>
@@ -2513,7 +2513,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="18"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>පෝරමය</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="40"/>
@@ -2694,7 +2694,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="18"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>පෝරමය</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="26"/>
@@ -2879,7 +2879,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/plasmalnf/page_plasmalnf.ui" line="18"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>පෝරමය</translation>
     </message>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="79"/>
@@ -2921,65 +2921,65 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>ProcessResult</name>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="429"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="425"/>
       <source>
 There was no output from the command.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="430"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="426"/>
       <source>
 Output:
 </source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="434"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="430"/>
       <source>External command crashed.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="435"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="431"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; crashed.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="440"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="436"/>
       <source>External command failed to start.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="441"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="437"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; failed to start.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="445"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="441"/>
       <source>Internal error when starting command.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="446"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="442"/>
       <source>Bad parameters for process job call.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="450"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="446"/>
       <source>External command failed to finish.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="451"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="447"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; failed to finish in %2 seconds.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="458"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="454"/>
       <source>External command finished with errors.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="459"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="455"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; finished with exit code %2.</source>
       <translation type="unfinished"/>
     </message>
@@ -3103,7 +3103,7 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.ui" line="18"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>පෝරමය</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="127"/>
@@ -3626,7 +3626,7 @@ Output:
     <message>
       <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="30"/>
       <source>&amp;No</source>
-      <translation>නැහැ (N)</translation>
+      <translation>නැත (N)</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="31"/>
@@ -3725,7 +3725,7 @@ Output:
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="18"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>පෝරමය</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="28"/>
@@ -3873,7 +3873,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="18"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>පෝරමය</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="79"/>

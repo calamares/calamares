@@ -10,6 +10,7 @@ the history of the 3.2 series (2018-05 - 2021-12).
 # 3.3.0 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
+ - Evan James
  - Vitor Lopes
 
 ## Core ##
@@ -26,4 +27,5 @@ This release contains contributions from (alphabetically by first name):
    Boost::Python now requires 1.67 or later (for CMake support).
 
 ## Modules ##
- - No module changes yet
+ - *bootloader* now supports more options when building the kernel
+   command-line. (Thanks Evan)
