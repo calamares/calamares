@@ -13,6 +13,7 @@
 #include "Entropy.h"
 #include "Logger.h"
 #include "RAII.h"
+#include "Runner.h"
 #include "String.h"
 #include "Traits.h"
 #include "UMask.h"
@@ -72,6 +73,7 @@ private Q_SLOTS:
 
     /** @section Test Runner directory-manipulation. */
     void testRunnerDirs();
+    void testCalculateWorkingDirectory();
 
 private:
     void recursiveCompareMap( const QVariantMap& a, const QVariantMap& b, int depth );
@@ -833,6 +835,52 @@ LibCalamaresTests::testRunnerDirs()
         const bool could_change_to_elsewhere = relativeChangeDirectory( testDir, QStringLiteral( "../src" ) );
         QVERIFY( !could_change_to_elsewhere );
         QCOMPARE( startDir, testDir );
+    }
+}
+
+// Method under test
+extern std::pair< bool, QDir > calculateWorkingDirectory( Calamares::Utils::RunLocation location,
+                                                          const QString& directory );
+
+void
+LibCalamaresTests::testCalculateWorkingDirectory()
+{
+    Calamares::GlobalStorage* gs
+        = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
+
+    if ( !gs )
+    {
+        cDebug() << "Creating new JobQueue";
+        (void)new Calamares::JobQueue();
+        gs = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
+    }
+    QVERIFY( gs );
+
+    // Working with a rootMountPoint set
+    QTemporaryDir tempRoot( QDir::tempPath() + QStringLiteral( "/test-job-XXXXXX" ) );
+    gs->insert( "rootMountPoint", tempRoot.path() );
+
+    {
+        auto [ ok, d ] = calculateWorkingDirectory( CalamaresUtils::System::RunLocation::RunInHost, QString() );
+        QVERIFY( ok );
+        QCOMPARE( d, QDir::current() );
+    }
+    {
+        auto [ ok, d ] = calculateWorkingDirectory( CalamaresUtils::System::RunLocation::RunInTarget, QString() );
+        QVERIFY( ok );
+        QCOMPARE( d.absolutePath(), tempRoot.path() );
+    }
+
+    gs->remove( "rootMountPoint" );
+    {
+        auto [ ok, d ] = calculateWorkingDirectory( CalamaresUtils::System::RunLocation::RunInHost, QString() );
+        QVERIFY( ok );
+        QCOMPARE( d, QDir::current() );
+    }
+    {
+        auto [ ok, d ] = calculateWorkingDirectory( CalamaresUtils::System::RunLocation::RunInTarget, QString() );
+        QVERIFY( !ok );
+        QCOMPARE( d, QDir::current() );
     }
 }
 

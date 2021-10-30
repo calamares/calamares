@@ -40,7 +40,7 @@ relativeChangeDirectory( QDir& directory, const QString& subdir )
 
 
 STATICTEST std::pair< bool, QDir >
-calculateWorkingDirectory( Calamares::Utils::RunLocation location, QString directory )
+calculateWorkingDirectory( Calamares::Utils::RunLocation location, const QString& directory )
 {
     Calamares::GlobalStorage* gs
         = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
