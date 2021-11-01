@@ -125,13 +125,14 @@ public:
     {
     }
 
-    bool isEmpty() const { return m_message; }
+    bool isEmpty() const { return !m_message; }
 
     explicit operator QString() const
     {
-        return isEmpty() ? QString() : QCoreApplication::translate( "ClearMountsJob", m_message );
+        return isEmpty() ? QString() : QCoreApplication::translate( "ClearMountsJob", m_message ).arg( m_path );
     }
 
+private:
     const char* const m_message = nullptr;
     QString const m_path;
 };
@@ -143,7 +144,7 @@ operator<<( QDebug& s, const MessageAndPath& m )
     {
         return s;
     }
-    return s << QString( m.m_message ).arg( m.m_path );
+    return s << QString( m );
 }
 
 
