@@ -23,6 +23,7 @@
 #include <kpmcore/core/partition.h>
 #include <kpmcore/util/report.h>
 
+#include <QCoreApplication>
 #include <QDir>
 #include <QProcess>
 #include <QStringList>
@@ -112,8 +113,42 @@ getSwapsForDevice( const QString& deviceName )
  *
  */
 
+class MessageAndPath
+{
+public:
+    ///@brief An unsuccessful attempt at something
+    MessageAndPath() {}
+    ///@brief A success at doing @p thing to @p path
+    MessageAndPath( const char* thing, const QString& path )
+        : m_message( thing )
+        , m_path( path )
+    {
+    }
+
+    bool isEmpty() const { return m_message; }
+
+    explicit operator QString() const
+    {
+        return isEmpty() ? QString() : QCoreApplication::translate( "ClearMountsJob", m_message );
+    }
+
+    const char* const m_message = nullptr;
+    QString const m_path;
+};
+
+STATICTEST inline QDebug&
+operator<<( QDebug& s, const MessageAndPath& m )
+{
+    if ( m.isEmpty() )
+    {
+        return s;
+    }
+    return s << QString( m.m_message ).arg( m.m_path );
+}
+
+
 ///@brief Returns a debug-string if @p partPath could be unmounted
-STATICTEST QString
+STATICTEST MessageAndPath
 tryUmount( const QString& partPath )
 {
     QProcess process;
@@ -121,21 +156,21 @@ tryUmount( const QString& partPath )
     process.waitForFinished();
     if ( process.exitCode() == 0 )
     {
-        return QString( "Successfully unmounted %1." ).arg( partPath );
+        return { QT_TRANSLATE_NOOP( "ClearMountsJob", "Successfully unmounted %1." ), partPath };
     }
 
     process.start( "swapoff", { partPath } );
     process.waitForFinished();
     if ( process.exitCode() == 0 )
     {
-        return QString( "Successfully disabled swap %1." ).arg( partPath );
+        return { QT_TRANSLATE_NOOP( "ClearMountsJob", "Successfully disabled swap %1." ), partPath };
     }
 
-    return QString();
+    return {};
 }
 
 ///@brief Returns a debug-string if @p partPath was swap and could be cleared
-STATICTEST QString
+STATICTEST MessageAndPath
 tryClearSwap( const QString& partPath )
 {
     QProcess process;
@@ -144,21 +179,21 @@ tryClearSwap( const QString& partPath )
     QString swapPartUuid = QString::fromLocal8Bit( process.readAllStandardOutput() ).simplified();
     if ( process.exitCode() != 0 || swapPartUuid.isEmpty() )
     {
-        return QString();
+        return {};
     }
 
     process.start( "mkswap", { "-U", swapPartUuid, partPath } );
     process.waitForFinished();
     if ( process.exitCode() != 0 )
     {
-        return QString();
+        return {};
     }
 
-    return QString( "Successfully cleared swap %1." ).arg( partPath );
+    return { QT_TRANSLATE_NOOP( "ClearMountsJob", "Successfully cleared swap %1." ), partPath };
 }
 
 ///@brief Returns a debug-string if @p mapperPath could be closed
-STATICTEST QString
+STATICTEST MessageAndPath
 tryCryptoClose( const QString& mapperPath )
 {
     /* ignored */ tryUmount( mapperPath );
@@ -168,25 +203,36 @@ tryCryptoClose( const QString& mapperPath )
     process.waitForFinished();
     if ( process.exitCode() == 0 )
     {
-        return QString( "Successfully closed mapper device %1." ).arg( mapperPath );
+        return { QT_TRANSLATE_NOOP( "ClearMountsJob", "Successfully closed mapper device %1." ), mapperPath };
     }
 
-    return QString();
+    return {};
 }
 
 ///@brief Apply @p f to all the @p paths, appending successes to @p news
-template < typename F >
+template < typename T, typename F >
 void
-apply( const QStringList& paths, F f, QStringList& news )
+apply( const T& paths, F f, QList< MessageAndPath >& news )
 {
     for ( const QString& p : qAsConst( paths ) )
     {
-        QString n = f( p );
+        auto n = f( p );
         if ( !n.isEmpty() )
         {
             news.append( n );
         }
     }
+}
+
+STATICTEST QStringList
+stringify( const QList< MessageAndPath >& news )
+{
+    QStringList l;
+    for ( const auto& m : qAsConst( news ) )
+    {
+        l << QString( m );
+    }
+    return l;
 }
 
 ClearMountsJob::ClearMountsJob( Device* device )
@@ -214,7 +260,7 @@ ClearMountsJob::exec()
 
     QString deviceName = m_device->deviceNode().split( '/' ).last();
 
-    QStringList goodNews;
+    QList< MessageAndPath > goodNews;
     QProcess process;
 
     const QStringList partitionsList = getPartitionsForDevice( deviceName );
@@ -228,17 +274,15 @@ ClearMountsJob::exec()
     if ( process.exitCode() == 0 )  //means LVM2 tools are installed
     {
         const QStringList lvscanLines = QString::fromLocal8Bit( process.readAllStandardOutput() ).split( '\n' );
-        for ( const QString& lvscanLine : lvscanLines )
-        {
-            QString lvPath = lvscanLine.simplified().split( ' ' ).value( 1 );  //second column
-            lvPath = lvPath.replace( '\'', "" );
+        apply(
+            lvscanLines,
+            []( const QString& lvscanLine ) {
+                QString lvPath = lvscanLine.simplified().split( ' ' ).value( 1 );  //second column
+                lvPath = lvPath.replace( '\'', "" );
 
-            QString news = tryUmount( lvPath );
-            if ( !news.isEmpty() )
-            {
-                goodNews.append( news );
-            }
-        }
+                return tryUmount( lvPath );
+            },
+            goodNews );
     }
     else
     {
@@ -268,15 +312,19 @@ ClearMountsJob::exec()
                 vgSet.insert( vgName );
             }
 
-            foreach ( const QString& vgName, vgSet )
-            {
-                process.start( "vgchange", { "-an", vgName } );
-                process.waitForFinished();
-                if ( process.exitCode() == 0 )
-                {
-                    goodNews.append( QString( "Successfully disabled volume group %1." ).arg( vgName ) );
-                }
-            }
+            apply(
+                vgSet,
+                []( const QString& vgName ) {
+                    QProcess vgProcess;
+                    vgProcess.start( "vgchange", { "-an", vgName } );
+                    vgProcess.waitForFinished();
+                    return ( vgProcess.exitCode() == 0 )
+                        ? MessageAndPath { QT_TRANSLATE_NOOP( "ClearMountsJob",
+                                                              "Successfully disabled volume group %1." ),
+                                           vgName }
+                        : MessageAndPath {};
+                },
+                goodNews );
         }
     }
     else
@@ -290,9 +338,8 @@ ClearMountsJob::exec()
 
     Calamares::JobResult ok = Calamares::JobResult::ok();
     ok.setMessage( tr( "Cleared all mounts for %1" ).arg( m_device->deviceNode() ) );
-    ok.setDetails( goodNews.join( "\n" ) ); // FIXME: this exposes untranslated strings
-
-    cDebug() << "ClearMountsJob finished. Here's what was done:\n" << goodNews.join( "\n" );
+    ok.setDetails( stringify( goodNews ).join( "\n" ) );
+    cDebug() << "ClearMountsJob finished. Here's what was done:" << Logger::DebugListT< MessageAndPath >( goodNews );
 
     return ok;
 }
