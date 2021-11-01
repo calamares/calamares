@@ -34,7 +34,7 @@ using CalamaresUtils::Partition::PartitionIterator;
  *
  * The @p deviceName is a (whole-block) device, like "sda", and the partitions
  * returned are then "sdaX". The whole-block device itself is ignored, if
- * present.
+ * present. Partitions are returned with their full /dev/ path (e.g. /dev/sda1).
  *
  * The format for /etc/partitions is, e.g.
  *      major minor #blocks name
@@ -60,7 +60,7 @@ getPartitionsForDevice( const QString& deviceName )
             if ( ( columns.count() >= 4 ) && ( columns[ 3 ].startsWith( deviceName ) )
                  && ( columns[ 3 ] != deviceName ) )
             {
-                partitions.append( columns[ 3 ] );
+                partitions.append( QStringLiteral( "/dev/" ) + columns[ 3 ] );
             }
         }
     }
@@ -285,8 +285,7 @@ ClearMountsJob::exec()
     }
 
     apply( getCryptoDevices(), tryCryptoClose, goodNews );
-    apply(
-        partitionsList, []( const QString& p ) { return tryUmount( QString( "/dev/%1" ).arg( p ) ); }, goodNews );
+    apply( partitionsList, tryUmount, goodNews );
     apply( swapPartitions, tryClearSwap, goodNews );
 
     Calamares::JobResult ok = Calamares::JobResult::ok();
