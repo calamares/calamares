@@ -28,7 +28,6 @@ public:
     Calamares::JobResult exec() override;
 
 private:
-    QStringList getCryptoDevices() const;
     Device* m_device;
 };
 

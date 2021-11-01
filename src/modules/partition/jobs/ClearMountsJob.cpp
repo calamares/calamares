@@ -104,6 +104,45 @@ getSwapsForDevice( const QString& deviceName )
     return swapPartitions;
 }
 
+static inline bool
+isControl( const QString& baseName )
+{
+    return baseName == "control";
+}
+
+static inline bool
+isFedoraSpecial( const QString& baseName )
+{
+    // Fedora live images use /dev/mapper/live-* internally. We must not
+    // unmount those devices, because they are used by the live image and
+    // because we need /dev/mapper/live-base in the unpackfs module.
+    return baseName.startsWith( "live-" );
+}
+
+/** @brief Returns a list of unneeded crypto devices
+ *
+ * These are the crypto devices to unmount and close; some are "needed"
+ * for system operation: on Fedora, the live- mappers are special.
+ * Some other devices are special, too, so those do not end up in
+ * the list.
+ */
+STATICTEST QStringList
+getCryptoDevices()
+{
+    QDir mapperDir( "/dev/mapper" );
+    const QFileInfoList fiList = mapperDir.entryInfoList( QDir::Files );
+    QStringList list;
+    for ( const QFileInfo& fi : fiList )
+    {
+        QString baseName = fi.baseName();
+        if ( isControl( baseName ) || isFedoraSpecial( baseName ) )
+        {
+            continue;
+        }
+        list.append( fi.absoluteFilePath() );
+    }
+    return list;
+}
 
 /*
  * The tryX() free functions, below, return an empty QString on
@@ -343,26 +382,4 @@ ClearMountsJob::exec()
     cDebug() << "ClearMountsJob finished. Here's what was done:" << Logger::DebugListT< MessageAndPath >( goodNews );
 
     return ok;
-}
-
-QStringList
-ClearMountsJob::getCryptoDevices() const
-{
-    QDir mapperDir( "/dev/mapper" );
-    const QFileInfoList fiList = mapperDir.entryInfoList( QDir::Files );
-    QStringList list;
-    QProcess process;
-    for ( const QFileInfo& fi : fiList )
-    {
-        QString baseName = fi.baseName();
-        // Fedora live images use /dev/mapper/live-* internally. We must not
-        // unmount those devices, because they are used by the live image and
-        // because we need /dev/mapper/live-base in the unpackfs module.
-        if ( baseName == "control" || baseName.startsWith( "live-" ) )
-        {
-            continue;
-        }
-        list.append( fi.absoluteFilePath() );
-    }
-    return list;
 }
