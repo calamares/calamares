@@ -103,6 +103,16 @@ getSwapsForDevice( const QString& deviceName )
     return swapPartitions;
 }
 
+
+/*
+ * The tryX() free functions, below, return an empty QString on
+ * failure, or a non-empty QString on success. The string is
+ * meant **only** for debugging and is not displayed to the user,
+ * which is why no translation is applied.
+ *
+ */
+
+///@brief Returns a debug-string if @p partPath could be unmounted
 STATICTEST QString
 tryUmount( const QString& partPath )
 {
@@ -124,7 +134,7 @@ tryUmount( const QString& partPath )
     return QString();
 }
 
-
+///@brief Returns a debug-string if @p partPath was swap and could be cleared
 STATICTEST QString
 tryClearSwap( const QString& partPath )
 {
@@ -147,10 +157,12 @@ tryClearSwap( const QString& partPath )
     return QString( "Successfully cleared swap %1." ).arg( partPath );
 }
 
-
+///@brief Returns a debug-string if @p mapperPath could be closed
 STATICTEST QString
 tryCryptoClose( const QString& mapperPath )
 {
+    /* ignored */ tryUmount( mapperPath );
+
     QProcess process;
     process.start( "cryptsetup", { "close", mapperPath } );
     process.waitForFinished();
@@ -160,6 +172,21 @@ tryCryptoClose( const QString& mapperPath )
     }
 
     return QString();
+}
+
+///@brief Apply @p f to all the @p paths, appending successes to @p news
+template < typename F >
+void
+apply( const QStringList& paths, F f, QStringList& news )
+{
+    for ( const QString& p : qAsConst( paths ) )
+    {
+        QString n = f( p );
+        if ( !n.isEmpty() )
+        {
+            news.append( n );
+        }
+    }
 }
 
 ClearMountsJob::ClearMountsJob( Device* device )
@@ -193,16 +220,7 @@ ClearMountsJob::exec()
     const QStringList partitionsList = getPartitionsForDevice( deviceName );
     const QStringList swapPartitions = getSwapsForDevice( m_device->deviceNode() );
 
-    const QStringList cryptoDevices = getCryptoDevices();
-    for ( const QString& mapperPath : cryptoDevices )
-    {
-        tryUmount( mapperPath );
-        QString news = tryCryptoClose( mapperPath );
-        if ( !news.isEmpty() )
-        {
-            goodNews.append( news );
-        }
-    }
+    apply( getCryptoDevices(), tryCryptoClose, goodNews );
 
     // First we umount all LVM logical volumes we can find
     process.start( "lvscan", { "-a" } );
@@ -266,40 +284,14 @@ ClearMountsJob::exec()
         cWarning() << "this system does not seem to have LVM2 tools.";
     }
 
-    const QStringList cryptoDevices2 = getCryptoDevices();
-    for ( const QString& mapperPath : cryptoDevices2 )
-    {
-        tryUmount( mapperPath );
-        QString news = tryCryptoClose( mapperPath );
-        if ( !news.isEmpty() )
-        {
-            goodNews.append( news );
-        }
-    }
-
-    for ( const QString& p : partitionsList )
-    {
-        QString partPath = QString( "/dev/%1" ).arg( p );
-
-        QString news = tryUmount( partPath );
-        if ( !news.isEmpty() )
-        {
-            goodNews.append( news );
-        }
-    }
-
-    for ( const QString& p : swapPartitions )
-    {
-        QString news = tryClearSwap( p );
-        if ( !news.isEmpty() )
-        {
-            goodNews.append( news );
-        }
-    }
+    apply( getCryptoDevices(), tryCryptoClose, goodNews );
+    apply(
+        partitionsList, []( const QString& p ) { return tryUmount( QString( "/dev/%1" ).arg( p ) ); }, goodNews );
+    apply( swapPartitions, tryClearSwap, goodNews );
 
     Calamares::JobResult ok = Calamares::JobResult::ok();
     ok.setMessage( tr( "Cleared all mounts for %1" ).arg( m_device->deviceNode() ) );
-    ok.setDetails( goodNews.join( "\n" ) );
+    ok.setDetails( goodNews.join( "\n" ) ); // FIXME: this exposes untranslated strings
 
     cDebug() << "ClearMountsJob finished. Here's what was done:\n" << goodNews.join( "\n" );
 
