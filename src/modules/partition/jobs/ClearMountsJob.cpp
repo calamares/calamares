@@ -72,7 +72,7 @@ getPartitionsForDevice( const QString& deviceName )
     return partitions;
 }
 
-STATICTEST static QStringList
+STATICTEST QStringList
 getSwapsForDevice( const QString& deviceName )
 {
     QProcess process;
@@ -103,6 +103,64 @@ getSwapsForDevice( const QString& deviceName )
     return swapPartitions;
 }
 
+STATICTEST QString
+tryUmount( const QString& partPath )
+{
+    QProcess process;
+    process.start( "umount", { partPath } );
+    process.waitForFinished();
+    if ( process.exitCode() == 0 )
+    {
+        return QString( "Successfully unmounted %1." ).arg( partPath );
+    }
+
+    process.start( "swapoff", { partPath } );
+    process.waitForFinished();
+    if ( process.exitCode() == 0 )
+    {
+        return QString( "Successfully disabled swap %1." ).arg( partPath );
+    }
+
+    return QString();
+}
+
+
+STATICTEST QString
+tryClearSwap( const QString& partPath )
+{
+    QProcess process;
+    process.start( "blkid", { "-s", "UUID", "-o", "value", partPath } );
+    process.waitForFinished();
+    QString swapPartUuid = QString::fromLocal8Bit( process.readAllStandardOutput() ).simplified();
+    if ( process.exitCode() != 0 || swapPartUuid.isEmpty() )
+    {
+        return QString();
+    }
+
+    process.start( "mkswap", { "-U", swapPartUuid, partPath } );
+    process.waitForFinished();
+    if ( process.exitCode() != 0 )
+    {
+        return QString();
+    }
+
+    return QString( "Successfully cleared swap %1." ).arg( partPath );
+}
+
+
+STATICTEST QString
+tryCryptoClose( const QString& mapperPath )
+{
+    QProcess process;
+    process.start( "cryptsetup", { "close", mapperPath } );
+    process.waitForFinished();
+    if ( process.exitCode() == 0 )
+    {
+        return QString( "Successfully closed mapper device %1." ).arg( mapperPath );
+    }
+
+    return QString();
+}
 
 ClearMountsJob::ClearMountsJob( Device* device )
     : Calamares::Job()
@@ -247,67 +305,6 @@ ClearMountsJob::exec()
 
     return ok;
 }
-
-
-QString
-ClearMountsJob::tryUmount( const QString& partPath )
-{
-    QProcess process;
-    process.start( "umount", { partPath } );
-    process.waitForFinished();
-    if ( process.exitCode() == 0 )
-    {
-        return QString( "Successfully unmounted %1." ).arg( partPath );
-    }
-
-    process.start( "swapoff", { partPath } );
-    process.waitForFinished();
-    if ( process.exitCode() == 0 )
-    {
-        return QString( "Successfully disabled swap %1." ).arg( partPath );
-    }
-
-    return QString();
-}
-
-
-QString
-ClearMountsJob::tryClearSwap( const QString& partPath )
-{
-    QProcess process;
-    process.start( "blkid", { "-s", "UUID", "-o", "value", partPath } );
-    process.waitForFinished();
-    QString swapPartUuid = QString::fromLocal8Bit( process.readAllStandardOutput() ).simplified();
-    if ( process.exitCode() != 0 || swapPartUuid.isEmpty() )
-    {
-        return QString();
-    }
-
-    process.start( "mkswap", { "-U", swapPartUuid, partPath } );
-    process.waitForFinished();
-    if ( process.exitCode() != 0 )
-    {
-        return QString();
-    }
-
-    return QString( "Successfully cleared swap %1." ).arg( partPath );
-}
-
-
-QString
-ClearMountsJob::tryCryptoClose( const QString& mapperPath )
-{
-    QProcess process;
-    process.start( "cryptsetup", { "close", mapperPath } );
-    process.waitForFinished();
-    if ( process.exitCode() == 0 )
-    {
-        return QString( "Successfully closed mapper device %1." ).arg( mapperPath );
-    }
-
-    return QString();
-}
-
 
 QStringList
 ClearMountsJob::getCryptoDevices() const

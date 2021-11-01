@@ -28,9 +28,6 @@ public:
     Calamares::JobResult exec() override;
 
 private:
-    QString tryUmount( const QString& partPath );
-    QString tryClearSwap( const QString& partPath );
-    QString tryCryptoClose( const QString& mapperPath );
     QStringList getCryptoDevices() const;
     Device* m_device;
 };
