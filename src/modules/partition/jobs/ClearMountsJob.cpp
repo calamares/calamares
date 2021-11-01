@@ -230,7 +230,7 @@ ClearMountsJob::exec()
         }
     }
 
-    foreach ( QString p, swapPartitions )
+    for ( const QString& p : swapPartitions )
     {
         QString news = tryClearSwap( p );
         if ( !news.isEmpty() )
