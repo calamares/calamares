@@ -54,9 +54,14 @@ CheckerContainer::requirementsComplete( bool ok )
         for ( int i = 0; i < model.count(); ++i )
         {
             auto index = model.index( i );
-            cDebug() << Logger::SubEntry << i << model.data( index, Calamares::RequirementsModel::Name ).toString()
-                     << "set?" << model.data( index, Calamares::RequirementsModel::Satisfied ).toBool() << "req?"
-                     << model.data( index, Calamares::RequirementsModel::Mandatory ).toBool();
+            const bool satisfied = model.data( index, Calamares::RequirementsModel::Satisfied ).toBool();
+            const bool mandatory = model.data( index, Calamares::RequirementsModel::Mandatory ).toBool();
+            if ( !satisfied )
+            {
+                cDebug() << Logger::SubEntry << i << model.data( index, Calamares::RequirementsModel::Name ).toString()
+                         << "not-satisfied"
+                         << "mandatory?" << mandatory;
+            }
         }
     }
 
