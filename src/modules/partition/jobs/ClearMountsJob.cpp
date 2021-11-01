@@ -29,28 +29,19 @@
 
 using CalamaresUtils::Partition::PartitionIterator;
 
-ClearMountsJob::ClearMountsJob( Device* device )
-    : Calamares::Job()
-    , m_device( device )
-{
-}
 
-
-QString
-ClearMountsJob::prettyName() const
-{
-    return tr( "Clear mounts for partitioning operations on %1" ).arg( m_device->deviceNode() );
-}
-
-
-QString
-ClearMountsJob::prettyStatusMessage() const
-{
-    return tr( "Clearing mounts for partitioning operations on %1." ).arg( m_device->deviceNode() );
-}
-
-
-QStringList
+/** @brief Returns list of partitions on a given @p deviceName
+ *
+ * The @p deviceName is a (whole-block) device, like "sda", and the partitions
+ * returned are then "sdaX". The whole-block device itself is ignored, if
+ * present.
+ *
+ * The format for /etc/partitions is, e.g.
+ *      major minor #blocks name
+ *      8     0     33554422 sda
+ *      8     1     33554400 sda1
+ */
+STATICTEST QStringList
 getPartitionsForDevice( const QString& deviceName )
 {
     QStringList partitions;
@@ -58,7 +49,7 @@ getPartitionsForDevice( const QString& deviceName )
     QFile dev_partitions( "/proc/partitions" );
     if ( dev_partitions.open( QFile::ReadOnly ) )
     {
-        cDebug() << "Reading from" << dev_partitions.fileName();
+        cDebug() << "Reading from" << dev_partitions.fileName() << "looking for" << deviceName;
         QTextStream in( &dev_partitions );
         (void)in.readLine();  // That's the header line, skip it
         while ( !in.atEnd() )
@@ -79,6 +70,25 @@ getPartitionsForDevice( const QString& deviceName )
     }
 
     return partitions;
+}
+
+ClearMountsJob::ClearMountsJob( Device* device )
+    : Calamares::Job()
+    , m_device( device )
+{
+}
+
+QString
+ClearMountsJob::prettyName() const
+{
+    return tr( "Clear mounts for partitioning operations on %1" ).arg( m_device->deviceNode() );
+}
+
+
+QString
+ClearMountsJob::prettyStatusMessage() const
+{
+    return tr( "Clearing mounts for partitioning operations on %1." ).arg( m_device->deviceNode() );
 }
 
 Calamares::JobResult
