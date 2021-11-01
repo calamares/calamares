@@ -72,42 +72,16 @@ getPartitionsForDevice( const QString& deviceName )
     return partitions;
 }
 
-ClearMountsJob::ClearMountsJob( Device* device )
-    : Calamares::Job()
-    , m_device( device )
+STATICTEST static QStringList
+getSwapsForDevice( const QString& deviceName )
 {
-}
-
-QString
-ClearMountsJob::prettyName() const
-{
-    return tr( "Clear mounts for partitioning operations on %1" ).arg( m_device->deviceNode() );
-}
-
-
-QString
-ClearMountsJob::prettyStatusMessage() const
-{
-    return tr( "Clearing mounts for partitioning operations on %1." ).arg( m_device->deviceNode() );
-}
-
-Calamares::JobResult
-ClearMountsJob::exec()
-{
-    CalamaresUtils::Partition::Syncer s;
-
-    QString deviceName = m_device->deviceNode().split( '/' ).last();
-
-    QStringList goodNews;
     QProcess process;
-
-    QStringList partitionsList = getPartitionsForDevice( deviceName );
 
     // Build a list of partitions of type 82 (Linux swap / Solaris).
     // We then need to clear them just in case they contain something resumable from a
     // previous suspend-to-disk.
     QStringList swapPartitions;
-    process.start( "sfdisk", { "-d", m_device->deviceNode() } );
+    process.start( "sfdisk", { "-d", deviceName } );
     process.waitForFinished();
     // Sample output:
     //    % sudo sfdisk -d /dev/sda
@@ -125,6 +99,41 @@ ClearMountsJob::exec()
     {
         *it = ( *it ).simplified().split( ' ' ).first();
     }
+
+    return swapPartitions;
+}
+
+
+ClearMountsJob::ClearMountsJob( Device* device )
+    : Calamares::Job()
+    , m_device( device )
+{
+}
+
+QString
+ClearMountsJob::prettyName() const
+{
+    return tr( "Clear mounts for partitioning operations on %1" ).arg( m_device->deviceNode() );
+}
+
+QString
+ClearMountsJob::prettyStatusMessage() const
+{
+    return tr( "Clearing mounts for partitioning operations on %1." ).arg( m_device->deviceNode() );
+}
+
+Calamares::JobResult
+ClearMountsJob::exec()
+{
+    CalamaresUtils::Partition::Syncer s;
+
+    QString deviceName = m_device->deviceNode().split( '/' ).last();
+
+    QStringList goodNews;
+    QProcess process;
+
+    const QStringList partitionsList = getPartitionsForDevice( deviceName );
+    const QStringList swapPartitions = getSwapsForDevice( m_device->deviceNode() );
 
     const QStringList cryptoDevices = getCryptoDevices();
     for ( const QString& mapperPath : cryptoDevices )
