@@ -165,8 +165,43 @@ getLVMVolumes()
     else
     {
         cWarning() << "this system does not seem to have LVM2 tools.";
-        return QStringList();
     }
+    return QStringList();
+}
+STATICTEST QStringList
+getPVGroups( const QString& deviceName )
+{
+    QProcess process;
+    // Then we go looking for volume groups that use this device for physical volumes
+    process.start( "pvdisplay", { "-C", "--noheadings" } );
+    process.waitForFinished();
+    if ( process.exitCode() == 0 )  //means LVM2 tools are installed
+    {
+        QString pvdisplayOutput = process.readAllStandardOutput();
+        if ( !pvdisplayOutput.simplified().isEmpty() )  //means there is at least one LVM PV
+        {
+            QSet< QString > vgSet;
+
+            const QStringList pvdisplayLines = pvdisplayOutput.split( '\n' );
+            for ( const QString& pvdisplayLine : pvdisplayLines )
+            {
+                QString pvPath = pvdisplayLine.simplified().split( ' ' ).value( 0 );
+                QString vgName = pvdisplayLine.simplified().split( ' ' ).value( 1 );
+                if ( !pvPath.contains( deviceName ) )
+                {
+                    continue;
+                }
+
+                vgSet.insert( vgName );
+            }
+            return QStringList { vgSet.cbegin(), vgSet.cend() };
+        }
+    }
+    else
+    {
+        cWarning() << "this system does not seem to have LVM2 tools.";
+    }
+    return QStringList();
 }
 
 /*
@@ -274,10 +309,21 @@ tryCryptoClose( const QString& mapperPath )
     return {};
 }
 
+STATICTEST MessageAndPath
+tryVGDisable( const QString& vgName )
+{
+    QProcess vgProcess;
+    vgProcess.start( "vgchange", { "-an", vgName } );
+    vgProcess.waitForFinished();
+    return ( vgProcess.exitCode() == 0 )
+        ? MessageAndPath { QT_TRANSLATE_NOOP( "ClearMountsJob", "Successfully disabled volume group %1." ), vgName }
+        : MessageAndPath {};
+}
+
 ///@brief Apply @p f to all the @p paths, appending successes to @p news
-template < typename T, typename F >
+template < typename F >
 void
-apply( const T& paths, F f, QList< MessageAndPath >& news )
+apply( const QStringList& paths, F f, QList< MessageAndPath >& news )
 {
     for ( const QString& p : qAsConst( paths ) )
     {
@@ -333,49 +379,7 @@ ClearMountsJob::exec()
 
     apply( getCryptoDevices(), tryCryptoClose, goodNews );
     apply( getLVMVolumes(), tryUmount, goodNews );
-
-    // Then we go looking for volume groups that use this device for physical volumes
-    process.start( "pvdisplay", { "-C", "--noheadings" } );
-    process.waitForFinished();
-    if ( process.exitCode() == 0 )  //means LVM2 tools are installed
-    {
-        QString pvdisplayOutput = process.readAllStandardOutput();
-        if ( !pvdisplayOutput.simplified().isEmpty() )  //means there is at least one LVM PV
-        {
-            QSet< QString > vgSet;
-
-            const QStringList pvdisplayLines = pvdisplayOutput.split( '\n' );
-            for ( const QString& pvdisplayLine : pvdisplayLines )
-            {
-                QString pvPath = pvdisplayLine.simplified().split( ' ' ).value( 0 );
-                QString vgName = pvdisplayLine.simplified().split( ' ' ).value( 1 );
-                if ( !pvPath.contains( deviceName ) )
-                {
-                    continue;
-                }
-
-                vgSet.insert( vgName );
-            }
-
-            apply(
-                vgSet,
-                []( const QString& vgName ) {
-                    QProcess vgProcess;
-                    vgProcess.start( "vgchange", { "-an", vgName } );
-                    vgProcess.waitForFinished();
-                    return ( vgProcess.exitCode() == 0 )
-                        ? MessageAndPath { QT_TRANSLATE_NOOP( "ClearMountsJob",
-                                                              "Successfully disabled volume group %1." ),
-                                           vgName }
-                        : MessageAndPath {};
-                },
-                goodNews );
-        }
-    }
-    else
-    {
-        cWarning() << "this system does not seem to have LVM2 tools.";
-    }
+    apply( getPVGroups( deviceName ), tryVGDisable, goodNews );
 
     apply( getCryptoDevices(), tryCryptoClose, goodNews );
     apply( partitionsList, tryUmount, goodNews );
