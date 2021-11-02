@@ -604,7 +604,7 @@ PartitionCoreModule::jobs( const Config* config ) const
     lst << automountControl;
     lst << Calamares::job_ptr( new ClearTempMountsJob() );
 
-    for ( auto info : m_deviceInfos )
+    for ( const auto* info : m_deviceInfos )
     {
         if ( info->isDirty() )
         {
@@ -612,7 +612,7 @@ PartitionCoreModule::jobs( const Config* config ) const
         }
     }
 
-    for ( auto info : m_deviceInfos )
+    for ( const auto* info : m_deviceInfos )
     {
         lst << info->jobs();
         devices << info->device.data();
