@@ -144,6 +144,31 @@ getCryptoDevices()
     return list;
 }
 
+STATICTEST QStringList
+getLVMVolumes()
+{
+    QProcess process;
+
+    // First we umount all LVM logical volumes we can find
+    process.start( "lvscan", { "-a" } );
+    process.waitForFinished();
+    if ( process.exitCode() == 0 )  //means LVM2 tools are installed
+    {
+        QStringList lvscanLines = QString::fromLocal8Bit( process.readAllStandardOutput() ).split( '\n' );
+        // Get the second column (`value(1)`) sinec that is the device name,
+        // remove quoting.
+        std::transform( lvscanLines.begin(), lvscanLines.end(), lvscanLines.begin(), []( const QString& lvscanLine ) {
+            return lvscanLine.simplified().split( ' ' ).value( 1 ).replace( '\'', "" );
+        } );
+        return lvscanLines;
+    }
+    else
+    {
+        cWarning() << "this system does not seem to have LVM2 tools.";
+        return QStringList();
+    }
+}
+
 /*
  * The tryX() free functions, below, return an empty QString on
  * failure, or a non-empty QString on success. The string is
@@ -307,27 +332,7 @@ ClearMountsJob::exec()
     const QStringList swapPartitions = getSwapsForDevice( m_deviceNode );
 
     apply( getCryptoDevices(), tryCryptoClose, goodNews );
-
-    // First we umount all LVM logical volumes we can find
-    process.start( "lvscan", { "-a" } );
-    process.waitForFinished();
-    if ( process.exitCode() == 0 )  //means LVM2 tools are installed
-    {
-        const QStringList lvscanLines = QString::fromLocal8Bit( process.readAllStandardOutput() ).split( '\n' );
-        apply(
-            lvscanLines,
-            []( const QString& lvscanLine ) {
-                QString lvPath = lvscanLine.simplified().split( ' ' ).value( 1 );  //second column
-                lvPath = lvPath.replace( '\'', "" );
-
-                return tryUmount( lvPath );
-            },
-            goodNews );
-    }
-    else
-    {
-        cWarning() << "this system does not seem to have LVM2 tools.";
-    }
+    apply( getLVMVolumes(), tryUmount, goodNews );
 
     // Then we go looking for volume groups that use this device for physical volumes
     process.start( "pvdisplay", { "-C", "--noheadings" } );
