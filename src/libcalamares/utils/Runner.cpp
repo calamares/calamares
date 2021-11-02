@@ -15,6 +15,8 @@
 #include "Settings.h"
 #include "utils/Logger.h"
 
+#include <QProcess>
+
 /** @brief Descend from directory, always relative
  *
  * If @p subdir begins with a "/" or "../" or "./" those are stripped

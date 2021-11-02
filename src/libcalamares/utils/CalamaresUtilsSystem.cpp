@@ -18,7 +18,6 @@
 
 #include <QCoreApplication>
 #include <QDir>
-#include <QProcess>
 #include <QRegularExpression>
 
 #ifdef Q_OS_LINUX

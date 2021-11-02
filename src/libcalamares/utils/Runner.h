@@ -15,7 +15,6 @@
 
 #include <QDir>
 #include <QObject>
-#include <QProcess>
 #include <QStringList>
 
 #include <chrono>
