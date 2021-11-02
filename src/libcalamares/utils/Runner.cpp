@@ -94,12 +94,6 @@ namespace Calamares
 namespace Utils
 {
 
-struct Runner::Private
-{
-    QProcess m_process;
-};
-
-
 Runner::Runner() {}
 
 
@@ -145,6 +139,20 @@ Calamares::Utils::Runner::run()
     {
         process.setProgram( "env" );
         process.setArguments( m_command );
+    }
+
+    if ( m_output )
+    {
+        connect( &process, &QProcess::readyReadStandardOutput, [this, &process]() {
+            while ( process.canReadLine() )
+            {
+                QString s = process.readLine();
+                if ( !s.isEmpty() )
+                {
+                    Q_EMIT this->output( s );
+                }
+            }
+        } );
     }
 
     cDebug() << Logger::SubEntry << "Running" << Logger::Redacted( m_command );

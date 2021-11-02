@@ -109,10 +109,6 @@ private:
     QString m_input;
     std::chrono::milliseconds m_timeout { 0 };
     bool m_output = false;
-
-    // Internals for when it really does run
-    struct Private;
-    std::unique_ptr< Private > d;
 };
 
 }  // namespace Utils
