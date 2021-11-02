@@ -277,20 +277,20 @@ stringify( const QList< MessageAndPath >& news )
 
 ClearMountsJob::ClearMountsJob( Device* device )
     : Calamares::Job()
-    , m_device( device )
+    , m_deviceNode( device->deviceNode() )
 {
 }
 
 QString
 ClearMountsJob::prettyName() const
 {
-    return tr( "Clear mounts for partitioning operations on %1" ).arg( m_device->deviceNode() );
+    return tr( "Clear mounts for partitioning operations on %1" ).arg( m_deviceNode );
 }
 
 QString
 ClearMountsJob::prettyStatusMessage() const
 {
-    return tr( "Clearing mounts for partitioning operations on %1." ).arg( m_device->deviceNode() );
+    return tr( "Clearing mounts for partitioning operations on %1." ).arg( m_deviceNode );
 }
 
 Calamares::JobResult
@@ -298,13 +298,13 @@ ClearMountsJob::exec()
 {
     CalamaresUtils::Partition::Syncer s;
 
-    QString deviceName = m_device->deviceNode().split( '/' ).last();
+    const QString deviceName = m_deviceNode.split( '/' ).last();
 
     QList< MessageAndPath > goodNews;
     QProcess process;
 
     const QStringList partitionsList = getPartitionsForDevice( deviceName );
-    const QStringList swapPartitions = getSwapsForDevice( m_device->deviceNode() );
+    const QStringList swapPartitions = getSwapsForDevice( m_deviceNode );
 
     apply( getCryptoDevices(), tryCryptoClose, goodNews );
 
@@ -377,7 +377,7 @@ ClearMountsJob::exec()
     apply( swapPartitions, tryClearSwap, goodNews );
 
     Calamares::JobResult ok = Calamares::JobResult::ok();
-    ok.setMessage( tr( "Cleared all mounts for %1" ).arg( m_device->deviceNode() ) );
+    ok.setMessage( tr( "Cleared all mounts for %1" ).arg( m_deviceNode ) );
     ok.setDetails( stringify( goodNews ).join( "\n" ) );
     cDebug() << "ClearMountsJob finished. Here's what was done:" << Logger::DebugListT< MessageAndPath >( goodNews );
 
