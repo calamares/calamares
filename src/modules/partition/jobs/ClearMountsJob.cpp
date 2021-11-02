@@ -367,23 +367,17 @@ ClearMountsJob::prettyStatusMessage() const
 Calamares::JobResult
 ClearMountsJob::exec()
 {
-    CalamaresUtils::Partition::Syncer s;
-
     const QString deviceName = m_deviceNode.split( '/' ).last();
-
+    CalamaresUtils::Partition::Syncer s;
     QList< MessageAndPath > goodNews;
-    QProcess process;
-
-    const QStringList partitionsList = getPartitionsForDevice( deviceName );
-    const QStringList swapPartitions = getSwapsForDevice( m_deviceNode );
 
     apply( getCryptoDevices(), tryCryptoClose, goodNews );
     apply( getLVMVolumes(), tryUmount, goodNews );
     apply( getPVGroups( deviceName ), tryVGDisable, goodNews );
 
     apply( getCryptoDevices(), tryCryptoClose, goodNews );
-    apply( partitionsList, tryUmount, goodNews );
-    apply( swapPartitions, tryClearSwap, goodNews );
+    apply( getPartitionsForDevice( deviceName ), tryUmount, goodNews );
+    apply( getSwapsForDevice( m_deviceNode ), tryClearSwap, goodNews );
 
     Calamares::JobResult ok = Calamares::JobResult::ok();
     ok.setMessage( tr( "Cleared all mounts for %1" ).arg( m_deviceNode ) );

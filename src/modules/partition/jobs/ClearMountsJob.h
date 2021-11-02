@@ -17,14 +17,21 @@ class Device;
 /**
  * This job tries to free all mounts for the given device, so partitioning
  * operations can proceed.
+ *
+ * - partitions on the device are unmounted
+ * - swap on the device is disabled and cleared
+ * - physical volumes for LVM on the device are disabled
+ *
+ * In addition, regardless of device:
+ * - all /dev/mapper entries (crypto / LUKS) are closed
+ * - all logical volumes for LVM are unmounted
+ *
  */
 class ClearMountsJob : public Calamares::Job
 {
     Q_OBJECT
 public:
     /** @brief Creates a job freeing mounts on @p device
-     *
-     * All /dev/mapper entries are closed, regardless of device.
      *
      * No ownership is transferred; the @p device is used only to access
      * the device node (name).
