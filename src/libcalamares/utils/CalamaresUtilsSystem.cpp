@@ -33,47 +33,6 @@
 // clang-format on
 #endif
 
-/** @brief When logging commands, don't log everything.
- *
- * The command-line arguments to some commands may contain the
- * encrypted password set by the user. Don't log that password,
- * since the log may get posted to bug reports, or stored in
- * the target system.
- */
-struct RedactedList
-{
-    RedactedList( const QStringList& l )
-        : list( l )
-    {
-    }
-
-    const QStringList& list;
-};
-
-QDebug&
-operator<<( QDebug& s, const RedactedList& l )
-{
-    // Special case logging: don't log the (encrypted) password.
-    if ( l.list.contains( "usermod" ) )
-    {
-        for ( const auto& item : l.list )
-            if ( item.startsWith( "$6$" ) )
-            {
-                s << "<password>";
-            }
-            else
-            {
-                s << item;
-            }
-    }
-    else
-    {
-        s << l.list;
-    }
-
-    return s;
-}
-
 namespace CalamaresUtils
 {
 
@@ -169,7 +128,7 @@ System::runCommand( System::RunLocation location,
         }
     }
 
-    cDebug() << Logger::SubEntry << "Running" << program << RedactedList( arguments );
+    cDebug() << Logger::SubEntry << "Running" << program << Logger::Redacted( arguments );
     process.start();
     if ( !process.waitForStarted() )
     {
@@ -213,12 +172,14 @@ System::runCommand( System::RunLocation location,
     {
         if ( !output.isEmpty() )
         {
-            cDebug() << Logger::SubEntry << "Target cmd:" << RedactedList( args ) << "Exit code:" << r << "output:\n"
+            cDebug() << Logger::SubEntry << "Target cmd:" << Logger::Redacted( args ) << "Exit code:" << r
+                     << "output:\n"
                      << Logger::NoQuote << output;
         }
         else
         {
-            cDebug() << Logger::SubEntry << "Target cmd:" << RedactedList( args ) << "Exit code:" << r << "(no output)";
+            cDebug() << Logger::SubEntry << "Target cmd:" << Logger::Redacted( args ) << "Exit code:" << r
+                     << "(no output)";
         }
     }
     return ProcessResult( r, output );
