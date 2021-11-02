@@ -74,6 +74,7 @@ private Q_SLOTS:
     /** @section Test Runner directory-manipulation. */
     void testRunnerDirs();
     void testCalculateWorkingDirectory();
+    void testRunnerOutput();
 
 private:
     void recursiveCompareMap( const QVariantMap& a, const QVariantMap& b, int depth );
@@ -881,6 +882,44 @@ LibCalamaresTests::testCalculateWorkingDirectory()
         auto [ ok, d ] = calculateWorkingDirectory( CalamaresUtils::System::RunLocation::RunInTarget, QString() );
         QVERIFY( !ok );
         QCOMPARE( d, QDir::current() );
+    }
+}
+
+void
+LibCalamaresTests::testRunnerOutput()
+{
+    cDebug() << "Testing ls";
+    {
+        Calamares::Utils::Runner r( { "ls", "-d", "." } );
+        QSignalSpy spy( &r, &decltype( r )::output );
+        r.enableOutputProcessing( true );
+
+        auto result = r.run();
+        QCOMPARE( result.getExitCode(), 0 );
+        QCOMPARE( result.getOutput(), QString() );
+        QCOMPARE( spy.count(), 1 );
+    }
+
+    cDebug() << "Testing cat";
+    {
+        Calamares::Utils::Runner r( { "cat" } );
+        QSignalSpy spy( &r, &decltype( r )::output );
+        r.enableOutputProcessing( true ).setInput( QStringLiteral( "hello\nworld\n\n!\n" ) );
+
+        {
+            auto result = r.run();
+            QCOMPARE( result.getExitCode(), 0 );
+            QCOMPARE( result.getOutput(), QString() );
+            QCOMPARE( spy.count(), 4 );
+        }
+
+        r.setInput( QStringLiteral( "yo\ndogg" ) );
+        {
+            auto result = r.run();
+            QCOMPARE( result.getExitCode(), 0 );
+            QCOMPARE( result.getOutput(), QString() );
+            QCOMPARE( spy.count(), 6 );  // 4 from before, +2 here
+        }
     }
 }
 
