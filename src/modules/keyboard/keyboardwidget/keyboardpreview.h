@@ -21,7 +21,6 @@
 #include <QPainterPath>
 #include <QPen>
 #include <QPixmap>
-#include <QProcess>
 #include <QRectF>
 #include <QString>
 #include <QStringList>

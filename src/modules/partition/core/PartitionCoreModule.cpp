@@ -60,7 +60,6 @@
 // Qt
 #include <QDir>
 #include <QFutureWatcher>
-#include <QProcess>
 #include <QStandardItemModel>
 #include <QtConcurrent/QtConcurrent>
 
