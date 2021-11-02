@@ -51,7 +51,8 @@ public:
     Runner();
     /** @brief Create a runner with a specified command
      *
-     * Equivalent to Calamares::Utils::Runner::Runner()
+     * Equivalent to Calamares::Utils::Runner::Runner() followed by
+     * calling setCommand().
      */
     Runner( const QStringList& command );
     virtual ~Runner() override;

@@ -12,6 +12,7 @@
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "Settings.h"
 #include "utils/Logger.h"
 
 /** @brief Descend from directory, always relative
@@ -129,10 +130,12 @@ Calamares::Utils::Runner::run()
         return ProcessResult::Code::NoWorkingDirectory;
     }
 
-
     QProcess process;
     process.setProcessChannelMode( QProcess::MergedChannels );
-    process.setWorkingDirectory( workingDirectory.absolutePath() );
+    if ( !m_directory.isEmpty() )
+    {
+        process.setWorkingDirectory( workingDirectory.absolutePath() );
+    }
     if ( m_location == RunLocation::RunInTarget )
     {
         process.setProgram( "chroot" );
@@ -144,40 +147,25 @@ Calamares::Utils::Runner::run()
         process.setArguments( m_command );
     }
 
-    return ProcessResult::Code::Crashed;
-#if 0
-    if ( !workingPath.isEmpty() )
-    {
-        if ( QDir( workingPath ).exists() )
-        {
-            process.setWorkingDirectory( QDir( workingPath ).absolutePath() );
-        }
-        else
-        {
-            cWarning() << "Invalid working directory:" << workingPath;
-            return ProcessResult::Code::NoWorkingDirectory;
-        }
-    }
-
-    cDebug() << Logger::SubEntry << "Running" << program << RedactedList( arguments );
+    cDebug() << Logger::SubEntry << "Running" << Logger::Redacted( m_command );
     process.start();
     if ( !process.waitForStarted() )
     {
-        cWarning() << "Process" << args.first() << "failed to start" << process.error();
+        cWarning() << "Process" << m_command.first() << "failed to start" << process.error();
         return ProcessResult::Code::FailedToStart;
     }
 
-    if ( !stdInput.isEmpty() )
+    if ( !m_input.isEmpty() )
     {
-        process.write( stdInput.toLocal8Bit() );
+        process.write( m_input.toLocal8Bit() );
     }
     process.closeWriteChannel();
 
-    if ( !process.waitForFinished( timeoutSec > std::chrono::seconds::zero()
-                                   ? ( static_cast< int >( std::chrono::milliseconds( timeoutSec ).count() ) )
-                                   : -1 ) )
+    if ( !process.waitForFinished( m_timeout > std::chrono::seconds::zero()
+                                       ? ( static_cast< int >( std::chrono::milliseconds( m_timeout ).count() ) )
+                                       : -1 ) )
     {
-        cWarning() << "Process" << args.first() << "timed out after" << timeoutSec.count() << "s. Output so far:\n"
+        cWarning() << "Process" << m_command.first() << "timed out after" << m_timeout.count() << "ms. Output so far:\n"
                    << Logger::NoQuote << process.readAllStandardOutput();
         return ProcessResult::Code::TimedOut;
     }
@@ -186,12 +174,12 @@ Calamares::Utils::Runner::run()
 
     if ( process.exitStatus() == QProcess::CrashExit )
     {
-        cWarning() << "Process" << args.first() << "crashed. Output so far:\n" << Logger::NoQuote << output;
+        cWarning() << "Process" << m_command.first() << "crashed. Output so far:\n" << Logger::NoQuote << output;
         return ProcessResult::Code::Crashed;
     }
 
     auto r = process.exitCode();
-    bool showDebug = ( !Calamares::Settings::instance() ) || ( Calamares::Settings::instance()->debugMode() );
+    const bool showDebug = ( !Calamares::Settings::instance() ) || ( Calamares::Settings::instance()->debugMode() );
     if ( r == 0 )
     {
         if ( showDebug && !output.isEmpty() )
@@ -203,14 +191,15 @@ Calamares::Utils::Runner::run()
     {
         if ( !output.isEmpty() )
         {
-            cDebug() << Logger::SubEntry << "Target cmd:" << RedactedList( args ) << "Exit code:" << r << "output:\n"
+            cDebug() << Logger::SubEntry << "Target cmd:" << Logger::Redacted( m_command ) << "Exit code:" << r
+                     << "output:\n"
                      << Logger::NoQuote << output;
         }
         else
         {
-            cDebug() << Logger::SubEntry << "Target cmd:" << RedactedList( args ) << "Exit code:" << r << "(no output)";
+            cDebug() << Logger::SubEntry << "Target cmd:" << Logger::Redacted( m_command ) << "Exit code:" << r
+                     << "(no output)";
         }
     }
     return ProcessResult( r, output );
-#endif
 }
