@@ -921,6 +921,32 @@ LibCalamaresTests::testRunnerOutput()
             QCOMPARE( spy.count(), 6 );  // 4 from before, +2 here
         }
     }
+
+    cDebug() << "Testing cat (again)";
+    {
+        QStringList collectedOutput;
+
+        Calamares::Utils::Runner r( { "cat" } );
+        r.enableOutputProcessing( true ).setInput( QStringLiteral( "hello\nworld\n\n!\n" ) );
+        QObject::connect( &r, &decltype( r )::output, [&collectedOutput]( QString s ) { collectedOutput << s; } );
+
+        {
+            auto result = r.run();
+            QCOMPARE( result.getExitCode(), 0 );
+            QCOMPARE( result.getOutput(), QString() );
+            QCOMPARE( collectedOutput.count(), 4 );
+            QVERIFY( collectedOutput.contains( QStringLiteral( "world\n" ) ) );
+        }
+
+        r.setInput( QStringLiteral( "yo\ndogg" ) );
+        {
+            auto result = r.run();
+            QCOMPARE( result.getExitCode(), 0 );
+            QCOMPARE( result.getOutput(), QString() );
+            QCOMPARE( collectedOutput.count(), 6 );
+            QVERIFY( collectedOutput.contains( QStringLiteral( "dogg" ) ) );  // no newline
+        }
+    }
 }
 
 
