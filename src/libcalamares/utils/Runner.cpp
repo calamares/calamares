@@ -178,7 +178,13 @@ Calamares::Utils::Runner::run()
         return ProcessResult::Code::TimedOut;
     }
 
-    QString output = QString::fromLocal8Bit( process.readAllStandardOutput() ).trimmed();
+    QString output = m_output ? process.readAllStandardOutput()
+                              : QString::fromLocal8Bit( process.readAllStandardOutput() ).trimmed();
+    if ( m_output && !output.isEmpty() )
+    {
+        Q_EMIT this->output( output );
+        output = QString();
+    }
 
     if ( process.exitStatus() == QProcess::CrashExit )
     {
