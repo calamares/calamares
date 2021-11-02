@@ -127,7 +127,7 @@ isFedoraSpecial( const QString& baseName )
  * the list.
  */
 STATICTEST QStringList
-getCryptoDevices()
+getCryptoDevices( const QStringList& mapperExceptions )
 {
     QDir mapperDir( "/dev/mapper" );
     const QFileInfoList fiList = mapperDir.entryInfoList( QDir::Files );
@@ -135,7 +135,7 @@ getCryptoDevices()
     for ( const QFileInfo& fi : fiList )
     {
         QString baseName = fi.baseName();
-        if ( isControl( baseName ) || isFedoraSpecial( baseName ) )
+        if ( isControl( baseName ) || isFedoraSpecial( baseName ) || mapperExceptions.contains( baseName ) )
         {
             continue;
         }
@@ -371,11 +371,11 @@ ClearMountsJob::exec()
     CalamaresUtils::Partition::Syncer s;
     QList< MessageAndPath > goodNews;
 
-    apply( getCryptoDevices(), tryCryptoClose, goodNews );
+    apply( getCryptoDevices( m_mapperExceptions ), tryCryptoClose, goodNews );
     apply( getLVMVolumes(), tryUmount, goodNews );
     apply( getPVGroups( deviceName ), tryVGDisable, goodNews );
 
-    apply( getCryptoDevices(), tryCryptoClose, goodNews );
+    apply( getCryptoDevices( m_mapperExceptions ), tryCryptoClose, goodNews );
     apply( getPartitionsForDevice( deviceName ), tryUmount, goodNews );
     apply( getSwapsForDevice( m_deviceNode ), tryClearSwap, goodNews );
 

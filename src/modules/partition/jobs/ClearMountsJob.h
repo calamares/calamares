@@ -23,8 +23,14 @@ class Device;
  * - physical volumes for LVM on the device are disabled
  *
  * In addition, regardless of device:
- * - all /dev/mapper entries (crypto / LUKS) are closed
+ * - almost all(*) /dev/mapper entries (crypto / LUKS, also LVM) are closed
  * - all logical volumes for LVM are unmounted
+ * Exceptions to "all /dev/mapper" may be configured through
+ * the setMapperExceptions() method. Pass in names of mapper
+ * files that should not be closed (e.g. "myvg-mylv").
+ *
+ * (*) Some exceptions always exist: /dev/mapper/control is never
+ *     closed. /dev/mapper/live-* is never closed.
  *
  */
 class ClearMountsJob : public Calamares::Job
@@ -42,8 +48,12 @@ public:
     QString prettyStatusMessage() const override;
     Calamares::JobResult exec() override;
 
+    ///@brief Sets the list of exceptions (names) when closing /dev/mapper
+    void setMapperExceptions( const QStringList& names ) { m_mapperExceptions = names; }
+
 private:
     const QString m_deviceNode;
+    QStringList m_mapperExceptions;
 };
 
 #endif  // CLEARMOUNTSJOB_H
