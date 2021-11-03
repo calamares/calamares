@@ -175,16 +175,37 @@ PythonJobInterface::setprogress( qreal progress )
 static inline int
 _process_output( Calamares::Utils::RunLocation location,
                  const boost::python::list& args,
-                 boost::python::object& callback )
+                 const boost::python::object& callback,
+                 const std::string& stdin,
+                 int timeout )
 {
     Calamares::Utils::Runner r( _bp_list_to_qstringlist( args ) );
     r.setLocation( location );
     if ( !callback.is_none() )
     {
+        bp::extract< bp::list > x( callback );
+        if ( x.check() )
+        {
+            QObject::connect( &r, &decltype( r )::output, [cb = callback.attr( "append" )]( const QString& s ) {
+                cb( s.toStdString() );
+            } );
+        }
+        else
+        {
+            QObject::connect(
+                &r, &decltype( r )::output, [&callback]( const QString& s ) { callback( s.toStdString() ); } );
+        }
         r.enableOutputProcessing();
-        QObject::connect(
-            &r, &decltype( r )::output, [&callback]( const QString& s ) { callback( s.toStdString() ); } );
     }
+    if ( !stdin.empty() )
+    {
+        r.setInput( QString::fromStdString( stdin ) );
+    }
+    if ( timeout > 0 )
+    {
+        r.setTimeout( std::chrono::seconds( timeout ) );
+    }
+
     auto result = r.run();
 
     if ( result.getExitCode() )
@@ -195,19 +216,21 @@ _process_output( Calamares::Utils::RunLocation location,
 }
 
 int
-target_env_process_output( const boost::python::list& args, boost::python::object& callback )
+target_env_process_output( const boost::python::list& args,
+                           const boost::python::object& callback,
+                           const std::string& stdin,
+                           int timeout )
 {
-    return _process_output(
-
-        Calamares::Utils::RunLocation::RunInTarget, args, callback );
+    return _process_output( Calamares::Utils::RunLocation::RunInTarget, args, callback, stdin, timeout );
 }
 
 int
-host_env_process_output( const boost::python::list& args, boost::python::object& callback )
+host_env_process_output( const boost::python::list& args,
+                         const boost::python::object& callback,
+                         const std::string& stdin,
+                         int timeout )
 {
-    return _process_output(
-
-        Calamares::Utils::RunLocation::RunInHost, args, callback );
+    return _process_output( Calamares::Utils::RunLocation::RunInHost, args, callback, stdin, timeout );
 }
 
 

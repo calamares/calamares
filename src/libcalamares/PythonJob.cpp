@@ -36,6 +36,11 @@ BOOST_PYTHON_FUNCTION_OVERLOADS( check_target_env_output_list_overloads,
                                  CalamaresPython::check_target_env_output,
                                  1,
                                  3 );
+BOOST_PYTHON_FUNCTION_OVERLOADS( target_env_process_output_overloads,
+                                 CalamaresPython::target_env_process_output,
+                                 1,
+                                 4 );
+BOOST_PYTHON_FUNCTION_OVERLOADS( host_env_process_output_overloads, CalamaresPython::host_env_process_output, 1, 4 );
 
 BOOST_PYTHON_MODULE( libcalamares )
 {
@@ -140,14 +145,12 @@ BOOST_PYTHON_MODULE( libcalamares )
                                                      "subprocess.CalledProcessError if something went wrong." ) );
     bp::def( "target_env_process_output",
              &CalamaresPython::target_env_process_output,
-             bp::args( "command", "callback" ),
-             "Runs the specified command in the target system, and "
-             "calls the callback function with each line of output." );
+             target_env_process_output_overloads( bp::args( "command", "callback", "stdin", "timeout" ),
+                                                  "Runs the specified @p command in the target system." ) );
     bp::def( "host_env_process_output",
              &CalamaresPython::host_env_process_output,
-             bp::args( "command", "callback" ),
-             "Runs the specified command in the host system, and "
-             "calls the callback function with each line of output." );
+             host_env_process_output_overloads( bp::args( "command", "callback", "stdin", "timeout" ),
+                                                "Runs the specified command in the host system." ) );
 
     bp::def( "obscure",
              &CalamaresPython::obscure,
