@@ -79,24 +79,24 @@ class UnpackEntry:
         """
         Counts the number of files this entry has.
         """
-        fslist = ""
+        # Need a name we can use like a global
+        class counter(object):
+            count = 0
+        def cb_count(s):
+            counter.count += 1
 
         if self.sourcefs == "squashfs":
-            fslist = subprocess.check_output(
-                ["unsquashfs", "-l", self.source]
-                )
+            libcalamares.utils.host_env_process_output(["unsquashfs", "-l", self.source], cb_count)
 
         elif self.sourcefs == "ext4":
-            fslist = subprocess.check_output(
-                ["find", self.mountPoint, "-type", "f"]
-                )
+            libcalamares.utils.host_env_process_output(["find", self.mountPoint, "-type", "f"], cb_count)
 
         elif self.is_file():
             # Hasn't been mounted, copy directly; find handles both
             # files and directories.
-            fslist = subprocess.check_output(["find", self.source, "-type", "f"])
+            libcalamares.utils.host_env_process_output(["find", self.source, "-type", "f"], cb_count)
 
-        self.total = len(fslist.splitlines())
+        self.total = counter.count
         return self.total
 
     def do_mount(self, base):
