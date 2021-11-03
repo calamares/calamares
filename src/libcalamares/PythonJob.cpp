@@ -36,6 +36,12 @@ BOOST_PYTHON_FUNCTION_OVERLOADS( check_target_env_output_list_overloads,
                                  CalamaresPython::check_target_env_output,
                                  1,
                                  3 );
+BOOST_PYTHON_FUNCTION_OVERLOADS( target_env_process_output_overloads,
+                                 CalamaresPython::target_env_process_output,
+                                 1,
+                                 4 );
+BOOST_PYTHON_FUNCTION_OVERLOADS( host_env_process_output_overloads, CalamaresPython::host_env_process_output, 1, 4 );
+
 BOOST_PYTHON_MODULE( libcalamares )
 {
     bp::object package = bp::scope();
@@ -137,6 +143,15 @@ BOOST_PYTHON_MODULE( libcalamares )
                                                      "Runs the specified command in the chroot of the target system.\n"
                                                      "Returns the program's standard output, and raises a "
                                                      "subprocess.CalledProcessError if something went wrong." ) );
+    bp::def( "target_env_process_output",
+             &CalamaresPython::target_env_process_output,
+             target_env_process_output_overloads( bp::args( "command", "callback", "stdin", "timeout" ),
+                                                  "Runs the specified @p command in the target system." ) );
+    bp::def( "host_env_process_output",
+             &CalamaresPython::host_env_process_output,
+             host_env_process_output_overloads( bp::args( "command", "callback", "stdin", "timeout" ),
+                                                "Runs the specified command in the host system." ) );
+
     bp::def( "obscure",
              &CalamaresPython::obscure,
              bp::args( "s" ),

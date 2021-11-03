@@ -13,6 +13,7 @@
 #include "Entropy.h"
 #include "Logger.h"
 #include "RAII.h"
+#include "Runner.h"
 #include "String.h"
 #include "Traits.h"
 #include "UMask.h"
@@ -69,6 +70,11 @@ private Q_SLOTS:
     void testStringTruncation();
     void testStringTruncationShorter();
     void testStringTruncationDegenerate();
+
+    /** @section Test Runner directory-manipulation. */
+    void testRunnerDirs();
+    void testCalculateWorkingDirectory();
+    void testRunnerOutput();
 
 private:
     void recursiveCompareMap( const QVariantMap& a, const QVariantMap& b, int depth );
@@ -742,6 +748,204 @@ LibCalamaresTests::testStringTruncationDegenerate()
 
         auto t = truncateMultiLine( longString, LinesStartEnd { 2, 2 }, CharCount { quiteShort } );
         QCOMPARE( s, t );
+    }
+}
+
+
+static QString
+dirname( const QTemporaryDir& d )
+{
+    return d.path().split( '/' ).last();
+}
+static QString
+dirname( const QDir& d )
+{
+    return d.absolutePath().split( '/' ).last();
+}
+
+// Method under test
+extern bool relativeChangeDirectory( QDir& directory, const QString& subdir );
+
+void
+LibCalamaresTests::testRunnerDirs()
+{
+    Logger::setupLogLevel( Logger::LOGDEBUG );
+
+    QDir startDir( QDir::current() );
+    QTemporaryDir tempDir( "./utilstest" );
+    QVERIFY( tempDir.isValid() );
+    QVERIFY( startDir.isReadable() );
+
+    // Test changing "downward"
+    {
+        QDir testDir( QDir::current() );
+        QCOMPARE( startDir, testDir );
+    }
+
+    {
+        QDir testDir( QDir::current() );
+        const bool could_change_to_dot = relativeChangeDirectory( testDir, QStringLiteral( "." ) );
+        QVERIFY( could_change_to_dot );
+        QCOMPARE( startDir, testDir );
+    }
+
+    {
+        // The tempDir was created inside the current directory, we want only the subdir-name
+        QDir testDir( QDir::current() );
+        const bool could_change_to_temp = relativeChangeDirectory( testDir, dirname( tempDir ) );
+        QVERIFY( could_change_to_temp );
+        QVERIFY( startDir != testDir );
+        QVERIFY( testDir.absolutePath().startsWith( startDir.absolutePath() ) );
+    }
+
+    // Test changing to something that doesn't exist
+    {
+        QDir testDir( QDir::current() );
+        const bool could_change_to_bogus = relativeChangeDirectory( testDir, QStringLiteral( "bogus" ) );
+        QVERIFY( !could_change_to_bogus );
+        QCOMPARE( startDir, testDir );  // Must be unchanged
+    }
+
+    // Testing escape-from-start
+    {
+        // Escape briefly from the start
+        QDir testDir( QDir::current() );
+        const bool could_change_to_current
+            = relativeChangeDirectory( testDir, QStringLiteral( "../" ) + dirname( startDir ) );
+        QVERIFY( could_change_to_current );
+        QCOMPARE( startDir, testDir );  // The change succeeded, but net effect is zero
+
+        const bool could_change_to_temp = relativeChangeDirectory(
+            testDir, QStringLiteral( "../" ) + dirname( startDir ) + QStringLiteral( "/./" ) + dirname( tempDir ) );
+        QVERIFY( could_change_to_temp );
+        QVERIFY( startDir != testDir );
+        QVERIFY( testDir.absolutePath().startsWith( startDir.absolutePath() ) );
+    }
+
+    {
+        // Escape?
+        QDir testDir( QDir::current() );
+        const bool could_change_to_parent = relativeChangeDirectory( testDir, QStringLiteral( "../" ) );
+        QVERIFY( !could_change_to_parent );
+        QCOMPARE( startDir, testDir );  // Change failed
+
+        const bool could_change_to_tmp = relativeChangeDirectory( testDir, QStringLiteral( "/tmp" ) );
+        QVERIFY( !could_change_to_tmp );
+        QCOMPARE( startDir, testDir );
+
+        const bool could_change_to_elsewhere = relativeChangeDirectory( testDir, QStringLiteral( "../src" ) );
+        QVERIFY( !could_change_to_elsewhere );
+        QCOMPARE( startDir, testDir );
+    }
+}
+
+// Method under test
+extern std::pair< bool, QDir > calculateWorkingDirectory( Calamares::Utils::RunLocation location,
+                                                          const QString& directory );
+
+void
+LibCalamaresTests::testCalculateWorkingDirectory()
+{
+    Calamares::GlobalStorage* gs
+        = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
+
+    if ( !gs )
+    {
+        cDebug() << "Creating new JobQueue";
+        (void)new Calamares::JobQueue();
+        gs = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
+    }
+    QVERIFY( gs );
+
+    // Working with a rootMountPoint set
+    QTemporaryDir tempRoot( QDir::tempPath() + QStringLiteral( "/test-job-XXXXXX" ) );
+    gs->insert( "rootMountPoint", tempRoot.path() );
+
+    {
+        auto [ ok, d ] = calculateWorkingDirectory( CalamaresUtils::System::RunLocation::RunInHost, QString() );
+        QVERIFY( ok );
+        QCOMPARE( d, QDir::current() );
+    }
+    {
+        auto [ ok, d ] = calculateWorkingDirectory( CalamaresUtils::System::RunLocation::RunInTarget, QString() );
+        QVERIFY( ok );
+        QCOMPARE( d.absolutePath(), tempRoot.path() );
+    }
+
+    gs->remove( "rootMountPoint" );
+    {
+        auto [ ok, d ] = calculateWorkingDirectory( CalamaresUtils::System::RunLocation::RunInHost, QString() );
+        QVERIFY( ok );
+        QCOMPARE( d, QDir::current() );
+    }
+    {
+        auto [ ok, d ] = calculateWorkingDirectory( CalamaresUtils::System::RunLocation::RunInTarget, QString() );
+        QVERIFY( !ok );
+        QCOMPARE( d, QDir::current() );
+    }
+}
+
+void
+LibCalamaresTests::testRunnerOutput()
+{
+    cDebug() << "Testing ls";
+    {
+        Calamares::Utils::Runner r( { "ls", "-d", "." } );
+        QSignalSpy spy( &r, &decltype( r )::output );
+        r.enableOutputProcessing();
+
+        auto result = r.run();
+        QCOMPARE( result.getExitCode(), 0 );
+        QCOMPARE( result.getOutput(), QString() );
+        QCOMPARE( spy.count(), 1 );
+    }
+
+    cDebug() << "Testing cat";
+    {
+        Calamares::Utils::Runner r( { "cat" } );
+        QSignalSpy spy( &r, &decltype( r )::output );
+        r.enableOutputProcessing().setInput( QStringLiteral( "hello\nworld\n\n!\n" ) );
+
+        {
+            auto result = r.run();
+            QCOMPARE( result.getExitCode(), 0 );
+            QCOMPARE( result.getOutput(), QString() );
+            QCOMPARE( spy.count(), 4 );
+        }
+
+        r.setInput( QStringLiteral( "yo\ndogg" ) );
+        {
+            auto result = r.run();
+            QCOMPARE( result.getExitCode(), 0 );
+            QCOMPARE( result.getOutput(), QString() );
+            QCOMPARE( spy.count(), 6 );  // 4 from before, +2 here
+        }
+    }
+
+    cDebug() << "Testing cat (again)";
+    {
+        QStringList collectedOutput;
+
+        Calamares::Utils::Runner r( { "cat" } );
+        r.enableOutputProcessing().setInput( QStringLiteral( "hello\nworld\n\n!\n" ) );
+        QObject::connect( &r, &decltype( r )::output, [&collectedOutput]( QString s ) { collectedOutput << s; } );
+
+        {
+            auto result = r.run();
+            QCOMPARE( result.getExitCode(), 0 );
+            QCOMPARE( result.getOutput(), QString() );
+            QCOMPARE( collectedOutput.count(), 4 );
+            QVERIFY( collectedOutput.contains( QStringLiteral( "world\n" ) ) );
+        }
+
+        r.setInput( QStringLiteral( "yo\ndogg" ) );
+        {
+            auto result = r.run();
+            QCOMPARE( result.getExitCode(), 0 );
+            QCOMPARE( result.getOutput(), QString() );
+            QCOMPARE( collectedOutput.count(), 6 );
+            QVERIFY( collectedOutput.contains( QStringLiteral( "dogg" ) ) );  // no newline
+        }
     }
 }
 

@@ -207,6 +207,25 @@ public:
     const QVariantMap& map;
 };
 
+/** @brief When logging commands, don't log everything.
+ *
+ * The command-line arguments to some commands may contain the
+ * encrypted password set by the user. Don't log that password,
+ * since the log may get posted to bug reports, or stored in
+ * the target system.
+ */
+struct Redacted
+{
+    Redacted( const QStringList& l )
+        : list( l )
+    {
+    }
+
+    const QStringList& list;
+};
+
+QDebug& operator<<( QDebug& s, const Redacted& l );
+
 /**
  * @brief Formatted logging of a pointer
  *
