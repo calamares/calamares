@@ -36,10 +36,6 @@ BOOST_PYTHON_FUNCTION_OVERLOADS( check_target_env_output_list_overloads,
                                  CalamaresPython::check_target_env_output,
                                  1,
                                  3 );
-BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS( target_env_output_overloads,
-                                        target_env_output,
-                                        2,
-                                        4 );
 
 BOOST_PYTHON_MODULE( libcalamares )
 {
@@ -61,11 +57,7 @@ BOOST_PYTHON_MODULE( libcalamares )
               &CalamaresPython::PythonJobInterface::setprogress,
               bp::args( "progress" ),
               "Reports the progress status of this job to Calamares, "
-              "as a real number between 0 and 1." )
-        .def( "target_env_output",
-              &CalamaresPython::PythonJobInterface::target_env_output,
-              target_env_output_overloads( bp::args( "args", "callback", "stdin", "timeout" ), "docstring"))
-        ;
+              "as a real number between 0 and 1." );
 
     bp::class_< CalamaresPython::GlobalStoragePythonWrapper >( "GlobalStorage",
                                                                bp::init< Calamares::GlobalStorage* >() )
@@ -146,6 +138,12 @@ BOOST_PYTHON_MODULE( libcalamares )
                                                      "Runs the specified command in the chroot of the target system.\n"
                                                      "Returns the program's standard output, and raises a "
                                                      "subprocess.CalledProcessError if something went wrong." ) );
+    bp::def( "target_env_process_output",
+             static_cast< int ( * )( const bp::list&, bp::object& ) >( &CalamaresPython::target_env_process_output ),
+             bp::args( "command", "callback" ),
+             "Runs the specified command in the target system, and "
+             "calls the callback function with each line of output." );
+
     bp::def( "obscure",
              &CalamaresPython::obscure,
              bp::args( "s" ),

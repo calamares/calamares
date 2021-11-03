@@ -172,9 +172,10 @@ PythonJobInterface::setprogress( qreal progress )
 }
 
 int
-PythonJobInterface::target_env_output( const boost::python::list& args, const std::string& callback, const std::string& stdin, int timeout )
+target_env_process_output( const boost::python::list& args, boost::python::object& callback )
 {
-    cWarning()  << "target env" << _bp_list_to_qstringlist(args) << "cb" << callback.c_str() << "stdin" << stdin.c_str() << "timeout" << timeout;
+    cWarning() << "target env" << _bp_list_to_qstringlist( args );
+    callback( std::string( "derp" ) );
     return 0;
 }
 

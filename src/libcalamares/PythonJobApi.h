@@ -42,6 +42,8 @@ check_target_env_output( const std::string& command, const std::string& stdin = 
 std::string
 check_target_env_output( const boost::python::list& args, const std::string& stdin = std::string(), int timeout = 0 );
 
+int target_env_process_output( const boost::python::list& args, boost::python::object& callback );
+
 std::string obscure( const std::string& string );
 
 boost::python::object gettext_path();
@@ -63,12 +65,6 @@ public:
     boost::python::dict configuration;
 
     void setprogress( qreal progress );
-    /** @brief Run the command @p args and process lines of output
-     *
-     * Calls the function @p callback from the job module on each
-     * line of output. Returns the exit code of the command.
-     */
-    int target_env_output( const boost::python::list& args, const std::string& callback, const std::string& stdin = std::string(), int timeout = 10 );
 
 private:
     Calamares::PythonJob* m_parent;
