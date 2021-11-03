@@ -32,10 +32,15 @@ using ProcessResult = CalamaresUtils::ProcessResult;
 /** @brief A Runner wraps a process and handles running it and processing output
  *
  * This is basically a QProcess, but handles both running in the
- * host system (natively) or in the target (by calling chroot).
+ * host system (through env(1)) or in the target (by calling chroot(8)).
  * It has an output signal that handles output one line at a time
  * (unlike QProcess that lets you do the buffering yourself).
  * This output processing is only enabled if you do so explicitly.
+ *
+ * Use the set*() methods to configure the runner.
+ *
+ * If you call enableOutputProcessing(), then you can connect to
+ * the output() signal to receive each line (including trailing newline!).
  */
 class Runner : public QObject
 {
@@ -86,14 +91,26 @@ public:
         m_input = stdin;
         return *this;
     }
-
-    Runner& enableOutputProcessing( bool enable = true )
+    Runner& setOutputProcessing( bool enable )
     {
         m_output = enable;
         return *this;
     }
 
+    Runner& enableOutputProcessing()
+    {
+        m_output = true;
+        return *this;
+    }
+
     ProcessResult run();
+    /** @brief The executable (argv[0]) that this runner will run
+     *
+     * This is the first element of the command; it does not include
+     * env(1) or chroot(8) which are injected when actually running
+     * the command.
+     */
+    QString executable() const { return m_command.isEmpty() ? QString() : m_command.first(); }
 
 signals:
     void output( QString line );

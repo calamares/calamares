@@ -892,7 +892,7 @@ LibCalamaresTests::testRunnerOutput()
     {
         Calamares::Utils::Runner r( { "ls", "-d", "." } );
         QSignalSpy spy( &r, &decltype( r )::output );
-        r.enableOutputProcessing( true );
+        r.enableOutputProcessing();
 
         auto result = r.run();
         QCOMPARE( result.getExitCode(), 0 );
@@ -904,7 +904,7 @@ LibCalamaresTests::testRunnerOutput()
     {
         Calamares::Utils::Runner r( { "cat" } );
         QSignalSpy spy( &r, &decltype( r )::output );
-        r.enableOutputProcessing( true ).setInput( QStringLiteral( "hello\nworld\n\n!\n" ) );
+        r.enableOutputProcessing().setInput( QStringLiteral( "hello\nworld\n\n!\n" ) );
 
         {
             auto result = r.run();
@@ -927,7 +927,7 @@ LibCalamaresTests::testRunnerOutput()
         QStringList collectedOutput;
 
         Calamares::Utils::Runner r( { "cat" } );
-        r.enableOutputProcessing( true ).setInput( QStringLiteral( "hello\nworld\n\n!\n" ) );
+        r.enableOutputProcessing().setInput( QStringLiteral( "hello\nworld\n\n!\n" ) );
         QObject::connect( &r, &decltype( r )::output, [&collectedOutput]( QString s ) { collectedOutput << s; } );
 
         {
