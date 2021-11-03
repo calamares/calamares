@@ -284,8 +284,163 @@ description if something went wrong.
 
 ### Python API
 
-**TODO:** this needs documentation
+The interface from a Python module to Calamares internals is
+found in the *libcalamares* module. This is not a standard Python
+module, and is only available inside the Calamares "runtime" for
+Python modules (it is implemented through Boost::Python in C++).
 
+A module should start by importing the Calamares internals:
+
+```
+import libcalamares
+```
+
+There are three important (sub)modules in *libcalamares*:
+- *globalstorage* behaves like a dictionary, and interfaces
+  with the global storage in Calamares; use it to transfer
+  information between modules (e.g. the *partition* module
+  shares the partition layout it creates). Note that some information
+  in global storage is expected to be structured, and it may be
+  dicts-within-dicts.
+
+  An example of using globalstorage:
+  ```
+  if not libcalamares.globalstorage.contains("lala"):
+      libcalamares.globalstorage.insert("lala", 72)
+  ```
+- *job* is the interface to the job's behavior, with one important
+  data member: *configuration* which is a dictionary derived from the
+  configuration file for the module (if there is one, empty otherwise).
+  Less important data is *pretty_name* (a string) and *working_path*
+  which are normally not needed. The *pretty_name* value is
+  obtained by the Calamares internals by calling the `pretty_name()`
+  function inside the Python module.
+
+  There is one function: `setprogress(p)` which can be passed a float
+  *p* between 0 and 1 to indicate 0% to 100% completion of the module's
+  work.
+- *utils* is where non-job-specific functions are placed:
+  - `debug(s)` and `warning(s)` are logger functions, which send output
+    to the usual Calamares logging functions. Use these over `print()`
+    which may not be visible at all.
+  - `mount(device, path, type, options)` mounts a filesystem from
+    *device* onto *path*, as if running the mount command from the shell.
+    Use this in preference to running mount by hand. In Calamares 3.3
+    this function also handles privilege escalation.
+  - `gettext_path()` and `gettext_languages()` are support functions
+    for translations, which would normally be called only once when
+    setting up gettext (see below).
+  - `obscure(s)` is a lousy string obfuscation mechanism. Do not use it.
+  - A half-dozen functions for running a command and dealing with its
+    output. These are recommended over using `os.system()` or the *subprocess*
+    module because they handle the chroot behavior for running in the
+    target system transparently. In Calamares 3.3 these functions also
+    handle privilege escalation. See below, *Running Commands in Python* for details.
+
+A module **must** contain a `run()` function to do the actual work
+of the module. The module **may** define the following functions
+to provide information to Calamares:
+- `pretty_name()` returns a string that is a human-readable name or
+  short description of the module. Since it is human-readable,
+  return a translated string.
+- `pretty_status_message()` returns a (longer) string that is a human-readable
+  description of the state of the module, or what it is doing. This is
+  primarily of importance for long-running modules. The function is called
+  by the Calamares framework when the module reports progress through the
+  `job.setprogress()` function. Since the status is human-readable,
+  return a translated string.
+
+### Python Translations
+
+Translations in Python modules -- at least the ones in the Calamares core
+repository -- are handled through gettext. You should import the standard
+Python *gettext* module. Conventionally, `_` is used to mark translations.
+That function needs to be configured specifically for use in Calamares
+so that it can find the translations. A boilerplate solution is this:
+
+```
+import gettext
+_ = gettext.translation("calamares-python",
+                        localedir=libcalamares.utils.gettext_path(),
+                        languages=libcalamares.utils.gettext_languages(),
+                        fallback=True).gettext
+```
+
+Error messages should be logged in English, and given to the user
+in translated form. In particular, when returning an error message
+and description from the `run()` function, return translated forms,
+like the following:
+
+```
+return (
+    _("No configuration found"),
+    _("<a longer description of the problem>"))
+```
+
+### Running Commands in Python
+
+The use of the `os.system()` function and *subprocess* modules is
+discouraged. Using these makes the caller responsible for handling
+any chroot or other target-versus-host-system manipulation, and in
+Calamares 3.3 may require additional privilege escalation handling.
+
+The primary functions for running a command from Python are:
+- `target_env_process_output(command, callback, stdin, timeout)`
+- `host_env_process_output(command, callback, stdin, timeout)`
+They run the given *command* (which must be a list of strings, like
+`sys.argv` or what would be passed to a *subprocess* module call)
+either in the target system (within the chroot) or in the host system.
+Except for *command*, the arguments are optional.
+
+A very simple example is running `ls` from a Python module (with `libcalamares.utils.` qualification omitted):
+```
+target_env_process_output(["ls"])
+```
+
+The functions return 0. If the exit code of *command* is not 0, an exception
+is raised instead of returning 0.
+
+Parameter *stdin* may be a string which is fed to the command as standard input.
+The *timeout* is in seconds, with 0 (or a negative number) treated as no-timeout.
+
+Parameter *callback* is special:
+- If it is `None`, no special handling of the command's output is done.
+  The output will be logged, though (if there is any).
+- If it is a list, then the output of the command will be appended to the list,
+  one line at a time. Lines will still contain the trailing newline character
+  (if there is one; output may end without a newline).
+  Use this approach to process the command output after it has completed.
+- Anything else is assumed to be a callable function that takes one parameter.
+  The function is called once for each line of output produced by the command.
+  The line of output still contains the trailing newline character (if there is one).
+  Use this approach to process the command output while it is running.
+
+Here are three examples of running `ls` with different callbacks:
+```
+# No processing at all, output is logged
+target_env_process_output(["ls"])
+target_env_process_output(["ls"], None)
+
+# Appends to the list
+ls_output = []
+target_env_process_output(["ls"], ls_output)
+
+# Calls the function for each line, which then calls debug()
+def handle_output(s):
+    debug(f"ls said {s}")
+target_env_process_output(["ls"], handle_output)
+```
+
+
+There are additional functions for running commands in the target,
+which can select what they return and whether exceptions are raised
+or only an exit code is returned. These functions have an overload
+that takes a single string (the name of an executable) as well. They should
+all be considered deprecated by the callback-enabled functions, above.
+
+- `target_env_call(command, stdin, timeout)` returns the exit code, does not raise.
+- `check_target_env_call(command, stdin, timeout)` raises on a non-zero exit code.
+- `check_target_env_output(command, stdin, timeout)` returns a single string with the output of *command*, raises on a non-zero exit code.
 
 
 ## PythonQt modules (deprecated)
