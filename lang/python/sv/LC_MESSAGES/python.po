@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-22 11:02+0200\n"
+"POT-Creation-Date: 2021-11-02 15:45+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>, 2021\n"
 "Language-Team: Swedish (https://www.transifex.com/calamares/teams/20061/sv/)\n"
@@ -23,138 +23,78 @@ msgstr ""
 "Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: src/modules/initramfscfg/main.py:32
+msgid "Configuring initramfs."
+msgstr "Konfigurerar initramfs."
+
+#: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
+#: src/modules/fstab/main.py:355 src/modules/fstab/main.py:361
+#: src/modules/fstab/main.py:388 src/modules/networkcfg/main.py:105
+#: src/modules/initcpiocfg/main.py:227 src/modules/initcpiocfg/main.py:231
+#: src/modules/localecfg/main.py:135 src/modules/mount/main.py:144
+#: src/modules/rawfs/main.py:164 src/modules/openrcdmcryptcfg/main.py:72
+#: src/modules/openrcdmcryptcfg/main.py:76
+#: src/modules/luksopenswaphookcfg/main.py:86
+#: src/modules/luksopenswaphookcfg/main.py:90
+msgid "Configuration Error"
+msgstr "Konfigurationsfel"
+
+#: src/modules/initramfscfg/main.py:86 src/modules/fstab/main.py:356
+#: src/modules/initcpiocfg/main.py:228 src/modules/mount/main.py:145
+#: src/modules/rawfs/main.py:165 src/modules/openrcdmcryptcfg/main.py:73
+#: src/modules/luksopenswaphookcfg/main.py:87
+msgid "No partitions are defined for <pre>{!s}</pre> to use."
+msgstr "Inga partitioner är definerade för <pre>{!s}</pre> att använda."
+
+#: src/modules/initramfscfg/main.py:90 src/modules/fstab/main.py:362
+#: src/modules/networkcfg/main.py:106 src/modules/initcpiocfg/main.py:232
+#: src/modules/localecfg/main.py:136 src/modules/openrcdmcryptcfg/main.py:77
+#: src/modules/luksopenswaphookcfg/main.py:91
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr ""
+"Ingen root monteringspunkt är angiven för <pre>{!s}</pre> att använda."
+
 #: src/modules/grubcfg/main.py:28
 msgid "Configure GRUB."
 msgstr "Konfigurera GRUB."
 
-#: src/modules/mount/main.py:30
-msgid "Mounting partitions."
-msgstr "Monterar partitioner."
+#: src/modules/bootloader/main.py:43
+msgid "Install bootloader."
+msgstr "Installera starthanterare."
 
-#: src/modules/mount/main.py:144 src/modules/initcpiocfg/main.py:227
-#: src/modules/initcpiocfg/main.py:231
-#: src/modules/luksopenswaphookcfg/main.py:86
-#: src/modules/luksopenswaphookcfg/main.py:90 src/modules/rawfs/main.py:164
-#: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
-#: src/modules/openrcdmcryptcfg/main.py:72
-#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/fstab/main.py:355
-#: src/modules/fstab/main.py:361 src/modules/fstab/main.py:388
-#: src/modules/localecfg/main.py:135 src/modules/networkcfg/main.py:42
-msgid "Configuration Error"
-msgstr "Konfigurationsfel"
+#: src/modules/bootloader/main.py:508
+msgid "Bootloader installation error"
+msgstr "Starthanterare installationsfel"
 
-#: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:228
-#: src/modules/luksopenswaphookcfg/main.py:87 src/modules/rawfs/main.py:165
-#: src/modules/initramfscfg/main.py:86 src/modules/openrcdmcryptcfg/main.py:73
-#: src/modules/fstab/main.py:356
-msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr "Inga partitioner är definerade för <pre>{!s}</pre> att använda."
-
-#: src/modules/services-systemd/main.py:26
-msgid "Configure systemd services"
-msgstr "Konfigurera systemd tjänster"
-
-#: src/modules/services-systemd/main.py:59
-#: src/modules/services-openrc/main.py:93
-msgid "Cannot modify service"
-msgstr "Kunde inte modifiera tjänst"
-
-#: src/modules/services-systemd/main.py:60
+#: src/modules/bootloader/main.py:509
 msgid ""
-"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+"The bootloader could not be installed. The installation command "
+"<pre>{!s}</pre> returned error code {!s}."
 msgstr ""
-"Anrop till <code>systemctl {arg!s}</code>i chroot returnerade felkod "
-"{num!s}."
+"Starthanterare kunde inte installeras. Installationskommandot "
+"<pre>{!s}</pre>returnerade felkod {!s}."
 
-#: src/modules/services-systemd/main.py:63
-#: src/modules/services-systemd/main.py:67
-msgid "Cannot enable systemd service <code>{name!s}</code>."
-msgstr "Kunde inte aktivera systemd tjänst <code>{name!s}</code>."
+#: src/modules/fstab/main.py:29
+msgid "Writing fstab."
+msgstr "Skriver fstab."
 
-#: src/modules/services-systemd/main.py:65
-msgid "Cannot enable systemd target <code>{name!s}</code>."
-msgstr "Kunde inte aktivera systemd målsystem <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:69
-msgid "Cannot disable systemd target <code>{name!s}</code>."
-msgstr "Kunde inte inaktivera systemd målsystem <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:71
-msgid "Cannot mask systemd unit <code>{name!s}</code>."
-msgstr "Kan inte maskera systemd unit <code>{name!s}</code>"
-
-#: src/modules/services-systemd/main.py:73
-msgid ""
-"Unknown systemd commands <code>{command!s}</code> and "
-"<code>{suffix!s}</code> for unit {name!s}."
+#: src/modules/fstab/main.py:389
+msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr ""
-"Okända systemd kommandon <code>{command!s}</code> och {suffix!s}<code> för "
-"enhet {name!s}."
+"Ingen <pre>{!s}</pre> konfiguration är angiven för <pre>{!s}</pre> att "
+"använda. "
 
-#: src/modules/umount/main.py:31
-msgid "Unmount file systems."
-msgstr "Avmontera filsystem."
+#: src/modules/dracut/main.py:27
+msgid "Creating initramfs with dracut."
+msgstr "Skapar initramfs med dracut."
 
-#: src/modules/unpackfs/main.py:35
-msgid "Filling up filesystems."
-msgstr "Packar upp filsystem."
+#: src/modules/dracut/main.py:49
+msgid "Failed to run dracut on the target"
+msgstr "Misslyckades att köra dracut på målet "
 
-#: src/modules/unpackfs/main.py:255
-msgid "rsync failed with error code {}."
-msgstr "rsync misslyckades med felkod {}."
-
-#: src/modules/unpackfs/main.py:300
-msgid "Unpacking image {}/{}, file {}/{}"
-msgstr "Packar upp avbild {}/{}, fil {}/{}"
-
-#: src/modules/unpackfs/main.py:315
-msgid "Starting to unpack {}"
-msgstr "Börjar att packa upp {}"
-
-#: src/modules/unpackfs/main.py:324 src/modules/unpackfs/main.py:464
-msgid "Failed to unpack image \"{}\""
-msgstr "Misslyckades att packa upp avbild \"{}\""
-
-#: src/modules/unpackfs/main.py:431
-msgid "No mount point for root partition"
-msgstr "Ingen monteringspunkt för root partition"
-
-#: src/modules/unpackfs/main.py:432
-msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr "globalstorage innehåller ingen \"rootMountPoint\"-nyckel, så gör inget"
-
-#: src/modules/unpackfs/main.py:437
-msgid "Bad mount point for root partition"
-msgstr "Dålig monteringspunkt för root partition"
-
-#: src/modules/unpackfs/main.py:438
-msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr "rootMountPoint är \"{}\", vilket inte finns, så gör inget"
-
-#: src/modules/unpackfs/main.py:454 src/modules/unpackfs/main.py:458
-#: src/modules/unpackfs/main.py:478
-msgid "Bad unsquash configuration"
-msgstr "Dålig unsquash konfiguration"
-
-#: src/modules/unpackfs/main.py:455
-msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
-msgstr "Filsystemet för \"{}\" ({}) stöds inte av din nuvarande kärna"
-
-#: src/modules/unpackfs/main.py:459
-msgid "The source filesystem \"{}\" does not exist"
-msgstr "Källfilsystemet \"{}\" existerar inte"
-
-#: src/modules/unpackfs/main.py:465
-msgid ""
-"Failed to find unsquashfs, make sure you have the squashfs-tools package "
-"installed"
-msgstr ""
-"Kunde inte hitta unsquashfs, se till att du har paketet squashfs-tools "
-"installerat"
-
-#: src/modules/unpackfs/main.py:479
-msgid "The destination \"{}\" in the target system is not a directory"
-msgstr "Destinationen \"{}\" på målsystemet är inte en katalog"
+#: src/modules/dracut/main.py:50 src/modules/mkinitfs/main.py:50
+msgid "The exit code was {}"
+msgstr "Felkoden var {}"
 
 #: src/modules/displaymanager/main.py:526
 msgid "Cannot write KDM configuration file"
@@ -212,27 +152,6 @@ msgstr ""
 msgid "Display manager configuration was incomplete"
 msgstr "Konfiguration för displayhanteraren var inkomplett"
 
-#: src/modules/initcpiocfg/main.py:28
-msgid "Configuring mkinitcpio."
-msgstr "Konfigurerar mkinitcpio."
-
-#: src/modules/initcpiocfg/main.py:232
-#: src/modules/luksopenswaphookcfg/main.py:91
-#: src/modules/initramfscfg/main.py:90 src/modules/openrcdmcryptcfg/main.py:77
-#: src/modules/fstab/main.py:362 src/modules/localecfg/main.py:136
-#: src/modules/networkcfg/main.py:43
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr ""
-"Ingen root monteringspunkt är angiven för <pre>{!s}</pre> att använda."
-
-#: src/modules/luksopenswaphookcfg/main.py:26
-msgid "Configuring encrypted swap."
-msgstr "Konfigurerar krypterad swap."
-
-#: src/modules/rawfs/main.py:26
-msgid "Installing data."
-msgstr "Installerar data."
-
 #: src/modules/services-openrc/main.py:29
 msgid "Configure OpenRC services"
 msgstr "Konfigurera OpenRC tjänster"
@@ -252,6 +171,11 @@ msgid ""
 msgstr ""
 "Okänt tjänst-anrop <code>{arg!s}</code>för tjänsten {name!s} i körnivå "
 "{level!s}."
+
+#: src/modules/services-openrc/main.py:93
+#: src/modules/services-systemd/main.py:59
+msgid "Cannot modify service"
+msgstr "Kunde inte modifiera tjänst"
 
 #: src/modules/services-openrc/main.py:94
 msgid ""
@@ -283,9 +207,9 @@ msgid ""
 msgstr ""
 "Sökvägen för tjänst {name!s} är <code>{path!s}</code>, som inte existerar."
 
-#: src/modules/plymouthcfg/main.py:27
-msgid "Configure Plymouth theme"
-msgstr "Konfigurera Plymouth tema"
+#: src/modules/networkcfg/main.py:29
+msgid "Saving network configuration."
+msgstr "Sparar nätverkskonfiguration."
 
 #: src/modules/packages/main.py:50 src/modules/packages/main.py:59
 #: src/modules/packages/main.py:69
@@ -340,63 +264,25 @@ msgstr ""
 "Pakethanteraren kunde inte göra ändringar till det installerade systemet. "
 "kommandot <pre>{!s}</pre> returnerade felkod {!s}."
 
-#: src/modules/bootloader/main.py:43
-msgid "Install bootloader."
-msgstr "Installera starthanterare."
+#: src/modules/plymouthcfg/main.py:27
+msgid "Configure Plymouth theme"
+msgstr "Konfigurera Plymouth tema"
 
-#: src/modules/bootloader/main.py:508
-msgid "Bootloader installation error"
-msgstr "Starthanterare installationsfel"
+#: src/modules/initcpiocfg/main.py:28
+msgid "Configuring mkinitcpio."
+msgstr "Konfigurerar mkinitcpio."
 
-#: src/modules/bootloader/main.py:509
-msgid ""
-"The bootloader could not be installed. The installation command "
-"<pre>{!s}</pre> returned error code {!s}."
-msgstr ""
-"Starthanterare kunde inte installeras. Installationskommandot "
-"<pre>{!s}</pre>returnerade felkod {!s}."
+#: src/modules/localecfg/main.py:30
+msgid "Configuring locales."
+msgstr "Konfigurerar språkinställningar"
 
-#: src/modules/hwclock/main.py:26
-msgid "Setting hardware clock."
-msgstr "Ställer hårdvaruklockan."
+#: src/modules/mount/main.py:30
+msgid "Mounting partitions."
+msgstr "Monterar partitioner."
 
-#: src/modules/mkinitfs/main.py:27
-msgid "Creating initramfs with mkinitfs."
-msgstr "Skapar initramfs med mkinitfs."
-
-#: src/modules/mkinitfs/main.py:49
-msgid "Failed to run mkinitfs on the target"
-msgstr "Misslyckades att köra mkinitfs på målet "
-
-#: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
-msgid "The exit code was {}"
-msgstr "Felkoden var {}"
-
-#: src/modules/dracut/main.py:27
-msgid "Creating initramfs with dracut."
-msgstr "Skapar initramfs med dracut."
-
-#: src/modules/dracut/main.py:49
-msgid "Failed to run dracut on the target"
-msgstr "Misslyckades att köra dracut på målet "
-
-#: src/modules/initramfscfg/main.py:32
-msgid "Configuring initramfs."
-msgstr "Konfigurerar initramfs."
-
-#: src/modules/openrcdmcryptcfg/main.py:26
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "Konfigurerar OpenRC dmcrypt tjänst."
-
-#: src/modules/fstab/main.py:29
-msgid "Writing fstab."
-msgstr "Skriver fstab."
-
-#: src/modules/fstab/main.py:389
-msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
-msgstr ""
-"Ingen <pre>{!s}</pre> konfiguration är angiven för <pre>{!s}</pre> att "
-"använda. "
+#: src/modules/rawfs/main.py:26
+msgid "Installing data."
+msgstr "Installerar data."
 
 #: src/modules/dummypython/main.py:35
 msgid "Dummy python job."
@@ -407,10 +293,125 @@ msgstr "Exempel python jobb"
 msgid "Dummy python step {}"
 msgstr "Exempel python steg {}"
 
-#: src/modules/localecfg/main.py:30
-msgid "Configuring locales."
-msgstr "Konfigurerar språkinställningar"
+#: src/modules/hwclock/main.py:26
+msgid "Setting hardware clock."
+msgstr "Ställer hårdvaruklockan."
 
-#: src/modules/networkcfg/main.py:29
-msgid "Saving network configuration."
-msgstr "Sparar nätverkskonfiguration."
+#: src/modules/umount/main.py:31
+msgid "Unmount file systems."
+msgstr "Avmontera filsystem."
+
+#: src/modules/openrcdmcryptcfg/main.py:26
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "Konfigurerar OpenRC dmcrypt tjänst."
+
+#: src/modules/services-systemd/main.py:26
+msgid "Configure systemd services"
+msgstr "Konfigurera systemd tjänster"
+
+#: src/modules/services-systemd/main.py:60
+msgid ""
+"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"Anrop till <code>systemctl {arg!s}</code>i chroot returnerade felkod "
+"{num!s}."
+
+#: src/modules/services-systemd/main.py:63
+#: src/modules/services-systemd/main.py:69
+msgid "Cannot enable systemd service <code>{name!s}</code>."
+msgstr "Kunde inte aktivera systemd tjänst <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:65
+msgid "Cannot enable systemd target <code>{name!s}</code>."
+msgstr "Kunde inte aktivera systemd målsystem <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:67
+msgid "Cannot enable systemd timer <code>{name!s}</code>."
+msgstr ""
+
+#: src/modules/services-systemd/main.py:71
+msgid "Cannot disable systemd target <code>{name!s}</code>."
+msgstr "Kunde inte inaktivera systemd målsystem <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:73
+msgid "Cannot mask systemd unit <code>{name!s}</code>."
+msgstr "Kan inte maskera systemd unit <code>{name!s}</code>"
+
+#: src/modules/services-systemd/main.py:75
+msgid ""
+"Unknown systemd commands <code>{command!s}</code> and "
+"<code>{suffix!s}</code> for unit {name!s}."
+msgstr ""
+"Okända systemd kommandon <code>{command!s}</code> och {suffix!s}<code> för "
+"enhet {name!s}."
+
+#: src/modules/mkinitfs/main.py:27
+msgid "Creating initramfs with mkinitfs."
+msgstr "Skapar initramfs med mkinitfs."
+
+#: src/modules/mkinitfs/main.py:49
+msgid "Failed to run mkinitfs on the target"
+msgstr "Misslyckades att köra mkinitfs på målet "
+
+#: src/modules/unpackfs/main.py:34
+msgid "Filling up filesystems."
+msgstr "Packar upp filsystem."
+
+#: src/modules/unpackfs/main.py:254
+msgid "rsync failed with error code {}."
+msgstr "rsync misslyckades med felkod {}."
+
+#: src/modules/unpackfs/main.py:299
+msgid "Unpacking image {}/{}, file {}/{}"
+msgstr "Packar upp avbild {}/{}, fil {}/{}"
+
+#: src/modules/unpackfs/main.py:314
+msgid "Starting to unpack {}"
+msgstr "Börjar att packa upp {}"
+
+#: src/modules/unpackfs/main.py:323 src/modules/unpackfs/main.py:465
+msgid "Failed to unpack image \"{}\""
+msgstr "Misslyckades att packa upp avbild \"{}\""
+
+#: src/modules/unpackfs/main.py:430
+msgid "No mount point for root partition"
+msgstr "Ingen monteringspunkt för root partition"
+
+#: src/modules/unpackfs/main.py:431
+msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
+msgstr "globalstorage innehåller ingen \"rootMountPoint\"-nyckel, så gör inget"
+
+#: src/modules/unpackfs/main.py:436
+msgid "Bad mount point for root partition"
+msgstr "Dålig monteringspunkt för root partition"
+
+#: src/modules/unpackfs/main.py:437
+msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
+msgstr "rootMountPoint är \"{}\", vilket inte finns, så gör inget"
+
+#: src/modules/unpackfs/main.py:453 src/modules/unpackfs/main.py:457
+#: src/modules/unpackfs/main.py:463 src/modules/unpackfs/main.py:478
+msgid "Bad unsquash configuration"
+msgstr "Dålig unsquash konfiguration"
+
+#: src/modules/unpackfs/main.py:454
+msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
+msgstr "Filsystemet för \"{}\" ({}) stöds inte av din nuvarande kärna"
+
+#: src/modules/unpackfs/main.py:458
+msgid "The source filesystem \"{}\" does not exist"
+msgstr "Källfilsystemet \"{}\" existerar inte"
+
+#: src/modules/unpackfs/main.py:464
+msgid ""
+"Failed to find unsquashfs, make sure you have the squashfs-tools package "
+"installed."
+msgstr ""
+
+#: src/modules/unpackfs/main.py:479
+msgid "The destination \"{}\" in the target system is not a directory"
+msgstr "Destinationen \"{}\" på målsystemet är inte en katalog"
+
+#: src/modules/luksopenswaphookcfg/main.py:26
+msgid "Configuring encrypted swap."
+msgstr "Konfigurerar krypterad swap."

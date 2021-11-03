@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-22 11:02+0200\n"
+"POT-Creation-Date: 2021-11-02 15:45+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: 黃柏諺 <s8321414@gmail.com>, 2021\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/calamares/teams/20061/zh_TW/)\n"
@@ -22,134 +22,73 @@ msgstr ""
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+#: src/modules/initramfscfg/main.py:32
+msgid "Configuring initramfs."
+msgstr "正在設定 initramfs。"
+
+#: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
+#: src/modules/fstab/main.py:355 src/modules/fstab/main.py:361
+#: src/modules/fstab/main.py:388 src/modules/networkcfg/main.py:105
+#: src/modules/initcpiocfg/main.py:227 src/modules/initcpiocfg/main.py:231
+#: src/modules/localecfg/main.py:135 src/modules/mount/main.py:144
+#: src/modules/rawfs/main.py:164 src/modules/openrcdmcryptcfg/main.py:72
+#: src/modules/openrcdmcryptcfg/main.py:76
+#: src/modules/luksopenswaphookcfg/main.py:86
+#: src/modules/luksopenswaphookcfg/main.py:90
+msgid "Configuration Error"
+msgstr "設定錯誤"
+
+#: src/modules/initramfscfg/main.py:86 src/modules/fstab/main.py:356
+#: src/modules/initcpiocfg/main.py:228 src/modules/mount/main.py:145
+#: src/modules/rawfs/main.py:165 src/modules/openrcdmcryptcfg/main.py:73
+#: src/modules/luksopenswaphookcfg/main.py:87
+msgid "No partitions are defined for <pre>{!s}</pre> to use."
+msgstr "沒有分割區被定義為 <pre>{!s}</pre> 以供使用。"
+
+#: src/modules/initramfscfg/main.py:90 src/modules/fstab/main.py:362
+#: src/modules/networkcfg/main.py:106 src/modules/initcpiocfg/main.py:232
+#: src/modules/localecfg/main.py:136 src/modules/openrcdmcryptcfg/main.py:77
+#: src/modules/luksopenswaphookcfg/main.py:91
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr "沒有給定的根掛載點 <pre>{!s}</pre> 以供使用。"
+
 #: src/modules/grubcfg/main.py:28
 msgid "Configure GRUB."
 msgstr "設定 GRUB。"
 
-#: src/modules/mount/main.py:30
-msgid "Mounting partitions."
-msgstr "正在掛載分割區。"
+#: src/modules/bootloader/main.py:43
+msgid "Install bootloader."
+msgstr "安裝開機載入程式。"
 
-#: src/modules/mount/main.py:144 src/modules/initcpiocfg/main.py:227
-#: src/modules/initcpiocfg/main.py:231
-#: src/modules/luksopenswaphookcfg/main.py:86
-#: src/modules/luksopenswaphookcfg/main.py:90 src/modules/rawfs/main.py:164
-#: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
-#: src/modules/openrcdmcryptcfg/main.py:72
-#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/fstab/main.py:355
-#: src/modules/fstab/main.py:361 src/modules/fstab/main.py:388
-#: src/modules/localecfg/main.py:135 src/modules/networkcfg/main.py:42
-msgid "Configuration Error"
-msgstr "設定錯誤"
+#: src/modules/bootloader/main.py:508
+msgid "Bootloader installation error"
+msgstr "開機載入程式安裝錯誤"
 
-#: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:228
-#: src/modules/luksopenswaphookcfg/main.py:87 src/modules/rawfs/main.py:165
-#: src/modules/initramfscfg/main.py:86 src/modules/openrcdmcryptcfg/main.py:73
-#: src/modules/fstab/main.py:356
-msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr "沒有分割區被定義為 <pre>{!s}</pre> 以供使用。"
-
-#: src/modules/services-systemd/main.py:26
-msgid "Configure systemd services"
-msgstr "設定 systemd 服務"
-
-#: src/modules/services-systemd/main.py:59
-#: src/modules/services-openrc/main.py:93
-msgid "Cannot modify service"
-msgstr "無法修改服務"
-
-#: src/modules/services-systemd/main.py:60
+#: src/modules/bootloader/main.py:509
 msgid ""
-"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr "在 chroot 中呼叫的 <code>systemctl {arg!s}</code> 回傳了錯誤代碼 {num!s}。"
+"The bootloader could not be installed. The installation command "
+"<pre>{!s}</pre> returned error code {!s}."
+msgstr "無法安裝開機載入程式。安裝指令 <pre>{!s}</pre> 回傳了錯誤碼 {!s}。"
 
-#: src/modules/services-systemd/main.py:63
-#: src/modules/services-systemd/main.py:67
-msgid "Cannot enable systemd service <code>{name!s}</code>."
-msgstr "無法啟用 systemd 服務 <code>{name!s}</code>。"
+#: src/modules/fstab/main.py:29
+msgid "Writing fstab."
+msgstr "正在寫入 fstab。"
 
-#: src/modules/services-systemd/main.py:65
-msgid "Cannot enable systemd target <code>{name!s}</code>."
-msgstr "無法啟用 systemd 目標 <code>{name!s}</code>。"
+#: src/modules/fstab/main.py:389
+msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
+msgstr "無 <pre>{!s}</pre> 設定可供 <pre>{!s}</pre> 使用。"
 
-#: src/modules/services-systemd/main.py:69
-msgid "Cannot disable systemd target <code>{name!s}</code>."
-msgstr "無法停用 systemd 目標 <code>{name!s}</code>。"
+#: src/modules/dracut/main.py:27
+msgid "Creating initramfs with dracut."
+msgstr "正在使用 dracut 建立 initramfs。"
 
-#: src/modules/services-systemd/main.py:71
-msgid "Cannot mask systemd unit <code>{name!s}</code>."
-msgstr "無法 mask systemd 單位 <code>{name!s}</code>。"
+#: src/modules/dracut/main.py:49
+msgid "Failed to run dracut on the target"
+msgstr "在目標上執行 dracut 失敗"
 
-#: src/modules/services-systemd/main.py:73
-msgid ""
-"Unknown systemd commands <code>{command!s}</code> and "
-"<code>{suffix!s}</code> for unit {name!s}."
-msgstr ""
-"未知的 systemd 指令 <code>{command!s}</code> 與 <code>{suffix!s}</code> 給單位 "
-"{name!s}。"
-
-#: src/modules/umount/main.py:31
-msgid "Unmount file systems."
-msgstr "解除掛載檔案系統。"
-
-#: src/modules/unpackfs/main.py:35
-msgid "Filling up filesystems."
-msgstr "填滿檔案系統。"
-
-#: src/modules/unpackfs/main.py:255
-msgid "rsync failed with error code {}."
-msgstr "rsync 失敗，錯誤碼 {} 。"
-
-#: src/modules/unpackfs/main.py:300
-msgid "Unpacking image {}/{}, file {}/{}"
-msgstr "正在解壓縮 {}/{}，檔案 {}/{}"
-
-#: src/modules/unpackfs/main.py:315
-msgid "Starting to unpack {}"
-msgstr "開始解壓縮 {}"
-
-#: src/modules/unpackfs/main.py:324 src/modules/unpackfs/main.py:464
-msgid "Failed to unpack image \"{}\""
-msgstr "無法解開映像檔 \"{}\""
-
-#: src/modules/unpackfs/main.py:431
-msgid "No mount point for root partition"
-msgstr "沒有 root 分割區的掛載點"
-
-#: src/modules/unpackfs/main.py:432
-msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr "globalstorage 不包含 \"rootMountPoint\" 鍵，不做任何事"
-
-#: src/modules/unpackfs/main.py:437
-msgid "Bad mount point for root partition"
-msgstr "root 分割區掛載點錯誤"
-
-#: src/modules/unpackfs/main.py:438
-msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr "rootMountPoint 為 \"{}\"，其不存在，不做任何事"
-
-#: src/modules/unpackfs/main.py:454 src/modules/unpackfs/main.py:458
-#: src/modules/unpackfs/main.py:478
-msgid "Bad unsquash configuration"
-msgstr "錯誤的 unsquash 設定"
-
-#: src/modules/unpackfs/main.py:455
-msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
-msgstr "\"{}\" ({}) 的檔案系統不獲您目前的內核所支援"
-
-#: src/modules/unpackfs/main.py:459
-msgid "The source filesystem \"{}\" does not exist"
-msgstr "來源檔案系統 \"{}\" 不存在"
-
-#: src/modules/unpackfs/main.py:465
-msgid ""
-"Failed to find unsquashfs, make sure you have the squashfs-tools package "
-"installed"
-msgstr "找不到 unsquashfs，請確定已安裝 squashfs-tools 軟體包"
-
-#: src/modules/unpackfs/main.py:479
-msgid "The destination \"{}\" in the target system is not a directory"
-msgstr "目標系統中的目的地 \"{}\" 不是目錄"
+#: src/modules/dracut/main.py:50 src/modules/mkinitfs/main.py:50
+msgid "The exit code was {}"
+msgstr "結束碼為 {}"
 
 #: src/modules/displaymanager/main.py:526
 msgid "Cannot write KDM configuration file"
@@ -205,26 +144,6 @@ msgstr "顯示管理器清單為空或在 globalstorage 與 displaymanager.conf 
 msgid "Display manager configuration was incomplete"
 msgstr "顯示管理器設定不完整"
 
-#: src/modules/initcpiocfg/main.py:28
-msgid "Configuring mkinitcpio."
-msgstr "正在設定 mkinitcpio。"
-
-#: src/modules/initcpiocfg/main.py:232
-#: src/modules/luksopenswaphookcfg/main.py:91
-#: src/modules/initramfscfg/main.py:90 src/modules/openrcdmcryptcfg/main.py:77
-#: src/modules/fstab/main.py:362 src/modules/localecfg/main.py:136
-#: src/modules/networkcfg/main.py:43
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr "沒有給定的根掛載點 <pre>{!s}</pre> 以供使用。"
-
-#: src/modules/luksopenswaphookcfg/main.py:26
-msgid "Configuring encrypted swap."
-msgstr "正在設定已加密的 swap。"
-
-#: src/modules/rawfs/main.py:26
-msgid "Installing data."
-msgstr "正在安裝資料。"
-
 #: src/modules/services-openrc/main.py:29
 msgid "Configure OpenRC services"
 msgstr "設定 OpenRC 服務"
@@ -242,6 +161,11 @@ msgid ""
 "Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
 "level {level!s}."
 msgstr "未知的服務動作 <code>{arg!s}</code> 給服務 {name!s} 在執行層級 {level!s}。"
+
+#: src/modules/services-openrc/main.py:93
+#: src/modules/services-systemd/main.py:59
+msgid "Cannot modify service"
+msgstr "無法修改服務"
 
 #: src/modules/services-openrc/main.py:94
 msgid ""
@@ -268,9 +192,9 @@ msgid ""
 "exist."
 msgstr "服務 {name!s} 的路徑為 <code>{path!s}</code>，不存在。"
 
-#: src/modules/plymouthcfg/main.py:27
-msgid "Configure Plymouth theme"
-msgstr "設定 Plymouth 主題"
+#: src/modules/networkcfg/main.py:29
+msgid "Saving network configuration."
+msgstr "正在儲存網路設定。"
 
 #: src/modules/packages/main.py:50 src/modules/packages/main.py:59
 #: src/modules/packages/main.py:69
@@ -317,59 +241,25 @@ msgid ""
 "command <pre>{!s}</pre> returned error code {!s}."
 msgstr "軟體包管理程式無法對已安裝的系統做出變更。指令 <pre>{!s}</pre> 回傳了錯誤碼 {!s}。"
 
-#: src/modules/bootloader/main.py:43
-msgid "Install bootloader."
-msgstr "安裝開機載入程式。"
+#: src/modules/plymouthcfg/main.py:27
+msgid "Configure Plymouth theme"
+msgstr "設定 Plymouth 主題"
 
-#: src/modules/bootloader/main.py:508
-msgid "Bootloader installation error"
-msgstr "開機載入程式安裝錯誤"
+#: src/modules/initcpiocfg/main.py:28
+msgid "Configuring mkinitcpio."
+msgstr "正在設定 mkinitcpio。"
 
-#: src/modules/bootloader/main.py:509
-msgid ""
-"The bootloader could not be installed. The installation command "
-"<pre>{!s}</pre> returned error code {!s}."
-msgstr "無法安裝開機載入程式。安裝指令 <pre>{!s}</pre> 回傳了錯誤碼 {!s}。"
+#: src/modules/localecfg/main.py:30
+msgid "Configuring locales."
+msgstr "正在設定語系。"
 
-#: src/modules/hwclock/main.py:26
-msgid "Setting hardware clock."
-msgstr "正在設定硬體時鐘。"
+#: src/modules/mount/main.py:30
+msgid "Mounting partitions."
+msgstr "正在掛載分割區。"
 
-#: src/modules/mkinitfs/main.py:27
-msgid "Creating initramfs with mkinitfs."
-msgstr "正在使用 mkinitfs 建立 initramfs。"
-
-#: src/modules/mkinitfs/main.py:49
-msgid "Failed to run mkinitfs on the target"
-msgstr "在目標上執行 mkinitfs 失敗"
-
-#: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
-msgid "The exit code was {}"
-msgstr "結束碼為 {}"
-
-#: src/modules/dracut/main.py:27
-msgid "Creating initramfs with dracut."
-msgstr "正在使用 dracut 建立 initramfs。"
-
-#: src/modules/dracut/main.py:49
-msgid "Failed to run dracut on the target"
-msgstr "在目標上執行 dracut 失敗"
-
-#: src/modules/initramfscfg/main.py:32
-msgid "Configuring initramfs."
-msgstr "正在設定 initramfs。"
-
-#: src/modules/openrcdmcryptcfg/main.py:26
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "正在設定 OpenRC dmcrypt 服務。"
-
-#: src/modules/fstab/main.py:29
-msgid "Writing fstab."
-msgstr "正在寫入 fstab。"
-
-#: src/modules/fstab/main.py:389
-msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
-msgstr "無 <pre>{!s}</pre> 設定可供 <pre>{!s}</pre> 使用。"
+#: src/modules/rawfs/main.py:26
+msgid "Installing data."
+msgstr "正在安裝資料。"
 
 #: src/modules/dummypython/main.py:35
 msgid "Dummy python job."
@@ -380,10 +270,123 @@ msgstr "假的 python 工作。"
 msgid "Dummy python step {}"
 msgstr "假的 python step {}"
 
-#: src/modules/localecfg/main.py:30
-msgid "Configuring locales."
-msgstr "正在設定語系。"
+#: src/modules/hwclock/main.py:26
+msgid "Setting hardware clock."
+msgstr "正在設定硬體時鐘。"
 
-#: src/modules/networkcfg/main.py:29
-msgid "Saving network configuration."
-msgstr "正在儲存網路設定。"
+#: src/modules/umount/main.py:31
+msgid "Unmount file systems."
+msgstr "解除掛載檔案系統。"
+
+#: src/modules/openrcdmcryptcfg/main.py:26
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "正在設定 OpenRC dmcrypt 服務。"
+
+#: src/modules/services-systemd/main.py:26
+msgid "Configure systemd services"
+msgstr "設定 systemd 服務"
+
+#: src/modules/services-systemd/main.py:60
+msgid ""
+"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr "在 chroot 中呼叫的 <code>systemctl {arg!s}</code> 回傳了錯誤代碼 {num!s}。"
+
+#: src/modules/services-systemd/main.py:63
+#: src/modules/services-systemd/main.py:69
+msgid "Cannot enable systemd service <code>{name!s}</code>."
+msgstr "無法啟用 systemd 服務 <code>{name!s}</code>。"
+
+#: src/modules/services-systemd/main.py:65
+msgid "Cannot enable systemd target <code>{name!s}</code>."
+msgstr "無法啟用 systemd 目標 <code>{name!s}</code>。"
+
+#: src/modules/services-systemd/main.py:67
+msgid "Cannot enable systemd timer <code>{name!s}</code>."
+msgstr "無法啟用 systemd timer <code>{name!s}</code>。"
+
+#: src/modules/services-systemd/main.py:71
+msgid "Cannot disable systemd target <code>{name!s}</code>."
+msgstr "無法停用 systemd 目標 <code>{name!s}</code>。"
+
+#: src/modules/services-systemd/main.py:73
+msgid "Cannot mask systemd unit <code>{name!s}</code>."
+msgstr "無法 mask systemd 單位 <code>{name!s}</code>。"
+
+#: src/modules/services-systemd/main.py:75
+msgid ""
+"Unknown systemd commands <code>{command!s}</code> and "
+"<code>{suffix!s}</code> for unit {name!s}."
+msgstr ""
+"未知的 systemd 指令 <code>{command!s}</code> 與 <code>{suffix!s}</code> 給單位 "
+"{name!s}。"
+
+#: src/modules/mkinitfs/main.py:27
+msgid "Creating initramfs with mkinitfs."
+msgstr "正在使用 mkinitfs 建立 initramfs。"
+
+#: src/modules/mkinitfs/main.py:49
+msgid "Failed to run mkinitfs on the target"
+msgstr "在目標上執行 mkinitfs 失敗"
+
+#: src/modules/unpackfs/main.py:34
+msgid "Filling up filesystems."
+msgstr "填滿檔案系統。"
+
+#: src/modules/unpackfs/main.py:254
+msgid "rsync failed with error code {}."
+msgstr "rsync 失敗，錯誤碼 {} 。"
+
+#: src/modules/unpackfs/main.py:299
+msgid "Unpacking image {}/{}, file {}/{}"
+msgstr "正在解壓縮 {}/{}，檔案 {}/{}"
+
+#: src/modules/unpackfs/main.py:314
+msgid "Starting to unpack {}"
+msgstr "開始解壓縮 {}"
+
+#: src/modules/unpackfs/main.py:323 src/modules/unpackfs/main.py:465
+msgid "Failed to unpack image \"{}\""
+msgstr "無法解開映像檔 \"{}\""
+
+#: src/modules/unpackfs/main.py:430
+msgid "No mount point for root partition"
+msgstr "沒有 root 分割區的掛載點"
+
+#: src/modules/unpackfs/main.py:431
+msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
+msgstr "globalstorage 不包含 \"rootMountPoint\" 鍵，不做任何事"
+
+#: src/modules/unpackfs/main.py:436
+msgid "Bad mount point for root partition"
+msgstr "root 分割區掛載點錯誤"
+
+#: src/modules/unpackfs/main.py:437
+msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
+msgstr "rootMountPoint 為 \"{}\"，其不存在，不做任何事"
+
+#: src/modules/unpackfs/main.py:453 src/modules/unpackfs/main.py:457
+#: src/modules/unpackfs/main.py:463 src/modules/unpackfs/main.py:478
+msgid "Bad unsquash configuration"
+msgstr "錯誤的 unsquash 設定"
+
+#: src/modules/unpackfs/main.py:454
+msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
+msgstr "\"{}\" ({}) 的檔案系統不獲您目前的內核所支援"
+
+#: src/modules/unpackfs/main.py:458
+msgid "The source filesystem \"{}\" does not exist"
+msgstr "來源檔案系統 \"{}\" 不存在"
+
+#: src/modules/unpackfs/main.py:464
+msgid ""
+"Failed to find unsquashfs, make sure you have the squashfs-tools package "
+"installed."
+msgstr "尋找 unsquashfs 失敗，請確定您已安裝 squashfs-tools 軟體包。"
+
+#: src/modules/unpackfs/main.py:479
+msgid "The destination \"{}\" in the target system is not a directory"
+msgstr "目標系統中的目的地 \"{}\" 不是目錄"
+
+#: src/modules/luksopenswaphookcfg/main.py:26
+msgid "Configuring encrypted swap."
+msgstr "正在設定已加密的 swap。"

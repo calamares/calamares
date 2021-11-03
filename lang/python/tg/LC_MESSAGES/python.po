@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-22 11:02+0200\n"
+"POT-Creation-Date: 2021-11-02 15:45+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Victor Ibragimov <victor.ibragimov@gmail.com>, 2020\n"
 "Language-Team: Tajik (https://www.transifex.com/calamares/teams/20061/tg/)\n"
@@ -21,140 +21,73 @@ msgstr ""
 "Language: tg\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: src/modules/initramfscfg/main.py:32
+msgid "Configuring initramfs."
+msgstr "Танзимкунии initramfs."
+
+#: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
+#: src/modules/fstab/main.py:355 src/modules/fstab/main.py:361
+#: src/modules/fstab/main.py:388 src/modules/networkcfg/main.py:105
+#: src/modules/initcpiocfg/main.py:227 src/modules/initcpiocfg/main.py:231
+#: src/modules/localecfg/main.py:135 src/modules/mount/main.py:144
+#: src/modules/rawfs/main.py:164 src/modules/openrcdmcryptcfg/main.py:72
+#: src/modules/openrcdmcryptcfg/main.py:76
+#: src/modules/luksopenswaphookcfg/main.py:86
+#: src/modules/luksopenswaphookcfg/main.py:90
+msgid "Configuration Error"
+msgstr "Хатои танзимкунӣ"
+
+#: src/modules/initramfscfg/main.py:86 src/modules/fstab/main.py:356
+#: src/modules/initcpiocfg/main.py:228 src/modules/mount/main.py:145
+#: src/modules/rawfs/main.py:165 src/modules/openrcdmcryptcfg/main.py:73
+#: src/modules/luksopenswaphookcfg/main.py:87
+msgid "No partitions are defined for <pre>{!s}</pre> to use."
+msgstr "Ягон қисми диск барои истифодаи <pre>{!s}</pre> муайян карда нашуд."
+
+#: src/modules/initramfscfg/main.py:90 src/modules/fstab/main.py:362
+#: src/modules/networkcfg/main.py:106 src/modules/initcpiocfg/main.py:232
+#: src/modules/localecfg/main.py:136 src/modules/openrcdmcryptcfg/main.py:77
+#: src/modules/luksopenswaphookcfg/main.py:91
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr "Нуқтаи васли реша (root) барои истифодаи <pre>{!s}</pre> дода нашуд."
+
 #: src/modules/grubcfg/main.py:28
 msgid "Configure GRUB."
 msgstr "Танзимоти GRUB."
 
-#: src/modules/mount/main.py:30
-msgid "Mounting partitions."
-msgstr "Васлкунии қисмҳои диск."
+#: src/modules/bootloader/main.py:43
+msgid "Install bootloader."
+msgstr "Насбкунии боркунандаи роҳандозӣ."
 
-#: src/modules/mount/main.py:144 src/modules/initcpiocfg/main.py:227
-#: src/modules/initcpiocfg/main.py:231
-#: src/modules/luksopenswaphookcfg/main.py:86
-#: src/modules/luksopenswaphookcfg/main.py:90 src/modules/rawfs/main.py:164
-#: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
-#: src/modules/openrcdmcryptcfg/main.py:72
-#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/fstab/main.py:355
-#: src/modules/fstab/main.py:361 src/modules/fstab/main.py:388
-#: src/modules/localecfg/main.py:135 src/modules/networkcfg/main.py:42
-msgid "Configuration Error"
-msgstr "Хатои танзимкунӣ"
+#: src/modules/bootloader/main.py:508
+msgid "Bootloader installation error"
+msgstr ""
 
-#: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:228
-#: src/modules/luksopenswaphookcfg/main.py:87 src/modules/rawfs/main.py:165
-#: src/modules/initramfscfg/main.py:86 src/modules/openrcdmcryptcfg/main.py:73
-#: src/modules/fstab/main.py:356
-msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr "Ягон қисми диск барои истифодаи <pre>{!s}</pre> муайян карда нашуд."
-
-#: src/modules/services-systemd/main.py:26
-msgid "Configure systemd services"
-msgstr "Танзимоти хидматҳои systemd"
-
-#: src/modules/services-systemd/main.py:59
-#: src/modules/services-openrc/main.py:93
-msgid "Cannot modify service"
-msgstr "Хидмат тағйир дода намешавад"
-
-#: src/modules/services-systemd/main.py:60
+#: src/modules/bootloader/main.py:509
 msgid ""
-"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+"The bootloader could not be installed. The installation command "
+"<pre>{!s}</pre> returned error code {!s}."
 msgstr ""
-"Дархости <code>systemctl {arg!s}</code> дар chroot рамзи хатои {num!s}-ро ба"
-" вуҷуд овард."
 
-#: src/modules/services-systemd/main.py:63
-#: src/modules/services-systemd/main.py:67
-msgid "Cannot enable systemd service <code>{name!s}</code>."
-msgstr "Хидмати systemd-и <code>{name!s}</code> фаъол карда намешавад."
+#: src/modules/fstab/main.py:29
+msgid "Writing fstab."
+msgstr "Сабткунии fstab."
 
-#: src/modules/services-systemd/main.py:65
-msgid "Cannot enable systemd target <code>{name!s}</code>."
-msgstr "Интихоби systemd-и <code>{name!s}</code> фаъол карда намешавад."
-
-#: src/modules/services-systemd/main.py:69
-msgid "Cannot disable systemd target <code>{name!s}</code>."
-msgstr "Интихоби systemd-и <code>{name!s}</code> ғайрифаъол карда намешавад."
-
-#: src/modules/services-systemd/main.py:71
-msgid "Cannot mask systemd unit <code>{name!s}</code>."
-msgstr "Воҳиди systemd-и <code>{name!s}</code> пинҳон карда намешавад."
-
-#: src/modules/services-systemd/main.py:73
-msgid ""
-"Unknown systemd commands <code>{command!s}</code> and "
-"<code>{suffix!s}</code> for unit {name!s}."
+#: src/modules/fstab/main.py:389
+msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr ""
-"Фармонҳои systemd-и номаълум <code>{command!s}</code> ва "
-"<code>{suffix!s}</code> барои воҳиди {name!s}."
 
-#: src/modules/umount/main.py:31
-msgid "Unmount file systems."
-msgstr "Ҷудо кардани низомҳои файлӣ."
+#: src/modules/dracut/main.py:27
+msgid "Creating initramfs with dracut."
+msgstr "Эҷодкунии initramfs бо dracut."
 
-#: src/modules/unpackfs/main.py:35
-msgid "Filling up filesystems."
-msgstr "Пурборкунӣ бо низомҳои файлӣ."
+#: src/modules/dracut/main.py:49
+msgid "Failed to run dracut on the target"
+msgstr "dracut дар низоми интихобшуда иҷро нашуд"
 
-#: src/modules/unpackfs/main.py:255
-msgid "rsync failed with error code {}."
-msgstr "rsync бо рамзи хатои {} қатъ шуд."
-
-#: src/modules/unpackfs/main.py:300
-msgid "Unpacking image {}/{}, file {}/{}"
-msgstr "Баровардани тимсол: {}/{}, файл: {}/{}"
-
-#: src/modules/unpackfs/main.py:315
-msgid "Starting to unpack {}"
-msgstr "Оғози барориши {}"
-
-#: src/modules/unpackfs/main.py:324 src/modules/unpackfs/main.py:464
-msgid "Failed to unpack image \"{}\""
-msgstr "Тимсоли \"{}\" бароварда нашуд"
-
-#: src/modules/unpackfs/main.py:431
-msgid "No mount point for root partition"
-msgstr "Ягон нуқтаи васл барои қисми диски реша (root) нест"
-
-#: src/modules/unpackfs/main.py:432
-msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr ""
-"globalstorage калиди \"rootMountPoint\"-ро дар бар намегирад, ҳeҷ кop "
-"намeкyнад"
-
-#: src/modules/unpackfs/main.py:437
-msgid "Bad mount point for root partition"
-msgstr "Нуқтаи васли нодуруст барои қисми диски реша (root)"
-
-#: src/modules/unpackfs/main.py:438
-msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr "rootMountPoint аз \"{}\" иборат аст, ки вуҷуд надорад, ҳeҷ кop намeкyнад"
-
-#: src/modules/unpackfs/main.py:454 src/modules/unpackfs/main.py:458
-#: src/modules/unpackfs/main.py:478
-msgid "Bad unsquash configuration"
-msgstr "Танзимоти unsquash нодуруст аст"
-
-#: src/modules/unpackfs/main.py:455
-msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
-msgstr "Низоми файлӣ барои \"{}\" ({}) бо ҳастаи ҷории шумо дастгирӣ намешавад"
-
-#: src/modules/unpackfs/main.py:459
-msgid "The source filesystem \"{}\" does not exist"
-msgstr "Низоми файлии манбаи \"{}\" вуҷуд надорад"
-
-#: src/modules/unpackfs/main.py:465
-msgid ""
-"Failed to find unsquashfs, make sure you have the squashfs-tools package "
-"installed"
-msgstr ""
-"unsquashfs ёфт нашуд, мутмаин шавед, ки бастаи squashfs-tools насб карда "
-"шудааст"
-
-#: src/modules/unpackfs/main.py:479
-msgid "The destination \"{}\" in the target system is not a directory"
-msgstr "Ҷойи таъиноти \"{}\" дар низоми интихобшуда феҳрист намебошад"
+#: src/modules/dracut/main.py:50 src/modules/mkinitfs/main.py:50
+msgid "The exit code was {}"
+msgstr "Рамзи барориш: {}"
 
 #: src/modules/displaymanager/main.py:526
 msgid "Cannot write KDM configuration file"
@@ -212,26 +145,6 @@ msgstr ""
 msgid "Display manager configuration was incomplete"
 msgstr "Раванди танзимкунии мудири намоиш ба анҷом нарасид"
 
-#: src/modules/initcpiocfg/main.py:28
-msgid "Configuring mkinitcpio."
-msgstr "Танзимкунии mkinitcpio."
-
-#: src/modules/initcpiocfg/main.py:232
-#: src/modules/luksopenswaphookcfg/main.py:91
-#: src/modules/initramfscfg/main.py:90 src/modules/openrcdmcryptcfg/main.py:77
-#: src/modules/fstab/main.py:362 src/modules/localecfg/main.py:136
-#: src/modules/networkcfg/main.py:43
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr "Нуқтаи васли реша (root) барои истифодаи <pre>{!s}</pre> дода нашуд."
-
-#: src/modules/luksopenswaphookcfg/main.py:26
-msgid "Configuring encrypted swap."
-msgstr "Танзимкунии мубодилаи рамзгузоришуда."
-
-#: src/modules/rawfs/main.py:26
-msgid "Installing data."
-msgstr "Насбкунии иттилоот."
-
 #: src/modules/services-openrc/main.py:29
 msgid "Configure OpenRC services"
 msgstr "Танзимоти хидматҳои OpenRC"
@@ -251,6 +164,11 @@ msgid ""
 msgstr ""
 "Хидмати амалии <code>{arg!s}</code> барои хидмати {name!s} дар run-level "
 "{level!s} номаълум аст."
+
+#: src/modules/services-openrc/main.py:93
+#: src/modules/services-systemd/main.py:59
+msgid "Cannot modify service"
+msgstr "Хидмат тағйир дода намешавад"
 
 #: src/modules/services-openrc/main.py:94
 msgid ""
@@ -283,9 +201,9 @@ msgstr ""
 "Масир барои хидмати {name!s} аз <code>{path!s}</code> иборат аст, аммо он "
 "вуҷуд надорад."
 
-#: src/modules/plymouthcfg/main.py:27
-msgid "Configure Plymouth theme"
-msgstr "Танзимоти мавзӯи Plymouth"
+#: src/modules/networkcfg/main.py:29
+msgid "Saving network configuration."
+msgstr "Нигоҳдории танзимоти шабака."
 
 #: src/modules/packages/main.py:50 src/modules/packages/main.py:59
 #: src/modules/packages/main.py:69
@@ -334,59 +252,25 @@ msgid ""
 "command <pre>{!s}</pre> returned error code {!s}."
 msgstr ""
 
-#: src/modules/bootloader/main.py:43
-msgid "Install bootloader."
-msgstr "Насбкунии боркунандаи роҳандозӣ."
+#: src/modules/plymouthcfg/main.py:27
+msgid "Configure Plymouth theme"
+msgstr "Танзимоти мавзӯи Plymouth"
 
-#: src/modules/bootloader/main.py:508
-msgid "Bootloader installation error"
-msgstr ""
+#: src/modules/initcpiocfg/main.py:28
+msgid "Configuring mkinitcpio."
+msgstr "Танзимкунии mkinitcpio."
 
-#: src/modules/bootloader/main.py:509
-msgid ""
-"The bootloader could not be installed. The installation command "
-"<pre>{!s}</pre> returned error code {!s}."
-msgstr ""
+#: src/modules/localecfg/main.py:30
+msgid "Configuring locales."
+msgstr "Танзимкунии маҳаллигардониҳо."
 
-#: src/modules/hwclock/main.py:26
-msgid "Setting hardware clock."
-msgstr "Танзимкунии соати сахтафзор."
+#: src/modules/mount/main.py:30
+msgid "Mounting partitions."
+msgstr "Васлкунии қисмҳои диск."
 
-#: src/modules/mkinitfs/main.py:27
-msgid "Creating initramfs with mkinitfs."
-msgstr "Эҷодкунии initramfs бо mkinitfs."
-
-#: src/modules/mkinitfs/main.py:49
-msgid "Failed to run mkinitfs on the target"
-msgstr "mkinitfs дар низоми интихобшуда иҷро нашуд"
-
-#: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
-msgid "The exit code was {}"
-msgstr "Рамзи барориш: {}"
-
-#: src/modules/dracut/main.py:27
-msgid "Creating initramfs with dracut."
-msgstr "Эҷодкунии initramfs бо dracut."
-
-#: src/modules/dracut/main.py:49
-msgid "Failed to run dracut on the target"
-msgstr "dracut дар низоми интихобшуда иҷро нашуд"
-
-#: src/modules/initramfscfg/main.py:32
-msgid "Configuring initramfs."
-msgstr "Танзимкунии initramfs."
-
-#: src/modules/openrcdmcryptcfg/main.py:26
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "Танзимкунии хидмати OpenRC dmcrypt."
-
-#: src/modules/fstab/main.py:29
-msgid "Writing fstab."
-msgstr "Сабткунии fstab."
-
-#: src/modules/fstab/main.py:389
-msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
-msgstr ""
+#: src/modules/rawfs/main.py:26
+msgid "Installing data."
+msgstr "Насбкунии иттилоот."
 
 #: src/modules/dummypython/main.py:35
 msgid "Dummy python job."
@@ -397,10 +281,127 @@ msgstr "Вазифаи амсилаи python."
 msgid "Dummy python step {}"
 msgstr "Қадами амсилаи python {}"
 
-#: src/modules/localecfg/main.py:30
-msgid "Configuring locales."
-msgstr "Танзимкунии маҳаллигардониҳо."
+#: src/modules/hwclock/main.py:26
+msgid "Setting hardware clock."
+msgstr "Танзимкунии соати сахтафзор."
 
-#: src/modules/networkcfg/main.py:29
-msgid "Saving network configuration."
-msgstr "Нигоҳдории танзимоти шабака."
+#: src/modules/umount/main.py:31
+msgid "Unmount file systems."
+msgstr "Ҷудо кардани низомҳои файлӣ."
+
+#: src/modules/openrcdmcryptcfg/main.py:26
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "Танзимкунии хидмати OpenRC dmcrypt."
+
+#: src/modules/services-systemd/main.py:26
+msgid "Configure systemd services"
+msgstr "Танзимоти хидматҳои systemd"
+
+#: src/modules/services-systemd/main.py:60
+msgid ""
+"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"Дархости <code>systemctl {arg!s}</code> дар chroot рамзи хатои {num!s}-ро ба"
+" вуҷуд овард."
+
+#: src/modules/services-systemd/main.py:63
+#: src/modules/services-systemd/main.py:69
+msgid "Cannot enable systemd service <code>{name!s}</code>."
+msgstr "Хидмати systemd-и <code>{name!s}</code> фаъол карда намешавад."
+
+#: src/modules/services-systemd/main.py:65
+msgid "Cannot enable systemd target <code>{name!s}</code>."
+msgstr "Интихоби systemd-и <code>{name!s}</code> фаъол карда намешавад."
+
+#: src/modules/services-systemd/main.py:67
+msgid "Cannot enable systemd timer <code>{name!s}</code>."
+msgstr ""
+
+#: src/modules/services-systemd/main.py:71
+msgid "Cannot disable systemd target <code>{name!s}</code>."
+msgstr "Интихоби systemd-и <code>{name!s}</code> ғайрифаъол карда намешавад."
+
+#: src/modules/services-systemd/main.py:73
+msgid "Cannot mask systemd unit <code>{name!s}</code>."
+msgstr "Воҳиди systemd-и <code>{name!s}</code> пинҳон карда намешавад."
+
+#: src/modules/services-systemd/main.py:75
+msgid ""
+"Unknown systemd commands <code>{command!s}</code> and "
+"<code>{suffix!s}</code> for unit {name!s}."
+msgstr ""
+"Фармонҳои systemd-и номаълум <code>{command!s}</code> ва "
+"<code>{suffix!s}</code> барои воҳиди {name!s}."
+
+#: src/modules/mkinitfs/main.py:27
+msgid "Creating initramfs with mkinitfs."
+msgstr "Эҷодкунии initramfs бо mkinitfs."
+
+#: src/modules/mkinitfs/main.py:49
+msgid "Failed to run mkinitfs on the target"
+msgstr "mkinitfs дар низоми интихобшуда иҷро нашуд"
+
+#: src/modules/unpackfs/main.py:34
+msgid "Filling up filesystems."
+msgstr "Пурборкунӣ бо низомҳои файлӣ."
+
+#: src/modules/unpackfs/main.py:254
+msgid "rsync failed with error code {}."
+msgstr "rsync бо рамзи хатои {} қатъ шуд."
+
+#: src/modules/unpackfs/main.py:299
+msgid "Unpacking image {}/{}, file {}/{}"
+msgstr "Баровардани тимсол: {}/{}, файл: {}/{}"
+
+#: src/modules/unpackfs/main.py:314
+msgid "Starting to unpack {}"
+msgstr "Оғози барориши {}"
+
+#: src/modules/unpackfs/main.py:323 src/modules/unpackfs/main.py:465
+msgid "Failed to unpack image \"{}\""
+msgstr "Тимсоли \"{}\" бароварда нашуд"
+
+#: src/modules/unpackfs/main.py:430
+msgid "No mount point for root partition"
+msgstr "Ягон нуқтаи васл барои қисми диски реша (root) нест"
+
+#: src/modules/unpackfs/main.py:431
+msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
+msgstr ""
+"globalstorage калиди \"rootMountPoint\"-ро дар бар намегирад, ҳeҷ кop "
+"намeкyнад"
+
+#: src/modules/unpackfs/main.py:436
+msgid "Bad mount point for root partition"
+msgstr "Нуқтаи васли нодуруст барои қисми диски реша (root)"
+
+#: src/modules/unpackfs/main.py:437
+msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
+msgstr "rootMountPoint аз \"{}\" иборат аст, ки вуҷуд надорад, ҳeҷ кop намeкyнад"
+
+#: src/modules/unpackfs/main.py:453 src/modules/unpackfs/main.py:457
+#: src/modules/unpackfs/main.py:463 src/modules/unpackfs/main.py:478
+msgid "Bad unsquash configuration"
+msgstr "Танзимоти unsquash нодуруст аст"
+
+#: src/modules/unpackfs/main.py:454
+msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
+msgstr "Низоми файлӣ барои \"{}\" ({}) бо ҳастаи ҷории шумо дастгирӣ намешавад"
+
+#: src/modules/unpackfs/main.py:458
+msgid "The source filesystem \"{}\" does not exist"
+msgstr "Низоми файлии манбаи \"{}\" вуҷуд надорад"
+
+#: src/modules/unpackfs/main.py:464
+msgid ""
+"Failed to find unsquashfs, make sure you have the squashfs-tools package "
+"installed."
+msgstr ""
+
+#: src/modules/unpackfs/main.py:479
+msgid "The destination \"{}\" in the target system is not a directory"
+msgstr "Ҷойи таъиноти \"{}\" дар низоми интихобшуда феҳрист намебошад"
+
+#: src/modules/luksopenswaphookcfg/main.py:26
+msgid "Configuring encrypted swap."
+msgstr "Танзимкунии мубодилаи рамзгузоришуда."
