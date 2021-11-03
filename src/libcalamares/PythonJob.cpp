@@ -139,9 +139,14 @@ BOOST_PYTHON_MODULE( libcalamares )
                                                      "Returns the program's standard output, and raises a "
                                                      "subprocess.CalledProcessError if something went wrong." ) );
     bp::def( "target_env_process_output",
-             static_cast< int ( * )( const bp::list&, bp::object& ) >( &CalamaresPython::target_env_process_output ),
+             &CalamaresPython::target_env_process_output,
              bp::args( "command", "callback" ),
              "Runs the specified command in the target system, and "
+             "calls the callback function with each line of output." );
+    bp::def( "host_env_process_output",
+             &CalamaresPython::host_env_process_output,
+             bp::args( "command", "callback" ),
+             "Runs the specified command in the host system, and "
              "calls the callback function with each line of output." );
 
     bp::def( "obscure",

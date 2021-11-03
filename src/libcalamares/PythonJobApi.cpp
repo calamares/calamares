@@ -17,6 +17,7 @@
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 #include "utils/RAII.h"
+#include "utils/Runner.h"
 #include "utils/String.h"
 
 #include <QCoreApplication>
@@ -171,13 +172,44 @@ PythonJobInterface::setprogress( qreal progress )
     }
 }
 
+static inline int
+_process_output( Calamares::Utils::RunLocation location,
+                 const boost::python::list& args,
+                 boost::python::object& callback )
+{
+    Calamares::Utils::Runner r( _bp_list_to_qstringlist( args ) );
+    r.setLocation( location );
+    if ( !callback.is_none() )
+    {
+        r.enableOutputProcessing();
+        QObject::connect(
+            &r, &decltype( r )::output, [&callback]( const QString& s ) { callback( s.toStdString() ); } );
+    }
+    auto result = r.run();
+
+    if ( result.getExitCode() )
+    {
+        return _handle_check_target_env_call_error( result, r.executable() );
+    }
+    return 0;
+}
+
 int
 target_env_process_output( const boost::python::list& args, boost::python::object& callback )
 {
-    cWarning() << "target env" << _bp_list_to_qstringlist( args );
-    callback( std::string( "derp" ) );
-    return 0;
+    return _process_output(
+
+        Calamares::Utils::RunLocation::RunInTarget, args, callback );
 }
+
+int
+host_env_process_output( const boost::python::list& args, boost::python::object& callback )
+{
+    return _process_output(
+
+        Calamares::Utils::RunLocation::RunInHost, args, callback );
+}
+
 
 std::string
 obscure( const std::string& string )
