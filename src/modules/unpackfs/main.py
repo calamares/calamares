@@ -227,7 +227,11 @@ def file_copy(source, entry, progress_cb):
                 counter.last_total_reported = num_files_total_local
                 progress_cb(num_files_copied, num_files_total_local)
 
-    libcalamares.utils.host_env_process_output(args, output_cb)
+    try:
+        returncode = libcalamares.utils.host_env_process_output(args, output_cb)
+    except subprocess.CalledProcessError as e:
+        returncode = e.returncode
+
     progress_cb(counter.last_num_files_copied, counter.last_total_reported)  # Push towards 100%
 
     # Mark this entry as really done
@@ -245,9 +249,9 @@ def file_copy(source, entry, progress_cb):
     # have to do. See also:
     # https://bugzilla.redhat.com/show_bug.cgi?id=868755#c50
     # for the same issue in Anaconda, which uses a similar workaround.
-    if process.returncode != 0 and process.returncode != 23:
-        libcalamares.utils.warning("rsync failed with error code {}.".format(process.returncode))
-        return _("rsync failed with error code {}.").format(process.returncode)
+    if returncode != 0 and returncode != 23:
+        libcalamares.utils.warning("rsync failed with error code {}.".format(returncode))
+        return _("rsync failed with error code {}.").format(returncode)
 
     return None
 
