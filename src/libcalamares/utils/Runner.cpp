@@ -198,6 +198,12 @@ Calamares::Utils::Runner::run()
                 Q_EMIT this->output( output );
             }
         } while ( !output.isEmpty() );
+        output = process.readAllStandardOutput();
+        if ( !output.isEmpty() )
+        {
+            cWarning() << "Some process output left-over";
+            Q_EMIT this->output( output );
+        }
     }
 
     if ( process.exitStatus() == QProcess::CrashExit )
