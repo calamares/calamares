@@ -127,6 +127,12 @@ Calamares::Utils::Runner::run()
     }
 
     QProcess process;
+    // Make the process run in "C" locale so we don't get issues with translation
+    {
+        auto env = QProcessEnvironment::systemEnvironment();
+        env.insert( "LC_ALL", "C" );
+        process.setProcessEnvironment( env );
+    }
     process.setProcessChannelMode( QProcess::MergedChannels );
     if ( !m_directory.isEmpty() )
     {
@@ -146,14 +152,14 @@ Calamares::Utils::Runner::run()
     if ( m_output )
     {
         connect( &process, &QProcess::readyReadStandardOutput, [this, &process]() {
-            while ( process.canReadLine() )
+            do
             {
                 QString s = process.readLine();
                 if ( !s.isEmpty() )
                 {
                     Q_EMIT this->output( s );
                 }
-            }
+            } while ( process.canReadLine() );
         } );
     }
 
@@ -180,12 +186,18 @@ Calamares::Utils::Runner::run()
         return ProcessResult::Code::TimedOut;
     }
 
-    QString output = m_output ? process.readAllStandardOutput()
-                              : QString::fromLocal8Bit( process.readAllStandardOutput() ).trimmed();
-    if ( m_output && !output.isEmpty() )
+    QString output = m_output ? QString() : QString::fromLocal8Bit( process.readAllStandardOutput() ).trimmed();
+    if ( m_output )
     {
-        Q_EMIT this->output( output );
-        output = QString();
+        // Try to read trailing output, if any
+        do
+        {
+            output = process.readLine();
+            if ( !output.isEmpty() )
+            {
+                Q_EMIT this->output( output );
+            }
+        } while ( !output.isEmpty() );
     }
 
     if ( process.exitStatus() == QProcess::CrashExit )

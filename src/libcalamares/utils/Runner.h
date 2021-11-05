@@ -41,6 +41,8 @@ using ProcessResult = CalamaresUtils::ProcessResult;
  *
  * If you call enableOutputProcessing(), then you can connect to
  * the output() signal to receive each line (including trailing newline!).
+ *
+ * Processes are always run with LC_ALL and LANG set to "C".
  */
 class Runner : public QObject
 {
