@@ -89,13 +89,14 @@ ZfsJob::exec()
         }
 
         // Create the datasets
+        QVariantList datasetList;
         for ( const auto& dataset : qAsConst( m_datasets ) )
         {
-            QVariantMap dsMap = dataset.toMap();
+            QVariantMap datasetMap = dataset.toMap();
 
             // Make sure all values are valid
-            if ( dsMap[ "dsName" ].toString().isEmpty() || dsMap[ "mountpoint" ].toString().isEmpty()
-                 || dsMap[ "canMount" ].toString().isEmpty() )
+            if ( datasetMap[ "dsName" ].toString().isEmpty() || datasetMap[ "mountpoint" ].toString().isEmpty()
+                 || datasetMap[ "canMount" ].toString().isEmpty() )
             {
                 cWarning() << "Bad dataset entry";
                 continue;
@@ -106,13 +107,23 @@ ZfsJob::exec()
             r = system->runCommand( { "sh",
                                       "-c",
                                       "zfs create " + m_datasetOptions
-                                          + " -o canmount=off -o mountpoint=" + dsMap[ "mountpoint" ].toString() + " "
-                                          + m_poolName + "/" + dsMap[ "dsName" ].toString() },
+                                          + " -o canmount=off -o mountpoint=" + datasetMap[ "mountpoint" ].toString()
+                                          + " " + m_poolName + "/" + datasetMap[ "dsName" ].toString() },
                                     std::chrono::seconds( 10 ) );
             if ( r.getExitCode() != 0 )
             {
-                cWarning() << "Failed to create dataset" << dsMap[ "dsName" ].toString();
+                cWarning() << "Failed to create dataset" << datasetMap[ "dsName" ].toString();
             }
+
+            // Add the dataset to the list for global storage
+            datasetMap[ "zpool" ] = m_poolName;
+            datasetList.append( datasetMap );
+        }
+
+        // If the list isn't empty, add it to global storage
+        if ( !datasetList.isEmpty() )
+        {
+            Calamares::JobQueue::instance()->globalStorage()->insert( "zfs", datasetList );
         }
     }
 
