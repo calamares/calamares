@@ -1,0 +1,22 @@
+# SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+# SPDX-License-Identifier: GPL-3.0-or-later
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/zfs
+additionalProperties: false
+type: object
+properties:
+    poolName: { type: string }
+    poolOptions: { type: string }
+    datasetOptions: { type: string }
+    datasets:
+        type: array
+        items:
+            type: object
+            additionalProperties: false
+            properties:
+                dsName:  { type: string }
+                mountpoint:  { type: string }
+                canMount:  { type: string }
+            required: [ dsName, mountpoint, canmount ]
+required: [ poolName, datasets ]
