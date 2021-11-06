@@ -79,8 +79,9 @@ ZfsJob::exec()
         }
 
         // Create the zpool
+        // zfs doesn't wait for the devices so pause for 2 seconds to ensure we give time for the device files to be created
         auto r
-            = system->runCommand( { "sh", "-c", "zpool create " + m_poolOptions + " " + m_poolName + " " + deviceName },
+            = system->runCommand( { "sh", "-c", "sleep 2 ; zpool create " + m_poolOptions + " " + m_poolName + " " + deviceName },
                                   std::chrono::seconds( 10 ) );
         if ( r.getExitCode() != 0 )
         {
