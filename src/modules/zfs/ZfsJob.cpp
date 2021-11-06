@@ -53,27 +53,40 @@ ZfsJob::exec()
     {
         QVariantMap pMap;
         if ( partition.canConvert( QVariant::Map ) )
+        {
             pMap = partition.toMap();
+        }
 
         // If it isn't a zfs partition, ignore it
         if ( pMap[ "fsName" ] != "zfs" )
+        {
             continue;
+        }
 
         // Find the best device identifier, if one isn't available, skip this partition
         QString deviceName;
         if ( pMap[ "partuuid" ].toString() != "" )
+        {
             deviceName = "/dev/disk/by-partuuid/" + pMap[ "partuuid" ].toString().toLower();
+        }
         else if ( pMap[ "device" ].toString() != "" )
+        {
             deviceName = pMap[ "device" ].toString().toLower();
+        }
         else
+        {
             continue;
+        }
 
         // Create the zpool
         auto r
             = system->runCommand( { "sh", "-c", "zpool create " + m_poolOptions + " " + m_poolName + " " + deviceName },
                                   std::chrono::seconds( 10 ) );
         if ( r.getExitCode() != 0 )
-            return Calamares::JobResult::error( "message", "Failed to create zpool on " + deviceName );
+        {
+            return Calamares::JobResult::error( tr( "zpool failure" ),
+                                                tr( "Failed to create zpool on " + deviceName.toLocal8Bit() ) );
+        }
 
         // Create the datasets
         for ( const auto& dataset : qAsConst( m_datasets ) )
@@ -97,7 +110,9 @@ ZfsJob::exec()
                                           + m_poolName + "/" + dsMap[ "dsName" ].toString() },
                                     std::chrono::seconds( 10 ) );
             if ( r.getExitCode() != 0 )
+            {
                 cWarning() << "Failed to create dataset" << dsMap[ "dsName" ].toString();
+            }
         }
     }
 
