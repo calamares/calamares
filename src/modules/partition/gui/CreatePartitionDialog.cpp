@@ -23,6 +23,7 @@
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "Settings.h"
 #include "partition/FileSystem.h"
 #include "partition/PartitionQuery.h"
 #include "utils/Logger.h"
@@ -104,7 +105,9 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device,
     QStringList fsNames;
     for ( auto fs : FileSystemFactory::map() )
     {
-        if ( fs->supportCreate() != FileSystem::cmdSupportNone && fs->type() != FileSystem::Extended )
+        // We need to ensure zfs is added to the list if the zfs module is enabled
+        if ( ( fs->type() == FileSystem::Type::Zfs && Calamares::Settings::instance()->isModuleEnabled( "zfs" ) )
+             || ( fs->supportCreate() != FileSystem::cmdSupportNone && fs->type() != FileSystem::Extended ) )
         {
             fsNames << userVisibleFS( fs );  // This is put into the combobox
             if ( fs->type() == defaultFSType )
