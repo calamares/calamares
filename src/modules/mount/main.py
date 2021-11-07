@@ -136,18 +136,22 @@ def mount_partition(root_mount_point, partition, partitions):
         zfs = libcalamares.globalstorage.value("zfs")
 
         if not zfs:
-            libcalamares.utils.warning("Failed to locate zfs dataset list")
+            libcalamares.utils.error("Failed to locate zfs dataset list")
 
         # Set the canmount property for each dataset.  This will effectively mount the dataset
         for dataset in zfs:
-            if dataset['canmount'] == 'noauto' or dataset['canmount'] == 'on':
-                subprocess.check_call(['zfs', 'set', 'canmount=' + dataset['canmount'],
-                                       dataset['zpool'] + '/' + dataset['dsName']])
+            try:
+                if dataset['canmount'] == 'noauto' or dataset['canmount'] == 'on':
+                    subprocess.check_call(['zfs', 'set', 'canmount=' + dataset['canmount'],
+                                           dataset['zpool'] + '/' + dataset['dsName']])
 
-            # It is common for the / mountpoint to be set to noauto since it is mounted by the initrd
-            # If this is the case we need to manually mount it here
-            if dataset['mountpoint'] == '/' and dataset['canmount'] == 'noauto':
-                subprocess.check_call(['zfs', 'mount', dataset['zpool'] + '/' + dataset['dsName']])
+                # It is common for the / mountpoint to be set to noauto since it is mounted by the initrd
+                # If this is the case we need to manually mount it here
+                if dataset['mountpoint'] == '/' and dataset['canmount'] == 'noauto':
+                    subprocess.check_call(['zfs', 'mount', dataset['zpool'] + '/' + dataset['dsName']])
+            except KeyError:
+                # This should be impossible
+                libcalamares.utils.error("Internal error handling zfs dataset")
 
 
 def run():
