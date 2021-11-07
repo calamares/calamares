@@ -92,6 +92,32 @@ def get_kernel_line(kernel_type):
             return ""
 
 
+def get_zfs_root():
+    """
+    Looks in global storage to find the zfs root
+
+    :return: A string containing the path to the zfs root or None if it is not found
+    """
+
+    zfs = libcalamares.globalstorage.value("zfs")
+
+    if not zfs:
+        libcalamares.utils.warning("Failed to locate zfs dataset list")
+        return None
+
+    # Find the root dataset
+    for dataset in zfs:
+        try:
+            if dataset['mountpoint'] == '/':
+                return dataset["zpool"] + "/" + dataset["dsname"]
+        except KeyError:
+            # This should be impossible
+            libcalamares.utils.error("Internal error handling zfs dataset")
+            raise
+
+    return None
+
+
 def create_systemd_boot_conf(install_path, efi_dir, uuid, entry, entry_name, kernel_type):
     """
     Creates systemd-boot configuration files based on given parameters.
@@ -133,11 +159,20 @@ def create_systemd_boot_conf(install_path, efi_dir, uuid, entry, entry_name, ker
                                   "root=/dev/mapper/"
                                   + partition["luksMapperName"]]
 
-    # systemd-boot with a BTRFS root filesystem needs to be told
-    # about the root subvolume.
     for partition in partitions:
+        # systemd-boot with a BTRFS root filesystem needs to be told
+        # about the root subvolume.
         if partition["mountPoint"] == "/" and partition["fs"] == "btrfs":
             kernel_params.append("rootflags=subvol=@")
+
+        # zfs needs to be told the location of the root dataset
+        if partition["mountPoint"] == "/" and partition["fs"] == "zfs":
+            zfs_root = get_zfs_root
+            if zfs_root is not None:
+                kernel_params.append("root=ZFS=" + zfs_root)
+            else:
+                # Something is really broken if we get to this point
+                libcalamares.utils.error("Internal error handling zfs dataset")
 
     if cryptdevice_params:
         kernel_params.extend(cryptdevice_params)
@@ -312,6 +347,37 @@ def get_grub_efi_parameters():
         return ("x86_64-efi", "grubx64.efi", "bootx64.efi")
     libcalamares.utils.warning("Could not find GRUB parameters for bits {b} and cpu {c}".format(b=repr(efi_bitness), c=repr(cpu_type)))
     return None
+
+
+def run_grub_mkconfig(output_file):
+    """
+    Runs grub-mkconfig in the target environment
+
+    :param output_file: A string containing the path to the generating grub config file
+    :return:
+    """
+
+    # get the partition from global storage
+    partitions = libcalamares.globalstorage.value("partitions")
+    if not partitions:
+        libcalamares.utils.error("Failed to run grub-mkconfig, no partitions defined in global storage")
+        return
+
+    # check for zfs
+    is_zfs = False
+    for partition in partitions:
+        if partition["mountPoint"] == "/" and partition["fs"] == "zfs":
+            is_zfs = True
+
+    # zfs needs an environment variable set for grub-mkconfig
+    if is_zfs:
+        check_target_env_call(["sh", "-c", "echo ZPOOL_VDEV_NAME_PATH=1 >> /etc/environment"])
+        check_target_env_call(["sh", "-c", "ZPOOL_VDEV_NAME_PATH=1 " +
+                               libcalamares.job.configuration["grubMkconfig"] + " -o " + output_file])
+    else:
+        # The input file /etc/default/grub should already be filled out by the
+        # grubcfg job module.
+        check_target_env_call([libcalamares.job.configuration["grubMkconfig"], "-o", output_file])
 
 
 def install_grub(efi_directory, fw_type):
