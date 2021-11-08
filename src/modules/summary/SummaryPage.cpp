@@ -93,13 +93,13 @@ createStepWidget( const QString& description, QWidget* innerWidget, const QPalet
     CalamaresUtils::unmarginLayout( itemBodyLayout );
 
     itemBodyCoreLayout->addSpacing( CalamaresUtils::defaultFontHeight() / 2 );
-    if ( !description.isEmpty() )
-    {
-        itemBodyCoreLayout->addWidget( createBodyLabel( description, palette ) );
-    }
     if ( innerWidget )
     {
         itemBodyCoreLayout->addWidget( innerWidget );
+    }
+    else
+    {
+        itemBodyCoreLayout->addWidget( createBodyLabel( description, palette ) );
     }
 
     return w;
