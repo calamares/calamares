@@ -243,7 +243,8 @@ CreatePartitionDialog::getNewlyCreatedPartition()
     // does so, to set up the partition for create-and-then-set-flags.
     Partition* partition = nullptr;
     QString luksPassphrase = m_ui->encryptWidget->passphrase();
-    if ( m_ui->encryptWidget->state() == EncryptWidget::Encryption::Confirmed && !luksPassphrase.isEmpty() )
+    if ( m_ui->encryptWidget->state() == EncryptWidget::Encryption::Confirmed && !luksPassphrase.isEmpty()
+         && fsType != FileSystem::Zfs )
     {
         partition = KPMHelpers::createNewEncryptedPartition(
             m_parent, *m_device, m_role, fsType, fsLabel, first, last, luksPassphrase, PartitionTable::Flags() );
@@ -252,6 +253,13 @@ CreatePartitionDialog::getNewlyCreatedPartition()
     {
         partition = KPMHelpers::createNewPartition(
             m_parent, *m_device, m_role, fsType, fsLabel, first, last, PartitionTable::Flags() );
+    }
+
+    // For zfs, we let the zfs module handle the encryption but we need to make the passphrase available to that module
+    if(  m_ui->encryptWidget->state() == EncryptWidget::Encryption::Confirmed && !luksPassphrase.isEmpty()
+         && fsType == FileSystem::Zfs )
+    {
+        Calamares::JobQueue::instance()->globalStorage()->insert( "encryptphrase", luksPassphrase );
     }
 
     if ( m_device->type() == Device::Type::LVM_Device )
