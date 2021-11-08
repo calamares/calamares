@@ -20,6 +20,11 @@
 
 #include "DllMacro.h"
 
+struct ZfsResult {
+    bool success;
+    QString failureMessage;
+};
+
 /** @brief Create zpools and zfs datasets
  *
  */
@@ -43,6 +48,20 @@ private:
     QString m_datasetOptions;
 
     QList<QVariant> m_datasets;
+
+    /** @brief Creates a zpool based on the provided arguments
+     *
+     * Creates a zpool
+     * @p deviceName is a full path to the device the zpool should be created on
+     * @p poolName is a string containing the name of the pool to create
+     * @p poolOptions are the options to pass to zpool create
+     * @p encrypt is a boolean which determines if the pool should be encrypted
+     * @p passphrase is a string continaing the passphrase
+     *
+     */
+    ZfsResult CreateZpool(QString deviceName, QString poolName, QString poolOptions, bool encrypt, QString passphrase = QString() ) const;
+
+
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( ZfsJobFactory )

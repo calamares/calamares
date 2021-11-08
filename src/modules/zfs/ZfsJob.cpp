@@ -17,6 +17,8 @@
 #include "JobQueue.h"
 #include "Settings.h"
 
+#include <QProcess>
+
 ZfsJob::ZfsJob( QObject* parent )
     : Calamares::CppJob( parent )
 {
@@ -28,6 +30,56 @@ QString
 ZfsJob::prettyName() const
 {
     return tr( "Create ZFS pools and datasets" );
+}
+
+ZfsResult
+ZfsJob::CreateZpool( QString deviceName, QString poolName, QString poolOptions, bool encrypt, QString passphrase ) const
+{
+    // zfs doesn't wait for the devices so pause for 2 seconds to ensure we give time for the device files to be created
+    QString command;
+    if ( encrypt )
+    {
+        command = "sleep 2 ; echo \"" + passphrase + "\" | zpool create " + poolOptions
+            + " -O encryption=aes-256-gcm -O keyformat=passphrase " + poolName + " " + deviceName;
+    }
+    else
+    {
+        command = "sleep 2 ; zpool create " + poolOptions + " " + poolName + " " + deviceName;
+    }
+
+    // We use a qProcess instead of runCommand so the password will not end up in the logs
+    QProcess process;
+
+    process.setProcessChannelMode( QProcess::MergedChannels );
+    cDebug() << Logger::SubEntry << "Running zpool create";
+
+    process.start( "sh", QStringList() << "-c" << command );
+
+    if ( !process.waitForStarted() )
+    {
+        return { false, tr( "zpool create process failed to start" ) };
+    }
+
+    if ( !process.waitForFinished( 5000 ) )
+    {
+        return { false, tr( "Process for zpool create timed out" ) };
+    }
+
+    QString output = QString::fromLocal8Bit( process.readAllStandardOutput() ).trimmed();
+
+    if ( process.exitStatus() == QProcess::CrashExit )
+    {
+        return { false, tr( "The output from the crash was: " ) + output };
+    }
+
+    auto exitcode = process.exitCode();
+    if ( exitcode != 0 )
+    {
+        cWarning() << "Failed to run zpool create.  The output was: " + output;
+        return { false, tr( "Failed to create zpool on " ) + deviceName };
+    }
+
+    return { true, QString() };
 }
 
 Calamares::JobResult
@@ -78,15 +130,20 @@ ZfsJob::exec()
             continue;
         }
 
-        // Create the zpool
-        // zfs doesn't wait for the devices so pause for 2 seconds to ensure we give time for the device files to be created
-        auto r
-            = system->runCommand( { "sh", "-c", "sleep 2 ; zpool create " + m_poolOptions + " " + m_poolName + " " + deviceName },
-                                  std::chrono::seconds( 10 ) );
-        if ( r.getExitCode() != 0 )
+        ZfsResult zfsResult;
+        if ( gs->contains( "encryptphrase" ) )
         {
-            return Calamares::JobResult::error( tr( "zpool failure" ),
-                                                tr( "Failed to create zpool on " + deviceName.toLocal8Bit() ) );
+            zfsResult
+                = CreateZpool( deviceName, m_poolName, m_poolOptions, true, gs->value( "encryptphrase" ).toString() );
+        }
+        else
+        {
+            zfsResult = CreateZpool( deviceName, m_poolName, m_poolOptions, false );
+        }
+
+        if ( !zfsResult.success )
+        {
+            return Calamares::JobResult::error( tr( "Failed to create zpool" ), zfsResult.failureMessage );
         }
 
         // Create the datasets
@@ -105,12 +162,12 @@ ZfsJob::exec()
 
             // Create the dataset.  We set canmount=no regardless of the setting for now.
             // It is modified to the correct value in the mount module to ensure mount order is maintained
-            r = system->runCommand( { "sh",
-                                      "-c",
-                                      "zfs create " + m_datasetOptions
-                                          + " -o canmount=off -o mountpoint=" + datasetMap[ "mountpoint" ].toString()
-                                          + " " + m_poolName + "/" + datasetMap[ "dsName" ].toString() },
-                                    std::chrono::seconds( 10 ) );
+            auto r = system->runCommand( { "sh",
+                                           "-c",
+                                           "zfs create " + m_datasetOptions + " -o canmount=off -o mountpoint="
+                                               + datasetMap[ "mountpoint" ].toString() + " " + m_poolName + "/"
+                                               + datasetMap[ "dsName" ].toString() },
+                                         std::chrono::seconds( 10 ) );
             if ( r.getExitCode() != 0 )
             {
                 cWarning() << "Failed to create dataset" << datasetMap[ "dsName" ].toString();
@@ -124,7 +181,7 @@ ZfsJob::exec()
         // If the list isn't empty, add it to global storage
         if ( !datasetList.isEmpty() )
         {
-            Calamares::JobQueue::instance()->globalStorage()->insert( "zfs", datasetList );
+            gs->insert( "zfs", datasetList );
         }
     }
 
