@@ -20,4 +20,8 @@ def target_env_call(_): return 0
 
 def check_target_env_call(_): pass
 
+def target_env_process_output(cmd, *args): return 0
+
+def host_env_process_output(cmd, *args): return 0
+
 def mount(device, mountpoint, fstype, options): return 0
