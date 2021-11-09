@@ -12,6 +12,7 @@
 
 #include "utils/NamedEnum.h"
 
+#include <kpmcore/core/partition.h>
 #include <kpmcore/fs/filesystem.h>
 
 #include <QObject>
@@ -127,8 +128,17 @@ public:
      */
     FileSystem::Type defaultFsType() const { return m_defaultFsType; }
 
-    ///@brief Is manual partitioning allowed (not explicitly disabled in the config file)?
+    /// @brief Is manual partitioning allowed (not explicitly disabled in the config file)?
     bool allowManualPartitioning() const { return m_allowManualPartitioning; }
+
+    /** @brief Will @p tableType be ok?
+     *
+     * If no required types are specified, it's ok, otherwise the
+     * type must be named in the list of required types.
+     */
+    bool acceptPartitionTableType( PartitionTable::TableType tableType ) const;
+    /// @brief Returns list of acceptable types. May be empty.
+    QStringList partitionTableTypes() const { return m_requiredPartitionTableType; }
 
 public Q_SLOTS:
     void setInstallChoice( int );  ///< Translates a button ID or so to InstallChoice
