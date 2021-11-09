@@ -389,7 +389,7 @@ class PMPacman(PackageManager):
                     # lines in the output for the group, than packages listed
                     # explicitly. We don't know how to calculate proper progress.
                     global custom_status_message
-                    custom_status_message = line.strip()
+                    custom_status_message = "pacman: " + line.strip()
                     libcalamares.job.setprogress(self.progress_fraction)
                     libcalamares.utils.debug(line)
 
