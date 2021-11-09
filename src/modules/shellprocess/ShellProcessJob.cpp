@@ -18,7 +18,6 @@
 #include "utils/Variant.h"
 
 #include <QDateTime>
-#include <QProcess>
 #include <QThread>
 
 ShellProcessJob::ShellProcessJob( QObject* parent )

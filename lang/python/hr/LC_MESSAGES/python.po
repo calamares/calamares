@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-22 11:02+0200\n"
+"POT-Creation-Date: 2021-11-02 15:45+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Lovro Kudelić <lovro.kudelic@outlook.com>, 2021\n"
 "Language-Team: Croatian (https://www.transifex.com/calamares/teams/20061/hr/)\n"
@@ -21,138 +21,76 @@ msgstr ""
 "Language: hr\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
+#: src/modules/initramfscfg/main.py:32
+msgid "Configuring initramfs."
+msgstr "Konfiguriranje initramfs."
+
+#: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
+#: src/modules/fstab/main.py:355 src/modules/fstab/main.py:361
+#: src/modules/fstab/main.py:388 src/modules/networkcfg/main.py:105
+#: src/modules/initcpiocfg/main.py:227 src/modules/initcpiocfg/main.py:231
+#: src/modules/localecfg/main.py:135 src/modules/mount/main.py:144
+#: src/modules/rawfs/main.py:164 src/modules/openrcdmcryptcfg/main.py:72
+#: src/modules/openrcdmcryptcfg/main.py:76
+#: src/modules/luksopenswaphookcfg/main.py:86
+#: src/modules/luksopenswaphookcfg/main.py:90
+msgid "Configuration Error"
+msgstr "Greška konfiguracije"
+
+#: src/modules/initramfscfg/main.py:86 src/modules/fstab/main.py:356
+#: src/modules/initcpiocfg/main.py:228 src/modules/mount/main.py:145
+#: src/modules/rawfs/main.py:165 src/modules/openrcdmcryptcfg/main.py:73
+#: src/modules/luksopenswaphookcfg/main.py:87
+msgid "No partitions are defined for <pre>{!s}</pre> to use."
+msgstr "Nema definiranih particija za <pre>{!s}</pre> korištenje."
+
+#: src/modules/initramfscfg/main.py:90 src/modules/fstab/main.py:362
+#: src/modules/networkcfg/main.py:106 src/modules/initcpiocfg/main.py:232
+#: src/modules/localecfg/main.py:136 src/modules/openrcdmcryptcfg/main.py:77
+#: src/modules/luksopenswaphookcfg/main.py:91
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr ""
+"Nijedna root točka montiranja nije definirana za <pre>{!s}</pre> korištenje."
+
 #: src/modules/grubcfg/main.py:28
 msgid "Configure GRUB."
 msgstr "Konfigurirajte GRUB."
 
-#: src/modules/mount/main.py:30
-msgid "Mounting partitions."
-msgstr "Montiranje particija."
+#: src/modules/bootloader/main.py:43
+msgid "Install bootloader."
+msgstr "Instaliram bootloader."
 
-#: src/modules/mount/main.py:144 src/modules/initcpiocfg/main.py:227
-#: src/modules/initcpiocfg/main.py:231
-#: src/modules/luksopenswaphookcfg/main.py:86
-#: src/modules/luksopenswaphookcfg/main.py:90 src/modules/rawfs/main.py:164
-#: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
-#: src/modules/openrcdmcryptcfg/main.py:72
-#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/fstab/main.py:355
-#: src/modules/fstab/main.py:361 src/modules/fstab/main.py:388
-#: src/modules/localecfg/main.py:135 src/modules/networkcfg/main.py:42
-msgid "Configuration Error"
-msgstr "Greška konfiguracije"
+#: src/modules/bootloader/main.py:508
+msgid "Bootloader installation error"
+msgstr "Greška prilikom instalacije bootloadera"
 
-#: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:228
-#: src/modules/luksopenswaphookcfg/main.py:87 src/modules/rawfs/main.py:165
-#: src/modules/initramfscfg/main.py:86 src/modules/openrcdmcryptcfg/main.py:73
-#: src/modules/fstab/main.py:356
-msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr "Nema definiranih particija za <pre>{!s}</pre> korištenje."
-
-#: src/modules/services-systemd/main.py:26
-msgid "Configure systemd services"
-msgstr "Konfiguriraj systemd servise"
-
-#: src/modules/services-systemd/main.py:59
-#: src/modules/services-openrc/main.py:93
-msgid "Cannot modify service"
-msgstr "Ne mogu modificirati servis"
-
-#: src/modules/services-systemd/main.py:60
+#: src/modules/bootloader/main.py:509
 msgid ""
-"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+"The bootloader could not be installed. The installation command "
+"<pre>{!s}</pre> returned error code {!s}."
 msgstr ""
-"<code>systemctl {arg!s}</code> poziv u chroot-u vratio je kod pogreške "
-"{num!s}."
+"Bootloader nije mogao biti instaliran. Instalacijska naredba <pre>{!s}</pre>"
+" je vratila kod pogreške {!s}."
 
-#: src/modules/services-systemd/main.py:63
-#: src/modules/services-systemd/main.py:67
-msgid "Cannot enable systemd service <code>{name!s}</code>."
-msgstr "Ne mogu omogućiti systemd servis <code>{name!s}</code>."
+#: src/modules/fstab/main.py:29
+msgid "Writing fstab."
+msgstr "Zapisujem fstab."
 
-#: src/modules/services-systemd/main.py:65
-msgid "Cannot enable systemd target <code>{name!s}</code>."
-msgstr "Ne mogu omogućiti systemd cilj <code>{name!s}</code>."
+#: src/modules/fstab/main.py:389
+msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
+msgstr "Nije dana konfiguracija <pre>{!s}</pre> za <pre>{!s}</pre> upotrebu."
 
-#: src/modules/services-systemd/main.py:69
-msgid "Cannot disable systemd target <code>{name!s}</code>."
-msgstr "Ne mogu onemogućiti systemd cilj <code>{name!s}</code>."
+#: src/modules/dracut/main.py:27
+msgid "Creating initramfs with dracut."
+msgstr "Stvaranje initramfs s dracut."
 
-#: src/modules/services-systemd/main.py:71
-msgid "Cannot mask systemd unit <code>{name!s}</code>."
-msgstr "Ne mogu maskirati systemd jedinicu <code>{name!s}</code>."
+#: src/modules/dracut/main.py:49
+msgid "Failed to run dracut on the target"
+msgstr "Nije uspjelo pokretanje dracuta na ciljanom sustavu"
 
-#: src/modules/services-systemd/main.py:73
-msgid ""
-"Unknown systemd commands <code>{command!s}</code> and "
-"<code>{suffix!s}</code> for unit {name!s}."
-msgstr ""
-"Nepoznata systemd naredba <code>{command!s}</code> i <code>{suffix!s}</code>"
-" za jedinicu {name!s}."
-
-#: src/modules/umount/main.py:31
-msgid "Unmount file systems."
-msgstr "Odmontiraj datotečne sustave."
-
-#: src/modules/unpackfs/main.py:35
-msgid "Filling up filesystems."
-msgstr "Popunjavanje datotečnih sustava."
-
-#: src/modules/unpackfs/main.py:255
-msgid "rsync failed with error code {}."
-msgstr "rsync nije uspio s kodom pogreške {}."
-
-#: src/modules/unpackfs/main.py:300
-msgid "Unpacking image {}/{}, file {}/{}"
-msgstr "Otpakiravanje slike {}/{}, datoteka {}/{}"
-
-#: src/modules/unpackfs/main.py:315
-msgid "Starting to unpack {}"
-msgstr "Početak raspakiravanja {}"
-
-#: src/modules/unpackfs/main.py:324 src/modules/unpackfs/main.py:464
-msgid "Failed to unpack image \"{}\""
-msgstr "Otpakiravnje slike nije uspjelo \"{}\""
-
-#: src/modules/unpackfs/main.py:431
-msgid "No mount point for root partition"
-msgstr "Nema točke montiranja za root particiju"
-
-#: src/modules/unpackfs/main.py:432
-msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr "globalstorage ne sadrži ključ \"rootMountPoint\", ne radi ništa"
-
-#: src/modules/unpackfs/main.py:437
-msgid "Bad mount point for root partition"
-msgstr "Neispravna točka montiranja za root particiju"
-
-#: src/modules/unpackfs/main.py:438
-msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr "rootMountPoint je \"{}\", što ne postoji, ne radi ništa"
-
-#: src/modules/unpackfs/main.py:454 src/modules/unpackfs/main.py:458
-#: src/modules/unpackfs/main.py:478
-msgid "Bad unsquash configuration"
-msgstr "Neispravna unsquash konfiguracija"
-
-#: src/modules/unpackfs/main.py:455
-msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
-msgstr "Datotečni sustav za \"{}\" ({}) nije podržan na vašem trenutnom kernelu"
-
-#: src/modules/unpackfs/main.py:459
-msgid "The source filesystem \"{}\" does not exist"
-msgstr "Izvorni datotečni sustav \"{}\" ne postoji"
-
-#: src/modules/unpackfs/main.py:465
-msgid ""
-"Failed to find unsquashfs, make sure you have the squashfs-tools package "
-"installed"
-msgstr ""
-"Neuspješno pronalaženje unsquashfs, provjerite imate li instaliran paket "
-"squashfs-tools"
-
-#: src/modules/unpackfs/main.py:479
-msgid "The destination \"{}\" in the target system is not a directory"
-msgstr "Odredište \"{}\" u ciljnom sustavu nije direktorij"
+#: src/modules/dracut/main.py:50 src/modules/mkinitfs/main.py:50
+msgid "The exit code was {}"
+msgstr "Izlazni kod bio je {}"
 
 #: src/modules/displaymanager/main.py:526
 msgid "Cannot write KDM configuration file"
@@ -210,27 +148,6 @@ msgstr ""
 msgid "Display manager configuration was incomplete"
 msgstr "Konfiguracija upravitelja zaslona nije bila potpuna"
 
-#: src/modules/initcpiocfg/main.py:28
-msgid "Configuring mkinitcpio."
-msgstr "Konfiguriranje mkinitcpio."
-
-#: src/modules/initcpiocfg/main.py:232
-#: src/modules/luksopenswaphookcfg/main.py:91
-#: src/modules/initramfscfg/main.py:90 src/modules/openrcdmcryptcfg/main.py:77
-#: src/modules/fstab/main.py:362 src/modules/localecfg/main.py:136
-#: src/modules/networkcfg/main.py:43
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr ""
-"Nijedna root točka montiranja nije definirana za <pre>{!s}</pre> korištenje."
-
-#: src/modules/luksopenswaphookcfg/main.py:26
-msgid "Configuring encrypted swap."
-msgstr "Konfiguriranje šifriranog swapa."
-
-#: src/modules/rawfs/main.py:26
-msgid "Installing data."
-msgstr "Instaliranje podataka."
-
 #: src/modules/services-openrc/main.py:29
 msgid "Configure OpenRC services"
 msgstr "Konfigurirajte OpneRC servise"
@@ -250,6 +167,11 @@ msgid ""
 msgstr ""
 "Nepoznat service-action <code>{arg!s}</code> za servis {name!s} u run-level "
 "{level!s}."
+
+#: src/modules/services-openrc/main.py:93
+#: src/modules/services-systemd/main.py:59
+msgid "Cannot modify service"
+msgstr "Ne mogu modificirati servis"
 
 #: src/modules/services-openrc/main.py:94
 msgid ""
@@ -281,9 +203,9 @@ msgid ""
 msgstr ""
 "Putanja servisa  {name!s} je <code>{path!s}</code>, međutim ona ne postoji."
 
-#: src/modules/plymouthcfg/main.py:27
-msgid "Configure Plymouth theme"
-msgstr "Konfigurirajte Plymouth temu"
+#: src/modules/networkcfg/main.py:29
+msgid "Saving network configuration."
+msgstr "Spremanje mrežne konfiguracije."
 
 #: src/modules/packages/main.py:50 src/modules/packages/main.py:59
 #: src/modules/packages/main.py:69
@@ -340,61 +262,25 @@ msgstr ""
 "Upravitelj paketa nije mogao izvršiti promjene na instaliranom sustavu. "
 "Naredba <pre>{!s}</pre> je vratila kôd pogreške {!s}."
 
-#: src/modules/bootloader/main.py:43
-msgid "Install bootloader."
-msgstr "Instaliram bootloader."
+#: src/modules/plymouthcfg/main.py:27
+msgid "Configure Plymouth theme"
+msgstr "Konfigurirajte Plymouth temu"
 
-#: src/modules/bootloader/main.py:508
-msgid "Bootloader installation error"
-msgstr "Greška prilikom instalacije bootloadera"
+#: src/modules/initcpiocfg/main.py:28
+msgid "Configuring mkinitcpio."
+msgstr "Konfiguriranje mkinitcpio."
 
-#: src/modules/bootloader/main.py:509
-msgid ""
-"The bootloader could not be installed. The installation command "
-"<pre>{!s}</pre> returned error code {!s}."
-msgstr ""
-"Bootloader nije mogao biti instaliran. Instalacijska naredba <pre>{!s}</pre>"
-" je vratila kod pogreške {!s}."
+#: src/modules/localecfg/main.py:30
+msgid "Configuring locales."
+msgstr "Konfiguriranje lokalizacije."
 
-#: src/modules/hwclock/main.py:26
-msgid "Setting hardware clock."
-msgstr "Postavljanje hardverskog sata."
+#: src/modules/mount/main.py:30
+msgid "Mounting partitions."
+msgstr "Montiranje particija."
 
-#: src/modules/mkinitfs/main.py:27
-msgid "Creating initramfs with mkinitfs."
-msgstr "Stvaranje initramfs s mkinitfs."
-
-#: src/modules/mkinitfs/main.py:49
-msgid "Failed to run mkinitfs on the target"
-msgstr "Pokretanje mkinitfs na ciljanom sustavu nije uspjelo"
-
-#: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
-msgid "The exit code was {}"
-msgstr "Izlazni kod bio je {}"
-
-#: src/modules/dracut/main.py:27
-msgid "Creating initramfs with dracut."
-msgstr "Stvaranje initramfs s dracut."
-
-#: src/modules/dracut/main.py:49
-msgid "Failed to run dracut on the target"
-msgstr "Nije uspjelo pokretanje dracuta na ciljanom sustavu"
-
-#: src/modules/initramfscfg/main.py:32
-msgid "Configuring initramfs."
-msgstr "Konfiguriranje initramfs."
-
-#: src/modules/openrcdmcryptcfg/main.py:26
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "Konfiguriranje servisa OpenRC dmcrypt."
-
-#: src/modules/fstab/main.py:29
-msgid "Writing fstab."
-msgstr "Zapisujem fstab."
-
-#: src/modules/fstab/main.py:389
-msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
-msgstr "Nije dana konfiguracija <pre>{!s}</pre> za <pre>{!s}</pre> upotrebu."
+#: src/modules/rawfs/main.py:26
+msgid "Installing data."
+msgstr "Instaliranje podataka."
 
 #: src/modules/dummypython/main.py:35
 msgid "Dummy python job."
@@ -405,10 +291,125 @@ msgstr "Testni python posao."
 msgid "Dummy python step {}"
 msgstr "Testni python korak {}"
 
-#: src/modules/localecfg/main.py:30
-msgid "Configuring locales."
-msgstr "Konfiguriranje lokalizacije."
+#: src/modules/hwclock/main.py:26
+msgid "Setting hardware clock."
+msgstr "Postavljanje hardverskog sata."
 
-#: src/modules/networkcfg/main.py:29
-msgid "Saving network configuration."
-msgstr "Spremanje mrežne konfiguracije."
+#: src/modules/umount/main.py:31
+msgid "Unmount file systems."
+msgstr "Odmontiraj datotečne sustave."
+
+#: src/modules/openrcdmcryptcfg/main.py:26
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "Konfiguriranje servisa OpenRC dmcrypt."
+
+#: src/modules/services-systemd/main.py:26
+msgid "Configure systemd services"
+msgstr "Konfiguriraj systemd servise"
+
+#: src/modules/services-systemd/main.py:60
+msgid ""
+"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"<code>systemctl {arg!s}</code> poziv u chroot-u vratio je kod pogreške "
+"{num!s}."
+
+#: src/modules/services-systemd/main.py:63
+#: src/modules/services-systemd/main.py:69
+msgid "Cannot enable systemd service <code>{name!s}</code>."
+msgstr "Ne mogu omogućiti systemd servis <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:65
+msgid "Cannot enable systemd target <code>{name!s}</code>."
+msgstr "Ne mogu omogućiti systemd cilj <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:67
+msgid "Cannot enable systemd timer <code>{name!s}</code>."
+msgstr ""
+
+#: src/modules/services-systemd/main.py:71
+msgid "Cannot disable systemd target <code>{name!s}</code>."
+msgstr "Ne mogu onemogućiti systemd cilj <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:73
+msgid "Cannot mask systemd unit <code>{name!s}</code>."
+msgstr "Ne mogu maskirati systemd jedinicu <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:75
+msgid ""
+"Unknown systemd commands <code>{command!s}</code> and "
+"<code>{suffix!s}</code> for unit {name!s}."
+msgstr ""
+"Nepoznata systemd naredba <code>{command!s}</code> i <code>{suffix!s}</code>"
+" za jedinicu {name!s}."
+
+#: src/modules/mkinitfs/main.py:27
+msgid "Creating initramfs with mkinitfs."
+msgstr "Stvaranje initramfs s mkinitfs."
+
+#: src/modules/mkinitfs/main.py:49
+msgid "Failed to run mkinitfs on the target"
+msgstr "Pokretanje mkinitfs na ciljanom sustavu nije uspjelo"
+
+#: src/modules/unpackfs/main.py:34
+msgid "Filling up filesystems."
+msgstr "Popunjavanje datotečnih sustava."
+
+#: src/modules/unpackfs/main.py:254
+msgid "rsync failed with error code {}."
+msgstr "rsync nije uspio s kodom pogreške {}."
+
+#: src/modules/unpackfs/main.py:299
+msgid "Unpacking image {}/{}, file {}/{}"
+msgstr "Otpakiravanje slike {}/{}, datoteka {}/{}"
+
+#: src/modules/unpackfs/main.py:314
+msgid "Starting to unpack {}"
+msgstr "Početak raspakiravanja {}"
+
+#: src/modules/unpackfs/main.py:323 src/modules/unpackfs/main.py:465
+msgid "Failed to unpack image \"{}\""
+msgstr "Otpakiravnje slike nije uspjelo \"{}\""
+
+#: src/modules/unpackfs/main.py:430
+msgid "No mount point for root partition"
+msgstr "Nema točke montiranja za root particiju"
+
+#: src/modules/unpackfs/main.py:431
+msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
+msgstr "globalstorage ne sadrži ključ \"rootMountPoint\", ne radi ništa"
+
+#: src/modules/unpackfs/main.py:436
+msgid "Bad mount point for root partition"
+msgstr "Neispravna točka montiranja za root particiju"
+
+#: src/modules/unpackfs/main.py:437
+msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
+msgstr "rootMountPoint je \"{}\", što ne postoji, ne radi ništa"
+
+#: src/modules/unpackfs/main.py:453 src/modules/unpackfs/main.py:457
+#: src/modules/unpackfs/main.py:463 src/modules/unpackfs/main.py:478
+msgid "Bad unsquash configuration"
+msgstr "Neispravna unsquash konfiguracija"
+
+#: src/modules/unpackfs/main.py:454
+msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
+msgstr "Datotečni sustav za \"{}\" ({}) nije podržan na vašem trenutnom kernelu"
+
+#: src/modules/unpackfs/main.py:458
+msgid "The source filesystem \"{}\" does not exist"
+msgstr "Izvorni datotečni sustav \"{}\" ne postoji"
+
+#: src/modules/unpackfs/main.py:464
+msgid ""
+"Failed to find unsquashfs, make sure you have the squashfs-tools package "
+"installed."
+msgstr ""
+
+#: src/modules/unpackfs/main.py:479
+msgid "The destination \"{}\" in the target system is not a directory"
+msgstr "Odredište \"{}\" u ciljnom sustavu nije direktorij"
+
+#: src/modules/luksopenswaphookcfg/main.py:26
+msgid "Configuring encrypted swap."
+msgstr "Konfiguriranje šifriranog swapa."

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-22 11:02+0200\n"
+"POT-Creation-Date: 2021-11-02 15:45+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Adriaan de Groot <groot@kde.org>, 2020\n"
 "Language-Team: Dutch (https://www.transifex.com/calamares/teams/20061/nl/)\n"
@@ -22,143 +22,74 @@ msgstr ""
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: src/modules/initramfscfg/main.py:32
+msgid "Configuring initramfs."
+msgstr "Instellen van initramfs."
+
+#: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
+#: src/modules/fstab/main.py:355 src/modules/fstab/main.py:361
+#: src/modules/fstab/main.py:388 src/modules/networkcfg/main.py:105
+#: src/modules/initcpiocfg/main.py:227 src/modules/initcpiocfg/main.py:231
+#: src/modules/localecfg/main.py:135 src/modules/mount/main.py:144
+#: src/modules/rawfs/main.py:164 src/modules/openrcdmcryptcfg/main.py:72
+#: src/modules/openrcdmcryptcfg/main.py:76
+#: src/modules/luksopenswaphookcfg/main.py:86
+#: src/modules/luksopenswaphookcfg/main.py:90
+msgid "Configuration Error"
+msgstr "Configuratiefout"
+
+#: src/modules/initramfscfg/main.py:86 src/modules/fstab/main.py:356
+#: src/modules/initcpiocfg/main.py:228 src/modules/mount/main.py:145
+#: src/modules/rawfs/main.py:165 src/modules/openrcdmcryptcfg/main.py:73
+#: src/modules/luksopenswaphookcfg/main.py:87
+msgid "No partitions are defined for <pre>{!s}</pre> to use."
+msgstr "Geen partities gedefinieerd voor <pre>{!s}</pre> om te gebruiken."
+
+#: src/modules/initramfscfg/main.py:90 src/modules/fstab/main.py:362
+#: src/modules/networkcfg/main.py:106 src/modules/initcpiocfg/main.py:232
+#: src/modules/localecfg/main.py:136 src/modules/openrcdmcryptcfg/main.py:77
+#: src/modules/luksopenswaphookcfg/main.py:91
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr ""
+"Geen hoofd mount punt is gegeven voor <pre>{!s}</pre> om te gebruiken. "
+
 #: src/modules/grubcfg/main.py:28
 msgid "Configure GRUB."
 msgstr "GRUB instellen."
 
-#: src/modules/mount/main.py:30
-msgid "Mounting partitions."
-msgstr "Partities mounten."
+#: src/modules/bootloader/main.py:43
+msgid "Install bootloader."
+msgstr "Installeer bootloader"
 
-#: src/modules/mount/main.py:144 src/modules/initcpiocfg/main.py:227
-#: src/modules/initcpiocfg/main.py:231
-#: src/modules/luksopenswaphookcfg/main.py:86
-#: src/modules/luksopenswaphookcfg/main.py:90 src/modules/rawfs/main.py:164
-#: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
-#: src/modules/openrcdmcryptcfg/main.py:72
-#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/fstab/main.py:355
-#: src/modules/fstab/main.py:361 src/modules/fstab/main.py:388
-#: src/modules/localecfg/main.py:135 src/modules/networkcfg/main.py:42
-msgid "Configuration Error"
-msgstr "Configuratiefout"
+#: src/modules/bootloader/main.py:508
+msgid "Bootloader installation error"
+msgstr ""
 
-#: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:228
-#: src/modules/luksopenswaphookcfg/main.py:87 src/modules/rawfs/main.py:165
-#: src/modules/initramfscfg/main.py:86 src/modules/openrcdmcryptcfg/main.py:73
-#: src/modules/fstab/main.py:356
-msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr "Geen partities gedefinieerd voor <pre>{!s}</pre> om te gebruiken."
-
-#: src/modules/services-systemd/main.py:26
-msgid "Configure systemd services"
-msgstr "Configureer systemd services "
-
-#: src/modules/services-systemd/main.py:59
-#: src/modules/services-openrc/main.py:93
-msgid "Cannot modify service"
-msgstr "De service kan niet worden gewijzigd"
-
-#: src/modules/services-systemd/main.py:60
+#: src/modules/bootloader/main.py:509
 msgid ""
-"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+"The bootloader could not be installed. The installation command "
+"<pre>{!s}</pre> returned error code {!s}."
 msgstr ""
-"<code>systemctl {arg!s}</code> aanroeping in chroot resulteerde in foutcode "
-"{num!s}."
 
-#: src/modules/services-systemd/main.py:63
-#: src/modules/services-systemd/main.py:67
-msgid "Cannot enable systemd service <code>{name!s}</code>."
+#: src/modules/fstab/main.py:29
+msgid "Writing fstab."
+msgstr "fstab schrijven."
+
+#: src/modules/fstab/main.py:389
+msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr ""
-"De systemd service <code>{name!s}</code> kon niet worden ingeschakeld."
 
-#: src/modules/services-systemd/main.py:65
-msgid "Cannot enable systemd target <code>{name!s}</code>."
-msgstr "Het systemd doel <code>{name!s}</code> kon niet worden ingeschakeld."
+#: src/modules/dracut/main.py:27
+msgid "Creating initramfs with dracut."
+msgstr "initramfs aanmaken met dracut."
 
-#: src/modules/services-systemd/main.py:69
-msgid "Cannot disable systemd target <code>{name!s}</code>."
-msgstr "De systemd service <code>{name!s} kon niet worden uitgeschakeld."
+#: src/modules/dracut/main.py:49
+msgid "Failed to run dracut on the target"
+msgstr "Uitvoeren van dracut op het doel is mislukt"
 
-#: src/modules/services-systemd/main.py:71
-msgid "Cannot mask systemd unit <code>{name!s}</code>."
-msgstr "De systemd unit <code>{name!s}</code> kon niet worden gemaskerd."
-
-#: src/modules/services-systemd/main.py:73
-msgid ""
-"Unknown systemd commands <code>{command!s}</code> and "
-"<code>{suffix!s}</code> for unit {name!s}."
-msgstr ""
-"Onbekende systemd opdrachten <code>{command!s}</code> en "
-"<code>{suffix!s}</code> voor unit {name!s}. "
-
-#: src/modules/umount/main.py:31
-msgid "Unmount file systems."
-msgstr "Unmount bestandssystemen."
-
-#: src/modules/unpackfs/main.py:35
-msgid "Filling up filesystems."
-msgstr "Bestandssystemen opvullen."
-
-#: src/modules/unpackfs/main.py:255
-msgid "rsync failed with error code {}."
-msgstr "rsync mislukte met foutcode {}."
-
-#: src/modules/unpackfs/main.py:300
-msgid "Unpacking image {}/{}, file {}/{}"
-msgstr "Bestandssysteem uitpakken {}/{}, bestand {}/{}"
-
-#: src/modules/unpackfs/main.py:315
-msgid "Starting to unpack {}"
-msgstr "Beginnen met uitpakken van {}"
-
-#: src/modules/unpackfs/main.py:324 src/modules/unpackfs/main.py:464
-msgid "Failed to unpack image \"{}\""
-msgstr "Uitpakken van bestandssysteem \"{}\" mislukt"
-
-#: src/modules/unpackfs/main.py:431
-msgid "No mount point for root partition"
-msgstr "Geen mount-punt voor de root-partitie"
-
-#: src/modules/unpackfs/main.py:432
-msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr "globalstorage bevat geen sleutel \"rootMountPoint\", er wordt niks gedaan"
-
-#: src/modules/unpackfs/main.py:437
-msgid "Bad mount point for root partition"
-msgstr "Onjuist mount-punt voor de root-partitie"
-
-#: src/modules/unpackfs/main.py:438
-msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr ""
-"rootMountPoint is ingesteld op \"{}\", welke niet bestaat, er wordt niks "
-"gedaan"
-
-#: src/modules/unpackfs/main.py:454 src/modules/unpackfs/main.py:458
-#: src/modules/unpackfs/main.py:478
-msgid "Bad unsquash configuration"
-msgstr "Foutieve unsquash configuratie"
-
-#: src/modules/unpackfs/main.py:455
-msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
-msgstr ""
-"Het bestandssysteem voor \"{}\" ({}) wordt niet ondersteund door je huidige "
-"kernel"
-
-#: src/modules/unpackfs/main.py:459
-msgid "The source filesystem \"{}\" does not exist"
-msgstr "Het bronbestandssysteem \"{}\" bestaat niet"
-
-#: src/modules/unpackfs/main.py:465
-msgid ""
-"Failed to find unsquashfs, make sure you have the squashfs-tools package "
-"installed"
-msgstr ""
-"unsquashfs niet gevonden, verifieer dat je het squashfs-tools pakket heb "
-"geïnstalleerd"
-
-#: src/modules/unpackfs/main.py:479
-msgid "The destination \"{}\" in the target system is not a directory"
-msgstr "De bestemming \"{}\" in het doelsysteem is niet een map"
+#: src/modules/dracut/main.py:50 src/modules/mkinitfs/main.py:50
+msgid "The exit code was {}"
+msgstr "De afsluitcode was {}"
 
 #: src/modules/displaymanager/main.py:526
 msgid "Cannot write KDM configuration file"
@@ -216,27 +147,6 @@ msgstr ""
 msgid "Display manager configuration was incomplete"
 msgstr "Display manager configuratie was incompleet"
 
-#: src/modules/initcpiocfg/main.py:28
-msgid "Configuring mkinitcpio."
-msgstr "Instellen van mkinitcpio"
-
-#: src/modules/initcpiocfg/main.py:232
-#: src/modules/luksopenswaphookcfg/main.py:91
-#: src/modules/initramfscfg/main.py:90 src/modules/openrcdmcryptcfg/main.py:77
-#: src/modules/fstab/main.py:362 src/modules/localecfg/main.py:136
-#: src/modules/networkcfg/main.py:43
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr ""
-"Geen hoofd mount punt is gegeven voor <pre>{!s}</pre> om te gebruiken. "
-
-#: src/modules/luksopenswaphookcfg/main.py:26
-msgid "Configuring encrypted swap."
-msgstr "Instellen van versleutelde swap."
-
-#: src/modules/rawfs/main.py:26
-msgid "Installing data."
-msgstr "Data aan het installeren."
-
 #: src/modules/services-openrc/main.py:29
 msgid "Configure OpenRC services"
 msgstr "Configureer OpenRC services"
@@ -256,6 +166,11 @@ msgid ""
 msgstr ""
 "Onbekende serviceactie <code>{arg!s}</code> voor service {name!s} in "
 "runlevel {level!s}."
+
+#: src/modules/services-openrc/main.py:93
+#: src/modules/services-systemd/main.py:59
+msgid "Cannot modify service"
+msgstr "De service kan niet worden gewijzigd"
 
 #: src/modules/services-openrc/main.py:94
 msgid ""
@@ -286,9 +201,9 @@ msgid ""
 msgstr ""
 "Het pad voor service {level!s} is <code>{path!s}</code>, welke niet bestaat"
 
-#: src/modules/plymouthcfg/main.py:27
-msgid "Configure Plymouth theme"
-msgstr "Plymouth thema instellen"
+#: src/modules/networkcfg/main.py:29
+msgid "Saving network configuration."
+msgstr "Netwerk-configuratie opslaan."
 
 #: src/modules/packages/main.py:50 src/modules/packages/main.py:59
 #: src/modules/packages/main.py:69
@@ -337,59 +252,25 @@ msgid ""
 "command <pre>{!s}</pre> returned error code {!s}."
 msgstr ""
 
-#: src/modules/bootloader/main.py:43
-msgid "Install bootloader."
-msgstr "Installeer bootloader"
+#: src/modules/plymouthcfg/main.py:27
+msgid "Configure Plymouth theme"
+msgstr "Plymouth thema instellen"
 
-#: src/modules/bootloader/main.py:508
-msgid "Bootloader installation error"
-msgstr ""
+#: src/modules/initcpiocfg/main.py:28
+msgid "Configuring mkinitcpio."
+msgstr "Instellen van mkinitcpio"
 
-#: src/modules/bootloader/main.py:509
-msgid ""
-"The bootloader could not be installed. The installation command "
-"<pre>{!s}</pre> returned error code {!s}."
-msgstr ""
+#: src/modules/localecfg/main.py:30
+msgid "Configuring locales."
+msgstr "Taal en locatie instellen."
 
-#: src/modules/hwclock/main.py:26
-msgid "Setting hardware clock."
-msgstr "Instellen van hardwareklok"
+#: src/modules/mount/main.py:30
+msgid "Mounting partitions."
+msgstr "Partities mounten."
 
-#: src/modules/mkinitfs/main.py:27
-msgid "Creating initramfs with mkinitfs."
-msgstr "Een initramfs wordt aangemaakt met mkinitfs."
-
-#: src/modules/mkinitfs/main.py:49
-msgid "Failed to run mkinitfs on the target"
-msgstr "Uitvoeren van mkinitfs in het doelsysteem is mislukt"
-
-#: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
-msgid "The exit code was {}"
-msgstr "De afsluitcode was {}"
-
-#: src/modules/dracut/main.py:27
-msgid "Creating initramfs with dracut."
-msgstr "initramfs aanmaken met dracut."
-
-#: src/modules/dracut/main.py:49
-msgid "Failed to run dracut on the target"
-msgstr "Uitvoeren van dracut op het doel is mislukt"
-
-#: src/modules/initramfscfg/main.py:32
-msgid "Configuring initramfs."
-msgstr "Instellen van initramfs."
-
-#: src/modules/openrcdmcryptcfg/main.py:26
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "Configureren van OpenRC dmcrypt service."
-
-#: src/modules/fstab/main.py:29
-msgid "Writing fstab."
-msgstr "fstab schrijven."
-
-#: src/modules/fstab/main.py:389
-msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
-msgstr ""
+#: src/modules/rawfs/main.py:26
+msgid "Installing data."
+msgstr "Data aan het installeren."
 
 #: src/modules/dummypython/main.py:35
 msgid "Dummy python job."
@@ -400,10 +281,130 @@ msgstr "Voorbeeld Python-taak"
 msgid "Dummy python step {}"
 msgstr "Voorbeeld Python-stap {}"
 
-#: src/modules/localecfg/main.py:30
-msgid "Configuring locales."
-msgstr "Taal en locatie instellen."
+#: src/modules/hwclock/main.py:26
+msgid "Setting hardware clock."
+msgstr "Instellen van hardwareklok"
 
-#: src/modules/networkcfg/main.py:29
-msgid "Saving network configuration."
-msgstr "Netwerk-configuratie opslaan."
+#: src/modules/umount/main.py:31
+msgid "Unmount file systems."
+msgstr "Unmount bestandssystemen."
+
+#: src/modules/openrcdmcryptcfg/main.py:26
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "Configureren van OpenRC dmcrypt service."
+
+#: src/modules/services-systemd/main.py:26
+msgid "Configure systemd services"
+msgstr "Configureer systemd services "
+
+#: src/modules/services-systemd/main.py:60
+msgid ""
+"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"<code>systemctl {arg!s}</code> aanroeping in chroot resulteerde in foutcode "
+"{num!s}."
+
+#: src/modules/services-systemd/main.py:63
+#: src/modules/services-systemd/main.py:69
+msgid "Cannot enable systemd service <code>{name!s}</code>."
+msgstr ""
+"De systemd service <code>{name!s}</code> kon niet worden ingeschakeld."
+
+#: src/modules/services-systemd/main.py:65
+msgid "Cannot enable systemd target <code>{name!s}</code>."
+msgstr "Het systemd doel <code>{name!s}</code> kon niet worden ingeschakeld."
+
+#: src/modules/services-systemd/main.py:67
+msgid "Cannot enable systemd timer <code>{name!s}</code>."
+msgstr ""
+
+#: src/modules/services-systemd/main.py:71
+msgid "Cannot disable systemd target <code>{name!s}</code>."
+msgstr "De systemd service <code>{name!s} kon niet worden uitgeschakeld."
+
+#: src/modules/services-systemd/main.py:73
+msgid "Cannot mask systemd unit <code>{name!s}</code>."
+msgstr "De systemd unit <code>{name!s}</code> kon niet worden gemaskerd."
+
+#: src/modules/services-systemd/main.py:75
+msgid ""
+"Unknown systemd commands <code>{command!s}</code> and "
+"<code>{suffix!s}</code> for unit {name!s}."
+msgstr ""
+"Onbekende systemd opdrachten <code>{command!s}</code> en "
+"<code>{suffix!s}</code> voor unit {name!s}. "
+
+#: src/modules/mkinitfs/main.py:27
+msgid "Creating initramfs with mkinitfs."
+msgstr "Een initramfs wordt aangemaakt met mkinitfs."
+
+#: src/modules/mkinitfs/main.py:49
+msgid "Failed to run mkinitfs on the target"
+msgstr "Uitvoeren van mkinitfs in het doelsysteem is mislukt"
+
+#: src/modules/unpackfs/main.py:34
+msgid "Filling up filesystems."
+msgstr "Bestandssystemen opvullen."
+
+#: src/modules/unpackfs/main.py:254
+msgid "rsync failed with error code {}."
+msgstr "rsync mislukte met foutcode {}."
+
+#: src/modules/unpackfs/main.py:299
+msgid "Unpacking image {}/{}, file {}/{}"
+msgstr "Bestandssysteem uitpakken {}/{}, bestand {}/{}"
+
+#: src/modules/unpackfs/main.py:314
+msgid "Starting to unpack {}"
+msgstr "Beginnen met uitpakken van {}"
+
+#: src/modules/unpackfs/main.py:323 src/modules/unpackfs/main.py:465
+msgid "Failed to unpack image \"{}\""
+msgstr "Uitpakken van bestandssysteem \"{}\" mislukt"
+
+#: src/modules/unpackfs/main.py:430
+msgid "No mount point for root partition"
+msgstr "Geen mount-punt voor de root-partitie"
+
+#: src/modules/unpackfs/main.py:431
+msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
+msgstr "globalstorage bevat geen sleutel \"rootMountPoint\", er wordt niks gedaan"
+
+#: src/modules/unpackfs/main.py:436
+msgid "Bad mount point for root partition"
+msgstr "Onjuist mount-punt voor de root-partitie"
+
+#: src/modules/unpackfs/main.py:437
+msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
+msgstr ""
+"rootMountPoint is ingesteld op \"{}\", welke niet bestaat, er wordt niks "
+"gedaan"
+
+#: src/modules/unpackfs/main.py:453 src/modules/unpackfs/main.py:457
+#: src/modules/unpackfs/main.py:463 src/modules/unpackfs/main.py:478
+msgid "Bad unsquash configuration"
+msgstr "Foutieve unsquash configuratie"
+
+#: src/modules/unpackfs/main.py:454
+msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
+msgstr ""
+"Het bestandssysteem voor \"{}\" ({}) wordt niet ondersteund door je huidige "
+"kernel"
+
+#: src/modules/unpackfs/main.py:458
+msgid "The source filesystem \"{}\" does not exist"
+msgstr "Het bronbestandssysteem \"{}\" bestaat niet"
+
+#: src/modules/unpackfs/main.py:464
+msgid ""
+"Failed to find unsquashfs, make sure you have the squashfs-tools package "
+"installed."
+msgstr ""
+
+#: src/modules/unpackfs/main.py:479
+msgid "The destination \"{}\" in the target system is not a directory"
+msgstr "De bestemming \"{}\" in het doelsysteem is niet een map"
+
+#: src/modules/luksopenswaphookcfg/main.py:26
+msgid "Configuring encrypted swap."
+msgstr "Instellen van versleutelde swap."

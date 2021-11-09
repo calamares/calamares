@@ -687,17 +687,42 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>ClearMountsJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="42"/>
+      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="259"/>
+      <source>Successfully unmounted %1.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="266"/>
+      <source>Successfully disabled swap %1.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="292"/>
+      <source>Successfully cleared swap %1.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="306"/>
+      <source>Successfully closed mapper device %1.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="319"/>
+      <source>Successfully disabled volume group %1.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="358"/>
       <source>Clear mounts for partitioning operations on %1</source>
       <translation>%1 पर विभाजन कार्य हेतु माउंट हटाएँ</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="49"/>
+      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="364"/>
       <source>Clearing mounts for partitioning operations on %1.</source>
       <translation>%1 पर विभाजन कार्य हेतु माउंट हटाएँ जा रहे हैं।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="224"/>
+      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="383"/>
       <source>Cleared all mounts for %1</source>
       <translation>%1 के लिए सभी माउंट हटा दिए गए</translation>
     </message>
@@ -957,17 +982,17 @@ The installer will quit and all changes will be lost.</source>
       <translation>कोई नहीं</translation>
     </message>
     <message>
-      <location filename="../src/modules/summary/Config.cpp" line="82"/>
+      <location filename="../src/modules/summary/Config.cpp" line="94"/>
       <source>Summary</source>
       <translation>सारांश</translation>
     </message>
     <message>
-      <location filename="../src/modules/summary/Config.cpp" line="86"/>
+      <location filename="../src/modules/summary/Config.cpp" line="98"/>
       <source>This is an overview of what will happen once you start the setup procedure.</source>
       <translation>यह एक अवलोकन है कि सेटअप प्रक्रिया आरंभ होने के उपरांत क्या होगा।</translation>
     </message>
     <message>
-      <location filename="../src/modules/summary/Config.cpp" line="91"/>
+      <location filename="../src/modules/summary/Config.cpp" line="103"/>
       <source>This is an overview of what will happen once you start the install procedure.</source>
       <translation>यह अवलोकन है कि इंस्टॉल शुरू होने के बाद क्या होगा।</translation>
     </message>
@@ -1250,22 +1275,22 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>DeletePartitionJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="31"/>
+      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="71"/>
       <source>Delete partition %1.</source>
       <translation>विभाजन %1 हटाएँ।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="38"/>
+      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="78"/>
       <source>Delete partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>विभाजन &lt;strong&gt;%1&lt;/strong&gt; हटाएँ।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="45"/>
+      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="85"/>
       <source>Deleting partition %1.</source>
       <translation>%1 विभाजन हटाया जा रहा है।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="56"/>
+      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="103"/>
       <source>The installer failed to delete partition %1.</source>
       <translation>इंस्टॉलर विभाजन %1 को हटाने में विफल रहा ।</translation>
     </message>
@@ -2444,17 +2469,17 @@ The installer will quit and all changes will be lost.</source>
       <translation>रूप</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/page_package.ui" line="44"/>
+      <location filename="../src/modules/packagechooser/page_package.ui" line="50"/>
       <source>Product Name</source>
       <translation>वस्तु का नाम</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/page_package.ui" line="57"/>
+      <location filename="../src/modules/packagechooser/page_package.ui" line="63"/>
       <source>TextLabel</source>
       <translation>TextLabel</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/page_package.ui" line="73"/>
+      <location filename="../src/modules/packagechooser/page_package.ui" line="79"/>
       <source>Long Product Description</source>
       <translation>वस्तु का विस्तृत विवरण</translation>
     </message>
@@ -2823,47 +2848,47 @@ The installer will quit and all changes will be lost.</source>
       <translation>फाइल सिस्टम का प्रकार FAT32 होना आवश्यक है।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="562"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="564"/>
       <source>The filesystem must be at least %1 MiB in size.</source>
       <translation>फाइल सिस्टम का आकार कम-से-कम %1 एमबी होना आवश्यक है।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="569"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="570"/>
       <source>The filesystem must have flag &lt;strong&gt;%1&lt;/strong&gt; set.</source>
       <translation>फाइल सिस्टम पर &lt;strong&gt;%1&lt;/strong&gt; फ्लैग सेट होना आवश्यक है।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="575"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="576"/>
       <source>You can continue without setting up an EFI system partition but your system may fail to start.</source>
       <translation>आप बिना EFI सिस्टम विभाजन सेट करें भी प्रक्रिया जारी रख सकते हैं परन्तु सम्भवतः ऐसा करने से आपका सिस्टम आरंभ नहीं होगा।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="592"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="593"/>
       <source>Option to use GPT on BIOS</source>
       <translation>BIOS पर GPT उपयोग करने के लिए विकल्प</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="593"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="594"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
       <translation>GPT विभाजन तालिका सभी सिस्टम हेतु सबसे उत्तम विकल्प है। यह इंस्टॉलर BIOS सिस्टम के सेटअप को भी समर्थन करता है। &lt;br/&gt;&lt;br/&gt;BIOS पर GPT विभाजन तालिका को विन्यस्त करने हेतु, (अगर अब तक नहीं करा है तो) वापस जाकर विभाजन तालिका GPT पर सेट करें, फिर एक 8 MB का बिना फॉर्मेट हुआ विभाजन बनाए जिस पर &lt;strong&gt;bios_grub&lt;/strong&gt; का flag हो।&lt;br/&gt;&lt;br/&gt;यह बिना फॉर्मेट हुआ 8 MB का विभाजन %1 को BIOS सिस्टम पर GPT के साथ शुरू करने के लिए आवश्यक है।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="625"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="626"/>
       <source>Boot partition not encrypted</source>
       <translation>बूट विभाजन एन्क्रिप्टेड नहीं है</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="626"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="627"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
       <translation>एन्क्रिप्टेड रुट विभाजन के साथ एक अलग बूट विभाजन भी सेट किया गया था, पर बूट विभाजन एन्क्रिप्टेड नहीं था।&lt;br/&gt;&lt;br/&gt; इस तरह का सेटअप सुरक्षित नहीं होता क्योंकि सिस्टम फ़ाइल एन्क्रिप्टेड विभाजन पर होती हैं।&lt;br/&gt;आप चाहे तो जारी रख सकते है, पर फिर फ़ाइल सिस्टम बाद में सिस्टम स्टार्टअप के दौरान अनलॉक होगा।&lt;br/&gt; विभाजन को एन्क्रिप्ट करने के लिए वापस जाकर उसे दोबारा बनाएँ व विभाजन निर्माण विंडो में&lt;strong&gt;एन्क्रिप्ट&lt;/strong&gt; चुनें।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="713"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="714"/>
       <source>has at least one disk device available.</source>
       <translation>कम-से-कम एक डिस्क डिवाइस उपलब्ध हो।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="714"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="715"/>
       <source>There are no partitions to install on.</source>
       <translation>इंस्टॉल हेतु कोई विभाजन नहीं हैं।</translation>
     </message>
@@ -3053,12 +3078,12 @@ Output:
       <translation>नवीन यादृच्छिक फ़ाइल &lt;pre&gt;%1&lt;/pre&gt;नहीं बनाई जा सकी।</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/PackageModel.cpp" line="44"/>
+      <location filename="../src/modules/packagechooser/PackageModel.cpp" line="63"/>
       <source>No product</source>
       <translation>कोई वस्तु नहीं</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/PackageModel.cpp" line="52"/>
+      <location filename="../src/modules/packagechooser/PackageModel.cpp" line="71"/>
       <source>No description provided.</source>
       <translation>कोई विवरण प्रदान नहीं किया गया।</translation>
     </message>

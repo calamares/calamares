@@ -18,6 +18,8 @@
 #include "utils/Logger.h"
 #include "utils/String.h"
 
+#include <QProcess>
+
 KeyBoardPreview::KeyBoardPreview( QWidget* parent )
     : QWidget( parent )
     , layout( "us" )

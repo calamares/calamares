@@ -13,12 +13,11 @@
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
-#include "Settings.h"
+#include "Runner.h"
 #include "utils/Logger.h"
 
 #include <QCoreApplication>
 #include <QDir>
-#include <QProcess>
 #include <QRegularExpression>
 
 #ifdef Q_OS_LINUX
@@ -32,47 +31,6 @@
 #include <sys/sysctl.h>
 // clang-format on
 #endif
-
-/** @brief When logging commands, don't log everything.
- *
- * The command-line arguments to some commands may contain the
- * encrypted password set by the user. Don't log that password,
- * since the log may get posted to bug reports, or stored in
- * the target system.
- */
-struct RedactedList
-{
-    RedactedList( const QStringList& l )
-        : list( l )
-    {
-    }
-
-    const QStringList& list;
-};
-
-QDebug&
-operator<<( QDebug& s, const RedactedList& l )
-{
-    // Special case logging: don't log the (encrypted) password.
-    if ( l.list.contains( "usermod" ) )
-    {
-        for ( const auto& item : l.list )
-            if ( item.startsWith( "$6$" ) )
-            {
-                s << "<password>";
-            }
-            else
-            {
-                s << item;
-            }
-    }
-    else
-    {
-        s << l.list;
-    }
-
-    return s;
-}
 
 namespace CalamaresUtils
 {
@@ -116,112 +74,9 @@ System::runCommand( System::RunLocation location,
                     const QString& stdInput,
                     std::chrono::seconds timeoutSec )
 {
-    if ( args.isEmpty() )
-    {
-        cWarning() << "Cannot run an empty program list";
-        return ProcessResult::Code::FailedToStart;
-    }
-
-    Calamares::GlobalStorage* gs
-        = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
-
-    if ( ( location == System::RunLocation::RunInTarget ) && ( !gs || !gs->contains( "rootMountPoint" ) ) )
-    {
-        cWarning() << "No rootMountPoint in global storage, while RunInTarget is specified";
-        return ProcessResult::Code::NoWorkingDirectory;
-    }
-
-    QString program;
-    QStringList arguments( args );
-
-    if ( location == System::RunLocation::RunInTarget )
-    {
-        QString destDir = gs->value( "rootMountPoint" ).toString();
-        if ( !QDir( destDir ).exists() )
-        {
-            cWarning() << "rootMountPoint points to a dir which does not exist";
-            return ProcessResult::Code::NoWorkingDirectory;
-        }
-
-        program = "chroot";
-        arguments.prepend( destDir );
-    }
-    else
-    {
-        program = "env";
-    }
-
-    QProcess process;
-    process.setProgram( program );
-    process.setArguments( arguments );
-    process.setProcessChannelMode( QProcess::MergedChannels );
-
-    if ( !workingPath.isEmpty() )
-    {
-        if ( QDir( workingPath ).exists() )
-        {
-            process.setWorkingDirectory( QDir( workingPath ).absolutePath() );
-        }
-        else
-        {
-            cWarning() << "Invalid working directory:" << workingPath;
-            return ProcessResult::Code::NoWorkingDirectory;
-        }
-    }
-
-    cDebug() << Logger::SubEntry << "Running" << program << RedactedList( arguments );
-    process.start();
-    if ( !process.waitForStarted() )
-    {
-        cWarning() << "Process" << args.first() << "failed to start" << process.error();
-        return ProcessResult::Code::FailedToStart;
-    }
-
-    if ( !stdInput.isEmpty() )
-    {
-        process.write( stdInput.toLocal8Bit() );
-    }
-    process.closeWriteChannel();
-
-    if ( !process.waitForFinished( timeoutSec > std::chrono::seconds::zero()
-                                       ? ( static_cast< int >( std::chrono::milliseconds( timeoutSec ).count() ) )
-                                       : -1 ) )
-    {
-        cWarning() << "Process" << args.first() << "timed out after" << timeoutSec.count() << "s. Output so far:\n"
-                   << Logger::NoQuote << process.readAllStandardOutput();
-        return ProcessResult::Code::TimedOut;
-    }
-
-    QString output = QString::fromLocal8Bit( process.readAllStandardOutput() ).trimmed();
-
-    if ( process.exitStatus() == QProcess::CrashExit )
-    {
-        cWarning() << "Process" << args.first() << "crashed. Output so far:\n" << Logger::NoQuote << output;
-        return ProcessResult::Code::Crashed;
-    }
-
-    auto r = process.exitCode();
-    bool showDebug = ( !Calamares::Settings::instance() ) || ( Calamares::Settings::instance()->debugMode() );
-    if ( r == 0 )
-    {
-        if ( showDebug && !output.isEmpty() )
-        {
-            cDebug() << Logger::SubEntry << "Finished. Exit code:" << r << "output:\n" << Logger::NoQuote << output;
-        }
-    }
-    else  // if ( r != 0 )
-    {
-        if ( !output.isEmpty() )
-        {
-            cDebug() << Logger::SubEntry << "Target cmd:" << RedactedList( args ) << "Exit code:" << r << "output:\n"
-                     << Logger::NoQuote << output;
-        }
-        else
-        {
-            cDebug() << Logger::SubEntry << "Target cmd:" << RedactedList( args ) << "Exit code:" << r << "(no output)";
-        }
-    }
-    return ProcessResult( r, output );
+    Calamares::Utils::Runner r( args );
+    r.setLocation( location ).setInput( stdInput ).setTimeout( timeoutSec ).setWorkingDirectory( workingPath );
+    return r.run();
 }
 
 /// @brief Cheap check if a path is absolute.

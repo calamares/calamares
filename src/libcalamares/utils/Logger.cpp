@@ -228,4 +228,28 @@ toString( const QVariant& v )
     }
 }
 
+QDebug&
+operator<<( QDebug& s, const Redacted& l )
+{
+    // Special case logging: don't log the (encrypted) password.
+    if ( l.list.contains( "usermod" ) )
+    {
+        for ( const auto& item : l.list )
+            if ( item.startsWith( "$6$" ) )
+            {
+                s << "<password>";
+            }
+            else
+            {
+                s << item;
+            }
+    }
+    else
+    {
+        s << l.list;
+    }
+
+    return s;
+}
+
 }  // namespace Logger

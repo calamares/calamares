@@ -35,6 +35,10 @@ total_packages = 0  # For the entire job
 completed_packages = 0  # Done so far for this job
 group_packages = 0  # One group of packages from an -install or -remove entry
 
+# A PM object may set this to a string (take care of translations!)
+# to override the string produced by pretty_status_message()
+custom_status_message = None
+
 INSTALL = object()
 REMOVE = object()
 mode_packages = None  # Changes to INSTALL or REMOVE
@@ -51,6 +55,8 @@ def pretty_name():
 
 
 def pretty_status_message():
+    if custom_status_message is not None:
+        return custom_status_message
     if not group_packages:
         if (total_packages > 0):
             # Outside the context of an operation
@@ -370,17 +376,44 @@ class PMPackageKit(PackageManager):
 class PMPacman(PackageManager):
     backend = "pacman"
 
+    def __init__(self):
+        import re
+        progress_match = re.compile("^\\((\\d+)/(\\d+)\\)")
+        def line_cb(line):
+            if line.startswith(":: "):
+                self.in_package_changes = "package changes" in line
+            else:
+                if self.in_package_changes and line.endswith("...\n"):
+                    # Update the message, untranslated; do not change the
+                    # progress percentage, since there may be more "installing..."
+                    # lines in the output for the group, than packages listed
+                    # explicitly. We don't know how to calculate proper progress.
+                    global custom_status_message
+                    custom_status_message = "pacman: " + line.strip()
+                    libcalamares.job.setprogress(self.progress_fraction)
+                    libcalamares.utils.debug(line)
+
+        self.in_package_changes = False
+        self.line_cb = line_cb
+
+    def reset_progress(self):
+        self.in_package_changes = False
+        # These are globals
+        self.progress_fraction = (completed_packages * 1.0 / total_packages)
+
     def install(self, pkgs, from_local=False):
         if from_local:
             pacman_flags = "-U"
         else:
             pacman_flags = "-S"
 
-        check_target_env_call(["pacman", pacman_flags,
-                               "--noconfirm"] + pkgs)
+        self.reset_progress()
+        libcalamares.utils.target_env_process_output(["pacman", pacman_flags,
+                               "--noconfirm"] + pkgs, self.line_cb)
 
     def remove(self, pkgs):
-        check_target_env_call(["pacman", "-Rs", "--noconfirm"] + pkgs)
+        self.reset_progress()
+        libcalamares.utils.target_env_process_output(["pacman", "-Rs", "--noconfirm"] + pkgs, self.line_cb)
 
     def update_db(self):
         check_target_env_call(["pacman", "-Sy"])

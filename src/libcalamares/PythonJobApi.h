@@ -42,6 +42,16 @@ check_target_env_output( const std::string& command, const std::string& stdin = 
 std::string
 check_target_env_output( const boost::python::list& args, const std::string& stdin = std::string(), int timeout = 0 );
 
+int target_env_process_output( const boost::python::list& args,
+                               const boost::python::object& callback = boost::python::object(),
+                               const std::string& stdin = std::string(),
+                               int timeout = 0 );
+
+int host_env_process_output( const boost::python::list& args,
+                             const boost::python::object& callback = boost::python::object(),
+                             const std::string& stdin = std::string(),
+                             int timeout = 0 );
+
 std::string obscure( const std::string& string );
 
 boost::python::object gettext_path();

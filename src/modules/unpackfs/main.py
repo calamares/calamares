@@ -79,24 +79,24 @@ class UnpackEntry:
         """
         Counts the number of files this entry has.
         """
-        fslist = ""
+        # Need a name we can use like a global
+        class counter(object):
+            count = 0
+        def cb_count(s):
+            counter.count += 1
 
         if self.sourcefs == "squashfs":
-            fslist = subprocess.check_output(
-                ["unsquashfs", "-l", self.source]
-                )
+            libcalamares.utils.host_env_process_output(["unsquashfs", "-l", self.source], cb_count)
 
         elif self.sourcefs == "ext4":
-            fslist = subprocess.check_output(
-                ["find", self.mountPoint, "-type", "f"]
-                )
+            libcalamares.utils.host_env_process_output(["find", self.mountPoint, "-type", "f"], cb_count)
 
         elif self.is_file():
             # Hasn't been mounted, copy directly; find handles both
             # files and directories.
-            fslist = subprocess.check_output(["find", self.source, "-type", "f"])
+            libcalamares.utils.host_env_process_output(["find", self.source, "-type", "f"], cb_count)
 
-        self.total = len(fslist.splitlines())
+        self.total = counter.count
         return self.total
 
     def do_mount(self, base):
@@ -167,11 +167,6 @@ def file_copy(source, entry, progress_cb):
 
     dest = entry.destination
 
-    # Environment used for executing rsync properly
-    # Setting locale to C (fix issue with tr_TR locale)
-    at_env = os.environ
-    at_env["LC_ALL"] = "C"
-
     # `source` *must* end with '/' otherwise a directory named after the source
     # will be created in `dest`: ie if `source` is "/foo/bar" and `dest` is
     # "/dest", then files will be copied in "/dest/bar".
@@ -189,20 +184,20 @@ def file_copy(source, entry, progress_cb):
         for f in entry.exclude:
             args.extend(["--exclude", f])
     args.extend(['--progress', source, dest])
-    process = subprocess.Popen(
-        args, env=at_env,
-        stdout=subprocess.PIPE, close_fds=ON_POSIX
-        )
+
     # last_num_files_copied trails num_files_copied, and whenever at least 107 more
     # files (file_count_chunk) have been copied, progress is reported and
     # last_num_files_copied is updated. The chunk size isn't "tidy"
     # so that all the digits of the progress-reported number change.
     #
-    last_num_files_copied = 0
-    last_timestamp_reported = time.time()
     file_count_chunk = 107
 
-    for line in iter(process.stdout.readline, b''):
+    class counter(object):
+        last_num_files_copied = 0
+        last_timestamp_reported = time.time()
+        last_total_reported = 0
+
+    def output_cb(line):
         # rsync outputs progress in parentheses. Each line will have an
         # xfer and a chk item (either ir-chk or to-chk) as follows:
         #
@@ -216,7 +211,7 @@ def file_copy(source, entry, progress_cb):
         # If you're copying directory with some links in it, the xfer#
         # might not be a reliable counter (for one increase of xfer, many
         # files may be created).
-        m = re.findall(r'xfr#(\d+), ..-chk=(\d+)/(\d+)', line.decode())
+        m = re.findall(r'xfr#(\d+), ..-chk=(\d+)/(\d+)', line)
 
         if m:
             # we've got a percentage update
@@ -226,13 +221,18 @@ def file_copy(source, entry, progress_cb):
             num_files_copied = num_files_total_local - num_files_remaining
 
             now = time.time()
-            if (num_files_copied - last_num_files_copied >= file_count_chunk) or (now - last_timestamp_reported > 0.5):
-                last_num_files_copied = num_files_copied
-                last_timestamp_reported = now
+            if (num_files_copied - counter.last_num_files_copied >= file_count_chunk) or (now - counter.last_timestamp_reported > 0.5):
+                counter.last_num_files_copied = num_files_copied
+                counter.last_timestamp_reported = now
+                counter.last_total_reported = num_files_total_local
                 progress_cb(num_files_copied, num_files_total_local)
 
-    process.wait()
-    progress_cb(num_files_copied, num_files_total_local)  # Push towards 100%
+    try:
+        returncode = libcalamares.utils.host_env_process_output(args, output_cb)
+    except subprocess.CalledProcessError as e:
+        returncode = e.returncode
+
+    progress_cb(counter.last_num_files_copied, counter.last_total_reported)  # Push towards 100%
 
     # Mark this entry as really done
     entry.copied = entry.total
@@ -249,9 +249,9 @@ def file_copy(source, entry, progress_cb):
     # have to do. See also:
     # https://bugzilla.redhat.com/show_bug.cgi?id=868755#c50
     # for the same issue in Anaconda, which uses a similar workaround.
-    if process.returncode != 0 and process.returncode != 23:
-        libcalamares.utils.warning("rsync failed with error code {}.".format(process.returncode))
-        return _("rsync failed with error code {}.").format(process.returncode)
+    if returncode != 0 and returncode != 23:
+        libcalamares.utils.warning("rsync failed with error code {}.".format(returncode))
+        return _("rsync failed with error code {}.").format(returncode)
 
     return None
 

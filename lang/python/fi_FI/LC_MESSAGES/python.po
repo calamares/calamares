@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-22 11:02+0200\n"
+"POT-Creation-Date: 2021-11-02 15:45+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>, 2021\n"
 "Language-Team: Finnish (Finland) (https://www.transifex.com/calamares/teams/20061/fi_FI/)\n"
@@ -21,136 +21,76 @@ msgstr ""
 "Language: fi_FI\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: src/modules/initramfscfg/main.py:32
+msgid "Configuring initramfs."
+msgstr "Määritetään initramfs."
+
+#: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
+#: src/modules/fstab/main.py:355 src/modules/fstab/main.py:361
+#: src/modules/fstab/main.py:388 src/modules/networkcfg/main.py:105
+#: src/modules/initcpiocfg/main.py:227 src/modules/initcpiocfg/main.py:231
+#: src/modules/localecfg/main.py:135 src/modules/mount/main.py:144
+#: src/modules/rawfs/main.py:164 src/modules/openrcdmcryptcfg/main.py:72
+#: src/modules/openrcdmcryptcfg/main.py:76
+#: src/modules/luksopenswaphookcfg/main.py:86
+#: src/modules/luksopenswaphookcfg/main.py:90
+msgid "Configuration Error"
+msgstr "Määritysvirhe"
+
+#: src/modules/initramfscfg/main.py:86 src/modules/fstab/main.py:356
+#: src/modules/initcpiocfg/main.py:228 src/modules/mount/main.py:145
+#: src/modules/rawfs/main.py:165 src/modules/openrcdmcryptcfg/main.py:73
+#: src/modules/luksopenswaphookcfg/main.py:87
+msgid "No partitions are defined for <pre>{!s}</pre> to use."
+msgstr "Ei ole määritetty käyttämään osioita <pre>{!s}</pre> ."
+
+#: src/modules/initramfscfg/main.py:90 src/modules/fstab/main.py:362
+#: src/modules/networkcfg/main.py:106 src/modules/initcpiocfg/main.py:232
+#: src/modules/localecfg/main.py:136 src/modules/openrcdmcryptcfg/main.py:77
+#: src/modules/luksopenswaphookcfg/main.py:91
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr ""
+"Root-juuri kiinnityspistettä  <pre>{!s}</pre> ei ole annettu käytettäväksi."
+
 #: src/modules/grubcfg/main.py:28
 msgid "Configure GRUB."
 msgstr "Määritä GRUB."
 
-#: src/modules/mount/main.py:30
-msgid "Mounting partitions."
-msgstr "Yhdistä osiot."
+#: src/modules/bootloader/main.py:43
+msgid "Install bootloader."
+msgstr "Asenna bootloader."
 
-#: src/modules/mount/main.py:144 src/modules/initcpiocfg/main.py:227
-#: src/modules/initcpiocfg/main.py:231
-#: src/modules/luksopenswaphookcfg/main.py:86
-#: src/modules/luksopenswaphookcfg/main.py:90 src/modules/rawfs/main.py:164
-#: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
-#: src/modules/openrcdmcryptcfg/main.py:72
-#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/fstab/main.py:355
-#: src/modules/fstab/main.py:361 src/modules/fstab/main.py:388
-#: src/modules/localecfg/main.py:135 src/modules/networkcfg/main.py:42
-msgid "Configuration Error"
-msgstr "Määritysvirhe"
+#: src/modules/bootloader/main.py:508
+msgid "Bootloader installation error"
+msgstr "Bootloader asennusvirhe"
 
-#: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:228
-#: src/modules/luksopenswaphookcfg/main.py:87 src/modules/rawfs/main.py:165
-#: src/modules/initramfscfg/main.py:86 src/modules/openrcdmcryptcfg/main.py:73
-#: src/modules/fstab/main.py:356
-msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr "Ei ole määritetty käyttämään osioita <pre>{!s}</pre> ."
-
-#: src/modules/services-systemd/main.py:26
-msgid "Configure systemd services"
-msgstr "Määritä systemd palvelut"
-
-#: src/modules/services-systemd/main.py:59
-#: src/modules/services-openrc/main.py:93
-msgid "Cannot modify service"
-msgstr "Palvelua ei voi muokata"
-
-#: src/modules/services-systemd/main.py:60
+#: src/modules/bootloader/main.py:509
 msgid ""
-"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr "<code>systemctl {arg!s}</code> chroot palautti virhe koodin {num!s}."
-
-#: src/modules/services-systemd/main.py:63
-#: src/modules/services-systemd/main.py:67
-msgid "Cannot enable systemd service <code>{name!s}</code>."
-msgstr "Systemd-palvelua ei saa käyttöön <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:65
-msgid "Cannot enable systemd target <code>{name!s}</code>."
-msgstr "Systemd-kohdetta ei saa käyttöön <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:69
-msgid "Cannot disable systemd target <code>{name!s}</code>."
-msgstr "Systemd-kohdetta ei-voi poistaa käytöstä <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:71
-msgid "Cannot mask systemd unit <code>{name!s}</code>."
-msgstr "Ei voi peittää systemd-yksikköä <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:73
-msgid ""
-"Unknown systemd commands <code>{command!s}</code> and "
-"<code>{suffix!s}</code> for unit {name!s}."
+"The bootloader could not be installed. The installation command "
+"<pre>{!s}</pre> returned error code {!s}."
 msgstr ""
-"Tuntematon systemd komento <code>{command!s}</code> ja "
-"<code>{suffix!s}</code> laite {name!s}."
+"Bootloaderia ei voitu asentaa. Asennuskomento <pre>{!s}</pre> palautti "
+"virhekoodin {!s}."
 
-#: src/modules/umount/main.py:31
-msgid "Unmount file systems."
-msgstr "Irrota tiedostojärjestelmät käytöstä."
+#: src/modules/fstab/main.py:29
+msgid "Writing fstab."
+msgstr "Fstab kirjoittaminen."
 
-#: src/modules/unpackfs/main.py:35
-msgid "Filling up filesystems."
-msgstr "Paikannetaan tiedostojärjestelmiä."
+#: src/modules/fstab/main.py:389
+msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
+msgstr "Ei <pre>{!s}</pre> määritys annetaan <pre>{!s}</pre> varten."
 
-#: src/modules/unpackfs/main.py:255
-msgid "rsync failed with error code {}."
-msgstr "rsync epäonnistui virhekoodilla {}."
+#: src/modules/dracut/main.py:27
+msgid "Creating initramfs with dracut."
+msgstr "Initramfs luominen dracut:lla."
 
-#: src/modules/unpackfs/main.py:300
-msgid "Unpacking image {}/{}, file {}/{}"
-msgstr "Kuvan purkaminen {}/{}, tiedosto {}/{}"
+#: src/modules/dracut/main.py:49
+msgid "Failed to run dracut on the target"
+msgstr "Dracut-ohjelman suorittaminen ei onnistunut"
 
-#: src/modules/unpackfs/main.py:315
-msgid "Starting to unpack {}"
-msgstr "Pakkauksen purkaminen alkaa {}"
-
-#: src/modules/unpackfs/main.py:324 src/modules/unpackfs/main.py:464
-msgid "Failed to unpack image \"{}\""
-msgstr "Kuvan purkaminen epäonnistui \"{}\""
-
-#: src/modules/unpackfs/main.py:431
-msgid "No mount point for root partition"
-msgstr "Ei liitoskohtaa juuri root osiolle"
-
-#: src/modules/unpackfs/main.py:432
-msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr "globalstorage ei sisällä \"rootMountPoint\" avainta, eikä tee mitään"
-
-#: src/modules/unpackfs/main.py:437
-msgid "Bad mount point for root partition"
-msgstr "Huono kiinnityspiste root-osioon"
-
-#: src/modules/unpackfs/main.py:438
-msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr "rootMountPoint on \"{}\", jota ei ole, eikä tee mitään"
-
-#: src/modules/unpackfs/main.py:454 src/modules/unpackfs/main.py:458
-#: src/modules/unpackfs/main.py:478
-msgid "Bad unsquash configuration"
-msgstr "Huono epäpuhdas kokoonpano"
-
-#: src/modules/unpackfs/main.py:455
-msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
-msgstr "Tiedostojärjestelmä \"{}\" ({}) ei tue sinun nykyistä kerneliä "
-
-#: src/modules/unpackfs/main.py:459
-msgid "The source filesystem \"{}\" does not exist"
-msgstr "Lähde tiedostojärjestelmää \"{}\" ei ole olemassa"
-
-#: src/modules/unpackfs/main.py:465
-msgid ""
-"Failed to find unsquashfs, make sure you have the squashfs-tools package "
-"installed"
-msgstr ""
-"Ei löytynyt unsquashfs, varmista, että sinulla on squashfs-tools paketti "
-"asennettuna"
-
-#: src/modules/unpackfs/main.py:479
-msgid "The destination \"{}\" in the target system is not a directory"
-msgstr "Kohdejärjestelmän \"{}\" kohde ei ole hakemisto"
+#: src/modules/dracut/main.py:50 src/modules/mkinitfs/main.py:50
+msgid "The exit code was {}"
+msgstr "Poistumiskoodi oli {}"
 
 #: src/modules/displaymanager/main.py:526
 msgid "Cannot write KDM configuration file"
@@ -208,27 +148,6 @@ msgstr ""
 msgid "Display manager configuration was incomplete"
 msgstr "Näytönhallinnan kokoonpano oli puutteellinen"
 
-#: src/modules/initcpiocfg/main.py:28
-msgid "Configuring mkinitcpio."
-msgstr "Määritetään mkinitcpio."
-
-#: src/modules/initcpiocfg/main.py:232
-#: src/modules/luksopenswaphookcfg/main.py:91
-#: src/modules/initramfscfg/main.py:90 src/modules/openrcdmcryptcfg/main.py:77
-#: src/modules/fstab/main.py:362 src/modules/localecfg/main.py:136
-#: src/modules/networkcfg/main.py:43
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr ""
-"Root-juuri kiinnityspistettä  <pre>{!s}</pre> ei ole annettu käytettäväksi."
-
-#: src/modules/luksopenswaphookcfg/main.py:26
-msgid "Configuring encrypted swap."
-msgstr "Salatun swapin määrittäminen."
-
-#: src/modules/rawfs/main.py:26
-msgid "Installing data."
-msgstr "Asennetaan tietoja."
-
 #: src/modules/services-openrc/main.py:29
 msgid "Configure OpenRC services"
 msgstr "Määritä OpenRC-palvelut"
@@ -248,6 +167,11 @@ msgid ""
 msgstr ""
 "Tuntematon  huoltotoiminto<code>{arg!s}</code> palvelun {name!s} "
 "palvelutasolle  {level!s}."
+
+#: src/modules/services-openrc/main.py:93
+#: src/modules/services-systemd/main.py:59
+msgid "Cannot modify service"
+msgstr "Palvelua ei voi muokata"
 
 #: src/modules/services-openrc/main.py:94
 msgid ""
@@ -276,9 +200,9 @@ msgid ""
 msgstr ""
 "Palvelun polku {name!s} on <code>{path!s}</code>,  jota ei ole olemassa."
 
-#: src/modules/plymouthcfg/main.py:27
-msgid "Configure Plymouth theme"
-msgstr "Määritä Plymouthin teema"
+#: src/modules/networkcfg/main.py:29
+msgid "Saving network configuration."
+msgstr "Tallennetaan verkon määrityksiä."
 
 #: src/modules/packages/main.py:50 src/modules/packages/main.py:59
 #: src/modules/packages/main.py:69
@@ -333,61 +257,25 @@ msgstr ""
 "Paketinhallinta ei voinut tehdä muutoksia asennettuun järjestelmään. Komento"
 " <pre>{!s}</pre> palautti virhekoodin {!s}."
 
-#: src/modules/bootloader/main.py:43
-msgid "Install bootloader."
-msgstr "Asenna bootloader."
+#: src/modules/plymouthcfg/main.py:27
+msgid "Configure Plymouth theme"
+msgstr "Määritä Plymouthin teema"
 
-#: src/modules/bootloader/main.py:508
-msgid "Bootloader installation error"
-msgstr "Bootloader asennusvirhe"
+#: src/modules/initcpiocfg/main.py:28
+msgid "Configuring mkinitcpio."
+msgstr "Määritetään mkinitcpio."
 
-#: src/modules/bootloader/main.py:509
-msgid ""
-"The bootloader could not be installed. The installation command "
-"<pre>{!s}</pre> returned error code {!s}."
-msgstr ""
-"Bootloaderia ei voitu asentaa. Asennuskomento <pre>{!s}</pre> palautti "
-"virhekoodin {!s}."
+#: src/modules/localecfg/main.py:30
+msgid "Configuring locales."
+msgstr "Määritetään locales."
 
-#: src/modules/hwclock/main.py:26
-msgid "Setting hardware clock."
-msgstr "Laitteiston kellon asettaminen."
+#: src/modules/mount/main.py:30
+msgid "Mounting partitions."
+msgstr "Yhdistä osiot."
 
-#: src/modules/mkinitfs/main.py:27
-msgid "Creating initramfs with mkinitfs."
-msgstr "Initramfs luominen mkinitfs avulla."
-
-#: src/modules/mkinitfs/main.py:49
-msgid "Failed to run mkinitfs on the target"
-msgstr "Kohteen mkinitfs-suoritus epäonnistui."
-
-#: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
-msgid "The exit code was {}"
-msgstr "Poistumiskoodi oli {}"
-
-#: src/modules/dracut/main.py:27
-msgid "Creating initramfs with dracut."
-msgstr "Initramfs luominen dracut:lla."
-
-#: src/modules/dracut/main.py:49
-msgid "Failed to run dracut on the target"
-msgstr "Dracut-ohjelman suorittaminen ei onnistunut"
-
-#: src/modules/initramfscfg/main.py:32
-msgid "Configuring initramfs."
-msgstr "Määritetään initramfs."
-
-#: src/modules/openrcdmcryptcfg/main.py:26
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "OpenRC dmcrypt-palvelun määrittäminen."
-
-#: src/modules/fstab/main.py:29
-msgid "Writing fstab."
-msgstr "Fstab kirjoittaminen."
-
-#: src/modules/fstab/main.py:389
-msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
-msgstr "Ei <pre>{!s}</pre> määritys annetaan <pre>{!s}</pre> varten."
+#: src/modules/rawfs/main.py:26
+msgid "Installing data."
+msgstr "Asennetaan tietoja."
 
 #: src/modules/dummypython/main.py:35
 msgid "Dummy python job."
@@ -398,10 +286,125 @@ msgstr "Harjoitus python job."
 msgid "Dummy python step {}"
 msgstr "Harjoitus python vaihe {}"
 
-#: src/modules/localecfg/main.py:30
-msgid "Configuring locales."
-msgstr "Määritetään locales."
+#: src/modules/hwclock/main.py:26
+msgid "Setting hardware clock."
+msgstr "Laitteiston kellon asettaminen."
 
-#: src/modules/networkcfg/main.py:29
-msgid "Saving network configuration."
-msgstr "Tallennetaan verkon määrityksiä."
+#: src/modules/umount/main.py:31
+msgid "Unmount file systems."
+msgstr "Irrota tiedostojärjestelmät käytöstä."
+
+#: src/modules/openrcdmcryptcfg/main.py:26
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "OpenRC dmcrypt-palvelun määrittäminen."
+
+#: src/modules/services-systemd/main.py:26
+msgid "Configure systemd services"
+msgstr "Määritä systemd palvelut"
+
+#: src/modules/services-systemd/main.py:60
+msgid ""
+"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr "<code>systemctl {arg!s}</code> chroot palautti virhe koodin {num!s}."
+
+#: src/modules/services-systemd/main.py:63
+#: src/modules/services-systemd/main.py:69
+msgid "Cannot enable systemd service <code>{name!s}</code>."
+msgstr "Systemd-palvelua ei saa käyttöön <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:65
+msgid "Cannot enable systemd target <code>{name!s}</code>."
+msgstr "Systemd-kohdetta ei saa käyttöön <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:67
+msgid "Cannot enable systemd timer <code>{name!s}</code>."
+msgstr "Systemd timer, ei voi ottaa käyttöön <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:71
+msgid "Cannot disable systemd target <code>{name!s}</code>."
+msgstr "Systemd-kohdetta ei-voi poistaa käytöstä <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:73
+msgid "Cannot mask systemd unit <code>{name!s}</code>."
+msgstr "Ei voi peittää systemd-yksikköä <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:75
+msgid ""
+"Unknown systemd commands <code>{command!s}</code> and "
+"<code>{suffix!s}</code> for unit {name!s}."
+msgstr ""
+"Tuntematon systemd komento <code>{command!s}</code> ja "
+"<code>{suffix!s}</code> laite {name!s}."
+
+#: src/modules/mkinitfs/main.py:27
+msgid "Creating initramfs with mkinitfs."
+msgstr "Initramfs luominen mkinitfs avulla."
+
+#: src/modules/mkinitfs/main.py:49
+msgid "Failed to run mkinitfs on the target"
+msgstr "Kohteen mkinitfs-suoritus epäonnistui."
+
+#: src/modules/unpackfs/main.py:34
+msgid "Filling up filesystems."
+msgstr "Paikannetaan tiedostojärjestelmiä."
+
+#: src/modules/unpackfs/main.py:254
+msgid "rsync failed with error code {}."
+msgstr "rsync epäonnistui virhekoodilla {}."
+
+#: src/modules/unpackfs/main.py:299
+msgid "Unpacking image {}/{}, file {}/{}"
+msgstr "Kuvan purkaminen {}/{}, tiedosto {}/{}"
+
+#: src/modules/unpackfs/main.py:314
+msgid "Starting to unpack {}"
+msgstr "Pakkauksen purkaminen alkaa {}"
+
+#: src/modules/unpackfs/main.py:323 src/modules/unpackfs/main.py:465
+msgid "Failed to unpack image \"{}\""
+msgstr "Kuvan purkaminen epäonnistui \"{}\""
+
+#: src/modules/unpackfs/main.py:430
+msgid "No mount point for root partition"
+msgstr "Ei liitoskohtaa juuri root osiolle"
+
+#: src/modules/unpackfs/main.py:431
+msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
+msgstr "globalstorage ei sisällä \"rootMountPoint\" avainta, eikä tee mitään"
+
+#: src/modules/unpackfs/main.py:436
+msgid "Bad mount point for root partition"
+msgstr "Huono kiinnityspiste root-osioon"
+
+#: src/modules/unpackfs/main.py:437
+msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
+msgstr "rootMountPoint on \"{}\", jota ei ole, eikä tee mitään"
+
+#: src/modules/unpackfs/main.py:453 src/modules/unpackfs/main.py:457
+#: src/modules/unpackfs/main.py:463 src/modules/unpackfs/main.py:478
+msgid "Bad unsquash configuration"
+msgstr "Huono epäpuhdas kokoonpano"
+
+#: src/modules/unpackfs/main.py:454
+msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
+msgstr "Tiedostojärjestelmä \"{}\" ({}) ei tue sinun nykyistä kerneliä "
+
+#: src/modules/unpackfs/main.py:458
+msgid "The source filesystem \"{}\" does not exist"
+msgstr "Lähde tiedostojärjestelmää \"{}\" ei ole olemassa"
+
+#: src/modules/unpackfs/main.py:464
+msgid ""
+"Failed to find unsquashfs, make sure you have the squashfs-tools package "
+"installed."
+msgstr ""
+"Unsquashfs-tiedostoja ei löytynyt, varmista, että squashfs-tools paketti on "
+"asennettu."
+
+#: src/modules/unpackfs/main.py:479
+msgid "The destination \"{}\" in the target system is not a directory"
+msgstr "Kohdejärjestelmän \"{}\" kohde ei ole hakemisto"
+
+#: src/modules/luksopenswaphookcfg/main.py:26
+msgid "Configuring encrypted swap."
+msgstr "Salatun swapin määrittäminen."

@@ -28,7 +28,6 @@
 #include "utils/String.h"
 
 #include <QComboBox>
-#include <QProcess>
 #include <QPushButton>
 
 class LayoutItem : public QListWidgetItem

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-22 11:02+0200\n"
+"POT-Creation-Date: 2021-11-02 15:45+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: alireza jamshidi <alirezajam98@gmail.com>, 2020\n"
 "Language-Team: Persian (https://www.transifex.com/calamares/teams/20061/fa/)\n"
@@ -22,136 +22,73 @@ msgstr ""
 "Language: fa\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#: src/modules/initramfscfg/main.py:32
+msgid "Configuring initramfs."
+msgstr "در حال پیکربندی initramfs."
+
+#: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
+#: src/modules/fstab/main.py:355 src/modules/fstab/main.py:361
+#: src/modules/fstab/main.py:388 src/modules/networkcfg/main.py:105
+#: src/modules/initcpiocfg/main.py:227 src/modules/initcpiocfg/main.py:231
+#: src/modules/localecfg/main.py:135 src/modules/mount/main.py:144
+#: src/modules/rawfs/main.py:164 src/modules/openrcdmcryptcfg/main.py:72
+#: src/modules/openrcdmcryptcfg/main.py:76
+#: src/modules/luksopenswaphookcfg/main.py:86
+#: src/modules/luksopenswaphookcfg/main.py:90
+msgid "Configuration Error"
+msgstr "خطای پیکربندی"
+
+#: src/modules/initramfscfg/main.py:86 src/modules/fstab/main.py:356
+#: src/modules/initcpiocfg/main.py:228 src/modules/mount/main.py:145
+#: src/modules/rawfs/main.py:165 src/modules/openrcdmcryptcfg/main.py:73
+#: src/modules/luksopenswaphookcfg/main.py:87
+msgid "No partitions are defined for <pre>{!s}</pre> to use."
+msgstr "هیچ افرازی برای استفادهٔ <pre>{!s}</pre> تعریف نشده."
+
+#: src/modules/initramfscfg/main.py:90 src/modules/fstab/main.py:362
+#: src/modules/networkcfg/main.py:106 src/modules/initcpiocfg/main.py:232
+#: src/modules/localecfg/main.py:136 src/modules/openrcdmcryptcfg/main.py:77
+#: src/modules/luksopenswaphookcfg/main.py:91
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr "هیچ نقطهٔ اتّصال ریشه‌ای برای استفادهٔ <pre>{!s}</pre> داده نشده."
+
 #: src/modules/grubcfg/main.py:28
 msgid "Configure GRUB."
 msgstr "در حال پیکربندی گراب."
 
-#: src/modules/mount/main.py:30
-msgid "Mounting partitions."
-msgstr "در حال سوار کردن افرازها."
+#: src/modules/bootloader/main.py:43
+msgid "Install bootloader."
+msgstr "نصب بارکنندهٔ راه‌اندازی."
 
-#: src/modules/mount/main.py:144 src/modules/initcpiocfg/main.py:227
-#: src/modules/initcpiocfg/main.py:231
-#: src/modules/luksopenswaphookcfg/main.py:86
-#: src/modules/luksopenswaphookcfg/main.py:90 src/modules/rawfs/main.py:164
-#: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
-#: src/modules/openrcdmcryptcfg/main.py:72
-#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/fstab/main.py:355
-#: src/modules/fstab/main.py:361 src/modules/fstab/main.py:388
-#: src/modules/localecfg/main.py:135 src/modules/networkcfg/main.py:42
-msgid "Configuration Error"
-msgstr "خطای پیکربندی"
-
-#: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:228
-#: src/modules/luksopenswaphookcfg/main.py:87 src/modules/rawfs/main.py:165
-#: src/modules/initramfscfg/main.py:86 src/modules/openrcdmcryptcfg/main.py:73
-#: src/modules/fstab/main.py:356
-msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr "هیچ افرازی برای استفادهٔ <pre>{!s}</pre> تعریف نشده."
-
-#: src/modules/services-systemd/main.py:26
-msgid "Configure systemd services"
-msgstr "در حال پیکربندی خدمات سیستم‌دی"
-
-#: src/modules/services-systemd/main.py:59
-#: src/modules/services-openrc/main.py:93
-msgid "Cannot modify service"
-msgstr "نمی‌توان خدمت را دستکاری کرد"
-
-#: src/modules/services-systemd/main.py:60
-msgid ""
-"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+#: src/modules/bootloader/main.py:508
+msgid "Bootloader installation error"
 msgstr ""
-"فراخوانی <code>systemctl {arg!s}</code> در chroot رمز خطای {num!s} را "
-"برگرداند."
 
-#: src/modules/services-systemd/main.py:63
-#: src/modules/services-systemd/main.py:67
-msgid "Cannot enable systemd service <code>{name!s}</code>."
-msgstr "نمی‌توان خدمت سیستم‌دی <code>{name!s}</code> را به کار انداخت."
-
-#: src/modules/services-systemd/main.py:65
-msgid "Cannot enable systemd target <code>{name!s}</code>."
-msgstr "نمی‌توان هدف سیستم‌دی <code>{name!s}</code> را به کار انداخت."
-
-#: src/modules/services-systemd/main.py:69
-msgid "Cannot disable systemd target <code>{name!s}</code>."
-msgstr "نمی‌توان خدمت سیستم‌دی <code>{name!s}</code> را از کار انداخت."
-
-#: src/modules/services-systemd/main.py:71
-msgid "Cannot mask systemd unit <code>{name!s}</code>."
-msgstr "نمی‌توان واحد سیستم‌دی <code>{name!s}</code> را پوشاند."
-
-#: src/modules/services-systemd/main.py:73
+#: src/modules/bootloader/main.py:509
 msgid ""
-"Unknown systemd commands <code>{command!s}</code> and "
-"<code>{suffix!s}</code> for unit {name!s}."
+"The bootloader could not be installed. The installation command "
+"<pre>{!s}</pre> returned error code {!s}."
 msgstr ""
-"دستورات ناشناختهٔ سیستم‌دی <code>{command!s}</code> و "
-"<code>{suffix!s}</code> برای واحد {name!s}."
 
-#: src/modules/umount/main.py:31
-msgid "Unmount file systems."
-msgstr "پیاده کردن سامانه‌های پرونده."
+#: src/modules/fstab/main.py:29
+msgid "Writing fstab."
+msgstr "در حال نوشتن fstab."
 
-#: src/modules/unpackfs/main.py:35
-msgid "Filling up filesystems."
-msgstr "در حال پر کردن سامانه‌پرونده‌ها."
+#: src/modules/fstab/main.py:389
+msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
+msgstr ""
 
-#: src/modules/unpackfs/main.py:255
-msgid "rsync failed with error code {}."
-msgstr "آرسینک با رمز خطای {} شکست خورد."
+#: src/modules/dracut/main.py:27
+msgid "Creating initramfs with dracut."
+msgstr "در حال ایجاد initramfs با dracut."
 
-#: src/modules/unpackfs/main.py:300
-msgid "Unpacking image {}/{}, file {}/{}"
-msgstr "در حال بسته‌گشایی تصویر {}/{}، پروندهٔ {}/{}"
+#: src/modules/dracut/main.py:49
+msgid "Failed to run dracut on the target"
+msgstr "شکست در اجرای dracut روی هدف"
 
-#: src/modules/unpackfs/main.py:315
-msgid "Starting to unpack {}"
-msgstr "در حال شروع بسته‌گشایی {}"
-
-#: src/modules/unpackfs/main.py:324 src/modules/unpackfs/main.py:464
-msgid "Failed to unpack image \"{}\""
-msgstr "شکست در بسته‌گشایی تصویر {}"
-
-#: src/modules/unpackfs/main.py:431
-msgid "No mount point for root partition"
-msgstr "هیچ نقطهٔ اتّصالی برای افراز ریشه وجود ندارد"
-
-#: src/modules/unpackfs/main.py:432
-msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr "globalstorage کلید rootMountPoint را ندارد. کاری انجام نمی‌شود"
-
-#: src/modules/unpackfs/main.py:437
-msgid "Bad mount point for root partition"
-msgstr "نقطهٔ اتّصال بد برای افراز ریشه"
-
-#: src/modules/unpackfs/main.py:438
-msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr "نقطهٔ اتّصال ریشه {} است که وجود ندارد. کاری انجام نمی‌شود"
-
-#: src/modules/unpackfs/main.py:454 src/modules/unpackfs/main.py:458
-#: src/modules/unpackfs/main.py:478
-msgid "Bad unsquash configuration"
-msgstr "پیکربندی بد unsquash"
-
-#: src/modules/unpackfs/main.py:455
-msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
-msgstr "کرنل کنونیتان از سامانه‌پروندهٔ {} ({}) پشتیبانی نمی‌کند"
-
-#: src/modules/unpackfs/main.py:459
-msgid "The source filesystem \"{}\" does not exist"
-msgstr "سامانهٔ پروندهٔ مبدأ {} وجود ندارد"
-
-#: src/modules/unpackfs/main.py:465
-msgid ""
-"Failed to find unsquashfs, make sure you have the squashfs-tools package "
-"installed"
-msgstr "شکست در یافتن unsquashfs. مطمئن شوید بستهٔ squashfs-tools نصب است"
-
-#: src/modules/unpackfs/main.py:479
-msgid "The destination \"{}\" in the target system is not a directory"
-msgstr "مقصد {} در سامانهٔ هدف، یک شاخه نیست"
+#: src/modules/dracut/main.py:50 src/modules/mkinitfs/main.py:50
+msgid "The exit code was {}"
+msgstr "رمز خروج {} بود"
 
 #: src/modules/displaymanager/main.py:526
 msgid "Cannot write KDM configuration file"
@@ -207,26 +144,6 @@ msgstr ""
 msgid "Display manager configuration was incomplete"
 msgstr "پیکربندی مدیر نمایش کامل نبود"
 
-#: src/modules/initcpiocfg/main.py:28
-msgid "Configuring mkinitcpio."
-msgstr "پیکربندی mkinitcpio."
-
-#: src/modules/initcpiocfg/main.py:232
-#: src/modules/luksopenswaphookcfg/main.py:91
-#: src/modules/initramfscfg/main.py:90 src/modules/openrcdmcryptcfg/main.py:77
-#: src/modules/fstab/main.py:362 src/modules/localecfg/main.py:136
-#: src/modules/networkcfg/main.py:43
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr "هیچ نقطهٔ اتّصال ریشه‌ای برای استفادهٔ <pre>{!s}</pre> داده نشده."
-
-#: src/modules/luksopenswaphookcfg/main.py:26
-msgid "Configuring encrypted swap."
-msgstr "در حال پیکربندی مبادلهٔ رمزشده."
-
-#: src/modules/rawfs/main.py:26
-msgid "Installing data."
-msgstr "داده‌های نصب"
-
 #: src/modules/services-openrc/main.py:29
 msgid "Configure OpenRC services"
 msgstr "پیکربندی خدمات OpenRC"
@@ -244,6 +161,11 @@ msgid ""
 "Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
 "level {level!s}."
 msgstr ""
+
+#: src/modules/services-openrc/main.py:93
+#: src/modules/services-systemd/main.py:59
+msgid "Cannot modify service"
+msgstr "نمی‌توان خدمت را دستکاری کرد"
 
 #: src/modules/services-openrc/main.py:94
 msgid ""
@@ -270,9 +192,9 @@ msgid ""
 "exist."
 msgstr ""
 
-#: src/modules/plymouthcfg/main.py:27
-msgid "Configure Plymouth theme"
-msgstr "در حال پیکربندی زمینهٔ پلی‌موث"
+#: src/modules/networkcfg/main.py:29
+msgid "Saving network configuration."
+msgstr "در حال ذخیرهٔ پیکربندی شبکه."
 
 #: src/modules/packages/main.py:50 src/modules/packages/main.py:59
 #: src/modules/packages/main.py:69
@@ -321,59 +243,25 @@ msgid ""
 "command <pre>{!s}</pre> returned error code {!s}."
 msgstr ""
 
-#: src/modules/bootloader/main.py:43
-msgid "Install bootloader."
-msgstr "نصب بارکنندهٔ راه‌اندازی."
+#: src/modules/plymouthcfg/main.py:27
+msgid "Configure Plymouth theme"
+msgstr "در حال پیکربندی زمینهٔ پلی‌موث"
 
-#: src/modules/bootloader/main.py:508
-msgid "Bootloader installation error"
-msgstr ""
+#: src/modules/initcpiocfg/main.py:28
+msgid "Configuring mkinitcpio."
+msgstr "پیکربندی mkinitcpio."
 
-#: src/modules/bootloader/main.py:509
-msgid ""
-"The bootloader could not be installed. The installation command "
-"<pre>{!s}</pre> returned error code {!s}."
-msgstr ""
+#: src/modules/localecfg/main.py:30
+msgid "Configuring locales."
+msgstr "پیکربندی مکانها"
 
-#: src/modules/hwclock/main.py:26
-msgid "Setting hardware clock."
-msgstr "در حال تنظیم ساعت سخت‌افزاری."
+#: src/modules/mount/main.py:30
+msgid "Mounting partitions."
+msgstr "در حال سوار کردن افرازها."
 
-#: src/modules/mkinitfs/main.py:27
-msgid "Creating initramfs with mkinitfs."
-msgstr ""
-
-#: src/modules/mkinitfs/main.py:49
-msgid "Failed to run mkinitfs on the target"
-msgstr ""
-
-#: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
-msgid "The exit code was {}"
-msgstr "رمز خروج {} بود"
-
-#: src/modules/dracut/main.py:27
-msgid "Creating initramfs with dracut."
-msgstr "در حال ایجاد initramfs با dracut."
-
-#: src/modules/dracut/main.py:49
-msgid "Failed to run dracut on the target"
-msgstr "شکست در اجرای dracut روی هدف"
-
-#: src/modules/initramfscfg/main.py:32
-msgid "Configuring initramfs."
-msgstr "در حال پیکربندی initramfs."
-
-#: src/modules/openrcdmcryptcfg/main.py:26
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "در حال پیکربندی خدمت dmcrypt OpenRC."
-
-#: src/modules/fstab/main.py:29
-msgid "Writing fstab."
-msgstr "در حال نوشتن fstab."
-
-#: src/modules/fstab/main.py:389
-msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
-msgstr ""
+#: src/modules/rawfs/main.py:26
+msgid "Installing data."
+msgstr "داده‌های نصب"
 
 #: src/modules/dummypython/main.py:35
 msgid "Dummy python job."
@@ -384,10 +272,125 @@ msgstr "کار پایتونی الکی."
 msgid "Dummy python step {}"
 msgstr "گام پایتونی الکی {}"
 
-#: src/modules/localecfg/main.py:30
-msgid "Configuring locales."
-msgstr "پیکربندی مکانها"
+#: src/modules/hwclock/main.py:26
+msgid "Setting hardware clock."
+msgstr "در حال تنظیم ساعت سخت‌افزاری."
 
-#: src/modules/networkcfg/main.py:29
-msgid "Saving network configuration."
-msgstr "در حال ذخیرهٔ پیکربندی شبکه."
+#: src/modules/umount/main.py:31
+msgid "Unmount file systems."
+msgstr "پیاده کردن سامانه‌های پرونده."
+
+#: src/modules/openrcdmcryptcfg/main.py:26
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "در حال پیکربندی خدمت dmcrypt OpenRC."
+
+#: src/modules/services-systemd/main.py:26
+msgid "Configure systemd services"
+msgstr "در حال پیکربندی خدمات سیستم‌دی"
+
+#: src/modules/services-systemd/main.py:60
+msgid ""
+"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"فراخوانی <code>systemctl {arg!s}</code> در chroot رمز خطای {num!s} را "
+"برگرداند."
+
+#: src/modules/services-systemd/main.py:63
+#: src/modules/services-systemd/main.py:69
+msgid "Cannot enable systemd service <code>{name!s}</code>."
+msgstr "نمی‌توان خدمت سیستم‌دی <code>{name!s}</code> را به کار انداخت."
+
+#: src/modules/services-systemd/main.py:65
+msgid "Cannot enable systemd target <code>{name!s}</code>."
+msgstr "نمی‌توان هدف سیستم‌دی <code>{name!s}</code> را به کار انداخت."
+
+#: src/modules/services-systemd/main.py:67
+msgid "Cannot enable systemd timer <code>{name!s}</code>."
+msgstr ""
+
+#: src/modules/services-systemd/main.py:71
+msgid "Cannot disable systemd target <code>{name!s}</code>."
+msgstr "نمی‌توان خدمت سیستم‌دی <code>{name!s}</code> را از کار انداخت."
+
+#: src/modules/services-systemd/main.py:73
+msgid "Cannot mask systemd unit <code>{name!s}</code>."
+msgstr "نمی‌توان واحد سیستم‌دی <code>{name!s}</code> را پوشاند."
+
+#: src/modules/services-systemd/main.py:75
+msgid ""
+"Unknown systemd commands <code>{command!s}</code> and "
+"<code>{suffix!s}</code> for unit {name!s}."
+msgstr ""
+"دستورات ناشناختهٔ سیستم‌دی <code>{command!s}</code> و "
+"<code>{suffix!s}</code> برای واحد {name!s}."
+
+#: src/modules/mkinitfs/main.py:27
+msgid "Creating initramfs with mkinitfs."
+msgstr ""
+
+#: src/modules/mkinitfs/main.py:49
+msgid "Failed to run mkinitfs on the target"
+msgstr ""
+
+#: src/modules/unpackfs/main.py:34
+msgid "Filling up filesystems."
+msgstr "در حال پر کردن سامانه‌پرونده‌ها."
+
+#: src/modules/unpackfs/main.py:254
+msgid "rsync failed with error code {}."
+msgstr "آرسینک با رمز خطای {} شکست خورد."
+
+#: src/modules/unpackfs/main.py:299
+msgid "Unpacking image {}/{}, file {}/{}"
+msgstr "در حال بسته‌گشایی تصویر {}/{}، پروندهٔ {}/{}"
+
+#: src/modules/unpackfs/main.py:314
+msgid "Starting to unpack {}"
+msgstr "در حال شروع بسته‌گشایی {}"
+
+#: src/modules/unpackfs/main.py:323 src/modules/unpackfs/main.py:465
+msgid "Failed to unpack image \"{}\""
+msgstr "شکست در بسته‌گشایی تصویر {}"
+
+#: src/modules/unpackfs/main.py:430
+msgid "No mount point for root partition"
+msgstr "هیچ نقطهٔ اتّصالی برای افراز ریشه وجود ندارد"
+
+#: src/modules/unpackfs/main.py:431
+msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
+msgstr "globalstorage کلید rootMountPoint را ندارد. کاری انجام نمی‌شود"
+
+#: src/modules/unpackfs/main.py:436
+msgid "Bad mount point for root partition"
+msgstr "نقطهٔ اتّصال بد برای افراز ریشه"
+
+#: src/modules/unpackfs/main.py:437
+msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
+msgstr "نقطهٔ اتّصال ریشه {} است که وجود ندارد. کاری انجام نمی‌شود"
+
+#: src/modules/unpackfs/main.py:453 src/modules/unpackfs/main.py:457
+#: src/modules/unpackfs/main.py:463 src/modules/unpackfs/main.py:478
+msgid "Bad unsquash configuration"
+msgstr "پیکربندی بد unsquash"
+
+#: src/modules/unpackfs/main.py:454
+msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
+msgstr "کرنل کنونیتان از سامانه‌پروندهٔ {} ({}) پشتیبانی نمی‌کند"
+
+#: src/modules/unpackfs/main.py:458
+msgid "The source filesystem \"{}\" does not exist"
+msgstr "سامانهٔ پروندهٔ مبدأ {} وجود ندارد"
+
+#: src/modules/unpackfs/main.py:464
+msgid ""
+"Failed to find unsquashfs, make sure you have the squashfs-tools package "
+"installed."
+msgstr ""
+
+#: src/modules/unpackfs/main.py:479
+msgid "The destination \"{}\" in the target system is not a directory"
+msgstr "مقصد {} در سامانهٔ هدف، یک شاخه نیست"
+
+#: src/modules/luksopenswaphookcfg/main.py:26
+msgid "Configuring encrypted swap."
+msgstr "در حال پیکربندی مبادلهٔ رمزشده."
