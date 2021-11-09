@@ -370,17 +370,33 @@ class PMPackageKit(PackageManager):
 class PMPacman(PackageManager):
     backend = "pacman"
 
+    def __init__(self):
+        import re
+        progress_match = re.compile("^\\((\\d+)/(\\d+)\\)")
+        def line_cb(line):
+            global completed_packages, group_packages
+            if line.startswith("("):
+                m = progress_match.match(line)
+                if m:
+                    try:
+                        completed_packages = int(m.groups()[0])
+                        group_packages = int(m.groups()[1])
+                        libcalamares.job.setprogress(completed_packages / group_packages)
+                    except ValueError as e:
+                        pass
+        self.line_cb = line_cb
+
     def install(self, pkgs, from_local=False):
         if from_local:
             pacman_flags = "-U"
         else:
             pacman_flags = "-S"
 
-        check_target_env_call(["pacman", pacman_flags,
-                               "--noconfirm"] + pkgs)
+        libcalamares.utils.target_env_process_output(["pacman", pacman_flags,
+                               "--noconfirm"] + pkgs, self.line_cb)
 
     def remove(self, pkgs):
-        check_target_env_call(["pacman", "-Rs", "--noconfirm"] + pkgs)
+        libcalamares.utils.target_env_process_output(["pacman", "-Rs", "--noconfirm"] + pkgs, self.line_cb)
 
     def update_db(self):
         check_target_env_call(["pacman", "-Sy"])
