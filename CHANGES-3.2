@@ -10,13 +10,24 @@ website will have to do for older versions.
 # 3.2.46 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - Philip Müller
 
 ## Core ##
- - No core changes yet
+ - A new core class `Runner` is now responsible for running commands
+   either in the host or in the target system. This is invisible for
+   end-users, but **does** expand the API available to consumers inside
+   Calamares modules. In particular, Python modules can now easily read
+   and respond to command output. #1740
 
 ## Modules ##
- - No module changes yet
+ - *fstab* writes a slightly different message in `/etc/crypttab`
+   about the root filesystem. Since Calamares itself ignores the
+   (previous wording of) message, it was confusing. #1811
+ - *partition* has a number of edge-cases for LVM and LUKS resolved. #1564 #1817
+ - *partition* module once again always offers `/boot` as a mount-point, even
+   when EFI would want `/boot/efi`. (Thanks Phil)
+ - *summary* had a regression and showed some descriptive texts twice.
+
 
 
 # 3.2.45 (2021-10-31) #
