@@ -171,6 +171,7 @@ ZfsJob::exec()
             if ( r.getExitCode() != 0 )
             {
                 cWarning() << "Failed to create dataset" << datasetMap[ "dsName" ].toString();
+                continue;
             }
 
             // Add the dataset to the list for global storage
@@ -184,7 +185,7 @@ ZfsJob::exec()
             gs->insert( "zfs", datasetList );
         }
 
-        // Export the zpool so it can be reimported at the correct local later
+        // Export the zpool so it can be reimported at the correct location later
         auto r = system->runCommand( { "zpool", "export", m_poolName }, std::chrono::seconds( 10 ) );
         if ( r.getExitCode() != 0 )
         {
