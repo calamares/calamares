@@ -7,7 +7,7 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.46 (unreleased) #
+# 3.2.46 (2021-11-09) #
 
 This release contains contributions from (alphabetically by first name):
  - Philip Müller
@@ -23,11 +23,15 @@ This release contains contributions from (alphabetically by first name):
  - *fstab* writes a slightly different message in `/etc/crypttab`
    about the root filesystem. Since Calamares itself ignores the
    (previous wording of) message, it was confusing. #1811
+ - *packages* module has some support for reporting progress while
+   the packages are installed. This depends on the package-manager itself
+   reporting useful progress information **and** the *packages* module having
+   support-code to interpret that progress. A proof-of-concept for `pacman`
+   has been implemented. #1582
  - *partition* has a number of edge-cases for LVM and LUKS resolved. #1564 #1817
  - *partition* module once again always offers `/boot` as a mount-point, even
    when EFI would want `/boot/efi`. (Thanks Phil)
  - *summary* had a regression and showed some descriptive texts twice.
-
 
 
 # 3.2.45 (2021-10-31) #
