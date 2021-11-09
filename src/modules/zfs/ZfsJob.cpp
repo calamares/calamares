@@ -183,6 +183,13 @@ ZfsJob::exec()
         {
             gs->insert( "zfs", datasetList );
         }
+
+        // Export the zpool so it can be reimported at the correct local later
+        auto r = system->runCommand( { "zpool", "export", m_poolName }, std::chrono::seconds( 10 ) );
+        if ( r.getExitCode() != 0 )
+        {
+            cWarning() << "Failed to export pool" << m_poolName;
+        }
     }
 
     return Calamares::JobResult::ok();
