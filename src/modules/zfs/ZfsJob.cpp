@@ -101,6 +101,8 @@ ZfsJob::exec()
 
     const CalamaresUtils::System* system = CalamaresUtils::System::instance();
 
+    QVariantList poolNames;
+
     for ( auto& partition : qAsConst( partitions ) )
     {
         QVariantMap pMap;
@@ -130,15 +132,48 @@ ZfsJob::exec()
             continue;
         }
 
+        QString mountpoint = pMap[ "mountPoint" ].toString();
+        if ( mountpoint.isEmpty() )
+        {
+            continue;
+        }
+
+        // Build a poolname off the mountpoint, this is not ideal but should work until there is UI built for zfs
+        QString poolName = m_poolName;
+        if ( mountpoint != '/' )
+        {
+            QString suffix = mountpoint;
+            poolName += suffix.remove( QRegExp( "[^a-zA-Z\\d\\s]" ) );
+        }
+
+        if ( !gs->contains( "zfsInfo" ) && gs->value( "zfsInfo" ).canConvert( QVariant::List ) )
+        {
+            return Calamares::JobResult::error( tr( "Internal data missing" ), tr( "Failed to create zpool" ) );
+        }
+
+        QVariantList zfsInfoList = gs->value( "zfsInfo" ).toList();
+
+        bool encrypt = false;
+        QString passphrase;
+        for ( const QVariant& zfsInfo : qAsConst( zfsInfoList ) )
+        {
+            if ( zfsInfo.canConvert( QVariant::Map ) && zfsInfo.toMap().value( "encrypted" ).toBool()
+                 && mountpoint == zfsInfo.toMap().value( "mountpoint" ) )
+            {
+                encrypt = true;
+                passphrase = zfsInfo.toMap().value( "passphrase" ).toString();
+            }
+        }
+
         ZfsResult zfsResult;
-        if ( gs->contains( "encryptphrase" ) )
+        if ( encrypt )
         {
             zfsResult
-                = CreateZpool( deviceName, m_poolName, m_poolOptions, true, gs->value( "encryptphrase" ).toString() );
+                = CreateZpool( deviceName, poolName, m_poolOptions, true, passphrase );
         }
         else
         {
-            zfsResult = CreateZpool( deviceName, m_poolName, m_poolOptions, false );
+            zfsResult = CreateZpool( deviceName, poolName, m_poolOptions, false );
         }
 
         if ( !zfsResult.success )
@@ -146,51 +181,86 @@ ZfsJob::exec()
             return Calamares::JobResult::error( tr( "Failed to create zpool" ), zfsResult.failureMessage );
         }
 
-        // Create the datasets
-        QVariantList datasetList;
-        for ( const auto& dataset : qAsConst( m_datasets ) )
-        {
-            QVariantMap datasetMap = dataset.toMap();
+        // Add the poolname, dataset name and mountpoint to the list
+        QVariantMap poolNameEntry;
+        poolNameEntry["poolName"] = poolName;
+        poolNameEntry["mountpoint"] = mountpoint;
+        poolNameEntry["dsName"] = "none";
 
-            // Make sure all values are valid
-            if ( datasetMap[ "dsName" ].toString().isEmpty() || datasetMap[ "mountpoint" ].toString().isEmpty()
-                 || datasetMap[ "canMount" ].toString().isEmpty() )
+
+        if ( mountpoint == '/' )
+        {
+            // Create the datasets
+            QVariantList datasetList;
+            for ( const auto& dataset : qAsConst( m_datasets ) )
             {
-                cWarning() << "Bad dataset entry";
-                continue;
+                QVariantMap datasetMap = dataset.toMap();
+
+                // Make sure all values are valid
+                if ( datasetMap[ "dsName" ].toString().isEmpty() || datasetMap[ "mountpoint" ].toString().isEmpty()
+                     || datasetMap[ "canMount" ].toString().isEmpty() )
+                {
+                    cWarning() << "Bad dataset entry";
+                    continue;
+                }
+
+                // Create the dataset.  We set canmount=no regardless of the setting for now.
+                // It is modified to the correct value in the mount module to ensure mount order is maintained
+                auto r = system->runCommand( { "sh",
+                                               "-c",
+                                               "zfs create " + m_datasetOptions + " -o canmount=off -o mountpoint="
+                                                   + datasetMap[ "mountpoint" ].toString() + " " + poolName + "/"
+                                                   + datasetMap[ "dsName" ].toString() },
+                                             std::chrono::seconds( 10 ) );
+                if ( r.getExitCode() != 0 )
+                {
+                    cWarning() << "Failed to create dataset" << datasetMap[ "dsName" ].toString();
+                    continue;
+                }
+
+                // Add the dataset to the list for global storage
+                datasetMap[ "zpool" ] = m_poolName;
+                datasetList.append( datasetMap );
             }
 
+            // If the list isn't empty, add it to global storage
+            if ( !datasetList.isEmpty() )
+            {
+                gs->insert( "zfsDatasets", datasetList );
+            }
+        }
+        else
+        {
             // Create the dataset.  We set canmount=no regardless of the setting for now.
             // It is modified to the correct value in the mount module to ensure mount order is maintained
+            QString dsName = mountpoint;
+            dsName.remove( QRegExp( "[^a-zA-Z\\d\\s]" ) );
             auto r = system->runCommand( { "sh",
                                            "-c",
                                            "zfs create " + m_datasetOptions + " -o canmount=off -o mountpoint="
-                                               + datasetMap[ "mountpoint" ].toString() + " " + m_poolName + "/"
-                                               + datasetMap[ "dsName" ].toString() },
+                                               + mountpoint + " " + poolName + "/"
+                                               + dsName },
                                          std::chrono::seconds( 10 ) );
             if ( r.getExitCode() != 0 )
             {
-                cWarning() << "Failed to create dataset" << datasetMap[ "dsName" ].toString();
-                continue;
+                cWarning() << "Failed to create dataset" << dsName;
             }
-
-            // Add the dataset to the list for global storage
-            datasetMap[ "zpool" ] = m_poolName;
-            datasetList.append( datasetMap );
+            poolNameEntry["dsName"] = dsName;
         }
 
-        // If the list isn't empty, add it to global storage
-        if ( !datasetList.isEmpty() )
-        {
-            gs->insert( "zfs", datasetList );
-        }
+        poolNames.append(poolNameEntry);
 
         // Export the zpool so it can be reimported at the correct location later
-        auto r = system->runCommand( { "zpool", "export", m_poolName }, std::chrono::seconds( 10 ) );
+        auto r = system->runCommand( { "zpool", "export", poolName }, std::chrono::seconds( 10 ) );
         if ( r.getExitCode() != 0 )
         {
             cWarning() << "Failed to export pool" << m_poolName;
         }
+    }
+
+    if (!poolNames.isEmpty())
+    {
+        gs->insert("zfsPoolInfo", poolNames);
     }
 
     return Calamares::JobResult::ok();
