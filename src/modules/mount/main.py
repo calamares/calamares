@@ -118,7 +118,6 @@ def mount_partition(root_mount_point, partition, partitions):
             raise Exception("Internal error mounting zfs datasets")
 
         for zfs_pool in zfs_pool_list:
-            libcalamares.utils.warning("Poolname: " + zfs_pool["poolName"] + " mountpoint: " + zfs_pool["mountpoint"])
             if zfs_pool["mountpoint"] == partition["mountPoint"]:
                 pool_name = zfs_pool["poolName"]
                 ds_name = zfs_pool["dsName"];
