@@ -196,7 +196,7 @@ class FstabGenerator(object):
                         dct = self.generate_fstab_line_info(mount_entry)
                         if dct:
                                 self.print_fstab_line(dct, file=fstab_file)
-                else:
+                elif partition["fs"] != "zfs":  # zfs partitions don't need an entry in fstab
                     dct = self.generate_fstab_line_info(partition)
                     if dct:
                         self.print_fstab_line(dct, file=fstab_file)
