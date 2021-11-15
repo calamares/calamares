@@ -859,7 +859,8 @@ class DMgreetd(DisplayManager):
 
         self.config_data['terminal'] = dict(vt = "next")
 
-        if not os.path.exists(self.config_data['default_session']):
+        default_session_group = self.config_data.get('default_session', None)
+        if not default_session_group:
             self.config_data['default_session'] = {}
 
         self.config_data['default_session']['user'] = self.greeter_user
