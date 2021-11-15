@@ -855,7 +855,8 @@ class DMgreetd(DisplayManager):
         import toml
 
         if (os.path.exists(self.config_path())):
-            self.config_data = toml.loads(self.config_path())
+            with open(self.config_path(), "r") as f:
+                self.config_data = toml.load(f)
 
         self.config_data['terminal'] = dict(vt = "next")
 
@@ -869,7 +870,8 @@ class DMgreetd(DisplayManager):
 
     def config_write(self):
         import toml
-        toml.dump(self.config_data, self.config_path())
+        with open(self.config_path(), "w") as f:
+            toml.dump(self.config_data, f)
 
     def basic_setup(self):
         if libcalamares.utils.target_env_call(
