@@ -108,14 +108,32 @@ def get_zfs_root():
     # Find the root dataset
     for dataset in zfs:
         try:
-            if dataset['mountpoint'] == '/':
+            if dataset["mountpoint"] == "/":
                 return dataset["zpool"] + "/" + dataset["dsname"]
         except KeyError:
             # This should be impossible
-            libcalamares.utils.error("Internal error handling zfs dataset")
+            libcalamares.utils.warning("Internal error handling zfs dataset")
             raise
 
     return None
+
+
+def is_btrfs_root(partition):
+    """ Returns True if the partition object refers to a btrfs root filesystem
+
+    :param partition: A partition map from global storage
+    :return: True if btrfs and root, False otherwise
+    """
+    return partition["mountPoint"] == "/" and partition["fs"] == "btrfs"
+
+
+def is_zfs_root(partition):
+    """ Returns True if the partition object refers to a zfs root filesystem
+
+    :param partition: A partition map from global storage
+    :return: True if zfs and root, False otherwise
+    """
+    return partition["mountPoint"] == "/" and partition["fs"] == "zfs"
 
 
 def create_systemd_boot_conf(install_path, efi_dir, uuid, entry, entry_name, kernel_type):
@@ -162,17 +180,18 @@ def create_systemd_boot_conf(install_path, efi_dir, uuid, entry, entry_name, ker
     for partition in partitions:
         # systemd-boot with a BTRFS root filesystem needs to be told
         # about the root subvolume.
-        if partition["mountPoint"] == "/" and partition["fs"] == "btrfs":
+        if is_btrfs_root(partition):
             kernel_params.append("rootflags=subvol=@")
 
         # zfs needs to be told the location of the root dataset
-        if partition["mountPoint"] == "/" and partition["fs"] == "zfs":
-            zfs_root = get_zfs_root
-            if zfs_root is not None:
-                kernel_params.append("root=ZFS=" + zfs_root)
+        if is_zfs_root(partition):
+            zfs_root_path = get_zfs_root()
+            if zfs_root_path is not None:
+                kernel_params.append("root=ZFS=" + zfs_root_path)
             else:
                 # Something is really broken if we get to this point
-                libcalamares.utils.error("Internal error handling zfs dataset")
+                libcalamares.utils.warning("Internal error handling zfs dataset")
+                raise Exception("Internal zfs data missing, please contact your distribution")
 
     if cryptdevice_params:
         kernel_params.extend(cryptdevice_params)
@@ -363,14 +382,8 @@ def run_grub_mkconfig(output_file):
         libcalamares.utils.error("Failed to run grub-mkconfig, no partitions defined in global storage")
         return
 
-    # check for zfs
-    is_zfs = False
-    for partition in partitions:
-        if partition["mountPoint"] == "/" and partition["fs"] == "zfs":
-            is_zfs = True
-
     # zfs needs an environment variable set for grub-mkconfig
-    if is_zfs:
+    if any([is_zfs_root(partition) for partition in partitions]):
         check_target_env_call(["sh", "-c", "echo ZPOOL_VDEV_NAME_PATH=1 >> /etc/environment"])
         check_target_env_call(["sh", "-c", "ZPOOL_VDEV_NAME_PATH=1 " +
                                libcalamares.job.configuration["grubMkconfig"] + " -o " + output_file])
