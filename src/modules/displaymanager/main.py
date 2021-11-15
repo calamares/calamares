@@ -17,7 +17,6 @@
 
 import abc
 import os
-import toml
 import libcalamares
 
 from libcalamares.utils import gettext_path, gettext_languages
@@ -853,6 +852,8 @@ class DMgreetd(DisplayManager):
         return self.os_path("etc/greetd/environments")
 
     def config_load(self):
+        import toml
+
         if (os.path.exists(self.config_path)):
             self.config_data = toml.loads(self.config_path())
 
@@ -866,6 +867,7 @@ class DMgreetd(DisplayManager):
         return self.config_data
 
     def config_write(self):
+        import toml
         toml.dump(self.config_data, self.config_path())
 
     def basic_setup(self):
