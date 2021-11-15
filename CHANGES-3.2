@@ -7,6 +7,29 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
+# 3.2.47 (unreleased) #
+
+This release contains contributions from (alphabetically by first name):
+ - Evan James
+
+## Core ##
+ - The translation for Sinhala (`si`) has reached 100%. Thank you to
+   හෙළබස and Sandaruwan, translators for Sinhala, for special effort
+   in completing that translation.
+
+## Modules ##
+ - *finishedq* now has an extra example QML file that builds the UI in
+   a different fashion, demonstrating how a mobile-OS customization of
+   Calamares would present the "all done" message.
+ - *fstab* has an example configuration file that mentioned `space_cache`
+   as an option. Since 2014 there was only one possible value, so this
+   option matched the default-and-only value. Newer kernels with newer
+   btrfs versions have a `v2` option value as well. Remove the example
+   option, since the kernel automatically picks the right value, while
+   setting it to the wrong one may prevent the system from booting.
+   (Thanks Evan)
+
+
 # 3.2.46 (2021-11-09) #
 
 This release contains contributions from (alphabetically by first name):
