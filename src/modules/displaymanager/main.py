@@ -17,7 +17,7 @@
 
 import abc
 import os
-import re
+import toml
 import libcalamares
 import configparser
 
@@ -833,6 +833,84 @@ class DMsddm(DisplayManager):
 
     def greeter_setup(self):
         pass
+
+
+class DMgreetd(DisplayManager):
+    name = "greetd"
+    executable = "greetd"
+    greeter_user = "greeter"
+    greeter_group = "greetd"
+    config_data = {}
+
+    def os_path(self, path):
+        return os.path.join(self.root_mount_point, path)
+
+    def config_path(self):
+        return self.os_path("etc/greetd/config.toml")
+
+    def environments_path(self):
+        return self.os_path("etc/greetd/environments")
+
+    def config_load(self):
+        if (os.path.exists(self.config_path)):
+            self.config_data = toml.loads(self.config_path())
+
+        self.config_data['terminal'] = dict(vt = "next")
+
+        if not os.path.exists(self.config_data['default_session']):
+            self.config_data['default_session'] = {}
+
+        self.config_data['default_session']['user'] = self.greeter_user
+
+        return self.config_data
+
+    def config_write(self):
+        toml.dump(self.config_data, self.config_path())
+
+    def basic_setup(self):
+        if libcalamares.utils.target_env_call(
+                ['getent', 'group', self.greeter_group]
+                ) != 0:
+            libcalamares.utils.target_env_call(
+                ['groupadd', self.greeter_group]
+                )
+
+        if libcalamares.utils.target_env_call(
+                ['getent', 'passwd', self.greeter_user]
+                ) != 0:
+            libcalamares.utils.target_env_call(
+                ['useradd',
+                    '-c', '"Greeter User"',
+                    '-g', self.greeter_group,
+                    '-s', '/bin/bash',
+                    self.greeter_user
+                    ]
+                )
+
+    def desktop_environment_setup(self, default_desktop_environment):
+        with open(self.environments_path(), 'w') as envs_file:
+            envs_file.write(default_desktop_environment)
+
+    def greeter_setup(self):
+        pass
+
+    def set_autologin(self, username, do_autologin, default_desktop_environment):
+        self.config_load()
+
+        if os.path.exists(self.os_path("usr/bin/gtkgreed")) and os.path.exists(self.os_path("usr/bin/cage")):
+            self.config_data['default_session']['command'] = "cage -s -- gtkgreet"
+        elif os.path.exists(self.os_path("usr/bin/tuigreet")):
+            tuigreet_base_cmd = "tuigreet --remember --time --issue --asterisks --cmd "
+            self.config_data['default_session']['command'] = tuigreet_base_cmd + default_desktop_environment
+        elif os.path.exists(self.os_path("usr/bin/ddlm")):
+            self.config_data['default_session']['command'] = "ddlm --target " + default_desktop_environment
+        else:
+            self.config_data['default_session']['command'] = "agreety --cmd " + default_desktop_environment
+
+        if do_autologin == True:
+            self.config_data['initial_session'] = dict(command = default_desktop_environment, user = username)
+
+        self.config_write()
 
 
 class DMsysconfig(DisplayManager):
