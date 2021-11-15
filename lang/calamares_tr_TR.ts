@@ -690,27 +690,27 @@ Yükleyiciden çıkınca tüm değişiklikler kaybedilecek.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="259"/>
       <source>Successfully unmounted %1.</source>
-      <translation type="unfinished"/>
+      <translation>%1 bağlantısı başarıyla kaldırıldı.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="266"/>
       <source>Successfully disabled swap %1.</source>
-      <translation type="unfinished"/>
+      <translation>%1 takas alanı başarıyla devre dışı bırakıldı.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="292"/>
       <source>Successfully cleared swap %1.</source>
-      <translation type="unfinished"/>
+      <translation>%1 takas alanı başarıyla temizlendi.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="306"/>
       <source>Successfully closed mapper device %1.</source>
-      <translation type="unfinished"/>
+      <translation>%1 eşleyici aygıtı başarıyla kapatıldı.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="319"/>
       <source>Successfully disabled volume group %1.</source>
-      <translation type="unfinished"/>
+      <translation>%1 birim grubu başarıyla devre dışı bırakıldı.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="358"/>
@@ -862,17 +862,17 @@ Kurulum devam edebilir fakat bazı özellikler devre dışı kalabilir.</transla
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="251"/>
       <source>&lt;h1&gt;Welcome to %1 setup&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;%1 kurulumuna hoşgeldiniz&lt;/h1&gt;</translation>
+      <translation>&lt;h1&gt;%1 kurulumuna hoş geldiniz&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="255"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;%1 Calamares Sistem Yükleyiciye Hoşgeldiniz&lt;/h1&gt;</translation>
+      <translation>&lt;h1&gt;%1 Calamares Sistem Yükleyiciye Hoş Geldiniz&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="256"/>
       <source>&lt;h1&gt;Welcome to the %1 installer&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;%1 Sistem Yükleyiciye Hoşgeldiniz&lt;/h1&gt;</translation>
+      <translation>&lt;h1&gt;%1 Sistem Yükleyiciye Hoş Geldiniz&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="217"/>
@@ -3978,7 +3978,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="217"/>
       <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;%1 Kurulumuna Hoşgeldiniz.&lt;/h1&gt;</translation>
+      <translation>&lt;h1&gt;%1 Kurulumuna Hoş Geldiniz.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="222"/>
@@ -4016,7 +4016,7 @@ Output:
     <message>
       <location filename="../src/modules/welcomeq/WelcomeQmlViewStep.cpp" line="40"/>
       <source>Welcome</source>
-      <translation>Hoşgeldiniz</translation>
+      <translation>Hoş geldiniz</translation>
     </message>
   </context>
   <context>
@@ -4024,7 +4024,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="46"/>
       <source>Welcome</source>
-      <translation>Hoşgeldiniz</translation>
+      <translation>Hoş geldiniz</translation>
     </message>
   </context>
   <context>

@@ -689,27 +689,27 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="259"/>
       <source>Successfully unmounted %1.</source>
-      <translation type="unfinished"/>
+      <translation>%1 සාර්ථකව ඉවත් කරන ලදී.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="266"/>
       <source>Successfully disabled swap %1.</source>
-      <translation type="unfinished"/>
+      <translation>swap % 1 සාර්ථකව අක්‍රීය කරන ලදී.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="292"/>
       <source>Successfully cleared swap %1.</source>
-      <translation type="unfinished"/>
+      <translation>swap %1 සාර්ථකව හිස් කරන ලදී.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="306"/>
       <source>Successfully closed mapper device %1.</source>
-      <translation type="unfinished"/>
+      <translation>සිතියම් උපාංගය %1 සාර්ථකව වසා ඇත.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="319"/>
       <source>Successfully disabled volume group %1.</source>
-      <translation type="unfinished"/>
+      <translation>%1 වෙළුම් සමූහය සාර්ථකව ක්‍රියා කරයි.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="358"/>
@@ -1315,17 +1315,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="121"/>
       <source>&lt;br&gt;&lt;br&gt;This is the recommended partition table type for modern systems which start from an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;br&gt;&lt;br&gt;&lt;strong&gt;EFI&lt;/strong&gt; ඇරඹුම් පරිසරයකින් ආරම්භ වන නවීන පද්ධති සඳහා නිර්දේශිත කොටස් වගු වර්ගය මෙයයි.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="127"/>
       <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. GPT is recommended in most other cases.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MBR partition table is an obsolete MS-DOS era standard.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;br&gt;&lt;br&gt;මෙම කොටස් වගු වර්ගය සුදුසු වන්නේ &lt;strong&gt;BIOS&lt;/strong&gt; ඇරඹුම් පරිසරයකින් ආරම්භ වන පැරණි පද්ධති සඳහා පමණි. අනෙකුත් බොහෝ අවස්ථාවන්හිදී GPT නිර්දේශ කෙරේ. &lt;br&gt;&lt;br&gt;&lt;strong&gt;අවවාදයයි:&lt;/strong&gt; MBR කොටස් වගුව යල් පැන ගිය MS-DOS යුගයේ සම්මතයකි. &lt;br&gt;&lt;em&gt;ප්‍රධාන&lt;/em&gt; කොටස් 4ක් පමණක් සෑදිය හැකි අතර, එම 4න් එකක් &lt;strong&gt;දීර්ඝ&lt;/strong&gt; කළ කොටසක් විය හැක, එහි බොහෝ &lt;strong&gt;තාර්කික&lt;/strong&gt; කොටස් අඩංගු විය හැක.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="140"/>
       <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-      <translation type="unfinished"/>
+      <translation>තෝරාගත් ගබඩා උපාංගයේ &lt;strong&gt;කොටස් වගුවේ&lt;/strong&gt; වර්ගය. &lt;br&gt;කොටස් වගු වර්ගය වෙනස් කිරීමට ඇති එකම ක්‍රමය නම් ගබඩා උපාංගයේ ඇති සියලුම දත්ත විනාශ කරන කොටස් වගුව මුල සිට මකා ප්‍රතිනිර්මාණය කිරීමයි. &lt;br&gt;මෙම ස්ථාපකය ඔබ වෙනත් ආකාරයකින් තෝරා ගන්නේ නම් මිස වත්මන් කොටස් වගුව තබා ගනී. &lt;br&gt;විශ්වාස නැත්නම්, නවීන පද්ධති GPT මත මනාප වේ.</translation>
     </message>
   </context>
   <context>
@@ -1348,17 +1348,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="117"/>
       <source>Write LUKS configuration for Dracut to %1</source>
-      <translation type="unfinished"/>
+      <translation>Dracut සඳහා LUKS වින්‍යාසය %1 වෙත ලියන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="121"/>
       <source>Skip writing LUKS configuration for Dracut: "/" partition is not encrypted</source>
-      <translation type="unfinished"/>
+      <translation>Dracut සඳහා LUKS වින්‍යාසය ලිවීම මඟ හරින්න: "/" කොටස සංකේතනය කර නොමැත</translation>
     </message>
     <message>
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="138"/>
       <source>Failed to open %1</source>
-      <translation type="unfinished"/>
+      <translation>%1 විවෘත කිරීමට අසමත් විය</translation>
     </message>
   </context>
   <context>
@@ -1366,7 +1366,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/dummycpp/DummyCppJob.cpp" line="37"/>
       <source>Dummy C++ Job</source>
-      <translation type="unfinished"/>
+      <translation>ව්‍යාජ C++ ක්‍රියවලියක්</translation>
     </message>
   </context>
   <context>
@@ -1374,27 +1374,27 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="24"/>
       <source>Edit Existing Partition</source>
-      <translation type="unfinished"/>
+      <translation>පවතින කොටසක් සංස්කරණය කරන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="54"/>
       <source>Content:</source>
-      <translation type="unfinished"/>
+      <translation>අන්තර්ගතය:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="64"/>
       <source>&amp;Keep</source>
-      <translation type="unfinished"/>
+      <translation>තබා ගන්න (&amp;K)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="74"/>
       <source>Format</source>
-      <translation type="unfinished"/>
+      <translation>මකා දමන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="93"/>
       <source>Warning: Formatting the partition will erase all existing data.</source>
-      <translation type="unfinished"/>
+      <translation>අවවාදයයි: කොටස මැකීමෙන් පවතින සියලුම දත්ත ඉවත්වනු ඇත.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="103"/>
@@ -1447,23 +1447,23 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="36"/>
       <source>En&amp;crypt system</source>
-      <translation type="unfinished"/>
+      <translation>පද්ධතිය සංකේතනය (&amp;C) කරන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="46"/>
       <source>Passphrase</source>
-      <translation type="unfinished"/>
+      <translation>මුරපදය</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="56"/>
       <source>Confirm passphrase</source>
-      <translation type="unfinished"/>
+      <translation>මුරපදය තහවුරු කරන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="104"/>
       <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="114"/>
       <source>Please enter the same passphrase in both boxes.</source>
-      <translation type="unfinished"/>
+      <translation>කරුණාකර කොටු දෙකෙහිම එකම මුර-වැකිකඩ ඇතුලත් කරන්න.</translation>
     </message>
   </context>
   <context>
@@ -1471,57 +1471,57 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="167"/>
       <source>Set partition information</source>
-      <translation type="unfinished"/>
+      <translation>කොටස් තොරතුරු සකසන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="196"/>
       <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition with features &lt;em&gt;%3&lt;/em&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%3&lt;/strong&gt; විශේෂාංග සහිත &lt;strong&gt;නව&lt;/strong&gt; %2 පද්ධති කොටසේ %1 ස්ථාපනය කරන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="204"/>
       <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;නව&lt;/strong&gt; %2 පද්ධති කොටසෙහි %1 ස්ථාපනය කරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="213"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt; and features &lt;em&gt;%3&lt;/em&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;නව&lt;/strong&gt; %2 කොටස සවිකිරීමේ ලක්ෂ්‍යය &lt;strong&gt;%1&lt;/strong&gt; සහ විශේෂාංග &lt;strong&gt;%3&lt;/strong&gt; සමඟ සකසන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="221"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;%3.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;නව&lt;/strong&gt; %2 කොටස සවිකිරීමේ ලක්ෂ්‍යය &lt;strong&gt;%1&lt;/strong&gt;%3 සමඟ සකසන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="235"/>
       <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt; with features &lt;em&gt;%4&lt;/em&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%4&lt;/strong&gt; විශේෂාංග සහිත %3 පද්ධති කොටස &lt;strong&gt;%1&lt;/strong&gt; මත %2 ස්ථාපනය කරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="254"/>
       <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt; and features &lt;em&gt;%4&lt;/em&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>%3 කොටස සකසන්න &lt;strong&gt;%1&lt;/strong&gt; සවිකිරීමේ ලක්ෂ්‍යය &lt;strong&gt;%2&lt;/strong&gt; සහ විශේෂාංග &lt;strong&gt;%4&lt;/strong&gt; සමඟින්.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="263"/>
       <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;%4.</source>
-      <translation type="unfinished"/>
+      <translation>%3 කොටස &lt;strong&gt;%1&lt;/strong&gt; සවිකිරීමේ ලක්ෂ්‍යය &lt;strong&gt;%2&lt;/strong&gt;%4 සමඟ සකසන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="244"/>
       <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>%3 පද්ධති කොටස &lt;strong&gt;%1&lt;/strong&gt; මත %2 ස්ථාපනය කරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="278"/>
       <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%1&lt;/strong&gt; මත ඇරඹුම් කාරකය ස්ථාපනය කරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="287"/>
       <source>Setting up mount points.</source>
-      <translation type="unfinished"/>
+      <translation>සවි කිරීම් ස්ථාන සැකසීම.</translation>
     </message>
   </context>
   <context>
@@ -1534,37 +1534,37 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/FinishedPage.ui" line="102"/>
       <source>&amp;Restart now</source>
-      <translation type="unfinished"/>
+      <translation>නැවත ආරම්භ කරන්න (&amp;R)</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="72"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been set up on your computer.&lt;br/&gt;You may now start using your new system.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;සියල්ල සාර්ථකව අවසන් විය&lt;/strong&gt;.&lt;br&gt;%1 ඔබගේ පරිගණකයේ පිහිටුවා ඇත.&lt;br&gt;ඔබට දැන් ඔබගේ නව පද්ධතිය භාවිතා කිරීමට පටන් ගත හැක.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="76"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style="font-style:italic;"&gt;Done&lt;/span&gt; or close the setup program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;මෙම කොටුව සලකුණු කළ විට, ඔබ &lt;strong&gt;Done&lt;/strong&gt; මත ක්ලික් කළ විට හෝ සැකසුම් වැඩසටහන වසා දැමූ විට ඔබේ පද්ධතිය වහාම නැවත ආරම්භ වනු ඇත.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="84"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;සියල්ල සාර්ථකව අවසන් විය&lt;/strong&gt;.&lt;br&gt;%1 ඔබගේ පරිගණකයේ ස්ථාපනය කර ඇත.&lt;br&gt;ඔබට දැන් ඔබගේ නව පද්ධතියට නැවත ආරම්භ කළ හැක, නැතහොත් %2 සජීවී පරිසරය භාවිතා කිරීම දිගටම කරගෙනයා හැක.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="89"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style="font-style:italic;"&gt;Done&lt;/span&gt; or close the installer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;මෙම කොටුව සලකුණු කළ විට, ඔබ &lt;strong&gt;Done&lt;/strong&gt; මත ක්ලික් කළ විට හෝ ස්ථාපක වැඩසටහන වසා දැමූ විට ඔබේ පද්ධතිය වහාම නැවත ආරම්භ වනු ඇත.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="102"/>
       <source>&lt;h1&gt;Setup Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been set up on your computer.&lt;br/&gt;The error message was: %2.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;පිහිටුවීම අසාර්ථක විය&lt;/strong&gt;&lt;br&gt;% 1 ඔබේ පරිගණකයේ පිහිටුවා නැත. &lt;br&gt;දෝෂ පණිවිඩය වූයේ: %2.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="110"/>
       <source>&lt;h1&gt;Installation Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been installed on your computer.&lt;br/&gt;The error message was: %2.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;ස්ථාපනය අසාර්ථක විය&lt;/strong&gt;&lt;br&gt;%1 ඔබේ පරිගණකයේ ස්ථාපනය කර නැත. &lt;br&gt;දෝෂ පණිවිඩය වූයේ: %2.</translation>
     </message>
   </context>
   <context>
@@ -1572,7 +1572,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finishedq/FinishedQmlViewStep.cpp" line="35"/>
       <source>Finish</source>
-      <translation type="unfinished"/>
+      <translation>අවසන්</translation>
     </message>
   </context>
   <context>
@@ -1580,7 +1580,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/FinishedViewStep.cpp" line="46"/>
       <source>Finish</source>
-      <translation type="unfinished"/>
+      <translation>අවසන්</translation>
     </message>
   </context>
   <context>
@@ -1588,22 +1588,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="36"/>
       <source>Format partition %1 (file system: %2, size: %3 MiB) on %4.</source>
-      <translation type="unfinished"/>
+      <translation>%4 මත කොටස %1 (ගොනු පද්ධතිය: %2, ප්‍රමාණය: %3 MiB) ආකෘතිකරණය කරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="47"/>
       <source>Format &lt;strong&gt;%3MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%3MiB&lt;/strong&gt; කොටස &lt;strong&gt;%1&lt;/strong&gt; ගොනු පද්ධතිය &lt;strong&gt;%2&lt;/strong&gt; සමඟ ආකෘති කරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="58"/>
       <source>Formatting partition %1 with file system %2.</source>
-      <translation type="unfinished"/>
+      <translation>%2 ගොනු පද්ධතිය සමඟ %1 කොටස හැඩතල ගැන්වීම.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="72"/>
       <source>The installer failed to format partition %1 on disk '%2'.</source>
-      <translation type="unfinished"/>
+      <translation>ස්ථාපකය '%2' තැටියේ %1 කොටස හැඩතල ගැන්වීමට අසමත් විය.</translation>
     </message>
   </context>
   <context>
@@ -1611,72 +1611,72 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="155"/>
       <source>has at least %1 GiB available drive space</source>
-      <translation type="unfinished"/>
+      <translation>අවම වශයෙන් %1 GiB ලබා ගත හැකි ධාවකයේ ඉඩක් ඇත</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="157"/>
       <source>There is not enough drive space. At least %1 GiB is required.</source>
-      <translation type="unfinished"/>
+      <translation>ප්‍රමාණවත් ධාවන ඉඩක් නොමැත. අවම වශයෙන් %1 GiB අවශ්‍ය වේ.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="166"/>
       <source>has at least %1 GiB working memory</source>
-      <translation type="unfinished"/>
+      <translation>අවම වශයෙන් %1 GiB ක්‍රියාකාරී මතකයක් ඇත</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="168"/>
       <source>The system does not have enough working memory. At least %1 GiB is required.</source>
-      <translation type="unfinished"/>
+      <translation>පද්ධතියට ප්රමාණවත් ක්රියාකාරී මතකයක් නොමැත. අවම වශයෙන් %1 GiB අවශ්‍ය වේ.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="177"/>
       <source>is plugged in to a power source</source>
-      <translation type="unfinished"/>
+      <translation>විදුලි ප්‍රභවයකට සම්බන්ධ කර ඇත</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="178"/>
       <source>The system is not plugged in to a power source.</source>
-      <translation type="unfinished"/>
+      <translation>පද්ධතිය විදුලි ප්‍රභවයකට සම්බන්ධ කර නොමැත.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="185"/>
       <source>is connected to the Internet</source>
-      <translation type="unfinished"/>
+      <translation>අන්තර්ජාලයට සම්බන්ධවී ඇත</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="186"/>
       <source>The system is not connected to the Internet.</source>
-      <translation type="unfinished"/>
+      <translation>පද්ධතිය අන්තර්ජාලයට සම්බන්ධවී නොමැත.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="193"/>
       <source>is running the installer as an administrator (root)</source>
-      <translation type="unfinished"/>
+      <translation>ස්ථාපකය පරිපාලකයෙකු ලෙස ධාවනය කරයි (root)</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="196"/>
       <source>The setup program is not running with administrator rights.</source>
-      <translation type="unfinished"/>
+      <translation>සැකසුම් වැඩසටහන පරිපාලක අයිතිවාසිකම් සමඟ ක්‍රියාත්මක නොවේ.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="197"/>
       <source>The installer is not running with administrator rights.</source>
-      <translation type="unfinished"/>
+      <translation>ස්ථාපකය පරිපාලක අයිතිවාසිකම් සමඟ ක්‍රියාත්මක නොවේ.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="205"/>
       <source>has a screen large enough to show the whole installer</source>
-      <translation type="unfinished"/>
+      <translation>සම්පූර්ණ ස්ථාපකය පෙන්වීමට තරම් විශාල තිරයක් ඇත</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="208"/>
       <source>The screen is too small to display the setup program.</source>
-      <translation type="unfinished"/>
+      <translation>සැකසුම් වැඩසටහන ප්‍රදර්ශනය කිරීමට තිරය කුඩා වැඩිය.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="209"/>
       <source>The screen is too small to display the installer.</source>
-      <translation type="unfinished"/>
+      <translation>ස්ථාපකය වෙත පෙන්වීමට තිරය කුඩා වැඩිය.</translation>
     </message>
   </context>
   <context>
@@ -1684,7 +1684,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/hostinfo/HostInfoJob.cpp" line="42"/>
       <source>Collecting information about your machine.</source>
-      <translation type="unfinished"/>
+      <translation>ඔබගේ යන්ත්‍රය පිළිබඳ තොරතුරු රැස් කරමින් සිටී.</translation>
     </message>
   </context>
   <context>
@@ -1695,22 +1695,22 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/oemid/IDJob.cpp" line="52"/>
       <location filename="../src/modules/oemid/IDJob.cpp" line="59"/>
       <source>OEM Batch Identifier</source>
-      <translation type="unfinished"/>
+      <translation>OEM කණ්ඩායම් හැඳුනුම්කාරකය</translation>
     </message>
     <message>
       <location filename="../src/modules/oemid/IDJob.cpp" line="40"/>
       <source>Could not create directories &lt;code&gt;%1&lt;/code&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;code&gt;%1&lt;/code&gt; ගොනු තැනීමට නොහැකි විය.</translation>
     </message>
     <message>
       <location filename="../src/modules/oemid/IDJob.cpp" line="53"/>
       <source>Could not open file &lt;code&gt;%1&lt;/code&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;code&gt;%1&lt;/code&gt; ගොනුව විවෘත කිරීමට නොහැකි විය.</translation>
     </message>
     <message>
       <location filename="../src/modules/oemid/IDJob.cpp" line="60"/>
       <source>Could not write to file &lt;code&gt;%1&lt;/code&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;code&gt;%1&lt;/code&gt; ගොනුවට ලිවීමට නොහැකි විය.</translation>
     </message>
   </context>
   <context>
@@ -1718,7 +1718,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/initcpio/InitcpioJob.cpp" line="31"/>
       <source>Creating initramfs with mkinitcpio.</source>
-      <translation type="unfinished"/>
+      <translation>mkinitcpio සමඟ initramfs නිර්මාණය කිරීම.</translation>
     </message>
   </context>
   <context>
@@ -1726,7 +1726,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/initramfs/InitramfsJob.cpp" line="28"/>
       <source>Creating initramfs.</source>
-      <translation type="unfinished"/>
+      <translation>initramfs නිර්මාණය කිරීම.</translation>
     </message>
   </context>
   <context>
@@ -1734,17 +1734,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="45"/>
       <source>Konsole not installed</source>
-      <translation type="unfinished"/>
+      <translation>කොන්සෝල් ස්ථාපනය කර නැත</translation>
     </message>
     <message>
       <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="45"/>
       <source>Please install KDE Konsole and try again!</source>
-      <translation type="unfinished"/>
+      <translation>කරුණාකර KDE කොන්සෝල් ස්ථාපනය කර නැවත උත්සාහ කරන්න!</translation>
     </message>
     <message>
       <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="106"/>
       <source>Executing script: &amp;nbsp;&lt;code&gt;%1&lt;/code&gt;</source>
-      <translation type="unfinished"/>
+      <translation>ස්ක්‍රිප්ට් ක්‍රියාත්මක කරමින්: &amp;nbsp;&lt;code&gt;%1&lt;/code&gt;&lt;code&gt;</translation>
     </message>
   </context>
   <context>
@@ -1752,7 +1752,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/interactiveterminal/InteractiveTerminalViewStep.cpp" line="41"/>
       <source>Script</source>
-      <translation type="unfinished"/>
+      <translation>ස්ක්‍රප්ට්</translation>
     </message>
   </context>
   <context>
@@ -1776,12 +1776,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="23"/>
       <source>System locale setting</source>
-      <translation type="unfinished"/>
+      <translation>පද්ධති ස්ථාන සැකසීම</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="30"/>
       <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>පද්ධති පෙදෙසි සැකසුම සමහර විධාන රේඛා පරිශීලක අතුරුමුහුණත් මූලද්‍රව්‍ය සඳහා භාෂාව සහ අක්ෂර කට්ටලයට බලපායි. &lt;br/&gt;වත්මන් සැකසුම &lt;strong&gt;%1&lt;/strong&gt; වේ.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="54"/>
@@ -1791,7 +1791,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="55"/>
       <source>&amp;OK</source>
-      <translation type="unfinished"/>
+      <translation>හරි (&amp;O)</translation>
     </message>
   </context>
   <context>
@@ -1804,37 +1804,37 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/license/LicensePage.ui" line="26"/>
       <source>&lt;h1&gt;License Agreement&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;බලපත්ර එකගතාවය&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="135"/>
       <source>I accept the terms and conditions above.</source>
-      <translation type="unfinished"/>
+      <translation>මම ඉහත නියමයන් සහ කොන්දේසි පිළිගනිමි.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="137"/>
       <source>Please review the End User License Agreements (EULAs).</source>
-      <translation type="unfinished"/>
+      <translation>කරුණාකර අවසන් පරිශීලක බලපත්‍ර ගිවිසුම් (EULAs) සමාලෝචනය කරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="142"/>
       <source>This setup procedure will install proprietary software that is subject to licensing terms.</source>
-      <translation type="unfinished"/>
+      <translation>මෙම සැකසුම් ක්‍රියා පටිපාටිය බලපත්‍ර කොන්දේසි වලට යටත් වන හිමිකාර මෘදුකාංග ස්ථාපනය කරනු ඇත.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="145"/>
       <source>If you do not agree with the terms, the setup procedure cannot continue.</source>
-      <translation type="unfinished"/>
+      <translation>ඔබ නියමයන් සමඟ එකඟ නොවන්නේ නම්, සැකසුම් ක්‍රියා පටිපාටිය දිගටම කරගෙන යා නොහැක.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="150"/>
       <source>This setup procedure can install proprietary software that is subject to licensing terms in order to provide additional features and enhance the user experience.</source>
-      <translation type="unfinished"/>
+      <translation>මෙම සැකසුම් ක්‍රියා පටිපාටියට අමතර විශේෂාංග සැපයීමට සහ පරිශීලක අත්දැකීම වැඩිදියුණු කිරීමට බලපත්‍ර නියමයන්ට යටත් වන හිමිකාර මෘදුකාංග ස්ථාපනය කළ හැක.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="155"/>
       <source>If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
-      <translation type="unfinished"/>
+      <translation>ඔබ නියමයන් සමඟ එකඟ නොවන්නේ නම්, හිමිකාර මෘදුකාංග ස්ථාපනය නොකරනු ඇති අතර, ඒ වෙනුවට විවෘත මූලාශ්‍ර විකල්ප භාවිතා කරනු ඇත.</translation>
     </message>
   </context>
   <context>
@@ -1856,33 +1856,33 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="109"/>
       <source>&lt;strong&gt;%1 driver&lt;/strong&gt;&lt;br/&gt;by %2</source>
       <extracomment>%1 is an untranslatable product name, example: Creative Audigy driver</extracomment>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%1 ධාවකය&lt;/strong&gt;&lt;br/&gt;%2 කින්</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="116"/>
       <source>&lt;strong&gt;%1 graphics driver&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
       <extracomment>%1 is usually a vendor name, example: Nvidia graphics driver</extracomment>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%1 චිත්‍රක ධාවකය&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;%2 කින්&lt;/font&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="122"/>
       <source>&lt;strong&gt;%1 browser plugin&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%1 බ්‍රවුසර ප්ලගිනය&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt; %2 කින්&lt;/font&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="128"/>
       <source>&lt;strong&gt;%1 codec&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%1 කෝඩෙක්&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;%2 කින්&lt;/font&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="134"/>
       <source>&lt;strong&gt;%1 package&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%1 පැකේජය&lt;/strong&gt;&lt;br&gt;&lt;font color="Grey"&gt;%2 කින්&lt;/font&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="140"/>
       <source>&lt;strong&gt;%1&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%1&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;%2 කින්&lt;/font&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="163"/>
@@ -1892,17 +1892,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="186"/>
       <source>Hide license text</source>
-      <translation type="unfinished"/>
+      <translation>බලපත්‍ර පෙළ සඟවන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="186"/>
       <source>Show the license text</source>
-      <translation type="unfinished"/>
+      <translation>බලපත්ර පාඨය පෙන්වන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="190"/>
       <source>Open license agreement in browser.</source>
-      <translation type="unfinished"/>
+      <translation>බ්‍රවුසරයේ බලපත්‍ර ගිවිසුම විවෘත කරන්න.</translation>
     </message>
   </context>
   <context>
@@ -1910,12 +1910,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/locale/LocalePage.cpp" line="130"/>
       <source>Region:</source>
-      <translation type="unfinished"/>
+      <translation>කලාපයේ:</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LocalePage.cpp" line="131"/>
       <source>Zone:</source>
-      <translation type="unfinished"/>
+      <translation>කලාපය:</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LocalePage.cpp" line="132"/>
@@ -1953,35 +1953,35 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="30"/>
       <source>Configuring LUKS key file.</source>
-      <translation type="unfinished"/>
+      <translation>LUKS යතුරු ගොනුව වින්‍යාස කරමින්.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="186"/>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="194"/>
       <source>No partitions are defined.</source>
-      <translation type="unfinished"/>
+      <translation>කොටස් නිර්වචනය කර නොමැත.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="229"/>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="236"/>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="244"/>
       <source>Encrypted rootfs setup error</source>
-      <translation type="unfinished"/>
+      <translation>සංකේතනය කරන ලද rootfs පිහිටුවීමේ දෝෂයකි</translation>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="230"/>
       <source>Root partition %1 is LUKS but no passphrase has been set.</source>
-      <translation type="unfinished"/>
+      <translation>මූල කොටස %1 LUKS වන නමුත් මුර-වැකිකඩක් සකසා නොමැත.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="237"/>
       <source>Could not create LUKS key file for root partition %1.</source>
-      <translation type="unfinished"/>
+      <translation>මූල කොටස %1 සඳහා LUKS යතුරු ගොනුව සෑදිය නොහැක.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="245"/>
       <source>Could not configure LUKS key file on partition %1.</source>
-      <translation type="unfinished"/>
+      <translation>%1 කොටසේ LUKS යතුරු ගොනුව වින්‍යාස කිරීමට නොහැකි විය.</translation>
     </message>
   </context>
   <context>
@@ -1989,17 +1989,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="37"/>
       <source>Generate machine-id.</source>
-      <translation type="unfinished"/>
+      <translation>යන්ත්‍ර හැඳුනුම්පත ජනනය කරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="53"/>
       <source>Configuration Error</source>
-      <translation type="unfinished"/>
+      <translation>වින්‍යාස දෝෂය</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="54"/>
       <source>No root mount point is set for MachineId.</source>
-      <translation type="unfinished"/>
+      <translation>MachineId සඳහා root mount point එකක් සකසා නැත.</translation>
     </message>
   </context>
   <context>
@@ -2007,14 +2007,16 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/localeq/Map.qml" line="243"/>
       <source>Timezone: %1</source>
-      <translation type="unfinished"/>
+      <translation>වේලා කලාපය:% 1</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Map.qml" line="264"/>
       <source>Please select your preferred location on the map so the installer can suggest the locale
             and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
             to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</source>
-      <translation type="unfinished"/>
+      <translation>කරුණාකර ස්ථාපකයට පෙදෙසිය යෝජනා කළ හැකි වන පරිදි සිතියමේ ඔබ කැමති ස්ථානය තෝරන්න
+                 සහ ඔබ සඳහා වේලා කලාප සැකසීම්. ඔබට පහත යෝජිත සැකසුම් මනාව සකස් කළ හැක. ඇදගෙන යාමෙන් සිතියම සොයන්න
+                 චලනය කිරීමට සහ විශාලනය කිරීමට හෝ විශාලනය කිරීම සඳහා මූසික අනුචලනය භාවිතා කිරීමට +/- බොත්තම් භාවිතා කරන්න.</translation>
     </message>
   </context>
   <context>
@@ -2052,7 +2054,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="55"/>
       <source>Kernel</source>
-      <translation type="unfinished"/>
+      <translation>කර්නලය</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="56"/>
@@ -2062,12 +2064,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="57"/>
       <source>Login</source>
-      <translation type="unfinished"/>
+      <translation>පිවිසෙන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="58"/>
       <source>Desktop</source>
-      <translation type="unfinished"/>
+      <translation>ඩෙස්ක්ටොප්</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="59"/>
@@ -2102,17 +2104,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="65"/>
       <source>Theming</source>
-      <translation type="unfinished"/>
+      <translation>තේමා කිරීම</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="66"/>
       <source>Gaming</source>
-      <translation type="unfinished"/>
+      <translation>පරිගණක ක්රීඩා</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="67"/>
       <source>Utilities</source>
-      <translation type="unfinished"/>
+      <translation>උපයෝගිතා</translation>
     </message>
   </context>
   <context>
@@ -2128,17 +2130,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/oemid/OEMPage.ui" line="32"/>
       <source>Ba&amp;tch:</source>
-      <translation type="unfinished"/>
+      <translation>කණ්ඩායම(&amp;t):</translation>
     </message>
     <message>
       <location filename="../src/modules/oemid/OEMPage.ui" line="42"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter a batch-identifier here. This will be stored in the target system.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;මෙහි batch-identifier එකක් ඇතුළු කරන්න. මෙය ඉලක්ක පද්ධතිය තුළ ගබඩා කරනු ලැබේ.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/oemid/OEMPage.ui" line="52"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;h1&gt;OEM Configuration&lt;/h1&gt;&lt;p&gt;Calamares will use OEM settings while configuring the target system.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;h1&gt;OEM වින්‍යාසය&lt;/h1&gt;&lt;p&gt;Calamares ඉලක්ක පද්ධතිය වින්‍යාස කිරීමේදී OEM සැකසුම් භාවිතා කරනු ඇත.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
   </context>
   <context>
@@ -2146,12 +2148,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/oemid/OEMViewStep.cpp" line="122"/>
       <source>OEM Configuration</source>
-      <translation type="unfinished"/>
+      <translation>OEM වින්‍යාසය</translation>
     </message>
     <message>
       <location filename="../src/modules/oemid/OEMViewStep.cpp" line="128"/>
       <source>Set the OEM Batch Identifier to &lt;code&gt;%1&lt;/code&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>OEM Batch Identifier &lt;code&gt;%1&lt;/code&gt; ලෙස සකසන්න.</translation>
     </message>
   </context>
   <context>
@@ -2159,29 +2161,29 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="41"/>
       <source>Select your preferred Region, or use the default settings.</source>
-      <translation type="unfinished"/>
+      <translation>ඔබ කැමති කලාපය තෝරන්න, නැතහොත් පෙරනිමි සැකසුම් භාවිතා කරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="98"/>
       <location filename="../src/modules/localeq/Offline.qml" line="173"/>
       <location filename="../src/modules/localeq/Offline.qml" line="217"/>
       <source>Timezone: %1</source>
-      <translation type="unfinished"/>
+      <translation>වේලා කලාපය:% 1</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="115"/>
       <source>Select your preferred Zone within your Region.</source>
-      <translation type="unfinished"/>
+      <translation>ඔබ කැමති කලාපය තෝරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="186"/>
       <source>Zones</source>
-      <translation type="unfinished"/>
+      <translation>කලාපය:</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="233"/>
       <source>You can fine-tune Language and Locale settings below.</source>
-      <translation type="unfinished"/>
+      <translation>ඔබට පහත භාෂාව සහ ස්ථාන සැකසීම් මනාව සකස් කළ හැක.</translation>
     </message>
   </context>
   <context>
@@ -2199,80 +2201,80 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="188"/>
       <source>Password is too weak</source>
-      <translation type="unfinished"/>
+      <translation>මුරපදය ඉතා දුර්වලයි</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="196"/>
       <source>Memory allocation error when setting '%1'</source>
-      <translation type="unfinished"/>
+      <translation>'%1' සැකසීමේදී මතකය වෙන් කිරීමේ දෝෂයකි</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="199"/>
       <source>Memory allocation error</source>
-      <translation type="unfinished"/>
+      <translation>මතකය වෙන් කිරීමේ දෝෂයකි</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="201"/>
       <source>The password is the same as the old one</source>
-      <translation type="unfinished"/>
+      <translation>මුරපදය පැරණි එකට සමානයි</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="203"/>
       <source>The password is a palindrome</source>
-      <translation type="unfinished"/>
+      <translation>මුරපදය palindrome වේ</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="205"/>
       <source>The password differs with case changes only</source>
-      <translation type="unfinished"/>
+      <translation>මුරපදය වෙනස් වන්නේ සිද්ධි වෙනස් කිරීම් සමඟ පමණි</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="207"/>
       <source>The password is too similar to the old one</source>
-      <translation type="unfinished"/>
+      <translation>මුරපදය පැරණි එකට ඉතා සමාන ය</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="209"/>
       <source>The password contains the user name in some form</source>
-      <translation type="unfinished"/>
+      <translation>මුරපදයේ යම් ආකාරයක පරිශීලක නාමය අඩංගු වේ</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="211"/>
       <source>The password contains words from the real name of the user in some form</source>
-      <translation type="unfinished"/>
+      <translation>මුරපදයේ යම් ආකාරයක පරිශීලකයාගේ සැබෑ නමෙන් වචන අඩංගු වේ</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="214"/>
       <source>The password contains forbidden words in some form</source>
-      <translation type="unfinished"/>
+      <translation>මුරපදයේ යම් ආකාරයක තහනම් වචන අඩංගු වේ</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="221"/>
       <source>The password contains too few digits</source>
-      <translation type="unfinished"/>
+      <translation>මුරපදයේ ඉතා අඩු ඉලක්කම් ඇත</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="228"/>
       <source>The password contains too few uppercase letters</source>
-      <translation type="unfinished"/>
+      <translation>මුරපදයේ විශාල අකුරු ඉතා ස්වල්පයක් ඇත</translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="232"/>
       <source>The password contains fewer than %n lowercase letters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>මුරපදයේ කුඩා අකුරු %nකට වඩා අඩු ප්‍රමාණයක් ඇත</numerusform>
+        <numerusform>මුරපදයේ කුඩා අකුරු %n කට වඩා අඩු ප්‍රමාණයක් ඇත</numerusform>
       </translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="235"/>
       <source>The password contains too few lowercase letters</source>
-      <translation type="unfinished"/>
+      <translation>මුරපදයේ කුඩා අකුරු ඉතා ස්වල්පයක් ඇත</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="242"/>
       <source>The password contains too few non-alphanumeric characters</source>
-      <translation type="unfinished"/>
+      <translation>මුරපදයේ අක්ෂරාංක නොවන අක්ෂර ඉතා ස්වල්පයක් අඩංගු වේ</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="249"/>
@@ -2282,181 +2284,181 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="258"/>
       <source>The password does not contain enough character classes</source>
-      <translation type="unfinished"/>
+      <translation>මුරපදයේ ප්‍රමාණවත් අක්ෂර පන්ති අඩංගු නොවේ</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="265"/>
       <source>The password contains too many same characters consecutively</source>
-      <translation type="unfinished"/>
+      <translation>මුරපදයේ එක හා සමාන අනුලකුණු කිහිපයක් එක දිගට අඩංගු වේ</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="275"/>
       <source>The password contains too many characters of the same class consecutively</source>
-      <translation type="unfinished"/>
+      <translation>මුරපදයේ එකම පන්තියේ අනුලකුණු වැඩි ගණනක් එක දිගට අඩංගු වේ</translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="218"/>
       <source>The password contains fewer than %n digits</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>මුරපදයේ ඉලක්කම් %n කට වඩා අඩු ප්‍රමාණයක් අඩංගු වේ</numerusform>
+        <numerusform>මුරපදයේ ඉලක්කම් %n කට වඩා අඩු ප්‍රමාණයක් අඩංගු වේ</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="225"/>
       <source>The password contains fewer than %n uppercase letters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>මුරපදයේ ලොකු අකුරු %n කට වඩා අඩු ප්‍රමාණයක් ඇත</numerusform>
+        <numerusform>මුරපදයේ ලොකු අකුරු %n කට වඩා අඩු ප්‍රමාණයක් ඇත</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="239"/>
       <source>The password contains fewer than %n non-alphanumeric characters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>මුරපදයේ අක්ෂරාංක නොවන අක්ෂර %n කට වඩා අඩු ප්‍රමාණයක් අඩංගු වේ</numerusform>
+        <numerusform>මුරපදයේ අක්ෂරාංක නොවන අක්ෂර %n කට වඩා අඩු ප්‍රමාණයක් අඩංගු වේ</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="246"/>
       <source>The password is shorter than %n characters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>මුරපදය අක්ෂර %n ට වඩා කෙටිය</numerusform>
+        <numerusform>මුරපදය අක්ෂර %n ට වඩා කෙටිය</numerusform>
       </translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="251"/>
       <source>The password is a rotated version of the previous one</source>
-      <translation type="unfinished"/>
+      <translation>මුරපදය පෙර එකෙහි අනුවාදයකි</translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="255"/>
       <source>The password contains fewer than %n character classes</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>මුරපදයේ අක්ෂර පන්ති %n කට වඩා අඩු ප්‍රමාණයක් අඩංගු වේ</numerusform>
+        <numerusform>මුරපදයේ අක්ෂර පන්ති %n කට වඩා අඩු ප්‍රමාණයක් අඩංගු වේ</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="262"/>
       <source>The password contains more than %n same characters consecutively</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>මුරපදයේ එක දිගට එකම අක්ෂර %nකට වඩා අඩංගු වේ</numerusform>
+        <numerusform>මුරපදයේ එක දිගට එකම අක්ෂර %nකට වඩා අඩංගු වේ</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="269"/>
       <source>The password contains more than %n characters of the same class consecutively</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>මුරපදයේ එක පන්තියේ අනුලකුණු %n කට වඩා එක දිගට අඩංගු වේ</numerusform>
+        <numerusform>මුරපදයේ එක පන්තියේ අනුලකුණු %n කට වඩා එක දිගට අඩංගු වේ</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="280"/>
       <source>The password contains monotonic sequence longer than %n characters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>මුරපදයේ අක්ෂර %n කට වඩා දිග ඒකාකාරී අනුපිළිවෙලක් ඇත</numerusform>
+        <numerusform>මුරපදයේ අක්ෂර %n කට වඩා දිග ඒකාකාරී අනුපිළිවෙලක් ඇත</numerusform>
       </translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="286"/>
       <source>The password contains too long of a monotonic character sequence</source>
-      <translation type="unfinished"/>
+      <translation>මුරපදයේ ඒකාකාරී අක්ෂර අනුපිළිවෙලක් ඉතා දිගු වේ</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="289"/>
       <source>No password supplied</source>
-      <translation type="unfinished"/>
+      <translation>මුරපදයක් සපයා නැත</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="291"/>
       <source>Cannot obtain random numbers from the RNG device</source>
-      <translation type="unfinished"/>
+      <translation>RNG උපාංගයෙන් අහඹු අංක ලබා ගත නොහැක</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="293"/>
       <source>Password generation failed - required entropy too low for settings</source>
-      <translation type="unfinished"/>
+      <translation>මුරපද උත්පාදනය අසාර්ථක විය - සැකසීම් සඳහා අවශ්‍ය එන්ට්‍රොපිය ඉතා අඩුය</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="298"/>
       <source>The password fails the dictionary check - %1</source>
-      <translation type="unfinished"/>
+      <translation>මුරපදය ශබ්ද කෝෂ පරීක්ෂාව අසමත් වේ - %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="301"/>
       <source>The password fails the dictionary check</source>
-      <translation type="unfinished"/>
+      <translation>මුරපදය ශබ්ද කෝෂ පරීක්ෂාව අසමත් වේ</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="305"/>
       <source>Unknown setting - %1</source>
-      <translation type="unfinished"/>
+      <translation>නොදන්නා සැකසුම - %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="307"/>
       <source>Unknown setting</source>
-      <translation type="unfinished"/>
+      <translation>නොදන්නා සැකසුමක්</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="311"/>
       <source>Bad integer value of setting - %1</source>
-      <translation type="unfinished"/>
+      <translation>සැකසුමෙහි නරක පූර්ණ සංඛ්‍යා අගය - % 1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="313"/>
       <source>Bad integer value</source>
-      <translation type="unfinished"/>
+      <translation>සැකසුමෙහි නරක පූර්ණ සංඛ්‍යා අගයක්</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="317"/>
       <source>Setting %1 is not of integer type</source>
-      <translation type="unfinished"/>
+      <translation>%1 සැකසීම පූර්ණ සංඛ්‍යා වර්ගයට අයත් නොවේ</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="319"/>
       <source>Setting is not of integer type</source>
-      <translation type="unfinished"/>
+      <translation>සැකසීම නිඛිල ආකාරයේ නොවේ</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="323"/>
       <source>Setting %1 is not of string type</source>
-      <translation type="unfinished"/>
+      <translation>%1 සැකසීම තන්තු වර්ගයට අයත් නොවේ</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="325"/>
       <source>Setting is not of string type</source>
-      <translation type="unfinished"/>
+      <translation>සැකසීම තන්තු ආකාරයේ නොවේ</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="327"/>
       <source>Opening the configuration file failed</source>
-      <translation type="unfinished"/>
+      <translation>වින්‍යාස ගොනුව විවෘත කිරීම අසාර්ථක විය</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="329"/>
       <source>The configuration file is malformed</source>
-      <translation type="unfinished"/>
+      <translation>වින්‍යාස ගොනුව විකෘති වී ඇත</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="331"/>
       <source>Fatal failure</source>
-      <translation type="unfinished"/>
+      <translation>දරුනු අසර්ථක වීමක්</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="333"/>
       <source>Unknown error</source>
-      <translation type="unfinished"/>
+      <translation>නොදන්නා දෝෂයකි</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="782"/>
       <source>Password is empty</source>
-      <translation type="unfinished"/>
+      <translation>මුරපදය හිස් ය</translation>
     </message>
   </context>
   <context>
@@ -2469,17 +2471,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="50"/>
       <source>Product Name</source>
-      <translation type="unfinished"/>
+      <translation>නිෂ්පාදන නාමය</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="63"/>
       <source>TextLabel</source>
-      <translation type="unfinished"/>
+      <translation>අකුරු නාමකය</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="79"/>
       <source>Long Product Description</source>
-      <translation type="unfinished"/>
+      <translation>දිගු නිෂ්පාදන විස්තරය</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="25"/>
@@ -2497,7 +2499,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/packagechooserq/PackageChooserQmlViewStep.cpp" line="32"/>
       <source>Packages</source>
-      <translation type="unfinished"/>
+      <translation>පැකේජ</translation>
     </message>
   </context>
   <context>
@@ -2505,7 +2507,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/packagechooser/PackageChooserViewStep.cpp" line="51"/>
       <source>Packages</source>
-      <translation type="unfinished"/>
+      <translation>පැකේජ</translation>
     </message>
   </context>
   <context>
@@ -2513,12 +2515,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/netinstall/PackageModel.cpp" line="168"/>
       <source>Name</source>
-      <translation type="unfinished"/>
+      <translation>නම</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/PackageModel.cpp" line="168"/>
       <source>Description</source>
-      <translation type="unfinished"/>
+      <translation>විස්තරය</translation>
     </message>
   </context>
   <context>
@@ -2531,12 +2533,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/keyboard/KeyboardPage.ui" line="74"/>
       <source>Keyboard Model:</source>
-      <translation type="unfinished"/>
+      <translation>යතුරුපුවරු ආකෘතිය:</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/KeyboardPage.ui" line="135"/>
       <source>Type here to test your keyboard</source>
-      <translation type="unfinished"/>
+      <translation>ඔබේ යතුරු පුවරුව පරීක්ෂා කිරීමට මෙහි ටයිප් කරන්න</translation>
     </message>
   </context>
   <context>
@@ -2549,91 +2551,91 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="40"/>
       <source>What is your name?</source>
-      <translation type="unfinished"/>
+      <translation>ඔබගේ නම කුමක් ද?</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="55"/>
       <source>Your Full Name</source>
-      <translation type="unfinished"/>
+      <translation>ඔබේ සම්පුර්ණ නම</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="124"/>
       <source>What name do you want to use to log in?</source>
-      <translation type="unfinished"/>
+      <translation>ඔබට පුරනය වීමට භාවිතා කිරීමට අවශ්‍ය නම කුමක්ද?</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="148"/>
       <source>login</source>
-      <translation type="unfinished"/>
+      <translation>පිවිසෙන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="223"/>
       <source>What is the name of this computer?</source>
-      <translation type="unfinished"/>
+      <translation>මෙම පරිගණකයේ නම කුමක්ද?</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="247"/>
       <source>&lt;small&gt;This name will be used if you make the computer visible to others on a network.&lt;/small&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;small&gt;ඔබ පරිගණකය ජාලයක අන් අයට පෙනෙන ලෙස සලස්වන්නේ නම් මෙම නම භාවිතා වේ.&lt;/small&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="250"/>
       <source>Computer Name</source>
-      <translation type="unfinished"/>
+      <translation>පරිගණක නම</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="325"/>
       <source>Choose a password to keep your account safe.</source>
-      <translation type="unfinished"/>
+      <translation>ඔබගේ ගිණුම ආරක්ෂිතව තබා ගැනීමට මුරපදයක් තෝරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="349"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="374"/>
       <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;small&gt;එකම මුරපදය දෙවරක් ඇතුල් කරන්න, එවිට එය ටයිප් කිරීමේ දෝෂ සඳහා පරීක්ෂා කළ හැක. හොඳ මුරපදයක අකුරු, ඉලක්කම් සහ විරාම ලකුණු මිශ්‍රණයක් අඩංගු වන අතර, අවම වශයෙන් අක්ෂර අටක්වත් දිග විය යුතු අතර නියමිත කාල පරාසයන්හිදී වෙනස් කළ යුතුය.&lt;/small&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="355"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="525"/>
       <source>Password</source>
-      <translation type="unfinished"/>
+      <translation>රහස් පදය</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="380"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="550"/>
       <source>Repeat Password</source>
-      <translation type="unfinished"/>
+      <translation>මුරපදය නැවත ඇතුල් කරන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="455"/>
       <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password.</source>
-      <translation type="unfinished"/>
+      <translation>මෙම කොටුව සලකුණු කළ විට, මුරපදය-ශක්තිය පරීක්ෂා කිරීම සිදු කරනු ලබන අතර ඔබට දුර්වල මුරපදයක් භාවිතා කිරීමට නොහැකි වනු ඇත.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="458"/>
       <source>Require strong passwords.</source>
-      <translation type="unfinished"/>
+      <translation>ශක්තිමත් මුරපද අවශ්‍යයි.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="465"/>
       <source>Log in automatically without asking for the password.</source>
-      <translation type="unfinished"/>
+      <translation>මුරපදය ඉල්ලන්නේ නැතිව ස්වයංක්‍රීයව ලොග් වන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="472"/>
       <source>Use the same password for the administrator account.</source>
-      <translation type="unfinished"/>
+      <translation>පරිපාලක ගිණුම සඳහා එකම මුරපදය භාවිතා කරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="495"/>
       <source>Choose a password for the administrator account.</source>
-      <translation type="unfinished"/>
+      <translation>පරිපාලක ගිණුම සඳහා මුරපදයක් තෝරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="519"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="544"/>
       <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;small&gt;එකම මුරපදය දෙවරක් ඇතුල් කරන්න, එවිට එය ටයිප් කිරීමේ දෝෂ සඳහා පරීක්ෂා කළ හැක.&lt;/small&gt;</translation>
     </message>
   </context>
   <context>
@@ -2641,43 +2643,43 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="190"/>
       <source>Root</source>
-      <translation type="unfinished"/>
+      <translation>රූට්</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="194"/>
       <source>Home</source>
-      <translation type="unfinished"/>
+      <translation>හෝම්</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="198"/>
       <source>Boot</source>
-      <translation type="unfinished"/>
+      <translation>බූට්</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="203"/>
       <source>EFI system</source>
-      <translation type="unfinished"/>
+      <translation>EFI පද්ධතිය</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="207"/>
       <source>Swap</source>
-      <translation type="unfinished"/>
+      <translation>ස්වප්</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="211"/>
       <source>New partition for %1</source>
-      <translation type="unfinished"/>
+      <translation>%1 සඳහා නව කොටස</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="215"/>
       <source>New partition</source>
-      <translation type="unfinished"/>
+      <translation>නව කොටස</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="239"/>
       <source>%1  %2</source>
       <extracomment>size[number] filesystem[name]</extracomment>
-      <translation type="unfinished"/>
+      <translation>%1  %2</translation>
     </message>
   </context>
   <context>
@@ -2686,38 +2688,38 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="159"/>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="203"/>
       <source>Free Space</source>
-      <translation type="unfinished"/>
+      <translation>නිදහස් ඉඩ</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="163"/>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="207"/>
       <source>New partition</source>
-      <translation type="unfinished"/>
+      <translation>නව කොටස</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="300"/>
       <source>Name</source>
-      <translation type="unfinished"/>
+      <translation>නම</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="302"/>
       <source>File System</source>
-      <translation type="unfinished"/>
+      <translation>ගොනු පද්ධතිය</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="304"/>
       <source>File System Label</source>
-      <translation type="unfinished"/>
+      <translation>ගොනු පද්ධති ලේබලය</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="306"/>
       <source>Mount Point</source>
-      <translation type="unfinished"/>
+      <translation>මවුන්ට් පොයින්ට්</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="308"/>
       <source>Size</source>
-      <translation type="unfinished"/>
+      <translation>ප්‍රමානය</translation>
     </message>
   </context>
   <context>
@@ -2730,72 +2732,72 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="26"/>
       <source>Storage de&amp;vice:</source>
-      <translation type="unfinished"/>
+      <translation>ගබඩා උපාංගය (&amp;v):</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="55"/>
       <source>&amp;Revert All Changes</source>
-      <translation type="unfinished"/>
+      <translation>සියලුම වෙනස්කම් ආපසු හරවන්න (&amp;R)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="91"/>
       <source>New Partition &amp;Table</source>
-      <translation type="unfinished"/>
+      <translation>නව කොටස් වගුව (&amp;T)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="111"/>
       <source>Cre&amp;ate</source>
-      <translation type="unfinished"/>
+      <translation>නිර්මාණය කරන්න (&amp;r)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="118"/>
       <source>&amp;Edit</source>
-      <translation type="unfinished"/>
+      <translation>සංස්කරණය කරන්න (&amp;E)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="125"/>
       <source>&amp;Delete</source>
-      <translation type="unfinished"/>
+      <translation>මකන්න (&amp;D)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="136"/>
       <source>New Volume Group</source>
-      <translation type="unfinished"/>
+      <translation>නව වෙළුම් සමූහය</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="143"/>
       <source>Resize Volume Group</source>
-      <translation type="unfinished"/>
+      <translation>වෙළුම් සමූහය ප්‍රතිප්‍රමාණ කරන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="150"/>
       <source>Deactivate Volume Group</source>
-      <translation type="unfinished"/>
+      <translation>පරිමා සමූහය අක්‍රිය කරන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="157"/>
       <source>Remove Volume Group</source>
-      <translation type="unfinished"/>
+      <translation>වෙළුම් කණ්ඩායම ඉවත් කරන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="184"/>
       <source>I&amp;nstall boot loader on:</source>
-      <translation type="unfinished"/>
+      <translation>ඇරඹුම් කාරකය ස්ථාපනය කරන්න (&amp;n):</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="228"/>
       <source>Are you sure you want to create a new partition table on %1?</source>
-      <translation type="unfinished"/>
+      <translation>ඔබට %1 මත නව කොටස් වගුවක් සෑදීමට අවශ්‍ය බව විශ්වාසද?</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="263"/>
       <source>Can not create new partition</source>
-      <translation type="unfinished"/>
+      <translation>නව කොටසක් සෑදිය නොහැක</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="264"/>
       <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
-      <translation type="unfinished"/>
+      <translation>%1 හි කොටස් වගුවෙහි දැනටමත් ප්‍රාථමික කොටස් %2ක් ඇති අතර, තවත් එකතු කළ නොහැක. කරුණාකර එක් ප්‍රාථමික කොටසක් ඉවත් කර ඒ වෙනුවට දිගු කොටසක් එක් කරන්න.</translation>
     </message>
   </context>
   <context>
@@ -2808,7 +2810,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="111"/>
       <source>Partitions</source>
-      <translation type="unfinished"/>
+      <translation>කොටස්</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="303"/>
@@ -2823,72 +2825,72 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="530"/>
       <source>No EFI system partition configured</source>
-      <translation type="unfinished"/>
+      <translation>EFI පද්ධති කොටසක් වින්‍යාස කර නොමැත</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="534"/>
       <source>EFI system partition configured incorrectly</source>
-      <translation type="unfinished"/>
+      <translation>EFI පද්ධති කොටස වැරදි ලෙස වින්‍යාස කර ඇත</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="539"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a suitable filesystem.</source>
-      <translation type="unfinished"/>
+      <translation>%1 ආරම්භ කිරීමට EFI පද්ධති කොටසක් අවශ්‍ය වේ. &lt;br/&gt;&lt;br/&gt;EFI පද්ධති කොටසක් වින්‍යාස කිරීමට, ආපසු ගොස් සුදුසු ගොනු පද්ධතියක් තෝරන්න හෝ සාදන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="550"/>
       <source>The filesystem must be mounted on &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>ගොනු පද්ධතිය %1 මත සවිකර තිබිය යුතුය.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="556"/>
       <source>The filesystem must have type FAT32.</source>
-      <translation type="unfinished"/>
+      <translation>ගොනු පද්ධතියට FAT32 වර්ගය තිබිය යුතුය.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="564"/>
       <source>The filesystem must be at least %1 MiB in size.</source>
-      <translation type="unfinished"/>
+      <translation>ගොනු පද්ධතිය අවම වශයෙන් %1 MiB විශාලත්වයකින් යුක්ත විය යුතුය.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="570"/>
       <source>The filesystem must have flag &lt;strong&gt;%1&lt;/strong&gt; set.</source>
-      <translation type="unfinished"/>
+      <translation>ගොනු පද්ධතියට ධජය &lt;strong&gt;%1&lt;/strong&gt; කට්ටලයක් තිබිය යුතුය.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="576"/>
       <source>You can continue without setting up an EFI system partition but your system may fail to start.</source>
-      <translation type="unfinished"/>
+      <translation>ඔබට EFI පද්ධති කොටසක් සැකසීමෙන් තොරව ඉදිරියට යා හැකි නමුත් ඔබේ පද්ධතිය ආරම්භ කිරීමට අසමත් විය හැක.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="593"/>
       <source>Option to use GPT on BIOS</source>
-      <translation type="unfinished"/>
+      <translation>BIOS මත GPT භාවිතා කිරීමේ විකල්පය</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="594"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
-      <translation type="unfinished"/>
+      <translation>GPT කොටස් වගුව සියලු පද්ධති සඳහා හොඳම විකල්පය වේ. මෙම ස්ථාපකය BIOS පද්ධති සඳහාද එවැනි සැකසුමකට සහය දක්වයි. &lt;br/&gt;&lt;br/&gt;BIOS මත GPT කොටස් වගුවක් වින්‍යාස කිරීම සඳහා, (දැනටමත් එසේ කර නොමැති නම්) ආපසු ගොස් කොටස් වගුව GPT ලෙස සකසන්න, මීළඟට &lt;strong&gt;bios_grub&lt;/strong&gt; ධජය සක්‍රීය කර ඇති 8 MB ආකෘතිකරණය නොකළ කොටසක් සාදන්න. &lt;br/&gt;&lt;br/&gt;GPT සමඟින් BIOS පද්ධතියක %1 ආරම්භ කිරීමට හැඩතල ගැන්වීම නොකළ 8 MB කොටසක් අවශ්‍ය වේ.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="626"/>
       <source>Boot partition not encrypted</source>
-      <translation type="unfinished"/>
+      <translation>ඇරඹුම් කොටස සංකේතනය කර නොමැත</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="627"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
-      <translation type="unfinished"/>
+      <translation>එන්ක්‍රිප්ට් කරන ලද රූට් පාටිෂන් එකක් සමඟින් වෙනම ඇරඹුම් කොටසක් සකසා ඇත, නමුත් ඇරඹුම් කොටස සංකේතනය කර නොමැත. &lt;br/&lt;br/&gt;වැදගත් පද්ධති ගොනු සංකේතනය නොකළ කොටසක තබා ඇති නිසා මෙවැනි සැකසුම සමඟ ආරක්ෂක ගැටළු ඇත. &lt;br/&gt;ඔබට අවශ්‍ය නම් ඔබට දිගටම කරගෙන යා හැක, නමුත් ගොනු පද්ධති අගුළු හැරීම පද්ධති ආරම්භයේදී පසුව සිදුවනු ඇත. &lt;br/&gt;ඇරඹුම් කොටස සංකේතනය කිරීමට, ආපසු ගොස් එය නැවත සාදන්න, කොටස් සෑදීමේ කවුළුව තුළ &lt;strong&gt;සංකේතනය&lt;/srong&gt; තෝරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="714"/>
       <source>has at least one disk device available.</source>
-      <translation type="unfinished"/>
+      <translation>අවම වශයෙන් එක් තැටි උපාංගයක් තිබේ.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="715"/>
       <source>There are no partitions to install on.</source>
-      <translation type="unfinished"/>
+      <translation>ස්ථාපනය කිරීමට කොටස් නොමැත.</translation>
     </message>
   </context>
   <context>
@@ -2896,13 +2898,13 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="33"/>
       <source>Plasma Look-and-Feel Job</source>
-      <translation type="unfinished"/>
+      <translation>ප්ලාස්මා පෙනුම සහ හැඟීම රැකියාව</translation>
     </message>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="57"/>
       <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="58"/>
       <source>Could not select KDE Plasma Look-and-Feel package</source>
-      <translation type="unfinished"/>
+      <translation>KDE ප්ලාස්මා පෙනුම සහ දැනීම පැකේජය තේරීමට නොහැකි විය</translation>
     </message>
   </context>
   <context>
@@ -2915,12 +2917,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="79"/>
       <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is set up. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
-      <translation type="unfinished"/>
+      <translation>කරුණාකර KDE ප්ලාස්මා ඩෙස්ක්ටොප් එක සඳහා පෙනුම සහ හැඟීම තෝරන්න. ඔබට මෙම පියවර මඟ හැර පද්ධතිය සැකසූ පසු පෙනුම සහ හැඟීම වින්‍යාසගත කළ හැක. පෙනුම සහ හැඟීම තේරීමක් මත ක්ලික් කිරීමෙන් ඔබට එම පෙනුම සහ හැඟීම පිළිබඳ සජීවී පෙරදසුනක් ලබා දෙනු ඇත.</translation>
     </message>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="84"/>
       <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is installed. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
-      <translation type="unfinished"/>
+      <translation>කරුණාකර KDE ප්ලාස්මා ඩෙස්ක්ටොප් එක සඳහා පෙනුම සහ හැඟීම තෝරන්න. ඔබට මෙම පියවර මඟ හැර පද්ධතිය ස්ථාපනය කළ පසු පෙනුම සහ හැඟීම වින්‍යාසගත කළ හැක. පෙනුම සහ හැඟීම තේරීමක් මත ක්ලික් කිරීමෙන් ඔබට එම පෙනුම සහ හැඟීම පිළිබඳ සජීවී පෙරදසුනක් ලබා දෙනු ඇත.</translation>
     </message>
   </context>
   <context>
@@ -2928,7 +2930,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfViewStep.cpp" line="43"/>
       <source>Look-and-Feel</source>
-      <translation type="unfinished"/>
+      <translation>බලන්න සහ දැනෙන්න</translation>
     </message>
   </context>
   <context>
@@ -2936,17 +2938,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="79"/>
       <source>Saving files for later ...</source>
-      <translation type="unfinished"/>
+      <translation>පසු බාවිතට ගොනු සුරකමින් ...</translation>
     </message>
     <message>
       <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="118"/>
       <source>No files configured to save for later.</source>
-      <translation type="unfinished"/>
+      <translation>පසුව සුරැකීමට ගොනු කිසිවක් වින්‍යාස කර නොමැත.</translation>
     </message>
     <message>
       <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="172"/>
       <source>Not all of the configured files could be preserved.</source>
-      <translation type="unfinished"/>
+      <translation>වින්‍යාස කර ඇති සියලුම ගොනු සංරක්ෂණය කළ නොහැක.</translation>
     </message>
   </context>
   <context>
@@ -2955,64 +2957,67 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="425"/>
       <source>
 There was no output from the command.</source>
-      <translation type="unfinished"/>
+      <translation>
+විධානයෙන් ප්‍රතිදානයක් නොතිබුණි.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="426"/>
       <source>
 Output:
 </source>
-      <translation type="unfinished"/>
+      <translation>
+ප්‍රතිදානය:
+</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="430"/>
       <source>External command crashed.</source>
-      <translation type="unfinished"/>
+      <translation>බාහිර විධානය බිඳ වැටුණි.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="431"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; crashed.</source>
-      <translation type="unfinished"/>
+      <translation>%1 විධානය බිඳ වැටුණි.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="436"/>
       <source>External command failed to start.</source>
-      <translation type="unfinished"/>
+      <translation>බාහිර විධානය ආරම්භ කිරීමට අසමත් විය.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="437"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; failed to start.</source>
-      <translation type="unfinished"/>
+      <translation>%1 විධානය ආරම්භ කිරීමට අසමත් විය.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="441"/>
       <source>Internal error when starting command.</source>
-      <translation type="unfinished"/>
+      <translation>විධානය ආරම්භ කිරීමේදී අභ්යන්තර දෝෂයකි.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="442"/>
       <source>Bad parameters for process job call.</source>
-      <translation type="unfinished"/>
+      <translation>රැකියා ඇමතුම් ක්‍රියාවලි සඳහා නරක පරාමිතීන්.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="446"/>
       <source>External command failed to finish.</source>
-      <translation type="unfinished"/>
+      <translation>බාහිර විධානය අවසන් කිරීමට අසමත් විය.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="447"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; failed to finish in %2 seconds.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;i&gt;%1&lt;/i&gt; විධානය තත්පර %2කින් අවසන් කිරීමට අසමත් විය.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="454"/>
       <source>External command finished with errors.</source>
-      <translation type="unfinished"/>
+      <translation>බාහිර විධානය දෝෂ සහිතව අවසන් විය.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="455"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; finished with exit code %2.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;i&gt;%1&lt;/i&gt; විධානය පිටවීමේ කේතය %2 සමඟ අවසන් විය.</translation>
     </message>
   </context>
   <context>
@@ -3025,28 +3030,28 @@ Output:
     <message>
       <location filename="../src/libcalamares/partition/FileSystem.cpp" line="28"/>
       <source>unknown</source>
-      <translation type="unfinished"/>
+      <translation>නොදන්නා</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/partition/FileSystem.cpp" line="30"/>
       <source>extended</source>
-      <translation type="unfinished"/>
+      <translation>දිගුව</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/partition/FileSystem.cpp" line="32"/>
       <source>unformatted</source>
-      <translation type="unfinished"/>
+      <translation>ආකෘතිකරණය නොකළ</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/partition/FileSystem.cpp" line="34"/>
       <source>swap</source>
-      <translation type="unfinished"/>
+      <translation>ස්වප්</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="130"/>
       <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="167"/>
       <source>Default</source>
-      <translation type="unfinished"/>
+      <translation>පෙරනිමිය</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/Workers.cpp" line="64"/>
@@ -3054,43 +3059,43 @@ Output:
       <location filename="../src/modules/machineid/Workers.cpp" line="76"/>
       <location filename="../src/modules/machineid/Workers.cpp" line="93"/>
       <source>File not found</source>
-      <translation type="unfinished"/>
+      <translation>ගොනුව හමු නොවිණි</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/Workers.cpp" line="65"/>
       <source>Path &lt;pre&gt;%1&lt;/pre&gt; must be an absolute path.</source>
-      <translation type="unfinished"/>
+      <translation>මාර්ගය &lt;pre&gt;%1&lt;/pre&gt; නිරපේක්ෂ මාර්ගයක් විය යුතුය.</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="83"/>
       <source>Directory not found</source>
-      <translation type="unfinished"/>
+      <translation>නාමාවලිය හමු නොවීය</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="84"/>
       <location filename="../src/modules/machineid/Workers.cpp" line="94"/>
       <source>Could not create new random file &lt;pre&gt;%1&lt;/pre&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>නව අහඹු &lt;pre&gt;%1&lt;/pre&gt; ගොනුවක් තැනීමට නොහැකි විය.</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/PackageModel.cpp" line="63"/>
       <source>No product</source>
-      <translation type="unfinished"/>
+      <translation>නිෂ්පාදනයක් නැත</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/PackageModel.cpp" line="71"/>
       <source>No description provided.</source>
-      <translation type="unfinished"/>
+      <translation>විස්තරයක් සපයා නැත.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="44"/>
       <source>(no mount point)</source>
-      <translation type="unfinished"/>
+      <translation>(සවිකිරීම් ස්ථානයක් නොමැත)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="41"/>
       <source>Unpartitioned space or unknown partition table</source>
-      <translation type="unfinished"/>
+      <translation>කොටස් නොකළ ඉඩ හෝ නොදන්නා කොටස් වගුව</translation>
     </message>
   </context>
   <context>
@@ -3099,7 +3104,8 @@ Output:
       <location filename="../src/modules/welcomeq/Recommended.qml" line="40"/>
       <source>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
         Setup can continue, but some features might be disabled.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;මෙම පරිගණකය %1 පිහිටුවීම සඳහා නිර්දේශිත සමහර අවශ්‍යතා සපුරාලන්නේ නැත.&lt;br/&gt;
+පිහිටුවීම දිගටම කරගෙන යා හැක, නමුත් සමහර විශේෂාංග අබල විය හැක.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -3107,7 +3113,7 @@ Output:
     <message>
       <location filename="../src/modules/removeuser/RemoveUserJob.cpp" line="34"/>
       <source>Remove live user from target system</source>
-      <translation type="unfinished"/>
+      <translation>ඉලක්ක පද්ධතියෙන් සජීවී පරිශීලකයා ඉවත් කරන්න</translation>
     </message>
   </context>
   <context>
@@ -3116,17 +3122,17 @@ Output:
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="24"/>
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="36"/>
       <source>Remove Volume Group named %1.</source>
-      <translation type="unfinished"/>
+      <translation>%1 නම් වූ වෙළුම් සමූහය ඉවත් කරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="30"/>
       <source>Remove Volume Group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%1&lt;/strong&gt; නම් වූ වෙළුම් සමූහය ඉවත් කරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="48"/>
       <source>The installer failed to remove a volume group named '%1'.</source>
-      <translation type="unfinished"/>
+      <translation>ස්ථාපකය '%1' නම් වෙළුම් කණ්ඩායමක් ඉවත් කිරීමට අසමත් විය.</translation>
     </message>
   </context>
   <context>
@@ -3139,59 +3145,59 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="127"/>
       <source>Select where to install %1.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
-      <translation type="unfinished"/>
+      <translation>%1 ස්ථාපනය කළ යුතු ස්ථානය තෝරන්න. &lt;br/&gt;&lt;font color='red'&gt;අවවාදයයි: &lt;/font&gt;මෙය තෝරාගත් කොටසේ ඇති සියලුම ගොනු මකා දමයි.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="149"/>
       <source>The selected item does not appear to be a valid partition.</source>
-      <translation type="unfinished"/>
+      <translation>තෝරාගත් අයිතමය වලංගු කොටසක් ලෙස නොපෙනේ.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="157"/>
       <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
-      <translation type="unfinished"/>
+      <translation>%1 හිස් අවකාශයේ ස්ථාපනය කල නොහැක. කරුණාකර පවතින කොටසක් තෝරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="167"/>
       <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
-      <translation type="unfinished"/>
+      <translation>%1 දිගු කළ කොටසක ස්ථාපනය කල නොහැක. කරුණාකර පවතින ප්‍රාථමික හෝ තාර්කික කොටසක් තෝරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="177"/>
       <source>%1 cannot be installed on this partition.</source>
-      <translation type="unfinished"/>
+      <translation>%1 මෙම කොටසෙහි ස්ථාපනය කල නොහැක.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="183"/>
       <source>Data partition (%1)</source>
-      <translation type="unfinished"/>
+      <translation>දත්ත කොටස (%1)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="203"/>
       <source>Unknown system partition (%1)</source>
-      <translation type="unfinished"/>
+      <translation>නොදන්නා පද්ධති කොටස (%1)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="207"/>
       <source>%1 system partition (%2)</source>
-      <translation type="unfinished"/>
+      <translation>%1 පද්ධති කොටස (%2)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="218"/>
       <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 කොටස %2 සඳහා ඉතා කුඩාය. කරුණාකර අවම වශයෙන් %3 GiB ධාරිතාවක් සහිත කොටසක් තෝරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="240"/>
       <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;EFI පද්ධති කොටසක් මෙම පද්ධතියේ කොතැනකවත් සොයාගත නොහැක. කරුණාකර ආපසු ගොස් %1 පිහිටුවීමට අතින් කොටස් කිරීම භාවිතා කරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="251"/>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="267"/>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="292"/>
       <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;all data on partition %2 will be lost.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 %2 මත ස්ථාපනය වනු ඇත.&lt;br/&gt;&lt;font color="red"&gt;අවවාදයයි:&lt;/font&gt; %2 කොටසේ ඇති සියලුම දත්ත නැති වී යයි.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="259"/>
@@ -3210,13 +3216,15 @@ Output:
       <location filename="../src/modules/welcomeq/Requirements.qml" line="38"/>
       <source>&lt;p&gt;This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;
         Installation cannot continue.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;මෙම පරිගණකය %1 ස්ථාපනය සඳහා අවම අවශ්‍යතා සපුරාලන්නේ නැත.&lt;br/&gt;
+        ස්ථාපනය දිගටම කරගෙන යා නොහැක.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/Requirements.qml" line="40"/>
       <source>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
         Setup can continue, but some features might be disabled.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;මෙම පරිගණකය %1 පිහිටුවීම සඳහා නිර්දේශිත සමහර අවශ්‍යතා සපුරාලන්නේ නැත.&lt;br/&gt;
+        පිහිටුවීම දිගටම කරගෙන යා හැක, නමුත් සමහර විශේෂාංග අබල විය හැක.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -3224,27 +3232,27 @@ Output:
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="46"/>
       <source>Resize Filesystem Job</source>
-      <translation type="unfinished"/>
+      <translation>ගොනු පද්ධති කාර්යය ප්‍රමාණය වෙනස් කරන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="169"/>
       <source>Invalid configuration</source>
-      <translation type="unfinished"/>
+      <translation>වලංගු නොවන වින්‍යාසය</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="170"/>
       <source>The file-system resize job has an invalid configuration and will not run.</source>
-      <translation type="unfinished"/>
+      <translation>ගොනු පද්ධති ප්‍රමාණය වෙනස් කිරීමේ කාර්යයට වලංගු නොවන වින්‍යාසයක් ඇති අතර එය ක්‍රියාත්මක නොවේ.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="175"/>
       <source>KPMCore not Available</source>
-      <translation type="unfinished"/>
+      <translation>KPMCore නොමැත</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="176"/>
       <source>Calamares cannot start KPMCore for the file-system resize job.</source>
-      <translation type="unfinished"/>
+      <translation>ගොනු පද්ධති ප්‍රමාණය වෙනස් කිරීමේ කාර්යය සඳහා Calamares හට KPMCore ආරම්භ කළ නොහැක.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="184"/>
@@ -3253,39 +3261,39 @@ Output:
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="213"/>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="231"/>
       <source>Resize Failed</source>
-      <translation type="unfinished"/>
+      <translation>ප්‍රමාණය වෙනස් කිරීම අසාර්ථක විය</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="186"/>
       <source>The filesystem %1 could not be found in this system, and cannot be resized.</source>
-      <translation type="unfinished"/>
+      <translation>ගොනු පද්ධතිය %1 මෙම පද්ධතිය තුළ සොයා ගත නොහැකි අතර, ප්‍රමාණය වෙනස් කළ නොහැක.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="187"/>
       <source>The device %1 could not be found in this system, and cannot be resized.</source>
-      <translation type="unfinished"/>
+      <translation>%1 උපාංගය මෙම පද්ධතිය තුළ සොයාගත නොහැකි වූ අතර, ප්‍රමාණය වෙනස් කළ නොහැක.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="195"/>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="206"/>
       <source>The filesystem %1 cannot be resized.</source>
-      <translation type="unfinished"/>
+      <translation>%1 ගොනු පද්ධතිය ප්‍රතිප්‍රමාණ කළ නොහැක.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="196"/>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="207"/>
       <source>The device %1 cannot be resized.</source>
-      <translation type="unfinished"/>
+      <translation>උපාංගය %1 ප්‍රමාණය වෙනස් කළ නොහැක.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="214"/>
       <source>The filesystem %1 must be resized, but cannot.</source>
-      <translation type="unfinished"/>
+      <translation>ගොනු පද්ධතිය %1 ප්‍රමාණය වෙනස් කළ යුතුය, නමුත් කළ නොහැක.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="215"/>
       <source>The device %1 must be resized, but cannot</source>
-      <translation type="unfinished"/>
+      <translation>උපාංගය %1 ප්‍රමාණය වෙනස් කළ යුතු නමුත් කළ නොහැක</translation>
     </message>
   </context>
   <context>
@@ -3293,22 +3301,22 @@ Output:
     <message>
       <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="40"/>
       <source>Resize partition %1.</source>
-      <translation type="unfinished"/>
+      <translation>%1 කොටස ප්‍රතිප්‍රමාණ කරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="47"/>
       <source>Resize &lt;strong&gt;%2MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%3MiB&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%2MiB&lt;/strong&gt; කොටස &lt;strong&gt;%1&lt;/strong&gt; සිට &lt;strong&gt;%3MiB&lt;/strong&gt; දක්වා ප්‍රමාණය වෙනස් කරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="58"/>
       <source>Resizing %2MiB partition %1 to %3MiB.</source>
-      <translation type="unfinished"/>
+      <translation>%2MiB කොටස %1 සිට %3MiB දක්වා ප්‍රමාණය වෙනස් කිරීම.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="77"/>
       <source>The installer failed to resize partition %1 on disk '%2'.</source>
-      <translation type="unfinished"/>
+      <translation>'%2' තැටියේ %1 කොටස ප්‍රතිප්‍රමාණ කිරීමට ස්ථාපකය අසමත් විය.</translation>
     </message>
   </context>
   <context>
@@ -3316,7 +3324,7 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/ResizeVolumeGroupDialog.cpp" line="30"/>
       <source>Resize Volume Group</source>
-      <translation type="unfinished"/>
+      <translation>වෙළුම් සමූහය ප්‍රතිප්‍රමාණ කරන්න</translation>
     </message>
   </context>
   <context>
@@ -3325,17 +3333,17 @@ Output:
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="27"/>
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="45"/>
       <source>Resize volume group named %1 from %2 to %3.</source>
-      <translation type="unfinished"/>
+      <translation>%2 සිට %3 දක්වා %1 ලෙස නම් කරන ලද වෙළුම් සමූහය ප්‍රතිප්‍රමාණ කරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="36"/>
       <source>Resize volume group named &lt;strong&gt;%1&lt;/strong&gt; from &lt;strong&gt;%2&lt;/strong&gt; to &lt;strong&gt;%3&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%2&lt;/strong&gt; සිට &lt;strong&gt;%3&lt;/strong&gt; දක්වා &lt;strong&gt;%1&lt;/strong&gt; ලෙස නම් කරන ලද වෙළුම් සමූහය ප්‍රතිප්‍රමාණ කරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="60"/>
       <source>The installer failed to resize a volume group named '%1'.</source>
-      <translation type="unfinished"/>
+      <translation>ස්ථාපකය '%1' නම් වූ වෙළුම් සමූහයක් ප්‍රතිප්‍රමාණ කිරීමට අසමත් විය.</translation>
     </message>
   </context>
   <context>
@@ -3343,12 +3351,12 @@ Output:
     <message>
       <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="137"/>
       <source>For best results, please ensure that this computer:</source>
-      <translation type="unfinished"/>
+      <translation>හොඳම ප්‍රතිඵල සඳහා, කරුණාකර මෙම පරිගණකය සහතික කර ගන්න:</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="138"/>
       <source>System requirements</source>
-      <translation type="unfinished"/>
+      <translation>පද්ධති අවශ්යතා</translation>
     </message>
   </context>
   <context>
@@ -3356,12 +3364,12 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="64"/>
       <source>Scanning storage devices...</source>
-      <translation type="unfinished"/>
+      <translation>ගබඩා උපාංග පරිලෝකනය කරමින්...</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="64"/>
       <source>Partitioning</source>
-      <translation type="unfinished"/>
+      <translation>කොටස් කරමින්</translation>
     </message>
   </context>
   <context>
@@ -3369,29 +3377,29 @@ Output:
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="37"/>
       <source>Set hostname %1</source>
-      <translation type="unfinished"/>
+      <translation>ධාරක නාමය සකසන්න %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="44"/>
       <source>Set hostname &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>ධාරක නාමය සකසන්න &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="51"/>
       <source>Setting hostname %1.</source>
-      <translation type="unfinished"/>
+      <translation>සත්කාරක නාමය %1 සැකසීම.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="122"/>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="129"/>
       <source>Internal Error</source>
-      <translation type="unfinished"/>
+      <translation>අභ්යන්තර දෝෂයකි</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="137"/>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="146"/>
       <source>Cannot write hostname to target system</source>
-      <translation type="unfinished"/>
+      <translation>ඉලක්ක පද්ධතියට සත්කාරක නාමය ලිවිය නොහැක</translation>
     </message>
   </context>
   <context>
@@ -3399,29 +3407,29 @@ Output:
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="55"/>
       <source>Set keyboard model to %1, layout to %2-%3</source>
-      <translation type="unfinished"/>
+      <translation>යතුරුපුවරු ආකෘතිය %1 ලෙස සකසන්න, පිරිසැලසුම %2-%3 ලෙස සකසන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="368"/>
       <source>Failed to write keyboard configuration for the virtual console.</source>
-      <translation type="unfinished"/>
+      <translation>අතථ්‍ය කොන්සෝලය සඳහා යතුරුපුවරු වින්‍යාසය ලිවීමට අසමත් විය.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="369"/>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="397"/>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="414"/>
       <source>Failed to write to %1</source>
-      <translation type="unfinished"/>
+      <translation>%1 වෙත ලිවීමට අසමත් විය</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="396"/>
       <source>Failed to write keyboard configuration for X11.</source>
-      <translation type="unfinished"/>
+      <translation>X11 සඳහා යතුරුපුවරු වින්‍යාසය ලිවීමට අසමත් විය.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="413"/>
       <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
-      <translation type="unfinished"/>
+      <translation>පවතින /etc/default බහලුම වෙත යතුරුපුවරු වින්‍යාසය ලිවීමට අසමත් විය.</translation>
     </message>
   </context>
   <context>
@@ -3429,82 +3437,82 @@ Output:
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="43"/>
       <source>Set flags on partition %1.</source>
-      <translation type="unfinished"/>
+      <translation>%1 කොටසේ කොඩි සකසන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="49"/>
       <source>Set flags on %1MiB %2 partition.</source>
-      <translation type="unfinished"/>
+      <translation>%1MiB %2 කොටස මත කොඩි සකසන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="53"/>
       <source>Set flags on new partition.</source>
-      <translation type="unfinished"/>
+      <translation>නව කොටසේ කොඩි සකසන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="65"/>
       <source>Clear flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>%1 කොටසේ කොඩි හිස් කරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="71"/>
       <source>Clear flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-      <translation type="unfinished"/>
+      <translation>%1MiB %2 කොටසේ කොඩි හිස් කරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="75"/>
       <source>Clear flags on new partition.</source>
-      <translation type="unfinished"/>
+      <translation>නව කොටසේ කොඩි ඉවත් කරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="80"/>
       <source>Flag partition &lt;strong&gt;%1&lt;/strong&gt; as &lt;strong&gt;%2&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>%1 කොටස %2 ලෙස සලකුණු කරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="89"/>
       <source>Flag %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition as &lt;strong&gt;%3&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>%1MiB &lt;strong&gt;%2&lt;/strong&gt; කොටස &lt;strong&gt;%3&lt;/strong&gt; ලෙස සලකුණු කරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="96"/>
       <source>Flag new partition as &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>නව කොටස &lt;strong&gt;%1&lt;/strong&gt; ලෙස සලකුණු කරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="108"/>
       <source>Clearing flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>%1 කොටසේ කොඩි ඉවත් කිරීම.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="114"/>
       <source>Clearing flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-      <translation type="unfinished"/>
+      <translation>%1MiB &lt;strong&gt;%2&lt;/strong&gt; කොටසේ කොඩි ඉවත් කිරීම.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="119"/>
       <source>Clearing flags on new partition.</source>
-      <translation type="unfinished"/>
+      <translation>නව කොටසේ කොඩි ඉවත් කිරීම.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="124"/>
       <source>Setting flags &lt;strong&gt;%2&lt;/strong&gt; on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%1&lt;/strong&gt; කොටස මත කොඩි &lt;strong&gt;%2&lt;/strong&gt; සැකසීම.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="133"/>
       <source>Setting flags &lt;strong&gt;%3&lt;/strong&gt; on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-      <translation type="unfinished"/>
+      <translation>%1MiB &lt;strong&gt;%2&lt;/strong&gt; කොටස මත කොඩි &lt;strong&gt;%3&lt;/strong&gt; සැකසීම.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="140"/>
       <source>Setting flags &lt;strong&gt;%1&lt;/strong&gt; on new partition.</source>
-      <translation type="unfinished"/>
+      <translation>නව කොටසෙහි කොඩි &lt;strong&gt;%1&lt;/strong&gt; සැකසීම.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="157"/>
       <source>The installer failed to set flags on partition %1.</source>
-      <translation type="unfinished"/>
+      <translation>ස්ථාපකය %1 කොටසෙහි කොඩි සැකසීමට අසමත් විය.</translation>
     </message>
   </context>
   <context>
@@ -3512,42 +3520,42 @@ Output:
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="40"/>
       <source>Set password for user %1</source>
-      <translation type="unfinished"/>
+      <translation>පරිශීලක %1 සඳහා මුරපදය සකසන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="47"/>
       <source>Setting password for user %1.</source>
-      <translation type="unfinished"/>
+      <translation>පරිශීලක %1 සඳහා මුරපදය සැකසීම.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="81"/>
       <source>Bad destination system path.</source>
-      <translation type="unfinished"/>
+      <translation>නරක ගමනාන්ත පද්ධති මාර්ගය.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="82"/>
       <source>rootMountPoint is %1</source>
-      <translation type="unfinished"/>
+      <translation>මූලමවුන්ට්පොයින්ට් % 1 වේ</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="88"/>
       <source>Cannot disable root account.</source>
-      <translation type="unfinished"/>
+      <translation>මූල ගිණුම අක්‍රිය කළ නොහැක.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="89"/>
       <source>passwd terminated with error code %1.</source>
-      <translation type="unfinished"/>
+      <translation>මුරපදය %1 දෝෂ කේතය සමඟ අවසන් විය.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="97"/>
       <source>Cannot set password for user %1.</source>
-      <translation type="unfinished"/>
+      <translation>පරිශීලක %1 සඳහා මුරපදය සැකසිය නොහැක.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="98"/>
       <source>usermod terminated with error code %1.</source>
-      <translation type="unfinished"/>
+      <translation>පරිශීලක මොඩ් දෝෂ කේතය % 1 සමඟ අවසන් කරන ලදී.</translation>
     </message>
   </context>
   <context>
@@ -3555,37 +3563,37 @@ Output:
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="34"/>
       <source>Set timezone to %1/%2</source>
-      <translation type="unfinished"/>
+      <translation>වේලා කලාපය %1/%2 ලෙස සකසන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="62"/>
       <source>Cannot access selected timezone path.</source>
-      <translation type="unfinished"/>
+      <translation>තෝරාගත් වේලා කලාප මාර්ගයට ප්‍රවේශ විය නොහැක.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="63"/>
       <source>Bad path: %1</source>
-      <translation type="unfinished"/>
+      <translation>නරක මාර්ගය:%1</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="71"/>
       <source>Cannot set timezone.</source>
-      <translation type="unfinished"/>
+      <translation>වේලා කලාපයක් සැකසිය නොහැක.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="72"/>
       <source>Link creation failed, target: %1; link name: %2</source>
-      <translation type="unfinished"/>
+      <translation>සබැඳි නිර්මාණය අසාර්ථක විය, ඉලක්කය: %1; සබැඳි නම: %2</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="77"/>
       <source>Cannot set timezone,</source>
-      <translation type="unfinished"/>
+      <translation>වේලා කලාපය සැකසිය නොහැක,</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="78"/>
       <source>Cannot open /etc/timezone for writing</source>
-      <translation type="unfinished"/>
+      <translation>ලිවීම සඳහා /etc/timezone විවෘත කළ නොහැක</translation>
     </message>
   </context>
   <context>
@@ -3593,18 +3601,18 @@ Output:
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="166"/>
       <source>Preparing groups.</source>
-      <translation type="unfinished"/>
+      <translation>කණ්ඩායම් සූදානම් කිරීම.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="178"/>
       <location filename="../src/modules/users/MiscJobs.cpp" line="183"/>
       <source>Could not create groups in target system</source>
-      <translation type="unfinished"/>
+      <translation>ඉලක්ක පද්ධතිය තුළ කණ්ඩායම් සෑදීමට නොහැකි විය</translation>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="184"/>
       <source>These groups are missing in the target system: %1</source>
-      <translation type="unfinished"/>
+      <translation>ඉලක්ක පද්ධතිය තුළ මෙම කණ්ඩායම් අතුරුදහන් වී ඇත: %1</translation>
     </message>
   </context>
   <context>
@@ -3612,17 +3620,17 @@ Output:
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="33"/>
       <source>Configure &lt;pre&gt;sudo&lt;/pre&gt; users.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;sudo&lt;/strong&gt; භාවිතා කරන්නන් වින්‍යාස කරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="55"/>
       <source>Cannot chmod sudoers file.</source>
-      <translation type="unfinished"/>
+      <translation>sudoers ගොනුව chmod කළ නොහැක.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="60"/>
       <source>Cannot create sudoers file for writing.</source>
-      <translation type="unfinished"/>
+      <translation>ලිවීම සඳහා sudoers ගොනුව සෑදිය නොහැක.</translation>
     </message>
   </context>
   <context>
@@ -3630,7 +3638,7 @@ Output:
     <message>
       <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="41"/>
       <source>Shell Processes Job</source>
-      <translation type="unfinished"/>
+      <translation>ෂෙල් ක්රියාවලීන්</translation>
     </message>
   </context>
   <context>
@@ -3639,7 +3647,7 @@ Output:
       <location filename="../src/qml/calamares/slideshow/SlideCounter.qml" line="27"/>
       <source>%L1 / %L2</source>
       <extracomment>slide counter, %1 of %2 (numeric)</extracomment>
-      <translation type="unfinished"/>
+      <translation>%L1 / %L2</translation>
     </message>
   </context>
   <context>
@@ -3647,7 +3655,7 @@ Output:
     <message>
       <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="28"/>
       <source>&amp;OK</source>
-      <translation type="unfinished"/>
+      <translation>හරි (&amp;O)</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="29"/>
@@ -3675,22 +3683,22 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="102"/>
       <source>Installation feedback</source>
-      <translation type="unfinished"/>
+      <translation>ස්ථාපන ප්‍රතිපෝෂණය</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="108"/>
       <source>Sending installation feedback.</source>
-      <translation type="unfinished"/>
+      <translation>ස්ථාපන ප්‍රතිපෝෂණ යැවීම.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="125"/>
       <source>Internal error in install-tracking.</source>
-      <translation type="unfinished"/>
+      <translation>ස්ථාපන ලුහුබැඳීමේ අභ්‍යන්තර දෝෂයකි.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="126"/>
       <source>HTTP request timed out.</source>
-      <translation type="unfinished"/>
+      <translation>HTTP ඉල්ලීම කල් ඉකුත් විය.</translation>
     </message>
   </context>
   <context>
@@ -3698,28 +3706,28 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="187"/>
       <source>KDE user feedback</source>
-      <translation type="unfinished"/>
+      <translation>KDE පරිශීලක ප්‍රතිපෝෂණය</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="193"/>
       <source>Configuring KDE user feedback.</source>
-      <translation type="unfinished"/>
+      <translation>KDE පරිශීලක ප්‍රතිපෝෂණ වින්‍යාස කිරීම.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="215"/>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="221"/>
       <source>Error in KDE user feedback configuration.</source>
-      <translation type="unfinished"/>
+      <translation>KDE පරිශීලක ප්‍රතිපෝෂණ වින්‍යාසයෙහි දෝෂයකි.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="216"/>
       <source>Could not configure KDE user feedback correctly, script error %1.</source>
-      <translation type="unfinished"/>
+      <translation>KDE පරිශීලක ප්‍රතිපෝෂණය නිවැරදිව වින්‍යාස කිරීමට නොහැකි විය, ස්ක්‍රිප්ට් දෝෂය %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="222"/>
       <source>Could not configure KDE user feedback correctly, Calamares error %1.</source>
-      <translation type="unfinished"/>
+      <translation>KDE පරිශීලක ප්‍රතිපෝෂණය නිවැරදිව වින්‍යාස කිරීමට නොහැකි විය, Calamares දෝෂය %1.</translation>
     </message>
   </context>
   <context>
@@ -3727,28 +3735,28 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="136"/>
       <source>Machine feedback</source>
-      <translation type="unfinished"/>
+      <translation>යන්ත්‍ර ප්‍රතිපෝෂණය</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="142"/>
       <source>Configuring machine feedback.</source>
-      <translation type="unfinished"/>
+      <translation>යන්ත්‍ර ප්‍රතිපෝෂණ වින්‍යාස කිරීම.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="165"/>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="171"/>
       <source>Error in machine feedback configuration.</source>
-      <translation type="unfinished"/>
+      <translation>යන්ත්‍ර ප්‍රතිපෝෂණ වින්‍යාසය තුළ දෝෂයකි.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="166"/>
       <source>Could not configure machine feedback correctly, script error %1.</source>
-      <translation type="unfinished"/>
+      <translation>යන්ත්‍ර ප්‍රතිපෝෂණය නිවැරදිව වින්‍යාස කිරීමට නොහැකි විය, ස්ක්‍රිප්ට් දෝෂය %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="172"/>
       <source>Could not configure machine feedback correctly, Calamares error %1.</source>
-      <translation type="unfinished"/>
+      <translation>යන්ත්‍ර ප්‍රතිපෝෂණය නිවැරදිව වින්‍යාස කිරීමට නොහැකි විය, Calamares දෝෂය %1.</translation>
     </message>
   </context>
   <context>
@@ -3761,37 +3769,37 @@ Output:
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="28"/>
       <source>Placeholder</source>
-      <translation type="unfinished"/>
+      <translation>ස්ථාන දාරකය</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="76"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click here to send &lt;span style=" font-weight:600;"&gt;no information at all&lt;/span&gt; about your installation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;ඔබගේ ස්ථාපනය පිළිබඳ &lt;span style=" font-weight:600;"&gt;කිසිදු තොරතුරක්&lt;/span&gt; නොයැවීමට මෙතන ක්ලික් කරන්න.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="275"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href="placeholder"&gt;&lt;span style=" text-decoration: underline; color:#2980b9;"&gt;Click here for more information about user feedback&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href="placeholder"&gt;&lt;span style=" text-decoration: underline; color:#2980b9;"&gt;පරිශීලක ප්‍රතිපෝෂණ පිළිබඳ වැඩි විස්තර සඳහා මෙතැන ක්ලික් කරන්න&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="86"/>
       <source>Tracking helps %1 to see how often it is installed, what hardware it is installed on and which applications are used. To see what will be sent, please click the help icon next to each area.</source>
-      <translation type="unfinished"/>
+      <translation>ලුහුබැඳීම %1 හට එය කොපමණ වාරයක් ස්ථාපනය කර ඇත්ද, කුමන දෘඩාංග මත ස්ථාපනය කර ඇත්ද සහ කුමන යෙදුම් භාවිතා කරන්නේද යන්න බැලීමට උපකාරී වේ. යවන්නේ කුමක් දැයි බැලීමට, එක් එක් ප්‍රදේශයට යාබදව ඇති උදවු නිරූපකය ක්ලික් කරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="91"/>
       <source>By selecting this you will send information about your installation and hardware. This information will only be sent &lt;b&gt;once&lt;/b&gt; after the installation finishes.</source>
-      <translation type="unfinished"/>
+      <translation>මෙය තේරීමෙන් ඔබ ඔබේ ස්ථාපනය සහ දෘඪාංග පිළිබඳ තොරතුරු එවනු ඇත. ස්ථාපනය අවසන් වූ පසු මෙම තොරතුරු &lt;b&gt;එක් වරක්&lt;/b&gt; පමණක් යවනු ලැබේ.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="94"/>
       <source>By selecting this you will periodically send information about your &lt;b&gt;machine&lt;/b&gt; installation, hardware and applications, to %1.</source>
-      <translation type="unfinished"/>
+      <translation>මෙය තේරීමෙන් ඔබ විසින් ඔබේ &lt;b&gt;යන්ත්‍ර&lt;/b&gt; ස්ථාපනය, දෘඪාංග සහ යෙදුම් පිළිබඳ තොරතුරු වරින් වර %1 වෙත යවනු ලැබේ.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="98"/>
       <source>By selecting this you will regularly send information about your &lt;b&gt;user&lt;/b&gt; installation, hardware, applications and application usage patterns, to %1.</source>
-      <translation type="unfinished"/>
+      <translation>මෙය තේරීමෙන් ඔබ ඔබේ &lt;b&gt;පරිශීලක&lt;/b&gt; ස්ථාපනය, දෘඪාංග, යෙදුම්, සහ යෙදුම් භාවිත රටා, %1 වෙත නිතිපතා යවනු ලැබේ.</translation>
     </message>
   </context>
   <context>
@@ -3799,7 +3807,7 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingViewStep.cpp" line="49"/>
       <source>Feedback</source>
-      <translation type="unfinished"/>
+      <translation>ප්‍රතිපෝෂණ</translation>
     </message>
   </context>
   <context>
@@ -3807,12 +3815,12 @@ Output:
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="167"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;small&gt;එක් අයෙකුට වඩා මෙම පරිගණකය භාවිතා කරන්නේ නම්, සැකසීමෙන් පසු ඔබට ගිණුම් කිහිපයක් සෑදිය හැක.&lt;/small&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="173"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;small&gt;මෙම පරිගණකය එක් අයෙකුට වඩා භාවිතා කරන්නේ නම්, ස්ථාපනය කිරීමෙන් පසු ඔබට ගිණුම් කිහිපයක් සෑදිය හැක.&lt;/small&gt;</translation>
     </message>
   </context>
   <context>
@@ -3820,7 +3828,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/UsersQmlViewStep.cpp" line="35"/>
       <source>Users</source>
-      <translation type="unfinished"/>
+      <translation>පරිශීලකයන්</translation>
     </message>
   </context>
   <context>
@@ -3828,7 +3836,7 @@ Output:
     <message>
       <location filename="../src/modules/users/UsersViewStep.cpp" line="48"/>
       <source>Users</source>
-      <translation type="unfinished"/>
+      <translation>පරිශීලකයන්</translation>
     </message>
   </context>
   <context>
@@ -3837,13 +3845,13 @@ Output:
       <location filename="../src/calamares/VariantModel.cpp" line="232"/>
       <source>Key</source>
       <comment>Column header for key/value</comment>
-      <translation type="unfinished"/>
+      <translation>යතුර</translation>
     </message>
     <message>
       <location filename="../src/calamares/VariantModel.cpp" line="236"/>
       <source>Value</source>
       <comment>Column header for key/value</comment>
-      <translation type="unfinished"/>
+      <translation>අගය</translation>
     </message>
   </context>
   <context>
@@ -3856,22 +3864,22 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="24"/>
       <source>List of Physical Volumes</source>
-      <translation type="unfinished"/>
+      <translation>භෞතික වෙළුම් ලැයිස්තුව</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="34"/>
       <source>Volume Group Name:</source>
-      <translation type="unfinished"/>
+      <translation>වෙළුම් සමූහයේ නම:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="47"/>
       <source>Volume Group Type:</source>
-      <translation type="unfinished"/>
+      <translation>වෙළුම් කණ්ඩායම් වර්ගය:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="60"/>
       <source>Physical Extent Size:</source>
-      <translation type="unfinished"/>
+      <translation>භෞතික ප්‍රමාණයේ ප්‍රමාණය:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="70"/>
@@ -3881,22 +3889,22 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="86"/>
       <source>Total Size:</source>
-      <translation type="unfinished"/>
+      <translation>මුළු ප්‍රමාණය:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="106"/>
       <source>Used Size:</source>
-      <translation type="unfinished"/>
+      <translation>භාවිතා කළ ප්‍රමාණය:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="126"/>
       <source>Total Sectors:</source>
-      <translation type="unfinished"/>
+      <translation>මුළු අංශ:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="146"/>
       <source>Quantity of LVs:</source>
-      <translation type="unfinished"/>
+      <translation>LV ප්‍රමාණය:</translation>
     </message>
   </context>
   <context>
@@ -3910,92 +3918,92 @@ Output:
       <location filename="../src/modules/welcome/WelcomePage.ui" line="79"/>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="98"/>
       <source>Select application and system language</source>
-      <translation type="unfinished"/>
+      <translation>යෙදුම් සහ පද්ධති භාෂාව තෝරන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="140"/>
       <source>&amp;About</source>
-      <translation type="unfinished"/>
+      <translation>ගැන (&amp;A)</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="150"/>
       <source>Open donations website</source>
-      <translation type="unfinished"/>
+      <translation>පරිත්‍යාග වෙබ් අඩවිය විවෘත කරන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="153"/>
       <source>&amp;Donate</source>
-      <translation type="unfinished"/>
+      <translation>පරිත්‍යාග කරන්න (&amp;D)</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="163"/>
       <source>Open help and support website</source>
-      <translation type="unfinished"/>
+      <translation>උදව් සහ සහාය වෙබ් අඩවිය විවෘත කරන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="166"/>
       <source>&amp;Support</source>
-      <translation type="unfinished"/>
+      <translation>සහාය (&amp;S)</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="176"/>
       <source>Open issues and bug-tracking website</source>
-      <translation type="unfinished"/>
+      <translation>ගැටළු සහ දෝෂ ලුහුබැඳීමේ වෙබ් අඩවිය විවෘත කරන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
       <source>&amp;Known issues</source>
-      <translation type="unfinished"/>
+      <translation>දන්නා ගැටළු (&amp;K)</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="189"/>
       <source>Open release notes website</source>
-      <translation type="unfinished"/>
+      <translation>නිකුතු සටහන් වෙබ් අඩවිය විවෘත කරන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="192"/>
       <source>&amp;Release notes</source>
-      <translation type="unfinished"/>
+      <translation>නිකුත් කිරීමේ සටහන් (&amp;R)</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="216"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1 සඳහා Calamares සැකසුම් වැඩසටහන වෙත සාදරයෙන් පිළිගනිමු.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="217"/>
       <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1 පිහිටුවීමට සාදරයෙන් පිළිගනිමු.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="222"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1 සඳහා Calamares ස්ථාපකය වෙත සාදරයෙන් පිළිගනිමු.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="223"/>
       <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1 ස්ථාපකය වෙත සාදරයෙන් පිළිගනිමු.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="228"/>
       <source>%1 support</source>
-      <translation type="unfinished"/>
+      <translation>%1 සහාය</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="235"/>
       <source>About %1 setup</source>
-      <translation type="unfinished"/>
+      <translation>%1 පිහිටුවීම ගැන</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="235"/>
       <source>About %1 installer</source>
-      <translation type="unfinished"/>
+      <translation>%1 ස්ථාපකය ගැන</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="238"/>
       <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt; සඳහා %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;ප්‍රකාශන හිමිකම 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;ප්‍රකාශන හිමිකම 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;&lt;a href="https://calamares.io/team/"&gt;Calamares කණ්ඩායමට&lt;/a&gt; සහ &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares පරිවර්තකයන් සංවර්ධන කණ්ඩායමට&lt;/a&gt; ස්තුතියි. &lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; සංවර්ධනය සඳහා අනුග්‍රහය දක්වන්නේ &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software විසිනි.</translation>
     </message>
   </context>
   <context>
@@ -4003,7 +4011,7 @@ Output:
     <message>
       <location filename="../src/modules/welcomeq/WelcomeQmlViewStep.cpp" line="40"/>
       <source>Welcome</source>
-      <translation type="unfinished"/>
+      <translation>සාදරයෙන් පිළිගනිමු</translation>
     </message>
   </context>
   <context>
@@ -4011,7 +4019,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="46"/>
       <source>Welcome</source>
-      <translation type="unfinished"/>
+      <translation>සාදරයෙන් පිළිගනිමු</translation>
     </message>
   </context>
   <context>
@@ -4030,12 +4038,23 @@ Output:
                         development is sponsored by &lt;br/&gt;
                         &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; -
                         Liberating Software.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;
+                        &lt;strong&gt;%2&lt;br/&gt;
+                        for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;
+                        Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;
+                        Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;
+                        &lt;a href='https://calamares.io/team/'&gt;Calamares කණ්ඩායමට&lt;/a&gt; ස්තුතියි
+                        සහ &lt;a href='https://www.transifex.com/calamares/calamares/'&gt;Calamares
+                        පරිවර්තක කණ්ඩායම&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;
+                        &lt;a href='https://calamares.io/'&gt;Calamares&lt;/a&gt;
+                        සංවර්ධනය අනුග්‍රහය දක්වනුයේ&lt;br/&gt;
+                        &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; -
+                        Liberating Software.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/about.qml" line="96"/>
       <source>Back</source>
-      <translation type="unfinished"/>
+      <translation>ආපසු</translation>
     </message>
   </context>
   <context>
@@ -4043,7 +4062,7 @@ Output:
     <message>
       <location filename="../src/calamares/calamares-sidebar.qml" line="79"/>
       <source>Show debug information</source>
-      <translation type="unfinished"/>
+      <translation>දෝශ නිරාකරණ තොරතුරු පෙන්වන්න</translation>
     </message>
   </context>
   <context>
@@ -4051,29 +4070,31 @@ Output:
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="36"/>
       <source>Installation Completed</source>
-      <translation type="unfinished"/>
+      <translation>ස්ථාපනය අවසන්</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="43"/>
       <source>%1 has been installed on your computer.&lt;br/&gt;
             You may now restart into your new system, or continue using the Live environment.</source>
-      <translation type="unfinished"/>
+      <translation>%1 ඔබේ පරිගණකයේ ස්ථාපනය කර ඇත.&lt;br/&gt;
+            ඔබට දැන් ඔබේ නව පද්ධතිය නැවත ආරම්භ කළ හැකිය, නැතහොත් සජීවී පරිසරය දිගටම භාවිතා කළ හැක.</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="65"/>
       <source>Close Installer</source>
-      <translation type="unfinished"/>
+      <translation>ස්ථාපකය වසන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="71"/>
       <source>Restart System</source>
-      <translation type="unfinished"/>
+      <translation>පද්ධතිය නැවත ආරම්භ කරන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="89"/>
       <source>&lt;p&gt;A full log of the install is available as installation.log in the home directory of the Live user.&lt;br/&gt;
             This log is copied to /var/log/installation.log of the target system.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;ස්ථාපනයේ සම්පූර්ණ ලොගයක් සජීවී පරිශීලකයාගේ මුල් නාමාවලියෙහි install.log ලෙස පවතී.&lt;br/&gt;
+            මෙම ලොගය ඉලක්ක පද්ධතියේ /var/log/installation.log වෙත පිටපත් කර ඇත.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -4082,18 +4103,20 @@ Output:
       <location filename="../src/modules/localeq/i18n.qml" line="50"/>
       <source>&lt;h1&gt;Languages&lt;/h1&gt; &lt;/br&gt;
                     The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;භාෂා&lt;/h1&gt; &lt;/br&gt;
+                    පද්ධති පෙදෙසි සැකසුම සමහර විධාන රේඛා පරිශීලක අතුරුමුහුණත් මූලද්‍රව්‍ය සඳහා භාෂාව සහ අක්ෂර කට්ටලයට බලපායි. වත්මන් සැකසුම &lt;strong&gt;%1&lt;/strong&gt; වේ.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/i18n.qml" line="123"/>
       <source>&lt;h1&gt;Locales&lt;/h1&gt; &lt;/br&gt;
                     The system locale setting affects the numbers and dates format. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;ප්‍රාදේශීය&lt;/h1&gt; &lt;/br&gt;
+                    පද්ධති පෙදෙසි සැකසීම අංක සහ දින ආකෘතියට බලපායි. වත්මන් සැකසුම &lt;strong&gt;%1&lt;/strong&gt; වේ.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/i18n.qml" line="189"/>
       <source>Back</source>
-      <translation type="unfinished"/>
+      <translation>ආපසු</translation>
     </message>
   </context>
   <context>
@@ -4101,27 +4124,27 @@ Output:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="60"/>
       <source>To activate keyboard preview, select a layout.</source>
-      <translation type="unfinished"/>
+      <translation>යතුරුපුවරු පෙරදසුන සක්‍රිය කිරීමට, පිරිසැලසුමක් තෝරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="86"/>
       <source>Keyboard Model:</source>
-      <translation type="unfinished"/>
+      <translation>යතුරුපුවරු ආකෘතිය:</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="254"/>
       <source>Layouts</source>
-      <translation type="unfinished"/>
+      <translation>පිරිසැලසුම්</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="263"/>
       <source>Type here to test your keyboard</source>
-      <translation type="unfinished"/>
+      <translation>ඔබේ යතුරු පුවරුව පරීක්ෂා කිරීමට මෙහි ටයිප් කරන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="179"/>
       <source>Variants</source>
-      <translation type="unfinished"/>
+      <translation>ප්‍රභේද</translation>
     </message>
   </context>
   <context>
@@ -4129,7 +4152,7 @@ Output:
     <message>
       <location filename="../src/modules/localeq/localeq.qml" line="81"/>
       <source>Change</source>
-      <translation type="unfinished"/>
+      <translation>වෙනස් කරන්න</translation>
     </message>
   </context>
   <context>
@@ -4138,7 +4161,8 @@ Output:
       <location filename="../src/modules/notesqml/notesqml.qml" line="50"/>
       <source>&lt;h3&gt;%1&lt;/h3&gt;
             &lt;p&gt;These are example release notes.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;%1&lt;/h3&gt;
+            &lt;p&gt;මේවා නිදසුන් නිකුත් කිරීමේ සටහන් වේ.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -4147,37 +4171,38 @@ Output:
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="45"/>
       <source>LibreOffice is a powerful and free office suite, used by millions of people around the world. It includes several applications that make it the most versatile Free and Open Source office suite on the market.&lt;br/&gt;
                     Default option.</source>
-      <translation type="unfinished"/>
+      <translation>LibreOffice යනු ලොව පුරා සිටින මිලියන සංඛ්‍යාත ජනතාවක් විසින් භාවිතා කරන බලවත් සහ නිදහස් කාර්යාල කට්ටලයකි. වෙළඳපොලේ ඇති වඩාත්ම බහුකාර්ය නිදහස් සහ විවෘත මූලාශ්‍ර කාර්යාල කට්ටලය බවට පත් කරන යෙදුම් කිහිපයක් එයට ඇතුළත් වේ.&lt;br/&gt;
+                    පෙරනිමි විකල්පය.</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="59"/>
       <source>LibreOffice</source>
-      <translation type="unfinished"/>
+      <translation>LibreOffice</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="108"/>
       <source>If you don't want to install an office suite, just select No Office Suite. You can always add one (or more) later on your installed system as the need arrives.</source>
-      <translation type="unfinished"/>
+      <translation>ඔබට කාර්යාල කට්ටලයක් ස්ථාපනය කිරීමට අවශ්‍ය නැතිනම්, No Office Suite තෝරන්න. ඔබගේ ස්ථාපිත පද්ධතියට අවශ්‍යතාවය අනුව ඔබට සැම විටම එකක් (හෝ කිහිපයක්) පසුව එක් කළ හැක</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="121"/>
       <source>No Office Suite</source>
-      <translation type="unfinished"/>
+      <translation>No Office Suite</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="172"/>
       <source>Create a minimal Desktop install, remove all extra applications and decide later on what you would like to add to your system. Examples of what won't be on such an install, there will be no Office Suite, no media players, no image viewer or print support.  It will be just a desktop, file browser, package manager, text editor and simple web-browser.</source>
-      <translation type="unfinished"/>
+      <translation>අවම ඩෙස්ක්ටොප් ස්ථාපනයක් සාදන්න, සියලුම අමතර යෙදුම් ඉවත් කර ඔබ ඔබේ පද්ධතියට එකතු කිරීමට කැමති දේ පසුව තීරණය කරන්න. එවැනි ස්ථාපනයක සිදු නොවන දේ පිළිබඳ උදාහරණ, Office Suite එකක්, මාධ්‍ය වාදකයක්, රූප නරඹන්නාක් හෝ මුද්‍රණ සහායක් නොමැත. එය ඩෙස්ක්ටොප් එකක්, ගොනු බ්‍රවුසරයක්, පැකේජ කළමනාකරු, පෙළ සංස්කාරකයක් සහ සරල වෙබ් බ්‍රව්සරයක් පමණක් වනු ඇත.</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="185"/>
       <source>Minimal Install</source>
-      <translation type="unfinished"/>
+      <translation>අවම ස්ථාපනය</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="233"/>
       <source>Please select an option for your install, or use the default: LibreOffice included.</source>
-      <translation type="unfinished"/>
+      <translation>කරුණාකර ඔබගේ ස්ථාපනය සඳහා විකල්පයක් තෝරන්න, නැතහොත් පෙරනිමිය භාවිතා කරන්න: LibreOffice ඇතුළත්.</translation>
     </message>
   </context>
   <context>
@@ -4205,12 +4230,32 @@ Output:
             &lt;/ul&gt;
 
             &lt;p&gt;The vertical scrollbar is adjustable, current width set to 10.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;%1&lt;/h3&gt;
+            &lt;p&gt;මෙය උදාහරණ QML ගොනුවකි, Flickable අන්තර්ගතය සහිත Rich Text විකල්ප පෙන්වයි.&lt;/p&gt;
+
+            &lt;p&gt;Rich Text සහිත QML හට HTML ටැග් භාවිතා කළ හැක, Flickable අන්තර්ගතය ස්පර්ශ තිර සඳහා ප්‍රයෝජනවත් වේ.&lt;/p&gt;
+
+            &lt;p&gt;&lt;b&gt;මෙය තද පෙළකි&lt;/b&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;i&gt;මෙය ඇල අකුරු වේ&lt;/i&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;u&gt;මෙය යටින් ඉරි ඇඳ ඇති පාඨයකි&lt;/u&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;center&gt;මෙම පාඨය මැදට පෙළගස්වනු ඇත.&lt;/center&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;s&gt;මෙය මැදින් ඇදි ඉරකි.&lt;/s&gt;&lt;/p&gt;
+
+            &lt;p&gt;කේත උදාහරණය:
+            &lt;code&gt;ls -l /home&lt;/code&gt;&lt;/p&gt;
+
+            &lt;p&gt;&lt;b&gt;ලැයිස්තු:&lt;/b&gt;&lt;/p&gt;
+            &lt;ul&gt;
+                &lt;li&gt;Intel CPU පද්ධති&lt;/li&gt;
+                &lt;li&gt;AMD CPU පද්ධති&lt;/li&gt;
+            &lt;/ul&gt;
+
+            &lt;p&gt;සිරස් අනුචලන තීරුව වෙනස් කළ හැකි අතර, වත්මන් පළල 10 ලෙස සකසා ඇත.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/release_notes.qml" line="76"/>
       <source>Back</source>
-      <translation type="unfinished"/>
+      <translation>ආපසු</translation>
     </message>
   </context>
   <context>
@@ -4218,32 +4263,32 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="43"/>
       <source>Pick your user name and credentials to login and perform admin tasks</source>
-      <translation type="unfinished"/>
+      <translation>පිවිසීමට සහ පරිපාලක කාර්යයන් කිරීමට ඔබගේ පරිශීලක නාමය සහ අක්තපත්‍ර තෝරන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="56"/>
       <source>What is your name?</source>
-      <translation type="unfinished"/>
+      <translation>ඔබගේ නම කුමක් ද?</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="63"/>
       <source>Your Full Name</source>
-      <translation type="unfinished"/>
+      <translation>ඔබේ සම්පුර්ණ නම</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="80"/>
       <source>What name do you want to use to log in?</source>
-      <translation type="unfinished"/>
+      <translation>ඔබට පුරනය වීමට භාවිතා කිරීමට අවශ්‍ය නම කුමක්ද?</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="87"/>
       <source>Login Name</source>
-      <translation type="unfinished"/>
+      <translation>ලොගින් නම</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="116"/>
       <source>If more than one person will use this computer, you can create multiple accounts after installation.</source>
-      <translation type="unfinished"/>
+      <translation>මෙම පරිගණකය එක් අයෙකුට වඩා භාවිතා කරන්නේ නම්, ස්ථාපනය කිරීමෙන් පසු ඔබට ගිණුම් කිහිපයක් සෑදිය හැක.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="128"/>
@@ -4253,97 +4298,97 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="136"/>
       <source>root is not allowed as username.</source>
-      <translation type="unfinished"/>
+      <translation>root පරිශීලක නාමයක් ලෙස අවසර නැත.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="145"/>
       <source>What is the name of this computer?</source>
-      <translation type="unfinished"/>
+      <translation>මෙම පරිගණකයේ නම කුමක්ද?</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="151"/>
       <source>Computer Name</source>
-      <translation type="unfinished"/>
+      <translation>පරිගණක නම</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="178"/>
       <source>This name will be used if you make the computer visible to others on a network.</source>
-      <translation type="unfinished"/>
+      <translation>ඔබ පරිගණකය ජාලයක අන් අයට පෙනෙන ලෙස සලස්වන්නේ නම් මෙම නම භාවිතා වේ.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="198"/>
       <source>localhost is not allowed as hostname.</source>
-      <translation type="unfinished"/>
+      <translation>localhost සත්කාරක නාමය ලෙස භාවිතයට අවසර නැත.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="207"/>
       <source>Choose a password to keep your account safe.</source>
-      <translation type="unfinished"/>
+      <translation>ඔබගේ ගිණුම ආරක්ෂිතව තබා ගැනීමට මුරපදයක් තෝරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="217"/>
       <source>Password</source>
-      <translation type="unfinished"/>
+      <translation>රහස් පදය</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="234"/>
       <source>Repeat Password</source>
-      <translation type="unfinished"/>
+      <translation>මුරපදය නැවත ඇතුල් කරන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="261"/>
       <source>Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.</source>
-      <translation type="unfinished"/>
+      <translation>එකම මුරපදය දෙවරක් ඇතුල් කරන්න, එවිට එය ටයිප් කිරීමේ දෝෂ සඳහා පරීක්ෂා කළ හැක. හොඳ මුරපදයක අකුරු, ඉලක්කම් සහ විරාම ලකුණු මිශ්‍රණයක් අඩංගු වන අතර, අවම වශයෙන් අක්ෂර අටක්වත් දිග විය යුතු අතර නියමිත කාල පරාසයන්හිදී වෙනස් කළ යුතුය.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="406"/>
       <source>Validate passwords quality</source>
-      <translation type="unfinished"/>
+      <translation>මුරපදවල ගුණාත්මකභාවය තහවුරු කරන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="416"/>
       <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password.</source>
-      <translation type="unfinished"/>
+      <translation>මෙම කොටුව සලකුණු කළ විට, මුරපදය-ශක්තිය පරීක්ෂා කිරීම සිදු කරනු ලබන අතර ඔබට දුර්වල මුරපදයක් භාවිතා කිරීමට නොහැකි වනු ඇත.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="398"/>
       <source>Log in automatically without asking for the password</source>
-      <translation type="unfinished"/>
+      <translation>මුරපදය ඉල්ලන්නේ නැතිව ස්වයංක්‍රීයව ලොග් වන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="190"/>
       <source>Only letters, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
-      <translation type="unfinished"/>
+      <translation>අකුරු, ඉලක්කම්, යටි ඉරි සහ යටි ඉරි පමණක් ඉඩ දෙනු ලැබේ, අවම වශයෙන් අක්ෂර දෙකක්.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="293"/>
       <source>Reuse user password as root password</source>
-      <translation type="unfinished"/>
+      <translation>පරිශීලක මුරපදය root මුරපදය ලෙස නැවත භාවිතා කරන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="301"/>
       <source>Use the same password for the administrator account.</source>
-      <translation type="unfinished"/>
+      <translation>පරිපාලක ගිණුම සඳහා එකම මුරපදය භාවිතා කරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="314"/>
       <source>Choose a root password to keep your account safe.</source>
-      <translation type="unfinished"/>
+      <translation>ඔබගේ ගිණුම ආරක්ෂිතව තබා ගැනීමට root මුරපදයක් තෝරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="324"/>
       <source>Root Password</source>
-      <translation type="unfinished"/>
+      <translation>Root මුරපදය</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="342"/>
       <source>Repeat Root Password</source>
-      <translation type="unfinished"/>
+      <translation>Root මුරපදය නැවත ඇතුල් කරන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="368"/>
       <source>Enter the same password twice, so that it can be checked for typing errors.</source>
-      <translation type="unfinished"/>
+      <translation>එකම මුරපදය දෙවරක් ඇතුල් කරන්න, එවිට එය ටයිප් කිරීමේ දෝෂ සඳහා පරීක්ෂා කළ හැක.</translation>
     </message>
   </context>
   <context>
@@ -4352,32 +4397,33 @@ Output:
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="35"/>
       <source>&lt;h3&gt;Welcome to the %1 &lt;quote&gt;%2&lt;/quote&gt; installer&lt;/h3&gt;
             &lt;p&gt;This program will ask you some questions and set up %1 on your computer.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;%1 &lt;quote&gt;%2&lt;/quote&gt; ස්ථාපකය වෙත සාදරයෙන් පිළිගනිමු&lt;/h3&gt;
+            &lt;p&gt;මෙම වැඩසටහන ඔබෙන් ප්‍රශ්න කිහිපයක් අසන අතර ඔබේ පරිගණකයේ %1 පිහිටුවනු ඇත.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="66"/>
       <source>About</source>
-      <translation type="unfinished"/>
+      <translation>ගැන</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="80"/>
       <source>Support</source>
-      <translation type="unfinished"/>
+      <translation>සහාය</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="91"/>
       <source>Known issues</source>
-      <translation type="unfinished"/>
+      <translation>දන්නා ගැටළු</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="102"/>
       <source>Release notes</source>
-      <translation type="unfinished"/>
+      <translation>නිකුත් කිරීමේ සටහන්</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="114"/>
       <source>Donate</source>
-      <translation type="unfinished"/>
+      <translation>පරිත්‍යාග කරන්න</translation>
     </message>
   </context>
 </TS>
