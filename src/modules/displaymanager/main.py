@@ -854,7 +854,7 @@ class DMgreetd(DisplayManager):
     def config_load(self):
         import toml
 
-        if (os.path.exists(self.config_path)):
+        if (os.path.exists(self.config_path())):
             self.config_data = toml.loads(self.config_path())
 
         self.config_data['terminal'] = dict(vt = "next")
