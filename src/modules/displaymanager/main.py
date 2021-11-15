@@ -19,7 +19,6 @@ import abc
 import os
 import toml
 import libcalamares
-import configparser
 
 from libcalamares.utils import gettext_path, gettext_languages
 
@@ -796,6 +795,8 @@ class DMsddm(DisplayManager):
     executable = "sddm"
 
     def set_autologin(self, username, do_autologin, default_desktop_environment):
+        import configparser
+
         # Systems with Sddm as Desktop Manager
         sddm_conf_path = os.path.join(self.root_mount_point, "etc/sddm.conf")
 
