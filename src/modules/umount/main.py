@@ -60,8 +60,9 @@ def export_zpools(root_mount_point):
         zfs_pool_list.sort(reverse=True, key=lambda x: x["poolName"])
         if zfs_pool_list:
             for zfs_pool in zfs_pool_list:
-                import_result = subprocess.run(['zpool', 'export', root_mount_point, zfs_pool["poolName"]])
-                if import_result.returncode != 0:
+                try:
+                    libcalamares.utils.host_env_process_output(['zpool', 'export', zfs_pool["poolName"]])
+                except subprocess.CalledProcessError:
                     libcalamares.utils.warning("Failed to export zpool")
     except Exception as e:
         # If this fails it shouldn't cause the installation to fail
