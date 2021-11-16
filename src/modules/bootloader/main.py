@@ -99,7 +99,7 @@ def get_zfs_root():
     :return: A string containing the path to the zfs root or None if it is not found
     """
 
-    zfs = libcalamares.globalstorage.value("zfs")
+    zfs = libcalamares.globalstorage.value("zfsDatasets")
 
     if not zfs:
         libcalamares.utils.warning("Failed to locate zfs dataset list")
@@ -109,7 +109,7 @@ def get_zfs_root():
     for dataset in zfs:
         try:
             if dataset["mountpoint"] == "/":
-                return dataset["zpool"] + "/" + dataset["dsname"]
+                return dataset["zpool"] + "/" + dataset["dsName"]
         except KeyError:
             # This should be impossible
             libcalamares.utils.warning("Internal error handling zfs dataset")
@@ -187,7 +187,7 @@ def create_systemd_boot_conf(install_path, efi_dir, uuid, entry, entry_name, ker
         if is_zfs_root(partition):
             zfs_root_path = get_zfs_root()
             if zfs_root_path is not None:
-                kernel_params.append("root=ZFS=" + zfs_root_path)
+                kernel_params.append("zfs=" + zfs_root_path)
             else:
                 # Something is really broken if we get to this point
                 libcalamares.utils.warning("Internal error handling zfs dataset")
