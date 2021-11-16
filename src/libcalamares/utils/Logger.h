@@ -214,9 +214,9 @@ public:
  * since the log may get posted to bug reports, or stored in
  * the target system.
  */
-struct Redacted
+struct RedactedCommand
 {
-    Redacted( const QStringList& l )
+    RedactedCommand( const QStringList& l )
         : list( l )
     {
     }
@@ -224,7 +224,7 @@ struct Redacted
     const QStringList& list;
 };
 
-QDebug& operator<<( QDebug& s, const Redacted& l );
+QDebug& operator<<( QDebug& s, const RedactedCommand& l );
 
 /**
  * @brief Formatted logging of a pointer

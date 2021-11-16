@@ -229,7 +229,7 @@ toString( const QVariant& v )
 }
 
 QDebug&
-operator<<( QDebug& s, const Redacted& l )
+operator<<( QDebug& s, const RedactedCommand& l )
 {
     // Special case logging: don't log the (encrypted) password.
     if ( l.list.contains( "usermod" ) )
