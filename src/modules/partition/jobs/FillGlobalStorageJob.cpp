@@ -105,13 +105,18 @@ mapForPartition( Partition* partition, const QString& uuid )
     // so indent a bit
     Logger::CDebug deb;
     using TR = Logger::DebugRow< const char* const, const QString& >;
+    // clang-format off
     deb << Logger::SubEntry << "mapping for" << partition->partitionPath() << partition->deviceNode()
-        << TR( "partlabel", map[ "partlabel" ].toString() ) << TR( "partuuid", map[ "partuuid" ].toString() )
-        << TR( "parttype", map[ "parttype" ].toString() ) << TR( "partattrs", map[ "partattrs" ].toString() )
-        << TR( "mountPoint:", PartitionInfo::mountPoint( partition ) ) << TR( "fs:", map[ "fs" ].toString() )
-        << TR( "fsName", map[ "fsName" ].toString() ) << TR( "uuid", uuid )
+        << TR( "partlabel", map[ "partlabel" ].toString() )
+        << TR( "partuuid", map[ "partuuid" ].toString() )
+        << TR( "parttype", map[ "parttype" ].toString() )
+        << TR( "partattrs", map[ "partattrs" ].toString() )
+        << TR( "mountPoint:", PartitionInfo::mountPoint( partition ) )
+        << TR( "fs:", map[ "fs" ].toString() )
+        << TR( "fsName", map[ "fsName" ].toString() )
+        << TR( "uuid", uuid )
         << TR( "claimed", map[ "claimed" ].toString() );
-
+    // clang-format on
     if ( partition->roles().has( PartitionRole::Luks ) )
     {
         const FileSystem& fsRef = partition->fileSystem();
