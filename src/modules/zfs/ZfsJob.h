@@ -23,7 +23,7 @@
 struct ZfsResult
 {
     bool success;
-    QString failureMessage;
+    QString failureMessage;  // This message is displayed to the user and should be translated at the time of population
 };
 
 /** @brief Create zpools and zfs datasets
@@ -60,18 +60,11 @@ private:
      * @p passphrase is a string continaing the passphrase
      *
      */
-    ZfsResult CreateZpool( QString deviceName,
+    ZfsResult createZpool( QString deviceName,
                            QString poolName,
                            QString poolOptions,
                            bool encrypt,
                            QString passphrase = QString() ) const;
-
-    /** @brief Returns the alphanumeric portion of a string
-     *
-     * @p input is the input string
-     *
-     */
-    QString AlphaNumeric( QString input ) const;
 
     /** @brief Collects all the mountpoints from the partitions
      *
@@ -79,7 +72,7 @@ private:
      * in the list of maps and populates m_mountpoints
      *
      */
-    void CollectMountpoints( const QVariantList& partitions );
+    void collectMountpoints( const QVariantList& partitions );
 
     /** @brief Check to see if a given mountpoint overlaps with one of the defined moutnpoints
      *
@@ -88,7 +81,7 @@ private:
      * since all the mountpoints would begin with /
      *
      */
-    bool IsMountpointOverlapping( const QString& targetMountpoint ) const;
+    bool isMountpointOverlapping( const QString& targetMountpoint ) const;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( ZfsJobFactory )
