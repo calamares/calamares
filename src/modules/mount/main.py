@@ -26,6 +26,17 @@ _ = gettext.translation("calamares-python",
                         fallback=True).gettext
 
 
+class ZfsException(Exception):
+    """Exception raised when there is a problem with zfs
+
+    Attributes:
+        message -- explanation of the error
+    """
+
+    def __init__(self, message):
+        self.message = message
+
+
 def pretty_name():
     return _("Mounting partitions.")
 
@@ -61,7 +72,7 @@ def get_btrfs_subvolumes(partitions):
     return btrfs_subvolumes
 
 
-def parse_global_storage(gs_value):
+def bool_to_zfs_command(gs_value):
     """ Something in the chain is converting on and off to true and false.  This converts it back.
 
     :param gs_value: The value from global storage which needs to be fixed
@@ -86,7 +97,7 @@ def mount_zfs(root_mount_point, partition):
     zfs_pool_list = libcalamares.globalstorage.value("zfsPoolInfo")
     if not zfs_pool_list:
         libcalamares.utils.warning("Failed to locate zfsPoolInfo data in global storage")
-        raise Exception("Internal error mounting zfs datasets")
+        raise ZfsException(_("Internal error mounting zfs datasets"))
 
     # Find the zpool matching this partition
     for zfs_pool in zfs_pool_list:
@@ -95,9 +106,10 @@ def mount_zfs(root_mount_point, partition):
             ds_name = zfs_pool["dsName"]
 
     # import the zpool
-    import_result = subprocess.run(['zpool', 'import', '-R', root_mount_point, pool_name])
-    if import_result.returncode != 0:
-        raise Exception("Failed to import zpool")
+    try:
+        libcalamares.utils.host_env_process_output(["zpool", "import", "-R", root_mount_point, pool_name], None)
+    except subprocess.CalledProcessError:
+        raise ZfsException(_("Failed to import zpool"))
 
     # Get the encrpytion information from global storage
     zfs_info_list = libcalamares.globalstorage.value("zfsInfo")
@@ -110,9 +122,11 @@ def mount_zfs(root_mount_point, partition):
 
     if encrypt is True:
         # The zpool is encrypted, we need to unlock it
-        loadkey_result = subprocess.run(['sh', '-c', 'echo "' + passphrase + '" | zfs load-key ' + pool_name])
-        if loadkey_result.returncode != 0:
-            raise Exception("Failed to unlock zpool")
+        try:
+            libcalamares.utils.host_env_process_output(["sh", "-c",
+                                                        "echo \"" + passphrase + "\" | zfs load-key " + pool_name], None)
+        except subprocess.CalledProcessError:
+            raise ZfsException(_("Failed to unlock zpool"))
 
     if partition["mountPoint"] == '/':
         # Get the zfs dataset list from global storage
@@ -120,36 +134,39 @@ def mount_zfs(root_mount_point, partition):
 
         if not zfs:
             libcalamares.utils.warning("Failed to locate zfs dataset list")
-            raise Exception("Internal error mounting zfs datasets")
+            raise ZfsException(_("Internal error mounting zfs datasets"))
 
         # first we handle the / dataset if there is one
         for dataset in zfs:
             if dataset['mountpoint'] == '/':
                 # Properly set the canmount field from global storage
-                can_mount = parse_global_storage(dataset['canMount'])
-                set_result = subprocess.run(['zfs', 'set', 'canmount=' + can_mount,
-                                             dataset['zpool'] + '/' + dataset['dsName']])
-                if set_result.returncode != 0:
-                    raise Exception("Failed to set zfs mountpoint")
-                if dataset['canMount'] == 'noauto':
-                    mount_result = subprocess.run(['zfs', 'mount', dataset['zpool'] + '/' + dataset['dsName']])
+                can_mount = bool_to_zfs_command(dataset['canMount'])
+                try:
+                    libcalamares.utils.host_env_process_output(["zfs", "set", "canmount=" + can_mount,
+                                                                dataset["zpool"] + "/" + dataset["dsName"]], None)
+                except subprocess.CalledProcessError:
+                    raise ZfsException(_("Failed to set zfs mountpoint"))
+                if dataset["canMount"] == "noauto":
+                    mount_result = subprocess.run(["zfs", "mount", dataset["zpool"] + '/' + dataset["dsName"]])
                     if mount_result.returncode != 0:
-                        raise Exception("Failed to mount root dataset")
+                        raise ZfsException(_("Failed to mount root dataset"))
 
         # Set the canmount property for each dataset.  This will effectively mount the dataset
         for dataset in zfs:
             # We already handled the / mountpoint above
-            if dataset['mountpoint'] != '/':
-                can_mount = parse_global_storage(dataset['canMount'])
+            if dataset["mountpoint"] != '/':
+                can_mount = bool_to_zfs_command(dataset["canMount"])
 
-                set_result = subprocess.run(['zfs', 'set', 'canmount=' + can_mount,
-                                             dataset['zpool'] + '/' + dataset['dsName']])
-                if set_result.returncode != 0:
-                    raise Exception("Failed to set zfs mountpoint")
+                try:
+                    libcalamares.utils.host_env_process_output(["zfs", "set", "canmount=" + can_mount,
+                                                                dataset["zpool"] + "/" + dataset["dsName"]], None)
+                except subprocess.CalledProcessError:
+                    raise ZfsException(_("Failed to set zfs mountpoint"))
     else:
-        set_result = subprocess.run(['zfs', 'set', 'canmount=on', pool_name + '/' + ds_name])
-        if set_result.returncode != 0:
-            raise Exception("Failed to set zfs mountpoint")
+        try:
+            libcalamares.utils.host_env_process_output(["zfs", "set", "canmount=on", pool_name + "/" + ds_name], None)
+        except subprocess.CalledProcessError:
+            raise ZfsException(_("Failed to set zfs mountpoint"))
 
 
 def mount_partition(root_mount_point, partition, partitions):
@@ -255,8 +272,11 @@ def run():
     # under /tmp, we make sure /tmp is mounted before the partition)
     mountable_partitions = [ p for p in partitions + extra_mounts if "mountPoint" in p and p["mountPoint"] ]
     mountable_partitions.sort(key=lambda x: x["mountPoint"])
-    for partition in mountable_partitions:
-        mount_partition(root_mount_point, partition, partitions)
+    try:
+        for partition in mountable_partitions:
+            mount_partition(root_mount_point, partition, partitions)
+    except ZfsException as ze:
+        return _("zfs mounting error"), ze.message
 
     libcalamares.globalstorage.insert("rootMountPoint", root_mount_point)
 
