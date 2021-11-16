@@ -55,6 +55,32 @@ def get_grub_config_path(root_mount_point):
     return os.path.join(default_dir, default_config_file)
 
 
+def get_zfs_root():
+    """
+    Looks in global storage to find the zfs root
+
+    :return: A string containing the path to the zfs root or None if it is not found
+    """
+
+    zfs = libcalamares.globalstorage.value("zfsDatasets")
+
+    if not zfs:
+        libcalamares.utils.warning("Failed to locate zfs dataset list")
+        return None
+
+    # Find the root dataset
+    for dataset in zfs:
+        try:
+            if dataset["mountpoint"] == "/":
+                return dataset["zpool"] + "/" + dataset["dsName"]
+        except KeyError:
+            # This should be impossible
+            libcalamares.utils.warning("Internal error handling zfs dataset")
+            raise
+
+    return None
+
+
 def modify_grub_default(partitions, root_mount_point, distributor):
     """
     Configures '/etc/default/grub' for hibernation and plymouth.
@@ -141,7 +167,14 @@ def modify_grub_default(partitions, root_mount_point, distributor):
                         )
                 ]
 
+            if partition["fs"] == "zfs" and partition["mountPoint"] == "/":
+                zfs_root_path = get_zfs_root()
+
     kernel_params = ["quiet"]
+
+    # Currently, grub doesn't detect this properly so it must be set manually
+    if zfs_root_path:
+        kernel_params.insert(0, "zfs=" + zfs_root_path)
 
     if cryptdevice_params:
         kernel_params.extend(cryptdevice_params)
