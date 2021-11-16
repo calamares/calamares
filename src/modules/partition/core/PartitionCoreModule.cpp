@@ -257,7 +257,6 @@ PartitionCoreModule::doInit()
     cDebug() << Logger::SubEntry << "node\tcapacity\tname\tprettyName";
     for ( auto device : devices )
     {
-        cDebug() << Logger::SubEntry << Logger::Pointer( device );
         if ( device )
         {
             // Gives ownership of the Device* to the DeviceInfo object
