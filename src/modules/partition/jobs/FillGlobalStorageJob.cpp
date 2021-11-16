@@ -108,13 +108,13 @@ mapForPartition( Partition* partition, const QString& uuid )
     // clang-format off
     deb << Logger::SubEntry << "mapping for" << partition->partitionPath() << partition->deviceNode()
         << TR( "partlabel", map[ "partlabel" ].toString() )
-        << TR( "partuuid", map[ "partuuid" ].toString() )
+        << TR( "partition-uuid (partuuid)", map[ "partuuid" ].toString() )
         << TR( "parttype", map[ "parttype" ].toString() )
         << TR( "partattrs", map[ "partattrs" ].toString() )
         << TR( "mountPoint:", PartitionInfo::mountPoint( partition ) )
         << TR( "fs:", map[ "fs" ].toString() )
         << TR( "fsName", map[ "fsName" ].toString() )
-        << TR( "uuid", uuid )
+        << TR( "filesystem-uuid (uuid)", uuid )
         << TR( "claimed", map[ "claimed" ].toString() );
     // clang-format on
     if ( partition->roles().has( PartitionRole::Luks ) )
