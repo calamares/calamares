@@ -20,6 +20,8 @@
 #include <QDir>
 #include <QFileInfo>
 #include <QMutex>
+#include <QRandomGenerator>
+#include <QTextStream>
 #include <QTime>
 #include <QVariant>
 
@@ -250,6 +252,36 @@ operator<<( QDebug& s, const RedactedCommand& l )
     }
 
     return s;
+}
+
+/** @brief Returns a stable-but-private hash of @p context and @p s
+ *
+ * Identical strings with the same context will be hashed the same,
+ * so that they can be logged and still recognized as the-same.
+ */
+static uint insertRedactedName( const QString& context, const QString& s )
+{
+    static uint salt = QRandomGenerator::global()->generate();  // Just once
+
+    uint val = qHash(context, salt);
+    return qHash(s, val);
+}
+
+RedactedName::RedactedName( const QString& context, const QString& s )
+    : m_id( insertRedactedName(context, s) ),
+      m_context(context)
+{
+}
+
+RedactedName::RedactedName(const char *context, const QString& s )
+    : RedactedName( QString::fromLatin1(context), s )
+{
+}
+
+QDebug&
+operator<< ( QDebug& s, const RedactedName& n )
+{
+    return s << NoQuote << n.m_context << '$' << n.m_id << Quote;
 }
 
 }  // namespace Logger

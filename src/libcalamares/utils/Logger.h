@@ -226,6 +226,23 @@ struct RedactedCommand
 
 QDebug& operator<<( QDebug& s, const RedactedCommand& l );
 
+/** @brief When logging "private" identifiers, keep them consistent but private
+ *
+ * Send a string to a logger in such a way that each time it is logged,
+ * it logs the same way, but without revealing the actual contents.
+ * This can be applied to user names, UUIDs, etc.
+ */
+struct RedactedName
+{
+    RedactedName( const char* context, const QString& s );
+    RedactedName( const QString& context, const QString& s );
+
+    const uint m_id;
+    const QString m_context;
+};
+
+QDebug& operator<<( QDebug& s, const RedactedName& n );
+
 /**
  * @brief Formatted logging of a pointer
  *
