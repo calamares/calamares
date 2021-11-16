@@ -17,6 +17,8 @@ properties:
             properties:
                 dsName:  { type: string }
                 mountpoint:  { type: string }
-                canMount:  { type: string }
-            required: [ dsName, mountpoint, canmount ]
+                # Nominally a string, but "on" and "off" are valid and get
+                # turned into a boolean in the YAML parser.
+                canMount:  { anyOf: [ { type: string }, { type: boolean } ] }
+            required: [ dsName, mountpoint, canMount ]
 required: [ poolName, datasets ]
