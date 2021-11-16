@@ -39,7 +39,7 @@ alphaNumeric( QString input )
  * so this function checks to see if we have a partuuid.  If so, it forms a device path
  * for it.  As a backup, it uses the device name i.e. /dev/sdax.
  *
- * The function returns a fullt qualified path to the device or an empty string if no device
+ * The function returns a fully qualified path to the device or an empty string if no device
  * is found
  *
  * @p pMap is the partition map from global storage
@@ -61,6 +61,30 @@ findBestZfsDevice( QVariantMap pMap )
     else
     {
         return QString();
+    }
+}
+
+/** @brief Converts the value in a QVariant to a string which is a valid option for canmount
+ *
+ * Storing "on" and "off" in QVariant results in a conversion to boolean.  This function takes
+ * the Qvariant in @p canMount and converts it to a QString holding "on", "off" or the string
+ * value in the QVariant.
+ *
+ */
+static QString
+convertCanMount( QVariant canMount )
+{
+    if ( canMount == true )
+    {
+        return "on";
+    }
+    else if ( canMount == false )
+    {
+        return "off";
+    }
+    else
+    {
+        return canMount.toString();
     }
 }
 
@@ -263,12 +287,12 @@ ZfsJob::exec()
                     continue;
                 }
 
-                // Create the dataset.  We set canmount=no regardless of the setting for now.
-                // It is modified to the correct value in the mount module to ensure mount order is maintained
+                QString canMount = convertCanMount( datasetMap[ "canMount" ].toString() );
+
+                // Create the dataset
                 auto r = system->runCommand( { QStringList() << "zfs"
                                                              << "create" << m_datasetOptions.split( ' ' ) << "-o"
-                                                             << "canmount=off"
-                                                             << "-o"
+                                                             << "canmount=" + canMount << "-o"
                                                              << "mountpoint=" + datasetMap[ "mountpoint" ].toString()
                                                              << poolName + "/" + datasetMap[ "dsName" ].toString() },
                                              std::chrono::seconds( 10 ) );
@@ -292,13 +316,11 @@ ZfsJob::exec()
         }
         else
         {
-            // This is a zpool with a single dataset We again set canmount=no regardless of the desired setting.
-            // It is modified to the correct value in the mount module to ensure mount order is maintained
             QString dsName = mountpoint;
             dsName = alphaNumeric( mountpoint );
             auto r = system->runCommand( { QStringList() << "zfs"
                                                          << "create" << m_datasetOptions.split( ' ' ) << "-o"
-                                                         << "canmount=off"
+                                                         << "canmount=on"
                                                          << "-o"
                                                          << "mountpoint=" + mountpoint << poolName + "/" + dsName },
                                          std::chrono::seconds( 10 ) );

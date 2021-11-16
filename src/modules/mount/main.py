@@ -72,20 +72,6 @@ def get_btrfs_subvolumes(partitions):
     return btrfs_subvolumes
 
 
-def bool_to_zfs_command(gs_value):
-    """ Something in the chain is converting on and off to true and false.  This converts it back.
-
-    :param gs_value: The value from global storage which needs to be fixed
-    :return:
-    """
-    if gs_value is True:
-        return "on"
-    elif gs_value is False:
-        return "off"
-    else:
-        return gs_value
-
-
 def mount_zfs(root_mount_point, partition):
     """ Mounts a zfs partition at @p root_mount_point
 
@@ -107,7 +93,7 @@ def mount_zfs(root_mount_point, partition):
 
     # import the zpool
     try:
-        libcalamares.utils.host_env_process_output(["zpool", "import", "-R", root_mount_point, pool_name], None)
+        libcalamares.utils.host_env_process_output(["zpool", "import", "-N", "-R", root_mount_point, pool_name], None)
     except subprocess.CalledProcessError:
         raise ZfsException(_("Failed to import zpool"))
 
@@ -123,8 +109,7 @@ def mount_zfs(root_mount_point, partition):
     if encrypt is True:
         # The zpool is encrypted, we need to unlock it
         try:
-            libcalamares.utils.host_env_process_output(["sh", "-c",
-                                                        "echo \"" + passphrase + "\" | zfs load-key " + pool_name], None)
+            libcalamares.utils.host_env_process_output(["zfs", "load-key", pool_name], None, passphrase)
         except subprocess.CalledProcessError:
             raise ZfsException(_("Failed to unlock zpool"))
 
@@ -136,35 +121,17 @@ def mount_zfs(root_mount_point, partition):
             libcalamares.utils.warning("Failed to locate zfs dataset list")
             raise ZfsException(_("Internal error mounting zfs datasets"))
 
-        # first we handle the / dataset if there is one
+        zfs.sort(key=lambda x: x["mountpoint"])
         for dataset in zfs:
-            if dataset['mountpoint'] == '/':
-                # Properly set the canmount field from global storage
-                can_mount = bool_to_zfs_command(dataset['canMount'])
-                try:
-                    libcalamares.utils.host_env_process_output(["zfs", "set", "canmount=" + can_mount,
-                                                                dataset["zpool"] + "/" + dataset["dsName"]], None)
-                except subprocess.CalledProcessError:
-                    raise ZfsException(_("Failed to set zfs mountpoint"))
-                if dataset["canMount"] == "noauto":
-                    mount_result = subprocess.run(["zfs", "mount", dataset["zpool"] + '/' + dataset["dsName"]])
-                    if mount_result.returncode != 0:
-                        raise ZfsException(_("Failed to mount root dataset"))
-
-        # Set the canmount property for each dataset.  This will effectively mount the dataset
-        for dataset in zfs:
-            # We already handled the / mountpoint above
-            if dataset["mountpoint"] != '/':
-                can_mount = bool_to_zfs_command(dataset["canMount"])
-
-                try:
-                    libcalamares.utils.host_env_process_output(["zfs", "set", "canmount=" + can_mount,
-                                                                dataset["zpool"] + "/" + dataset["dsName"]], None)
-                except subprocess.CalledProcessError:
-                    raise ZfsException(_("Failed to set zfs mountpoint"))
+            try:
+                if dataset["canMount"] == "noauto" or dataset["canMount"] is True:
+                    libcalamares.utils.host_env_process_output(["zfs", "mount",
+                                                                dataset["zpool"] + '/' + dataset["dsName"]])
+            except subprocess.CalledProcessError:
+                raise ZfsException(_("Failed to set zfs mountpoint"))
     else:
         try:
-            libcalamares.utils.host_env_process_output(["zfs", "set", "canmount=on", pool_name + "/" + ds_name], None)
+            libcalamares.utils.host_env_process_output(["zfs", "mount", pool_name + '/' + ds_name])
         except subprocess.CalledProcessError:
             raise ZfsException(_("Failed to set zfs mountpoint"))
 
