@@ -45,7 +45,7 @@ project( CALAMARES
     LANGUAGES C CXX
 )
 
-set( CALAMARES_VERSION_RC 1 )  # Set to 0 during release cycle, 1 during development
+set( CALAMARES_VERSION_RC 0 )  # Set to 0 during release cycle, 1 during development
 
 ### OPTIONS
 #
