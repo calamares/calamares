@@ -257,14 +257,16 @@ PartitionCoreModule::doInit()
     cDebug() << Logger::SubEntry << "node\tcapacity\tname\tprettyName";
     for ( auto device : devices )
     {
-        cDebug() << Logger::SubEntry << Logger::Pointer( device );
         if ( device )
         {
             // Gives ownership of the Device* to the DeviceInfo object
             auto deviceInfo = new DeviceInfo( device );
             m_deviceInfos << deviceInfo;
-            cDebug() << Logger::SubEntry << device->deviceNode() << device->capacity() << device->name()
-                     << device->prettyName();
+            cDebug() << Logger::SubEntry
+                << device->deviceNode()
+                << device->capacity()
+                << Logger::RedactedName( "DevName", device->name() )
+                << Logger::RedactedName( "DevNamePretty", device->prettyName() );
         }
         else
         {
@@ -707,10 +709,10 @@ PartitionCoreModule::dumpQueue() const
     cDebug() << "# Queue:";
     for ( auto info : m_deviceInfos )
     {
-        cDebug() << Logger::SubEntry << "## Device:" << info->device->name();
+        cDebug() << Logger::SubEntry << "## Device:" << info->device->deviceNode();
         for ( const auto& job : info->jobs() )
         {
-            cDebug() << Logger::SubEntry << "-" << job->prettyName();
+            cDebug() << Logger::SubEntry << "-" << job->metaObject()->className();
         }
     }
 }

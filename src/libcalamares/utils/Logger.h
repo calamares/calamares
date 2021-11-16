@@ -145,8 +145,8 @@ public:
     {
     }
 
-    const T& first;
-    const U& second;
+    const T first;
+    const U second;
 };
 
 /**
@@ -214,9 +214,9 @@ public:
  * since the log may get posted to bug reports, or stored in
  * the target system.
  */
-struct Redacted
+struct RedactedCommand
 {
-    Redacted( const QStringList& l )
+    RedactedCommand( const QStringList& l )
         : list( l )
     {
     }
@@ -224,7 +224,30 @@ struct Redacted
     const QStringList& list;
 };
 
-QDebug& operator<<( QDebug& s, const Redacted& l );
+QDebug& operator<<( QDebug& s, const RedactedCommand& l );
+
+/** @brief When logging "private" identifiers, keep them consistent but private
+ *
+ * Send a string to a logger in such a way that each time it is logged,
+ * it logs the same way, but without revealing the actual contents.
+ * This can be applied to user names, UUIDs, etc.
+ */
+struct RedactedName
+{
+    RedactedName( const char* context, const QString& s );
+    RedactedName( const QString& context, const QString& s );
+
+    operator QString() const;
+
+private:
+    const uint m_id;
+    const QString m_context;
+};
+
+inline QDebug& operator<<( QDebug& s, const RedactedName& n )
+{
+    return s << NoQuote << QString( n ) << Quote;
+}
 
 /**
  * @brief Formatted logging of a pointer
