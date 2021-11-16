@@ -274,14 +274,13 @@ RedactedName::RedactedName( const QString& context, const QString& s )
 }
 
 RedactedName::RedactedName(const char *context, const QString& s )
-    : RedactedName( QString::fromLatin1(context), s )
+    : RedactedName( QString::fromLatin1( context ), s )
 {
 }
 
-QDebug&
-operator<< ( QDebug& s, const RedactedName& n )
+RedactedName::operator QString() const
 {
-    return s << NoQuote << n.m_context << '$' << n.m_id << Quote;
+    return QString( m_context + '$' + QString::number( m_id, 16 ) );
 }
 
 }  // namespace Logger

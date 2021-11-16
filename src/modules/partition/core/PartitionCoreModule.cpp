@@ -262,8 +262,11 @@ PartitionCoreModule::doInit()
             // Gives ownership of the Device* to the DeviceInfo object
             auto deviceInfo = new DeviceInfo( device );
             m_deviceInfos << deviceInfo;
-            cDebug() << Logger::SubEntry << device->deviceNode() << device->capacity() << device->name()
-                     << device->prettyName();
+            cDebug() << Logger::SubEntry
+                << device->deviceNode()
+                << device->capacity()
+                << Logger::RedactedName( "DevName", device->name() )
+                << Logger::RedactedName( "DevNamePretty", device->prettyName() );
         }
         else
         {
