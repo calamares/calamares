@@ -117,6 +117,8 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     swap_outer_mappername = None
     no_save_default = False
     unencrypted_separate_boot = any(p["mountPoint"] == "/boot" and "luksMapperName" not in p for p in partitions)
+    # If there is no dracut, and the root partition is ZFS, this gets set below
+    zfs_root_path = None
 
     for partition in partitions:
         if partition["mountPoint"] in ("/", "/boot") and partition["fs"] in ("btrfs", "f2fs"):
