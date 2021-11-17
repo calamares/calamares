@@ -23,6 +23,7 @@
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "Settings.h"
 #include "partition/FileSystem.h"
 #include "partition/PartitionQuery.h"
 #include "utils/Logger.h"
@@ -104,7 +105,9 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device,
     QStringList fsNames;
     for ( auto fs : FileSystemFactory::map() )
     {
-        if ( fs->supportCreate() != FileSystem::cmdSupportNone && fs->type() != FileSystem::Extended )
+        // We need to ensure zfs is added to the list if the zfs module is enabled
+        if ( ( fs->type() == FileSystem::Type::Zfs && Calamares::Settings::instance()->isModuleEnabled( "zfs" ) )
+             || ( fs->supportCreate() != FileSystem::cmdSupportNone && fs->type() != FileSystem::Extended ) )
         {
             fsNames << userVisibleFS( fs );  // This is put into the combobox
             if ( fs->type() == defaultFSType )
@@ -240,7 +243,8 @@ CreatePartitionDialog::getNewlyCreatedPartition()
     // does so, to set up the partition for create-and-then-set-flags.
     Partition* partition = nullptr;
     QString luksPassphrase = m_ui->encryptWidget->passphrase();
-    if ( m_ui->encryptWidget->state() == EncryptWidget::Encryption::Confirmed && !luksPassphrase.isEmpty() )
+    if ( m_ui->encryptWidget->state() == EncryptWidget::Encryption::Confirmed && !luksPassphrase.isEmpty()
+         && fsType != FileSystem::Zfs )
     {
         partition = KPMHelpers::createNewEncryptedPartition(
             m_parent, *m_device, m_role, fsType, fsLabel, first, last, luksPassphrase, PartitionTable::Flags() );
@@ -249,6 +253,31 @@ CreatePartitionDialog::getNewlyCreatedPartition()
     {
         partition = KPMHelpers::createNewPartition(
             m_parent, *m_device, m_role, fsType, fsLabel, first, last, PartitionTable::Flags() );
+    }
+
+    // For zfs, we let the zfs module handle the encryption but we need to make the passphrase available to later modules
+    if ( fsType == FileSystem::Zfs )
+    {
+        Calamares::GlobalStorage* storage = Calamares::JobQueue::instance()->globalStorage();
+        QList< QVariant > zfsInfoList;
+        QVariantMap zfsInfo;
+
+        // If this is not the first encrypted zfs partition, get the old list first
+        if ( storage->contains( "zfsInfo" ) )
+        {
+            zfsInfoList = storage->value( "zfsInfo" ).toList();
+            storage->remove( "zfsInfo" );
+        }
+
+        // Save the information subsequent modules will need
+        zfsInfo[ "encrypted" ]
+            = m_ui->encryptWidget->state() == EncryptWidget::Encryption::Confirmed && !luksPassphrase.isEmpty();
+        zfsInfo[ "passphrase" ] = luksPassphrase;
+        zfsInfo[ "mountpoint" ] = selectedMountPoint( m_ui->mountPointComboBox );
+
+        // Add it to the list and insert it into global storage
+        zfsInfoList.append( zfsInfo );
+        storage->insert( "zfsInfo", zfsInfoList );
     }
 
     if ( m_device->type() == Device::Type::LVM_Device )

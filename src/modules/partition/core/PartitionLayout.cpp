@@ -296,7 +296,9 @@ PartitionLayout::createPartitions( Device* dev,
         }
 
         Partition* part = nullptr;
-        if ( luksPassphrase.isEmpty() )
+
+        // Encryption for zfs is handled in the zfs module
+        if ( luksPassphrase.isEmpty() || correctFS( entry.partFileSystem ) == FileSystem::Zfs )
         {
             part = KPMHelpers::createNewPartition( parent,
                                                    *dev,
@@ -319,6 +321,24 @@ PartitionLayout::createPartitions( Device* dev,
                                                             luksPassphrase,
                                                             KPM_PARTITION_FLAG( None ) );
         }
+
+        // For zfs, we need to make the passphrase available to later modules
+        if ( correctFS( entry.partFileSystem ) == FileSystem::Zfs )
+        {
+            Calamares::GlobalStorage* storage = Calamares::JobQueue::instance()->globalStorage();
+            QList< QVariant > zfsInfoList;
+            QVariantMap zfsInfo;
+
+            // Save the information subsequent modules will need
+            zfsInfo[ "encrypted" ] = !luksPassphrase.isEmpty();
+            zfsInfo[ "passphrase" ] = luksPassphrase;
+            zfsInfo[ "mountpoint" ] = entry.partMountPoint;
+
+            // Add it to the list and insert it into global storage
+            zfsInfoList.append( zfsInfo );
+            storage->insert( "zfsInfo", zfsInfoList );
+        }
+
         PartitionInfo::setFormat( part, true );
         PartitionInfo::setMountPoint( part, entry.partMountPoint );
         if ( !entry.partLabel.isEmpty() )

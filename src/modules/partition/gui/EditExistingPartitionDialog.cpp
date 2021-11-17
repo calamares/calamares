@@ -25,6 +25,7 @@
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "Settings.h"
 #include "partition/FileSystem.h"
 #include "utils/Logger.h"
 
@@ -89,7 +90,9 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device,
     QStringList fsNames;
     for ( auto fs : FileSystemFactory::map() )
     {
-        if ( fs->supportCreate() != FileSystem::cmdSupportNone && fs->type() != FileSystem::Extended )
+        // We need to ensure zfs is added to the list if the zfs module is enabled
+        if ( ( fs->type() == FileSystem::Type::Zfs && Calamares::Settings::instance()->isModuleEnabled( "zfs" ) )
+             || ( fs->supportCreate() != FileSystem::cmdSupportNone && fs->type() != FileSystem::Extended ) )
         {
             fsNames << userVisibleFS( fs );  // For the combo box
         }
@@ -116,6 +119,12 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device,
 
     m_ui->fileSystemLabel->setEnabled( m_ui->formatRadioButton->isChecked() );
     m_ui->fileSystemComboBox->setEnabled( m_ui->formatRadioButton->isChecked() );
+
+    // Force a format if the existing device is a zfs device since reusing a zpool isn't currently supported
+    m_ui->formatRadioButton->setChecked( m_partition->fileSystem().type() == FileSystem::Type::Zfs );
+    m_ui->formatRadioButton->setEnabled( !( m_partition->fileSystem().type() == FileSystem::Type::Zfs ) );
+    m_ui->keepRadioButton->setChecked( !( m_partition->fileSystem().type() == FileSystem::Type::Zfs ) );
+    m_ui->keepRadioButton->setEnabled( !( m_partition->fileSystem().type() == FileSystem::Type::Zfs ) );
 
     setFlagList( *( m_ui->m_listFlags ), m_partition->availableFlags(), PartitionInfo::flags( m_partition ) );
 }

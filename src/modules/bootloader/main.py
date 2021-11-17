@@ -92,6 +92,50 @@ def get_kernel_line(kernel_type):
             return ""
 
 
+def get_zfs_root():
+    """
+    Looks in global storage to find the zfs root
+
+    :return: A string containing the path to the zfs root or None if it is not found
+    """
+
+    zfs = libcalamares.globalstorage.value("zfsDatasets")
+
+    if not zfs:
+        libcalamares.utils.warning("Failed to locate zfs dataset list")
+        return None
+
+    # Find the root dataset
+    for dataset in zfs:
+        try:
+            if dataset["mountpoint"] == "/":
+                return dataset["zpool"] + "/" + dataset["dsName"]
+        except KeyError:
+            # This should be impossible
+            libcalamares.utils.warning("Internal error handling zfs dataset")
+            raise
+
+    return None
+
+
+def is_btrfs_root(partition):
+    """ Returns True if the partition object refers to a btrfs root filesystem
+
+    :param partition: A partition map from global storage
+    :return: True if btrfs and root, False otherwise
+    """
+    return partition["mountPoint"] == "/" and partition["fs"] == "btrfs"
+
+
+def is_zfs_root(partition):
+    """ Returns True if the partition object refers to a zfs root filesystem
+
+    :param partition: A partition map from global storage
+    :return: True if zfs and root, False otherwise
+    """
+    return partition["mountPoint"] == "/" and partition["fs"] == "zfs"
+
+
 def create_systemd_boot_conf(install_path, efi_dir, uuid, entry, entry_name, kernel_type):
     """
     Creates systemd-boot configuration files based on given parameters.
@@ -133,11 +177,21 @@ def create_systemd_boot_conf(install_path, efi_dir, uuid, entry, entry_name, ker
                                   "root=/dev/mapper/"
                                   + partition["luksMapperName"]]
 
-    # systemd-boot with a BTRFS root filesystem needs to be told
-    # about the root subvolume.
     for partition in partitions:
-        if partition["mountPoint"] == "/" and partition["fs"] == "btrfs":
+        # systemd-boot with a BTRFS root filesystem needs to be told
+        # about the root subvolume.
+        if is_btrfs_root(partition):
             kernel_params.append("rootflags=subvol=@")
+
+        # zfs needs to be told the location of the root dataset
+        if is_zfs_root(partition):
+            zfs_root_path = get_zfs_root()
+            if zfs_root_path is not None:
+                kernel_params.append("zfs=" + zfs_root_path)
+            else:
+                # Something is really broken if we get to this point
+                libcalamares.utils.warning("Internal error handling zfs dataset")
+                raise Exception("Internal zfs data missing, please contact your distribution")
 
     if cryptdevice_params:
         kernel_params.extend(cryptdevice_params)
@@ -314,6 +368,76 @@ def get_grub_efi_parameters():
     return None
 
 
+def run_grub_mkconfig(partitions, output_file):
+    """
+    Runs grub-mkconfig in the target environment
+
+    :param partitions: The partitions list from global storage
+    :param output_file: A string containing the path to the generating grub config file
+    :return:
+    """
+
+    # zfs needs an environment variable set for grub-mkconfig
+    if any([is_zfs_root(partition) for partition in partitions]):
+        check_target_env_call(["sh", "-c", "ZPOOL_VDEV_NAME_PATH=1 " +
+                               libcalamares.job.configuration["grubMkconfig"] + " -o " + output_file])
+    else:
+        # The input file /etc/default/grub should already be filled out by the
+        # grubcfg job module.
+        check_target_env_call([libcalamares.job.configuration["grubMkconfig"], "-o", output_file])
+
+
+def run_grub_install(fw_type, partitions, efi_directory=None):
+    """
+    Runs grub-install in the target environment
+
+    :param fw_type: A string which is "efi" for UEFI installs.  Any other value results in a BIOS install
+    :param partitions: The partitions list from global storage
+    :param efi_directory: The path of the efi directory relative to the root of the install
+    :return:
+    """
+
+    is_zfs = any([is_zfs_root(partition) for partition in partitions])
+
+    # zfs needs an environment variable set for grub
+    if is_zfs:
+        check_target_env_call(["sh", "-c", "echo ZPOOL_VDEV_NAME_PATH=1 >> /etc/environment"])
+
+    if fw_type == "efi":
+        efi_bootloader_id = efi_label()
+        efi_target, efi_grub_file, efi_boot_file = get_grub_efi_parameters()
+
+        if is_zfs:
+            check_target_env_call(["sh", "-c", "ZPOOL_VDEV_NAME_PATH=1 " + libcalamares.job.configuration["grubInstall"]
+                                   + " --target=" + efi_target + " --efi-directory=" + efi_directory
+                                   + " --bootloader-id=" + efi_bootloader_id + " --force"])
+        else:
+            check_target_env_call([libcalamares.job.configuration["grubInstall"],
+                                   "--target=" + efi_target,
+                                   "--efi-directory=" + efi_directory,
+                                   "--bootloader-id=" + efi_bootloader_id,
+                                   "--force"])
+    else:
+        if libcalamares.globalstorage.value("bootLoader") is None:
+            return
+
+        boot_loader = libcalamares.globalstorage.value("bootLoader")
+        if boot_loader["installPath"] is None:
+            return
+
+        if is_zfs:
+            check_target_env_call(["sh", "-c", "ZPOOL_VDEV_NAME_PATH=1 "
+                                   + libcalamares.job.configuration["grubInstall"]
+                                   + " --target=i386-pc --recheck --force "
+                                   + boot_loader["installPath"]])
+        else:
+            check_target_env_call([libcalamares.job.configuration["grubInstall"],
+                                   "--target=i386-pc",
+                                   "--recheck",
+                                   "--force",
+                                   boot_loader["installPath"]])
+
+
 def install_grub(efi_directory, fw_type):
     """
     Installs grub as bootloader, either in pc or efi mode.
@@ -321,6 +445,12 @@ def install_grub(efi_directory, fw_type):
     :param efi_directory:
     :param fw_type:
     """
+    # get the partition from global storage
+    partitions = libcalamares.globalstorage.value("partitions")
+    if not partitions:
+        libcalamares.utils.warning(_("Failed to install grub, no partitions defined in global storage"))
+        return
+
     if fw_type == "efi":
         libcalamares.utils.debug("Bootloader: grub (efi)")
         install_path = libcalamares.globalstorage.value("rootMountPoint")
@@ -333,11 +463,7 @@ def install_grub(efi_directory, fw_type):
 
         efi_target, efi_grub_file, efi_boot_file = get_grub_efi_parameters()
 
-        check_target_env_call([libcalamares.job.configuration["grubInstall"],
-                               "--target=" + efi_target,
-                               "--efi-directory=" + efi_directory,
-                               "--bootloader-id=" + efi_bootloader_id,
-                               "--force"])
+        run_grub_install(fw_type, partitions, efi_directory)
 
         # VFAT is weird, see issue CAL-385
         install_efi_directory_firmware = (vfat_correct_case(
@@ -356,36 +482,21 @@ def install_grub(efi_directory, fw_type):
             os.makedirs(install_efi_boot_directory)
 
         # Workaround for some UEFI firmwares
-        FALLBACK = "installEFIFallback"
-        libcalamares.utils.debug("UEFI Fallback: " + str(libcalamares.job.configuration.get(FALLBACK, "<unset>")))
-        if libcalamares.job.configuration.get(FALLBACK, True):
+        fallback = "installEFIFallback"
+        libcalamares.utils.debug("UEFI Fallback: " + str(libcalamares.job.configuration.get(fallback, "<unset>")))
+        if libcalamares.job.configuration.get(fallback, True):
             libcalamares.utils.debug("  .. installing '{!s}' fallback firmware".format(efi_boot_file))
             efi_file_source = os.path.join(install_efi_directory_firmware,
-                                        efi_bootloader_id,
-                                        efi_grub_file)
-            efi_file_target = os.path.join(install_efi_boot_directory,
-                                        efi_boot_file)
+                                           efi_bootloader_id,
+                                           efi_grub_file)
+            efi_file_target = os.path.join(install_efi_boot_directory, efi_boot_file)
 
             shutil.copy2(efi_file_source, efi_file_target)
     else:
         libcalamares.utils.debug("Bootloader: grub (bios)")
-        if libcalamares.globalstorage.value("bootLoader") is None:
-            return
+        run_grub_install(fw_type, partitions)
 
-        boot_loader = libcalamares.globalstorage.value("bootLoader")
-        if boot_loader["installPath"] is None:
-            return
-
-        check_target_env_call([libcalamares.job.configuration["grubInstall"],
-                               "--target=i386-pc",
-                               "--recheck",
-                               "--force",
-                               boot_loader["installPath"]])
-
-    # The input file /etc/default/grub should already be filled out by the
-    # grubcfg job module.
-    check_target_env_call([libcalamares.job.configuration["grubMkconfig"],
-                           "-o", libcalamares.job.configuration["grubCfg"]])
+    run_grub_mkconfig(partitions, libcalamares.job.configuration["grubCfg"])
 
 
 def install_secureboot(efi_directory):
