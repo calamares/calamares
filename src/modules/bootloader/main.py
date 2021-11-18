@@ -178,10 +178,13 @@ def create_systemd_boot_conf(install_path, efi_dir, uuid, entry, entry_name, ker
                                   + partition["luksMapperName"]]
 
     for partition in partitions:
-        # systemd-boot with a BTRFS root filesystem needs to be told
-        # about the root subvolume.
+        # systemd-boot with a BTRFS root filesystem needs to be told abouut the root subvolume.
+        # If a btrfs root subvolume wasn't set, it means the root is directly on the partition
+        # and this option isn't needed
         if is_btrfs_root(partition):
-            kernel_params.append("rootflags=subvol=@")
+            btrfs_root_subvolume = libcalamares.globalstorage.value("btrfsRootSubvolume")
+            if btrfs_root_subvolume:
+                kernel_params.append("rootflags=subvol=" + btrfs_root_subvolume)
 
         # zfs needs to be told the location of the root dataset
         if is_zfs_root(partition):
