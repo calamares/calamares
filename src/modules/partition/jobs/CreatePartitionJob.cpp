@@ -77,7 +77,6 @@ createZfs( Partition* partition, Device* device )
     }
 
     partition->setPartitionPath( deviceNode );
-    partition->setState( Partition::State::None );
 
     // If it is a gpt device, set the partition UUID
     if ( device->partitionTable()->type() == PartitionTable::gpt && partition->uuid().isEmpty() )
