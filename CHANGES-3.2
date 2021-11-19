@@ -23,6 +23,8 @@ This release contains contributions from (alphabetically by first name):
    within one run of Calamares, but differently each time.
 
 ## Modules ##
+ - *bootloader* with systemd-boot now handles root subvolumes better
+   (Thanks Evan)
  - *displaymanager* supports the *greetd* display manager, which is a
    kind of meta-DM itself, supporting multiple greeters. (Thanks Jonas)
  - *finishedq* now has an extra example QML file that builds the UI in
@@ -37,6 +39,10 @@ This release contains contributions from (alphabetically by first name):
    (Thanks Evan)
  - The *partition* module no longer logs recognizable disk names or
    UUIDs. These are redacted in the logs. #1593
+ - The *partition* module, together with the new *zfs* module and changes
+   in *mount* and *bootloader* can install to ZFS **if** the distribution
+   kernel supports it. ZFS tools are required, as well as the relevant
+   kernel modules. See the `README.md` in the *zfs* module. (Thanks Evan)
 
 
 # 3.2.46 (2021-11-09) #
