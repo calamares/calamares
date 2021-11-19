@@ -1,5 +1,9 @@
 ## zfs Module Notes
 
+<!-- SPDX-FileCopyrightText: 2021 Evan James <dalto@fastmail.com>
+     SPDX-License-Identifier: GPL-3.0-or-later
+-->
+
 There are a few considerations to be aware of when enabling the zfs module
 * You must provide zfs kernel modules or kernel support on the ISO for the zfs module to function
 * Support for zfs in the partition module is conditional on the zfs module being enabled
