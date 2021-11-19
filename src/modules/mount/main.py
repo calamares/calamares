@@ -20,6 +20,7 @@ import os
 import libcalamares
 
 import gettext
+
 _ = gettext.translation("calamares-python",
                         localedir=libcalamares.utils.gettext_path(),
                         languages=libcalamares.utils.gettext_languages(),
@@ -58,15 +59,16 @@ def get_btrfs_subvolumes(partitions):
     if btrfs_subvolumes is None:
         libcalamares.utils.warning("No configuration for btrfsSubvolumes")
     if not btrfs_subvolumes:
-        btrfs_subvolumes = [ dict(mountPoint="/", subvolume="/@"), dict(mountPoint="/home", subvolume="/@home") ]
+        btrfs_subvolumes = [dict(mountPoint="/", subvolume="/@"), dict(mountPoint="/home", subvolume="/@home")]
 
     # Filter out the subvolumes which have a dedicated partition
-    non_root_partition_mounts = [ m for m in [ p.get("mountPoint", None) for p in partitions ] if m is not None and m != '/' ]
-    btrfs_subvolumes = list(filter(lambda s : s["mountPoint"] not in non_root_partition_mounts, btrfs_subvolumes))
+    non_root_partition_mounts = [m for m in [p.get("mountPoint", None) for p in partitions] if
+                                 m is not None and m != '/']
+    btrfs_subvolumes = list(filter(lambda s: s["mountPoint"] not in non_root_partition_mounts, btrfs_subvolumes))
 
     # If we have a swap **file**, give it a separate subvolume.
-    swap_choice = libcalamares.globalstorage.value( "partitionChoices" )
-    if swap_choice and swap_choice.get( "swap", None ) == "file":
+    swap_choice = libcalamares.globalstorage.value("partitionChoices")
+    if swap_choice and swap_choice.get("swap", None) == "file":
         btrfs_subvolumes.append({'mountPoint': '/swap', 'subvolume': '/@swap'})
 
     return btrfs_subvolumes
@@ -189,9 +191,11 @@ def mount_partition(root_mount_point, partition, partitions):
         libcalamares.globalstorage.insert("btrfsSubvolumes", btrfs_subvolumes)
         # Create the subvolumes that are in the completed list
         for s in btrfs_subvolumes:
-            subprocess.check_call(['btrfs', 'subvolume', 'create',
-                               root_mount_point + s['subvolume']])
-
+            subprocess.check_call(["btrfs", "subvolume", "create",
+                                   root_mount_point + s["subvolume"]])
+            if s["mountPoint"] == "/":
+                # insert the root subvolume into global storage
+                libcalamares.globalstorage.insert("btrfsRootSubvolume", s["subvolume"])
         subprocess.check_call(["umount", "-v", root_mount_point])
 
         device = partition["device"]
@@ -204,9 +208,9 @@ def mount_partition(root_mount_point, partition, partitions):
             mount_option = "subvol={}".format(s['subvolume'])
             subvolume_mountpoint = mount_point[:-1] + s['mountPoint']
             if libcalamares.utils.mount(device,
-                                    subvolume_mountpoint,
-                                    fstype,
-                                    ",".join([mount_option, partition.get("options", "")])) != 0:
+                                        subvolume_mountpoint,
+                                        fstype,
+                                        ",".join([mount_option, partition.get("options", "")])) != 0:
                 libcalamares.utils.warning("Cannot mount {}".format(device))
 
 
@@ -220,7 +224,7 @@ def run():
     if not partitions:
         libcalamares.utils.warning("partitions is empty, {!s}".format(partitions))
         return (_("Configuration Error"),
-                _("No partitions are defined for <pre>{!s}</pre> to use." ).format("mount"))
+                _("No partitions are defined for <pre>{!s}</pre> to use.").format("mount"))
 
     root_mount_point = tempfile.mkdtemp(prefix="calamares-root-")
 
@@ -237,7 +241,7 @@ def run():
     # This way, we ensure / is mounted before the rest, and every mount point
     # is created on the right partition (e.g. if a partition is to be mounted
     # under /tmp, we make sure /tmp is mounted before the partition)
-    mountable_partitions = [ p for p in partitions + extra_mounts if "mountPoint" in p and p["mountPoint"] ]
+    mountable_partitions = [p for p in partitions + extra_mounts if "mountPoint" in p and p["mountPoint"]]
     mountable_partitions.sort(key=lambda x: x["mountPoint"])
     try:
         for partition in mountable_partitions:
