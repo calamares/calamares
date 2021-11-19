@@ -268,10 +268,121 @@ def create_loader(loader_path, entry):
             loader_file.write(line)
 
 
+class serialEfi(object):
+    """
+    EFI Id generator that appends a serial number to the given name.
+    """
+    def __init__(self, name):
+        self.name = name
+        # So the first call to next() will bump it to 0
+        self.counter = -1
+
+    def next(self):
+        self.counter += 1
+        if self.counter > 0:
+            return "{!s}{!s}".format(self.name, self.counter)
+        else:
+            return self.name
+
+
+def render_in_base(value, base_values, length=-1):
+    """
+    Renders @p value in base-N, where N is the number of
+    items in @p base_values. When rendering, use the items
+    of @p base_values (e.g. use "0123456789" to get regular decimal
+    rendering, or "ABCDEFGHIJ" for letters-as-numbers 'encoding').
+
+    If length is positive, pads out to at least that long with
+    leading "zeroes", whatever base_values[0] is.
+    """
+    if value < 0:
+        raise ValueError("Cannot render negative values")
+    if len(base_values) < 2:
+        raise ValueError("Insufficient items for base-N rendering")
+    if length < 1:
+        length = 1
+    digits = []
+    base = len(base_values)
+    while value > 0:
+        place = value % base
+        value = value // base
+        digits.append(base_values[place])
+    while len(digits) < length:
+        digits.append(base_values[0])
+    return "".join(reversed(digits))
+
+
+class randomEfi(object):
+    """
+    EFI Id generator that appends a random 4-digit hex number to the given name.
+    """
+    def __init__(self, name):
+        self.name = name
+        # So the first call to next() will bump it to 0
+        self.counter = -1
+
+    def next(self):
+        self.counter += 1
+        if self.counter > 0:
+            import random
+            v = random.randint(0, 65535)  # 16 bits
+            return "{!s}{!s}".format(self.name, render_in_base(v, "0123456789ABCDEF", 4))
+        else:
+            return self.name
+
+
+class phraseEfi(object):
+    """
+    EFI Id generator that appends a random phrase to the given name.
+    """
+    words = ("Sun", "Moon", "Mars", "Soyuz", "Falcon", "Kuaizhou", "Gaganyaan")
+
+    def __init__(self, name):
+        self.name = name
+        # So the first call to next() will bump it to 0
+        self.counter = -1
+
+    def next(self):
+        self.counter += 1
+        if self.counter > 0:
+            import random
+            desired_length = 1 + self.counter // 5
+            v = random.randint(0, len(self.words) ** desired_length)
+            return "{!s}{!s}".format(self.name, render_in_base(v, self.words, 4))
+        else:
+            return self.name
+
+
+def get_efi_suffix_generator(name):
+    if "@@" not in name:
+        raise ValueError("Misplaced call to change_efi_suffix, no @@")
+    parts = name.split("@@")
+    if len(parts) != 3:
+        raise ValueError("EFI Id {!r} is malformed".format(name))
+    if parts[2]:
+        # Supposed to be empty because the string ends with "@@"
+        raise ValueError("EFI Id {!r} is malformed".format(name))
+    if parts[1] not in ("SERIAL", "RANDOM", "PHRASE"):
+        raise ValueError("EFI suffix {!r} is unknown".format(parts[1]))
+
+    generator = None
+    if parts[1] == "SERIAL":
+        generator = serialEfi(name)
+    elif parts[1] == "RANDOM":
+        generator = randomEfi(name)
+    elif parts[1] == "PHRASE":
+        generator = phraseEfi(name)
+    if generator is None:
+        raise ValueError("EFI suffix {!r} is unsupported".format(parts[1]))
+
+    return generator
+
+
 def efi_label():
     if "efiBootloaderId" in libcalamares.job.configuration:
-        efi_bootloader_id = libcalamares.job.configuration[
-                                "efiBootloaderId"]
+        efi_bootloader_id = libcalamares.job.configuration["efiBootloaderId"]
+        if efi_bootloader_id.endswith("@@"):
+            efi_bootloader_id = change_efi_suffix(efi_bootloader_id)
     else:
         branding = libcalamares.globalstorage.value("branding")
         efi_bootloader_id = branding["bootloaderEntryName"]
