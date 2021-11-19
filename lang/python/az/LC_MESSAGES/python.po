@@ -323,7 +323,7 @@ msgstr "<code>{name!s}</code> systemd hədəfi aktiv edilmədi"
 
 #: src/modules/services-systemd/main.py:67
 msgid "Cannot enable systemd timer <code>{name!s}</code>."
-msgstr ""
+msgstr "<code>{name!s}</code> systemd taymeri aktiv edilə bilmir."
 
 #: src/modules/services-systemd/main.py:71
 msgid "Cannot disable systemd target <code>{name!s}</code>."
@@ -407,6 +407,7 @@ msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed."
 msgstr ""
+"Unsquashfs tapılmadı, squashfs-tools paketinin quraşdırıldığına əmin olun."
 
 #: src/modules/unpackfs/main.py:479
 msgid "The destination \"{}\" in the target system is not a directory"

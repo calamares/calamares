@@ -307,7 +307,7 @@ msgstr "systemd 대상 <code>{name! s}</code>를 활성화 할 수 없습니다.
 
 #: src/modules/services-systemd/main.py:67
 msgid "Cannot enable systemd timer <code>{name!s}</code>."
-msgstr ""
+msgstr "시스템 타이머 <code>{name!s}</code>를 활성화할 수 없습니다."
 
 #: src/modules/services-systemd/main.py:71
 msgid "Cannot disable systemd target <code>{name!s}</code>."
@@ -386,7 +386,7 @@ msgstr "\"{}\" 소스 파일시스템은 존재하지 않습니다."
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed."
-msgstr ""
+msgstr "unsquashfs를 찾지 못했습니다. squashfs-tools 패키지가 설치되어 있는지 확인하십시오."
 
 #: src/modules/unpackfs/main.py:479
 msgid "The destination \"{}\" in the target system is not a directory"
