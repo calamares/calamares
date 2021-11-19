@@ -9,9 +9,11 @@ from src.modules.bootloader import main
 # Specific Bootloader test
 g = main.get_efi_suffix_generator("derp@@SERIAL@@")
 assert g is not None
-for n in range(10):
+assert g.next() == "derp"  # First time, no suffix
+for n in range(9):
     print(g.next())
-assert g.next() == "derp11"
+# We called next() 10 times in total, starting from 0
+assert g.next() == "derp10"
 
 g = main.get_efi_suffix_generator("derp@@RANDOM@@")
 assert g is not None

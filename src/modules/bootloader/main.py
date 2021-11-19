@@ -348,7 +348,7 @@ class phraseEfi(object):
             import random
             desired_length = 1 + self.counter // 5
             v = random.randint(0, len(self.words) ** desired_length)
-            return "{!s}{!s}".format(self.name, render_in_base(v, self.words, 4))
+            return "{!s}{!s}".format(self.name, render_in_base(v, self.words))
         else:
             return self.name
 
@@ -367,11 +367,11 @@ def get_efi_suffix_generator(name):
 
     generator = None
     if parts[1] == "SERIAL":
-        generator = serialEfi(name)
+        generator = serialEfi(parts[0])
     elif parts[1] == "RANDOM":
-        generator = randomEfi(name)
+        generator = randomEfi(parts[0])
     elif parts[1] == "PHRASE":
-        generator = phraseEfi(name)
+        generator = phraseEfi(parts[0])
     if generator is None:
         raise ValueError("EFI suffix {!r} is unsupported".format(parts[1]))
 
