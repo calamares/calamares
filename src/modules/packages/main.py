@@ -406,13 +406,17 @@ class PMPacman(PackageManager):
         # These are globals
         self.progress_fraction = (completed_packages * 1.0 / total_packages)
 
-    def run_pacman(self, command, callback=None):
+    def run_pacman(self, command, callback=False):
         # Call pacman in a loop until it is successful or the number of retries is exceeded
         pacman_count = 0
         while pacman_count <= self.pacman_num_retries:
             pacman_count += 1
             try:
-                libcalamares.utils.target_env_process_output(command, callback)
+                if callback is True:
+                    libcalamares.utils.target_env_process_output(command, self.line_cb)
+                else:
+                    libcalamares.utils.target_env_process_output(command)
+
                 return
             except subprocess.CalledProcessError:
                 if pacman_count <= self.pacman_num_retries:
@@ -438,13 +442,13 @@ class PMPacman(PackageManager):
 
         command += pkgs
 
-        self.run_pacman(command, self.line_cb)
+        self.run_pacman(command, True)
 
         self.reset_progress()
 
     def remove(self, pkgs):
         self.reset_progress()
-        self.run_pacman(["pacman", "-Rs", "--noconfirm"] + pkgs, self.line_cb)
+        self.run_pacman(["pacman", "-Rs", "--noconfirm"] + pkgs, True)
 
     def update_db(self):
         self.run_pacman(["pacman", "-Sy"])
@@ -454,7 +458,7 @@ class PMPacman(PackageManager):
         if self.pacman_disable_timeout is True:
             command.append("--disable-download-timeout")
 
-        self.run_pacman(command, self.line_cb)
+        self.run_pacman(command, True)
 
 
 class PMPamac(PackageManager):
