@@ -6,7 +6,10 @@
 
 There are a few considerations to be aware of when enabling the zfs module
 * You must provide zfs kernel modules or kernel support on the ISO for the zfs module to function
+    * The zfs kernel module must be loaded prior to the partition module running
+    * One way to achieve this is by running `modprobe zfs`
 * Support for zfs in the partition module is conditional on the zfs module being enabled
+* The config for the default pools and datasets is configured and described in modules/zfs.conf
 * If you use grub with zfs, you must have `ZPOOL_VDEV_NAME_PATH=1` in your environment when running grub-install or grub-mkconfig.
    * Calamares will ensure this happens during the bootloader module.
    * It will also add it to `/etc/environment` so it will be available in the installation
