@@ -236,6 +236,7 @@ class FstabGenerator(object):
             libcalamares.utils.debug("Ignoring foreign swap {!s} {!s}".format(disk_name, partition.get("uuid", None)))
             return None
 
+        # If this is btrfs subvol a dedicated to a swapfile, use different options than a normal btrfs subvol
         if filesystem == "btrfs" and partition["subvol"] == "/@swap":
             options = self.get_mount_options("btrfs_swap", mount_point)
         else:
