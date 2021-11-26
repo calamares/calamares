@@ -442,9 +442,8 @@ class PMPacman(PackageManager):
 
         command += pkgs
 
-        self.run_pacman(command, True)
-
         self.reset_progress()
+        self.run_pacman(command, True)
 
     def remove(self, pkgs):
         self.reset_progress()
@@ -458,7 +457,7 @@ class PMPacman(PackageManager):
         if self.pacman_disable_timeout is True:
             command.append("--disable-download-timeout")
 
-        self.run_pacman(command, True)
+        self.run_pacman(command)
 
 
 class PMPamac(PackageManager):
