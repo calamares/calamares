@@ -407,7 +407,13 @@ class PMPacman(PackageManager):
         self.progress_fraction = (completed_packages * 1.0 / total_packages)
 
     def run_pacman(self, command, callback=False):
-        # Call pacman in a loop until it is successful or the number of retries is exceeded
+        """
+        Call pacman in a loop until it is successful or the number of retries is exceeded
+        :param command: The pacman command to run
+        :param callback: An optional boolean that indicates if this pacman run should use the callback
+        :return:
+        """
+
         pacman_count = 0
         while pacman_count <= self.pacman_num_retries:
             pacman_count += 1
