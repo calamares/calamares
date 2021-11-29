@@ -397,9 +397,15 @@ class PMPacman(PackageManager):
         self.in_package_changes = False
         self.line_cb = line_cb
 
-        self.pacman_num_retries = libcalamares.job.configuration.get("pacman_num_retries", 0)
-        self.pacman_disable_timeout = libcalamares.job.configuration.get("pacman_disable_download_timeout", False)
-        self.pacman_needed_only = libcalamares.job.configuration.get("pacman_needed_only", False)
+        pacman = libcalamares.job.configuration.get("pacman", None)
+        if pacman is None:
+            pacman = dict()
+        if type(pacman) is not dict:
+            libcalamares.utils.warning("Job configuration *pacman* will be ignored.")
+            pacman = dict()
+        self.pacman_num_retries = pacman.get("pacman_num_retries", 0)
+        self.pacman_disable_timeout = pacman.get("pacman_disable_download_timeout", False)
+        self.pacman_needed_only = pacman.get("pacman_needed_only", False)
 
     def reset_progress(self):
         self.in_package_changes = False
