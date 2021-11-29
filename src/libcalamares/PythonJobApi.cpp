@@ -167,7 +167,14 @@ error( const std::string& s )
 boost::python::dict
 load_yaml( const std::string& path )
 {
-    return variantMapToPyDict( CalamaresUtils::loadYaml( QString::fromStdString( path ) ) );
+    const QString filePath = QString::fromStdString( path );
+    bool ok = false;
+    auto map = CalamaresUtils::loadYaml( filePath, &ok );
+    if ( !ok )
+    {
+        cWarning() << "Loading YAML from" << filePath << "failed.";
+    }
+    return variantMapToPyDict( map );
 }
 
 
