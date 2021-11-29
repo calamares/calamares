@@ -85,6 +85,12 @@ BOOST_PYTHON_MODULE( libcalamares )
              &CalamaresPython::warning,
              bp::args( "s" ),
              "Writes the given string to the Calamares warning stream." );
+    bp::def( "warn",
+             &CalamaresPython::warning,
+             bp::args( "s" ),
+             "Writes the given string to the Calamares warning stream." );
+    bp::def(
+        "error", &CalamaresPython::warning, bp::args( "s" ), "Writes the given string to the Calamares error stream." );
 
     bp::def( "mount",
              &CalamaresPython::mount,
