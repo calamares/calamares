@@ -1,0 +1,13 @@
+#   SPDX-FileCopyrightText: no
+#   SPDX-License-Identifier: CC0-1.0
+#
+# We have tests to load (some) of the package-managers specifically, to
+# test their configuration code and implementation. Those tests conventionally
+# live in Python files here in the tests/ directory. Add them.
+foreach(_pm pacman)
+    add_test(
+        NAME configure-packages-${_pm}
+        COMMAND env PYTHONPATH=.: python3 ${CMAKE_CURRENT_LIST_DIR}/test-pm-${_pm}.py
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    )
+endforeach()
