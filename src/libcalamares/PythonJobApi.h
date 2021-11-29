@@ -60,6 +60,7 @@ boost::python::list gettext_languages();
 
 void debug( const std::string& s );
 void warning( const std::string& s );
+void error( const std::string& s );
 
 class PythonJobInterface
 {

@@ -139,17 +139,28 @@ check_target_env_output( const bp::list& args, const std::string& stdin, int tim
 }
 
 static const char output_prefix[] = "[PYTHON JOB]:";
+static inline void
+log_action( unsigned int level, const std::string& s )
+{
+    Logger::CDebug( level ) << output_prefix << QString::fromStdString( s );
+}
 
 void
 debug( const std::string& s )
 {
-    Logger::CDebug( Logger::LOGDEBUG ) << output_prefix << QString::fromStdString( s );
+    log_action( Logger::LOGDEBUG, s );
 }
 
 void
 warning( const std::string& s )
 {
-    Logger::CDebug( Logger::LOGWARNING ) << output_prefix << QString::fromStdString( s );
+    log_action( Logger::LOGWARNING, s );
+}
+
+void
+error( const std::string& s )
+{
+    log_action( Logger::LOGERROR, s );
 }
 
 PythonJobInterface::PythonJobInterface( Calamares::PythonJob* parent )
