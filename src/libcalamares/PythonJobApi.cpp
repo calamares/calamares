@@ -19,6 +19,7 @@
 #include "utils/RAII.h"
 #include "utils/Runner.h"
 #include "utils/String.h"
+#include "utils/Yaml.h"
 
 #include <QCoreApplication>
 #include <QDir>
@@ -162,6 +163,13 @@ error( const std::string& s )
 {
     log_action( Logger::LOGERROR, s );
 }
+
+boost::python::dict
+load_yaml( const std::string& path )
+{
+    return variantMapToPyDict( CalamaresUtils::loadYaml( QString::fromStdString( path ) ) );
+}
+
 
 PythonJobInterface::PythonJobInterface( Calamares::PythonJob* parent )
     : m_parent( parent )
