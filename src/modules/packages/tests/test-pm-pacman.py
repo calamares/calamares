@@ -32,5 +32,5 @@ libcalamares.utils.warning("Expecting {!s} retry={!s} timeout={!s} needed={!s}".
 libcalamares.job = Job(filename)
 p = main.PMPacman()
 assert p.pacman_num_retries == retry, "{!r} vs {!r}".format(p.pacman_num_retries, retry)
-assert p.pacman_disable_timeout == timeout
-assert p.pacman_needed_only == needed
+assert p.pacman_disable_timeout == timeout, "{!r} vs {!r}".format(p.pacman_disable_timeout, timeout)
+assert p.pacman_needed_only == needed, "{!r} vs {!r}".format(p.pacman_needed_only, needed)
