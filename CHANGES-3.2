@@ -10,13 +10,21 @@ website will have to do for older versions.
 # 3.2.48 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - Evan James
 
 ## Core ##
- - No core changes yet
+ - Python modules now have `warn()` and `error()` methods they can call,
+   alongside the existing `debug()` and `warning()` (all live in the
+   *libcalamares.utils* module).
+ - Python modules can load YAML files via `libcalamares.utils.load_yaml()`.
+   This may be the most useful for test-scripts.
 
 ## Modules ##
- - No module changes yet
+ - The *packages* module now has some special settings for the `pacman`
+   package manager (generally used on Arch-derivatives). This allows
+   tweaking of the installation process, if downloads are slow or
+   packages may fail to install. See the `packages.conf` file for
+   details. (Thanks Evan)
 
 
 # 3.2.47 (2021-11-19) #

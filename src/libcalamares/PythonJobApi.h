@@ -60,6 +60,12 @@ boost::python::list gettext_languages();
 
 void debug( const std::string& s );
 void warning( const std::string& s );
+void error( const std::string& s );
+
+/** @brief Loads YAML and returns (nested) dicts representing it
+ *
+ */
+boost::python::dict load_yaml( const std::string& path );
 
 class PythonJobInterface
 {

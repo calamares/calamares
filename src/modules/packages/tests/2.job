@@ -1,7 +1,6 @@
 # SPDX-FileCopyrightText: no
 # SPDX-License-Identifier: CC0-1.0
 backend: dummy
-rootMountPoint: /tmp/mount
 operations:
   - install:
     - pre-script: touch /tmp/foo

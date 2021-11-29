@@ -403,9 +403,9 @@ class PMPacman(PackageManager):
         if type(pacman) is not dict:
             libcalamares.utils.warning("Job configuration *pacman* will be ignored.")
             pacman = dict()
-        self.pacman_num_retries = pacman.get("pacman_num_retries", 0)
-        self.pacman_disable_timeout = pacman.get("pacman_disable_download_timeout", False)
-        self.pacman_needed_only = pacman.get("pacman_needed_only", False)
+        self.pacman_num_retries = pacman.get("num_retries", 0)
+        self.pacman_disable_timeout = pacman.get("disable_download_timeout", False)
+        self.pacman_needed_only = pacman.get("needed_only", False)
 
     def reset_progress(self):
         self.in_package_changes = False
