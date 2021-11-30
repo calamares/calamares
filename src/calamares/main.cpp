@@ -18,7 +18,7 @@
 
 #include <KCoreAddons/KAboutData>
 #include <KDBusAddons/KDBusService>
-#ifdef WITH_KF5Crash
+#ifdef BUILD_KF5Crash
 #include <KCrash/KCrash>
 #endif
 
@@ -117,12 +117,11 @@ main( int argc, char* argv[] )
     KAboutData::setApplicationData( aboutData );
     a.setApplicationDisplayName( QString() );  // To avoid putting an extra "Calamares/" into the log-file
 
-#ifdef WITH_KF5Crash
+#ifdef BUILD_KF5Crash
     KCrash::initialize();
     // KCrash::setCrashHandler();
     KCrash::setDrKonqiEnabled( true );
     KCrash::setFlags( KCrash::SaferDialog | KCrash::AlwaysDirectly );
-    // TODO: umount anything in /tmp/calamares-... as an emergency save function
 #endif
 
     bool is_debug = handle_args( a );

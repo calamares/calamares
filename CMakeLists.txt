@@ -25,9 +25,13 @@
 #                     CMake once. These affect the ABI offered by Calamares.
 #                       - PYTHON (enable Python Job modules)
 #                       - QML (enable QML UI View modules)
+#                     The WITH_* options affect the ABI of Calamares: you must
+#                     build (C++) modules for Calamares with the same WITH_*
+#                     settings, or they may not load at all.
 #   BUILD_<foo>     : choose additional things to build
 #                       - TESTING (standard CMake option)
 #                       - SCHEMA_TESTING (requires Python, see ci/configvalidator.py)
+#                       - KF5Crash (uses KCrash, rather than Calamares internal, for crash reporting)
 #   DEBUG_<foo>     : special developer flags for debugging
 #
 # Example usage:
@@ -64,15 +68,15 @@ endif()
 option( INSTALL_CONFIG "Install configuration files" OFF )
 option( INSTALL_POLKIT "Install Polkit configuration" ON )
 option( INSTALL_COMPLETION "Install shell completions" OFF )
-# Options for the calamares executable
-option( WITH_KF5Crash "Enable crash reporting with KCrash." ON )  # TODO:3.3: WITH->BUILD (this isn't an ABI thing)
 # When adding WITH_* that affects the ABI offered by libcalamares,
 # also update libcalamares/CalamaresConfig.h.in
 option( WITH_PYTHON "Enable Python modules API (requires Boost.Python)." ON )
 option( WITH_QML "Enable QML UI options." ON )
 #
-# Additional parts to build
+# Additional parts to build that do not affect ABI
 option( BUILD_SCHEMA_TESTING "Enable schema-validation-tests" ON )
+# Options for the calamares executable
+option( BUILD_KF5Crash "Enable crash reporting with KCrash." ON )
 
 
 # Possible debugging flags are:
@@ -338,10 +342,10 @@ set_package_properties(
     PURPOSE "Unique instance of Calamares"
 )
 if( NOT KF5Crash_FOUND )
-    if( WITH_KF5Crash )
-        message(WARNING "WITH_KF5Crash is set, but KF5::Crash is not available.")
+    if( BUILD_KF5Crash )
+        message(WARNING "BUILD_KF5Crash is set, but KF5::Crash is not available.")
     endif()
-    set( WITH_KF5Crash OFF )
+    set( BUILD_KF5Crash OFF )
 endif()
 
 # TODO:3.3: Use FindPython3 instead
@@ -563,8 +567,10 @@ set( Calamares_LIBRARIES calamares )
 add_subdirectory( src )
 
 add_feature_info(Python ${WITH_PYTHON} "Python job modules")
+add_feature_info(Qml ${WITH_QML} "QML UI support")
 add_feature_info(Config ${INSTALL_CONFIG} "Install Calamares configuration")
-add_feature_info(KCrash ${WITH_KF5Crash} "Crash dumps via KCrash")
+add_feature_info(Polkit ${INSTALL_POLKIT} "Install Polkit files")
+add_feature_info(KCrash ${BUILD_KF5Crash} "Crash dumps via KCrash")
 
 ### CMake infrastructure installation
 #
