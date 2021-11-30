@@ -655,27 +655,27 @@ Trình cài đặt sẽ thoát và tất cả các thay đổi sẽ bị mất.<
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1641"/>
       <source>No Swap</source>
-      <translation>Không hoán đổi</translation>
+      <translation>Không tạo phân vùng hoán đổi(swap)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1649"/>
       <source>Reuse Swap</source>
-      <translation>Sử dụng lại Hoán đổi</translation>
+      <translation>Sử dụng lại phần vùng hoán đổi(swap)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1652"/>
       <source>Swap (no Hibernate)</source>
-      <translation>Hoán đổi (không ngủ đông)</translation>
+      <translation>Phân vùng hoán đổi(swap) (không ngủ đông)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1655"/>
       <source>Swap (with Hibernate)</source>
-      <translation>Hoán đổi (ngủ đông)</translation>
+      <translation>Phân vùng hoán đổi(swap) (với ngủ đông)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1658"/>
       <source>Swap to file</source>
-      <translation>Hoán đổi sang tệp</translation>
+      <translation>Dùng hoán đổi(swap) dạng tệp</translation>
     </message>
   </context>
   <context>
@@ -2536,17 +2536,17 @@ Trình cài đặt sẽ thoát và tất cả các thay đổi sẽ bị mất.<
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="40"/>
       <source>What is your name?</source>
-      <translation>Hãy cho Vigo biết tên đầy đủ của bạn?</translation>
+      <translation>Tên đầy đủ của bạn là gì?</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="55"/>
       <source>Your Full Name</source>
-      <translation>Tên đầy đủ</translation>
+      <translation>Tên đầy đủ của bạn</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="124"/>
       <source>What name do you want to use to log in?</source>
-      <translation>Bạn sẽ dùng tên nào để đăng nhập vào máy tính?</translation>
+      <translation>Bạn muốn dùng tên nào để đăng nhập vào máy tính?</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="148"/>
@@ -2556,12 +2556,12 @@ Trình cài đặt sẽ thoát và tất cả các thay đổi sẽ bị mất.<
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="223"/>
       <source>What is the name of this computer?</source>
-      <translation>Tên máy tính này là?</translation>
+      <translation>Tên máy tính này là gì?</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="247"/>
       <source>&lt;small&gt;This name will be used if you make the computer visible to others on a network.&lt;/small&gt;</source>
-      <translation>&lt;small&gt;Tên này được dùng nếu máy tính được nhìn thấy trong mạng.&lt;/small&gt;</translation>
+      <translation>&lt;small&gt;Tên này được dùng nếu máy tính có thể được phát hiện trong mạng bởi người khác.&lt;/small&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="250"/>
@@ -2594,7 +2594,7 @@ Trình cài đặt sẽ thoát và tất cả các thay đổi sẽ bị mất.<
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="455"/>
       <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password.</source>
-      <translation>Khi chọn mục này, bạn có thể chọn mật khẩu yếu.</translation>
+      <translation>Khi chọn mục này, bạn sẽ không thể dùng mật khẩu yếu.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="458"/>
@@ -2604,17 +2604,17 @@ Trình cài đặt sẽ thoát và tất cả các thay đổi sẽ bị mất.<
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="465"/>
       <source>Log in automatically without asking for the password.</source>
-      <translation>Tự đăng nhật không cần mật khẩu.</translation>
+      <translation>Tự đăng nhập không cần mật khẩu.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="472"/>
       <source>Use the same password for the administrator account.</source>
-      <translation>Dùng cùng một mật khẩu cho tài khoản quản trị.</translation>
+      <translation>Dùng cùng một mật khẩu cho tài khoản quản trị(superuser).</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="495"/>
       <source>Choose a password for the administrator account.</source>
-      <translation>Chọn một mật khẩu cho tài khoản quản trị.</translation>
+      <translation>Chọn một mật khẩu cho tài khoản quản trị(superuser).</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="519"/>
@@ -2628,27 +2628,27 @@ Trình cài đặt sẽ thoát và tất cả các thay đổi sẽ bị mất.<
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="190"/>
       <source>Root</source>
-      <translation>Gốc</translation>
+      <translation>Gốc hệ thống(root)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="194"/>
       <source>Home</source>
-      <translation>Nhà</translation>
+      <translation>Thư mục nhà(home)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="198"/>
       <source>Boot</source>
-      <translation>Khởi động</translation>
+      <translation>Phân vùng khởi động(boot)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="203"/>
       <source>EFI system</source>
-      <translation>Hệ thống EFI</translation>
+      <translation>Phân vùng EFI</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="207"/>
       <source>Swap</source>
-      <translation>Hoán đổi</translation>
+      <translation>Hoán đổi(swap)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="211"/>
@@ -2790,7 +2790,7 @@ Trình cài đặt sẽ thoát và tất cả các thay đổi sẽ bị mất.<
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="56"/>
       <source>Gathering system information...</source>
-      <translation>Thu thập thông tin hệ thống ...</translation>
+      <translation>Đang thu thập thông tin hệ thống ...</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="111"/>
@@ -2810,7 +2810,7 @@ Trình cài đặt sẽ thoát và tất cả các thay đổi sẽ bị mất.<
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="530"/>
       <source>No EFI system partition configured</source>
-      <translation>Không có hệ thống phân vùng EFI được cài đặt</translation>
+      <translation>Không có phân vùng EFI được cấu hình</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="534"/>
