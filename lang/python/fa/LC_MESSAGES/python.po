@@ -6,6 +6,7 @@
 # Translators:
 # Danial Behzadi <dani.behzi@ubuntu.com>, 2020
 # alireza jamshidi <alirezajam98@gmail.com>, 2020
+# Mahdy Mirzade <me@mahdym.ir>, 2021
 # 
 #, fuzzy
 msgid ""
@@ -14,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-02 15:45+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: alireza jamshidi <alirezajam98@gmail.com>, 2020\n"
+"Last-Translator: Mahdy Mirzade <me@mahdym.ir>, 2021\n"
 "Language-Team: Persian (https://www.transifex.com/calamares/teams/20061/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -62,13 +63,15 @@ msgstr "نصب بارکنندهٔ راه‌اندازی."
 
 #: src/modules/bootloader/main.py:508
 msgid "Bootloader installation error"
-msgstr ""
+msgstr "خطای نصب بوت لودر"
 
 #: src/modules/bootloader/main.py:509
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
 msgstr ""
+"بوت لودر نتوانست نصب شود. دستور <pre>{!s}</pre> برای نصب با خطای {!s} مواجه "
+"شد."
 
 #: src/modules/fstab/main.py:29
 msgid "Writing fstab."
@@ -77,6 +80,7 @@ msgstr "در حال نوشتن fstab."
 #: src/modules/fstab/main.py:389
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr ""
+"هیچ تنظیمات <pre>{!s}</pre> برای استفاده برای <pre>{!s}</pre> داده نشده است."
 
 #: src/modules/dracut/main.py:27
 msgid "Creating initramfs with dracut."
@@ -139,6 +143,8 @@ msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
 msgstr ""
+"فهرست مدیریت صفحه نمایش ها خالی بوده یا در محل ذخیره داده و "
+"displaymanager.conf تعریف نشده است."
 
 #: src/modules/displaymanager/main.py:989
 msgid "Display manager configuration was incomplete"
@@ -161,6 +167,8 @@ msgid ""
 "Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
 "level {level!s}."
 msgstr ""
+"دستور سرویس <code>{arg!s}</code> برای سرویس {name!s} در سطح اجرای {level!s}"
+"  ناشناخته است."
 
 #: src/modules/services-openrc/main.py:93
 #: src/modules/services-systemd/main.py:59
@@ -171,6 +179,8 @@ msgstr "نمی‌توان خدمت را دستکاری کرد"
 msgid ""
 "<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
 msgstr ""
+"فراخوانی <code>rc-update {arg!s}</code> در chroot کد خطای {num!s} را "
+"برگرداند."
 
 #: src/modules/services-openrc/main.py:101
 msgid "Target runlevel does not exist"
@@ -181,6 +191,8 @@ msgid ""
 "The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
 "exist."
 msgstr ""
+"مسیر برای سطح اجرای {level!s} برابر <code>{path!s}</code> است، که وجود "
+"ندارد."
 
 #: src/modules/services-openrc/main.py:110
 msgid "Target service does not exist"
@@ -191,6 +203,7 @@ msgid ""
 "The path for service {name!s} is <code>{path!s}</code>, which does not "
 "exist."
 msgstr ""
+"مسیر برای سرویس {name!s} برابر <code>{path!s}</code> است، که وجود ندارد."
 
 #: src/modules/networkcfg/main.py:29
 msgid "Saving network configuration."
@@ -223,25 +236,31 @@ msgstr[1] "در حال برداشتن %(num)d بسته."
 #: src/modules/packages/main.py:638 src/modules/packages/main.py:650
 #: src/modules/packages/main.py:678
 msgid "Package Manager error"
-msgstr ""
+msgstr "خطای مدیر بسته"
 
 #: src/modules/packages/main.py:639
 msgid ""
 "The package manager could not prepare updates. The command <pre>{!s}</pre> "
 "returned error code {!s}."
 msgstr ""
+"مدیر بسته نتوانست برای بروزرسانی ها آماده شود، دستور <pre>{!s}</pre> با خطای"
+" {!s} مواجه شد."
 
 #: src/modules/packages/main.py:651
 msgid ""
 "The package manager could not update the system. The command <pre>{!s}</pre>"
 " returned error code {!s}."
 msgstr ""
+"مدیر بسته نتوانست سامانه را بروز کند. دستور <pre>{!s}</pre> با خطای {!s} "
+"مواجه شد."
 
 #: src/modules/packages/main.py:679
 msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."
 msgstr ""
+"مدیر بسته نتوانست تغییرات را برای نصب سامانه انجام دهد. دستور "
+"<pre>{!s}</pre> با خطای {!s} مواجه شد."
 
 #: src/modules/plymouthcfg/main.py:27
 msgid "Configure Plymouth theme"
@@ -306,7 +325,7 @@ msgstr "نمی‌توان هدف سیستم‌دی <code>{name!s}</code> را ب
 
 #: src/modules/services-systemd/main.py:67
 msgid "Cannot enable systemd timer <code>{name!s}</code>."
-msgstr ""
+msgstr "نمی‌توان تایمر سیستم‌دی <code>{name!s}</code> را به کار انداخت."
 
 #: src/modules/services-systemd/main.py:71
 msgid "Cannot disable systemd target <code>{name!s}</code>."
@@ -326,11 +345,11 @@ msgstr ""
 
 #: src/modules/mkinitfs/main.py:27
 msgid "Creating initramfs with mkinitfs."
-msgstr ""
+msgstr "درحال ایجاد initramfs با mkinitfs."
 
 #: src/modules/mkinitfs/main.py:49
 msgid "Failed to run mkinitfs on the target"
-msgstr ""
+msgstr "شکست در اجرا mkinitfs روی هدف"
 
 #: src/modules/unpackfs/main.py:34
 msgid "Filling up filesystems."
@@ -385,7 +404,7 @@ msgstr "سامانهٔ پروندهٔ مبدأ {} وجود ندارد"
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed."
-msgstr ""
+msgstr "شکست در یافتن unsquashfs. مطمئن شوید بسته squashfs-tools نصب است."
 
 #: src/modules/unpackfs/main.py:479
 msgid "The destination \"{}\" in the target system is not a directory"

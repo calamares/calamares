@@ -379,6 +379,7 @@ class PMPacman(PackageManager):
     def __init__(self):
         import re
         progress_match = re.compile("^\\((\\d+)/(\\d+)\\)")
+
         def line_cb(line):
             if line.startswith(":: "):
                 self.in_package_changes = "package changes" in line
@@ -396,30 +397,79 @@ class PMPacman(PackageManager):
         self.in_package_changes = False
         self.line_cb = line_cb
 
+        pacman = libcalamares.job.configuration.get("pacman", None)
+        if pacman is None:
+            pacman = dict()
+        if type(pacman) is not dict:
+            libcalamares.utils.warning("Job configuration *pacman* will be ignored.")
+            pacman = dict()
+        self.pacman_num_retries = pacman.get("num_retries", 0)
+        self.pacman_disable_timeout = pacman.get("disable_download_timeout", False)
+        self.pacman_needed_only = pacman.get("needed_only", False)
+
     def reset_progress(self):
         self.in_package_changes = False
         # These are globals
         self.progress_fraction = (completed_packages * 1.0 / total_packages)
 
+    def run_pacman(self, command, callback=False):
+        """
+        Call pacman in a loop until it is successful or the number of retries is exceeded
+        :param command: The pacman command to run
+        :param callback: An optional boolean that indicates if this pacman run should use the callback
+        :return:
+        """
+
+        pacman_count = 0
+        while pacman_count <= self.pacman_num_retries:
+            pacman_count += 1
+            try:
+                if callback is True:
+                    libcalamares.utils.target_env_process_output(command, self.line_cb)
+                else:
+                    libcalamares.utils.target_env_process_output(command)
+
+                return
+            except subprocess.CalledProcessError:
+                if pacman_count <= self.pacman_num_retries:
+                    pass
+                else:
+                    raise
+
     def install(self, pkgs, from_local=False):
+        command = ["pacman"]
+
         if from_local:
-            pacman_flags = "-U"
+            command.append("-U")
         else:
-            pacman_flags = "-S"
+            command.append("-S")
+
+        command.append("--noconfirm")
+
+        if self.pacman_needed_only is True:
+            command.append("--needed")
+
+        if self.pacman_disable_timeout is True:
+            command.append("--disable-download-timeout")
+
+        command += pkgs
 
         self.reset_progress()
-        libcalamares.utils.target_env_process_output(["pacman", pacman_flags,
-                               "--noconfirm"] + pkgs, self.line_cb)
+        self.run_pacman(command, True)
 
     def remove(self, pkgs):
         self.reset_progress()
-        libcalamares.utils.target_env_process_output(["pacman", "-Rs", "--noconfirm"] + pkgs, self.line_cb)
+        self.run_pacman(["pacman", "-Rs", "--noconfirm"] + pkgs, True)
 
     def update_db(self):
-        check_target_env_call(["pacman", "-Sy"])
+        self.run_pacman(["pacman", "-Sy"])
 
     def update_system(self):
-        check_target_env_call(["pacman", "-Su", "--noconfirm"])
+        command = ["pacman", "-Su", "--noconfirm"]
+        if self.pacman_disable_timeout is True:
+            command.append("--disable-download-timeout")
+
+        self.run_pacman(command)
 
 
 class PMPamac(PackageManager):

@@ -163,7 +163,7 @@ Calamares::Utils::Runner::run()
         } );
     }
 
-    cDebug() << Logger::SubEntry << "Running" << Logger::Redacted( m_command );
+    cDebug() << Logger::SubEntry << "Running" << Logger::RedactedCommand( m_command );
     process.start();
     if ( !process.waitForStarted() )
     {
@@ -225,13 +225,13 @@ Calamares::Utils::Runner::run()
     {
         if ( !output.isEmpty() )
         {
-            cDebug() << Logger::SubEntry << "Target cmd:" << Logger::Redacted( m_command ) << "Exit code:" << r
+            cDebug() << Logger::SubEntry << "Target cmd:" << Logger::RedactedCommand( m_command ) << "Exit code:" << r
                      << "output:\n"
                      << Logger::NoQuote << output;
         }
         else
         {
-            cDebug() << Logger::SubEntry << "Target cmd:" << Logger::Redacted( m_command ) << "Exit code:" << r
+            cDebug() << Logger::SubEntry << "Target cmd:" << Logger::RedactedCommand( m_command ) << "Exit code:" << r
                      << "(no output)";
         }
     }

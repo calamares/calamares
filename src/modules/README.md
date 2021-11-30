@@ -398,7 +398,9 @@ target_env_process_output(["ls"])
 ```
 
 The functions return 0. If the exit code of *command* is not 0, an exception
-is raised instead of returning 0.
+is raised instead of returning 0. The exception is `subprocess.CalledProcessError`
+(as if the *subprocess* module had been used), and the `returncode` member
+of the exception object can be used to determine the exit code.
 
 Parameter *stdin* may be a string which is fed to the command as standard input.
 The *timeout* is in seconds, with 0 (or a negative number) treated as no-timeout.

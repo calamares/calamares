@@ -6,7 +6,7 @@
     <message>
       <location filename="../src/modules/partition/jobs/AutoMountManagementJob.cpp" line="22"/>
       <source>Manage auto-mount settings</source>
-      <translation type="unfinished"/>
+      <translation>مدیریت تنظیمات سوارشدن-خودکار</translation>
     </message>
   </context>
   <context>
@@ -104,22 +104,22 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="102"/>
       <source>Crashes Calamares, so that Dr. Konqui can look at it.</source>
-      <translation type="unfinished"/>
+      <translation>کلامارس کرش میکنه، تا Dr. Konqui بتونه بهش یک نگاهی بندازه.</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="115"/>
       <source>Reloads the stylesheet from the branding directory.</source>
-      <translation type="unfinished"/>
+      <translation>استایل های مسیر branding را بارگیری مجدد می‌کند.</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="141"/>
       <source>Uploads the session log to the configured pastebin.</source>
-      <translation type="unfinished"/>
+      <translation>گزارش نشست را به pastebin تنظیم شده بارگذاری میکند.</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="144"/>
       <source>Send Session Log</source>
-      <translation type="unfinished"/>
+      <translation>ارسال گزارش نشست</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="118"/>
@@ -129,7 +129,7 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="128"/>
       <source>Displays the tree of widget names in the log (for stylesheet debugging).</source>
-      <translation type="unfinished"/>
+      <translation>نمایش درخت نام های ویجت ها در گزارش (برای دیباگ استایل ها).</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="131"/>
@@ -336,7 +336,11 @@
 %1
 
 Link copied to clipboard</source>
-      <translation type="unfinished"/>
+      <translation>گزارش نصب به پیوند زیر پست شد
+
+%1
+
+پیوند در کلیپ برد رونگاری شد</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="211"/>
@@ -504,17 +508,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="32"/>
       <source>Set filesystem label on %1.</source>
-      <translation type="unfinished"/>
+      <translation>تنظیم برچسب سامانه پرونده روی %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="39"/>
       <source>Set filesystem label &lt;strong&gt;%1&lt;/strong&gt; to partition &lt;strong&gt;%2&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>تنظیم عنوان سامانه پرونده &lt;strong&gt;%1&lt;/strong&gt; به افراز &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="70"/>
       <source>The installer failed to update partition table on disk '%1'.</source>
-      <translation type="unfinished"/>
+      <translation>نصب کننده برای بروز کردن جدول افراز روی دیسک '%1' شکست خورد.</translation>
     </message>
   </context>
   <context>
@@ -642,17 +646,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1486"/>
       <source>This storage device already has an operating system on it, but the partition table &lt;strong&gt;%1&lt;/strong&gt; is different from the needed &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</source>
-      <translation type="unfinished"/>
+      <translation>این دستگاه حافظه هم اکنون یک سیستم عامل روی خود دارد، اما جدول افراز &lt;strong&gt;%1&lt;/strong&gt; با نیاز &lt;strong&gt;%2&lt;/strong&gt; متفاوت است.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1509"/>
       <source>This storage device has one of its partitions &lt;strong&gt;mounted&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>این دستگاه حافظه دارای یک افرازی بوده که هم اکنون &lt;strong&gt;سوارشده&lt;/strong&gt; است.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1514"/>
       <source>This storage device is a part of an &lt;strong&gt;inactive RAID&lt;/strong&gt; device.</source>
-      <translation type="unfinished"/>
+      <translation>یکی از بخش های این دستگاه حافظه عضوی از دستگاه &lt;strong&gt;RAID غیرفعال&lt;/strong&gt; است. </translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1641"/>
@@ -685,27 +689,27 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="259"/>
       <source>Successfully unmounted %1.</source>
-      <translation type="unfinished"/>
+      <translation>%1 باموفقیت جدا شد.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="266"/>
       <source>Successfully disabled swap %1.</source>
-      <translation type="unfinished"/>
+      <translation>سوآپ %1 باموفقیت غیرفعال شد.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="292"/>
       <source>Successfully cleared swap %1.</source>
-      <translation type="unfinished"/>
+      <translation>سوآپ %1 باموفقیت پاک شد.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="306"/>
       <source>Successfully closed mapper device %1.</source>
-      <translation type="unfinished"/>
+      <translation>دستگاه مپر %1 باموفقیت بسته شد.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="319"/>
       <source>Successfully disabled volume group %1.</source>
-      <translation type="unfinished"/>
+      <translation>گروه حجمی %1 باموفقیت غیرفعال شد.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="358"/>
@@ -805,12 +809,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="57"/>
       <source>Network Installation. (Disabled: Internal error)</source>
-      <translation type="unfinished"/>
+      <translation>نصب شبکه‌ای. (از کار افتاده: خطای داخلی)</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="61"/>
       <source>Network Installation. (Disabled: No package list)</source>
-      <translation type="unfinished"/>
+      <translation>نصب شبکه ای. (از کار افتاده: بدون فهرست بسته)</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="77"/>
@@ -875,7 +879,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="223"/>
       <source>'%1' is not allowed as username.</source>
-      <translation type="unfinished"/>
+      <translation>'%1' بعنوان نام کاربر مجاز نیست.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="230"/>
@@ -900,7 +904,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="289"/>
       <source>'%1' is not allowed as hostname.</source>
-      <translation type="unfinished"/>
+      <translation>'%1' بعنوان نام میزبان مجاز نیست.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="295"/>
@@ -915,7 +919,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="548"/>
       <source>OK!</source>
-      <translation type="unfinished"/>
+      <translation>باشه!</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="145"/>
@@ -930,12 +934,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="147"/>
       <source>The setup of %1 did not complete successfully.</source>
-      <translation type="unfinished"/>
+      <translation>برپایی %1 با موفقیت کامل نشد.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="148"/>
       <source>The installation of %1 did not complete successfully.</source>
-      <translation type="unfinished"/>
+      <translation>نصب %1 با موفقیت کامل نشد.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="152"/>
@@ -970,12 +974,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/packagechooser/Config.cpp" line="177"/>
       <source>Install option: &lt;strong&gt;%1&lt;/strong&gt;</source>
-      <translation type="unfinished"/>
+      <translation>گزینه نصب: &lt;strong&gt;%1&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/Config.cpp" line="177"/>
       <source>None</source>
-      <translation type="unfinished"/>
+      <translation>هیچ کدام</translation>
     </message>
     <message>
       <location filename="../src/modules/summary/Config.cpp" line="94"/>
@@ -985,12 +989,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/summary/Config.cpp" line="98"/>
       <source>This is an overview of what will happen once you start the setup procedure.</source>
-      <translation type="unfinished"/>
+      <translation>این یک بررسی از مواردی که بعد از اینکه برپایی را شروع کنید، انجام می شوند است.</translation>
     </message>
     <message>
       <location filename="../src/modules/summary/Config.cpp" line="103"/>
       <source>This is an overview of what will happen once you start the install procedure.</source>
-      <translation type="unfinished"/>
+      <translation>این یک بررسی از مواردی که بعد از اینکه نصب را شروع کنید، انجام می شوند است.</translation>
     </message>
   </context>
   <context>
@@ -998,7 +1002,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/contextualprocess/ContextualProcessJob.cpp" line="119"/>
       <source>Contextual Processes Job</source>
-      <translation type="unfinished"/>
+      <translation>پردازه های متنی</translation>
     </message>
   </context>
   <context>
@@ -1056,12 +1060,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="231"/>
       <source>Label for the filesystem</source>
-      <translation type="unfinished"/>
+      <translation>برچسب برای سامانه پرونده</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="241"/>
       <source>FS Label:</source>
-      <translation type="unfinished"/>
+      <translation>برچسب سامانه پرونده:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="65"/>
@@ -1094,12 +1098,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="113"/>
       <source>Create new %1MiB partition on %3 (%2) with entries %4.</source>
-      <translation type="unfinished"/>
+      <translation>ایجاد افراز %1 می‌ب جدید روی %3 (%2) با ورودی های %4.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="121"/>
       <source>Create new %1MiB partition on %3 (%2).</source>
-      <translation type="unfinished"/>
+      <translation>ایجاد افراز %1 می‌ب جدید روی %3 (%2).</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="128"/>
@@ -1109,12 +1113,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="145"/>
       <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2) with entries &lt;em&gt;%4&lt;/em&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>ایجاد افراز &lt;strong&gt;%1 می‌ب&lt;/strong&gt; جدید روی &lt;strong&gt;%3&lt;/strong&gt; (%2) با ورودی های &lt;em&gt;%4&lt;/em&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="154"/>
       <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2).</source>
-      <translation type="unfinished"/>
+      <translation>ایجاد افراز &lt;strong&gt;%1&lt;/strong&gt; می‌ب جدید روی &lt;strong&gt;%3&lt;/strong&gt; (%2).</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="161"/>
@@ -1130,7 +1134,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="201"/>
       <source>The installer failed to create partition on disk '%1'.</source>
-      <translation type="unfinished"/>
+      <translation>نصب کننده برای ساختن افراز روی دیسک '%1' شکست خورد.</translation>
     </message>
   </context>
   <context>
@@ -1181,7 +1185,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="67"/>
       <source>The installer failed to create a partition table on %1.</source>
-      <translation type="unfinished"/>
+      <translation>نصب کننده برای ساختن جدول افراز روی %1 شکست خورد.</translation>
     </message>
   </context>
   <context>
@@ -1199,23 +1203,23 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="126"/>
       <source>Preserving home directory</source>
-      <translation type="unfinished"/>
+      <translation>حفظ مسیر خانگی</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="50"/>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="143"/>
       <source>Creating user %1</source>
-      <translation type="unfinished"/>
+      <translation>درحال ایجاد کاربر %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="151"/>
       <source>Configuring user %1</source>
-      <translation type="unfinished"/>
+      <translation>درحال تنظیم کاربر %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="159"/>
       <source>Setting file permissions</source>
-      <translation type="unfinished"/>
+      <translation>درحال تنظیم مجوزهای پرونده</translation>
     </message>
   </context>
   <context>
@@ -1246,7 +1250,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="55"/>
       <source>The installer failed to create a volume group named '%1'.</source>
-      <translation type="unfinished"/>
+      <translation>نصب کننده برای ساخت گروه حجمی با نام '%1' شکست خورد.</translation>
     </message>
   </context>
   <context>
@@ -1265,7 +1269,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="48"/>
       <source>The installer failed to deactivate a volume group named %1.</source>
-      <translation type="unfinished"/>
+      <translation>نصب کننده برای ازکارانداختن گروه حجمی با نام '%1' شکست خورد.</translation>
     </message>
   </context>
   <context>
@@ -1288,7 +1292,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="103"/>
       <source>The installer failed to delete partition %1.</source>
-      <translation type="unfinished"/>
+      <translation>نصب کننده برای حذف افراز %1 شکست خورد.</translation>
     </message>
   </context>
   <context>
@@ -1349,7 +1353,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="121"/>
       <source>Skip writing LUKS configuration for Dracut: "/" partition is not encrypted</source>
-      <translation type="unfinished"/>
+      <translation>ردشدن از نوشتن تنظیمات LUKS برای Dracut: افراز "/" رمزگذاری نشده است</translation>
     </message>
     <message>
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="138"/>
@@ -1420,12 +1424,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="186"/>
       <source>Label for the filesystem</source>
-      <translation type="unfinished"/>
+      <translation>برچسب برای سامانه پرونده</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="196"/>
       <source>FS Label:</source>
-      <translation type="unfinished"/>
+      <translation>برچسب سامانه پرونده:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="291"/>
@@ -1472,47 +1476,47 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="196"/>
       <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition with features &lt;em&gt;%3&lt;/em&gt;</source>
-      <translation type="unfinished"/>
+      <translation>نصب %1 روی سامانه افراز %2 &lt;strong&gt;جدید&lt;/strong&gt; با امکانات &lt;em&gt;%3&lt;/em&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="204"/>
       <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
-      <translation type="unfinished"/>
+      <translation>نصب %1 روی سامانه افراز %2 &lt;strong&gt;جدید&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="213"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt; and features &lt;em&gt;%3&lt;/em&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>برپایی افراز &lt;strong&gt;جدید&lt;/strong&gt; %2 با نقطه سوارشدن &lt;strong&gt;%1&lt;/strong&gt; و امکانات &lt;em&gt;%3&lt;/em&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="221"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;%3.</source>
-      <translation type="unfinished"/>
+      <translation>برپایی افراز &lt;strong&gt;جدید&lt;/strong&gt; %2 با نقطه سوارشدن &lt;strong&gt;%1&lt;/strong&gt; %3.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="235"/>
       <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt; with features &lt;em&gt;%4&lt;/em&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>نصب %2 روی &lt;strong&gt;%1&lt;/strong&gt; سامانه افراز %3 با امکانات &lt;em&gt;%4&lt;/em&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="254"/>
       <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt; and features &lt;em&gt;%4&lt;/em&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>برپایی %3 افراز &lt;strong&gt;%1&lt;/strong&gt; با نقطه سوارشدن &lt;strong&gt;%2&lt;/strong&gt; و امکانات &lt;em&gt;%4&lt;/em&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="263"/>
       <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;%4.</source>
-      <translation type="unfinished"/>
+      <translation>برپایی %3 افراز &lt;strong&gt;%1&lt;/strong&gt; با نقطه سوارشدن &lt;strong&gt;%2&lt;/strong&gt; %4.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="244"/>
       <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>نصب %2 روی &lt;strong&gt;%1&lt;/strong&gt; سامانه افراز %3.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="278"/>
       <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>نصب بوت لودر روی &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="287"/>
@@ -1540,7 +1544,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="76"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style="font-style:italic;"&gt;Done&lt;/span&gt; or close the setup program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>هنگامی که این کادر علامت گذاری شد ، هنگامی که بر روی انجام شده کلیک کنید یا برنامه نصب را ببندید ، سیستم شما بلافاصله راه اندازی می شود.</translation>
+      <translation>هنگامی که این کادر علامت گذاری شد ، هنگامی که بر روی انجام شده کلیک کنید یا برنامه برپاکننده را ببندید ، سیستم شما بلافاصله راه اندازی می شود.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="84"/>
@@ -1555,12 +1559,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="102"/>
       <source>&lt;h1&gt;Setup Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been set up on your computer.&lt;br/&gt;The error message was: %2.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;برپایی شکست خورد&lt;/h1&gt;&lt;br/&gt;%1 روی رایانه شما برپا نشد.&lt;br/&gt;پیام خطا: %2.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="110"/>
       <source>&lt;h1&gt;Installation Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been installed on your computer.&lt;br/&gt;The error message was: %2.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;نصب شکست خورد&lt;/h1&gt;&lt;br/&gt;%1 روی رایانه شما نصب نشد.&lt;br/&gt;پیام خطا: %2.</translation>
     </message>
   </context>
   <context>
@@ -1584,22 +1588,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="36"/>
       <source>Format partition %1 (file system: %2, size: %3 MiB) on %4.</source>
-      <translation type="unfinished"/>
+      <translation>فرمت افراز %1 (سامانه پروانه: %2، اندازه: %3مبی‌بایت) روی %4.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="47"/>
       <source>Format &lt;strong&gt;%3MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>فرمت افراز&lt;strong&gt;%1&lt;/strong&gt;  با سایز &lt;strong&gt;%3مبی‌بایت&lt;/strong&gt; با سامانه پرونده &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="58"/>
       <source>Formatting partition %1 with file system %2.</source>
-      <translation type="unfinished"/>
+      <translation>فرمت افراز %1 با سامانه پروند %2.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="72"/>
       <source>The installer failed to format partition %1 on disk '%2'.</source>
-      <translation type="unfinished"/>
+      <translation>نصب کننده برای فرمت افراز %1 روی دیسک '%2' شکست خورد.</translation>
     </message>
   </context>
   <context>
@@ -1607,22 +1611,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="155"/>
       <source>has at least %1 GiB available drive space</source>
-      <translation type="unfinished"/>
+      <translation>دارای حداقل %1 گی‌ب فضای کافی</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="157"/>
       <source>There is not enough drive space. At least %1 GiB is required.</source>
-      <translation type="unfinished"/>
+      <translation>فضای کافی موجود نیست. حداقل %1 گی‌ب نیاز است.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="166"/>
       <source>has at least %1 GiB working memory</source>
-      <translation type="unfinished"/>
+      <translation>دارای حداقل %1 گی‌ب مموری کارکننده</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="168"/>
       <source>The system does not have enough working memory. At least %1 GiB is required.</source>
-      <translation type="unfinished"/>
+      <translation>سامانه مموری کارکننده کافی ندارد. حداقل %1 گی‌ب نیاز است.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="177"/>
@@ -1691,7 +1695,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/oemid/IDJob.cpp" line="52"/>
       <location filename="../src/modules/oemid/IDJob.cpp" line="59"/>
       <source>OEM Batch Identifier</source>
-      <translation type="unfinished"/>
+      <translation>شناسه Batch اوئی‌ام</translation>
     </message>
     <message>
       <location filename="../src/modules/oemid/IDJob.cpp" line="40"/>
@@ -1858,27 +1862,27 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="116"/>
       <source>&lt;strong&gt;%1 graphics driver&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
       <extracomment>%1 is usually a vendor name, example: Nvidia graphics driver</extracomment>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;درایور گرافیک %1&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;توسط %2&lt;/font&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="122"/>
       <source>&lt;strong&gt;%1 browser plugin&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;افزونه مرورگر %1&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;توسط %2&lt;/font&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="128"/>
       <source>&lt;strong&gt;%1 codec&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;کدک %1&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;توسط %2&lt;/font&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="134"/>
       <source>&lt;strong&gt;%1 package&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;بسته %1&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;توسط %2&lt;/font&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="140"/>
       <source>&lt;strong&gt;%1&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%1&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;توسط %2&lt;/font&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="163"/>
@@ -1933,7 +1937,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/libcalamares/locale/Tests.cpp" line="273"/>
       <source>Quit</source>
-      <translation type="unfinished"/>
+      <translation>خروج</translation>
     </message>
   </context>
   <context>
@@ -1967,17 +1971,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="230"/>
       <source>Root partition %1 is LUKS but no passphrase has been set.</source>
-      <translation type="unfinished"/>
+      <translation>افراز روت %1 یک LUKS است، ولی هیچ گذرواژه ای تنظیم نشده است.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="237"/>
       <source>Could not create LUKS key file for root partition %1.</source>
-      <translation type="unfinished"/>
+      <translation>نمیتوان پرونده کلید LUKS را برای افراز روت %1 ایجاد کرد.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="245"/>
       <source>Could not configure LUKS key file on partition %1.</source>
-      <translation type="unfinished"/>
+      <translation>نمیتوان پرونده کلید LUKS را برای افراز روت %1 تنظیم کرد.</translation>
     </message>
   </context>
   <context>
@@ -2003,7 +2007,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/localeq/Map.qml" line="243"/>
       <source>Timezone: %1</source>
-      <translation type="unfinished"/>
+      <translation>منطقه زمانی: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Map.qml" line="264"/>
@@ -2124,17 +2128,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/oemid/OEMPage.ui" line="32"/>
       <source>Ba&amp;tch:</source>
-      <translation type="unfinished"/>
+      <translation>Ba&amp;tch:</translation>
     </message>
     <message>
       <location filename="../src/modules/oemid/OEMPage.ui" line="42"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter a batch-identifier here. This will be stored in the target system.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;اینجا یک شناسه batch وارد کنید. این مقدار در سامانه هدف ذخیره می‌شود.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/oemid/OEMPage.ui" line="52"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;h1&gt;OEM Configuration&lt;/h1&gt;&lt;p&gt;Calamares will use OEM settings while configuring the target system.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;h1&gt;تنظیمات اوئی‌ام&lt;/h1&gt;&lt;p&gt;کلامارس از تنظیمات اوئی‌ام هنگام تنظیم سامانه هدف استفده خواهد کرد.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
   </context>
   <context>
@@ -2147,7 +2151,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/oemid/OEMViewStep.cpp" line="128"/>
       <source>Set the OEM Batch Identifier to &lt;code&gt;%1&lt;/code&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>تنظیم شناسه Batch اوئی‌ام به &lt;code&gt;%1&lt;/code&gt;.</translation>
     </message>
   </context>
   <context>
@@ -2155,14 +2159,14 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="41"/>
       <source>Select your preferred Region, or use the default settings.</source>
-      <translation type="unfinished"/>
+      <translation>منطقه موردنظر خود را انتخاب کنید یا از تنظیمات پیشفرض استفاده کنید.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="98"/>
       <location filename="../src/modules/localeq/Offline.qml" line="173"/>
       <location filename="../src/modules/localeq/Offline.qml" line="217"/>
       <source>Timezone: %1</source>
-      <translation type="unfinished"/>
+      <translation>منطقه زمانی: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="115"/>
@@ -2172,12 +2176,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="186"/>
       <source>Zones</source>
-      <translation type="unfinished"/>
+      <translation>مناطق</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="233"/>
       <source>You can fine-tune Language and Locale settings below.</source>
-      <translation type="unfinished"/>
+      <translation>شما میتوانید زبان و زبان محلی را  در تنظیمات زیر بطوردقیق تنظیم کنید.</translation>
     </message>
   </context>
   <context>
@@ -2255,9 +2259,9 @@ The installer will quit and all changes will be lost.</source>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="232"/>
       <source>The password contains fewer than %n lowercase letters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>گذرواژه حاوی کمتر از %n حرف کوچک است</numerusform>
+        <numerusform>گذرواژه حاوی کمتر از %n حرف کوچک است</numerusform>
       </translation>
     </message>
     <message>
@@ -2293,70 +2297,70 @@ The installer will quit and all changes will be lost.</source>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="218"/>
       <source>The password contains fewer than %n digits</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>گذرواژه حاوی کمتر از %n عدد است</numerusform>
+        <numerusform>گذرواژه حاوی کمتر از %n عدد است</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="225"/>
       <source>The password contains fewer than %n uppercase letters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>گذرواژه حاوی کمتر از %n حرف بزرگ است</numerusform>
+        <numerusform>گذرواژه حاوی کمتر از %n حرف بزرگ است</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="239"/>
       <source>The password contains fewer than %n non-alphanumeric characters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>گذرواژه حاوی کمتر از %n نویسه غیرالفبا است</numerusform>
+        <numerusform>گذرواژه حاوی کمتر از %n نویسه غیرالفبا است</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="246"/>
       <source>The password is shorter than %n characters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>گذرواژه کوتاه تر از %n نویسه است</numerusform>
+        <numerusform>گذرواژه کوتاه تر از %n نویسه است</numerusform>
       </translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="251"/>
       <source>The password is a rotated version of the previous one</source>
-      <translation type="unfinished"/>
+      <translation>گذرواژه یک نسخه برعکس شده از قبلی است</translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="255"/>
       <source>The password contains fewer than %n character classes</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>گذرواژه حاوی کمتر از %n کلاس نویسه است</numerusform>
+        <numerusform>گذرواژه حاوی کمتر از %n کلاس نویسه است</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="262"/>
       <source>The password contains more than %n same characters consecutively</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>گذرواژه حاوی بیش از %n نویسه پی در پی است</numerusform>
+        <numerusform>گذرواژه حاوی بیش از %n نویسه پی در پی است</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="269"/>
       <source>The password contains more than %n characters of the same class consecutively</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>گذرواژه حاوی بیش از%n نویسه پی در پی از همان کلاس است</numerusform>
+        <numerusform>گذرواژه حاوی بیش از%n نویسه پی در پی از همان کلاس است</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="280"/>
       <source>The password contains monotonic sequence longer than %n characters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>گذرواژه حاوی یک توالی کاراکتر یکنواخت بیش از %n نویسه است</numerusform>
+        <numerusform>گذرواژه حاوی یک توالی کاراکتر یکنواخت بیش از %n نویسه است</numerusform>
       </translation>
     </message>
     <message>
@@ -2382,7 +2386,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="298"/>
       <source>The password fails the dictionary check - %1</source>
-      <translation type="unfinished"/>
+      <translation>گذرواژه در بررسی فرهنگ لفت ناموفق است - %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="301"/>
@@ -2703,7 +2707,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="304"/>
       <source>File System Label</source>
-      <translation type="unfinished"/>
+      <translation>برچسب سامانه پرونده</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="306"/>
@@ -2824,37 +2828,37 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="534"/>
       <source>EFI system partition configured incorrectly</source>
-      <translation type="unfinished"/>
+      <translation>افراز سامانه EFI به نادرستی تنظیم شده است</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="539"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a suitable filesystem.</source>
-      <translation type="unfinished"/>
+      <translation>یک افراز سامانه EFI نیازمندست که از %1 شروع شود.&lt;br/&gt;&lt;br/&gt;برای تنظیم یک افراز سامانه EFI، به عقب بازگشته و یک سامانه پرونده مناسب انتخاب یا ایجاد کنید.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="550"/>
       <source>The filesystem must be mounted on &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>سامانه پرونده باید روی &lt;strong&gt;%1&lt;/strong&gt; سوارشده باشد.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="556"/>
       <source>The filesystem must have type FAT32.</source>
-      <translation type="unfinished"/>
+      <translation>سامانه پرونده باید دارای نوع FAT32 باشد.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="564"/>
       <source>The filesystem must be at least %1 MiB in size.</source>
-      <translation type="unfinished"/>
+      <translation>سامانه پرونده حداقل باید دارای %1مبی‌بایت حجم باشد.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="570"/>
       <source>The filesystem must have flag &lt;strong&gt;%1&lt;/strong&gt; set.</source>
-      <translation type="unfinished"/>
+      <translation>سامانه پرونده باید پرچم &lt;strong&gt;%1&lt;/strong&gt; را دارا باشد.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="576"/>
       <source>You can continue without setting up an EFI system partition but your system may fail to start.</source>
-      <translation type="unfinished"/>
+      <translation>شما میتوانید بدون برپاکردن افراز سامانه EFI ادامه دهید ولی ممکن است سامانه برای شروع با مشکل مواجه شود.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="593"/>
@@ -2968,7 +2972,7 @@ Output:
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="431"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; crashed.</source>
-      <translation type="unfinished"/>
+      <translation>دستور &lt;i&gt;%1&lt;/i&gt; شکست خورد.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="436"/>
@@ -2978,7 +2982,7 @@ Output:
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="437"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; failed to start.</source>
-      <translation type="unfinished"/>
+      <translation>دستور &lt;i&gt;%1&lt;/i&gt; برای شروع شکست خورد.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="441"/>
@@ -2998,7 +3002,7 @@ Output:
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="447"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; failed to finish in %2 seconds.</source>
-      <translation type="unfinished"/>
+      <translation>دستور &lt;i&gt;%1&lt;/i&gt; برای اتمام در %2 ثانیه شکست خورد.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="454"/>
@@ -3008,7 +3012,7 @@ Output:
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="455"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; finished with exit code %2.</source>
-      <translation type="unfinished"/>
+      <translation>دستور &lt;i&gt;%1&lt;/i&gt; با کد خروج %2 به پایان رسید.</translation>
     </message>
   </context>
   <context>
@@ -3055,18 +3059,18 @@ Output:
     <message>
       <location filename="../src/modules/machineid/Workers.cpp" line="65"/>
       <source>Path &lt;pre&gt;%1&lt;/pre&gt; must be an absolute path.</source>
-      <translation type="unfinished"/>
+      <translation>مسیر &lt;pre&gt;%1&lt;/pre&gt; باید یک مسیر مطلق باشد.</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="83"/>
       <source>Directory not found</source>
-      <translation type="unfinished"/>
+      <translation>مسیر یافت نشد</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="84"/>
       <location filename="../src/modules/machineid/Workers.cpp" line="94"/>
       <source>Could not create new random file &lt;pre&gt;%1&lt;/pre&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>نمی توان پرونده تصادفی &lt;pre&gt;%1&lt;/pre&gt; را ساخت.</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/PackageModel.cpp" line="63"/>
@@ -3095,7 +3099,8 @@ Output:
       <location filename="../src/modules/welcomeq/Recommended.qml" line="40"/>
       <source>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
         Setup can continue, but some features might be disabled.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;رایانه شما نیازمندی‌های برپاسازی %1 را ندارد.
+برپاسازی می‌تواند ادامه یابد، ولی ممکن است برخی ویژگی‌ها از کار افتاده باشند.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -3112,17 +3117,17 @@ Output:
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="24"/>
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="36"/>
       <source>Remove Volume Group named %1.</source>
-      <translation type="unfinished"/>
+      <translation>حذف گروه حجمی با نام %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="30"/>
       <source>Remove Volume Group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>حذف گروه حجمی با نام &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="48"/>
       <source>The installer failed to remove a volume group named '%1'.</source>
-      <translation type="unfinished"/>
+      <translation>نصب کننده برای حذف گروه حجمی با نام '%1' شکست خورد.</translation>
     </message>
   </context>
   <context>
@@ -3135,59 +3140,59 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="127"/>
       <source>Select where to install %1.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
-      <translation type="unfinished"/>
+      <translation>انتخاب کنید که کجا %1 نصب شود.&lt;br/&gt;&lt;font color="red"&gt;اخطار:&lt;/font&gt;این همه پرونده های افراز انتخاب شده را پاک خواهد کرد.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="149"/>
       <source>The selected item does not appear to be a valid partition.</source>
-      <translation type="unfinished"/>
+      <translation>بنظر نمی آید که گزینه انتخاب شده، افراز معتبری باشد.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="157"/>
       <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
-      <translation type="unfinished"/>
+      <translation>%1 نمیتواند روی فضای خالی نصب شود. لطفا یک افراز موجود را برگزینید.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="167"/>
       <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
-      <translation type="unfinished"/>
+      <translation>%1 نمیتواند روی یک افراز extended نصب شود. لطفا یک افراز primary یا logical برگزینید.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="177"/>
       <source>%1 cannot be installed on this partition.</source>
-      <translation type="unfinished"/>
+      <translation>%1 نمیتواند روی این افراز نصب شود.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="183"/>
       <source>Data partition (%1)</source>
-      <translation type="unfinished"/>
+      <translation>داده افراز (%1)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="203"/>
       <source>Unknown system partition (%1)</source>
-      <translation type="unfinished"/>
+      <translation>سامانه افراز ناشناس (%1)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="207"/>
       <source>%1 system partition (%2)</source>
-      <translation type="unfinished"/>
+      <translation>سامانه افراز %1 (%2)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="218"/>
       <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;افراز %1 برای %2 بسیار کوچک است. لطفا یک افراز با ظرفیت حداقل %3 گیبی‌بایت انتخاب کنید.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="240"/>
       <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;افراز سامانه EFI نمی‌تواند در هیچ جایی از این سیستم یافت شود. لطفا برگردید و از پارتیشن بندی دستی استفاده کنید تا %1 را راه‌اندازی کنید.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="251"/>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="267"/>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="292"/>
       <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;all data on partition %2 will be lost.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 روی %2 نصب خواهد شد.&lt;br/&gt;&lt;font color="red"&gt;اخطار:&lt;/font&gt;همه داده های افراز %2 از دست خواهند رفت. </translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="259"/>
@@ -3206,13 +3211,15 @@ Output:
       <location filename="../src/modules/welcomeq/Requirements.qml" line="38"/>
       <source>&lt;p&gt;This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;
         Installation cannot continue.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;رایانه شما نیازمندی های نصب %1 را ندارد.&lt;br/&gt;
+نصب نمیتواند ادامه یابد.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/Requirements.qml" line="40"/>
       <source>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
         Setup can continue, but some features might be disabled.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;رایانه شما نیازمندی‌های برپاسازی %1 را ندارد.
+برپاسازی می‌تواند ادامه یابد، ولی ممکن است برخی ویژگی‌ها از کار افتاده باشند.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -3240,7 +3247,7 @@ Output:
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="176"/>
       <source>Calamares cannot start KPMCore for the file-system resize job.</source>
-      <translation type="unfinished"/>
+      <translation>کلامارس نمیتواند KPMCore را برای کار تغییراندازه فایل سیستم شروع کند.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="184"/>
@@ -3254,24 +3261,24 @@ Output:
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="186"/>
       <source>The filesystem %1 could not be found in this system, and cannot be resized.</source>
-      <translation type="unfinished"/>
+      <translation>فایل سیستم %1 روی این سامانه یافت نشد و نمیتواند تغییر اندازه دهد.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="187"/>
       <source>The device %1 could not be found in this system, and cannot be resized.</source>
-      <translation type="unfinished"/>
+      <translation>دستگاه %1 روی این سامانه یافت نشد و نمیتواند تغییراندازه دهد.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="195"/>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="206"/>
       <source>The filesystem %1 cannot be resized.</source>
-      <translation type="unfinished"/>
+      <translation>سیستم فایل %1 نمی تواند تغییر اندازه دهد.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="196"/>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="207"/>
       <source>The device %1 cannot be resized.</source>
-      <translation type="unfinished"/>
+      <translation>دستگاه %1 نمی تواند تغییر اندازه دهد.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="214"/>
@@ -3281,7 +3288,7 @@ Output:
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="215"/>
       <source>The device %1 must be resized, but cannot</source>
-      <translation type="unfinished"/>
+      <translation>دستگاه %1 باید تغییر اندازه دهد، اما نمی تواند.</translation>
     </message>
   </context>
   <context>
@@ -3294,17 +3301,17 @@ Output:
     <message>
       <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="47"/>
       <source>Resize &lt;strong&gt;%2MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%3MiB&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>تغییر اندازه افراز &lt;strong&gt;%1&lt;/strong&gt; از &lt;strong&gt;%2مبی‌بایت&lt;/strong&gt; به &lt;strong&gt;%3مبی‌بایت&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="58"/>
       <source>Resizing %2MiB partition %1 to %3MiB.</source>
-      <translation type="unfinished"/>
+      <translation>درحال تغییر اندازه افراز %1 از %2مبی‌بایت به %3مبی‌بایت.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="77"/>
       <source>The installer failed to resize partition %1 on disk '%2'.</source>
-      <translation type="unfinished"/>
+      <translation>نصب کننده برای تغییر اندازه افراز %1 روی دیسک '%2' شکست خورد.</translation>
     </message>
   </context>
   <context>
@@ -3321,17 +3328,17 @@ Output:
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="27"/>
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="45"/>
       <source>Resize volume group named %1 from %2 to %3.</source>
-      <translation type="unfinished"/>
+      <translation>تغییر اندازه گروه حجمی با نام %1 از %2 به %3.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="36"/>
       <source>Resize volume group named &lt;strong&gt;%1&lt;/strong&gt; from &lt;strong&gt;%2&lt;/strong&gt; to &lt;strong&gt;%3&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>تغییر اندازه گروه حجمی با نام &lt;strong&gt;%1&lt;/strong&gt; از &lt;strong&gt;%2&lt;/strong&gt; به &lt;strong&gt;%3&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="60"/>
       <source>The installer failed to resize a volume group named '%1'.</source>
-      <translation type="unfinished"/>
+      <translation>نصب کننده برای تغییر اندازه گروه حجمی با نام '%1' شکست خورد.</translation>
     </message>
   </context>
   <context>
@@ -3387,7 +3394,7 @@ Output:
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="137"/>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="146"/>
       <source>Cannot write hostname to target system</source>
-      <translation type="unfinished"/>
+      <translation>عدم توانایی نوشتن نام میزبان به سامانه هدف</translation>
     </message>
   </context>
   <context>
@@ -3395,29 +3402,29 @@ Output:
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="55"/>
       <source>Set keyboard model to %1, layout to %2-%3</source>
-      <translation type="unfinished"/>
+      <translation>تنظیم مدل کیبورد به %1، چیدمان به %2-%3</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="368"/>
       <source>Failed to write keyboard configuration for the virtual console.</source>
-      <translation type="unfinished"/>
+      <translation>شکست در نوشتن تنظیمات کیبورد برای کنسول مجازی.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="369"/>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="397"/>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="414"/>
       <source>Failed to write to %1</source>
-      <translation type="unfinished"/>
+      <translation>شکست در نوشتن %1</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="396"/>
       <source>Failed to write keyboard configuration for X11.</source>
-      <translation type="unfinished"/>
+      <translation>شکست در نوشتن تنظیمات کیبورد برای X11.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="413"/>
       <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
-      <translation type="unfinished"/>
+      <translation>شکست در نوشتن تنظیمات کیبورد به مسیر /etc/default  موجود.</translation>
     </message>
   </context>
   <context>
@@ -3425,27 +3432,27 @@ Output:
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="43"/>
       <source>Set flags on partition %1.</source>
-      <translation type="unfinished"/>
+      <translation>تنظیم پرچم ها روی افراز %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="49"/>
       <source>Set flags on %1MiB %2 partition.</source>
-      <translation type="unfinished"/>
+      <translation>تنظیم پرچم ها روی افراز %2 با حجم %1مبی‌بایت.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="53"/>
       <source>Set flags on new partition.</source>
-      <translation type="unfinished"/>
+      <translation>تنظیم پرچم ها روی افراز جدید.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="65"/>
       <source>Clear flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>پاک کردن پرچم ها از افراز &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="71"/>
       <source>Clear flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-      <translation type="unfinished"/>
+      <translation>پاک کردن پرچم ها از افراز &lt;strong&gt;%2&lt;/strong&gt; با حجم %1مبی‌بایت.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="75"/>
@@ -3455,27 +3462,27 @@ Output:
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="80"/>
       <source>Flag partition &lt;strong&gt;%1&lt;/strong&gt; as &lt;strong&gt;%2&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>پرچم گذاری افراز &lt;strong&gt;%1&lt;/strong&gt; بعنوان &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="89"/>
       <source>Flag %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition as &lt;strong&gt;%3&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>پرچم گذاری افراز &lt;strong&gt;%2&lt;/strong&gt; بعنوان &lt;strong&gt;%3&lt;/strong&gt; با حجم %1 مبی‌بایت.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="96"/>
       <source>Flag new partition as &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>درحال پرچم گذاری افراز جدید بعنوان &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="108"/>
       <source>Clearing flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>درحال پاک کردن پرچم ها از افراز &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="114"/>
       <source>Clearing flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-      <translation type="unfinished"/>
+      <translation>درحال پاک کردن پرچم ها از افراز &lt;strong&gt;%2&lt;/strong&gt; با حجم %1مبی‌بایت.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="119"/>
@@ -3485,22 +3492,22 @@ Output:
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="124"/>
       <source>Setting flags &lt;strong&gt;%2&lt;/strong&gt; on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>درحال تنظیم پرچم های &lt;strong&gt;%2&lt;/strong&gt; روی افراز &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="133"/>
       <source>Setting flags &lt;strong&gt;%3&lt;/strong&gt; on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-      <translation type="unfinished"/>
+      <translation>درحال تنظیم پرچم های &lt;strong&gt;%3&lt;/strong&gt; روی افراز &lt;strong&gt;%2&lt;/strong&gt; با حجم %1مبی‌بایت.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="140"/>
       <source>Setting flags &lt;strong&gt;%1&lt;/strong&gt; on new partition.</source>
-      <translation type="unfinished"/>
+      <translation>درحال تنظیم پرچم های &lt;strong&gt;%1&lt;/strong&gt; روی افراز جدید.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="157"/>
       <source>The installer failed to set flags on partition %1.</source>
-      <translation type="unfinished"/>
+      <translation>نصب کننده برای تنظیم پرچم ها روی افراز %1 شکست خورد.</translation>
     </message>
   </context>
   <context>
@@ -3513,12 +3520,12 @@ Output:
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="47"/>
       <source>Setting password for user %1.</source>
-      <translation type="unfinished"/>
+      <translation>درحال تنظیم گذرواژه برای کاربر %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="81"/>
       <source>Bad destination system path.</source>
-      <translation type="unfinished"/>
+      <translation>مسیر مقصد سامانه بد است.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="82"/>
@@ -3533,7 +3540,7 @@ Output:
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="89"/>
       <source>passwd terminated with error code %1.</source>
-      <translation type="unfinished"/>
+      <translation>passwd با خطای %1 پایان یافت.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="97"/>
@@ -3543,7 +3550,7 @@ Output:
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="98"/>
       <source>usermod terminated with error code %1.</source>
-      <translation type="unfinished"/>
+      <translation>usermod با خطای %1 پایان یافت.</translation>
     </message>
   </context>
   <context>
@@ -3571,17 +3578,17 @@ Output:
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="72"/>
       <source>Link creation failed, target: %1; link name: %2</source>
-      <translation type="unfinished"/>
+      <translation>ساختن پیوند با خطا مواجه شد، هدف: %1؛ پیوند: %2</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="77"/>
       <source>Cannot set timezone,</source>
-      <translation type="unfinished"/>
+      <translation>نمی‌توان منطقه زمانی را تنظیم کرد،</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="78"/>
       <source>Cannot open /etc/timezone for writing</source>
-      <translation type="unfinished"/>
+      <translation>عدم توانایی در باز کردن /etc/timezone برای نوشتن</translation>
     </message>
   </context>
   <context>
@@ -3589,18 +3596,18 @@ Output:
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="166"/>
       <source>Preparing groups.</source>
-      <translation type="unfinished"/>
+      <translation>درحال آماده سازی گروه ها.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="178"/>
       <location filename="../src/modules/users/MiscJobs.cpp" line="183"/>
       <source>Could not create groups in target system</source>
-      <translation type="unfinished"/>
+      <translation>عدم توانایی در ساخت گروه ها در سامانه هدف</translation>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="184"/>
       <source>These groups are missing in the target system: %1</source>
-      <translation type="unfinished"/>
+      <translation>این گروه ها در سامانه هدف یافت نشدند: %1</translation>
     </message>
   </context>
   <context>
@@ -3608,7 +3615,7 @@ Output:
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="33"/>
       <source>Configure &lt;pre&gt;sudo&lt;/pre&gt; users.</source>
-      <translation type="unfinished"/>
+      <translation>کاربران با دسترسی &lt;pre&gt;sudo&lt;/pre&gt; را تنظیم کنید.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="55"/>
@@ -3626,7 +3633,7 @@ Output:
     <message>
       <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="41"/>
       <source>Shell Processes Job</source>
-      <translation type="unfinished"/>
+      <translation>پردازه های شل</translation>
     </message>
   </context>
   <context>
@@ -3635,7 +3642,7 @@ Output:
       <location filename="../src/qml/calamares/slideshow/SlideCounter.qml" line="27"/>
       <source>%L1 / %L2</source>
       <extracomment>slide counter, %1 of %2 (numeric)</extracomment>
-      <translation type="unfinished"/>
+      <translation>%L1 از %L2</translation>
     </message>
   </context>
   <context>
@@ -3681,7 +3688,7 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="125"/>
       <source>Internal error in install-tracking.</source>
-      <translation type="unfinished"/>
+      <translation>خطای داخلی در پیگیری نصب رخ داد.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="126"/>
@@ -3694,28 +3701,28 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="187"/>
       <source>KDE user feedback</source>
-      <translation type="unfinished"/>
+      <translation>بازخورد کاربری KDE</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="193"/>
       <source>Configuring KDE user feedback.</source>
-      <translation type="unfinished"/>
+      <translation>در حال تنظیم بازخورد کاربری KDE.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="215"/>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="221"/>
       <source>Error in KDE user feedback configuration.</source>
-      <translation type="unfinished"/>
+      <translation>خطایی در تنظیمات بازخورد کاربری KDE رخ داد.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="216"/>
       <source>Could not configure KDE user feedback correctly, script error %1.</source>
-      <translation type="unfinished"/>
+      <translation>عدم توانایی در تنظیم درست بازخورد کاربری KDE، برنامه با خطای %1 مواجه شد.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="222"/>
       <source>Could not configure KDE user feedback correctly, Calamares error %1.</source>
-      <translation type="unfinished"/>
+      <translation>عدم توانایی در تنظیم درست بازخورد کاربری KDE، کلامارس با خطای %1 مواجه شد.</translation>
     </message>
   </context>
   <context>
@@ -3723,28 +3730,28 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="136"/>
       <source>Machine feedback</source>
-      <translation type="unfinished"/>
+      <translation>بازخورد ماشین</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="142"/>
       <source>Configuring machine feedback.</source>
-      <translation type="unfinished"/>
+      <translation>در حال تنظیم بازخورد ماشین.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="165"/>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="171"/>
       <source>Error in machine feedback configuration.</source>
-      <translation type="unfinished"/>
+      <translation>خطایی در تنظیمات بازخورد ماشین رخ داد.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="166"/>
       <source>Could not configure machine feedback correctly, script error %1.</source>
-      <translation type="unfinished"/>
+      <translation>عدم توانایی در تنظیم درست بازخورد ماشین، برنامه با خطای %1 مواجه شد.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="172"/>
       <source>Could not configure machine feedback correctly, Calamares error %1.</source>
-      <translation type="unfinished"/>
+      <translation>عدم توانایی در تنظیم درست بازخورد ماشین، کلامارس با خطای %1 مواجه شد.</translation>
     </message>
   </context>
   <context>
@@ -3762,12 +3769,12 @@ Output:
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="76"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click here to send &lt;span style=" font-weight:600;"&gt;no information at all&lt;/span&gt; about your installation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt; این گزینه را برای &lt;span style=" font-weight:600;"&gt;نفرستادن هیچگونه اطلاعاتی&lt;/span&gt; درباره نصب خودتان انتخاب کنید.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="275"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href="placeholder"&gt;&lt;span style=" text-decoration: underline; color:#2980b9;"&gt;Click here for more information about user feedback&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href="placeholder"&gt;&lt;span style=" text-decoration: underline; color:#2980b9;"&gt;برای دریافت اطلاعات بیشتر درمورد بازخورد کاربران اینجا کلیک کنید&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="86"/>
@@ -3777,17 +3784,17 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="91"/>
       <source>By selecting this you will send information about your installation and hardware. This information will only be sent &lt;b&gt;once&lt;/b&gt; after the installation finishes.</source>
-      <translation type="unfinished"/>
+      <translation>با انتخاب این گزینه، شما فقط یکبار داده هایی درباره نصب و سخت افزار خود ارسال می کنید. این داده ها فقط &lt;b&gt;یکبار&lt;/b&gt; بعد از به پایان رسیدن نصب فرستاده می شوند.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="94"/>
       <source>By selecting this you will periodically send information about your &lt;b&gt;machine&lt;/b&gt; installation, hardware and applications, to %1.</source>
-      <translation type="unfinished"/>
+      <translation>با انتخاب این گزینه، شما بطور دوره ای داده هایی درباره  نصب &lt;b&gt;ماشین&lt;/b&gt;، سخت افزار و برنامه ها را به %1 می فرستید.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="98"/>
       <source>By selecting this you will regularly send information about your &lt;b&gt;user&lt;/b&gt; installation, hardware, applications and application usage patterns, to %1.</source>
-      <translation type="unfinished"/>
+      <translation>با انتخاب این گزینه، شما بطور منظم داده هایی درباره  نصب &lt;b&gt;کاربر&lt;/b&gt;، سخت افزار، برنامه ها و الگوی مصرفی برنامه ها را به %1 می فرستید.</translation>
     </message>
   </context>
   <context>
@@ -3803,12 +3810,12 @@ Output:
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="167"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;small&gt;اگر بیش از یک نفر از این کامپیوتر استفاده می کنند، میتوانید حساب های دیگری بعد نصب ایجاد کنید.&lt;/small&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="173"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;small&gt;اگر بیش از یک نفر از این کامپیوتر استفاده می کنند، میتوانید حساب های دیگری بعد نصب ایجاد کنید.&lt;/small&gt;</translation>
     </message>
   </context>
   <context>
@@ -3991,7 +3998,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="238"/>
       <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt; برای %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt; Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt; Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt; سپاس از &lt;a href='https://calamares.io/team/'&gt;گروه کلامارس&lt;/a&gt; و &lt;a href='https://www.transifex.com/calamares/calamares/'&gt;گروه ترجمه کلامارس&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt; توسعه &lt;a href='https://calamares.io/'&gt;کلامارس&lt;/a&gt;                         توسط &lt;br/&gt; &lt;a href="http://www.blue-systems.com/"&gt;&lt;a href='http://www.blue-systems.com/'&gt;سیستم های آبی&lt;/a&gt; - نرم افزار آزادی  پشتیبانی شده است.</translation>
     </message>
   </context>
   <context>
@@ -4026,7 +4033,16 @@ Output:
                         development is sponsored by &lt;br/&gt;
                         &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; -
                         Liberating Software.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;
+                        &lt;strong&gt;%2&lt;br/&gt;
+                        برای %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;
+                        Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;
+                        Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;
+                        سپاس از &lt;a href='https://calamares.io/team/'&gt;گروه کلامارس&lt;/a&gt;
+                        و &lt;a href='https://www.transifex.com/calamares/calamares/'&gt;گروه ترجمه کلامارس&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;
+                        توسعه &lt;a href='https://calamares.io/'&gt;کلامارس&lt;/a&gt; توسط &lt;br/&gt;
+                        &lt;a href='http://www.blue-systems.com/'&gt;سیستم های آبی&lt;/a&gt; -
+                         نرم افزار آزادی پشتیبانی شده است.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/about.qml" line="96"/>
@@ -4047,29 +4063,31 @@ Output:
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="36"/>
       <source>Installation Completed</source>
-      <translation type="unfinished"/>
+      <translation>نصب کامل شد</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="43"/>
       <source>%1 has been installed on your computer.&lt;br/&gt;
             You may now restart into your new system, or continue using the Live environment.</source>
-      <translation type="unfinished"/>
+      <translation>%1 روی رایانه شما نصب شد.&lt;br/&gt;
+میتوانید به سامانه جدیدتان وارد شوید، یا به استفاده محیط زنده ادامه دهید.</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="65"/>
       <source>Close Installer</source>
-      <translation type="unfinished"/>
+      <translation>بستن نصب کننده</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="71"/>
       <source>Restart System</source>
-      <translation type="unfinished"/>
+      <translation>راه اندازی مجدد سامانه</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="89"/>
       <source>&lt;p&gt;A full log of the install is available as installation.log in the home directory of the Live user.&lt;br/&gt;
             This log is copied to /var/log/installation.log of the target system.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;یک گزارش کامل از نصب در فایل installation.log درون مسیر خانه کاربر زنده موجود است.&lt;br/&gt;
+این گزارش به مسیر /var/log/installation.log سامانه هدف نیز رونوشت شده است.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -4078,13 +4096,15 @@ Output:
       <location filename="../src/modules/localeq/i18n.qml" line="50"/>
       <source>&lt;h1&gt;Languages&lt;/h1&gt; &lt;/br&gt;
                     The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;زبان ها&lt;/h1&gt;&lt;/br&gt;
+                  تنظیمات محلی سامانه روی زبان و مجموعه کارکتر برخی از عناصر رابط کاربری خط فرمان تاثیر می گذارد. تنظیمات فعلی &lt;strong&gt;%1&lt;/strong&gt; است.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/i18n.qml" line="123"/>
       <source>&lt;h1&gt;Locales&lt;/h1&gt; &lt;/br&gt;
                     The system locale setting affects the numbers and dates format. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;زبان های محلی&lt;/h1&gt; &lt;/br&gt;
+                 تنظیمات زبان محلی سامانه قالب اعداد و تاریخ را تغییر می دهد. تنظیمات فعلی &lt;strong&gt;%1&lt;/strong&gt; است.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/i18n.qml" line="189"/>
@@ -4097,7 +4117,7 @@ Output:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="60"/>
       <source>To activate keyboard preview, select a layout.</source>
-      <translation type="unfinished"/>
+      <translation>برای فعال کردن پیشنمایش صفحه کلید، یک چیدمان انتخاب کنید.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="86"/>
@@ -4125,7 +4145,7 @@ Output:
     <message>
       <location filename="../src/modules/localeq/localeq.qml" line="81"/>
       <source>Change</source>
-      <translation type="unfinished"/>
+      <translation>تغییر</translation>
     </message>
   </context>
   <context>
@@ -4134,7 +4154,8 @@ Output:
       <location filename="../src/modules/notesqml/notesqml.qml" line="50"/>
       <source>&lt;h3&gt;%1&lt;/h3&gt;
             &lt;p&gt;These are example release notes.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;%1&lt;/h3&gt;
+            &lt;p&gt;این ها یک سری یادداشت انتشار نمونه هستند.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -4143,37 +4164,38 @@ Output:
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="45"/>
       <source>LibreOffice is a powerful and free office suite, used by millions of people around the world. It includes several applications that make it the most versatile Free and Open Source office suite on the market.&lt;br/&gt;
                     Default option.</source>
-      <translation type="unfinished"/>
+      <translation>LibreOffice یک مجموعه قدرتمند و آزاد از برنامه های اداری است، که توسط میلیون ها آدم در سراسر دنیا استفاده میشود. این مجموعه شامل برنامه های بسیاری هست که این مجموعه را یک مجموعه برنامه همه کاره آزاد و متن باز در بازار میکند.&lt;br/&gt;
+گزینه پیشفرض</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="59"/>
       <source>LibreOffice</source>
-      <translation type="unfinished"/>
+      <translation>LibreOffice</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="108"/>
       <source>If you don't want to install an office suite, just select No Office Suite. You can always add one (or more) later on your installed system as the need arrives.</source>
-      <translation type="unfinished"/>
+      <translation>اگر نمیخواهید برنامه های اداری را نصب کنید، فقط گزینه بدون برنامه های اداری را انتخاب کنید. شما همیشه بعدا میتوانید یکی (یا چند تا) را اگر نیاز پیدا کردید، نصب کنید.</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="121"/>
       <source>No Office Suite</source>
-      <translation type="unfinished"/>
+      <translation>بدون برنامه های اداری</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="172"/>
       <source>Create a minimal Desktop install, remove all extra applications and decide later on what you would like to add to your system. Examples of what won't be on such an install, there will be no Office Suite, no media players, no image viewer or print support.  It will be just a desktop, file browser, package manager, text editor and simple web-browser.</source>
-      <translation type="unfinished"/>
+      <translation>یک نصب حداقلی برای میزکار ایجاد کنید، تمام برنامه های اضافی را حذف کنید و بعدا تصمیم بگیرید که چه چیزی را میخواهید به رایانه خود اضافه کنید. مثال هایی از برنامه هایی که در این نصب جای ندارند عبارت است از نبود برنامه های اداری، هیچ پخش کننده رسانه ای، هیچ بازکننده تصویری یا پشتیبانی چاپ. این تنها یک میزکار، مدیریت فایل، مدیریت بسته، ویرایشگر متن و مرورگر ساده وب خواهد بود.</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="185"/>
       <source>Minimal Install</source>
-      <translation type="unfinished"/>
+      <translation>نصب حداقلی</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="233"/>
       <source>Please select an option for your install, or use the default: LibreOffice included.</source>
-      <translation type="unfinished"/>
+      <translation>لطفا گزینه ای را برای نصب انتخاب کنید، یا از پیشفرض استفاده کنید: LibreOffice</translation>
     </message>
   </context>
   <context>
@@ -4215,7 +4237,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="43"/>
       <source>Pick your user name and credentials to login and perform admin tasks</source>
-      <translation type="unfinished"/>
+      <translation>نام کاربری و اطلاعات مهم خود را برای ورود و انجام وظایف مدیریت برگزینید</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="56"/>
@@ -4235,12 +4257,12 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="87"/>
       <source>Login Name</source>
-      <translation type="unfinished"/>
+      <translation>نام ورود</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="116"/>
       <source>If more than one person will use this computer, you can create multiple accounts after installation.</source>
-      <translation type="unfinished"/>
+      <translation>اگر بیش از یک نفر از این کامپیوتر استفاده می کنند، میتوانید حساب های دیگری بعد نصب ایجاد کنید.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="128"/>
@@ -4250,7 +4272,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="136"/>
       <source>root is not allowed as username.</source>
-      <translation type="unfinished"/>
+      <translation>عبارت root بعنوان نام کاربر مجاز نیست.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="145"/>
@@ -4265,12 +4287,12 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="178"/>
       <source>This name will be used if you make the computer visible to others on a network.</source>
-      <translation type="unfinished"/>
+      <translation>اگر رایانه‌تان را روی یک شبکه برای دیگران نمایان کنید، از این نام استفاده می‌شود.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="198"/>
       <source>localhost is not allowed as hostname.</source>
-      <translation type="unfinished"/>
+      <translation>عبارت localhost بعنوان نام میزبان مجاز نیست.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="207"/>
@@ -4295,7 +4317,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="406"/>
       <source>Validate passwords quality</source>
-      <translation type="unfinished"/>
+      <translation>اعتبارسنجی کیفیت گذرواژه</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="416"/>
@@ -4305,17 +4327,17 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="398"/>
       <source>Log in automatically without asking for the password</source>
-      <translation type="unfinished"/>
+      <translation>ورود خودکار بدون پرسیدن گذرواژه</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="190"/>
       <source>Only letters, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
-      <translation type="unfinished"/>
+      <translation>حداقل دو حرف و فقط حروف، اعداد، زیرخط و خط تیره مجاز هستند.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="293"/>
       <source>Reuse user password as root password</source>
-      <translation type="unfinished"/>
+      <translation>استفاده گذرواژه کاربر بعنوان گذرواژه روت</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="301"/>
@@ -4325,22 +4347,22 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="314"/>
       <source>Choose a root password to keep your account safe.</source>
-      <translation type="unfinished"/>
+      <translation>برای امن نگه داشتن حسابتان، گذرواژه روت ای برگزینید.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="324"/>
       <source>Root Password</source>
-      <translation type="unfinished"/>
+      <translation>گذرواژه روت</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="342"/>
       <source>Repeat Root Password</source>
-      <translation type="unfinished"/>
+      <translation>تکرار گذرواژه روت</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="368"/>
       <source>Enter the same password twice, so that it can be checked for typing errors.</source>
-      <translation type="unfinished"/>
+      <translation>همان گذرواژه را دوباره وارد کنید تا بتواند برای خطاهای نوشتاری بررسی شود.</translation>
     </message>
   </context>
   <context>
@@ -4349,7 +4371,8 @@ Output:
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="35"/>
       <source>&lt;h3&gt;Welcome to the %1 &lt;quote&gt;%2&lt;/quote&gt; installer&lt;/h3&gt;
             &lt;p&gt;This program will ask you some questions and set up %1 on your computer.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;به نصب کننده %1 &lt;quote&gt;%2&lt;/quote&gt;خوش آمدید&lt;/h3&gt;
+&lt;p&gt;این برنامه از شما سوالایی میپرسد و %1 را روی رایانه شما نصب می کند.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="66"/>

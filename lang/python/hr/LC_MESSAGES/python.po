@@ -325,7 +325,7 @@ msgstr "Ne mogu omogućiti systemd cilj <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:67
 msgid "Cannot enable systemd timer <code>{name!s}</code>."
-msgstr ""
+msgstr "Nije moguće omogućiti systemd timer <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:71
 msgid "Cannot disable systemd target <code>{name!s}</code>."
@@ -405,6 +405,8 @@ msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed."
 msgstr ""
+"Neuspješno pronalaženje unsquashfs, provjerite imate li instaliran paket "
+"squashfs-tools."
 
 #: src/modules/unpackfs/main.py:479
 msgid "The destination \"{}\" in the target system is not a directory"

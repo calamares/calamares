@@ -26,6 +26,14 @@ properties:
     update_system: { type: boolean, default: false }
     skip_if_no_internet: { type: boolean, default: false }
 
+    pacman:
+        additionalProperties: false
+        type: object
+        properties:
+            num_retries: { type: integer, default: 0 }
+            disable_download_timeout: { type: boolean, default: false }
+            needed_only: { type: boolean, default: false }
+
     operations:
         type: array
         items:

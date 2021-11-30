@@ -20,10 +20,22 @@ import os
 import libcalamares
 
 import gettext
+
 _ = gettext.translation("calamares-python",
                         localedir=libcalamares.utils.gettext_path(),
                         languages=libcalamares.utils.gettext_languages(),
                         fallback=True).gettext
+
+
+class ZfsException(Exception):
+    """Exception raised when there is a problem with zfs
+
+    Attributes:
+        message -- explanation of the error
+    """
+
+    def __init__(self, message):
+        self.message = message
 
 
 def pretty_name():
@@ -47,18 +59,83 @@ def get_btrfs_subvolumes(partitions):
     if btrfs_subvolumes is None:
         libcalamares.utils.warning("No configuration for btrfsSubvolumes")
     if not btrfs_subvolumes:
-        btrfs_subvolumes = [ dict(mountPoint="/", subvolume="/@"), dict(mountPoint="/home", subvolume="/@home") ]
+        btrfs_subvolumes = [dict(mountPoint="/", subvolume="/@"), dict(mountPoint="/home", subvolume="/@home")]
 
     # Filter out the subvolumes which have a dedicated partition
-    non_root_partition_mounts = [ m for m in [ p.get("mountPoint", None) for p in partitions ] if m is not None and m != '/' ]
-    btrfs_subvolumes = list(filter(lambda s : s["mountPoint"] not in non_root_partition_mounts, btrfs_subvolumes))
+    non_root_partition_mounts = [m for m in [p.get("mountPoint", None) for p in partitions] if
+                                 m is not None and m != '/']
+    btrfs_subvolumes = list(filter(lambda s: s["mountPoint"] not in non_root_partition_mounts, btrfs_subvolumes))
 
     # If we have a swap **file**, give it a separate subvolume.
-    swap_choice = libcalamares.globalstorage.value( "partitionChoices" )
-    if swap_choice and swap_choice.get( "swap", None ) == "file":
+    swap_choice = libcalamares.globalstorage.value("partitionChoices")
+    if swap_choice and swap_choice.get("swap", None) == "file":
         btrfs_subvolumes.append({'mountPoint': '/swap', 'subvolume': '/@swap'})
 
     return btrfs_subvolumes
+
+
+def mount_zfs(root_mount_point, partition):
+    """ Mounts a zfs partition at @p root_mount_point
+
+    :param root_mount_point: The absolute path to the root of the install
+    :param partition: The partition map from global storage for this partition
+    :return:
+    """
+    # Get the list of zpools from global storage
+    zfs_pool_list = libcalamares.globalstorage.value("zfsPoolInfo")
+    if not zfs_pool_list:
+        libcalamares.utils.warning("Failed to locate zfsPoolInfo data in global storage")
+        raise ZfsException(_("Internal error mounting zfs datasets"))
+
+    # Find the zpool matching this partition
+    for zfs_pool in zfs_pool_list:
+        if zfs_pool["mountpoint"] == partition["mountPoint"]:
+            pool_name = zfs_pool["poolName"]
+            ds_name = zfs_pool["dsName"]
+
+    # import the zpool
+    try:
+        libcalamares.utils.host_env_process_output(["zpool", "import", "-N", "-R", root_mount_point, pool_name], None)
+    except subprocess.CalledProcessError:
+        raise ZfsException(_("Failed to import zpool"))
+
+    # Get the encrpytion information from global storage
+    zfs_info_list = libcalamares.globalstorage.value("zfsInfo")
+    encrypt = False
+    if zfs_info_list:
+        for zfs_info in zfs_info_list:
+            if zfs_info["mountpoint"] == partition["mountPoint"] and zfs_info["encrypted"] is True:
+                encrypt = True
+                passphrase = zfs_info["passphrase"]
+
+    if encrypt is True:
+        # The zpool is encrypted, we need to unlock it
+        try:
+            libcalamares.utils.host_env_process_output(["zfs", "load-key", pool_name], None, passphrase)
+        except subprocess.CalledProcessError:
+            raise ZfsException(_("Failed to unlock zpool"))
+
+    if partition["mountPoint"] == '/':
+        # Get the zfs dataset list from global storage
+        zfs = libcalamares.globalstorage.value("zfsDatasets")
+
+        if not zfs:
+            libcalamares.utils.warning("Failed to locate zfs dataset list")
+            raise ZfsException(_("Internal error mounting zfs datasets"))
+
+        zfs.sort(key=lambda x: x["mountpoint"])
+        for dataset in zfs:
+            try:
+                if dataset["canMount"] == "noauto" or dataset["canMount"] is True:
+                    libcalamares.utils.host_env_process_output(["zfs", "mount",
+                                                                dataset["zpool"] + '/' + dataset["dsName"]])
+            except subprocess.CalledProcessError:
+                raise ZfsException(_("Failed to set zfs mountpoint"))
+    else:
+        try:
+            libcalamares.utils.host_env_process_output(["zfs", "mount", pool_name + '/' + ds_name])
+        except subprocess.CalledProcessError:
+            raise ZfsException(_("Failed to set zfs mountpoint"))
 
 
 def mount_partition(root_mount_point, partition, partitions):
@@ -96,11 +173,14 @@ def mount_partition(root_mount_point, partition, partitions):
     if "luksMapperName" in partition:
         device = os.path.join("/dev/mapper", partition["luksMapperName"])
 
-    if libcalamares.utils.mount(device,
-                                mount_point,
-                                fstype,
-                                partition.get("options", "")) != 0:
-        libcalamares.utils.warning("Cannot mount {}".format(device))
+    if fstype == "zfs":
+        mount_zfs(root_mount_point, partition)
+    else:  # fstype == "zfs"
+        if libcalamares.utils.mount(device,
+                                    mount_point,
+                                    fstype,
+                                    partition.get("options", "")) != 0:
+            libcalamares.utils.warning("Cannot mount {}".format(device))
 
     # Special handling for btrfs subvolumes. Create the subvolumes listed in mount.conf
     if fstype == "btrfs" and partition["mountPoint"] == '/':
@@ -111,9 +191,11 @@ def mount_partition(root_mount_point, partition, partitions):
         libcalamares.globalstorage.insert("btrfsSubvolumes", btrfs_subvolumes)
         # Create the subvolumes that are in the completed list
         for s in btrfs_subvolumes:
-            subprocess.check_call(['btrfs', 'subvolume', 'create',
-                               root_mount_point + s['subvolume']])
-
+            subprocess.check_call(["btrfs", "subvolume", "create",
+                                   root_mount_point + s["subvolume"]])
+            if s["mountPoint"] == "/":
+                # insert the root subvolume into global storage
+                libcalamares.globalstorage.insert("btrfsRootSubvolume", s["subvolume"])
         subprocess.check_call(["umount", "-v", root_mount_point])
 
         device = partition["device"]
@@ -126,9 +208,9 @@ def mount_partition(root_mount_point, partition, partitions):
             mount_option = "subvol={}".format(s['subvolume'])
             subvolume_mountpoint = mount_point[:-1] + s['mountPoint']
             if libcalamares.utils.mount(device,
-                                    subvolume_mountpoint,
-                                    fstype,
-                                    ",".join([mount_option, partition.get("options", "")])) != 0:
+                                        subvolume_mountpoint,
+                                        fstype,
+                                        ",".join([mount_option, partition.get("options", "")])) != 0:
                 libcalamares.utils.warning("Cannot mount {}".format(device))
 
 
@@ -142,7 +224,7 @@ def run():
     if not partitions:
         libcalamares.utils.warning("partitions is empty, {!s}".format(partitions))
         return (_("Configuration Error"),
-                _("No partitions are defined for <pre>{!s}</pre> to use." ).format("mount"))
+                _("No partitions are defined for <pre>{!s}</pre> to use.").format("mount"))
 
     root_mount_point = tempfile.mkdtemp(prefix="calamares-root-")
 
@@ -159,10 +241,13 @@ def run():
     # This way, we ensure / is mounted before the rest, and every mount point
     # is created on the right partition (e.g. if a partition is to be mounted
     # under /tmp, we make sure /tmp is mounted before the partition)
-    mountable_partitions = [ p for p in partitions + extra_mounts if "mountPoint" in p and p["mountPoint"] ]
+    mountable_partitions = [p for p in partitions + extra_mounts if "mountPoint" in p and p["mountPoint"]]
     mountable_partitions.sort(key=lambda x: x["mountPoint"])
-    for partition in mountable_partitions:
-        mount_partition(root_mount_point, partition, partitions)
+    try:
+        for partition in mountable_partitions:
+            mount_partition(root_mount_point, partition, partitions)
+    except ZfsException as ze:
+        return _("zfs mounting error"), ze.message
 
     libcalamares.globalstorage.insert("rootMountPoint", root_mount_point)
 

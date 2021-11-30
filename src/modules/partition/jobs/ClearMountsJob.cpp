@@ -215,6 +215,12 @@ getPVGroups( const QString& deviceName )
  * meant **only** for debugging and is not displayed to the user,
  * which is why no translation is applied.
  *
+ * The MessageAndPath class stores a C-style pointer to a character
+ * array -- from QT_TRANSLATE_NOOP() -- and a path to substitute into it.
+ *
+ * When the tryX() functions return an "empty string", it is an
+ * empty MessageAndPath which acts like an empty string (in particular,
+ * isEmpty() is true).
  */
 
 class MessageAndPath
@@ -237,8 +243,14 @@ public:
     }
 
 private:
+#if ( QT_VERSION < QT_VERSION_CHECK( 5, 15, 0 ) )
+    // TODO: 3.3 remove because newer Qt does support constness
+    const char* m_message = nullptr;
+    QString m_path;
+#else
     const char* const m_message = nullptr;
     QString const m_path;
+#endif
 };
 
 STATICTEST inline QDebug&

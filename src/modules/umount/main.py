@@ -49,6 +49,27 @@ def list_mounts(root_mount_point):
     return lst
 
 
+def export_zpools(root_mount_point):
+    """ Exports the zpools if defined in global storage
+
+    :param root_mount_point: The absolute path to the root of the install
+    :return:
+    """
+    try:
+        zfs_pool_list = libcalamares.globalstorage.value("zfsPoolInfo")
+        zfs_pool_list.sort(reverse=True, key=lambda x: x["poolName"])
+        if zfs_pool_list:
+            for zfs_pool in zfs_pool_list:
+                try:
+                    libcalamares.utils.host_env_process_output(['zpool', 'export', zfs_pool["poolName"]])
+                except subprocess.CalledProcessError:
+                    libcalamares.utils.warning("Failed to export zpool")
+    except Exception as e:
+        # If this fails it shouldn't cause the installation to fail
+        libcalamares.utils.warning("Received exception while exporting zpools: " + format(e))
+        pass
+
+
 def run():
     """ Unmounts given mountpoints in decreasing order.
 
@@ -93,6 +114,8 @@ def run():
         # On success, no output; if the command fails, its output is
         # in the exception object.
         subprocess.check_output(["umount", "-lv", mount_point], stderr=subprocess.STDOUT)
+
+    export_zpools(root_mount_point)
 
     os.rmdir(root_mount_point)
 

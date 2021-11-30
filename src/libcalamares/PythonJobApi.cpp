@@ -19,6 +19,7 @@
 #include "utils/RAII.h"
 #include "utils/Runner.h"
 #include "utils/String.h"
+#include "utils/Yaml.h"
 
 #include <QCoreApplication>
 #include <QDir>
@@ -139,18 +140,43 @@ check_target_env_output( const bp::list& args, const std::string& stdin, int tim
 }
 
 static const char output_prefix[] = "[PYTHON JOB]:";
+static inline void
+log_action( unsigned int level, const std::string& s )
+{
+    Logger::CDebug( level ) << output_prefix << QString::fromStdString( s );
+}
 
 void
 debug( const std::string& s )
 {
-    Logger::CDebug( Logger::LOGDEBUG ) << output_prefix << QString::fromStdString( s );
+    log_action( Logger::LOGDEBUG, s );
 }
 
 void
 warning( const std::string& s )
 {
-    Logger::CDebug( Logger::LOGWARNING ) << output_prefix << QString::fromStdString( s );
+    log_action( Logger::LOGWARNING, s );
 }
+
+void
+error( const std::string& s )
+{
+    log_action( Logger::LOGERROR, s );
+}
+
+boost::python::dict
+load_yaml( const std::string& path )
+{
+    const QString filePath = QString::fromStdString( path );
+    bool ok = false;
+    auto map = CalamaresUtils::loadYaml( filePath, &ok );
+    if ( !ok )
+    {
+        cWarning() << "Loading YAML from" << filePath << "failed.";
+    }
+    return variantMapToPyDict( map );
+}
+
 
 PythonJobInterface::PythonJobInterface( Calamares::PythonJob* parent )
     : m_parent( parent )

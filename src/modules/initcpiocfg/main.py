@@ -158,6 +158,7 @@ def find_initcpio_features(partitions, root_mount_point):
 
     swap_uuid = ""
     uses_btrfs = False
+    uses_zfs = False
     uses_lvm2 = False
     encrypt_hook = False
     openswap_hook = False
@@ -181,6 +182,9 @@ def find_initcpio_features(partitions, root_mount_point):
 
         if partition["fs"] == "btrfs":
             uses_btrfs = True
+
+        if partition["fs"] == "zfs":
+            uses_zfs = True
 
         if "lvm2" in partition["fs"]:
             uses_lvm2 = True
@@ -208,6 +212,9 @@ def find_initcpio_features(partitions, root_mount_point):
 
     if uses_lvm2:
         hooks.append("lvm2")
+
+    if uses_zfs:
+        hooks.append("zfs")
 
     if swap_uuid != "":
         hooks.extend(["resume"])

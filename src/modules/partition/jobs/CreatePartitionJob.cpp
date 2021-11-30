@@ -11,8 +11,10 @@
 
 #include "CreatePartitionJob.h"
 
+#include "core/PartitionInfo.h"
 #include "partition/FileSystem.h"
 #include "partition/PartitionQuery.h"
+#include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 #include "utils/Units.h"
 
@@ -24,8 +26,78 @@
 #include <kpmcore/ops/newoperation.h>
 #include <kpmcore/util/report.h>
 
+#include <qcoreapplication.h>
+#include <qregularexpression.h>
+
 using CalamaresUtils::Partition::untranslatedFS;
 using CalamaresUtils::Partition::userVisibleFS;
+
+/** @brief Create
+ *
+ * Uses sfdisk to remove @p partition.  This should only be used in cases
+ * where using kpmcore to remove the partition would not be appropriate
+ *
+ */
+static Calamares::JobResult
+createZfs( Partition* partition, Device* device )
+{
+    auto r = CalamaresUtils::System::instance()->runCommand(
+        { "sh",
+          "-c",
+          "echo start=" + QString::number( partition->firstSector() ) + " size="
+              + QString::number( partition->length() ) + " | sfdisk --append --force " + partition->devicePath() },
+        std::chrono::seconds( 5 ) );
+    if ( r.getExitCode() != 0 )
+    {
+        return Calamares::JobResult::error(
+            QCoreApplication::translate( CreatePartitionJob::staticMetaObject.className(),
+                                         "Failed to create partition" ),
+            QCoreApplication::translate( CreatePartitionJob::staticMetaObject.className(),
+                                         "Failed to create zfs partition with output: "
+                                             + r.getOutput().toLocal8Bit() ) );
+    }
+
+    // Now we need to do some things that would normally be done by kpmcore
+
+    // First we get the device node from the output and set it as the partition path
+    QRegularExpression re( QStringLiteral( "Created a new partition (\\d+)" ) );
+    QRegularExpressionMatch rem = re.match( r.getOutput() );
+
+    QString deviceNode;
+    if ( rem.hasMatch() )
+    {
+        if ( partition->devicePath().back().isDigit() )
+        {
+            deviceNode = partition->devicePath() + QLatin1Char( 'p' ) + rem.captured( 1 );
+        }
+        else
+        {
+            deviceNode = partition->devicePath() + rem.captured( 1 );
+        }
+    }
+
+    partition->setPartitionPath( deviceNode );
+
+    // If it is a gpt device, set the partition UUID
+    if ( device->partitionTable()->type() == PartitionTable::gpt && partition->uuid().isEmpty() )
+    {
+        r = CalamaresUtils::System::instance()->runCommand(
+            { "sfdisk", "--list", "--output", "Device,UUID", partition->devicePath() }, std::chrono::seconds( 5 ) );
+        if ( r.getExitCode() == 0 )
+        {
+            QRegularExpression re( deviceNode + QStringLiteral( " +(.+)" ) );
+            QRegularExpressionMatch rem = re.match( r.getOutput() );
+
+            if ( rem.hasMatch() )
+            {
+                partition->setUUID( rem.captured( 1 ) );
+            }
+        }
+    }
+
+    return Calamares::JobResult::ok();
+}
+
 
 CreatePartitionJob::CreatePartitionJob( Device* device, Partition* partition )
     : PartitionJob( partition )
@@ -194,6 +266,13 @@ CreatePartitionJob::prettyStatusMessage() const
 Calamares::JobResult
 CreatePartitionJob::exec()
 {
+    // kpmcore doesn't currently handle this case properly so for now, we manually create the partion
+    // The zfs module can later deal with creating a zpool in the partition
+    if ( m_partition->fileSystem().type() == FileSystem::Type::Zfs )
+    {
+        return createZfs( m_partition, m_device );
+    }
+
     Report report( nullptr );
     NewOperation op( *m_device, m_partition );
     op.setStatus( Operation::StatusRunning );
