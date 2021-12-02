@@ -258,7 +258,8 @@ class FstabGenerator(object):
         if mount_point == "/":
             self.root_is_ssd = is_ssd
 
-        if filesystem == "btrfs" and "subvol" in partition:
+        # If there's a set-and-not-empty subvolume set, add it
+        if filesystem == "btrfs" and partition.get("subvol",None):
             options = "subvol={},".format(partition["subvol"]) + options
 
         if has_luks:
