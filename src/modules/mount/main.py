@@ -191,6 +191,8 @@ def mount_partition(root_mount_point, partition, partitions):
         libcalamares.globalstorage.insert("btrfsSubvolumes", btrfs_subvolumes)
         # Create the subvolumes that are in the completed list
         for s in btrfs_subvolumes:
+            if not s["subvolume"]:
+                continue
             subprocess.check_call(["btrfs", "subvolume", "create",
                                    root_mount_point + s["subvolume"]])
             if s["mountPoint"] == "/":
