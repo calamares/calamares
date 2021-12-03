@@ -17,5 +17,6 @@ calamares_add_plugin( luksopenswaphook
 calamares_add_test(
     luksopenswaphooktest
     SOURCES
+        LOSHJob.cpp
         Tests.cpp
 )
