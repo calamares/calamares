@@ -7,7 +7,7 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.48 (unreleased) #
+# 3.2.48 (2021-12-03) #
 
 This release contains contributions from (alphabetically by first name):
  - Evan James
@@ -23,6 +23,9 @@ This release contains contributions from (alphabetically by first name):
  - *fstab* now has a separate, special, flags-setting for swap subvolumes
    on btrfs. A swap subvolume is created if a swap **file** (not a separate
    partition) is selected in the auto-partitioning page. (Thanks Evan)
+ - When using btrfs, the *mount* module creates subvolumes. It was not
+   possible to **avoid** having a subvolume name created for the root.
+   This is now possible. #1837
  - The *packages* module now has some special settings for the `pacman`
    package manager (generally used on Arch-derivatives). This allows
    tweaking of the installation process, if downloads are slow or
