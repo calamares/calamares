@@ -147,6 +147,30 @@ System::createTargetFile( const QString& path, const QByteArray& contents, Write
     return CreationResult( QFileInfo( f ).canonicalFilePath() );
 }
 
+QStringList
+System::readTargetFile( const QString& path ) const
+{
+    const QString completePath = targetPath( path );
+    if ( completePath.isEmpty() )
+    {
+        return QStringList();
+    }
+
+    QFile f( completePath );
+    if ( !f.open( QIODevice::ReadOnly ) )
+    {
+        return QStringList();
+    }
+
+    QTextStream in( &f );
+    QStringList l;
+    while ( !f.atEnd() )
+    {
+        l << in.readLine();
+    }
+    return l;
+}
+
 void
 System::removeTargetFile( const QString& path ) const
 {
