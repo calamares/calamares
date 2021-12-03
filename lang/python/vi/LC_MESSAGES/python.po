@@ -5,6 +5,7 @@
 # 
 # Translators:
 # T. Tran <transifex@emiu.net>, 2020
+# Th1nhhdk, 2021
 # 
 #, fuzzy
 msgid ""
@@ -13,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-02 15:45+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: T. Tran <transifex@emiu.net>, 2020\n"
+"Last-Translator: Th1nhhdk, 2021\n"
 "Language-Team: Vietnamese (https://www.transifex.com/calamares/teams/20061/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -61,13 +62,15 @@ msgstr "Đang cài đặt bộ khởi động."
 
 #: src/modules/bootloader/main.py:508
 msgid "Bootloader installation error"
-msgstr ""
+msgstr "Lỗi cài đặt trình khởi động(bootloader)"
 
 #: src/modules/bootloader/main.py:509
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
 msgstr ""
+"Trình khởi động(bootloader) không thể được cài đặt. Lệnh cài đặt "
+"<pre>{!s}</pre>đã trả mã lỗi {!s}."
 
 #: src/modules/fstab/main.py:29
 msgid "Writing fstab."
