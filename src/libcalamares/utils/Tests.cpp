@@ -76,6 +76,9 @@ private Q_SLOTS:
     void testCalculateWorkingDirectory();
     void testRunnerOutput();
 
+    /** @section Test file-functions */
+    void testReadWriteFile();
+
 private:
     void recursiveCompareMap( const QVariantMap& a, const QVariantMap& b, int depth );
 };
@@ -946,6 +949,84 @@ LibCalamaresTests::testRunnerOutput()
             QCOMPARE( collectedOutput.count(), 6 );
             QVERIFY( collectedOutput.contains( QStringLiteral( "dogg" ) ) );  // no newline
         }
+    }
+}
+
+
+CalamaresUtils::System*
+file_setup( const QTemporaryDir& tempRoot )
+{
+    CalamaresUtils::System* ss = CalamaresUtils::System::instance();
+    if ( !ss )
+    {
+        ss = new CalamaresUtils::System( true );
+    }
+
+    Calamares::GlobalStorage* gs
+        = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
+    if ( !gs )
+    {
+        cDebug() << "Creating new JobQueue";
+        (void)new Calamares::JobQueue();
+        gs = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
+    }
+    if ( gs )
+    {
+        // Working with a rootMountPoint set
+        gs->insert( "rootMountPoint", tempRoot.path() );
+    }
+    return ss;
+}
+
+void
+LibCalamaresTests::testReadWriteFile()
+{
+    static const QByteArray otherContents( "derp\n" );
+
+    QTemporaryDir tempRoot( QDir::tempPath() + QStringLiteral( "/test-job-XXXXXX" ) );
+    auto* ss = file_setup( tempRoot );
+
+    QVERIFY( ss );
+    {
+        auto fullPath = ss->createTargetFile( "test0", QByteArray(), CalamaresUtils::System::WriteMode::Overwrite );
+        QVERIFY( fullPath );
+        QVERIFY( !fullPath.path().isEmpty() );
+
+        QFileInfo fi( fullPath.path() );
+        QVERIFY( fi.exists() );
+        QVERIFY( fi.isFile() );
+        QCOMPARE( fi.size(), 0 );
+    }
+    // It won't overwrite unless you ask for it
+    {
+        auto fullPath = ss->createTargetFile( "test0", otherContents );
+        QVERIFY( !fullPath );  // Failed, because it won't overwrite
+        QCOMPARE( fullPath.code(), decltype(fullPath)::Code::AlreadyExists );
+        QVERIFY( fullPath.path().isEmpty() ); // Because it wasn't written
+
+        QFileInfo fi( tempRoot.filePath( "test0" ) ); // Compute the name some other way
+        QVERIFY( fi.exists() );
+        QVERIFY( fi.isFile() );
+        QCOMPARE( fi.size(), 0 );
+    }
+    // But it will if you say so explicitly
+    {
+        auto fullPath = ss->createTargetFile( "test0", otherContents, CalamaresUtils::System::WriteMode::Overwrite );
+        QVERIFY( fullPath );
+        QVERIFY( !fullPath.path().isEmpty() );
+
+        QFileInfo fi( fullPath.path() );
+        QVERIFY( fi.exists() );
+        QVERIFY( fi.isFile() );
+        QCOMPARE( fi.size(), 5 );
+    }
+
+    // Now it's been written, we can read it, too
+    {
+        auto contents = ss->readTargetFile( "test0" );
+        QVERIFY( !contents.isEmpty() );
+        QCOMPARE( contents.count(), 1 );
+        QCOMPARE( contents[ 0 ], QStringLiteral( "derp" ) );  // No trailing \n
     }
 }
 
