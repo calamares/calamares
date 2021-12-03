@@ -789,7 +789,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="380"/>
       <source>The system language will be set to %1.</source>
-      <translation>A linguagem do sistema será definida para %1.</translation>
+      <translation>O idioma do sistema será definido para %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="387"/>
@@ -1684,7 +1684,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
       <location filename="../src/modules/hostinfo/HostInfoJob.cpp" line="42"/>
       <source>Collecting information about your machine.</source>
-      <translation>A recolher informação acerca da sua máquina.</translation>
+      <translation>A recolher informação sobre a sua máquina.</translation>
     </message>
   </context>
   <context>
@@ -3988,7 +3988,7 @@ Saída de Dados:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="228"/>
       <source>%1 support</source>
-      <translation>%1 suporte</translation>
+      <translation>Suporte do %1</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="235"/>
@@ -3998,7 +3998,7 @@ Saída de Dados:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="235"/>
       <source>About %1 installer</source>
-      <translation>Acerca %1 instalador</translation>
+      <translation>Acerca do instalador %1</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="238"/>
