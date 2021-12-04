@@ -237,7 +237,7 @@ class FstabGenerator(object):
             return None
 
         # If this is btrfs subvol a dedicated to a swapfile, use different options than a normal btrfs subvol
-        if filesystem == "btrfs" and partition["subvol"] == "/@swap":
+        if filesystem == "btrfs" and partition.get("subvol", None) == "/@swap":
             options = self.get_mount_options("btrfs_swap", mount_point)
         else:
             options = self.get_mount_options(filesystem, mount_point)
