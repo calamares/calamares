@@ -3,6 +3,7 @@
 
 #include <QIcon>
 #include <QDialogButtonBox>
+#include "widgets/TranslationFix.h"
 
 namespace Calamares {
 
@@ -81,7 +82,8 @@ void ErrorDialog::setShouldOfferWebPaste(bool newShouldOfferWebPaste)
     ui->buttonBox->setStandardButtons( m_shouldOfferWebPaste
                                            ? (QDialogButtonBox::Yes | QDialogButtonBox::No)
                                             : QDialogButtonBox::Close );
-
+    
+    fixButtonLabels(ui->buttonBox);    
     
     emit shouldOfferWebPasteChanged();
 }
