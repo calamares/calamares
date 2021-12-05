@@ -49,7 +49,7 @@ signals:
     
 private:
     Ui::ErrorDialog *ui;
-    bool m_shouldOfferWebPaste;
+    bool m_shouldOfferWebPaste = false;
 };
 
 }; // namespace Calamares
