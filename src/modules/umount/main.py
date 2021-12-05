@@ -80,6 +80,7 @@ def run():
     if(libcalamares.job.configuration and
        "srcLog" in libcalamares.job.configuration and
        "destLog" in libcalamares.job.configuration):
+        libcalamares.utils.warning("Log-file preserving is **deprecated** in the *umount* module")
         log_source = libcalamares.job.configuration["srcLog"]
         log_destination = libcalamares.job.configuration["destLog"]
         # Relocate log_destination into target system
