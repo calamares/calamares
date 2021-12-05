@@ -1,3 +1,12 @@
+/* === This file is part of Calamares - <https://calamares.io> ===
+ *
+ *   SPDX-FileCopyrightText: 2021 Artem Grinev <agrinev@manjaro.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
+ *
+ *   Calamares is Free Software: see the License-Identifier above.
+ *
+ */
+
 #ifndef ERRORDIALOG_H
 #define ERRORDIALOG_H
 
