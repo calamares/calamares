@@ -17,6 +17,7 @@
 #include "JobQueue.h"
 #include "Settings.h"
 
+#include "utils/ErrorDialog/ErrorDialog.h"
 #include "utils/Logger.h"
 #include "utils/Paste.h"
 #include "utils/Retranslator.h"
@@ -25,15 +26,14 @@
 #include "viewpages/ExecutionViewStep.h"
 #include "viewpages/ViewStep.h"
 #include "widgets/TranslationFix.h"
-#include "utils/ErrorDialog/ErrorDialog.h"
 
 #include <QApplication>
 #include <QBoxLayout>
 #include <QClipboard>
+#include <QDialogButtonBox>
 #include <QFile>
 #include <QMessageBox>
 #include <QMetaObject>
-#include <QDialogButtonBox>
 
 #define UPDATE_BUTTON_PROPERTY( name, value ) \
     do \
@@ -161,24 +161,27 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
     cDebug() << Logger::SubEntry << "- details:" << Logger::NoQuote << details;
 
     QString heading
-        = Calamares::Settings::instance()->isSetupMode() ? tr( "Setup Failed" ) : tr( "Installation Failed" );   
+        = Calamares::Settings::instance()->isSetupMode() ? tr( "Setup Failed" ) : tr( "Installation Failed" );
 
     ErrorDialog* errorDialog = new ErrorDialog();
     errorDialog->setWindowTitle( tr( "Error" ) );
     errorDialog->setHeading( "<strong>" + heading + "</strong>" );
     errorDialog->setInformativeText( message );
-    errorDialog->setShouldOfferWebPaste(shouldOfferWebPaste);
-    errorDialog->setDetails(details);
+    errorDialog->setShouldOfferWebPaste( shouldOfferWebPaste );
+    errorDialog->setDetails( details );
     errorDialog->show();
 
     cDebug() << "Calamares will quit when the dialog closes.";
-    connect( errorDialog, &QDialog::finished, [errorDialog]( int result ) {
-        if ( result == QDialog::Accepted && errorDialog->shouldOfferWebPaste() )
-        {
-            CalamaresUtils::Paste::doLogUploadUI( errorDialog );
-        }
-        QApplication::quit();
-    } );
+    connect( errorDialog,
+             &QDialog::finished,
+             [ errorDialog ]( int result )
+             {
+                 if ( result == QDialog::Accepted && errorDialog->shouldOfferWebPaste() )
+                 {
+                     CalamaresUtils::Paste::doLogUploadUI( errorDialog );
+                 }
+                 QApplication::quit();
+             } );
 }
 
 

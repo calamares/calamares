@@ -4,7 +4,8 @@
 #include <QDialog>
 
 
-namespace Ui {
+namespace Ui
+{
 class ErrorDialog;
 }
 class QDialogButtonBox;
@@ -13,45 +14,46 @@ namespace Calamares
 class ErrorDialog : public QDialog
 {
     Q_OBJECT
-    
-    Q_PROPERTY(QString heading READ heading WRITE setHeading NOTIFY headingChanged)
-    Q_PROPERTY(QString informativeText READ informativeText WRITE setInformativeText NOTIFY informativeTextChanged)
-    Q_PROPERTY(QString details READ details WRITE setDetails NOTIFY detailsChanged)
-    Q_PROPERTY(bool shouldOfferWebPaste READ shouldOfferWebPaste WRITE setShouldOfferWebPaste NOTIFY shouldOfferWebPasteChanged)
-    
+
+    Q_PROPERTY( QString heading READ heading WRITE setHeading NOTIFY headingChanged )
+    Q_PROPERTY( QString informativeText READ informativeText WRITE setInformativeText NOTIFY informativeTextChanged )
+    Q_PROPERTY( QString details READ details WRITE setDetails NOTIFY detailsChanged )
+    Q_PROPERTY( bool shouldOfferWebPaste READ shouldOfferWebPaste WRITE setShouldOfferWebPaste NOTIFY
+                    shouldOfferWebPasteChanged )
+
 public:
-    explicit ErrorDialog(QWidget *parent = nullptr);
+    explicit ErrorDialog( QWidget* parent = nullptr );
     ~ErrorDialog();
-    
+
     QString heading() const;
-    
+
     QString informativeText() const;
-    
+
     QString details() const;
-    
-    void setHeading(const QString &newHeading);
-    
-    void setInformativeText(const QString &newInformativeText);
-    
-    void setDetails(const QString &newDetails);
-    
+
+    void setHeading( const QString& newHeading );
+
+    void setInformativeText( const QString& newInformativeText );
+
+    void setDetails( const QString& newDetails );
+
     bool shouldOfferWebPaste() const;
-    void setShouldOfferWebPaste(bool newShouldOfferWebPaste);
-    
+    void setShouldOfferWebPaste( bool newShouldOfferWebPaste );
+
 signals:
     void headingChanged();
-    
+
     void informativeTextChanged();
-    
+
     void detailsChanged();
-    
+
     void shouldOfferWebPasteChanged();
-    
+
 private:
-    Ui::ErrorDialog *ui;
+    Ui::ErrorDialog* ui;
     bool m_shouldOfferWebPaste = false;
 };
 
-}; // namespace Calamares
+};  // namespace Calamares
 
-#endif // ERRORDIALOG_H
+#endif  // ERRORDIALOG_H
