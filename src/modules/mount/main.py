@@ -193,6 +193,7 @@ def mount_partition(root_mount_point, partition, partitions):
         for s in btrfs_subvolumes:
             if not s["subvolume"]:
                 continue
+            os.makedirs(root_mount_point + os.path.dirname(s["subvolume"]), exist_ok=True)
             subprocess.check_call(["btrfs", "subvolume", "create",
                                    root_mount_point + s["subvolume"]])
             if s["mountPoint"] == "/":
