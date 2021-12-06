@@ -23,6 +23,7 @@ struct LOSHInfo
     QString swap_mapper_name;
     QString mountable_keyfile_device;
     QString swap_device_path;
+    QString keyfile_device_mount_options;
 
     bool isValid() const { return !swap_device_path.isEmpty(); }
 
@@ -48,6 +49,10 @@ struct LOSHInfo
         if ( key == QStringLiteral( "keyfile_filename" ) )
         {
             return QStringLiteral( "crypto_keyfile.bin" );
+        }
+        if ( key == QStringLiteral( "keyfile_device_mount_options" ) )
+        {
+            return keyfile_device_mount_options;
         }
         return QString();
     }

@@ -103,7 +103,8 @@ LOSHJob::exec()
     if ( contents.isEmpty() )
     {
         contents << QStringLiteral( "# swap_device=" ) << QStringLiteral( "# crypt_swap_name=" )
-                 << QStringLiteral( "# keyfile_device=" ) << QStringLiteral( "# keyfile_filename=" );
+                 << QStringLiteral( "# keyfile_device=" ) << QStringLiteral( "# keyfile_filename=" )
+                 << QStringLiteral( "# keyfile_device_mount_options" );
     }
 
     write_openswap_conf( m_configFilePath, contents, LOSHInfo::fromGlobalStorage() );
