@@ -115,12 +115,14 @@ System::createTargetFile( const QString& path, const QByteArray& contents, Write
     QString completePath = targetPath( path );
     if ( completePath.isEmpty() )
     {
+        cWarning() << "No target path for" << path;
         return CreationResult( CreationResult::Code::Invalid );
     }
 
     QFile f( completePath );
     if ( ( mode == WriteMode::KeepExisting ) && f.exists() )
     {
+        cWarning() << "Target file" << completePath << "already exists";
         return CreationResult( CreationResult::Code::AlreadyExists );
     }
 
@@ -133,13 +135,16 @@ System::createTargetFile( const QString& path, const QByteArray& contents, Write
 
     if ( !f.open( m ) )
     {
+        cWarning() << "Could not open target file" << completePath;
         return CreationResult( CreationResult::Code::Failed );
     }
 
-    if ( f.write( contents ) != contents.size() )
+    auto written = f.write( contents );
+    if ( written != contents.size() )
     {
         f.close();
         f.remove();
+        cWarning() << "Short write (" << written << "out of" << contents.size() << "bytes) to" << completePath;
         return CreationResult( CreationResult::Code::Failed );
     }
 
