@@ -60,24 +60,24 @@ createZfs( Partition* partition, Device* device )
     // Now we need to do some things that would normally be done by kpmcore
 
     // First we get the device node from the output and set it as the partition path
-    QRegularExpression re( QStringLiteral( "Created a new partition (\\d+)" ) );
-    QRegularExpressionMatch rem = re.match( r.getOutput() );
-
     QString deviceNode;
-    if ( rem.hasMatch() )
     {
-        if ( partition->devicePath().back().isDigit() )
+        QRegularExpression re( QStringLiteral( "Created a new partition (\\d+)" ) );
+        QRegularExpressionMatch rem = re.match( r.getOutput() );
+
+        if ( rem.hasMatch() )
         {
-            deviceNode = partition->devicePath() + QLatin1Char( 'p' ) + rem.captured( 1 );
+            if ( partition->devicePath().back().isDigit() )
+            {
+                deviceNode = partition->devicePath() + QLatin1Char( 'p' ) + rem.captured( 1 );
+            }
+            else
+            {
+                deviceNode = partition->devicePath() + rem.captured( 1 );
+            }
         }
-        else
-        {
-            deviceNode = partition->devicePath() + rem.captured( 1 );
-        }
+        partition->setPartitionPath( deviceNode );
     }
-
-    partition->setPartitionPath( deviceNode );
-
     // If it is a gpt device, set the partition UUID
     if ( device->partitionTable()->type() == PartitionTable::gpt && partition->uuid().isEmpty() )
     {
