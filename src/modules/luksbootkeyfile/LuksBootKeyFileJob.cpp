@@ -8,7 +8,9 @@
 #include "LuksBootKeyFileJob.h"
 
 #include "utils/CalamaresUtilsSystem.h"
+#include "utils/Entropy.h"
 #include "utils/Logger.h"
+#include "utils/NamedEnum.h"
 #include "utils/UMask.h"
 #include "utils/Variant.h"
 
@@ -102,15 +104,29 @@ static bool
 generateTargetKeyfile()
 {
     CalamaresUtils::UMask m( CalamaresUtils::UMask::Safe );
-    auto r = CalamaresUtils::System::instance()->targetEnvCommand(
-        { "dd", "bs=512", "count=4", "if=/dev/urandom", QString( "of=%1" ).arg( keyfile ) } );
-    if ( r.getExitCode() != 0 )
+
+    // Get the data
+    QByteArray entropy;
+    auto entropySource = CalamaresUtils::getEntropy( 2048, entropy );
+    if ( entropySource != CalamaresUtils::EntropySource::URandom )
     {
-        cWarning() << "Could not create LUKS keyfile:" << r.getOutput() << "(exit code" << r.getExitCode() << ')';
+        cWarning() << "Could not get entropy from /dev/urandom for LUKS.";
         return false;
     }
-    // Give ample time to check that the file was created correctly
-    r = CalamaresUtils::System::instance()->targetEnvCommand( { "ls", "-la", "/" } );
+
+    auto fileResult = CalamaresUtils::System::instance()->createTargetFile(
+        keyfile, entropy, CalamaresUtils::System::WriteMode::Overwrite );
+    entropy.fill( 'A' );
+    if ( !fileResult )
+    {
+        cWarning() << "Could not create LUKS keyfile:" << smash( fileResult.code() );
+        return false;
+    }
+
+    // Give ample time to check that the file was created correctly;
+    // we actually expect ls to return pretty-much-instantly.
+    auto r = CalamaresUtils::System::instance()->targetEnvCommand(
+        { "ls", "-la", "/" }, QString(), QString(), std::chrono::seconds( 5 ) );
     cDebug() << "In target system after creating LUKS file" << r.getOutput();
     return true;
 }
@@ -118,8 +134,10 @@ generateTargetKeyfile()
 static bool
 setupLuks( const LuksDevice& d )
 {
+    // Adding the key can take some times, measured around 15 seconds with
+    // a HDD (spinning rust) and a slow-ish computer. Give it a minute.
     auto r = CalamaresUtils::System::instance()->targetEnvCommand(
-        { "cryptsetup", "luksAddKey", d.device, keyfile }, QString(), d.passphrase, std::chrono::seconds( 15 ) );
+        { "cryptsetup", "luksAddKey", d.device, keyfile }, QString(), d.passphrase, std::chrono::seconds( 60 ) );
     if ( r.getExitCode() != 0 )
     {
         cWarning() << "Could not configure LUKS keyfile on" << d.device << ':' << r.getOutput() << "(exit code"

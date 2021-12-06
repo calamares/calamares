@@ -104,6 +104,10 @@ Settings* Settings::s_instance = nullptr;
 Settings*
 Settings::instance()
 {
+    if ( !s_instance )
+    {
+        cWarning() << "Getting nullptr Settings instance.";
+    }
     return s_instance;
 }
 
@@ -238,6 +242,9 @@ Settings::Settings( bool debugMode )
     , m_disableCancel( false )
     , m_disableCancelDuringExec( false )
 {
+    cWarning() << "Using bogus Calamares settings in"
+               << ( debugMode ? QStringLiteral( "debug" ) : QStringLiteral( "regular" ) ) << "mode";
+    s_instance = this;
 }
 
 Settings::Settings( const QString& settingsFilePath, bool debugMode )
@@ -260,6 +267,21 @@ Settings::Settings( const QString& settingsFilePath, bool debugMode )
     }
 
     s_instance = this;
+}
+
+bool
+Settings::isModuleEnabled( const QString& module ) const
+{
+    // Iterate over the list of modules searching for a match
+    for ( const auto& moduleInstance : qAsConst( m_moduleInstances ) )
+    {
+        if ( moduleInstance.key().module() == module )
+        {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 void

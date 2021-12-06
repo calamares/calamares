@@ -20,6 +20,8 @@
 #include <QDir>
 #include <QFileInfo>
 #include <QMutex>
+#include <QRandomGenerator>
+#include <QTextStream>
 #include <QTime>
 #include <QVariant>
 
@@ -226,6 +228,59 @@ toString( const QVariant& v )
     {
         return v.toString();
     }
+}
+
+QDebug&
+operator<<( QDebug& s, const RedactedCommand& l )
+{
+    // Special case logging: don't log the (encrypted) password.
+    if ( l.list.contains( "usermod" ) )
+    {
+        for ( const auto& item : l.list )
+            if ( item.startsWith( "$6$" ) )
+            {
+                s << "<password>";
+            }
+            else
+            {
+                s << item;
+            }
+    }
+    else
+    {
+        s << l.list;
+    }
+
+    return s;
+}
+
+/** @brief Returns a stable-but-private hash of @p context and @p s
+ *
+ * Identical strings with the same context will be hashed the same,
+ * so that they can be logged and still recognized as the-same.
+ */
+static uint insertRedactedName( const QString& context, const QString& s )
+{
+    static uint salt = QRandomGenerator::global()->generate();  // Just once
+
+    uint val = qHash(context, salt);
+    return qHash(s, val);
+}
+
+RedactedName::RedactedName( const QString& context, const QString& s )
+    : m_id( insertRedactedName(context, s) ),
+      m_context(context)
+{
+}
+
+RedactedName::RedactedName(const char *context, const QString& s )
+    : RedactedName( QString::fromLatin1( context ), s )
+{
+}
+
+RedactedName::operator QString() const
+{
+    return QString( m_context + '$' + QString::number( m_id, 16 ) );
 }
 
 }  // namespace Logger

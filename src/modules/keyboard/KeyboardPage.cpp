@@ -28,7 +28,6 @@
 #include "utils/String.h"
 
 #include <QComboBox>
-#include <QProcess>
 #include <QPushButton>
 
 class LayoutItem : public QListWidgetItem
@@ -67,7 +66,7 @@ KeyboardPage::KeyboardPage( Config* config, QWidget* parent )
         auto* model = config->keyboardVariants();
         ui->variantSelector->setModel( model );
         ui->variantSelector->setCurrentIndex( model->index( model->currentIndex() ) );
-        cDebug() << "Variants now" << model->rowCount() << model->currentIndex();
+        cDebug() << "Variants now total=" << model->rowCount() << "selected=" << model->currentIndex();
     }
 
     connect(

@@ -79,8 +79,8 @@ KEY_ID="CFDDC96F12B1915C"
 
 # Try to make gpg cache the signing key, so we can leave the process
 # to run and sign.
-rm -f CHANGES.gpg
-gpg -s -u $KEY_ID CHANGES
+rm -f CMakeLists.txt.gpg
+gpg -s -u $KEY_ID CMakeLists.txt
 
 ### Build with default compiler
 #

@@ -7,16 +7,228 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.42 (unreleased) #
+# 3.2.48 (2021-12-03) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - Evan James
+
+## Core ##
+ - Python modules now have `warn()` and `error()` methods they can call,
+   alongside the existing `debug()` and `warning()` (all live in the
+   *libcalamares.utils* module).
+ - Python modules can load YAML files via `libcalamares.utils.load_yaml()`.
+   This may be the most useful for test-scripts.
+
+## Modules ##
+ - *fstab* now has a separate, special, flags-setting for swap subvolumes
+   on btrfs. A swap subvolume is created if a swap **file** (not a separate
+   partition) is selected in the auto-partitioning page. (Thanks Evan)
+ - When using btrfs, the *mount* module creates subvolumes. It was not
+   possible to **avoid** having a subvolume name created for the root.
+   This is now possible. #1837
+ - The *packages* module now has some special settings for the `pacman`
+   package manager (generally used on Arch-derivatives). This allows
+   tweaking of the installation process, if downloads are slow or
+   packages may fail to install. See the `packages.conf` file for
+   details. (Thanks Evan)
+
+
+# 3.2.47 (2021-11-19) #
+
+This release contains contributions from (alphabetically by first name):
+ - Evan James
+ - Jonas Strassel
+
+## Core ##
+ - The translation for Sinhala (`si`) has reached 100%. Thank you to
+   හෙළබස and Sandaruwan, translators for Sinhala, for special effort
+   in completing that translation.
+ - Logging now supports Redacted names. This reduces the scope for
+   leaking names or other private information through the logs
+   (if they are posted to a pastebin). A name is redacted consistently
+   within one run of Calamares, but differently each time.
+
+## Modules ##
+ - *bootloader* with systemd-boot now handles root subvolumes better
+   (Thanks Evan)
+ - *displaymanager* supports the *greetd* display manager, which is a
+   kind of meta-DM itself, supporting multiple greeters. (Thanks Jonas)
+ - *finishedq* now has an extra example QML file that builds the UI in
+   a different fashion, demonstrating how a mobile-OS customization of
+   Calamares would present the "all done" message.
+ - *fstab* has an example configuration file that mentioned `space_cache`
+   as an option. Since 2014 there was only one possible value, so this
+   option matched the default-and-only value. Newer kernels with newer
+   btrfs versions have a `v2` option value as well. Remove the example
+   option, since the kernel automatically picks the right value, while
+   setting it to the wrong one may prevent the system from booting.
+   (Thanks Evan)
+ - The *partition* module no longer logs recognizable disk names or
+   UUIDs. These are redacted in the logs. #1593
+ - The *partition* module, together with the new *zfs* module and changes
+   in *mount* and *bootloader* can install to ZFS **if** the distribution
+   kernel supports it. ZFS tools are required, as well as the relevant
+   kernel modules. See the `README.md` in the *zfs* module. (Thanks Evan)
+
+
+# 3.2.46 (2021-11-09) #
+
+This release contains contributions from (alphabetically by first name):
+ - Philip Müller
+
+## Core ##
+ - A new core class `Runner` is now responsible for running commands
+   either in the host or in the target system. This is invisible for
+   end-users, but **does** expand the API available to consumers inside
+   Calamares modules. In particular, Python modules can now easily read
+   and respond to command output. #1740
+
+## Modules ##
+ - *fstab* writes a slightly different message in `/etc/crypttab`
+   about the root filesystem. Since Calamares itself ignores the
+   (previous wording of) message, it was confusing. #1811
+ - *packages* module has some support for reporting progress while
+   the packages are installed. This depends on the package-manager itself
+   reporting useful progress information **and** the *packages* module having
+   support-code to interpret that progress. A proof-of-concept for `pacman`
+   has been implemented. #1582
+ - *partition* has a number of edge-cases for LVM and LUKS resolved. #1564 #1817
+ - *partition* module once again always offers `/boot` as a mount-point, even
+   when EFI would want `/boot/efi`. (Thanks Phil)
+ - *summary* had a regression and showed some descriptive texts twice.
+
+
+# 3.2.45 (2021-10-31) #
+
+This release contains contributions from (alphabetically by first name):
+ - Evan James (new contributor, welcome!)
+
+## Core ##
+ - New internal convenience functions from Evan
+
+## Modules ##
+ - *packagechooser* now displays screenshots nicely-scaled
+   rather than jagged. (#1807)
+ - *partition* module removes ZFS partitions directly. At install-time,
+   we think that the partitions should be handled separately from a
+   zpool that potentially includes those partitions. (Thanks Evan)
+ - *services-systemd* supports timers, e.g. for weekly trim on SSDs.
+   (Thanks Evan)
+
+
+# 3.2.44.3 (2021-10-04) #
+
+This is not a hotfix release, but a tiny-tiny incremental improvement
+that fixes one hugely annoying -- user-facing message presenting
+bytes as mebibytes -- bug in the partition module.
+
+## Modules ##
+ - The *partition* module now consistently uses the configured EFI
+   partition size (defaults to 300MiB).
+ - Internal changes in the *summary* module to increase consistency
+   between *summary* and *summaryq*.
+
+
+# 3.2.44.2 (2021-09-27) #
+
+This release contains contributions from (alphabetically by first name):
+ - Corey Lang (new contributor, welcome!)
+
+This is a hotfix for a typo -- not a syntax error -- that affects the
+*networkcfg* module. Reported and fixed by Corey.
+
+
+# 3.2.44.1 (2021-09-24) #
+
+This release contains contributions from (alphabetically by first name):
+ - Anke Boersma
+
+This is a hotfix for a typo -- not a syntax error -- that affects the
+*initcpiocfg* module. Reported and fixed by Anke.
+
+
+# 3.2.44 (2021-09-24) #
+
+This release contains contributions from (alphabetically by first name):
+ - Anke Boersma
+ - Shrinivas Vishnu Kumbhar (new contributor, welcome!)
+ - whorfin (new contributor, welcome!)
+
+## Core ##
+ - "Log spam" has been reduced a little in the partitioning module.
+
+## Modules ##
+ - *initcpiocfg* has had a number of internal code-fixes, and now adds
+   the `consolefont` hook by default as well. (Thanks Shrinivas)
+ - Both *locale* and *keyboard* have received some tweaks for configurations
+   in India; unless the user selects otherwise, English is preferred.
+ - The *luksbootkeyfile* module was reported to be too quick to declare
+   a timeout when applying the keyfile. The timeout has been increased
+   to one minute. (Thanks whorfin)
+ - *networkcfg* tries harder to find the live-user login for re-working
+   networking settings. This fixes a regression on FerenOS, where the
+   installer was crashing because it could not find the live-user login.
+
+
+# 3.2.43 (2021-09-17) #
+
+This release contains contributions from (alphabetically by first name):
+ - Anke Boersma
+ - Joe Kamprad
+
+## Core ##
+ - Translations have been made more consistent. In particular, some *OK*,
+   *Yes*, *No* and *Cancel* buttons that were previously untranslated
+   or "stuck" in the language that Calamares started in, are now
+   changed to the current language as selected in the welcome page.
+ - Documentation improvements from Joe Kamprad. A *sizeLimit* of zero
+   (which is the default if nothing is set in the branding configuration)
+   disables log uploads.
+
+## Modules ##
+ - The *keyboardq* module (QML-based UI for keyboard-layout-selection)
+   now features an interactive keyboard preview and has the
+   layout adjusted. (Thanks Anke)
+
+
+# 3.2.42 (2021-09-06) #
+
+This release contains contributions from (alphabetically by first name):
+ - Anke Boersma
+ - Artem Grinev
+ - Nico 'dr460nf1r3' (new contributor, welcome!)
+ - Waneon Kim (new contributor, welcome!)
 
 ## Core ##
  - No core changes yet
 
 ## Modules ##
- - No module changes yet
+ - BTRFS partitions are no longer listed as "check in phase 2" in
+   the *fstab* module. (Thanks Nico)
+ - The *keyboard* module (and *keyboardq*) now pick an English layout
+   (with Rupee) for keyboards when the language is English and locale is India,
+   rather than Hindi layout.
+ - The *localeq* module had the i18n.qml rewritten to make it easier
+   to customize. A bug in the layout has been fixed, and the overall
+   look has been updated.
+ - *networkcfg* now translates the "live user" on an ISO to the regular
+   user on the installed system, so that network configuration changes
+   made in the live system are automatically used after installation. #1755
+ - *partition* no longer allows you to delete an extended partition with
+   children (which led to crashes). #1749 (Thanks Artem)
+ - *partition* complains in more detail about the state of the UEFI
+   boot partition (under manual partitioning schemes). #1761
+ - *welcome* can now check multiple URLs to determine if internet connectivity
+   is available. It is still recommended to check the distro home-page or
+   some special "ping" page of the distro, although that has some privacy
+   implications; using example.com or google.com may work as well. Listing
+   multiple URLs will ping each of them in turn until one succeeds. #1669
+ - The work to make a QML version available for all view modules is almost
+   completed. Two new QML modules have been added *packagechooserq* and *summaryq*.
+   Summaryq brings the option to present the summary page in a customizable
+   way, with a bit more of a contemporary look. Packagechooserq adds the option
+   to preselect an item and displays all options in one overview.
+   (Thanks Anke)
 
 
 # 3.2.41.1 (2021-08-05) #

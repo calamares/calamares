@@ -20,13 +20,13 @@
 #include "Settings.h"
 #include "ViewManager.h"
 
-#include "locale/LabelModel.h"
 #include "modulesystem/ModuleManager.h"
 #include "modulesystem/RequirementsModel.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/NamedEnum.h"
 #include "utils/Retranslator.h"
+#include "widgets/TranslationFix.h"
 
 #include <QApplication>
 #include <QBoxLayout>
@@ -252,6 +252,7 @@ WelcomePage::showAboutBox()
                         .arg( Calamares::Branding::instance()->versionedName() ),
                     QMessageBox::Ok,
                     this );
+    Calamares::fixButtonLabels( &mb );
     mb.setIconPixmap( CalamaresUtils::defaultPixmap(
         CalamaresUtils::Squid,
         CalamaresUtils::Original,
@@ -275,5 +276,5 @@ LocaleTwoColumnDelegate::paint( QPainter* painter, const QStyleOptionViewItem& o
         Qt::AlignRight | Qt::AlignVCenter,
         option.palette,
         false,
-        index.data( CalamaresUtils::Locale::LabelModel::EnglishLabelRole ).toString() );
+        index.data( CalamaresUtils::Locale::TranslationsModel::EnglishLabelRole ).toString() );
 }

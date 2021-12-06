@@ -13,6 +13,7 @@
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "partition/PartitionSize.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
@@ -220,6 +221,14 @@ Config::setEraseFsTypeChoice( const QString& choice )
     }
 }
 
+bool
+Config::acceptPartitionTableType( PartitionTable::TableType tableType ) const
+{
+    return m_requiredPartitionTableType.empty()
+        || m_requiredPartitionTableType.contains( PartitionTable::tableTypeToName( tableType ) );
+}
+
+
 static void
 fillGSConfigurationEFI( Calamares::GlobalStorage* gs, const QVariantMap& configurationMap )
 {
@@ -233,7 +242,25 @@ fillGSConfigurationEFI( Calamares::GlobalStorage* gs, const QVariantMap& configu
     // Read and parse key efiSystemPartitionSize
     if ( configurationMap.contains( "efiSystemPartitionSize" ) )
     {
-        gs->insert( "efiSystemPartitionSize", CalamaresUtils::getString( configurationMap, "efiSystemPartitionSize" ) );
+        const QString sizeString = CalamaresUtils::getString( configurationMap, "efiSystemPartitionSize" );
+        CalamaresUtils::Partition::PartitionSize part_size = CalamaresUtils::Partition::PartitionSize( sizeString );
+        if ( part_size.isValid() )
+        {
+            // Insert once as string, once as a size-in-bytes;
+            // changes to these keys should be synchronized with PartUtils.cpp
+            gs->insert( "efiSystemPartitionSize", sizeString );
+            gs->insert( "efiSystemPartitionSize_i", part_size.toBytes() );
+
+            if ( part_size.toBytes() != PartUtils::efiFilesystemMinimumSize() )
+            {
+                cWarning() << "EFI partition size" << sizeString << "has been adjusted to"
+                           << PartUtils::efiFilesystemMinimumSize() << "bytes";
+            }
+        }
+        else
+        {
+            cWarning() << "EFI partition size" << sizeString << "is invalid, ignored";
+        }
     }
 
     // Read and parse key efiSystemPartitionName
@@ -323,11 +350,9 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     setSwapChoice( m_initialSwapChoice );
 
     m_allowManualPartitioning = CalamaresUtils::getBool( configurationMap, "allowManualPartitioning", true );
+    m_requiredPartitionTableType = CalamaresUtils::getStringList( configurationMap, "requiredPartitionTableType" );
 
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-    m_requiredPartitionTableType = CalamaresUtils::getStringList( configurationMap, "requiredPartitionTableType" );
-    gs->insert( "requiredPartitionTableType", m_requiredPartitionTableType );
-
     fillGSConfigurationEFI( gs, configurationMap );
     fillConfigurationFSTypes( configurationMap );
 }

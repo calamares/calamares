@@ -9,11 +9,11 @@
  *
  */
 
-#ifndef LOCALE_LABELMODEL_H
-#define LOCALE_LABELMODEL_H
+#ifndef LOCALE_TRANSLATIONSMODEL_H
+#define LOCALE_TRANSLATIONSMODEL_H
 
 #include "DllMacro.h"
-#include "Label.h"
+#include "Translation.h"
 
 #include <QAbstractListModel>
 #include <QVector>
@@ -24,7 +24,7 @@ namespace CalamaresUtils
 namespace Locale
 {
 
-class DLLEXPORT LabelModel : public QAbstractListModel
+class DLLEXPORT TranslationsModel : public QAbstractListModel
 {
     Q_OBJECT
 
@@ -35,8 +35,8 @@ public:
         EnglishLabelRole = Qt::UserRole + 1
     };
 
-    LabelModel( const QStringList& locales, QObject* parent = nullptr );
-    ~LabelModel() override;
+    TranslationsModel( const QStringList& locales, QObject* parent = nullptr );
+    ~TranslationsModel() override;
 
     int rowCount( const QModelIndex& parent ) const override;
 
@@ -48,7 +48,7 @@ public:
      * This is the backing data for the model; if @p row is out-of-range,
      * returns a reference to en_US.
      */
-    const Label& locale( int row ) const;
+    const Translation& locale( int row ) const;
 
     /// @brief Returns all of the locale Ids (e.g. en_US) put into this model.
     const QStringList& localeIds() const { return m_localeIds; }
@@ -58,14 +58,14 @@ public:
      * Returns the row number of the first match, or -1 if there isn't one.
      */
     int find( std::function< bool( const QLocale& ) > predicate ) const;
-    int find( std::function< bool( const Label& ) > predicate ) const;
+    int find( std::function< bool( const Translation& ) > predicate ) const;
     /// @brief Looks for an item using the same locale, -1 if there isn't one
     int find( const QLocale& ) const;
     /// @brief Looks for an item that best matches the 2-letter country code
     int find( const QString& countryCode ) const;
 
 private:
-    QVector< Label* > m_locales;
+    QVector< Translation* > m_locales;
     QStringList m_localeIds;
 };
 
@@ -79,7 +79,7 @@ private:
  *
  * NOTE: While the model is not typed const, it should be. Do not modify.
  */
-DLLEXPORT LabelModel* availableTranslations();
+DLLEXPORT TranslationsModel* availableTranslations();
 }  // namespace Locale
 }  // namespace CalamaresUtils
 #endif

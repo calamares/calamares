@@ -1,0 +1,24 @@
+# SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+# SPDX-License-Identifier: GPL-3.0-or-later
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/zfs
+additionalProperties: false
+type: object
+properties:
+    poolName: { type: string }
+    poolOptions: { type: string }
+    datasetOptions: { type: string }
+    datasets:
+        type: array
+        items:
+            type: object
+            additionalProperties: false
+            properties:
+                dsName:  { type: string }
+                mountpoint:  { type: string }
+                # Nominally a string, but "on" and "off" are valid and get
+                # turned into a boolean in the YAML parser.
+                canMount:  { anyOf: [ { type: string }, { type: boolean } ] }
+            required: [ dsName, mountpoint, canMount ]
+required: [ poolName, datasets ]

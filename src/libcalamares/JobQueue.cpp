@@ -47,6 +47,7 @@ using WeightedJobList = QList< WeightedJob >;
 
 class JobThread : public QThread
 {
+    Q_OBJECT
 public:
     JobThread( JobQueue* queue )
         : QThread( queue )
@@ -111,17 +112,19 @@ public:
         QString message;  ///< Filled in with errors
         QString details;
 
+        Logger::Once o;
         m_jobIndex = 0;
         for ( const auto& jobitem : *m_runningJobs )
         {
             if ( failureEncountered && !jobitem.job->isEmergency() )
             {
-                cDebug() << "Skipping non-emergency job" << jobitem.job->prettyName();
+                cDebug() << o << "Skipping non-emergency job" << jobitem.job->prettyName();
             }
             else
             {
-                cDebug() << "Starting" << ( failureEncountered ? "EMERGENCY JOB" : "job" ) << jobitem.job->prettyName()
+                cDebug() << o << "Starting" << ( failureEncountered ? "EMERGENCY JOB" : "job" ) << jobitem.job->prettyName()
                          << '(' << ( m_jobIndex + 1 ) << '/' << m_runningJobs->count() << ')';
+                o.refresh();  // So next time it shows the function header again
                 emitProgress( 0.0 );  // 0% for *this job*
                 connect( jobitem.job.data(), &Job::progress, this, &JobThread::emitProgress );
                 auto result = jobitem.job->exec();
@@ -288,3 +291,7 @@ JobQueue::globalStorage() const
 }
 
 }  // namespace Calamares
+
+#include "utils/moc-warnings.h"
+
+#include "JobQueue.moc"

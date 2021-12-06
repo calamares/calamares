@@ -126,23 +126,22 @@ canBeResized( Partition* candidate, const Logger::Once& o )
         return false;
     }
 
-    cDebug() << o << "Checking if" << convenienceName( candidate ) << "can be resized.";
     if ( !candidate->fileSystem().supportGrow() || !candidate->fileSystem().supportShrink() )
     {
-        cDebug() << Logger::SubEntry << "NO, filesystem" << candidate->fileSystem().name()
-                 << "does not support resize.";
+        cDebug() << o << "Can not resize" << convenienceName( candidate ) << ", filesystem"
+                 << candidate->fileSystem().name() << "does not support resize.";
         return false;
     }
 
     if ( isPartitionFreeSpace( candidate ) )
     {
-        cDebug() << Logger::SubEntry << "NO, partition is free space";
+        cDebug() << o << "Can not resize" << convenienceName( candidate ) << ", partition is free space";
         return false;
     }
 
     if ( candidate->isMounted() )
     {
-        cDebug() << Logger::SubEntry << "NO, partition is mounted";
+        cDebug() << o << "Can not resize" << convenienceName( candidate ) << ", partition is mounted";
         return false;
     }
 
@@ -151,14 +150,14 @@ canBeResized( Partition* candidate, const Logger::Once& o )
         PartitionTable* table = dynamic_cast< PartitionTable* >( candidate->parent() );
         if ( !table )
         {
-            cDebug() << Logger::SubEntry << "NO, no partition table found";
+            cDebug() << o << "Can not resize" << convenienceName( candidate ) << ", no partition table found";
             return false;
         }
 
         if ( table->numPrimaries() >= table->maxPrimaries() )
         {
-            cDebug() << Logger::SubEntry << "NO, partition table already has" << table->maxPrimaries()
-                     << "primary partitions.";
+            cDebug() << o << "Can not resize" << convenienceName( candidate ) << ", partition table already has"
+                     << table->maxPrimaries() << "primary partitions.";
             return false;
         }
     }
@@ -167,7 +166,8 @@ canBeResized( Partition* candidate, const Logger::Once& o )
     double requiredStorageGiB = getRequiredStorageGiB( ok );
     if ( !ok )
     {
-        cDebug() << Logger::SubEntry << "NO, requiredStorageGiB is not set correctly.";
+        cDebug() << o << "Can not resize" << convenienceName( candidate )
+                 << ", requiredStorageGiB is not set correctly.";
         return false;
     }
 
@@ -200,24 +200,25 @@ canBeResized( Partition* candidate, const Logger::Once& o )
 bool
 canBeResized( DeviceModel* dm, const QString& partitionPath, const Logger::Once& o )
 {
-    cDebug() << o << "Checking if" << partitionPath << "can be resized.";
-    QString partitionWithOs = partitionPath;
-    if ( partitionWithOs.startsWith( "/dev/" ) )
+    if ( partitionPath.startsWith( "/dev/" ) )
     {
         for ( int i = 0; i < dm->rowCount(); ++i )
         {
             Device* dev = dm->deviceForIndex( dm->index( i ) );
-            Partition* candidate = CalamaresUtils::Partition::findPartitionByPath( { dev }, partitionWithOs );
+            Partition* candidate = CalamaresUtils::Partition::findPartitionByPath( { dev }, partitionPath );
             if ( candidate )
             {
                 return canBeResized( candidate, o );
             }
         }
-        cDebug() << Logger::SubEntry << "no Partition* found for" << partitionWithOs;
+        cWarning() << "Can not resize" << partitionPath << ", no Partition* found.";
+        return false;
     }
-
-    cDebug() << Logger::SubEntry << "Partition" << partitionWithOs << "CANNOT BE RESIZED FOR AUTOINSTALL.";
-    return false;
+    else
+    {
+        cWarning() << "Can not resize" << partitionPath << ", does not start with /dev";
+        return false;
+    }
 }
 
 
@@ -250,8 +251,6 @@ lookForFstabEntries( const QString& partitionPath )
     {
         QFile fstabFile( mount.path() + "/etc/fstab" );
 
-        cDebug() << Logger::SubEntry << "reading" << fstabFile.fileName();
-
         if ( fstabFile.open( QIODevice::ReadOnly | QIODevice::Text ) )
         {
             const QStringList fstabLines = QString::fromLocal8Bit( fstabFile.readAll() ).split( '\n' );
@@ -261,10 +260,11 @@ lookForFstabEntries( const QString& partitionPath )
                 fstabEntries.append( FstabEntry::fromEtcFstab( rawLine ) );
             }
             fstabFile.close();
-            cDebug() << Logger::SubEntry << "got" << fstabEntries.count() << "lines.";
+            const int lineCount = fstabEntries.count();
             std::remove_if(
                 fstabEntries.begin(), fstabEntries.end(), []( const FstabEntry& x ) { return !x.isValid(); } );
-            cDebug() << Logger::SubEntry << "got" << fstabEntries.count() << "fstab entries.";
+            cDebug() << Logger::SubEntry << "got" << fstabEntries.count() << "fstab entries from" << lineCount
+                     << "lines in" << fstabFile.fileName();
         }
         else
         {
@@ -447,22 +447,14 @@ isEfiSystem()
 }
 
 bool
-isEfiFilesystemSuitable( const Partition* candidate )
+isEfiFilesystemSuitableType( const Partition* candidate )
 {
     auto type = candidate->fileSystem().type();
-    auto size = candidate->capacity();  // bytes
-
-    using CalamaresUtils::Units::operator""_MiB;
 
     switch ( type )
     {
     case FileSystem::Type::Fat32:
-        if ( size >= 300_MiB )
-        {
-            return true;
-        }
-        cWarning() << "FAT32 filesystem is too small (" << size << "bytes)";
-        return false;
+        return true;
 #ifdef WITH_KPMCORE4API
     case FileSystem::Type::Fat12:
 #endif
@@ -471,6 +463,26 @@ isEfiFilesystemSuitable( const Partition* candidate )
         return false;
     default:
         cWarning() << "EFI boot partition must be FAT32";
+        return false;
+    }
+}
+
+bool
+isEfiFilesystemSuitableSize( const Partition* candidate )
+{
+    auto size = candidate->capacity();  // bytes
+    if ( size <= 0 )
+    {
+        return false;
+    }
+
+    if ( size_t( size ) >= efiFilesystemMinimumSize() )
+    {
+        return true;
+    }
+    else
+    {
+        cWarning() << "Filesystem for EFI is too small (" << size << "bytes)";
         return false;
     }
 }
@@ -508,10 +520,34 @@ isEfiBootable( const Partition* candidate )
 #endif
 }
 
+// TODO: this is configurable via the config file **already**
+size_t
+efiFilesystemMinimumSize()
+{
+    using CalamaresUtils::Units::operator""_MiB;
+
+    auto uefisys_part_sizeB = 300_MiB;
+
+    // The default can be overridden; the key used here comes
+    // from the partition module Config.cpp
+    auto* gs = Calamares::JobQueue::instance()->globalStorage();
+    if ( gs->contains( "efiSystemPartitionSize_i" ) )
+    {
+        uefisys_part_sizeB = gs->value( "efiSystemPartitionSize_i" ).toLongLong();
+    }
+    // There is a lower limit of what can be configured
+    if ( uefisys_part_sizeB < 32_MiB )
+    {
+        uefisys_part_sizeB = 32_MiB;
+    }
+    return uefisys_part_sizeB;
+}
+
+
 QString
 canonicalFilesystemName( const QString& fsName, FileSystem::Type* fsType )
 {
-    cPointerSetter type( fsType );
+    cScopedAssignment type( fsType );
     if ( fsName.isEmpty() )
     {
         type = FileSystem::Ext4;

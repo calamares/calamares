@@ -9,8 +9,8 @@
  *
  */
 
-#ifndef LOCALE_LABEL_H
-#define LOCALE_LABEL_H
+#ifndef LOCALE_TRANSLATION_H
+#define LOCALE_TRANSLATION_H
 
 #include <QLocale>
 #include <QObject>
@@ -34,7 +34,7 @@ namespace Locale
  * - `ca@valencia` is the Catalan dialect spoken in Valencia.
  *   There is no Qt code for it.
  */
-class Label : public QObject
+class Translation : public QObject
 {
     Q_OBJECT
 
@@ -46,8 +46,13 @@ public:
         IfNeededWithCountry
     };
 
+    struct Id
+    {
+        QString name;
+    };
+
     /** @brief Empty locale. This uses the system-default locale. */
-    Label( QObject* parent = nullptr );
+    Translation( QObject* parent = nullptr );
 
     /** @brief Construct from a locale name.
      *
@@ -55,16 +60,14 @@ public:
      * The @p format determines whether the country name is always present
      * in the label (human-readable form) or only if needed for disambiguation.
      */
-    Label( const QString& localeName,
-           LabelFormat format = LabelFormat::IfNeededWithCountry,
-           QObject* parent = nullptr );
+    Translation( const Id& localeId, LabelFormat format = LabelFormat::IfNeededWithCountry, QObject* parent = nullptr );
 
 
     /** @brief Define a sorting order.
      *
      * Locales are sorted by their id, which means the ISO 2-letter code + country.
      */
-    bool operator<( const Label& other ) const { return m_localeId < other.m_localeId; }
+    bool operator<( const Translation& other ) const { return m_localeId < other.m_localeId; }
 
     /** @brief Is this locale English?
      *
@@ -81,8 +84,12 @@ public:
     /** @brief Get the Qt locale. */
     QLocale locale() const { return m_locale; }
 
-    QString name() const { return m_locale.name(); }
-    QString id() const { return m_localeId; }
+    /** @brief Gets the Calamares internal name (code) of the locale.
+     *
+     * This is a strongly-typed return to avoid it ending up all over
+     * the place as a QString.
+     */
+    Id id() const { return { m_localeId }; }
 
     /// @brief Convenience accessor to the language part of the locale
     QLocale::Language language() const { return m_locale.language(); }
@@ -94,9 +101,9 @@ public:
      *
      * This obeys special cases as described in the class documentation.
      */
-    static QLocale getLocale( const QString& localeName );
+    static QLocale getLocale( const Id& localeId );
 
-protected:
+private:
     QLocale m_locale;
     QString m_localeId;  // the locale identifier, e.g. "en_GB"
     QString m_label;  // the native name of the locale

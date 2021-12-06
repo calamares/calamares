@@ -40,12 +40,12 @@ set( libSources
 
     # Locale-data service
     locale/Global.cpp
-    locale/Label.cpp
-    locale/LabelModel.cpp
     locale/Lookup.cpp
     locale/TimeZone.cpp
     locale/TranslatableConfiguration.cpp
     locale/TranslatableString.cpp
+    locale/Translation.cpp
+    locale/TranslationsModel.cpp
 
     # Modules
     modulesystem/Config.cpp
@@ -77,6 +77,7 @@ set( libSources
     utils/Permissions.cpp
     utils/PluginFactory.cpp
     utils/Retranslator.cpp
+    utils/Runner.cpp
     utils/String.cpp
     utils/UMask.cpp
     utils/Variant.cpp
@@ -303,6 +304,7 @@ calamares_add_test(
     libcalamaresutilstest
     SOURCES
         utils/Tests.cpp
+        utils/Runner.cpp
 )
 
 calamares_add_test(

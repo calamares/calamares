@@ -12,7 +12,6 @@
 
 #include "Config.h"
 #include "WelcomePage.h"
-#include "checker/GeneralRequirements.h"
 
 #include "Branding.h"
 #include "modulesystem/ModuleManager.h"
@@ -25,7 +24,6 @@ WelcomeViewStep::WelcomeViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_conf( new Config( this ) )
     , m_widget( new WelcomePage( m_conf ) )
-    , m_requirementsChecker( new GeneralRequirements( this ) )
 {
     connect( Calamares::ModuleManager::instance(),
              &Calamares::ModuleManager::requirementsComplete,
@@ -96,17 +94,6 @@ WelcomeViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     m_conf->setConfigurationMap( configurationMap );
 
-    if ( configurationMap.contains( "requirements" )
-         && configurationMap.value( "requirements" ).type() == QVariant::Map )
-    {
-        m_requirementsChecker->setConfigurationMap( configurationMap.value( "requirements" ).toMap() );
-    }
-    else
-    {
-        cWarning() << "no valid requirements map found in welcome "
-                      "module configuration.";
-    }
-
     //here init the qml or qwidgets needed bits
     m_widget->init();
 }
@@ -114,5 +101,5 @@ WelcomeViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 Calamares::RequirementsList
 WelcomeViewStep::checkRequirements()
 {
-    return m_requirementsChecker->checkRequirements();
+    return m_conf->checkRequirements();
 }

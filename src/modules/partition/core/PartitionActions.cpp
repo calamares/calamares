@@ -118,14 +118,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
 
     if ( isEfi )
     {
-        int uefisys_part_sizeB = 300_MiB;
-        if ( gs->contains( "efiSystemPartitionSize" ) )
-        {
-            CalamaresUtils::Partition::PartitionSize part_size
-                = CalamaresUtils::Partition::PartitionSize( gs->value( "efiSystemPartitionSize" ).toString() );
-            uefisys_part_sizeB = part_size.toBytes( dev->capacity() );
-        }
-
+        size_t uefisys_part_sizeB = PartUtils::efiFilesystemMinimumSize();
         qint64 efiSectorCount = CalamaresUtils::bytesToSectors( uefisys_part_sizeB, dev->logicalSize() );
         Q_ASSERT( efiSectorCount > 0 );
 

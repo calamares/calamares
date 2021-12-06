@@ -152,8 +152,21 @@ public:
      */
     bool isSetupMode() const { return m_isSetupMode; }
 
+    /** @brief Returns whether the named module is enabled
+     *
+     *  Returns true if @p module is enabled in settings.conf.  Be aware that it
+     *  only tests for a specific module name so if a QML and non-QML version
+     *  of the same module exists, it must be specified explicitly
+     *
+     *  @p module is a module name or module key e.g. packagechooser) and not a
+     *  full module key+id (e.g. packagechooser@packagechooser)
+     *
+    */
+    bool isModuleEnabled( const QString& module ) const;
+
     /** @brief Global setting of disable-cancel: can't cancel ever. */
     bool disableCancel() const { return m_disableCancel; }
+
     /** @brief Temporary setting of disable-cancel: can't cancel during exec. */
     bool disableCancelDuringExec() const { return m_disableCancelDuringExec; }
 

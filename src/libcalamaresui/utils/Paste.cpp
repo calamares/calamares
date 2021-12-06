@@ -13,6 +13,7 @@
 #include "DllMacro.h"
 #include "utils/Logger.h"
 #include "utils/Units.h"
+#include "widgets/TranslationFix.h"
 
 #include <QApplication>
 #include <QClipboard>
@@ -32,10 +33,16 @@ using namespace CalamaresUtils::Units;
 STATICTEST QByteArray
 logFileContents( const qint64 sizeLimitBytes )
 {
-    if ( sizeLimitBytes != -1 )
+    if ( sizeLimitBytes > 0 )
     {
         cDebug() << "Log upload size limit was limited to" << sizeLimitBytes << "bytes";
     }
+    if ( sizeLimitBytes == 0 )
+    {
+        cDebug() << "Log upload size is 0, upload disabled.";
+        return QByteArray();
+    }
+
     const QString name = Logger::logFile();
     QFile pasteSourceFile( name );
     if ( !pasteSourceFile.open( QIODevice::ReadOnly | QIODevice::Text ) )
@@ -43,7 +50,7 @@ logFileContents( const qint64 sizeLimitBytes )
         cWarning() << "Could not open log file" << name;
         return QByteArray();
     }
-    if ( sizeLimitBytes == -1 )
+    if ( sizeLimitBytes < 0 )
     {
         return pasteSourceFile.readAll();
     }
@@ -51,7 +58,7 @@ logFileContents( const qint64 sizeLimitBytes )
     if ( fi.size() > sizeLimitBytes )
     {
         cDebug() << "Only last" << sizeLimitBytes << "bytes of log file (sized" << fi.size() << "bytes) uploaded";
-        fi.refresh();
+        fi.refresh();  // Because we just wrote to the file with that cDebug() ^^
         pasteSourceFile.seek( fi.size() - sizeLimitBytes );
     }
     return pasteSourceFile.read( sizeLimitBytes );
@@ -114,12 +121,18 @@ CalamaresUtils::Paste::doLogUpload( QObject* parent )
     auto [ type, serverUrl, sizeLimitBytes ] = Calamares::Branding::instance()->uploadServer();
     if ( !serverUrl.isValid() )
     {
-        cWarning() << "Upload configure with invalid URL";
+        cWarning() << "Upload configured with invalid URL";
         return QString();
     }
     if ( type == Calamares::Branding::UploadServerType::None )
     {
         // Early return to avoid reading the log file
+        return QString();
+    }
+    if ( sizeLimitBytes == 0 )
+    {
+        // Suggests that it is un-set in the config file
+        cWarning() << "Upload configured to send 0 bytes";
         return QString();
     }
 
@@ -166,8 +179,12 @@ CalamaresUtils::Paste::doLogUploadUI( QWidget* parent )
         pasteUrlMessage = pasteUrlFmt.arg( pasteUrl );
     }
 
-    QMessageBox::critical(
-        nullptr, QCoreApplication::translate( "Calamares::ViewManager", "Install Log Paste URL" ), pasteUrlMessage );
+    QMessageBox mb( QMessageBox::Critical,
+                    QCoreApplication::translate( "Calamares::ViewManager", "Install Log Paste URL" ),
+                    pasteUrlMessage,
+                    QMessageBox::Ok );
+    Calamares::fixButtonLabels( &mb );
+    mb.exec();
     return pasteUrl;
 }
 
@@ -176,5 +193,5 @@ bool
 CalamaresUtils::Paste::isEnabled()
 {
     auto [ type, serverUrl, sizeLimitBytes ] = Calamares::Branding::instance()->uploadServer();
-    return type != Calamares::Branding::UploadServerType::None;
+    return type != Calamares::Branding::UploadServerType::None && sizeLimitBytes != 0;
 }

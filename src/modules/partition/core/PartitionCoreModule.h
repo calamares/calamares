@@ -84,6 +84,8 @@ public:
         PartitionModel* partitionModelAfter;
     };
 
+    struct DeviceInfo;
+
     PartitionCoreModule( QObject* parent = nullptr );
     ~PartitionCoreModule() override;
 
@@ -239,7 +241,6 @@ Q_SIGNALS:
     void deviceReverted( Device* device );
 
 private:
-    struct DeviceInfo;
     void refreshAfterModelChange();
 
     void doInit();

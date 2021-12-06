@@ -34,45 +34,15 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-### TRANSLATIONS
-#
-#
-set( TS_FILES "" )
-set( calamares_i18n_qrc_content "" )
-
-# calamares and qt language files
-foreach( lang ${CALAMARES_TRANSLATION_LANGUAGES} )
-    foreach( tlsource "calamares_${lang}" "tz_${lang}" "kb_${lang}" )
-        if( EXISTS "${CMAKE_SOURCE_DIR}/lang/${tlsource}.ts" )
-            set( calamares_i18n_qrc_content "${calamares_i18n_qrc_content}<file>${tlsource}.qm</file>\n" )
-            list( APPEND TS_FILES "${CMAKE_SOURCE_DIR}/lang/${tlsource}.ts" )
-        endif()
-    endforeach()
-endforeach()
-
-set( trans_file calamares_i18n )
-set( trans_infile ${CMAKE_CURRENT_BINARY_DIR}/${trans_file}.qrc )
-set( trans_outfile ${CMAKE_CURRENT_BINARY_DIR}/qrc_${trans_file}.cxx )
-
-configure_file( ${CMAKE_SOURCE_DIR}/lang/calamares_i18n.qrc.in ${trans_infile} @ONLY )
-
-qt5_add_translation(QM_FILES ${TS_FILES})
-
-# Run the resource compiler (rcc_options should already be set)
-add_custom_command(
-    OUTPUT ${trans_outfile}
-    COMMAND "${Qt5Core_RCC_EXECUTABLE}"
-    ARGS ${rcc_options} --format-version 1 -name ${trans_file} -o ${trans_outfile} ${trans_infile}
-    MAIN_DEPENDENCY ${trans_infile}
-    DEPENDS ${QM_FILES}
-)
-
 ### EXECUTABLE
 #
 # "calamares_bin" is the main application, not to be confused with
 # the target "calamares" which is the non-GUI library part.
 #
-add_executable( calamares_bin ${calamaresSources} calamares.qrc ${trans_outfile} )
+# The calamares-i18n.cxx file -- full path in CALAMARES_TRANSLATIONS_SOURCE --
+# is created as a target in the lang/ directory. This is compiled to a
+# library (it's just the result of a QRC compile).
+add_executable( calamares_bin ${calamaresSources} calamares.qrc )
 target_include_directories( calamares_bin PRIVATE ${CMAKE_SOURCE_DIR} )
 set_target_properties(calamares_bin
     PROPERTIES
@@ -91,6 +61,7 @@ target_link_libraries( calamares_bin
     PRIVATE
         calamares
         calamaresui
+        calamares-i18n
         Qt5::Core
         Qt5::Widgets
         KF5::CoreAddons

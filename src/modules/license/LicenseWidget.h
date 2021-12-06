@@ -22,6 +22,7 @@ class QPushButton;
 
 class LicenseWidget : public QWidget
 {
+    Q_OBJECT
 public:
     LicenseWidget( LicenseEntry e, QWidget* parent = nullptr );
     ~LicenseWidget() override;

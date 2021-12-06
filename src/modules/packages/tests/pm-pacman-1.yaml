@@ -1,0 +1,10 @@
+# SPDX-FileCopyrightText: no
+# SPDX-License-Identifier: CC0-1.0
+backend: pacman
+operations: []
+
+pacman:
+    num_retries: 4
+    disable_download_timeout: true
+    needed_only: true
+

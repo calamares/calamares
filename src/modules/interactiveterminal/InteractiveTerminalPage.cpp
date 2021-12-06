@@ -13,6 +13,7 @@
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 #include "viewpages/ViewStep.h"
+#include "widgets/TranslationFix.h"
 
 #include <KParts/ReadOnlyPart>
 #include <KParts/kde_terminal_interface.h>
@@ -40,8 +41,10 @@ InteractiveTerminalPage::InteractiveTerminalPage( QWidget* parent )
 void
 InteractiveTerminalPage::errorKonsoleNotInstalled()
 {
-    QMessageBox::critical(
-        this, tr( "Konsole not installed" ), tr( "Please install KDE Konsole and try again!" ), QMessageBox::Ok );
+    QMessageBox mb(QMessageBox::Critical,
+        tr( "Konsole not installed" ), tr( "Please install KDE Konsole and try again!" ), QMessageBox::Ok );
+    Calamares::fixButtonLabels( &mb );
+    mb.exec();
 }
 
 void

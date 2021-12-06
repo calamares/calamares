@@ -15,7 +15,7 @@
 #include "JobQueue.h"
 #include "Settings.h"
 #include "locale/Global.h"
-#include "locale/Label.h"
+#include "locale/Translation.h"
 #include "modulesystem/ModuleManager.h"
 #include "network/Manager.h"
 #include "utils/Logger.h"
@@ -368,9 +368,9 @@ Config::currentTimezoneName() const
 static inline QString
 localeLabel( const QString& s )
 {
-    using CalamaresUtils::Locale::Label;
+    using CalamaresUtils::Locale::Translation;
 
-    Label lang( s, Label::LabelFormat::AlwaysWithCountry );
+    Translation lang( { s }, Translation::LabelFormat::AlwaysWithCountry );
     return lang.label();
 }
 

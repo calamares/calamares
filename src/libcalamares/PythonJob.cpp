@@ -36,6 +36,12 @@ BOOST_PYTHON_FUNCTION_OVERLOADS( check_target_env_output_list_overloads,
                                  CalamaresPython::check_target_env_output,
                                  1,
                                  3 );
+BOOST_PYTHON_FUNCTION_OVERLOADS( target_env_process_output_overloads,
+                                 CalamaresPython::target_env_process_output,
+                                 1,
+                                 4 );
+BOOST_PYTHON_FUNCTION_OVERLOADS( host_env_process_output_overloads, CalamaresPython::host_env_process_output, 1, 4 );
+
 BOOST_PYTHON_MODULE( libcalamares )
 {
     bp::object package = bp::scope();
@@ -73,13 +79,25 @@ BOOST_PYTHON_MODULE( libcalamares )
     bp::scope utilsScope = utilsModule;
     Q_UNUSED( utilsScope )
 
+    // .. Logging functions
     bp::def(
         "debug", &CalamaresPython::debug, bp::args( "s" ), "Writes the given string to the Calamares debug stream." );
     bp::def( "warning",
              &CalamaresPython::warning,
              bp::args( "s" ),
              "Writes the given string to the Calamares warning stream." );
+    bp::def( "warn",
+             &CalamaresPython::warning,
+             bp::args( "s" ),
+             "Writes the given string to the Calamares warning stream." );
+    bp::def(
+        "error", &CalamaresPython::warning, bp::args( "s" ), "Writes the given string to the Calamares error stream." );
 
+
+    // .. YAML functions
+    bp::def( "load_yaml", &CalamaresPython::load_yaml, bp::args( "path" ), "Loads YAML from a file." );
+
+    // .. Filesystem functions
     bp::def( "mount",
              &CalamaresPython::mount,
              mount_overloads( bp::args( "device_path", "mount_point", "filesystem_name", "options" ),
@@ -88,6 +106,8 @@ BOOST_PYTHON_MODULE( libcalamares )
                               "-1 = QProcess crash\n"
                               "-2 = QProcess cannot start\n"
                               "-3 = bad arguments" ) );
+
+    // .. Process functions
     bp::def(
         "target_env_call",
         static_cast< int ( * )( const std::string&, const std::string&, int ) >( &CalamaresPython::target_env_call ),
@@ -137,6 +157,16 @@ BOOST_PYTHON_MODULE( libcalamares )
                                                      "Runs the specified command in the chroot of the target system.\n"
                                                      "Returns the program's standard output, and raises a "
                                                      "subprocess.CalledProcessError if something went wrong." ) );
+    bp::def( "target_env_process_output",
+             &CalamaresPython::target_env_process_output,
+             target_env_process_output_overloads( bp::args( "command", "callback", "stdin", "timeout" ),
+                                                  "Runs the specified @p command in the target system." ) );
+    bp::def( "host_env_process_output",
+             &CalamaresPython::host_env_process_output,
+             host_env_process_output_overloads( bp::args( "command", "callback", "stdin", "timeout" ),
+                                                "Runs the specified command in the host system." ) );
+
+    // .. String functions
     bp::def( "obscure",
              &CalamaresPython::obscure,
              bp::args( "s" ),
@@ -145,7 +175,7 @@ BOOST_PYTHON_MODULE( libcalamares )
              "Applying the function to a string obscured by this function will result "
              "in the original string." );
 
-
+    // .. Translation functions
     bp::def( "gettext_languages",
              &CalamaresPython::gettext_languages,
              "Returns list of languages (most to least-specific) for gettext." );
@@ -330,7 +360,8 @@ void
 PythonJob::setInjectedPreScript( const char* preScript )
 {
     s_preScript = preScript;
-    cDebug() << "Python pre-script set to" << Logger::Pointer( preScript );
+    cDebug() << "Python pre-script set to string" << Logger::Pointer( preScript ) << "length"
+             << ( preScript ? strlen( preScript ) : 0 );
 }
 
 }  // namespace Calamares

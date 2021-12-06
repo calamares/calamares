@@ -60,7 +60,6 @@
 // Qt
 #include <QDir>
 #include <QFutureWatcher>
-#include <QProcess>
 #include <QStandardItemModel>
 #include <QtConcurrent/QtConcurrent>
 
@@ -258,14 +257,16 @@ PartitionCoreModule::doInit()
     cDebug() << Logger::SubEntry << "node\tcapacity\tname\tprettyName";
     for ( auto device : devices )
     {
-        cDebug() << Logger::SubEntry << Logger::Pointer( device );
         if ( device )
         {
             // Gives ownership of the Device* to the DeviceInfo object
             auto deviceInfo = new DeviceInfo( device );
             m_deviceInfos << deviceInfo;
-            cDebug() << Logger::SubEntry << device->deviceNode() << device->capacity() << device->name()
-                     << device->prettyName();
+            cDebug() << Logger::SubEntry
+                << device->deviceNode()
+                << device->capacity()
+                << Logger::RedactedName( "DevName", device->name() )
+                << Logger::RedactedName( "DevNamePretty", device->prettyName() );
         }
         else
         {
@@ -580,6 +581,42 @@ PartitionCoreModule::setPartitionFlags( Device* device, Partition* partition, Pa
     PartitionInfo::setFlags( partition, flags );
 }
 
+STATICTEST QStringList
+findEssentialLVs( const QList< PartitionCoreModule::DeviceInfo* >& infos )
+{
+    QStringList doNotClose;
+    cDebug() << "Checking LVM use on" << infos.count() << "devices";
+    for ( const auto* info : infos )
+    {
+        if ( info->device->type() != Device::Type::LVM_Device )
+        {
+            continue;
+        }
+
+        for ( const auto& j : qAsConst( info->jobs() ) )
+        {
+            FormatPartitionJob* format = dynamic_cast< FormatPartitionJob* >( j.data() );
+            if ( format )
+            {
+                // device->deviceNode() is /dev/<vg name>
+                // partition()->partitionPath() is /dev/<vg name>/<lv>
+                const auto* partition = format->partition();
+                const QString partPath = partition->partitionPath();
+                const QString devicePath = info->device->deviceNode() + '/';
+                const bool isLvm = partition->roles().has( PartitionRole::Lvm_Lv );
+                if ( isLvm && partPath.startsWith( devicePath ) )
+                {
+                    cDebug() << Logger::SubEntry << partPath
+                             << "is an essential LV filesystem=" << partition->fileSystem().type();
+                    QString lvName = partPath.right( partPath.length() - devicePath.length() );
+                    doNotClose.append( info->device->name() + '-' + lvName );
+                }
+            }
+        }
+    }
+    return doNotClose;
+}
+
 Calamares::JobList
 PartitionCoreModule::jobs( const Config* config ) const
 {
@@ -604,15 +641,19 @@ PartitionCoreModule::jobs( const Config* config ) const
     lst << automountControl;
     lst << Calamares::job_ptr( new ClearTempMountsJob() );
 
-    for ( auto info : m_deviceInfos )
+    const QStringList doNotClose = findEssentialLVs( m_deviceInfos );
+
+    for ( const auto* info : m_deviceInfos )
     {
         if ( info->isDirty() )
         {
-            lst << Calamares::job_ptr( new ClearMountsJob( info->device.data() ) );
+            auto* job = new ClearMountsJob( info->device.data() );
+            job->setMapperExceptions( doNotClose );
+            lst << Calamares::job_ptr( job );
         }
     }
 
-    for ( auto info : m_deviceInfos )
+    for ( const auto* info : m_deviceInfos )
     {
         lst << info->jobs();
         devices << info->device.data();
@@ -668,10 +709,10 @@ PartitionCoreModule::dumpQueue() const
     cDebug() << "# Queue:";
     for ( auto info : m_deviceInfos )
     {
-        cDebug() << Logger::SubEntry << "## Device:" << info->device->name();
+        cDebug() << Logger::SubEntry << "## Device:" << info->device->deviceNode();
         for ( const auto& job : info->jobs() )
         {
-            cDebug() << Logger::SubEntry << "-" << job->prettyName();
+            cDebug() << Logger::SubEntry << "-" << job->metaObject()->className();
         }
     }
 }

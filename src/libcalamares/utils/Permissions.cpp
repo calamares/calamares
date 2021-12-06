@@ -7,9 +7,9 @@
 
 #include "Permissions.h"
 
+#include "CalamaresUtilsSystem.h"
 #include "Logger.h"
 
-#include <QProcess>
 #include <QString>
 #include <QStringList>
 
@@ -105,7 +105,9 @@ Permissions::apply( const QString& path, const CalamaresUtils::Permissions& p )
         // uid_t and gid_t values to pass to that system call.
         //
         // Do a lame cop-out and let the chown(8) utility do the heavy lifting.
-        if ( QProcess::execute( "chown", { p.username() + ':' + p.group(), path } ) )
+        if ( CalamaresUtils::System::runCommand( { "chown", p.username() + ':' + p.group(), path },
+                                                 std::chrono::seconds( 3 ) )
+                 .getExitCode() )
         {
             r = false;
             cDebug() << Logger::SubEntry << "Could not set owner of" << path << "to"
