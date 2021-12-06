@@ -59,9 +59,8 @@ struct LOSHInfo
 
     /** @brief Creates a struct from information already set in GS
      *
-     * TODO: implement this in LOSHJob.cpp
      */
-    static LOSHInfo fromGlobalStorage() { return LOSHInfo {}; }
+    static LOSHInfo fromGlobalStorage();
 };
 
 #endif

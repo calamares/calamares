@@ -140,7 +140,7 @@ LOSHTests::testConfigWriting()
     QVERIFY( ss );
     QVERIFY( Calamares::JobQueue::instance()->globalStorage() );
     QVERIFY( QFile::exists( tempRoot.path() ) );
-    QVERIFY( QFileInfo(tempRoot.path()).isDir() );
+    QVERIFY( QFileInfo( tempRoot.path() ).isDir() );
 
     const QString targetFilePath = QStringLiteral( "losh.conf" );
     const QString filePath = tempRoot.filePath( targetFilePath );
@@ -159,12 +159,12 @@ LOSHTests::testConfigWriting()
     QCOMPARE( contents.at( 1 ).left( 4 ), QStringLiteral( "#  s" ) );
 
     // Can we write there at all?
-    QFile derp(filePath);
-    QVERIFY(derp.open(QIODevice::WriteOnly));
-    QVERIFY(derp.write("xx", 2));
+    QFile derp( filePath );
+    QVERIFY( derp.open( QIODevice::WriteOnly ) );
+    QVERIFY( derp.write( "xx", 2 ) );
     derp.close();
-    QVERIFY(QFile::exists(filePath));
-    QVERIFY(QFile::remove(filePath));
+    QVERIFY( QFile::exists( filePath ) );
+    QVERIFY( QFile::remove( filePath ) );
 
     // Once the information is valid, though, the file is written
     make_valid_loshinfo( i );
@@ -194,18 +194,49 @@ LOSHTests::testConfigWriting()
 }
 
 
-void LOSHTests::testJob()
+void
+LOSHTests::testJob()
 {
     QTemporaryDir tempRoot( QDir::tempPath() + QStringLiteral( "/test-job-XXXXXX" ) );
     QVERIFY( tempRoot.isValid() );
     auto* ss = file_setup( tempRoot );
     QVERIFY( ss );
+    Calamares::GlobalStorage* gs
+        = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
+    QVERIFY( gs );
+
+    {
+        QDir d( tempRoot.path() );
+        d.mkdir( "etc" );
+    }
+
+    QVERIFY( !LOSHInfo::fromGlobalStorage().isValid() );
+    QVariantList outerPartition;
+    QVariantMap innerPartition;
+    innerPartition.insert( "mountPoint", "/" );
+    innerPartition.insert( "fs", "ext4" );
+    innerPartition.insert( "luksMapperName", "root" );
+    innerPartition.insert( "luksUUID", "0000" );
+    outerPartition.append( innerPartition );
+    innerPartition.remove( "mountPoint" );
+    innerPartition.insert( "fs", "linuxswap" );
+    innerPartition.insert( "luksMapperName", "swap" );
+    innerPartition.insert( "luksUuid", "0001" );
+    outerPartition.append( innerPartition );
+    gs->insert( "partitions", outerPartition );
+    QVERIFY( LOSHInfo::fromGlobalStorage().isValid() );
 
     LOSHJob j;
-    j.setConfigurationMap(QVariantMap());
+    j.setConfigurationMap( QVariantMap() );
     auto jobresult = j.exec();
-    QVERIFY(jobresult);
-    QVERIFY( QFile::exists( tempRoot.filePath( "etc/openswap.conf" ) ) );
+    QVERIFY( jobresult );
+
+    {
+        QFile f( tempRoot.filePath( "etc/openswap.conf" ) );
+        QVERIFY( f.exists() );
+        QVERIFY( f.open( QIODevice::ReadOnly ) );
+        cDebug() << f.readAll();
+    }
 }
 
 

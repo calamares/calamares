@@ -14,6 +14,7 @@
 #include "utils/Logger.h"
 #include "utils/Permissions.h"
 #include "utils/PluginFactory.h"
+#include "utils/String.h"
 #include "utils/Variant.h"
 
 #include <QList>
@@ -116,6 +117,64 @@ LOSHJob::setConfigurationMap( const QVariantMap& configurationMap )
 {
     m_configFilePath = CalamaresUtils::getString(
         configurationMap, QStringLiteral( "configFilePath" ), QStringLiteral( "/etc/openswap.conf" ) );
+}
+
+STATICTEST void
+globalStoragePartitionInfo( Calamares::GlobalStorage* gs, LOSHInfo& info )
+{
+    if ( !gs )
+    {
+        return;
+    }
+    QVariantList l = gs->value( "partitions" ).toList();
+    if ( l.isEmpty() )
+    {
+        return;
+    }
+
+    for ( const auto& pv : l )
+    {
+        const QVariantMap partition = pv.toMap();
+        if ( !partition.isEmpty() )
+        {
+            QString mountPoint = partition.value( "mountPoint" ).toString();
+            QString fileSystem = partition.value( "fs" ).toString();
+            QString luksMapperName = partition.value( "luksMapperName" ).toString();
+            // if partition["fs"] == "linuxswap" and "luksMapperName" in partition:
+            if ( fileSystem == QStringLiteral( "linuxswap" ) && !luksMapperName.isEmpty() )
+            {
+                info.swap_outer_uuid = partition.value( "luksUuid" ).toString();
+                info.swap_mapper_name = luksMapperName;
+            }
+            else if ( mountPoint == QStringLiteral( "/" ) && !luksMapperName.isEmpty() )
+            {
+
+                info.mountable_keyfile_device = QStringLiteral( "/dev/mapper/" ) + luksMapperName;
+            }
+        }
+    }
+
+    if ( !info.mountable_keyfile_device.isEmpty() && !info.swap_outer_uuid.isEmpty() )
+    {
+        info.swap_device_path = QStringLiteral( "/dev/disk/by-uuid/" ) + info.swap_outer_uuid;
+    }
+
+    QString btrfsRootSubvolume = gs->value( "btrfsRootSubvolume" ).toString();
+    if ( !btrfsRootSubvolume.isEmpty() )
+    {
+        CalamaresUtils::removeLeading( btrfsRootSubvolume, '/' );
+        info.keyfile_device_mount_options
+            = QStringLiteral( "keyfile_device_mount_options=--options=subvol=" ) + btrfsRootSubvolume;
+    }
+}
+
+LOSHInfo
+LOSHInfo::fromGlobalStorage()
+{
+    LOSHInfo i {};
+    globalStoragePartitionInfo(
+        Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr, i );
+    return i;
 }
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( LOSHJobFactory, registerPlugin< LOSHJob >(); )
