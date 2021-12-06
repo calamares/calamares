@@ -243,14 +243,8 @@ public:
     }
 
 private:
-#if ( QT_VERSION < QT_VERSION_CHECK( 5, 15, 0 ) )
-    // TODO: 3.3 remove because newer Qt does support constness
     const char* m_message = nullptr;
     QString m_path;
-#else
-    const char* const m_message = nullptr;
-    QString const m_path;
-#endif
 };
 
 STATICTEST inline QDebug&
