@@ -170,23 +170,23 @@ fillModel( PackageListModel* model, const QVariantList& items )
             cWarning() << "Loading AppData XML is not supported.";
 #endif
         }
-        else if ( item_map.contains( "appstream" ) )
-        {
-#ifdef HAVE_APPSTREAM
-            if ( !pool )
-            {
-                pool = std::make_unique< AppStream::Pool >();
-                pool->setLocale( QStringLiteral( "ALL" ) );
-                poolOk = pool->load();
-            }
-            if ( pool && poolOk )
-            {
-                model->addPackage( fromAppStream( *pool, item_map ) );
-            }
-#else
-            cWarning() << "Loading AppStream data is not supported.";
-#endif
-        }
+        // else if ( item_map.contains( "appstream" ) )
+        // {
+// #ifdef HAVE_APPSTREAM
+//             if ( !pool )
+//             {
+//                 pool = std::make_unique< AppStream::Pool >();
+//                 pool->setLocale( QStringLiteral( "ALL" ) );
+//                 poolOk = pool->load();
+//             }
+//             if ( pool && poolOk )
+//             {
+//                 model->addPackage( fromAppStream( *pool, item_map ) );
+//             }
+// #else
+//             cWarning() << "Loading AppStream data is not supported.";
+// #endif
+        // }
         else
         {
             model->addPackage( PackageItem( item_map ) );
