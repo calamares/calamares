@@ -18,6 +18,7 @@
 #include <KParts/ReadOnlyPart>
 #include <KParts/kde_terminal_interface.h>
 #include <KService>
+#include <kcoreaddons_version.h>
 
 #include <QApplication>
 #include <QDir>
@@ -41,8 +42,10 @@ InteractiveTerminalPage::InteractiveTerminalPage( QWidget* parent )
 void
 InteractiveTerminalPage::errorKonsoleNotInstalled()
 {
-    QMessageBox mb(QMessageBox::Critical,
-        tr( "Konsole not installed" ), tr( "Please install KDE Konsole and try again!" ), QMessageBox::Ok );
+    QMessageBox mb( QMessageBox::Critical,
+                    tr( "Konsole not installed" ),
+                    tr( "Please install KDE Konsole and try again!" ),
+                    QMessageBox::Ok );
     Calamares::fixButtonLabels( &mb );
     mb.exec();
 }
@@ -54,20 +57,30 @@ InteractiveTerminalPage::onActivate()
     {
         return;
     }
-    // For whatever reason, instead of simply linking against a library we
-    // need to do a runtime query to KService just to get a sodding terminal
-    // widget.
+
+#if KCOREADDONS_VERSION_MAJOR != 5
+#error Incompatible with not-KF5
+#endif
+#if KCOREADDONS_VERSION_MINOR >= 86
+    // 5.86 deprecated a bunch of KService and PluginFactory and related methods
+    auto md = KPluginMetaData::findPluginById( QString(), "konsolepart" );
+    if ( !md.isValid() )
+    {
+        errorKonsoleNotInstalled();
+        return;
+    }
+    auto* p = KPluginFactory::instantiatePlugin< KParts::ReadOnlyPart >( md, this ).plugin;
+#else
     KService::Ptr service = KService::serviceByDesktopName( "konsolepart" );
     if ( !service )
     {
-        // And all of this hoping the Konsole application is installed. If not,
-        // tough cookies.
         errorKonsoleNotInstalled();
         return;
     }
 
     // Create one instance of konsolepart.
     KParts::ReadOnlyPart* p = service->createInstance< KParts::ReadOnlyPart >( this, this, {} );
+#endif
     if ( !p )
     {
         // One more opportunity for the loading operation to fail.
@@ -91,7 +104,6 @@ InteractiveTerminalPage::onActivate()
 
     m_termHostWidget = p->widget();
     m_layout->addWidget( m_termHostWidget );
-    cDebug() << "Part widget ought to be" << m_termHostWidget->metaObject()->className();
 
     t->showShellInDir( QDir::home().path() );
     t->sendInput( QString( "%1\n" ).arg( m_command ) );
