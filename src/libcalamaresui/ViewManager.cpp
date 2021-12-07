@@ -17,6 +17,7 @@
 #include "JobQueue.h"
 #include "Settings.h"
 
+#include "utils/ErrorDialog/ErrorDialog.h"
 #include "utils/Logger.h"
 #include "utils/Paste.h"
 #include "utils/Retranslator.h"
@@ -29,6 +30,7 @@
 #include <QApplication>
 #include <QBoxLayout>
 #include <QClipboard>
+#include <QDialogButtonBox>
 #include <QFile>
 #include <QMessageBox>
 #include <QMetaObject>
@@ -160,46 +162,26 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
 
     QString heading
         = Calamares::Settings::instance()->isSetupMode() ? tr( "Setup Failed" ) : tr( "Installation Failed" );
-    QString pasteMsg = tr( "Would you like to paste the install log to the web?" );
-    QString text = "<p>" + message + "</p>";
-    if ( !details.isEmpty() )
-    {
-        text += "<p>"
-            + CalamaresUtils::truncateMultiLine( details, CalamaresUtils::LinesStartEnd { 6, 2 } )
-                  .replace( '\n', QStringLiteral( "<br/>" ) )
-            + "</p>";
-    }
-    if ( shouldOfferWebPaste )
-    {
-        text += "<p>" + pasteMsg + "</p>";
-    }
 
-    QMessageBox* msgBox = new QMessageBox();
-    msgBox->setIcon( QMessageBox::Critical );
-    msgBox->setWindowTitle( tr( "Error" ) );
-    msgBox->setText( "<strong>" + heading + "</strong>" );
-    msgBox->setInformativeText( text );
-    if ( shouldOfferWebPaste )
-    {
-        msgBox->setStandardButtons( QMessageBox::Yes | QMessageBox::No );
-        msgBox->setDefaultButton( QMessageBox::No );
-    }
-    else
-    {
-        msgBox->setStandardButtons( QMessageBox::Close );
-        msgBox->setDefaultButton( QMessageBox::Close );
-    }
-    Calamares::fixButtonLabels( msgBox );
-    msgBox->show();
+    ErrorDialog* errorDialog = new ErrorDialog();
+    errorDialog->setWindowTitle( tr( "Error" ) );
+    errorDialog->setHeading( "<strong>" + heading + "</strong>" );
+    errorDialog->setInformativeText( message );
+    errorDialog->setShouldOfferWebPaste( shouldOfferWebPaste );
+    errorDialog->setDetails( details );
+    errorDialog->show();
 
     cDebug() << "Calamares will quit when the dialog closes.";
-    connect( msgBox, &QMessageBox::buttonClicked, [msgBox]( QAbstractButton* button ) {
-        if ( msgBox->buttonRole( button ) == QMessageBox::ButtonRole::YesRole )
-        {
-            CalamaresUtils::Paste::doLogUploadUI( msgBox );
-        }
-        QApplication::quit();
-    } );
+    connect( errorDialog,
+             &QDialog::finished,
+             [ errorDialog ]( int result )
+             {
+                 if ( result == QDialog::Accepted && errorDialog->shouldOfferWebPaste() )
+                 {
+                     CalamaresUtils::Paste::doLogUploadUI( errorDialog );
+                 }
+                 QApplication::quit();
+             } );
 }
 
 
