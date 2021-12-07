@@ -20,7 +20,6 @@ set( calamaresui_SOURCES
     utils/CalamaresUtilsGui.cpp
     utils/ImageRegistry.cpp
     utils/Paste.cpp
-    utils/ErrorDialog/ErrorDialog.cpp
 
     viewpages/BlankViewStep.cpp
     viewpages/ExecutionViewStep.cpp
@@ -28,6 +27,7 @@ set( calamaresui_SOURCES
     viewpages/ViewStep.cpp
 
     widgets/ClickableLabel.cpp
+    widgets/ErrorDialog.cpp
     widgets/FixedAspectRatioLabel.cpp
     widgets/PrettyRadioButton.cpp
     widgets/TranslationFix.cpp
@@ -76,8 +76,8 @@ calamares_add_library( calamaresui
         Qt5::Svg
     RESOURCES libcalamaresui.qrc
     EXPORT Calamares
-    UI 
-        utils/ErrorDialog/ErrorDialog.ui    
+    UI
+        utils/ErrorDialog/ErrorDialog.ui
     VERSION ${CALAMARES_VERSION_SHORT}
 )
 target_link_libraries( calamaresui PRIVATE yamlcpp::yamlcpp )
