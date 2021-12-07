@@ -152,8 +152,6 @@ ViewManager::insertViewStep( int before, ViewStep* step )
 void
 ViewManager::onInstallationFailed( const QString& message, const QString& details )
 {
-    bool shouldOfferWebPaste = bool( Calamares::Branding::instance()->uploadServer() );
-
     cError() << "Installation failed:" << message;
     cDebug() << Logger::SubEntry << "- message:" << message;
     cDebug() << Logger::SubEntry << "- details:" << Logger::NoQuote << details;
@@ -165,7 +163,7 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
     errorDialog->setWindowTitle( tr( "Error" ) );
     errorDialog->setHeading( "<strong>" + heading + "</strong>" );
     errorDialog->setInformativeText( message );
-    errorDialog->setShouldOfferWebPaste( shouldOfferWebPaste );
+    errorDialog->setShouldOfferWebPaste( Calamares::Branding::instance()->uploadServer() );
     errorDialog->setDetails( details );
     errorDialog->show();
 
