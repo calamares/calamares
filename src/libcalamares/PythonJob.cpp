@@ -23,6 +23,11 @@ static const char* s_preScript = nullptr;
 
 namespace bp = boost::python;
 
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdisabled-macro-expansion"
+#endif
+
 BOOST_PYTHON_FUNCTION_OVERLOADS( mount_overloads, CalamaresPython::mount, 2, 4 );
 BOOST_PYTHON_FUNCTION_OVERLOADS( target_env_call_str_overloads, CalamaresPython::target_env_call, 1, 3 );
 BOOST_PYTHON_FUNCTION_OVERLOADS( target_env_call_list_overloads, CalamaresPython::target_env_call, 1, 3 );
@@ -41,6 +46,10 @@ BOOST_PYTHON_FUNCTION_OVERLOADS( target_env_process_output_overloads,
                                  1,
                                  4 );
 BOOST_PYTHON_FUNCTION_OVERLOADS( host_env_process_output_overloads, CalamaresPython::host_env_process_output, 1, 4 );
+
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
 
 BOOST_PYTHON_MODULE( libcalamares )
 {
