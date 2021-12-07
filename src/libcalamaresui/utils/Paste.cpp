@@ -69,7 +69,8 @@ STATICTEST QString
 ficheLogUpload( const QByteArray& pasteData, const QUrl& serverUrl, QObject* parent )
 {
     QTcpSocket* socket = new QTcpSocket( parent );
-    socket->connectToHost( serverUrl.host(), serverUrl.port() );
+    // 16 bits of port-number
+    socket->connectToHost( serverUrl.host(), quint16( serverUrl.port() ) );
 
     if ( !socket->waitForConnected() )
     {
