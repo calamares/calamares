@@ -141,6 +141,8 @@ void
 PartitionLayout::setDefaultFsType( FileSystem::Type defaultFsType )
 {
     using FileSystem = FileSystem::Type;
+    QT_WARNING_PUSH
+    QT_WARNING_DISABLE_CLANG( "-Wswitch-enum" )
     switch ( defaultFsType )
     {
     case FileSystem::Unknown:
@@ -196,6 +198,7 @@ PartitionLayout::setDefaultFsType( FileSystem::Type defaultFsType )
                    << "Using ext4 instead.";
         defaultFsType = FileSystem::Ext4;
     }
+    QT_WARNING_POP
 
     m_defaultFsType = defaultFsType;
 }
