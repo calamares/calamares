@@ -17,7 +17,6 @@
 #include "JobQueue.h"
 #include "Settings.h"
 
-#include "utils/ErrorDialog/ErrorDialog.h"
 #include "utils/Logger.h"
 #include "utils/Paste.h"
 #include "utils/Retranslator.h"
@@ -25,6 +24,7 @@
 #include "viewpages/BlankViewStep.h"
 #include "viewpages/ExecutionViewStep.h"
 #include "viewpages/ViewStep.h"
+#include "widgets/ErrorDialog.h"
 #include "widgets/TranslationFix.h"
 
 #include <QApplication>
