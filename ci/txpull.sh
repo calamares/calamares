@@ -108,6 +108,21 @@ awk '
 		skip=0; print $0;
 	}}' < calamares.desktop > calamares.desktop.new
 mv calamares.desktop.new calamares.desktop
+# Now group translated key-names (Name, Icon, Description, ..) by sorted
+# language key rather than random-ish language-key order (which shuffles
+# entries around).
+#
+# First, the non-translated lines
+grep -v '\[.*\]=' calamares.desktop  > calamares.desktop.new
+# The translated lines:
+# - replace (the first) [] by | so we have a consistent field separator
+# - sort based on field 2, then 1 (language code, then reversed key-name)
+# - replace the first | by [, the first (remaining) | by ]
+# Effectively this puts the fields in this order: Name, Icon, Generic Name,
+# Comment -- within each language key. This keeps churn down since the
+# language codes and key-names are constant.
+grep '\[.*\]=' calamares.desktop | sed -e 's/\[/|/' -e 's/\]/|/' | sort -t '|' -k 2,2 -k 1,1r | sed -e 's/|/\[/' | sed -e 's/|/\]/' >> calamares.desktop.new
+mv calamares.desktop.new calamares.desktop
 git add --verbose calamares.desktop
 git commit "$AUTHOR" --message="i18n: [desktop] $BOILERPLATE" | true
 
