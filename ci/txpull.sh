@@ -116,6 +116,19 @@ git commit "$AUTHOR" --message="i18n: [desktop] $BOILERPLATE" | true
 # PO-Created line). This applies only to modules which use po-files.
 git diff --numstat src/modules | awk '($1==1 && $2==1){print $3}' | xargs git checkout --
 
+# sed either wants -i'' (GNU sed) or -i '' (BSD sed) to
+# replace in a file, with no backup extension. Define
+# a `reinplace` command to deal with the difference.
+if test FreeBSD = `uname` ; then
+	reinplace() { 
+		sed -i '' "$@"
+	}
+else
+	reinplace() { 
+		sed -i'' "$@"
+	}
+fi
+
 # Go through the Python modules; those with a lang/ subdir have their
 # own complete gettext-based setup.
 for MODULE_DIR in $(find src/modules -maxdepth 1 -mindepth 1 -type d) ; do
@@ -125,7 +138,7 @@ for MODULE_DIR in $(find src/modules -maxdepth 1 -mindepth 1 -type d) ; do
 		if [ -d ${MODULE_DIR}/lang ]; then
 			# Convert PO files to MO files
 			for POFILE in $(find ${MODULE_DIR} -name "*.po") ; do
-				sed -i'' '/^"Content-Type/s/CHARSET/UTF-8/' $POFILE
+				reinplace '/^"Content-Type/s/CHARSET/UTF-8/' $POFILE
 				# msgfmt -o ${POFILE%.po}.mo $POFILE
 			done
 			git add --verbose ${MODULE_DIR}/lang/*
@@ -135,7 +148,7 @@ for MODULE_DIR in $(find src/modules -maxdepth 1 -mindepth 1 -type d) ; do
 done
 
 for POFILE in $(find lang -name "python.po") ; do
-	sed -i'' '/^"Content-Type/s/CHARSET/UTF-8/' $POFILE
+	reinplace '/^"Content-Type/s/CHARSET/UTF-8/' $POFILE
 	# msgfmt -o ${POFILE%.po}.mo $POFILE
 done
 git add --verbose lang/python*
