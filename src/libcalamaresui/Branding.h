@@ -227,7 +227,14 @@ public:
      * is irrelevant and usually empty), the URL for the upload and the size limit of upload
      * in bytes (for configuration value < 0, it serves -1, which stands for having no limit).
      */
-    using UploadServerInfo = std::tuple< UploadServerType, QUrl, qint64 >;
+    struct UploadServerInfo
+    {
+        UploadServerType type;
+        QUrl url;
+        qint64 size;
+
+        operator bool() const { return type != Calamares::Branding::UploadServerType::None && size != 0; }
+    };
     UploadServerInfo uploadServer() const { return m_uploadServer; }
 
     /**

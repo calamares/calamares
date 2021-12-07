@@ -17,7 +17,6 @@
 #include "JobQueue.h"
 #include "Settings.h"
 
-#include "utils/ErrorDialog/ErrorDialog.h"
 #include "utils/Logger.h"
 #include "utils/Paste.h"
 #include "utils/Retranslator.h"
@@ -25,6 +24,7 @@
 #include "viewpages/BlankViewStep.h"
 #include "viewpages/ExecutionViewStep.h"
 #include "viewpages/ViewStep.h"
+#include "widgets/ErrorDialog.h"
 #include "widgets/TranslationFix.h"
 
 #include <QApplication>
@@ -152,10 +152,6 @@ ViewManager::insertViewStep( int before, ViewStep* step )
 void
 ViewManager::onInstallationFailed( const QString& message, const QString& details )
 {
-    bool shouldOfferWebPaste = std::get< 0 >( Calamares::Branding::instance()->uploadServer() )
-            != Calamares::Branding::UploadServerType::None
-        and std::get< 2 >( Calamares::Branding::instance()->uploadServer() ) != 0;
-
     cError() << "Installation failed:" << message;
     cDebug() << Logger::SubEntry << "- message:" << message;
     cDebug() << Logger::SubEntry << "- details:" << Logger::NoQuote << details;
@@ -167,7 +163,7 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
     errorDialog->setWindowTitle( tr( "Error" ) );
     errorDialog->setHeading( "<strong>" + heading + "</strong>" );
     errorDialog->setInformativeText( message );
-    errorDialog->setShouldOfferWebPaste( shouldOfferWebPaste );
+    errorDialog->setShouldOfferWebPaste( Calamares::Branding::instance()->uploadServer() );
     errorDialog->setDetails( details );
     errorDialog->show();
 
