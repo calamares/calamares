@@ -17,7 +17,6 @@
 namespace Calamares
 {
 
-
 ErrorDialog::ErrorDialog( QWidget* parent )
     : QDialog( parent )
     , ui( new Ui::ErrorDialog )
@@ -32,7 +31,6 @@ ErrorDialog::~ErrorDialog()
 {
     delete ui;
 }
-
 
 QString
 ErrorDialog::heading() const
@@ -55,31 +53,32 @@ ErrorDialog::details() const
 void
 ErrorDialog::setHeading( const QString& newHeading )
 {
-    if ( ui->headingLabel->text() == newHeading )
-        return;
-    ui->headingLabel->setText( newHeading );
-    emit headingChanged();
+    if ( ui->headingLabel->text() != newHeading )
+    {
+        ui->headingLabel->setText( newHeading );
+        emit headingChanged();
+    }
 }
 
 void
 ErrorDialog::setInformativeText( const QString& newInformativeText )
 {
-    if ( ui->informativeTextLabel->text() == newInformativeText )
-        return;
-    ui->informativeTextLabel->setText( newInformativeText );
-    emit informativeTextChanged();
+    if ( ui->informativeTextLabel->text() != newInformativeText )
+    {
+        ui->informativeTextLabel->setText( newInformativeText );
+        emit informativeTextChanged();
+    }
 }
 
 void
 ErrorDialog::setDetails( const QString& newDetails )
 {
-    if ( ui->detailsBrowser->toPlainText() == newDetails )
-        return;
-    ui->detailsBrowser->setPlainText( newDetails );
-
-    ui->detailsWidget->setVisible( !ui->detailsBrowser->toPlainText().trimmed().isEmpty() );
-
-    emit detailsChanged();
+    if ( ui->detailsBrowser->toPlainText() != newDetails )
+    {
+        ui->detailsBrowser->setPlainText( newDetails );
+        ui->detailsWidget->setVisible( !ui->detailsBrowser->toPlainText().trimmed().isEmpty() );
+        emit detailsChanged();
+    }
 }
 
 bool
@@ -91,18 +90,17 @@ ErrorDialog::shouldOfferWebPaste() const
 void
 ErrorDialog::setShouldOfferWebPaste( bool newShouldOfferWebPaste )
 {
-    if ( m_shouldOfferWebPaste == newShouldOfferWebPaste )
-        return;
-    m_shouldOfferWebPaste = newShouldOfferWebPaste;
+    if ( m_shouldOfferWebPaste != newShouldOfferWebPaste )
+    {
+        m_shouldOfferWebPaste = newShouldOfferWebPaste;
 
-    ui->offerWebPasteLabel->setVisible( m_shouldOfferWebPaste );
+        ui->offerWebPasteLabel->setVisible( m_shouldOfferWebPaste );
+        ui->buttonBox->setStandardButtons( m_shouldOfferWebPaste ? ( QDialogButtonBox::Yes | QDialogButtonBox::No )
+                                                                 : QDialogButtonBox::Close );
+        fixButtonLabels( ui->buttonBox );
 
-    ui->buttonBox->setStandardButtons( m_shouldOfferWebPaste ? ( QDialogButtonBox::Yes | QDialogButtonBox::No )
-                                                             : QDialogButtonBox::Close );
-
-    fixButtonLabels( ui->buttonBox );
-
-    emit shouldOfferWebPasteChanged();
+        emit shouldOfferWebPasteChanged();
+    }
 }
 
 }  // namespace Calamares
