@@ -70,6 +70,10 @@ private Q_SLOTS:
     void testStringTruncation();
     void testStringTruncationShorter();
     void testStringTruncationDegenerate();
+    void testStringRemoveLeading_data();
+    void testStringRemoveLeading();
+    void testStringRemoveTrailing_data();
+    void testStringRemoveTrailing();
 
     /** @section Test Runner directory-manipulation. */
     void testRunnerDirs();
@@ -754,6 +758,64 @@ LibCalamaresTests::testStringTruncationDegenerate()
     }
 }
 
+void
+LibCalamaresTests::testStringRemoveLeading_data()
+{
+    QTest::addColumn< QString >( "string" );
+    QTest::addColumn< char >( "c" );
+    QTest::addColumn< QString >( "result" );
+
+    QTest::newRow( "empty" ) << QString() << '/' << QString();
+    QTest::newRow( "one-slash" ) << QStringLiteral( "/tmp" ) << '/' << QStringLiteral( "tmp" );
+    QTest::newRow( "two-slash" ) << QStringLiteral( "//tmp" ) << '/' << QStringLiteral( "tmp" );
+    QTest::newRow( "multi-slash" ) << QStringLiteral( "/tmp/p" ) << '/' << QStringLiteral( "tmp/p" );
+    QTest::newRow( "later-slash" ) << QStringLiteral( "@/tmp" ) << '/' << QStringLiteral( "@/tmp" );
+    QTest::newRow( "all-one-slash" ) << QStringLiteral( "/" ) << '/' << QString();
+    QTest::newRow( "all-many-slash" ) << QStringLiteral( "////////////////////" ) << '/' << QString();
+    QTest::newRow( "trailing" ) << QStringLiteral( "tmp/" ) << '/' << QStringLiteral( "tmp/" );
+}
+
+void
+LibCalamaresTests::testStringRemoveLeading()
+{
+    QFETCH( QString, string );
+    QFETCH( char, c );
+    QFETCH( QString, result );
+
+    const QString initial = string;
+    CalamaresUtils::removeLeading( string, c );
+    QCOMPARE( string, result );
+}
+
+void
+LibCalamaresTests::testStringRemoveTrailing_data()
+{
+    QTest::addColumn< QString >( "string" );
+    QTest::addColumn< char >( "c" );
+    QTest::addColumn< QString >( "result" );
+
+    QTest::newRow( "empty" ) << QString() << '/' << QString();
+    QTest::newRow( "one-slash" ) << QStringLiteral( "/tmp" ) << '/' << QStringLiteral( "/tmp" );
+    QTest::newRow( "two-slash" ) << QStringLiteral( "//tmp" ) << '/' << QStringLiteral( "//tmp" );
+    QTest::newRow( "multi-slash" ) << QStringLiteral( "/tmp//p/" ) << '/' << QStringLiteral( "/tmp//p" );
+    QTest::newRow( "later-slash" ) << QStringLiteral( "@/tmp/@" ) << '/' << QStringLiteral( "@/tmp/@" );
+    QTest::newRow( "later-slash2" ) << QStringLiteral( "@/tmp/@//" ) << '/' << QStringLiteral( "@/tmp/@" );
+    QTest::newRow( "all-one-slash" ) << QStringLiteral( "/" ) << '/' << QString();
+    QTest::newRow( "all-many-slash" ) << QStringLiteral( "////////////////////" ) << '/' << QString();
+    QTest::newRow( "trailing" ) << QStringLiteral( "tmp/" ) << '/' << QStringLiteral( "tmp" );
+}
+
+void
+LibCalamaresTests::testStringRemoveTrailing()
+{
+    QFETCH( QString, string );
+    QFETCH( char, c );
+    QFETCH( QString, result );
+
+    const QString initial = string;
+    CalamaresUtils::removeTrailing( string, c );
+    QCOMPARE( string, result );
+}
 
 static QString
 dirname( const QTemporaryDir& d )
@@ -1001,10 +1063,10 @@ LibCalamaresTests::testReadWriteFile()
     {
         auto fullPath = ss->createTargetFile( "test0", otherContents );
         QVERIFY( !fullPath );  // Failed, because it won't overwrite
-        QCOMPARE( fullPath.code(), decltype(fullPath)::Code::AlreadyExists );
-        QVERIFY( fullPath.path().isEmpty() ); // Because it wasn't written
+        QCOMPARE( fullPath.code(), decltype( fullPath )::Code::AlreadyExists );
+        QVERIFY( fullPath.path().isEmpty() );  // Because it wasn't written
 
-        QFileInfo fi( tempRoot.filePath( "test0" ) ); // Compute the name some other way
+        QFileInfo fi( tempRoot.filePath( "test0" ) );  // Compute the name some other way
         QVERIFY( fi.exists() );
         QVERIFY( fi.isFile() );
         QCOMPARE( fi.size(), 0 );
