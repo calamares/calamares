@@ -14,6 +14,7 @@
 
 #include "UmountJob.h"
 
+#include "partition/Mount.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
@@ -21,8 +22,9 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 
-#include <QFile>
-
+#include <QCoreApplication>
+#include <QDir>
+#include <QList>
 
 UmountJob::UmountJob( QObject* parent )
     : Calamares::CppJob( parent )
@@ -37,9 +39,114 @@ UmountJob::prettyName() const
     return tr( "Unmount file systems." );
 }
 
+static Calamares::JobResult
+unmountTargetMounts( const QString& rootMountPoint )
+{
+    QDir targetMount( rootMountPoint );
+    if ( !targetMount.exists() )
+    {
+        return Calamares::JobResult::internalError(
+            QCoreApplication::translate( UmountJob::staticMetaObject.className(), "Could not unmount target system." ),
+            QCoreApplication::translate( UmountJob::staticMetaObject.className(),
+                                         "The target system is not mounted at '%1'." )
+                .arg( rootMountPoint ),
+            Calamares::JobResult::GenericError );
+    }
+    QString targetMountPath = targetMount.absolutePath();
+    if ( !targetMountPath.endsWith( '/' ) )
+    {
+        targetMountPath.append( '/' );
+    }
+
+    using MtabInfo = CalamaresUtils::Partition::MtabInfo;
+    auto targetMounts = MtabInfo::fromMtabFilteredByPrefix( targetMountPath );
+    std::sort( targetMounts.begin(), targetMounts.end(), MtabInfo::mountPointOrder );
+
+    for ( const auto& m : qAsConst( targetMounts ) )
+    {
+        if ( CalamaresUtils::Partition::unmount( m.mountPoint, { "-lv" } ) )
+        {
+            // Returns the program's exit code, so 0 is success
+            return Calamares::JobResult::error(
+                QCoreApplication::translate( UmountJob::staticMetaObject.className(),
+                                             "Could not unmount target system." ),
+                QCoreApplication::translate( UmountJob::staticMetaObject.className(),
+                                             "The device '%1' is mounted in the target system. It is mounted at '%2'. "
+                                             "The device could not be unmounted." )
+                    .arg( m.device, m.mountPoint ) );
+        }
+    }
+    return Calamares::JobResult::ok();
+}
+
+static Calamares::JobResult
+exportZFSPools( const QString& rootMountPoint )
+{
+    auto* gs = Calamares::JobQueue::instance()->globalStorage();
+    QStringList poolNames;
+    {
+        // The pools are dictionaries / VariantMaps
+        auto zfs_pool_list = gs->value( "zfsPoolInfo" ).toList();
+        for ( const auto& v : zfs_pool_list )
+        {
+            auto m = v.toMap();
+            QString poolName = m.value( "poolName" ).toString();
+            if ( !poolName.isEmpty() )
+            {
+                poolNames.append( poolName );
+            }
+        }
+        poolNames.sort();
+    }
+
+    for ( const auto& poolName : poolNames )
+    {
+        auto result = CalamaresUtils::System::runCommand( { "zpool", "export", poolName }, std::chrono::seconds( 30 ) );
+        if ( result.getExitCode() )
+        {
+            cWarning() << "Failed to export pool" << result.getOutput();
+        }
+    }
+    // Exporting ZFS pools does not cause the install to fail
+    return Calamares::JobResult::ok();
+}
+
+
 Calamares::JobResult
 UmountJob::exec()
 {
+    const auto* sys = CalamaresUtils::System::instance();
+    if ( !sys )
+    {
+        return Calamares::JobResult::internalError(
+            "UMount", tr( "No target system available." ), Calamares::JobResult::InvalidConfiguration );
+    }
+
+    Calamares::GlobalStorage* gs
+        = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
+    if ( !gs || gs->value( "rootMountPoint" ).toString().isEmpty() )
+    {
+        return Calamares::JobResult::internalError(
+            "UMount", tr( "No rootMountPoint is set." ), Calamares::JobResult::InvalidConfiguration );
+    }
+
+    // Do the unmounting of target-system filesystems
+    {
+        auto r = unmountTargetMounts( gs->value( "rootMountPoint" ).toString() );
+        if ( !r )
+        {
+            return r;
+        }
+    }
+    // For ZFS systems, export the pools
+    {
+        auto r = exportZFSPools( gs->value( "rootMountPoint" ).toString() );
+        if ( !r )
+        {
+            return r;
+        }
+    }
+
     return Calamares::JobResult::ok();
 }
 
