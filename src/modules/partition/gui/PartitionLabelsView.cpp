@@ -12,6 +12,7 @@
 
 #include "core/ColorUtils.h"
 #include "core/PartitionModel.h"
+#include "core/SizeUtils.h"
 
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
@@ -19,8 +20,6 @@
 
 #include <kpmcore/core/device.h>
 #include <kpmcore/fs/filesystem.h>
-
-#include <KFormat>
 
 // Qt
 #include <QGuiApplication>
@@ -39,7 +38,7 @@ static QStringList
 buildUnknownDisklabelTexts( Device* dev )
 {
     QStringList texts = { QObject::tr( "Unpartitioned space or unknown partition table" ),
-                          KFormat().formatByteSize( dev->totalLogical() * dev->logicalSize() ) };
+                          formatByteSize( dev->totalLogical() * dev->logicalSize() ) };
     return texts;
 }
 

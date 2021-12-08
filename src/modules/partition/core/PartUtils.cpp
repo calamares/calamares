@@ -451,6 +451,8 @@ isEfiFilesystemSuitableType( const Partition* candidate )
 {
     auto type = candidate->fileSystem().type();
 
+    QT_WARNING_PUSH
+    QT_WARNING_DISABLE_CLANG( "-Wswitch-enum" )
     switch ( type )
     {
     case FileSystem::Type::Fat32:
@@ -465,6 +467,7 @@ isEfiFilesystemSuitableType( const Partition* candidate )
         cWarning() << "EFI boot partition must be FAT32";
         return false;
     }
+    QT_WARNING_POP
 }
 
 bool
@@ -526,14 +529,15 @@ efiFilesystemMinimumSize()
 {
     using CalamaresUtils::Units::operator""_MiB;
 
-    auto uefisys_part_sizeB = 300_MiB;
+    size_t uefisys_part_sizeB = 300_MiB;
 
     // The default can be overridden; the key used here comes
     // from the partition module Config.cpp
     auto* gs = Calamares::JobQueue::instance()->globalStorage();
     if ( gs->contains( "efiSystemPartitionSize_i" ) )
     {
-        uefisys_part_sizeB = gs->value( "efiSystemPartitionSize_i" ).toLongLong();
+        qint64 v = gs->value( "efiSystemPartitionSize_i" ).toLongLong();
+        uefisys_part_sizeB = v > 0 ? static_cast< size_t >( v ) : 0;
     }
     // There is a lower limit of what can be configured
     if ( uefisys_part_sizeB < 32_MiB )
