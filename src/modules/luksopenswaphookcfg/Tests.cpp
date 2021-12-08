@@ -73,6 +73,12 @@ LOSHTests::testAssignmentExtraction_data()
     QTest::newRow( "assignment5" ) << QStringLiteral( "#   # cows=1" ) << QStringLiteral( "cows" );
     QTest::newRow( "assignment6" ) << QStringLiteral( "# moose='cool'  # not cows" ) << QStringLiteral( "moose" );
     QTest::newRow( "assignment7" ) << QStringLiteral( " moose=cows=42" ) << QStringLiteral( "moose" );
+    QTest::newRow( "assignment8" ) << QStringLiteral( "#swap_device=/dev/something" )
+                                   << QStringLiteral( "swap_device" );
+    QTest::newRow( "assignment9" ) << QStringLiteral( "# swap_device=/dev/something" )
+                                   << QStringLiteral( "swap_device" );
+    QTest::newRow( "assignment10" ) << QStringLiteral( "swap_device=/dev/something" )
+                                    << QStringLiteral( "swap_device" );
 }
 
 void
