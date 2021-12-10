@@ -61,6 +61,7 @@ calamares_add_test(
     SOURCES
         ${PartitionModule_SOURCE_DIR}/jobs/AutoMountManagementJob.cpp
         AutoMountTests.cpp
+    DEFINITIONS ${_partition_defs}
 )
 
 calamares_add_test(
@@ -70,4 +71,5 @@ calamares_add_test(
         ${PartitionModule_SOURCE_DIR}/core/DeviceList.cpp
     LIBRARIES
         kpmcore
+    DEFINITIONS ${_partition_defs}
 )

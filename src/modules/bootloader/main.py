@@ -224,7 +224,7 @@ def create_systemd_boot_conf(install_path, efi_dir, uuid, entry, entry_name, ker
 
     # Copy kernel and initramfs to a subdirectory of /efi partition
     files_dir = os.path.join(install_path + efi_dir, entry_name)
-    os.mkdir(files_dir)
+    os.makedirs(files_dir, exist_ok=True)
 
     kernel_path = install_path + kernel
     kernel_name = os.path.basename(kernel_path)

@@ -64,6 +64,11 @@ def write_openswap_conf(partitions, root_mount_point, openswap_conf_path):
         elif lines[i].startswith("keyfile_filename"):
             lines[i] = "keyfile_filename=crypto_keyfile.bin"
 
+        elif lines[i].startswith("#keyfile_device_mount_options"):
+            if libcalamares.globalstorage.contains("btrfsRootSubvolume"):
+                btrfs_root_subvolume = libcalamares.globalstorage.value("btrfsRootSubvolume")
+                lines[i] = "keyfile_device_mount_options=--options=subvol=" + btrfs_root_subvolume.lstrip("/")
+
     with open(os.path.join(root_mount_point,
                            openswap_conf_path), 'w') as openswap_file:
         openswap_file.write("\n".join(lines) + "\n")
@@ -84,11 +89,11 @@ def run():
     if not partitions:
         libcalamares.utils.warning("partitions is empty, {!s}".format(partitions))
         return (_("Configuration Error"),
-                _("No partitions are defined for <pre>{!s}</pre> to use." ).format("luksopenswaphookcfg"))
+                _("No partitions are defined for <pre>{!s}</pre> to use.").format("luksopenswaphookcfg"))
     if not root_mount_point:
         libcalamares.utils.warning("rootMountPoint is empty, {!s}".format(root_mount_point))
         return (_("Configuration Error"),
-                _("No root mount point is given for <pre>{!s}</pre> to use." ).format("luksopenswaphookcfg"))
+                _("No root mount point is given for <pre>{!s}</pre> to use.").format("luksopenswaphookcfg"))
 
     openswap_conf_path = openswap_conf_path.lstrip('/')
 

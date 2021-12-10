@@ -224,5 +224,26 @@ truncateMultiLine( const QString& string, CalamaresUtils::LinesStartEnd lines, C
     return front + back.right( chars.total / 2 );
 }
 
+void
+removeLeading( QString& string, QChar c )
+{
+    int count = 0;
+    while ( string.length() > count && string[ count ] == c )
+    {
+        count++;
+    }
+    string.remove( 0, count );
+}
+
+void
+removeTrailing( QString& string, QChar c )
+{
+    int lastIndex = string.length();
+    while ( lastIndex > 0 && string[ lastIndex - 1 ] == c )
+    {
+        lastIndex--;
+    }
+    string.remove( lastIndex, string.length() );
+}
 
 }  // namespace CalamaresUtils

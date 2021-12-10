@@ -100,6 +100,19 @@ DLLEXPORT QString truncateMultiLine( const QString& string,
                                      LinesStartEnd lines = LinesStartEnd { 3, 5 },
                                      CharCount chars = CharCount { 812 } );
 
+/** @brief Remove all @p c at the beginning of @p string
+ *
+ * Modifies the @p string in-place. If @p c is not the first character
+ * of @p string, the string is left unchanged; otherwise the first character
+ * is removed and the process repeats.
+ */
+DLLEXPORT void removeLeading( QString& string, QChar c );
+/** @brief Remove all @p c at the end of @p string
+ *
+ * Like removeLeading(), but at the end of the string.
+ */
+DLLEXPORT void removeTrailing( QString& string, QChar c );
+
 }  // namespace CalamaresUtils
 
 #endif

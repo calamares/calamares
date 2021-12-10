@@ -13,6 +13,7 @@
 #include "DllMacro.h"
 
 class QMessageBox;
+class QDialogButtonBox;
 
 namespace Calamares
 {
@@ -26,6 +27,8 @@ namespace Calamares
  * guess the context.
  */
 void UIDLLEXPORT fixButtonLabels( QMessageBox* );
+
+void UIDLLEXPORT fixButtonLabels( QDialogButtonBox* );
 }  // namespace Calamares
 
 #endif

@@ -7,6 +7,28 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
+# 3.2.49 (unreleased) #
+
+This release contains contributions from (alphabetically by first name):
+ - Artem Grinev
+ - Evan James
+
+Distributions are **specifically** reminded to update the *umount* module
+configuration (and to use *preservefiles* if needed).
+
+## Core ##
+ - Errors (e.g. when an installation fails for whatever reason) are displayed
+   in a dialog with a scrollable details panel, rather than growing up
+   to the size of the screen. (Thanks Artem)
+
+## Modules ##
+ - *partition* now supports "deep" btrfs subvolume names, e.g. a
+   separate subvolume for `/usr/local`. (Thanks Evan)
+ - The *umount* module now warns if the "preserve log file" feature is used.
+   This has been deprecated for a long time: use the *preservefiles* module
+   instead. A future release will turn this into an error.
+
+
 # 3.2.48 (2021-12-03) #
 
 This release contains contributions from (alphabetically by first name):

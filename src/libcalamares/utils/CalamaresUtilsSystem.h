@@ -287,6 +287,24 @@ public:
      */
     DLLEXPORT void removeTargetFile( const QString& path ) const;
 
+    /** @brief Reads a file from the target system.
+     *
+     * @param path Path to the file; this is interpreted from the root of
+     *      the target system (@see targetPath()).
+     *
+     * Does no error checking, and returns an empty list if the file does
+     * not exist.
+     *
+     * NOTE: This function is now basically the same as QFile::readAll(),
+     *       splitting into lines, but Calamares may need to change
+     *       permissions or raise privileges to actually read the file,
+     *       which is why there is an API.
+     *
+     * NOTE: Since this buffers the whole file in memory, reading big files
+     *       is not recommended.
+     */
+    DLLEXPORT QStringList readTargetFile( const QString& path ) const;
+
     /** @brief Ensure that the directory @p path exists
      *
      * @param path a full pathname to a desired directory.

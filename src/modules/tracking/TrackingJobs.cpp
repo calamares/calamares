@@ -19,6 +19,8 @@
 
 #include <KMacroExpander>
 
+#include <QCoreApplication>
+
 #include <chrono>
 
 
@@ -37,7 +39,6 @@ namespace
  */
 class TrackingInstallJob : public Calamares::Job
 {
-    Q_OBJECT
 public:
     TrackingInstallJob( const QString& url );
     ~TrackingInstallJob() override;
@@ -58,7 +59,6 @@ private:
  */
 class TrackingMachineUpdateManagerJob : public Calamares::Job
 {
-    Q_OBJECT
 public:
     ~TrackingMachineUpdateManagerJob() override;
 
@@ -75,7 +75,6 @@ public:
  */
 class TrackingKUserFeedbackJob : public Calamares::Job
 {
-    Q_OBJECT
 public:
     TrackingKUserFeedbackJob( const QString& username, const QStringList& areas );
     ~TrackingKUserFeedbackJob() override;
@@ -99,13 +98,13 @@ TrackingInstallJob::~TrackingInstallJob() {}
 QString
 TrackingInstallJob::prettyName() const
 {
-    return tr( "Installation feedback" );
+    return QCoreApplication::translate( "TrackingInstallJob", "Installation feedback" );
 }
 
 QString
 TrackingInstallJob::prettyStatusMessage() const
 {
-    return tr( "Sending installation feedback." );
+    return QCoreApplication::translate( "TrackingInstallJob", "Sending installation feedback." );
 }
 
 Calamares::JobResult
@@ -122,8 +121,9 @@ TrackingInstallJob::exec()
     if ( result.status == RequestStatus::Timeout )
     {
         cWarning() << "install-tracking request timed out.";
-        return Calamares::JobResult::error( tr( "Internal error in install-tracking." ),
-                                            tr( "HTTP request timed out." ) );
+        return Calamares::JobResult::error(
+            QCoreApplication::translate( "TrackingInstallJob", "Internal error in install-tracking." ),
+            QCoreApplication::translate( "TrackingInstallJob", "HTTP request timed out." ) );
     }
     return Calamares::JobResult::ok();
 }
@@ -133,13 +133,13 @@ TrackingMachineUpdateManagerJob::~TrackingMachineUpdateManagerJob() {}
 QString
 TrackingMachineUpdateManagerJob::prettyName() const
 {
-    return tr( "Machine feedback" );
+    return QCoreApplication::translate( "TrackingMachineUpdateManagerJob", "Machine feedback" );
 }
 
 QString
 TrackingMachineUpdateManagerJob::prettyStatusMessage() const
 {
-    return tr( "Configuring machine feedback." );
+    return QCoreApplication::translate( "TrackingMachineUpdateManagerJob", "Configuring machine feedback." );
 }
 
 Calamares::JobResult
@@ -162,14 +162,20 @@ TrackingMachineUpdateManagerJob::exec()
     else if ( r > 0 )
     {
         return Calamares::JobResult::error(
-            tr( "Error in machine feedback configuration." ),
-            tr( "Could not configure machine feedback correctly, script error %1." ).arg( r ) );
+            QCoreApplication::translate( "TrackingMachineUpdateManagerJob",
+                                         "Error in machine feedback configuration." ),
+            QCoreApplication::translate( "TrackingMachineUpdateManagerJob",
+                                         "Could not configure machine feedback correctly, script error %1." )
+                .arg( r ) );
     }
     else
     {
         return Calamares::JobResult::error(
-            tr( "Error in machine feedback configuration." ),
-            tr( "Could not configure machine feedback correctly, Calamares error %1." ).arg( r ) );
+            QCoreApplication::translate( "TrackingMachineUpdateManagerJob",
+                                         "Error in machine feedback configuration." ),
+            QCoreApplication::translate( "TrackingMachineUpdateManagerJob",
+                                         "Could not configure machine feedback correctly, Calamares error %1." )
+                .arg( r ) );
     }
 }
 
@@ -184,13 +190,13 @@ TrackingKUserFeedbackJob::~TrackingKUserFeedbackJob() {}
 QString
 TrackingKUserFeedbackJob::prettyName() const
 {
-    return tr( "KDE user feedback" );
+    return QCoreApplication::translate( "TrackingKUserFeedbackJob", "KDE user feedback" );
 }
 
 QString
 TrackingKUserFeedbackJob::prettyStatusMessage() const
 {
-    return tr( "Configuring KDE user feedback." );
+    return QCoreApplication::translate( "TrackingKUserFeedbackJob", "Configuring KDE user feedback." );
 }
 
 Calamares::JobResult
@@ -212,21 +218,25 @@ FeedbackLevel=16
         if ( r > 0 )
         {
             return Calamares::JobResult::error(
-                tr( "Error in KDE user feedback configuration." ),
-                tr( "Could not configure KDE user feedback correctly, script error %1." ).arg( r ) );
+                QCoreApplication::translate( "TrackingKUserFeedbackJob", "Error in KDE user feedback configuration." ),
+                QCoreApplication::translate( "TrackingKUserFeedbackJob",
+                                             "Could not configure KDE user feedback correctly, script error %1." )
+                    .arg( r ) );
         }
         else if ( r < 0 )
         {
             return Calamares::JobResult::error(
-                tr( "Error in KDE user feedback configuration." ),
-                tr( "Could not configure KDE user feedback correctly, Calamares error %1." ).arg( r ) );
+                QCoreApplication::translate( "TrackingKUserFeedbackJob", "Error in KDE user feedback configuration." ),
+                QCoreApplication::translate( "TrackingKUserFeedbackJob",
+                                             "Could not configure KDE user feedback correctly, Calamares error %1." )
+                    .arg( r ) );
         }
     }
 
     return Calamares::JobResult::ok();
 }
 
-} // namespace
+}  // namespace
 
 void
 addJob( Calamares::JobList& list, InstallTrackingConfig* config )
@@ -290,7 +300,3 @@ addJob( Calamares::JobList& list, UserTrackingConfig* config )
         }
     }
 }
-
-#include "utils/moc-warnings.h"
-
-#include "TrackingJobs.moc"

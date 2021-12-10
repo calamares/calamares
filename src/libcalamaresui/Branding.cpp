@@ -162,14 +162,15 @@ uploadServerFromMap( const QVariantMap& map )
 
     if ( typestring.isEmpty() || urlstring.isEmpty() )
     {
-        return Branding::UploadServerInfo( Branding::UploadServerType::None, QUrl(), 0 );
+        return Branding::UploadServerInfo { Branding::UploadServerType::None, QUrl(), 0 };
     }
 
     bool bogus = false;  // we don't care about type-name lookup success here
-    return Branding::UploadServerInfo(
+    return Branding::UploadServerInfo {
         names.find( typestring, bogus ),
         QUrl( urlstring, QUrl::ParsingMode::StrictMode ),
-        sizeLimitKiB >= 0 ? CalamaresUtils::KiBtoBytes( static_cast< unsigned long long >( sizeLimitKiB ) ) : -1 );
+        sizeLimitKiB >= 0 ? CalamaresUtils::KiBtoBytes( static_cast< unsigned long long >( sizeLimitKiB ) ) : -1
+    };
 }
 
 /** @brief Load the @p map with strings from @p config

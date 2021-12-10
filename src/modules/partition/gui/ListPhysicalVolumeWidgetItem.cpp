@@ -9,11 +9,10 @@
 
 #include "ListPhysicalVolumeWidgetItem.h"
 
-#include <kpmcore/util/capacity.h>
+#include "core/SizeUtils.h"
 
 ListPhysicalVolumeWidgetItem::ListPhysicalVolumeWidgetItem( const Partition* partition, bool checked )
-    : QListWidgetItem(
-        QString( "%1 | %2" ).arg( partition->deviceNode(), Capacity::formatByteSize( partition->capacity() ) ) )
+    : QListWidgetItem( QString( "%1 | %2" ).arg( partition->deviceNode(), formatByteSize( partition->capacity() ) ) )
     , m_partition( partition )
 {
     setToolTip( partition->deviceNode() );
@@ -26,3 +25,5 @@ ListPhysicalVolumeWidgetItem::partition() const
 {
     return m_partition;
 }
+
+ListPhysicalVolumeWidgetItem::~ListPhysicalVolumeWidgetItem() {}
