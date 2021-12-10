@@ -1,0 +1,84 @@
+# Maintainer: shivanandvp <shivanandvp@rebornos.org>
+
+pkgname=rebornos-calamares-core
+pkgver=0.0.1
+pkgrel=1
+arch=('i686' 'x86_64' 'armv6h' 'armv7h')
+pkgdesc='Calamares Installer for RebornOS. This is practically just bare Calamares. Please also install rebornos-calamares-configuration.'
+license=('GPL3')
+depends=('qt5-svg'
+         'qt5-xmlpatterns'
+         'qt5-location' 
+         'kconfig'
+         'ki18n'
+         'kcoreaddons'
+         'solid'
+         'kpackage'
+         'plasma-framework'
+         'yaml-cpp'
+         'parted'
+         'libatasmart'
+         'udisks2'
+         'polkit-qt5'
+         'kpmcore'
+         'kparts'
+         'kdbusaddons'
+         'libpwquality'
+         'boost'
+         'boost-libs')
+makedepends=('extra-cmake-modules'
+             'git'
+             'qt5-tools') 
+provides=("${pkgname}")
+conflicts=("${pkgname}")
+source=()
+replaces=('calamares'
+          'rebornos-calamares-core')
+
+build() {
+    mkdir -p build
+    cmake -B build -S rebornos-calamares-core \
+        -DCMAKE_BUILD_TYPE=Debug \
+        -DCMAKE_INSTALL_PREFIX=/usr \
+        -DCMAKE_INSTALL_LIBDIR=lib \
+        -DSKIP_MODULES="oemid"
+    cmake --build ../build
+}
+
+check() {
+    :
+}
+
+package() {
+    # # Starts in the `src` directory
+
+    # # Copy the media files
+    # install -d -m 755 "${pkgdir}/${instdir}/media" # Create the media directory
+    # cp -r media/* "${pkgdir}/${instdir}/media" # Copy the media files
+    # chmod 755 -R "${pkgdir}/${instdir}/media" # Assign correct permissions to the media files 
+
+    # # Copy the binaries
+    # install -d -m 755 "${pkgdir}/${instdir}/bin" # Temporary directory to store the binaries
+    # install -d -m 755 "${pkgdir}/usr/bin" # Create path to store the symbolic links to binaries 
+
+    # find target/release \
+    #  -maxdepth 1 \
+    #  -executable \
+    #  -type f \
+    #  \( ! -iname "*.d" -and ! -iname "*.rlib" -and ! -iname "*.cargo-lock" \) \
+    #  -exec install -m 755 "{}" "${pkgdir}/${instdir}/bin" \; # Find executable binaries in the release directory and store it in the temporary bin directory so that they can be temporarily handled separately from other files in the application base directory
+
+    # for _executable in "${pkgdir}/${instdir}"/bin/*; do # For each collected binary file in the temporary bin directory
+    #     _filename=$(basename "$_executable") # Get the filename from the path 
+    #     mv "$_executable" "${pkgdir}/${instdir}/" # Move binary files back to the application directory
+    #     ln -s "${instdir}/${_filename}" "${pkgdir}/usr/bin/${_filename}" # Created symbolic links to the application binaries in the /usr/bin directory
+    # done      
+    # rmdir "${pkgdir}/${instdir}/bin" # Remove the temporary binary directory    
+
+    # # Copy the .desktop entry to the appropriate location with the correct permissions
+    # install -D -m 644 "${pkgname}.desktop" "${pkgdir}/usr/share/applications/${pkgname}.desktop"
+
+    # # Copy the License and Readme files
+    # install -m 644 LICENSE README.md CHANGELOG "${pkgdir}/${instdir}/"   
+    :
+}
