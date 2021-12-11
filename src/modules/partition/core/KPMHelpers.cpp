@@ -128,7 +128,7 @@ clonePartition( Device* device, Partition* partition )
 }
 
 Calamares::JobResult
-execute( Operation&& operation, const QString& failureMessage )
+execute( Operation& operation, const QString& failureMessage )
 {
     operation.setStatus( Operation::StatusRunning );
 

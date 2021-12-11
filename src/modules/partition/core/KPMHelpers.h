@@ -80,7 +80,17 @@ Partition* clonePartition( Device* device, Partition* partition );
  * Otherwise returns an error using @p failureMessage as the primary part
  * of the error, and details obtained from the operation.
  */
-Calamares::JobResult execute( Operation&& operation, const QString& failureMessage );
+Calamares::JobResult execute( Operation& operation, const QString& failureMessage );
+/** @brief Return a result for an @p operation
+ *
+ * It's acceptable to use an rvalue: the operation-running is the effect
+ * you're interested in, rather than keeping the temporary around.
+ */
+static inline Calamares::JobResult
+execute( Operation&& operation, const QString& failureMessage )
+{
+    return execute( operation, failureMessage );
+}
 
 }  // namespace KPMHelpers
 
