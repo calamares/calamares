@@ -7,6 +7,21 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
+# 3.2.50 (unreleased) #
+
+This release contains contributions from (alphabetically by first name):
+ - No external contributors yet
+
+## Core ##
+ - No core changes yet
+
+## Modules ##
+ - *networkcfg* could fail to update the NetworkManager configuration
+   if the SSID or username contained non-ASCII characters **and** the
+   default Python text-file encoding was set to ASCII. The files are
+   now read and written in UTF-8, explicitly. #1848
+
+
 # 3.2.49.1 (2021-12-11) #
 
 This is a hot-fix release, to fix a regression in the calculation of
