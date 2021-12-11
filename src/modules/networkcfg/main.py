@@ -73,12 +73,12 @@ def replace_username(nm_config_filename, live_user, target_user):
     if not os.path.exists(nm_config_filename):
         return
 
-    with open(nm_config_filename, "r") as network_conf:
+    with open(nm_config_filename, "r", encoding="UTF-8") as network_conf:
         text = network_conf.readlines()
 
     live_permissions = 'permissions=user:{}:;'.format(live_user)
     target_permissions = 'permissions=user:{}:;\n'.format(target_user)
-    with open(nm_config_filename, "w") as network_conf:
+    with open(nm_config_filename, "w", encoding="UTF-8") as network_conf:
         for line in text:
             if live_permissions in line:
                 line = target_permissions
