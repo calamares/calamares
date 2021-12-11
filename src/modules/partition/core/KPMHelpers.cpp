@@ -127,4 +127,19 @@ clonePartition( Device* device, Partition* partition )
                           partition->activeFlags() );
 }
 
+Calamares::JobResult
+execute( Operation& operation, const QString& failureMessage )
+{
+    operation.setStatus( Operation::StatusRunning );
+
+    Report report( nullptr );
+    if ( operation.execute( report ) )
+    {
+        return Calamares::JobResult::ok();
+    }
+
+    return Calamares::JobResult::error( failureMessage, report.toText() );
+}
+
+
 }  // namespace KPMHelpers
