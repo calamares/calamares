@@ -80,7 +80,7 @@ Partition* clonePartition( Device* device, Partition* partition );
  * Otherwise returns an error using @p failureMessage as the primary part
  * of the error, and details obtained from the operation.
  */
-Calamares::JobResult execute( Operation& operation, const QString& failureMessage );
+Calamares::JobResult execute( Operation&& operation, const QString& failureMessage );
 
 }  // namespace KPMHelpers
 

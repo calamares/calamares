@@ -275,9 +275,9 @@ CreatePartitionJob::exec()
         return createZfs( m_partition, m_device );
     }
 
-    NewOperation op( *m_device, m_partition );
     return KPMHelpers::execute(
-        op, tr( "The installer failed to create partition on disk '%1'." ).arg( m_device->name() ) );
+        NewOperation( *m_device, m_partition ),
+        tr( "The installer failed to create partition on disk '%1'." ).arg( m_device->name() ) );
 }
 
 void

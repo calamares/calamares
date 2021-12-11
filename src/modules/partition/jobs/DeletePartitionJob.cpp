@@ -98,8 +98,7 @@ DeletePartitionJob::exec()
         return removePartition( m_partition );
     }
 
-    DeleteOperation op( *m_device, m_partition );
-    return KPMHelpers::execute( op,
+    return KPMHelpers::execute( DeleteOperation( *m_device, m_partition ),
                                 tr( "The installer failed to delete partition %1." ).arg( m_partition->devicePath() ) );
 }
 
