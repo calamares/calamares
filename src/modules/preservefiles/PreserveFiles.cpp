@@ -18,6 +18,30 @@
 
 #include <QFile>
 
+enum class ItemType
+{
+    None,
+    Path,
+    Log,
+    Config
+};
+
+struct Item
+{
+    QString source;
+    QString dest;
+    CalamaresUtils::Permissions perm;
+    ItemType type;
+
+    Item( const QString& src, const QString& d, CalamaresUtils::Permissions p, ItemType t )
+        : source( src )
+        , dest( d )
+        , perm( std::move( p ) )
+        , type( t )
+    {
+    }
+};
+
 using namespace CalamaresUtils::Units;
 
 QString
@@ -113,7 +137,7 @@ copy_file( const QString& source, const QString& dest )
 Calamares::JobResult
 PreserveFiles::exec()
 {
-    if ( m_items.isEmpty() )
+    if ( m_items.empty() )
     {
         return Calamares::JobResult::error( tr( "No files configured to save for later." ) );
     }
@@ -124,18 +148,18 @@ PreserveFiles::exec()
         prefix.append( '/' );
     }
 
-    int count = 0;
-    for ( const auto& it : m_items )
+    size_t count = 0;
+    for ( const auto& it : qAsConst( m_items ) )
     {
-        QString source = it.source;
-        QString bare_dest = atReplacements( it.dest );
+        QString source = it->source;
+        QString bare_dest = atReplacements( it->dest );
         QString dest = prefix + bare_dest;
 
-        if ( it.type == ItemType::Log )
+        if ( it->type == ItemType::Log )
         {
             source = Logger::logFile();
         }
-        if ( it.type == ItemType::Config )
+        if ( it->type == ItemType::Config )
         {
             if ( !Calamares::JobQueue::instance()->globalStorage()->saveJson( dest ) )
             {
@@ -154,9 +178,9 @@ PreserveFiles::exec()
         {
             if ( copy_file( source, dest ) )
             {
-                if ( it.perm.isValid() )
+                if ( it->perm.isValid() )
                 {
-                    if ( !it.perm.apply( CalamaresUtils::System::instance()->targetPath( bare_dest ) ) )
+                    if ( !it->perm.apply( CalamaresUtils::System::instance()->targetPath( bare_dest ) ) )
                     {
                         cWarning() << "Could not set attributes of" << bare_dest;
                     }
@@ -167,7 +191,7 @@ PreserveFiles::exec()
         }
     }
 
-    return count == m_items.count()
+    return count == m_items.size()
         ? Calamares::JobResult::ok()
         : Calamares::JobResult::error( tr( "Not all of the configured files could be preserved." ) );
 }
@@ -202,8 +226,8 @@ PreserveFiles::setConfigurationMap( const QVariantMap& configurationMap )
         {
             QString filename = li.toString();
             if ( !filename.isEmpty() )
-                m_items.append(
-                    Item { filename, filename, CalamaresUtils::Permissions( defaultPermissions ), ItemType::Path } );
+                m_items.push_back( std::make_unique< Item >(
+                    filename, filename, CalamaresUtils::Permissions( defaultPermissions ), ItemType::Path ) );
             else
             {
                 cDebug() << "Empty filename for preservefiles, item" << c;
@@ -231,7 +255,8 @@ PreserveFiles::setConfigurationMap( const QVariantMap& configurationMap )
             }
             else
             {
-                m_items.append( Item { QString(), dest, CalamaresUtils::Permissions( perm ), t } );
+                m_items.push_back(
+                    std::make_unique< Item >( QString(), dest, CalamaresUtils::Permissions( perm ), t ) );
             }
         }
         else

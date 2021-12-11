@@ -13,31 +13,16 @@
 #include "utils/Permissions.h"
 #include "utils/PluginFactory.h"
 
-#include <QList>
-#include <QObject>
-#include <QVariantMap>
+#include <memory>
+#include <vector>
+
+struct Item;
 
 class PLUGINDLLEXPORT PreserveFiles : public Calamares::CppJob
 {
     Q_OBJECT
 
-    enum class ItemType
-    {
-        None,
-        Path,
-        Log,
-        Config
-    };
-
-    struct Item
-    {
-        QString source;
-        QString dest;
-        CalamaresUtils::Permissions perm;
-        ItemType type;
-    };
-
-    using ItemList = QList< Item >;
+    using ItemList = std::vector< std::unique_ptr< Item > >;
 
 public:
     explicit PreserveFiles( QObject* parent = nullptr );
