@@ -12,6 +12,7 @@
 #include "CreatePartitionTableJob.h"
 
 #include "partition/PartitionIterator.h"
+#include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 
 #include "core/KPMHelpers.h"
@@ -75,19 +76,11 @@ CreatePartitionTableJob::exec()
             cDebug() << Logger::SubEntry << ( ( *it ) ? ( *it )->deviceNode() : QString( "<null device>" ) );
         }
 
-        QProcess lsblk;
-        lsblk.setProgram( "lsblk" );
-        lsblk.setProcessChannelMode( QProcess::MergedChannels );
-        lsblk.start();
-        lsblk.waitForFinished();
-        cDebug() << Logger::SubEntry << "lsblk output:\n" << Logger::NoQuote << lsblk.readAllStandardOutput();
+        auto lsblkResult = CalamaresUtils::System::runCommand( { "lsblk" }, std::chrono::seconds( 30 ) );
+        cDebug() << Logger::SubEntry << "lsblk output:\n" << Logger::NoQuote << lsblkResult.getOutput();
 
-        QProcess mount;
-        mount.setProgram( "mount" );  // Debug output only, not mounting something
-        mount.setProcessChannelMode( QProcess::MergedChannels );
-        mount.start();
-        mount.waitForFinished();
-        cDebug() << Logger::SubEntry << "mount output:\n" << Logger::NoQuote << mount.readAllStandardOutput();
+        auto mountResult = CalamaresUtils::System::runCommand( { "mount" }, std::chrono::seconds( 30 ) );
+        cDebug() << Logger::SubEntry << "mount output:\n" << Logger::NoQuote << mountResult.getOutput();
     }
 
     return KPMHelpers::execute(
