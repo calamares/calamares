@@ -9,6 +9,8 @@
 
 #include "RemoveVolumeGroupJob.h"
 
+#include "core/KPMHelpers.h"
+
 #include <kpmcore/core/lvmdevice.h>
 #include <kpmcore/ops/removevolumegroupoperation.h>
 #include <kpmcore/util/report.h>
@@ -39,17 +41,7 @@ RemoveVolumeGroupJob::prettyStatusMessage() const
 Calamares::JobResult
 RemoveVolumeGroupJob::exec()
 {
-    Report report( nullptr );
-
-    RemoveVolumeGroupOperation op( *m_device );
-
-    op.setStatus( Operation::OperationStatus::StatusRunning );
-
-    QString message = tr( "The installer failed to remove a volume group named '%1'." ).arg( m_device->name() );
-    if ( op.execute( report ) )
-    {
-        return Calamares::JobResult::ok();
-    }
-
-    return Calamares::JobResult::error( message, report.toText() );
+    return KPMHelpers::execute(
+        RemoveVolumeGroupOperation( *m_device ),
+        tr( "The installer failed to remove a volume group named '%1'." ).arg( m_device->name() ) );
 }

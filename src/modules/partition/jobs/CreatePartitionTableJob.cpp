@@ -14,7 +14,8 @@
 #include "partition/PartitionIterator.h"
 #include "utils/Logger.h"
 
-// KPMcore
+#include "core/KPMHelpers.h"
+
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
 #include <kpmcore/core/partitiontable.h>
@@ -63,8 +64,6 @@ CreatePartitionTableJob::prettyStatusMessage() const
 Calamares::JobResult
 CreatePartitionTableJob::exec()
 {
-    Report report( nullptr );
-    QString message = tr( "The installer failed to create a partition table on %1." ).arg( m_device->name() );
 
     PartitionTable* table = m_device->partitionTable();
 
@@ -91,15 +90,9 @@ CreatePartitionTableJob::exec()
         cDebug() << Logger::SubEntry << "mount output:\n" << Logger::NoQuote << mount.readAllStandardOutput();
     }
 
-    CreatePartitionTableOperation op( *m_device, table );
-    op.setStatus( Operation::StatusRunning );
-
-    if ( op.execute( report ) )
-    {
-        return Calamares::JobResult::ok();
-    }
-
-    return Calamares::JobResult::error( message, report.toText() );
+    return KPMHelpers::execute(
+        CreatePartitionTableOperation( *m_device, table ),
+        tr( "The installer failed to create a partition table on %1." ).arg( m_device->name() ) );
 }
 
 void
