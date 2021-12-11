@@ -15,8 +15,8 @@
 
 #include "partition/PartitionIterator.h"
 #include "utils/Logger.h"
+#include "utils/String.h"
 
-// KPMcore
 #include <kpmcore/backend/corebackendmanager.h>
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
@@ -138,7 +138,11 @@ execute( Operation& operation, const QString& failureMessage )
         return Calamares::JobResult::ok();
     }
 
-    return Calamares::JobResult::error( failureMessage, report.toText() );
+    // Remove the === lines from the report by trimming them to empty
+    QStringList l = report.toText().split( '\n' );
+    std::for_each( l.begin(), l.end(), []( QString& s ) { CalamaresUtils::removeLeading( s, '=' ); } );
+
+    return Calamares::JobResult::error( failureMessage, l.join( '\n' ) );
 }
 
 
