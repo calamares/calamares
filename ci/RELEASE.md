@@ -29,7 +29,8 @@
 
 * Double-check the *CALAMARES_VERSION* value at the top of `CMakeLists.txt`.
 * Set *CALAMARES_RELEASE_MODE* to `ON` in `CMakeLists.txt`.
-* Edit `CHANGES` and set the date of the release.
+* Edit `CHANGES-*` and set the date of the release. Pick the right
+  file for the release-stream.
 * Commit both. This is usually done with commit-message
   *Changes: pre-release housekeeping*.
 
@@ -81,23 +82,11 @@ Follow the instructions printed by the release script.
 
 * Bump the version number in `CMakeLists.txt` in *CALAMARES_VERSION*.
 * Set *CALAMARES_RELEASE_MODE* back to `OFF`.
-* Add a placeholder entry for the next release in `CHANGES` with date
-  text *not released yet*.
+* Add a placeholder entry for the next release in `CHANGES-*` with date
+  text *not released yet*. See the text below, "Placeholder Release".
+  Add the placeholder to the right file for the release-stream.
 * Commit and push that, usually with the message
   *Changes: post-release housekeeping*.
-
-```
-# 3.2.XX (unreleased) #
-
-This release contains contributions from (alphabetically by first name):
- - No external contributors yet
-
-## Core ##
- - No core changes yet
-
-## Modules ##
- - No module changes yet
-```
 
 # Related Material
 
@@ -138,4 +127,19 @@ ssb  rsa3072/0xCFDDC96F12B1915C
     possibly also setting an output file.
   - Upload that public key to the relevant GitHub profile.
   - Upload that public key to the Calamares site.
+
+## Placeholder Release Notes
+
+```
+# 3.2.XX (unreleased) #
+
+This release contains contributions from (alphabetically by first name):
+ - No external contributors yet
+
+## Core ##
+ - No core changes yet
+
+## Modules ##
+ - No module changes yet
+```
 

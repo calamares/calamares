@@ -18,6 +18,8 @@
 #include "utils/Logger.h"
 #include "utils/String.h"
 
+#include <QProcess>
+
 KeyBoardPreview::KeyBoardPreview( QWidget* parent )
     : QWidget( parent )
     , layout( "us" )
@@ -124,10 +126,7 @@ KeyBoardPreview::loadCodes()
         return false;
     }
 
-    QStringList param;
-    param << "-model"
-          << "pc106"
-          << "-layout" << layout << "-compact";
+    QStringList param { "-model", "pc106", "-layout", layout, "-compact" };
     if ( !variant.isEmpty() )
     {
         param << "-variant" << variant;
@@ -140,13 +139,18 @@ KeyBoardPreview::loadCodes()
     process.start( "ckbcomp", param );
     if ( !process.waitForStarted() )
     {
-        cWarning() << "ckbcomp not found , keyboard preview disabled";
+        static bool need_warning = true;
+        if ( need_warning )
+        {
+            cWarning() << "ckbcomp not found , keyboard preview disabled";
+            need_warning = false;
+        }
         return false;
     }
 
     if ( !process.waitForFinished() )
     {
-        cWarning() << "ckbcomp failed, keyboard preview disabled";
+        cWarning() << "ckbcomp failed, keyboard preview skipped for" << layout << variant;
         return false;
     }
 

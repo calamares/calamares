@@ -55,3 +55,8 @@ CMakeLists.txt.user
 # Kate
 *.kate-swp
 tags
+
+# Packaging
+rebornos/archlinux_packaging/**/pkg
+rebornos/archlinux_packaging/**/src
+rebornos/archlinux_packaging/**/*.pkg.tar.zst*

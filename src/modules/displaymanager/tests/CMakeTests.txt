@@ -1,0 +1,13 @@
+#   SPDX-FileCopyrightText: no
+#   SPDX-License-Identifier: CC0-1.0
+#
+# We have tests to load (some) of the DMs specifically, to test their
+# configuration code. Those tests conventionally live in Python
+# files here in the tests/ directory. Add them.
+foreach(_dmname greetd sddm)
+    add_test(
+        NAME configure-displaymanager-${_dmname}
+        COMMAND env PYTHONPATH=.: python3 ${CMAKE_CURRENT_LIST_DIR}/test-dm-${_dmname}.py
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    )
+endforeach()

@@ -145,8 +145,8 @@ public:
     {
     }
 
-    const T& first;
-    const U& second;
+    const T first;
+    const U second;
 };
 
 /**
@@ -206,6 +206,48 @@ public:
 
     const QVariantMap& map;
 };
+
+/** @brief When logging commands, don't log everything.
+ *
+ * The command-line arguments to some commands may contain the
+ * encrypted password set by the user. Don't log that password,
+ * since the log may get posted to bug reports, or stored in
+ * the target system.
+ */
+struct RedactedCommand
+{
+    RedactedCommand( const QStringList& l )
+        : list( l )
+    {
+    }
+
+    const QStringList& list;
+};
+
+QDebug& operator<<( QDebug& s, const RedactedCommand& l );
+
+/** @brief When logging "private" identifiers, keep them consistent but private
+ *
+ * Send a string to a logger in such a way that each time it is logged,
+ * it logs the same way, but without revealing the actual contents.
+ * This can be applied to user names, UUIDs, etc.
+ */
+struct RedactedName
+{
+    RedactedName( const char* context, const QString& s );
+    RedactedName( const QString& context, const QString& s );
+
+    operator QString() const;
+
+private:
+    const uint m_id;
+    const QString m_context;
+};
+
+inline QDebug& operator<<( QDebug& s, const RedactedName& n )
+{
+    return s << NoQuote << QString( n ) << Quote;
+}
 
 /**
  * @brief Formatted logging of a pointer
@@ -309,6 +351,14 @@ public:
     {
     }
     friend CDebug& operator<<( CDebug&&, const Once& );
+
+    /** @brief Restore the object to "fresh" state
+     *
+     * It may be necessary to allow the Once object to stream the
+     * function header again -- for instance, after logging an error,
+     * any following debug log might want to re-introduce the header.
+     */
+    void refresh() { m = true; }
 
 private:
     mutable bool m = false;

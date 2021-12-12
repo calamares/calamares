@@ -18,6 +18,7 @@ class ListPhysicalVolumeWidgetItem : public QListWidgetItem
 {
 public:
     ListPhysicalVolumeWidgetItem( const Partition* partition, bool checked );
+    ~ListPhysicalVolumeWidgetItem() override;
 
     const Partition* partition() const;
 

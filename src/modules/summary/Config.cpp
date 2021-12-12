@@ -26,7 +26,9 @@ SummaryModel::SummaryModel( QObject* parent )
 QHash< int, QByteArray >
 SummaryModel::roleNames() const
 {
-    return { { Qt::DisplayRole, "title" }, { Qt::UserRole, "message" } };
+    // Not including WidgetRole here because that wouldn't make sense
+    // in a QML context which is where the roleNames are important.
+    return { { TitleRole, "title" }, { MessageRole, "message" } };
 }
 
 QVariant
@@ -36,8 +38,18 @@ SummaryModel::data( const QModelIndex& index, int role ) const
     {
         return QVariant();
     }
-    const auto item = m_summary.at( index.row() );
-    return role == Qt::DisplayRole ? item.title : item.message;
+    auto& item = m_summary.at( index.row() );
+    switch ( role )
+    {
+    case TitleRole:
+        return item.title;
+    case MessageRole:
+        return item.message;
+    case WidgetRole:
+        return item.widget ? QVariant::fromValue( item.widget ) : QVariant();
+    default:
+        return QVariant();
+    }
 }
 
 int
@@ -84,19 +96,19 @@ Config::retranslate()
     if ( Calamares::Settings::instance()->isSetupMode() )
     {
         m_message = tr( "This is an overview of what will happen once you start "
-                          "the setup procedure." );
+                        "the setup procedure." );
     }
     else
     {
         m_message = tr( "This is an overview of what will happen once you start "
-                          "the install procedure." );
+                        "the install procedure." );
     }
     Q_EMIT titleChanged( m_title );
     Q_EMIT messageChanged( m_message );
 }
 
-void
-Config::collectSummaries( const Calamares::ViewStep* upToHere )
+Calamares::ViewStepList
+Config::stepsForSummary( const Calamares::ViewStep* upToHere )
 {
     Calamares::ViewStepList steps;
     for ( Calamares::ViewStep* step : Calamares::ViewManager::instance()->viewSteps() )
@@ -122,6 +134,18 @@ Config::collectSummaries( const Calamares::ViewStep* upToHere )
 
         steps.append( step );
     }
+    return steps;
+}
 
-    m_summary->setSummaryList( steps );
+
+void
+Config::collectSummaries( const Calamares::ViewStep* upToHere, Widgets withWidgets )
+{
+    m_summary->setSummaryList( stepsForSummary( upToHere ), withWidgets == Widgets::Enabled );
+}
+
+void
+Config::clearSummaries()
+{
+    m_summary->setSummaryList( {}, false );
 }

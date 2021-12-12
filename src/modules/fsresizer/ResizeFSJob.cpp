@@ -18,7 +18,6 @@
 #include "utils/Variant.h"
 
 #include <QDateTime>
-#include <QProcess>
 #include <QThread>
 
 #include <kpmcore/backend/corebackend.h>

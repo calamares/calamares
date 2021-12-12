@@ -5,16 +5,16 @@
 # 
 # Translators:
 # abc Def <hdogan1974@gmail.com>, 2020
-# Demiray Muhterem <mdemiray@msn.com>, 2020
+# Demiray Muhterem <mdemiray@msn.com>, 2021
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-14 12:55+0200\n"
+"POT-Creation-Date: 2021-11-02 15:45+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Demiray Muhterem <mdemiray@msn.com>, 2020\n"
+"Last-Translator: Demiray Muhterem <mdemiray@msn.com>, 2021\n"
 "Language-Team: Turkish (Turkey) (https://www.transifex.com/calamares/teams/20061/tr_TR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,138 +22,77 @@ msgstr ""
 "Language: tr_TR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#: src/modules/initramfscfg/main.py:32
+msgid "Configuring initramfs."
+msgstr "Initramfs yapılandırılıyor."
+
+#: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
+#: src/modules/fstab/main.py:355 src/modules/fstab/main.py:361
+#: src/modules/fstab/main.py:388 src/modules/networkcfg/main.py:105
+#: src/modules/initcpiocfg/main.py:227 src/modules/initcpiocfg/main.py:231
+#: src/modules/localecfg/main.py:135 src/modules/mount/main.py:144
+#: src/modules/rawfs/main.py:164 src/modules/openrcdmcryptcfg/main.py:72
+#: src/modules/openrcdmcryptcfg/main.py:76
+#: src/modules/luksopenswaphookcfg/main.py:86
+#: src/modules/luksopenswaphookcfg/main.py:90
+msgid "Configuration Error"
+msgstr "Yapılandırma Hatası"
+
+#: src/modules/initramfscfg/main.py:86 src/modules/fstab/main.py:356
+#: src/modules/initcpiocfg/main.py:228 src/modules/mount/main.py:145
+#: src/modules/rawfs/main.py:165 src/modules/openrcdmcryptcfg/main.py:73
+#: src/modules/luksopenswaphookcfg/main.py:87
+msgid "No partitions are defined for <pre>{!s}</pre> to use."
+msgstr "<pre>{!s}</pre> kullanması için hiçbir bölüm tanımlanmadı."
+
+#: src/modules/initramfscfg/main.py:90 src/modules/fstab/main.py:362
+#: src/modules/networkcfg/main.py:106 src/modules/initcpiocfg/main.py:232
+#: src/modules/localecfg/main.py:136 src/modules/openrcdmcryptcfg/main.py:77
+#: src/modules/luksopenswaphookcfg/main.py:91
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr "<pre>{!s}</pre> kullanması için kök bağlama noktası verilmedi."
+
 #: src/modules/grubcfg/main.py:28
 msgid "Configure GRUB."
 msgstr "GRUB'u yapılandır."
 
-#: src/modules/mount/main.py:30
-msgid "Mounting partitions."
-msgstr "Disk bölümlemeleri bağlanıyor."
+#: src/modules/bootloader/main.py:43
+msgid "Install bootloader."
+msgstr "Önyükleyici kuruluyor"
 
-#: src/modules/mount/main.py:144 src/modules/initcpiocfg/main.py:197
-#: src/modules/initcpiocfg/main.py:201
-#: src/modules/luksopenswaphookcfg/main.py:86
-#: src/modules/luksopenswaphookcfg/main.py:90 src/modules/rawfs/main.py:164
-#: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
-#: src/modules/openrcdmcryptcfg/main.py:72
-#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/fstab/main.py:355
-#: src/modules/fstab/main.py:361 src/modules/fstab/main.py:388
-#: src/modules/localecfg/main.py:135 src/modules/networkcfg/main.py:39
-msgid "Configuration Error"
-msgstr "Yapılandırma Hatası"
+#: src/modules/bootloader/main.py:508
+msgid "Bootloader installation error"
+msgstr "Önyükleyici yükleme hatası"
 
-#: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:198
-#: src/modules/luksopenswaphookcfg/main.py:87 src/modules/rawfs/main.py:165
-#: src/modules/initramfscfg/main.py:86 src/modules/openrcdmcryptcfg/main.py:73
-#: src/modules/fstab/main.py:356
-msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr "<pre>{!s}</pre> kullanması için hiçbir bölüm tanımlanmadı."
-
-#: src/modules/services-systemd/main.py:26
-msgid "Configure systemd services"
-msgstr "Systemd hizmetlerini yapılandır"
-
-#: src/modules/services-systemd/main.py:59
-#: src/modules/services-openrc/main.py:93
-msgid "Cannot modify service"
-msgstr "Hizmet değiştirilemiyor"
-
-#: src/modules/services-systemd/main.py:60
+#: src/modules/bootloader/main.py:509
 msgid ""
-"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+"The bootloader could not be installed. The installation command "
+"<pre>{!s}</pre> returned error code {!s}."
 msgstr ""
-"<code>systemctl {arg!s}</code> chroot çağrısında hata kodu döndürüldü "
-"{num!s}."
+"Önyükleyici yüklenemedi. Kurulum komutu <pre>{!s}</pre>, {!s} hata kodunu "
+"döndürdü."
 
-#: src/modules/services-systemd/main.py:63
-#: src/modules/services-systemd/main.py:67
-msgid "Cannot enable systemd service <code>{name!s}</code>."
-msgstr "Systemd hizmeti etkinleştirilemiyor <code>{name!s}</code>."
+#: src/modules/fstab/main.py:29
+msgid "Writing fstab."
+msgstr "Fstab dosyasına yazılıyor."
 
-#: src/modules/services-systemd/main.py:65
-msgid "Cannot enable systemd target <code>{name!s}</code>."
-msgstr "Systemd hedefi etkinleştirilemiyor <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:69
-msgid "Cannot disable systemd target <code>{name!s}</code>."
-msgstr "Systemd hedefi devre dışı bırakılamıyor <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:71
-msgid "Cannot mask systemd unit <code>{name!s}</code>."
-msgstr "Systemd birimi maskeleyemiyor <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:73
-msgid ""
-"Unknown systemd commands <code>{command!s}</code> and "
-"<code>{suffix!s}</code> for unit {name!s}."
+#: src/modules/fstab/main.py:389
+msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr ""
-"Bilinmeyen sistem komutları <code>{command!s}</code> ve "
-"<code>{suffix!s}</code>  {name!s} birimi için."
+"<pre>{!s}</pre>'nin kullanması için <pre>{!s}</pre> yapılandırması "
+"verilmemiştir."
 
-#: src/modules/umount/main.py:31
-msgid "Unmount file systems."
-msgstr "Dosya sistemlerini ayırın."
+#: src/modules/dracut/main.py:27
+msgid "Creating initramfs with dracut."
+msgstr "Dracut ile initramfs oluşturuluyor."
 
-#: src/modules/unpackfs/main.py:35
-msgid "Filling up filesystems."
-msgstr "Dosya sistemlerini dolduruyorum."
+#: src/modules/dracut/main.py:49
+msgid "Failed to run dracut on the target"
+msgstr "Hedef üzerinde dracut çalıştırılamadı"
 
-#: src/modules/unpackfs/main.py:255
-msgid "rsync failed with error code {}."
-msgstr "rsync {} hata koduyla başarısız oldu."
-
-#: src/modules/unpackfs/main.py:300
-msgid "Unpacking image {}/{}, file {}/{}"
-msgstr "Açılan kurulum medyası {}/{}, dışa aktarılan dosya sayısı {}/{}"
-
-#: src/modules/unpackfs/main.py:315
-msgid "Starting to unpack {}"
-msgstr "Dışa aktarım başlatılıyor {}"
-
-#: src/modules/unpackfs/main.py:324 src/modules/unpackfs/main.py:464
-msgid "Failed to unpack image \"{}\""
-msgstr "\"{}\" kurulum medyası aktarılamadı"
-
-#: src/modules/unpackfs/main.py:431
-msgid "No mount point for root partition"
-msgstr "kök disk bölümü için bağlama noktası yok"
-
-#: src/modules/unpackfs/main.py:432
-msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr ""
-"globalstorage bir \"rootMountPoint\" anahtarı içermiyor, hiçbirşey yapılmadı"
-
-#: src/modules/unpackfs/main.py:437
-msgid "Bad mount point for root partition"
-msgstr "Kök disk bölümü için hatalı bağlama noktası"
-
-#: src/modules/unpackfs/main.py:438
-msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr "rootMountPoint \"{}\", mevcut değil, hiçbirşey yapılmadı"
-
-#: src/modules/unpackfs/main.py:454 src/modules/unpackfs/main.py:458
-#: src/modules/unpackfs/main.py:478
-msgid "Bad unsquash configuration"
-msgstr "Unsquash yapılandırma sorunlu"
-
-#: src/modules/unpackfs/main.py:455
-msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
-msgstr "\"{}\" ({}) Dosya sistemi mevcut çekirdeğiniz tarafından desteklenmiyor"
-
-#: src/modules/unpackfs/main.py:459
-msgid "The source filesystem \"{}\" does not exist"
-msgstr "\"{}\" Kaynak dosya sistemi mevcut değil"
-
-#: src/modules/unpackfs/main.py:465
-msgid ""
-"Failed to find unsquashfs, make sure you have the squashfs-tools package "
-"installed"
-msgstr ""
-"Unsquashfs bulunamadı, squashfs-tools paketinin kurulu olduğundan emin olun."
-
-#: src/modules/unpackfs/main.py:479
-msgid "The destination \"{}\" in the target system is not a directory"
-msgstr "Hedef sistemdeki \"{}\" hedefi bir dizin değil"
+#: src/modules/dracut/main.py:50 src/modules/mkinitfs/main.py:50
+msgid "The exit code was {}"
+msgstr "Çıkış kodu {} idi"
 
 #: src/modules/displaymanager/main.py:526
 msgid "Cannot write KDM configuration file"
@@ -211,26 +150,6 @@ msgstr ""
 msgid "Display manager configuration was incomplete"
 msgstr "Ekran yöneticisi yapılandırma işi tamamlanamadı"
 
-#: src/modules/initcpiocfg/main.py:28
-msgid "Configuring mkinitcpio."
-msgstr "Mkinitcpio yapılandırılıyor."
-
-#: src/modules/initcpiocfg/main.py:202
-#: src/modules/luksopenswaphookcfg/main.py:91
-#: src/modules/initramfscfg/main.py:90 src/modules/openrcdmcryptcfg/main.py:77
-#: src/modules/fstab/main.py:362 src/modules/localecfg/main.py:136
-#: src/modules/networkcfg/main.py:40
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr "<pre>{!s}</pre> kullanması için kök bağlama noktası verilmedi."
-
-#: src/modules/luksopenswaphookcfg/main.py:26
-msgid "Configuring encrypted swap."
-msgstr "Şifreli takas alanı yapılandırılıyor."
-
-#: src/modules/rawfs/main.py:26
-msgid "Installing data."
-msgstr "Veri yükleniyor."
-
 #: src/modules/services-openrc/main.py:29
 msgid "Configure OpenRC services"
 msgstr " OpenRC servislerini yapılandır"
@@ -250,6 +169,11 @@ msgid ""
 msgstr ""
 "Çalışma düzeyinde {level!s} hizmetinde {name!s} servisi için bilinmeyen "
 "hizmet eylemi <code>{arg!s}</code>."
+
+#: src/modules/services-openrc/main.py:93
+#: src/modules/services-systemd/main.py:59
+msgid "Cannot modify service"
+msgstr "Hizmet değiştirilemiyor"
 
 #: src/modules/services-openrc/main.py:94
 msgid ""
@@ -278,9 +202,9 @@ msgid ""
 "exist."
 msgstr "{name!s} hizmetinin yolu <code>{path!s}</code>, ki mevcut değil."
 
-#: src/modules/plymouthcfg/main.py:27
-msgid "Configure Plymouth theme"
-msgstr "Plymouth temasını yapılandır"
+#: src/modules/networkcfg/main.py:29
+msgid "Saving network configuration."
+msgstr "Ağ yapılandırması kaydediliyor."
 
 #: src/modules/packages/main.py:50 src/modules/packages/main.py:59
 #: src/modules/packages/main.py:69
@@ -306,82 +230,54 @@ msgid_plural "Removing %(num)d packages."
 msgstr[0] "%(num)d paket kaldırılıyor."
 msgstr[1] "%(num)d paket kaldırılıyor."
 
-#: src/modules/packages/main.py:588 src/modules/packages/main.py:600
-#: src/modules/packages/main.py:628
+#: src/modules/packages/main.py:638 src/modules/packages/main.py:650
+#: src/modules/packages/main.py:678
 msgid "Package Manager error"
-msgstr ""
+msgstr "Paket Yöneticisi hatası"
 
-#: src/modules/packages/main.py:589
+#: src/modules/packages/main.py:639
 msgid ""
 "The package manager could not prepare updates. The command <pre>{!s}</pre> "
 "returned error code {!s}."
 msgstr ""
+"Paket yöneticisi güncellemeleri hazırlayamadı. <pre>{!s}</pre> komutu {!s} "
+"hata kodunu döndürdü."
 
-#: src/modules/packages/main.py:601
+#: src/modules/packages/main.py:651
 msgid ""
 "The package manager could not update the system. The command <pre>{!s}</pre>"
 " returned error code {!s}."
 msgstr ""
+"Paket yöneticisi sistemi güncelleyemedi. <pre>{!s}</pre> komutu {!s} hata "
+"kodunu döndürdü."
 
-#: src/modules/packages/main.py:629
+#: src/modules/packages/main.py:679
 msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."
 msgstr ""
+"Paket yöneticisi kurulu sistemde değişiklik yapamadı. <pre>{!s}</pre> komutu"
+" {!s} hata kodunu döndürdü."
 
-#: src/modules/bootloader/main.py:43
-msgid "Install bootloader."
-msgstr "Önyükleyici kuruluyor"
+#: src/modules/plymouthcfg/main.py:27
+msgid "Configure Plymouth theme"
+msgstr "Plymouth temasını yapılandır"
 
-#: src/modules/bootloader/main.py:502
-msgid "Bootloader installation error"
-msgstr ""
+#: src/modules/initcpiocfg/main.py:28
+msgid "Configuring mkinitcpio."
+msgstr "Mkinitcpio yapılandırılıyor."
 
-#: src/modules/bootloader/main.py:503
-msgid ""
-"The bootloader could not be installed. The installation command "
-"<pre>{!s}</pre> returned error code {!s}."
-msgstr ""
+#: src/modules/localecfg/main.py:30
+msgid "Configuring locales."
+msgstr "Sistem yerelleri yapılandırılıyor."
 
-#: src/modules/hwclock/main.py:26
-msgid "Setting hardware clock."
-msgstr "Donanım saati ayarlanıyor."
+#: src/modules/mount/main.py:30
+msgid "Mounting partitions."
+msgstr "Disk bölümlemeleri bağlanıyor."
 
-#: src/modules/mkinitfs/main.py:27
-msgid "Creating initramfs with mkinitfs."
-msgstr "Mkinitfs ile initramfs oluşturuluyor."
-
-#: src/modules/mkinitfs/main.py:49
-msgid "Failed to run mkinitfs on the target"
-msgstr "Hedefte mkinitfs çalıştırılamadı"
-
-#: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
-msgid "The exit code was {}"
-msgstr "Çıkış kodu {} idi"
-
-#: src/modules/dracut/main.py:27
-msgid "Creating initramfs with dracut."
-msgstr "Dracut ile initramfs oluşturuluyor."
-
-#: src/modules/dracut/main.py:49
-msgid "Failed to run dracut on the target"
-msgstr "Hedef üzerinde dracut çalıştırılamadı"
-
-#: src/modules/initramfscfg/main.py:32
-msgid "Configuring initramfs."
-msgstr "Initramfs yapılandırılıyor."
-
-#: src/modules/openrcdmcryptcfg/main.py:26
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "OpenRC dmcrypt hizmeti yapılandırılıyor."
-
-#: src/modules/fstab/main.py:29
-msgid "Writing fstab."
-msgstr "Fstab dosyasına yazılıyor."
-
-#: src/modules/fstab/main.py:389
-msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
-msgstr ""
+#: src/modules/rawfs/main.py:26
+msgid "Installing data."
+msgstr "Veri yükleniyor."
 
 #: src/modules/dummypython/main.py:35
 msgid "Dummy python job."
@@ -392,10 +288,127 @@ msgstr "Dummy python job."
 msgid "Dummy python step {}"
 msgstr "Dummy python step {}"
 
-#: src/modules/localecfg/main.py:30
-msgid "Configuring locales."
-msgstr "Sistem yerelleri yapılandırılıyor."
+#: src/modules/hwclock/main.py:26
+msgid "Setting hardware clock."
+msgstr "Donanım saati ayarlanıyor."
 
-#: src/modules/networkcfg/main.py:28
-msgid "Saving network configuration."
-msgstr "Ağ yapılandırması kaydediliyor."
+#: src/modules/umount/main.py:31
+msgid "Unmount file systems."
+msgstr "Dosya sistemlerini ayırın."
+
+#: src/modules/openrcdmcryptcfg/main.py:26
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "OpenRC dmcrypt hizmeti yapılandırılıyor."
+
+#: src/modules/services-systemd/main.py:26
+msgid "Configure systemd services"
+msgstr "Systemd hizmetlerini yapılandır"
+
+#: src/modules/services-systemd/main.py:60
+msgid ""
+"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"<code>systemctl {arg!s}</code> chroot çağrısında hata kodu döndürüldü "
+"{num!s}."
+
+#: src/modules/services-systemd/main.py:63
+#: src/modules/services-systemd/main.py:69
+msgid "Cannot enable systemd service <code>{name!s}</code>."
+msgstr "Systemd hizmeti etkinleştirilemiyor <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:65
+msgid "Cannot enable systemd target <code>{name!s}</code>."
+msgstr "Systemd hedefi etkinleştirilemiyor <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:67
+msgid "Cannot enable systemd timer <code>{name!s}</code>."
+msgstr "<code>{name!s}</code> sistem zamanlayıcısı etkinleştirilemiyor."
+
+#: src/modules/services-systemd/main.py:71
+msgid "Cannot disable systemd target <code>{name!s}</code>."
+msgstr "Systemd hedefi devre dışı bırakılamıyor <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:73
+msgid "Cannot mask systemd unit <code>{name!s}</code>."
+msgstr "Systemd birimi maskeleyemiyor <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:75
+msgid ""
+"Unknown systemd commands <code>{command!s}</code> and "
+"<code>{suffix!s}</code> for unit {name!s}."
+msgstr ""
+"Bilinmeyen sistem komutları <code>{command!s}</code> ve "
+"<code>{suffix!s}</code>  {name!s} birimi için."
+
+#: src/modules/mkinitfs/main.py:27
+msgid "Creating initramfs with mkinitfs."
+msgstr "Mkinitfs ile initramfs oluşturuluyor."
+
+#: src/modules/mkinitfs/main.py:49
+msgid "Failed to run mkinitfs on the target"
+msgstr "Hedefte mkinitfs çalıştırılamadı"
+
+#: src/modules/unpackfs/main.py:34
+msgid "Filling up filesystems."
+msgstr "Dosya sistemlerini dolduruyorum."
+
+#: src/modules/unpackfs/main.py:254
+msgid "rsync failed with error code {}."
+msgstr "rsync {} hata koduyla başarısız oldu."
+
+#: src/modules/unpackfs/main.py:299
+msgid "Unpacking image {}/{}, file {}/{}"
+msgstr "Açılan kurulum medyası {}/{}, dışa aktarılan dosya sayısı {}/{}"
+
+#: src/modules/unpackfs/main.py:314
+msgid "Starting to unpack {}"
+msgstr "Dışa aktarım başlatılıyor {}"
+
+#: src/modules/unpackfs/main.py:323 src/modules/unpackfs/main.py:465
+msgid "Failed to unpack image \"{}\""
+msgstr "\"{}\" kurulum medyası aktarılamadı"
+
+#: src/modules/unpackfs/main.py:430
+msgid "No mount point for root partition"
+msgstr "kök disk bölümü için bağlama noktası yok"
+
+#: src/modules/unpackfs/main.py:431
+msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
+msgstr ""
+"globalstorage bir \"rootMountPoint\" anahtarı içermiyor, hiçbirşey yapılmadı"
+
+#: src/modules/unpackfs/main.py:436
+msgid "Bad mount point for root partition"
+msgstr "Kök disk bölümü için hatalı bağlama noktası"
+
+#: src/modules/unpackfs/main.py:437
+msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
+msgstr "rootMountPoint \"{}\", mevcut değil, hiçbirşey yapılmadı"
+
+#: src/modules/unpackfs/main.py:453 src/modules/unpackfs/main.py:457
+#: src/modules/unpackfs/main.py:463 src/modules/unpackfs/main.py:478
+msgid "Bad unsquash configuration"
+msgstr "Unsquash yapılandırma sorunlu"
+
+#: src/modules/unpackfs/main.py:454
+msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
+msgstr "\"{}\" ({}) Dosya sistemi mevcut çekirdeğiniz tarafından desteklenmiyor"
+
+#: src/modules/unpackfs/main.py:458
+msgid "The source filesystem \"{}\" does not exist"
+msgstr "\"{}\" Kaynak dosya sistemi mevcut değil"
+
+#: src/modules/unpackfs/main.py:464
+msgid ""
+"Failed to find unsquashfs, make sure you have the squashfs-tools package "
+"installed."
+msgstr ""
+"Unsquashfs bulunamadı, squashfs-tools paketinin kurulu olduğundan emin olun."
+
+#: src/modules/unpackfs/main.py:479
+msgid "The destination \"{}\" in the target system is not a directory"
+msgstr "Hedef sistemdeki \"{}\" hedefi bir dizin değil"
+
+#: src/modules/luksopenswaphookcfg/main.py:26
+msgid "Configuring encrypted swap."
+msgstr "Şifreli takas alanı yapılandırılıyor."

@@ -132,6 +132,11 @@ public:
     void setEmergency( bool e ) { m_emergency = e; }
 
 signals:
+    /** @brief Signals that the job has made progress
+     *
+     * The parameter @p percent should be between 0 (0%) and 1 (100%).
+     * Values outside of this range will be clamped.
+     */
     void progress( qreal percent );
 
 private:

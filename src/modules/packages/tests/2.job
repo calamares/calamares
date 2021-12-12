@@ -1,0 +1,13 @@
+# SPDX-FileCopyrightText: no
+# SPDX-License-Identifier: CC0-1.0
+backend: dummy
+operations:
+  - install:
+    - pre-script: touch /tmp/foo
+      package: vi
+      post-script: rm /tmp/foo
+    - wget
+    - binutils
+  - remove:
+    - vi
+    - wget

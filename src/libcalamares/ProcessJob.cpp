@@ -14,7 +14,6 @@
 #include "utils/Logger.h"
 
 #include <QDir>
-#include <QProcess>
 
 namespace Calamares
 {

@@ -104,14 +104,19 @@ mapForPartition( Partition* partition, const QString& uuid )
     // Debugging for inside the loop in createPartitionList(),
     // so indent a bit
     Logger::CDebug deb;
-    using TR = Logger::DebugRow< const char* const, const QString& >;
+    using TR = Logger::DebugRow< const char* const, const QString >;
+    // clang-format off
     deb << Logger::SubEntry << "mapping for" << partition->partitionPath() << partition->deviceNode()
-        << TR( "partlabel", map[ "partlabel" ].toString() ) << TR( "partuuid", map[ "partuuid" ].toString() )
-        << TR( "parttype", map[ "parttype" ].toString() ) << TR( "partattrs", map[ "partattrs" ].toString() )
-        << TR( "mountPoint:", PartitionInfo::mountPoint( partition ) ) << TR( "fs:", map[ "fs" ].toString() )
-        << TR( "fsName", map[ "fsName" ].toString() ) << TR( "uuid", uuid )
+        << TR( "partlabel", map[ "partlabel" ].toString() )
+        << TR( "partition-uuid (partuuid)", Logger::RedactedName( "PartUUID", map[ "partuuid" ].toString() ) )
+        << TR( "parttype", map[ "parttype" ].toString() )
+        << TR( "partattrs", map[ "partattrs" ].toString() )
+        << TR( "mountPoint:", PartitionInfo::mountPoint( partition ) )
+        << TR( "fs:", map[ "fs" ].toString() )
+        << TR( "fsName", map[ "fsName" ].toString() )
+        << TR( "filesystem-uuid (uuid)", Logger::RedactedName( "FSUUID", uuid ) )
         << TR( "claimed", map[ "claimed" ].toString() );
-
+    // clang-format on
     if ( partition->roles().has( PartitionRole::Luks ) )
     {
         const FileSystem& fsRef = partition->fileSystem();

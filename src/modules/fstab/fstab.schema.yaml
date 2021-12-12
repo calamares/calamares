@@ -22,6 +22,7 @@ properties:
             xfs: { type: string }
             swap: { type: string }
             btrfs: { type: string }
+            btrfs_swap: { type: string }
     efiMountOptions: { type: string }
     crypttabOptions: { type: string }
 required: [ mountOptions ]

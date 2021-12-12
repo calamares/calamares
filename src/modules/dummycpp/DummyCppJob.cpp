@@ -12,7 +12,6 @@
 #include "DummyCppJob.h"
 
 #include <QDateTime>
-#include <QProcess>
 #include <QThread>
 
 #include "CalamaresVersion.h"

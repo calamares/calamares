@@ -100,12 +100,10 @@ getInternal()
 KPMManager::KPMManager()
     : m_d( getInternal() )
 {
-    cDebug() << "KPMManager" << s_backend.use_count() << "created.";
 }
 
 KPMManager::~KPMManager()
 {
-    cDebug() << "KPMManager" << s_backend.use_count() << "being destroyed.";
 }
 
 KPMManager::operator bool() const

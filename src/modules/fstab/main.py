@@ -44,7 +44,7 @@ CRYPTTAB_HEADER = """# /etc/crypttab: mappings for encrypted partitions.
 #
 # See crypttab(5) for the supported syntax.
 #
-# NOTE: Do not list your root (/) partition here, it must be set up
+# NOTE: You need not list your root (/) partition here, but it must be set up
 #       beforehand by the initramfs (/etc/mkinitcpio.conf). The same applies
 #       to encrypted swap, which should be set up with mkinitcpio-openswap
 #       for resume support.
@@ -196,7 +196,7 @@ class FstabGenerator(object):
                         dct = self.generate_fstab_line_info(mount_entry)
                         if dct:
                                 self.print_fstab_line(dct, file=fstab_file)
-                else:
+                elif partition["fs"] != "zfs":  # zfs partitions don't need an entry in fstab
                     dct = self.generate_fstab_line_info(partition)
                     if dct:
                         self.print_fstab_line(dct, file=fstab_file)
@@ -236,7 +236,11 @@ class FstabGenerator(object):
             libcalamares.utils.debug("Ignoring foreign swap {!s} {!s}".format(disk_name, partition.get("uuid", None)))
             return None
 
-        options = self.get_mount_options(filesystem, mount_point)
+        # If this is btrfs subvol a dedicated to a swapfile, use different options than a normal btrfs subvol
+        if filesystem == "btrfs" and partition.get("subvol", None) == "/@swap":
+            options = self.get_mount_options("btrfs_swap", mount_point)
+        else:
+            options = self.get_mount_options(filesystem, mount_point)
 
         if is_ssd:
             extra = self.ssd_extra_mount_options.get(filesystem)
@@ -244,9 +248,9 @@ class FstabGenerator(object):
             if extra:
                 options += "," + extra
 
-        if mount_point == "/":
+        if mount_point == "/" and filesystem != "btrfs":
             check = 1
-        elif mount_point and mount_point != "swap":
+        elif mount_point and mount_point != "swap" and filesystem != "btrfs":
             check = 2
         else:
             check = 0
@@ -254,7 +258,8 @@ class FstabGenerator(object):
         if mount_point == "/":
             self.root_is_ssd = is_ssd
 
-        if filesystem == "btrfs" and "subvol" in partition:
+        # If there's a set-and-not-empty subvolume set, add it
+        if filesystem == "btrfs" and partition.get("subvol",None):
             options = "subvol={},".format(partition["subvol"]) + options
 
         if has_luks:

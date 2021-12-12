@@ -27,8 +27,10 @@ set( calamaresui_SOURCES
     viewpages/ViewStep.cpp
 
     widgets/ClickableLabel.cpp
+    widgets/ErrorDialog.cpp
     widgets/FixedAspectRatioLabel.cpp
     widgets/PrettyRadioButton.cpp
+    widgets/TranslationFix.cpp
     widgets/WaitingWidget.cpp
     ${CMAKE_SOURCE_DIR}/3rdparty/waitingspinnerwidget.cpp
 
@@ -38,8 +40,6 @@ set( calamaresui_SOURCES
 
 # Don't warn about third-party sources
 mark_thirdparty_code(
-    ${CMAKE_SOURCE_DIR}/3rdparty/qjsonitem.cpp
-    ${CMAKE_SOURCE_DIR}/3rdparty/qjsonmodel.cpp
     ${CMAKE_SOURCE_DIR}/3rdparty/waitingspinnerwidget.cpp
 )
 
@@ -74,6 +74,8 @@ calamares_add_library( calamaresui
         Qt5::Svg
     RESOURCES libcalamaresui.qrc
     EXPORT Calamares
+    UI
+        utils/ErrorDialog/ErrorDialog.ui
     VERSION ${CALAMARES_VERSION_SHORT}
 )
 target_link_libraries( calamaresui PRIVATE yamlcpp::yamlcpp )

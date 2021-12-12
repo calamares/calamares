@@ -11,7 +11,7 @@
 #ifndef WELCOMEPAGE_H
 #define WELCOMEPAGE_H
 
-#include "locale/LabelModel.h"
+#include "locale/TranslationsModel.h"
 
 #include <QStyledItemDelegate>
 #include <QWidget>
@@ -64,7 +64,7 @@ private:
 
     Ui::WelcomePage* ui;
     CheckerContainer* m_checkingWidget;
-    CalamaresUtils::Locale::LabelModel* m_languages;
+    CalamaresUtils::Locale::TranslationsModel* m_languages;
 
     Config* m_conf;
 };

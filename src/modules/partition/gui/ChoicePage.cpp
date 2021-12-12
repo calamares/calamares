@@ -42,7 +42,6 @@
 #include "widgets/PrettyRadioButton.h"
 
 #include <kpmcore/core/device.h>
-#include <kpmcore/core/partition.h>
 #ifdef WITH_KPMCORE4API
 #include <kpmcore/core/softwareraid.h>
 #endif
@@ -90,7 +89,6 @@ ChoicePage::ChoicePage( Config* config, QWidget* parent )
 
     auto gs = Calamares::JobQueue::instance()->globalStorage();
 
-    m_requiredPartitionTableType = gs->value( "requiredPartitionTableType" ).toStringList();
     m_enableEncryptionWidget = gs->value( "enableLuksAutomatedPartitioning" ).toBool();
 
     // Set up drives combo
@@ -1252,6 +1250,28 @@ operator<<( QDebug& s, PartitionIterator& it )
     return s;
 }
 
+QString
+describePartitionTypes( const QStringList& types )
+{
+    if ( types.empty() )
+    {
+        return QCoreApplication::translate(
+            ChoicePage::staticMetaObject.className(), "any", "any partition-table type" );
+    }
+    if ( types.size() == 1 )
+    {
+        return types.first();
+    }
+    if ( types.size() == 2 )
+    {
+        return QCoreApplication::translate(
+                   ChoicePage::staticMetaObject.className(), "%1 or %2", "partition-table types" )
+            .arg( types.at( 0 ), types.at( 1 ) );
+    }
+    // More than two, rather unlikely
+    return types.join( ", " );
+}
+
 /**
  * @brief ChoicePage::setupActions happens every time a new Device* is selected in the
  *      device picker. Sets up the text and visibility of the partitioning actions based
@@ -1305,8 +1325,7 @@ ChoicePage::setupActions()
     if ( currentDevice->partitionTable() )
     {
         tableType = currentDevice->partitionTable()->type();
-        matchTableType = m_requiredPartitionTableType.size() == 0
-            || m_requiredPartitionTableType.contains( PartitionTable::tableTypeToName( tableType ) );
+        matchTableType = m_config->acceptPartitionTableType( tableType );
     }
 
     for ( auto it = PartitionIterator::begin( currentDevice ); it != PartitionIterator::end( currentDevice ); ++it )
@@ -1487,11 +1506,11 @@ ChoicePage::setupActions()
                                      "but the partition table <strong>%1</strong> is different from the "
                                      "needed <strong>%2</strong>.<br/>" )
                                      .arg( PartitionTable::tableTypeToName( tableType ) )
-                                     .arg( m_requiredPartitionTableType.join( " or " ) ) );
+                                     .arg( describePartitionTypes( m_config->partitionTableTypes() ) ) );
         m_messageLabel->show();
 
         cWarning() << "Partition table" << PartitionTable::tableTypeToName( tableType )
-                   << "does not match the requirement " << m_requiredPartitionTableType.join( " or " )
+                   << "does not match the requirement " << m_config->partitionTableTypes().join( ',' )
                    << ", ENABLING erase feature and DISABLING alongside, replace and manual features.";
         m_eraseButton->show();
         m_alongsideButton->hide();
@@ -1642,7 +1661,8 @@ ChoicePage::updateSwapChoicesTr()
             }
             else
             {
-                cWarning() << "Box item" << index << m_eraseSwapChoiceComboBox->itemText( index ) << "has non-integer role.";
+                cWarning() << "Box item" << index << m_eraseSwapChoiceComboBox->itemText( index )
+                           << "has non-integer role.";
             }
             break;
         case SwapChoice::ReuseSwap:

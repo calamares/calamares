@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- === This file is part of Calamares - <https://calamares.io> ===
+
+ *   SPDX-FileCopyrightText: 2021 Anke Boersma <demm@kaosx.us>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
+ *
+ *   Calamares is Free Software: see the License-Identifier above. -->
+<Keyboard>
+    <Row>
+        <Key labels = " |" ratio = ".8"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = " |" ratio = ".8"/>
+    </Row>
+    <Row>
+        <Key labels = " |" ratio = "1.3"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = "↵!enter" icon = "enter.svg" ratio = "1"/>
+    </Row>
+    <Row>
+        <Key labels = "&#8593;!shift" ratio = "1.2" icon = "shift.svg" checkable = "true"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = " |" ratio = ".7"/>
+        <Key labels = "&#8593;!shift" ratio = "1.1" icon = "shift.svg" checkable = "true"/>
+        <Key labels = "⌫!backspace" icon = "backspace.svg" ratio = ".7"/>
+    </Row>
+    <Row>
+        <Key labels = "Ctrl" ratio = "1"/>
+        <Key labels = " |" ratio = "1"/>
+        <Key labels = "Alt|" ratio = "1"/>
+        <Key labels = " |" ratio = "4"/>
+        <Key labels = "Alt|" ratio = "1"/>
+        <Key labels = " |" ratio = "1"/>
+        <Key labels = "Ctrl" ratio = "1"/>
+    </Row>
+</Keyboard>

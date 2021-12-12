@@ -20,6 +20,8 @@
 #include <QThread>
 #include <QTimer>
 
+#include <algorithm>
+
 namespace CalamaresUtils
 {
 namespace Network
@@ -27,7 +29,7 @@ namespace Network
 void
 RequestOptions::applyToRequest( QNetworkRequest* request ) const
 {
-#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
+#if QT_VERSION < QT_VERSION_CHECK( 5, 15, 0 )
     constexpr const auto RedirectPolicyAttribute = QNetworkRequest::FollowRedirectsAttribute;
 #else
     constexpr const auto RedirectPolicyAttribute = QNetworkRequest::RedirectPolicyAttribute;
@@ -60,8 +62,9 @@ public slots:
     void cleanupNam();
 
 public:
-    QUrl m_hasInternetUrl;
-    bool m_hasInternet;
+    QVector< QUrl > m_hasInternetUrls;
+    bool m_hasInternet = false;
+    int m_lastCheckedUrlIndex = -1;
 
     Private();
 
@@ -155,14 +158,47 @@ Manager::hasInternet()
 bool
 Manager::checkHasInternet()
 {
+    if ( d->m_hasInternetUrls.empty() )
+    {
+        return false;
+    }
+    // It's possible that access was switched off (see below, if the check
+    // fails) so we want to turn it back on first. Otherwise all the
+    // checks will fail **anyway**, defeating the point of the checks.
+#if ( QT_VERSION < QT_VERSION_CHECK( 5, 15, 0 ) )
+    if ( !d->m_hasInternet )
+    {
+        d->nam()->setNetworkAccessible( QNetworkAccessManager::Accessible );
+    }
+#endif
+    if ( d->m_lastCheckedUrlIndex < 0 )
+    {
+        d->m_lastCheckedUrlIndex = 0;
+    }
+    int attempts = 0;
+    do
+    {
+        // Start by pinging the same one as last time
+        d->m_hasInternet = synchronousPing( d->m_hasInternetUrls.at( d->m_lastCheckedUrlIndex ) );
+        // if it's not responding, **then** move on to the next one,
+        // and wrap around if needed
+        if ( !d->m_hasInternet )
+        {
+            if ( ++( d->m_lastCheckedUrlIndex ) >= d->m_hasInternetUrls.size() )
+            {
+                d->m_lastCheckedUrlIndex = 0;
+            }
+        }
+        // keep track of how often we've tried, because there's no point in
+        // going around more than once.
+        attempts++;
+    } while ( !d->m_hasInternet && ( attempts < d->m_hasInternetUrls.size() ) );
 
-    d->m_hasInternet = synchronousPing( d->m_hasInternetUrl );
 
 // For earlier Qt versions (< 5.15.0), set the accessibility flag to
 // NotAccessible if synchronous ping has failed, so that any module
 // using Qt's networkAccessible method to determine whether or not
-// internet connection is actually avaialable won't get confused over
-// virtualization technologies.
+// internet connection is actually available won't get confused.
 #if ( QT_VERSION < QT_VERSION_CHECK( 5, 15, 0 ) )
     if ( !d->m_hasInternet )
     {
@@ -177,7 +213,40 @@ Manager::checkHasInternet()
 void
 Manager::setCheckHasInternetUrl( const QUrl& url )
 {
-    d->m_hasInternetUrl = url;
+    d->m_lastCheckedUrlIndex = -1;
+    d->m_hasInternetUrls.clear();
+    if ( url.isValid() )
+    {
+        d->m_hasInternetUrls.append( url );
+    }
+}
+
+void
+Manager::setCheckHasInternetUrl( const QVector< QUrl >& urls )
+{
+    d->m_lastCheckedUrlIndex = -1;
+    d->m_hasInternetUrls = urls;
+    auto it = std::remove_if(
+        d->m_hasInternetUrls.begin(), d->m_hasInternetUrls.end(), []( const QUrl& u ) { return !u.isValid(); } );
+    if ( it != d->m_hasInternetUrls.end() )
+    {
+        d->m_hasInternetUrls.erase( it, d->m_hasInternetUrls.end() );
+    }
+}
+
+void
+Manager::addCheckHasInternetUrl( const QUrl& url )
+{
+    if ( url.isValid() )
+    {
+        d->m_hasInternetUrls.append( url );
+    }
+}
+
+QVector< QUrl >
+Manager::getCheckInternetUrls() const
+{
+    return d->m_hasInternetUrls;
 }
 
 /** @brief Does a request asynchronously, returns the (pending) reply
@@ -200,6 +269,7 @@ asynchronousRun( QNetworkAccessManager* nam, const QUrl& url, const RequestOptio
     // Bail out early if the request is bad
     if ( reply->error() )
     {
+        cWarning() << "Early reply error" << reply->error() << reply->errorString();
         reply->deleteLater();
         return nullptr;
     }

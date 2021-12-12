@@ -13,7 +13,7 @@
  */
 #include "PackageModel.h"
 
-#include "locale/LabelModel.h"
+#include "locale/TranslationsModel.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
@@ -86,7 +86,6 @@ fromComponent( AppStream::Component& component )
             map.insert( QStringLiteral( "description[%1]" ).arg( locale ), description );
         }
     }
-
 
     auto screenshots = component.screenshots();
     if ( screenshots.count() > 0 )
