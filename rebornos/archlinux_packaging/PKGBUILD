@@ -25,9 +25,10 @@ depends=('qt5-svg'
          'kdbusaddons'
          'libpwquality'
          'boost'
-         'boost-libs')
-optdepends=('rebornos-calamares-configuration'
-            'rebornos-calamares-branding')
+         'boost-libs'
+         'rebornos-calamares-configuration'
+         'rebornos-calamares-branding')
+optdepends=()
 makedepends=('extra-cmake-modules'
              'git'
              'qt5-tools') 
