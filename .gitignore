@@ -55,3 +55,8 @@ CMakeLists.txt.user
 # Kate
 *.kate-swp
 tags
+
+# Packaging
+packaging/archlinux/**/pkg
+packaging/archlinux/**/src
+packaging/archlinux/**/*.pkg.tar.zst*

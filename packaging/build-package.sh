@@ -1,12 +1,11 @@
 #! /usr/bin/env sh
 
 # Global settings
-BUILD_DIRECTORY="/tmp/makepkg"
 PACKAGE_NAME="rebornos-calamares-core" # Must be the same as the one set in the PKGBUILDS
 
 # Parse arguments
-LONG=source:,target:,branch:,clean,install,help
-SHORT=s:,t:,b:,c,i,h
+LONG=target:,source:,branch:,build-dir,clean,sign,install,help
+SHORT=t:,s:,b:,d:,c,a,i,h
 OPTS=$(getopt --alternative --name build-package --options $SHORT --longoptions $LONG -- "$@") 
 eval set -- "$OPTS"
 
@@ -14,22 +13,30 @@ eval set -- "$OPTS"
 TARGET="arch"
 SOURCE="local"
 BRANCH=""
+BUILD_DIRECTORY="/tmp/makepkg"
 CLEAN="n"
+SIGN="n"
 INSTALL="n"
 
 display_help()
 {
     echo "Usage:                                                                        "
     echo "    build-package -h|--help                                                   "
-    echo "    build-package [-s|--source <SOURCE>] [-t|--target <TARGET>]               "
-    echo "                            [-b|--branch <BRANCH>] [-c|--clean] [-i|--install]"
+    echo "    build-package [-t|--target <TARGET>] [-s|--source <SOURCE>]               "
+    echo "                    [-b|--branch <BRANCH>] [-d|--build-dir <BUILD_DIRECTORY>] "
+    echo "                                        [-c|--clean] [-a|sign] [-i|--install] "
     echo "Arguments:                                                                    "
-    echo "    <SOURCE>:                                                                 "
-    echo "        local     Use the local source code                                   "
-    echo "        git       Pull sources from the git repository                        "
-    echo "    <TARGET>:                                                                 "
-    echo "        arch      Build for Arch Linux                                        "
-    echo "    <BRANCH>:     Name of the git branch to use                               "
+    echo "    <TARGET>: Permitted options are as below                                  "
+    echo "              arch     Build for Arch Linux                                   "
+    echo "    <SOURCE>: Permitted options are as below                                  "
+    echo "              local    Use the local source code                              "
+    echo "              git      Pull sources from the git repository                   "    
+    echo "    <BRANCH>: Name of the git branch to use                                   "
+    echo "    <BUILD_DIRECTORY>: Path to copy the sources temporarily, to build         "
+    echo "Flags:                                                                        "
+    echo "    -c or --clean  : Pass the clean flag to makepkg                           "
+    echo "    -a or --sign   : Sign the package                                         "
+    echo "    -i or --install: Install the package                                      "
 }
 
 build_package()
@@ -37,8 +44,10 @@ build_package()
     TARGET="$1"
     SOURCE="$2"
     BRANCH="$3"
-    CLEAN="$4"
-    INSTALL="$5"
+    BUILD_DIRECTORY="$4"
+    CLEAN="$5"
+    SIGN="$6"
+    INSTALL="$7"
 
     if [ "$TARGET" == "arch" ]; then
         build_package_arch "$SOURCE" "$BRANCH" "$CLEAN" "$INSTALL"
@@ -53,8 +62,10 @@ build_package_arch()
     echo "Building for Arch Linux..."
     SOURCE="$1"
     BRANCH="$2"
-    CLEAN="$3"
-    INSTALL="$4"
+    BUILD_DIRECTORY="$3"
+    CLEAN="$4"
+    SIGN="$5"
+    INSTALL="$6"
     PROJECT_DIRECTORY=$(dirname -- $(dirname -- $(readlink -f -- "$0"))) # Resolve any symlinks and then go to the parent directory
 
     SOURCE_PATH="$PROJECT_DIRECTORY"    
@@ -112,14 +123,14 @@ build_package_arch()
 while :
 do
   case "$1" in
-    -s | --source )
-      SOURCE="$2"
-      SOURCE="$SOURCE" | awk '{print tolower($0)}'
-      shift 2
-      ;;
     -t | --target )
       TARGET="$2"
       TARGET="$TARGET" | awk '{print tolower($0)}'
+      shift 2
+      ;;
+    -s | --source )
+      SOURCE="$2"
+      SOURCE="$SOURCE" | awk '{print tolower($0)}'
       shift 2
       ;;
     -b | --branch )
@@ -127,8 +138,17 @@ do
       BRANCH="$BRANCH" | awk '{print tolower($0)}'
       shift 2
       ;;
+    -d | --build-dir )
+      BUILD_DIRECTORY="$2"
+      BUILD_DIRECTORY="$BUILD_DIRECTORY" | awk '{print tolower($0)}'
+      shift 2
+      ;;
     -c | --clean )
       CLEAN="y"
+      shift
+      ;;
+    -a | --sign )
+      SIGN="y"
       shift
       ;;
     -i | --install )
@@ -155,7 +175,7 @@ echo ""
 echo "Package build script for $PACKAGE_NAME"
 echo ""
 echo "The makepkg build directory is set to: $BUILD_DIRECTORY"
-build_package "$TARGET" "$SOURCE" "$BRANCH" "$CLEAN" "$INSTALL" 
+build_package "$TARGET" "$SOURCE" "$BRANCH" "$BUILD_DIRECTORY" "$CLEAN" "$SIGN" "$INSTALL" 
 echo ""
 
 

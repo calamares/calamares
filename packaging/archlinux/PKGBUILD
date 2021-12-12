@@ -1,0 +1,64 @@
+# Maintainer: shivanandvp <shivanandvp@rebornos.org>
+
+pkgname=rebornos-calamares-core
+pkgver=0.0.1
+pkgrel=1
+arch=('i686' 'x86_64' 'armv6h' 'armv7h')
+pkgdesc='Calamares Installer for RebornOS. This is practically just bare Calamares. Please also install rebornos-calamares-configuration.'
+license=('GPL3')
+depends=('qt5-svg'
+         'qt5-xmlpatterns'
+         'qt5-location' 
+         'kconfig'
+         'ki18n'
+         'kcoreaddons'
+         'solid'
+         'kpackage'
+         'plasma-framework'
+         'yaml-cpp'
+         'parted'
+         'libatasmart'
+         'udisks2'
+         'polkit-qt5'
+         'kpmcore'
+         'kparts'
+         'kdbusaddons'
+         'libpwquality'
+         'boost'
+         'boost-libs')
+optdepends=('rebornos-calamares-configuration'
+            'rebornos-calamares-branding')
+makedepends=('extra-cmake-modules'
+             'git'
+             'qt5-tools') 
+provides=("${pkgname}")
+conflicts=("${pkgname}")
+source=()
+replaces=('calamares'
+          'rebornos-calamares-core')
+
+PROJECT_DIRECTORY=$(dirname -- $(dirname -- $(pwd)))
+BUILD_DIRECTORY="$PROJECT_DIRECTORY/build"
+RESOURCE_DIRECTORY="$PROJECT_DIRECTORY/packaging/archlinux"
+
+prepare() {
+    cp "$RESOURCE_DIRECTORY/rebornos-calamares.desktop" "${srcdir}"
+    cp "$RESOURCE_DIRECTORY/rebornos-calamares.png" "${srcdir}"
+    cp "$RESOURCE_DIRECTORY/rebornos-calamares.svg" "${srcdir}"
+}
+
+build() {     
+    mkdir -p "$BUILD_DIRECTORY" && \
+    cmake -B "$BUILD_DIRECTORY" -S "$PROJECT_DIRECTORY" \
+        -DCMAKE_BUILD_TYPE=Debug \
+        -DCMAKE_INSTALL_PREFIX=/usr \
+        -DCMAKE_INSTALL_LIBDIR=lib \
+        -DSKIP_MODULES="oemid"
+    cmake --build "$BUILD_DIRECTORY"
+}
+
+package() {
+    DESTDIR="${pkgdir}" cmake --install "$BUILD_DIRECTORY"
+    install -Dm 755 "${srcdir}/rebornos-calamares.desktop" "${pkgdir}/usr/share/applications/rebornos-calamares.desktop"
+    install -Dm 755 "${srcdir}/rebornos-calamares.svg" "${pkgdir}/usr/share/pixmaps/rebornos-calamares.svg"
+}
