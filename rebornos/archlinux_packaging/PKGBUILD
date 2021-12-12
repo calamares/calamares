@@ -39,7 +39,8 @@ replaces=('calamares'
 
 PROJECT_DIRECTORY=$(dirname -- $(dirname -- $(pwd)))
 BUILD_DIRECTORY="$PROJECT_DIRECTORY/build"
-RESOURCE_DIRECTORY="$PROJECT_DIRECTORY/packaging/archlinux"
+RESOURCE_DIRECTORY="$PROJECT_DIRECTORY/rebornos/archlinux_packaging"
+NUMBER_OF_PROCESSORS="$(nproc)"
 
 prepare() {
     cp "$RESOURCE_DIRECTORY/rebornos-calamares.desktop" "${srcdir}"
@@ -49,12 +50,12 @@ prepare() {
 
 build() {     
     mkdir -p "$BUILD_DIRECTORY" && \
-    cmake -B "$BUILD_DIRECTORY" -S "$PROJECT_DIRECTORY" \
+    cmake \
         -DCMAKE_BUILD_TYPE=Debug \
         -DCMAKE_INSTALL_PREFIX=/usr \
         -DCMAKE_INSTALL_LIBDIR=lib \
-        -DSKIP_MODULES="oemid"
-    cmake --build "$BUILD_DIRECTORY"
+        -B "$BUILD_DIRECTORY" -S "$PROJECT_DIRECTORY" && \
+    cmake --build "$BUILD_DIRECTORY" --parallel "$NUMBER_OF_PROCESSORS"
 }
 
 package() {
