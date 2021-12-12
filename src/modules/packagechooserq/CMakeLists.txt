@@ -62,7 +62,7 @@ calamares_add_plugin( packagechooserq
         PackageModel.cpp
         PackageChooserQmlViewStep.cpp
         ItemAppData.cpp
-        ItemAppStream.cpp
+        # ItemAppStream.cpp
         # ${_packagechooser}/Config.cpp
         # ${_packagechooser}/PackageModel.cpp
         # ${_packagechooser}/ItemAppData.cpp

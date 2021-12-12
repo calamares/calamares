@@ -25,7 +25,7 @@
 
 #include <QNetworkReply>
 
-#include <QAbstractItemModelTester>
+// #include <QAbstractItemModelTester>
 
 Config::Config( QObject* parent )
     : Calamares::ModuleSystem::Config( parent )
