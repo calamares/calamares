@@ -7,7 +7,28 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.49 (unreleased) #
+# 3.2.50 (unreleased) #
+
+This release contains contributions from (alphabetically by first name):
+ - Erik Dubois
+
+## Core ##
+ - No core changes yet
+
+## Modules ##
+ - *networkcfg* could fail to update the NetworkManager configuration
+   if the SSID or username contained non-ASCII characters **and** the
+   default Python text-file encoding was set to ASCII. The files are
+   now read and written in UTF-8, explicitly. #1848
+
+
+# 3.2.49.1 (2021-12-11) #
+
+This is a hot-fix release, to fix a regression in the calculation of
+swap-size. Reported by EndeavourOS (Joe Kamprad) and Xero Linux.
+
+
+# 3.2.49 (2021-12-10) #
 
 This release contains contributions from (alphabetically by first name):
  - Artem Grinev
@@ -22,6 +43,8 @@ configuration (and to use *preservefiles* if needed).
    to the size of the screen. (Thanks Artem)
 
 ## Modules ##
+ - *bootloader* better supports multiple installations of the same OS.
+ - *mount* supports btrfs subvolumes on subdirectories of / now.
  - *partition* now supports "deep" btrfs subvolume names, e.g. a
    separate subvolume for `/usr/local`. (Thanks Evan)
  - The *umount* module now warns if the "preserve log file" feature is used.

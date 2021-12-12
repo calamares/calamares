@@ -71,7 +71,7 @@ swapSuggestion( const qint64 availableSpaceB, Config::SwapChoice swap )
 
 
     // Allow for a fudge factor
-    suggestedSwapSizeB = qRound( suggestedSwapSizeB * overestimationFactor );
+    suggestedSwapSizeB = qRound64( suggestedSwapSizeB * overestimationFactor );
 
     // don't use more than 10% of available space
     if ( !ensureSuspendToDisk )
