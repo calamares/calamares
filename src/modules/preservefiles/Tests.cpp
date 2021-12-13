@@ -12,6 +12,7 @@
 #include "Settings.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
+#include "utils/NamedEnum.h"
 #include "utils/Yaml.h"
 
 #include <QtTest/QtTest>
@@ -26,14 +27,8 @@ public:
 private Q_SLOTS:
     void initTestCase();
 
-    /*
-    void testOneUrl();
-    void testUrls_data();
-    void testUrls();
-
-    void testBadConfigDoesNotResetUrls();
-    */
-    void testTrue();
+    void testItems_data();
+    void testItems();
 };
 
 PreserveFilesTests::PreserveFilesTests() {}
@@ -57,11 +52,39 @@ PreserveFilesTests::initTestCase()
 }
 
 void
-PreserveFilesTests::testTrue()
+PreserveFilesTests::testItems_data()
 {
-    QVERIFY( true );
+    QTest::addColumn< QString >( "filename" );
+    QTest::addColumn< bool >( "ok" );
+    QTest::addColumn< int >( "type_i" );
+
+    QTest::newRow( "log     " ) << QString( "1a-log.conf" ) << true << smash( ItemType::Log );
+    QTest::newRow( "config  " ) << QString( "1b-config.conf" ) << true << smash( ItemType::Config );
+    QTest::newRow( "src     " ) << QString( "1c-src.conf" ) << true << smash( ItemType::Path );
+    QTest::newRow( "filename" ) << QString( "1d-filename.conf" ) << true << smash( ItemType::Path );
+    QTest::newRow( "empty   " ) << QString( "1e-empty.conf" ) << false << smash( ItemType::None );
+    QTest::newRow( "bad     " ) << QString( "1f-bad.conf" ) << false << smash( ItemType::None );
 }
 
+void
+PreserveFilesTests::testItems()
+{
+    QFETCH( QString, filename );
+    QFETCH( bool, ok );
+    QFETCH( int, type_i );
+
+    QFile fi( QString( "%1/tests/%2" ).arg( BUILD_AS_TEST, filename ) );
+    QVERIFY( fi.exists() );
+
+    bool config_file_ok = false;
+    const auto map = CalamaresUtils::loadYaml( fi, &config_file_ok );
+    QVERIFY( config_file_ok );
+
+    CalamaresUtils::Permissions perm( QStringLiteral( "adridg:adridg:0750" ) );
+    auto i = Item::fromVariant( map[ "item" ], perm );
+    QCOMPARE( bool( i ), ok );
+    QCOMPARE( smash( i.type() ), type_i );
+}
 
 QTEST_GUILESS_MAIN( PreserveFilesTests )
 
