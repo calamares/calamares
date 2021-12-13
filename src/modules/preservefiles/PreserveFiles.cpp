@@ -72,7 +72,9 @@ PreserveFiles::exec()
             ++count;
             continue;
         }
-        if ( it.exec( atReplacements ) )
+        // Try to preserve the file. If it's marked as optional, count it
+        // as a success regardless.
+        if ( it.exec( atReplacements ) || it.isOptional() )
         {
             ++count;
         }

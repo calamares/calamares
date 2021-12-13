@@ -12,6 +12,7 @@
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 #include "utils/Units.h"
+#include "utils/Variant.h"
 
 #include <QFile>
 
@@ -56,7 +57,7 @@ Item::fromVariant( const QVariant& v, const CalamaresUtils::Permissions& default
         QString filename = v.toString();
         if ( !filename.isEmpty() )
         {
-            return { filename, filename, defaultPermissions, ItemType::Path };
+            return { filename, filename, defaultPermissions, ItemType::Path, false };
         }
         else
         {
@@ -70,6 +71,7 @@ Item::fromVariant( const QVariant& v, const CalamaresUtils::Permissions& default
 
         CalamaresUtils::Permissions perm( defaultPermissions );
         ItemType t = ItemType::None;
+        bool optional = CalamaresUtils::getBool( map, "optional", false );
 
         {
             QString perm_string = map[ "perm" ].toString();
@@ -99,11 +101,11 @@ Item::fromVariant( const QVariant& v, const CalamaresUtils::Permissions& default
         switch ( t )
         {
         case ItemType::Config:
-            return { QString(), dest, perm, t };
+            return { QString(), dest, perm, t, optional };
         case ItemType::Log:
-            return { QString(), dest, perm, t };
+            return { QString(), dest, perm, t, optional };
         case ItemType::Path:
-            return { map[ "src" ].toString(), dest, perm, t };
+            return { map[ "src" ].toString(), dest, perm, t, optional };
         case ItemType::None:
             cWarning() << "Invalid type for preservefiles, item" << v;
             return {};
