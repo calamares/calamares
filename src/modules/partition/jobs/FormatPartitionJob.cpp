@@ -11,6 +11,8 @@
 
 #include "FormatPartitionJob.h"
 
+#include "core/KPMHelpers.h"
+
 #include "partition/FileSystem.h"
 #include "utils/Logger.h"
 
@@ -65,17 +67,7 @@ FormatPartitionJob::prettyStatusMessage() const
 Calamares::JobResult
 FormatPartitionJob::exec()
 {
-    Report report( nullptr );  // Root of the report tree, no parent
-    CreateFileSystemOperation op( *m_device, *m_partition, m_partition->fileSystem().type() );
-    op.setStatus( Operation::StatusRunning );
-
-    QString message = tr( "The installer failed to format partition %1 on disk '%2'." )
-                          .arg( m_partition->partitionPath(), m_device->name() );
-
-    if ( op.execute( report ) )
-    {
-        return Calamares::JobResult::ok();
-    }
-
-    return Calamares::JobResult::error( message, report.toText() );
+    return KPMHelpers::execute( CreateFileSystemOperation( *m_device, *m_partition, m_partition->fileSystem().type() ),
+                                tr( "The installer failed to format partition %1 on disk '%2'." )
+                                    .arg( m_partition->partitionPath(), m_device->name() ) );
 }
