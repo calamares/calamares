@@ -35,23 +35,24 @@ class Item
     QString source;
     QString dest;
     CalamaresUtils::Permissions perm;
-    ItemType type;
+    ItemType m_type;
 
 public:
     Item( const QString& src, const QString& d, CalamaresUtils::Permissions p, ItemType t )
         : source( src )
         , dest( d )
         , perm( std::move( p ) )
-        , type( t )
+        , m_type( t )
     {
     }
 
     Item()
-        : type( ItemType::None )
+        : m_type( ItemType::None )
     {
     }
 
-    operator bool() const { return type != ItemType::None; }
+    operator bool() const { return m_type != ItemType::None; }
+    ItemType type() const { return m_type; }
 
     bool exec( const std::function< QString( QString ) >& replacements ) const;
 

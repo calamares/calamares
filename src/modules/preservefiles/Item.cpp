@@ -124,7 +124,7 @@ Item::exec( const std::function< QString( QString ) >& replacements ) const
     QString full_dest = CalamaresUtils::System::instance()->targetPath( expanded_dest );
 
     bool success = false;
-    switch ( type )
+    switch ( m_type )
     {
     case ItemType::None:
         cWarning() << "Invalid item for preservefiles skipped.";
