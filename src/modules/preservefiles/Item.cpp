@@ -109,11 +109,8 @@ Item::fromVariant( const QVariant& v, const CalamaresUtils::Permissions& default
             return {};
         }
     }
-    else
-    {
-        cWarning() << "Invalid type for preservefiles, item" << v;
-        return {};
-    }
+    cWarning() << "Invalid type for preservefiles, item" << v;
+    return {};
 }
 
 
