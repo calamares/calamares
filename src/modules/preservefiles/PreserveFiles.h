@@ -10,19 +10,15 @@
 
 #include "CppJob.h"
 #include "DllMacro.h"
-#include "utils/Permissions.h"
 #include "utils/PluginFactory.h"
 
-#include <memory>
-#include <vector>
-
-struct Item;
+class Item;
 
 class PLUGINDLLEXPORT PreserveFiles : public Calamares::CppJob
 {
     Q_OBJECT
 
-    using ItemList = std::vector< std::unique_ptr< Item > >;
+    using ItemList = QList< Item >;
 
 public:
     explicit PreserveFiles( QObject* parent = nullptr );
