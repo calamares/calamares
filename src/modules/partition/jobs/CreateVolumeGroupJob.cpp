@@ -17,7 +17,7 @@
 #include <kpmcore/util/report.h>
 
 CreateVolumeGroupJob::CreateVolumeGroupJob( Device*,
-                                            QString& vgName,
+                                            const QString& vgName,
                                             QVector< const Partition* > pvList,
                                             const qint32 peSize )
     : m_vgName( vgName )
