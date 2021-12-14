@@ -22,7 +22,14 @@ class CreateVolumeGroupJob : public Calamares::Job
 {
     Q_OBJECT
 public:
-    CreateVolumeGroupJob( Device*, QString& vgName, QVector< const Partition* > pvList, const qint32 peSize );
+    /** @brief Make a job that will create a volume group
+     *
+     * The @p physicalExtentSize is given in MiB; typically this is 4 (MiB).
+     */
+    CreateVolumeGroupJob( Device*,
+                          QString& vgName,
+                          QVector< const Partition* > pvList,
+                          const qint32 physicalExtentSize );
 
     QString prettyName() const override;
     QString prettyDescription() const override;
@@ -36,7 +43,7 @@ private:
     CalamaresUtils::Partition::KPMManager m_kpmcore;
     QString m_vgName;
     QVector< const Partition* > m_pvList;
-    qint32 m_peSize;
+    qint32 m_physicalExtentSize;
 };
 
 #endif  // CREATEVOLUMEGROUPJOB_H

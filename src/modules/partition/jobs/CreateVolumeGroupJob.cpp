@@ -22,7 +22,7 @@ CreateVolumeGroupJob::CreateVolumeGroupJob( Device*,
                                             const qint32 peSize )
     : m_vgName( vgName )
     , m_pvList( pvList )
-    , m_peSize( peSize )
+    , m_physicalExtentSize( peSize )
 {
 }
 
@@ -47,7 +47,7 @@ CreateVolumeGroupJob::prettyStatusMessage() const
 Calamares::JobResult
 CreateVolumeGroupJob::exec()
 {
-    return KPMHelpers::execute( CreateVolumeGroupOperation( m_vgName, m_pvList, m_peSize ),
+    return KPMHelpers::execute( CreateVolumeGroupOperation( m_vgName, m_pvList, m_physicalExtentSize ),
                                 tr( "The installer failed to create a volume group named '%1'." ).arg( m_vgName ) );
 }
 
