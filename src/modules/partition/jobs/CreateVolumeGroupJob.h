@@ -27,7 +27,7 @@ public:
      * The @p physicalExtentSize is given in MiB; typically this is 4 (MiB).
      */
     CreateVolumeGroupJob( Device*,
-                          QString& vgName,
+                          const QString& vgName,
                           QVector< const Partition* > pvList,
                           const qint32 physicalExtentSize );
 
