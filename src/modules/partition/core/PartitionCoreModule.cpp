@@ -434,7 +434,7 @@ PartitionCoreModule::createVolumeGroup( const QString& vgName, QVector< const Pa
 }
 
 void
-PartitionCoreModule::resizeVolumeGroup( LvmDevice* device, QVector< const Partition* >& pvList )
+PartitionCoreModule::resizeVolumeGroup( LvmDevice* device, const QVector< const Partition* >& pvList )
 {
     auto* deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );

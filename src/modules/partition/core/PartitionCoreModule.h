@@ -144,7 +144,7 @@ public:
     using PartitionVector = QVector< const Partition* >;
 
     void createVolumeGroup( const QString& vgName, PartitionVector pvList, qint32 peSize );
-    void resizeVolumeGroup( LvmDevice* device, PartitionVector& pvList );
+    void resizeVolumeGroup( LvmDevice* device, const PartitionVector& pvList );
     void deactivateVolumeGroup( LvmDevice* device );
     void removeVolumeGroup( LvmDevice* device );
 
