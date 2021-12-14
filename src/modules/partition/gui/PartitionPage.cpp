@@ -54,7 +54,7 @@
 #include <QPointer>
 #include <QtConcurrent/QtConcurrent>
 
-PartitionPage::PartitionPage( PartitionCoreModule* core, const Config & config, QWidget* parent )
+PartitionPage::PartitionPage( PartitionCoreModule* core, const Config& config, QWidget* parent )
     : QWidget( parent )
     , m_ui( new Ui_PartitionPage )
     , m_core( core )
@@ -119,9 +119,8 @@ PartitionPage::PartitionPage( PartitionCoreModule* core, const Config & config, 
         m_ui->label_3->hide();
     }
 
-    CALAMARES_RETRANSLATE(
-        m_ui->retranslateUi( this );
-        m_core->bootLoaderModel()->update(); // Need to re-translate entries in the combo-box
+    CALAMARES_RETRANSLATE( m_ui->retranslateUi( this );
+                           m_core->bootLoaderModel()->update();  // Need to re-translate entries in the combo-box
     );
 }
 
@@ -281,22 +280,29 @@ PartitionPage::checkCanCreate( Device* device )
     }
 }
 
+static inline CreateVolumeGroupDialog::PartitionVector
+availablePVs( PartitionCoreModule* core )
+{
+    CreateVolumeGroupDialog::PartitionVector availablePVs;
+
+    for ( const Partition* p : core->lvmPVs() )
+    {
+        if ( !core->isInVG( p ) )
+        {
+            availablePVs << p;
+        }
+    }
+    return availablePVs;
+}
+
+
 void
 PartitionPage::onNewVolumeGroupClicked()
 {
     CreateVolumeGroupDialog::PartitionVector selectedPVs;
 
-    CreateVolumeGroupDialog::PartitionVector availablePVs;
-
-    for ( const Partition* p : m_core->lvmPVs() )
-    {
-        if ( !m_core->isInVG( p ) )
-        {
-            availablePVs << p;
-        }
-    }
-
-    QPointer< CreateVolumeGroupDialog > dlg = new CreateVolumeGroupDialog( selectedPVs, availablePVs, 4, this );
+    QPointer< CreateVolumeGroupDialog > dlg
+        = new CreateVolumeGroupDialog( selectedPVs, availablePVs( m_core ), 4, this );
 
     if ( dlg->exec() == QDialog::Accepted )
     {
@@ -344,9 +350,9 @@ PartitionPage::onResizeVolumeGroupClicked()
 
     Q_ASSERT( device && device->type() == Device::Type::LVM_Device );
 
-    ResizeVolumeGroupDialog::PartitionVector availablePVs;
     ResizeVolumeGroupDialog::PartitionVector selectedPVs;
 
+<<<<<<< HEAD
     for ( const Partition* p : m_core->lvmPVs() )
     {
         if ( !m_core->isInVG( p ) )
@@ -356,6 +362,10 @@ PartitionPage::onResizeVolumeGroupClicked()
     }
 
     QPointer< ResizeVolumeGroupDialog > dlg = new ResizeVolumeGroupDialog( device, availablePVs, selectedPVs, this );
+=======
+    QPointer< ResizeVolumeGroupDialog > dlg
+        = new ResizeVolumeGroupDialog( device, availablePVs( m_core ), selectedPVs, this );
+>>>>>>> 2c16d812c ([partition] Factor out determining which PVs exist)
 
     if ( dlg->exec() == QDialog::Accepted )
     {
@@ -511,8 +521,8 @@ PartitionPage::updatePartitionToCreate( Device* device, Partition* partition )
     QStringList mountPoints = getCurrentUsedMountpoints();
     mountPoints.removeOne( PartitionInfo::mountPoint( partition ) );
 
-    QPointer< CreatePartitionDialog > dlg
-        = new CreatePartitionDialog( m_core, device, CreatePartitionDialog::FreshPartition { partition }, mountPoints, this );
+    QPointer< CreatePartitionDialog > dlg = new CreatePartitionDialog(
+        m_core, device, CreatePartitionDialog::FreshPartition { partition }, mountPoints, this );
     if ( dlg->exec() == QDialog::Accepted )
     {
         Partition* newPartition = dlg->getNewlyCreatedPartition();
