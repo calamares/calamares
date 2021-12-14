@@ -10,6 +10,7 @@
 #include "VolumeGroupBaseDialog.h"
 #include "ui_VolumeGroupBaseDialog.h"
 
+#include "core/PartitionCoreModule.h"
 #include "core/SizeUtils.h"
 #include "gui/ListPhysicalVolumeWidgetItem.h"
 
@@ -19,6 +20,9 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QSpinBox>
+
+// Keeping the sources consistent
+static_assert( std::is_same< VolumeGroupBaseDialog::PartitionVector, PartitionCoreModule::PartitionVector >::value );
 
 VolumeGroupBaseDialog::VolumeGroupBaseDialog( QWidget* parent, const QString& vgName, PartitionVector pvList )
     : QDialog( parent )
