@@ -20,10 +20,11 @@
 #include <QPushButton>
 #include <QSpinBox>
 
-VolumeGroupBaseDialog::VolumeGroupBaseDialog( QString& vgName, QVector< const Partition* > pvList, QWidget* parent )
+VolumeGroupBaseDialog::VolumeGroupBaseDialog( QWidget* parent,
+                                              const QString& vgName,
+                                              QVector< const Partition* > pvList )
     : QDialog( parent )
     , ui( new Ui::VolumeGroupBaseDialog )
-    , m_vgNameValue( vgName )
     , m_totalSizeValue( 0 )
     , m_usedSizeValue( 0 )
 {
@@ -34,13 +35,12 @@ VolumeGroupBaseDialog::VolumeGroupBaseDialog( QString& vgName, QVector< const Pa
         ui->pvList->addItem( new ListPhysicalVolumeWidgetItem( p, false ) );
     }
 
-    ui->vgType->addItems( QStringList() << "LVM"
-                                        << "RAID" );
+    ui->vgType->addItems( { "LVM", "RAID" } );
     ui->vgType->setCurrentIndex( 0 );
 
     QRegularExpression re( R"(^(?!_|\.)[\w\-.+]+)" );
     ui->vgName->setValidator( new QRegularExpressionValidator( re, this ) );
-    ui->vgName->setText( m_vgNameValue );
+    ui->vgName->setText( vgName );
 
     updateOkButton();
     updateTotalSize();
@@ -90,8 +90,8 @@ VolumeGroupBaseDialog::isSizeValid() const
 void
 VolumeGroupBaseDialog::updateOkButton()
 {
-    okButton()->setEnabled( isSizeValid() && !checkedItems().empty() && !ui->vgName->text().isEmpty()
-                            && ui->peSize->value() > 0 );
+    okButtonWidget()->setEnabled( isSizeValid() && !checkedItems().empty() && !ui->vgName->text().isEmpty()
+                                  && ui->peSize->value() > 0 );
 }
 
 void
@@ -140,38 +140,32 @@ VolumeGroupBaseDialog::updateTotalSectors()
     ui->totalSectors->setText( QString::number( totalSectors ) );
 }
 
-QString&
-VolumeGroupBaseDialog::vgNameValue() const
-{
-    return m_vgNameValue;
-}
-
 QLineEdit*
-VolumeGroupBaseDialog::vgName() const
+VolumeGroupBaseDialog::vgNameWidget() const
 {
     return ui->vgName;
 }
 
 QComboBox*
-VolumeGroupBaseDialog::vgType() const
+VolumeGroupBaseDialog::vgTypeWidget() const
 {
     return ui->vgType;
 }
 
 QSpinBox*
-VolumeGroupBaseDialog::peSize() const
+VolumeGroupBaseDialog::peSizeWidget() const
 {
     return ui->peSize;
 }
 
 QListWidget*
-VolumeGroupBaseDialog::pvList() const
+VolumeGroupBaseDialog::pvListWidget() const
 {
     return ui->pvList;
 }
 
 QPushButton*
-VolumeGroupBaseDialog::okButton() const
+VolumeGroupBaseDialog::okButtonWidget() const
 {
     return ui->buttonBox->button( QDialogButtonBox::StandardButton::Ok );
 }
