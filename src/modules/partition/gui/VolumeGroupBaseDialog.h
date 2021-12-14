@@ -49,14 +49,15 @@ protected:
 
     QString& vgNameValue() const;
 
+    /** @section UI-widget accessors
+     *
+     * These methods get UI internal widgets, so that subclasses
+     * can manipulate the values in those widgets.
+     */
     QLineEdit* vgName() const;
-
     QComboBox* vgType() const;
-
     QSpinBox* peSize() const;
-
     QListWidget* pvList() const;
-
     QPushButton* okButton() const;
 
 private:
