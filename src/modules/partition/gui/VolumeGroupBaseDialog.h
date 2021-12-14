@@ -29,41 +29,34 @@ class VolumeGroupBaseDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit VolumeGroupBaseDialog( QString& vgName, QVector< const Partition* > pvList, QWidget* parent = nullptr );
+    explicit VolumeGroupBaseDialog( QWidget* parent, const QString& vgName, QVector< const Partition* > pvList );
     ~VolumeGroupBaseDialog() override;
 
 protected:
     virtual void updateOkButton();
 
     void setUsedSizeValue( qint64 usedSize );
-
     void setLVQuantity( qint32 lvQuantity );
+    bool isSizeValid() const;
 
     void updateTotalSize();
-
     void updateTotalSectors();
 
     QVector< const Partition* > checkedItems() const;
-
-    bool isSizeValid() const;
-
-    QString& vgNameValue() const;
 
     /** @section UI-widget accessors
      *
      * These methods get UI internal widgets, so that subclasses
      * can manipulate the values in those widgets.
      */
-    QLineEdit* vgName() const;
-    QComboBox* vgType() const;
-    QSpinBox* peSize() const;
-    QListWidget* pvList() const;
-    QPushButton* okButton() const;
+    QLineEdit* vgNameWidget() const;
+    QComboBox* vgTypeWidget() const;
+    QSpinBox* peSizeWidget() const;
+    QListWidget* pvListWidget() const;
+    QPushButton* okButtonWidget() const;
 
 private:
     Ui::VolumeGroupBaseDialog* ui;
-
-    QString& m_vgNameValue;
 
     qint64 m_totalSizeValue;
     qint64 m_usedSizeValue;
