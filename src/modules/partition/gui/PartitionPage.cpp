@@ -284,10 +284,9 @@ PartitionPage::checkCanCreate( Device* device )
 void
 PartitionPage::onNewVolumeGroupClicked()
 {
-    QString vgName;
-    QVector< const Partition* > selectedPVs;
+    CreateVolumeGroupDialog::PartitionVector selectedPVs;
 
-    QVector< const Partition* > availablePVs;
+    CreateVolumeGroupDialog::PartitionVector availablePVs;
 
     for ( const Partition* p : m_core->lvmPVs() )
     {
@@ -297,7 +296,7 @@ PartitionPage::onNewVolumeGroupClicked()
         }
     }
 
-    QPointer< CreateVolumeGroupDialog > dlg = new CreateVolumeGroupDialog( vgName, selectedPVs, availablePVs, 4, this );
+    QPointer< CreateVolumeGroupDialog > dlg = new CreateVolumeGroupDialog( selectedPVs, availablePVs, 4, this );
 
     if ( dlg->exec() == QDialog::Accepted )
     {
@@ -324,7 +323,7 @@ PartitionPage::onNewVolumeGroupClicked()
         QVariant previousIndexDeviceData = m_core->deviceModel()->data( deviceIndex, Qt::ToolTipRole );
 
         // Creating new VG
-        m_core->createVolumeGroup( vgName, selectedPVs, dlg->physicalExtentSize() );
+        m_core->createVolumeGroup( dlg->volumeGroupName(), selectedPVs, dlg->physicalExtentSize() );
 
         // As createVolumeGroup method call resets deviceModel,
         // is needed to set the current index in deviceComboBox as the previous one
@@ -345,8 +344,8 @@ PartitionPage::onResizeVolumeGroupClicked()
 
     Q_ASSERT( device && device->type() == Device::Type::LVM_Device );
 
-    QVector< const Partition* > availablePVs;
-    QVector< const Partition* > selectedPVs;
+    ResizeVolumeGroupDialog::PartitionVector availablePVs;
+    ResizeVolumeGroupDialog::PartitionVector selectedPVs;
 
     for ( const Partition* p : m_core->lvmPVs() )
     {

@@ -29,8 +29,13 @@ class VolumeGroupBaseDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit VolumeGroupBaseDialog( QWidget* parent, const QString& vgName, QVector< const Partition* > pvList );
+    using PartitionVector = QVector< const Partition* >;
+
+    explicit VolumeGroupBaseDialog( QWidget* parent, const QString& vgName, PartitionVector pvList );
     ~VolumeGroupBaseDialog() override;
+
+    qint32 physicalExtentSize() const { return m_physicalExtentSize; }
+    QString volumeGroupName() const { return m_volumeGroupName; }
 
 protected:
     virtual void updateOkButton();
@@ -58,8 +63,10 @@ protected:
 private:
     Ui::VolumeGroupBaseDialog* ui;
 
+    QString m_volumeGroupName;
     qint64 m_totalSizeValue;
     qint64 m_usedSizeValue;
+    qint32 m_physicalExtentSize;
 };
 
 #endif  // VOLUMEGROUPBASEDIALOG_H
