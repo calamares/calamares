@@ -24,27 +24,27 @@ ResizeVolumeGroupDialog::ResizeVolumeGroupDialog( LvmDevice* device,
                                                   const PartitionVector& availablePVs,
                                                   PartitionVector& selectedPVs,
                                                   QWidget* parent )
-    : VolumeGroupBaseDialog( device->name(), device->physicalVolumes(), parent )
+    : VolumeGroupBaseDialog( parent, device->name(), device->physicalVolumes() )
     , m_selectedPVs( selectedPVs )
 {
     setWindowTitle( tr( "Resize Volume Group" ) );
 
-    for ( int i = 0; i < pvList()->count(); i++ )
+    for ( int i = 0; i < pvListWidget()->count(); i++ )
     {
-        pvList()->item( i )->setCheckState( Qt::Checked );
+        pvListWidget()->item( i )->setCheckState( Qt::Checked );
     }
 
     for ( const Partition* p : availablePVs )
     {
-        pvList()->addItem( new ListPhysicalVolumeWidgetItem( p, false ) );
+        pvListWidget()->addItem( new ListPhysicalVolumeWidgetItem( p, false ) );
     }
 
-    peSize()->setValue(
+    peSizeWidget()->setValue(
         static_cast< int >( device->peSize() / Capacity::unitFactor( Capacity::Unit::Byte, Capacity::Unit::MiB ) ) );
 
-    vgName()->setEnabled( false );
-    peSize()->setEnabled( false );
-    vgType()->setEnabled( false );
+    vgNameWidget()->setEnabled( false );
+    peSizeWidget()->setEnabled( false );
+    vgTypeWidget()->setEnabled( false );
 
     setUsedSizeValue( device->allocatedPE() * device->peSize() );
     setLVQuantity( device->partitionTable()->children().count() );

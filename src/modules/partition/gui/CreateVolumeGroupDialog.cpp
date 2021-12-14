@@ -16,30 +16,23 @@
 #include <QLineEdit>
 #include <QSpinBox>
 
-CreateVolumeGroupDialog::CreateVolumeGroupDialog( QString& vgName,
-                                                  QVector< const Partition* >& selectedPVs,
+CreateVolumeGroupDialog::CreateVolumeGroupDialog( QVector< const Partition* >& selectedPVs,
                                                   QVector< const Partition* > pvList,
                                                   qint32 physicalExtentSize,
                                                   QWidget* parent )
-    : VolumeGroupBaseDialog( vgName, pvList, parent )
+    : VolumeGroupBaseDialog( parent, QString(), pvList )
     , m_selectedPVs( selectedPVs )
-    , m_physicalExtentSize( physicalExtentSize )
 {
     setWindowTitle( tr( "Create Volume Group" ) );
 
-    peSize()->setValue( m_physicalExtentSize );
-
-    vgType()->setEnabled( false );
+    peSizeWidget()->setValue( physicalExtentSize );
+    vgTypeWidget()->setEnabled( false );
 }
 
 void
 CreateVolumeGroupDialog::accept()
 {
-    QString& name = vgNameValue();
-    name = vgName()->text();
-
     m_selectedPVs << checkedItems();
-    m_physicalExtentSize = peSize()->value();
 
     QDialog::accept();
 }

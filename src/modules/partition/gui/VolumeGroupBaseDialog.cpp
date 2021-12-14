@@ -20,11 +20,10 @@
 #include <QPushButton>
 #include <QSpinBox>
 
-VolumeGroupBaseDialog::VolumeGroupBaseDialog( QWidget* parent,
-                                              const QString& vgName,
-                                              QVector< const Partition* > pvList )
+VolumeGroupBaseDialog::VolumeGroupBaseDialog( QWidget* parent, const QString& vgName, PartitionVector pvList )
     : QDialog( parent )
     , ui( new Ui::VolumeGroupBaseDialog )
+    , m_volumeGroupName( vgName )
     , m_totalSizeValue( 0 )
     , m_usedSizeValue( 0 )
 {
@@ -55,7 +54,10 @@ VolumeGroupBaseDialog::VolumeGroupBaseDialog( QWidget* parent,
         updateOkButton();
     } );
 
-    connect( ui->vgName, &QLineEdit::textChanged, this, [&]( const QString& ) { updateOkButton(); } );
+    connect( ui->vgName, &QLineEdit::textChanged, this, [&]( const QString& s ) {
+        m_volumeGroupName = s;
+        updateOkButton();
+    } );
 }
 
 VolumeGroupBaseDialog::~VolumeGroupBaseDialog()
@@ -63,10 +65,10 @@ VolumeGroupBaseDialog::~VolumeGroupBaseDialog()
     delete ui;
 }
 
-QVector< const Partition* >
+VolumeGroupBaseDialog::PartitionVector
 VolumeGroupBaseDialog::checkedItems() const
 {
-    QVector< const Partition* > items;
+    PartitionVector items;
 
     for ( int i = 0; i < ui->pvList->count(); i++ )
     {
@@ -111,13 +113,14 @@ VolumeGroupBaseDialog::setLVQuantity( qint32 lvQuantity )
 void
 VolumeGroupBaseDialog::updateTotalSize()
 {
+    m_physicalExtentSize = peSizeWidget()->value();
     m_totalSizeValue = 0;
 
     for ( const Partition* p : checkedItems() )
     {
         m_totalSizeValue += p->capacity()
             - p->capacity()
-                % ( ui->peSize->value() * Capacity::unitFactor( Capacity::Unit::Byte, Capacity::Unit::MiB ) );
+                % ( m_physicalExtentSize * Capacity::unitFactor( Capacity::Unit::Byte, Capacity::Unit::MiB ) );
     }
 
     ui->totalSize->setText( formatByteSize( m_totalSizeValue ) );
@@ -128,9 +131,10 @@ VolumeGroupBaseDialog::updateTotalSize()
 void
 VolumeGroupBaseDialog::updateTotalSectors()
 {
-    qint64 totalSectors = 0;
+    m_physicalExtentSize = peSizeWidget()->value();
 
-    qint64 extentSize = ui->peSize->value() * Capacity::unitFactor( Capacity::Unit::Byte, Capacity::Unit::MiB );
+    qint64 totalSectors = 0;
+    qint64 extentSize = m_physicalExtentSize * Capacity::unitFactor( Capacity::Unit::Byte, Capacity::Unit::MiB );
 
     if ( extentSize > 0 )
     {

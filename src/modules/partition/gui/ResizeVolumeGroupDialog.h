@@ -19,8 +19,6 @@ class ResizeVolumeGroupDialog : public VolumeGroupBaseDialog
 {
     Q_OBJECT
 public:
-    using PartitionVector = QVector< const Partition* >;
-
     ResizeVolumeGroupDialog( LvmDevice* device,
                              const PartitionVector& availablePVs,
                              PartitionVector& selectedPVs,

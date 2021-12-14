@@ -16,20 +16,15 @@ class CreateVolumeGroupDialog : public VolumeGroupBaseDialog
 {
     Q_OBJECT
 public:
-    CreateVolumeGroupDialog( QString& vgName,
-                             QVector< const Partition* >& selectedPVs,
+    CreateVolumeGroupDialog( QVector< const Partition* >& selectedPVs,
                              QVector< const Partition* > pvList,
                              qint32 physicalExtentSize,
                              QWidget* parent );
 
     void accept() override;
 
-    qint32 physicalExtentSize() const { return m_physicalExtentSize; }
-
 private:
     QVector< const Partition* >& m_selectedPVs;
-
-    qint32 m_physicalExtentSize;
 };
 
 #endif  // CREATEVOLUMEGROUPDIALOG_H
