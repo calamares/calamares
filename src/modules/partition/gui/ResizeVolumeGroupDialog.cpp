@@ -22,10 +22,8 @@
 
 ResizeVolumeGroupDialog::ResizeVolumeGroupDialog( LvmDevice* device,
                                                   const PartitionVector& availablePVs,
-                                                  PartitionVector& selectedPVs,
                                                   QWidget* parent )
     : VolumeGroupBaseDialog( parent, device->name(), device->physicalVolumes() )
-    , m_selectedPVs( selectedPVs )
 {
     setWindowTitle( tr( "Resize Volume Group" ) );
 
@@ -48,12 +46,4 @@ ResizeVolumeGroupDialog::ResizeVolumeGroupDialog( LvmDevice* device,
 
     setUsedSizeValue( device->allocatedPE() * device->peSize() );
     setLVQuantity( device->partitionTable()->children().count() );
-}
-
-void
-ResizeVolumeGroupDialog::accept()
-{
-    m_selectedPVs << checkedItems();
-
-    QDialog::accept();
 }

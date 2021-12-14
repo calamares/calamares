@@ -66,7 +66,7 @@ VolumeGroupBaseDialog::~VolumeGroupBaseDialog()
 }
 
 VolumeGroupBaseDialog::PartitionVector
-VolumeGroupBaseDialog::checkedItems() const
+VolumeGroupBaseDialog::selectedPVs() const
 {
     PartitionVector items;
 
@@ -92,7 +92,7 @@ VolumeGroupBaseDialog::isSizeValid() const
 void
 VolumeGroupBaseDialog::updateOkButton()
 {
-    okButtonWidget()->setEnabled( isSizeValid() && !checkedItems().empty() && !ui->vgName->text().isEmpty()
+    okButtonWidget()->setEnabled( isSizeValid() && !selectedPVs().empty() && !ui->vgName->text().isEmpty()
                                   && ui->peSize->value() > 0 );
 }
 
@@ -116,7 +116,7 @@ VolumeGroupBaseDialog::updateTotalSize()
     m_physicalExtentSize = peSizeWidget()->value();
     m_totalSizeValue = 0;
 
-    for ( const Partition* p : checkedItems() )
+    for ( const Partition* p : selectedPVs() )
     {
         m_totalSizeValue += p->capacity()
             - p->capacity()

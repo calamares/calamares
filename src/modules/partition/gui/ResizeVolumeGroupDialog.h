@@ -19,15 +19,7 @@ class ResizeVolumeGroupDialog : public VolumeGroupBaseDialog
 {
     Q_OBJECT
 public:
-    ResizeVolumeGroupDialog( LvmDevice* device,
-                             const PartitionVector& availablePVs,
-                             PartitionVector& selectedPVs,
-                             QWidget* parent );
-
-    void accept() override;
-
-private:
-    PartitionVector& m_selectedPVs;
+    ResizeVolumeGroupDialog( LvmDevice* device, const PartitionVector& availablePVs, QWidget* parent );
 };
 
 #endif  // RESIZEVOLUMEGROUPDIALOG_H
