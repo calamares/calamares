@@ -134,14 +134,17 @@ public:
      * If @p flags is not FlagNone, then the given flags are
      * applied to the newly-created partition.
      */
-    void createPartition( Device* device, Partition* partition, PartitionTable::Flags flags = KPM_PARTITION_FLAG( None ) );
+    void
+    createPartition( Device* device, Partition* partition, PartitionTable::Flags flags = KPM_PARTITION_FLAG( None ) );
     void deletePartition( Device* device, Partition* partition );
     void formatPartition( Device* device, Partition* partition );
     void resizePartition( Device* device, Partition* partition, qint64 first, qint64 last );
     void setPartitionFlags( Device* device, Partition* partition, PartitionTable::Flags flags );
 
-    void createVolumeGroup( const QString& vgName, QVector< const Partition* > pvList, qint32 peSize );
-    void resizeVolumeGroup( LvmDevice* device, QVector< const Partition* >& pvList );
+    using PartitionVector = QVector< const Partition* >;
+
+    void createVolumeGroup( const QString& vgName, PartitionVector pvList, qint32 peSize );
+    void resizeVolumeGroup( LvmDevice* device, PartitionVector& pvList );
     void deactivateVolumeGroup( LvmDevice* device );
     void removeVolumeGroup( LvmDevice* device );
 
@@ -177,7 +180,7 @@ public:
 
     QList< Partition* > efiSystemPartitions() const;
 
-    QVector< const Partition* > lvmPVs() const;
+    PartitionVector lvmPVs() const;
 
     bool hasVGwithThisName( const QString& name ) const;
 
@@ -247,7 +250,7 @@ private:
 
     QList< DeviceInfo* > m_deviceInfos;
     QList< Partition* > m_efiSystemPartitions;
-    QVector< const Partition* > m_lvmPVs;
+    PartitionVector m_lvmPVs;
 
     DeviceModel* m_deviceModel;
     BootLoaderModel* m_bootLoaderModel;
