@@ -428,15 +428,16 @@ PartitionCoreModule::createPartition( Device* device, Partition* partition, Part
 }
 
 void
-PartitionCoreModule::createVolumeGroup( QString& vgName, QVector< const Partition* > pvList, qint32 peSize )
+PartitionCoreModule::createVolumeGroup( const QString& vgName, QVector< const Partition* > pvList, qint32 peSize )
 {
+    QString actualName( vgName );
     // Appending '_' character in case of repeated VG name
-    while ( hasVGwithThisName( vgName ) )
+    while ( hasVGwithThisName( actualName ) )
     {
-        vgName.append( '_' );
+        actualName.append( '_' );
     }
 
-    LvmDevice* device = new LvmDevice( vgName );
+    LvmDevice* device = new LvmDevice( actualName );
     for ( const Partition* p : pvList )
     {
         device->physicalVolumes() << p;
@@ -447,7 +448,7 @@ PartitionCoreModule::createVolumeGroup( QString& vgName, QVector< const Partitio
     m_deviceModel->addDevice( device );
     m_deviceInfos << deviceInfo;
 
-    deviceInfo->makeJob< CreateVolumeGroupJob >( vgName, pvList, peSize );
+    deviceInfo->makeJob< CreateVolumeGroupJob >( actualName, pvList, peSize );
     refreshAfterModelChange();
 }
 
