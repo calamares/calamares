@@ -299,13 +299,11 @@ availablePVs( PartitionCoreModule* core )
 void
 PartitionPage::onNewVolumeGroupClicked()
 {
-    CreateVolumeGroupDialog::PartitionVector selectedPVs;
-
-    QPointer< CreateVolumeGroupDialog > dlg
-        = new CreateVolumeGroupDialog( selectedPVs, availablePVs( m_core ), 4, this );
+    QPointer< CreateVolumeGroupDialog > dlg = new CreateVolumeGroupDialog( availablePVs( m_core ), 4, this );
 
     if ( dlg->exec() == QDialog::Accepted )
     {
+        const VolumeGroupBaseDialog::PartitionVector selectedPVs = dlg->selectedPVs();
         QModelIndex partitionIndex = m_ui->partitionTreeView->currentIndex();
 
         if ( partitionIndex.isValid() )
@@ -350,6 +348,7 @@ PartitionPage::onResizeVolumeGroupClicked()
 
     Q_ASSERT( device && device->type() == Device::Type::LVM_Device );
 
+<<<<<<< HEAD
     ResizeVolumeGroupDialog::PartitionVector selectedPVs;
 
 <<<<<<< HEAD
@@ -366,10 +365,13 @@ PartitionPage::onResizeVolumeGroupClicked()
     QPointer< ResizeVolumeGroupDialog > dlg
         = new ResizeVolumeGroupDialog( device, availablePVs( m_core ), selectedPVs, this );
 >>>>>>> 2c16d812c ([partition] Factor out determining which PVs exist)
+=======
+    QPointer< ResizeVolumeGroupDialog > dlg = new ResizeVolumeGroupDialog( device, availablePVs( m_core ), this );
+>>>>>>> f1185d38d ([partition] Drop unneeded parameters and stored references)
 
     if ( dlg->exec() == QDialog::Accepted )
     {
-        m_core->resizeVolumeGroup( device, selectedPVs );
+        m_core->resizeVolumeGroup( device, dlg->selectedPVs() );
     }
 
     delete dlg;

@@ -36,6 +36,11 @@ public:
 
     qint32 physicalExtentSize() const { return m_physicalExtentSize; }
     QString volumeGroupName() const { return m_volumeGroupName; }
+    /** @brief Which PVs (partitions) are selected for this VG
+     *
+     * The vector contains non-owned pointers.
+     */
+    PartitionVector selectedPVs() const;
 
 protected:
     virtual void updateOkButton();
@@ -47,7 +52,6 @@ protected:
     void updateTotalSize();
     void updateTotalSectors();
 
-    QVector< const Partition* > checkedItems() const;
 
     /** @section UI-widget accessors
      *
