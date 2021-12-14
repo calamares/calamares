@@ -11,6 +11,7 @@
 #include "DeviceList.h"
 
 #include "partition/PartitionIterator.h"
+#include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 
 #include <kpmcore/backend/corebackend.h>
@@ -43,11 +44,9 @@ hasRootPartition( Device* device )
 static bool
 blkIdCheckIso9660( const QString& path )
 {
-    QProcess blkid;
-    blkid.start( "blkid", { path } );
-    blkid.waitForFinished();
-    QString output = QString::fromLocal8Bit( blkid.readAllStandardOutput() );
-    return output.contains( "iso9660" );
+    // If blkid fails, there's no output, but we don't care
+    auto r = CalamaresUtils::System::runCommand( { "blkid", path }, std::chrono::seconds( 30 ) );
+    return r.getOutput().contains( "iso9660" );
 }
 
 static bool
