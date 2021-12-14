@@ -19,15 +19,15 @@
 CreateVolumeGroupDialog::CreateVolumeGroupDialog( QString& vgName,
                                                   QVector< const Partition* >& selectedPVs,
                                                   QVector< const Partition* > pvList,
-                                                  qint64& pSize,
+                                                  qint32 physicalExtentSize,
                                                   QWidget* parent )
     : VolumeGroupBaseDialog( vgName, pvList, parent )
     , m_selectedPVs( selectedPVs )
-    , m_peSize( pSize )
+    , m_physicalExtentSize( physicalExtentSize )
 {
     setWindowTitle( tr( "Create Volume Group" ) );
 
-    peSize()->setValue( pSize );
+    peSize()->setValue( m_physicalExtentSize );
 
     vgType()->setEnabled( false );
 }
@@ -39,9 +39,7 @@ CreateVolumeGroupDialog::accept()
     name = vgName()->text();
 
     m_selectedPVs << checkedItems();
-
-    qint64& pe = m_peSize;
-    pe = peSize()->value();
+    m_physicalExtentSize = peSize()->value();
 
     QDialog::accept();
 }

@@ -283,7 +283,6 @@ PartitionPage::onNewVolumeGroupClicked()
 {
     QString vgName;
     QVector< const Partition* > selectedPVs;
-    qint64 peSize = 4;
 
     QVector< const Partition* > availablePVs;
 
@@ -293,8 +292,7 @@ PartitionPage::onNewVolumeGroupClicked()
             availablePVs << p;
         }
 
-    QPointer< CreateVolumeGroupDialog > dlg
-        = new CreateVolumeGroupDialog( vgName, selectedPVs, availablePVs, peSize, this );
+    QPointer< CreateVolumeGroupDialog > dlg = new CreateVolumeGroupDialog( vgName, selectedPVs, availablePVs, 4, this );
 
     if ( dlg->exec() == QDialog::Accepted )
     {
@@ -321,7 +319,7 @@ PartitionPage::onNewVolumeGroupClicked()
         QVariant previousIndexDeviceData = m_core->deviceModel()->data( deviceIndex, Qt::ToolTipRole );
 
         // Creating new VG
-        m_core->createVolumeGroup( vgName, selectedPVs, peSize );
+        m_core->createVolumeGroup( vgName, selectedPVs, dlg->physicalExtentSize() );
 
         // As createVolumeGroup method call resets deviceModel,
         // is needed to set the current index in deviceComboBox as the previous one
