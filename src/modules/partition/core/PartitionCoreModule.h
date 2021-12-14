@@ -137,7 +137,7 @@ public:
     void
     createPartition( Device* device, Partition* partition, PartitionTable::Flags flags = KPM_PARTITION_FLAG( None ) );
 
-    void createVolumeGroup( QString& vgName, QVector< const Partition* > pvList, qint32 peSize );
+    void createVolumeGroup( const QString& vgName, QVector< const Partition* > pvList, qint32 peSize );
 
     void resizeVolumeGroup( LvmDevice* device, QVector< const Partition* >& pvList );
 
