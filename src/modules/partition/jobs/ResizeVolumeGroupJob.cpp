@@ -9,14 +9,12 @@
 
 #include "ResizeVolumeGroupJob.h"
 
-#include "core/KPMHelpers.h"
-
 #include <kpmcore/core/lvmdevice.h>
 #include <kpmcore/core/partition.h>
 #include <kpmcore/ops/resizevolumegroupoperation.h>
 #include <kpmcore/util/report.h>
 
-ResizeVolumeGroupJob::ResizeVolumeGroupJob( Device*, LvmDevice* device, QVector< const Partition* >& partitionList )
+ResizeVolumeGroupJob::ResizeVolumeGroupJob( Device*, LvmDevice* device, const PartitionVector& partitionList )
     : m_device( device )
     , m_partitionList( partitionList )
 {

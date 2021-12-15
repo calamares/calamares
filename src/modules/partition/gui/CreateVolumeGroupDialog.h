@@ -16,7 +16,7 @@ class CreateVolumeGroupDialog : public VolumeGroupBaseDialog
 {
     Q_OBJECT
 public:
-    CreateVolumeGroupDialog( QVector< const Partition* > pvList, qint32 physicalExtentSize, QWidget* parent );
+    CreateVolumeGroupDialog( const PartitionVector& pvList, qint32 physicalExtentSize, QWidget* parent );
 };
 
 #endif  // CREATEVOLUMEGROUPDIALOG_H

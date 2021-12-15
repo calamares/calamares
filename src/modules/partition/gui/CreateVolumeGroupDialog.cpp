@@ -16,7 +16,7 @@
 #include <QLineEdit>
 #include <QSpinBox>
 
-CreateVolumeGroupDialog::CreateVolumeGroupDialog( QVector< const Partition* > pvList,
+CreateVolumeGroupDialog::CreateVolumeGroupDialog( const PartitionVector& pvList,
                                                   qint32 physicalExtentSize,
                                                   QWidget* parent )
     : VolumeGroupBaseDialog( parent, QString(), pvList )

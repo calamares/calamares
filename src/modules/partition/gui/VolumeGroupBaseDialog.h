@@ -10,7 +10,7 @@
 #ifndef VOLUMEGROUPBASEDIALOG_H
 #define VOLUMEGROUPBASEDIALOG_H
 
-#include <kpmcore/core/partition.h>
+#include "core/KPMHelpers.h"
 
 #include <QDialog>
 
@@ -29,8 +29,6 @@ class VolumeGroupBaseDialog : public QDialog
     Q_OBJECT
 
 public:
-    using PartitionVector = QVector< const Partition* >;
-
     explicit VolumeGroupBaseDialog( QWidget* parent, const QString& vgName, PartitionVector pvList );
     ~VolumeGroupBaseDialog() override;
 

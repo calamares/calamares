@@ -18,7 +18,7 @@
 
 CreateVolumeGroupJob::CreateVolumeGroupJob( Device*,
                                             const QString& vgName,
-                                            QVector< const Partition* > pvList,
+                                            const PartitionVector& pvList,
                                             const qint32 peSize )
     : m_vgName( vgName )
     , m_pvList( pvList )

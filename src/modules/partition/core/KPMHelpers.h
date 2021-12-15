@@ -20,6 +20,7 @@
 #include <kpmcore/util/report.h>
 
 #include <QList>
+#include <QVector>
 
 #include <functional>
 
@@ -32,6 +33,8 @@ class PartitionRole;
 #define KPM_PARTITION_FLAG( x ) PartitionTable::Flag::x
 #define KPM_PARTITION_STATE( x ) Partition::State::x
 #define KPM_PARTITION_FLAG_ESP PartitionTable::Flag::Boot
+
+using PartitionVector = QVector< const Partition* >;
 
 /**
  * Helper functions to manipulate partitions
