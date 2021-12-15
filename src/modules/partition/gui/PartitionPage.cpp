@@ -278,10 +278,10 @@ PartitionPage::checkCanCreate( Device* device )
     }
 }
 
-static inline CreateVolumeGroupDialog::PartitionVector
+static inline PartitionVector
 availablePVs( PartitionCoreModule* core )
 {
-    CreateVolumeGroupDialog::PartitionVector availablePVs;
+    PartitionVector availablePVs;
 
     for ( const Partition* p : core->lvmPVs() )
     {
@@ -301,7 +301,7 @@ PartitionPage::onNewVolumeGroupClicked()
 
     if ( dlg->exec() == QDialog::Accepted )
     {
-        const VolumeGroupBaseDialog::PartitionVector selectedPVs = dlg->selectedPVs();
+        const PartitionVector selectedPVs = dlg->selectedPVs();
         QModelIndex partitionIndex = m_ui->partitionTreeView->currentIndex();
 
         if ( partitionIndex.isValid() )

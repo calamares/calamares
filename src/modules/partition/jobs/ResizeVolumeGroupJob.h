@@ -10,20 +10,19 @@
 #ifndef RESIZEVOLUMEGROUPJOB_H
 #define RESIZEVOLUMEGROUPJOB_H
 
+#include "core/KPMHelpers.h"
+
 #include "Job.h"
 #include "partition/KPMManager.h"
 
-#include <QVector>
-
 class Device;
 class LvmDevice;
-class Partition;
 
 class ResizeVolumeGroupJob : public Calamares::Job
 {
     Q_OBJECT
 public:
-    ResizeVolumeGroupJob( Device*, LvmDevice* device, QVector< const Partition* >& partitionList );
+    ResizeVolumeGroupJob( Device*, LvmDevice* device, const PartitionVector& partitionList );
 
     QString prettyName() const override;
     QString prettyDescription() const override;
@@ -37,7 +36,7 @@ private:
 private:
     CalamaresUtils::Partition::KPMManager m_kpmcore;
     LvmDevice* m_device;
-    QVector< const Partition* > m_partitionList;
+    PartitionVector m_partitionList;
 };
 
 #endif  // RESIZEVOLUMEGROUPJOB_H

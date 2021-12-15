@@ -141,9 +141,7 @@ public:
     void resizePartition( Device* device, Partition* partition, qint64 first, qint64 last );
     void setPartitionFlags( Device* device, Partition* partition, PartitionTable::Flags flags );
 
-    using PartitionVector = QVector< const Partition* >;
-
-    void createVolumeGroup( const QString& vgName, PartitionVector pvList, qint32 peSize );
+    void createVolumeGroup( const QString& vgName, const PartitionVector& pvList, qint32 peSize );
     void resizeVolumeGroup( LvmDevice* device, const PartitionVector& pvList );
     void deactivateVolumeGroup( LvmDevice* device );
     void removeVolumeGroup( LvmDevice* device );

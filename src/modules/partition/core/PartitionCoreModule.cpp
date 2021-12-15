@@ -409,7 +409,7 @@ PartitionCoreModule::createPartition( Device* device, Partition* partition, Part
 }
 
 void
-PartitionCoreModule::createVolumeGroup( const QString& vgName, QVector< const Partition* > pvList, qint32 peSize )
+PartitionCoreModule::createVolumeGroup( const QString& vgName, const PartitionVector& pvList, qint32 peSize )
 {
     QString actualName( vgName );
     // Appending '_' character in case of repeated VG name
@@ -434,7 +434,7 @@ PartitionCoreModule::createVolumeGroup( const QString& vgName, QVector< const Pa
 }
 
 void
-PartitionCoreModule::resizeVolumeGroup( LvmDevice* device, const QVector< const Partition* >& pvList )
+PartitionCoreModule::resizeVolumeGroup( LvmDevice* device, const PartitionVector& pvList )
 {
     auto* deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
@@ -675,7 +675,7 @@ PartitionCoreModule::efiSystemPartitions() const
     return m_efiSystemPartitions;
 }
 
-QVector< const Partition* >
+PartitionVector
 PartitionCoreModule::lvmPVs() const
 {
     return m_lvmPVs;

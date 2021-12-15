@@ -22,8 +22,6 @@
 #include <QSpinBox>
 
 // Keeping the sources consistent
-static_assert( std::is_same< VolumeGroupBaseDialog::PartitionVector, PartitionCoreModule::PartitionVector >::value );
-
 VolumeGroupBaseDialog::VolumeGroupBaseDialog( QWidget* parent, const QString& vgName, PartitionVector pvList )
     : QDialog( parent )
     , ui( new Ui::VolumeGroupBaseDialog )
@@ -69,7 +67,7 @@ VolumeGroupBaseDialog::~VolumeGroupBaseDialog()
     delete ui;
 }
 
-VolumeGroupBaseDialog::PartitionVector
+PartitionVector
 VolumeGroupBaseDialog::selectedPVs() const
 {
     PartitionVector items;
