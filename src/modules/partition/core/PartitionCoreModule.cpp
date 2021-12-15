@@ -377,7 +377,12 @@ PartitionModel*
 PartitionCoreModule::partitionModelForDevice( const Device* device ) const
 {
     DeviceInfo* info = infoForDevice( device );
-    Q_ASSERT( info );
+    if ( !info )
+    {
+        cWarning() << "No DeviceInfo for" << Logger::Pointer( device )
+                   << ( device ? device->deviceNode() : QStringLiteral( "<null>" ) );
+        return nullptr;
+    }
     return info->partitionModel.data();
 }
 
