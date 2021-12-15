@@ -66,19 +66,22 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device,
     m_ui->encryptWidget->setText( tr( "En&crypt" ) );
     m_ui->encryptWidget->hide();
 
-    if ( m_device->type() != Device::Type::LVM_Device )
-    {
-        m_ui->lvNameLabel->hide();
-        m_ui->lvNameLineEdit->hide();
-    }
     if ( m_device->type() == Device::Type::LVM_Device )
     {
+        m_ui->lvNameLabel->show();
+        m_ui->lvNameLineEdit->show();
         /* LVM logical volume name can consist of: letters numbers _ . - +
          * It cannot start with underscore _ and must not be equal to . or .. or any entry in /dev/
          * QLineEdit accepts QValidator::Intermediate, so we just disable . at the beginning */
         QRegularExpression re( QStringLiteral( R"(^(?!_|\.)[\w\-.+]+)" ) );
         QRegularExpressionValidator* validator = new QRegularExpressionValidator( re, this );
         m_ui->lvNameLineEdit->setValidator( validator );
+        connect( m_ui->lvNameLineEdit, &QLineEdit::textChanged, this, &CreatePartitionDialog::updateOkButton );
+    }
+    else
+    {
+        m_ui->lvNameLabel->hide();
+        m_ui->lvNameLineEdit->hide();
     }
 
     if ( device->partitionTable()->type() == PartitionTable::msdos
@@ -346,4 +349,14 @@ CreatePartitionDialog::initPartResizerWidget( Partition* partition )
     m_partitionSizeController->init( m_device, partition, color );
     m_partitionSizeController->setPartResizerWidget( m_ui->partResizerWidget );
     m_partitionSizeController->setSpinBox( m_ui->sizeSpinBox );
+}
+
+void
+CreatePartitionDialog::updateOkButton()
+{
+    if ( m_device->type() == Device::Type::LVM_Device )
+    {
+        QString lvName = m_ui->lvNameLineEdit->text();
+        cDebug() << "LVName" << lvName << m_ui->lvNameLineEdit->hasAcceptableInput();
+    }
 }

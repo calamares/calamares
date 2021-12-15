@@ -45,10 +45,12 @@ private:
                            QWidget* parentWidget );
 
 public:
+    /// @brief Tag-type for creating partition from free space
     struct FreeSpace
     {
         Partition* p;
     };
+    /// @brief Tag-type for editing (re-creating) a new partition
     struct FreshPartition
     {
         Partition* p;
@@ -81,6 +83,7 @@ public:
 private Q_SLOTS:
     void updateMountPointUi();
     void checkMountPointSelection();
+    void updateOkButton();  // Check if dialog can be accepted
 
 private:
     QScopedPointer< Ui_CreatePartitionDialog > m_ui;
