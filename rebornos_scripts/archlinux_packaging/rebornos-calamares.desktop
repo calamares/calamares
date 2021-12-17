@@ -7,7 +7,7 @@ Version=1.0
 Type=Application
 
 # The name of the application
-Name=RebornOS Calamares Installer
+Name=RebornOS Installer (Calamares)
 
 # A comment which can/will be used as a tooltip
 Comment=Install RebornOS on your computer
@@ -16,7 +16,7 @@ Comment=Install RebornOS on your computer
 Path=
 
 # The executable of the application, possibly with arguments.
-Exec=pkexec calamares -style kvantum -X -D6
+Exec=sh -c "pkexec calamares -style kvantum -X -D6"
 
 # The name of the icon that will be used to display this entry
 Icon=/usr/share/pixmaps/rebornos-calamares.svg

@@ -54,7 +54,7 @@ endif()
 #
 option( INSTALL_CONFIG "Install configuration files" OFF )
 option( INSTALL_POLKIT "Install Polkit configuration" ON )
-option( INSTALL_COMPLETION "Install shell completions" OFF )
+option( INSTALL_COMPLETION "Install shell completions" ON )
 # Options for the calamares executable
 option( WITH_KF5Crash "Enable crash reporting with KCrash." ON )  # TODO:3.3: WITH->BUILD (this isn't an ABI thing)
 option( WITH_KF5DBus "Use DBus service for unique-application." OFF )  # TODO:3.3: WITH->BUILD
@@ -105,11 +105,11 @@ set( USE_services "" CACHE STRING "Select the services module to use" )
 
 ### Calamares application info
 #
-set( CALAMARES_ORGANIZATION_NAME "Calamares" )
-set( CALAMARES_ORGANIZATION_DOMAIN "github.com/calamares" )
-set( CALAMARES_APPLICATION_NAME  "Calamares" )
+set( CALAMARES_ORGANIZATION_NAME "RebornOS" )
+set( CALAMARES_ORGANIZATION_DOMAIN "rebornos.org" )
+set( CALAMARES_APPLICATION_NAME  "RebornOS Installer (Calamares)" )
 set( CALAMARES_DESCRIPTION_SUMMARY
-    "The distribution-independent installer framework" )
+    "RebornOS Installer based on Calamares" )
 
 ### Transifex (languages) info
 #
@@ -633,10 +633,10 @@ if ( INSTALL_COMPLETION )
     install( FILES ${CMAKE_SOURCE_DIR}/data/completion/bash/calamares DESTINATION "${CMAKE_INSTALL_BASHCOMPLETIONDIR}" )
 endif()
 
-install(
-  FILES calamares.desktop
-  DESTINATION ${CMAKE_INSTALL_DATADIR}/applications
-)
+# install(
+#  FILES calamares.desktop
+#  DESTINATION ${CMAKE_INSTALL_DATADIR}/applications
+# )
 
 install(
     FILES man/calamares.8
