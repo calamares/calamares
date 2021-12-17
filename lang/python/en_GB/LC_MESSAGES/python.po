@@ -5,6 +5,7 @@
 # 
 # Translators:
 # Jason Collins <JasonPCollins@protonmail.com>, 2018
+# Karthik Balan, 2021
 # 
 #, fuzzy
 msgid ""
@@ -13,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-02 15:45+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Jason Collins <JasonPCollins@protonmail.com>, 2018\n"
+"Last-Translator: Karthik Balan, 2021\n"
 "Language-Team: English (United Kingdom) (https://www.transifex.com/calamares/teams/20061/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,7 +36,7 @@ msgstr ""
 #: src/modules/luksopenswaphookcfg/main.py:86
 #: src/modules/luksopenswaphookcfg/main.py:90
 msgid "Configuration Error"
-msgstr ""
+msgstr "Configuration  Error "
 
 #: src/modules/initramfscfg/main.py:86 src/modules/fstab/main.py:356
 #: src/modules/initcpiocfg/main.py:228 src/modules/mount/main.py:145
@@ -61,7 +62,7 @@ msgstr ""
 
 #: src/modules/bootloader/main.py:508
 msgid "Bootloader installation error"
-msgstr ""
+msgstr "Bootloader installation error"
 
 #: src/modules/bootloader/main.py:509
 msgid ""
@@ -91,7 +92,7 @@ msgstr ""
 
 #: src/modules/displaymanager/main.py:526
 msgid "Cannot write KDM configuration file"
-msgstr ""
+msgstr "Cannot write KDM configuration file"
 
 #: src/modules/displaymanager/main.py:527
 msgid "KDM config file {!s} does not exist"
@@ -145,7 +146,7 @@ msgstr ""
 
 #: src/modules/services-openrc/main.py:29
 msgid "Configure OpenRC services"
-msgstr ""
+msgstr "Configure OpenRC services"
 
 #: src/modules/services-openrc/main.py:57
 msgid "Cannot add service {name!s} to run-level {level!s}."
@@ -173,7 +174,7 @@ msgstr ""
 
 #: src/modules/services-openrc/main.py:101
 msgid "Target runlevel does not exist"
-msgstr ""
+msgstr "Target runlevel does not exist"
 
 #: src/modules/services-openrc/main.py:102
 msgid ""
@@ -193,7 +194,7 @@ msgstr ""
 
 #: src/modules/networkcfg/main.py:29
 msgid "Saving network configuration."
-msgstr ""
+msgstr "Saving network configuration "
 
 #: src/modules/packages/main.py:50 src/modules/packages/main.py:59
 #: src/modules/packages/main.py:69
@@ -222,7 +223,7 @@ msgstr[1] "Removing %(num)d packages."
 #: src/modules/packages/main.py:638 src/modules/packages/main.py:650
 #: src/modules/packages/main.py:678
 msgid "Package Manager error"
-msgstr ""
+msgstr "Package Manager error"
 
 #: src/modules/packages/main.py:639
 msgid ""

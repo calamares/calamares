@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Marcin Mikołajczak <me@mkljczk.pl>, 2017
+# marcin mikołajczak <me@mkljczk.pl>, 2017
 # KagiSame, 2018
 # Piotr Strębski <strebski@gmail.com>, 2020
 # Jacob B. <brickminerplyt@gmail.com>, 2021
