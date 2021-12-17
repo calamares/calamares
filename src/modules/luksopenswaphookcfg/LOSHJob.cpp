@@ -19,6 +19,7 @@
 
 #include <QList>
 #include <QObject>
+#include <QRegularExpression>
 #include <QVariantMap>
 
 LOSHJob::LOSHJob( QObject* parent )
