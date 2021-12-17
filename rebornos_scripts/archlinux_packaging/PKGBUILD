@@ -1,6 +1,6 @@
 # Maintainer: shivanandvp <shivanandvp@rebornos.org>
 
-pkgname=rebornos-calamares-core
+pkgname=calamares-core
 pkgver=0.0.1
 pkgrel=1
 arch=('i686' 'x86_64' 'armv6h' 'armv7h')
@@ -26,8 +26,8 @@ depends=('qt5-svg'
          'libpwquality'
          'boost'
          'boost-libs'
-         'rebornos-calamares-configuration'
-         'rebornos-calamares-branding')
+         'calamares-configuration'
+         'calamares-branding')
 optdepends=()
 makedepends=('extra-cmake-modules'
              'git'
@@ -36,11 +36,11 @@ provides=("${pkgname}")
 conflicts=("${pkgname}")
 source=()
 replaces=('calamares'
-          'rebornos-calamares-core')
+          'calamares-core')
 
-PROJECT_DIRECTORY=$(dirname -- $(dirname -- $(pwd)))
+PROJECT_DIRECTORY="$(dirname -- "$(dirname -- "$(pwd)")")"
 BUILD_DIRECTORY="$PROJECT_DIRECTORY/build"
-RESOURCE_DIRECTORY="$PROJECT_DIRECTORY/rebornos/archlinux_packaging"
+RESOURCE_DIRECTORY="$PROJECT_DIRECTORY/rebornos_scripts/archlinux_packaging"
 NUMBER_OF_PROCESSORS="$(nproc)"
 
 prepare() {
