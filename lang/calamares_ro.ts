@@ -1991,7 +1991,7 @@ Programul de instalare va ieși, iar toate modificările vor fi pierdute.</trans
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="53"/>
       <source>Configuration Error</source>
-      <translation type="unfinished"/>
+      <translation>Eroare de configurare</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="54"/>
