@@ -86,18 +86,18 @@ it needs those keys.
 
 ### Emergency Modules
 
-Only C++ modules and job modules may be emergency modules. If, during an
-*exec* step in the sequence, a module fails, installation as a whole fails
-and the install is aborted. If there are emergency modules in the **same**
-exec block, those will be executed before the installation is aborted.
-Non-emergency modules are not executed.
+If, during an *exec* step in the sequence, a module fails, installation as
+a whole fails and the install is aborted. If there are emergency modules
+in the **same** exec block, those will be executed before the installation
+is aborted. Non-emergency modules are not executed.
 
 If an emergency-module fails while processing emergency-modules for
 another failed module, that failure is ignored and emergency-module
 processing continues.
 
 Use the EMERGENCY keyword in the CMake description of a C++ module
-to generate a suitable `module.desc`.
+to generate a suitable `module.desc`.  For Python modules, manually add
+`emergency:  true` to `module.desc`.
 
 A module that is marked as an emergency module in its module.desc
 must **also** set the *emergency* key to *true* in its configuration file
