@@ -26,6 +26,11 @@ namespace CalamaresPython
 boost::python::object
 variantToPyObject( const QVariant& variant )
 {
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wswitch-enum"
+#endif
+    // 49 enumeration values not handled
     switch ( variant.type() )
     {
     case QVariant::Map:
@@ -62,6 +67,9 @@ variantToPyObject( const QVariant& variant )
     default:
         return bp::object();
     }
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
 }
 
 

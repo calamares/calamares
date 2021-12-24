@@ -68,7 +68,8 @@ DeviceInfoWidget::setPartitionTableType( PartitionTable::TableType type )
 void
 DeviceInfoWidget::retranslateUi()
 {
-    QString typeString = PartitionTable::tableTypeToName( m_tableType ).toUpper();
+    QString typeString;
+    QString toolTipString;
 
     // fix up if the name shouldn't be uppercase:
     switch ( m_tableType )
@@ -76,38 +77,34 @@ DeviceInfoWidget::retranslateUi()
     case PartitionTable::msdos:
     case PartitionTable::msdos_sectorbased:
         typeString = "MBR";
+        toolTipString += tr( "<br><br>This partition table type is only advisable on older "
+                             "systems which start from a <strong>BIOS</strong> boot "
+                             "environment. GPT is recommended in most other cases.<br><br>"
+                             "<strong>Warning:</strong> the MBR partition table "
+                             "is an obsolete MS-DOS era standard.<br>"
+                             "Only 4 <em>primary</em> partitions may be created, and of "
+                             "those 4, one can be an <em>extended</em> partition, which "
+                             "may in turn contain many <em>logical</em> partitions." );
+        break;
+    case PartitionTable::gpt:
+        // TypeString is ok
+        toolTipString += tr( "<br><br>This is the recommended partition table type for modern "
+                             "systems which start from an <strong>EFI</strong> boot "
+                             "environment." );
         break;
     case PartitionTable::loop:
         typeString = "loop";
-        break;
-    case PartitionTable::mac:
-        typeString = "Mac";
-        break;
-    case PartitionTable::amiga:
-        typeString = "Amiga";
-        break;
-    case PartitionTable::sun:
-        typeString = "Sun";
-        break;
-    case PartitionTable::unknownTableType:
-        typeString = " ? ";
-    }
-
-
-    QString toolTipString = tr( "This device has a <strong>%1</strong> partition "
-                                "table." )
-                                .arg( typeString );
-
-    switch ( m_tableType )
-    {
-    case PartitionTable::loop:
         toolTipString = tr( "This is a <strong>loop</strong> "
                             "device.<br><br>"
                             "It is a pseudo-device with no partition table "
                             "that makes a file accessible as a block device. "
                             "This kind of setup usually only contains a single filesystem." );
         break;
+#if defined( WITH_KPMCORE42API )
+    case PartitionTable::none:
+#endif
     case PartitionTable::unknownTableType:
+        typeString = " ? ";
         toolTipString = tr( "This installer <strong>cannot detect a partition table</strong> on the "
                             "selected storage device.<br><br>"
                             "The device either has no partition "
@@ -117,21 +114,35 @@ DeviceInfoWidget::retranslateUi()
                             "either automatically, or through the manual partitioning "
                             "page." );
         break;
-    case PartitionTable::gpt:
-        toolTipString += tr( "<br><br>This is the recommended partition table type for modern "
-                             "systems which start from an <strong>EFI</strong> boot "
-                             "environment." );
+    // The next ones need to have the name adjusted, but the default tooltip is OK
+    case PartitionTable::mac:
+        typeString = "Mac";
         break;
-    case PartitionTable::msdos:
-    case PartitionTable::msdos_sectorbased:
-        toolTipString += tr( "<br><br>This partition table type is only advisable on older "
-                             "systems which start from a <strong>BIOS</strong> boot "
-                             "environment. GPT is recommended in most other cases.<br><br>"
-                             "<strong>Warning:</strong> the MBR partition table "
-                             "is an obsolete MS-DOS era standard.<br>"
-                             "Only 4 <em>primary</em> partitions may be created, and of "
-                             "those 4, one can be an <em>extended</em> partition, which "
-                             "may in turn contain many <em>logical</em> partitions." );
+    case PartitionTable::amiga:
+        typeString = "Amiga";
+        break;
+    case PartitionTable::sun:
+        typeString = "Sun";
+        break;
+    // Peculiar tables, do nothing and use default type and tooltip strings
+    case PartitionTable::aix:
+    case PartitionTable::bsd:
+    case PartitionTable::dasd:
+    case PartitionTable::dvh:
+    case PartitionTable::pc98:
+    case PartitionTable::vmd:
+        break;
+    }
+
+    if ( typeString.isEmpty() )
+    {
+        typeString = PartitionTable::tableTypeToName( m_tableType ).toUpper();
+    }
+    if ( toolTipString.isEmpty() )
+    {
+        toolTipString = tr( "This device has a <strong>%1</strong> partition "
+                            "table." )
+                            .arg( typeString );
     }
 
     m_ptLabel->setText( typeString );

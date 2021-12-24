@@ -189,7 +189,7 @@
     <message>
       <location filename="../src/libcalamares/ProcessJob.cpp" line="43"/>
       <source>Run command '%1' in target system.</source>
-      <translation>Запустить комманду'%1'в целевой системе.</translation>
+      <translation>Запустить команду '%1' в целевой системе.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/ProcessJob.cpp" line="43"/>
@@ -274,10 +274,10 @@
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="116"/>
       <source>(%n second(s))</source>
       <translation>
-        <numerusform>(% секунда)</numerusform>
-        <numerusform>(% секунд)</numerusform>
-        <numerusform>(% секунд)</numerusform>
+        <numerusform>(%n секунда)</numerusform>
+        <numerusform>(%n секунды)</numerusform>
         <numerusform>(%n секунд)</numerusform>
+        <numerusform>(%n секунд(ы))</numerusform>
       </translation>
     </message>
     <message>
@@ -2673,7 +2673,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="203"/>
       <source>EFI system</source>
-      <translation>Система EFI</translation>
+      <translation>Системный раздел EFI</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="207"/>

@@ -10,32 +10,13 @@
 
 #include "CppJob.h"
 #include "DllMacro.h"
-#include "utils/Permissions.h"
 #include "utils/PluginFactory.h"
 
-#include <QList>
-#include <QObject>
-#include <QVariantMap>
+class Item;
 
 class PLUGINDLLEXPORT PreserveFiles : public Calamares::CppJob
 {
     Q_OBJECT
-
-    enum class ItemType
-    {
-        None,
-        Path,
-        Log,
-        Config
-    };
-
-    struct Item
-    {
-        QString source;
-        QString dest;
-        CalamaresUtils::Permissions perm;
-        ItemType type;
-    };
 
     using ItemList = QList< Item >;
 

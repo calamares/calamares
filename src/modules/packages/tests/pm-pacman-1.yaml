@@ -5,6 +5,6 @@ operations: []
 
 pacman:
     num_retries: 4
-    disable_download_timeout: yes
+    disable_download_timeout: true
     needed_only: true
 

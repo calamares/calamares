@@ -8,11 +8,12 @@
  *
  */
 
-#include "core/PartitionModel.h"
+#include "PartitionModel.h"
 
 #include "core/ColorUtils.h"
 #include "core/KPMHelpers.h"
 #include "core/PartitionInfo.h"
+#include "core/SizeUtils.h"
 
 #include "partition/FileSystem.h"
 #include "partition/PartitionQuery.h"
@@ -23,9 +24,6 @@
 #include <kpmcore/core/partition.h>
 #include <kpmcore/core/partitiontable.h>
 #include <kpmcore/fs/filesystem.h>
-
-// KF5
-#include <KFormat>
 
 // Qt
 #include <QColor>
@@ -178,7 +176,7 @@ PartitionModel::data( const QModelIndex& index, int role ) const
         if ( col == SizeColumn )
         {
             qint64 size = ( partition->lastSector() - partition->firstSector() + 1 ) * m_device->logicalSize();
-            return KFormat().formatByteSize( size );
+            return formatByteSize( size );
         }
         cDebug() << "Unknown column" << col;
         return QVariant();
@@ -210,7 +208,7 @@ PartitionModel::data( const QModelIndex& index, int role ) const
         QString prettyFileSystem
             = CalamaresUtils::Partition::prettyNameForFileSystemType( partition->fileSystem().type() );
         qint64 size = ( partition->lastSector() - partition->firstSector() + 1 ) * m_device->logicalSize();
-        QString prettySize = KFormat().formatByteSize( size );
+        QString prettySize = formatByteSize( size );
         return QVariant( name + " " + prettyFileSystem + " " + prettySize );
     }
     case SizeRole:

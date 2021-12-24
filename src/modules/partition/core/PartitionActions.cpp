@@ -71,15 +71,15 @@ swapSuggestion( const qint64 availableSpaceB, Config::SwapChoice swap )
 
 
     // Allow for a fudge factor
-    suggestedSwapSizeB *= overestimationFactor;
+    suggestedSwapSizeB = qRound64( suggestedSwapSizeB * overestimationFactor );
 
     // don't use more than 10% of available space
     if ( !ensureSuspendToDisk )
     {
-        suggestedSwapSizeB = qMin( suggestedSwapSizeB, qint64( 0.10 * availableSpaceB ) );
+        suggestedSwapSizeB = qMin( suggestedSwapSizeB, availableSpaceB / 10 /* 10% is 0.1 */ );
     }
 
-    cDebug() << "Suggested swap size:" << suggestedSwapSizeB / 1024. / 1024. / 1024. << "GiB";
+    cDebug() << "Suggested swap size:" << CalamaresUtils::BytesToGiB( suggestedSwapSizeB ) << "GiB";
 
     return suggestedSwapSizeB;
 }

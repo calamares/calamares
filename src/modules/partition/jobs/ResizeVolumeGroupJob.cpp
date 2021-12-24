@@ -9,7 +9,8 @@
 
 #include "ResizeVolumeGroupJob.h"
 
-// KPMcore
+#include "core/KPMHelpers.h"
+
 #include <kpmcore/core/lvmdevice.h>
 #include <kpmcore/core/partition.h>
 #include <kpmcore/ops/resizevolumegroupoperation.h>
@@ -51,19 +52,9 @@ ResizeVolumeGroupJob::prettyStatusMessage() const
 Calamares::JobResult
 ResizeVolumeGroupJob::exec()
 {
-    Report report( nullptr );
-
-    ResizeVolumeGroupOperation op( *m_device, m_partitionList );
-
-    op.setStatus( Operation::OperationStatus::StatusRunning );
-
-    QString message = tr( "The installer failed to resize a volume group named '%1'." ).arg( m_device->name() );
-    if ( op.execute( report ) )
-    {
-        return Calamares::JobResult::ok();
-    }
-
-    return Calamares::JobResult::error( message, report.toText() );
+    return KPMHelpers::execute(
+        ResizeVolumeGroupOperation( *m_device, m_partitionList ),
+        tr( "The installer failed to resize a volume group named '%1'." ).arg( m_device->name() ) );
 }
 
 QString

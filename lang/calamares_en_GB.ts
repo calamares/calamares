@@ -1989,7 +1989,7 @@ The installer will quit and all changes will be lost.</translation>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="53"/>
       <source>Configuration Error</source>
-      <translation type="unfinished"/>
+      <translation>Configuration  Error </translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="54"/>

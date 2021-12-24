@@ -11,9 +11,10 @@
 
 #include "ResizePartitionJob.h"
 
+#include "core/KPMHelpers.h"
+
 #include "utils/Units.h"
 
-// KPMcore
 #include <kpmcore/core/device.h>
 #include <kpmcore/ops/resizeoperation.h>
 #include <kpmcore/util/report.h>
@@ -66,23 +67,16 @@ ResizePartitionJob::prettyStatusMessage() const
 Calamares::JobResult
 ResizePartitionJob::exec()
 {
-    Report report( nullptr );
     // Restore partition sectors that were modified for preview
     m_partition->setFirstSector( m_oldFirstSector );
     m_partition->setLastSector( m_oldLastSector );
+
     ResizeOperation op( *m_device, *m_partition, m_newFirstSector, m_newLastSector );
-    op.setStatus( Operation::StatusRunning );
     connect( &op, &Operation::progress, this, &ResizePartitionJob::iprogress );
-
-    QString errorMessage = tr( "The installer failed to resize partition %1 on disk '%2'." )
-                               .arg( m_partition->partitionPath() )
-                               .arg( m_device->name() );
-    if ( op.execute( report ) )
-    {
-        return Calamares::JobResult::ok();
-    }
-
-    return Calamares::JobResult::error( errorMessage, report.toText() );
+    return KPMHelpers::execute( op,
+                                tr( "The installer failed to resize partition %1 on disk '%2'." )
+                                    .arg( m_partition->partitionPath() )
+                                    .arg( m_device->name() ) );
 }
 
 void

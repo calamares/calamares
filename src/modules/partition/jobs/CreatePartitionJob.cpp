@@ -11,7 +11,9 @@
 
 #include "CreatePartitionJob.h"
 
+#include "core/KPMHelpers.h"
 #include "core/PartitionInfo.h"
+
 #include "partition/FileSystem.h"
 #include "partition/PartitionQuery.h"
 #include "utils/CalamaresUtilsSystem.h"
@@ -60,24 +62,24 @@ createZfs( Partition* partition, Device* device )
     // Now we need to do some things that would normally be done by kpmcore
 
     // First we get the device node from the output and set it as the partition path
-    QRegularExpression re( QStringLiteral( "Created a new partition (\\d+)" ) );
-    QRegularExpressionMatch rem = re.match( r.getOutput() );
-
     QString deviceNode;
-    if ( rem.hasMatch() )
     {
-        if ( partition->devicePath().back().isDigit() )
+        QRegularExpression re( QStringLiteral( "Created a new partition (\\d+)" ) );
+        QRegularExpressionMatch rem = re.match( r.getOutput() );
+
+        if ( rem.hasMatch() )
         {
-            deviceNode = partition->devicePath() + QLatin1Char( 'p' ) + rem.captured( 1 );
+            if ( partition->devicePath().back().isDigit() )
+            {
+                deviceNode = partition->devicePath() + QLatin1Char( 'p' ) + rem.captured( 1 );
+            }
+            else
+            {
+                deviceNode = partition->devicePath() + rem.captured( 1 );
+            }
         }
-        else
-        {
-            deviceNode = partition->devicePath() + rem.captured( 1 );
-        }
+        partition->setPartitionPath( deviceNode );
     }
-
-    partition->setPartitionPath( deviceNode );
-
     // If it is a gpt device, set the partition UUID
     if ( device->partitionTable()->type() == PartitionTable::gpt && partition->uuid().isEmpty() )
     {
@@ -273,17 +275,9 @@ CreatePartitionJob::exec()
         return createZfs( m_partition, m_device );
     }
 
-    Report report( nullptr );
-    NewOperation op( *m_device, m_partition );
-    op.setStatus( Operation::StatusRunning );
-
-    QString message = tr( "The installer failed to create partition on disk '%1'." ).arg( m_device->name() );
-    if ( op.execute( report ) )
-    {
-        return Calamares::JobResult::ok();
-    }
-
-    return Calamares::JobResult::error( message, report.toText() );
+    return KPMHelpers::execute(
+        NewOperation( *m_device, m_partition ),
+        tr( "The installer failed to create partition on disk '%1'." ).arg( m_device->name() ) );
 }
 
 void

@@ -9,6 +9,8 @@
 
 #include "DeactivateVolumeGroupJob.h"
 
+#include "core/KPMHelpers.h"
+
 #include <kpmcore/core/lvmdevice.h>
 #include <kpmcore/ops/deactivatevolumegroupoperation.h>
 #include <kpmcore/util/report.h>
@@ -39,18 +41,12 @@ DeactivateVolumeGroupJob::prettyStatusMessage() const
 Calamares::JobResult
 DeactivateVolumeGroupJob::exec()
 {
-    Report report( nullptr );
-
     DeactivateVolumeGroupOperation op( *m_device );
-
-    op.setStatus( Operation::OperationStatus::StatusRunning );
-
-    QString message = tr( "The installer failed to deactivate a volume group named %1." ).arg( m_device->name() );
-    if ( op.execute( report ) )
+    auto r = KPMHelpers::execute(
+        op, tr( "The installer failed to deactivate a volume group named %1." ).arg( m_device->name() ) );
+    if ( r )
     {
         op.preview();
-        return Calamares::JobResult::ok();
     }
-
-    return Calamares::JobResult::error( message, report.toText() );
+    return r;
 }

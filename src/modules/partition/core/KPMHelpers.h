@@ -11,11 +11,13 @@
 #ifndef KPMHELPERS_H
 #define KPMHELPERS_H
 
-// KPMcore
+#include "Job.h"
+
 #include <kpmcore/core/partitiontable.h>
 #include <kpmcore/fs/filesystem.h>
+#include <kpmcore/ops/operation.h>
+#include <kpmcore/util/report.h>
 
-// Qt
 #include <QList>
 
 #include <functional>
@@ -71,6 +73,24 @@ Partition* createNewEncryptedPartition( PartitionNode* parent,
                                         PartitionTable::Flags flags );
 
 Partition* clonePartition( Device* device, Partition* partition );
+
+/** @brief Return a result for an @p operation
+ *
+ * Executes the operation, and if successful, returns a success result.
+ * Otherwise returns an error using @p failureMessage as the primary part
+ * of the error, and details obtained from the operation.
+ */
+Calamares::JobResult execute( Operation& operation, const QString& failureMessage );
+/** @brief Return a result for an @p operation
+ *
+ * It's acceptable to use an rvalue: the operation-running is the effect
+ * you're interested in, rather than keeping the temporary around.
+ */
+static inline Calamares::JobResult
+execute( Operation&& operation, const QString& failureMessage )
+{
+    return execute( operation, failureMessage );
+}
 
 }  // namespace KPMHelpers
 

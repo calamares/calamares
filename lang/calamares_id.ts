@@ -6,7 +6,7 @@
     <message>
       <location filename="../src/modules/partition/jobs/AutoMountManagementJob.cpp" line="22"/>
       <source>Manage auto-mount settings</source>
-      <translation type="unfinished"/>
+      <translation>Kelola pengaturan mount otomatis</translation>
     </message>
   </context>
   <context>
@@ -114,12 +114,12 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="141"/>
       <source>Uploads the session log to the configured pastebin.</source>
-      <translation type="unfinished"/>
+      <translation>Unggah catatan sesi ke pastebin yang telah dikonfigurasi.</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="144"/>
       <source>Send Session Log</source>
-      <translation type="unfinished"/>
+      <translation>Kirim Catatan Sesi</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="118"/>
@@ -165,7 +165,7 @@
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="30"/>
       <source>Programmed job failure was explicitly requested.</source>
-      <translation type="unfinished"/>
+      <translation>Kegagalan pekerjaan diprogram diminta secara eksplisit. </translation>
     </message>
   </context>
   <context>
@@ -189,7 +189,7 @@
     <message>
       <location filename="../src/libcalamares/ProcessJob.cpp" line="43"/>
       <source>Run command '%1' in target system.</source>
-      <translation>Jalankan perintah '%1' di dalam sistem target.</translation>
+      <translation>Jalankan perintah '%1' pada sistem target.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/ProcessJob.cpp" line="43"/>
@@ -245,7 +245,7 @@
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="88"/>
       <source>QML Step &lt;i&gt;%1&lt;/i&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>QML Langkah &lt;i&gt;%1&lt;/i&gt;.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="268"/>
@@ -277,7 +277,7 @@
     <message>
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="121"/>
       <source>System-requirements checking is complete.</source>
-      <translation type="unfinished"/>
+      <translation>Pengecekan kebutuhan sistem telah selesai.</translation>
     </message>
   </context>
   <context>
@@ -295,7 +295,7 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="163"/>
       <source>Would you like to paste the install log to the web?</source>
-      <translation>Maukah anda untuk menempelkan log instalasi ke situs?</translation>
+      <translation>Maukah anda menempelkan log instalasi ke situs?</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="179"/>
@@ -429,7 +429,7 @@ Link copied to clipboard</source>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="425"/>
       <source>&amp;Done</source>
-      <translation>&amp;Kelar</translation>
+      <translation>&amp;Selesai</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="444"/>
@@ -1054,12 +1054,12 @@ Instalasi dapat dilanjutkan, namun beberapa fitur akan dinonfungsikan.</translat
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="231"/>
       <source>Label for the filesystem</source>
-      <translation type="unfinished"/>
+      <translation>Label untuk filesystem</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="241"/>
       <source>FS Label:</source>
-      <translation type="unfinished"/>
+      <translation>Label FS:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="65"/>
@@ -1418,12 +1418,12 @@ Instalasi dapat dilanjutkan, namun beberapa fitur akan dinonfungsikan.</translat
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="186"/>
       <source>Label for the filesystem</source>
-      <translation type="unfinished"/>
+      <translation>Label untuk filesystem</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="196"/>
       <source>FS Label:</source>
-      <translation type="unfinished"/>
+      <translation>Label FS:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="291"/>
@@ -1582,7 +1582,7 @@ Instalasi dapat dilanjutkan, namun beberapa fitur akan dinonfungsikan.</translat
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="36"/>
       <source>Format partition %1 (file system: %2, size: %3 MiB) on %4.</source>
-      <translation type="unfinished"/>
+      <translation>Format partisi %1 (file system: %2, ukuran %3 MiB) pada %4.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="47"/>
@@ -1645,12 +1645,12 @@ Instalasi dapat dilanjutkan, namun beberapa fitur akan dinonfungsikan.</translat
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="193"/>
       <source>is running the installer as an administrator (root)</source>
-      <translation type="unfinished"/>
+      <translation>menjalankan installer sebagai administrator (root)</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="196"/>
       <source>The setup program is not running with administrator rights.</source>
-      <translation type="unfinished"/>
+      <translation>Installer tidak dijalankan dengan kewenangan administrator.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="197"/>
@@ -1699,7 +1699,7 @@ Instalasi dapat dilanjutkan, namun beberapa fitur akan dinonfungsikan.</translat
     <message>
       <location filename="../src/modules/oemid/IDJob.cpp" line="53"/>
       <source>Could not open file &lt;code&gt;%1&lt;/code&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Tidak dapat membuka berkas &lt;code&gt;%1&lt;/code&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/oemid/IDJob.cpp" line="60"/>
@@ -1712,7 +1712,7 @@ Instalasi dapat dilanjutkan, namun beberapa fitur akan dinonfungsikan.</translat
     <message>
       <location filename="../src/modules/initcpio/InitcpioJob.cpp" line="31"/>
       <source>Creating initramfs with mkinitcpio.</source>
-      <translation type="unfinished"/>
+      <translation>Membuat initramfs menggunakan mkinitcpio.</translation>
     </message>
   </context>
   <context>
@@ -1720,7 +1720,7 @@ Instalasi dapat dilanjutkan, namun beberapa fitur akan dinonfungsikan.</translat
     <message>
       <location filename="../src/modules/initramfs/InitramfsJob.cpp" line="28"/>
       <source>Creating initramfs.</source>
-      <translation type="unfinished"/>
+      <translation>Membuat initramfs.</translation>
     </message>
   </context>
   <context>
@@ -2031,12 +2031,12 @@ Instalasi dapat dilanjutkan, namun beberapa fitur akan dinonfungsikan.</translat
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="52"/>
       <source>Browser software</source>
-      <translation>Peramban perangkat lunak</translation>
+      <translation>Perangkat lunak peramban</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="53"/>
       <source>Browser package</source>
-      <translation>Peramban paket</translation>
+      <translation>Paket peramban</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="54"/>
@@ -2046,12 +2046,12 @@ Instalasi dapat dilanjutkan, namun beberapa fitur akan dinonfungsikan.</translat
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="55"/>
       <source>Kernel</source>
-      <translation>Inti</translation>
+      <translation>Kernel</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="56"/>
       <source>Services</source>
-      <translation>Jasa</translation>
+      <translation>Servis</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="57"/>
@@ -2587,12 +2587,12 @@ Instalasi dapat dilanjutkan, namun beberapa fitur akan dinonfungsikan.</translat
       <location filename="../src/modules/users/page_usersetup.ui" line="380"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="550"/>
       <source>Repeat Password</source>
-      <translation type="unfinished"/>
+      <translation>Ulangi Kata Sandi</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="455"/>
       <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password.</source>
-      <translation type="unfinished"/>
+      <translation>Ketikan kotak ini dicentang, pengecekan kekuatan kata sandi akan dilakukan dan anda tidak akan dapat menggunakan kata sandi yang lemah.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="458"/>
@@ -4252,7 +4252,7 @@ Keluaran:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="136"/>
       <source>root is not allowed as username.</source>
-      <translation type="unfinished"/>
+      <translation>root tidak boleh digunakan sebagai nama pengguna.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="145"/>
@@ -4287,7 +4287,7 @@ Keluaran:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="234"/>
       <source>Repeat Password</source>
-      <translation type="unfinished"/>
+      <translation>Ulangi Kata Sandi</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="261"/>
@@ -4297,27 +4297,27 @@ Keluaran:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="406"/>
       <source>Validate passwords quality</source>
-      <translation type="unfinished"/>
+      <translation>Validasi kualitas kata sandi</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="416"/>
       <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password.</source>
-      <translation type="unfinished"/>
+      <translation>Ketikan kotak ini dicentang, pengecekan kekuatan kata sandi akan dilakukan dan anda tidak akan dapat menggunakan kata sandi yang lemah.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="398"/>
       <source>Log in automatically without asking for the password</source>
-      <translation type="unfinished"/>
+      <translation>Masuk ke dalam sesi secara otomatis tanpa menanyakan kata sandi</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="190"/>
       <source>Only letters, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
-      <translation type="unfinished"/>
+      <translation>Hanya huruf, angka, garis bawah, dan tanda hubung yang diperbolehkan, minimal dua karakter.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="293"/>
       <source>Reuse user password as root password</source>
-      <translation type="unfinished"/>
+      <translation>Gunakan kata sandi pengguna sebagai kata sandi root</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="301"/>
@@ -4332,12 +4332,12 @@ Keluaran:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="324"/>
       <source>Root Password</source>
-      <translation type="unfinished"/>
+      <translation>Kata Sandi Root</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="342"/>
       <source>Repeat Root Password</source>
-      <translation type="unfinished"/>
+      <translation>Ulangi Kata Sandi</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="368"/>
