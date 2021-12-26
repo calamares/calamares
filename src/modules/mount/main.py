@@ -77,12 +77,18 @@ def is_ssd_disk(partition):
 
 def get_mount_options(filesystem, mount_options, partition):
     """
+    Returns the mount options for the partition object and filesystem
 
-    :param filesystem:
-    :param mount_options:
-    :param partition:
-    :return:
+    :param filesystem: A string containing the filesystem
+    :param mount_options: A list of dicts that descripes the mount options for each mountpoint
+    :param partition: A dict containing information about the partition
+    :return: A comma seperated string containing the mount options suitable for passing to mount
     """
+
+    # Extra mounts can optionally have "options" set, in this case, they override other all other settings
+    if "options" in partition:
+        return ",".join(partition["options"])
+
     # If there are no mount options defined then we use the defaults
     if mount_options is None:
         return "defaults"
@@ -97,7 +103,9 @@ def get_mount_options(filesystem, mount_options, partition):
     if options is None:
         return "defaults"
 
-    option_items = options.get("options", [])
+    option_items = options.get("options", []).copy()
+
+    # Append the appropriate options for ssd or hdd if set
     if is_ssd_disk(partition):
         option_items.extend(options.get("ssdOptions", []))
     else:
@@ -210,6 +218,13 @@ def mount_zfs(root_mount_point, partition):
 def mount_partition(root_mount_point, partition, partitions, mount_options, mount_options_list):
     """
     Do a single mount of @p partition inside @p root_mount_point.
+
+    :param root_mount_point: A string containing the root of the install
+    :param partition: A dict containing information about the partition
+    :param partitions: The full list of partitions used to filter out btrfs subvols which have duplicate mountpoints
+    :param mount_options: The mount options from the config file
+    :param mount_options_list: A list of options for each mountpoint to be placed in global storage for future modules
+    :return:
     """
     # Create mount point with `+` rather than `os.path.join()` because
     # `partition["mountPoint"]` starts with a '/'.
@@ -251,7 +266,7 @@ def mount_partition(root_mount_point, partition, partitions, mount_options, moun
                                     fstype,
                                     mount_options_string) != 0:
             libcalamares.utils.warning("Cannot mount {}".format(device))
-            mount_options_list.append({"mountpoint": mount_point, "option_string": mount_options_string})
+        mount_options_list.append({"mountpoint": raw_mount_point, "option_string": mount_options_string})
 
     # Special handling for btrfs subvolumes. Create the subvolumes listed in mount.conf
     if fstype == "btrfs" and partition["mountPoint"] == '/':
@@ -286,7 +301,7 @@ def mount_partition(root_mount_point, partition, partitions, mount_options, moun
             else:
                 mount_option += "," + get_mount_options(fstype, mount_options, partition)
             subvolume_mountpoint = mount_point[:-1] + s['mountPoint']
-            mount_options_list.append({"mountpoint": subvolume_mountpoint, "option_string": mount_option})
+            mount_options_list.append({"mountpoint": s['mountPoint'], "option_string": mount_option})
             if libcalamares.utils.mount(device,
                                         subvolume_mountpoint,
                                         fstype,

@@ -234,7 +234,7 @@ class FstabGenerator(object):
             libcalamares.utils.debug("Ignoring foreign swap {!s} {!s}".format(disk_name, partition.get("uuid", None)))
             return None
 
-        options = self.get_mount_options(filesystem, mount_point)
+        options = self.get_mount_options(mount_point)
 
         if mount_point == "/" and filesystem != "btrfs":
             check = 1
@@ -276,8 +276,18 @@ class FstabGenerator(object):
             if partition["mountPoint"]:
                 mkdir_p(self.root_mount_point + partition["mountPoint"])
 
-    def get_mount_options(self, filesystem, mountpoint):
-        return next((x for x in self.mount_options_list if x["mountpoint"] == mountpoint), "defaults")
+    def get_mount_options(self, mountpoint):
+        """
+        Returns the mount options for a given mountpoint
+
+        :param mountpoint: A string containing the mountpoint for the fstab entry
+        :return: A string containing the mount options for the entry or "defaults" if nothing is found
+        """
+        mount_options_item = next((x for x in self.mount_options_list if x.get("mountpoint") == mountpoint), None)
+        if mount_options_item:
+            return mount_options_item.get("option_string", "defaults")
+        else:
+            return "defaults"
 
 
 def create_swapfile(root_mount_point, root_btrfs):
