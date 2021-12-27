@@ -58,21 +58,20 @@ def disk_name_for_partition(partition):
 
 
 def is_ssd_disk(partition):
-    """ Checks if given disk is actually a ssd disk.
+    """ Checks if given partition is on an ssd disk.
 
-    :param partition:
-    :return:
+    :param partition: A dict containing the partition information
+    :return: True is the partition in on an ssd, False otherwise
     """
 
-    disk_name = disk_name_for_partition(partition)
-    filename = os.path.join("/sys/block", disk_name, "queue/rotational")
+    try:
+        disk_name = disk_name_for_partition(partition)
+        filename = os.path.join("/sys/block", disk_name, "queue/rotational")
 
-    if not os.path.exists(filename):
-        # Should not happen unless sysfs changes, but better safe than sorry
+        with open(filename) as sysfile:
+            return sysfile.read() == "0\n"
+    except:
         return False
-
-    with open(filename) as sysfile:
-        return sysfile.read() == "0\n"
 
 
 def get_mount_options(filesystem, mount_options, partition):
