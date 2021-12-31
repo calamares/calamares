@@ -5,3 +5,4 @@ type:       "job"
 name:       "umount"
 interface:  "python"
 script:     "main.py"
+emergency:  true
