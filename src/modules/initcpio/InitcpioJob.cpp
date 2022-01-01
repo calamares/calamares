@@ -32,7 +32,7 @@ InitcpioJob::prettyName() const
     return tr( "Creating initramfs with mkinitcpio." );
 }
 
-/** @brief Sets conservative permissions on each initramfs
+/** @brief Sets secure permissions on each initramfs
  *
  * Iterates over each initramfs contained directly in the directory @p d.
  * For each initramfs found, the permissions are set to owner read/write only.
