@@ -72,7 +72,7 @@ InitcpioJob::exec()
     }
 
     // If the kernel option isn't set to a specific kernel, run mkinitcpio on all kernels
-    QStringList command = { "mkinitpio" };
+    QStringList command = { "mkinitcpio" };
     if ( m_kernel.isEmpty() || m_kernel == "all" )
     {
         command.append( "-P" );
