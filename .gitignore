@@ -57,6 +57,6 @@ CMakeLists.txt.user
 tags
 
 # Packaging
-rebornos_scripts/archlinux_packaging/**/pkg
-rebornos_scripts/archlinux_packaging/**/src
-rebornos_scripts/archlinux_packaging/**/*.pkg.tar.zst*
+scripts/archlinux_packaging/**/pkg
+scripts/archlinux_packaging/**/src
+scripts/archlinux_packaging/**/*.pkg.tar.zst*

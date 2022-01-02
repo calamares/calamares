@@ -43,7 +43,7 @@ replaces=('calamares'
 
 PROJECT_DIRECTORY="$(dirname -- "$(dirname -- "$(pwd)")")"
 BUILD_DIRECTORY="$PROJECT_DIRECTORY/build"
-RESOURCE_DIRECTORY="$PROJECT_DIRECTORY/rebornos_scripts/archlinux_packaging"
+RESOURCE_DIRECTORY="$PROJECT_DIRECTORY/scripts/archlinux_packaging"
 NUMBER_OF_PROCESSORS="$(nproc)"
 
 prepare() {
