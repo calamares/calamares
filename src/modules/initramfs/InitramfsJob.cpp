@@ -81,6 +81,7 @@ InitramfsJob::setConfigurationMap( const QVariantMap& configurationMap )
         }
         else
         {
+            m_kernel = QStringLiteral( "all" );
             cWarning() << "*initramfs* could not determine running kernel, using 'all'." << Logger::Continuation
                        << r.getExitCode() << r.getOutput();
         }
