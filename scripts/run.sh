@@ -12,7 +12,7 @@ fi
 # Run and pass-through any options supplied. Default options are overridden if any options are supplied
 if [ $# -eq 0 ];then
     set -o xtrace
-    "$BUILD_DIRECTORY/calamares" -d -style kvantum -X -D6
+    "$BUILD_DIRECTORY/calamares" -d -style kvantum -X -D8
     set +o xtrace
 else
     set -o xtrace

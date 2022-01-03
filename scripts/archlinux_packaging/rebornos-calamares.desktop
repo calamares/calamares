@@ -16,7 +16,7 @@ Comment=Install RebornOS on your computer
 Path=
 
 # The executable of the application, possibly with arguments.
-Exec=sh -c "pkexec calamares -style kvantum -X -D6"
+Exec=sh -c "pkexec calamares -style kvantum -X -D8"
 
 # The name of the icon that will be used to display this entry
 Icon=/usr/share/pixmaps/rebornos-calamares.svg
