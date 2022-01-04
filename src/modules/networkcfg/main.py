@@ -142,7 +142,7 @@ def run():
                 )
 
         try:
-            shutil.copy(source_resolv, target_resolv, follow_symlinks=False)
+            shutil.copy(source_resolv, target_resolv, follow_symlinks=True)
         except Exception as err:
             libcalamares.utils.debug(
                 "Can't copy resolv.conf from {}: {}".format(source_resolv, err)
