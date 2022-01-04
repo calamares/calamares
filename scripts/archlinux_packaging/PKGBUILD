@@ -47,9 +47,7 @@ RESOURCE_DIRECTORY="$PROJECT_DIRECTORY/scripts/archlinux_packaging"
 NUMBER_OF_PROCESSORS="$(nproc)"
 
 prepare() {
-    cp "$RESOURCE_DIRECTORY/rebornos-calamares.desktop" "${srcdir}"
-    cp "$RESOURCE_DIRECTORY/rebornos-calamares.png" "${srcdir}"
-    cp "$RESOURCE_DIRECTORY/rebornos-calamares.svg" "${srcdir}"
+    :
 }
 
 build() {     
@@ -63,7 +61,38 @@ build() {
 }
 
 package() {
-    DESTDIR="${pkgdir}" cmake --install "$BUILD_DIRECTORY"
-    install -Dm 755 "${srcdir}/rebornos-calamares.desktop" "${pkgdir}/usr/share/applications/rebornos-calamares.desktop"
-    install -Dm 755 "${srcdir}/rebornos-calamares.svg" "${pkgdir}/usr/share/pixmaps/rebornos-calamares.svg"
+    DESTDIR="${pkgdir}" cmake --install "$BUILD_DIRECTORY" # Install after setting an environment variable
+
+    (
+        cd "$RESOURCE_DIRECTORY" && \
+        find . \
+            -mindepth 1 \
+            -maxdepth 1 \
+            -type f \
+            -name '*.sh' \
+            -exec \
+                install -Dm 755 "{}" "${pkgdir}/usr/share/calamares/{}" \; \
+            -exec \
+                ln -s "/usr/share/calamares/{}" "${pkgdir}/usr/bin/{}" \;           
+    )
+    (
+        cd "$RESOURCE_DIRECTORY" && \
+        find . \
+            -mindepth 1 \
+            -maxdepth 1 \
+            -type f \
+            -name '*.desktop' \
+            -exec \
+                install -Dm 755 "{}" "${pkgdir}/usr/share/applications/{}" \;
+    )
+    (
+        cd "$RESOURCE_DIRECTORY" && \
+        find . \
+            -mindepth 1 \
+            -maxdepth 1 \
+            -type f \
+            -name '*.svg' \
+            -exec \
+                install -Dm 755 "{}" "${pkgdir}/usr/share/pixmaps/{}" \;
+    )
 }
