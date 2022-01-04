@@ -28,7 +28,8 @@ depends=('qt5-location'
          'plasma-framework' 
          'solid'       
          'udisks2' 
-         'yaml-cpp'               
+         'yaml-cpp'
+         'polkit'               
          'calamares-configuration'
          'calamares-branding')
 optdepends=()
@@ -74,6 +75,16 @@ package() {
                 install -Dm 755 "{}" "${pkgdir}/usr/share/calamares/{}" \; \
             -exec \
                 ln -s "/usr/share/calamares/{}" "${pkgdir}/usr/bin/{}" \;           
+    )
+    (
+        cd "$RESOURCE_DIRECTORY" && \
+        find . \
+            -mindepth 1 \
+            -maxdepth 1 \
+            -type f \
+            -name '*.policy' \
+            -exec \
+                install -Dm 755 "{}" "${pkgdir}/usr/share/polkit-1/actions/{}" \;
     )
     (
         cd "$RESOURCE_DIRECTORY" && \
