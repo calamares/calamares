@@ -1,0 +1,21 @@
+# SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+# SPDX-License-Identifier: GPL-3.0-or-later
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/grubcfg
+additionalProperties: false
+type: object
+properties:
+    overwrite: { type: boolean, default: false }
+    keepDistributor: { type: boolean, default: false }
+    prefer_grub_d: { type: boolean, default: false }
+    defaults:
+        type: object
+        additionalProperties: true  # Other fields are acceptable
+        properties:
+            GRUB_TIMEOUT: { type: integer }
+            GRUB_DEFAULT: { type: string }
+            GRUB_DISABLE_SUBMENU: { type: boolean, default: true }
+            GRUB_TERMINAL_OUTPUT: { type: string }
+            GRUB_DISABLE_RECOVERY: { type: boolean, default: true }
+        required: [ GRUB_TIMEOUT, GRUB_DEFAULT, GRUB_TERMINAL_OUTPUT ]
