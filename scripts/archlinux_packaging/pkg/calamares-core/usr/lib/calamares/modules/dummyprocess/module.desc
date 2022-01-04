@@ -1,0 +1,11 @@
+# SPDX-FileCopyrightText: no
+# SPDX-License-Identifier: CC0-1.0
+# Module metadata file for dummy process jobmodule
+# Syntax is YAML 1.2
+---
+type:       "job"
+name:       "dummyprocess"
+interface:  "process"
+chroot:     false
+command:    "/bin/sh -c \"sleep 5 ; touch ~/calamares-dummyprocess\""
+timeout:    8

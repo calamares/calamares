@@ -11,7 +11,9 @@
 
 #include "CreatePartitionJob.h"
 
+#include "core/KPMHelpers.h"
 #include "core/PartitionInfo.h"
+
 #include "partition/FileSystem.h"
 #include "partition/PartitionQuery.h"
 #include "utils/CalamaresUtilsSystem.h"
@@ -273,17 +275,9 @@ CreatePartitionJob::exec()
         return createZfs( m_partition, m_device );
     }
 
-    Report report( nullptr );
-    NewOperation op( *m_device, m_partition );
-    op.setStatus( Operation::StatusRunning );
-
-    QString message = tr( "The installer failed to create partition on disk '%1'." ).arg( m_device->name() );
-    if ( op.execute( report ) )
-    {
-        return Calamares::JobResult::ok();
-    }
-
-    return Calamares::JobResult::error( message, report.toText() );
+    return KPMHelpers::execute(
+        NewOperation( *m_device, m_partition ),
+        tr( "The installer failed to create partition on disk '%1'." ).arg( m_device->name() ) );
 }
 
 void

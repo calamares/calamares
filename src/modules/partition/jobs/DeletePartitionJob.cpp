@@ -10,9 +10,11 @@
  */
 
 #include "DeletePartitionJob.h"
+
+#include "core/KPMHelpers.h"
+
 #include "utils/CalamaresUtilsSystem.h"
 
-// KPMcore
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
 #include <kpmcore/core/partitiontable.h>
@@ -45,7 +47,7 @@ removePartition( Partition* partition )
     auto r = CalamaresUtils::System::instance()->runCommand(
         { "sfdisk", "--delete", "--force", partition->devicePath(), QString::number( partition->number() ) },
         std::chrono::seconds( 5 ) );
-    if ( r.getExitCode() !=0 || r.getOutput().contains("failed") )
+    if ( r.getExitCode() != 0 || r.getOutput().contains( "failed" ) )
     {
         return Calamares::JobResult::error(
             QCoreApplication::translate( DeletePartitionJob::staticMetaObject.className(), "Deletion Failed" ),
@@ -96,17 +98,8 @@ DeletePartitionJob::exec()
         return removePartition( m_partition );
     }
 
-    Report report( nullptr );
-    DeleteOperation op( *m_device, m_partition );
-    op.setStatus( Operation::StatusRunning );
-
-    QString message = tr( "The installer failed to delete partition %1." ).arg( m_partition->devicePath() );
-    if ( op.execute( report ) )
-    {
-        return Calamares::JobResult::ok();
-    }
-
-    return Calamares::JobResult::error( message, report.toText() );
+    return KPMHelpers::execute( DeleteOperation( *m_device, m_partition ),
+                                tr( "The installer failed to delete partition %1." ).arg( m_partition->devicePath() ) );
 }
 
 void

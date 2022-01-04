@@ -1,0 +1,37 @@
+# SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+# SPDX-License-Identifier: GPL-3.0-or-later
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/preservefiles
+additionalProperties: false
+type: object
+properties:
+    # TODO: it's a particularly-formatted string
+    perm: { type: string }
+    files:
+        type: array
+        items:
+            # There are three entries here because: string, or an entry with
+            # a src (but no from) or an entry with from (but no src).
+            anyOf:
+              - type: string
+              - type: object
+                properties:
+                    dest: { type: string }
+                    src: { type: string }
+                    # TODO: it's a particularly-formatted string
+                    perm: { type: string }
+                    optional: { type: boolean }
+                required: [ dest ]
+                additionalProperties: false
+              - type: object
+                properties:
+                    dest: { type: string }
+                    from: { type: string, enum: [config, log] }
+                    # TODO: it's a particularly-formatted string
+                    perm: { type: string }
+                    optional: { type: boolean }
+                required: [ dest ]
+                additionalProperties: false
+
+required: [ files ]

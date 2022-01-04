@@ -13,6 +13,8 @@
 
 #include "SetPartitionFlagsJob.h"
 
+#include "core/KPMHelpers.h"
+
 #include "partition/FileSystem.h"
 #include "utils/Logger.h"
 #include "utils/Units.h"
@@ -148,17 +150,8 @@ SetPartFlagsJob::exec()
     cDebug() << "Setting flags on" << m_device->deviceNode() << "partition" << partition()->deviceNode()
              << Logger::DebugList( flagsList );
 
-    Report report( nullptr );
     SetPartFlagsOperation op( *m_device, *partition(), m_flags );
-    op.setStatus( Operation::StatusRunning );
     connect( &op, &Operation::progress, this, &SetPartFlagsJob::iprogress );
-
-    QString errorMessage
-        = tr( "The installer failed to set flags on partition %1." ).arg( m_partition->partitionPath() );
-    if ( op.execute( report ) )
-    {
-        return Calamares::JobResult::ok();
-    }
-
-    return Calamares::JobResult::error( errorMessage, report.toText() );
+    return KPMHelpers::execute(
+        op, tr( "The installer failed to set flags on partition %1." ).arg( m_partition->partitionPath() ) );
 }

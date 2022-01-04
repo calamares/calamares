@@ -1,0 +1,22 @@
+# SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+# SPDX-License-Identifier: GPL-3.0-or-later
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/displaymanager
+additionalProperties: false
+type: object
+properties:
+    displaymanagers:
+        type: array
+        items:
+            type: string
+            enum: [slim, sddm, lightdm, gdm, mdm, lxdm, kdm, greetd]
+        minItems: 1  # Must be non-empty, if present at all
+    defaultDesktopEnvironment:
+        type: object
+        properties:
+            executable: { type: string }
+            desktopFile: { type: string }
+        required: [ executable, desktopFile ]
+    basicSetup: { type: boolean, default: false }
+    sysconfigSetup: { type: boolean, default: false }

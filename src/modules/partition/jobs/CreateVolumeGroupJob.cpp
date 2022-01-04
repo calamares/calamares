@@ -9,7 +9,8 @@
 
 #include "CreateVolumeGroupJob.h"
 
-// KPMcore
+#include "core/KPMHelpers.h"
+
 #include <kpmcore/core/lvmdevice.h>
 #include <kpmcore/core/partition.h>
 #include <kpmcore/ops/createvolumegroupoperation.h>
@@ -46,19 +47,8 @@ CreateVolumeGroupJob::prettyStatusMessage() const
 Calamares::JobResult
 CreateVolumeGroupJob::exec()
 {
-    Report report( nullptr );
-
-    CreateVolumeGroupOperation op( m_vgName, m_pvList, m_peSize );
-
-    op.setStatus( Operation::StatusRunning );
-
-    QString message = tr( "The installer failed to create a volume group named '%1'." ).arg( m_vgName );
-    if ( op.execute( report ) )
-    {
-        return Calamares::JobResult::ok();
-    }
-
-    return Calamares::JobResult::error( message, report.toText() );
+    return KPMHelpers::execute( CreateVolumeGroupOperation( m_vgName, m_pvList, m_peSize ),
+                                tr( "The installer failed to create a volume group named '%1'." ).arg( m_vgName ) );
 }
 
 void

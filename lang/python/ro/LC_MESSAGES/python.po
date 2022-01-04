@@ -6,6 +6,7 @@
 # Translators:
 # Jobava Jobava <jobaval10n@gmail.com>, 2018
 # Sebastian Brici <bricisebastian@gmail.com>, 2018
+# Chele Ion <krovyoll@gmail.com>, 2021
 # 
 #, fuzzy
 msgid ""
@@ -14,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-02 15:45+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Sebastian Brici <bricisebastian@gmail.com>, 2018\n"
+"Last-Translator: Chele Ion <krovyoll@gmail.com>, 2021\n"
 "Language-Team: Romanian (https://www.transifex.com/calamares/teams/20061/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +25,7 @@ msgstr ""
 
 #: src/modules/initramfscfg/main.py:32
 msgid "Configuring initramfs."
-msgstr ""
+msgstr "Configurare initramfs"
 
 #: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
 #: src/modules/fstab/main.py:355 src/modules/fstab/main.py:361
@@ -36,21 +37,21 @@ msgstr ""
 #: src/modules/luksopenswaphookcfg/main.py:86
 #: src/modules/luksopenswaphookcfg/main.py:90
 msgid "Configuration Error"
-msgstr ""
+msgstr "Eroare de configurare"
 
 #: src/modules/initramfscfg/main.py:86 src/modules/fstab/main.py:356
 #: src/modules/initcpiocfg/main.py:228 src/modules/mount/main.py:145
 #: src/modules/rawfs/main.py:165 src/modules/openrcdmcryptcfg/main.py:73
 #: src/modules/luksopenswaphookcfg/main.py:87
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr ""
+msgstr "Nu sunt partiţii  definite ca  1{!s}1 ."
 
 #: src/modules/initramfscfg/main.py:90 src/modules/fstab/main.py:362
 #: src/modules/networkcfg/main.py:106 src/modules/initcpiocfg/main.py:232
 #: src/modules/localecfg/main.py:136 src/modules/openrcdmcryptcfg/main.py:77
 #: src/modules/luksopenswaphookcfg/main.py:91
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr ""
+msgstr "Nu este definită o partiţie rădăcină pentru 1{!s}1 ."
 
 #: src/modules/grubcfg/main.py:28
 msgid "Configure GRUB."
