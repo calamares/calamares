@@ -1,7 +1,0 @@
-# AUTO-GENERATED metadata file
-# Syntax is YAML 1.2
----
-type: "viewmodule"
-name: "welcome"
-interface: "qtplugin"
-load: "libcalamares_viewmodule_welcome.so"
