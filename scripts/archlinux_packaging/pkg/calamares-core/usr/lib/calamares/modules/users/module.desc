@@ -1,0 +1,7 @@
+# AUTO-GENERATED metadata file
+# Syntax is YAML 1.2
+---
+type: "viewmodule"
+name: "users"
+interface: "qtplugin"
+load: "libcalamares_viewmodule_users.so"
