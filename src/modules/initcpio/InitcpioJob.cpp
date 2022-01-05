@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://calamares.io> ===
  *
  *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2021 shivanandvp <shivanandvp@rebornos.org>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -63,9 +64,15 @@ InitcpioJob::exec()
         }
     }
 
-    cDebug() << "Updating initramfs with kernel" << m_kernel;
-    auto r = CalamaresUtils::System::instance()->targetEnvCommand(
-        { "mkinitcpio", "-p", m_kernel }, QString(), QString() /* no timeout , 0 */ );
+    if ( m_kernel == "all" ) {
+        cDebug() << "Updating initramfs for all presets";
+        auto r = CalamaresUtils::System::instance()->targetEnvCommand(
+            { "mkinitcpio", "-P" }, QString(), QString() /* no timeout , 0 */ );            
+    } else {
+        cDebug() << "Updating initramfs with kernel" << m_kernel;
+        auto r = CalamaresUtils::System::instance()->targetEnvCommand(
+            { "mkinitcpio", "-p", m_kernel }, QString(), QString() /* no timeout , 0 */ );
+    }
     return r.explainProcess( "mkinitcpio", std::chrono::seconds( 10 ) /* fake timeout */ );
 }
 
