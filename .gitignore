@@ -59,4 +59,4 @@ tags
 # Packaging
 scripts/archlinux_packaging/**/pkg
 scripts/archlinux_packaging/**/src
-scripts/archlinux_packaging/**/*.pkg.tar.zst*
+# scripts/archlinux_packaging/**/*.pkg.tar.zst*
