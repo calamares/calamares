@@ -67,7 +67,7 @@ Note that process modules are not recommended.
 
 Module descriptors **may** have the following keys:
 - *emergency* (a boolean value, set to true to mark the module
-  as an emergency module)
+  as an emergency module; see the section *Emergency Modules*, below)
 - *noconfig* (a boolean value, set to true to state that the module
   has no configuration file; defaults to false)
 - *requiredModules* (a list of modules which are required for this module
@@ -102,8 +102,14 @@ to generate a suitable `module.desc`.  For Python modules, manually add
 A module that is marked as an emergency module in its module.desc
 must **also** set the *emergency* key to *true* in its configuration file
 (see below). If it does not, the module is not considered to be an emergency
-module after all (this is so that you can have modules that have several
-instances, only some of which are actually needed for emergencies).
+module after all. This is so that you can have modules that have several
+instances, only some of which are actually needed for emergencies.
+
+In summary:
+- in `module.desc`, write `emergency: true` to make it **possible** to
+  run the module in emergency mode,
+- in `<modulename>.conf`, write `emergency: true` to make that specific
+  module run in emergency mode.
 
 ### Module-specific configuration
 
@@ -111,6 +117,10 @@ A Calamares module **may** read a module configuration file,
 named `<modulename>.conf`. If such a file is present in the
 module's directory, it can be shipped as a *default* configuration file.
 This only happens if the CMake-time option `INSTALL_CONFIG` is on.
+
+The name of the configuration file for a given module can be
+influenced by the `settings.conf` of the overall Calamares configuration.
+By default, though, the module's own name is used.
 
 Modules that have *noconfig* set to true will not attempt to
 read a configuration file, and will not warn that one is missing;
