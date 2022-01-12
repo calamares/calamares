@@ -10,12 +10,19 @@ website will have to do for older versions.
 # 3.2.50 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
+ - Anke Boersma
  - Erik Dubois
+ - Evan James
+ - Johannes Kamprad
 
 ## Core ##
  - No core changes yet
 
 ## Modules ##
+ - *initcpiocfg* mentioned a special kernel-name "all", which did not work,
+   and a special kernel-name "$uname" which cannot work. Fixed the former
+   and removed the "$uname" special key. (Thanks Evan)
+ - *luksswaphookcfg* has been converted to a C++ module.
  - *networkcfg* could fail to update the NetworkManager configuration
    if the SSID or username contained non-ASCII characters **and** the
    default Python text-file encoding was set to ASCII. The files are
@@ -23,6 +30,8 @@ This release contains contributions from (alphabetically by first name):
  - *preservefiles* was missing some necessary features, needed for it
    to replace the deprecated log-file-saving functionality in the *umount*
    module. (Thanks Erik and Joe for testing) #1851
+ - *umount* is now marked as an emergency module in the example configuration,
+   since it should **probably** be run as a cleanup. (Thanks Evan)
 
 
 # 3.2.49.1 (2021-12-11) #
