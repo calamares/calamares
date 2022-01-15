@@ -15,6 +15,8 @@
 
 #include <QFileInfo>
 
+/** @brief A wrapper for CalamaresUtils::getSubMap that excludes the success param
+ */
 static QVariantMap
 getSubMap( const QVariantMap& map, const QString& key )
 {

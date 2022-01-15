@@ -64,6 +64,7 @@ NetInstallPage::onActivate()
 {
     ui->groupswidget->setFocus();
 
+    // The NetInstallSelect global sotrage value can be used to make additional items selected by default
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
     if ( gs->contains( "NetinstallSelect" ) && gs->value( "NetinstallSelect" ).canConvert( QVariant::StringList ) )
     {
@@ -72,6 +73,7 @@ NetInstallPage::onActivate()
         static_cast< PackageModel* >( ui->groupswidget->model() )->setSelections( selectNames );
     }
 
+    // If NetInstallAdd is found in global storage, add those items to the tree
     if ( gs->contains( "NetinstallAdd" ) && gs->value( "NetinstallAdd" ).canConvert( QVariant::List ) )
     {
         const QVariantList groups = gs->value( "NetinstallAdd" ).toList();

@@ -170,6 +170,15 @@ PackageModel::headerData( int section, Qt::Orientation orientation, int role ) c
     return QVariant();
 }
 
+/** @brief Sets the checked flag on matching groups in the tree
+ *
+ * Recursively traverses the tree pointed to by m_rootItem and
+ * checks if a group name matches any of the items in @p selectNames.
+ * If a match is found, set check the box for that group and it's children.
+ *
+ * Individual packages will not be matched.
+ *
+ */
 void
 PackageModel::setSelections( QStringList selectNames )
 {
@@ -333,7 +342,13 @@ PackageModel::setupModelData( const QVariantList& l )
     emit endResetModel();
 }
 
-
+/** @brief Appends groups to the tree
+ *
+ * Uses the data from @p groupList to add elements to the
+ * existing tree that m_rootItem points to.  If m_rootItem
+ * is not valid, it does nothing
+ *
+ */
 void
 PackageModel::appendModelData( const QVariantList& groupList )
 {
