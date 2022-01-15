@@ -170,6 +170,29 @@ PackageModel::headerData( int section, Qt::Orientation orientation, int role ) c
     return QVariant();
 }
 
+void
+PackageModel::setSelections( QStringList selectNames )
+{
+    if ( m_rootItem )
+    {
+        setSelections( selectNames, m_rootItem );
+    }
+}
+
+void
+PackageModel::setSelections( QStringList selectNames, PackageTreeItem* item )
+{
+    for ( int i = 0; i < item->childCount(); i++ )
+    {
+        auto* child = item->child( i );
+        setSelections( selectNames, child );
+    }
+    if ( item->isGroup() && selectNames.contains( item->name() ) )
+    {
+        item->setSelected( Qt::CheckState::Checked );
+    }
+}
+
 PackageTreeItem::List
 PackageModel::getPackages() const
 {
@@ -308,4 +331,16 @@ PackageModel::setupModelData( const QVariantList& l )
     m_rootItem = new PackageTreeItem();
     setupModelData( l, m_rootItem );
     emit endResetModel();
+}
+
+
+void
+PackageModel::appendModelData( const QVariantList& groupList )
+{
+    if ( m_rootItem )
+    {
+        emit beginResetModel();
+        setupModelData( groupList, m_rootItem );
+        emit endResetModel();
+    }
 }

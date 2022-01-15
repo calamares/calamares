@@ -54,8 +54,13 @@ public:
     int rowCount( const QModelIndex& parent = QModelIndex() ) const override;
     int columnCount( const QModelIndex& parent = QModelIndex() ) const override;
 
+    void setSelections( QStringList selectNames );
+    void setSelections(QStringList selectNames, PackageTreeItem *item );
+
     PackageTreeItem::List getPackages() const;
     PackageTreeItem::List getItemPackages( PackageTreeItem* item ) const;
+
+    void appendModelData( const QVariantList& groupList );
 
 private:
     friend class ItemTests;

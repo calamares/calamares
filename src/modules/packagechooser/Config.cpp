@@ -55,6 +55,8 @@ PackageChooserMethodNames()
         { "custom", PackageChooserMethod::Legacy },
         { "contextualprocess", PackageChooserMethod::Legacy },
         { "packages", PackageChooserMethod::Packages },
+        { "netinstall-add", PackageChooserMethod::NetAdd },
+        { "netinstall-select", PackageChooserMethod::NetSelect },
     };
     return names;
 }
@@ -120,6 +122,23 @@ Config::updateGlobalStorage( const QStringList& selected ) const
         cDebug() << m_defaultId << "packages to install" << packageNames;
         CalamaresUtils::Packages::setGSPackageAdditions(
             Calamares::JobQueue::instance()->globalStorage(), m_defaultId, packageNames );
+    }
+    else if ( m_method == PackageChooserMethod::NetAdd )
+    {
+        QVariantList netinstallDataList = m_model->getNetinstallDataForNames( selected );
+        if ( netinstallDataList.isEmpty() )
+        {
+            cWarning() << "No netinstall information found for " << selected;
+        }
+        else
+        {
+            Calamares::JobQueue::instance()->globalStorage()->insert( "NetinstallAdd", netinstallDataList );
+        }
+    }
+    else if ( m_method == PackageChooserMethod::NetSelect )
+    {
+        cDebug() << m_defaultId << "groups to select in netinstall" << selected;
+        Calamares::JobQueue::instance()->globalStorage()->insert( "NetinstallSelect", selected );
     }
     else
     {

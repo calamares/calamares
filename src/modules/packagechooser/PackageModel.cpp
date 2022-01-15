@@ -15,6 +15,14 @@
 
 #include <QFileInfo>
 
+static QVariantMap
+getSubMap( const QVariantMap& map, const QString& key )
+{
+    bool success;
+
+    return CalamaresUtils::getSubMap( map, key, success );
+}
+
 static QPixmap
 loadScreenshot( const QString& path )
 {
@@ -51,12 +59,13 @@ PackageItem::PackageItem( const QString& a_id,
 {
 }
 
-PackageItem::PackageItem::PackageItem( const QVariantMap& item_map )
+PackageItem::PackageItem( const QVariantMap& item_map )
     : id( CalamaresUtils::getString( item_map, "id" ) )
     , name( CalamaresUtils::Locale::TranslatedString( item_map, "name" ) )
     , description( CalamaresUtils::Locale::TranslatedString( item_map, "description" ) )
     , screenshot( loadScreenshot( CalamaresUtils::getString( item_map, "screenshot" ) ) )
     , packageNames( CalamaresUtils::getStringList( item_map, "packages" ) )
+    , netinstallData( getSubMap( item_map, "netinstall" ) )
 {
     if ( name.isEmpty() && id.isEmpty() )
     {
@@ -120,6 +129,20 @@ PackageListModel::getInstallPackagesForNames( const QStringList& ids ) const
         if ( ids.contains( p.id ) )
         {
             l.append( p.packageNames );
+        }
+    }
+    return l;
+}
+
+QVariantList
+PackageListModel::getNetinstallDataForNames( const QStringList& ids ) const
+{
+    QVariantList l;
+    for ( const auto& p : qAsConst( m_packages ) )
+    {
+        if ( ids.contains( p.id ) )
+        {
+            l.append( p.netinstallData );
         }
     }
     return l;

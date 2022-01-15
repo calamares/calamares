@@ -15,6 +15,7 @@
 #include "PackageModel.h"
 #include "ui_page_netinst.h"
 
+#include "GlobalStorage.h"
 #include "JobQueue.h"
 
 #include "network/Manager.h"
@@ -62,4 +63,19 @@ void
 NetInstallPage::onActivate()
 {
     ui->groupswidget->setFocus();
+
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+    if ( gs->contains( "NetinstallSelect" ) && gs->value( "NetinstallSelect" ).canConvert( QVariant::StringList ) )
+    {
+        const QStringList selectNames = gs->value( "NetinstallSelect" ).toStringList();
+
+        static_cast< PackageModel* >( ui->groupswidget->model() )->setSelections( selectNames );
+    }
+
+    if ( gs->contains( "NetinstallAdd" ) && gs->value( "NetinstallAdd" ).canConvert( QVariant::List ) )
+    {
+        const QVariantList groups = gs->value( "NetinstallAdd" ).toList();
+
+        static_cast< PackageModel* >( ui->groupswidget->model() )->appendModelData( groups );
+    }
 }
