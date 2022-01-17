@@ -382,7 +382,7 @@ class PMPacman(PackageManager):
 
         def line_cb(line):
             if line.startswith(":: "):
-                self.in_package_changes = "package changes" in line
+                self.in_package_changes = "package" in line or "hooks" in line
             else:
                 if self.in_package_changes and line.endswith("...\n"):
                     # Update the message, untranslated; do not change the
@@ -444,7 +444,11 @@ class PMPacman(PackageManager):
         else:
             command.append("-S")
 
+        # Don't ask for user intervention, take the default action
         command.append("--noconfirm")
+
+        # Don't report download progress for each file
+        command.append("--noprogressbar")
 
         if self.pacman_needed_only is True:
             command.append("--needed")
