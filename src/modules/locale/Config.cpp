@@ -252,13 +252,13 @@ Config::setCurrentLocation( const QString& regionName, const QString& zoneName )
 void
 Config::setCurrentLocation( const CalamaresUtils::Locale::TimeZoneData* location )
 {
-    bool updateLocation = ( location != m_currentLocation );
+    const bool updateLocation = ( location != m_currentLocation );
     if ( updateLocation )
     {
         m_currentLocation = location;
     }
 
-    // Always lang should be updated
+    // lang should be always be updated
     auto newLocale = automaticLocaleConfiguration();
     if ( !m_selectedLocaleConfiguration.explicit_lang )
     {
