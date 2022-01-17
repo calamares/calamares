@@ -392,7 +392,7 @@ class PMPacman(PackageManager):
                     global custom_status_message
                     custom_status_message = "pacman: " + line.strip()
                     libcalamares.job.setprogress(self.progress_fraction)
-                    libcalamares.utils.debug(line)
+            libcalamares.utils.debug(line)
 
         self.in_package_changes = False
         self.line_cb = line_cb
