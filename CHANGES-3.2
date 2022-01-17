@@ -14,6 +14,7 @@ This release contains contributions from (alphabetically by first name):
  - Erik Dubois
  - Evan James
  - Johannes Kamprad
+ - Taejun Park (new contributor, welcome!)
 
 **Replacement notice:** The *umount* module will be replaced by a C++
 implementation in the next release. The "preserve log file" feature
@@ -38,6 +39,10 @@ will be removed in that release. Use the *preservefiles* module instead.
    module. (Thanks Erik and Joe for testing) #1851
  - *umount* is now marked as an emergency module in the example configuration,
    since it should **probably** be run as a cleanup. (Thanks Evan)
+ - *welcome* and *locale* could be confusing, together, and configure
+   the target system with a language that does not match the installer
+   language, even though the user did not make any explicit choice.
+   (Thanks Taejun) #1864
 
 
 # 3.2.49.1 (2021-12-11) #
