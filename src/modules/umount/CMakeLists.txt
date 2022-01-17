@@ -9,6 +9,7 @@ calamares_add_plugin( umount
     SOURCES
         UmountJob.cpp
     SHARED_LIB
+    EMERGENCY
 )
 
 calamares_add_test(

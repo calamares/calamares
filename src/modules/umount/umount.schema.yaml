@@ -6,5 +6,4 @@ $id: https://calamares.io/schemas/umount
 additionalProperties: false
 type: object
 properties:
-    srcLog: { type: string }
-    destLog: { type: string }
+    emergency: { type: boolean }
