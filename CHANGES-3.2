@@ -31,6 +31,8 @@ will be removed in that release. Use the *preservefiles* module instead.
    if the SSID or username contained non-ASCII characters **and** the
    default Python text-file encoding was set to ASCII. The files are
    now read and written in UTF-8, explicitly. #1848
+ - *partition* always sets *bigtime* option on XFS filesystems, if possible.
+   Requires sufficiently-recent xfsprogs. #1874
  - *preservefiles* was missing some necessary features, needed for it
    to replace the deprecated log-file-saving functionality in the *umount*
    module. (Thanks Erik and Joe for testing) #1851
