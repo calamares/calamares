@@ -27,15 +27,28 @@ for n in range(10):
     print(g.next())
 # it's random, nothing to assert
 
-# Check two invalid things
+# Check invalid things
 try:
     g = main.get_efi_suffix_generator("derp")
-    raise TypeError("Shouldn't get generator")
+    raise TypeError("Shouldn't get generator (no indicator)")
 except ValueError as e:
     pass
 
 try:
     g = main.get_efi_suffix_generator("derp@@HEX@@")
-    raise TypeError("Shouldn't get generator")
+    raise TypeError("Shouldn't get generator (unknown indicator)")
 except ValueError as e:
     pass
+
+try:
+    g = main.get_efi_suffix_generator("derp@@SERIAL@@x")
+    raise TypeError("Shouldn't get generator (trailing garbage)")
+except ValueError as e:
+    pass
+
+try:
+    g = main.get_efi_suffix_generator("derp@@SERIAL@@@@RANDOM@@")
+    raise TypeError("Shouldn't get generator (multiple indicators)")
+except ValueError as e:
+    pass
+
