@@ -221,6 +221,11 @@ Config::setCurrentLocation()
     {
         setCurrentLocation( m_startingTimezone.first, m_startingTimezone.second );
     }
+    if ( !m_selectedLocaleConfiguration.explicit_lang )
+    {
+        auto newLocale = automaticLocaleConfiguration();
+        setLanguage( newLocale.language() );
+    }
 }
 
 void
