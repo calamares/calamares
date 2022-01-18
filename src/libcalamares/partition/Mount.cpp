@@ -14,6 +14,7 @@
 #include "partition/Sync.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
+#include "utils/String.h"
 
 #include <QDir>
 #include <QTemporaryDir>
@@ -92,7 +93,7 @@ struct TemporaryMount::Private
 
 
 TemporaryMount::TemporaryMount( const QString& devicePath, const QString& filesystemName, const QString& options )
-    : m_d( std::make_unique<Private>() )
+    : m_d( std::make_unique< Private >() )
 {
     m_d->m_devicePath = devicePath;
     m_d->m_mountDir.setAutoRemove( false );
@@ -121,6 +122,33 @@ QString
 TemporaryMount::path() const
 {
     return m_d ? m_d->m_mountDir.path() : QString();
+}
+
+QList< MtabInfo >
+MtabInfo::fromMtabFilteredByPrefix( const QString& mountPrefix, const QString& mtabPath )
+{
+    QFile f( mtabPath.isEmpty() ? "/etc/mtab" : mtabPath );
+    if ( !f.open( QIODevice::ReadOnly ) )
+    {
+        return {};
+    }
+
+    QTextStream in( &f );
+    QList< MtabInfo > l;
+    while ( !f.atEnd() )
+    {
+        QStringList line = in.readLine().split( ' ', SplitSkipEmptyParts );
+        if ( line.length() == 3 && !line[ 0 ].startsWith( '#' ) )
+        {
+            // Lines have format: <device> <mountpoint> <options>, so check
+            // the mountpoint field. Everything starts with an empty string.
+            if ( line[ 1 ].startsWith( mountPrefix ) )
+            {
+                l.append( { line[ 0 ], line[ 1 ] } );
+            }
+        }
+    }
+    return l;
 }
 
 }  // namespace Partition
