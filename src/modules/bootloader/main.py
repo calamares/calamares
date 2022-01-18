@@ -268,6 +268,27 @@ def create_loader(loader_path, entry):
             loader_file.write(line)
 
 
+class suffix_iterator(object):
+    """
+    Wrapper for one of the "generator" classes below to behave like
+    a proper Python iterator. The iterator is initialized with a
+    maximum number of attempts to generate a new suffix.
+    """
+    def __init__(self, attempts, generator):
+        self.generator = generator
+        self.attempts = attempts
+        self.counter = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        self.counter += 1
+        if self.counter <= self.attempts:
+            return self.generator.next()
+        raise StopIteration
+
+
 class serialEfi(object):
     """
     EFI Id generator that appends a serial number to the given name.
@@ -354,8 +375,11 @@ class phraseEfi(object):
 
 
 def get_efi_suffix_generator(name):
+    """
+    Handle EFI bootloader Ids with @@<something>@@ for suffix-processing.
+    """
     if "@@" not in name:
-        raise ValueError("Misplaced call to change_efi_suffix, no @@")
+        raise ValueError("Misplaced call to get_efi_suffix_generator, no @@")
     parts = name.split("@@")
     if len(parts) != 3:
         raise ValueError("EFI Id {!r} is malformed".format(name))
@@ -378,11 +402,32 @@ def get_efi_suffix_generator(name):
     return generator
 
 
-def efi_label():
+def change_efi_suffix(efi_directory, bootloader_id):
+    """
+    Returns a label based on @p bootloader_id that is usable within
+    @p efi_directory. If there is a @@<something>@@ suffix marker
+    in the given id, tries to generate a unique label.
+    """
+    if bootloader_id.endswith("@@"):
+        # Do 10 attempts with any suffix generator
+        g = suffix_iterator(10, get_efi_suffix_generator(bootloader_id))
+    else:
+        # Just one attempt
+        g = [bootloader_id]
+
+    for candidate_name in g:
+        if not os.path.exists(os.path.join(efi_directory, candidate_name)):
+            return candidate_name
+    return bootloader_id
+
+
+def efi_label(efi_directory):
+    """
+    Returns a sanitized label, possibly unique, that can be
+    used within @p efi_directory.
+    """
     if "efiBootloaderId" in libcalamares.job.configuration:
-        efi_bootloader_id = libcalamares.job.configuration["efiBootloaderId"]
-        if efi_bootloader_id.endswith("@@"):
-            efi_bootloader_id = change_efi_suffix(efi_bootloader_id)
+        efi_bootloader_id = change_efi_suffix( efi_directory, calamares.job.configuration["efiBootloaderId"] )
     else:
         branding = libcalamares.globalstorage.value("branding")
         efi_bootloader_id = branding["bootloaderEntryName"]
@@ -501,7 +546,7 @@ def run_grub_mkconfig(partitions, output_file):
         check_target_env_call([libcalamares.job.configuration["grubMkconfig"], "-o", output_file])
 
 
-def run_grub_install(fw_type, partitions, efi_directory=None):
+def run_grub_install(fw_type, partitions, efi_directory):
     """
     Runs grub-install in the target environment
 
@@ -518,7 +563,7 @@ def run_grub_install(fw_type, partitions, efi_directory=None):
         check_target_env_call(["sh", "-c", "echo ZPOOL_VDEV_NAME_PATH=1 >> /etc/environment"])
 
     if fw_type == "efi":
-        efi_bootloader_id = efi_label()
+        efi_bootloader_id = efi_label(efi_directory)
         efi_target, efi_grub_file, efi_boot_file = get_grub_efi_parameters()
 
         if is_zfs:
@@ -573,7 +618,7 @@ def install_grub(efi_directory, fw_type):
         if not os.path.isdir(install_efi_directory):
             os.makedirs(install_efi_directory)
 
-        efi_bootloader_id = efi_label()
+        efi_bootloader_id = efi_label(efi_directory)
 
         efi_target, efi_grub_file, efi_boot_file = get_grub_efi_parameters()
 
@@ -617,7 +662,7 @@ def install_secureboot(efi_directory):
     """
     Installs the secureboot shim in the system by calling efibootmgr.
     """
-    efi_bootloader_id = efi_label()
+    efi_bootloader_id = efi_label(efi_directory)
 
     install_path = libcalamares.globalstorage.value("rootMountPoint")
     install_efi_directory = install_path + efi_directory

@@ -52,3 +52,13 @@ try:
 except ValueError as e:
     pass
 
+
+# Try the generator (assuming no calamares- test files exist in /tmp)
+import os
+assert "calamares-single" == main.change_efi_suffix("/tmp", "calamares-single")
+assert "calamares-serial" == main.change_efi_suffix("/tmp", "calamares-serial@@SERIAL@@")
+try:
+    os.makedirs("/tmp/calamares-serial", exist_ok=True)
+    assert "calamares-serial1" == main.change_efi_suffix("/tmp", "calamares-serial@@SERIAL@@")
+finally:
+    os.rmdir("/tmp/calamares-serial")
