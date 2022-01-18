@@ -221,6 +221,11 @@ Config::setCurrentLocation()
     {
         setCurrentLocation( m_startingTimezone.first, m_startingTimezone.second );
     }
+    if ( !m_selectedLocaleConfiguration.explicit_lang )
+    {
+        auto newLocale = automaticLocaleConfiguration();
+        setLanguage( newLocale.language() );
+    }
 }
 
 void
@@ -252,15 +257,21 @@ Config::setCurrentLocation( const QString& regionName, const QString& zoneName )
 void
 Config::setCurrentLocation( const CalamaresUtils::Locale::TimeZoneData* location )
 {
-    if ( location != m_currentLocation )
+    const bool updateLocation = ( location != m_currentLocation );
+    if ( updateLocation )
     {
         m_currentLocation = location;
-        // Overwrite those settings that have not been made explicit.
-        auto newLocale = automaticLocaleConfiguration();
-        if ( !m_selectedLocaleConfiguration.explicit_lang )
-        {
-            setLanguage( newLocale.language() );
-        }
+    }
+
+    // lang should be always be updated
+    auto newLocale = automaticLocaleConfiguration();
+    if ( !m_selectedLocaleConfiguration.explicit_lang )
+    {
+        setLanguage( newLocale.language() );
+    }
+
+    if ( updateLocation )
+    {
         if ( !m_selectedLocaleConfiguration.explicit_lc )
         {
             m_selectedLocaleConfiguration.lc_numeric = newLocale.lc_numeric;
