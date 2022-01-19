@@ -132,13 +132,46 @@ Config::updateGlobalStorage( const QStringList& selected ) const
         }
         else
         {
-            Calamares::JobQueue::instance()->globalStorage()->insert( "NetinstallAdd", netinstallDataList );
+            auto* gs = Calamares::JobQueue::instance()->globalStorage();
+
+            // If an earlier packagechooser instance added this data to global storage, combine them
+            if ( gs->contains( "NetinstallAdd" ) )
+            {
+                auto netinstallAddOrig = gs->value( "NetinstallAdd" );
+                if ( netinstallAddOrig.canConvert( QVariant::List ) )
+                {
+                    netinstallDataList += netinstallAddOrig.toList();
+                }
+                else
+                {
+                    cWarning() << "Invalid NetinstallAdd data in global storage.  Earlier selections purged";
+                }
+                gs->remove( "NetinstallAdd" );
+            }
+            gs->insert( "NetinstallAdd", netinstallDataList );
         }
     }
     else if ( m_method == PackageChooserMethod::NetSelect )
     {
         cDebug() << m_defaultId << "groups to select in netinstall" << selected;
-        Calamares::JobQueue::instance()->globalStorage()->insert( "NetinstallSelect", selected );
+        QStringList newSelected = selected;
+        auto* gs = Calamares::JobQueue::instance()->globalStorage();
+
+        // If an earlier packagechooser instance added this data to global storage, combine them
+        if ( gs->contains( "NetinstallSelect" ) )
+        {
+            auto selectedOrig = gs->value( "NetinstallSelect" );
+            if ( selectedOrig.canConvert( QVariant::StringList ) )
+            {
+                newSelected += selectedOrig.toStringList();
+            }
+            else
+            {
+                cWarning() << "Invalid NetinstallSelect data in global storage.  Earlier selections purged";
+            }
+            gs->remove( "NetinstallSelect" );
+        }
+        gs->insert( "NetinstallSelect", newSelected );
     }
     else
     {
