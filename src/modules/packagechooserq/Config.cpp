@@ -116,7 +116,7 @@ Config::pageLeavingTasks()
     }
     else if ( m_method == PackageChooserMethod::Packages )
     {
-        QStringList packageNames = m_model->getInstallPackagesForNames( m_selections );
+        QVariantList packageNames = m_model->getInstallPackagesForNames( m_selections );
         CalamaresUtils::Packages::setGSPackageAdditions(
             Calamares::JobQueue::instance()->globalStorage(), m_defaultId, packageNames );
         cDebug() << m_defaultId << "Finalized these selections: " << m_selections;

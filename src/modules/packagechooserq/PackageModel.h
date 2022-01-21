@@ -118,6 +118,9 @@ public:
      */
     QStringList getInstallPackagesForNames( const QStringList& ids ) const;
 
+    QString preScript() const { return m_preScript; }
+    QString postScript() const { return m_postScript; }
+
     enum Roles : int
     {
         NameRole = Qt::DisplayRole,
@@ -129,6 +132,8 @@ public:
 
 private:
     PackageList m_packages;
+    QString m_preScript;
+    QString m_postScript;
 };
 
 #endif
