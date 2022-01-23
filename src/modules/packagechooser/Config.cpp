@@ -132,23 +132,7 @@ Config::updateGlobalStorage( const QStringList& selected ) const
         }
         else
         {
-            auto* gs = Calamares::JobQueue::instance()->globalStorage();
-
-            // If an earlier packagechooser instance added this data to global storage, combine them
-            if ( gs->contains( "NetinstallAdd" ) )
-            {
-                auto netinstallAddOrig = gs->value( "NetinstallAdd" );
-                if ( netinstallAddOrig.canConvert( QVariant::List ) )
-                {
-                    //netinstallDataList += netinstallAddOrig.toList();
-                }
-                else
-                {
-                    cWarning() << "Invalid NetinstallAdd data in global storage.  Earlier selections purged";
-                }
-                gs->remove( "NetinstallAdd" );
-            }
-            gs->insert( "NetinstallAdd", netinstallDataList );
+            Calamares::JobQueue::instance()->globalStorage()->insert( "NetinstallAdd", netinstallDataList );
         }
     }
     else if ( m_method == PackageChooserMethod::NetSelect )
