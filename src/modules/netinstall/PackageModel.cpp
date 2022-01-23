@@ -342,20 +342,26 @@ PackageModel::setupModelData( const QVariantList& l )
     emit endResetModel();
 }
 
-/** @brief Appends groups to the tree
- *
- * Uses the data from @p groupList to add elements to the
- * existing tree that m_rootItem points to.  If m_rootItem
- * is not valid, it does nothing
- *
- */
 void
-PackageModel::appendModelData( const QVariantList& groupList )
+PackageModel::appendModelData( const QVariantList& groupList, const QString source )
 {
     if ( m_rootItem )
     {
         emit beginResetModel();
+
+        // Prune any existing data from the same source
+        for ( int i = 0; i < m_rootItem->childCount(); i++ )
+        {
+            PackageTreeItem* child = m_rootItem->child( i );
+            if ( child->source() == source )
+            {
+                m_rootItem->removeChild( i );
+            }
+        }
+
+        // Add the new data to the model
         setupModelData( groupList, m_rootItem );
+
         emit endResetModel();
     }
 }

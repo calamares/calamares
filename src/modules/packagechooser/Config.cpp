@@ -140,7 +140,7 @@ Config::updateGlobalStorage( const QStringList& selected ) const
                 auto netinstallAddOrig = gs->value( "NetinstallAdd" );
                 if ( netinstallAddOrig.canConvert( QVariant::List ) )
                 {
-                    netinstallDataList += netinstallAddOrig.toList();
+                    //netinstallDataList += netinstallAddOrig.toList();
                 }
                 else
                 {

@@ -78,6 +78,6 @@ NetInstallPage::onActivate()
     {
         const QVariantList groups = gs->value( "NetinstallAdd" ).toList();
 
-        static_cast< PackageModel* >( ui->groupswidget->model() )->appendModelData( groups );
+        static_cast< PackageModel* >( ui->groupswidget->model() )->appendModelData( groups, "packageChooser" );
     }
 }
