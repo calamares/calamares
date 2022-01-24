@@ -14,6 +14,17 @@
 #include "utils/Variant.h"
 #include "utils/Yaml.h"
 
+/** @brief Appends groups to the tree
+ *
+ * Uses the data from @p groupList to add elements to the
+ * existing tree that m_rootItem points to.  If m_rootItem
+ * is not valid, it does nothing
+ *
+ * Before adding anything to the model, it ensures that there
+ * is no existing data from the same source.  If there is, that
+ * data is pruned first
+ *
+ */
 static void
 setSelections2( const QStringList& selectNames, PackageTreeItem* item )
 {
@@ -26,6 +37,28 @@ setSelections2( const QStringList& selectNames, PackageTreeItem* item )
     {
         item->setSelected( Qt::CheckState::Checked );
     }
+}
+
+/** @brief Collects all the "source" values from @p groupList
+ *
+ * Iterates over @p groupList and returns all nonempty "source"
+ * values from the maps.
+ *
+ */
+static QStringList
+collectSources( const QVariantList& groupList )
+{
+    QStringList sources;
+    for ( const QVariant& group : groupList )
+    {
+        QVariantMap groupMap = group.toMap();
+        if ( !groupMap[ "source" ].toString().isEmpty() )
+        {
+            sources.append( groupMap[ "source" ].toString() );
+        }
+    }
+
+    return sources;
 }
 
 PackageModel::PackageModel( QObject* parent )
@@ -334,19 +367,24 @@ PackageModel::setupModelData( const QVariantList& l )
 }
 
 void
-PackageModel::appendModelData( const QVariantList& groupList, const QString& source )
+PackageModel::appendModelData( const QVariantList& groupList )
 {
     if ( m_rootItem )
     {
         Q_EMIT beginResetModel();
 
-        // Prune any existing data from the same source
-        for ( int i = 0; i < m_rootItem->childCount(); i++ )
+        const QStringList sources = collectSources( groupList );
+
+        if ( !sources.isEmpty() )
         {
-            PackageTreeItem* child = m_rootItem->child( i );
-            if ( child->source() == source )
+            // Prune any existing data from the same source
+            for ( int i = 0; i < m_rootItem->childCount(); i++ )
             {
-                m_rootItem->removeChild( i );
+                PackageTreeItem* child = m_rootItem->child( i );
+                if ( sources.contains( child->source() ) )
+                {
+                    m_rootItem->removeChild( i );
+                }
             }
         }
 

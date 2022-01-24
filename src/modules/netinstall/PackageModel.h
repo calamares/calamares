@@ -68,18 +68,7 @@ public:
     PackageTreeItem::List getPackages() const;
     PackageTreeItem::List getItemPackages( PackageTreeItem* item ) const;
 
-    /** @brief Appends groups to the tree
-     *
-     * Uses the data from @p groupList to add elements to the
-     * existing tree that m_rootItem points to.  If m_rootItem
-     * is not valid, it does nothing
-     *
-     * Before adding anything to the model, it ensures that there
-     * is no existing data from the same source.  If there is, that
-     * data is pruned first
-     *
-     */
-    void appendModelData(const QVariantList& groupList, const QString &source );
+    void appendModelData(const QVariantList& groupList);
 
 private:
     friend class ItemTests;

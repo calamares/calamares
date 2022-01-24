@@ -140,14 +140,14 @@ QVariantList
 PackageListModel::getNetinstallDataForNames( const QStringList& ids ) const
 {
     QVariantList l;
-    for ( auto &p : m_packages )
+    for ( auto& p : m_packages )
     {
         if ( ids.contains( p.id ) )
         {
             if ( !p.netinstallData.isEmpty() )
             {
                 QVariantMap newData = p.netinstallData;
-                newData["source"] = "packageChooser";
+                newData[ "source" ] = QStringLiteral( "packageChooser" );
                 l.append( newData );
             }
         }
