@@ -14,6 +14,20 @@
 #include "utils/Variant.h"
 #include "utils/Yaml.h"
 
+static void
+setSelections2( const QStringList& selectNames, PackageTreeItem* item )
+{
+    for ( int i = 0; i < item->childCount(); i++ )
+    {
+        auto* child = item->child( i );
+        setSelections2( selectNames, child );
+    }
+    if ( item->isGroup() && selectNames.contains( item->name() ) )
+    {
+        item->setSelected( Qt::CheckState::Checked );
+    }
+}
+
 PackageModel::PackageModel( QObject* parent )
     : QAbstractItemModel( parent )
 {
@@ -170,35 +184,12 @@ PackageModel::headerData( int section, Qt::Orientation orientation, int role ) c
     return QVariant();
 }
 
-/** @brief Sets the checked flag on matching groups in the tree
- *
- * Recursively traverses the tree pointed to by m_rootItem and
- * checks if a group name matches any of the items in @p selectNames.
- * If a match is found, set check the box for that group and it's children.
- *
- * Individual packages will not be matched.
- *
- */
 void
-PackageModel::setSelections( QStringList selectNames )
+PackageModel::setSelections( const QStringList& selectNames )
 {
     if ( m_rootItem )
     {
-        setSelections( selectNames, m_rootItem );
-    }
-}
-
-void
-PackageModel::setSelections( QStringList selectNames, PackageTreeItem* item )
-{
-    for ( int i = 0; i < item->childCount(); i++ )
-    {
-        auto* child = item->child( i );
-        setSelections( selectNames, child );
-    }
-    if ( item->isGroup() && selectNames.contains( item->name() ) )
-    {
-        item->setSelected( Qt::CheckState::Checked );
+        setSelections2( selectNames, m_rootItem );
     }
 }
 
@@ -335,19 +326,19 @@ PackageModel::setupModelData( const QVariantList& groupList, PackageTreeItem* pa
 void
 PackageModel::setupModelData( const QVariantList& l )
 {
-    emit beginResetModel();
+    Q_EMIT beginResetModel();
     delete m_rootItem;
     m_rootItem = new PackageTreeItem();
     setupModelData( l, m_rootItem );
-    emit endResetModel();
+    Q_EMIT endResetModel();
 }
 
 void
-PackageModel::appendModelData( const QVariantList& groupList, const QString source )
+PackageModel::appendModelData( const QVariantList& groupList, const QString& source )
 {
     if ( m_rootItem )
     {
-        emit beginResetModel();
+        Q_EMIT beginResetModel();
 
         // Prune any existing data from the same source
         for ( int i = 0; i < m_rootItem->childCount(); i++ )
@@ -362,6 +353,6 @@ PackageModel::appendModelData( const QVariantList& groupList, const QString sour
         // Add the new data to the model
         setupModelData( groupList, m_rootItem );
 
-        emit endResetModel();
+        Q_EMIT endResetModel();
     }
 }

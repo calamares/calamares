@@ -258,7 +258,7 @@ PackageTreeItem::removeChild( int row )
     }
     else
     {
-        cWarning() << "Attempt to remove invalid child in removeChild() at row " + QString::number( row );
+        cWarning() << "Attempt to remove invalid child in removeChild() at row " << row;
     }
 }
 
