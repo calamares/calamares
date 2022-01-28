@@ -27,6 +27,29 @@
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
+/** @brief This removes any values from @p groups that match @p source
+ *
+ * This is used to remove duplicates from the netinstallAdd structure
+ * It iterates over @p groups and for each map in the list, if the
+ * "source" element matches @p source, it is removed from the returned
+ * list.
+ */
+static QVariantList
+pruneNetinstallAdd( const QString& source, const QVariant& groups )
+{
+    QVariantList newGroupList;
+    const QVariantList groupList = groups.toList();
+    for ( const QVariant& group : groupList )
+    {
+        QVariantMap groupMap = group.toMap();
+        if ( groupMap.value( "source", "" ).toString() != source )
+        {
+            newGroupList.append( groupMap );
+        }
+    }
+    return newGroupList;
+}
+
 const NamedEnumTable< PackageChooserMode >&
 packageChooserModeNames()
 {
@@ -132,7 +155,14 @@ Config::updateGlobalStorage( const QStringList& selected ) const
         }
         else
         {
-            Calamares::JobQueue::instance()->globalStorage()->insert( "netinstallAdd", netinstallDataList );
+            // If an earlier packagechooser instance added this data to global storage, combine them
+            auto* gs = Calamares::JobQueue::instance()->globalStorage();
+            if ( gs->contains( "netinstallAdd" ) )
+            {
+                netinstallDataList
+                    += pruneNetinstallAdd( QStringLiteral( "packageChooser" ), gs->value( "netinstallAdd" ) );
+            }
+            gs->insert( "netinstallAdd", netinstallDataList );
         }
     }
     else if ( m_method == PackageChooserMethod::NetSelect )

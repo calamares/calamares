@@ -378,13 +378,18 @@ PackageModel::appendModelData( const QVariantList& groupList )
         if ( !sources.isEmpty() )
         {
             // Prune any existing data from the same source
+            QList< int > removeList;
             for ( int i = 0; i < m_rootItem->childCount(); i++ )
             {
                 PackageTreeItem* child = m_rootItem->child( i );
                 if ( sources.contains( child->source() ) )
                 {
-                    m_rootItem->removeChild( i );
+                    removeList.insert( 0, i );
                 }
+            }
+            for ( const int& item : qAsConst( removeList ) )
+            {
+                m_rootItem->removeChild( item );
             }
         }
 
