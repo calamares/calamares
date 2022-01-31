@@ -64,7 +64,7 @@ NetInstallPage::onActivate()
 {
     ui->groupswidget->setFocus();
 
-    // The NetInstallSelect global storage value can be used to make additional items selected by default
+    // The netinstallSelect global storage value can be used to make additional items selected by default
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
     const QStringList selectNames = gs->value( "netinstallSelect" ).toStringList();
     if ( !selectNames.isEmpty() )
