@@ -54,8 +54,21 @@ public:
     int rowCount( const QModelIndex& parent = QModelIndex() ) const override;
     int columnCount( const QModelIndex& parent = QModelIndex() ) const override;
 
+    /** @brief Sets the checked flag on matching groups in the tree
+     *
+     * Recursively traverses the tree pointed to by m_rootItem and
+     * checks if a group name matches any of the items in @p selectNames.
+     * If a match is found, set check the box for that group and it's children.
+     *
+     * Individual packages will not be matched.
+     *
+     */
+    void setSelections(const QStringList &selectNames );
+
     PackageTreeItem::List getPackages() const;
     PackageTreeItem::List getItemPackages( PackageTreeItem* item ) const;
+
+    void appendModelData(const QVariantList& groupList);
 
 private:
     friend class ItemTests;

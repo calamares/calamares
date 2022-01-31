@@ -14,6 +14,53 @@
 #include "utils/Variant.h"
 #include "utils/Yaml.h"
 
+/** @brief Appends groups to the tree
+ *
+ * Uses the data from @p groupList to add elements to the
+ * existing tree that m_rootItem points to.  If m_rootItem
+ * is not valid, it does nothing
+ *
+ * Before adding anything to the model, it ensures that there
+ * is no existing data from the same source.  If there is, that
+ * data is pruned first
+ *
+ */
+static void
+setSelections2( const QStringList& selectNames, PackageTreeItem* item )
+{
+    for ( int i = 0; i < item->childCount(); i++ )
+    {
+        auto* child = item->child( i );
+        setSelections2( selectNames, child );
+    }
+    if ( item->isGroup() && selectNames.contains( item->name() ) )
+    {
+        item->setSelected( Qt::CheckState::Checked );
+    }
+}
+
+/** @brief Collects all the "source" values from @p groupList
+ *
+ * Iterates over @p groupList and returns all nonempty "source"
+ * values from the maps.
+ *
+ */
+static QStringList
+collectSources( const QVariantList& groupList )
+{
+    QStringList sources;
+    for ( const QVariant& group : groupList )
+    {
+        QVariantMap groupMap = group.toMap();
+        if ( !groupMap[ "source" ].toString().isEmpty() )
+        {
+            sources.append( groupMap[ "source" ].toString() );
+        }
+    }
+
+    return sources;
+}
+
 PackageModel::PackageModel( QObject* parent )
     : QAbstractItemModel( parent )
 {
@@ -170,6 +217,15 @@ PackageModel::headerData( int section, Qt::Orientation orientation, int role ) c
     return QVariant();
 }
 
+void
+PackageModel::setSelections( const QStringList& selectNames )
+{
+    if ( m_rootItem )
+    {
+        setSelections2( selectNames, m_rootItem );
+    }
+}
+
 PackageTreeItem::List
 PackageModel::getPackages() const
 {
@@ -303,9 +359,43 @@ PackageModel::setupModelData( const QVariantList& groupList, PackageTreeItem* pa
 void
 PackageModel::setupModelData( const QVariantList& l )
 {
-    emit beginResetModel();
+    Q_EMIT beginResetModel();
     delete m_rootItem;
     m_rootItem = new PackageTreeItem();
     setupModelData( l, m_rootItem );
-    emit endResetModel();
+    Q_EMIT endResetModel();
+}
+
+void
+PackageModel::appendModelData( const QVariantList& groupList )
+{
+    if ( m_rootItem )
+    {
+        Q_EMIT beginResetModel();
+
+        const QStringList sources = collectSources( groupList );
+
+        if ( !sources.isEmpty() )
+        {
+            // Prune any existing data from the same source
+            QList< int > removeList;
+            for ( int i = 0; i < m_rootItem->childCount(); i++ )
+            {
+                PackageTreeItem* child = m_rootItem->child( i );
+                if ( sources.contains( child->source() ) )
+                {
+                    removeList.insert( 0, i );
+                }
+            }
+            for ( const int& item : qAsConst( removeList ) )
+            {
+                m_rootItem->removeChild( item );
+            }
+        }
+
+        // Add the new data to the model
+        setupModelData( groupList, m_rootItem );
+
+        Q_EMIT endResetModel();
+    }
 }

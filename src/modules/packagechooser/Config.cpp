@@ -27,6 +27,29 @@
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
+/** @brief This removes any values from @p groups that match @p source
+ *
+ * This is used to remove duplicates from the netinstallAdd structure
+ * It iterates over @p groups and for each map in the list, if the
+ * "source" element matches @p source, it is removed from the returned
+ * list.
+ */
+static QVariantList
+pruneNetinstallAdd( const QString& source, const QVariant& groups )
+{
+    QVariantList newGroupList;
+    const QVariantList groupList = groups.toList();
+    for ( const QVariant& group : groupList )
+    {
+        QVariantMap groupMap = group.toMap();
+        if ( groupMap.value( "source", "" ).toString() != source )
+        {
+            newGroupList.append( groupMap );
+        }
+    }
+    return newGroupList;
+}
+
 const NamedEnumTable< PackageChooserMode >&
 packageChooserModeNames()
 {
@@ -55,6 +78,8 @@ PackageChooserMethodNames()
         { "custom", PackageChooserMethod::Legacy },
         { "contextualprocess", PackageChooserMethod::Legacy },
         { "packages", PackageChooserMethod::Packages },
+        { "netinstall-add", PackageChooserMethod::NetAdd },
+        { "netinstall-select", PackageChooserMethod::NetSelect },
     };
     return names;
 }
@@ -120,6 +145,47 @@ Config::updateGlobalStorage( const QStringList& selected ) const
         cDebug() << m_defaultId << "packages to install" << packageNames;
         CalamaresUtils::Packages::setGSPackageAdditions(
             Calamares::JobQueue::instance()->globalStorage(), m_defaultId, packageNames );
+    }
+    else if ( m_method == PackageChooserMethod::NetAdd )
+    {
+        QVariantList netinstallDataList = m_model->getNetinstallDataForNames( selected );
+        if ( netinstallDataList.isEmpty() )
+        {
+            cWarning() << "No netinstall information found for " << selected;
+        }
+        else
+        {
+            // If an earlier packagechooser instance added this data to global storage, combine them
+            auto* gs = Calamares::JobQueue::instance()->globalStorage();
+            if ( gs->contains( "netinstallAdd" ) )
+            {
+                netinstallDataList
+                    += pruneNetinstallAdd( QStringLiteral( "packageChooser" ), gs->value( "netinstallAdd" ) );
+            }
+            gs->insert( "netinstallAdd", netinstallDataList );
+        }
+    }
+    else if ( m_method == PackageChooserMethod::NetSelect )
+    {
+        cDebug() << m_defaultId << "groups to select in netinstall" << selected;
+        QStringList newSelected = selected;
+        auto* gs = Calamares::JobQueue::instance()->globalStorage();
+
+        // If an earlier packagechooser instance added this data to global storage, combine them
+        if ( gs->contains( "netinstallSelect" ) )
+        {
+            auto selectedOrig = gs->value( "netinstallSelect" );
+            if ( selectedOrig.canConvert( QVariant::StringList ) )
+            {
+                newSelected += selectedOrig.toStringList();
+            }
+            else
+            {
+                cWarning() << "Invalid NetinstallSelect data in global storage.  Earlier selections purged";
+            }
+            gs->remove( "netinstallSelect" );
+        }
+        gs->insert( "netinstallSelect", newSelected );
     }
     else
     {
