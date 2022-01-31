@@ -179,6 +179,26 @@ it is possible to take the whole installation-process into account
 for determining the relative weights there.
 
 
+## Global storage keys
+Some modules place values in global storage so that they can be referenced later by other modules or even other parts of the same module.  The following table represents a partial list of the values available as well as where they originate from and which module consume them.
+
+Key|Source|Consumers|Description
+---|---|---|---
+btrfsSubvolumes|mount|fstab|List of maps containing the mountpoint and btrtfs subvolume
+btrfsRootSubvolume|mount|bootloader, luksopenswaphook|String containing the subvolume mounted at root
+efiSystemPartition|partition|bootloader, fstab|String containing the path to the ESP relative to the installed system
+extraMounts|mount|unpackfs|List of maps holding metadata for the temporary mountpoints used by the installer
+hostname|users||A string containing the hostname of the new system
+netinstallAdd|packagechooser|netinstall|Data to add to netinstall tree. Same format as netinstall.yaml
+netinstallSelect|packagechooser|netinstall|List of group names to select in the netinstall tree
+partitions|partition, rawfs|numerous modules|List of maps of metadata about each partition
+rootMountPoint|mount|numerous modules|A string with the absolute path to the root mountpoint
+username|users|networkcfg, plasmainf, preservefiles|A string containing the username of the new user
+zfsDatasets|zfs|bootloader, grubcfg, mount|List of maps of zfs datasets including the name and mount information
+zfsInfo|partition|mount, zfs|List of encrypted zfs partitions and the encription info
+zfsPoolInfo|zfs|mount, umount|List of maps of zfs pool info including the name and mountpoint
+
+
 ## C++ modules
 
 > Type: viewmodule, jobmodule
