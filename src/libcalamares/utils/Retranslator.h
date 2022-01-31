@@ -29,7 +29,8 @@ namespace CalamaresUtils
  * @param locale the new locale (names as defined by Calamares).
  * @param brandingTranslationsPrefix the branding path prefix, from Calamares::Branding.
  */
-DLLEXPORT void installTranslator( const CalamaresUtils::Locale::Translation::Id& locale, const QString& brandingTranslationsPrefix );
+DLLEXPORT void installTranslator( const CalamaresUtils::Locale::Translation::Id& locale,
+                                  const QString& brandingTranslationsPrefix );
 
 /** @brief Initializes the translations with the current system settings
  */
@@ -56,7 +57,8 @@ DLLEXPORT CalamaresUtils::Locale::Translation::Id translatorLocaleName();
  *
  * @returns @c true on success
  */
-DLLEXPORT bool loadTranslator( const CalamaresUtils::Locale::Translation::Id& locale, const QString& prefix, QTranslator* translator );
+DLLEXPORT bool
+loadTranslator( const CalamaresUtils::Locale::Translation::Id& locale, const QString& prefix, QTranslator* translator );
 
 /** @brief Set @p allow to true to load translations from current dir.
  *
@@ -88,7 +90,7 @@ public:
     static Retranslator* instance();
 
     /// @brief Helper function for attaching lambdas
-    static void attach( QObject* o, std::function< void( void ) > f);
+    static void attach( QObject* o, std::function< void( void ) > f );
 
 signals:
     void languageChanged();
@@ -138,8 +140,11 @@ private:
 #define CALAMARES_RETRANSLATE_SLOT( slotfunc ) \
     do \
     { \
-        connect( CalamaresUtils::Retranslator::instance(), &CalamaresUtils::Retranslator::languageChanged, this, slotfunc ); \
-        (this->*slotfunc)(); \
+        connect( CalamaresUtils::Retranslator::instance(), \
+                 &CalamaresUtils::Retranslator::languageChanged, \
+                 this, \
+                 slotfunc ); \
+        ( this->*slotfunc )(); \
     } while ( false )
 
 #endif

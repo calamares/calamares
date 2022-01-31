@@ -247,7 +247,8 @@ private:
     const QString m_context;
 };
 
-inline QDebug& operator<<( QDebug& s, const RedactedName& n )
+inline QDebug&
+operator<<( QDebug& s, const RedactedName& n )
 {
     return s << NoQuote << QString( n ) << Quote;
 }

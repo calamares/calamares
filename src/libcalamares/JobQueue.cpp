@@ -122,8 +122,9 @@ public:
             }
             else
             {
-                cDebug() << o << "Starting" << ( failureEncountered ? "EMERGENCY JOB" : "job" ) << jobitem.job->prettyName()
-                         << '(' << ( m_jobIndex + 1 ) << '/' << m_runningJobs->count() << ')';
+                cDebug() << o << "Starting" << ( failureEncountered ? "EMERGENCY JOB" : "job" )
+                         << jobitem.job->prettyName() << '(' << ( m_jobIndex + 1 ) << '/' << m_runningJobs->count()
+                         << ')';
                 o.refresh();  // So next time it shows the function header again
                 emitProgress( 0.0 );  // 0% for *this job*
                 connect( jobitem.job.data(), &Job::progress, this, &JobThread::emitProgress );
