@@ -63,7 +63,7 @@ public:
      * Individual packages will not be matched.
      *
      */
-    void setSelections(const QStringList &selectNames );
+    void setSelections( const QStringList& selectNames );
 
     PackageTreeItem::List getPackages() const;
     PackageTreeItem::List getItemPackages( PackageTreeItem* item ) const;
@@ -79,7 +79,7 @@ public:
      * data is pruned first
      *
      */
-    void appendModelData(const QVariantList& groupList);
+    void appendModelData( const QVariantList& groupList );
 
 private:
     friend class ItemTests;

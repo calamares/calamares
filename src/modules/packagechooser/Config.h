@@ -34,7 +34,7 @@ enum class PackageChooserMethod
     Legacy,  // use contextualprocess or other custom
     Packages,  // use the packages module
     NetAdd,  // adds packages to the netinstall module
-    NetSelect, // makes selections in the netinstall module
+    NetSelect,  // makes selections in the netinstall module
 };
 
 const NamedEnumTable< PackageChooserMethod >& PackageChooserMethodNames();

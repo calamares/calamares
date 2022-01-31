@@ -410,7 +410,7 @@ ItemTests::testUrlFallback()
     QEventLoop loop;
     connect( &c, &Config::statusReady, &loop, &QEventLoop::quit );
     QSignalSpy spy( &c, &Config::statusReady );
-    QTimer::singleShot( std::chrono::seconds(1), &loop, &QEventLoop::quit );
+    QTimer::singleShot( std::chrono::seconds( 1 ), &loop, &QEventLoop::quit );
     loop.exec();
 
     // Check it didn't time out
