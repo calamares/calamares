@@ -252,7 +252,7 @@ PackageTreeItem::setChildrenSelected( Qt::CheckState isSelected )
 void
 PackageTreeItem::removeChild( int row )
 {
-    if ( row < m_childItems.count() )
+    if ( 0 <= row && row < m_childItems.count() )
     {
         m_childItems.removeAt( row );
     }
