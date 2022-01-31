@@ -10,12 +10,20 @@ website will have to do for older versions.
 # 3.2.51 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - Evan James
 
 ## Core ##
- - No core changes yet
+ - Evan has made a start on documenting which Global Storage keys there
+   are and how they tie modules together. This can be found in the
+   `src/modules/README.md` documentation.
 
 ## Modules ##
+ - *bootloader* can now be configured to try to generate a unique
+   suffix for the bootloader-id. #1820
+ - *grubcfg* now has a configurable default for kernel parameters,
+   which allows distributions to change the value from `quiet`.
+   The default, if nothing is set, remains `quiet`. Use an explicitly-
+   empty list to specify no-arguments-at-all.
  - The *umount* module has been re-written in C++. The copy-a-log-file
    functionality has been removed. Use the *preservefiles* module for that.
 
