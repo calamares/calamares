@@ -14,24 +14,14 @@
 #include "utils/Variant.h"
 #include "utils/Yaml.h"
 
-/** @brief Appends groups to the tree
- *
- * Uses the data from @p groupList to add elements to the
- * existing tree that m_rootItem points to.  If m_rootItem
- * is not valid, it does nothing
- *
- * Before adding anything to the model, it ensures that there
- * is no existing data from the same source.  If there is, that
- * data is pruned first
- *
- */
+/// Recursive helper for setSelections()
 static void
-setSelections2( const QStringList& selectNames, PackageTreeItem* item )
+setSelections( const QStringList& selectNames, PackageTreeItem* item )
 {
     for ( int i = 0; i < item->childCount(); i++ )
     {
         auto* child = item->child( i );
-        setSelections2( selectNames, child );
+        setSelections( selectNames, child );
     }
     if ( item->isGroup() && selectNames.contains( item->name() ) )
     {
@@ -222,7 +212,7 @@ PackageModel::setSelections( const QStringList& selectNames )
 {
     if ( m_rootItem )
     {
-        setSelections2( selectNames, m_rootItem );
+        ::setSelections( selectNames, m_rootItem );
     }
 }
 

@@ -24,6 +24,9 @@ This release contains contributions from (alphabetically by first name):
    which allows distributions to change the value from `quiet`.
    The default, if nothing is set, remains `quiet`. Use an explicitly-
    empty list to specify no-arguments-at-all.
+ - *packagechooser* can now export its choices for use by the *netinstall*
+   module. This makes it possible to use *packagechooser* for large-scale
+   choices, followed by *netinstall* for fine-grained control. (Thanks Evan)
  - The *umount* module has been re-written in C++. The copy-a-log-file
    functionality has been removed. Use the *preservefiles* module for that.
 
