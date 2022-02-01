@@ -55,10 +55,6 @@ standardMountPoints( QComboBox& combo, const QString& selected )
 QString
 selectedMountPoint( QComboBox& combo )
 {
-    if ( combo.currentIndex() == -1 )
-    {
-        return QString();
-    }
     return combo.currentText();
 }
 
