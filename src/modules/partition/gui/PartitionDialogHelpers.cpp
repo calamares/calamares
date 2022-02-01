@@ -80,7 +80,8 @@ setSelectedMountPoint( QComboBox& combo, const QString& selected )
     }
 }
 
-bool validateMountPoint( const QString& mountPoint, const QStringList& inUse, QLabel* label, QPushButton* button )
+bool
+validateMountPoint( const QString& mountPoint, const QStringList& inUse, QLabel* label, QPushButton* button )
 {
     QString msg;
     bool ok = true;

@@ -159,14 +159,16 @@ PartitionSplitterWidget::setSplitPartition( const QString& path, qint64 minSize,
         m_itemToResizePath.clear();
     }
 
-    PartitionSplitterItem itemToResize = _findItem( m_items, [path]( PartitionSplitterItem& item ) -> bool {
-        if ( path == item.itemPath )
-        {
-            item.status = PartitionSplitterItem::Resizing;
-            return true;
-        }
-        return false;
-    } );
+    PartitionSplitterItem itemToResize = _findItem( m_items,
+                                                    [ path ]( PartitionSplitterItem& item ) -> bool
+                                                    {
+                                                        if ( path == item.itemPath )
+                                                        {
+                                                            item.status = PartitionSplitterItem::Resizing;
+                                                            return true;
+                                                        }
+                                                        return false;
+                                                    } );
 
     if ( itemToResize.isNull() )
     {
@@ -184,14 +186,16 @@ PartitionSplitterWidget::setSplitPartition( const QString& path, qint64 minSize,
 
     qint64 newSize = m_itemToResize.size - preferredSize;
     m_itemToResize.size = preferredSize;
-    int opCount = _eachItem( m_items, [preferredSize]( PartitionSplitterItem& item ) -> bool {
-        if ( item.status == PartitionSplitterItem::Resizing )
-        {
-            item.size = preferredSize;
-            return true;
-        }
-        return false;
-    } );
+    int opCount = _eachItem( m_items,
+                             [ preferredSize ]( PartitionSplitterItem& item ) -> bool
+                             {
+                                 if ( item.status == PartitionSplitterItem::Resizing )
+                                 {
+                                     item.size = preferredSize;
+                                     return true;
+                                 }
+                                 return false;
+                             } );
     cDebug() << "each splitter item opcount:" << opCount;
     m_itemMinSize = minSize;
     m_itemMaxSize = maxSize;
@@ -358,19 +362,21 @@ PartitionSplitterWidget::mouseMoveEvent( QMouseEvent* event )
 
         m_itemToResize.size = qRound64( span * percent );
         m_itemToResizeNext.size -= m_itemToResize.size - oldsize;
-        _eachItem( m_items, [this]( PartitionSplitterItem& item ) -> bool {
-            if ( item.status == PartitionSplitterItem::Resizing )
-            {
-                item.size = m_itemToResize.size;
-                return true;
-            }
-            else if ( item.status == PartitionSplitterItem::ResizingNext )
-            {
-                item.size = m_itemToResizeNext.size;
-                return true;
-            }
-            return false;
-        } );
+        _eachItem( m_items,
+                   [ this ]( PartitionSplitterItem& item ) -> bool
+                   {
+                       if ( item.status == PartitionSplitterItem::Resizing )
+                       {
+                           item.size = m_itemToResize.size;
+                           return true;
+                       }
+                       else if ( item.status == PartitionSplitterItem::ResizingNext )
+                       {
+                           item.size = m_itemToResizeNext.size;
+                           return true;
+                       }
+                       return false;
+                   } );
 
         repaint();
 

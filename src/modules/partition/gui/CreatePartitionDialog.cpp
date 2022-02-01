@@ -325,7 +325,10 @@ CreatePartitionDialog::updateMountPointUi()
 void
 CreatePartitionDialog::checkMountPointSelection()
 {
-    validateMountPoint( selectedMountPoint( m_ui->mountPointComboBox ), m_usedMountPoints, m_ui->mountPointExplanation, m_ui->buttonBox->button( QDialogButtonBox::Ok ));
+    validateMountPoint( selectedMountPoint( m_ui->mountPointComboBox ),
+                        m_usedMountPoints,
+                        m_ui->mountPointExplanation,
+                        m_ui->buttonBox->button( QDialogButtonBox::Ok ) );
 }
 
 void

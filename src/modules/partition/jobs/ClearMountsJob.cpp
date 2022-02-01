@@ -157,9 +157,11 @@ getLVMVolumes()
         QStringList lvscanLines = QString::fromLocal8Bit( process.readAllStandardOutput() ).split( '\n' );
         // Get the second column (`value(1)`) sinec that is the device name,
         // remove quoting.
-        std::transform( lvscanLines.begin(), lvscanLines.end(), lvscanLines.begin(), []( const QString& lvscanLine ) {
-            return lvscanLine.simplified().split( ' ' ).value( 1 ).replace( '\'', "" );
-        } );
+        std::transform( lvscanLines.begin(),
+                        lvscanLines.end(),
+                        lvscanLines.begin(),
+                        []( const QString& lvscanLine )
+                        { return lvscanLine.simplified().split( ' ' ).value( 1 ).replace( '\'', "" ); } );
         return lvscanLines;
     }
     else

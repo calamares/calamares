@@ -28,9 +28,9 @@
 static void
 sortDevices( DeviceModel::DeviceList& l )
 {
-    std::sort( l.begin(), l.end(), []( const Device* dev1, const Device* dev2 ) {
-        return dev1->deviceNode() < dev2->deviceNode();
-    } );
+    std::sort( l.begin(),
+               l.end(),
+               []( const Device* dev1, const Device* dev2 ) { return dev1->deviceNode() < dev2->deviceNode(); } );
 }
 
 DeviceModel::DeviceModel( QObject* parent )

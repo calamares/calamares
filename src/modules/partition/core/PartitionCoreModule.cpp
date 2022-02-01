@@ -262,11 +262,9 @@ PartitionCoreModule::doInit()
             // Gives ownership of the Device* to the DeviceInfo object
             auto deviceInfo = new DeviceInfo( device );
             m_deviceInfos << deviceInfo;
-            cDebug() << Logger::SubEntry
-                << device->deviceNode()
-                << device->capacity()
-                << Logger::RedactedName( "DevName", device->name() )
-                << Logger::RedactedName( "DevNamePretty", device->prettyName() );
+            cDebug() << Logger::SubEntry << device->deviceNode() << device->capacity()
+                     << Logger::RedactedName( "DevName", device->name() )
+                     << Logger::RedactedName( "DevNamePretty", device->prettyName() );
         }
         else
         {
@@ -685,9 +683,8 @@ PartitionCoreModule::lvmPVs() const
 bool
 PartitionCoreModule::hasVGwithThisName( const QString& name ) const
 {
-    auto condition = [name]( DeviceInfo* d ) {
-        return dynamic_cast< LvmDevice* >( d->device.data() ) && d->device.data()->name() == name;
-    };
+    auto condition = [ name ]( DeviceInfo* d )
+    { return dynamic_cast< LvmDevice* >( d->device.data() ) && d->device.data()->name() == name; };
 
     return std::find_if( m_deviceInfos.begin(), m_deviceInfos.end(), condition ) != m_deviceInfos.end();
 }
@@ -695,7 +692,8 @@ PartitionCoreModule::hasVGwithThisName( const QString& name ) const
 bool
 PartitionCoreModule::isInVG( const Partition* partition ) const
 {
-    auto condition = [partition]( DeviceInfo* d ) {
+    auto condition = [ partition ]( DeviceInfo* d )
+    {
         LvmDevice* vg = dynamic_cast< LvmDevice* >( d->device.data() );
         return vg && vg->physicalVolumes().contains( partition );
     };
@@ -964,9 +962,9 @@ PartitionCoreModule::layoutApply( Device* dev,
     const QString boot = QStringLiteral( "/boot" );
     const QString root = QStringLiteral( "/" );
     const auto is_boot
-        = [&]( Partition* p ) -> bool { return PartitionInfo::mountPoint( p ) == boot || p->mountPoint() == boot; };
+        = [ & ]( Partition* p ) -> bool { return PartitionInfo::mountPoint( p ) == boot || p->mountPoint() == boot; };
     const auto is_root
-        = [&]( Partition* p ) -> bool { return PartitionInfo::mountPoint( p ) == root || p->mountPoint() == root; };
+        = [ & ]( Partition* p ) -> bool { return PartitionInfo::mountPoint( p ) == root || p->mountPoint() == root; };
 
     const bool separate_boot_partition
         = std::find_if( partList.constBegin(), partList.constEnd(), is_boot ) != partList.constEnd();
@@ -1089,10 +1087,14 @@ void
 PartitionCoreModule::asyncRevertDevice( Device* dev, std::function< void() > callback )
 {
     QFutureWatcher< void >* watcher = new QFutureWatcher< void >();
-    connect( watcher, &QFutureWatcher< void >::finished, this, [watcher, callback] {
-        callback();
-        watcher->deleteLater();
-    } );
+    connect( watcher,
+             &QFutureWatcher< void >::finished,
+             this,
+             [ watcher, callback ]
+             {
+                 callback();
+                 watcher->deleteLater();
+             } );
 
     QFuture< void > future = QtConcurrent::run( this, &PartitionCoreModule::revertDevice, dev, true );
     watcher->setFuture( future );

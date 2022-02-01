@@ -28,7 +28,8 @@
  * Since we don't have an oracle that can answer that question,
  * just pretend every system can do it.
  */
-static inline bool systemSupportsEncryptionAcceptably()
+static inline bool
+systemSupportsEncryptionAcceptably()
 {
     return true;
 }
@@ -53,7 +54,7 @@ EncryptWidget::EncryptWidget( QWidget* parent )
     else
     {
         // This is really ugly, but the character is unicode "unlocked"
-        m_ui->m_encryptionUnsupportedLabel->setText( QStringLiteral("🔓") );
+        m_ui->m_encryptionUnsupportedLabel->setText( QStringLiteral( "🔓" ) );
         m_ui->m_encryptionUnsupportedLabel->show();
     }
 

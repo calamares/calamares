@@ -69,22 +69,25 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device,
 
     replacePartResizerWidget();
 
-    connect( m_ui->formatRadioButton, &QAbstractButton::toggled, [this]( bool doFormat ) {
-        replacePartResizerWidget();
+    connect( m_ui->formatRadioButton,
+             &QAbstractButton::toggled,
+             [ this ]( bool doFormat )
+             {
+                 replacePartResizerWidget();
 
-        m_ui->fileSystemLabel->setEnabled( doFormat );
-        m_ui->fileSystemComboBox->setEnabled( doFormat );
+                 m_ui->fileSystemLabel->setEnabled( doFormat );
+                 m_ui->fileSystemComboBox->setEnabled( doFormat );
 
-        if ( !doFormat )
-        {
-            m_ui->fileSystemComboBox->setCurrentText( userVisibleFS( m_partition->fileSystem() ) );
-        }
+                 if ( !doFormat )
+                 {
+                     m_ui->fileSystemComboBox->setCurrentText( userVisibleFS( m_partition->fileSystem() ) );
+                 }
 
-        updateMountPointPicker();
-    } );
+                 updateMountPointPicker();
+             } );
 
     connect(
-        m_ui->fileSystemComboBox, &QComboBox::currentTextChanged, [this]( QString ) { updateMountPointPicker(); } );
+        m_ui->fileSystemComboBox, &QComboBox::currentTextChanged, [ this ]( QString ) { updateMountPointPicker(); } );
 
     // File system
     QStringList fsNames;
@@ -295,5 +298,8 @@ EditExistingPartitionDialog::updateMountPointPicker()
 void
 EditExistingPartitionDialog::checkMountPointSelection()
 {
-    validateMountPoint( selectedMountPoint( m_ui->mountPointComboBox ), m_usedMountPoints, m_ui->mountPointExplanation, m_ui->buttonBox->button( QDialogButtonBox::Ok ));
+    validateMountPoint( selectedMountPoint( m_ui->mountPointComboBox ),
+                        m_usedMountPoints,
+                        m_ui->mountPointExplanation,
+                        m_ui->buttonBox->button( QDialogButtonBox::Ok ) );
 }

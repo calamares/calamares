@@ -283,7 +283,7 @@ PartitionLayout::createPartitions( Device* dev,
         }
     }
 
-    auto correctFS = [d = m_defaultFsType]( FileSystem::Type t ) { return t == FileSystem::Type::Unknown ? d : t; };
+    auto correctFS = [ d = m_defaultFsType ]( FileSystem::Type t ) { return t == FileSystem::Type::Unknown ? d : t; };
 
     // Create the partitions.
     currentSector = firstSector;

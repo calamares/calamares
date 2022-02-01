@@ -176,10 +176,14 @@ ChoicePage::init( PartitionCoreModule* core )
 
 
     // We need to do this because a PCM revert invalidates the deviceModel.
-    connect( core, &PartitionCoreModule::reverted, this, [=] {
-        setModelToComboBox( m_drivesCombo, core->deviceModel() );
-        m_drivesCombo->setCurrentIndex( m_lastSelectedDeviceIndex );
-    } );
+    connect( core,
+             &PartitionCoreModule::reverted,
+             this,
+             [ = ]
+             {
+                 setModelToComboBox( m_drivesCombo, core->deviceModel() );
+                 m_drivesCombo->setCurrentIndex( m_lastSelectedDeviceIndex );
+             } );
     setModelToComboBox( m_drivesCombo, core->deviceModel() );
 
     connect( m_drivesCombo, qOverload< int >( &QComboBox::currentIndexChanged ), this, &ChoicePage::applyDeviceChoice );
@@ -303,26 +307,30 @@ ChoicePage::setupChoices()
 #else
     auto buttonSignal = &QButtonGroup::idToggled;
 #endif
-    connect( m_grp, buttonSignal, this, [this]( int id, bool checked ) {
-        if ( checked )  // An action was picked.
-        {
-            m_config->setInstallChoice( id );
-            updateNextEnabled();
+    connect( m_grp,
+             buttonSignal,
+             this,
+             [ this ]( int id, bool checked )
+             {
+                 if ( checked )  // An action was picked.
+                 {
+                     m_config->setInstallChoice( id );
+                     updateNextEnabled();
 
-            Q_EMIT actionChosen();
-        }
-        else  // An action was unpicked, either on its own or because of another selection.
-        {
-            if ( m_grp->checkedButton() == nullptr )  // If no other action is chosen, we must
-            {
-                // set m_choice to NoChoice and reset previews.
-                m_config->setInstallChoice( InstallChoice::NoChoice );
-                updateNextEnabled();
+                     Q_EMIT actionChosen();
+                 }
+                 else  // An action was unpicked, either on its own or because of another selection.
+                 {
+                     if ( m_grp->checkedButton() == nullptr )  // If no other action is chosen, we must
+                     {
+                         // set m_choice to NoChoice and reset previews.
+                         m_config->setInstallChoice( InstallChoice::NoChoice );
+                         updateNextEnabled();
 
-                Q_EMIT actionChosen();
-            }
-        }
-    } );
+                         Q_EMIT actionChosen();
+                     }
+                 }
+             } );
 
     m_rightLayout->setStretchFactor( m_itemsLayout, 1 );
     m_rightLayout->setStretchFactor( m_previewBeforeFrame, 0 );
@@ -401,11 +409,13 @@ ChoicePage::applyDeviceChoice()
     if ( m_core->isDirty() )
     {
         ScanningDialog::run(
-            QtConcurrent::run( [=] {
-                QMutexLocker locker( &m_coreMutex );
-                m_core->revertAllDevices();
-            } ),
-            [this] { continueApplyDeviceChoice(); },
+            QtConcurrent::run(
+                [ = ]
+                {
+                    QMutexLocker locker( &m_coreMutex );
+                    m_core->revertAllDevices();
+                } ),
+            [ this ] { continueApplyDeviceChoice(); },
             this );
     }
     else
@@ -493,11 +503,14 @@ ChoicePage::applyActionChoice( InstallChoice choice )
         if ( m_core->isDirty() )
         {
             ScanningDialog::run(
-                QtConcurrent::run( [=] {
-                    QMutexLocker locker( &m_coreMutex );
-                    m_core->revertDevice( selectedDevice() );
-                } ),
-                [=] {
+                QtConcurrent::run(
+                    [ = ]
+                    {
+                        QMutexLocker locker( &m_coreMutex );
+                        m_core->revertDevice( selectedDevice() );
+                    } ),
+                [ = ]
+                {
                     PartitionActions::doAutopartition( m_core, selectedDevice(), options );
                     Q_EMIT deviceChosen();
                 },
@@ -514,10 +527,12 @@ ChoicePage::applyActionChoice( InstallChoice choice )
         if ( m_core->isDirty() )
         {
             ScanningDialog::run(
-                QtConcurrent::run( [=] {
-                    QMutexLocker locker( &m_coreMutex );
-                    m_core->revertDevice( selectedDevice() );
-                } ),
+                QtConcurrent::run(
+                    [ = ]
+                    {
+                        QMutexLocker locker( &m_coreMutex );
+                        m_core->revertDevice( selectedDevice() );
+                    } ),
                 [] {},
                 this );
         }
@@ -532,11 +547,14 @@ ChoicePage::applyActionChoice( InstallChoice choice )
         if ( m_core->isDirty() )
         {
             ScanningDialog::run(
-                QtConcurrent::run( [=] {
-                    QMutexLocker locker( &m_coreMutex );
-                    m_core->revertDevice( selectedDevice() );
-                } ),
-                [this] {
+                QtConcurrent::run(
+                    [ = ]
+                    {
+                        QMutexLocker locker( &m_coreMutex );
+                        m_core->revertDevice( selectedDevice() );
+                    } ),
+                [ this ]
+                {
                     // We need to reupdate after reverting because the splitter widget is
                     // not a true view.
                     updateActionChoicePreview( m_config->installChoice() );
@@ -772,7 +790,8 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
 
     ScanningDialog::run(
         QtConcurrent::run(
-            [this, current, homePartitionPath]( bool doReuseHomePartition ) {
+            [ this, current, homePartitionPath ]( bool doReuseHomePartition )
+            {
                 QMutexLocker locker( &m_coreMutex );
 
                 if ( m_core->isDirty() )
@@ -853,7 +872,8 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
                 }
             },
             m_reuseHomeCheckBox->isChecked() ),
-        [this, homePartitionPath] {
+        [ this, homePartitionPath ]
+        {
             m_reuseHomeCheckBox->setVisible( !homePartitionPath->isEmpty() );
             if ( !homePartitionPath->isEmpty() )
                 m_reuseHomeCheckBox->setText( tr( "Reuse %1 as home partition for %2." )
@@ -1006,7 +1026,8 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
         connect( m_afterPartitionSplitterWidget,
                  &PartitionSplitterWidget::partitionResized,
                  this,
-                 [this, sizeLabel]( const QString& path, qint64 size, qint64 sizeNext ) {
+                 [ this, sizeLabel ]( const QString& path, qint64 size, qint64 sizeNext )
+                 {
                      Q_UNUSED( path )
                      sizeLabel->setText(
                          tr( "%1 will be shrunk to %2MiB and a new "
@@ -1020,7 +1041,8 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
         m_previewAfterFrame->show();
         m_previewAfterLabel->show();
 
-        SelectionFilter filter = []( const QModelIndex& index ) {
+        SelectionFilter filter = []( const QModelIndex& index )
+        {
             return PartUtils::canBeResized(
                 static_cast< Partition* >( index.data( PartitionModel::PartitionPtrRole ).value< void* >() ),
                 Logger::Once() );
@@ -1069,17 +1091,22 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
             eraseBootloaderLabel->setText( tr( "Boot loader location:" ) );
 
             m_bootloaderComboBox = createBootloaderComboBox( eraseWidget );
-            connect( m_core->bootLoaderModel(), &QAbstractItemModel::modelReset, [this]() {
-                if ( !m_bootloaderComboBox.isNull() )
-                {
-                    Calamares::restoreSelectedBootLoader( *m_bootloaderComboBox, m_core->bootLoaderInstallPath() );
-                }
-            } );
+            connect( m_core->bootLoaderModel(),
+                     &QAbstractItemModel::modelReset,
+                     [ this ]()
+                     {
+                         if ( !m_bootloaderComboBox.isNull() )
+                         {
+                             Calamares::restoreSelectedBootLoader( *m_bootloaderComboBox,
+                                                                   m_core->bootLoaderInstallPath() );
+                         }
+                     } );
             connect(
                 m_core,
                 &PartitionCoreModule::deviceReverted,
                 this,
-                [this]( Device* dev ) {
+                [ this ]( Device* dev )
+                {
                     Q_UNUSED( dev )
                     if ( !m_bootloaderComboBox.isNull() )
                     {
@@ -1110,7 +1137,8 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
         }
         else
         {
-            SelectionFilter filter = []( const QModelIndex& index ) {
+            SelectionFilter filter = []( const QModelIndex& index )
+            {
                 return PartUtils::canBeReplaced(
                     static_cast< Partition* >( index.data( PartitionModel::PartitionPtrRole ).value< void* >() ),
                     Logger::Once() );
@@ -1217,18 +1245,22 @@ ChoicePage::createBootloaderComboBox( QWidget* parent )
     comboForBootloader->setModel( m_core->bootLoaderModel() );
 
     // When the chosen bootloader device changes, we update the choice in the PCM
-    connect( comboForBootloader, QOverload< int >::of( &QComboBox::currentIndexChanged ), this, [this]( int newIndex ) {
-        QComboBox* bootloaderCombo = qobject_cast< QComboBox* >( sender() );
-        if ( bootloaderCombo )
-        {
-            QVariant var = bootloaderCombo->itemData( newIndex, BootLoaderModel::BootLoaderPathRole );
-            if ( !var.isValid() )
-            {
-                return;
-            }
-            m_core->setBootLoaderInstallPath( var.toString() );
-        }
-    } );
+    connect( comboForBootloader,
+             QOverload< int >::of( &QComboBox::currentIndexChanged ),
+             this,
+             [ this ]( int newIndex )
+             {
+                 QComboBox* bootloaderCombo = qobject_cast< QComboBox* >( sender() );
+                 if ( bootloaderCombo )
+                 {
+                     QVariant var = bootloaderCombo->itemData( newIndex, BootLoaderModel::BootLoaderPathRole );
+                     if ( !var.isValid() )
+                     {
+                         return;
+                     }
+                     m_core->setBootLoaderInstallPath( var.toString() );
+                 }
+             } );
 
     return comboForBootloader;
 }
