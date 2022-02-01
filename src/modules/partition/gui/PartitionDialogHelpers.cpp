@@ -12,14 +12,17 @@
 #include "PartitionDialogHelpers.h"
 
 #include "core/PartUtils.h"
+#include "gui/CreatePartitionDialog.h"
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "utils/Logger.h"
 
 #include <QComboBox>
+#include <QLabel>
 #include <QLineEdit>
 #include <QListWidget>
+#include <QPushButton>
 
 QStringList
 standardMountPoints()
@@ -79,6 +82,33 @@ setSelectedMountPoint( QComboBox& combo, const QString& selected )
         combo.addItem( selected );
         combo.setCurrentIndex( combo.count() - 1 );
     }
+}
+
+bool validateMountPoint( const QString& mountPoint, const QStringList& inUse, QLabel* label, QPushButton* button )
+{
+    QString msg;
+    bool ok = true;
+
+    if ( inUse.contains( mountPoint ) )
+    {
+        msg = CreatePartitionDialog::tr( "Mountpoint already in use. Please select another one." );
+        ok = false;
+    }
+    else if ( !mountPoint.isEmpty() && !mountPoint.startsWith( '/' ) )
+    {
+        msg = CreatePartitionDialog::tr( "Mountpoint must start with a <pre>/</pre>." );
+        ok = false;
+    }
+
+    if ( label )
+    {
+        label->setText( msg );
+    }
+    if ( button )
+    {
+        button->setEnabled( ok );
+    }
+    return ok;
 }
 
 

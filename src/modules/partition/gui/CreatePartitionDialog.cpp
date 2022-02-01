@@ -325,22 +325,7 @@ CreatePartitionDialog::updateMountPointUi()
 void
 CreatePartitionDialog::checkMountPointSelection()
 {
-    const QString mountPoint = selectedMountPoint( m_ui->mountPointComboBox );
-    if ( m_usedMountPoints.contains( mountPoint ) )
-    {
-        m_ui->labelMountPoint->setText( tr( "Mountpoint already in use. Please select another one." ) );
-        m_ui->buttonBox->button( QDialogButtonBox::Ok )->setEnabled( false );
-    }
-    else if ( !mountPoint.isEmpty() && !mountPoint.startsWith( '/' ) )
-    {
-        m_ui->labelMountPoint->setText( tr( "Mountpoint must start with a <pre>/</pre>." ) );
-        m_ui->buttonBox->button( QDialogButtonBox::Ok )->setEnabled( false );
-    }
-    else
-    {
-        m_ui->labelMountPoint->setText( QString() );
-        m_ui->buttonBox->button( QDialogButtonBox::Ok )->setEnabled( true );
-    }
+    validateMountPoint( selectedMountPoint( m_ui->mountPointComboBox ), m_usedMountPoints, m_ui->labelMountPoint, m_ui->buttonBox->button( QDialogButtonBox::Ok ));
 }
 
 void
