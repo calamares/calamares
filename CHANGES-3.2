@@ -27,6 +27,9 @@ This release contains contributions from (alphabetically by first name):
  - *packagechooser* can now export its choices for use by the *netinstall*
    module. This makes it possible to use *packagechooser* for large-scale
    choices, followed by *netinstall* for fine-grained control. (Thanks Evan)
+ - When the *partition* module has a conflicting configuration for the
+   swap choices, it prints a warning and uses the configured choice, rather
+   than always using "suspend". #1881
  - The *umount* module has been re-written in C++. The copy-a-log-file
    functionality has been removed. Use the *preservefiles* module for that.
 
