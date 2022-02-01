@@ -427,7 +427,7 @@ def efi_label(efi_directory):
     used within @p efi_directory.
     """
     if "efiBootloaderId" in libcalamares.job.configuration:
-        efi_bootloader_id = change_efi_suffix( efi_directory, calamares.job.configuration["efiBootloaderId"] )
+        efi_bootloader_id = change_efi_suffix( efi_directory, libcalamares.job.configuration["efiBootloaderId"] )
     else:
         branding = libcalamares.globalstorage.value("branding")
         efi_bootloader_id = branding["bootloaderEntryName"]
@@ -563,6 +563,7 @@ def run_grub_install(fw_type, partitions, efi_directory):
         check_target_env_call(["sh", "-c", "echo ZPOOL_VDEV_NAME_PATH=1 >> /etc/environment"])
 
     if fw_type == "efi":
+        assert efi_directory is not None
         efi_bootloader_id = efi_label(efi_directory)
         efi_target, efi_grub_file, efi_boot_file = get_grub_efi_parameters()
 
@@ -577,6 +578,7 @@ def run_grub_install(fw_type, partitions, efi_directory):
                                    "--bootloader-id=" + efi_bootloader_id,
                                    "--force"])
     else:
+        assert efi_directory is None
         if libcalamares.globalstorage.value("bootLoader") is None:
             return
 
@@ -653,7 +655,7 @@ def install_grub(efi_directory, fw_type):
             shutil.copy2(efi_file_source, efi_file_target)
     else:
         libcalamares.utils.debug("Bootloader: grub (bios)")
-        run_grub_install(fw_type, partitions)
+        run_grub_install(fw_type, partitions, None)
 
     run_grub_mkconfig(partitions, libcalamares.job.configuration["grubCfg"])
 
