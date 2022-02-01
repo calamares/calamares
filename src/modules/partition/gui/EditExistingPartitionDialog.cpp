@@ -295,5 +295,5 @@ EditExistingPartitionDialog::updateMountPointPicker()
 void
 EditExistingPartitionDialog::checkMountPointSelection()
 {
-    validateMountPoint( selectedMountPoint( m_ui->mountPointComboBox ), m_usedMountPoints, m_ui->labelMountPoint, m_ui->buttonBox->button( QDialogButtonBox::Ok ));
+    validateMountPoint( selectedMountPoint( m_ui->mountPointComboBox ), m_usedMountPoints, m_ui->mountPointExplanation, m_ui->buttonBox->button( QDialogButtonBox::Ok ));
 }
