@@ -28,8 +28,9 @@ PointerAlignment: Left
 ReflowComments: "false"
 SortIncludes: "true"
 SpaceAfterCStyleCast: "false"
+SpaceInEmptyBlock: "false"
 SpacesBeforeTrailingComments: "2"
 SpacesInAngles: "true"
 SpacesInParentheses: "true"
 SpacesInSquareBrackets: "true"
-Standard: Cpp11
+Standard: c++17
