@@ -96,7 +96,7 @@ bool validateMountPoint( const QString& mountPoint, const QStringList& inUse, QL
     }
     else if ( !mountPoint.isEmpty() && !mountPoint.startsWith( '/' ) )
     {
-        msg = CreatePartitionDialog::tr( "Mountpoint must start with a <pre>/</pre>." );
+        msg = CreatePartitionDialog::tr( "Mountpoint must start with a <tt>/</tt>." );
         ok = false;
     }
 
