@@ -18,6 +18,7 @@
 #include "utils/Logger.h"
 
 #include <QComboBox>
+#include <QLineEdit>
 #include <QListWidget>
 
 QStringList
@@ -37,7 +38,7 @@ void
 standardMountPoints( QComboBox& combo )
 {
     combo.clear();
-    combo.addItem( QObject::tr( "(no mount point)" ) );
+    combo.lineEdit()->setPlaceholderText( QObject::tr( "(no mount point)" ) );
     combo.addItems( standardMountPoints() );
 }
 
@@ -51,7 +52,7 @@ standardMountPoints( QComboBox& combo, const QString& selected )
 QString
 selectedMountPoint( QComboBox& combo )
 {
-    if ( combo.currentIndex() == 0 )
+    if ( combo.currentIndex() == -1 )
     {
         return QString();
     }
@@ -63,7 +64,7 @@ setSelectedMountPoint( QComboBox& combo, const QString& selected )
 {
     if ( selected.isEmpty() )
     {
-        combo.setCurrentIndex( 0 );  // (no mount point)
+        combo.setCurrentIndex( -1 );  // (no mount point)
     }
     else
     {
