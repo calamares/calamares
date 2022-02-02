@@ -1,6 +1,10 @@
 # SPDX-FileCopyrightText: no
 # SPDX-License-Identifier: CC0-1.0
+#
+# Test that a "bogus" sourcefs (a filesystem kind that does not
+# exist) fails gracefully.
 ---
 unpack:
    - source: .
      sourcefs: bogus
+     destination: /
