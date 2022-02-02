@@ -100,7 +100,7 @@ BOOST_PYTHON_MODULE( libcalamares )
              bp::args( "s" ),
              "Writes the given string to the Calamares warning stream." );
     bp::def(
-        "error", &CalamaresPython::warning, bp::args( "s" ), "Writes the given string to the Calamares error stream." );
+        "error", &CalamaresPython::error, bp::args( "s" ), "Writes the given string to the Calamares error stream." );
 
 
     // .. YAML functions

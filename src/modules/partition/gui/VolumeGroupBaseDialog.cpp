@@ -45,17 +45,25 @@ VolumeGroupBaseDialog::VolumeGroupBaseDialog( QString& vgName, QVector< const Pa
     updateOkButton();
     updateTotalSize();
 
-    connect( ui->pvList, &QListWidget::itemChanged, this, [&]( QListWidgetItem* ) {
-        updateTotalSize();
-        updateOkButton();
-    } );
+    connect( ui->pvList,
+             &QListWidget::itemChanged,
+             this,
+             [ & ]( QListWidgetItem* )
+             {
+                 updateTotalSize();
+                 updateOkButton();
+             } );
 
-    connect( ui->peSize, qOverload< int >( &QSpinBox::valueChanged ), this, [&]( int ) {
-        updateTotalSectors();
-        updateOkButton();
-    } );
+    connect( ui->peSize,
+             qOverload< int >( &QSpinBox::valueChanged ),
+             this,
+             [ & ]( int )
+             {
+                 updateTotalSectors();
+                 updateOkButton();
+             } );
 
-    connect( ui->vgName, &QLineEdit::textChanged, this, [&]( const QString& ) { updateOkButton(); } );
+    connect( ui->vgName, &QLineEdit::textChanged, this, [ & ]( const QString& ) { updateOkButton(); } );
 }
 
 VolumeGroupBaseDialog::~VolumeGroupBaseDialog()

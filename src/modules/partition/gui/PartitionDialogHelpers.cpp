@@ -12,13 +12,17 @@
 #include "PartitionDialogHelpers.h"
 
 #include "core/PartUtils.h"
+#include "gui/CreatePartitionDialog.h"
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "utils/Logger.h"
 
 #include <QComboBox>
+#include <QLabel>
+#include <QLineEdit>
 #include <QListWidget>
+#include <QPushButton>
 
 QStringList
 standardMountPoints()
@@ -37,7 +41,7 @@ void
 standardMountPoints( QComboBox& combo )
 {
     combo.clear();
-    combo.addItem( QObject::tr( "(no mount point)" ) );
+    combo.lineEdit()->setPlaceholderText( QObject::tr( "(no mount point)" ) );
     combo.addItems( standardMountPoints() );
 }
 
@@ -51,10 +55,6 @@ standardMountPoints( QComboBox& combo, const QString& selected )
 QString
 selectedMountPoint( QComboBox& combo )
 {
-    if ( combo.currentIndex() == 0 )
-    {
-        return QString();
-    }
     return combo.currentText();
 }
 
@@ -63,7 +63,7 @@ setSelectedMountPoint( QComboBox& combo, const QString& selected )
 {
     if ( selected.isEmpty() )
     {
-        combo.setCurrentIndex( 0 );  // (no mount point)
+        combo.setCurrentIndex( -1 );  // (no mount point)
     }
     else
     {
@@ -78,6 +78,34 @@ setSelectedMountPoint( QComboBox& combo, const QString& selected )
         combo.addItem( selected );
         combo.setCurrentIndex( combo.count() - 1 );
     }
+}
+
+bool
+validateMountPoint( const QString& mountPoint, const QStringList& inUse, QLabel* label, QPushButton* button )
+{
+    QString msg;
+    bool ok = true;
+
+    if ( inUse.contains( mountPoint ) )
+    {
+        msg = CreatePartitionDialog::tr( "Mountpoint already in use. Please select another one." );
+        ok = false;
+    }
+    else if ( !mountPoint.isEmpty() && !mountPoint.startsWith( '/' ) )
+    {
+        msg = CreatePartitionDialog::tr( "Mountpoint must start with a <tt>/</tt>." );
+        ok = false;
+    }
+
+    if ( label )
+    {
+        label->setText( msg );
+    }
+    if ( button )
+    {
+        button->setEnabled( ok );
+    }
+    return ok;
 }
 
 

@@ -56,6 +56,7 @@ public:
     QString description() const { return m_description; }
     QString preScript() const { return m_preScript; }
     QString postScript() const { return m_postScript; }
+    QString source() const { return m_source; }
 
     /** @brief Is this item a group-item?
      *
@@ -124,6 +125,8 @@ public:
     void setSelected( Qt::CheckState isSelected );
     void setChildrenSelected( Qt::CheckState isSelected );
 
+    void removeChild( int row );
+
     /** @brief Update selectedness based on the children's states
      *
      * This only makes sense for groups, which might have packages
@@ -157,6 +160,7 @@ private:
     QString m_description;
     QString m_preScript;
     QString m_postScript;
+    QString m_source;
     bool m_isGroup = false;
     bool m_isCritical = false;
     bool m_isHidden = false;

@@ -6,7 +6,7 @@
     <message>
       <location filename="../src/modules/partition/jobs/AutoMountManagementJob.cpp" line="22"/>
       <source>Manage auto-mount settings</source>
-      <translation type="unfinished"/>
+      <translation>Идора кардани танзимоти васлкунии худкор</translation>
     </message>
   </context>
   <context>

@@ -3,20 +3,17 @@
 #   SPDX-FileCopyrightText: 2021 Adriaan de Groot <groot@kde.org>
 #   SPDX-License-Identifier: BSD-2-Clause
 #
-
-# Because LUKS Open Swap Hook (Job) is such a mouthful, we'll
-# use LOSH all over the place as a shorthand.
-calamares_add_plugin( luksopenswaphookcfg
+calamares_add_plugin( umount
     TYPE job
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
-        LOSHJob.cpp
+        UmountJob.cpp
     SHARED_LIB
+    EMERGENCY
 )
 
 calamares_add_test(
-    luksopenswaphooktest
+    umounttest
     SOURCES
-        LOSHJob.cpp
         Tests.cpp
 )

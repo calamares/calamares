@@ -70,6 +70,7 @@ PackageTreeItem::PackageTreeItem( const QVariantMap& groupData, GroupTag&& paren
     , m_description( CalamaresUtils::getString( groupData, "description" ) )
     , m_preScript( CalamaresUtils::getString( groupData, "pre-install" ) )
     , m_postScript( CalamaresUtils::getString( groupData, "post-install" ) )
+    , m_source( CalamaresUtils::getString( groupData, "source" ) )
     , m_isGroup( true )
     , m_isCritical( parentCriticality( groupData, parent.parent ) )
     , m_isHidden( CalamaresUtils::getBool( groupData, "hidden", false ) )
@@ -246,6 +247,19 @@ PackageTreeItem::setChildrenSelected( Qt::CheckState isSelected )
             child->m_selected = isSelected;
             child->setChildrenSelected( isSelected );
         }
+}
+
+void
+PackageTreeItem::removeChild( int row )
+{
+    if ( 0 <= row && row < m_childItems.count() )
+    {
+        m_childItems.removeAt( row );
+    }
+    else
+    {
+        cWarning() << "Attempt to remove invalid child in removeChild() at row " << row;
+    }
 }
 
 int

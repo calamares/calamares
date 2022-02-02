@@ -19,12 +19,12 @@ BASEDIR=$(dirname $0)
 TOPDIR=$( cd $BASEDIR/.. && pwd -P )
 test -d "$BASEDIR" || { echo "! Could not determine base for $0" ; exit 1 ; }
 test -d "$TOPDIR" || { echo "! Cound not determine top-level source dir" ; exit 1 ; }
-test -f "$TOPDIR/.clang-format.base" || { echo "! No .clang-format support files in $TOPDIR" ; exit 1 ; }
+test -f "$TOPDIR/.clang-format" || { echo "! No .clang-format support files in $TOPDIR" ; exit 1 ; }
 
 AS=$( which astyle )
 
 # Allow specifying CF_VERSIONS outside already
-CF_VERSIONS="$CF_VERSIONS clang-format-8 clang-format80 clang-format90 clang-format-9.0.1 clang-format"
+CF_VERSIONS="$CF_VERSIONS clang-format13 clang-format12 clang-format"
 for _cf in $CF_VERSIONS
 do
 	# Not an error if this particular clang-format isn't found
@@ -40,31 +40,19 @@ test -x "$CF" || { echo "! $CF is not executable."; exit 1 ; }
 ### CLANG-FORMAT-WRANGLING
 #
 # Version 7 and earlier doesn't understand all the options we would like
-# Version 8 is ok
-# Version 9 is ok
-# Later versions change some defaults so need extra wrangling.
-# .. there are extra files that are appended to the settings, per
-# .. clang-format version.
+# Version 12 handles lambdas nicely, so use that.
+# Version 13 is also ok.
 
 format_version=`"$CF" --version | tr -dc '[^.0-9]' | cut  -d . -f 1`
 case "$format_version" in
-	[0-7] )
-		echo "! Clang-format version 8+ required"
-		exit 1
-		;;
-	[89] )
+	12|13 )
 		:
 		;;
 	* )
-		echo "! Clang-format version '$format_version' unsupported."
+		echo "! Clang-format version '$format_version' unsupported, version 12 required."
 		exit 1
 		;;
 esac
-_fmt="$TOPDIR/.clang-format"
-cp "$_fmt.base" "$_fmt"
-for f in "$extra_settings" ; do
-	test -f "$_fmt.$f" && cat "$_fmt.$f" >> "$_fmt"
-done
 
 
 ### FILE PROCESSING
@@ -98,8 +86,3 @@ if test "x$any_dirs" = "xyes" ; then
 else
 	style_some "$@"
 fi
-
-### CLANG-FORMAT-WRANGLING
-#
-# Restore the original .clang-format
-cp "$_fmt.base" "$_fmt"

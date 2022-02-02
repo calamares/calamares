@@ -19,7 +19,8 @@
  * to bother with one-byte accuracy (and anyway, a double has at least 50 bits
  * at which point we're printing giga (or gibi) bytes).
  */
-static inline QString formatByteSize( qint64 sizeValue )
+static inline QString
+formatByteSize( qint64 sizeValue )
 {
     return Capacity::formatByteSize( static_cast< double >( sizeValue ) );
 }

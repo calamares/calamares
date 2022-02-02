@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://calamares.io> ===
  *
  *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2022 Evan James <dalto@fastmail.com>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -31,15 +32,22 @@ InitcpioJob::prettyName() const
     return tr( "Creating initramfs with mkinitcpio." );
 }
 
+/** @brief Sets secure permissions on each initramfs
+ *
+ * Iterates over each initramfs contained directly in the directory @p d.
+ * For each initramfs found, the permissions are set to owner read/write only.
+ *
+ */
 void
 fixPermissions( const QDir& d )
 {
-    for ( const auto& fi : d.entryInfoList( { "initramfs*" }, QDir::Files ) )
+    const auto initramList = d.entryInfoList( { "initramfs*" }, QDir::Files );
+    for ( const auto& fi : initramList )
     {
         QFile f( fi.absoluteFilePath() );
         if ( f.exists() )
         {
-            cDebug() << "initcpio fixing permissions for" << f.fileName();
+            cDebug() << "initcpio setting permissions for" << f.fileName();
             f.setPermissions( QFileDevice::ReadOwner | QFileDevice::WriteOwner );
         }
     }
@@ -63,9 +71,19 @@ InitcpioJob::exec()
         }
     }
 
+    // If the kernel option isn't set to a specific kernel, run mkinitcpio on all kernels
+    QStringList command = { "mkinitcpio" };
+    if ( m_kernel.isEmpty() || m_kernel == "all" )
+    {
+        command.append( "-P" );
+    }
+    else
+    {
+        command.append( { "-p", m_kernel } );
+    }
+
     cDebug() << "Updating initramfs with kernel" << m_kernel;
-    auto r = CalamaresUtils::System::instance()->targetEnvCommand(
-        { "mkinitcpio", "-p", m_kernel }, QString(), QString() /* no timeout , 0 */ );
+    auto r = CalamaresUtils::System::instance()->targetEnvCommand( command, QString(), QString() /* no timeout , 0 */ );
     return r.explainProcess( "mkinitcpio", std::chrono::seconds( 10 ) /* fake timeout */ );
 }
 
@@ -73,28 +91,6 @@ void
 InitcpioJob::setConfigurationMap( const QVariantMap& configurationMap )
 {
     m_kernel = CalamaresUtils::getString( configurationMap, "kernel" );
-    if ( m_kernel.isEmpty() )
-    {
-        m_kernel = QStringLiteral( "all" );
-    }
-    else if ( m_kernel == "$uname" )
-    {
-        auto r = CalamaresUtils::System::runCommand( CalamaresUtils::System::RunLocation::RunInHost,
-                                                     { "/bin/uname", "-r" },
-                                                     QString(),
-                                                     QString(),
-                                                     std::chrono::seconds( 3 ) );
-        if ( r.getExitCode() == 0 )
-        {
-            m_kernel = r.getOutput();
-            cDebug() << "*initcpio* using running kernel" << m_kernel;
-        }
-        else
-        {
-            cWarning() << "*initcpio* could not determine running kernel, using 'all'." << Logger::Continuation
-                       << r.getExitCode() << r.getOutput();
-        }
-    }
 
     m_unsafe = CalamaresUtils::getBool( configurationMap, "be_unsafe", false );
 }

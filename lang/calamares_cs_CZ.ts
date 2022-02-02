@@ -693,27 +693,27 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="259"/>
       <source>Successfully unmounted %1.</source>
-      <translation type="unfinished"/>
+      <translation>Úspěšně odpojeno %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="266"/>
       <source>Successfully disabled swap %1.</source>
-      <translation type="unfinished"/>
+      <translation>Úspěšně vypnut swap %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="292"/>
       <source>Successfully cleared swap %1.</source>
-      <translation type="unfinished"/>
+      <translation>Úspěšně vyčištěn swap %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="306"/>
       <source>Successfully closed mapper device %1.</source>
-      <translation type="unfinished"/>
+      <translation>Úspěšně zavřeno mapper zařízení %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="319"/>
       <source>Successfully disabled volume group %1.</source>
-      <translation type="unfinished"/>
+      <translation>Úspěšně vypnuta skupina svazků %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="358"/>

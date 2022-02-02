@@ -345,6 +345,11 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     if ( !m_swapChoices.contains( m_initialSwapChoice ) )
     {
         cWarning() << "Configuration for *initialSwapChoice* is not one of the *userSwapChoices*";
+        if ( nameFound )
+        {
+            cWarning() << Logger::SubEntry << "Choice" << swapChoiceNames().find( m_initialSwapChoice ) << "added.";
+            m_swapChoices.insert( m_initialSwapChoice );
+        }
         m_initialSwapChoice = pickOne( m_swapChoices );
     }
     setSwapChoice( m_initialSwapChoice );

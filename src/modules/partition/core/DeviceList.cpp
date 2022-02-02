@@ -41,6 +41,10 @@ hasRootPartition( Device* device )
     return false;
 }
 
+/** @brief Check if @p path holds an iso9660 filesystem
+ *
+ * The @p path should point to a device; blkid is used to check the FS type.
+ */
 static bool
 blkIdCheckIso9660( const QString& path )
 {
@@ -49,6 +53,18 @@ blkIdCheckIso9660( const QString& path )
     return r.getOutput().contains( "iso9660" );
 }
 
+/// @brief Convenience to check if @p partition holds an iso9660 filesystem
+static bool
+blkIdCheckIso9660P( const Partition* partition )
+{
+    return blkIdCheckIso9660( partition->partitionPath() );
+}
+
+/** @brief Check if the @p device is an iso9660 device
+ *
+ * An iso9660 device is **probably** a CD-ROM. If the device holds an
+ * iso9660 FS, or any of its partitions do, then we call it an iso9660 device.
+ */
 static bool
 isIso9660( const Device* device )
 {
@@ -64,13 +80,8 @@ isIso9660( const Device* device )
 
     if ( device->partitionTable() && !device->partitionTable()->children().isEmpty() )
     {
-        for ( const Partition* partition : device->partitionTable()->children() )
-        {
-            if ( blkIdCheckIso9660( partition->partitionPath() ) )
-            {
-                return true;
-            }
-        }
+        const auto& p = device->partitionTable()->children();
+        return std::any_of( p.cbegin(), p.cend(), blkIdCheckIso9660P );
     }
     return false;
 }

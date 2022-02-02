@@ -428,14 +428,16 @@ def run():
     if not root_mount_point:
         libcalamares.utils.warning("No mount point for root partition")
         return (_("No mount point for root partition"),
-                _("globalstorage does not contain a \"rootMountPoint\" key, "
-                "doing nothing"))
-
+                _("globalstorage does not contain a \"rootMountPoint\" key."))
     if not os.path.exists(root_mount_point):
         libcalamares.utils.warning("Bad root mount point \"{}\"".format(root_mount_point))
         return (_("Bad mount point for root partition"),
-                _("rootMountPoint is \"{}\", which does not "
-                "exist, doing nothing").format(root_mount_point))
+                _("rootMountPoint is \"{}\", which does not exist.".format(root_mount_point)))
+
+    if libcalamares.job.configuration.get("unpack", None) is None:
+        libcalamares.utils.warning("No *unpack* key in job configuration.")
+        return (_("Bad unpackfs configuration"),
+                _("There is no configuration information."))
 
     supported_filesystems = get_supported_filesystems()
 
@@ -450,17 +452,17 @@ def run():
         if sourcefs not in supported_filesystems:
             libcalamares.utils.warning("The filesystem for \"{}\" ({}) is not supported by your current kernel".format(source, sourcefs))
             libcalamares.utils.warning(" ... modprobe {} may solve the problem".format(sourcefs))
-            return (_("Bad unsquash configuration"),
+            return (_("Bad unpackfs configuration"),
                     _("The filesystem for \"{}\" ({}) is not supported by your current kernel").format(source, sourcefs))
         if not os.path.exists(source):
             libcalamares.utils.warning("The source filesystem \"{}\" does not exist".format(source))
-            return (_("Bad unsquash configuration"),
+            return (_("Bad unpackfs configuration"),
                     _("The source filesystem \"{}\" does not exist").format(source))
         if sourcefs == "squashfs":
             if shutil.which("unsquashfs") is None:
                 libcalamares.utils.warning("Failed to find unsquashfs")
 
-                return (_("Bad unsquash configuration"),
+                return (_("Bad unpackfs configuration"),
                         _("Failed to find unsquashfs, make sure you have the squashfs-tools package installed.") +
                         " " + _("Failed to unpack image \"{}\"").format(source))
 
@@ -475,7 +477,7 @@ def run():
         if not os.path.isdir(destination) and sourcefs != "file":
             libcalamares.utils.warning(("The destination \"{}\" in the target system is not a directory").format(destination))
             if is_first:
-                return (_("Bad unsquash configuration"),
+                return (_("Bad unpackfs configuration"),
                         _("The destination \"{}\" in the target system is not a directory").format(destination))
             else:
                 libcalamares.utils.debug(".. assuming that the previous targets will create that directory.")

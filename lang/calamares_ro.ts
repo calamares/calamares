@@ -104,17 +104,17 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="102"/>
       <source>Crashes Calamares, so that Dr. Konqui can look at it.</source>
-      <translation type="unfinished"/>
+      <translation>Dă crash lui Calamares, pentru ca doctorul Konqui să se uite la el.</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="115"/>
       <source>Reloads the stylesheet from the branding directory.</source>
-      <translation type="unfinished"/>
+      <translation>Reîncarcă foaia de stil din directorul branding.</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="141"/>
       <source>Uploads the session log to the configured pastebin.</source>
-      <translation type="unfinished"/>
+      <translation>Încarcă jurnalul sesiunii pe pastebin-ul configurat.</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="144"/>
@@ -134,7 +134,7 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="131"/>
       <source>Widget Tree</source>
-      <translation>Lista widget</translation>
+      <translation>Arborele de widget</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.cpp" line="221"/>

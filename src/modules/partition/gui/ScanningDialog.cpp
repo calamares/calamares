@@ -47,12 +47,16 @@ ScanningDialog::run( const QFuture< void >& future,
     theDialog->show();
 
     QFutureWatcher< void >* watcher = new QFutureWatcher< void >();
-    connect( watcher, &QFutureWatcher< void >::finished, theDialog, [watcher, theDialog, callback] {
-        watcher->deleteLater();
-        theDialog->hide();
-        theDialog->deleteLater();
-        callback();
-    } );
+    connect( watcher,
+             &QFutureWatcher< void >::finished,
+             theDialog,
+             [ watcher, theDialog, callback ]
+             {
+                 watcher->deleteLater();
+                 theDialog->hide();
+                 theDialog->deleteLater();
+                 callback();
+             } );
 
     watcher->setFuture( future );
 }

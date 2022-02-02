@@ -51,7 +51,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
      <item row="2" column="0">
       <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>Content:</string>
+        <string>Con&amp;tent:</string>
        </property>
        <property name="buddy">
         <cstring>keepRadioButton</cstring>
@@ -109,6 +109,12 @@ SPDX-License-Identifier: GPL-3.0-or-later
      </item>
      <item row="6" column="1">
       <widget class="QComboBox" name="mountPointComboBox">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="editable">
         <bool>true</bool>
        </property>
@@ -147,14 +153,14 @@ SPDX-License-Identifier: GPL-3.0-or-later
      <item row="5" column="1">
       <widget class="QComboBox" name="fileSystemComboBox"/>
      </item>
-     <item row="9" column="0">
+     <item row="10" column="0">
       <widget class="QLabel" name="label_4">
        <property name="text">
         <string>Flags:</string>
        </property>
       </widget>
      </item>
-     <item row="9" column="1">
+     <item row="10" column="1">
       <widget class="QListWidget" name="m_listFlags">
        <property name="alternatingRowColors">
         <bool>true</bool>
@@ -168,20 +174,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
       </widget>
      </item>
      <item row="8" column="1">
-      <widget class="QLabel" name="labelMountPoint">
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="1">
       <widget class="QLineEdit" name="fileSystemLabelEdit">
-       <property name="maximumSize">
-        <size>
-         <width>150</width>
-         <height>16777215</height>
-        </size>
-       </property>
        <property name="toolTip">
         <string>Label for the filesystem</string>
        </property>
@@ -190,10 +183,17 @@ SPDX-License-Identifier: GPL-3.0-or-later
        </property>
       </widget>
      </item>
-     <item row="7" column="0">
+     <item row="8" column="0">
       <widget class="QLabel" name="fileSystemLabelLabel">
        <property name="text">
         <string>FS Label:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="1">
+      <widget class="QLabel" name="mountPointExplanation">
+       <property name="text">
+        <string/>
        </property>
       </widget>
      </item>

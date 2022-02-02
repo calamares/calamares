@@ -675,11 +675,15 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     // because it could take a while. Then when it's done, we can set up the widgets
     // and remove the spinner.
     m_future = new QFutureWatcher< void >();
-    connect( m_future, &QFutureWatcher< void >::finished, this, [this] {
-        continueLoading();
-        this->m_future->deleteLater();
-        this->m_future = nullptr;
-    } );
+    connect( m_future,
+             &QFutureWatcher< void >::finished,
+             this,
+             [ this ]
+             {
+                 continueLoading();
+                 this->m_future->deleteLater();
+                 this->m_future = nullptr;
+             } );
 
     QFuture< void > future = QtConcurrent::run( this, &PartitionViewStep::initPartitionCoreModule );
     m_future->setFuture( future );
