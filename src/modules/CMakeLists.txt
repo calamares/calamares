@@ -32,12 +32,29 @@ if ( BUILD_TESTING AND BUILD_SCHEMA_TESTING AND PYTHONINTERP_FOUND AND PYTHON_EX
     # regardless.
     foreach( SUBDIRECTORY ${SUBDIRECTORIES} )
         set( _schema_file "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/${SUBDIRECTORY}.schema.yaml" )
-        set( _conf_file "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/${SUBDIRECTORY}.conf" )
-        if ( EXISTS "${_schema_file}" AND EXISTS "${_conf_file}" )
-            add_test(
-                NAME validate-${SUBDIRECTORY}
-                COMMAND ${PYTHON_EXECUTABLE} "${CMAKE_SOURCE_DIR}/ci/configvalidator.py" "${_schema_file}" "${_conf_file}"
-            )
+        # Collect config files from the module-directory and from a tests/ subdir,
+        # using the same mechanism to find those test-config-files as function
+        # calamares_add_module_subdirectory() would do.
+        set( _conf_files "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/${SUBDIRECTORY}.conf" )
+        set( _count 1 )
+        set( _testdir "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/tests" )
+        while ( EXISTS "${_testdir}/${_count}.global" OR EXISTS "${_testdir}/${_count}.job" )
+            if ( EXISTS "${_testdir}/${_count}.job" )
+                list( APPEND _conf_files "${_testdir}/${_count}.job" )
+            endif()
+            math( EXPR _count "${_count} + 1" )
+        endwhile()
+
+        if ( EXISTS "${_schema_file}" )
+            foreach( _conf_file ${_conf_files} )
+                if ( EXISTS ${_conf_file} )
+                    get_filename_component( _conf_base "${_conf_file}" NAME_WE )
+                    add_test(
+                        NAME validate-${SUBDIRECTORY}-${_conf_base}
+                        COMMAND ${PYTHON_EXECUTABLE} "${CMAKE_SOURCE_DIR}/ci/configvalidator.py" "${_schema_file}" "${_conf_file}"
+                    )
+                endif()
+            endforeach()
         endif()
     endforeach()
 endif()

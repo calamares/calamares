@@ -13,6 +13,11 @@ This release contains contributions from (alphabetically by first name):
  - Evan James
  - Vitor Lopes
 
+This is a "minor" version change, but the size of the changes is very
+large. Configuration files from previous versions of Calamares will
+**certainly** need to be re-validated. Take heed of the many changes
+in the *Modules* heading, below.
+
 ## Core ##
  - CMake 3.16, Qt 5.15 are now required; the newer CMake is to support
    new features (also for KDE Frameworks), Qt is the current LTS version.
@@ -27,5 +32,7 @@ This release contains contributions from (alphabetically by first name):
    Boost::Python now requires 1.67 or later (for CMake support).
 
 ## Modules ##
+ - *grubcfg* changed the key *keepDistributor* to *keep_distributor*.
+   Please update configurations.
  - *bootloader* now supports more options when building the kernel
    command-line. (Thanks Evan)
