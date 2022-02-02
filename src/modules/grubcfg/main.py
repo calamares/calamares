@@ -95,10 +95,10 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     :param root_mount_point:
     :param distributor: name of the distributor to fill in for
         GRUB_DISTRIBUTOR. Must be a string. If the job setting
-        *keepDistributor* is set, then this is only used if no
-        GRUB_DISTRIBUTOR is found at all (otherwise, when *keepDistributor*
+        *keep_distributor* is set, then this is only used if no
+        GRUB_DISTRIBUTOR is found at all (otherwise, when *keep_distributor*
         is set, the GRUB_DISTRIBUTOR lines are left unchanged).
-        If *keepDistributor* is unset or false, then GRUB_DISTRIBUTOR
+        If *keep_distributor* is unset or false, then GRUB_DISTRIBUTOR
         is always updated to set this value.
     :return:
     """
@@ -230,11 +230,11 @@ def modify_grub_default(partitions, root_mount_point, distributor):
                 have_kernel_cmd = True
             elif (lines[i].startswith("#GRUB_DISTRIBUTOR")
                   or lines[i].startswith("GRUB_DISTRIBUTOR")):
-                if libcalamares.job.configuration.get("keepDistributor", False):
+                if libcalamares.job.configuration.get("keep_distributor", False):
                     lines[i] = distributor_line
                     have_distributor_line = True
                 else:
-                    # We're not updating because of *keepDistributor*, but if
+                    # We're not updating because of *keep_distributor*, but if
                     # this was a comment line, then it's still not been set.
                     have_distributor_line = have_distributor_line or not lines[i].startswith("#")
             # If btrfs or f2fs is used, don't save default

@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: CC0-1.0
 ---
 overwrite: true
-keepDistributor: false
+keep_distributor: false
 defaults:
     GRUB_TIMEOUT: 5
     GRUB_DEFAULT: "saved"

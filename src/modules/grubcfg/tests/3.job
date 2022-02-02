@@ -3,7 +3,7 @@
 ---
 overwrite: true
 prefer_grub_d: true  # But it doesn't exist
-keepDistributor: false
+keep_distributor: false
 defaults:
     GRUB_TIMEOUT: 5
     GRUB_DEFAULT: "saved"
