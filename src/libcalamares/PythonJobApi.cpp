@@ -28,7 +28,7 @@
 namespace bp = boost::python;
 
 static int
-_handle_check_target_env_call_error( const CalamaresUtils::ProcessResult& ec, const QString& cmd )
+handle_check_target_env_call_error( const CalamaresUtils::ProcessResult& ec, const QString& cmd )
 {
     if ( !ec.first )
     {
@@ -49,6 +49,26 @@ _handle_check_target_env_call_error( const CalamaresUtils::ProcessResult& ec, co
     return ec.first;
 }
 
+static inline QStringList
+bp_list_to_qstringlist( const bp::list& args )
+{
+    QStringList list;
+    for ( int i = 0; i < bp::len( args ); ++i )
+    {
+        list.append( QString::fromStdString( bp::extract< std::string >( args[ i ] ) ) );
+    }
+    return list;
+}
+
+static inline CalamaresUtils::ProcessResult
+target_env_command( const QStringList& args, const std::string& stdin, int timeout )
+{
+    // Since Python doesn't give us the type system for distinguishing
+    // seconds from other integral types, massage to seconds here.
+    return CalamaresUtils::System::instance()->targetEnvCommand(
+        args, QString(), QString::fromStdString( stdin ), std::chrono::seconds( timeout ) );
+}
+
 namespace CalamaresPython
 {
 
@@ -64,68 +84,47 @@ mount( const std::string& device_path,
                                              QString::fromStdString( options ) );
 }
 
-
-static inline QStringList
-_bp_list_to_qstringlist( const bp::list& args )
-{
-    QStringList list;
-    for ( int i = 0; i < bp::len( args ); ++i )
-    {
-        list.append( QString::fromStdString( bp::extract< std::string >( args[ i ] ) ) );
-    }
-    return list;
-}
-
-static inline CalamaresUtils::ProcessResult
-_target_env_command( const QStringList& args, const std::string& stdin, int timeout )
-{
-    // Since Python doesn't give us the type system for distinguishing
-    // seconds from other integral types, massage to seconds here.
-    return CalamaresUtils::System::instance()->targetEnvCommand(
-        args, QString(), QString::fromStdString( stdin ), std::chrono::seconds( timeout ) );
-}
-
 int
 target_env_call( const std::string& command, const std::string& stdin, int timeout )
 {
-    return _target_env_command( QStringList { QString::fromStdString( command ) }, stdin, timeout ).first;
+    return target_env_command( QStringList { QString::fromStdString( command ) }, stdin, timeout ).first;
 }
 
 
 int
 target_env_call( const bp::list& args, const std::string& stdin, int timeout )
 {
-    return _target_env_command( _bp_list_to_qstringlist( args ), stdin, timeout ).first;
+    return target_env_command( bp_list_to_qstringlist( args ), stdin, timeout ).first;
 }
 
 
 int
 check_target_env_call( const std::string& command, const std::string& stdin, int timeout )
 {
-    auto ec = _target_env_command( QStringList { QString::fromStdString( command ) }, stdin, timeout );
-    return _handle_check_target_env_call_error( ec, QString::fromStdString( command ) );
+    auto ec = target_env_command( QStringList { QString::fromStdString( command ) }, stdin, timeout );
+    return handle_check_target_env_call_error( ec, QString::fromStdString( command ) );
 }
 
 
 int
 check_target_env_call( const bp::list& args, const std::string& stdin, int timeout )
 {
-    auto ec = _target_env_command( _bp_list_to_qstringlist( args ), stdin, timeout );
+    auto ec = target_env_command( bp_list_to_qstringlist( args ), stdin, timeout );
     if ( !ec.first )
     {
         return ec.first;
     }
 
-    QStringList failedCmdList = _bp_list_to_qstringlist( args );
-    return _handle_check_target_env_call_error( ec, failedCmdList.join( ' ' ) );
+    QStringList failedCmdList = bp_list_to_qstringlist( args );
+    return handle_check_target_env_call_error( ec, failedCmdList.join( ' ' ) );
 }
 
 
 std::string
 check_target_env_output( const std::string& command, const std::string& stdin, int timeout )
 {
-    auto ec = _target_env_command( QStringList { QString::fromStdString( command ) }, stdin, timeout );
-    _handle_check_target_env_call_error( ec, QString::fromStdString( command ) );
+    auto ec = target_env_command( QStringList { QString::fromStdString( command ) }, stdin, timeout );
+    handle_check_target_env_call_error( ec, QString::fromStdString( command ) );
     return ec.second.toStdString();
 }
 
@@ -133,9 +132,9 @@ check_target_env_output( const std::string& command, const std::string& stdin, i
 std::string
 check_target_env_output( const bp::list& args, const std::string& stdin, int timeout )
 {
-    QStringList list = _bp_list_to_qstringlist( args );
-    auto ec = _target_env_command( list, stdin, timeout );
-    _handle_check_target_env_call_error( ec, list.join( ' ' ) );
+    QStringList list = bp_list_to_qstringlist( args );
+    auto ec = target_env_command( list, stdin, timeout );
+    handle_check_target_env_call_error( ec, list.join( ' ' ) );
     return ec.second.toStdString();
 }
 
@@ -205,7 +204,7 @@ _process_output( Calamares::Utils::RunLocation location,
                  const std::string& stdin,
                  int timeout )
 {
-    Calamares::Utils::Runner r( _bp_list_to_qstringlist( args ) );
+    Calamares::Utils::Runner r( bp_list_to_qstringlist( args ) );
     r.setLocation( location );
     if ( !callback.is_none() )
     {
@@ -236,7 +235,7 @@ _process_output( Calamares::Utils::RunLocation location,
 
     if ( result.getExitCode() )
     {
-        return _handle_check_target_env_call_error( result, r.executable() );
+        return handle_check_target_env_call_error( result, r.executable() );
     }
     return 0;
 }
