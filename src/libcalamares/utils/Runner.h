@@ -88,9 +88,9 @@ public:
         m_timeout = timeout;
         return *this;
     }
-    Runner& setInput( const QString& stdin )
+    Runner& setInput( const QString& input )
     {
-        m_input = stdin;
+        m_input = input;
         return *this;
     }
     Runner& setOutputProcessing( bool enable )
