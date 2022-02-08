@@ -479,7 +479,7 @@ isEfiFilesystemSuitableSize( const Partition* candidate )
         return false;
     }
 
-    if ( size_t( size ) >= efiFilesystemMinimumSize() )
+    if ( size >= efiFilesystemMinimumSize() )
     {
         return true;
     }
@@ -524,12 +524,12 @@ isEfiBootable( const Partition* candidate )
 }
 
 // TODO: this is configurable via the config file **already**
-size_t
+qint64
 efiFilesystemMinimumSize()
 {
     using CalamaresUtils::Units::operator""_MiB;
 
-    size_t uefisys_part_sizeB = 300_MiB;
+    qint64 uefisys_part_sizeB = 300_MiB;
 
     // The default can be overridden; the key used here comes
     // from the partition module Config.cpp
@@ -537,7 +537,7 @@ efiFilesystemMinimumSize()
     if ( gs->contains( "efiSystemPartitionSize_i" ) )
     {
         qint64 v = gs->value( "efiSystemPartitionSize_i" ).toLongLong();
-        uefisys_part_sizeB = v > 0 ? static_cast< size_t >( v ) : 0;
+        uefisys_part_sizeB = v > 0 ? v : 0;
     }
     // There is a lower limit of what can be configured
     if ( uefisys_part_sizeB < 32_MiB )
