@@ -553,6 +553,11 @@ PartitionCoreModule::formatPartition( Device* device, Partition* partition )
 void
 PartitionCoreModule::setFilesystemLabel( Device* device, Partition* partition, const QString& newLabel )
 {
+    if ( newLabel.isEmpty() )
+    {
+        // Don't bother
+        return;
+    }
     auto deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
 
