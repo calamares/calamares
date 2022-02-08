@@ -8,12 +8,10 @@
 
 add_test(
     NAME make-grubcfg-dirs
-    COMMAND ${CMAKE_COMMAND} -E make_directory
-        /tmp/calamares/grubcfg-test-2/etc/default
-        /tmp/calamares/grubcfg-test-3/etc/default
-        /tmp/calamares/grubcfg-test-4/etc/default/grub.d
-    )
+    COMMAND
+        ${CMAKE_COMMAND} -E make_directory /tmp/calamares/grubcfg-test-2/etc/default
+        /tmp/calamares/grubcfg-test-3/etc/default /tmp/calamares/grubcfg-test-4/etc/default/grub.d
+)
 set_tests_properties(load-grubcfg-2 PROPERTIES DEPENDS make-grubcfg-dirs)
 set_tests_properties(load-grubcfg-3 PROPERTIES DEPENDS make-grubcfg-dirs)
 set_tests_properties(load-grubcfg-4 PROPERTIES DEPENDS make-grubcfg-dirs)
-

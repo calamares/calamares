@@ -3,7 +3,7 @@
 #   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
 #   SPDX-License-Identifier: BSD-2-Clause
 #
-calamares_add_plugin( machineid
+calamares_add_plugin(machineid
     TYPE job
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
@@ -12,10 +12,4 @@ calamares_add_plugin( machineid
     SHARED_LIB
 )
 
-calamares_add_test(
-    machineidtest
-    SOURCES
-        Tests.cpp
-        MachineIdJob.cpp
-        Workers.cpp
-)
+calamares_add_test(machineidtest SOURCES Tests.cpp MachineIdJob.cpp Workers.cpp)

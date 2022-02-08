@@ -3,7 +3,7 @@
 #   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
 #   SPDX-License-Identifier: BSD-2-Clause
 #
-calamares_add_plugin( contextualprocess
+calamares_add_plugin(contextualprocess
     TYPE job
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
@@ -15,7 +15,6 @@ calamares_add_test(
     contextualprocesstest
     SOURCES
         Tests.cpp
-        ContextualProcessJob.cpp  # Builds it a second time
-    LIBRARIES
-        yamlcpp::yamlcpp
+        ContextualProcessJob.cpp # Builds it a second time
+    LIBRARIES yamlcpp::yamlcpp
 )
