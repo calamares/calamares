@@ -18,6 +18,13 @@ large. Configuration files from previous versions of Calamares will
 **certainly** need to be re-validated. Take heed of the many changes
 in the *Modules* heading, below.
 
+## Project ##
+ - The C++ code in the project is now formatted with clang-format 12 or 13,
+   with the coding-style as found in `.clang-format`; there are minor
+   differences from the tool, compared to the clang-format 9 usually applied
+   to Calamares 3.2.
+ - The CMake code in the project is now formatted with gersemi 0.7.5.
+
 ## Core ##
  - CMake 3.16, Qt 5.15 are now required; the newer CMake is to support
    new features (also for KDE Frameworks), Qt is the current LTS version.
