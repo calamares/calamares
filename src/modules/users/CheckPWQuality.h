@@ -67,9 +67,9 @@ using PasswordCheckList = QVector< PasswordCheck >;
  * may skip adding a check, and do nothing (it should log
  * an error, though).
  */
-#define _xDEFINE_CHECK_FUNC( x ) add_check_##x( PasswordCheckList& checks, const QVariant& value )
-#define DEFINE_CHECK_FUNC( x ) void _xDEFINE_CHECK_FUNC( x )
-#define DECLARE_CHECK_FUNC( x ) void _xDEFINE_CHECK_FUNC( x );
+#define DEFINE_CHECK_FUNC_impl( x ) add_check_##x( PasswordCheckList& checks, const QVariant& value )
+#define DEFINE_CHECK_FUNC( x ) void DEFINE_CHECK_FUNC_impl( x )
+#define DECLARE_CHECK_FUNC( x ) void DEFINE_CHECK_FUNC_impl( x );
 
 DECLARE_CHECK_FUNC( minLength )
 DECLARE_CHECK_FUNC( maxLength )
