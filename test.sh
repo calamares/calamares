@@ -5,17 +5,24 @@ Builds and executes a debug version of Calamares.
 For running, in the application "Terminal" type:
 "/pathToThisFolder/test.sh"
 
+If you want to omit rebuilding type:
+"/pathToThisFolder/test.sh" -
+
 Configure by editing afterwards:
 _BUILD/settings.conf
 '
 
 here="$(realpath "$(dirname "${0}")")"
 build="${here}/_BUILD"
+rebuild=x
 
 
 mainFunction () {
-	"${here}/build.sh" "Debug"
-	cp --no-clobber "${here}/settings.conf" "${build}/settings.conf"
+	if [[ -n "${rebuild}" ]]; then
+		"${here}/build.sh" "Debug"
+		cp --no-clobber "${here}/settings.conf" "${build}/settings.conf"
+	fi
+
 	cd "${build}"
 	sudo XDG_RUNTIME_DIR="/tmp/runtime-root" ./calamares -d >/dev/null
 }
@@ -29,6 +36,7 @@ configurePermissions () {
 
 prepareEnvironment () {
 	set -e
+	setArguments "${@}"
 	configurePermissions
 }
 
@@ -43,5 +51,21 @@ refreshPermissions () {
 }
 
 
-prepareEnvironment
+setArguments () {
+	arguments=("${@}")
+
+	if [[ "${#arguments}" -ne 0 ]]; then
+		if [[ "${arguments[*]}" == "-" ]]; then
+			if [[ -d "${build}" ]]; then
+				rebuild=""
+			fi
+		else
+			echo "invalid arguments: ${arguments[*]}" >&2
+			exit 1
+		fi
+	fi
+}
+
+
+prepareEnvironment "${@}"
 mainFunction "${@}"

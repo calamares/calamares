@@ -115,11 +115,11 @@ setArguments () {
 
 so () {
 	local tag="-${FUNCNAME[2]}"
-	local commands="${@:1}"
+	local commands="${*:1}"
 	local maxLines=20
 	local error=""
 
-	if ! error="$(eval "${commands[@]}" 2>&1 >"/dev/null")"; then
+	if ! error="$(eval "${commands}" 2>&1 >"/dev/null")"; then
 		if [[ -z "${error}" ]] ; then
 			error="Command failed: ${commands[*]}"
 		else
