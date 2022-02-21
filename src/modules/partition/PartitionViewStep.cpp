@@ -242,6 +242,24 @@ PartitionViewStep::createSummaryWidget() const
     formLayout->setContentsMargins( MARGIN, 0, MARGIN, MARGIN );
     mainLayout->addLayout( formLayout );
 
+#if defined( DEBUG_PARTITION_UNSAFE ) || defined( DEBUG_PARTITION_BAIL_OUT ) || defined( DEBUG_PARTITION_SKIP )
+    auto specialRow = [ = ]( CalamaresUtils::ImageType t, const QString& s )
+    {
+        QLabel* icon = new QLabel;
+        icon->setPixmap( CalamaresUtils::defaultPixmap( t ) );
+        formLayout->addRow( icon, new QLabel( s ) );
+    };
+#endif
+#if defined( DEBUG_PARTITION_UNSAFE )
+    specialRow( CalamaresUtils::ImageType::StatusWarning, tr( "Unsafe partition actions are enabled." ) );
+#endif
+#if defined( DEBUG_PARTITION_BAIL_OUT )
+    specialRow( CalamaresUtils::ImageType::Information, tr( "Partitioning is configured to <b>always</b> fail." ) );
+#endif
+#if defined( DEBUG_PARTITION_SKIP )
+    specialRow( CalamaresUtils::ImageType::Information, tr( "No partitions will be changed." ) );
+#endif
+
     const QList< PartitionCoreModule::SummaryInfo > list = m_core->createSummaryInfo();
     if ( list.length() > 1 )  // There are changes on more than one disk
     {
