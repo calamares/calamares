@@ -840,6 +840,9 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     setAutoLoginGroup( either< QString, const QString& >(
         CalamaresUtils::getString, configurationMap, "autologinGroup", "autoLoginGroup", QString() ) );
     setSudoersGroup( CalamaresUtils::getString( configurationMap, "sudoersGroup" ) );
+    m_sudoStyle = CalamaresUtils::getBool( configurationMap, "sudoersConfigureWithGroup", false )
+        ? SudoStyle::UserAndGroup
+        : SudoStyle::UserOnly;
 
     m_hostNameActions = getHostNameActions( configurationMap );
 
@@ -904,7 +907,7 @@ Config::createJobs() const
 
     if ( !m_sudoersGroup.isEmpty() )
     {
-        j = new SetupSudoJob( m_sudoersGroup );
+        j = new SetupSudoJob( m_sudoersGroup, m_sudoStyle );
         jobs.append( Calamares::job_ptr( j ) );
     }
 

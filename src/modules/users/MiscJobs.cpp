@@ -22,8 +22,9 @@
 #include <QFile>
 #include <QFileInfo>
 
-SetupSudoJob::SetupSudoJob( const QString& group )
+SetupSudoJob::SetupSudoJob( const QString& group, Config::SudoStyle style )
     : m_sudoGroup( group )
+    , m_sudoStyle( style )
 {
 }
 
@@ -31,6 +32,22 @@ QString
 SetupSudoJob::prettyName() const
 {
     return tr( "Configure <pre>sudo</pre> users." );
+}
+
+static QString
+designatorForStyle( Config::SudoStyle style )
+{
+    switch ( style )
+    {
+    case Config::SudoStyle::UserOnly:
+        return QStringLiteral( "(ALL)" );
+        break;
+    case Config::SudoStyle::UserAndGroup:
+        return QStringLiteral( "(ALL:ALL)" );
+        break;
+    }
+    __builtin_unreachable();
+    return QString();
 }
 
 Calamares::JobResult
@@ -42,7 +59,9 @@ SetupSudoJob::exec()
         return Calamares::JobResult::ok();
     }
 
-    QString sudoersLine = QString( "%%1 ALL=(ALL) ALL\n" ).arg( m_sudoGroup );
+    // One % for the sudo format, keep it outside of the string to avoid accidental replacement
+    QString sudoersLine
+        = QChar( '%' ) + QString( "%1 ALL=%2 ALL\n" ).arg( m_sudoGroup, designatorForStyle( m_sudoStyle ) );
     auto fileResult
         = CalamaresUtils::System::instance()->createTargetFile( QStringLiteral( "/etc/sudoers.d/10-installer" ),
                                                                 sudoersLine.toUtf8().constData(),
