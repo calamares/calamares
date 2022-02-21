@@ -10,13 +10,17 @@ website will have to do for older versions.
 # 3.2.52 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - Evan James
 
 ## Core ##
  - No core changes yet
 
 ## Modules ##
- - No module changes yet
+ - *fstab* recognizes nvme and mmc devices correctly as SSDs now. #1883
+ - *luksbootkeyfile* handles trailing slashes in mount point
+ - *partition* can be built with a new `SKIP` option, which skips
+   the actual formatting steps but does not fail. The old `LAME`
+   option is renamed `BAIL_OUT`.
 
 
 # 3.2.51 (2022-02-01) #
