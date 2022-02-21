@@ -143,7 +143,7 @@ getDevices( DeviceType which )
      */
 #ifdef DEBUG_PARTITION_UNSAFE
     cWarning() << "Allowing unsafe partitioning choices." << devices.count() << "candidates.";
-#ifdef DEBUG_PARTITION_LAME
+#ifdef DEBUG_PARTITION_BAIL_OUT
     cDebug() << Logger::SubEntry << "unsafe partitioning has been lamed, and will fail.";
 #endif
 

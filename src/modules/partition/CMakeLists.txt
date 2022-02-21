@@ -9,10 +9,18 @@
 # current disk). Set DEBUG_PARTITION_UNSAFE to allow that (it turns off
 # some filtering of devices). If you **do** allow unsafe partitioning,
 # it will error out at runtime unless you **also** switch **off**
-# DEBUG_PARTITION_LAME, at which point you are welcome to shoot
+# DEBUG_PARTITION_BAIL_OUT, at which point you are welcome to shoot
 # yourself in the foot.
+#
+# Independently, DEBUG_PARTITION_SKIP will not do the actual partitioning
+# through KPMCore, but it **will** save the global storage setup as if
+# it has done the partitioning. This is going to confuse subsequent
+# modules since the partitions on disk won't match GS, but it can be
+# useful for debugging simulated installations that don't need to
+# mount the target filesystems.
 option( DEBUG_PARTITION_UNSAFE "Allow unsafe partitioning choices." OFF )
-option( DEBUG_PARTITION_LAME   "Unsafe partitioning will error out on exec." ON )
+option( DEBUG_PARTITION_BAIL_OUT "Unsafe partitioning will error out on exec." ON )
+option( DEBUG_PARTITION_SKIP "Don't actually do any partitioning." OFF)
 
 # This is very chatty, useful mostly if you don't know what KPMCore offers.
 option( DEBUG_FILESYSTEMS      "Log all available Filesystems from KPMCore." OFF )
@@ -21,13 +29,16 @@ include_directories( ${CMAKE_SOURCE_DIR} )  # For 3rdparty
 
 set( _partition_defs )
 if( DEBUG_PARTITION_UNSAFE )
-    if( DEBUG_PARTITION_LAME )
-        list( APPEND _partition_defs DEBUG_PARTITION_LAME )
+    if( DEBUG_PARTITION_BAIL_OUT )
+        list( APPEND _partition_defs DEBUG_PARTITION_BAIL_OUT )
     endif()
     list( APPEND _partition_defs DEBUG_PARTITION_UNSAFE )
 endif()
 if ( DEBUG_FILESYSTEMS )
     list( APPEND _partition_defs DEBUG_FILESYSTEMS )
+endif()
+if( DEBUG_PARTITION_SKIP )
+    list( APPEND _partition_defs DEBUG_PARTITION_SKIP )
 endif()
 
 find_package(ECM ${ECM_VERSION} REQUIRED NO_MODULE)
