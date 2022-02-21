@@ -92,7 +92,8 @@ def disk_name_for_partition(partition):
     """
     name = os.path.basename(partition["device"])
 
-    if name.startswith("/dev/mmcblk") or name.startswith("/dev/nvme"):
+    if name.startswith("mmcblk") or name.startswith("nvme"):
+        # Typical mmc device is mmcblk0p1, nvme looks like nvme0n1p2
         return re.sub("p[0-9]+$", "", name)
 
     return re.sub("[0-9]+$", "", name)
