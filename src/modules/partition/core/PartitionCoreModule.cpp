@@ -37,7 +37,7 @@
 #include "jobs/ResizeVolumeGroupJob.h"
 #include "jobs/SetPartitionFlagsJob.h"
 
-#ifdef DEBUG_PARTITION_LAME
+#ifdef DEBUG_PARTITION_BAIL_OUT
 #include "JobExample.h"
 #endif
 #include "partition/PartitionIterator.h"
@@ -622,7 +622,7 @@ PartitionCoreModule::jobs( const Config* config ) const
     QList< Device* > devices;
 
 #ifdef DEBUG_PARTITION_UNSAFE
-#ifdef DEBUG_PARTITION_LAME
+#ifdef DEBUG_PARTITION_BAIL_OUT
     cDebug() << "Unsafe partitioning is enabled.";
     cDebug() << Logger::SubEntry << "it has been lamed, and will fail.";
     lst << Calamares::job_ptr( new Calamares::FailJob( QStringLiteral( "Partition" ) ) );
