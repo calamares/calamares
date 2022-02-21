@@ -17,20 +17,21 @@
 #ifndef USERS_MISCJOBS_H
 #define USERS_MISCJOBS_H
 
-#include "Job.h"
+#include "Config.h"
 
-class Config;
+#include "Job.h"
 
 class SetupSudoJob : public Calamares::Job
 {
     Q_OBJECT
 public:
-    SetupSudoJob( const QString& group );
+    SetupSudoJob( const QString& group, Config::SudoStyle style );
     QString prettyName() const override;
     Calamares::JobResult exec() override;
 
 public:
     QString m_sudoGroup;
+    Config::SudoStyle m_sudoStyle;
 };
 
 class SetupGroupsJob : public Calamares::Job
