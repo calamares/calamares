@@ -216,17 +216,12 @@ diskDescription( int listLength, const PartitionCoreModule::SummaryInfo& info, C
 QString
 PartitionViewStep::prettyStatus() const
 {
-    QString modeText, diskInfoLabel;
+    QString diskInfoLabel;
 
     const Config::InstallChoice choice = m_config->installChoice();
     const QList< PartitionCoreModule::SummaryInfo > list = m_core->createSummaryInfo();
 
     cDebug() << "Summary for Partition" << list.length() << choice;
-    if ( list.length() > 1 )  // There are changes on more than one disk
-    {
-        modeText = modeDescription( choice );
-    }
-
     for ( const auto& info : list )
     {
         // TODO: this overwrites each iteration
