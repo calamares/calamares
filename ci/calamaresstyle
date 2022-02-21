@@ -24,7 +24,7 @@ test -f "$TOPDIR/.clang-format" || { echo "! No .clang-format support files in $
 AS=$( which astyle )
 
 # Allow specifying CF_VERSIONS outside already
-CF_VERSIONS="$CF_VERSIONS clang-format13 clang-format12 clang-format"
+CF_VERSIONS="$CF_VERSIONS clang-format13 clang-format-13 clang-format12 clang-format-12 clang-format"
 for _cf in $CF_VERSIONS
 do
 	# Not an error if this particular clang-format isn't found
