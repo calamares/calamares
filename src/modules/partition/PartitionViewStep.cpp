@@ -52,8 +52,8 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
 
     m_waitingWidget = new WaitingWidget( QString() );
     m_widget->addWidget( m_waitingWidget );
-    CALAMARES_RETRANSLATE(
-        if ( m_waitingWidget ) { m_waitingWidget->setText( tr( "Gathering system information..." ) ); } );
+    CALAMARES_RETRANSLATE( if ( m_waitingWidget )
+                           { m_waitingWidget->setText( tr( "Gathering system information..." ) ); } );
 
     m_core = new PartitionCoreModule( this );  // Unusable before init is complete!
     // We're not done loading, but we need the configuration map first.
@@ -216,18 +216,13 @@ diskDescription( int listLength, const PartitionCoreModule::SummaryInfo& info, C
 QString
 PartitionViewStep::prettyStatus() const
 {
-    QString diskInfoLabel;
-
     const Config::InstallChoice choice = m_config->installChoice();
     const QList< PartitionCoreModule::SummaryInfo > list = m_core->createSummaryInfo();
 
     cDebug() << "Summary for Partition" << list.length() << choice;
-    for ( const auto& info : list )
-    {
-        // TODO: this overwrites each iteration
-        diskInfoLabel = diskDescription( list.length(), info, choice );
-    }
-
+    auto joinDiskInfo = [ choice = choice ]( QString& s, const PartitionCoreModule::SummaryInfo& i )
+    { return s + diskDescription( 1, i, choice ); };
+    const QString diskInfoLabel = std::accumulate( list.begin(), list.end(), QString(), joinDiskInfo );
     const QString jobsLabel = jobDescriptions( jobs() ).join( QStringLiteral( "<br/>" ) );
     return diskInfoLabel + "<br/>" + jobsLabel;
 }
