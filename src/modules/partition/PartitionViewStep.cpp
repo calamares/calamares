@@ -216,7 +216,7 @@ diskDescription( int listLength, const PartitionCoreModule::SummaryInfo& info, C
 QString
 PartitionViewStep::prettyStatus() const
 {
-    QString jobsLabel, modeText, diskInfoLabel;
+    QString modeText, diskInfoLabel;
 
     const Config::InstallChoice choice = m_config->installChoice();
     const QList< PartitionCoreModule::SummaryInfo > list = m_core->createSummaryInfo();
@@ -233,12 +233,7 @@ PartitionViewStep::prettyStatus() const
         diskInfoLabel = diskDescription( list.length(), info, choice );
     }
 
-    const QStringList jobsLines = jobDescriptions( jobs() );
-    if ( !jobsLines.isEmpty() )
-    {
-        jobsLabel = jobsLines.join( "<br/>" );
-    }
-
+    const QString jobsLabel = jobDescriptions( jobs() ).join( QStringLiteral( "<br/>" ) );
     return diskInfoLabel + "<br/>" + jobsLabel;
 }
 
