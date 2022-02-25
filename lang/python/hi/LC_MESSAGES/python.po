@@ -4,16 +4,16 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Panwar108 <caspian7pena@gmail.com>, 2021
+# Panwar108 <caspian7pena@gmail.com>, 2022
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-01 17:27+0100\n"
+"POT-Creation-Date: 2022-02-17 15:52+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Panwar108 <caspian7pena@gmail.com>, 2021\n"
+"Last-Translator: Panwar108 <caspian7pena@gmail.com>, 2022\n"
 "Language-Team: Hindi (https://www.transifex.com/calamares/teams/20061/hi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -58,7 +58,7 @@ msgstr "बूट लोडर इंस्टॉल करना।"
 
 #: src/modules/bootloader/main.py:612
 msgid "Failed to install grub, no partitions defined in global storage"
-msgstr ""
+msgstr "grub इंस्टॉल करना विफल, सर्वत्र संचयन में कोई विभाजन परिभाषित नहीं है"
 
 #: src/modules/bootloader/main.py:780
 msgid "Bootloader installation error"
@@ -276,23 +276,23 @@ msgstr "विभाजन माउंट करना।"
 
 #: src/modules/mount/main.py:88 src/modules/mount/main.py:124
 msgid "Internal error mounting zfs datasets"
-msgstr ""
+msgstr "zfs डेटासेट माउंट करते समय आंतरिक त्रुटि"
 
 #: src/modules/mount/main.py:100
 msgid "Failed to import zpool"
-msgstr ""
+msgstr "zpool आयात विफल"
 
 #: src/modules/mount/main.py:116
 msgid "Failed to unlock zpool"
-msgstr ""
+msgstr "zpool अनलॉक करना विफल"
 
 #: src/modules/mount/main.py:133 src/modules/mount/main.py:138
 msgid "Failed to set zfs mountpoint"
-msgstr ""
+msgstr "zfs माउंट पॉइंट निर्धारण विफल"
 
 #: src/modules/mount/main.py:253
 msgid "zfs mounting error"
-msgstr ""
+msgstr "zfs माउंट संबंधी त्रुटि"
 
 #: src/modules/rawfs/main.py:26
 msgid "Installing data."
@@ -387,7 +387,7 @@ msgstr "रुट विभाजन हेतु कोई माउंट प�
 
 #: src/modules/unpackfs/main.py:431
 msgid "globalstorage does not contain a \"rootMountPoint\" key."
-msgstr ""
+msgstr "globalstorage में \"rootMountPoint\" कुंजी नहीं है।"
 
 #: src/modules/unpackfs/main.py:434
 msgid "Bad mount point for root partition"
@@ -395,17 +395,17 @@ msgstr "रुट विभाजन हेतु ख़राब माउंट �
 
 #: src/modules/unpackfs/main.py:435
 msgid "rootMountPoint is \"{}\", which does not exist."
-msgstr ""
+msgstr "rootMountPoint \"{}\" है, जो मौजूद नहीं है।"
 
 #: src/modules/unpackfs/main.py:439 src/modules/unpackfs/main.py:455
 #: src/modules/unpackfs/main.py:459 src/modules/unpackfs/main.py:465
 #: src/modules/unpackfs/main.py:480
 msgid "Bad unpackfs configuration"
-msgstr ""
+msgstr "विकृत unpackfs विन्यास"
 
 #: src/modules/unpackfs/main.py:440
 msgid "There is no configuration information."
-msgstr ""
+msgstr "विन्यास संबंधी कोई सूचना नहीं है।"
 
 #: src/modules/unpackfs/main.py:456
 msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"

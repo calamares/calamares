@@ -4,16 +4,16 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Kimmo Kujansuu <mrkujansuu@gmail.com>, 2021
+# Kimmo Kujansuu <mrkujansuu@gmail.com>, 2022
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-01 17:27+0100\n"
+"POT-Creation-Date: 2022-02-17 15:52+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>, 2021\n"
+"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>, 2022\n"
 "Language-Team: Finnish (Finland) (https://www.transifex.com/calamares/teams/20061/fi_FI/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,8 +45,7 @@ msgstr "Ei ole määritetty käyttämään osioita <pre>{!s}</pre> ."
 #: src/modules/networkcfg/main.py:106 src/modules/initcpiocfg/main.py:240
 #: src/modules/localecfg/main.py:136 src/modules/openrcdmcryptcfg/main.py:77
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr ""
-"Root-juuri kiinnityspistettä  <pre>{!s}</pre> ei ole annettu käytettäväksi."
+msgstr "<pre>{!s}</pre> ei ole annettu root liitospistettä."
 
 #: src/modules/grubcfg/main.py:28
 msgid "Configure GRUB."
@@ -59,6 +58,7 @@ msgstr "Asenna bootloader."
 #: src/modules/bootloader/main.py:612
 msgid "Failed to install grub, no partitions defined in global storage"
 msgstr ""
+"Grub asennus epäonnistui, yleisessä levytilassa ei ole määritetty osioita"
 
 #: src/modules/bootloader/main.py:780
 msgid "Bootloader installation error"
@@ -154,11 +154,11 @@ msgstr "Määritä OpenRC-palvelut"
 
 #: src/modules/services-openrc/main.py:57
 msgid "Cannot add service {name!s} to run-level {level!s}."
-msgstr "Palvelua {name!s} ei-voi lisätä suorituksen tasolle {level!s}."
+msgstr "Palvelua {name!s} ei voi lisätä suorituksen tasolle {level!s}."
 
 #: src/modules/services-openrc/main.py:59
 msgid "Cannot remove service {name!s} from run-level {level!s}."
-msgstr "Ei voi poistaa palvelua {name!s} ajo-tasolla {level!s}."
+msgstr "Ei voi poistaa palvelua {name!s} suorituksen tasolla {level!s}."
 
 #: src/modules/services-openrc/main.py:61
 msgid ""
@@ -271,27 +271,27 @@ msgstr "Määritetään locales."
 
 #: src/modules/mount/main.py:42
 msgid "Mounting partitions."
-msgstr "Yhdistä osiot."
+msgstr "Osioiden liitos."
 
 #: src/modules/mount/main.py:88 src/modules/mount/main.py:124
 msgid "Internal error mounting zfs datasets"
-msgstr ""
+msgstr "Sisäinen virhe liitettäessä zfs-tietojoukkoa"
 
 #: src/modules/mount/main.py:100
 msgid "Failed to import zpool"
-msgstr ""
+msgstr "Tuonti zpool epäonnistui"
 
 #: src/modules/mount/main.py:116
 msgid "Failed to unlock zpool"
-msgstr ""
+msgstr "Lukituksen avaaminen zpool epäonnistui"
 
 #: src/modules/mount/main.py:133 src/modules/mount/main.py:138
 msgid "Failed to set zfs mountpoint"
-msgstr ""
+msgstr "Määritys zfs-liitospisteen epäonnistui"
 
 #: src/modules/mount/main.py:253
 msgid "zfs mounting error"
-msgstr ""
+msgstr "zfs asennusvirhe"
 
 #: src/modules/rawfs/main.py:26
 msgid "Installing data."
@@ -382,29 +382,29 @@ msgstr "Kuvan purkaminen epäonnistui \"{}\""
 
 #: src/modules/unpackfs/main.py:430
 msgid "No mount point for root partition"
-msgstr "Ei liitoskohtaa juuri root osiolle"
+msgstr "Ei liitospistettä root osiolle"
 
 #: src/modules/unpackfs/main.py:431
 msgid "globalstorage does not contain a \"rootMountPoint\" key."
-msgstr ""
+msgstr "globalstorage ei sisällä \"rootMountPoint\"-avainta."
 
 #: src/modules/unpackfs/main.py:434
 msgid "Bad mount point for root partition"
-msgstr "Huono kiinnityspiste root-osioon"
+msgstr "Virheellinen liitospiste root osiolle"
 
 #: src/modules/unpackfs/main.py:435
 msgid "rootMountPoint is \"{}\", which does not exist."
-msgstr ""
+msgstr "rootMountPoint on \"{}\", jota ei ole olemassa."
 
 #: src/modules/unpackfs/main.py:439 src/modules/unpackfs/main.py:455
 #: src/modules/unpackfs/main.py:459 src/modules/unpackfs/main.py:465
 #: src/modules/unpackfs/main.py:480
 msgid "Bad unpackfs configuration"
-msgstr ""
+msgstr "Virheellinen unpacckfs määritys"
 
 #: src/modules/unpackfs/main.py:440
 msgid "There is no configuration information."
-msgstr ""
+msgstr "Määritystietoja ei ole."
 
 #: src/modules/unpackfs/main.py:456
 msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"

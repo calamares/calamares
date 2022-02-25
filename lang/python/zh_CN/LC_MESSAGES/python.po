@@ -8,17 +8,17 @@
 # plantman <weihanlin@live.com>, 2017
 # Feng Chao <chaofeng111@qq.com>, 2020
 # Bobby Rong <admin@bobby285271.top>, 2020
-# 玉堂白鹤 <yjwork@qq.com>, 2021
 # Giovanni Schiano-Moriello, 2022
+# 玉堂白鹤 <yjwork@qq.com>, 2022
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-01 17:27+0100\n"
+"POT-Creation-Date: 2022-02-17 15:52+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Giovanni Schiano-Moriello, 2022\n"
+"Last-Translator: 玉堂白鹤 <yjwork@qq.com>, 2022\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/calamares/teams/20061/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -62,7 +62,7 @@ msgstr "安装启动加载器。"
 
 #: src/modules/bootloader/main.py:612
 msgid "Failed to install grub, no partitions defined in global storage"
-msgstr ""
+msgstr "无法安装 grub，全局存储中未定义分区"
 
 #: src/modules/bootloader/main.py:780
 msgid "Bootloader installation error"
@@ -263,23 +263,23 @@ msgstr "挂载分区。"
 
 #: src/modules/mount/main.py:88 src/modules/mount/main.py:124
 msgid "Internal error mounting zfs datasets"
-msgstr ""
+msgstr "装载 zfs 数据集时出现内部错误"
 
 #: src/modules/mount/main.py:100
 msgid "Failed to import zpool"
-msgstr ""
+msgstr "导入 zpool 失败"
 
 #: src/modules/mount/main.py:116
 msgid "Failed to unlock zpool"
-msgstr ""
+msgstr "解锁 zpool 失败"
 
 #: src/modules/mount/main.py:133 src/modules/mount/main.py:138
 msgid "Failed to set zfs mountpoint"
-msgstr ""
+msgstr "设置 zfs 挂载点失败"
 
 #: src/modules/mount/main.py:253
 msgid "zfs mounting error"
-msgstr ""
+msgstr "zfs 挂载出错"
 
 #: src/modules/rawfs/main.py:26
 msgid "Installing data."
@@ -374,7 +374,7 @@ msgstr "无 root 分区挂载点"
 
 #: src/modules/unpackfs/main.py:431
 msgid "globalstorage does not contain a \"rootMountPoint\" key."
-msgstr ""
+msgstr "globalstorage（全局存储）中不包含 \"rootMountPoint\"（root挂载点）键。"
 
 #: src/modules/unpackfs/main.py:434
 msgid "Bad mount point for root partition"
@@ -382,17 +382,17 @@ msgstr "错误的 root 分区挂载点"
 
 #: src/modules/unpackfs/main.py:435
 msgid "rootMountPoint is \"{}\", which does not exist."
-msgstr ""
+msgstr "rootMountPoint（root挂载点）是 \"{}\"，其不存在。"
 
 #: src/modules/unpackfs/main.py:439 src/modules/unpackfs/main.py:455
 #: src/modules/unpackfs/main.py:459 src/modules/unpackfs/main.py:465
 #: src/modules/unpackfs/main.py:480
 msgid "Bad unpackfs configuration"
-msgstr ""
+msgstr "错误的 unpackfs 解包配置"
 
 #: src/modules/unpackfs/main.py:440
 msgid "There is no configuration information."
-msgstr ""
+msgstr "没有配置信息。"
 
 #: src/modules/unpackfs/main.py:456
 msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
