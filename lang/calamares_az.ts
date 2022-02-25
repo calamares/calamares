@@ -1020,7 +1020,7 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="71"/>
       <source>Primar&amp;y</source>
-      <translation type="unfinished"/>
+      <translation>&amp;İlkin</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="81"/>
@@ -1085,7 +1085,7 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
     <message>
       <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="96"/>
       <source>Mountpoint must start with a &lt;tt&gt;/&lt;/tt&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Qoşulma nöqtəsi &lt;tt&gt;/&lt;/tt&gt; ilə başlamalıdır.</translation>
     </message>
   </context>
   <context>
@@ -1374,7 +1374,7 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="54"/>
       <source>Con&amp;tent:</source>
-      <translation type="unfinished"/>
+      <translation>&amp;Tərkibi:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="64"/>
@@ -1442,7 +1442,7 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="43"/>
       <source>Your system does not seem to support encryption well enough to encrypt the entire system. You may enable encryption, but performance may suffer.</source>
-      <translation type="unfinished"/>
+      <translation>Sisteminiz göründüyü kimi bütün sistemin şifrələnməsini lazım olduğu qədər dəstəkləmir. Siz şifrələməni aktiv edə bilərsiniz, lakin bu sistemin işini zəiflədə bilər.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="59"/>
@@ -1466,7 +1466,7 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
     <message>
       <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="36"/>
       <source>Details:</source>
-      <translation type="unfinished"/>
+      <translation>Təfərrüatlar:</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="52"/>
@@ -1812,17 +1812,17 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="88"/>
       <source>No target system available.</source>
-      <translation type="unfinished"/>
+      <translation>Hədəf sistemi əlçatan deyil.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="96"/>
       <source>No rootMountPoint is set.</source>
-      <translation type="unfinished"/>
+      <translation>Kök qoşulma nöztəsi (rootMountPoint) təyin olunmayıb.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="101"/>
       <source>No configFilePath is set.</source>
-      <translation type="unfinished"/>
+      <translation>Tənzimləmə faylı yolu (configFilePath) təyin olunmayıb.</translation>
     </message>
   </context>
   <context>
@@ -3852,23 +3852,23 @@ Output:
     <message>
       <location filename="../src/modules/umount/UmountJob.cpp" line="122"/>
       <source>No target system available.</source>
-      <translation type="unfinished"/>
+      <translation>Hədəf sistemi əlçatan deyil.</translation>
     </message>
     <message>
       <location filename="../src/modules/umount/UmountJob.cpp" line="130"/>
       <source>No rootMountPoint is set.</source>
-      <translation type="unfinished"/>
+      <translation>Kök qoşulma nöztəsi (rootMountPoint) təyin olunmayıb.</translation>
     </message>
   </context>
   <context>
     <name>UsersPage</name>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="167"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="177"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Əgər bu kompyuteri sizdən başqa şəxs istifadə edəcəkdirsə o zaman ayarlandıqdan sonra bir neçə istifadəçi hesabı yarada bilərsiniz.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="173"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="183"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Əgər bu kompyuteri sizdən başqa şəxs istifadə edəcəkdirsə o zaman quraşdırıldıqdan sonra bir neçə istifadəçi hesabı yarada bilərsiniz.&lt;/small&gt;</translation>
     </message>
@@ -4077,12 +4077,12 @@ Output:
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="101"/>
       <source>Create ZFS pools and datasets</source>
-      <translation type="unfinished"/>
+      <translation>ZFS mənbələri - zpool və verilənlər dəsti yaratmaq</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="162"/>
       <source>Failed to create zpool on </source>
-      <translation type="unfinished"/>
+      <translation>Zpool yaradıla bilmədi</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="180"/>
@@ -4091,29 +4091,29 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="181"/>
-      <source>No partitions are available for Zfs.</source>
-      <translation type="unfinished"/>
+      <source>No partitions are available for ZFS.</source>
+      <translation>ZFS üçün əlçatan bölmələr yoxdur.</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>
       <source>Internal data missing</source>
-      <translation type="unfinished"/>
+      <translation>Daxili məlumatlar çatışmır</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="257"/>
       <source>Failed to create zpool</source>
-      <translation type="unfinished"/>
+      <translation>Zpool yaradıla bilmədi</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="329"/>
       <source>Failed to create dataset</source>
-      <translation type="unfinished"/>
+      <translation>Verilənlər dəsti yaradıla bilmədi</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="330"/>
       <source>The output was: </source>
-      <translation type="unfinished"/>
+      <translation>Çıxışda:</translation>
     </message>
   </context>
   <context>
@@ -4200,17 +4200,18 @@ Output:
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="43"/>
       <source>%1 has been installed on your computer.&lt;br/&gt;
             You may now restart your device.</source>
-      <translation type="unfinished"/>
+      <translation>%1 kompyuterinizə quraşdırıldı.&lt;br/&gt;
+           Cihazınızı indi yenidən başlada bilərsiniz.</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="65"/>
       <source>Close</source>
-      <translation type="unfinished"/>
+      <translation>Bağlayın</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="71"/>
       <source>Restart</source>
-      <translation type="unfinished"/>
+      <translation>Yenidən başladın</translation>
     </message>
   </context>
   <context>

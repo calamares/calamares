@@ -3853,12 +3853,12 @@ Output:
   <context>
     <name>UsersPage</name>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="167"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="177"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
       <translation>&lt;small&gt;複数の人がこのコンピューターを使用する場合は、セットアップ後に複数のアカウントを作成できます。&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="173"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="183"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
       <translation>&lt;small&gt;複数の人がこのコンピューターを使用する場合は、インストール後に複数のアカウントを作成できます。&lt;/small&gt;</translation>
     </message>
@@ -4081,8 +4081,8 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="181"/>
-      <source>No partitions are available for Zfs.</source>
-      <translation>Zfs で使用できるパーティションがありません。</translation>
+      <source>No partitions are available for ZFS.</source>
+      <translation>ZFS に使用できるパーティションがありません。</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>

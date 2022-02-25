@@ -534,7 +534,7 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="137"/>
       <source>Select storage de&amp;vice:</source>
-      <translation>Valitse tallennus&amp;laite:</translation>
+      <translation>Valitse kiintole&amp;vy:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="138"/>
@@ -597,7 +597,7 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1385"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation>Tällä tallennuslaitteella ei näytä olevan käyttöjärjestelmää. Mitä haluat tehdä?&lt;br/&gt;Voit tarkistaa ja vahvistaa valintasi ennen kuin tallennuslaitteeseen tehdään muutoksia.</translation>
+      <translation>Tällä kiintolevyllä ei näytä olevan käyttöjärjestelmää. Mitä haluat tehdä?&lt;br/&gt;Voit tarkistaa ja vahvistaa valintasi ennen kuin kiintolevylle tehdään muutoksia.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1390"/>
@@ -605,7 +605,7 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1449"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1474"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
-      <translation>&lt;strong&gt;Tyhjennä levy&lt;/strong&gt;&lt;br/&gt;Tämä &lt;font color="red"&gt;poistaa&lt;/font&gt; kaikki tiedot valitussa tallennuslaitteessa.</translation>
+      <translation>&lt;strong&gt;Tyhjennä levy&lt;/strong&gt;&lt;br/&gt;Tämä &lt;font color="red"&gt;poistaa&lt;/font&gt; kaikki tiedot valitussa kiintolevyssä.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1394"/>
@@ -626,17 +626,17 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1417"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation>Tässä tallennuslaitteessa on %1 dataa. Mitä haluat tehdä?&lt;br/&gt;Voit tarkistaa ja vahvistaa valintasi ennen kuin tallennuslaitteeseen tehdään muutoksia.</translation>
+      <translation>Tässä kiintolevyssä on %1 dataa. Mitä haluat tehdä?&lt;br/&gt;Voit tarkistaa ja vahvistaa valintasi ennen kuin kiintolevyyn tehdään muutoksia.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1440"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation>Tämä tallennuslaite sisältää jo käyttöjärjestelmän. Mitä haluaisit tehdä?&lt;br/&gt;Voit tarkistaa ja vahvistaa valintasi, ennen kuin tallennuslaitteeseen tehdään muutoksia.</translation>
+      <translation>Tämä kiintolevy sisältää jo käyttöjärjestelmän. Mitä haluaisit tehdä?&lt;br/&gt;Voit tarkistaa ja vahvistaa valintasi, ennen kuin kiintolevyyn tehdään muutoksia.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1465"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation>Tämä tallennuslaite sisältää jo useita käyttöjärjestelmiä. Mitä haluaisit tehdä?&lt;br/&gt;Voit tarkistaa ja vahvistaa valintasi, ennen kuin tallennuslaitteeseen tehdään muutoksia.</translation>
+      <translation>Tämä kiintolevy sisältää jo useita käyttöjärjestelmiä. Mitä haluaisit tehdä?&lt;br/&gt;Voit tarkistaa ja vahvistaa valintasi, ennen kuin kiintolevyyn tehdään muutoksia.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1537"/>
@@ -1021,7 +1021,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="71"/>
       <source>Primar&amp;y</source>
-      <translation type="unfinished"/>
+      <translation>Ensisi&amp;jainen</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="81"/>
@@ -1086,7 +1086,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
     <message>
       <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="96"/>
       <source>Mountpoint must start with a &lt;tt&gt;/&lt;/tt&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Liitospisteen tulee alkaa &lt;tt&gt;/&lt;/tt&gt;.</translation>
     </message>
   </context>
   <context>
@@ -1306,7 +1306,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="108"/>
       <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
-      <translation>Tämä asennusohjelma &lt;strong&gt;ei tunnista osion taulukkoa&lt;/strong&gt; valitussa tallennuslaitteessa.&lt;br&gt;&lt;br&gt;Laitteessa ei ole osio-taulukkoa, tai taulukko on vioittunut tai tuntematon.&lt;br&gt;Tämä asennusohjelma voi luoda uuden osiontaulukon sinulle, joko automaattisesti tai manuaalisesti.</translation>
+      <translation>Asennusohjelma &lt;strong&gt;ei tunnista osiotaulukkoa&lt;/strong&gt; valitussa kiintolevyssä.&lt;br&gt;&lt;br&gt;Levyssä ei ole osiotaulukkoa, taulukko on vioittunut tai tuntematon.&lt;br&gt;Asennusohjelma voi tehdä uuden osiotaulukon, joko automaattisesti tai manuaalisesti.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="91"/>
@@ -1321,7 +1321,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="151"/>
       <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-      <translation>Valitun tallennuslaitteen &lt;strong&gt;osion taulukon&lt;/strong&gt; tyyppi.&lt;br&gt;&lt;br&gt;Ainoa tapa muuttaa osion taulukon tyyppiä on poistaa ja luoda uudelleen osiot tyhjästä, mikä tuhoaa kaikki tallennuslaitteen tiedot. &lt;br&gt;Tämä asennusohjelma säilyttää nykyisen osion taulukon, ellet nimenomaisesti valitse muuta.&lt;br&gt;Jos olet epävarma, niin nykyaikaisissa järjestelmissä GPT on suositus.</translation>
+      <translation>Valitun kiintolevyn &lt;strong&gt;osiotaulukon&lt;/strong&gt; tyyppi.&lt;br&gt;&lt;br&gt;Ainoa tapa muuttaa osiotaulukon tyyppiä on poistaa ja luoda uudelleen osiot tyhjästä, mikä tuhoaa kaikki kiintolevyn sisältämät tiedot. &lt;br&gt;Asennusohjelma säilyttää nykyisen osiotaulukon, ellet nimenomaisesti valitse muuta.&lt;br&gt;Jos olet epävarma niin nykyaikaisissa järjestelmissä GPT on suositus.</translation>
     </message>
   </context>
   <context>
@@ -1375,7 +1375,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="54"/>
       <source>Con&amp;tent:</source>
-      <translation type="unfinished"/>
+      <translation>Sisäl&amp;tö:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="64"/>
@@ -1443,7 +1443,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="43"/>
       <source>Your system does not seem to support encryption well enough to encrypt the entire system. You may enable encryption, but performance may suffer.</source>
-      <translation type="unfinished"/>
+      <translation>Järjestelmäsi ei näytä tukevan salausta tarpeeksi hyvin koko järjestelmän salaamiseksi. Voit ottaa salauksen käyttöön, mutta suorituskyky voi kärsiä.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="59"/>
@@ -1467,7 +1467,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
     <message>
       <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="36"/>
       <source>Details:</source>
-      <translation type="unfinished"/>
+      <translation>Tiedot:</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="52"/>
@@ -1813,17 +1813,17 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="88"/>
       <source>No target system available.</source>
-      <translation type="unfinished"/>
+      <translation>Kohdejärjestelmää ei ole käytettävissä.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="96"/>
       <source>No rootMountPoint is set.</source>
-      <translation type="unfinished"/>
+      <translation>Ei ole asetettu rootMountPoint</translation>
     </message>
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="101"/>
       <source>No configFilePath is set.</source>
-      <translation type="unfinished"/>
+      <translation>Ei ole asetettu configFilePath</translation>
     </message>
   </context>
   <context>
@@ -2764,7 +2764,7 @@ hiiren vieritystä skaalaamiseen.</translation>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="26"/>
       <source>Storage de&amp;vice:</source>
-      <translation>Tallennus&amp;laite:</translation>
+      <translation>Kiintole&amp;vy:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="55"/>
@@ -3396,7 +3396,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
     <message>
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="68"/>
       <source>Scanning storage devices...</source>
-      <translation>Skannataan tallennuslaitteita...</translation>
+      <translation>Etsitään kiintolevyjä...</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="68"/>
@@ -3852,23 +3852,23 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
     <message>
       <location filename="../src/modules/umount/UmountJob.cpp" line="122"/>
       <source>No target system available.</source>
-      <translation type="unfinished"/>
+      <translation>Kohdejärjestelmää ei ole käytettävissä.</translation>
     </message>
     <message>
       <location filename="../src/modules/umount/UmountJob.cpp" line="130"/>
       <source>No rootMountPoint is set.</source>
-      <translation type="unfinished"/>
+      <translation>Ei ole asetettu rootMountPoint</translation>
     </message>
   </context>
   <context>
     <name>UsersPage</name>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="167"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="177"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Jos useampi kuin yksi henkilö käyttää tätä tietokonetta, voit luoda useita tilejä asennuksen jälkeen.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="173"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="183"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Jos useampi kuin yksi henkilö käyttää tätä tietokonetta, voit luoda useita tilejä asennuksen jälkeen.&lt;/small&gt;</translation>
     </message>
@@ -4077,12 +4077,12 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="101"/>
       <source>Create ZFS pools and datasets</source>
-      <translation type="unfinished"/>
+      <translation>Luo ZFS-poolit ja tietojoukot</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="162"/>
       <source>Failed to create zpool on </source>
-      <translation type="unfinished"/>
+      <translation>Zpoolin luominen epäonnistui</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="180"/>
@@ -4091,29 +4091,29 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="181"/>
-      <source>No partitions are available for Zfs.</source>
-      <translation type="unfinished"/>
+      <source>No partitions are available for ZFS.</source>
+      <translation>ZFS:lle ei ole saatavilla osioita.</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>
       <source>Internal data missing</source>
-      <translation type="unfinished"/>
+      <translation>Sisäiset tiedot puuttuvat</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="257"/>
       <source>Failed to create zpool</source>
-      <translation type="unfinished"/>
+      <translation>Epäonnistui zpoolin luominen</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="329"/>
       <source>Failed to create dataset</source>
-      <translation type="unfinished"/>
+      <translation>Tietojoukon luominen epäonnistui</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="330"/>
       <source>The output was: </source>
-      <translation type="unfinished"/>
+      <translation>Tulos oli:</translation>
     </message>
   </context>
   <context>
@@ -4202,17 +4202,18 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="43"/>
       <source>%1 has been installed on your computer.&lt;br/&gt;
             You may now restart your device.</source>
-      <translation type="unfinished"/>
+      <translation>%1 on asennettu tietokoneellesi.&lt;br/&gt;
+            Voit nyt käynnistää uudelleen.</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="65"/>
       <source>Close</source>
-      <translation type="unfinished"/>
+      <translation>Sulje</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="71"/>
       <source>Restart</source>
-      <translation type="unfinished"/>
+      <translation>Käynnistä</translation>
     </message>
   </context>
   <context>

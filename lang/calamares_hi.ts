@@ -1020,7 +1020,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="71"/>
       <source>Primar&amp;y</source>
-      <translation type="unfinished"/>
+      <translation>मुख्य (&amp;y)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="81"/>
@@ -1085,7 +1085,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="96"/>
       <source>Mountpoint must start with a &lt;tt&gt;/&lt;/tt&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>माउंट पॉइंट का &lt;tt&gt;/&lt;/tt&gt; से आरंभ होना आवश्यक है।</translation>
     </message>
   </context>
   <context>
@@ -1374,7 +1374,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="54"/>
       <source>Con&amp;tent:</source>
-      <translation type="unfinished"/>
+      <translation>सामग्री (&amp;t):</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="64"/>
@@ -1442,7 +1442,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="43"/>
       <source>Your system does not seem to support encryption well enough to encrypt the entire system. You may enable encryption, but performance may suffer.</source>
-      <translation type="unfinished"/>
+      <translation>आपके सिस्टम पर एन्क्रिप्शन हेतु समर्थन सम्पूर्ण सिस्टम एन्क्रिप्ट करने के लिए पर्याप्त नहीं है। इच्छा हो तो एन्क्रिप्शन सक्रिय करें परन्तु इससे कार्यक्षमता प्रभावित हो सकती है।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="59"/>
@@ -1466,7 +1466,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="36"/>
       <source>Details:</source>
-      <translation type="unfinished"/>
+      <translation>विवरण :</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="52"/>
@@ -1807,22 +1807,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="36"/>
       <source>Configuring encrypted swap.</source>
-      <translation>एन्क्रिप्टेड स्वैप को विन्यस्त करना।</translation>
+      <translation>एन्क्रिप्टेड स्वैप का विन्यास जारी।</translation>
     </message>
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="88"/>
       <source>No target system available.</source>
-      <translation type="unfinished"/>
+      <translation>लक्षित सिस्टम उपलब्ध नहीं है।</translation>
     </message>
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="96"/>
       <source>No rootMountPoint is set.</source>
-      <translation type="unfinished"/>
+      <translation>rootMountPoint निर्धारित नहीं है।</translation>
     </message>
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="101"/>
       <source>No configFilePath is set.</source>
-      <translation type="unfinished"/>
+      <translation>configFilePath निर्धारित नहीं है।</translation>
     </message>
   </context>
   <context>
@@ -3851,23 +3851,23 @@ Output:
     <message>
       <location filename="../src/modules/umount/UmountJob.cpp" line="122"/>
       <source>No target system available.</source>
-      <translation type="unfinished"/>
+      <translation>लक्षित सिस्टम उपलब्ध नहीं है।</translation>
     </message>
     <message>
       <location filename="../src/modules/umount/UmountJob.cpp" line="130"/>
       <source>No rootMountPoint is set.</source>
-      <translation type="unfinished"/>
+      <translation>rootMountPoint निर्धारित नहीं है।</translation>
     </message>
   </context>
   <context>
     <name>UsersPage</name>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="167"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="177"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
       <translation>&lt;small&gt;यदि एक से अधिक व्यक्ति इस कंप्यूटर का उपयोग करेंगे, तो आप सेटअप के उपरांत एकाधिक अकाउंट बना सकते हैं।&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="173"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="183"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
       <translation>&lt;small&gt;यदि एक से अधिक व्यक्ति इस कंप्यूटर का उपयोग करेंगे, तो आप इंस्टॉल के उपरांत एकाधिक अकाउंट बना सकते हैं।&lt;/small&gt;</translation>
     </message>
@@ -4076,12 +4076,12 @@ Output:
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="101"/>
       <source>Create ZFS pools and datasets</source>
-      <translation type="unfinished"/>
+      <translation>ZFS पूल व डेटासेट सृजन</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="162"/>
       <source>Failed to create zpool on </source>
-      <translation type="unfinished"/>
+      <translation>यहाँ zpool का सृजन विफल</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="180"/>
@@ -4090,29 +4090,29 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="181"/>
-      <source>No partitions are available for Zfs.</source>
+      <source>No partitions are available for ZFS.</source>
       <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>
       <source>Internal data missing</source>
-      <translation type="unfinished"/>
+      <translation>आतंरिक डेटा अनुपलब्ध</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="257"/>
       <source>Failed to create zpool</source>
-      <translation type="unfinished"/>
+      <translation>zpool का सृजन विफल</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="329"/>
       <source>Failed to create dataset</source>
-      <translation type="unfinished"/>
+      <translation>डेटासेट का सृजन विफल</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="330"/>
       <source>The output was: </source>
-      <translation type="unfinished"/>
+      <translation>यह आउटपुट था :</translation>
     </message>
   </context>
   <context>
@@ -4201,17 +4201,18 @@ Output:
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="43"/>
       <source>%1 has been installed on your computer.&lt;br/&gt;
             You may now restart your device.</source>
-      <translation type="unfinished"/>
+      <translation>आपके कंप्यूटर पर %1 इंस्टॉल हो चुका है।&lt;br/&gt;
+            अब आप उपकरण को पुनः आरंभ कर सकते हैं।</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="65"/>
       <source>Close</source>
-      <translation type="unfinished"/>
+      <translation>बंद करें</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="71"/>
       <source>Restart</source>
-      <translation type="unfinished"/>
+      <translation>पुनः आरंभ करें</translation>
     </message>
   </context>
   <context>

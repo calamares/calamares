@@ -3860,12 +3860,12 @@ Përfundim:
   <context>
     <name>UsersPage</name>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="167"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="177"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Nëse këtë kompjuter do ta përdorë më shumë se një person, mund të krijoni disa llogari, pas rregullimit.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="173"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="183"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Nëse këtë kompjuter do ta përdorë më shumë se një person, mund të krijoni disa llogari, pas instalimit.&lt;/small&gt;</translation>
     </message>
@@ -4088,8 +4088,8 @@ Përfundim:
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="181"/>
-      <source>No partitions are available for Zfs.</source>
-      <translation>S’ka pjesë të gatshme për ZFS.</translation>
+      <source>No partitions are available for ZFS.</source>
+      <translation>S’ka pjesë të passhme për ZFS</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>

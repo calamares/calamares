@@ -1485,7 +1485,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="201"/>
       <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition with features &lt;em&gt;%3&lt;/em&gt;</source>
-      <translation type="unfinished"/>
+      <translation>Nainštalovať distribúciu %1 na &lt;strong&gt;nový&lt;/strong&gt; systémový oddiel %2 s funkciami &lt;em&gt;%3&lt;/em&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="209"/>
@@ -1495,27 +1495,27 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="218"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt; and features &lt;em&gt;%3&lt;/em&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Nastaviť &lt;strong&gt;nový&lt;/strong&gt; oddiel typu %2 s bodom pripojenia &lt;strong&gt;%1&lt;/strong&gt; a funkciami &lt;em&gt;%3&lt;/em&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="226"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;%3.</source>
-      <translation type="unfinished"/>
+      <translation>Nastaviť &lt;strong&gt;nový&lt;/strong&gt; oddiel typu %2 s bodom pripojenia &lt;strong&gt;%1&lt;/strong&gt;%3.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="240"/>
       <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt; with features &lt;em&gt;%4&lt;/em&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Nainštalovať distribúciu %2 na systémový oddiel &lt;strong&gt;%1&lt;/strong&gt; typu %3 s funkciami &lt;em&gt;%4&lt;/em&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="259"/>
       <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt; and features &lt;em&gt;%4&lt;/em&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Nastaviť oddiel &lt;strong&gt;%1&lt;/strong&gt; typu %3 s bodom pripojenia &lt;strong&gt;%2&lt;/strong&gt; a funkciami &lt;em&gt;%4&lt;/em&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="268"/>
       <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;%4.</source>
-      <translation type="unfinished"/>
+      <translation>Nastaviť oddiel &lt;strong&gt;%1&lt;/strong&gt; typu %3 s bodom pripojenia &lt;strong&gt;%2&lt;/strong&gt;%4.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="249"/>
@@ -1813,7 +1813,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="88"/>
       <source>No target system available.</source>
-      <translation type="unfinished"/>
+      <translation>Nie je dostupný žiadny cieľový systém.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="96"/>
@@ -3869,7 +3869,7 @@ Výstup:
     <message>
       <location filename="../src/modules/umount/UmountJob.cpp" line="122"/>
       <source>No target system available.</source>
-      <translation type="unfinished"/>
+      <translation>Nie je dostupný žiadny cieľový systém.</translation>
     </message>
     <message>
       <location filename="../src/modules/umount/UmountJob.cpp" line="130"/>
@@ -3880,12 +3880,12 @@ Výstup:
   <context>
     <name>UsersPage</name>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="167"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="177"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Ak bude tento počítač používať viac ako jedna osoba, môžete nastaviť viacero účtov po inštalácii.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="173"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="183"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Ak bude tento počítač používať viac ako jedna osoba, môžete nastaviť viacero účtov po inštalácii.&lt;/small&gt;</translation>
     </message>
@@ -4108,13 +4108,13 @@ Výstup:
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="181"/>
-      <source>No partitions are available for Zfs.</source>
+      <source>No partitions are available for ZFS.</source>
       <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>
       <source>Internal data missing</source>
-      <translation type="unfinished"/>
+      <translation>Chýbajú vnútorné údaje</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>
@@ -4217,7 +4217,8 @@ Výstup:
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="43"/>
       <source>%1 has been installed on your computer.&lt;br/&gt;
             You may now restart your device.</source>
-      <translation type="unfinished"/>
+      <translation>Distribúcia %1 bola nainštalovaná do vášho počítača.&lt;br/&gt;
+            Teraz môžete reštartovať vaše zariadenie.</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="65"/>
@@ -4304,7 +4305,8 @@ Výstup:
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="45"/>
       <source>LibreOffice is a powerful and free office suite, used by millions of people around the world. It includes several applications that make it the most versatile Free and Open Source office suite on the market.&lt;br/&gt;
                     Default option.</source>
-      <translation type="unfinished"/>
+      <translation>LibreOffice je výkonným a bezplatným kancelárskym balíkom, ktorý používajú milióny ľudí po celom svete. Zahŕňa niekoľko aplikácií, ktoré ho robia najuniverzálnejším slobodným kancelárskym balíkom s otvoreným zdrojom na trhu.&lt;br/&gt;
+                    Predvolená voľba.</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="59"/>
@@ -4314,7 +4316,7 @@ Výstup:
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="108"/>
       <source>If you don't want to install an office suite, just select No Office Suite. You can always add one (or more) later on your installed system as the need arrives.</source>
-      <translation type="unfinished"/>
+      <translation>Ak nechcete inštalovať kancelársky balík, stačí vybrať voľbu Žiadny kancelársky balík. Vždy môžete podľa potreby nejaký (alebo viacero) pridať neskôr vo vašom nainštalovanom systéme.</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="121"/>

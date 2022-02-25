@@ -3862,12 +3862,12 @@ Installationen kan inte fortsätta.&lt;/p&gt;</translation>
   <context>
     <name>UsersPage</name>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="167"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="177"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Om mer än en person skall använda datorn så kan du skapa flera användarkonton när inställningarna är klara.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="173"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="183"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Om mer än en person skall använda datorn så kan du skapa flera användarkonton när installationen är klar.&lt;/small&gt;</translation>
     </message>
@@ -4076,7 +4076,7 @@ Installationen kan inte fortsätta.&lt;/p&gt;</translation>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="101"/>
       <source>Create ZFS pools and datasets</source>
-      <translation type="unfinished"/>
+      <translation>Skapa ZFS pools och datasets</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="162"/>
@@ -4090,8 +4090,8 @@ Installationen kan inte fortsätta.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="181"/>
-      <source>No partitions are available for Zfs.</source>
-      <translation>Inga partitioner är tillgängliga för Zfs.</translation>
+      <source>No partitions are available for ZFS.</source>
+      <translation>Inga partitioner är tillgängliga för ZFS.</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>
@@ -4112,7 +4112,7 @@ Installationen kan inte fortsätta.&lt;/p&gt;</translation>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="330"/>
       <source>The output was: </source>
-      <translation type="unfinished"/>
+      <translation>Utdatan var:</translation>
     </message>
   </context>
   <context>

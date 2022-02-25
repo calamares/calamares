@@ -6,7 +6,7 @@
     <message>
       <location filename="../src/modules/partition/jobs/AutoMountManagementJob.cpp" line="22"/>
       <source>Manage auto-mount settings</source>
-      <translation type="unfinished"/>
+      <translation>Gestisci le impostazioni di mount automatico</translation>
     </message>
   </context>
   <context>
@@ -109,17 +109,17 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="115"/>
       <source>Reloads the stylesheet from the branding directory.</source>
-      <translation type="unfinished"/>
+      <translation>Ricarica il foglio di stile dalla cartella del marchio.</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="141"/>
       <source>Uploads the session log to the configured pastebin.</source>
-      <translation type="unfinished"/>
+      <translation>Carica i registri di sessione nel pastebin configurato.</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="144"/>
       <source>Send Session Log</source>
-      <translation type="unfinished"/>
+      <translation>Invia registro di sessione</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="118"/>
@@ -498,7 +498,7 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="32"/>
       <source>Set filesystem label on %1.</source>
-      <translation type="unfinished"/>
+      <translation>Imposta l'etichetta del filesystem a %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="39"/>
@@ -679,12 +679,12 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="272"/>
       <source>Successfully unmounted %1.</source>
-      <translation type="unfinished"/>
+      <translation>%1 smontata correttamente.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="279"/>
       <source>Successfully disabled swap %1.</source>
-      <translation type="unfinished"/>
+      <translation>Swap %1 disabilitata correttamente.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="305"/>
@@ -769,7 +769,7 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="353"/>
       <source>Set timezone to %1/%2.</source>
-      <translation type="unfinished"/>
+      <translation>Imposta fuso orario a %1/%2.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="391"/>
@@ -794,12 +794,12 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="57"/>
       <source>Network Installation. (Disabled: Internal error)</source>
-      <translation type="unfinished"/>
+      <translation>Installazione di rete (disabilitata: errore interno)</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="61"/>
       <source>Network Installation. (Disabled: No package list)</source>
-      <translation type="unfinished"/>
+      <translation>Installazione di rete (disabilitata: nessun elenco di pacchetti)</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="77"/>
@@ -864,7 +864,7 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/users/Config.cpp" line="223"/>
       <source>'%1' is not allowed as username.</source>
-      <translation type="unfinished"/>
+      <translation>'%1' non è consentito come nome utente.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="230"/>
@@ -889,7 +889,7 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/users/Config.cpp" line="289"/>
       <source>'%1' is not allowed as hostname.</source>
-      <translation type="unfinished"/>
+      <translation>'%1' non è consentito come nome host.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="295"/>
@@ -904,7 +904,7 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/users/Config.cpp" line="548"/>
       <source>OK!</source>
-      <translation type="unfinished"/>
+      <translation>OK!</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="145"/>
@@ -919,12 +919,12 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="147"/>
       <source>The setup of %1 did not complete successfully.</source>
-      <translation type="unfinished"/>
+      <translation>La configurazione di %1 non è stata completata correttamente.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="148"/>
       <source>The installation of %1 did not complete successfully.</source>
-      <translation type="unfinished"/>
+      <translation>L'installazione di %1 non è stata completata correttamente.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="152"/>
@@ -959,12 +959,12 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/packagechooser/Config.cpp" line="243"/>
       <source>Install option: &lt;strong&gt;%1&lt;/strong&gt;</source>
-      <translation type="unfinished"/>
+      <translation>Opzione di installazione: &lt;strong&gt;%1&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/Config.cpp" line="243"/>
       <source>None</source>
-      <translation type="unfinished"/>
+      <translation>Nessuno</translation>
     </message>
     <message>
       <location filename="../src/modules/summary/Config.cpp" line="94"/>
@@ -1015,7 +1015,7 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="71"/>
       <source>Primar&amp;y</source>
-      <translation type="unfinished"/>
+      <translation>Primar&amp;ia</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="81"/>
@@ -1045,12 +1045,12 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="224"/>
       <source>Label for the filesystem</source>
-      <translation type="unfinished"/>
+      <translation>Etichetta per il filesystem</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="234"/>
       <source>FS Label:</source>
-      <translation type="unfinished"/>
+      <translation>Etichetta FS:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="66"/>
@@ -1080,7 +1080,7 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="96"/>
       <source>Mountpoint must start with a &lt;tt&gt;/&lt;/tt&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Il punto di mount deve iniziare con un &lt;tt&gt;/&lt;/tt&gt;.</translation>
     </message>
   </context>
   <context>
@@ -1088,12 +1088,12 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="187"/>
       <source>Create new %1MiB partition on %3 (%2) with entries %4.</source>
-      <translation type="unfinished"/>
+      <translation>Crea nuova partizione di %1MiB su %3 (%2) con voci %4.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="195"/>
       <source>Create new %1MiB partition on %3 (%2).</source>
-      <translation type="unfinished"/>
+      <translation>Crea nuova partizione di %1MiB su %3 (%2).</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="202"/>
@@ -1103,12 +1103,12 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="219"/>
       <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2) with entries &lt;em&gt;%4&lt;/em&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Crea nuova partizione di &lt;strong&gt;%1MiB&lt;/strong&gt; su &lt;strong&gt;%3&lt;/strong&gt; (%2) con voci &lt;em&gt;%4&lt;/em&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="228"/>
       <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2).</source>
-      <translation type="unfinished"/>
+      <translation>Creare nuova partizione di &lt;strong&gt;%1MiB&lt;/strong&gt; su &lt;strong&gt;%3&lt;/strong&gt; (%2).</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="235"/>
@@ -1199,17 +1199,17 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
       <location filename="../src/modules/users/CreateUserJob.cpp" line="49"/>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="142"/>
       <source>Creating user %1</source>
-      <translation type="unfinished"/>
+      <translation>Creazione utente %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="150"/>
       <source>Configuring user %1</source>
-      <translation type="unfinished"/>
+      <translation>Configurazione utente %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="158"/>
       <source>Setting file permissions</source>
-      <translation type="unfinished"/>
+      <translation>Impostazione permessi file</translation>
     </message>
   </context>
   <context>
@@ -1369,7 +1369,7 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="54"/>
       <source>Con&amp;tent:</source>
-      <translation type="unfinished"/>
+      <translation>Con&amp;tenuto:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="64"/>
@@ -1414,12 +1414,12 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="179"/>
       <source>Label for the filesystem</source>
-      <translation type="unfinished"/>
+      <translation>Etichetta per il filesystem</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="189"/>
       <source>FS Label:</source>
-      <translation type="unfinished"/>
+      <translation>Etichetta FS:</translation>
     </message>
   </context>
   <context>
@@ -1461,7 +1461,7 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="36"/>
       <source>Details:</source>
-      <translation type="unfinished"/>
+      <translation>Dettagli:</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="52"/>
@@ -1963,7 +1963,7 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/libcalamares/locale/Tests.cpp" line="273"/>
       <source>Quit</source>
-      <translation type="unfinished"/>
+      <translation>Esci</translation>
     </message>
   </context>
   <context>
@@ -2202,7 +2202,7 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="186"/>
       <source>Zones</source>
-      <translation type="unfinished"/>
+      <translation>Zone</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="233"/>
@@ -3852,12 +3852,12 @@ Output:
   <context>
     <name>UsersPage</name>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="167"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="177"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Se più di una persona utilizzerà questo computer, puoi creare ulteriori account dopo la configurazione.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="173"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="183"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Se più di una persona utilizzerà questo computer, puoi creare ulteriori account dopo l'installazione.&lt;/small&gt;</translation>
     </message>
@@ -4080,7 +4080,7 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="181"/>
-      <source>No partitions are available for Zfs.</source>
+      <source>No partitions are available for ZFS.</source>
       <translation type="unfinished"/>
     </message>
     <message>

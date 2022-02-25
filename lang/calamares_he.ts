@@ -3884,12 +3884,12 @@ Output:
   <context>
     <name>UsersPage</name>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="167"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="177"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
       <translation>&lt;small&gt;אם מחשב זה מיועד לשימוש לטובת למעלה ממשתמש אחד, ניתן ליצור מגוון חשבונות לאחר ההתקנה.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="173"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="183"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
       <translation>&lt;small&gt;אם מחשב זה מיועד לשימוש לטובת למעלה ממשתמש אחד, ניתן ליצור מגוון חשבונות לאחר ההתקנה.&lt;/small&gt;</translation>
     </message>
@@ -4112,8 +4112,8 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="181"/>
-      <source>No partitions are available for Zfs.</source>
-      <translation>אין מחיצות זמינות ל־Zfs.</translation>
+      <source>No partitions are available for ZFS.</source>
+      <translation>אין מחיצות זמינות ל־ZFS.</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>
