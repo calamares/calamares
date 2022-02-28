@@ -99,6 +99,10 @@ querySolidAutoMount( QDBusConnection& dbus, AutoMountInfo& info )
                 result = v.toBool();
             }
         }
+        if ( !r.has_value() )
+        {
+            cDebug() << "No viable response from Solid" << r.path();
+        }
     }
     else
     {
@@ -119,6 +123,7 @@ automountDisable( bool disable )
     querySolidAutoMount( dbus, *info );
     if ( info->hasSolid )
     {
+        cDebug() << "Setting Solid automount to" << ( disable ? "disabled" : "enabled" );
         enableSolidAutoMount( dbus, !disable );
     }
 
