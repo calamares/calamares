@@ -99,7 +99,7 @@ querySolidAutoMount( QDBusConnection& dbus, AutoMountInfo& info )
                 result = v.toBool();
             }
         }
-        if ( !r.has_value() )
+        if ( !result.has_value() )
         {
             cDebug() << "No viable response from Solid" << r.path();
         }
