@@ -62,11 +62,13 @@ unmountTargetMounts( const QString& rootMountPoint )
     auto targetMounts = MtabInfo::fromMtabFilteredByPrefix( targetMountPath );
     std::sort( targetMounts.begin(), targetMounts.end(), MtabInfo::mountPointOrder );
 
+    cDebug() << "Read" << targetMounts.count() << "entries from" << targetMountPath;
     for ( const auto& m : qAsConst( targetMounts ) )
     {
+        // Returns the program's exit code, so 0 is success and non-0
+        // (truthy) is a failure.
         if ( CalamaresUtils::Partition::unmount( m.mountPoint, { "-lv" } ) )
         {
-            // Returns the program's exit code, so 0 is success
             return Calamares::JobResult::error(
                 QCoreApplication::translate( UmountJob::staticMetaObject.className(),
                                              "Could not unmount target system." ),
