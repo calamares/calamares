@@ -144,9 +144,9 @@ MtabInfo::fromMtabFilteredByPrefix( const QString& mountPrefix, const QString& m
         }
 
         QStringList parts = line.split( ' ', SplitSkipEmptyParts );
-        if ( parts.length() == 3 && !parts[ 0 ].startsWith( '#' ) )
+        if ( parts.length() >= 3 && !parts[ 0 ].startsWith( '#' ) )
         {
-            // Lines have format: <device> <mountpoint> <options>, so check
+            // Lines have format: <device> <mountpoint> <fstype> <options>..., so check
             // the mountpoint field. Everything starts with an empty string.
             if ( parts[ 1 ].startsWith( mountPrefix ) )
             {
