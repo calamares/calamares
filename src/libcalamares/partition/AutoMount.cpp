@@ -45,6 +45,26 @@ kdedCall( const QString& method )
         QStringLiteral( "org.kde.kded5" ), QStringLiteral( "/kded" ), QStringLiteral( "org.kde.kded5" ), method );
 }
 
+/** @brief Log a response from call()
+ *
+ * Logs without a function header so it is simple to use from an existing
+ * logging-block. Assumes @p r is a reply or an error message.
+ *
+ * @internal
+ */
+static void
+logDBusResponse( QDBusMessage&& r )
+{
+    if ( r.type() == QDBusMessage::ReplyMessage )
+    {
+        cDebug() << Logger::SubEntry << r.type() << "reply" << r.arguments();
+    }
+    else
+    {
+        cDebug() << Logger::SubEntry << r.type() << "error" << r.errorMessage();
+    }
+}
+
 /** @brief Enables (or disables) automount for Solid
  *
  * If @p enable is @c true, enables automount. Otherwise, disables it.
@@ -60,14 +80,14 @@ enableSolidAutoMount( QDBusConnection& dbus, bool enable )
     {
         auto msg = kdedCall( QStringLiteral( "setModuleAutoloading" ) );
         msg.setArguments( { moduleName, QVariant( enable ) } );
-        dbus.call( msg, QDBus::NoBlock );
+        logDBusResponse( dbus.call( msg, QDBus::Block ) );
     }
 
     // Stop module
     {
         auto msg = kdedCall( enable ? QStringLiteral( "loadModule" ) : QStringLiteral( "unloadModule" ) );
         msg.setArguments( { moduleName } );
-        dbus.call( msg, QDBus::NoBlock );
+        logDBusResponse( dbus.call( msg, QDBus::Block ) );
     }
 }
 
