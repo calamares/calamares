@@ -4080,7 +4080,7 @@ Output:
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="181"/>
       <source>No partitions are available for ZFS.</source>
-      <translation type="unfinished"/>
+      <translation>ZFS에 사용할 수 있는 파티션이 없습니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>
