@@ -7,16 +7,26 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.53 (unreleased) #
+# 3.2.53 (3022-03-04) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - Huang Jia Wen (new contributor! Welcome!)
 
 ## Core ##
- - No core changes yet
+ - Automount-manipulation (to switch off KDE Plasma automounting new devices)
+   now logs slightly more as it works. Defaults have changed in KDE Plasma
+   5.24 and it turns out the automount-manipulation does not work well.
+   Distro's are encouraged to turn off automount in the live ISO (see #1885).
 
 ## Modules ##
- - No module changes yet
+ - *bootloader* now knows about loongarch64 and can install suitable EFI
+   files for this CPU type. (Thanks Huang Jia Wen)
+ - Progress reporting for `pacman` from the *packages* module has been switched
+   off. The progress reporting works under low load, but there are many reports
+   of it crashing (from XeroLinux and from Evan James, who has been debugging
+   the issue) during a regular installation with thousands of updates. This
+   will be revisited in the next release.
+ - The *umount* module was buggy and did not actually unmount anything.
 
 
 # 3.2.52 (2022-02-25) #
