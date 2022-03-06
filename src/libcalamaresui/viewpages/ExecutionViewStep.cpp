@@ -30,6 +30,14 @@
 #include <QLabel>
 #include <QProgressBar>
 #include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QToolBar>
+#include <QAction>
+#include <QToolButton>
+#include <QTabWidget>
+#include <QPlainTextEdit>
+#include <QTabBar>
+#include "utils/Logger.h"
 
 static Calamares::Slideshow*
 makeSlideshow( QWidget* parent )
@@ -60,23 +68,43 @@ ExecutionViewStep::ExecutionViewStep( QObject* parent )
     , m_progressBar( new QProgressBar )
     , m_label( new QLabel )
     , m_slideshow( makeSlideshow( m_widget ) )
+    , m_tab_widget( new QTabWidget )
 {
     m_widget->setObjectName( "slideshow" );
     m_progressBar->setObjectName( "exec-progress" );
     m_label->setObjectName( "exec-message" );
 
     QVBoxLayout* layout = new QVBoxLayout( m_widget );
-    QVBoxLayout* innerLayout = new QVBoxLayout;
+    QVBoxLayout* bottomLayout = new QVBoxLayout;
+    QHBoxLayout* barLayout = new QHBoxLayout;
 
     m_progressBar->setMaximum( 10000 );
 
-    layout->addWidget( m_slideshow->widget() );
-    CalamaresUtils::unmarginLayout( layout );
-    layout->addLayout( innerLayout );
+    auto m_log_widget = new QPlainTextEdit;
+    m_log_widget->setReadOnly(true);
 
-    innerLayout->addSpacing( CalamaresUtils::defaultFontHeight() / 2 );
-    innerLayout->addWidget( m_progressBar );
-    innerLayout->addWidget( m_label );
+
+    m_tab_widget->addTab(m_slideshow->widget(), "Slideshow");
+    m_tab_widget->addTab(m_log_widget, "Log");
+    m_tab_widget->tabBar()->hide();
+
+    layout->addWidget( m_tab_widget );
+    CalamaresUtils::unmarginLayout( layout );
+    layout->addLayout( bottomLayout );
+
+    bottomLayout->addSpacing( CalamaresUtils::defaultFontHeight() / 2 );
+    bottomLayout->addLayout( barLayout );
+    bottomLayout->addWidget( m_label );
+
+    QToolBar* toolBar = new QToolBar;
+    auto toggleLogAction = toolBar->addAction(QIcon::fromTheme("file-icon"), "Toggle log");
+    auto toggleLogButton = dynamic_cast<QToolButton*>(toolBar->widgetForAction(toggleLogAction));
+    connect( toggleLogButton, &QToolButton::clicked, this, &ExecutionViewStep::toggleLog );
+
+
+    barLayout->addWidget(m_progressBar);
+    barLayout->addWidget(toolBar);
+
 
     connect( JobQueue::instance(), &JobQueue::progress, this, &ExecutionViewStep::updateFromJobQueue );
 }
@@ -198,6 +226,12 @@ ExecutionViewStep::updateFromJobQueue( qreal percent, const QString& message )
     {
         m_label->setText( message );
     }
+}
+
+void
+ExecutionViewStep::toggleLog()
+{
+    m_tab_widget->setCurrentIndex((m_tab_widget->currentIndex() + 1) % m_tab_widget->count());
 }
 
 void

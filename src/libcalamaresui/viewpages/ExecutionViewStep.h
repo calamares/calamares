@@ -19,6 +19,8 @@
 class QLabel;
 class QObject;
 class QProgressBar;
+class QTabWidget;
+class QPlainTextEdit;
 
 namespace Calamares
 {
@@ -56,10 +58,14 @@ private:
     QProgressBar* m_progressBar;
     QLabel* m_label;
     Slideshow* m_slideshow;
+    QTabWidget* m_tab_widget;
+    QPlainTextEdit* m_log_widget;
 
     QList< ModuleSystem::InstanceKey > m_jobInstanceKeys;
 
     void updateFromJobQueue( qreal percent, const QString& message );
+
+    void toggleLog();
 };
 
 }  // namespace Calamares
