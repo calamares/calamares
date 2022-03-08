@@ -982,10 +982,6 @@ PartitionCoreModule::layoutApply( Device* dev,
         {
             part->setLabel( "boot" );
         }
-        if ( is_root( part ) )
-        {
-            part->setLabel( "root" );
-        }
         if ( ( separate_boot_partition && is_boot( part ) ) || ( !separate_boot_partition && is_root( part ) ) )
         {
             createPartition(
