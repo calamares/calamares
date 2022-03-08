@@ -13,8 +13,26 @@
 
 #include "ui_EncryptWidget.h"
 
+#include "Branding.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Retranslator.h"
+
+/** @brief Does this system support whole-disk encryption?
+ *
+ * Returns @c true if the system is likely to support encryption
+ * with sufficient performance to be usable. A machine that can't
+ * doe hardware-assisted AES is **probably** too slow, so we could
+ * warn the user that ticking the "encrypt system" box is a bad
+ * idea.
+ *
+ * Since we don't have an oracle that can answer that question,
+ * just pretend every system can do it.
+ */
+static inline bool
+systemSupportsEncryptionAcceptably()
+{
+    return true;
+}
 
 EncryptWidget::EncryptWidget( QWidget* parent )
     : QWidget( parent )
@@ -27,6 +45,18 @@ EncryptWidget::EncryptWidget( QWidget* parent )
     m_ui->m_passphraseLineEdit->hide();
     m_ui->m_confirmLineEdit->hide();
     m_ui->m_iconLabel->hide();
+    // TODO: this deserves better rendering, an icon or something, but that will
+    //       depend on having a non-bogus implementation of systemSupportsEncryptionAcceptably
+    if ( systemSupportsEncryptionAcceptably() )
+    {
+        m_ui->m_encryptionUnsupportedLabel->hide();
+    }
+    else
+    {
+        // This is really ugly, but the character is unicode "unlocked"
+        m_ui->m_encryptionUnsupportedLabel->setText( QStringLiteral( "🔓" ) );
+        m_ui->m_encryptionUnsupportedLabel->show();
+    }
 
     connect( m_ui->m_encryptCheckBox, &QCheckBox::stateChanged, this, &EncryptWidget::onCheckBoxStateChanged );
     connect( m_ui->m_passphraseLineEdit, &QLineEdit::textEdited, this, &EncryptWidget::onPassphraseEdited );

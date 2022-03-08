@@ -171,7 +171,7 @@
   <context>
     <name>Calamares::JobThread</name>
     <message>
-      <location filename="../src/libcalamares/JobQueue.cpp" line="201"/>
+      <location filename="../src/libcalamares/JobQueue.cpp" line="202"/>
       <source>Done</source>
       <translation>হৈ গ'ল</translation>
     </message>
@@ -187,17 +187,17 @@
   <context>
     <name>Calamares::ProcessJob</name>
     <message>
-      <location filename="../src/libcalamares/ProcessJob.cpp" line="43"/>
+      <location filename="../src/libcalamares/ProcessJob.cpp" line="42"/>
       <source>Run command '%1' in target system.</source>
       <translation>গন্তব্য চিছটেমত '%1' কমাণ্ড চলাওক।</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/ProcessJob.cpp" line="43"/>
+      <location filename="../src/libcalamares/ProcessJob.cpp" line="42"/>
       <source> Run command '%1'.</source>
       <translation>'%1' কমাণ্ড চলাওক।</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/ProcessJob.cpp" line="50"/>
+      <location filename="../src/libcalamares/ProcessJob.cpp" line="49"/>
       <source>Running command %1 %2</source>
       <translation> %1%2 কমাণ্ড চলি আছে</translation>
     </message>
@@ -205,32 +205,32 @@
   <context>
     <name>Calamares::PythonJob</name>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="194"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="233"/>
       <source>Running %1 operation.</source>
       <translation>%1 কাৰ্য চলি আছে।</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="223"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="262"/>
       <source>Bad working directory path</source>
       <translation>বেয়া কৰ্মৰত ডাইৰেক্টৰী পথ</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="224"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="263"/>
       <source>Working directory %1 for python job %2 is not readable.</source>
       <translation>%2 পাইথন কাৰ্য্যৰ %1 কৰ্মৰত ডাইৰেক্টৰী পঢ়িব নোৱাৰি।​</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="230"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="269"/>
       <source>Bad main script file</source>
       <translation>বেয়া মুখ্য লিপি ফাইল</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="231"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="270"/>
       <source>Main script file %1 for python job %2 is not readable.</source>
       <translation>%2 পাইথন কাৰ্য্যৰ %1 মূখ্য লিপি ফাইল পঢ়িব নোৱাৰি।</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="304"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="343"/>
       <source>Boost.Python error in job "%1".</source>
       <translation>"%1"  কাৰ্য্যত Boost.Python ত্ৰুটি।</translation>
     </message>
@@ -285,52 +285,47 @@
   <context>
     <name>Calamares::ViewManager</name>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="162"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="160"/>
       <source>Setup Failed</source>
       <translation>চেত্ আপ বিফল হ'ল</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="162"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="160"/>
       <source>Installation Failed</source>
       <translation>ইনস্তলেচন বিফল হ'ল</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="163"/>
-      <source>Would you like to paste the install log to the web?</source>
-      <translation>আপুনি ৱেবত ইণ্স্টল ল'গ পেস্ট কৰিব বিচাৰে নেকি?</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="179"/>
       <source>Error</source>
       <translation>ত্ৰুটি</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="88"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="90"/>
       <source>&amp;Yes</source>
       <translation>হয় (&amp;Y)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="89"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="91"/>
       <source>&amp;No</source>
       <translation>নহয় (&amp;N)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="90"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="92"/>
       <source>&amp;Close</source>
       <translation>বন্ধ (&amp;C)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/utils/Paste.cpp" line="183"/>
+      <location filename="../src/libcalamaresui/utils/Paste.cpp" line="184"/>
       <source>Install Log Paste URL</source>
       <translation>ইনস্তল​ ল'গ পেস্ট URL</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/utils/Paste.cpp" line="165"/>
+      <location filename="../src/libcalamaresui/utils/Paste.cpp" line="166"/>
       <source>The upload was unsuccessful. No web-paste was done.</source>
       <translation>আপলোড বিফল হৈছিল। কোনো ৱেব-পেস্ট কৰা হোৱা নাছিল।</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/utils/Paste.cpp" line="177"/>
+      <location filename="../src/libcalamaresui/utils/Paste.cpp" line="178"/>
       <source>Install log posted to
 
 %1
@@ -339,124 +334,124 @@ Link copied to clipboard</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="211"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="189"/>
       <source>Calamares Initialization Failed</source>
       <translation>কেলামাৰেচৰ আৰম্ভণি বিফল হ'ল</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="212"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="190"/>
       <source>%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution.</source>
       <translation>%1 ইনস্তল কৰিব পৰা নগ'ল। কেলামাৰেচে সকলোবোৰ সংৰূপ দিয়া মডিউল লোড্ কৰাত সফল নহ'ল। এইটো এটা আপোনাৰ ডিষ্ট্ৰিবিউচনে কি ধৰণে কেলামাৰেচ ব্যৱহাৰ কৰিছে, সেই সম্বন্ধীয় সমস্যা।</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="218"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="196"/>
       <source>&lt;br/&gt;The following modules could not be loaded:</source>
       <translation>&lt;br/&gt;নিম্নোক্ত মডিউলবোৰ লোড্ কৰিৱ পৰা নগ'ল:</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="332"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="310"/>
       <source>Continue with setup?</source>
       <translation>চেত্ আপ অব্যাহত ৰাখিব?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="332"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="310"/>
       <source>Continue with installation?</source>
       <translation>ইন্স্তলেচন অব্যাহত ৰাখিব?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="334"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="312"/>
       <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
       <translation>%1 চেত্ আপ প্ৰগ্ৰেমটোৱে %2 চেত্ আপ কৰিবলৈ আপোনাৰ ডিস্কত সালসলনি কৰিব।&lt;br/&gt;&lt;strong&gt;আপুনি এইবোৰ পিছত পূৰ্বলৈ সলনি কৰিব নোৱাৰিব।&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="337"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="315"/>
       <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
       <translation>%1 ইনস্তলাৰটোৱে %2 ইনস্তল কৰিবলৈ আপোনাৰ ডিস্কত সালসলনি কৰিব।&lt;br/&gt;&lt;strong&gt;আপুনি এইবোৰ পিছত পূৰ্বলৈ সলনি কৰিব নোৱাৰিব।&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="340"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="318"/>
       <source>&amp;Set up now</source>
       <translation>এতিয়া চেত্ আপ কৰক (&amp;S)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="340"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="318"/>
       <source>&amp;Install now</source>
       <translation>এতিয়া ইনস্তল কৰক (&amp;I)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="348"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="326"/>
       <source>Go &amp;back</source>
       <translation>উভতি যাওক (&amp;b)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="398"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="376"/>
       <source>&amp;Set up</source>
       <translation>চেত্ আপ কৰক (&amp;S)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="398"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="376"/>
       <source>&amp;Install</source>
       <translation>ইনস্তল (&amp;I)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="400"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="378"/>
       <source>Setup is complete. Close the setup program.</source>
       <translation>চেত্ আপ সম্পূৰ্ণ হ'ল। প্ৰোগ্ৰেম বন্ধ কৰক।</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="401"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="379"/>
       <source>The installation is complete. Close the installer.</source>
       <translation>ইনস্তলেচন সম্পূৰ্ণ হ'ল। ইন্স্তলাৰ বন্ধ কৰক।</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="403"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="381"/>
       <source>Cancel setup without changing the system.</source>
       <translation>চিছ্তেম সলনি নকৰাকৈ চেত্ আপ বাতিল কৰক।</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="404"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="382"/>
       <source>Cancel installation without changing the system.</source>
       <translation>চিছ্তেম সলনি নকৰাকৈ ইনস্তলেচন বাতিল কৰক।</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="414"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="392"/>
       <source>&amp;Next</source>
       <translation>পৰবর্তী (&amp;N)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="419"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="397"/>
       <source>&amp;Back</source>
       <translation>পাছলৈ (&amp;B)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="425"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="403"/>
       <source>&amp;Done</source>
       <translation>হৈ গ'ল (&amp;D)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="444"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="422"/>
       <source>&amp;Cancel</source>
       <translation>বাতিল কৰক (&amp;C)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="517"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="495"/>
       <source>Cancel setup?</source>
       <translation>চেত্ আপ বাতিল কৰিব?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="517"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="495"/>
       <source>Cancel installation?</source>
       <translation>ইনস্তলেছন বাতিল কৰিব?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="518"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="496"/>
       <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
       <translation>সচাকৈয়ে চলিত চেত্ আপ প্ৰক্ৰিয়া বাতিল কৰিব বিচাৰে নেকি?
 চেত্ আপ প্ৰোগ্ৰেম বন্ধ হ'ব আৰু গোটেই সলনিবোৰ নোহোৱা হৈ যাব।</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="520"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="498"/>
       <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
       <translation>সচাকৈয়ে চলিত ইনস্তল প্ৰক্ৰিয়া বাতিল কৰিব বিচাৰে নেকি?
@@ -466,22 +461,22 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>CalamaresPython::Helper</name>
     <message>
-      <location filename="../src/libcalamares/PythonHelper.cpp" line="294"/>
+      <location filename="../src/libcalamares/PythonHelper.cpp" line="302"/>
       <source>Unknown exception type</source>
       <translation>অপৰিচিত প্ৰকাৰৰ ব্যতিক্রম</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonHelper.cpp" line="312"/>
+      <location filename="../src/libcalamares/PythonHelper.cpp" line="320"/>
       <source>unparseable Python error</source>
       <translation>অপ্ৰাপ্য পাইথন ত্ৰুটি</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonHelper.cpp" line="356"/>
+      <location filename="../src/libcalamares/PythonHelper.cpp" line="364"/>
       <source>unparseable Python traceback</source>
       <translation>অপ্ৰাপ্য পাইথন ত্ৰেচবেক</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonHelper.cpp" line="363"/>
+      <location filename="../src/libcalamares/PythonHelper.cpp" line="371"/>
       <source>Unfetchable Python error.</source>
       <translation>ঢুকি নোপোৱা পাইথন ক্ৰুটি।</translation>
     </message>
@@ -533,149 +528,149 @@ The installer will quit and all changes will be lost.</source>
       <translation>ৰূপ</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="139"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="137"/>
       <source>Select storage de&amp;vice:</source>
       <translation>স্তোৰেজ ডিভাইচ চয়ণ কৰক (&amp;v):</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="140"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="996"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1042"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1133"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="138"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1014"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1062"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1159"/>
       <source>Current:</source>
       <translation>বর্তমান:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="141"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="139"/>
       <source>After:</source>
       <translation>পিছত:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1671"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1723"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
       <translation>&lt;strong&gt;মেনুৱেল  বিভাজন&lt;/strong&gt;&lt;br/&gt;আপুনি নিজে বিভাজন বনাব বা বিভজনৰ আয়তন সলনি কৰিব পাৰে।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="861"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="879"/>
       <source>Reuse %1 as home partition for %2.</source>
       <translation>%1ক %2ৰ গৃহ বিভাজন হিচাপে পুনৰ ব্যৱহাৰ কৰক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="997"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1015"/>
       <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;আয়তন সলনি কৰিবলৈ বিভাজন বাচনি কৰক, তাৰ পিছত তলৰ "বাৰ্" ডালৰ সহায়ত আয়তন চেত্ কৰক&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1014"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1033"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
       <translation>%1 বিভজনক সৰু কৰি %2MiB কৰা হ'ব আৰু %4ৰ বাবে %3MiBৰ নতুন বিভজন বনোৱা হ'ব।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1071"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1091"/>
       <source>Boot loader location:</source>
       <translation>বুত্ লোডাৰৰ অৱস্থান:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1124"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1150"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;ইনস্তল​ কৰিবলৈ এখন বিভাজন চয়ন কৰক&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1183"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1209"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation>এই চিছটেমত এখনো EFI চিছটেম বিভাজন কতো পোৱা নগ'ল। অনুগ্ৰহ কৰি উভতি যাওক আৰু মেনুৱেল বিভাজন প্ৰক্ৰিয়া দ্বাৰা %1 চেত্ আপ কৰক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1191"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1217"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>%1ত থকা EFI চিছটেম বিভাজনটো %2ক আৰম্ভ কৰাৰ বাবে ব্যৱহাৰ কৰা হ'ব।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1199"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1225"/>
       <source>EFI system partition:</source>
       <translation>EFI চিছটেম বিভাজন:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1334"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1385"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>এইটো ষ্টোৰেজ ডিভাইচত কোনো অপাৰেটিং চিছটেম নাই যেন লাগে। আপুনি কি কৰিব বিচাৰে?&lt;br/&gt;আপুনি ষ্টোৰেজ ডিভাইচটোত কিবা সলনি কৰাৰ আগতে পুনৰীক্ষণ আৰু চয়ন নিশ্চিত কৰিব পাৰিব।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1339"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1376"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1398"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1423"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1390"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1427"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1449"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1474"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
       <translation>&lt;strong&gt;ডিস্কত থকা গোটেই ডাটা আতৰাওক।&lt;/strong&gt;&lt;br/&gt; ইয়াৰ দ্ৱাৰা ষ্টোৰেজ ডিভাইছত বৰ্তমান থকা সকলো ডাটা &lt;font color="red"&gt;বিলোপ&lt;/font&gt; কৰা হ'ব।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1343"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1372"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1394"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1419"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1423"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1445"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1470"/>
       <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
       <translation>&lt;strong&gt;সমান্তৰালভাৱে ইনস্তল কৰক&lt;/strong&gt;&lt;br/&gt; ইনস্তলাৰটোৱে %1ক ইনস্তল​ কৰাৰ বাবে এখন বিভাজন সৰু কৰি দিব।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1347"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1381"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1402"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1427"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1398"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1432"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1453"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1478"/>
       <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
       <translation>&lt;strong&gt;বিভাজন সলনি কৰক&lt;/strong&gt; &lt;br/&gt;এখন বিভাজনক % ৰ্ সৈতে সলনি কৰক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1366"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1417"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>এইটো ষ্টোৰেজ ডিভাইচত %1 আছে। &lt;br/&gt; আপুনি কি কৰিব বিচাৰে? ষ্টোৰেজ ডিভাইচটোত যিকোনো সলনি কৰাৰ আগত আপুনি পুনৰীক্ষণ আৰু সলনি কৰিব পাৰিব।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1389"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1440"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>এইটো ষ্টোৰেজ ডিভাইচত ইতিমধ্যে এটা অপাৰেটিং চিছটেম আছে। আপুনি কি কৰিব বিচাৰে? &lt;br/&gt;ষ্টোৰেজ ডিভাইচটোত যিকোনো সলনি কৰাৰ আগত আপুনি পুনৰীক্ষণ আৰু সলনি কৰিব পাৰিব।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1414"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1465"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>এইটো ষ্টোৰেজ ডিভাইচত একাধিক এটা অপাৰেটিং চিছটেম আছে। আপুনি কি কৰিব বিচাৰে? 1ষ্টোৰেজ ডিভাইচটোত যিকোনো সলনি কৰাৰ আগত আপুনি পুনৰীক্ষণ আৰু সলনি কৰিব পাৰিব।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1486"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1537"/>
       <source>This storage device already has an operating system on it, but the partition table &lt;strong&gt;%1&lt;/strong&gt; is different from the needed &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1509"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1560"/>
       <source>This storage device has one of its partitions &lt;strong&gt;mounted&lt;/strong&gt;.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1514"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1565"/>
       <source>This storage device is a part of an &lt;strong&gt;inactive RAID&lt;/strong&gt; device.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1641"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1692"/>
       <source>No Swap</source>
       <translation>কোনো স্ৱেপ নাই</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1649"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1701"/>
       <source>Reuse Swap</source>
       <translation>স্ৱেপ পুনৰ ব্যৱহাৰ কৰক</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1652"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1704"/>
       <source>Swap (no Hibernate)</source>
       <translation>স্ৱেপ (হাইবাৰনেট নোহোৱাকৈ)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1655"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1707"/>
       <source>Swap (with Hibernate)</source>
       <translation>স্ৱোআপ (হাইবাৰনেটৰ সৈতে)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1658"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1710"/>
       <source>Swap to file</source>
       <translation>ফাইললৈ স্ৱোআপ কৰক।</translation>
     </message>
@@ -683,42 +678,42 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>ClearMountsJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="259"/>
+      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="272"/>
       <source>Successfully unmounted %1.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="266"/>
+      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="279"/>
       <source>Successfully disabled swap %1.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="292"/>
+      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="305"/>
       <source>Successfully cleared swap %1.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="306"/>
+      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="319"/>
       <source>Successfully closed mapper device %1.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="319"/>
+      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="332"/>
       <source>Successfully disabled volume group %1.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="358"/>
+      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="371"/>
       <source>Clear mounts for partitioning operations on %1</source>
       <translation>%1ত বিভাজন কৰ্য্যৰ বাবে মাউণ্ট্ আতৰাওক</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="364"/>
+      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="377"/>
       <source>Clearing mounts for partitioning operations on %1.</source>
       <translation>%1ত বিভাজন কৰ্য্যৰ বাবে মাউণ্ট্ আতৰ কৰি আছে।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="383"/>
+      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="396"/>
       <source>Cleared all mounts for %1</source>
       <translation>%1ৰ গোটেই মাউন্ত আতৰোৱা হ'ল</translation>
     </message>
@@ -726,22 +721,17 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>ClearTempMountsJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="32"/>
+      <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="33"/>
       <source>Clear all temporary mounts.</source>
       <translation>গোটেই অস্থায়ী মাউন্ত আঁতৰাওক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="39"/>
+      <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="40"/>
       <source>Clearing all temporary mounts.</source>
       <translation>গোটেই অস্থায়ী মাউন্ত আঁতৰোৱা হৈ আছে।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="52"/>
-      <source>Cannot get list of temporary mounts.</source>
-      <translation>অস্থায়ী মাউন্তৰ সূচী পোৱা নগ'ল।</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="97"/>
+      <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="70"/>
       <source>Cleared all temporary mounts.</source>
       <translation>গোটেই অস্থায়ী মাউন্ত আঁতৰোৱা হ'ল।</translation>
     </message>
@@ -778,17 +768,17 @@ The installer will quit and all changes will be lost.</source>
       <translation>কিবোৰ্ডৰ লেআউট %1/%2 চেট্ কৰক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="342"/>
+      <location filename="../src/modules/locale/Config.cpp" line="353"/>
       <source>Set timezone to %1/%2.</source>
       <translation>সময় অঞ্চলৰ সিদ্ধান্ত কৰক %`1%2</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="380"/>
+      <location filename="../src/modules/locale/Config.cpp" line="391"/>
       <source>The system language will be set to %1.</source>
       <translation>চিছটেমৰ ভাষা %1লৈ সলনি কৰা হ'ব।</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="387"/>
+      <location filename="../src/modules/locale/Config.cpp" line="398"/>
       <source>The numbers and dates locale will be set to %1.</source>
       <translation>সংখ্যা আৰু তাৰিখ স্থানীয় %1লৈ সলনি কৰা হ'ব।</translation>
     </message>
@@ -958,22 +948,22 @@ The installer will quit and all changes will be lost.</source>
       <translation>%1ৰ ইনস্তলচেন সম্পুৰ্ণ হ'ল।</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/Config.cpp" line="86"/>
+      <location filename="../src/modules/packagechooser/Config.cpp" line="111"/>
       <source>Package Selection</source>
       <translation>পেকেজ নিৰ্বাচন</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/Config.cpp" line="88"/>
+      <location filename="../src/modules/packagechooser/Config.cpp" line="113"/>
       <source>Please pick a product from the list. The selected product will be installed.</source>
       <translation>সুচীৰ পৰা পণ্য এটা বাচনি কৰক। বাচনি কৰা পণ্যটো ইনস্তল হ'ব।</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/Config.cpp" line="177"/>
+      <location filename="../src/modules/packagechooser/Config.cpp" line="243"/>
       <source>Install option: &lt;strong&gt;%1&lt;/strong&gt;</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/Config.cpp" line="177"/>
+      <location filename="../src/modules/packagechooser/Config.cpp" line="243"/>
       <source>None</source>
       <translation type="unfinished"/>
     </message>
@@ -1025,8 +1015,8 @@ The installer will quit and all changes will be lost.</source>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="71"/>
-      <source>&amp;Primary</source>
-      <translation>মুখ্য (&amp;P)</translation>
+      <source>Primar&amp;y</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="81"/>
@@ -1049,86 +1039,91 @@ The installer will quit and all changes will be lost.</source>
       <translation>মাউন্ট পইন্ট (&amp;M):</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="192"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="191"/>
       <source>Flags:</source>
       <translation>ফ্লেগ সমূহ:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="231"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="224"/>
       <source>Label for the filesystem</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="241"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="234"/>
       <source>FS Label:</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="65"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="66"/>
       <source>En&amp;crypt</source>
       <translation>এনক্ৰিপ্ত্ (&amp;c)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="191"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="194"/>
       <source>Logical</source>
       <translation>যুক্তিসম্মত</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="196"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="199"/>
       <source>Primary</source>
       <translation>মূখ্য</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="215"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="218"/>
       <source>GPT</source>
       <translation>GPT</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="301"/>
+      <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="91"/>
       <source>Mountpoint already in use. Please select another one.</source>
       <translation>এইটো মাওন্ট্ পইন্ট্ ইতিমধ্যে ব্যৱহাৰ হৈ আছে। অনুগ্ৰহ কৰি বেলেগ এটা বাচনি কৰক।</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="96"/>
+      <source>Mountpoint must start with a &lt;tt&gt;/&lt;/tt&gt;.</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
     <name>CreatePartitionJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="113"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="187"/>
       <source>Create new %1MiB partition on %3 (%2) with entries %4.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="121"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="195"/>
       <source>Create new %1MiB partition on %3 (%2).</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="128"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="202"/>
       <source>Create new %2MiB partition on %4 (%3) with file system %1.</source>
       <translation>%1 ফাইল চিছটেমৰ সৈতে %4 (%3) ত %2MiBৰ নতুন বিভাজন বনাওক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="145"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="219"/>
       <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2) with entries &lt;em&gt;%4&lt;/em&gt;.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="154"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="228"/>
       <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2).</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="161"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="235"/>
       <source>Create new &lt;strong&gt;%2MiB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>&lt;strong&gt;%4&lt;/strong&gt;ত নতুন (%3) &lt;strong&gt;%1&lt;/strong&gt; ফাইল চিছটেমৰ &lt;strong&gt;%2MiB&lt;/strong&gt; বিভাজন কৰক। </translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="186"/>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="189"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="260"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="263"/>
       <source>Creating new %1 partition on %2.</source>
       <translation>%2ত নতুন %1 বিভজন বনাই আছে।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="201"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="280"/>
       <source>The installer failed to create partition on disk '%1'.</source>
       <translation>'%1' ডিস্কত নতুন বিভাজন বনোৱাত ইনস্তলাৰটো বিফল হ'ল।</translation>
     </message>
@@ -1164,22 +1159,22 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>CreatePartitionTableJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="39"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="41"/>
       <source>Create new %1 partition table on %2.</source>
       <translation>%2ত নতুন %1 বিভাজন তালিকা বনাওক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="47"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="49"/>
       <source>Create new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
       <translation>&lt;strong&gt;%2&lt;/strong&gt; (%3)ত নতুন &lt;strong&gt;%1&lt;/strong&gt; বিভাজন তালিকা বনাওক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="57"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="59"/>
       <source>Creating new %1 partition table on %2.</source>
       <translation>%2ত নতুন %1 বিভাজন তালিকা বনোৱা হৈ আছে।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="67"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="88"/>
       <source>The installer failed to create a partition table on %1.</source>
       <translation>ইন্স্তলাৰটো %1ত বিভাজন তালিকা বনোৱাত বিফল হ'ল।</translation>
     </message>
@@ -1187,33 +1182,33 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>CreateUserJob</name>
     <message>
-      <location filename="../src/modules/users/CreateUserJob.cpp" line="36"/>
+      <location filename="../src/modules/users/CreateUserJob.cpp" line="35"/>
       <source>Create user %1</source>
       <translation>%1 ব্যৱহাৰকৰ্তা বনাওক</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CreateUserJob.cpp" line="43"/>
+      <location filename="../src/modules/users/CreateUserJob.cpp" line="42"/>
       <source>Create user &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>&lt;strong&gt;%1&lt;/strong&gt; ব্যৱহাৰকৰ্তা বনাওক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CreateUserJob.cpp" line="126"/>
+      <location filename="../src/modules/users/CreateUserJob.cpp" line="125"/>
       <source>Preserving home directory</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/users/CreateUserJob.cpp" line="50"/>
-      <location filename="../src/modules/users/CreateUserJob.cpp" line="143"/>
+      <location filename="../src/modules/users/CreateUserJob.cpp" line="49"/>
+      <location filename="../src/modules/users/CreateUserJob.cpp" line="142"/>
       <source>Creating user %1</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/users/CreateUserJob.cpp" line="151"/>
+      <location filename="../src/modules/users/CreateUserJob.cpp" line="150"/>
       <source>Configuring user %1</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/users/CreateUserJob.cpp" line="159"/>
+      <location filename="../src/modules/users/CreateUserJob.cpp" line="158"/>
       <source>Setting file permissions</source>
       <translation type="unfinished"/>
     </message>
@@ -1229,22 +1224,22 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>CreateVolumeGroupJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="31"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="32"/>
       <source>Create new volume group named %1.</source>
       <translation>%1 নামৰ নতুন ভলিউম্ গোট বনাওক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="37"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="38"/>
       <source>Create new volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>&lt;strong&gt;%1&lt;/strong&gt; নামৰ নতুন ভলিউম্ গোট বনাওক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="43"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="44"/>
       <source>Creating new volume group named %1.</source>
       <translation>%1 নামৰ নতুন ভলিউম্ গোট বনোৱা হৈ আছে।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="55"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="51"/>
       <source>The installer failed to create a volume group named '%1'.</source>
       <translation>ইন্স্তলাৰটোৱে '%1' নামৰ নতুন ভলিউম্ গোট বনোৱাত বিফল হৈছে।</translation>
     </message>
@@ -1252,18 +1247,18 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>DeactivateVolumeGroupJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="24"/>
-      <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="36"/>
+      <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="26"/>
+      <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="38"/>
       <source>Deactivate volume group named %1.</source>
       <translation>%1 নামৰ ভলিউম গোট নিস্ক্ৰিয় কৰক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="30"/>
+      <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="32"/>
       <source>Deactivate volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>&lt;strong&gt;%1&lt;/strong&gt; নামৰ ভলিউম গোট নিস্ক্ৰিয় কৰক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="48"/>
+      <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="46"/>
       <source>The installer failed to deactivate a volume group named %1.</source>
       <translation>ইনস্তলাৰটো %1 নামৰ ভলিউম গোট নিস্ক্ৰিয় কৰাত বিফল হ'ল।</translation>
     </message>
@@ -1271,22 +1266,22 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>DeletePartitionJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="71"/>
+      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="73"/>
       <source>Delete partition %1.</source>
       <translation>%1 বিভাজন বিলোপ কৰক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="78"/>
+      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="80"/>
       <source>Delete partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>&lt;strong&gt;%1&lt;/strong&gt; বিভাজন ডিলিট কৰক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="85"/>
+      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="87"/>
       <source>Deleting partition %1.</source>
       <translation>%1 বিভাজন বিলোপ কৰা হৈ আছে।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="103"/>
+      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="102"/>
       <source>The installer failed to delete partition %1.</source>
       <translation>ইনস্তলাৰটো %1 বিভাজন বিলোপ কৰাত বিফল হ'ল।</translation>
     </message>
@@ -1294,32 +1289,32 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>DeviceInfoWidget</name>
     <message>
-      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="97"/>
+      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="143"/>
       <source>This device has a &lt;strong&gt;%1&lt;/strong&gt; partition table.</source>
       <translation>এইটো ডিভাইচত এখন &lt;strong&gt;%1&lt;/strong&gt; বিভাজন তালিকা আছে।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="104"/>
+      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="97"/>
       <source>This is a &lt;strong&gt;loop&lt;/strong&gt; device.&lt;br&gt;&lt;br&gt;It is a pseudo-device with no partition table that makes a file accessible as a block device. This kind of setup usually only contains a single filesystem.</source>
       <translation>এইটো এটা &lt;strong&gt;লুপ&lt;/strong&gt; ডিভাইচ। &lt;br&gt;&lt;br&gt;এইটো স্য়ুড্' ডিভাইচত কোনো বিভাজন তালিকা নাই যিয়ে ফাইলক ব্লোক ডিভাইচ ৰূপে ব্যৱহাৰ কৰিব পাৰা কৰিব। এইধৰণৰ চেত্ আপত সাধাৰণতে একক ফাইল চিছটেম থাকে।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="111"/>
+      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="108"/>
       <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
       <translation>ইনস্তলাৰটোৱে বচনি কৰা ষ্টোৰেজ ডিভাইচত বিভাজন তালিকা বিচাৰি নাপলে। ডিভাইচটোত কোনো বিভাজন তালিকা নাই বা বিভাজন তালিকা বেয়া বা অগ্যাত প্ৰকাৰ। এই ইনস্তলাৰটোৱে আপোনাৰ বাবে নতুন বিভাজন তালিকা স্বত:ভাৱে বনাব পাৰে বা মেন্যুৱেল বিভাজন পেজৰ দ্বাৰা বনাব পাৰে।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="121"/>
+      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="91"/>
       <source>&lt;br&gt;&lt;br&gt;This is the recommended partition table type for modern systems which start from an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.</source>
       <translation>&lt;br&gt;&lt;br&gt;&lt;strong&gt;EFI&lt;/strong&gt; বুট পৰিবেশত আৰম্ভ হোৱা আধুনিক চিছটেমবোৰৰ কাৰণে এইটো পৰমৰ্শ কৰা বিভাজন তালিকা।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="127"/>
+      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="80"/>
       <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. GPT is recommended in most other cases.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MBR partition table is an obsolete MS-DOS era standard.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.</source>
       <translation>&lt;br&gt;&lt;br&gt;এইটো বিভাজন তালিকা কেৱল &lt;strong&gt;BIOS&lt;/strong&gt; বুট পৰিৱেশৰ পৰা আৰম্ভ হোৱা পুৰণি চিছটেমৰ বাবে গ্ৰহণ কৰা হয়। বাকী সকলোবোৰৰ বাবে GPT উপযুক্ত।&lt;br&gt;&lt;br&gt;&lt;strong&gt;সতৰ্কবাণী:&lt;/strong&gt; MBR বিভাজন তালিকা পুৰণি MS-DOS ৰ যুগৰ পদ্ধতি। &lt;br&gt;ইয়াত কেৱল 4 &lt;em&gt;মূখ্য&lt;/em&gt; বিভাজন বনাব পাৰি, ইয়াৰ পৰা এটা &lt;em&gt;প্ৰসাৰণ&lt;/em&gt; কৰিব পাৰি আৰু ইযাৰ ভিতৰত &lt;em&gt;logical&lt;/em&gt; বিভাজন ৰাখিব পাৰি।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="140"/>
+      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="151"/>
       <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
       <translation>বাচনি কৰা ডিভাইচৰ বিভাজন তালিকাৰ প্ৰকাৰ। বিভাজন তালিকা বিলোপ কৰি আকৌ আৰম্ভনিৰ পৰা বনাইহে বিভাজন তালিকাৰ প্ৰকাৰ সলনি কৰিব পাৰি, যিয়ে ষ্টোৰেজ ডিভাইচত থকা গোটেই ডাটা বিলোপ কৰিব। যদি আপুনি বেলেগ একো বাচনি নকৰে, ইনস্তলাৰটোৱে বৰ্তমানৰ বিভাজন তালিকা প্ৰয়োগ কৰিব। যদি আপুনি নিশ্চিত নহয়, আধুনিক চিছটেমত GPT বাচনি কৰক।</translation>
     </message>
@@ -1327,13 +1322,13 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>DeviceModel</name>
     <message>
-      <location filename="../src/modules/partition/core/DeviceModel.cpp" line="84"/>
+      <location filename="../src/modules/partition/core/DeviceModel.cpp" line="82"/>
       <source>%1 - %2 (%3)</source>
       <extracomment>device[name] - size[number] (device-node[name])</extracomment>
       <translation>%1 - %2 (%3)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/DeviceModel.cpp" line="95"/>
+      <location filename="../src/modules/partition/core/DeviceModel.cpp" line="93"/>
       <source>%1 - (%2)</source>
       <extracomment>device[name] - (device-node[name])</extracomment>
       <translation>%1 - (%2)</translation>
@@ -1360,7 +1355,7 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>DummyCppJob</name>
     <message>
-      <location filename="../src/modules/dummycpp/DummyCppJob.cpp" line="37"/>
+      <location filename="../src/modules/dummycpp/DummyCppJob.cpp" line="36"/>
       <source>Dummy C++ Job</source>
       <translation>ডামী C++ কাৰ্য্য</translation>
     </message>
@@ -1374,8 +1369,8 @@ The installer will quit and all changes will be lost.</source>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="54"/>
-      <source>Content:</source>
-      <translation>সামগ্ৰী:</translation>
+      <source>Con&amp;tent:</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="64"/>
@@ -1398,39 +1393,34 @@ The installer will quit and all changes will be lost.</source>
       <translation>মাউন্ট পইন্ট (&amp;M):</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="123"/>
+      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="129"/>
       <source>Si&amp;ze:</source>
       <translation>আয়তন (&amp;z):</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="133"/>
+      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="139"/>
       <source> MiB</source>
       <translation>MiB</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="140"/>
+      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="146"/>
       <source>Fi&amp;le System:</source>
       <translation>ফাইল চিছটেম:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="153"/>
+      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="159"/>
       <source>Flags:</source>
       <translation>ফ্লেগ সমূহ:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="186"/>
+      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="179"/>
       <source>Label for the filesystem</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="196"/>
+      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="189"/>
       <source>FS Label:</source>
       <translation type="unfinished"/>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="291"/>
-      <source>Mountpoint already in use. Please select another one.</source>
-      <translation>এইটো মাওন্ট্ পইন্ট্ ইতিমধ্যে ব্যৱহাৰ হৈ আছে। অনুগ্ৰহ কৰি বেলেগ এটা বাচনি কৰক।</translation>
     </message>
   </context>
   <context>
@@ -1446,76 +1436,94 @@ The installer will quit and all changes will be lost.</source>
       <translation>চিছটেম এনক্ৰিপ্ত্ কৰক (&amp;c)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="46"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="43"/>
+      <source>Your system does not seem to support encryption well enough to encrypt the entire system. You may enable encryption, but performance may suffer.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="59"/>
       <source>Passphrase</source>
       <translation>পাছফ্ৰেছ</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="56"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="69"/>
       <source>Confirm passphrase</source>
       <translation>পাছফ্ৰেছ নিশ্ৱিত কৰক</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="104"/>
-      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="114"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="134"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="144"/>
       <source>Please enter the same passphrase in both boxes.</source>
       <translation>অনুগ্ৰহ কৰি দুয়োটা বাকচত একে পাছফ্ৰেছ প্রবিষ্ট কৰক।</translation>
     </message>
   </context>
   <context>
+    <name>ErrorDialog</name>
+    <message>
+      <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="36"/>
+      <source>Details:</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="52"/>
+      <source>Would you like to paste the install log to the web?</source>
+      <translation>আপুনি ৱেবত ইণ্স্টল ল'গ পেস্ট কৰিব বিচাৰে নেকি?</translation>
+    </message>
+  </context>
+  <context>
     <name>FillGlobalStorageJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="167"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="172"/>
       <source>Set partition information</source>
       <translation>বিভাজন তথ্য চেত্ কৰক</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="196"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="201"/>
       <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition with features &lt;em&gt;%3&lt;/em&gt;</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="204"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="209"/>
       <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
       <translation>&lt;strong&gt;নতুন&lt;/strong&gt; %2 চিছটেম বিভাজনত %1  ইনস্তল কৰক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="213"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="218"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt; and features &lt;em&gt;%3&lt;/em&gt;.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="221"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="226"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;%3.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="235"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="240"/>
       <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt; with features &lt;em&gt;%4&lt;/em&gt;.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="254"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="259"/>
       <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt; and features &lt;em&gt;%4&lt;/em&gt;.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="263"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="268"/>
       <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;%4.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="244"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="249"/>
       <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>%3 চিছটেম বিভাজনত &lt;strong&gt;%1&lt;/strong&gt;ত %2 ইনস্তল কৰক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="278"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="283"/>
       <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>&lt;strong&gt;1%ত&lt;/strong&gt; বুত্ লোডাৰ ইনস্তল কৰক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="287"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="292"/>
       <source>Setting up mount points.</source>
       <translation>মাউন্ট পইন্ট চেত্ আপ হৈ আছে।</translation>
     </message>
@@ -1582,22 +1590,22 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>FormatPartitionJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="36"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="39"/>
       <source>Format partition %1 (file system: %2, size: %3 MiB) on %4.</source>
       <translation>%4ত ফৰ্মেট বিভাজন %1 ( ফাইল চিছটেম: %2, আয়তন: %3 MiB)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="47"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="50"/>
       <source>Format &lt;strong&gt;%3MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;.</source>
       <translation>&lt;strong&gt;%3MiB&lt;/strong&gt; ৰ &lt;strong&gt;%1 %&lt;/strong&gt; বিভাজন &lt;strong&gt;%2&lt;/strong&gt; ফাইল চিছটেমৰ সৈতে ফৰ্মেট কৰক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="58"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="61"/>
       <source>Formatting partition %1 with file system %2.</source>
       <translation>%1 ফৰ্মেট বিভাজনৰ সৈতে %2 ফাইল চিছটেম।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="72"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="73"/>
       <source>The installer failed to format partition %1 on disk '%2'.</source>
       <translation>ইনস্তলাৰটো '%2' ডিস্কত %1 বিভাজন​ ফৰ্মেট কৰাত বিফল হ'ল।</translation>
     </message>
@@ -1712,7 +1720,7 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>InitcpioJob</name>
     <message>
-      <location filename="../src/modules/initcpio/InitcpioJob.cpp" line="31"/>
+      <location filename="../src/modules/initcpio/InitcpioJob.cpp" line="32"/>
       <source>Creating initramfs with mkinitcpio.</source>
       <translation>mkinitcpioৰ দ্বাৰা initramfs বনাই থকা হৈছে।</translation>
     </message>
@@ -1728,17 +1736,17 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>InteractiveTerminalPage</name>
     <message>
-      <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="45"/>
+      <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="46"/>
       <source>Konsole not installed</source>
       <translation>কনচোল্ ইন্সটল কৰা নাই</translation>
     </message>
     <message>
-      <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="45"/>
+      <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="47"/>
       <source>Please install KDE Konsole and try again!</source>
       <translation>অনুগ্ৰহ কৰি কেডিই কনচোল্ ইন্সটল কৰক আৰু পুনৰ চেষ্টা কৰক!</translation>
     </message>
     <message>
-      <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="106"/>
+      <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="118"/>
       <source>Executing script: &amp;nbsp;&lt;code&gt;%1&lt;/code&gt;</source>
       <translation>নিস্পাদিত লিপি: &amp;nbsp; &lt;code&gt;%1&lt;/code&gt;</translation>
     </message>
@@ -1788,6 +1796,29 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="55"/>
       <source>&amp;OK</source>
       <translation>ঠিক আছে (&amp;O)</translation>
+    </message>
+  </context>
+  <context>
+    <name>LOSHJob</name>
+    <message>
+      <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="36"/>
+      <source>Configuring encrypted swap.</source>
+      <translation>এন্ক্ৰিপ্টেড স্ৱেপ কন্ফিগাৰ কৰি আছে।</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="88"/>
+      <source>No target system available.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="96"/>
+      <source>No rootMountPoint is set.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="101"/>
+      <source>No configFilePath is set.</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -2509,12 +2540,12 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>PackageModel</name>
     <message>
-      <location filename="../src/modules/netinstall/PackageModel.cpp" line="168"/>
+      <location filename="../src/modules/netinstall/PackageModel.cpp" line="205"/>
       <source>Name</source>
       <translation>নাম</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/PackageModel.cpp" line="168"/>
+      <location filename="../src/modules/netinstall/PackageModel.cpp" line="205"/>
       <source>Description</source>
       <translation>বিৱৰণ</translation>
     </message>
@@ -2637,42 +2668,42 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>PartitionLabelsView</name>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="190"/>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="189"/>
       <source>Root</source>
       <translation>মূল</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="194"/>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="193"/>
       <source>Home</source>
       <translation>ঘৰ</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="198"/>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="197"/>
       <source>Boot</source>
       <translation>বুত্</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="203"/>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="202"/>
       <source>EFI system</source>
       <translation>ই এফ আই (EFI) চিছটেম</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="207"/>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="206"/>
       <source>Swap</source>
       <translation>স্ৱেপ</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="211"/>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="210"/>
       <source>New partition for %1</source>
       <translation>%1 ৰ বাবে নতুন বিভাজন</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="215"/>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="214"/>
       <source>New partition</source>
       <translation>নতুন বিভাজন</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="239"/>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="238"/>
       <source>%1  %2</source>
       <extracomment>size[number] filesystem[name]</extracomment>
       <translation>%1 %2</translation>
@@ -2681,39 +2712,39 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>PartitionModel</name>
     <message>
-      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="159"/>
-      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="203"/>
+      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="157"/>
+      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="201"/>
       <source>Free Space</source>
       <translation>খালী ঠাই</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="163"/>
-      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="207"/>
+      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="161"/>
+      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="205"/>
       <source>New partition</source>
       <translation>নতুন বিভাজন</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="300"/>
+      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="298"/>
       <source>Name</source>
       <translation>নাম</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="302"/>
+      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="300"/>
       <source>File System</source>
       <translation>ফাইল চিছটেম</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="304"/>
+      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="302"/>
       <source>File System Label</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="306"/>
+      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="304"/>
       <source>Mount Point</source>
       <translation>মাউন্ট পইন্ট</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="308"/>
+      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="306"/>
       <source>Size</source>
       <translation>আয়তন</translation>
     </message>
@@ -2809,82 +2840,82 @@ The installer will quit and all changes will be lost.</source>
       <translation>বিভাজনসমুহ</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="303"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="297"/>
       <source>Current:</source>
       <translation>বর্তমান:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="321"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="315"/>
       <source>After:</source>
       <translation>পিছত:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="530"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="524"/>
       <source>No EFI system partition configured</source>
       <translation>কোনো EFI চিছটেম বিভাজন কনফিগাৰ কৰা হোৱা নাই</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="534"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="528"/>
       <source>EFI system partition configured incorrectly</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="539"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="533"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a suitable filesystem.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="550"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="544"/>
       <source>The filesystem must be mounted on &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="556"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="550"/>
       <source>The filesystem must have type FAT32.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="564"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="558"/>
       <source>The filesystem must be at least %1 MiB in size.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="570"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="564"/>
       <source>The filesystem must have flag &lt;strong&gt;%1&lt;/strong&gt; set.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="576"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="570"/>
       <source>You can continue without setting up an EFI system partition but your system may fail to start.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="593"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="587"/>
       <source>Option to use GPT on BIOS</source>
       <translation>GPTৰ BIOSত ব্যৱহাৰৰ বাবে বিকল্প</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="594"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="588"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
       <translation>এটা GPT পৰ্তিসোন টেবুল সকলো স্যস্তেমৰ বাবে উত্তম বিকল্প হয় | এই ইন্সালাৰতোৱে তেনে স্থাপনকৰণ BIOS স্যস্তেমতো কৰে |&lt;br/&gt;&lt;br/&gt;এটা GPT পৰ্তিসোন টেবুল কনফিগাৰ কৰিবলৈ ( যদি আগতে কৰা নাই ) পাছলৈ গৈ  পৰ্তিসোন টেবুলখনক GPTলৈ পৰিৱৰ্তন কৰক,  তাৰপাচত 8 MBৰ উনফোৰমেতেট পৰ্তিতিওন এটা বনাব | &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="626"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="620"/>
       <source>Boot partition not encrypted</source>
       <translation>বুত্ বিভাজন এনক্ৰিপ্ত্ নহয়</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="627"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="621"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
       <translation>এনক্ৰিপ্তেড ৰুট বিভাজনৰ সৈতে এটা বেলেগ বুট বিভাজন চেত্ আপ কৰা হৈছিল, কিন্তু বুট বিভাজন এনক্ৰিপ্তেড কৰা হোৱা নাই। &lt;br/&gt;&lt;br/&gt;এইধৰণৰ চেত্ আপ সুৰক্ষিত নহয় কাৰণ গুৰুত্ব্পুৰ্ণ চিছটেম ফাইল আন্এনক্ৰিপ্তেড বিভাজনত ৰখা হয়। &lt;br/&gt;আপুনি বিচাৰিলে চলাই থাকিব পাৰে কিন্তু পিছ্ত চিছটেম আৰম্ভৰ সময়ত ফাইল চিছটেম খোলা যাব। &lt;br/&gt;বুট বিভাজন এনক্ৰিপ্ত্ কৰিবলৈ উভতি যাওক আৰু বিভাজন বনোৱা windowত &lt;strong&gt;Encrypt&lt;/strong&gt; বাচনি কৰি আকৌ বনাওক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="714"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="712"/>
       <source>has at least one disk device available.</source>
       <translation>অতি কমেও এখন ডিস্ক্ উপলব্ধ আছে।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="715"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="713"/>
       <source>There are no partitions to install on.</source>
       <translation>ইনস্তল কৰিবলৈ কোনো বিভাজন নাই।</translation>
     </message>
@@ -2932,17 +2963,17 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>PreserveFiles</name>
     <message>
-      <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="79"/>
+      <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="53"/>
       <source>Saving files for later ...</source>
       <translation>ফাইল পিছৰ বাবে জমা কৰি আছে ...</translation>
     </message>
     <message>
-      <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="118"/>
+      <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="61"/>
       <source>No files configured to save for later.</source>
       <translation>পিছলৈ জমা ৰাখিব কোনো ফাইল কন্ফিগাৰ কৰা হোৱা নাই।</translation>
     </message>
     <message>
-      <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="172"/>
+      <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="85"/>
       <source>Not all of the configured files could be preserved.</source>
       <translation>কন্ফিগাৰ কৰা গোটেই ফাইল জমা ৰাখিব নোৱৰি।</translation>
     </message>
@@ -2950,14 +2981,14 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>ProcessResult</name>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="425"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="309"/>
       <source>
 There was no output from the command.</source>
       <translation>
 কমাণ্ডৰ পৰা কোনো আউটপুট পোৱা নগ'ল।</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="426"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="310"/>
       <source>
 Output:
 </source>
@@ -2966,52 +2997,52 @@ Output:
 </translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="430"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="314"/>
       <source>External command crashed.</source>
       <translation>বাহ্যিক কমাণ্ড ক্ৰেছ্ কৰিলে।</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="431"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="315"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; crashed.</source>
       <translation>&lt;i&gt;%1&lt;/i&gt; কমাণ্ড ক্ৰেছ্ কৰিলে।</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="436"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="320"/>
       <source>External command failed to start.</source>
       <translation>বাহ্যিক কমাণ্ড আৰম্ভ হোৱাত বিফল হ'ল।</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="437"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="321"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; failed to start.</source>
       <translation>&lt;i&gt;%1&lt;/i&gt; কমাণ্ড আৰম্ভ হোৱাত বিফল হ'ল।</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="441"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="325"/>
       <source>Internal error when starting command.</source>
       <translation>কমাণ্ড আৰম্ভ কৰাৰ সময়ত আভ্যন্তৰীণ ক্ৰুটি।</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="442"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="326"/>
       <source>Bad parameters for process job call.</source>
       <translation>প্ৰক্ৰিয়া কাৰ্য্যৰ বাবে বেয়া মান।</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="446"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="330"/>
       <source>External command failed to finish.</source>
       <translation>বাহ্যিক কমাণ্ড সমাপ্ত কৰাত বিফল হ'ল।</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="447"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="331"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; failed to finish in %2 seconds.</source>
       <translation>&lt;i&gt;%1&lt;/i&gt; কমাণ্ড সমাপ্ত কৰাত %2 ছেকেণ্ডত বিফল হ'ল।</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="454"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="338"/>
       <source>External command finished with errors.</source>
       <translation>বাহ্যিক কমাণ্ড ক্ৰটিৰ সৈতে সমাপ্ত হ'ল।</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="455"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="339"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; finished with exit code %2.</source>
       <translation>&lt;i&gt;%1&lt;/i&gt; কমাণ্ড %2 এক্সিড্ কোডৰ সৈতে সমাপ্ত হ'ল।</translation>
     </message>
@@ -3024,22 +3055,22 @@ Output:
       <translation>%1 (%2)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="28"/>
+      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="33"/>
       <source>unknown</source>
       <translation>অজ্ঞাত</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="30"/>
+      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="35"/>
       <source>extended</source>
       <translation>প্ৰসাৰিত</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="32"/>
+      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="37"/>
       <source>unformatted</source>
       <translation>ফৰ্মেট কৰা হোৱা নাই</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="34"/>
+      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="39"/>
       <source>swap</source>
       <translation>স্ৱেপ</translation>
     </message>
@@ -3074,12 +3105,12 @@ Output:
       <translation>&lt;pre&gt;%1&lt;/pre&gt; ৰেন্ডম ফাইল বনাব পৰা নগ'ল।</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/PackageModel.cpp" line="63"/>
+      <location filename="../src/modules/packagechooser/PackageModel.cpp" line="74"/>
       <source>No product</source>
       <translation>কোনো পণ্য নাই</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/PackageModel.cpp" line="71"/>
+      <location filename="../src/modules/packagechooser/PackageModel.cpp" line="82"/>
       <source>No description provided.</source>
       <translation>একো বিৱৰণি দিয়া হোৱা নাই।</translation>
     </message>
@@ -3089,7 +3120,7 @@ Output:
       <translation>(কোনো মাউন্ট পইন্ট নাই)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="41"/>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="40"/>
       <source>Unpartitioned space or unknown partition table</source>
       <translation>বিভাজন নকৰা খালী ঠাই অথবা অজ্ঞাত বিভজন তালিকা</translation>
     </message>
@@ -3114,18 +3145,18 @@ Output:
   <context>
     <name>RemoveVolumeGroupJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="24"/>
-      <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="36"/>
+      <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="26"/>
+      <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="38"/>
       <source>Remove Volume Group named %1.</source>
       <translation>%1 নামৰ ভলিউম্ গোট বিলোপ কৰক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="30"/>
+      <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="32"/>
       <source>Remove Volume Group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>&lt;strong&gt;%1&lt;/strong&gt; নামৰ ভলিউম্ গোট বিলোপ কৰক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="48"/>
+      <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="46"/>
       <source>The installer failed to remove a volume group named '%1'.</source>
       <translation>ইনস্তলটো %1 নামৰ নতুন ভলিউম্ গোট বিলোপ কৰাত বিফল হ'ল।</translation>
     </message>
@@ -3138,69 +3169,69 @@ Output:
       <translation>ৰূপ</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="127"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="128"/>
       <source>Select where to install %1.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
       <translation>%1 ক'ত ইনস্তল লাগে বাচনি কৰক।&lt;br/&gt; &lt;font color="red"&gt;সকীয়নি: ইয়ে বাচনি কৰা বিভাজনৰ সকলো ফাইল বিলোপ কৰিব।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="149"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="150"/>
       <source>The selected item does not appear to be a valid partition.</source>
       <translation>বাচনি কৰা বস্তুটো এটা বৈধ বিভাজন নহয়।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="157"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="158"/>
       <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
       <translation>%1 খালী ঠাইত ইনস্তল কৰিব নোৱাৰি। উপস্থিতি থকা বিভাজন বাচনি কৰক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="167"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="168"/>
       <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
       <translation>%1 প্ৰসাৰিত ঠাইত ইনস্তল কৰিব নোৱাৰি। উপস্থিতি থকা মূখ্য বা লজিকেল বিভাজন বাচনি কৰক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="177"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="178"/>
       <source>%1 cannot be installed on this partition.</source>
       <translation>এইখন বিভাজনত %1 ইনস্তল কৰিব নোৱাৰি।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="183"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="184"/>
       <source>Data partition (%1)</source>
       <translation>ডাটা বিভাজন (%1)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="203"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="204"/>
       <source>Unknown system partition (%1)</source>
       <translation>অজ্ঞাত চিছটেম বিভাজন (%1)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="207"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="208"/>
       <source>%1 system partition (%2)</source>
       <translation>%1 চিছটেম বিভাজন (%2)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="218"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="220"/>
       <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
       <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt; %1 বিভাজনটো %2ৰ বাবে যথেষ্ট সৰু। অনুগ্ৰহ কৰি অতি কমেও %3 GiB সক্ষমতা থকা বিভাজন বাচনি কৰক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="240"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="242"/>
       <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;এইটো চিছটেমৰ ক'তো এটা EFI চিছটেম বিভাজন বিচাৰি পোৱা নগ'ল। অনুগ্ৰহ কৰি উভতি যাওক আৰু %1 চেত্ আপ কৰিব মেনুৱেল বিভাজন ব্যৱহাৰ কৰক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="251"/>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="267"/>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="292"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="253"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="269"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="294"/>
       <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;all data on partition %2 will be lost.</source>
       <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt; %1 %2ত ইনস্তল হ'ব। &lt;br/&gt;&lt;font color="red"&gt;সকীয়নি​: &lt;/font&gt;%2 বিভাজনত থকা গোটেই ডাটা বিলোপ হৈ যাব।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="259"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="261"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>%1 ত থকা EFI চিছটেম বিভাজনটো %2 আৰম্ভ কৰাৰ বাবে ব্যৱহাৰ কৰা হ'ব।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="275"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="277"/>
       <source>EFI system partition:</source>
       <translation>EFI চিছটেম বিভাজন:</translation>
     </message>
@@ -3224,68 +3255,68 @@ Output:
   <context>
     <name>ResizeFSJob</name>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="46"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="45"/>
       <source>Resize Filesystem Job</source>
       <translation>ফাইল চিছটেম কাৰ্য্যৰ আয়তন পৰিৱৰ্তন কৰক</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="169"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="168"/>
       <source>Invalid configuration</source>
       <translation>অকার্যকৰ কনফিগাৰেচন</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="170"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="169"/>
       <source>The file-system resize job has an invalid configuration and will not run.</source>
       <translation>ফাইল চিছটেমটোৰ আয়তন পৰিৱৰ্তন কাৰ্য্যৰ এটা অকার্যকৰ কনফিগাৰেচন আছে আৰু সেইটো নচলিব।</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="175"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="174"/>
       <source>KPMCore not Available</source>
       <translation>KPMCore ঊপলব্ধ নহয়</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="176"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="175"/>
       <source>Calamares cannot start KPMCore for the file-system resize job.</source>
       <translation>ফাইল চিছটেমৰ আয়তন সলনি কৰিবলৈ কেলামাৰেচে KPMCore আৰম্ভ নোৱাৰিলে।</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="184"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="193"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="204"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="213"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="231"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="183"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="192"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="203"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="212"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="230"/>
       <source>Resize Failed</source>
       <translation>আয়তন পৰিৱৰ্তন কাৰ্য্য বিফল হ'ল</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="186"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="185"/>
       <source>The filesystem %1 could not be found in this system, and cannot be resized.</source>
       <translation>এইটো চিছটেমত %1 ফাইল চিছটেম বিছাৰি পোৱা নগ'ল আৰু সেইটোৰ আয়তন সলনি কৰিব নোৱাৰি।</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="187"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="186"/>
       <source>The device %1 could not be found in this system, and cannot be resized.</source>
       <translation>এইটো চিছটেমত %1 ডিভাইচ বিছাৰি পোৱা নগ'ল আৰু সেইটোৰ আয়তন সলনি কৰিব নোৱাৰি।</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="195"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="206"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="194"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="205"/>
       <source>The filesystem %1 cannot be resized.</source>
       <translation>%1 ফাইল চিছটেমটোৰ আয়তন সলনি কৰিব নোৱাৰি।</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="196"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="207"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="195"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="206"/>
       <source>The device %1 cannot be resized.</source>
       <translation>%1 ডিভাইচটোৰ আয়তন সলনি কৰিব নোৱাৰি।</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="214"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="213"/>
       <source>The filesystem %1 must be resized, but cannot.</source>
       <translation>%1 ফাইল চিছটেমটোৰ আয়তন সলনি কৰিব লাগে, কিন্তু কৰিব নোৱাৰি।</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="215"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="214"/>
       <source>The device %1 must be resized, but cannot</source>
       <translation>%1 ডিভাইচটোৰ আয়তন সলনি কৰিব লাগে, কিন্তু কৰিব নোৱাৰি।</translation>
     </message>
@@ -3293,17 +3324,17 @@ Output:
   <context>
     <name>ResizePartitionJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="40"/>
+      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="41"/>
       <source>Resize partition %1.</source>
       <translation>%1 বিভাজনৰ আয়তন সলনি কৰক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="47"/>
+      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="48"/>
       <source>Resize &lt;strong&gt;%2MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%3MiB&lt;/strong&gt;.</source>
       <translation>&lt;strong&gt;%2MiB&lt;/strong&gt; আয়তনৰ &lt;strong&gt;%1&lt;/strong&gt; বিভাজনৰ আয়তন সলনি কৰি &lt;strong&gt;%3MiB&lt;/strong&gt; কৰক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="58"/>
+      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="59"/>
       <source>Resizing %2MiB partition %1 to %3MiB.</source>
       <translation>%2MiB ৰ %1 বিভাজনৰ আয়তন সলনি কৰি %3 কৰি আছে।</translation>
     </message>
@@ -3324,18 +3355,18 @@ Output:
   <context>
     <name>ResizeVolumeGroupJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="27"/>
-      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="45"/>
+      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="28"/>
+      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="46"/>
       <source>Resize volume group named %1 from %2 to %3.</source>
       <translation>%1 নামৰ ভলিউম্ গোটটোৰ আয়তন %2ৰ পৰা %3লৈ সলনি কৰক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="36"/>
+      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="37"/>
       <source>Resize volume group named &lt;strong&gt;%1&lt;/strong&gt; from &lt;strong&gt;%2&lt;/strong&gt; to &lt;strong&gt;%3&lt;/strong&gt;.</source>
       <translation>&lt;strong&gt;%1&lt;/strong&gt; নামৰ ভলিউম্ গোটটোৰ আয়তন &lt;strong&gt;%2&lt;/strong&gt;ৰ পৰা &lt;strong&gt;%3&lt;/strong&gt;লৈ সলনি কৰক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="60"/>
+      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="57"/>
       <source>The installer failed to resize a volume group named '%1'.</source>
       <translation>ইনস্তলাৰটো %1 নামৰ ভলিউম্ গোটটোৰ আয়তন সলনি কৰাত বিফল হ'ল।</translation>
     </message>
@@ -3356,12 +3387,12 @@ Output:
   <context>
     <name>ScanningDialog</name>
     <message>
-      <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="64"/>
+      <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="68"/>
       <source>Scanning storage devices...</source>
       <translation>ষ্টোৰেজ ডিভাইচ স্কেন কৰি আছে...</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="64"/>
+      <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="68"/>
       <source>Partitioning</source>
       <translation>বিভাজন কৰি আছে</translation>
     </message>
@@ -3429,82 +3460,82 @@ Output:
   <context>
     <name>SetPartFlagsJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="43"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="45"/>
       <source>Set flags on partition %1.</source>
       <translation>%1 বিভাজনত ফ্লেগ চেত্ কৰক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="49"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="51"/>
       <source>Set flags on %1MiB %2 partition.</source>
       <translation>%1MiB ৰ %2 বিভাজনত ফ্লেগ চেত্ কৰক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="53"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="55"/>
       <source>Set flags on new partition.</source>
       <translation>নতুন বিভাজনত ফ্লেগ চেত্ কৰক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="65"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="67"/>
       <source>Clear flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>&lt;strong&gt;%1&lt;/strong&gt; বিভাজনত ফ্লেগ আতৰাওক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="71"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="73"/>
       <source>Clear flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
       <translation>%1MiB ৰ &lt;strong&gt;%2&lt;/strong&gt; বিভাজনৰ ফ্লেগবোৰ আতৰাওক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="75"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="77"/>
       <source>Clear flags on new partition.</source>
       <translation>নতুন বিভাজনৰ ফ্লেগ আতৰাওক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="80"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="82"/>
       <source>Flag partition &lt;strong&gt;%1&lt;/strong&gt; as &lt;strong&gt;%2&lt;/strong&gt;.</source>
       <translation>&lt;strong&gt;%1&lt;/strong&gt; বিভাজনত &lt;strong&gt;%2&lt;/strong&gt;ৰ ফ্লেগ লগাওক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="89"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="91"/>
       <source>Flag %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition as &lt;strong&gt;%3&lt;/strong&gt;.</source>
       <translation>%1MiBৰ &lt;strong&gt;%2&lt;/strong&gt; বিভাজনত &lt;strong&gt;%3&lt;/strong&gt; ফ্লেগ লগাওক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="96"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="98"/>
       <source>Flag new partition as &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>নতুন বিভাজনত &lt;strong&gt;%1&lt;/strong&gt;ৰ ফ্লেগ লগাওক।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="108"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="110"/>
       <source>Clearing flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>&lt;strong&gt;%1&lt;/strong&gt; বিভাজনৰ ফ্লেগ আতৰাই আছে।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="114"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="116"/>
       <source>Clearing flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
       <translation>%1MiB ৰ &lt;strong&gt;%2&lt;/strong&gt; বিভাজনৰ ফ্লেগবোৰ আতৰ কৰি আছে।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="119"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="121"/>
       <source>Clearing flags on new partition.</source>
       <translation>নতুন বিভাজনৰ ফ্লেগ আতৰাই আছে।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="124"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="126"/>
       <source>Setting flags &lt;strong&gt;%2&lt;/strong&gt; on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>&lt;strong&gt;%1&lt;/strong&gt; বিভাজনত &lt;strong&gt;%2&lt;/strong&gt; ফ্লেগ লগাই আছে।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="133"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="135"/>
       <source>Setting flags &lt;strong&gt;%3&lt;/strong&gt; on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
       <translation>%1MiBৰ &lt;strong&gt;%2&lt;/strong&gt; বিভাজনত &lt;strong&gt;%3&lt;/strong&gt; ফ্লেগ লগাই আছে।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="140"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="142"/>
       <source>Setting flags &lt;strong&gt;%1&lt;/strong&gt; on new partition.</source>
       <translation>নতুন বিভাজনত &lt;strong&gt;%1&lt;/strong&gt; ফ্লেগ লগাই আছে।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="157"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="156"/>
       <source>The installer failed to set flags on partition %1.</source>
       <translation>ইনস্তলাৰটো​ %1 বিভাজনত ফ্লেগ লগোৱাত বিফল হ'ল।</translation>
     </message>
@@ -3630,7 +3661,7 @@ Output:
   <context>
     <name>ShellProcessJob</name>
     <message>
-      <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="41"/>
+      <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="40"/>
       <source>Shell Processes Job</source>
       <translation>ছেল প্ৰক্ৰিয়াবোৰৰ কাৰ্য্য</translation>
     </message>
@@ -3647,27 +3678,27 @@ Output:
   <context>
     <name>StandardButtons</name>
     <message>
-      <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="28"/>
+      <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="23"/>
       <source>&amp;OK</source>
       <translation>ঠিক আছে (&amp;O)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="29"/>
+      <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="24"/>
       <source>&amp;Yes</source>
       <translation>হয় (&amp;Y)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="30"/>
+      <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="25"/>
       <source>&amp;No</source>
       <translation>নহয় (&amp;N)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="31"/>
+      <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="26"/>
       <source>&amp;Cancel</source>
       <translation>বাতিল কৰক (&amp;C)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="32"/>
+      <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="27"/>
       <source>&amp;Close</source>
       <translation>বন্ধ (&amp;C)</translation>
     </message>
@@ -3675,12 +3706,12 @@ Output:
   <context>
     <name>TrackingInstallJob</name>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="102"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="101"/>
       <source>Installation feedback</source>
       <translation>ইনস্তল সম্বন্ধীয় প্ৰতিক্ৰিয়া</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="108"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="107"/>
       <source>Sending installation feedback.</source>
       <translation>ইন্স্তল সম্বন্ধীয় প্ৰতিক্ৰিয়া পঠাই আছে।</translation>
     </message>
@@ -3698,28 +3729,28 @@ Output:
   <context>
     <name>TrackingKUserFeedbackJob</name>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="187"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="193"/>
       <source>KDE user feedback</source>
       <translation>KDE ব্যৱহাৰকৰ্তাৰ সম্বন্ধীয় প্ৰতিক্ৰীয়া</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="193"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="199"/>
       <source>Configuring KDE user feedback.</source>
       <translation>কনফিগাৰত KDE ব্যৱহাৰকৰ্তাৰ সম্বন্ধীয় প্ৰতিক্ৰীয়া</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="215"/>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="221"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="229"/>
       <source>Error in KDE user feedback configuration.</source>
       <translation>KDE ব্যৱহাৰকৰ্তাৰ ফিডবেক কনফিগাৰেচনৰ ক্ৰুটি।</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="216"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="222"/>
       <source>Could not configure KDE user feedback correctly, script error %1.</source>
       <translation>KDE ব্যৱহাৰকৰ্তাৰ প্ৰতিক্ৰিয়া ঠাকভাৱে কন্ফিগাৰ কৰিব পৰা নগ'ল, লিপি ক্ৰুটি %1।</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="222"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="230"/>
       <source>Could not configure KDE user feedback correctly, Calamares error %1.</source>
       <translation>KDE ব্যৱহাৰকৰ্তাৰ প্ৰতিক্ৰিয়া ঠাকভাৱে কন্ফিগাৰ কৰিব পৰা নগ'ল, কেলামাৰেচ ক্ৰুটি %1।</translation>
     </message>
@@ -3738,17 +3769,17 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="165"/>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="171"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="174"/>
       <source>Error in machine feedback configuration.</source>
       <translation>মেচিনত ফিডবেক কনফিগাৰেচনৰ ক্ৰুটি।</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="166"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="167"/>
       <source>Could not configure machine feedback correctly, script error %1.</source>
       <translation>মেচিনৰ প্ৰতিক্ৰিয়া ঠাকভাৱে কন্ফিগাৰ কৰিব পৰা নগ'ল, লিপি ক্ৰুটি %1।</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="172"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="176"/>
       <source>Could not configure machine feedback correctly, Calamares error %1.</source>
       <translation>মেচিনৰ প্ৰতিক্ৰিয়া ঠাকভাৱে কন্ফিগাৰ কৰিব পৰা নগ'ল, কেলামাৰেচ ক্ৰুটি %1।</translation>
     </message>
@@ -3805,14 +3836,32 @@ Output:
     </message>
   </context>
   <context>
+    <name>UmountJob</name>
+    <message>
+      <location filename="../src/modules/umount/UmountJob.cpp" line="39"/>
+      <source>Unmount file systems.</source>
+      <translation>ফাইল চিছটেম​বোৰ মাউণ্টৰ পৰা আতৰাওক।</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/umount/UmountJob.cpp" line="122"/>
+      <source>No target system available.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/umount/UmountJob.cpp" line="130"/>
+      <source>No rootMountPoint is set.</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
     <name>UsersPage</name>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="167"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="177"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
       <translation>&lt;small&gt;যদি এটাতকৈ বেছি ব্যক্তিয়ে এইটো কম্পিউটাৰ ব্যৱহাৰ কৰে, আপুনি চেত্ আপৰ পিছত বহুতো একাউন্ট বনাব পাৰে।&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="173"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="183"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
       <translation>&lt;small&gt;যদি এটাতকৈ বেছি ব্যক্তিয়ে এইটো কম্পিউটাৰ ব্যৱহাৰ কৰে, আপুনি ইনস্তলচেন​ৰ পিছত বহুতো একাউন্ট বনাব পাৰে।&lt;/small&gt;</translation>
     </message>
@@ -4017,6 +4066,50 @@ Output:
     </message>
   </context>
   <context>
+    <name>ZfsJob</name>
+    <message>
+      <location filename="../src/modules/zfs/ZfsJob.cpp" line="101"/>
+      <source>Create ZFS pools and datasets</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/zfs/ZfsJob.cpp" line="162"/>
+      <source>Failed to create zpool on </source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/zfs/ZfsJob.cpp" line="180"/>
+      <source>Configuration Error</source>
+      <translation>কনফিগাৰেচন ত্ৰুটি</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/zfs/ZfsJob.cpp" line="181"/>
+      <source>No partitions are available for ZFS.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>
+      <source>Internal data missing</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>
+      <location filename="../src/modules/zfs/ZfsJob.cpp" line="257"/>
+      <source>Failed to create zpool</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/zfs/ZfsJob.cpp" line="329"/>
+      <source>Failed to create dataset</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/zfs/ZfsJob.cpp" line="330"/>
+      <source>The output was: </source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
     <name>about</name>
     <message>
       <location filename="../src/modules/welcomeq/about.qml" line="47"/>
@@ -4075,6 +4168,30 @@ Output:
       <location filename="../src/modules/finishedq/finishedq.qml" line="89"/>
       <source>&lt;p&gt;A full log of the install is available as installation.log in the home directory of the Live user.&lt;br/&gt;
             This log is copied to /var/log/installation.log of the target system.&lt;/p&gt;</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
+    <name>finishedq@mobile</name>
+    <message>
+      <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="36"/>
+      <source>Installation Completed</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="43"/>
+      <source>%1 has been installed on your computer.&lt;br/&gt;
+            You may now restart your device.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="65"/>
+      <source>Close</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="71"/>
+      <source>Restart</source>
       <translation type="unfinished"/>
     </message>
   </context>

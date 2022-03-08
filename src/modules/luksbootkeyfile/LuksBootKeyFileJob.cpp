@@ -17,6 +17,8 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 
+#include <QDir>
+
 LuksBootKeyFileJob::LuksBootKeyFileJob( QObject* parent )
     : Calamares::CppJob( parent )
 {
@@ -162,7 +164,7 @@ hasUnencryptedSeparateBoot()
     {
         QVariantMap partitionMap = partition.toMap();
         QString mountPoint = partitionMap.value( QStringLiteral( "mountPoint" ) ).toString();
-        if ( mountPoint == QStringLiteral( "/boot" ) )
+        if ( QDir::cleanPath( mountPoint ) == QStringLiteral( "/boot" ) )
         {
             return !partitionMap.contains( QStringLiteral( "luksMapperName" ) );
         }

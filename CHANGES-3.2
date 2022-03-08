@@ -7,22 +7,124 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.50 (unreleased) #
+# 3.2.54 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - Erik Dubois
+ - Nobody yet
+
+## Core ##
+ - Nothing yet
+
+## Modules ##
+ - Nothing yet
+
+
+# 3.2.53 (2022-03-04) #
+
+This release contains contributions from (alphabetically by first name):
+ - Huang Jia Wen (new contributor! Welcome!)
+
+## Core ##
+ - Automount-manipulation (to switch off KDE Plasma automounting new devices)
+   now logs slightly more as it works. Defaults have changed in KDE Plasma
+   5.24 and it turns out the automount-manipulation does not work well.
+   Distro's are encouraged to turn off automount in the live ISO (see #1885).
+
+## Modules ##
+ - *bootloader* now knows about loongarch64 and can install suitable EFI
+   files for this CPU type. (Thanks Huang Jia Wen)
+ - Progress reporting for `pacman` from the *packages* module has been switched
+   off. The progress reporting works under low load, but there are many reports
+   of it crashing (from XeroLinux and from Evan James, who has been debugging
+   the issue) during a regular installation with thousands of updates. This
+   will be revisited in the next release.
+ - The *umount* module was buggy and did not actually unmount anything.
+
+
+# 3.2.52 (2022-02-25) #
+
+This release contains contributions from (alphabetically by first name):
+ - Evan James
 
 ## Core ##
  - No core changes yet
 
 ## Modules ##
+ - *fstab* recognizes nvme and mmc devices correctly as SSDs now. #1883
+ - *luksbootkeyfile* handles trailing slashes in mount point
+ - *partition* can be built with a new `SKIP` option, which skips
+   the actual formatting steps but does not fail. The old `LAME`
+   option is renamed `BAIL_OUT`.
+ - *users* has a new key *sudoersConfigureWithGroup* to allow for
+   different styles of sudo configuration. #1887
+
+
+# 3.2.51 (2022-02-01) #
+
+This release contains contributions from (alphabetically by first name):
+ - Evan James
+
+**WARNING** The *umount* module has been rewritten in C++. Check your
+configuration if you previously used the copy-a-log functionality.
+
+## Core ##
+ - Evan has made a start on documenting which Global Storage keys there
+   are and how they tie modules together. This can be found in the
+   `src/modules/README.md` documentation.
+
+## Modules ##
+ - *bootloader* can now be configured to try to generate a unique
+   suffix for the bootloader-id. #1820
+ - *grubcfg* now has a configurable default for kernel parameters,
+   which allows distributions to change the value from `quiet`.
+   The default, if nothing is set, remains `quiet`. Use an explicitly-
+   empty list to specify no-arguments-at-all.
+ - *packagechooser* can now export its choices for use by the *netinstall*
+   module. This makes it possible to use *packagechooser* for large-scale
+   choices, followed by *netinstall* for fine-grained control. (Thanks Evan)
+ - When the *partition* module has a conflicting configuration for the
+   swap choices, it prints a warning and uses the configured choice, rather
+   than always using "suspend". #1881
+ - The *umount* module has been re-written in C++. The copy-a-log-file
+   functionality has been removed. Use the *preservefiles* module for that.
+
+
+# 3.2.50 (2022-01-18) #
+
+This release contains contributions from (alphabetically by first name):
+ - Anke Boersma
+ - Erik Dubois
+ - Evan James
+ - Johannes Kamprad
+ - Taejun Park (new contributor, welcome!)
+
+**Replacement notice:** The *umount* module will be replaced by a C++
+implementation in the next release. The "preserve log file" feature
+will be removed in that release. Use the *preservefiles* module instead.
+
+## Core ##
+ - No core changes yet
+
+## Modules ##
+ - *initcpiocfg* mentioned a special kernel-name "all", which did not work,
+   and a special kernel-name "$uname" which cannot work. Fixed the former
+   and removed the "$uname" special key. (Thanks Evan)
+ - *luksswaphookcfg* has been converted to a C++ module.
  - *networkcfg* could fail to update the NetworkManager configuration
    if the SSID or username contained non-ASCII characters **and** the
    default Python text-file encoding was set to ASCII. The files are
    now read and written in UTF-8, explicitly. #1848
+ - *partition* always sets *bigtime* option on XFS filesystems, if possible.
+   Requires sufficiently-recent xfsprogs. #1874
  - *preservefiles* was missing some necessary features, needed for it
    to replace the deprecated log-file-saving functionality in the *umount*
    module. (Thanks Erik and Joe for testing) #1851
+ - *umount* is now marked as an emergency module in the example configuration,
+   since it should **probably** be run as a cleanup. (Thanks Evan)
+ - *welcome* and *locale* could be confusing, together, and configure
+   the target system with a language that does not match the installer
+   language, even though the user did not make any explicit choice.
+   (Thanks Taejun) #1864
 
 
 # 3.2.49.1 (2021-12-11) #

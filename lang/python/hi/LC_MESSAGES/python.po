@@ -4,16 +4,16 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Panwar108 <caspian7pena@gmail.com>, 2021
+# Panwar108 <caspian7pena@gmail.com>, 2022
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-02 15:45+0100\n"
+"POT-Creation-Date: 2022-02-17 15:52+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Panwar108 <caspian7pena@gmail.com>, 2021\n"
+"Last-Translator: Panwar108 <caspian7pena@gmail.com>, 2022\n"
 "Language-Team: Hindi (https://www.transifex.com/calamares/teams/20061/hi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,28 +26,24 @@ msgid "Configuring initramfs."
 msgstr "initramfs को विन्यस्त करना। "
 
 #: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
-#: src/modules/fstab/main.py:355 src/modules/fstab/main.py:361
-#: src/modules/fstab/main.py:388 src/modules/networkcfg/main.py:105
-#: src/modules/initcpiocfg/main.py:227 src/modules/initcpiocfg/main.py:231
-#: src/modules/localecfg/main.py:135 src/modules/mount/main.py:144
+#: src/modules/fstab/main.py:360 src/modules/fstab/main.py:366
+#: src/modules/fstab/main.py:393 src/modules/networkcfg/main.py:105
+#: src/modules/initcpiocfg/main.py:235 src/modules/initcpiocfg/main.py:239
+#: src/modules/localecfg/main.py:135 src/modules/mount/main.py:229
 #: src/modules/rawfs/main.py:164 src/modules/openrcdmcryptcfg/main.py:72
 #: src/modules/openrcdmcryptcfg/main.py:76
-#: src/modules/luksopenswaphookcfg/main.py:86
-#: src/modules/luksopenswaphookcfg/main.py:90
 msgid "Configuration Error"
 msgstr "विन्यास त्रुटि"
 
-#: src/modules/initramfscfg/main.py:86 src/modules/fstab/main.py:356
-#: src/modules/initcpiocfg/main.py:228 src/modules/mount/main.py:145
+#: src/modules/initramfscfg/main.py:86 src/modules/fstab/main.py:361
+#: src/modules/initcpiocfg/main.py:236 src/modules/mount/main.py:230
 #: src/modules/rawfs/main.py:165 src/modules/openrcdmcryptcfg/main.py:73
-#: src/modules/luksopenswaphookcfg/main.py:87
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "<pre>{!s}</pre> के उपयोग हेतु कोई विभाजन परिभाषित नहीं हैं।"
 
-#: src/modules/initramfscfg/main.py:90 src/modules/fstab/main.py:362
-#: src/modules/networkcfg/main.py:106 src/modules/initcpiocfg/main.py:232
+#: src/modules/initramfscfg/main.py:90 src/modules/fstab/main.py:367
+#: src/modules/networkcfg/main.py:106 src/modules/initcpiocfg/main.py:240
 #: src/modules/localecfg/main.py:136 src/modules/openrcdmcryptcfg/main.py:77
-#: src/modules/luksopenswaphookcfg/main.py:91
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
 msgstr ""
 "<pre>{!s}</pre> के उपयोग हेतु कोई रुट माउंट पॉइंट प्रदान नहीं किया गया।"
@@ -60,11 +56,15 @@ msgstr "GRUB विन्यस्त करना।"
 msgid "Install bootloader."
 msgstr "बूट लोडर इंस्टॉल करना।"
 
-#: src/modules/bootloader/main.py:508
+#: src/modules/bootloader/main.py:612
+msgid "Failed to install grub, no partitions defined in global storage"
+msgstr "grub इंस्टॉल करना विफल, सर्वत्र संचयन में कोई विभाजन परिभाषित नहीं है"
+
+#: src/modules/bootloader/main.py:780
 msgid "Bootloader installation error"
 msgstr "बूट लोडर इंस्टॉल त्रुटि"
 
-#: src/modules/bootloader/main.py:509
+#: src/modules/bootloader/main.py:781
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
@@ -76,7 +76,7 @@ msgstr ""
 msgid "Writing fstab."
 msgstr "fstab पर राइट करना।"
 
-#: src/modules/fstab/main.py:389
+#: src/modules/fstab/main.py:394
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr ""
 "कोई <pre>{!s}</pre> विन्यास प्रदान नहीं किया गया <pre>{!s}</pre> के उपयोग "
@@ -94,51 +94,51 @@ msgstr "लक्ष्य पर dracut निष्पादन विफल"
 msgid "The exit code was {}"
 msgstr "त्रुटि कोड  {}"
 
-#: src/modules/displaymanager/main.py:526
+#: src/modules/displaymanager/main.py:524
 msgid "Cannot write KDM configuration file"
 msgstr "KDM विन्यास फ़ाइल राइट नहीं की जा सकती"
 
-#: src/modules/displaymanager/main.py:527
+#: src/modules/displaymanager/main.py:525
 msgid "KDM config file {!s} does not exist"
 msgstr "KDM विन्यास फ़ाइल {!s} मौजूद नहीं है"
 
-#: src/modules/displaymanager/main.py:588
+#: src/modules/displaymanager/main.py:586
 msgid "Cannot write LXDM configuration file"
 msgstr "LXDM विन्यास फ़ाइल राइट नहीं की जा सकती"
 
-#: src/modules/displaymanager/main.py:589
+#: src/modules/displaymanager/main.py:587
 msgid "LXDM config file {!s} does not exist"
 msgstr "LXDM विन्यास फ़ाइल {!s} मौजूद नहीं है"
 
-#: src/modules/displaymanager/main.py:672
+#: src/modules/displaymanager/main.py:670
 msgid "Cannot write LightDM configuration file"
 msgstr "LightDM विन्यास फ़ाइल राइट नहीं की जा सकती"
 
-#: src/modules/displaymanager/main.py:673
+#: src/modules/displaymanager/main.py:671
 msgid "LightDM config file {!s} does not exist"
 msgstr "LightDM विन्यास फ़ाइल {!s} मौजूद नहीं है"
 
-#: src/modules/displaymanager/main.py:747
+#: src/modules/displaymanager/main.py:745
 msgid "Cannot configure LightDM"
 msgstr "LightDM को विन्यस्त नहीं किया जा सकता"
 
-#: src/modules/displaymanager/main.py:748
+#: src/modules/displaymanager/main.py:746
 msgid "No LightDM greeter installed."
 msgstr "कोई LightDM लॉगिन स्क्रीन इंस्टॉल नहीं है।"
 
-#: src/modules/displaymanager/main.py:779
+#: src/modules/displaymanager/main.py:777
 msgid "Cannot write SLIM configuration file"
 msgstr "SLIM विन्यास फ़ाइल राइट नहीं की जा सकती"
 
-#: src/modules/displaymanager/main.py:780
+#: src/modules/displaymanager/main.py:778
 msgid "SLIM config file {!s} does not exist"
 msgstr "SLIM विन्यास फ़ाइल {!s} मौजूद नहीं है"
 
-#: src/modules/displaymanager/main.py:906
+#: src/modules/displaymanager/main.py:991
 msgid "No display managers selected for the displaymanager module."
 msgstr "चयनित डिस्प्ले प्रबंधक मॉड्यूल हेतु कोई डिस्प्ले प्रबंधक नहीं मिला।"
 
-#: src/modules/displaymanager/main.py:907
+#: src/modules/displaymanager/main.py:992
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
@@ -146,7 +146,7 @@ msgstr ""
 "globalstorage व displaymanager.conf में डिस्प्ले प्रबंधक सूची रिक्त या "
 "अपरिभाषित है।"
 
-#: src/modules/displaymanager/main.py:989
+#: src/modules/displaymanager/main.py:1074
 msgid "Display manager configuration was incomplete"
 msgstr "डिस्प्ले प्रबंधक विन्यास अधूरा था"
 
@@ -205,36 +205,36 @@ msgstr "सेवा {name!s} हेतु पथ <code>{path!s}</code> है, 
 msgid "Saving network configuration."
 msgstr "नेटवर्क विन्यास सेटिंग्स संचित करना।"
 
-#: src/modules/packages/main.py:50 src/modules/packages/main.py:59
-#: src/modules/packages/main.py:69
+#: src/modules/packages/main.py:54 src/modules/packages/main.py:65
+#: src/modules/packages/main.py:75
 msgid "Install packages."
 msgstr "पैकेज इंस्टॉल करना।"
 
-#: src/modules/packages/main.py:57
+#: src/modules/packages/main.py:63
 #, python-format
 msgid "Processing packages (%(count)d / %(total)d)"
 msgstr "पैकेज (%(count)d / %(total)d) संसाधित किए जा रहे हैं"
 
-#: src/modules/packages/main.py:62
+#: src/modules/packages/main.py:68
 #, python-format
 msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
 msgstr[0] "एक पैकेज इंस्टॉल किया जा रहा है।"
 msgstr[1] "%(num)d पैकेज इंस्टॉल किए जा रहे हैं।"
 
-#: src/modules/packages/main.py:65
+#: src/modules/packages/main.py:71
 #, python-format
 msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
 msgstr[0] "एक पैकेज हटाया जा रहा है।"
 msgstr[1] "%(num)d पैकेज हटाए जा रहे हैं।"
 
-#: src/modules/packages/main.py:638 src/modules/packages/main.py:650
-#: src/modules/packages/main.py:678
+#: src/modules/packages/main.py:725 src/modules/packages/main.py:737
+#: src/modules/packages/main.py:765
 msgid "Package Manager error"
 msgstr "पैकेज प्रबंधक त्रुटि"
 
-#: src/modules/packages/main.py:639
+#: src/modules/packages/main.py:726
 msgid ""
 "The package manager could not prepare updates. The command <pre>{!s}</pre> "
 "returned error code {!s}."
@@ -242,7 +242,7 @@ msgstr ""
 "पैकेज प्रबंधक द्वारा अपडेट तैयार करना विफल। कमांड <pre>{!s}</pre> हेतु "
 "त्रुटि कोड {!s} प्राप्त।"
 
-#: src/modules/packages/main.py:651
+#: src/modules/packages/main.py:738
 msgid ""
 "The package manager could not update the system. The command <pre>{!s}</pre>"
 " returned error code {!s}."
@@ -250,7 +250,7 @@ msgstr ""
 "पैकेज प्रबंधक द्वारा सिस्टम अपडेट करना विफल। कमांड <pre>{!s}</pre> हेतु "
 "त्रुटि कोड {!s} प्राप्त।"
 
-#: src/modules/packages/main.py:679
+#: src/modules/packages/main.py:766
 msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."
@@ -270,9 +270,29 @@ msgstr "mkinitcpio को विन्यस्त करना।"
 msgid "Configuring locales."
 msgstr "स्थानिकी को विन्यस्त करना।"
 
-#: src/modules/mount/main.py:30
+#: src/modules/mount/main.py:42
 msgid "Mounting partitions."
 msgstr "विभाजन माउंट करना।"
+
+#: src/modules/mount/main.py:88 src/modules/mount/main.py:124
+msgid "Internal error mounting zfs datasets"
+msgstr "zfs डेटासेट माउंट करते समय आंतरिक त्रुटि"
+
+#: src/modules/mount/main.py:100
+msgid "Failed to import zpool"
+msgstr "zpool आयात विफल"
+
+#: src/modules/mount/main.py:116
+msgid "Failed to unlock zpool"
+msgstr "zpool अनलॉक करना विफल"
+
+#: src/modules/mount/main.py:133 src/modules/mount/main.py:138
+msgid "Failed to set zfs mountpoint"
+msgstr "zfs माउंट पॉइंट निर्धारण विफल"
+
+#: src/modules/mount/main.py:253
+msgid "zfs mounting error"
+msgstr "zfs माउंट संबंधी त्रुटि"
 
 #: src/modules/rawfs/main.py:26
 msgid "Installing data."
@@ -290,10 +310,6 @@ msgstr "डमी पाइथन प्रक्रिया की चरण �
 #: src/modules/hwclock/main.py:26
 msgid "Setting hardware clock."
 msgstr "हार्डवेयर घड़ी सेट करना।"
-
-#: src/modules/umount/main.py:31
-msgid "Unmount file systems."
-msgstr "फ़ाइल सिस्टम माउंट से हटाना।"
 
 #: src/modules/openrcdmcryptcfg/main.py:26
 msgid "Configuring OpenRC dmcrypt service."
@@ -361,7 +377,7 @@ msgstr "इमेज फ़ाइल {}/{}, फ़ाइल {}/{} सम्पीड़�
 msgid "Starting to unpack {}"
 msgstr "{} हेतु संपीड़न प्रक्रिया आरंभ हो रही है "
 
-#: src/modules/unpackfs/main.py:323 src/modules/unpackfs/main.py:465
+#: src/modules/unpackfs/main.py:323 src/modules/unpackfs/main.py:467
 msgid "Failed to unpack image \"{}\""
 msgstr "इमेज फ़ाइल \"{}\" को खोलने में विफल"
 
@@ -370,31 +386,36 @@ msgid "No mount point for root partition"
 msgstr "रुट विभाजन हेतु कोई माउंट पॉइंट नहीं है"
 
 #: src/modules/unpackfs/main.py:431
-msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr "globalstorage में \"rootMountPoint\" कुंजी नहीं है, कुछ नहीं किया जाएगा"
+msgid "globalstorage does not contain a \"rootMountPoint\" key."
+msgstr "globalstorage में \"rootMountPoint\" कुंजी नहीं है।"
 
-#: src/modules/unpackfs/main.py:436
+#: src/modules/unpackfs/main.py:434
 msgid "Bad mount point for root partition"
 msgstr "रुट विभाजन हेतु ख़राब माउंट पॉइंट"
 
-#: src/modules/unpackfs/main.py:437
-msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr "रुट माउंट पॉइंट \"{}\" है, जो कि मौजूद नहीं है, कुछ नहीं किया जाएगा"
+#: src/modules/unpackfs/main.py:435
+msgid "rootMountPoint is \"{}\", which does not exist."
+msgstr "rootMountPoint \"{}\" है, जो मौजूद नहीं है।"
 
-#: src/modules/unpackfs/main.py:453 src/modules/unpackfs/main.py:457
-#: src/modules/unpackfs/main.py:463 src/modules/unpackfs/main.py:478
-msgid "Bad unsquash configuration"
-msgstr "ख़राब unsquash विन्यास सेटिंग्स"
+#: src/modules/unpackfs/main.py:439 src/modules/unpackfs/main.py:455
+#: src/modules/unpackfs/main.py:459 src/modules/unpackfs/main.py:465
+#: src/modules/unpackfs/main.py:480
+msgid "Bad unpackfs configuration"
+msgstr "विकृत unpackfs विन्यास"
 
-#: src/modules/unpackfs/main.py:454
+#: src/modules/unpackfs/main.py:440
+msgid "There is no configuration information."
+msgstr "विन्यास संबंधी कोई सूचना नहीं है।"
+
+#: src/modules/unpackfs/main.py:456
 msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
 msgstr "\"{}\" ({}) हेतु फ़ाइल सिस्टम आपके वर्तमान कर्नेल द्वारा समर्थित नहीं है"
 
-#: src/modules/unpackfs/main.py:458
+#: src/modules/unpackfs/main.py:460
 msgid "The source filesystem \"{}\" does not exist"
 msgstr "\"{}\" स्रोत फ़ाइल सिस्टम मौजूद नहीं है"
 
-#: src/modules/unpackfs/main.py:464
+#: src/modules/unpackfs/main.py:466
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed."
@@ -402,10 +423,6 @@ msgstr ""
 "unsqaushfs खोजने में विफल, सुनिश्चित करें कि squashfs-tools पैकेज इंस्टॉल "
 "है।"
 
-#: src/modules/unpackfs/main.py:479
+#: src/modules/unpackfs/main.py:481
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "लक्षित सिस्टम में \"{}\" स्थान कोई डायरेक्टरी नहीं है"
-
-#: src/modules/luksopenswaphookcfg/main.py:26
-msgid "Configuring encrypted swap."
-msgstr "एन्क्रिप्टेड स्वैप को विन्यस्त करना।"

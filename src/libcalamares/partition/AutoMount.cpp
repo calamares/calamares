@@ -21,9 +21,23 @@ namespace Partition
 
 struct AutoMountInfo
 {
+    bool hasSolid = false;
     bool wasSolidModuleAutoLoaded = false;
 };
 
+/** @section Solid
+ *
+ * KDE Solid automount management.
+ *
+ * Solid can be influenced through DBus calls to kded5. The following code
+ * handles Solid: if Solid exists (e.g. we're in a KDE Plasma desktop)
+ * then try to turn off automount that way.
+ */
+
+/** @brief Boilerplate for a call to kded5
+ *
+ * Returns a method-call message, ready for arguments and call().
+ */
 static inline QDBusMessage
 kdedCall( const QString& method )
 {
@@ -31,6 +45,31 @@ kdedCall( const QString& method )
         QStringLiteral( "org.kde.kded5" ), QStringLiteral( "/kded" ), QStringLiteral( "org.kde.kded5" ), method );
 }
 
+/** @brief Log a response from call()
+ *
+ * Logs without a function header so it is simple to use from an existing
+ * logging-block. Assumes @p r is a reply or an error message.
+ *
+ * @internal
+ */
+static void
+logDBusResponse( QDBusMessage&& r )
+{
+    if ( r.type() == QDBusMessage::ReplyMessage )
+    {
+        cDebug() << Logger::SubEntry << r.type() << "reply" << r.arguments();
+    }
+    else
+    {
+        cDebug() << Logger::SubEntry << r.type() << "error" << r.errorMessage();
+    }
+}
+
+/** @brief Enables (or disables) automount for Solid
+ *
+ * If @p enable is @c true, enables automount. Otherwise, disables it.
+ * This throws some DBbus messages on the wire and forgets about them.
+ */
 // This code comes, roughly, from the KCM for removable devices.
 static void
 enableSolidAutoMount( QDBusConnection& dbus, bool enable )
@@ -41,17 +80,24 @@ enableSolidAutoMount( QDBusConnection& dbus, bool enable )
     {
         auto msg = kdedCall( QStringLiteral( "setModuleAutoloading" ) );
         msg.setArguments( { moduleName, QVariant( enable ) } );
-        dbus.call( msg, QDBus::NoBlock );
+        logDBusResponse( dbus.call( msg, QDBus::Block ) );
     }
 
     // Stop module
     {
         auto msg = kdedCall( enable ? QStringLiteral( "loadModule" ) : QStringLiteral( "unloadModule" ) );
         msg.setArguments( { moduleName } );
-        dbus.call( msg, QDBus::NoBlock );
+        logDBusResponse( dbus.call( msg, QDBus::Block ) );
     }
 }
 
+/** @brief Check if Solid exists and has automount set
+ *
+ * Updates the @p info object with the discovered information.
+ * - if there is no Solid available on DBus, sets hasSolid to @c false
+ * - if there is Solid available on DBusm, sets *hasSolid* to @c true
+ *   and places the queried value of automounting in *wasSolidModuleAutoLoaded*.
+ */
 static void
 querySolidAutoMount( QDBusConnection& dbus, AutoMountInfo& info )
 {
@@ -73,26 +119,51 @@ querySolidAutoMount( QDBusConnection& dbus, AutoMountInfo& info )
                 result = v.toBool();
             }
         }
+        if ( !result.has_value() )
+        {
+            cDebug() << "No viable response from Solid" << r.path();
+        }
     }
+    else
+    {
+        // It's an error message
+        cDebug() << "Solid not available:" << r.errorMessage();
+    }
+    info.hasSolid = result.has_value();
     info.wasSolidModuleAutoLoaded = result.has_value() ? result.value() : false;
 }
 
 std::shared_ptr< AutoMountInfo >
 automountDisable( bool disable )
 {
-    auto u = std::make_shared< AutoMountInfo >();
+    auto info = std::make_shared< AutoMountInfo >();
     QDBusConnection dbus = QDBusConnection::sessionBus();
-    querySolidAutoMount( dbus, *u );
-    enableSolidAutoMount( dbus, !disable );
-    return u;
+
+    // KDE Plasma (Solid) handling
+    querySolidAutoMount( dbus, *info );
+    if ( info->hasSolid )
+    {
+        cDebug() << "Setting Solid automount to" << ( disable ? "disabled" : "enabled" );
+        enableSolidAutoMount( dbus, !disable );
+    }
+
+    // TODO: other environments
+    return info;
 }
 
 
 void
-automountRestore( const std::shared_ptr< AutoMountInfo >& t )
+automountRestore( const std::shared_ptr< AutoMountInfo >& info )
 {
     QDBusConnection dbus = QDBusConnection::sessionBus();
-    enableSolidAutoMount( dbus, t->wasSolidModuleAutoLoaded );
+
+    // KDE Plasma (Solid) handling
+    if ( info->hasSolid )
+    {
+        enableSolidAutoMount( dbus, info->wasSolidModuleAutoLoaded );
+    }
+
+    // TODO: other environments
 }
 
 }  // namespace Partition

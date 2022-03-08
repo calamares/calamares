@@ -172,7 +172,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
             if partition["fs"] == "zfs" and partition["mountPoint"] == "/":
                 zfs_root_path = get_zfs_root()
 
-    kernel_params = ["quiet"]
+    kernel_params = libcalamares.job.configuration.get("kernel_params", ["quiet"])
 
     # Currently, grub doesn't detect this properly so it must be set manually
     if zfs_root_path:

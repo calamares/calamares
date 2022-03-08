@@ -107,7 +107,15 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
 
     ui->textBoxHostName->setText( config->hostName() );
     connect( ui->textBoxHostName, &QLineEdit::textEdited, config, &Config::setHostName );
-    connect( config, &Config::hostNameChanged, ui->textBoxHostName, &QLineEdit::setText );
+    connect( config,
+             &Config::hostNameChanged,
+             [ this ]( const QString& name )
+             {
+                 if ( !ui->textBoxHostName->hasFocus() )
+                 {
+                     ui->textBoxHostName->setText( name );
+                 }
+             } );
     connect( config, &Config::hostNameStatusChanged, this, &UsersPage::reportHostNameStatus );
 
     ui->textBoxLoginName->setText( config->loginName() );
@@ -116,9 +124,10 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
     connect( config, &Config::loginNameStatusChanged, this, &UsersPage::reportLoginNameStatus );
 
     ui->checkBoxDoAutoLogin->setChecked( m_config->doAutoLogin() );
-    connect( ui->checkBoxDoAutoLogin, &QCheckBox::stateChanged, this, [this]( int checked ) {
-        m_config->setAutoLogin( checked != Qt::Unchecked );
-    } );
+    connect( ui->checkBoxDoAutoLogin,
+             &QCheckBox::stateChanged,
+             this,
+             [ this ]( int checked ) { m_config->setAutoLogin( checked != Qt::Unchecked ); } );
     connect( config, &Config::autoLoginChanged, ui->checkBoxDoAutoLogin, &QCheckBox::setChecked );
 
     ui->checkBoxReusePassword->setVisible( m_config->writeRootPassword() );
@@ -133,9 +142,10 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
     ui->checkBoxRequireStrongPassword->setChecked( m_config->requireStrongPasswords() );
     if ( m_config->permitWeakPasswords() )
     {
-        connect( ui->checkBoxRequireStrongPassword, &QCheckBox::stateChanged, this, [this]( int checked ) {
-            m_config->setRequireStrongPasswords( checked != Qt::Unchecked );
-        } );
+        connect( ui->checkBoxRequireStrongPassword,
+                 &QCheckBox::stateChanged,
+                 this,
+                 [ this ]( int checked ) { m_config->setRequireStrongPasswords( checked != Qt::Unchecked ); } );
         connect(
             config, &Config::requireStrongPasswordsChanged, ui->checkBoxRequireStrongPassword, &QCheckBox::setChecked );
     }

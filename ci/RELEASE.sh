@@ -75,7 +75,7 @@ fi
 #
 #
 BUILDDIR=$(mktemp -d --suffix=-build --tmpdir=.)
-KEY_ID="CFDDC96F12B1915C"
+KEY_ID="328D742D8807A435"
 
 # Try to make gpg cache the signing key, so we can leave the process
 # to run and sign.

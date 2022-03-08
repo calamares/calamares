@@ -268,10 +268,166 @@ def create_loader(loader_path, entry):
             loader_file.write(line)
 
 
-def efi_label():
+class suffix_iterator(object):
+    """
+    Wrapper for one of the "generator" classes below to behave like
+    a proper Python iterator. The iterator is initialized with a
+    maximum number of attempts to generate a new suffix.
+    """
+    def __init__(self, attempts, generator):
+        self.generator = generator
+        self.attempts = attempts
+        self.counter = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        self.counter += 1
+        if self.counter <= self.attempts:
+            return self.generator.next()
+        raise StopIteration
+
+
+class serialEfi(object):
+    """
+    EFI Id generator that appends a serial number to the given name.
+    """
+    def __init__(self, name):
+        self.name = name
+        # So the first call to next() will bump it to 0
+        self.counter = -1
+
+    def next(self):
+        self.counter += 1
+        if self.counter > 0:
+            return "{!s}{!s}".format(self.name, self.counter)
+        else:
+            return self.name
+
+
+def render_in_base(value, base_values, length=-1):
+    """
+    Renders @p value in base-N, where N is the number of
+    items in @p base_values. When rendering, use the items
+    of @p base_values (e.g. use "0123456789" to get regular decimal
+    rendering, or "ABCDEFGHIJ" for letters-as-numbers 'encoding').
+
+    If length is positive, pads out to at least that long with
+    leading "zeroes", whatever base_values[0] is.
+    """
+    if value < 0:
+        raise ValueError("Cannot render negative values")
+    if len(base_values) < 2:
+        raise ValueError("Insufficient items for base-N rendering")
+    if length < 1:
+        length = 1
+    digits = []
+    base = len(base_values)
+    while value > 0:
+        place = value % base
+        value = value // base
+        digits.append(base_values[place])
+    while len(digits) < length:
+        digits.append(base_values[0])
+    return "".join(reversed(digits))
+
+
+class randomEfi(object):
+    """
+    EFI Id generator that appends a random 4-digit hex number to the given name.
+    """
+    def __init__(self, name):
+        self.name = name
+        # So the first call to next() will bump it to 0
+        self.counter = -1
+
+    def next(self):
+        self.counter += 1
+        if self.counter > 0:
+            import random
+            v = random.randint(0, 65535)  # 16 bits
+            return "{!s}{!s}".format(self.name, render_in_base(v, "0123456789ABCDEF", 4))
+        else:
+            return self.name
+
+
+class phraseEfi(object):
+    """
+    EFI Id generator that appends a random phrase to the given name.
+    """
+    words = ("Sun", "Moon", "Mars", "Soyuz", "Falcon", "Kuaizhou", "Gaganyaan")
+
+    def __init__(self, name):
+        self.name = name
+        # So the first call to next() will bump it to 0
+        self.counter = -1
+
+    def next(self):
+        self.counter += 1
+        if self.counter > 0:
+            import random
+            desired_length = 1 + self.counter // 5
+            v = random.randint(0, len(self.words) ** desired_length)
+            return "{!s}{!s}".format(self.name, render_in_base(v, self.words))
+        else:
+            return self.name
+
+
+def get_efi_suffix_generator(name):
+    """
+    Handle EFI bootloader Ids with @@<something>@@ for suffix-processing.
+    """
+    if "@@" not in name:
+        raise ValueError("Misplaced call to get_efi_suffix_generator, no @@")
+    parts = name.split("@@")
+    if len(parts) != 3:
+        raise ValueError("EFI Id {!r} is malformed".format(name))
+    if parts[2]:
+        # Supposed to be empty because the string ends with "@@"
+        raise ValueError("EFI Id {!r} is malformed".format(name))
+    if parts[1] not in ("SERIAL", "RANDOM", "PHRASE"):
+        raise ValueError("EFI suffix {!r} is unknown".format(parts[1]))
+
+    generator = None
+    if parts[1] == "SERIAL":
+        generator = serialEfi(parts[0])
+    elif parts[1] == "RANDOM":
+        generator = randomEfi(parts[0])
+    elif parts[1] == "PHRASE":
+        generator = phraseEfi(parts[0])
+    if generator is None:
+        raise ValueError("EFI suffix {!r} is unsupported".format(parts[1]))
+
+    return generator
+
+
+def change_efi_suffix(efi_directory, bootloader_id):
+    """
+    Returns a label based on @p bootloader_id that is usable within
+    @p efi_directory. If there is a @@<something>@@ suffix marker
+    in the given id, tries to generate a unique label.
+    """
+    if bootloader_id.endswith("@@"):
+        # Do 10 attempts with any suffix generator
+        g = suffix_iterator(10, get_efi_suffix_generator(bootloader_id))
+    else:
+        # Just one attempt
+        g = [bootloader_id]
+
+    for candidate_name in g:
+        if not os.path.exists(os.path.join(efi_directory, candidate_name)):
+            return candidate_name
+    return bootloader_id
+
+
+def efi_label(efi_directory):
+    """
+    Returns a sanitized label, possibly unique, that can be
+    used within @p efi_directory.
+    """
     if "efiBootloaderId" in libcalamares.job.configuration:
-        efi_bootloader_id = libcalamares.job.configuration[
-                                "efiBootloaderId"]
+        efi_bootloader_id = change_efi_suffix( efi_directory, libcalamares.job.configuration["efiBootloaderId"] )
     else:
         branding = libcalamares.globalstorage.value("branding")
         efi_bootloader_id = branding["bootloaderEntryName"]
@@ -364,6 +520,8 @@ def get_grub_efi_parameters():
         return ("i386-efi", "grubia32.efi", "bootia32.efi")
     elif efi_bitness == "64" and cpu_type == "aarch64":
         return ("arm64-efi", "grubaa64.efi", "bootaa64.efi")
+    elif efi_bitness == "64" and cpu_type == "loongarch64":
+        return ("loongarch64-efi", "grubloongarch64.efi", "bootloongarch64.efi")
     elif efi_bitness == "64":
         # If it's not ARM, must by AMD64
         return ("x86_64-efi", "grubx64.efi", "bootx64.efi")
@@ -390,7 +548,7 @@ def run_grub_mkconfig(partitions, output_file):
         check_target_env_call([libcalamares.job.configuration["grubMkconfig"], "-o", output_file])
 
 
-def run_grub_install(fw_type, partitions, efi_directory=None):
+def run_grub_install(fw_type, partitions, efi_directory):
     """
     Runs grub-install in the target environment
 
@@ -407,7 +565,8 @@ def run_grub_install(fw_type, partitions, efi_directory=None):
         check_target_env_call(["sh", "-c", "echo ZPOOL_VDEV_NAME_PATH=1 >> /etc/environment"])
 
     if fw_type == "efi":
-        efi_bootloader_id = efi_label()
+        assert efi_directory is not None
+        efi_bootloader_id = efi_label(efi_directory)
         efi_target, efi_grub_file, efi_boot_file = get_grub_efi_parameters()
 
         if is_zfs:
@@ -421,6 +580,7 @@ def run_grub_install(fw_type, partitions, efi_directory=None):
                                    "--bootloader-id=" + efi_bootloader_id,
                                    "--force"])
     else:
+        assert efi_directory is None
         if libcalamares.globalstorage.value("bootLoader") is None:
             return
 
@@ -462,7 +622,7 @@ def install_grub(efi_directory, fw_type):
         if not os.path.isdir(install_efi_directory):
             os.makedirs(install_efi_directory)
 
-        efi_bootloader_id = efi_label()
+        efi_bootloader_id = efi_label(efi_directory)
 
         efi_target, efi_grub_file, efi_boot_file = get_grub_efi_parameters()
 
@@ -497,7 +657,7 @@ def install_grub(efi_directory, fw_type):
             shutil.copy2(efi_file_source, efi_file_target)
     else:
         libcalamares.utils.debug("Bootloader: grub (bios)")
-        run_grub_install(fw_type, partitions)
+        run_grub_install(fw_type, partitions, None)
 
     run_grub_mkconfig(partitions, libcalamares.job.configuration["grubCfg"])
 
@@ -506,7 +666,7 @@ def install_secureboot(efi_directory):
     """
     Installs the secureboot shim in the system by calling efibootmgr.
     """
-    efi_bootloader_id = efi_label()
+    efi_bootloader_id = efi_label(efi_directory)
 
     install_path = libcalamares.globalstorage.value("rootMountPoint")
     install_efi_directory = install_path + efi_directory

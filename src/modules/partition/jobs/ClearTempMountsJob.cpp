@@ -9,6 +9,7 @@
 
 #include "ClearTempMountsJob.h"
 
+#include "partition/Mount.h"
 #include "utils/Logger.h"
 #include "utils/String.h"
 
@@ -45,51 +46,23 @@ ClearTempMountsJob::exec()
 {
     Logger::Once o;
     // Fetch a list of current mounts to Calamares temporary directories.
-    QList< QPair< QString, QString > > lst;
-    QFile mtab( "/etc/mtab" );
-    if ( !mtab.open( QFile::ReadOnly | QFile::Text ) )
-    {
-        return Calamares::JobResult::error( tr( "Cannot get list of temporary mounts." ) );
-    }
+    using MtabInfo = CalamaresUtils::Partition::MtabInfo;
+    auto targetMounts = MtabInfo::fromMtabFilteredByPrefix( QStringLiteral( "/tmp/calamares-" ) );
 
-    cVerbose() << o << "Opened mtab. Lines:";
-    QTextStream in( &mtab );
-    QString lineIn = in.readLine();
-    while ( !lineIn.isNull() )
-    {
-        QStringList line = lineIn.split( ' ', SplitSkipEmptyParts );
-        cVerbose() << o << line.join( ' ' );
-        QString device = line.at( 0 );
-        QString mountPoint = line.at( 1 );
-        if ( mountPoint.startsWith( "/tmp/calamares-" ) )
-        {
-            lst.append( qMakePair( device, mountPoint ) );
-        }
-        lineIn = in.readLine();
-    }
-
-    if ( lst.empty() )
+    if ( targetMounts.isEmpty() )
     {
         return Calamares::JobResult::ok();
     }
-
-    std::sort(
-        lst.begin(), lst.end(), []( const QPair< QString, QString >& a, const QPair< QString, QString >& b ) -> bool {
-            return a.first > b.first;
-        } );
+    std::sort( targetMounts.begin(), targetMounts.end(), MtabInfo::mountPointOrder );
 
     QStringList goodNews;
-    QProcess process;
-
-    for ( const auto& line : qAsConst( lst ) )
+    for ( const auto& m : qAsConst( targetMounts ) )
     {
-        QString partPath = line.second;
-        cDebug() << o << "Will try to umount path" << partPath;
-        process.start( "umount", { "-lv", partPath } );
-        process.waitForFinished();
-        if ( process.exitCode() == 0 )
+        cDebug() << o << "Will try to umount path" << m.mountPoint;
+        if ( CalamaresUtils::Partition::unmount( m.mountPoint, { "-lv" } ) == 0 )
         {
-            goodNews.append( QString( "Successfully unmounted %1." ).arg( partPath ) );
+            // Returns the program's exit code, so 0 is success
+            goodNews.append( QString( "Successfully unmounted %1." ).arg( m.mountPoint ) );
         }
     }
 

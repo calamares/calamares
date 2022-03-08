@@ -7,8 +7,10 @@ additionalProperties: false
 type: object
 properties:
     overwrite: { type: boolean, default: false }
+    # TODO:3.3:snake-case this key
     keepDistributor: { type: boolean, default: false }
     prefer_grub_d: { type: boolean, default: false }
+    kernel_params: { type: array, items: { type: string } }
     defaults:
         type: object
         additionalProperties: true  # Other fields are acceptable

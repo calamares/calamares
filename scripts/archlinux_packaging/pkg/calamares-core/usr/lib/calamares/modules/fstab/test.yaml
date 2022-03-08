@@ -1,0 +1,16 @@
+# SPDX-FileCopyrightText: no
+# SPDX-License-Identifier: CC0-1.0
+rootMountPoint: /tmp/mount
+partitions:
+    - device: /dev/sda1
+      fs: ext4
+      mountPoint: /
+      uuid: 2a00f1d5-1217-49a7-bedd-b55c85764732
+    - device: /dev/sda2
+      fs: swap
+      uuid: 59406569-446f-4730-a874-9f6b4b44fee3
+      mountPoint:
+    - device: /dev/sdb1
+      fs: btrfs
+      mountPoint: /home
+      uuid: 59406569-abcd-1234-a874-9f6b4b44fee3

@@ -5,16 +5,16 @@
 # 
 # Translators:
 # හෙළබස, 2021
-# Sandaruwan Samaraweera, 2021
+# Sandaruwan Samaraweera, 2022
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-02 15:45+0100\n"
+"POT-Creation-Date: 2022-02-17 15:52+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Sandaruwan Samaraweera, 2021\n"
+"Last-Translator: Sandaruwan Samaraweera, 2022\n"
 "Language-Team: Sinhala (https://www.transifex.com/calamares/teams/20061/si/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,28 +27,24 @@ msgid "Configuring initramfs."
 msgstr "initramfs වින්‍යාස කිරීම."
 
 #: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
-#: src/modules/fstab/main.py:355 src/modules/fstab/main.py:361
-#: src/modules/fstab/main.py:388 src/modules/networkcfg/main.py:105
-#: src/modules/initcpiocfg/main.py:227 src/modules/initcpiocfg/main.py:231
-#: src/modules/localecfg/main.py:135 src/modules/mount/main.py:144
+#: src/modules/fstab/main.py:360 src/modules/fstab/main.py:366
+#: src/modules/fstab/main.py:393 src/modules/networkcfg/main.py:105
+#: src/modules/initcpiocfg/main.py:235 src/modules/initcpiocfg/main.py:239
+#: src/modules/localecfg/main.py:135 src/modules/mount/main.py:229
 #: src/modules/rawfs/main.py:164 src/modules/openrcdmcryptcfg/main.py:72
 #: src/modules/openrcdmcryptcfg/main.py:76
-#: src/modules/luksopenswaphookcfg/main.py:86
-#: src/modules/luksopenswaphookcfg/main.py:90
 msgid "Configuration Error"
 msgstr "වින්‍යාස දෝෂය"
 
-#: src/modules/initramfscfg/main.py:86 src/modules/fstab/main.py:356
-#: src/modules/initcpiocfg/main.py:228 src/modules/mount/main.py:145
+#: src/modules/initramfscfg/main.py:86 src/modules/fstab/main.py:361
+#: src/modules/initcpiocfg/main.py:236 src/modules/mount/main.py:230
 #: src/modules/rawfs/main.py:165 src/modules/openrcdmcryptcfg/main.py:73
-#: src/modules/luksopenswaphookcfg/main.py:87
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "{!s} සඳහා භාවිතා කිරීමට කිසිදු කොටස් නිර්වචනය කර නොමැත."
 
-#: src/modules/initramfscfg/main.py:90 src/modules/fstab/main.py:362
-#: src/modules/networkcfg/main.py:106 src/modules/initcpiocfg/main.py:232
+#: src/modules/initramfscfg/main.py:90 src/modules/fstab/main.py:367
+#: src/modules/networkcfg/main.py:106 src/modules/initcpiocfg/main.py:240
 #: src/modules/localecfg/main.py:136 src/modules/openrcdmcryptcfg/main.py:77
-#: src/modules/luksopenswaphookcfg/main.py:91
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
 msgstr "{!s} සඳහා භාවිතා කිරීමට root mount point ලබා දී නොමැත."
 
@@ -60,11 +56,16 @@ msgstr "GRUB වින්‍යාස කරන්න."
 msgid "Install bootloader."
 msgstr "bootloader ස්ථාපනය කරන්න."
 
-#: src/modules/bootloader/main.py:508
+#: src/modules/bootloader/main.py:612
+msgid "Failed to install grub, no partitions defined in global storage"
+msgstr ""
+"Grub ස්ථාපනය කිරීමට අපොහොසත් විය, ගෝලීය ආචයනය තුළ කොටස් අර්ථ දක්වා නොමැත"
+
+#: src/modules/bootloader/main.py:780
 msgid "Bootloader installation error"
 msgstr "Bootloader ස්ථාපනය කිරීමේ දෝෂයකි"
 
-#: src/modules/bootloader/main.py:509
+#: src/modules/bootloader/main.py:781
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
@@ -76,7 +77,7 @@ msgstr ""
 msgid "Writing fstab."
 msgstr "fstab ලියමින්."
 
-#: src/modules/fstab/main.py:389
+#: src/modules/fstab/main.py:394
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr ""
 "භාවිතා කිරීමට <pre>{!s}</pre> සඳහා <pre>{!s}</pre> වින්‍යාසයක් ලබා දී නොමැත."
@@ -93,51 +94,51 @@ msgstr "ඉලක්කය මත ඩ්‍රැකට් ධාවනය ක�
 msgid "The exit code was {}"
 msgstr "පිටවීමේ කේතය වූයේ {}"
 
-#: src/modules/displaymanager/main.py:526
+#: src/modules/displaymanager/main.py:524
 msgid "Cannot write KDM configuration file"
 msgstr "KDM වින්‍යාස ගොනුව ලිවිය නොහැක"
 
-#: src/modules/displaymanager/main.py:527
+#: src/modules/displaymanager/main.py:525
 msgid "KDM config file {!s} does not exist"
 msgstr "KDM වින්‍යාස ගොනුව {!s} නොපවතී"
 
-#: src/modules/displaymanager/main.py:588
+#: src/modules/displaymanager/main.py:586
 msgid "Cannot write LXDM configuration file"
 msgstr "LXDM වින්‍යාස ගොනුව ලිවිය නොහැක"
 
-#: src/modules/displaymanager/main.py:589
+#: src/modules/displaymanager/main.py:587
 msgid "LXDM config file {!s} does not exist"
 msgstr "LXDM වින්‍යාස ගොනුව {!s} නොපවතී"
 
-#: src/modules/displaymanager/main.py:672
+#: src/modules/displaymanager/main.py:670
 msgid "Cannot write LightDM configuration file"
 msgstr "LightDM වින්‍යාස ගොනුව ලිවිය නොහැක"
 
-#: src/modules/displaymanager/main.py:673
+#: src/modules/displaymanager/main.py:671
 msgid "LightDM config file {!s} does not exist"
 msgstr "LightDM වින්‍යාස ගොනුව {!s} නොපවතී"
 
-#: src/modules/displaymanager/main.py:747
+#: src/modules/displaymanager/main.py:745
 msgid "Cannot configure LightDM"
 msgstr "LightDM වින්‍යාස කළ නොහැක"
 
-#: src/modules/displaymanager/main.py:748
+#: src/modules/displaymanager/main.py:746
 msgid "No LightDM greeter installed."
 msgstr "LightDM ග්‍රීටර් ස්ථාපනය කර නැත."
 
-#: src/modules/displaymanager/main.py:779
+#: src/modules/displaymanager/main.py:777
 msgid "Cannot write SLIM configuration file"
 msgstr "SLIM වින්‍යාස ගොනුව ලිවිය නොහැක"
 
-#: src/modules/displaymanager/main.py:780
+#: src/modules/displaymanager/main.py:778
 msgid "SLIM config file {!s} does not exist"
 msgstr "SLIM වින්‍යාස ගොනුව {!s} නොපවතී"
 
-#: src/modules/displaymanager/main.py:906
+#: src/modules/displaymanager/main.py:991
 msgid "No display managers selected for the displaymanager module."
 msgstr "සංදර්ශක කළමනාකරු මොඩියුලය සඳහා සංදර්ශක කළමනාකරුවන් තෝරාගෙන නොමැත."
 
-#: src/modules/displaymanager/main.py:907
+#: src/modules/displaymanager/main.py:992
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
@@ -145,7 +146,7 @@ msgstr ""
 "ගෝලීය ගබඩාව සහ displaymanager.conf යන දෙකෙහිම සංදර්ශක කළමනාකරු ලැයිස්තුව "
 "හිස් හෝ අර්ථ දක්වා නොමැත."
 
-#: src/modules/displaymanager/main.py:989
+#: src/modules/displaymanager/main.py:1074
 msgid "Display manager configuration was incomplete"
 msgstr "සංදර්ශක කළමනාකරු වින්‍යාසය අසම්පූර්ණ විය"
 
@@ -204,36 +205,36 @@ msgstr "සේවාව සඳහා {name!s} මාර්ගය <code>{path!s}<
 msgid "Saving network configuration."
 msgstr "ජාල වින්‍යාසය සුරැකෙමින්."
 
-#: src/modules/packages/main.py:50 src/modules/packages/main.py:59
-#: src/modules/packages/main.py:69
+#: src/modules/packages/main.py:54 src/modules/packages/main.py:65
+#: src/modules/packages/main.py:75
 msgid "Install packages."
 msgstr "ඇසුරුම් ස්ථාපනය කරන්න."
 
-#: src/modules/packages/main.py:57
+#: src/modules/packages/main.py:63
 #, python-format
 msgid "Processing packages (%(count)d / %(total)d)"
 msgstr "පැකේජ සැකසීම (%(count)d / %(total)d)"
 
-#: src/modules/packages/main.py:62
+#: src/modules/packages/main.py:68
 #, python-format
 msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
 msgstr[0] "ඇසුරුමක් ස්ථාපනය වෙමින්."
 msgstr[1] "ඇසුරුම් %(num)d ක් ස්ථාපනය වෙමින්."
 
-#: src/modules/packages/main.py:65
+#: src/modules/packages/main.py:71
 #, python-format
 msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
 msgstr[0] "ඇසුරුමක් ඉවත් වෙමින්."
 msgstr[1] "ඇසුරුම් %(num)d ක් ඉවත් වෙමින්."
 
-#: src/modules/packages/main.py:638 src/modules/packages/main.py:650
-#: src/modules/packages/main.py:678
+#: src/modules/packages/main.py:725 src/modules/packages/main.py:737
+#: src/modules/packages/main.py:765
 msgid "Package Manager error"
 msgstr "පැකේජ කළමනාකරු දෝෂයකි"
 
-#: src/modules/packages/main.py:639
+#: src/modules/packages/main.py:726
 msgid ""
 "The package manager could not prepare updates. The command <pre>{!s}</pre> "
 "returned error code {!s}."
@@ -241,7 +242,7 @@ msgstr ""
 "පැකේජ කළමනාකරුට යාවත්කාලීන සකස් කිරීමට නොහැකි විය. විධානය <pre>{!s}</pre> "
 "දෝෂ කේතය {!s} ලබා දුන්නේය."
 
-#: src/modules/packages/main.py:651
+#: src/modules/packages/main.py:738
 msgid ""
 "The package manager could not update the system. The command <pre>{!s}</pre>"
 " returned error code {!s}."
@@ -249,7 +250,7 @@ msgstr ""
 "පැකේජ කළමනාකරුට පද්ධතිය යාවත්කාලීන කළ නොහැකි විය. විධානය <pre>{!s}</pre> දෝෂ"
 " කේතය {!s} ලබා දුන්නේය."
 
-#: src/modules/packages/main.py:679
+#: src/modules/packages/main.py:766
 msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."
@@ -269,9 +270,29 @@ msgstr "mkinitcpio වින්‍යාස කරමින්."
 msgid "Configuring locales."
 msgstr "ස්ථාන වින්‍යාස කිරීම."
 
-#: src/modules/mount/main.py:30
+#: src/modules/mount/main.py:42
 msgid "Mounting partitions."
 msgstr "කොටස් සවි කිරීම."
+
+#: src/modules/mount/main.py:88 src/modules/mount/main.py:124
+msgid "Internal error mounting zfs datasets"
+msgstr "zfs දත්ත කට්ටල සවිකිරීමේ අභ්‍යන්තර දෝෂයකි"
+
+#: src/modules/mount/main.py:100
+msgid "Failed to import zpool"
+msgstr "zpool ආයාත කිරීමට අසමත් විය"
+
+#: src/modules/mount/main.py:116
+msgid "Failed to unlock zpool"
+msgstr "zpool අගුලු හැරීමට අසමත් විය"
+
+#: src/modules/mount/main.py:133 src/modules/mount/main.py:138
+msgid "Failed to set zfs mountpoint"
+msgstr "zfs සවිකිරීමේ ලක්ෂ්‍යය සැකසීමට අසමත් විය"
+
+#: src/modules/mount/main.py:253
+msgid "zfs mounting error"
+msgstr "zfs සවිකිරීමේ දෝෂයකි"
 
 #: src/modules/rawfs/main.py:26
 msgid "Installing data."
@@ -289,10 +310,6 @@ msgstr "ව්‍යාජ python පියවර {}"
 #: src/modules/hwclock/main.py:26
 msgid "Setting hardware clock."
 msgstr "දෘඩාංග ඔරලෝසුව සැකසෙමින්."
-
-#: src/modules/umount/main.py:31
-msgid "Unmount file systems."
-msgstr "ගොනු පද්ධති ඉවත් කරන්න."
 
 #: src/modules/openrcdmcryptcfg/main.py:26
 msgid "Configuring OpenRC dmcrypt service."
@@ -361,7 +378,7 @@ msgstr "රූපය {}/{}, ගොනුව {}/{} අසුරමින්"
 msgid "Starting to unpack {}"
 msgstr "ඉවත් කිරීමට පටන් ගනියි {}"
 
-#: src/modules/unpackfs/main.py:323 src/modules/unpackfs/main.py:465
+#: src/modules/unpackfs/main.py:323 src/modules/unpackfs/main.py:467
 msgid "Failed to unpack image \"{}\""
 msgstr "\"{}\" රූපය ඉවත් කිරීමට අසමත් විය"
 
@@ -370,31 +387,36 @@ msgid "No mount point for root partition"
 msgstr "root කොටස සඳහා සවි කිරීමේ ලක්ෂ්‍යයක් නොමැත"
 
 #: src/modules/unpackfs/main.py:431
-msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr "ගෝලීය ගබඩාවේ \"rootMountPoint\" යතුරක් අඩංගු නොවේ, කිසිවක් නොකරයි"
+msgid "globalstorage does not contain a \"rootMountPoint\" key."
+msgstr "ගෝලීය ගබඩාවේ \"rootMountPoint\" යතුරක් අඩංගු නොවේ."
 
-#: src/modules/unpackfs/main.py:436
+#: src/modules/unpackfs/main.py:434
 msgid "Bad mount point for root partition"
 msgstr "මූල කොටස සඳහා නරක සවි කිරීමේ ලක්ෂ්‍යය"
 
-#: src/modules/unpackfs/main.py:437
-msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr "rootMountPoint යනු \"{}\", එය නොපවතින, කිසිවක් නොකරයි"
+#: src/modules/unpackfs/main.py:435
+msgid "rootMountPoint is \"{}\", which does not exist."
+msgstr "rootMountPoint යනු \"{}\", එය නොපවතී."
 
-#: src/modules/unpackfs/main.py:453 src/modules/unpackfs/main.py:457
-#: src/modules/unpackfs/main.py:463 src/modules/unpackfs/main.py:478
-msgid "Bad unsquash configuration"
-msgstr "නරක unsquash වින්‍යාසය"
+#: src/modules/unpackfs/main.py:439 src/modules/unpackfs/main.py:455
+#: src/modules/unpackfs/main.py:459 src/modules/unpackfs/main.py:465
+#: src/modules/unpackfs/main.py:480
+msgid "Bad unpackfs configuration"
+msgstr "වැරදි unpackfs වින්‍යාසය"
 
-#: src/modules/unpackfs/main.py:454
+#: src/modules/unpackfs/main.py:440
+msgid "There is no configuration information."
+msgstr "වින්‍යාස තොරතුරු නොමැත."
+
+#: src/modules/unpackfs/main.py:456
 msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
 msgstr "\"{}\" ({}) සඳහා ගොනු පද්ධතිය ඔබගේ වත්මන් කර්නලයෙන් සහය නොදක්වයි"
 
-#: src/modules/unpackfs/main.py:458
+#: src/modules/unpackfs/main.py:460
 msgid "The source filesystem \"{}\" does not exist"
 msgstr "මූලාශ්‍ර ගොනු පද්ධතිය \"{}\" නොපවතී"
 
-#: src/modules/unpackfs/main.py:464
+#: src/modules/unpackfs/main.py:466
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed."
@@ -402,10 +424,6 @@ msgstr ""
 "Unsquashfs සොයා ගැනීමට අපොහොසත් විය, ඔබ squashfs-tools පැකේජය ස්ථාපනය කර ඇති"
 " බවට වග බලා ගන්න."
 
-#: src/modules/unpackfs/main.py:479
+#: src/modules/unpackfs/main.py:481
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "ඉලක්ක පද්ධතියේ \"{}\" ගමනාන්තය නාමාවලියක් නොවේ"
-
-#: src/modules/luksopenswaphookcfg/main.py:26
-msgid "Configuring encrypted swap."
-msgstr "සංකේතාත්මක swap වින්‍යාස කිරීම."

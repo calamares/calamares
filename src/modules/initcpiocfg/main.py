@@ -173,7 +173,8 @@ def find_initcpio_features(partitions, root_mount_point):
         if partition["fs"] == "btrfs":
             uses_btrfs = True
 
-        if partition["fs"] == "zfs":
+        # In addition to checking the filesystem, check to ensure that zfs is enabled
+        if partition["fs"] == "zfs" and libcalamares.globalstorage.contains("zfsPoolInfo"):
             uses_zfs = True
 
         if "lvm2" in partition["fs"]:

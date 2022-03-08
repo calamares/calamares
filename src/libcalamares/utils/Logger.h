@@ -71,8 +71,11 @@ private:
 inline CDebug&
 operator<<( CDebug&& s, const FuncSuppressor& f )
 {
-    s.m_funcinfo = nullptr;
-    s << f.m_s;
+    if ( s.m_funcinfo )
+    {
+        s.m_funcinfo = nullptr;
+        s.m_msg = QString( f.m_s );
+    }
     return s;
 }
 
@@ -244,7 +247,8 @@ private:
     const QString m_context;
 };
 
-inline QDebug& operator<<( QDebug& s, const RedactedName& n )
+inline QDebug&
+operator<<( QDebug& s, const RedactedName& n )
 {
     return s << NoQuote << QString( n ) << Quote;
 }

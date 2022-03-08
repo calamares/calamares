@@ -1,0 +1,9 @@
+# SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+# SPDX-License-Identifier: GPL-3.0-or-later
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/plymouthcfg
+additionalProperties: false
+type: object
+properties:
+    plymouth_theme: { type: string }

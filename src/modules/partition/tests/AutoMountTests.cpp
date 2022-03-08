@@ -69,8 +69,8 @@ AutoMountJobTests::testRunQueue()
     QVERIFY( !q.isRunning() );
 
     QEventLoop loop;
-    QTimer::singleShot( std::chrono::milliseconds( 100 ), [&q]() { q.start(); } );
-    QTimer::singleShot( std::chrono::milliseconds( 5000 ), [&loop]() { loop.quit(); } );
+    QTimer::singleShot( std::chrono::milliseconds( 100 ), [ &q ]() { q.start(); } );
+    QTimer::singleShot( std::chrono::milliseconds( 5000 ), [ &loop ]() { loop.quit(); } );
     connect( &q, &Calamares::JobQueue::finished, &loop, &QEventLoop::quit );
     loop.exec();
 

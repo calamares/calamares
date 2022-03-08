@@ -451,15 +451,18 @@ void
 PartitionPage::onRevertClicked()
 {
     ScanningDialog::run(
-        QtConcurrent::run( [this] {
-            QMutexLocker locker( &m_revertMutex );
+        QtConcurrent::run(
+            [ this ]
+            {
+                QMutexLocker locker( &m_revertMutex );
 
-            int oldIndex = m_ui->deviceComboBox->currentIndex();
-            m_core->revertAllDevices();
-            m_ui->deviceComboBox->setCurrentIndex( ( oldIndex < 0 ) ? 0 : oldIndex );
-            updateFromCurrentDevice();
-        } ),
-        [this] {
+                int oldIndex = m_ui->deviceComboBox->currentIndex();
+                m_core->revertAllDevices();
+                m_ui->deviceComboBox->setCurrentIndex( ( oldIndex < 0 ) ? 0 : oldIndex );
+                updateFromCurrentDevice();
+            } ),
+        [ this ]
+        {
             m_lastSelectedBootLoaderIndex = -1;
             if ( m_ui->bootLoaderComboBox->currentIndex() < 0 )
             {
@@ -606,7 +609,8 @@ PartitionPage::updateFromCurrentDevice()
         m_ui->partitionBarsView->selectionModel(),
         &QItemSelectionModel::currentChanged,
         this,
-        [=] {
+        [ = ]
+        {
             QModelIndex selectedIndex = m_ui->partitionBarsView->selectionModel()->currentIndex();
             selectedIndex = selectedIndex.sibling( selectedIndex.row(), 0 );
             m_ui->partitionBarsView->setCurrentIndex( selectedIndex );
@@ -625,7 +629,7 @@ PartitionPage::updateFromCurrentDevice()
     // model changes
     connect( m_ui->partitionTreeView->selectionModel(),
              &QItemSelectionModel::currentChanged,
-             [this]( const QModelIndex&, const QModelIndex& ) { updateButtons(); } );
+             [ this ]( const QModelIndex&, const QModelIndex& ) { updateButtons(); } );
     connect( model, &QAbstractItemModel::modelReset, this, &PartitionPage::onPartitionModelReset );
 }
 

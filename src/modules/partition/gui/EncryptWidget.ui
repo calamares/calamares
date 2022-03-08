@@ -38,6 +38,19 @@ SPDX-License-Identifier: GPL-3.0-or-later
     </widget>
    </item>
    <item>
+    <widget class="QLabel" name="m_encryptionUnsupportedLabel">
+     <property name="toolTip">
+      <string>Your system does not seem to support encryption well enough to encrypt the entire system. You may enable encryption, but performance may suffer.</string>
+     </property>
+     <property name="text">
+      <string notr="true">🔓</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QLineEdit" name="m_passphraseLineEdit">
      <property name="echoMode">
       <enum>QLineEdit::Password</enum>
@@ -56,6 +69,19 @@ SPDX-License-Identifier: GPL-3.0-or-later
       <string>Confirm passphrase</string>
      </property>
     </widget>
+   </item>
+   <item>
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
    </item>
    <item>
     <widget class="QLabel" name="m_iconLabel">

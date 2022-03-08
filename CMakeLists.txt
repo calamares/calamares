@@ -41,7 +41,7 @@
 # TODO:3.3: Require CMake 3.12
 cmake_minimum_required( VERSION 3.3 FATAL_ERROR )
 project( CALAMARES
-    VERSION 3.2.50
+    VERSION 3.2.54
     LANGUAGES C CXX
 )
 
@@ -75,7 +75,7 @@ option( BUILD_SCHEMA_TESTING "Enable schema-validation-tests" ON )
 #  - DEBUG_FILESYSTEMS does extra logging and checking when looking at
 #    partition configuration. Lists known KPMCore FS types.
 #  - DEBUG_PARTITION_UNSAFE (see partition/CMakeLists.txt)
-#  - DEBUG_PARTITION_LAME (see partition/CMakeLists.txt)
+#  - DEBUG_PARTITION_BAIL_OUT (see partition/CMakeLists.txt)
 
 
 ### USE_*

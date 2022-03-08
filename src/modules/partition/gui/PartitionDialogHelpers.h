@@ -16,7 +16,9 @@
 
 #include <QStringList>
 
+class QPushButton;
 class QComboBox;
+class QLabel;
 class QListWidget;
 
 /**
@@ -57,6 +59,16 @@ setSelectedMountPoint( QComboBox* combo, const QString& selected )
 {
     setSelectedMountPoint( *combo, selected );
 }
+
+/** @brief Validate a @p mountPoint and adjust the UI
+ *
+ * If @p mountPoint is valid -- unused and starts with a /, for instance --
+ * then the button is enabled, label is cleared, and returns @c true.
+ *
+ * If it is not valid, returns @c false and sets the UI
+ * to explain why.
+ */
+bool validateMountPoint( const QString& mountPoint, const QStringList& inUse, QLabel* label, QPushButton* button );
 
 /**
  * Get the flags that have been checked in the list widget.

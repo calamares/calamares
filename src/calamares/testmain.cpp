@@ -485,7 +485,7 @@ main( int argc, char* argv[] )
         return 1;
     }
 
-    cDebug() << Logger::SubEntry << " .. got" << m->name() << m->typeString() << m->interfaceString();
+    cDebug() << Logger::SubEntry << "got" << m->name() << m->typeString() << m->interfaceString();
     if ( m->type() == Calamares::Module::Type::View )
     {
         // If we forgot the --ui, any ViewModule will core dump as it
@@ -535,7 +535,7 @@ main( int argc, char* argv[] )
 
     using TR = Logger::DebugRow< const char*, const QString >;
 
-    cDebug() << "Module metadata" << TR( "name", m->name() ) << TR( "type", m->typeString() )
+    cDebug() << Logger::SubEntry << "Module metadata" << TR( "name", m->name() ) << TR( "type", m->typeString() )
              << TR( "interface", m->interfaceString() );
 
     Calamares::JobList jobList = m->jobs();
@@ -543,6 +543,8 @@ main( int argc, char* argv[] )
     unsigned int count = 1;
     for ( const auto& p : jobList )
     {
+        // This doesn't get a SubEntry because the jobs may log a bunch of
+        // things; print the function-header to make clear that we're back in main.
         cDebug() << "Job #" << count << "name" << p->prettyName();
         Calamares::JobResult r = p->exec();
         if ( !r )

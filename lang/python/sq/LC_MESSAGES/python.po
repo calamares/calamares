@@ -4,16 +4,16 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Besnik Bleta <besnik@programeshqip.org>, 2021
+# Besnik Bleta <besnik@programeshqip.org>, 2022
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-02 15:45+0100\n"
+"POT-Creation-Date: 2022-02-17 15:52+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Besnik Bleta <besnik@programeshqip.org>, 2021\n"
+"Last-Translator: Besnik Bleta <besnik@programeshqip.org>, 2022\n"
 "Language-Team: Albanian (https://www.transifex.com/calamares/teams/20061/sq/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,28 +26,24 @@ msgid "Configuring initramfs."
 msgstr "Po formësohet initramfs."
 
 #: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
-#: src/modules/fstab/main.py:355 src/modules/fstab/main.py:361
-#: src/modules/fstab/main.py:388 src/modules/networkcfg/main.py:105
-#: src/modules/initcpiocfg/main.py:227 src/modules/initcpiocfg/main.py:231
-#: src/modules/localecfg/main.py:135 src/modules/mount/main.py:144
+#: src/modules/fstab/main.py:360 src/modules/fstab/main.py:366
+#: src/modules/fstab/main.py:393 src/modules/networkcfg/main.py:105
+#: src/modules/initcpiocfg/main.py:235 src/modules/initcpiocfg/main.py:239
+#: src/modules/localecfg/main.py:135 src/modules/mount/main.py:229
 #: src/modules/rawfs/main.py:164 src/modules/openrcdmcryptcfg/main.py:72
 #: src/modules/openrcdmcryptcfg/main.py:76
-#: src/modules/luksopenswaphookcfg/main.py:86
-#: src/modules/luksopenswaphookcfg/main.py:90
 msgid "Configuration Error"
 msgstr "Gabim Formësimi"
 
-#: src/modules/initramfscfg/main.py:86 src/modules/fstab/main.py:356
-#: src/modules/initcpiocfg/main.py:228 src/modules/mount/main.py:145
+#: src/modules/initramfscfg/main.py:86 src/modules/fstab/main.py:361
+#: src/modules/initcpiocfg/main.py:236 src/modules/mount/main.py:230
 #: src/modules/rawfs/main.py:165 src/modules/openrcdmcryptcfg/main.py:73
-#: src/modules/luksopenswaphookcfg/main.py:87
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "S’ka pjesë të përkufizuara për <pre>{!s}</pre> për t’u përdorur."
 
-#: src/modules/initramfscfg/main.py:90 src/modules/fstab/main.py:362
-#: src/modules/networkcfg/main.py:106 src/modules/initcpiocfg/main.py:232
+#: src/modules/initramfscfg/main.py:90 src/modules/fstab/main.py:367
+#: src/modules/networkcfg/main.py:106 src/modules/initcpiocfg/main.py:240
 #: src/modules/localecfg/main.py:136 src/modules/openrcdmcryptcfg/main.py:77
-#: src/modules/luksopenswaphookcfg/main.py:91
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
 msgstr ""
 "S’është dhënë pikë montimi rrënjë për <pre>{!s}</pre> për t’u përdorur."
@@ -60,11 +56,16 @@ msgstr "Formësoni GRUB-in."
 msgid "Install bootloader."
 msgstr "Instalo ngarkues nisjesh."
 
-#: src/modules/bootloader/main.py:508
+#: src/modules/bootloader/main.py:612
+msgid "Failed to install grub, no partitions defined in global storage"
+msgstr ""
+"S'u arrit të instalohej grub, te depozita globale s’ka të përkufizuara pjesë"
+
+#: src/modules/bootloader/main.py:780
 msgid "Bootloader installation error"
 msgstr "Gabim instalimi Ngarkuesi Nisësi"
 
-#: src/modules/bootloader/main.py:509
+#: src/modules/bootloader/main.py:781
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
@@ -76,7 +77,7 @@ msgstr ""
 msgid "Writing fstab."
 msgstr "Po shkruhet fstab."
 
-#: src/modules/fstab/main.py:389
+#: src/modules/fstab/main.py:394
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr ""
 "S’është dhënë formësim <pre>{!s}</pre> për t’u përdorur nga <pre>{!s}</pre>."
@@ -93,51 +94,51 @@ msgstr "S’u arrit të xhirohej dracut mbi objektivin"
 msgid "The exit code was {}"
 msgstr "Kodi i daljes qe {}"
 
-#: src/modules/displaymanager/main.py:526
+#: src/modules/displaymanager/main.py:524
 msgid "Cannot write KDM configuration file"
 msgstr "S’shkruhet dot kartelë formësimi KDM"
 
-#: src/modules/displaymanager/main.py:527
+#: src/modules/displaymanager/main.py:525
 msgid "KDM config file {!s} does not exist"
 msgstr "S’ekziston kartelë formësimi KDM {!s}"
 
-#: src/modules/displaymanager/main.py:588
+#: src/modules/displaymanager/main.py:586
 msgid "Cannot write LXDM configuration file"
 msgstr "S’shkruhet dot kartelë formësimi LXDM"
 
-#: src/modules/displaymanager/main.py:589
+#: src/modules/displaymanager/main.py:587
 msgid "LXDM config file {!s} does not exist"
 msgstr "S’ekziston kartelë formësimi LXDM {!s}"
 
-#: src/modules/displaymanager/main.py:672
+#: src/modules/displaymanager/main.py:670
 msgid "Cannot write LightDM configuration file"
 msgstr "S’shkruhet dot kartelë formësimi LightDM"
 
-#: src/modules/displaymanager/main.py:673
+#: src/modules/displaymanager/main.py:671
 msgid "LightDM config file {!s} does not exist"
 msgstr "S’ekziston kartelë formësimi LightDM {!s}"
 
-#: src/modules/displaymanager/main.py:747
+#: src/modules/displaymanager/main.py:745
 msgid "Cannot configure LightDM"
 msgstr "S’formësohet dot LightDM"
 
-#: src/modules/displaymanager/main.py:748
+#: src/modules/displaymanager/main.py:746
 msgid "No LightDM greeter installed."
 msgstr "S’ka të instaluar përshëndetës LightDM."
 
-#: src/modules/displaymanager/main.py:779
+#: src/modules/displaymanager/main.py:777
 msgid "Cannot write SLIM configuration file"
 msgstr "S’shkruhet dot kartelë formësimi SLIM"
 
-#: src/modules/displaymanager/main.py:780
+#: src/modules/displaymanager/main.py:778
 msgid "SLIM config file {!s} does not exist"
 msgstr "S’ekziston kartelë formësimi SLIM {!s}"
 
-#: src/modules/displaymanager/main.py:906
+#: src/modules/displaymanager/main.py:991
 msgid "No display managers selected for the displaymanager module."
 msgstr "S’janë përzgjedhur përgjegjës ekrani për modulin displaymanager."
 
-#: src/modules/displaymanager/main.py:907
+#: src/modules/displaymanager/main.py:992
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
@@ -145,7 +146,7 @@ msgstr ""
 "Lista “displaymanagers” është e zbrazët ose e papërkufizuar për të dy "
 "rastet, për “globalstorage” dhe për “displaymanager.conf”."
 
-#: src/modules/displaymanager/main.py:989
+#: src/modules/displaymanager/main.py:1074
 msgid "Display manager configuration was incomplete"
 msgstr "Formësimi i përgjegjësit të ekranit s’qe i plotë"
 
@@ -209,36 +210,36 @@ msgstr ""
 msgid "Saving network configuration."
 msgstr "Po ruhet formësimi i rrjetit."
 
-#: src/modules/packages/main.py:50 src/modules/packages/main.py:59
-#: src/modules/packages/main.py:69
+#: src/modules/packages/main.py:54 src/modules/packages/main.py:65
+#: src/modules/packages/main.py:75
 msgid "Install packages."
 msgstr "Instalo paketa."
 
-#: src/modules/packages/main.py:57
+#: src/modules/packages/main.py:63
 #, python-format
 msgid "Processing packages (%(count)d / %(total)d)"
 msgstr "Po përpunohen paketat (%(count)d / %(total)d)"
 
-#: src/modules/packages/main.py:62
+#: src/modules/packages/main.py:68
 #, python-format
 msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
 msgstr[0] "Po instalohet një paketë."
 msgstr[1] "Po instalohen %(num)d paketa."
 
-#: src/modules/packages/main.py:65
+#: src/modules/packages/main.py:71
 #, python-format
 msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
 msgstr[0] "Po hiqet një paketë."
 msgstr[1] "Po hiqen %(num)d paketa."
 
-#: src/modules/packages/main.py:638 src/modules/packages/main.py:650
-#: src/modules/packages/main.py:678
+#: src/modules/packages/main.py:725 src/modules/packages/main.py:737
+#: src/modules/packages/main.py:765
 msgid "Package Manager error"
 msgstr "Gabim Përgjegjësi Paketash"
 
-#: src/modules/packages/main.py:639
+#: src/modules/packages/main.py:726
 msgid ""
 "The package manager could not prepare updates. The command <pre>{!s}</pre> "
 "returned error code {!s}."
@@ -246,7 +247,7 @@ msgstr ""
 "Përgjegjësi i paketave s’përgatiti dot përditësime. Urdhri <pre>{!s}</pre> u"
 " përgjigj me kod gabimi {!s}."
 
-#: src/modules/packages/main.py:651
+#: src/modules/packages/main.py:738
 msgid ""
 "The package manager could not update the system. The command <pre>{!s}</pre>"
 " returned error code {!s}."
@@ -254,7 +255,7 @@ msgstr ""
 "Përgjegjësi i paketave s’përditësoi dot sistemin. Urdhri <pre>{!s}</pre> u "
 "përgjigj me kod gabimi {!s}."
 
-#: src/modules/packages/main.py:679
+#: src/modules/packages/main.py:766
 msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."
@@ -274,9 +275,29 @@ msgstr "Po formësohet mkinitcpio."
 msgid "Configuring locales."
 msgstr "Po formësohen vendoret."
 
-#: src/modules/mount/main.py:30
+#: src/modules/mount/main.py:42
 msgid "Mounting partitions."
 msgstr "Po montohen pjesë."
+
+#: src/modules/mount/main.py:88 src/modules/mount/main.py:124
+msgid "Internal error mounting zfs datasets"
+msgstr "Gabim i brendshëm gjatë montimit të grupeve zfs të të dhënave"
+
+#: src/modules/mount/main.py:100
+msgid "Failed to import zpool"
+msgstr "S’u arrit të importohej zpool"
+
+#: src/modules/mount/main.py:116
+msgid "Failed to unlock zpool"
+msgstr "S’u arrit të shkyçej zpool"
+
+#: src/modules/mount/main.py:133 src/modules/mount/main.py:138
+msgid "Failed to set zfs mountpoint"
+msgstr "S’u arrit të caktohej pikë montimi zfs"
+
+#: src/modules/mount/main.py:253
+msgid "zfs mounting error"
+msgstr "Gabim montimi zfs"
 
 #: src/modules/rawfs/main.py:26
 msgid "Installing data."
@@ -294,10 +315,6 @@ msgstr "Hap python {} dummy"
 #: src/modules/hwclock/main.py:26
 msgid "Setting hardware clock."
 msgstr "Po caktohet ora hardware."
-
-#: src/modules/umount/main.py:31
-msgid "Unmount file systems."
-msgstr "Çmontoni sisteme kartelash."
 
 #: src/modules/openrcdmcryptcfg/main.py:26
 msgid "Configuring OpenRC dmcrypt service."
@@ -367,7 +384,7 @@ msgstr "Po shpaketohet paketa {}/{}, kartela {}/{}"
 msgid "Starting to unpack {}"
 msgstr "Po fillohet të shpaketohet {}"
 
-#: src/modules/unpackfs/main.py:323 src/modules/unpackfs/main.py:465
+#: src/modules/unpackfs/main.py:323 src/modules/unpackfs/main.py:467
 msgid "Failed to unpack image \"{}\""
 msgstr "Dështoi shpaketimi i figurës \"{}\""
 
@@ -376,32 +393,37 @@ msgid "No mount point for root partition"
 msgstr "S’ka pikë montimi për ndarjen rrënjë"
 
 #: src/modules/unpackfs/main.py:431
-msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr "globalstorage nuk përmban një vlerë \"rootMountPoint\", s’po bëhet gjë"
+msgid "globalstorage does not contain a \"rootMountPoint\" key."
+msgstr "globalstorage nuk përmban kyç “rootMountPoint”."
 
-#: src/modules/unpackfs/main.py:436
+#: src/modules/unpackfs/main.py:434
 msgid "Bad mount point for root partition"
 msgstr "Pikë e gabuar montimi për ndarjen rrënjë"
 
-#: src/modules/unpackfs/main.py:437
-msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr "rootMountPoint është \"{}\", që s’ekziston, s’po bëhet gjë"
+#: src/modules/unpackfs/main.py:435
+msgid "rootMountPoint is \"{}\", which does not exist."
+msgstr "rootMountPoint është “{}”, çka nuk ekziston."
 
-#: src/modules/unpackfs/main.py:453 src/modules/unpackfs/main.py:457
-#: src/modules/unpackfs/main.py:463 src/modules/unpackfs/main.py:478
-msgid "Bad unsquash configuration"
-msgstr "Formësim i keq i unsquash-it"
+#: src/modules/unpackfs/main.py:439 src/modules/unpackfs/main.py:455
+#: src/modules/unpackfs/main.py:459 src/modules/unpackfs/main.py:465
+#: src/modules/unpackfs/main.py:480
+msgid "Bad unpackfs configuration"
+msgstr "Formësim gabim i unpackfs-ë"
 
-#: src/modules/unpackfs/main.py:454
+#: src/modules/unpackfs/main.py:440
+msgid "There is no configuration information."
+msgstr "S’ka hollësi formësimi."
+
+#: src/modules/unpackfs/main.py:456
 msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
 msgstr ""
 "Sistemi i kartelave për \"{}\" ({}) nuk mbulohet nga kerneli juaj i tanishëm"
 
-#: src/modules/unpackfs/main.py:458
+#: src/modules/unpackfs/main.py:460
 msgid "The source filesystem \"{}\" does not exist"
 msgstr "Sistemi i kartelave \"{}\" ({}) s’ekziston"
 
-#: src/modules/unpackfs/main.py:464
+#: src/modules/unpackfs/main.py:466
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed."
@@ -409,10 +431,6 @@ msgstr ""
 "S’u arrit të gjendet unsquashfs, sigurohuni se keni të instaluar paketën "
 "squashfs-tools."
 
-#: src/modules/unpackfs/main.py:479
+#: src/modules/unpackfs/main.py:481
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "Destinacioni \"{}\" te sistemi i synuar s’është drejtori"
-
-#: src/modules/luksopenswaphookcfg/main.py:26
-msgid "Configuring encrypted swap."
-msgstr "Po formësohet pjesë swap e fshehtëzuar."

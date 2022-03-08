@@ -54,9 +54,10 @@ PartitionBarsView::PartitionBarsView( QWidget* parent )
     setSelectionMode( QAbstractItemView::SingleSelection );
 
     // Debug
-    connect( this, &PartitionBarsView::clicked, this, [=]( const QModelIndex& index ) {
-        cDebug() << "Clicked row" << index.row();
-    } );
+    connect( this,
+             &PartitionBarsView::clicked,
+             this,
+             [ = ]( const QModelIndex& index ) { cDebug() << "Clicked row" << index.row(); } );
     setMouseTracking( true );
 }
 
@@ -399,7 +400,7 @@ void
 PartitionBarsView::setSelectionModel( QItemSelectionModel* selectionModel )
 {
     QAbstractItemView::setSelectionModel( selectionModel );
-    connect( selectionModel, &QItemSelectionModel::selectionChanged, this, [=] { viewport()->repaint(); } );
+    connect( selectionModel, &QItemSelectionModel::selectionChanged, this, [ = ] { viewport()->repaint(); } );
 }
 
 
@@ -410,7 +411,8 @@ PartitionBarsView::setSelectionFilter( std::function< bool( const QModelIndex& )
 }
 
 
-QModelIndex PartitionBarsView::moveCursor( CursorAction, Qt::KeyboardModifiers )
+QModelIndex
+PartitionBarsView::moveCursor( CursorAction, Qt::KeyboardModifiers )
 {
     return QModelIndex();
 }

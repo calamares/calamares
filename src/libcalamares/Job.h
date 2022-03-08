@@ -47,7 +47,7 @@ public:
 
     /** @brief Is this JobResult a success?
      *
-     * Equivalent to errorCode() == 0, might be named  isValid().
+     * Equivalent to errorCode() == 0, see succeeded().
      */
     virtual operator bool() const;
 
@@ -58,6 +58,11 @@ public:
     virtual void setDetails( const QString& details );
 
     int errorCode() const { return m_number; }
+    /** @brief Is this JobResult a success?
+     *
+     * Equivalent to errorCode() == 0.
+     */
+    bool succeeded() const { return this->operator bool(); }
 
     /// @brief an "ok status" result
     static JobResult ok();

@@ -337,7 +337,7 @@ public:
      *
      * @return size, guesstimate-factor
      */
-    DLLEXPORT QPair< quint64, float > getTotalMemoryB() const;
+    DLLEXPORT QPair< qint64, qreal > getTotalMemoryB() const;
 
     /**
      * @brief getCpuDescription returns a string describing the CPU.

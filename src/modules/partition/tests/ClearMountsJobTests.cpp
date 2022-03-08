@@ -32,10 +32,10 @@ getPartitionsForDevice_other( const QString& deviceName )
 {
     QProcess process;
     process.setProgram( "sh" );
-    process.setArguments(
-        { "-c",
-          QString( "echo $(awk '{print \"/dev/\"$4}' /proc/partitions | sed -e '/name/d' -e '/^$/d' -e '/[1-9]/!d' | grep %1)" )
-              .arg( deviceName ) } );
+    process.setArguments( { "-c",
+                            QString( "echo $(awk '{print \"/dev/\"$4}' /proc/partitions | sed -e '/name/d' -e '/^$/d' "
+                                     "-e '/[1-9]/!d' | grep %1)" )
+                                .arg( deviceName ) } );
     process.start();
     process.waitForFinished();
 
