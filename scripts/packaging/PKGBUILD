@@ -29,7 +29,8 @@ depends=('qt5-location'
          'solid'       
          'udisks2' 
          'yaml-cpp'
-         'polkit'               
+         'polkit'
+         'ckbcomp'               
          'calamares-configuration'
          'calamares-branding')
 optdepends=()
