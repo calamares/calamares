@@ -10,6 +10,6 @@ if ls "$SCRIPT_DIRECTORY"/packaging/*.pkg.tar.* > /dev/null 2>&1;then
     set +o xtrace
 else
     set -o xtrace
-    sh "$SCRIPT_DIRECTORY"/build_archlinux_package.sh --install "$@"
+    sh "$SCRIPT_DIRECTORY"/build_package.sh --install "$@"
     set +o xtrace
 fi
