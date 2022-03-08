@@ -1,8 +1,0 @@
-# AUTO-GENERATED metadata file
-# Syntax is YAML 1.2
----
-type: "job"
-name: "hostinfo"
-interface: "qtplugin"
-load: "libcalamares_job_hostinfo.so"
-noconfig: true

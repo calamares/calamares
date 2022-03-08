@@ -7,7 +7,7 @@ BUILD_DIRECTORY="$PROJECT_DIRECTORY"/build
 ( # Create subshell to nullify directory changes on exit
     # Run makepkg
     set -o xtrace
-    cd "$SCRIPT_DIRECTORY"/archlinux_packaging && \
+    cd "$SCRIPT_DIRECTORY"/packaging && \
     makepkg \
         --force \
         --syncdeps \
