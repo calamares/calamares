@@ -16,8 +16,6 @@ properties:
             - luet
             - packagekit
             - pacman
-            - yay
-            - paru
             - pamac
             - portage
             - yum

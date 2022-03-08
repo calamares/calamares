@@ -15,16 +15,10 @@ find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Core )
 # Add optional libraries here
 set( USER_EXTRA_LIB )
 
-## include_directories( ${CMAKE_CURRENT_SOURCE_DIR}/../packagechooser )
-
-# set( _packagechooser ${CMAKE_CURRENT_SOURCE_DIR}/../packagechooser )
-# include_directories( ${_packagechooser} )
-
 ### OPTIONAL AppData XML support in PackageModel
 #
 #
 # TODO:3.3:WITH->BUILD (this doesn't affect the ABI offered by Calamares)
-option( WITH_APPDATA "Support appdata: items in PackageChooserq (requires QtXml)" ON )
 if ( WITH_APPDATA )
     find_package(Qt5 COMPONENTS Xml)
     if ( Qt5Xml_FOUND )
@@ -37,7 +31,6 @@ endif()
 ### OPTIONAL AppStream support in PackageModel
 #
 #
-option( WITH_APPSTREAM "Support appstream: items in PackageChooserq (requires libappstream-qt)" ON )
 if ( WITH_APPSTREAM )
     find_package(AppStreamQt)
     set_package_properties(
@@ -65,7 +58,7 @@ calamares_add_plugin( packagechooserq
         # ItemAppStream.cpp
         # ${_packagechooser}/Config.cpp
         # ${_packagechooser}/PackageModel.cpp
-        # ${_packagechooser}/ItemAppData.cpp
+        ${_extra_src}
     RESOURCES
         packagechooserq.qrc
     LINK_PRIVATE_LIBRARIES
