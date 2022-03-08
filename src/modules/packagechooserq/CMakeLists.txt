@@ -60,7 +60,7 @@ calamares_add_plugin( packagechooserq
         # ItemAppStream.cpp
         # ${_packagechooser}/Config.cpp
         # ${_packagechooser}/PackageModel.cpp
-        ${_extra_src}
+        # ${_extra_src} # Causes the build to fail
     RESOURCES
         packagechooserq.qrc
     LINK_PRIVATE_LIBRARIES
