@@ -97,7 +97,7 @@ ExecutionViewStep::ExecutionViewStep( QObject* parent )
     bottomLayout->addWidget( m_label );
 
     QToolBar* toolBar = new QToolBar;
-    auto toggleLogAction = toolBar->addAction(QIcon::fromTheme("file-icon"), "Toggle log");
+    auto toggleLogAction = toolBar->addAction(QIcon::fromTheme("utilities-terminal"), "Toggle log");
     auto toggleLogButton = dynamic_cast<QToolButton*>(toolBar->widgetForAction(toggleLogAction));
     connect( toggleLogButton, &QToolButton::clicked, this, &ExecutionViewStep::toggleLog );
 
