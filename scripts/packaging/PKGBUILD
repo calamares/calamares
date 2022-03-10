@@ -31,9 +31,7 @@ depends=('qt5-location'
          'udisks2' 
          'yaml-cpp'
          'polkit'
-         'ckbcomp'               
-         'calamares-configuration'
-         'calamares-branding')
+         'ckbcomp')
 optdepends=()
 makedepends=('extra-cmake-modules'
              'git'
@@ -64,6 +62,10 @@ build() {
 }
 
 package() {
+    # To bypass makepkg's dependency check during build-time
+    depends+=('calamares-configuration'
+               'calamares-branding')
+
     DESTDIR="${pkgdir}" cmake --install "$BUILD_DIRECTORY" # Install after setting an environment variable
 
     (
