@@ -25,6 +25,7 @@
 #include "utils/Dirs.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
+#include "widgets/LogWidget.h"
 
 #include <QDir>
 #include <QLabel>
@@ -37,7 +38,6 @@
 #include <QTabWidget>
 #include <QPlainTextEdit>
 #include <QTabBar>
-#include "utils/Logger.h"
 
 static Calamares::Slideshow*
 makeSlideshow( QWidget* parent )
@@ -69,6 +69,7 @@ ExecutionViewStep::ExecutionViewStep( QObject* parent )
     , m_label( new QLabel )
     , m_slideshow( makeSlideshow( m_widget ) )
     , m_tab_widget( new QTabWidget )
+    , m_log_widget( new LogWidget )
 {
     m_widget->setObjectName( "slideshow" );
     m_progressBar->setObjectName( "exec-progress" );
@@ -79,10 +80,6 @@ ExecutionViewStep::ExecutionViewStep( QObject* parent )
     QHBoxLayout* barLayout = new QHBoxLayout;
 
     m_progressBar->setMaximum( 10000 );
-
-    auto m_log_widget = new QPlainTextEdit;
-    m_log_widget->setReadOnly(true);
-
 
     m_tab_widget->addTab(m_slideshow->widget(), "Slideshow");
     m_tab_widget->addTab(m_log_widget, "Log");
@@ -240,4 +237,6 @@ ExecutionViewStep::onLeave()
     m_slideshow->changeSlideShowState( Slideshow::Stop );
 }
 
+
 }  // namespace Calamares
+

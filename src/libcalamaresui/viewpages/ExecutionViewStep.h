@@ -13,6 +13,7 @@
 
 #include "ViewStep.h"
 #include "modulesystem/InstanceKey.h"
+#include "widgets/LogWidget.h"
 
 #include <QStringList>
 
@@ -20,7 +21,6 @@ class QLabel;
 class QObject;
 class QProgressBar;
 class QTabWidget;
-class QPlainTextEdit;
 
 namespace Calamares
 {
@@ -59,7 +59,7 @@ private:
     QLabel* m_label;
     Slideshow* m_slideshow;
     QTabWidget* m_tab_widget;
-    QPlainTextEdit* m_log_widget;
+    LogWidget* m_log_widget;
 
     QList< ModuleSystem::InstanceKey > m_jobInstanceKeys;
 
