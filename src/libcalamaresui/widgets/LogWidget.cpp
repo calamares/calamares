@@ -13,6 +13,13 @@ LogThread::LogThread(QObject *parent)
 
 }
 
+LogThread::~LogThread()
+{
+    quit();
+    requestInterruption();
+    wait();
+}
+
 void LogThread::run()
 {
     auto filePath = Logger::logFile();

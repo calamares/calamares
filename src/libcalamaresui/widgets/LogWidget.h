@@ -16,6 +16,7 @@ class LogThread : public QThread
 
 public:
     explicit LogThread(QObject *parent = nullptr);
+    ~LogThread() override;
 
 signals:
     void onLogChunk(const QString &logChunk);
