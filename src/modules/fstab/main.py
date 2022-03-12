@@ -265,7 +265,7 @@ class FstabGenerator(object):
 
         if has_luks:
             device = "/dev/mapper/" + partition["luksMapperName"]
-        elif partition["uuid"] is not None:
+        elif partition["uuid"]:
             device = "UUID=" + partition["uuid"]
         else:
             device = partition["device"]
