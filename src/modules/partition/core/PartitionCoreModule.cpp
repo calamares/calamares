@@ -942,12 +942,6 @@ PartitionCoreModule::setBootLoaderInstallPath( const QString& path )
 }
 
 void
-PartitionCoreModule::initLayout( FileSystem::Type defaultFsType, const QVariantList& config )
-{
-    m_partLayout.init( defaultFsType, config );
-}
-
-void
 PartitionCoreModule::layoutApply( Device* dev,
                                   qint64 firstSector,
                                   qint64 lastSector,

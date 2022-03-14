@@ -52,8 +52,8 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
 
     m_waitingWidget = new WaitingWidget( QString() );
     m_widget->addWidget( m_waitingWidget );
-    CALAMARES_RETRANSLATE( if ( m_waitingWidget )
-                           { m_waitingWidget->setText( tr( "Gathering system information..." ) ); } );
+    CALAMARES_RETRANSLATE(
+        if ( m_waitingWidget ) { m_waitingWidget->setText( tr( "Gathering system information..." ) ); } );
 
     m_core = new PartitionCoreModule( this );  // Unusable before init is complete!
     // We're not done loading, but we need the configuration map first.
@@ -691,7 +691,7 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     QFuture< void > future = QtConcurrent::run( this, &PartitionViewStep::initPartitionCoreModule );
     m_future->setFuture( future );
 
-    m_core->initLayout( m_config->defaultFsType(), configurationMap.value( "partitionLayout" ).toList() );
+    m_core->partitionLayout().init( m_config->defaultFsType(), configurationMap.value( "partitionLayout" ).toList() );
 }
 
 
