@@ -2915,7 +2915,7 @@ The installer will quit and all changes will be lost.</source>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="588"/>
-      <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
+      <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
       <translation>Таблица разделов GPT - наилучший вариант для всех систем. Этот установщик позволяет использовать таблицу разделов GPT для систем с BIOS. &lt;br/&gt; &lt;br/&gt; Чтобы установить таблицу разделов как GPT (если это еще не сделано) вернитесь назад и создайте таблицу разделов GPT, затем создайте 8 МБ Не форматированный раздел с включенным флагом &lt;strong&gt; bios-grub&lt;/strong&gt; &lt;/ strong&gt;. &lt;br/&gt; &lt;br/&gt; Не форматированный раздел в 8 МБ необходим для запуска %1 на системе с BIOS и таблицей разделов GPT.</translation>
     </message>
     <message>
