@@ -27,17 +27,17 @@
 #include "utils/Retranslator.h"
 #include "widgets/LogWidget.h"
 
-#include <QDir>
-#include <QLabel>
-#include <QProgressBar>
-#include <QVBoxLayout>
-#include <QHBoxLayout>
-#include <QToolBar>
 #include <QAction>
-#include <QToolButton>
-#include <QTabWidget>
+#include <QDir>
+#include <QHBoxLayout>
+#include <QLabel>
 #include <QPlainTextEdit>
+#include <QProgressBar>
 #include <QTabBar>
+#include <QTabWidget>
+#include <QToolBar>
+#include <QToolButton>
+#include <QVBoxLayout>
 
 static Calamares::Slideshow*
 makeSlideshow( QWidget* parent )
@@ -81,8 +81,8 @@ ExecutionViewStep::ExecutionViewStep( QObject* parent )
 
     m_progressBar->setMaximum( 10000 );
 
-    m_tab_widget->addTab(m_slideshow->widget(), "Slideshow");
-    m_tab_widget->addTab(m_log_widget, "Log");
+    m_tab_widget->addTab( m_slideshow->widget(), "Slideshow" );
+    m_tab_widget->addTab( m_log_widget, "Log" );
     m_tab_widget->tabBar()->hide();
 
     layout->addWidget( m_tab_widget );
@@ -94,13 +94,13 @@ ExecutionViewStep::ExecutionViewStep( QObject* parent )
     bottomLayout->addWidget( m_label );
 
     QToolBar* toolBar = new QToolBar;
-    auto toggleLogAction = toolBar->addAction(QIcon::fromTheme("utilities-terminal"), "Toggle log");
-    auto toggleLogButton = dynamic_cast<QToolButton*>(toolBar->widgetForAction(toggleLogAction));
+    auto toggleLogAction = toolBar->addAction( QIcon::fromTheme( "utilities-terminal" ), "Toggle log" );
+    auto toggleLogButton = dynamic_cast< QToolButton* >( toolBar->widgetForAction( toggleLogAction ) );
     connect( toggleLogButton, &QToolButton::clicked, this, &ExecutionViewStep::toggleLog );
 
 
-    barLayout->addWidget(m_progressBar);
-    barLayout->addWidget(toolBar);
+    barLayout->addWidget( m_progressBar );
+    barLayout->addWidget( toolBar );
 
 
     connect( JobQueue::instance(), &JobQueue::progress, this, &ExecutionViewStep::updateFromJobQueue );
@@ -176,7 +176,7 @@ ExecutionViewStep::onActivate()
         const auto instanceDescriptor
             = std::find_if( instanceDescriptors.constBegin(),
                             instanceDescriptors.constEnd(),
-                            [=]( const Calamares::InstanceDescription& d ) { return d.key() == instanceKey; } );
+                            [ = ]( const Calamares::InstanceDescription& d ) { return d.key() == instanceKey; } );
         int weight = moduleDescriptor.weight();
         if ( instanceDescriptor != instanceDescriptors.constEnd() && instanceDescriptor->explicitWeight() )
         {
@@ -228,7 +228,7 @@ ExecutionViewStep::updateFromJobQueue( qreal percent, const QString& message )
 void
 ExecutionViewStep::toggleLog()
 {
-    m_tab_widget->setCurrentIndex((m_tab_widget->currentIndex() + 1) % m_tab_widget->count());
+    m_tab_widget->setCurrentIndex( ( m_tab_widget->currentIndex() + 1 ) % m_tab_widget->count() );
 }
 
 void
@@ -239,4 +239,3 @@ ExecutionViewStep::onLeave()
 
 
 }  // namespace Calamares
-

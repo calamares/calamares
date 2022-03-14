@@ -1,9 +1,9 @@
 #ifndef LIBCALAMARESUI_LOGWIDGET_H
 #define LIBCALAMARESUI_LOGWIDGET_H
 
-#include <QWidget>
 #include <QPlainTextEdit>
 #include <QThread>
+#include <QWidget>
 
 namespace Calamares
 {
@@ -15,11 +15,11 @@ class LogThread : public QThread
     void run() override;
 
 public:
-    explicit LogThread(QObject *parent = nullptr);
+    explicit LogThread( QObject* parent = nullptr );
     ~LogThread() override;
 
 signals:
-    void onLogChunk(const QString &logChunk);
+    void onLogChunk( const QString& logChunk );
 };
 
 class LogWidget : public QWidget
@@ -28,11 +28,12 @@ class LogWidget : public QWidget
 
     QPlainTextEdit* m_text;
     LogThread m_log_thread;
-public:
-    explicit LogWidget(QWidget *parent = nullptr);
 
-    void handleLogChunk(const QString &logChunk);
+public:
+    explicit LogWidget( QWidget* parent = nullptr );
+
+    void handleLogChunk( const QString& logChunk );
 };
 
-}
-#endif // LOGWIDGET_H
+}  // namespace Calamares
+#endif  // LOGWIDGET_H
