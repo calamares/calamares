@@ -18,7 +18,7 @@ public:
     explicit LogThread( QObject* parent = nullptr );
     ~LogThread() override;
 
-signals:
+Q_SIGNALS:
     void onLogChunk( const QString& logChunk );
 };
 
@@ -32,7 +32,14 @@ class LogWidget : public QWidget
 public:
     explicit LogWidget( QWidget* parent = nullptr );
 
+public Q_SLOTS:
+    /// @brief Called by the thread when there is new data
     void handleLogChunk( const QString& logChunk );
+
+    /// @brief Stop watching for log data
+    void stop();
+    /// @brief Start watching for new log data
+    void start();
 };
 
 }  // namespace Calamares

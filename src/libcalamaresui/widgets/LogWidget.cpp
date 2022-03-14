@@ -70,6 +70,7 @@ LogWidget::LogWidget( QWidget* parent )
 
     connect( &m_log_thread, &LogThread::onLogChunk, this, &LogWidget::handleLogChunk );
 
+    m_log_thread.setPriority( QThread::LowestPriority );
     m_log_thread.start();
 }
 
@@ -80,5 +81,22 @@ LogWidget::handleLogChunk( const QString& logChunk )
     m_text->moveCursor( QTextCursor::End );
     m_text->ensureCursorVisible();
 }
+
+void
+LogWidget::start()
+{
+    if ( !m_log_thread.isRunning() )
+    {
+        m_text->clear();
+        m_log_thread.start();
+    }
+}
+
+void
+LogWidget::stop()
+{
+    m_log_thread.requestInterruption();
+}
+
 
 }  // namespace Calamares
