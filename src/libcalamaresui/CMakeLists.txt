@@ -30,6 +30,7 @@ set( calamaresui_SOURCES
     widgets/ErrorDialog.cpp
     widgets/FixedAspectRatioLabel.cpp
     widgets/PrettyRadioButton.cpp
+    widgets/LogWidget.cpp
     widgets/TranslationFix.cpp
     widgets/WaitingWidget.cpp
     ${CMAKE_SOURCE_DIR}/3rdparty/waitingspinnerwidget.cpp

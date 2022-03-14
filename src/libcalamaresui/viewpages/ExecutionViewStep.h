@@ -13,12 +13,14 @@
 
 #include "ViewStep.h"
 #include "modulesystem/InstanceKey.h"
+#include "widgets/LogWidget.h"
 
 #include <QStringList>
 
 class QLabel;
 class QObject;
 class QProgressBar;
+class QTabWidget;
 
 namespace Calamares
 {
@@ -56,10 +58,14 @@ private:
     QProgressBar* m_progressBar;
     QLabel* m_label;
     Slideshow* m_slideshow;
+    QTabWidget* m_tab_widget;
+    LogWidget* m_log_widget;
 
     QList< ModuleSystem::InstanceKey > m_jobInstanceKeys;
 
     void updateFromJobQueue( qreal percent, const QString& message );
+
+    void toggleLog();
 };
 
 }  // namespace Calamares
