@@ -77,8 +77,14 @@ LogWidget::LogWidget( QWidget* parent )
 void
 LogWidget::handleLogChunk( const QString& logChunk )
 {
+    // Scroll to the end of the new chunk, only if we were at the end (tailing
+    // the log); scrolling up will break the tail-to-end behavior.
+    const bool isAtEnd = m_text->textCursor().atEnd();
     m_text->appendPlainText( logChunk );
-    m_text->moveCursor( QTextCursor::End );
+    if ( isAtEnd )
+    {
+        m_text->moveCursor( QTextCursor::End );
+    }
     m_text->ensureCursorVisible();
 }
 
