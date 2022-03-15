@@ -58,9 +58,10 @@ Module descriptors for C++ modules **may** have the following key:
 Module descriptors for Python modules **must** have the following key:
 - *script* (the name of the Python script to load, nearly always `main.py`)
 
-Module descriptors for process modules **must** have the following key:
-- *command* (the command to run)
-Module descriptors for process modules **may** have the following keys:
+Module descriptors for process modules **must** have the following key:  
+- *command* (the command to run)  
+
+Module descriptors for process modules **may** have the following keys:  
 - *timeout* (how long, in seconds, to wait for the command to run)
 - *chroot* (if true, run the command in the target system rather than the host)
 Note that process modules are not recommended.
