@@ -94,7 +94,12 @@ ExecutionViewStep::ExecutionViewStep( QObject* parent )
     bottomLayout->addWidget( m_label );
 
     QToolBar* toolBar = new QToolBar;
-    auto toggleLogAction = toolBar->addAction( QIcon::fromTheme( "utilities-terminal" ), "Toggle log" );
+    const auto logButtonIcon = QIcon::fromTheme( "utilities-terminal" );
+    auto toggleLogAction = toolBar->addAction(
+        Branding::instance()->image(
+            { "utilities-log-viewer", "utilities-terminal", "text-x-log", "text-x-changelog", "preferences-log" },
+            QSize( 32, 32 ) ),
+        "Toggle log" );
     auto toggleLogButton = dynamic_cast< QToolButton* >( toolBar->widgetForAction( toggleLogAction ) );
     connect( toggleLogButton, &QToolButton::clicked, this, &ExecutionViewStep::toggleLog );
 
@@ -228,12 +233,22 @@ ExecutionViewStep::updateFromJobQueue( qreal percent, const QString& message )
 void
 ExecutionViewStep::toggleLog()
 {
-    m_tab_widget->setCurrentIndex( ( m_tab_widget->currentIndex() + 1 ) % m_tab_widget->count() );
+    const bool logBecomesVisible = m_tab_widget->currentIndex() == 0;  // ie. is not visible right now
+    if ( logBecomesVisible )
+    {
+        m_log_widget->start();
+    }
+    else
+    {
+        m_log_widget->stop();
+    }
+    m_tab_widget->setCurrentIndex( logBecomesVisible ? 1 : 0 );
 }
 
 void
 ExecutionViewStep::onLeave()
 {
+    m_log_widget->stop();
     m_slideshow->changeSlideShowState( Slideshow::Stop );
 }
 

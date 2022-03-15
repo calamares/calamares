@@ -1,6 +1,18 @@
+/* === This file is part of Calamares - <https://calamares.io> ===
+ *
+ *   SPDX-FileCopyrightText: 2022 Bob van der Linden <bobvanderlinden@gmail.com>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
+ *
+ *   Calamares is Free Software: see the License-Identifier above.
+ *
+ */
+
 #include "LogWidget.h"
+
 #include "utils/Logger.h"
+
 #include <QFile>
+#include <QScrollBar>
 #include <QStackedLayout>
 #include <QTextStream>
 #include <QThread>
@@ -61,6 +73,7 @@ LogWidget::LogWidget( QWidget* parent )
     setLayout( layout );
 
     m_text->setReadOnly( true );
+    m_text->setVerticalScrollBarPolicy( Qt::ScrollBarPolicy::ScrollBarAlwaysOn );
 
     QFont monospaceFont( "monospace" );
     monospaceFont.setStyleHint( QFont::Monospace );
@@ -70,6 +83,7 @@ LogWidget::LogWidget( QWidget* parent )
 
     connect( &m_log_thread, &LogThread::onLogChunk, this, &LogWidget::handleLogChunk );
 
+    m_log_thread.setPriority( QThread::LowestPriority );
     m_log_thread.start();
 }
 
@@ -77,8 +91,23 @@ void
 LogWidget::handleLogChunk( const QString& logChunk )
 {
     m_text->appendPlainText( logChunk );
-    m_text->moveCursor( QTextCursor::End );
-    m_text->ensureCursorVisible();
 }
+
+void
+LogWidget::start()
+{
+    if ( !m_log_thread.isRunning() )
+    {
+        m_text->clear();
+        m_log_thread.start();
+    }
+}
+
+void
+LogWidget::stop()
+{
+    m_log_thread.requestInterruption();
+}
+
 
 }  // namespace Calamares
