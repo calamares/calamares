@@ -1,6 +1,8 @@
 #include "LogWidget.h"
 #include "utils/Logger.h"
+
 #include <QFile>
+#include <QScrollBar>
 #include <QStackedLayout>
 #include <QTextStream>
 #include <QThread>
@@ -61,6 +63,7 @@ LogWidget::LogWidget( QWidget* parent )
     setLayout( layout );
 
     m_text->setReadOnly( true );
+    m_text->setVerticalScrollBarPolicy( Qt::ScrollBarPolicy::ScrollBarAlwaysOn );
 
     QFont monospaceFont( "monospace" );
     monospaceFont.setStyleHint( QFont::Monospace );
@@ -77,15 +80,7 @@ LogWidget::LogWidget( QWidget* parent )
 void
 LogWidget::handleLogChunk( const QString& logChunk )
 {
-    // Scroll to the end of the new chunk, only if we were at the end (tailing
-    // the log); scrolling up will break the tail-to-end behavior.
-    const bool isAtEnd = m_text->textCursor().atEnd();
     m_text->appendPlainText( logChunk );
-    if ( isAtEnd )
-    {
-        m_text->moveCursor( QTextCursor::End );
-    }
-    m_text->ensureCursorVisible();
 }
 
 void
