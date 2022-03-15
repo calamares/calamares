@@ -1,4 +1,14 @@
+/* === This file is part of Calamares - <https://calamares.io> ===
+ *
+ *   SPDX-FileCopyrightText: 2022 Bob van der Linden <bobvanderlinden@gmail.com>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
+ *
+ *   Calamares is Free Software: see the License-Identifier above.
+ *
+ */
+
 #include "LogWidget.h"
+
 #include "utils/Logger.h"
 
 #include <QFile>
