@@ -1,4 +1,16 @@
 #! /bin/sh
+
+### LICENSE
+# === This file is part of Calamares - <https://calamares.io> ===
+#
+#   SPDX-FileCopyrightText: 2022 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
+#
+#   This file is Free Software: you can redistribute it and/or modify
+#   it under the terms of the 2-clause BSD License.
+#
+### END LICENSE
+
 #
 # This is an "unmount" script that tries to unmount whatever
 # filesystems Calamares might have left mounted (e.g. because of

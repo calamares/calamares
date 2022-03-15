@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: no
+# SPDX-License-Identifier: CC0-1.0
+#
 # We have tests to exercise some of the module internals.
 # Those tests conventionally live in Python files here in the tests/ directory. Add them.
 add_test(
