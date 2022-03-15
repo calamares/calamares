@@ -94,7 +94,12 @@ ExecutionViewStep::ExecutionViewStep( QObject* parent )
     bottomLayout->addWidget( m_label );
 
     QToolBar* toolBar = new QToolBar;
-    auto toggleLogAction = toolBar->addAction( QIcon::fromTheme( "utilities-terminal" ), "Toggle log" );
+    const auto logButtonIcon = QIcon::fromTheme( "utilities-terminal" );
+    auto toggleLogAction = toolBar->addAction(
+        Branding::instance()->image(
+            { "utilities-log-viewer", "utilities-terminal", "text-x-log", "text-x-changelog", "preferences-log" },
+            QSize( 32, 32 ) ),
+        "Toggle log" );
     auto toggleLogButton = dynamic_cast< QToolButton* >( toolBar->widgetForAction( toggleLogAction ) );
     connect( toggleLogButton, &QToolButton::clicked, this, &ExecutionViewStep::toggleLog );
 
