@@ -339,15 +339,30 @@ guessProductName()
     if ( !tried )
     {
         QFile dmiFile( QStringLiteral( "/sys/devices/virtual/dmi/id/product_name" ) );
+        QFile modelFile( QStringLiteral( "/proc/device-tree/model" ) );
 
         if ( dmiFile.exists() && dmiFile.open( QIODevice::ReadOnly ) )
         {
             dmiProduct = cleanupForHostname( QString::fromLocal8Bit( dmiFile.readAll().simplified().data() ) );
+            if ( !dmiProduct.isEmpty() )
+            {
+                tried = true;
+                return dmiProduct;
+            }
         }
-        if ( dmiProduct.isEmpty() )
+
+        if ( modelFile.exists() && modelFile.open( QIODevice::ReadOnly ) )
         {
-            dmiProduct = QStringLiteral( "pc" );
+            dmiProduct
+                = cleanupForHostname( QString::fromLocal8Bit( modelFile.readAll().chopped( 1 ).simplified().data() ) );
+            if ( !dmiProduct.isEmpty() )
+            {
+                tried = true;
+                return dmiProduct;
+            }
         }
+
+        dmiProduct = QStringLiteral( "pc" );
         tried = true;
     }
     return dmiProduct;
