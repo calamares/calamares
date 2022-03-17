@@ -120,6 +120,10 @@ KeyboardModelsModel::KeyboardModelsModel( QObject* parent )
     : XKBListModel( parent )
 {
     m_contextname = "kb_models";
+    QString default_model = qgetenv("DEFAULT_XKBMODEL");
+
+    if (default_model == "")
+        default_model = "pc105";
 
     // The models map is from human-readable names (!) to xkb identifier
     const auto models = KeyboardGlobal::getKeyboardModels();
@@ -130,7 +134,7 @@ KeyboardModelsModel::KeyboardModelsModel( QObject* parent )
         // So here *key* is the key in the map, which is the human-readable thing,
         //   while the struct fields are xkb-id, and human-readable
         m_list << ModelInfo { models[ key ], key };
-        if ( models[ key ] == "pc105" )
+        if ( models[ key ] == default_model )
         {
             m_defaultPC105 = index;
         }

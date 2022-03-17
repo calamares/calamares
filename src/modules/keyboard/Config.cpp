@@ -331,6 +331,14 @@ Config::detectCurrentKeyboardLayout()
         }
     }
 
+    QString default_layout = qgetenv("DEFAULT_XKBLAYOUT");
+    QString default_variant = qgetenv("DEFAULT_XKBVARIANT");
+
+    if (default_layout != "") {
+        currentLayout = default_layout;
+        currentVariant = default_variant;
+    }
+
     //### Layouts and Variants
     QPersistentModelIndex currentLayoutItem = findLayout( m_keyboardLayoutsModel, currentLayout );
     if ( !currentLayoutItem.isValid() && ( ( currentLayout == "latin" ) || ( currentLayout == "pc" ) ) )
@@ -434,6 +442,10 @@ Config::guessLocaleKeyboardLayout()
     {
         return;
     }
+    QString default_layout = qgetenv("DEFAULT_XKBLAYOUT");
+    if (default_layout != "")
+        return;
+
     cScopedAssignment returnToIntial( &m_state, State::Initial );
     m_state = State::Guessing;
 
