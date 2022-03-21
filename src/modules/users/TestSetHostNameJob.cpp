@@ -128,7 +128,11 @@ UsersTests::testHostnamed()
     QVERIFY( setSystemdHostname( QStringLiteral( "tubophone.calamares.io" ) ) );
     if ( !m_originalHostName.isEmpty() )
     {
-        QEXPECT_FAIL( "", "Hostname changes are access-controlled (restore)", Continue );
+        // If the previous test succeeded (to change the hostname to something bogus)
+        // then this one should, also; or, if the previous one failed, then this
+        // changes to whatever-the-hostname-is, and systemd dbus seems to call that
+        // a success, as well (since nothing changes). So no failure-expectation here.
+        // QEXPECT_FAIL( "", "Hostname changes are access-controlled (restore)", Continue );
         QVERIFY( setSystemdHostname( m_originalHostName ) );
     }
 }
