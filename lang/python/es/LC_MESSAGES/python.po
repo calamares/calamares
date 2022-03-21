@@ -9,6 +9,7 @@
 # Adolfo Jayme-Barrientos, 2019
 # Miguel Mayol <mitcoes@gmail.com>, 2020
 # Pier Jose Gotta Perez <piegope@protonmail.com>, 2020
+# guillermo pacheco <guillopacheco@gmail.com>, 2022
 # 
 #, fuzzy
 msgid ""
@@ -17,7 +18,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-17 15:52+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Pier Jose Gotta Perez <piegope@protonmail.com>, 2020\n"
+"Last-Translator: guillermo pacheco <guillopacheco@gmail.com>, 2022\n"
 "Language-Team: Spanish (https://www.transifex.com/calamares/teams/20061/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -63,16 +64,20 @@ msgstr "Instalar gestor de arranque."
 #: src/modules/bootloader/main.py:612
 msgid "Failed to install grub, no partitions defined in global storage"
 msgstr ""
+"Error al instalar grub, no hay particiones definidas en el almacenamiento "
+"global"
 
 #: src/modules/bootloader/main.py:780
 msgid "Bootloader installation error"
-msgstr ""
+msgstr "Error de instalación del cargador de arranque"
 
 #: src/modules/bootloader/main.py:781
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
 msgstr ""
+"No se pudo instalar el cargador de arranque. El comando de instalación "
+"<pre>{!s}</pre> devolvió el código de error {!s}."
 
 #: src/modules/fstab/main.py:29
 msgid "Writing fstab."
@@ -81,6 +86,8 @@ msgstr "Escribiendo la tabla de particiones fstab"
 #: src/modules/fstab/main.py:394
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr ""
+"No se proporciona ninguna configuración de <pre>{!s}</pre> para "
+"que<pre>{!s}</pre> la use."
 
 #: src/modules/dracut/main.py:27
 msgid "Creating initramfs with dracut."
@@ -146,6 +153,8 @@ msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
 msgstr ""
+"La lista de gestores de pantalla está vacía o indefinida tanto en el "
+"globalstorage como en el displaymanager.conf."
 
 #: src/modules/displaymanager/main.py:1074
 msgid "Display manager configuration was incomplete"
@@ -241,25 +250,31 @@ msgstr[1] "Eliminando %(num)d paquetes."
 #: src/modules/packages/main.py:725 src/modules/packages/main.py:737
 #: src/modules/packages/main.py:765
 msgid "Package Manager error"
-msgstr ""
+msgstr "Error del Gestor de Paquetes"
 
 #: src/modules/packages/main.py:726
 msgid ""
 "The package manager could not prepare updates. The command <pre>{!s}</pre> "
 "returned error code {!s}."
 msgstr ""
+"El Gestor de Paquetes no pudo preparar actualizaciones. El comando "
+"<pre>{!s}</pre> devolvió el código de error {!s}."
 
 #: src/modules/packages/main.py:738
 msgid ""
 "The package manager could not update the system. The command <pre>{!s}</pre>"
 " returned error code {!s}."
 msgstr ""
+"El Gestor de Paquetes no pudo actualizar el sistema. El comando "
+"<pre>{!s}</pre> devolvió el código de error {!s}."
 
 #: src/modules/packages/main.py:766
 msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."
 msgstr ""
+"El Gestor de Paquetes no pudo realizar cambios en el sistema instalado. El "
+"comando <pre>{!s}</pre> devolvió el código de error {!s}."
 
 #: src/modules/plymouthcfg/main.py:27
 msgid "Configure Plymouth theme"
@@ -279,23 +294,23 @@ msgstr "Montando particiones"
 
 #: src/modules/mount/main.py:88 src/modules/mount/main.py:124
 msgid "Internal error mounting zfs datasets"
-msgstr ""
+msgstr "Error interno al montar conjuntos de datos zfs"
 
 #: src/modules/mount/main.py:100
 msgid "Failed to import zpool"
-msgstr ""
+msgstr "Error al importar zpool"
 
 #: src/modules/mount/main.py:116
 msgid "Failed to unlock zpool"
-msgstr ""
+msgstr "Error al desbloquear zpool"
 
 #: src/modules/mount/main.py:133 src/modules/mount/main.py:138
 msgid "Failed to set zfs mountpoint"
-msgstr ""
+msgstr "Error al establecer el punto de montaje zfs"
 
 #: src/modules/mount/main.py:253
 msgid "zfs mounting error"
-msgstr ""
+msgstr "error de montaje zfs"
 
 #: src/modules/rawfs/main.py:26
 msgid "Installing data."
@@ -340,7 +355,7 @@ msgstr "No se puede activar el objetivo de systemd  <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:67
 msgid "Cannot enable systemd timer <code>{name!s}</code>."
-msgstr ""
+msgstr "No se puede habilitar el temporizador systemd <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:71
 msgid "Cannot disable systemd target <code>{name!s}</code>."
@@ -360,11 +375,11 @@ msgstr ""
 
 #: src/modules/mkinitfs/main.py:27
 msgid "Creating initramfs with mkinitfs."
-msgstr ""
+msgstr "Creando initramfs con mkinitfs."
 
 #: src/modules/mkinitfs/main.py:49
 msgid "Failed to run mkinitfs on the target"
-msgstr ""
+msgstr "Error al ejecutar mkinitfs en el objetivo"
 
 #: src/modules/unpackfs/main.py:34
 msgid "Filling up filesystems."
@@ -393,7 +408,7 @@ msgstr ""
 
 #: src/modules/unpackfs/main.py:431
 msgid "globalstorage does not contain a \"rootMountPoint\" key."
-msgstr ""
+msgstr "El globalstorage no contiene una llave \"rootMountPoint\"."
 
 #: src/modules/unpackfs/main.py:434
 msgid "Bad mount point for root partition"
@@ -401,17 +416,17 @@ msgstr "Punto de montaje no válido para una partición raíz,"
 
 #: src/modules/unpackfs/main.py:435
 msgid "rootMountPoint is \"{}\", which does not exist."
-msgstr ""
+msgstr "rootMountPoint es \"{}\", que no existe."
 
 #: src/modules/unpackfs/main.py:439 src/modules/unpackfs/main.py:455
 #: src/modules/unpackfs/main.py:459 src/modules/unpackfs/main.py:465
 #: src/modules/unpackfs/main.py:480
 msgid "Bad unpackfs configuration"
-msgstr ""
+msgstr "Mala configuración de unpackfs "
 
 #: src/modules/unpackfs/main.py:440
 msgid "There is no configuration information."
-msgstr ""
+msgstr "No hay información de configuración."
 
 #: src/modules/unpackfs/main.py:456
 msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
@@ -428,6 +443,8 @@ msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed."
 msgstr ""
+"No se pudo encontrar unsquashfs, asegúrese de tener instalado el paquete "
+"squashfs-tools."
 
 #: src/modules/unpackfs/main.py:481
 msgid "The destination \"{}\" in the target system is not a directory"
