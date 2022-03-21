@@ -23,6 +23,8 @@ extern bool setSystemdHostname( const QString& );
 #include <QTemporaryDir>
 #include <QtTest/QtTest>
 
+#include <unistd.h>
+
 class UsersTests : public QObject
 {
     Q_OBJECT
@@ -41,6 +43,7 @@ private Q_SLOTS:
 
 private:
     QTemporaryDir m_dir;
+    QString m_originalHostName;
 };
 
 UsersTests::UsersTests()
@@ -70,6 +73,15 @@ UsersTests::initTestCase()
         = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
     QVERIFY( gs );
     gs->insert( "rootMountPoint", m_dir.path() );
+
+    if ( m_originalHostName.isEmpty() )
+    {
+        QFile hostname( QStringLiteral( "/etc/hostname" ) );
+        if ( hostname.exists() && hostname.open( QIODevice::ReadOnly | QIODevice::Text ) )
+        {
+            m_originalHostName = hostname.readAll().trimmed();
+        }
+    }
 }
 
 void
@@ -113,9 +125,22 @@ UsersTests::testHostnamed()
 {
     // Since the service might not be running (e.g. non-systemd systems,
     // FreeBSD, docker, ..) we're not going to fail a test here.
-    // There's also the permissions problem to think of.
-    QEXPECT_FAIL( "", "Hostname changes are access-controlled", Continue );
-    QVERIFY( setSystemdHostname( "tubophone.calamares.io" ) );
+    // There's also the permissions problem to think of. But if we're
+    // root, assume it will succeed.
+    if ( geteuid() != 0 )
+    {
+        QEXPECT_FAIL( "", "Hostname changes are access-controlled", Continue );
+    }
+    QVERIFY( setSystemdHostname( QStringLiteral( "tubophone.calamares.io" ) ) );
+    if ( !m_originalHostName.isEmpty() )
+    {
+        // If the previous test succeeded (to change the hostname to something bogus)
+        // then this one should, also; or, if the previous one failed, then this
+        // changes to whatever-the-hostname-is, and systemd dbus seems to call that
+        // a success, as well (since nothing changes). So no failure-expectation here.
+        // QEXPECT_FAIL( "", "Hostname changes are access-controlled (restore)", Continue );
+        QVERIFY( setSystemdHostname( m_originalHostName ) );
+    }
 }
 
 
