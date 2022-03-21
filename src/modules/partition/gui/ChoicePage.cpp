@@ -42,9 +42,7 @@
 #include "widgets/PrettyRadioButton.h"
 
 #include <kpmcore/core/device.h>
-#ifdef WITH_KPMCORE4API
 #include <kpmcore/core/softwareraid.h>
-#endif
 
 #include <QBoxLayout>
 #include <QButtonGroup>
@@ -1344,14 +1342,12 @@ ChoicePage::setupActions()
     bool isInactiveRAID = false;
     bool matchTableType = false;
 
-#ifdef WITH_KPMCORE4API
     if ( currentDevice->type() == Device::Type::SoftwareRAID_Device
          && static_cast< SoftwareRAID* >( currentDevice )->status() == SoftwareRAID::Status::Inactive )
     {
         cDebug() << Logger::SubEntry << "part of an inactive RAID device";
         isInactiveRAID = true;
     }
-#endif
 
     PartitionTable::TableType tableType = PartitionTable::unknownTableType;
     if ( currentDevice->partitionTable() )

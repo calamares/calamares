@@ -52,12 +52,7 @@ DevicesTests::testKPMScanDevices()
     cDebug() << "Getting devices via KPMCore";
     CoreBackend* backend = CoreBackendManager::self()->backend();
     QVERIFY( backend );
-#if defined( WITH_KPMCORE4API )
-    auto flags = ScanFlag( ~0 );
-#else
-    auto flags = true;
-#endif
-    auto devices = backend->scanDevices( flags );  // These flags try to get "all"
+    auto devices = backend->scanDevices( ScanFlag( ~0 ) );  // These flags try to get "all"
     cDebug() << Logger::SubEntry << "Done getting devices.";
 
     if ( !m_isRoot )

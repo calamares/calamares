@@ -125,7 +125,6 @@ CreateLayoutsTests::testMixedSizePartition()
     QCOMPARE( partitions[ 2 ]->length(), ( ( 5_GiB - 5_MiB ) / 2 ) / LOGICAL_SIZE );
 }
 
-#ifdef WITH_KPMCORE4API
 // TODO: Get a clean way to instantiate a test Device from KPMCore
 class DevicePrivate
 {
@@ -150,11 +149,5 @@ TestDevice::TestDevice( const QString& name, const qint64 logicalSectorSize, con
               Device::Type::Unknown_Device )
 {
 }
-#else
-TestDevice::TestDevice( const QString& name, const qint64 logicalSectorSize, const qint64 totalLogicalSectors )
-    : Device( name, QString( "node" ), logicalSectorSize, totalLogicalSectors, QString(), Device::Type::Unknown_Device )
-{
-}
-#endif
 
 TestDevice::~TestDevice() {}
