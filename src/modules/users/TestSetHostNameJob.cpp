@@ -23,6 +23,8 @@ extern bool setSystemdHostname( const QString& );
 #include <QTemporaryDir>
 #include <QtTest/QtTest>
 
+#include <unistd.h>
+
 class UsersTests : public QObject
 {
     Q_OBJECT
@@ -123,8 +125,12 @@ UsersTests::testHostnamed()
 {
     // Since the service might not be running (e.g. non-systemd systems,
     // FreeBSD, docker, ..) we're not going to fail a test here.
-    // There's also the permissions problem to think of.
-    QEXPECT_FAIL( "", "Hostname changes are access-controlled", Continue );
+    // There's also the permissions problem to think of. But if we're
+    // root, assume it will succeed.
+    if ( geteuid() != 0 )
+    {
+        QEXPECT_FAIL( "", "Hostname changes are access-controlled", Continue );
+    }
     QVERIFY( setSystemdHostname( QStringLiteral( "tubophone.calamares.io" ) ) );
     if ( !m_originalHostName.isEmpty() )
     {
