@@ -2900,8 +2900,8 @@ Sök på kartan genom att dra
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="588"/>
-      <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
-      <translation>En GPT-partitionstabell är det bästa alternativet för alla system. Detta installationsprogram stödjer det för system med BIOS också.&lt;br/&gt;&lt;br/&gt;För att konfigurera en GPT-partitionstabell på BIOS (om det inte redan är gjort), gå tillbaka och sätt partitionstabell till GPT, skapa sedan en oformaterad partition på 8MB med &lt;strong&gt;bios_grub&lt;/strong&gt;-flaggan satt.&lt;br/&gt;&lt;br/&gt;En oformaterad partition på 8MB är nödvändig för att starta %1 på ett BIOS-system med GPT.</translation>
+      <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
+      <translation>En GPT-partitionstabell är det bästa alternativet för alla system. Detta installationsprogram stödjer det för system med BIOS också.&lt;br/&gt;&lt;br/&gt;För att konfigurera en GPT-partitionstabell på BIOS (om det inte redan är gjort), gå tillbaka och sätt partitionstabell till GPT, skapa sedan en oformaterad partition på 8MB med &lt;strong&gt;%2&lt;/strong&gt;-flaggan satt.&lt;br/&gt;&lt;br/&gt;En oformaterad partition på 8MB är nödvändig för att starta %1 på ett BIOS-system med GPT.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="620"/>
@@ -3862,12 +3862,12 @@ Installationen kan inte fortsätta.&lt;/p&gt;</translation>
   <context>
     <name>UsersPage</name>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="167"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="177"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Om mer än en person skall använda datorn så kan du skapa flera användarkonton när inställningarna är klara.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="173"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="183"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Om mer än en person skall använda datorn så kan du skapa flera användarkonton när installationen är klar.&lt;/small&gt;</translation>
     </message>
@@ -4076,7 +4076,7 @@ Installationen kan inte fortsätta.&lt;/p&gt;</translation>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="101"/>
       <source>Create ZFS pools and datasets</source>
-      <translation type="unfinished"/>
+      <translation>Skapa ZFS pools och datasets</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="162"/>
@@ -4090,8 +4090,8 @@ Installationen kan inte fortsätta.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="181"/>
-      <source>No partitions are available for Zfs.</source>
-      <translation>Inga partitioner är tillgängliga för Zfs.</translation>
+      <source>No partitions are available for ZFS.</source>
+      <translation>Inga partitioner är tillgängliga för ZFS.</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>
@@ -4112,7 +4112,7 @@ Installationen kan inte fortsätta.&lt;/p&gt;</translation>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="330"/>
       <source>The output was: </source>
-      <translation type="unfinished"/>
+      <translation>Utdatan var:</translation>
     </message>
   </context>
   <context>

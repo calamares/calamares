@@ -6,7 +6,7 @@
     <message>
       <location filename="../src/modules/partition/jobs/AutoMountManagementJob.cpp" line="22"/>
       <source>Manage auto-mount settings</source>
-      <translation> 管理自动挂载设置</translation>
+      <translation>管理自动挂载设置</translation>
     </message>
   </context>
   <context>
@@ -1021,7 +1021,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="71"/>
       <source>Primar&amp;y</source>
-      <translation type="unfinished"/>
+      <translation>主分区(&amp;Y)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="81"/>
@@ -1086,7 +1086,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="96"/>
       <source>Mountpoint must start with a &lt;tt&gt;/&lt;/tt&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>挂载点必须以&lt;tt&gt;/&lt;/tt&gt;开头。</translation>
     </message>
   </context>
   <context>
@@ -1376,7 +1376,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="54"/>
       <source>Con&amp;tent:</source>
-      <translation type="unfinished"/>
+      <translation>内容：(&amp;T)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="64"/>
@@ -1444,7 +1444,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="43"/>
       <source>Your system does not seem to support encryption well enough to encrypt the entire system. You may enable encryption, but performance may suffer.</source>
-      <translation type="unfinished"/>
+      <translation>您的系统似乎不太支持加密，无法对整个系统进行加密。您可以启用加密，但性能可能会受到影响。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="59"/>
@@ -1468,7 +1468,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="36"/>
       <source>Details:</source>
-      <translation type="unfinished"/>
+      <translation>详情:</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="52"/>
@@ -1814,17 +1814,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="88"/>
       <source>No target system available.</source>
-      <translation type="unfinished"/>
+      <translation>没有可用的目标系统。</translation>
     </message>
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="96"/>
       <source>No rootMountPoint is set.</source>
-      <translation type="unfinished"/>
+      <translation>没有设定 root 挂载点。</translation>
     </message>
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="101"/>
       <source>No configFilePath is set.</source>
-      <translation type="unfinished"/>
+      <translation>未设置配置文件路径。</translation>
     </message>
   </context>
   <context>
@@ -2893,8 +2893,8 @@ The installer will quit and all changes will be lost.</source>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="588"/>
-      <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
-      <translation>GPT 分区表对于所有系统来说都是最佳选项。本安装程序支持在 BIOS 模式下设置 GPT 分区表。&lt;br/&gt;&lt;br/&gt;要在 BIOS 模式下配置 GPT 分区表，（若你尚未配置好）返回并设置分区表为 GPT，然后创建一个 8MB 的、未经格式化的、启用&lt;strong&gt;bios_grub&lt;/strong&gt; 标记的分区。&lt;br/&gt;&lt;br/&gt;一个未格式化的 8MB 的分区对于在 BIOS 模式下使用 GPT 启动 %1 来说是非常有必要的。</translation>
+      <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
+      <translation>GPT 分区表对于所有系统来说都是最佳选项。本安装程序支持在 BIOS 模式下设置 GPT 分区表。&lt;br/&gt;&lt;br/&gt;要在 BIOS 模式下配置 GPT 分区表，（若你尚未配置好）返回并设置分区表为 GPT，然后创建一个 8MB 的、未经格式化的、启用&lt;strong&gt;%2&lt;/strong&gt; 标记的分区。&lt;br/&gt;&lt;br/&gt;一个未格式化的 8MB 的分区对于在 BIOS 模式下使用 GPT 启动 %1 来说是非常有必要的。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="620"/>
@@ -3844,23 +3844,23 @@ Output:
     <message>
       <location filename="../src/modules/umount/UmountJob.cpp" line="122"/>
       <source>No target system available.</source>
-      <translation type="unfinished"/>
+      <translation>没有可用的目标系统。</translation>
     </message>
     <message>
       <location filename="../src/modules/umount/UmountJob.cpp" line="130"/>
       <source>No rootMountPoint is set.</source>
-      <translation type="unfinished"/>
+      <translation>没有设定 root挂载点。</translation>
     </message>
   </context>
   <context>
     <name>UsersPage</name>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="167"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="177"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
       <translation>&lt;small&gt;如果有多人要使用此计算机，您可以在安装后创建多个账户。&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="173"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="183"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
       <translation>&lt;small&gt;如果有多人要使用此计算机，您可以在安装后创建多个账户。&lt;/small&gt;</translation>
     </message>
@@ -4069,12 +4069,12 @@ Output:
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="101"/>
       <source>Create ZFS pools and datasets</source>
-      <translation type="unfinished"/>
+      <translation>创建 ZFS 池和数据集</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="162"/>
       <source>Failed to create zpool on </source>
-      <translation type="unfinished"/>
+      <translation>创建 zpool 失败于</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="180"/>
@@ -4083,29 +4083,29 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="181"/>
-      <source>No partitions are available for Zfs.</source>
-      <translation type="unfinished"/>
+      <source>No partitions are available for ZFS.</source>
+      <translation>没有可用于 ZFS 的分区。</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>
       <source>Internal data missing</source>
-      <translation type="unfinished"/>
+      <translation>内部数据丢失</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="257"/>
       <source>Failed to create zpool</source>
-      <translation type="unfinished"/>
+      <translation>创建 zpool 失败</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="329"/>
       <source>Failed to create dataset</source>
-      <translation type="unfinished"/>
+      <translation>创建数据集失败</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="330"/>
       <source>The output was: </source>
-      <translation type="unfinished"/>
+      <translation>输出为：</translation>
     </message>
   </context>
   <context>
@@ -4194,17 +4194,18 @@ Output:
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="43"/>
       <source>%1 has been installed on your computer.&lt;br/&gt;
             You may now restart your device.</source>
-      <translation type="unfinished"/>
+      <translation>%1 已安装在您的计算机上。&lt;br/&gt;
+  现在可以重新启动设备了。</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="65"/>
       <source>Close</source>
-      <translation type="unfinished"/>
+      <translation>关闭</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="71"/>
       <source>Restart</source>
-      <translation type="unfinished"/>
+      <translation>重启</translation>
     </message>
   </context>
   <context>

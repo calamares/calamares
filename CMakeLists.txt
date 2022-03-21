@@ -82,7 +82,7 @@ option(BUILD_KF5Crash "Enable crash reporting with KCrash." ON)
 #  - DEBUG_FILESYSTEMS does extra logging and checking when looking at
 #    partition configuration. Lists known KPMCore FS types.
 #  - DEBUG_PARTITION_UNSAFE (see partition/CMakeLists.txt)
-#  - DEBUG_PARTITION_LAME (see partition/CMakeLists.txt)
+#  - DEBUG_PARTITION_BAIL_OUT (see partition/CMakeLists.txt)
 
 ### USE_*
 #

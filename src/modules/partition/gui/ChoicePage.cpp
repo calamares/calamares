@@ -1481,7 +1481,7 @@ ChoicePage::setupActions()
     }
 
 #ifdef DEBUG_PARTITION_UNSAFE
-#ifdef DEBUG_PARTITION_LAME
+#ifdef DEBUG_PARTITION_BAIL_OUT
     // If things can't be broken, allow all the buttons
     atLeastOneCanBeReplaced = true;
     atLeastOneCanBeResized = true;

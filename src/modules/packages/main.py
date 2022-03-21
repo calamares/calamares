@@ -424,7 +424,7 @@ class PMPacman(PackageManager):
         while pacman_count <= self.pacman_num_retries:
             pacman_count += 1
             try:
-                if callback is True:
+                if False: # callback:
                     libcalamares.utils.target_env_process_output(command, self.line_cb)
                 else:
                     libcalamares.utils.target_env_process_output(command)

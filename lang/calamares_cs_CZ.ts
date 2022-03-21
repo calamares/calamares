@@ -2922,8 +2922,8 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="588"/>
-      <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
-      <translation>GPT tabulka oddílů je nejlepší volbou pro všechny systémy. Tento instalátor podporuje takové uspořádání i pro zavádění v režimu BIOS firmware.&lt;br/&gt;&lt;br/&gt;Pro nastavení GPT tabulky oddílů v případě BIOS, (pokud už není provedeno) jděte zpět a nastavte tabulku oddílů na, dále vytvořte 8 MB oddíl (bez souborového systému s příznakem &lt;strong&gt;bios_grub&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;Tento oddíl je zapotřebí pro spuštění %1 na systému s BIOS firmware/režimem a GPT.</translation>
+      <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
+      <translation>GPT tabulka oddílů je nejlepší volbou pro všechny systémy. Tento instalátor podporuje takové uspořádání i pro zavádění v režimu BIOS firmware.&lt;br/&gt;&lt;br/&gt;Pro nastavení GPT tabulky oddílů v případě BIOS, (pokud už není provedeno) jděte zpět a nastavte tabulku oddílů na, dále vytvořte 8 MB oddíl (bez souborového systému s příznakem &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;Tento oddíl je zapotřebí pro spuštění %1 na systému s BIOS firmware/režimem a GPT.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="620"/>
@@ -3884,12 +3884,12 @@ Výstup:
   <context>
     <name>UsersPage</name>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="167"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="177"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Pokud bude tento počítač používat více lidí, můžete přidat uživatelské účty po dokončení instalace.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="173"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="183"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Pokud bude tento počítač používat více lidí, můžete přidat uživatelské účty po dokončení instalace.&lt;/small&gt;</translation>
     </message>
@@ -4112,8 +4112,8 @@ Výstup:
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="181"/>
-      <source>No partitions are available for Zfs.</source>
-      <translation>Nejsou k dispozici žádné oddíly pro zfs.</translation>
+      <source>No partitions are available for ZFS.</source>
+      <translation>Pro ZFS nejsou k dispozici žádné oddíly.</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>

@@ -2923,8 +2923,8 @@ The installer will quit and all changes will be lost.</source>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="588"/>
-      <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
-      <translation>Таблиця розділів GPT є найкращим варіантом для усіх систем. У цьому засобі встановлення передбачено підтримку відповідних налаштувань і для систем BIOS.&lt;br/&gt;&lt;br/&gt;Щоб скористатися таблицею розділів GPT у системі з BIOS, (якщо цього ще не було зроблено) поверніться назад і встановіть для таблиці розділів значення GPT, далі створіть неформатований розділ розміром 8 МБ з увімкненим прапорцем &lt;strong&gt;bios_grub&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;Неформатований розділ розміром 8 МБ потрібен для запуску %1 на системі з BIOS за допомогою GPT.</translation>
+      <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
+      <translation>Таблиця розділів GPT є найкращим варіантом для усіх систем. У цьому засобі встановлення передбачено підтримку відповідних налаштувань і для систем BIOS.&lt;br/&gt;&lt;br/&gt;Щоб скористатися таблицею розділів GPT у системі з BIOS, (якщо цього ще не було зроблено) поверніться назад і встановіть для таблиці розділів значення GPT, далі створіть неформатований розділ розміром 8 МБ з увімкненим прапорцем &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;Неформатований розділ розміром 8 МБ потрібен для запуску %1 на системі з BIOS за допомогою GPT.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="620"/>
@@ -3885,12 +3885,12 @@ Output:
   <context>
     <name>UsersPage</name>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="167"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="177"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Якщо за цим комп'ютером працюватимуть декілька користувачів, ви можете створити декілька облікових записів після налаштовування.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="173"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="183"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Якщо за цим комп'ютером працюватимуть декілька користувачів, ви можете створити декілька облікових записів після встановлення.&lt;/small&gt;</translation>
     </message>
@@ -4113,8 +4113,8 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="181"/>
-      <source>No partitions are available for Zfs.</source>
-      <translation>Немає доступних розділів для Zfs.</translation>
+      <source>No partitions are available for ZFS.</source>
+      <translation>Немає доступних розділів для ZFS.</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>

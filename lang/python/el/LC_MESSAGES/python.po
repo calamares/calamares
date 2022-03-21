@@ -4,16 +4,16 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Efstathios Iosifidis <iefstathios@gmail.com>, 2017
+# Efstathios Iosifidis <iefstathios@gmail.com>, 2022
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-01 17:27+0100\n"
+"POT-Creation-Date: 2022-02-17 15:52+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Efstathios Iosifidis <iefstathios@gmail.com>, 2017\n"
+"Last-Translator: Efstathios Iosifidis <iefstathios@gmail.com>, 2022\n"
 "Language-Team: Greek (https://www.transifex.com/calamares/teams/20061/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,7 +49,7 @@ msgstr ""
 
 #: src/modules/grubcfg/main.py:28
 msgid "Configure GRUB."
-msgstr ""
+msgstr "Ρύθμιση GRUB."
 
 #: src/modules/bootloader/main.py:43
 msgid "Install bootloader."
@@ -71,7 +71,7 @@ msgstr ""
 
 #: src/modules/fstab/main.py:29
 msgid "Writing fstab."
-msgstr ""
+msgstr "Εγγραγή fstab."
 
 #: src/modules/fstab/main.py:394
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
@@ -115,7 +115,7 @@ msgstr ""
 
 #: src/modules/displaymanager/main.py:745
 msgid "Cannot configure LightDM"
-msgstr ""
+msgstr "Αδυναμία ρύθμισης LightDM"
 
 #: src/modules/displaymanager/main.py:746
 msgid "No LightDM greeter installed."
@@ -222,7 +222,7 @@ msgstr[1] ""
 #: src/modules/packages/main.py:725 src/modules/packages/main.py:737
 #: src/modules/packages/main.py:765
 msgid "Package Manager error"
-msgstr ""
+msgstr "Σφάλμα διαχειριστή πακέτων"
 
 #: src/modules/packages/main.py:726
 msgid ""
@@ -256,7 +256,7 @@ msgstr ""
 
 #: src/modules/mount/main.py:42
 msgid "Mounting partitions."
-msgstr ""
+msgstr "Προσάρτηση κατατμήσεων."
 
 #: src/modules/mount/main.py:88 src/modules/mount/main.py:124
 msgid "Internal error mounting zfs datasets"
@@ -280,7 +280,7 @@ msgstr ""
 
 #: src/modules/rawfs/main.py:26
 msgid "Installing data."
-msgstr ""
+msgstr "Εγκατάσταση δεδομένων."
 
 #: src/modules/dummypython/main.py:35
 msgid "Dummy python job."

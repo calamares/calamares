@@ -2896,8 +2896,8 @@ per a desplaçar-s'hi i useu els botons +/- per a ampliar-lo o reduir-lo, o bé 
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="588"/>
-      <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
-      <translation>La millor opció per a tots els sistemes és una taula de particions GPT. Aquest instal·lador també admet aquesta configuració per a sistemes BIOS.&lt;br/&gt;&lt;br/&gt;Per a configurar una taula de particions GPT en un sistema BIOS, (si no s'ha fet ja) torneu arrere i establiu la taula de particions a GPT, després creeu una partició sense formatar de 8 MB amb el marcador &lt;strong&gt;bios_grub&lt;/strong&gt; habilitada.&lt;br/&gt;&lt;br/&gt;Cal una partició sense format de 8 MB per a iniciar %1 en un sistema BIOS amb GPT.</translation>
+      <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
+      <translation>La millor opció per a tots els sistemes és una taula de particions GPT. Aquest instal·lador també admet aquesta configuració per a sistemes BIOS.&lt;br/&gt;&lt;br/&gt;Per a configurar una taula de particions GPT en un sistema BIOS, (si no s'ha fet ja) torneu arrere i establiu la taula de particions a GPT, després creeu una partició sense formatar de 8 MB amb el marcador &lt;strong&gt;%2&lt;/strong&gt; habilitada.&lt;br/&gt;&lt;br/&gt;Cal una partició sense format de 8 MB per a iniciar %1 en un sistema BIOS amb GPT.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="620"/>
@@ -3858,12 +3858,12 @@ La configuració pot continuar, però és possible que algunes característiques
   <context>
     <name>UsersPage</name>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="167"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="177"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Si hi ha més d'una persona que ha d'usar aquest ordinador, podeu crear diversos comptes després de la configuració.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="173"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="183"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Si hi ha més d'una persona que ha d'usar aquest ordinador, podeu crear diversos comptes després de la instal·lació.&lt;/small&gt;</translation>
     </message>
@@ -4086,7 +4086,7 @@ La configuració pot continuar, però és possible que algunes característiques
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="181"/>
-      <source>No partitions are available for Zfs.</source>
+      <source>No partitions are available for ZFS.</source>
       <translation type="unfinished"/>
     </message>
     <message>

@@ -4,16 +4,17 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Kimmo Kujansuu <mrkujansuu@gmail.com>, 2021
+# Kimmo Kujansuu <mrkujansuu@gmail.com>, 2022
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2022
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-01 17:27+0100\n"
+"POT-Creation-Date: 2022-02-17 15:52+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>, 2021\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>, 2022\n"
 "Language-Team: Finnish (Finland) (https://www.transifex.com/calamares/teams/20061/fi_FI/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,8 +46,7 @@ msgstr "Ei ole määritetty käyttämään osioita <pre>{!s}</pre> ."
 #: src/modules/networkcfg/main.py:106 src/modules/initcpiocfg/main.py:240
 #: src/modules/localecfg/main.py:136 src/modules/openrcdmcryptcfg/main.py:77
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr ""
-"Root-juuri kiinnityspistettä  <pre>{!s}</pre> ei ole annettu käytettäväksi."
+msgstr "<pre>{!s}</pre> ei ole annettu root liitospistettä."
 
 #: src/modules/grubcfg/main.py:28
 msgid "Configure GRUB."
@@ -54,27 +54,28 @@ msgstr "Määritä GRUB."
 
 #: src/modules/bootloader/main.py:43
 msgid "Install bootloader."
-msgstr "Asenna bootloader."
+msgstr "Asenna käynnistyslatain."
 
 #: src/modules/bootloader/main.py:612
 msgid "Failed to install grub, no partitions defined in global storage"
 msgstr ""
+"Grubin asennus epäonnistui, yleisessä levytilassa ei ole määritetty osioita"
 
 #: src/modules/bootloader/main.py:780
 msgid "Bootloader installation error"
-msgstr "Bootloader asennusvirhe"
+msgstr "Käynnistyslataimen asennusvirhe"
 
 #: src/modules/bootloader/main.py:781
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
 msgstr ""
-"Bootloaderia ei voitu asentaa. Asennuskomento <pre>{!s}</pre> palautti "
-"virhekoodin {!s}."
+"Käynnistyslatainta ei voitu asentaa. Asennuskomento <pre>{!s}</pre> palautti"
+" virhekoodin {!s}."
 
 #: src/modules/fstab/main.py:29
 msgid "Writing fstab."
-msgstr "Fstab kirjoittaminen."
+msgstr "Kirjoitetaan fstabiin."
 
 #: src/modules/fstab/main.py:394
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
@@ -82,11 +83,11 @@ msgstr "Ei <pre>{!s}</pre> määritys annetaan <pre>{!s}</pre> varten."
 
 #: src/modules/dracut/main.py:27
 msgid "Creating initramfs with dracut."
-msgstr "Initramfs luominen dracut:lla."
+msgstr "Luodaan initramfs:ää dracutilla."
 
 #: src/modules/dracut/main.py:49
 msgid "Failed to run dracut on the target"
-msgstr "Dracut-ohjelman suorittaminen ei onnistunut"
+msgstr "Dracutin suorittaminen kohteessa ei onnistunut"
 
 #: src/modules/dracut/main.py:50 src/modules/mkinitfs/main.py:50
 msgid "The exit code was {}"
@@ -118,11 +119,11 @@ msgstr "LightDM-määritystiedostoa {!s} ei ole olemassa"
 
 #: src/modules/displaymanager/main.py:745
 msgid "Cannot configure LightDM"
-msgstr "LightDM määritysvirhe"
+msgstr "LightDM-määritysvirhe"
 
 #: src/modules/displaymanager/main.py:746
 msgid "No LightDM greeter installed."
-msgstr "LightDM ei ole asennettu."
+msgstr "LightDM:ää ei ole asennettu."
 
 #: src/modules/displaymanager/main.py:777
 msgid "Cannot write SLIM configuration file"
@@ -154,11 +155,11 @@ msgstr "Määritä OpenRC-palvelut"
 
 #: src/modules/services-openrc/main.py:57
 msgid "Cannot add service {name!s} to run-level {level!s}."
-msgstr "Palvelua {name!s} ei-voi lisätä suorituksen tasolle {level!s}."
+msgstr "Palvelua {name!s} ei voi lisätä suorituksen tasolle {level!s}."
 
 #: src/modules/services-openrc/main.py:59
 msgid "Cannot remove service {name!s} from run-level {level!s}."
-msgstr "Ei voi poistaa palvelua {name!s} ajo-tasolla {level!s}."
+msgstr "Ei voi poistaa palvelua {name!s} suorituksen tasolla {level!s}."
 
 #: src/modules/services-openrc/main.py:61
 msgid ""
@@ -271,27 +272,27 @@ msgstr "Määritetään locales."
 
 #: src/modules/mount/main.py:42
 msgid "Mounting partitions."
-msgstr "Yhdistä osiot."
+msgstr "Osioiden liitos."
 
 #: src/modules/mount/main.py:88 src/modules/mount/main.py:124
 msgid "Internal error mounting zfs datasets"
-msgstr ""
+msgstr "Sisäinen virhe liitettäessä zfs-tietojoukkoa"
 
 #: src/modules/mount/main.py:100
 msgid "Failed to import zpool"
-msgstr ""
+msgstr "Tuonti zpool epäonnistui"
 
 #: src/modules/mount/main.py:116
 msgid "Failed to unlock zpool"
-msgstr ""
+msgstr "Lukituksen avaaminen zpool epäonnistui"
 
 #: src/modules/mount/main.py:133 src/modules/mount/main.py:138
 msgid "Failed to set zfs mountpoint"
-msgstr ""
+msgstr "Määritys zfs-liitospisteen epäonnistui"
 
 #: src/modules/mount/main.py:253
 msgid "zfs mounting error"
-msgstr ""
+msgstr "zfs-liitosvirhe"
 
 #: src/modules/rawfs/main.py:26
 msgid "Installing data."
@@ -316,7 +317,7 @@ msgstr "OpenRC dmcrypt-palvelun määrittäminen."
 
 #: src/modules/services-systemd/main.py:26
 msgid "Configure systemd services"
-msgstr "Määritä systemd palvelut"
+msgstr "Määritä systemd-palvelut"
 
 #: src/modules/services-systemd/main.py:60
 msgid ""
@@ -370,7 +371,7 @@ msgstr "rsync epäonnistui virhekoodilla {}."
 
 #: src/modules/unpackfs/main.py:299
 msgid "Unpacking image {}/{}, file {}/{}"
-msgstr "Kuvan purkaminen {}/{}, tiedosto {}/{}"
+msgstr "Puretaan levykuvaa {}/{}, tiedosto {}/{}"
 
 #: src/modules/unpackfs/main.py:314
 msgid "Starting to unpack {}"
@@ -378,33 +379,33 @@ msgstr "Pakkauksen purkaminen alkaa {}"
 
 #: src/modules/unpackfs/main.py:323 src/modules/unpackfs/main.py:467
 msgid "Failed to unpack image \"{}\""
-msgstr "Kuvan purkaminen epäonnistui \"{}\""
+msgstr "Levykuvan\"{}\" purkaminen epäonnistui"
 
 #: src/modules/unpackfs/main.py:430
 msgid "No mount point for root partition"
-msgstr "Ei liitoskohtaa juuri root osiolle"
+msgstr "Ei liitospistettä juuriosiolle"
 
 #: src/modules/unpackfs/main.py:431
 msgid "globalstorage does not contain a \"rootMountPoint\" key."
-msgstr ""
+msgstr "globalstorage ei sisällä \"rootMountPoint\"-avainta."
 
 #: src/modules/unpackfs/main.py:434
 msgid "Bad mount point for root partition"
-msgstr "Huono kiinnityspiste root-osioon"
+msgstr "Virheellinen liitospiste juuriosiolle"
 
 #: src/modules/unpackfs/main.py:435
 msgid "rootMountPoint is \"{}\", which does not exist."
-msgstr ""
+msgstr "rootMountPoint on \"{}\", jota ei ole olemassa."
 
 #: src/modules/unpackfs/main.py:439 src/modules/unpackfs/main.py:455
 #: src/modules/unpackfs/main.py:459 src/modules/unpackfs/main.py:465
 #: src/modules/unpackfs/main.py:480
 msgid "Bad unpackfs configuration"
-msgstr ""
+msgstr "Virheellinen unpacckfs-määritys"
 
 #: src/modules/unpackfs/main.py:440
 msgid "There is no configuration information."
-msgstr ""
+msgstr "Määritystietoja ei ole."
 
 #: src/modules/unpackfs/main.py:456
 msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"

@@ -25,17 +25,15 @@ AutoMountManagementJob::prettyName() const
 Calamares::JobResult
 AutoMountManagementJob::exec()
 {
-    cVerbose() << "this" << Logger::Pointer( this ) << "value" << Logger::Pointer( m_stored )
-               << ( m_stored        ? "restore"
-                        : m_disable ? "disable"
-                                    : "enable" );
     if ( m_stored )
     {
+        cDebug() << "Restore automount settings";
         CalamaresUtils::Partition::automountRestore( m_stored );
         m_stored.reset();
     }
     else
     {
+        cDebug() << "Set automount to" << ( m_disable ? "disable" : "enable" );
         m_stored = CalamaresUtils::Partition::automountDisable( m_disable );
     }
     return Calamares::JobResult::ok();

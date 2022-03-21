@@ -37,7 +37,7 @@
 #include "jobs/ResizeVolumeGroupJob.h"
 #include "jobs/SetPartitionFlagsJob.h"
 
-#ifdef DEBUG_PARTITION_LAME
+#ifdef DEBUG_PARTITION_BAIL_OUT
 #include "JobExample.h"
 #endif
 #include "partition/PartitionIterator.h"
@@ -627,7 +627,7 @@ PartitionCoreModule::jobs( const Config* config ) const
     QList< Device* > devices;
 
 #ifdef DEBUG_PARTITION_UNSAFE
-#ifdef DEBUG_PARTITION_LAME
+#ifdef DEBUG_PARTITION_BAIL_OUT
     cDebug() << "Unsafe partitioning is enabled.";
     cDebug() << Logger::SubEntry << "it has been lamed, and will fail.";
     lst << Calamares::job_ptr( new Calamares::FailJob( QStringLiteral( "Partition" ) ) );
@@ -644,6 +644,9 @@ PartitionCoreModule::jobs( const Config* config ) const
     lst << automountControl;
     lst << Calamares::job_ptr( new ClearTempMountsJob() );
 
+#ifdef DEBUG_PARTITION_SKIP
+    cWarning() << "Partitioning actions are skipped.";
+#else
     const QStringList doNotClose = findEssentialLVs( m_deviceInfos );
 
     for ( const auto* info : m_deviceInfos )
@@ -655,10 +658,15 @@ PartitionCoreModule::jobs( const Config* config ) const
             lst << Calamares::job_ptr( job );
         }
     }
+#endif
 
     for ( const auto* info : m_deviceInfos )
     {
+#ifdef DEBUG_PARTITION_SKIP
+        cWarning() << Logger::SubEntry << "Skipping jobs for" << info->device.data()->deviceNode();
+#else
         lst << info->jobs();
+#endif
         devices << info->device.data();
     }
     lst << Calamares::job_ptr( new FillGlobalStorageJob( config, devices, m_bootLoaderInstallPath ) );
@@ -938,10 +946,13 @@ PartitionCoreModule::setBootLoaderInstallPath( const QString& path )
     m_bootLoaderInstallPath = path;
 }
 
-void
-PartitionCoreModule::initLayout( FileSystem::Type defaultFsType, const QVariantList& config )
+static void
+applyDefaultLabel( Partition* p, bool ( *predicate )( const Partition* ), const QString& label )
 {
-    m_partLayout.init( defaultFsType, config );
+    if ( p->label().isEmpty() && predicate( p ) )
+    {
+        p->setLabel( label );
+    }
 }
 
 void
@@ -960,29 +971,28 @@ PartitionCoreModule::layoutApply( Device* dev,
     // PartitionInfo::mountPoint() says where it will be mounted in the target system.
     // .. the latter is more interesting.
     //
-    // If we have a separate /boot, mark that one as bootable, otherwise mark
-    // the root / as bootable.
+    // If we have a separate /boot, mark that one as bootable,
+    // otherwise mark the root / as bootable.
     //
-    // TODO: perhaps the partition that holds the bootloader?
-    const QString boot = QStringLiteral( "/boot" );
-    const QString root = QStringLiteral( "/" );
-    const auto is_boot
-        = [ & ]( Partition* p ) -> bool { return PartitionInfo::mountPoint( p ) == boot || p->mountPoint() == boot; };
-    const auto is_root
-        = [ & ]( Partition* p ) -> bool { return PartitionInfo::mountPoint( p ) == root || p->mountPoint() == root; };
+    // If the layout hasn't applied a label to the partition,
+    //      apply a default label (to boot and root, at least).
+    const auto is_boot = []( const Partition* p ) -> bool
+    {
+        const QString boot = QStringLiteral( "/boot" );
+        return PartitionInfo::mountPoint( p ) == boot || p->mountPoint() == boot;
+    };
+    const auto is_root = []( const Partition* p ) -> bool
+    {
+        const QString root = QStringLiteral( "/" );
+        return PartitionInfo::mountPoint( p ) == root || p->mountPoint() == root;
+    };
 
     const bool separate_boot_partition
         = std::find_if( partList.constBegin(), partList.constEnd(), is_boot ) != partList.constEnd();
     for ( Partition* part : partList )
     {
-        if ( is_boot( part ) )
-        {
-            part->setLabel( "boot" );
-        }
-        if ( is_root( part ) )
-        {
-            part->setLabel( "root" );
-        }
+        applyDefaultLabel( part, is_root, QStringLiteral( "root" ) );
+        applyDefaultLabel( part, is_boot, QStringLiteral( "boot" ) );
         if ( ( separate_boot_partition && is_boot( part ) ) || ( !separate_boot_partition && is_root( part ) ) )
         {
             createPartition(

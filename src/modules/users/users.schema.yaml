@@ -23,6 +23,7 @@ properties:
                   required: [ name ]
     autologinGroup: { type: string }
     sudoersGroup: { type: string }
+    sudoersConfigureWithGroup: { type: boolean, default: false }
     # Skip login (depends on displaymanager support)
     doAutologin: { type: boolean, default: true }
     # Root password separate from user password?

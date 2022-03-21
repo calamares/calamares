@@ -1021,7 +1021,7 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="71"/>
       <source>Primar&amp;y</source>
-      <translation type="unfinished"/>
+      <translation>Primä&amp;r</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="81"/>
@@ -1086,7 +1086,7 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
       <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="96"/>
       <source>Mountpoint must start with a &lt;tt&gt;/&lt;/tt&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Einhängepunkt muss mit einem &lt;tt&gt;/&lt;/tt&gt;beginnen.</translation>
     </message>
   </context>
   <context>
@@ -1375,7 +1375,7 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="54"/>
       <source>Con&amp;tent:</source>
-      <translation type="unfinished"/>
+      <translation>Inhal&amp;t:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="64"/>
@@ -1443,7 +1443,7 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="43"/>
       <source>Your system does not seem to support encryption well enough to encrypt the entire system. You may enable encryption, but performance may suffer.</source>
-      <translation type="unfinished"/>
+      <translation>Ihr System scheint Verschlüsselung nicht ausreichend zu unterstützen, um das gesamte System zu verschlüsseln. Sie können diese zwar aktivieren, aber die Leistung des Systems könnte darunter leiden.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="59"/>
@@ -1467,7 +1467,7 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
       <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="36"/>
       <source>Details:</source>
-      <translation type="unfinished"/>
+      <translation>Details:</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="52"/>
@@ -1813,17 +1813,17 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="88"/>
       <source>No target system available.</source>
-      <translation type="unfinished"/>
+      <translation>Kein Zielsystem verfügbar.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="96"/>
       <source>No rootMountPoint is set.</source>
-      <translation type="unfinished"/>
+      <translation>Kein rootMountPoint gesetzt.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="101"/>
       <source>No configFilePath is set.</source>
-      <translation type="unfinished"/>
+      <translation>Kein configFilePath gesetzt.</translation>
     </message>
   </context>
   <context>
@@ -2901,8 +2901,8 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="588"/>
-      <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
-      <translation>Eine GPT-Partitionstabelle ist die beste Option für alle Systeme. Dieses Installationsprogramm unterstützt ein solches Setup auch für BIOS-Systeme.&lt;br/&gt;&lt;br/&gt;Um eine GPT-Partitionstabelle mit BIOS zu konfigurieren, gehen Sie (falls noch nicht geschehen) zurück und setzen Sie die Partitionstabelle auf GPT, als nächstes erstellen Sie eine 8 MB große, unformatierte Partition mit der Markierung &lt;strong&gt;bios_grub&lt;/strong&gt; aktiviert.&lt;br/&gt;&lt;br/&gt;Eine unformatierte 8 MB große Partition ist erforderlich, um %1 auf einem BIOS-System mit GPT zu starten.</translation>
+      <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
+      <translation>Eine GPT-Partitionstabelle ist die beste Option für alle Systeme. Dieses Installationsprogramm unterstützt ein solches Setup auch für BIOS-Systeme.&lt;br/&gt;&lt;br/&gt;Um eine GPT-Partitionstabelle mit BIOS zu konfigurieren, gehen Sie (falls noch nicht geschehen) zurück und setzen Sie die Partitionstabelle auf GPT, als nächstes erstellen Sie eine 8 MB große, unformatierte Partition mit der Markierung &lt;strong&gt;%2&lt;/strong&gt; aktiviert.&lt;br/&gt;&lt;br/&gt;Eine unformatierte 8 MB große Partition ist erforderlich, um %1 auf einem BIOS-System mit GPT zu starten.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="620"/>
@@ -3852,23 +3852,23 @@ Ausgabe:
     <message>
       <location filename="../src/modules/umount/UmountJob.cpp" line="122"/>
       <source>No target system available.</source>
-      <translation type="unfinished"/>
+      <translation>Kein Zielsystem verfügbar.</translation>
     </message>
     <message>
       <location filename="../src/modules/umount/UmountJob.cpp" line="130"/>
       <source>No rootMountPoint is set.</source>
-      <translation type="unfinished"/>
+      <translation>Kein rootMountPoint gesetzt.</translation>
     </message>
   </context>
   <context>
     <name>UsersPage</name>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="167"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="177"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Falls dieser Computer von mehr als einer Person benutzt werden soll, können weitere Benutzerkonten nach der Installation eingerichtet werden.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="173"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="183"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Falls dieser Computer von mehr als einer Person benutzt werden soll, können weitere Benutzerkonten nach der Installation eingerichtet werden.&lt;/small&gt;</translation>
     </message>
@@ -4077,12 +4077,12 @@ Ausgabe:
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="101"/>
       <source>Create ZFS pools and datasets</source>
-      <translation type="unfinished"/>
+      <translation>ZFS Pools und Datensets erstellen</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="162"/>
       <source>Failed to create zpool on </source>
-      <translation type="unfinished"/>
+      <translation>Zpool konnte nicht erstellt werden auf</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="180"/>
@@ -4091,29 +4091,29 @@ Ausgabe:
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="181"/>
-      <source>No partitions are available for Zfs.</source>
-      <translation type="unfinished"/>
+      <source>No partitions are available for ZFS.</source>
+      <translation>Keine Partitionen für ZFS verfügbar.</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>
       <source>Internal data missing</source>
-      <translation type="unfinished"/>
+      <translation>Interne Daten fehlen</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="257"/>
       <source>Failed to create zpool</source>
-      <translation type="unfinished"/>
+      <translation>Zpool konnte nicht erstellt werden</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="329"/>
       <source>Failed to create dataset</source>
-      <translation type="unfinished"/>
+      <translation>Datenset konnte nicht erstellt werden</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="330"/>
       <source>The output was: </source>
-      <translation type="unfinished"/>
+      <translation>Die Ausgabe war: </translation>
     </message>
   </context>
   <context>
@@ -4202,17 +4202,18 @@ Ausgabe:
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="43"/>
       <source>%1 has been installed on your computer.&lt;br/&gt;
             You may now restart your device.</source>
-      <translation type="unfinished"/>
+      <translation>%1 wurde auf Ihrem Computer installiert.&lt;br/&gt;
+            Sie können Ihr Gerät nun neu starten.</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="65"/>
       <source>Close</source>
-      <translation type="unfinished"/>
+      <translation>Schließen</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="71"/>
       <source>Restart</source>
-      <translation type="unfinished"/>
+      <translation>Neustart</translation>
     </message>
   </context>
   <context>
@@ -4289,7 +4290,7 @@ Ausgabe:
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="45"/>
       <source>LibreOffice is a powerful and free office suite, used by millions of people around the world. It includes several applications that make it the most versatile Free and Open Source office suite on the market.&lt;br/&gt;
                     Default option.</source>
-      <translation>LibreOffice ist eine mächtige und freie Office-Lösung, verwendet von Millionen von Menschen rund um den Globus. Sie enthäIt verschiedene  Anwendungen, die LibreOffice zur vielseitigsten Open-Source-Lösung für Office-Anwendungen auf dem Mark machen.&lt;br/&gt;
+      <translation>LibreOffice ist eine mächtige und freie Office-Lösung, verwendet von Millionen von Menschen rund um den Globus. Sie enthäIt verschiedene Anwendungen, die LibreOffice zur vielseitigsten Open-Source-Lösung für Office-Anwendungen auf dem Markt machen.&lt;br/&gt;
                     Standard-Option.</translation>
     </message>
     <message>
@@ -4300,7 +4301,7 @@ Ausgabe:
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="108"/>
       <source>If you don't want to install an office suite, just select No Office Suite. You can always add one (or more) later on your installed system as the need arrives.</source>
-      <translation>Wenn Sie keine Office-Suite installieren wollen, wählen Sie einfach Keine Office Suite. Sie können jederzeit eine oder mehrere zu Ihrem installiertem System hinzufügen wenn nötig.</translation>
+      <translation>Wenn Sie keine Office-Suite installieren wollen, wählen Sie einfach Keine Office Suite. Sie können jederzeit eine oder mehrere zu Ihrem installierten System hinzufügen wenn nötig.</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="121"/>

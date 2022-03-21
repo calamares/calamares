@@ -2896,7 +2896,7 @@ Il program di instalazion al jessarà e dutis lis modifichis a laran pierdudis.<
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="588"/>
-      <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
+      <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
       <translation>La miôr opzion par ducj i sistemis e je une tabele des partizions GPT. Il program di instalazion al supuarte ancje chest gjenar di configurazion pai sistemis BIOS.&lt;br/&gt;&lt;br/&gt;Par configurâ une tabele des partizions GPT su BIOS, (se nol è za stât fat) torne indaûr e met a GPT la tabele des partizions, dopo cree une partizion no formatade di 8MB cu la opzion &lt;strong&gt;bios_grup&lt;/strong&gt; abilitade. &lt;br/&gt;&lt;br/&gt;Une partizion no formatade di 8MB e je necessarie par inviâ %1 su sistemsi BIOS cun GPT.</translation>
     </message>
     <message>
@@ -3858,12 +3858,12 @@ Output:
   <context>
     <name>UsersPage</name>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="167"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="177"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Se chest computer al vignarà doprât di plui di une persone, si pues creâ plui accounts dopo vê completade la configurazion.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="173"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="183"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Se chest computer al vignarà doprât di plui di une persone, si pues creâ plui accounts dopo vê completade la instalazion.&lt;/small&gt;</translation>
     </message>
@@ -4086,7 +4086,7 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="181"/>
-      <source>No partitions are available for Zfs.</source>
+      <source>No partitions are available for ZFS.</source>
       <translation type="unfinished"/>
     </message>
     <message>

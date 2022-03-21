@@ -2896,8 +2896,8 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="588"/>
-      <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
-      <translation>En GPT-partitionstabel er den bedste valgmulighed til alle systemer. Installationsprogrammet understøtter også sådan en opsætning for BIOS-systemer.&lt;br/&gt;&lt;br/&gt;Konfigurer en GPT-partitionstabel på BIOS, (hvis det ikke allerede er gjort) ved at gå tilbage og indstil partitionstabellen til GPT, opret herefter en 8 MB uformateret partition med &lt;strong&gt;bios_grub&lt;/strong&gt;-flaget aktiveret.&lt;br/&gt;&lt;br/&gt;En uformateret 8 MB partition er nødvendig for at starte %1 på et BIOS-system med GPT.</translation>
+      <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
+      <translation>En GPT-partitionstabel er den bedste valgmulighed til alle systemer. Installationsprogrammet understøtter også sådan en opsætning for BIOS-systemer.&lt;br/&gt;&lt;br/&gt;Konfigurer en GPT-partitionstabel på BIOS, (hvis det ikke allerede er gjort) ved at gå tilbage og indstil partitionstabellen til GPT, opret herefter en 8 MB uformateret partition med &lt;strong&gt;%2&lt;/strong&gt;-flaget aktiveret.&lt;br/&gt;&lt;br/&gt;En uformateret 8 MB partition er nødvendig for at starte %1 på et BIOS-system med GPT.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="620"/>
@@ -3859,12 +3859,12 @@ setting
   <context>
     <name>UsersPage</name>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="167"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="177"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Hvis mere end én person bruger computeren, kan du oprette flere konti efter opsætningen.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="173"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="183"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Hvis mere end én person bruger computeren, kan du oprette flere konti efter installationen.&lt;/small&gt;</translation>
     </message>
@@ -4087,7 +4087,7 @@ setting
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="181"/>
-      <source>No partitions are available for Zfs.</source>
+      <source>No partitions are available for ZFS.</source>
       <translation type="unfinished"/>
     </message>
     <message>

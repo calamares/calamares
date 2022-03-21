@@ -104,7 +104,7 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="102"/>
       <source>Crashes Calamares, so that Dr. Konqui can look at it.</source>
-      <translation>Dr. Konqui가 그것을 볼 수 있도록, Calamares를 충돌시킵니다.</translation>
+      <translation>Dr. Konqui를 통해 조사할 수 있도록 Calamares를 충돌시킵니다.</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="115"/>
@@ -129,7 +129,7 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="128"/>
       <source>Displays the tree of widget names in the log (for stylesheet debugging).</source>
-      <translation>로그에 위젯 이름의 트리를 표시합니다 (스타일 시트 디버깅 용).</translation>
+      <translation>로그에 위젯 이름의 트리를 표시합니다 (스타일시트 디버깅 용).</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="131"/>
@@ -329,7 +329,7 @@
 %1
 
 Link copied to clipboard</source>
-      <translation>게시한 로그를 설치합니다.
+      <translation>설치 게시한 로그가 아래 위치에 업로드되었습니다.
 
 %1
 
@@ -506,12 +506,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="39"/>
       <source>Set filesystem label &lt;strong&gt;%1&lt;/strong&gt; to partition &lt;strong&gt;%2&lt;/strong&gt;.</source>
-      <translation>&lt;strong&gt;%1&lt;/strong&gt; 파일 시스템 레이블을 &lt;strong&gt;%2&lt;/strong&gt; 파티션으로 설정하십시오.</translation>
+      <translation>&lt;strong&gt;%1&lt;/strong&gt; 파일시스템 레이블을 &lt;strong&gt;%2&lt;/strong&gt; 파티션으로 설정하십시오.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="70"/>
       <source>The installer failed to update partition table on disk '%1'.</source>
-      <translation>설치 프로그램은 디스크 '%1'에서 파티션 테이블을 업데이트하지 못했습니다.</translation>
+      <translation>설치 관리자가 디스크 '%1'의 파티션 테이블을 업데이트하지 못했습니다.</translation>
     </message>
   </context>
   <context>
@@ -682,27 +682,27 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="272"/>
       <source>Successfully unmounted %1.</source>
-      <translation>%1을(를) 성공적으로 마운트 해제했습니다.</translation>
+      <translation>%1 경로를 성공적으로 마운트 해제했습니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="279"/>
       <source>Successfully disabled swap %1.</source>
-      <translation>스왑% 1을(를) 성공적으로 비활성화했습니다.</translation>
+      <translation>%1 스왑을 성공적으로 비활성화했습니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="305"/>
       <source>Successfully cleared swap %1.</source>
-      <translation>스왑 %1을(를) 성공적으로 지웠습니다.</translation>
+      <translation>%1 스왑을 성공적으로 지웠습니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="319"/>
       <source>Successfully closed mapper device %1.</source>
-      <translation>매퍼 장치 %1을(를) 성공적으로 닫았습니다.</translation>
+      <translation>%1 매퍼 장치를 성공적으로 닫았습니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="332"/>
       <source>Successfully disabled volume group %1.</source>
-      <translation>볼륨 그룹 %1을(를) 성공적으로 비활성화했습니다.</translation>
+      <translation>%1 볼륨 그룹을 성공적으로 비활성화했습니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="371"/>
@@ -797,12 +797,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="57"/>
       <source>Network Installation. (Disabled: Internal error)</source>
-      <translation>네트워크 설치. (사용안함: 내부 오류)</translation>
+      <translation>네트워크 설치. (비활성화됨: 내부 오류)</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="61"/>
       <source>Network Installation. (Disabled: No package list)</source>
-      <translation>네트워크 설치. (사용안함: 패키지 목록 없음)</translation>
+      <translation>네트워크 설치. (비활성화됨: 패키지 목록 없음)</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="77"/>
@@ -912,7 +912,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="145"/>
       <source>Setup Failed</source>
-      <translation>설치 실패</translation>
+      <translation>설정 실패</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="145"/>
@@ -932,7 +932,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="152"/>
       <source>Setup Complete</source>
-      <translation>설치 완료</translation>
+      <translation>설정 완료</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="153"/>
@@ -942,12 +942,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="154"/>
       <source>The setup of %1 is complete.</source>
-      <translation>%1 설치가 완료되었습니다.</translation>
+      <translation>%1 설정이 완료되었습니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="155"/>
       <source>The installation of %1 is complete.</source>
-      <translation>%1의 설치가 완료되었습니다.</translation>
+      <translation>%1 설치가 완료되었습니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/Config.cpp" line="111"/>
@@ -977,7 +977,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/summary/Config.cpp" line="98"/>
       <source>This is an overview of what will happen once you start the setup procedure.</source>
-      <translation>설치 절차를 시작하면 어떻게 되는지 간략히 설명합니다.</translation>
+      <translation>설정 절차를 시작하면 어떻게 되는지 간략히 설명합니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/summary/Config.cpp" line="103"/>
@@ -1018,7 +1018,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="71"/>
       <source>Primar&amp;y</source>
-      <translation type="unfinished"/>
+      <translation>기본(&amp;Y)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="81"/>
@@ -1048,12 +1048,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="224"/>
       <source>Label for the filesystem</source>
-      <translation>파일시스템에 대한 레이블</translation>
+      <translation>파일시스템 레이블</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="234"/>
       <source>FS Label:</source>
-      <translation>FS 레이블:</translation>
+      <translation>파일시스템 레이블:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="66"/>
@@ -1083,7 +1083,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="96"/>
       <source>Mountpoint must start with a &lt;tt&gt;/&lt;/tt&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>마운트 위치는 &lt;tt&gt;/&lt;/tt&gt;로 시작해야 합니다.</translation>
     </message>
   </context>
   <context>
@@ -1091,12 +1091,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="187"/>
       <source>Create new %1MiB partition on %3 (%2) with entries %4.</source>
-      <translation>%4 항목이 있는 %3(%2)에 새 %1MiB 파티션을 만듭니다.</translation>
+      <translation>%4 항목이 있는 %3(%2)에 %1MiB 크기의 새 파티션을 만듭니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="195"/>
       <source>Create new %1MiB partition on %3 (%2).</source>
-      <translation>%3(%2)에 새 %1MiB 파티션을 만듭니다.</translation>
+      <translation>%3(%2)에 %1MiB 크기의 새 파티션을 만듭니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="202"/>
@@ -1106,12 +1106,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="219"/>
       <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2) with entries &lt;em&gt;%4&lt;/em&gt;.</source>
-      <translation>&lt;em&gt;%4&lt;/em&gt; 항목이 있는 &lt;strong&gt;%3&lt;/strong&gt;(%2)에 새 &lt;strong&gt;%1MiB&lt;/strong&gt; 파티션을 만듭니다.</translation>
+      <translation>&lt;em&gt;%4&lt;/em&gt; 항목이 있는 &lt;strong&gt;%3&lt;/strong&gt;(%2)에 &lt;strong&gt;%1MiB&lt;/strong&gt; 크기의 새 파티션을 만듭니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="228"/>
       <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2).</source>
-      <translation>&lt;strong&gt;%3&lt;/strong&gt;(%2)에 새 &lt;strong&gt;%1MiB&lt;/strong&gt; 파티션을 만듭니다.</translation>
+      <translation>&lt;strong&gt;%3&lt;/strong&gt;(%2)에 &lt;strong&gt;%1MiB&lt;/strong&gt; 크기의 새 파티션을 만듭니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="235"/>
@@ -1202,12 +1202,12 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="49"/>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="142"/>
       <source>Creating user %1</source>
-      <translation>%1. 사용자 생성 중</translation>
+      <translation>%1 사용자 생성 중</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="150"/>
       <source>Configuring user %1</source>
-      <translation>%1 사용자 환경설정 중</translation>
+      <translation>%1 사용자 설정 중</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="158"/>
@@ -1372,7 +1372,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="54"/>
       <source>Con&amp;tent:</source>
-      <translation type="unfinished"/>
+      <translation>내용(&amp;t):</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="64"/>
@@ -1417,12 +1417,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="179"/>
       <source>Label for the filesystem</source>
-      <translation>파일시스템에 대한 레이블</translation>
+      <translation>파일시스템 레이블</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="189"/>
       <source>FS Label:</source>
-      <translation>FS 레이블:</translation>
+      <translation>파일시스템 레이블:</translation>
     </message>
   </context>
   <context>
@@ -1440,7 +1440,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="43"/>
       <source>Your system does not seem to support encryption well enough to encrypt the entire system. You may enable encryption, but performance may suffer.</source>
-      <translation type="unfinished"/>
+      <translation>전체 시스템을 암호화할 만큼 충분히 암호화를 지원하지 않는 것 같습니다. 암호화를 활성화할 수 있지만 성능이 저하될 수 있습니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="59"/>
@@ -1464,7 +1464,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="36"/>
       <source>Details:</source>
-      <translation type="unfinished"/>
+      <translation>상세:</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="52"/>
@@ -1492,12 +1492,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="218"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt; and features &lt;em&gt;%3&lt;/em&gt;.</source>
-      <translation>마운트 지점 &lt;strong&gt;%1&lt;/strong&gt; 및 기능 &lt;em&gt;%3&lt;/em&gt;(으)로 &lt;strong&gt;새&lt;/strong&gt; %2 파티션을 설정합니다.</translation>
+      <translation>마운트 위치 &lt;strong&gt;%1&lt;/strong&gt; 및 기능 &lt;em&gt;%3&lt;/em&gt;(으)로 &lt;strong&gt;새&lt;/strong&gt; %2 파티션을 설정합니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="226"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;%3.</source>
-      <translation>마운트 지점 &lt;strong&gt;%1&lt;/strong&gt;%3(으)로 &lt;strong&gt;새&lt;/strong&gt; %2 파티션을 설정합니다.</translation>
+      <translation>마운트 위치 &lt;strong&gt;%1&lt;/strong&gt;%3(으)로 &lt;strong&gt;새&lt;/strong&gt; %2 파티션을 지정합니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="240"/>
@@ -1507,12 +1507,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="259"/>
       <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt; and features &lt;em&gt;%4&lt;/em&gt;.</source>
-      <translation>마운트 지점 &lt;strong&gt;%2&lt;/strong&gt; 및 기능 &lt;em&gt;%4&lt;/em&gt;(으)로 %3 파티션 &lt;strong&gt;%1&lt;/strong&gt;을(를) 설정합니다.</translation>
+      <translation>마운트 위치 &lt;strong&gt;%2&lt;/strong&gt; 및 기능 &lt;em&gt;%4&lt;/em&gt;(으)로 %3 파티션 &lt;strong&gt;%1&lt;/strong&gt;을(를) 지정합니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="268"/>
       <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;%4.</source>
-      <translation>마운트 지점 &lt;strong&gt;%2&lt;/strong&gt;%4으로 %3 파티션 &lt;strong&gt;%1&lt;/strong&gt;을(를) 설정합니다.</translation>
+      <translation>마운트 위치 &lt;strong&gt;%2&lt;/strong&gt;%4으로 %3 파티션 &lt;strong&gt;%1&lt;/strong&gt;을(를) 지정합니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="249"/>
@@ -1810,17 +1810,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="88"/>
       <source>No target system available.</source>
-      <translation type="unfinished"/>
+      <translation>대상 시스템을 사용할 수 없습니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="96"/>
       <source>No rootMountPoint is set.</source>
-      <translation type="unfinished"/>
+      <translation>루트마운트위치가 지정되지 않았습니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="101"/>
       <source>No configFilePath is set.</source>
-      <translation type="unfinished"/>
+      <translation>구성파일경로가 지정되지 않았습니다.</translation>
     </message>
   </context>
   <context>
@@ -2889,8 +2889,8 @@ The installer will quit and all changes will be lost.</source>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="588"/>
-      <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
-      <translation>GPT 파티션 테이블은 모든 시스템에 가장 적합한 옵션입니다. 이 설치 프로그램은 BIOS 시스템에 대한 이러한 설정도 지원합니다.&lt;br/&gt;&lt;br/&gt;BIOS에서 GPT 파티션 테이블을 구성하려면(아직 구성되지 않은 경우) 돌아가서 파티션 테이블을 GPT로 설정한 다음, &lt;strong&gt;bios_grub&lt;/strong&gt; 플래그가 사용하도록 설정된 8MB의 포맷되지 않은 파티션을 생성합니다.&lt;br/&gt;&lt;br/&gt;GPT가 있는 BIOS 시스템에서 %1을 시작하려면 포맷되지 않은 8MB 파티션이 필요합니다.</translation>
+      <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
+      <translation>GPT 파티션 테이블은 모든 시스템에 가장 적합한 옵션입니다. 이 설치 프로그램은 BIOS 시스템에 대한 이러한 설정도 지원합니다.&lt;br/&gt;&lt;br/&gt;BIOS에서 GPT 파티션 테이블을 구성하려면(아직 구성되지 않은 경우) 돌아가서 파티션 테이블을 GPT로 설정한 다음, &lt;strong&gt;%2&lt;/strong&gt; 플래그가 사용하도록 설정된 8MB의 포맷되지 않은 파티션을 생성합니다.&lt;br/&gt;&lt;br/&gt;GPT가 있는 BIOS 시스템에서 %1을 시작하려면 포맷되지 않은 8MB 파티션이 필요합니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="620"/>
@@ -3650,7 +3650,7 @@ Output:
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="60"/>
       <source>Cannot create sudoers file for writing.</source>
-      <translation>sudoers 파일을 만들 수가 없습니다.</translation>
+      <translation>sudoers 파일을 쓸 수 없습니다.</translation>
     </message>
   </context>
   <context>
@@ -3675,7 +3675,7 @@ Output:
     <message>
       <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="23"/>
       <source>&amp;OK</source>
-      <translation>확인 (&amp;O)</translation>
+      <translation>확인(&amp;O)</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="24"/>
@@ -3690,7 +3690,7 @@ Output:
     <message>
       <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="26"/>
       <source>&amp;Cancel</source>
-      <translation>취소 (&amp;C)</translation>
+      <translation>취소(&amp;C)</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="27"/>
@@ -3814,12 +3814,12 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="94"/>
       <source>By selecting this you will periodically send information about your &lt;b&gt;machine&lt;/b&gt; installation, hardware and applications, to %1.</source>
-      <translation>이 옵션을 선택하면 &lt;b&gt;컴퓨터&lt;/b&gt; 설치, 하드웨어 및 응용 프로그램에 대한 정보를 %1(으)로 주기적으로 보냅니다.</translation>
+      <translation>이 옵션을 선택하면 &lt;b&gt;컴퓨터&lt;/b&gt; 설치, 하드웨어 및 응용 프로그램에 대한 정보를 %1에게 주기적으로 보냅니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="98"/>
       <source>By selecting this you will regularly send information about your &lt;b&gt;user&lt;/b&gt; installation, hardware, applications and application usage patterns, to %1.</source>
-      <translation>이를 선택하면 &lt;b&gt;사용자&lt;/b&gt; 설치, 하드웨어, 응용 프로그램 및 응용 프로그램 사용 패턴에 대한 정보를 정기적으로 %1(으)로 보냅니다.</translation>
+      <translation>이를 선택하면 &lt;b&gt;사용자&lt;/b&gt; 설치, 하드웨어, 응용 프로그램 및 응용 프로그램 사용 패턴에 대한 정보를 정기적으로 %1에게 보냅니다.</translation>
     </message>
   </context>
   <context>
@@ -3835,28 +3835,28 @@ Output:
     <message>
       <location filename="../src/modules/umount/UmountJob.cpp" line="39"/>
       <source>Unmount file systems.</source>
-      <translation>파일 시스템 마운트를 해제합니다.</translation>
+      <translation>파일시스템을 마운트 해제합니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/umount/UmountJob.cpp" line="122"/>
       <source>No target system available.</source>
-      <translation type="unfinished"/>
+      <translation>대상 시스템을 사용할 수 없습니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/umount/UmountJob.cpp" line="130"/>
       <source>No rootMountPoint is set.</source>
-      <translation type="unfinished"/>
+      <translation>루트 마운트 경로가 지정되지 않았습니다.</translation>
     </message>
   </context>
   <context>
     <name>UsersPage</name>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="167"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="177"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
       <translation>&lt;small&gt;둘 이상의 사용자가 이 컴퓨터를 사용할 경우, 설정 후 계정을 여러 개 만들 수 있습니다.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="173"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="183"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
       <translation>&lt;small&gt;둘 이상의 사용자가 이 컴퓨터를 사용할 경우 설치 후 계정을 여러 개 만들 수 있습니다.&lt;/small&gt;</translation>
     </message>
@@ -4065,12 +4065,12 @@ Output:
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="101"/>
       <source>Create ZFS pools and datasets</source>
-      <translation type="unfinished"/>
+      <translation>ZFS pool 및 데이터세트 만들기</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="162"/>
       <source>Failed to create zpool on </source>
-      <translation type="unfinished"/>
+      <translation>zpool 만들기 실패함:</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="180"/>
@@ -4079,29 +4079,29 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="181"/>
-      <source>No partitions are available for Zfs.</source>
-      <translation type="unfinished"/>
+      <source>No partitions are available for ZFS.</source>
+      <translation>ZFS에 사용할 수 있는 파티션이 없습니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>
       <source>Internal data missing</source>
-      <translation type="unfinished"/>
+      <translation>내부 데이터가 누락되었습니다</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="257"/>
       <source>Failed to create zpool</source>
-      <translation type="unfinished"/>
+      <translation>zpool을 만들지 못했습니다</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="329"/>
       <source>Failed to create dataset</source>
-      <translation type="unfinished"/>
+      <translation>데이터세트를 만들지 못했습니다</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="330"/>
       <source>The output was: </source>
-      <translation type="unfinished"/>
+      <translation>출력은 다음과 같음:</translation>
     </message>
   </context>
   <context>
@@ -4190,17 +4190,18 @@ Output:
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="43"/>
       <source>%1 has been installed on your computer.&lt;br/&gt;
             You may now restart your device.</source>
-      <translation type="unfinished"/>
+      <translation>%1이(가) 컴퓨터에 설치되었습니다.&lt;br/&gt;
+            이제 사용자의 장치를 다시 시작할 수 있습니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="65"/>
       <source>Close</source>
-      <translation type="unfinished"/>
+      <translation>닫기</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="71"/>
       <source>Restart</source>
-      <translation type="unfinished"/>
+      <translation>다시 시작</translation>
     </message>
   </context>
   <context>
@@ -4277,13 +4278,13 @@ Output:
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="45"/>
       <source>LibreOffice is a powerful and free office suite, used by millions of people around the world. It includes several applications that make it the most versatile Free and Open Source office suite on the market.&lt;br/&gt;
                     Default option.</source>
-      <translation>LibreOffice는 전 세계 수백만 명의 사람들이 사용하는 강력한 무료 오피스 제품군입니다. 여기에는 시장에서 가장 다재다능한 무료 및 오픈 소스 오피스 제품군이 되는 여러 응용 프로그램이 포함되어 있습니다.&lt;br/&gt;
+      <translation>리브레오피스는 전 세계 수백만 명의 사람들이 사용하는 강력한 무료 오피스 제품군입니다. 여기에는 시장에서 가장 다재다능한 무료 및 오픈소스 오피스 제품군이 되는 여러 응용 프로그램이 포함되어 있습니다.&lt;br/&gt;
                     기본 옵션입니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="59"/>
       <source>LibreOffice</source>
-      <translation>LibreOffice</translation>
+      <translation>리브레오피스</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="108"/>
@@ -4298,7 +4299,7 @@ Output:
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="172"/>
       <source>Create a minimal Desktop install, remove all extra applications and decide later on what you would like to add to your system. Examples of what won't be on such an install, there will be no Office Suite, no media players, no image viewer or print support.  It will be just a desktop, file browser, package manager, text editor and simple web-browser.</source>
-      <translation>최소한의 데스크탑 설치를 만들고 모든 추가 응용프로그램을 제거한 다음 나중에 시스템에 추가할 항목을 결정하십시오. 이러한 설치에 포함되지 않는 항목의 예는 Office 제품군, 미디어 플레이어, 이미지 뷰어 또는 인쇄 지원이 없을 것입니다. 그것은 단지 데스크탑, 파일 브라우저, 패키지 관리자, 텍스트 편집기 및 간단한 웹 브라우저일 것입니다.</translation>
+      <translation>최소한의 데스크탑 설치를 만들고 모든 추가 응용프로그램을 제거한 다음 나중에 시스템에 추가할 항목을 결정하십시오. 이러한 설치에는 데스크탑, 파일 브라우저, 패키지 관리자, 텍스트 편집기 및 간단한 웹 브라우저 등이 포함되며, 포함되지 않는 항목에는 Office 제품군, 미디어 플레이어, 이미지 뷰어 또는 인쇄 지원 등이 있습니다 </translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="185"/>
@@ -4308,7 +4309,7 @@ Output:
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="233"/>
       <source>Please select an option for your install, or use the default: LibreOffice included.</source>
-      <translation>설치 옵션을 선택하거나 기본값인 LibreOffice 포함을 사용하십시오.</translation>
+      <translation>설치 옵션을 선택하거나 기본값인 리브레오피스 포함을 사용하십시오.</translation>
     </message>
   </context>
   <context>
@@ -4404,7 +4405,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="136"/>
       <source>root is not allowed as username.</source>
-      <translation>루트는 사용자 이름으로 허용되지 않습니다.</translation>
+      <translation>root는 사용자 이름으로 허용되지 않습니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="145"/>

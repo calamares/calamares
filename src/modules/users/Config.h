@@ -186,8 +186,15 @@ public:
 
     /// The group of which auto-login users must be a member
     QString autoLoginGroup() const { return m_autoLoginGroup; }
+
+    enum class SudoStyle
+    {
+        UserOnly,
+        UserAndGroup
+    };
     /// The group of which users who can "sudo" must be a member
     QString sudoersGroup() const { return m_sudoersGroup; }
+    SudoStyle sudoStyle() const { return m_sudoStyle; }
 
     /// The full (GECOS) name of the user
     QString fullName() const { return m_fullName; }
@@ -307,6 +314,7 @@ private:
     QString m_userShell;
     QString m_autoLoginGroup;
     QString m_sudoersGroup;
+    SudoStyle m_sudoStyle = SudoStyle::UserOnly;
     QString m_fullName;
     QString m_loginName;
     QString m_hostName;

@@ -1,3 +1,4 @@
+
 <!-- SPDX-FileCopyrightText: no
      SPDX-License-Identifier: CC0-1.0
 -->
@@ -7,7 +8,7 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.52 (unreleased) #
+# 3.2.55 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
  - No external contributors yet
@@ -17,6 +18,65 @@ This release contains contributions from (alphabetically by first name):
 
 ## Modules ##
  - No module changes yet
+
+
+# 3.2.54 (2022-03-21) #
+
+This release contains contributions from (alphabetically):
+ - Bob van der Linden (new contributor! Welcome!)
+ - El-Wumbus (new contributor! Welcome!)
+ - Evan James
+ - Santosh Mahto (new contributor! Welcome!)
+
+## Core ##
+ - During the installation ("exec") step, while the slideshow is displayed,
+   there is also a button to show the scrolling installation log as it
+   is written. (Thanks Bob)
+
+## Modules ##
+ - *fstab* module correctly handles empty UUID strings. (Thanks Evan)
+ - *partition* module no longer forgets configured partition-layouts.
+   It also respects configured partition labels better. (Thanks Santosh)
+
+
+# 3.2.53 (2022-03-04) #
+
+This release contains contributions from (alphabetically by first name):
+ - Huang Jia Wen (new contributor! Welcome!)
+
+## Core ##
+ - Automount-manipulation (to switch off KDE Plasma automounting new devices)
+   now logs slightly more as it works. Defaults have changed in KDE Plasma
+   5.24 and it turns out the automount-manipulation does not work well.
+   Distro's are encouraged to turn off automount in the live ISO (see #1885).
+
+## Modules ##
+ - *bootloader* now knows about loongarch64 and can install suitable EFI
+   files for this CPU type. (Thanks Huang Jia Wen)
+ - Progress reporting for `pacman` from the *packages* module has been switched
+   off. The progress reporting works under low load, but there are many reports
+   of it crashing (from XeroLinux and from Evan James, who has been debugging
+   the issue) during a regular installation with thousands of updates. This
+   will be revisited in the next release.
+ - The *umount* module was buggy and did not actually unmount anything.
+
+
+# 3.2.52 (2022-02-25) #
+
+This release contains contributions from (alphabetically by first name):
+ - Evan James
+
+## Core ##
+ - No core changes yet
+
+## Modules ##
+ - *fstab* recognizes nvme and mmc devices correctly as SSDs now. #1883
+ - *luksbootkeyfile* handles trailing slashes in mount point
+ - *partition* can be built with a new `SKIP` option, which skips
+   the actual formatting steps but does not fail. The old `LAME`
+   option is renamed `BAIL_OUT`.
+ - *users* has a new key *sudoersConfigureWithGroup* to allow for
+   different styles of sudo configuration. #1887
 
 
 # 3.2.51 (2022-02-01) #

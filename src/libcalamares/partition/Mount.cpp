@@ -128,26 +128,32 @@ QList< MtabInfo >
 MtabInfo::fromMtabFilteredByPrefix( const QString& mountPrefix, const QString& mtabPath )
 {
     QFile f( mtabPath.isEmpty() ? "/etc/mtab" : mtabPath );
-    if ( !f.open( QIODevice::ReadOnly ) )
+    if ( !f.open( QIODevice::ReadOnly | QIODevice::Text ) )
     {
         return {};
     }
 
-    QTextStream in( &f );
     QList< MtabInfo > l;
-    while ( !f.atEnd() )
+    // After opening, atEnd() is already true (!?) so try reading at least once
+    do
     {
-        QStringList line = in.readLine().split( ' ', SplitSkipEmptyParts );
-        if ( line.length() == 3 && !line[ 0 ].startsWith( '#' ) )
+        QString line = f.readLine();
+        if ( line.isEmpty() || line.startsWith( '#' ) )
         {
-            // Lines have format: <device> <mountpoint> <options>, so check
+            continue;
+        }
+
+        QStringList parts = line.split( ' ', SplitSkipEmptyParts );
+        if ( parts.length() >= 3 && !parts[ 0 ].startsWith( '#' ) )
+        {
+            // Lines have format: <device> <mountpoint> <fstype> <options>..., so check
             // the mountpoint field. Everything starts with an empty string.
-            if ( line[ 1 ].startsWith( mountPrefix ) )
+            if ( parts[ 1 ].startsWith( mountPrefix ) )
             {
-                l.append( { line[ 0 ], line[ 1 ] } );
+                l.append( { parts[ 0 ], parts[ 1 ] } );
             }
         }
-    }
+    } while ( !f.atEnd() );
     return l;
 }
 

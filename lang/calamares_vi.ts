@@ -2885,8 +2885,8 @@ Trình cài đặt sẽ thoát và tất cả các thay đổi sẽ bị mất.<
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="588"/>
-      <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
-      <translation>Bảng phân vùng GPT là lựa chọn tốt nhất cho tất cả các hệ thống. Trình cài đặt này cũng hỗ trợ thiết lập như vậy cho các hệ thống BIOS. &lt;br/&gt; &lt;br/&gt; Để định cấu hình bảng phân vùng GPT trên BIOS, (nếu chưa thực hiện xong) hãy quay lại và đặt bảng phân vùng thành GPT, tiếp theo tạo 8 MB phân vùng chưa định dạng với cờ &lt;strong&gt; bios_grub &lt;/strong&gt; được bật. &lt;br/&gt; &lt;br/&gt; Cần có phân vùng 8 MB chưa được định dạng để khởi động %1 trên hệ thống BIOS có GPT.</translation>
+      <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
+      <translation>Bảng phân vùng GPT là lựa chọn tốt nhất cho tất cả các hệ thống. Trình cài đặt này cũng hỗ trợ thiết lập như vậy cho các hệ thống BIOS. &lt;br/&gt; &lt;br/&gt; Để định cấu hình bảng phân vùng GPT trên BIOS, (nếu chưa thực hiện xong) hãy quay lại và đặt bảng phân vùng thành GPT, tiếp theo tạo 8 MB phân vùng chưa định dạng với cờ &lt;strong&gt; %2 &lt;/strong&gt; được bật. &lt;br/&gt; &lt;br/&gt; Cần có phân vùng 8 MB chưa được định dạng để khởi động %1 trên hệ thống BIOS có GPT.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="620"/>
@@ -3847,12 +3847,12 @@ Output:
   <context>
     <name>UsersPage</name>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="167"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="177"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
       <translation>&lt;small&gt; Nếu nhiều người cùng sử dụng máy tính này, bạn có thể tạo nhiều tài khoản sau khi thiết lập. &lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="173"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="183"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
       <translation>&lt;small&gt; Nếu nhiều người cùng sử dụng máy tính này, bạn có thể tạo nhiều tài khoản sau khi cài đặt. &lt;/small&gt;</translation>
     </message>
@@ -4075,7 +4075,7 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="181"/>
-      <source>No partitions are available for Zfs.</source>
+      <source>No partitions are available for ZFS.</source>
       <translation type="unfinished"/>
     </message>
     <message>

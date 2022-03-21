@@ -178,7 +178,7 @@ ZfsJob::exec()
     {
         cWarning() << "No *partitions* defined.";
         return Calamares::JobResult::internalError( tr( "Configuration Error" ),
-                                                    tr( "No partitions are available for Zfs." ),
+                                                    tr( "No partitions are available for ZFS." ),
                                                     Calamares::JobResult::InvalidConfiguration );
     }
 

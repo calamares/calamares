@@ -216,29 +216,14 @@ diskDescription( int listLength, const PartitionCoreModule::SummaryInfo& info, C
 QString
 PartitionViewStep::prettyStatus() const
 {
-    QString jobsLabel, modeText, diskInfoLabel;
-
     const Config::InstallChoice choice = m_config->installChoice();
     const QList< PartitionCoreModule::SummaryInfo > list = m_core->createSummaryInfo();
 
     cDebug() << "Summary for Partition" << list.length() << choice;
-    if ( list.length() > 1 )  // There are changes on more than one disk
-    {
-        modeText = modeDescription( choice );
-    }
-
-    for ( const auto& info : list )
-    {
-        // TODO: this overwrites each iteration
-        diskInfoLabel = diskDescription( list.length(), info, choice );
-    }
-
-    const QStringList jobsLines = jobDescriptions( jobs() );
-    if ( !jobsLines.isEmpty() )
-    {
-        jobsLabel = jobsLines.join( "<br/>" );
-    }
-
+    auto joinDiskInfo = [ choice = choice ]( QString& s, const PartitionCoreModule::SummaryInfo& i )
+    { return s + diskDescription( 1, i, choice ); };
+    const QString diskInfoLabel = std::accumulate( list.begin(), list.end(), QString(), joinDiskInfo );
+    const QString jobsLabel = jobDescriptions( jobs() ).join( QStringLiteral( "<br/>" ) );
     return diskInfoLabel + "<br/>" + jobsLabel;
 }
 
@@ -256,6 +241,24 @@ PartitionViewStep::createSummaryWidget() const
     const int MARGIN = CalamaresUtils::defaultFontHeight() / 2;
     formLayout->setContentsMargins( MARGIN, 0, MARGIN, MARGIN );
     mainLayout->addLayout( formLayout );
+
+#if defined( DEBUG_PARTITION_UNSAFE ) || defined( DEBUG_PARTITION_BAIL_OUT ) || defined( DEBUG_PARTITION_SKIP )
+    auto specialRow = [ = ]( CalamaresUtils::ImageType t, const QString& s )
+    {
+        QLabel* icon = new QLabel;
+        icon->setPixmap( CalamaresUtils::defaultPixmap( t ) );
+        formLayout->addRow( icon, new QLabel( s ) );
+    };
+#endif
+#if defined( DEBUG_PARTITION_UNSAFE )
+    specialRow( CalamaresUtils::ImageType::StatusWarning, tr( "Unsafe partition actions are enabled." ) );
+#endif
+#if defined( DEBUG_PARTITION_BAIL_OUT )
+    specialRow( CalamaresUtils::ImageType::Information, tr( "Partitioning is configured to <b>always</b> fail." ) );
+#endif
+#if defined( DEBUG_PARTITION_SKIP )
+    specialRow( CalamaresUtils::ImageType::Information, tr( "No partitions will be changed." ) );
+#endif
 
     const QList< PartitionCoreModule::SummaryInfo > list = m_core->createSummaryInfo();
     if ( list.length() > 1 )  // There are changes on more than one disk
@@ -456,6 +459,8 @@ shouldWarnForGPTOnBIOS( const PartitionCoreModule* core )
         return false;
     }
 
+    const QString biosFlagName = PartitionTable::flagName( KPM_PARTITION_FLAG( BiosGrub ) );
+
     auto [ r, device ] = core->bootLoaderModel()->findBootLoader( core->bootLoaderInstallPath() );
     Q_UNUSED( r );
     if ( device )
@@ -473,12 +478,12 @@ shouldWarnForGPTOnBIOS( const PartitionCoreModule* core )
                      && ( partition->capacity() >= 8_MiB ) )
                 {
                     cDebug() << Logger::SubEntry << "Partition" << partition->devicePath() << partition->partitionPath()
-                             << "is a suitable bios_grub partition";
+                             << "is a suitable" << biosFlagName << "partition";
                     return false;
                 }
             }
         }
-        cDebug() << Logger::SubEntry << "No suitable partition for bios_grub found";
+        cDebug() << Logger::SubEntry << "No suitable partition for" << biosFlagName << "found";
     }
     else
     {
@@ -584,6 +589,7 @@ PartitionViewStep::onLeave()
 
             if ( shouldWarnForGPTOnBIOS( m_core ) )
             {
+                const QString biosFlagName = PartitionTable::flagName( KPM_PARTITION_FLAG( BiosGrub ) );
                 QString message = tr( "Option to use GPT on BIOS" );
                 QString description = tr( "A GPT partition table is the best option for all "
                                           "systems. This installer supports such a setup for "
@@ -593,10 +599,10 @@ PartitionViewStep::onLeave()
                                           "(if not done so already) go back "
                                           "and set the partition table to GPT, next create a 8 MB "
                                           "unformatted partition with the "
-                                          "<strong>bios_grub</strong> flag enabled.<br/><br/>"
+                                          "<strong>%2</strong> flag enabled.<br/><br/>"
                                           "An unformatted 8 MB partition is necessary "
                                           "to start %1 on a BIOS system with GPT." )
-                                          .arg( branding->shortProductName() );
+                                          .arg( branding->shortProductName(), biosFlagName );
 
                 QMessageBox mb(
                     QMessageBox::Information, message, description, QMessageBox::Ok, m_manualPartitionPage );
@@ -688,7 +694,7 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     QFuture< void > future = QtConcurrent::run( this, &PartitionViewStep::initPartitionCoreModule );
     m_future->setFuture( future );
 
-    m_core->initLayout( m_config->defaultFsType(), configurationMap.value( "partitionLayout" ).toList() );
+    m_core->partitionLayout().init( m_config->defaultFsType(), configurationMap.value( "partitionLayout" ).toList() );
 }
 
 
