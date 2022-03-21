@@ -41,6 +41,7 @@ private Q_SLOTS:
 
 private:
     QTemporaryDir m_dir;
+    QString m_originalHostName;
 };
 
 UsersTests::UsersTests()
@@ -70,6 +71,15 @@ UsersTests::initTestCase()
         = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
     QVERIFY( gs );
     gs->insert( "rootMountPoint", m_dir.path() );
+
+    if ( m_originalHostName.isEmpty() )
+    {
+        QFile hostname( QStringLiteral( "/etc/hostname" ) );
+        if ( hostname.exists() && hostname.open( QIODevice::ReadOnly | QIODevice::Text ) )
+        {
+            m_originalHostName = hostname.readAll().trimmed();
+        }
+    }
 }
 
 void
@@ -115,7 +125,12 @@ UsersTests::testHostnamed()
     // FreeBSD, docker, ..) we're not going to fail a test here.
     // There's also the permissions problem to think of.
     QEXPECT_FAIL( "", "Hostname changes are access-controlled", Continue );
-    QVERIFY( setSystemdHostname( "tubophone.calamares.io" ) );
+    QVERIFY( setSystemdHostname( QStringLiteral( "tubophone.calamares.io" ) ) );
+    if ( !m_originalHostName.isEmpty() )
+    {
+        QEXPECT_FAIL( "", "Hostname changes are access-controlled (restore)", Continue );
+        QVERIFY( setSystemdHostname( m_originalHostName ) );
+    }
 }
 
 
