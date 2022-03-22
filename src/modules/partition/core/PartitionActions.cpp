@@ -68,7 +68,7 @@ swapSuggestion( const qint64 availableSpaceB, Config::SwapChoice swap )
 
 
     // Allow for a fudge factor
-    suggestedSwapSizeB = qRound64( suggestedSwapSizeB * overestimationFactor );
+    suggestedSwapSizeB = qRound64( qreal( suggestedSwapSizeB ) * overestimationFactor );
 
     // don't use more than 10% of available space
     if ( !ensureSuspendToDisk )
@@ -118,7 +118,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
 
     if ( isEfi )
     {
-        size_t uefisys_part_sizeB = PartUtils::efiFilesystemMinimumSize();
+        qint64 uefisys_part_sizeB = PartUtils::efiFilesystemMinimumSize();
         qint64 efiSectorCount = CalamaresUtils::bytesToSectors( uefisys_part_sizeB, dev->logicalSize() );
         Q_ASSERT( efiSectorCount > 0 );
 
