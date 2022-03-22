@@ -546,8 +546,8 @@ class PMyay(PackageManager):
 
     def install(self, pkgs, from_local=False):
         import os
-        os.environ["XDG_CACHE_HOME"] = "/tmp"
-        os.environ["PWD"] = "/tmp"
+        os.environ["XDG_CACHE_HOME"] = "/var/tmp"
+        os.environ["PWD"] = "/var/tmp"
         command = ["sudo", "-E", "-u", "nobody", "yay"]
 
         if from_local:
@@ -574,21 +574,21 @@ class PMyay(PackageManager):
 
     def remove(self, pkgs):
         import os
-        os.environ["XDG_CACHE_HOME"] = "/tmp"
-        os.environ["PWD"] = "/tmp"
+        os.environ["XDG_CACHE_HOME"] = "/var/tmp"
+        os.environ["PWD"] = "/var/tmp"
         self.reset_progress()
         self.run_yay(["sudo", "-E", "-u", "nobody", "yay", "-Rs", "--noconfirm"] + pkgs, True)
 
     def update_db(self):
         import os
-        os.environ["XDG_CACHE_HOME"] = "/tmp"
-        os.environ["PWD"] = "/tmp"
+        os.environ["XDG_CACHE_HOME"] = "/var/tmp"
+        os.environ["PWD"] = "/var/tmp"
         self.run_yay(["sudo", "-E", "-u", "nobody", "yay", "-Sy"])
 
     def update_system(self):
         import os
-        os.environ["XDG_CACHE_HOME"] = "/tmp"
-        os.environ["PWD"] = "/tmp"
+        os.environ["XDG_CACHE_HOME"] = "/var/tmp"
+        os.environ["PWD"] = "/var/tmp"
         command = ["sudo", "-E", "-u", "nobody", "yay", "-Su", "--noconfirm"]
         if self.yay_disable_timeout is True:
             command.append("--disable-download-timeout")
