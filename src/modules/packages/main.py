@@ -475,6 +475,107 @@ class PMPacman(PackageManager):
 
         self.run_pacman(command)
 
+class PMyay(PackageManager):
+    backend = "yay"
+
+    def __init__(self):
+        import re
+        progress_match = re.compile("^\\((\\d+)/(\\d+)\\)")
+
+        def line_cb(line):
+            if line.startswith(":: "):
+                self.in_package_changes = "package" in line or "hooks" in line
+            else:
+                if self.in_package_changes and line.endswith("...\n"):
+                    # Update the message, untranslated; do not change the
+                    # progress percentage, since there may be more "installing..."
+                    # lines in the output for the group, than packages listed
+                    # explicitly. We don't know how to calculate proper progress.
+                    global custom_status_message
+                    custom_status_message = "yay: " + line.strip()
+                    libcalamares.job.setprogress(self.progress_fraction)
+            libcalamares.utils.debug(line)
+
+        self.in_package_changes = False
+        self.line_cb = line_cb
+
+        yay = libcalamares.job.configuration.get("yay", None)
+        if yay is None:
+            yay = dict()
+        if type(yay) is not dict:
+            libcalamares.utils.warning("Job configuration *yay* will be ignored.")
+            yay = dict()
+        self.yay_num_retries = yay.get("num_retries", 0)
+        self.yay_disable_timeout = yay.get("disable_download_timeout", False)
+        self.yay_needed_only = yay.get("needed_only", False)
+
+    def reset_progress(self):
+        self.in_package_changes = False
+        # These are globals
+        self.progress_fraction = (completed_packages * 1.0 / total_packages)
+
+    def run_yay(self, command, callback=False):
+        """
+        Call yay in a loop until it is successful or the number of retries is exceeded
+        :param command: The yay command to run
+        :param callback: An optional boolean that indicates if this yay run should use the callback
+        :return:
+        """
+
+        yay_count = 0
+        while yay_count <= self.yay_num_retries:
+            yay_count += 1
+            try:
+                if False: # callback:
+                    libcalamares.utils.target_env_process_output(command, self.line_cb)
+                else:
+                    libcalamares.utils.target_env_process_output(command)
+
+                return
+            except subprocess.CalledProcessError:
+                if yay_count <= self.yay_num_retries:
+                    pass
+                else:
+                    raise
+
+    def install(self, pkgs, from_local=False):
+        command = ["yay"]
+
+        if from_local:
+            command.append("-U")
+        else:
+            command.append("-S")
+
+        # Don't ask for user intervention, take the default action
+        command.append("--noconfirm")
+
+        # Don't report download progress for each file
+        command.append("--noprogressbar")
+
+        if self.yay_needed_only is True:
+            command.append("--needed")
+
+        if self.yay_disable_timeout is True:
+            command.append("--disable-download-timeout")
+
+        command += pkgs
+
+        self.reset_progress()
+        self.run_yay(command, True)
+
+    def remove(self, pkgs):
+        self.reset_progress()
+        self.run_yay(["yay", "-Rs", "--noconfirm"] + pkgs, True)
+
+    def update_db(self):
+        self.run_yay(["yay", "-Sy"])
+
+    def update_system(self):
+        command = ["yay", "-Su", "--noconfirm"]
+        if self.yay_disable_timeout is True:
+            command.append("--disable-download-timeout")
+
+        self.run_yay(command)
 
 class PMPamac(PackageManager):
     backend = "pamac"
