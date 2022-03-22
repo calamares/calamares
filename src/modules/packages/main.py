@@ -480,7 +480,13 @@ class PMyay(PackageManager):
 
     def __init__(self):
         import re
+        import shutil
+
         progress_match = re.compile("^\\((\\d+)/(\\d+)\\)")
+
+        sudoers = open("/etc/sudoers.d/yay", "w")
+        sudoers.write("nobody ALL = NOPASSWD: " + shutil.which("pacman"))
+        sudoers.close()
 
         def line_cb(line):
             if line.startswith(":: "):
@@ -539,7 +545,9 @@ class PMyay(PackageManager):
                     raise
 
     def install(self, pkgs, from_local=False):
-        command = ["yay"]
+        import os
+        os.environ["XDG_CACHE_HOME"] = "/tmp"
+        command = ["sudo", "-E", "-u", "nobody", "yay"]
 
         if from_local:
             command.append("-U")
@@ -564,14 +572,20 @@ class PMyay(PackageManager):
         self.run_yay(command, True)
 
     def remove(self, pkgs):
+        import os
+        os.environ["XDG_CACHE_HOME"] = "/tmp"
         self.reset_progress()
-        self.run_yay(["yay", "-Rs", "--noconfirm"] + pkgs, True)
+        self.run_yay(["sudo", "-E", "-u", "nobody", "yay", "-Rs", "--noconfirm"] + pkgs, True)
 
     def update_db(self):
-        self.run_yay(["yay", "-Sy"])
+        import os
+        os.environ["XDG_CACHE_HOME"] = "/tmp"
+        self.run_yay(["sudo", "-E", "-u", "nobody", "yay", "-Sy"])
 
     def update_system(self):
-        command = ["yay", "-Su", "--noconfirm"]
+        import os
+        os.environ["XDG_CACHE_HOME"] = "/tmp"
+        command = ["sudo", "-E", "-u", "nobody", "yay", "-Su", "--noconfirm"]
         if self.yay_disable_timeout is True:
             command.append("--disable-download-timeout")
 
