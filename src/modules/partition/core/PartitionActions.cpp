@@ -30,10 +30,7 @@
 
 using namespace CalamaresUtils::Units;
 
-namespace PartitionActions
-{
-
-qint64
+static qint64
 swapSuggestion( const qint64 availableSpaceB, Config::SwapChoice swap )
 {
     if ( ( swap != Config::SwapChoice::SmallSwap ) && ( swap != Config::SwapChoice::FullSwap ) )
@@ -83,6 +80,9 @@ swapSuggestion( const qint64 availableSpaceB, Config::SwapChoice swap )
 
     return suggestedSwapSizeB;
 }
+
+namespace PartitionActions
+{
 
 void
 doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionOptions o )
