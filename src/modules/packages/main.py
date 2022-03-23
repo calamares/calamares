@@ -480,13 +480,8 @@ class PMyay(PackageManager):
 
     def __init__(self):
         import re
-        import shutil
 
         progress_match = re.compile("^\\((\\d+)/(\\d+)\\)")
-
-        sudoers = open("/etc/sudoers.d/yay", "w")
-        sudoers.write("nobody ALL = NOPASSWD: " + shutil.which("pacman"))
-        sudoers.close()
 
         def line_cb(line):
             if line.startswith(":: "):
@@ -546,8 +541,15 @@ class PMyay(PackageManager):
 
     def install(self, pkgs, from_local=False):
         import os
+        import shutil
+
+        sudoers = open("/etc/sudoers.d/yay", "w")
+        sudoers.write("nobody ALL = NOPASSWD: " + shutil.which("pacman"))
+        sudoers.close()
+
         os.environ["XDG_CACHE_HOME"] = "/var/tmp"
         os.environ["PWD"] = "/var/tmp"
+
         command = ["sudo", "-E", "-u", "nobody", "yay"]
 
         if from_local:
@@ -571,29 +573,54 @@ class PMyay(PackageManager):
 
         self.reset_progress()
         self.run_yay(command, True)
+        self.run_yay(["rm", "-f", "/etc/sudoers.d/yay"])
 
     def remove(self, pkgs):
         import os
+        import shutil
+
+        sudoers = open("/etc/sudoers.d/yay", "w")
+        sudoers.write("nobody ALL = NOPASSWD: " + shutil.which("pacman"))
+        sudoers.close()
+
         os.environ["XDG_CACHE_HOME"] = "/var/tmp"
         os.environ["PWD"] = "/var/tmp"
+
         self.reset_progress()
         self.run_yay(["sudo", "-E", "-u", "nobody", "yay", "-Rs", "--noconfirm"] + pkgs, True)
+        self.run_yay(["rm", "-f", "/etc/sudoers.d/yay"])
 
     def update_db(self):
         import os
+        import shutil
+
+        sudoers = open("/etc/sudoers.d/yay", "w")
+        sudoers.write("nobody ALL = NOPASSWD: " + shutil.which("pacman"))
+        sudoers.close()
+
         os.environ["XDG_CACHE_HOME"] = "/var/tmp"
         os.environ["PWD"] = "/var/tmp"
+
         self.run_yay(["sudo", "-E", "-u", "nobody", "yay", "-Sy"])
+        self.run_yay(["rm", "-f", "/etc/sudoers.d/yay"])
 
     def update_system(self):
         import os
+        import shutil
+
+        sudoers = open("/etc/sudoers.d/yay", "w")
+        sudoers.write("nobody ALL = NOPASSWD: " + shutil.which("pacman"))
+        sudoers.close()
+
         os.environ["XDG_CACHE_HOME"] = "/var/tmp"
         os.environ["PWD"] = "/var/tmp"
+
         command = ["sudo", "-E", "-u", "nobody", "yay", "-Su", "--noconfirm"]
         if self.yay_disable_timeout is True:
             command.append("--disable-download-timeout")
 
         self.run_yay(command)
+        self.run_yay(["rm", "-f", "/etc/sudoers.d/yay"])
 
 class PMPamac(PackageManager):
     backend = "pamac"
