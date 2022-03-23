@@ -481,7 +481,9 @@ class PMyay(PackageManager):
     def __init__(self):
         import re
         import shutil
+        import os
 
+        os.system("mount -t tmpfs tmpfs /etc/sudoers.d")
         sudoers_d = open("/etc/sudoers.d/yay", "w")
         sudoers_d.write("nobody ALL = NOPASSWD: " + shutil.which("pacman"))
         sudoers_d.close()

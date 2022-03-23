@@ -222,8 +222,6 @@ def run():
     Mount all the partitions from GlobalStorage and from the job configuration.
     Partitions are mounted in-lexical-order of their mountPoint.
     """
-    import os
-
     partitions = libcalamares.globalstorage.value("partitions")
 
     if not partitions:
@@ -232,7 +230,6 @@ def run():
                 _("No partitions are defined for <pre>{!s}</pre> to use.").format("mount"))
 
     root_mount_point = tempfile.mkdtemp(prefix="calamares-root-")
-    os.system("mount -t tmpfs tmpfs " + root_mount_point + "/etc/sudoers.d")
 
     # Guard against missing keys (generally a sign that the config file is bad)
     extra_mounts = libcalamares.job.configuration.get("extraMounts") or []
