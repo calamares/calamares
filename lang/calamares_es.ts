@@ -105,7 +105,7 @@ Para configurar el arranque desde un entorno BIOS, este instalador debe instalar
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="102"/>
       <source>Crashes Calamares, so that Dr. Konqui can look at it.</source>
-      <translation>Bloquea Calamares, para que lo mire el Dr. Konqui.</translation>
+      <translation>Cuelga y cierra de forma inesperada Calamares, para que lo mire el Dr. Konqui.</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="115"/>
@@ -115,17 +115,17 @@ Para configurar el arranque desde un entorno BIOS, este instalador debe instalar
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="141"/>
       <source>Uploads the session log to the configured pastebin.</source>
-      <translation>Sube el log de la sesión hacia el pastebin configurado.</translation>
+      <translation>Sube el registro de la sesión hacia el «pastebin» asignado.</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="144"/>
       <source>Send Session Log</source>
-      <translation>Envía el Log de la Sesión.</translation>
+      <translation>Enviar registro de sesión</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="118"/>
       <source>Reload Stylesheet</source>
-      <translation>Recargar Hoja de estilo</translation>
+      <translation>Recargar hoja de estilo</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="128"/>
@@ -146,12 +146,12 @@ Para configurar el arranque desde un entorno BIOS, este instalador debe instalar
   <context>
     <name>Calamares::ExecutionViewStep</name>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="88"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="118"/>
       <source>Set up</source>
       <translation>Instalar</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="88"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="118"/>
       <source>Install</source>
       <translation>Instalar</translation>
     </message>
@@ -161,12 +161,12 @@ Para configurar el arranque desde un entorno BIOS, este instalador debe instalar
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="29"/>
       <source>Job failed (%1)</source>
-      <translation>Trabajo fallido (%1)</translation>
+      <translation>El trabajo ha fallado (%1)</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="30"/>
       <source>Programmed job failure was explicitly requested.</source>
-      <translation>Se solicitó de manera explícita la falla del trabajo programado.</translation>
+      <translation>Se solicitó de manera explícita que el trabajo fallara.</translation>
     </message>
   </context>
   <context>
@@ -182,7 +182,7 @@ Para configurar el arranque desde un entorno BIOS, este instalador debe instalar
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="17"/>
       <source>Example job (%1)</source>
-      <translation>Ejemplo de trabajo (%1)</translation>
+      <translation>Trabajo de ejemplo (%1)</translation>
     </message>
   </context>
   <context>
@@ -190,12 +190,12 @@ Para configurar el arranque desde un entorno BIOS, este instalador debe instalar
     <message>
       <location filename="../src/libcalamares/ProcessJob.cpp" line="42"/>
       <source>Run command '%1' in target system.</source>
-      <translation>Ejecutar el comando '%1' en el sistema de destino.</translation>
+      <translation>Ejecutar la orden «%1» en el sistema de destino.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/ProcessJob.cpp" line="42"/>
       <source> Run command '%1'.</source>
-      <translation>Ejecutar el comando '%1'.</translation>
+      <translation>Ejecutar la orden «%1».</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/ProcessJob.cpp" line="49"/>
@@ -288,7 +288,7 @@ Para configurar el arranque desde un entorno BIOS, este instalador debe instalar
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="160"/>
       <source>Setup Failed</source>
-      <translation>Configuración Fallida</translation>
+      <translation>El asistente ha fallado</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="160"/>
@@ -318,12 +318,12 @@ Para configurar el arranque desde un entorno BIOS, este instalador debe instalar
     <message>
       <location filename="../src/libcalamaresui/utils/Paste.cpp" line="184"/>
       <source>Install Log Paste URL</source>
-      <translation>Pegar URL Registro de Instalación</translation>
+      <translation>URL del registro del instalador</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/utils/Paste.cpp" line="166"/>
       <source>The upload was unsuccessful. No web-paste was done.</source>
-      <translation>La carga no tuvo éxito. No se realizó pegado web.</translation>
+      <translation>No se pudo terminar la subida del registro de texto a la Web.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/utils/Paste.cpp" line="178"/>
@@ -332,26 +332,26 @@ Para configurar el arranque desde un entorno BIOS, este instalador debe instalar
 %1
 
 Link copied to clipboard</source>
-      <translation> Registro publicado en
+      <translation>El registro se ha publicado en
 
 %1
 
-Link copiado al portapapeles</translation>
+El enlace se ha copiado en el portapapeles.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="189"/>
       <source>Calamares Initialization Failed</source>
-      <translation>La inicialización de Calamares falló</translation>
+      <translation>Calamares no ha podido arrancar bien</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="190"/>
       <source>%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution.</source>
-      <translation>%1 no se pudo instalar. Calamares no fue capaz de cargar todos los módulos configurados. Esto es un problema con la forma en que Calamares es usado por la distribución</translation>
+      <translation>%1 no se pudo instalar. Calamares no ha sido capaz de cargar todos los módulos configurados. Puede que esto sea un problema de la propia distribución y de cómo usen el instalador.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="196"/>
       <source>&lt;br/&gt;The following modules could not be loaded:</source>
-      <translation>Los siguientes módulos no se pudieron cargar:</translation>
+      <translation>Los siguientes módulos no se han podido cargar:</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="310"/>
@@ -452,8 +452,8 @@ Link copiado al portapapeles</translation>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="496"/>
       <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
-      <translation>¿Realmente desea cancelar el proceso de configuración actual?
- El programa de instalación se cerrará y todos los cambios se perderán.</translation>
+      <translation>¿Seguro que quieres cancelar el proceso de configuración en curso?
+El instalador se cerrará y todos los cambios se perderán.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="498"/>
@@ -553,7 +553,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1723"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
-      <translation>&lt;strong&gt;Particionado manual &lt;/strong&gt;&lt;br/&gt; Usted puede crear o cambiar el tamaño de las particiones usted mismo.</translation>
+      <translation>&lt;strong&gt;Particionado manual&lt;/strong&gt;&lt;br/&gt; Puedes crear o cambiar el tamaño de las particiones a tu gusto.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="879"/>
@@ -568,7 +568,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1033"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
-      <translation>%1 se reducirá a %2MiB y una nueva partición %3MiB se creará para %4.</translation>
+      <translation>%1 se reducirá a %2MiB y se creará una nueva partición de %3MiB para %4.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1091"/>
@@ -583,12 +583,12 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1209"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-      <translation>No se puede encontrar una partición de sistema EFI en ningún lugar de este sistema. Por favor, vuelva y use el particionamiento manual para establecer %1.</translation>
+      <translation>No parece que haya ninguna partición del sistema EFI en el equipo. Puedes volver atrás y preparar %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1217"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
-      <translation>La partición de sistema EFI en %1 se usará para iniciar %2.</translation>
+      <translation>La partición de sistema EFI en %1 se usará para arrancar %2.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1225"/>
@@ -598,7 +598,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1385"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation>Este dispositivo de almacenamiento no parece tener un sistema operativo en él. ¿Qué quiere hacer?&lt;br/&gt;Podrá revisar y confirmar sus elecciones antes de que se haga cualquier cambio en el dispositivo de almacenamiento.</translation>
+      <translation>Este dispositivo de almacenamiento no parece tener un sistema operativo dentro. ¿Qué quieres hacer?&lt;br/&gt;Podrás revisar y confirmar los cambios antes de que pase nada.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1390"/>
@@ -606,7 +606,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1449"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1474"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
-      <translation>&lt;strong&gt;Borrar disco&lt;/strong&gt;&lt;br/&gt;Esto &lt;font color="red"&gt;borrará&lt;/font&gt; todos los datos presentes actualmente en el dispositivo de almacenamiento.</translation>
+      <translation>&lt;strong&gt;Borrar el disco&lt;/strong&gt;&lt;br/&gt;Esto &lt;font color="red"&gt;eliminará permanentemente&lt;/font&gt; todos los datos en el dispositivo de almacenamiento.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1394"/>
@@ -614,7 +614,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1445"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1470"/>
       <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
-      <translation>&lt;strong&gt;Instalar junto al otro SO&lt;/strong&gt;&lt;br/&gt;El instalador reducirá la partición del SO existente para tener espacio para instalar %1.</translation>
+      <translation>&lt;strong&gt;Instalar al lado&lt;/strong&gt;&lt;br/&gt;El instalador reducirá el tamaño de una partición y dejará el suficiente para instalar %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1398"/>
@@ -685,27 +685,27 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="272"/>
       <source>Successfully unmounted %1.</source>
-      <translation>Desmontado con éxito %1.</translation>
+      <translation>Se ha desmontando %1 correctamente.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="279"/>
       <source>Successfully disabled swap %1.</source>
-      <translation>Swap Desactivado exitosamente %1.</translation>
+      <translation>El «swap» %1 se ha desactivado correctamente.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="305"/>
       <source>Successfully cleared swap %1.</source>
-      <translation>Swap borrado con éxito %1.</translation>
+      <translation>El «swap» %1 se ha vaciado correctamente.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="319"/>
       <source>Successfully closed mapper device %1.</source>
-      <translation>Dispositivo mapeador cerrado con éxito %1.</translation>
+      <translation>El dispositivo de mapeo %1 se ha cerrado correctamente.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="332"/>
       <source>Successfully disabled volume group %1.</source>
-      <translation>Grupo de volumen deshabilitado con éxito %1.</translation>
+      <translation>El grupo de volumen %1 se ha deshabilitado correctamente.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="371"/>
@@ -747,7 +747,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
       <location filename="../src/libcalamares/utils/CommandList.cpp" line="142"/>
       <location filename="../src/libcalamares/utils/CommandList.cpp" line="155"/>
       <source>Could not run command.</source>
-      <translation>No se pudo ejecutar el comando.</translation>
+      <translation>No se pudo ejecutar la orden.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CommandList.cpp" line="143"/>
@@ -757,7 +757,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/libcalamares/utils/CommandList.cpp" line="156"/>
       <source>The command needs to know the user's name, but no username is defined.</source>
-      <translation>El comando necesita saber el nombre de usuario, pero no hay nombre de usuario definido.</translation>
+      <translation>La orden a ejecutar necesita saber el nombre de usuario, pero no hay ningún nombre de usuario definido.</translation>
     </message>
   </context>
   <context>
@@ -785,7 +785,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="398"/>
       <source>The numbers and dates locale will be set to %1.</source>
-      <translation>La localización de números y fechas se establecerá a %1.</translation>
+      <translation>El formato de números y fechas aparecerá en %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="53"/>
@@ -815,12 +815,12 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="59"/>
       <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
-      <translation>Instalación a través de la Red. (Desactivada: no se ha podido obtener una lista de paquetes, comprueba tu conexión a la red)</translation>
+      <translation>Instalación por Internet. (Desactivada: no se ha podido obtener una lista de paquetes, comprueba tu conexión a la red)</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="55"/>
       <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
-      <translation>Este ordenador no cumple los requisitos mínimos para configurar %1.&lt;br/&gt;La instalación no puede continuar.&lt;a href="#details"&gt;Detalles...&lt;/a&gt;</translation>
+      <translation>Este equipo no cumple los requisitos mínimos para instalar %1.&lt;br/&gt;La instalación no puede continuar.&lt;a href="#details"&gt;Más detalles...&lt;/a&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="59"/>
@@ -845,17 +845,17 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="250"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Bienvenido al programa de instalación Calamares para %1&lt;/h1&gt;</translation>
+      <translation>&lt;h1&gt;Te damos la bienvenida al asistente de instalación de %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="251"/>
       <source>&lt;h1&gt;Welcome to %1 setup&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Bienvenido a la configuración de %1&lt;/h1&gt;</translation>
+      <translation>&lt;h1&gt;Te damos la bienvenida al asistente de configuración de %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="255"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Bienvenido al instalador de calamares para %1&lt;/h1&gt;</translation>
+      <translation>&lt;h1&gt;Bienvenido a Calamares; el instalador de %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="256"/>
@@ -865,17 +865,17 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="217"/>
       <source>Your username is too long.</source>
-      <translation>Su usuario es demasiado largo.</translation>
+      <translation>Tu usuario es demasiado largo.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="223"/>
       <source>'%1' is not allowed as username.</source>
-      <translation>'%1' no está permitido como usuario.</translation>
+      <translation>«%1» no vale como nombre de usuario.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="230"/>
       <source>Your username must start with a lowercase letter or underscore.</source>
-      <translation>Su usuario debe comenzar con una letra minúscula o un guión bajo.</translation>
+      <translation>Los nombres de usuario empiezan con una letra minúscula o un guion bajo.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="234"/>
@@ -885,17 +885,17 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="279"/>
       <source>Your hostname is too short.</source>
-      <translation>El nombre del Host es demasiado corto.</translation>
+      <translation>El nombre del equipo es demasiado corto.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="283"/>
       <source>Your hostname is too long.</source>
-      <translation>El nombre del Host es demasiado largo. </translation>
+      <translation>El nombre del equipo es demasiado largo. </translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="289"/>
       <source>'%1' is not allowed as hostname.</source>
-      <translation>'%1'No está permitido como host.</translation>
+      <translation>«%1» no es un nombre de equipo válido.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="295"/>
@@ -905,42 +905,42 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="534"/>
       <source>Your passwords do not match!</source>
-      <translation>¡Sus contraseñas no coinciden!</translation>
+      <translation>Parece que las contraseñas no coinciden.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="548"/>
       <source>OK!</source>
-      <translation>¡OK!</translation>
+      <translation>Entendido</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="145"/>
       <source>Setup Failed</source>
-      <translation>Configuración Fallida</translation>
+      <translation>La configuración ha fallado</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="145"/>
       <source>Installation Failed</source>
-      <translation>Instalación fallida</translation>
+      <translation>La instalación ha fallado</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="147"/>
       <source>The setup of %1 did not complete successfully.</source>
-      <translation>La configuración de %1 no se completó con éxito.</translation>
+      <translation>No se ha podido terminar correctamente la configuración de %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="148"/>
       <source>The installation of %1 did not complete successfully.</source>
-      <translation>La instalación de %1 no se completó con éxito.</translation>
+      <translation>No se ha podido terminar correctamente la instalación de %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="152"/>
       <source>Setup Complete</source>
-      <translation>Configuración completada</translation>
+      <translation>Se ha terminado la configuración</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="153"/>
       <source>Installation Complete</source>
-      <translation>Instalación completada</translation>
+      <translation>Se ha terminado la instalación</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="154"/>
@@ -960,7 +960,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/packagechooser/Config.cpp" line="113"/>
       <source>Please pick a product from the list. The selected product will be installed.</source>
-      <translation>Elija un producto de la lista. Se instalará el producto seleccionado.</translation>
+      <translation>Hay que elegir uno de los productos a instalar de la lista.</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/Config.cpp" line="243"/>
@@ -993,7 +993,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/contextualprocess/ContextualProcessJob.cpp" line="119"/>
       <source>Contextual Processes Job</source>
-      <translation>Tarea Contextual Processes</translation>
+      <translation>Tarea de procesos contextuales</translation>
     </message>
   </context>
   <context>
@@ -1081,7 +1081,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="91"/>
       <source>Mountpoint already in use. Please select another one.</source>
-      <translation>Punto de montaje ya en uso. Por favor, seleccione otro.</translation>
+      <translation>El punto de montaje ya está en uso y no se puede modificar.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="96"/>
@@ -1425,7 +1425,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="189"/>
       <source>FS Label:</source>
-      <translation>FS:</translation>
+      <translation>Etiqueta del sist. de archivos:</translation>
     </message>
   </context>
   <context>
@@ -1448,31 +1448,31 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="59"/>
       <source>Passphrase</source>
-      <translation>Frase-contraseña</translation>
+      <translation>Contraseña de cifrado</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="69"/>
       <source>Confirm passphrase</source>
-      <translation>Confirmar frase-contraseña</translation>
+      <translation>Confirmar contraseña de cifrado</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="134"/>
       <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="144"/>
       <source>Please enter the same passphrase in both boxes.</source>
-      <translation>Por favor, introduzca la misma frase-contraseña en ambos recuadros.</translation>
+      <translation>Las contraseñas de ambos campos deben coincidir.</translation>
     </message>
   </context>
   <context>
     <name>ErrorDialog</name>
     <message>
-      <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="36"/>
+      <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="40"/>
       <source>Details:</source>
       <translation>Detalles:</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="52"/>
+      <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="56"/>
       <source>Would you like to paste the install log to the web?</source>
-      <translation>¿Desea pegar el registro de instalación en la web?</translation>
+      <translation>¿Quieres subir una copia del registro de instalación a la web?</translation>
     </message>
   </context>
   <context>
@@ -1581,7 +1581,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/finishedq/FinishedQmlViewStep.cpp" line="35"/>
       <source>Finish</source>
-      <translation>Finalizar</translation>
+      <translation>Terminar</translation>
     </message>
   </context>
   <context>
@@ -1650,7 +1650,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="185"/>
       <source>is connected to the Internet</source>
-      <translation>esta conectado a Internet</translation>
+      <translation>está conectado a Internet</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="186"/>
@@ -1808,22 +1808,22 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="36"/>
       <source>Configuring encrypted swap.</source>
-      <translation>Configurando la memoria de intercambio - swap - encriptada.</translation>
+      <translation>Configurando la memoria de intercambio («swap») cifrada.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="88"/>
       <source>No target system available.</source>
-      <translation>Ningún sistema de destino disponible.</translation>
+      <translation>No parece que haya ningún sistema al que aplicar las operaciones.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="96"/>
       <source>No rootMountPoint is set.</source>
-      <translation>PuntoDeMontajeRoot no definido.</translation>
+      <translation>No se ha definido «rootMountPoint».</translation>
     </message>
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="101"/>
       <source>No configFilePath is set.</source>
-      <translation>RutaArchivoDeConfiguración no definida.</translation>
+      <translation>No se ha definido «configFilePath».</translation>
     </message>
   </context>
   <context>
@@ -1888,33 +1888,33 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="109"/>
       <source>&lt;strong&gt;%1 driver&lt;/strong&gt;&lt;br/&gt;by %2</source>
       <extracomment>%1 is an untranslatable product name, example: Creative Audigy driver</extracomment>
-      <translation>&lt;strong&gt;%1 driver&lt;/strong&gt;&lt;br/&gt;por %2</translation>
+      <translation>&lt;strong&gt;controlador %1&lt;/strong&gt;&lt;br/&gt; de %2</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="116"/>
       <source>&lt;strong&gt;%1 graphics driver&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
       <extracomment>%1 is usually a vendor name, example: Nvidia graphics driver</extracomment>
-      <translation>&lt;strong&gt;%1 driver gráficos&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;por %2&lt;/font&gt;</translation>
+      <translation>&lt;strong&gt;controlador gráfico %1&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;de %2&lt;/font&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="122"/>
       <source>&lt;strong&gt;%1 browser plugin&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
-      <translation>&lt;strong&gt;%1 plugin del navegador&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;por %2&lt;/font&gt;</translation>
+      <translation>&lt;strong&gt;extensión del navegador %1&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;de %2&lt;/font&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="128"/>
       <source>&lt;strong&gt;%1 codec&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
-      <translation>&lt;strong&gt;%1 codec&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;por %2&lt;/font&gt;</translation>
+      <translation>&lt;strong&gt;códec %1&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;de %2&lt;/font&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="134"/>
       <source>&lt;strong&gt;%1 package&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
-      <translation>&lt;strong&gt;%1 paquete&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;por %2&lt;/font&gt;</translation>
+      <translation>&lt;strong&gt;paquete %1&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;de %2&lt;/font&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="140"/>
       <source>&lt;strong&gt;%1&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
-      <translation>&lt;strong&gt;%1&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;por %2&lt;/font&gt;</translation>
+      <translation>&lt;strong&gt;%1&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;de %2&lt;/font&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="163"/>
@@ -1983,35 +1983,35 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
   <context>
     <name>LuksBootKeyFileJob</name>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="30"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="32"/>
       <source>Configuring LUKS key file.</source>
       <translation>Configurando archivo de claves LUKS.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="186"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="194"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="188"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="196"/>
       <source>No partitions are defined.</source>
-      <translation>No hay particiones definidas.</translation>
+      <translation>Se ha definido ninguna partición.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="229"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="236"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="244"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="231"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="238"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="246"/>
       <source>Encrypted rootfs setup error</source>
-      <translation>Error de configuración de rootfs encriptados</translation>
+      <translation>Se ha producido un error del «rootfs» cifrado</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="230"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="232"/>
       <source>Root partition %1 is LUKS but no passphrase has been set.</source>
       <translation>La partición root %1 es LUKS pero no se ha establecido ninguna frase de contraseña.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="237"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="239"/>
       <source>Could not create LUKS key file for root partition %1.</source>
       <translation>No se pudo crear el archivo de clave LUKS para la partición root %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="245"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="247"/>
       <source>Could not configure LUKS key file on partition %1.</source>
       <translation>No se pudo configurar el archivo de clave LUKS para la partición root %1.</translation>
     </message>
@@ -2021,7 +2021,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="37"/>
       <source>Generate machine-id.</source>
-      <translation>Generar identificación-de-máquina.</translation>
+      <translation>Generar el identificador único de máquina.</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="53"/>
@@ -2061,7 +2061,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="50"/>
       <source>Office software</source>
-      <translation>Programas de oficina</translation>
+      <translation>Programa de oficina</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="51"/>
@@ -2071,12 +2071,12 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="52"/>
       <source>Browser software</source>
-      <translation>software del navegador</translation>
+      <translation>Explorador de archivos</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="53"/>
       <source>Browser package</source>
-      <translation>Paquete de navegador</translation>
+      <translation>Paquetes de entorno de escritorio</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="54"/>
@@ -2106,7 +2106,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="59"/>
       <source>Applications</source>
-      <translation>Aplicaciónes</translation>
+      <translation>Aplicaciones</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="60"/>
@@ -2205,7 +2205,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="115"/>
       <source>Select your preferred Zone within your Region.</source>
-      <translation>Seleccione su Zona preferida dentro de su Región.</translation>
+      <translation>Elige una zona horaria en tu región.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="186"/>
@@ -2215,7 +2215,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="233"/>
       <source>You can fine-tune Language and Locale settings below.</source>
-      <translation>Puede ajustar la configuración de idioma y regional a continuación.</translation>
+      <translation>A continuación puedes ajustar la configuración regional.</translation>
     </message>
   </context>
   <context>
@@ -2238,7 +2238,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="196"/>
       <source>Memory allocation error when setting '%1'</source>
-      <translation>Error de asignación de memoria al establecer '%1'</translation>
+      <translation>No parece que haya suficiente memoria como para establecer «%1»</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="199"/>
@@ -2268,27 +2268,27 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="209"/>
       <source>The password contains the user name in some form</source>
-      <translation>La contraseña contiene el nombre de usuario de alguna forma</translation>
+      <translation>La contraseña contiene partes del nombre de usuario</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="211"/>
       <source>The password contains words from the real name of the user in some form</source>
-      <translation>La contraseña contiene palabras procedentes del nombre real del usuario de alguna forma</translation>
+      <translation>La contraseña contiene partes del nombre real del usuario</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="214"/>
       <source>The password contains forbidden words in some form</source>
-      <translation>La contraseña contiene palabras prohibidas de alguna forma</translation>
+      <translation>La contraseña contiene alguna palabra prohibida</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="221"/>
       <source>The password contains too few digits</source>
-      <translation>La contraseña contiene demasiado pocos dígitos</translation>
+      <translation>La contraseña no tiene suficientes números</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="228"/>
       <source>The password contains too few uppercase letters</source>
-      <translation>La contraseña contiene demasiado pocas letras mayúsculas</translation>
+      <translation>La contraseña no tiene suficientes mayúsculas</translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="232"/>
@@ -2306,7 +2306,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="242"/>
       <source>The password contains too few non-alphanumeric characters</source>
-      <translation>La contraseña contiene demasiado pocos caracteres alfanuméricos</translation>
+      <translation>La contraseña no tiene suficientes caracteres alfanuméricos</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="249"/>
@@ -2316,17 +2316,17 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="258"/>
       <source>The password does not contain enough character classes</source>
-      <translation>La contraseña no contiene suficientes clases de caracteres</translation>
+      <translation>La contraseña no contiene suficientes tipos de caracteres</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="265"/>
       <source>The password contains too many same characters consecutively</source>
-      <translation>La contraseña contiene demasiados caracteres iguales consecutivamente</translation>
+      <translation>La contraseña contiene demasiados caracteres iguales consecutivos</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="275"/>
       <source>The password contains too many characters of the same class consecutively</source>
-      <translation>La contraseña contiene demasiados caracteres de la misma clase consecutivamente</translation>
+      <translation>La contraseña contiene demasiados caracteres seguidos del mismo tipo</translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="218"/>
@@ -2430,7 +2430,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="305"/>
       <source>Unknown setting - %1</source>
-      <translation>Configuración desconocida - %1</translation>
+      <translation>Configuración desconocida; %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="307"/>
@@ -2845,82 +2845,97 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
       <translation>Particiones</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="297"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="254"/>
+      <source>Unsafe partition actions are enabled.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="257"/>
+      <source>Partitioning is configured to &lt;b&gt;always&lt;/b&gt; fail.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="260"/>
+      <source>No partitions will be changed.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="300"/>
       <source>Current:</source>
       <translation>Corriente</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="315"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="318"/>
       <source>After:</source>
       <translation>Despúes:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="524"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="529"/>
       <source>No EFI system partition configured</source>
       <translation>No hay una partición del sistema EFI configurada</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="528"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="533"/>
       <source>EFI system partition configured incorrectly</source>
       <translation>Partición del sistema EFI configurada incorrectamente</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="533"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="538"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a suitable filesystem.</source>
       <translation>Se necesita una partición EFI para iniciar %1.&lt;br/&gt;&lt;br/&gt;Para configurar una partición EFI, regrese y seleccione o cree un sistema de archivos adecuado.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="544"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="549"/>
       <source>The filesystem must be mounted on &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>El sistema de archivos debe estar montado en &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="550"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="555"/>
       <source>The filesystem must have type FAT32.</source>
       <translation>El sistema de archivos debe tener el tipo FAT32.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="558"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="563"/>
       <source>The filesystem must be at least %1 MiB in size.</source>
       <translation>El sistema de archivos debe tener al menos %1 MiB de tamaño.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="564"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="569"/>
       <source>The filesystem must have flag &lt;strong&gt;%1&lt;/strong&gt; set.</source>
       <translation>El sistema de archivos debe tener el indicador &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="570"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="575"/>
       <source>You can continue without setting up an EFI system partition but your system may fail to start.</source>
       <translation>Puede continuar sin configurar una partición del sistema EFI, pero es posible que su sistema no inicie.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="587"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="593"/>
       <source>Option to use GPT on BIOS</source>
       <translation>Opción de usar GPT en la BIOS</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="588"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="594"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
-      <translation>Una partición GPT es la mejor opción para todos los sistemas. Este instalador también admite una configuración de este tipo para los sistemas BIOS.&lt;br/&gt;&lt;br/&gt;Para configurar una partición GPT en BIOS, (si aún no lo ha hecho) regrese y configure la partición en GPT, luego cree una partición sin formato de 8 MB con el indicador &lt;strong&gt;%2&lt;/strong&gt; habilitado.&lt;br/&gt;&lt;br/&gt;Se necesita una partición de 8 MB sin formato para iniciar  %1 en un sistema BIOS con GPT.</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="620"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="626"/>
       <source>Boot partition not encrypted</source>
       <translation>Partición de arranque no cifrada</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="621"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="627"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
       <translation>Se estableció una partición de arranque aparte junto con una partición raíz cifrada, pero la partición de arranque no está cifrada.&lt;br/&gt;&lt;br/&gt;Hay consideraciones de seguridad con esta clase de instalación, porque los ficheros de sistema importantes se mantienen en una partición no cifrada.&lt;br/&gt;Puede continuar si lo desea, pero el desbloqueo del sistema de ficheros ocurrirá más tarde durante el arranque del sistema.&lt;br/&gt;Para cifrar la partición de arranque, retroceda y vuelva a crearla, seleccionando &lt;strong&gt;Cifrar&lt;/strong&gt; en la ventana de creación de la partición.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="712"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="718"/>
       <source>has at least one disk device available.</source>
       <translation>tiene al menos un dispositivo de disco disponible.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="713"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="719"/>
       <source>There are no partitions to install on.</source>
       <translation>No hay particiones en las cuales instalar.</translation>
     </message>
@@ -3091,7 +3106,7 @@ Salida:
       <location filename="../src/modules/machineid/Workers.cpp" line="76"/>
       <location filename="../src/modules/machineid/Workers.cpp" line="93"/>
       <source>File not found</source>
-      <translation>Archivo no encontrado</translation>
+      <translation>No se ha encontrado el archivo</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/Workers.cpp" line="65"/>
@@ -3117,7 +3132,7 @@ Salida:
     <message>
       <location filename="../src/modules/packagechooser/PackageModel.cpp" line="82"/>
       <source>No description provided.</source>
-      <translation>No se proporcionó descripción.</translation>
+      <translation>No se ha proporcionado ninguna descripción.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="44"/>
@@ -3631,18 +3646,18 @@ Salida:
   <context>
     <name>SetupGroupsJob</name>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="166"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="185"/>
       <source>Preparing groups.</source>
       <translation>Preparando grupos.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="178"/>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="183"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="197"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="202"/>
       <source>Could not create groups in target system</source>
       <translation>No se pudieron crear grupos en el sistema destino</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="184"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="203"/>
       <source>These groups are missing in the target system: %1</source>
       <translation>Estos grupos faltan en el sistema de destino: %1</translation>
     </message>
@@ -3650,17 +3665,17 @@ Salida:
   <context>
     <name>SetupSudoJob</name>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="33"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="34"/>
       <source>Configure &lt;pre&gt;sudo&lt;/pre&gt; users.</source>
       <translation>Configurar usuarios &lt;pre&gt;sudo&lt;/pre&gt; .</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="55"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="74"/>
       <source>Cannot chmod sudoers file.</source>
       <translation>No es posible modificar los permisos de sudoers.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="60"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="79"/>
       <source>Cannot create sudoers file for writing.</source>
       <translation>No es posible crear el archivo de escritura para sudoers.</translation>
     </message>
@@ -3806,17 +3821,17 @@ Salida:
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="76"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click here to send &lt;span style=" font-weight:600;"&gt;no information at all&lt;/span&gt; about your installation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Haga clic aquí para &lt;span style=" font-weight:600;"&gt;no enviar información&lt;/span&gt; sobre su instalación.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Haz clic aquí para &lt;span style=" font-weight:600;"&gt;no enviar información&lt;/span&gt; sobre tu instalación.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="275"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href="placeholder"&gt;&lt;span style=" text-decoration: underline; color:#2980b9;"&gt;Click here for more information about user feedback&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href="placeholder"&gt;&lt;span style=" text-decoration: underline; color:#2980b9;"&gt;Pulse aquí para más información acerca de la respuesta del usuario&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href="placeholder"&gt;&lt;span style=" text-decoration: underline; color:#2980b9;"&gt;Haz clic aquí para saber más sobre el sistema de opinión de usuarios&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="86"/>
       <source>Tracking helps %1 to see how often it is installed, what hardware it is installed on and which applications are used. To see what will be sent, please click the help icon next to each area.</source>
-      <translation>El seguimiento ayuda a %1 a ver con qué frecuencia se instala, en qué hardware se instala y qué aplicaciones se usan. Para ver lo que se enviará, haga clic en el icono de ayuda junto a cada área.</translation>
+      <translation>El seguimiento ayuda a %1 a ver con qué frecuencia se instala, en qué hardware se instala y qué aplicaciones se usan. Para ver lo que se envía, haz clic en el icono de ayuda en cada sección.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="91"/>
@@ -3839,7 +3854,7 @@ Salida:
     <message>
       <location filename="../src/modules/tracking/TrackingViewStep.cpp" line="49"/>
       <source>Feedback</source>
-      <translation>Respuesta</translation>
+      <translation>Opinar</translation>
     </message>
   </context>
   <context>
@@ -3847,17 +3862,17 @@ Salida:
     <message>
       <location filename="../src/modules/umount/UmountJob.cpp" line="39"/>
       <source>Unmount file systems.</source>
-      <translation>Desmontar sistemas de archivos.</translation>
+      <translation>Desmontar los sistemas de archivos.</translation>
     </message>
     <message>
-      <location filename="../src/modules/umount/UmountJob.cpp" line="122"/>
+      <location filename="../src/modules/umount/UmountJob.cpp" line="124"/>
       <source>No target system available.</source>
-      <translation>Ningún sistema de destino disponible.</translation>
+      <translation>No parece que haya ningún sistema instalable disponible.</translation>
     </message>
     <message>
-      <location filename="../src/modules/umount/UmountJob.cpp" line="130"/>
+      <location filename="../src/modules/umount/UmountJob.cpp" line="132"/>
       <source>No rootMountPoint is set.</source>
-      <translation>rootMountPoint no definido.</translation>
+      <translation>«rootMountPoint» no definido.</translation>
     </message>
   </context>
   <context>
@@ -3865,12 +3880,12 @@ Salida:
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="177"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
-      <translation>&lt;small&gt;Si más de una persona va a utilizar este ordenador, puede crear varias cuentas después de la configuración.&lt;/small&gt;</translation>
+      <translation>&lt;small&gt;Si va a haber más de una persona usando el equipo se pueden crear otras cuentas de usuario una vez configurado.&lt;/small&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="183"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
-      <translation>&lt;small&gt;Si más de una persona va a utilizar este ordenador, puede crear varias cuentas después de la instalación.&lt;/small&gt;</translation>
+      <translation>&lt;small&gt;Si va a haber más de una persona usando el equipo se pueden crear otras cuentas de usuario una vez instalado..&lt;/small&gt;</translation>
     </message>
   </context>
   <context>
@@ -3968,7 +3983,7 @@ Salida:
       <location filename="../src/modules/welcome/WelcomePage.ui" line="79"/>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="98"/>
       <source>Select application and system language</source>
-      <translation>Seleccione el idioma de la aplicación y del sistema</translation>
+      <translation>Elige el idioma para las aplicaciones y el sistema</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="140"/>
@@ -3998,7 +4013,7 @@ Salida:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="176"/>
       <source>Open issues and bug-tracking website</source>
-      <translation>Sitio web de asuntos abiertos y seguimiento de errores</translation>
+      <translation>Sitio web de problemas y mejoras</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
@@ -4008,7 +4023,7 @@ Salida:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="189"/>
       <source>Open release notes website</source>
-      <translation>Abrir el sitio web de notas de lanzamiento</translation>
+      <translation>Abrir la web con las notas de lanzamiento</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="192"/>
@@ -4018,17 +4033,17 @@ Salida:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="216"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Bienvenido al programa de instalación Calamares para %1.&lt;/h1&gt;</translation>
+      <translation>&lt;h1&gt;Bienvenido a Calamares; el programa de instalación de %1.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="217"/>
       <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Bienvenido al instalador %1.&lt;/h1&gt;</translation>
+      <translation>&lt;h1&gt;Bienvenido al instalador de %1.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="222"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Bienvenido al instalador de Calamares para %1.&lt;/h1&gt;</translation>
+      <translation>&lt;h1&gt;Bienvenido a Calamares; el instalador de %1.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="223"/>
@@ -4043,7 +4058,7 @@ Salida:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="235"/>
       <source>About %1 setup</source>
-      <translation>Acerca de la configuración %1</translation>
+      <translation>Acerca del configurador de %1</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="235"/>
@@ -4061,7 +4076,7 @@ Salida:
     <message>
       <location filename="../src/modules/welcomeq/WelcomeQmlViewStep.cpp" line="40"/>
       <source>Welcome</source>
-      <translation>Bienvenido</translation>
+      <translation>Te damos la bienvenida</translation>
     </message>
   </context>
   <context>
@@ -4082,7 +4097,7 @@ Salida:
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="162"/>
       <source>Failed to create zpool on </source>
-      <translation>Error al crear zpool en</translation>
+      <translation>Error al crear el «zpool» en</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="180"/>
@@ -4103,17 +4118,17 @@ Salida:
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="257"/>
       <source>Failed to create zpool</source>
-      <translation>Error al crear zpool</translation>
+      <translation>Error al crear el «zpool»</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="329"/>
       <source>Failed to create dataset</source>
-      <translation>No se pudo crear el conjunto de datos</translation>
+      <translation>No se pudo crear el «dataset»</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="330"/>
       <source>The output was: </source>
-      <translation>La salida fue:</translation>
+      <translation>El programa ha devuelto:</translation>
     </message>
   </context>
   <context>
@@ -4156,7 +4171,7 @@ Salida:
     <message>
       <location filename="../src/calamares/calamares-sidebar.qml" line="79"/>
       <source>Show debug information</source>
-      <translation>Mostrar información de depuración.</translation>
+      <translation>Ver la información de depuración.</translation>
     </message>
   </context>
   <context>
@@ -4170,8 +4185,8 @@ Salida:
       <location filename="../src/modules/finishedq/finishedq.qml" line="43"/>
       <source>%1 has been installed on your computer.&lt;br/&gt;
             You may now restart into your new system, or continue using the Live environment.</source>
-      <translation>%1 ha sido instalado en su computadora.
-             Ahora puede reiniciar en su nuevo sistema o continuar usando el entorno Live.</translation>
+      <translation>Se ha instalado %1 en tu equipo.
+             A partir de ahora puedes reiniciar para empezar con el sistema operativo nuevo o seguir usando el entorno temporal.</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="65"/>
@@ -4187,9 +4202,9 @@ Salida:
       <location filename="../src/modules/finishedq/finishedq.qml" line="89"/>
       <source>&lt;p&gt;A full log of the install is available as installation.log in the home directory of the Live user.&lt;br/&gt;
             This log is copied to /var/log/installation.log of the target system.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Un registro completo de la instalación está disponible como installation.log en el directorio de inicio del usuario de Live.
+      <translation>&lt;p&gt;Un registro completo de la instalación está disponible como «installation.log» en la carpeta personal del usuario temporal.
 &lt;br/&gt;
-             Este registro se copia en /var/log/installation.log del sistema de destino.</translation>
+             Este registro también se copia en la ruta «/var/log/installation.log» del sistema a instalar.</translation>
     </message>
   </context>
   <context>
@@ -4203,8 +4218,8 @@ Salida:
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="43"/>
       <source>%1 has been installed on your computer.&lt;br/&gt;
             You may now restart your device.</source>
-      <translation>%1 ha sido instalado en su computadora.&lt;br/&gt;
-             Ahora puede reiniciar su sistema.</translation>
+      <translation>Se ha instalado %1 en tu equipo.&lt;br/&gt;
+             Ahora puedes reiniciar para empezar con el sistema operativo.</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="65"/>
@@ -4230,7 +4245,7 @@ Salida:
       <location filename="../src/modules/localeq/i18n.qml" line="123"/>
       <source>&lt;h1&gt;Locales&lt;/h1&gt; &lt;/br&gt;
                     The system locale setting affects the numbers and dates format. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>&lt;h1&gt;Locales&lt;/h1&gt; &lt;/br&gt;
+      <translation>&lt;h1&gt;Configuración regional&lt;/h1&gt; &lt;/br&gt;
                      La configuración regional del sistema afecta el formato de números y fechas. La configuración actual es &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
@@ -4244,7 +4259,7 @@ Salida:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="60"/>
       <source>To activate keyboard preview, select a layout.</source>
-      <translation>Para activar la previsualización del teclado, selecciona una distribución.</translation>
+      <translation>Para previsualizar el teclado elige una distribución.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="86"/>
@@ -4259,7 +4274,7 @@ Salida:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="263"/>
       <source>Type here to test your keyboard</source>
-      <translation>Escriba aquí para comprobar su teclado</translation>
+      <translation>Escribe aquí para probar la salida del teclado</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="179"/>
@@ -4291,8 +4306,8 @@ Salida:
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="45"/>
       <source>LibreOffice is a powerful and free office suite, used by millions of people around the world. It includes several applications that make it the most versatile Free and Open Source office suite on the market.&lt;br/&gt;
                     Default option.</source>
-      <translation>LibreOffice es una suite ofimática potente y gratuita, utilizada por millones de personas en todo el mundo. Incluye varias aplicaciones que la convierten en la suite ofimática Libre y de Código Abierto más versátil del mercado.&lt;br/&gt;
-                       Opción por defecto.</translation>
+      <translation>LibreOffice es una suite ofimática potente y gratuita, utilizada por millones de personas en todo el mundo. Incluye varias aplicaciones que la convierten en la suite ofimática libre y de código abierto más versátil del mercado.&lt;br/&gt;
+                       Opción predeterminada.</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="59"/>
@@ -4302,27 +4317,27 @@ Salida:
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="108"/>
       <source>If you don't want to install an office suite, just select No Office Suite. You can always add one (or more) later on your installed system as the need arrives.</source>
-      <translation>Si no desea instalar una suite ofimática, simplemente seleccione Sin Suite Ofimática. Siempre puede añadir uno (o más) más tarde en su sistema instalado a medida que lo necesite.</translation>
+      <translation>Si no quieres instalar un paquete de ofimática cámbialo abajo. Siempre se puede instalar uno (o más de uno) a través del administrador de paquetes cuando surja la necesidad.</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="121"/>
       <source>No Office Suite</source>
-      <translation>Sin Suite Ofimática</translation>
+      <translation>Sin paquete de ofimática</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="172"/>
       <source>Create a minimal Desktop install, remove all extra applications and decide later on what you would like to add to your system. Examples of what won't be on such an install, there will be no Office Suite, no media players, no image viewer or print support.  It will be just a desktop, file browser, package manager, text editor and simple web-browser.</source>
-      <translation>Cree una instalación de escritorio mínima, elimine todas las aplicaciones adicionales y decida más adelante qué le gustaría añadir a su sistema. Ejemplos de lo que no habrá en una instalación de este tipo, no habrá Suite Ofimática, ni Reproductores Multimedia, ni Visor de imágenes ni soporte de impresión. Será solo un escritorio, un navegador de archivos, un administrador de paquetes, un editor de texto y un navegador web simple.</translation>
+      <translation>Crea una instalación de escritorio mínima, evitando todas las aplicaciones extras para poder elegir más adelante qué te gustaría añadir al sistema. En este modo no habrá paquete de ofimática, ni reproductores multimedia, ni visor de imágenes ni soporte de impresión. Solo incluye un escritorio, un explorador de archivos, un administrador de paquetes, un editor de texto y un navegador web simple. Simple.</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="185"/>
       <source>Minimal Install</source>
-      <translation>Instalación Mínima</translation>
+      <translation>Instalación mínima</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="233"/>
       <source>Please select an option for your install, or use the default: LibreOffice included.</source>
-      <translation>Seleccione una opción para su instalación o use la predeterminada: LibreOffice incluido.</translation>
+      <translation>Elige una de las opciones o deja la que viene de serie: con LibreOffice.</translation>
     </message>
   </context>
   <context>
@@ -4383,7 +4398,7 @@ Salida:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="43"/>
       <source>Pick your user name and credentials to login and perform admin tasks</source>
-      <translation>Elija su nombre de usuario y credenciales para iniciar sesión y realizar tareas de administración</translation>
+      <translation>Elige un nombre de usuario con contraseña para iniciar sesión y poder hacer tareas de administración</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="56"/>
@@ -4393,12 +4408,12 @@ Salida:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="63"/>
       <source>Your Full Name</source>
-      <translation>Su nombre completo</translation>
+      <translation>Tu nombre completo</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="80"/>
       <source>What name do you want to use to log in?</source>
-      <translation>¿Qué nombre desea usar para ingresar?</translation>
+      <translation>¿Qué nombre quieres usar para iniciar sesión?</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="87"/>
@@ -4408,42 +4423,42 @@ Salida:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="116"/>
       <source>If more than one person will use this computer, you can create multiple accounts after installation.</source>
-      <translation>Si más de una persona usará esta computadora, puede crear varias cuentas después de la instalación.</translation>
+      <translation>Si va a haber más de una persona usando el equipo se pueden crear otras cuentas de usuario una vez instalado.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="128"/>
       <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
-      <translation>Solo se permiten letras minúsculas, números, guiones bajos y guiones.</translation>
+      <translation>Solo se pueden poner letras minúsculas, números y guiones bajos y normales.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="136"/>
       <source>root is not allowed as username.</source>
-      <translation>root no está permitido como nombre de usuario.</translation>
+      <translation>No se puede poner «root» como nombre de usuario.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="145"/>
       <source>What is the name of this computer?</source>
-      <translation>Nombre del equipo</translation>
+      <translation>¿Qué nombre le ponemos al equipo?</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="151"/>
       <source>Computer Name</source>
-      <translation>Nombre de computadora</translation>
+      <translation>Nombre del equipo</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="178"/>
       <source>This name will be used if you make the computer visible to others on a network.</source>
-      <translation>Este nombre se usará si hace que la computadora sea visible para otros en una red.</translation>
+      <translation>Este nombre será visible al compartir cosas en red.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="198"/>
       <source>localhost is not allowed as hostname.</source>
-      <translation>localhost no está permitido como nombre de host.</translation>
+      <translation>No se puede poner «localhost» como nombre del equipo.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="207"/>
       <source>Choose a password to keep your account safe.</source>
-      <translation>Elija una contraseña para mantener su cuenta segura.</translation>
+      <translation>Elige una contraseña para mantener tu cuenta segura.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="217"/>
@@ -4453,22 +4468,22 @@ Salida:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="234"/>
       <source>Repeat Password</source>
-      <translation>Repita la contraseña</translation>
+      <translation>Repite la contraseña</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="261"/>
       <source>Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.</source>
-      <translation>Ingrese la misma contraseña dos veces, para que se pueda verificar si hay errores de tipeo. Una buena contraseña contendrá una combinación de letras, números y puntuación, debe tener al menos ocho caracteres y debe cambiarse a intervalos regulares.</translation>
+      <translation>Introduce la misma contraseña dos veces, para que se pueda verificar si hay errores de escritura. Una buena contraseña contendrá una combinación de letras, números y puntuación; tiene que tener al menos ocho caracteres y cambiarse de vez en cuando.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="406"/>
       <source>Validate passwords quality</source>
-      <translation>Validar calidad de las contraseñas</translation>
+      <translation>Verificar la fortaleza de contraseña</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="416"/>
       <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password.</source>
-      <translation>Cuando se marca esta casilla, se realiza la verificación de la seguridad de la contraseña y no podrá usar una contraseña débil.</translation>
+      <translation>Cuando se marca esta casilla se verificará la seguridad de la contraseña y no se podrá usar una contraseña débil.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="398"/>
@@ -4483,32 +4498,32 @@ Salida:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="293"/>
       <source>Reuse user password as root password</source>
-      <translation>Reutilizar la contraseña de usuario como contraseña root</translation>
+      <translation>Reutilizar la contraseña para el usuario «root»</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="301"/>
       <source>Use the same password for the administrator account.</source>
-      <translation>Usar la misma contraseña para la cuenta de administrador.</translation>
+      <translation>Utiliza la misma contraseña para la cuenta de administrador.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="314"/>
       <source>Choose a root password to keep your account safe.</source>
-      <translation>Elija una contraseña root para mantener su cuenta segura.</translation>
+      <translation>Elige una contraseña segura para la cuenta de administración «root».</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="324"/>
       <source>Root Password</source>
-      <translation>Contraseña Root</translation>
+      <translation>Contraseña de «root»</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="342"/>
       <source>Repeat Root Password</source>
-      <translation>Repetir Contraseña Root</translation>
+      <translation>Repetir la contraseña de «root»</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="368"/>
       <source>Enter the same password twice, so that it can be checked for typing errors.</source>
-      <translation>Ingrese la misma contraseña dos veces, para verificar si hay errores de tipeo.</translation>
+      <translation>Introduce la misma contraseña dos veces para verificar si hay errores de escritura.</translation>
     </message>
   </context>
   <context>
@@ -4518,7 +4533,7 @@ Salida:
       <source>&lt;h3&gt;Welcome to the %1 &lt;quote&gt;%2&lt;/quote&gt; installer&lt;/h3&gt;
             &lt;p&gt;This program will ask you some questions and set up %1 on your computer.&lt;/p&gt;</source>
       <translation>&lt;h3&gt;Bienvenido al instalador de &lt;quote&gt;%2&lt;/quote&gt;&lt;/h3&gt;
-            &lt;p&gt;Este programa le hará algunas preguntas y configurará %1 en su computadora.&lt;/p&gt;</translation>
+            &lt;p&gt;Este programa te hará algunas preguntas y configurará %1 en tu equipo.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="66"/>

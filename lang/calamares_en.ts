@@ -145,12 +145,12 @@
   <context>
     <name>Calamares::ExecutionViewStep</name>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="88"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="118"/>
       <source>Set up</source>
       <translation>Set up</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="88"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="118"/>
       <source>Install</source>
       <translation>Install</translation>
     </message>
@@ -1464,12 +1464,12 @@ The installer will quit and all changes will be lost.</translation>
   <context>
     <name>ErrorDialog</name>
     <message>
-      <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="36"/>
+      <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="40"/>
       <source>Details:</source>
       <translation>Details:</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="52"/>
+      <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="56"/>
       <source>Would you like to paste the install log to the web?</source>
       <translation>Would you like to paste the install log to the web?</translation>
     </message>
@@ -1982,35 +1982,35 @@ The installer will quit and all changes will be lost.</translation>
   <context>
     <name>LuksBootKeyFileJob</name>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="30"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="32"/>
       <source>Configuring LUKS key file.</source>
       <translation>Configuring LUKS key file.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="186"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="194"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="188"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="196"/>
       <source>No partitions are defined.</source>
       <translation>No partitions are defined.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="229"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="236"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="244"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="231"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="238"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="246"/>
       <source>Encrypted rootfs setup error</source>
       <translation>Encrypted rootfs setup error</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="230"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="232"/>
       <source>Root partition %1 is LUKS but no passphrase has been set.</source>
       <translation>Root partition %1 is LUKS but no passphrase has been set.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="237"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="239"/>
       <source>Could not create LUKS key file for root partition %1.</source>
       <translation>Could not create LUKS key file for root partition %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="245"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="247"/>
       <source>Could not configure LUKS key file on partition %1.</source>
       <translation>Could not configure LUKS key file on partition %1.</translation>
     </message>
@@ -2844,82 +2844,97 @@ The installer will quit and all changes will be lost.</translation>
       <translation>Partitions</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="297"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="254"/>
+      <source>Unsafe partition actions are enabled.</source>
+      <translation>Unsafe partition actions are enabled.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="257"/>
+      <source>Partitioning is configured to &lt;b&gt;always&lt;/b&gt; fail.</source>
+      <translation>Partitioning is configured to &lt;b&gt;always&lt;/b&gt; fail.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="260"/>
+      <source>No partitions will be changed.</source>
+      <translation>No partitions will be changed.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="300"/>
       <source>Current:</source>
       <translation>Current:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="315"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="318"/>
       <source>After:</source>
       <translation>After:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="524"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="529"/>
       <source>No EFI system partition configured</source>
       <translation>No EFI system partition configured</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="528"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="533"/>
       <source>EFI system partition configured incorrectly</source>
       <translation>EFI system partition configured incorrectly</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="533"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="538"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a suitable filesystem.</source>
       <translation>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a suitable filesystem.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="544"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="549"/>
       <source>The filesystem must be mounted on &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>The filesystem must be mounted on &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="550"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="555"/>
       <source>The filesystem must have type FAT32.</source>
       <translation>The filesystem must have type FAT32.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="558"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="563"/>
       <source>The filesystem must be at least %1 MiB in size.</source>
       <translation>The filesystem must be at least %1 MiB in size.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="564"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="569"/>
       <source>The filesystem must have flag &lt;strong&gt;%1&lt;/strong&gt; set.</source>
       <translation>The filesystem must have flag &lt;strong&gt;%1&lt;/strong&gt; set.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="570"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="575"/>
       <source>You can continue without setting up an EFI system partition but your system may fail to start.</source>
       <translation>You can continue without setting up an EFI system partition but your system may fail to start.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="587"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="593"/>
       <source>Option to use GPT on BIOS</source>
       <translation>Option to use GPT on BIOS</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="588"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="594"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
       <translation>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="620"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="626"/>
       <source>Boot partition not encrypted</source>
       <translation>Boot partition not encrypted</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="621"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="627"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
       <translation>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="712"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="718"/>
       <source>has at least one disk device available.</source>
       <translation>has at least one disk device available.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="713"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="719"/>
       <source>There are no partitions to install on.</source>
       <translation>There are no partitions to install on.</translation>
     </message>
@@ -3630,18 +3645,18 @@ Output:
   <context>
     <name>SetupGroupsJob</name>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="166"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="185"/>
       <source>Preparing groups.</source>
       <translation>Preparing groups.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="178"/>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="183"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="197"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="202"/>
       <source>Could not create groups in target system</source>
       <translation>Could not create groups in target system</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="184"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="203"/>
       <source>These groups are missing in the target system: %1</source>
       <translation>These groups are missing in the target system: %1</translation>
     </message>
@@ -3649,17 +3664,17 @@ Output:
   <context>
     <name>SetupSudoJob</name>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="33"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="34"/>
       <source>Configure &lt;pre&gt;sudo&lt;/pre&gt; users.</source>
       <translation>Configure &lt;pre&gt;sudo&lt;/pre&gt; users.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="55"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="74"/>
       <source>Cannot chmod sudoers file.</source>
       <translation>Cannot chmod sudoers file.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="60"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="79"/>
       <source>Cannot create sudoers file for writing.</source>
       <translation>Cannot create sudoers file for writing.</translation>
     </message>
@@ -3849,12 +3864,12 @@ Output:
       <translation>Unmount file systems.</translation>
     </message>
     <message>
-      <location filename="../src/modules/umount/UmountJob.cpp" line="122"/>
+      <location filename="../src/modules/umount/UmountJob.cpp" line="124"/>
       <source>No target system available.</source>
       <translation>No target system available.</translation>
     </message>
     <message>
-      <location filename="../src/modules/umount/UmountJob.cpp" line="130"/>
+      <location filename="../src/modules/umount/UmountJob.cpp" line="132"/>
       <source>No rootMountPoint is set.</source>
       <translation>No rootMountPoint is set.</translation>
     </message>

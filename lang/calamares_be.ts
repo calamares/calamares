@@ -145,12 +145,12 @@
   <context>
     <name>Calamares::ExecutionViewStep</name>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="88"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="118"/>
       <source>Set up</source>
       <translation>Наладзіць</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="88"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="118"/>
       <source>Install</source>
       <translation>Усталяваць</translation>
     </message>
@@ -1462,12 +1462,12 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>ErrorDialog</name>
     <message>
-      <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="36"/>
+      <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="40"/>
       <source>Details:</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="52"/>
+      <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="56"/>
       <source>Would you like to paste the install log to the web?</source>
       <translation>Сапраўды хочаце ўставіць журнал усталёўкі па сеціўным адрасе?</translation>
     </message>
@@ -1980,35 +1980,35 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>LuksBootKeyFileJob</name>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="30"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="32"/>
       <source>Configuring LUKS key file.</source>
       <translation>Наладка файла ключа LUKS.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="186"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="194"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="188"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="196"/>
       <source>No partitions are defined.</source>
       <translation>Раздзелаў не вызначана.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="229"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="236"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="244"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="231"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="238"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="246"/>
       <source>Encrypted rootfs setup error</source>
       <translation>Не атрымалася зашыфраваць rootfs</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="230"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="232"/>
       <source>Root partition %1 is LUKS but no passphrase has been set.</source>
       <translation>Каранёвы раздзел %1 зашыфраваны як LUKS, але парольная фраза не была вызначаная.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="237"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="239"/>
       <source>Could not create LUKS key file for root partition %1.</source>
       <translation>Не атрымалася стварыць файл ключа LUKS для каранёвага раздзела %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="245"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="247"/>
       <source>Could not configure LUKS key file on partition %1.</source>
       <translation>Не атрымалася наладзіць файл ключа LUKS на каранёвым раздзеле %1.</translation>
     </message>
@@ -2860,82 +2860,97 @@ The installer will quit and all changes will be lost.</source>
       <translation>Раздзелы</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="297"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="254"/>
+      <source>Unsafe partition actions are enabled.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="257"/>
+      <source>Partitioning is configured to &lt;b&gt;always&lt;/b&gt; fail.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="260"/>
+      <source>No partitions will be changed.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="300"/>
       <source>Current:</source>
       <translation>Бягучы:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="315"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="318"/>
       <source>After:</source>
       <translation>Пасля:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="524"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="529"/>
       <source>No EFI system partition configured</source>
       <translation>Няма наладжанага сістэмнага раздзела EFI</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="528"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="533"/>
       <source>EFI system partition configured incorrectly</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="533"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="538"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a suitable filesystem.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="544"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="549"/>
       <source>The filesystem must be mounted on &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="550"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="555"/>
       <source>The filesystem must have type FAT32.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="558"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="563"/>
       <source>The filesystem must be at least %1 MiB in size.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="564"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="569"/>
       <source>The filesystem must have flag &lt;strong&gt;%1&lt;/strong&gt; set.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="570"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="575"/>
       <source>You can continue without setting up an EFI system partition but your system may fail to start.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="587"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="593"/>
       <source>Option to use GPT on BIOS</source>
       <translation>Параметр для выкарыстання GPT у BIOS</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="588"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="594"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
-      <translation>Табліца раздзелаў GPT - найлепшы варыянт для ўсіх сістэм. Гэтая праграма ўсталёўкі таксама падтрымлівае гэты варыянт і для BIOS.&lt;br/&gt;&lt;br/&gt;Каб наладзіць GPT для BIOS (калі гэта яшчэ не зроблена), вярніцеся назад і абярыце табліцу раздзелаў GPT, пасля стварыце нефарматаваны раздзел памерам 8 МБ са сцягам &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;Гэты раздзел патрэбны для запуску %1 у BIOS з GPT.</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="620"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="626"/>
       <source>Boot partition not encrypted</source>
       <translation>Загрузачны раздзел не зашыфраваны</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="621"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="627"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
       <translation>Уключана шыфраванне каранёвага раздзела, але выкарыстаны асобны загрузачны раздзел без шыфравання.&lt;br/&gt;&lt;br/&gt;Пры такой канфігурацыі могуць узнікнуць праблемы з бяспекай, бо важныя сістэмныя даныя будуць захоўвацца на раздзеле без шыфравання.&lt;br/&gt;Вы можаце працягнуць, але файлавая сістэма разблакуецца падчас запуску сістэмы.&lt;br/&gt;Каб уключыць шыфраванне загрузачнага раздзела, вярніцеся назад і стварыце яго нанова, адзначыўшы &lt;strong&gt;Шыфраваць&lt;/strong&gt; у акне стварэння раздзела.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="712"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="718"/>
       <source>has at least one disk device available.</source>
       <translation>ёсць прынамсі адна даступная дыскавая прылада.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="713"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="719"/>
       <source>There are no partitions to install on.</source>
       <translation>Няма раздзелаў для ўсталёўкі.</translation>
     </message>
@@ -3646,18 +3661,18 @@ Output:
   <context>
     <name>SetupGroupsJob</name>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="166"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="185"/>
       <source>Preparing groups.</source>
       <translation>Падрыхтоўка групаў.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="178"/>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="183"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="197"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="202"/>
       <source>Could not create groups in target system</source>
       <translation>Не атрымалася стварыць групы ў мэтавай сістэме</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="184"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="203"/>
       <source>These groups are missing in the target system: %1</source>
       <translation>Наступныя групы адсутнічаюць у мэтавай сістэме: %1</translation>
     </message>
@@ -3665,17 +3680,17 @@ Output:
   <context>
     <name>SetupSudoJob</name>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="33"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="34"/>
       <source>Configure &lt;pre&gt;sudo&lt;/pre&gt; users.</source>
       <translation>Наладка &lt;pre&gt;суперкарыстальнікаў&lt;/pre&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="55"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="74"/>
       <source>Cannot chmod sudoers file.</source>
       <translation>Не атрымалася ўжыць chmod да файла sudoers.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="60"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="79"/>
       <source>Cannot create sudoers file for writing.</source>
       <translation>Не атрымалася запісаць файл sudoers.</translation>
     </message>
@@ -3865,12 +3880,12 @@ Output:
       <translation>Адмантаваць файлавыя сістэмы.</translation>
     </message>
     <message>
-      <location filename="../src/modules/umount/UmountJob.cpp" line="122"/>
+      <location filename="../src/modules/umount/UmountJob.cpp" line="124"/>
       <source>No target system available.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/umount/UmountJob.cpp" line="130"/>
+      <location filename="../src/modules/umount/UmountJob.cpp" line="132"/>
       <source>No rootMountPoint is set.</source>
       <translation type="unfinished"/>
     </message>
