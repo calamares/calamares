@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-17 15:52+0100\n"
+"POT-Creation-Date: 2022-03-21 17:21+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>, 2022\n"
 "Language-Team: Portuguese (Portugal) (https://www.transifex.com/calamares/teams/20061/pt_PT/)\n"
@@ -28,8 +28,8 @@ msgid "Configuring initramfs."
 msgstr "A configurar o initramfs."
 
 #: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
-#: src/modules/fstab/main.py:360 src/modules/fstab/main.py:366
-#: src/modules/fstab/main.py:393 src/modules/networkcfg/main.py:105
+#: src/modules/fstab/main.py:361 src/modules/fstab/main.py:367
+#: src/modules/fstab/main.py:394 src/modules/networkcfg/main.py:105
 #: src/modules/initcpiocfg/main.py:235 src/modules/initcpiocfg/main.py:239
 #: src/modules/localecfg/main.py:135 src/modules/mount/main.py:229
 #: src/modules/rawfs/main.py:164 src/modules/openrcdmcryptcfg/main.py:72
@@ -37,13 +37,13 @@ msgstr "A configurar o initramfs."
 msgid "Configuration Error"
 msgstr "Erro de configuração"
 
-#: src/modules/initramfscfg/main.py:86 src/modules/fstab/main.py:361
+#: src/modules/initramfscfg/main.py:86 src/modules/fstab/main.py:362
 #: src/modules/initcpiocfg/main.py:236 src/modules/mount/main.py:230
 #: src/modules/rawfs/main.py:165 src/modules/openrcdmcryptcfg/main.py:73
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "Nenhuma partição está definida para <pre>{!s}</pre> usar."
 
-#: src/modules/initramfscfg/main.py:90 src/modules/fstab/main.py:367
+#: src/modules/initramfscfg/main.py:90 src/modules/fstab/main.py:368
 #: src/modules/networkcfg/main.py:106 src/modules/initcpiocfg/main.py:240
 #: src/modules/localecfg/main.py:136 src/modules/openrcdmcryptcfg/main.py:77
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
@@ -57,16 +57,16 @@ msgstr "Configurar o GRUB."
 msgid "Install bootloader."
 msgstr "Instalar o carregador de arranque."
 
-#: src/modules/bootloader/main.py:612
+#: src/modules/bootloader/main.py:614
 msgid "Failed to install grub, no partitions defined in global storage"
 msgstr ""
 "Falha ao instalar o grub, sem partições definidas no armazenamento global"
 
-#: src/modules/bootloader/main.py:780
+#: src/modules/bootloader/main.py:782
 msgid "Bootloader installation error"
 msgstr "Erro de instalação do carregador de arranque"
 
-#: src/modules/bootloader/main.py:781
+#: src/modules/bootloader/main.py:783
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
@@ -78,7 +78,7 @@ msgstr ""
 msgid "Writing fstab."
 msgstr "A escrever o fstab."
 
-#: src/modules/fstab/main.py:394
+#: src/modules/fstab/main.py:395
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr ""
 "Não é dada nenhuma configuração <pre>{!s}</pre> para <pre>{!s}</pre> "

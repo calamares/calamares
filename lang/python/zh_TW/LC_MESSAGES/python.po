@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-17 15:52+0100\n"
+"POT-Creation-Date: 2022-03-21 17:21+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: 黃柏諺 <s8321414@gmail.com>, 2022\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/calamares/teams/20061/zh_TW/)\n"
@@ -27,8 +27,8 @@ msgid "Configuring initramfs."
 msgstr "正在設定 initramfs。"
 
 #: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
-#: src/modules/fstab/main.py:360 src/modules/fstab/main.py:366
-#: src/modules/fstab/main.py:393 src/modules/networkcfg/main.py:105
+#: src/modules/fstab/main.py:361 src/modules/fstab/main.py:367
+#: src/modules/fstab/main.py:394 src/modules/networkcfg/main.py:105
 #: src/modules/initcpiocfg/main.py:235 src/modules/initcpiocfg/main.py:239
 #: src/modules/localecfg/main.py:135 src/modules/mount/main.py:229
 #: src/modules/rawfs/main.py:164 src/modules/openrcdmcryptcfg/main.py:72
@@ -36,13 +36,13 @@ msgstr "正在設定 initramfs。"
 msgid "Configuration Error"
 msgstr "設定錯誤"
 
-#: src/modules/initramfscfg/main.py:86 src/modules/fstab/main.py:361
+#: src/modules/initramfscfg/main.py:86 src/modules/fstab/main.py:362
 #: src/modules/initcpiocfg/main.py:236 src/modules/mount/main.py:230
 #: src/modules/rawfs/main.py:165 src/modules/openrcdmcryptcfg/main.py:73
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "沒有分割區被定義為 <pre>{!s}</pre> 以供使用。"
 
-#: src/modules/initramfscfg/main.py:90 src/modules/fstab/main.py:367
+#: src/modules/initramfscfg/main.py:90 src/modules/fstab/main.py:368
 #: src/modules/networkcfg/main.py:106 src/modules/initcpiocfg/main.py:240
 #: src/modules/localecfg/main.py:136 src/modules/openrcdmcryptcfg/main.py:77
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
@@ -56,15 +56,15 @@ msgstr "設定 GRUB。"
 msgid "Install bootloader."
 msgstr "安裝開機載入程式。"
 
-#: src/modules/bootloader/main.py:612
+#: src/modules/bootloader/main.py:614
 msgid "Failed to install grub, no partitions defined in global storage"
 msgstr "安裝 grub 失敗，全域儲存空間中未定義分割區"
 
-#: src/modules/bootloader/main.py:780
+#: src/modules/bootloader/main.py:782
 msgid "Bootloader installation error"
 msgstr "開機載入程式安裝錯誤"
 
-#: src/modules/bootloader/main.py:781
+#: src/modules/bootloader/main.py:783
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
@@ -74,7 +74,7 @@ msgstr "無法安裝開機載入程式。安裝指令 <pre>{!s}</pre> 回傳了�
 msgid "Writing fstab."
 msgstr "正在寫入 fstab。"
 
-#: src/modules/fstab/main.py:394
+#: src/modules/fstab/main.py:395
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr "無 <pre>{!s}</pre> 設定可供 <pre>{!s}</pre> 使用。"
 
