@@ -10,6 +10,7 @@
 # Miguel Mayol <mitcoes@gmail.com>, 2020
 # Pier Jose Gotta Perez <piegope@protonmail.com>, 2020
 # guillermo pacheco <guillopacheco@gmail.com>, 2022
+# Swyter <Swyterzone@gmail.com>, 2022
 # 
 #, fuzzy
 msgid ""
@@ -18,7 +19,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-21 17:21+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: guillermo pacheco <guillopacheco@gmail.com>, 2022\n"
+"Last-Translator: Swyter <Swyterzone@gmail.com>, 2022\n"
 "Language-Team: Spanish (https://www.transifex.com/calamares/teams/20061/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,7 +29,7 @@ msgstr ""
 
 #: src/modules/initramfscfg/main.py:32
 msgid "Configuring initramfs."
-msgstr "Configurando initramfs - sistema de inicio -."
+msgstr "Configurando «initramfs» (archivos de arranque)."
 
 #: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
 #: src/modules/fstab/main.py:361 src/modules/fstab/main.py:367
@@ -44,18 +45,17 @@ msgstr "Error de configuración"
 #: src/modules/initcpiocfg/main.py:236 src/modules/mount/main.py:230
 #: src/modules/rawfs/main.py:165 src/modules/openrcdmcryptcfg/main.py:73
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr "No hay definidas particiones en 1{!s}1 para usar."
+msgstr "No hay ninguna partición en <pre>{!s}</pre> que se pueda usar."
 
 #: src/modules/initramfscfg/main.py:90 src/modules/fstab/main.py:368
 #: src/modules/networkcfg/main.py:106 src/modules/initcpiocfg/main.py:240
 #: src/modules/localecfg/main.py:136 src/modules/openrcdmcryptcfg/main.py:77
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr ""
-"No se facilitó un punto de montaje raíz utilizable para <pre>{!s}</pre> "
+msgstr "No hay ningún punto de montaje en <pre>{!s}</pre> que se pueda usar."
 
 #: src/modules/grubcfg/main.py:28
 msgid "Configure GRUB."
-msgstr "Configure GRUB - menú de arranque multisistema -"
+msgstr "Configurar GRUB."
 
 #: src/modules/bootloader/main.py:43
 msgid "Install bootloader."
@@ -81,7 +81,7 @@ msgstr ""
 
 #: src/modules/fstab/main.py:29
 msgid "Writing fstab."
-msgstr "Escribiendo la tabla de particiones fstab"
+msgstr "Escribiendo el «fstab»."
 
 #: src/modules/fstab/main.py:395
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
@@ -205,7 +205,8 @@ msgid ""
 "The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
 "exist."
 msgstr ""
-"La ruta hacia el rango de ejecución {level!s} es 1{path!s}1, y no existe."
+"La ruta hacia el rango de ejecución {level!s} es <code>{path!s}</code>, que "
+"no existe."
 
 #: src/modules/services-openrc/main.py:110
 msgid "Target service does not exist"
@@ -250,7 +251,7 @@ msgstr[1] "Eliminando %(num)d paquetes."
 #: src/modules/packages/main.py:725 src/modules/packages/main.py:737
 #: src/modules/packages/main.py:765
 msgid "Package Manager error"
-msgstr "Error del Gestor de Paquetes"
+msgstr "Error del gestor de paquetes"
 
 #: src/modules/packages/main.py:726
 msgid ""
@@ -310,7 +311,7 @@ msgstr "Error al establecer el punto de montaje zfs"
 
 #: src/modules/mount/main.py:253
 msgid "zfs mounting error"
-msgstr "error de montaje zfs"
+msgstr "hubo un error con el montaje zfs"
 
 #: src/modules/rawfs/main.py:26
 msgid "Installing data."
@@ -327,11 +328,11 @@ msgstr "Paso {} de python ficticio"
 
 #: src/modules/hwclock/main.py:26
 msgid "Setting hardware clock."
-msgstr "Configurando el reloj de la computadora."
+msgstr "Ajustando el reloj interno del equipo."
 
 #: src/modules/openrcdmcryptcfg/main.py:26
 msgid "Configuring OpenRC dmcrypt service."
-msgstr "Configurando el servicio   - de arranque encriptado -. OpenRC dmcrypt"
+msgstr "Configurando el servicio de arranque cifrado «dmcrypt» para OpenRC "
 
 #: src/modules/services-systemd/main.py:26
 msgid "Configure systemd services"
@@ -370,16 +371,16 @@ msgid ""
 "Unknown systemd commands <code>{command!s}</code> and "
 "<code>{suffix!s}</code> for unit {name!s}."
 msgstr ""
-"Órdenes desconocidas de systemd  <code>{command!s}</code> y "
-"<code>{suffix!s}</code> para la/s unidad /es {name!s}."
+"systemd no reconoce las órdenes <code>{command!s}</code> y "
+"<code>{suffix!s}</code> para la unidad {name!s}."
 
 #: src/modules/mkinitfs/main.py:27
 msgid "Creating initramfs with mkinitfs."
-msgstr "Creando initramfs con mkinitfs."
+msgstr "Creando el «initramfs» con «mkinitfs»."
 
 #: src/modules/mkinitfs/main.py:49
 msgid "Failed to run mkinitfs on the target"
-msgstr "Error al ejecutar mkinitfs en el objetivo"
+msgstr "Hubo un error al ejecutar «mkinitfs» en el destino"
 
 #: src/modules/unpackfs/main.py:34
 msgid "Filling up filesystems."
@@ -395,7 +396,7 @@ msgstr "Desempaquetando la imagen {}/{}, archivo {}/{}"
 
 #: src/modules/unpackfs/main.py:314
 msgid "Starting to unpack {}"
-msgstr "Iniciando el desempaquetado {}"
+msgstr "Desempaquetando {}"
 
 #: src/modules/unpackfs/main.py:323 src/modules/unpackfs/main.py:467
 msgid "Failed to unpack image \"{}\""
@@ -403,12 +404,11 @@ msgstr "No se pudo desempaquetar la imagen «{}»"
 
 #: src/modules/unpackfs/main.py:430
 msgid "No mount point for root partition"
-msgstr ""
-"No especificó un punto de montaje para la  partición raíz - / o root -"
+msgstr "Parece que la partición raíz («root») no tiene un punto de montaje"
 
 #: src/modules/unpackfs/main.py:431
 msgid "globalstorage does not contain a \"rootMountPoint\" key."
-msgstr "El globalstorage no contiene una llave \"rootMountPoint\"."
+msgstr "El «globalstorage» no contiene una clave «rootMountPoint»."
 
 #: src/modules/unpackfs/main.py:434
 msgid "Bad mount point for root partition"
@@ -422,29 +422,28 @@ msgstr "rootMountPoint es \"{}\", que no existe."
 #: src/modules/unpackfs/main.py:459 src/modules/unpackfs/main.py:465
 #: src/modules/unpackfs/main.py:480
 msgid "Bad unpackfs configuration"
-msgstr "Mala configuración de unpackfs "
+msgstr "La configuración de «unpackfs» no es correcta"
 
 #: src/modules/unpackfs/main.py:440
 msgid "There is no configuration information."
-msgstr "No hay información de configuración."
+msgstr "Parece que no hay información de configuración."
 
 #: src/modules/unpackfs/main.py:456
 msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
 msgstr ""
-"El sistema de archivos para \"{}\" ({}) no es compatible con su kernel "
-"actual"
+"El sistema de archivos de «{}» ({}) no es compatible con el kernel actual"
 
 #: src/modules/unpackfs/main.py:460
 msgid "The source filesystem \"{}\" does not exist"
-msgstr "El sistema de archivos de origen  \"{}\" no existe"
+msgstr "El sistema de archivos fuente «{}» no existe"
 
 #: src/modules/unpackfs/main.py:466
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed."
 msgstr ""
-"No se pudo encontrar unsquashfs, asegúrese de tener instalado el paquete "
-"squashfs-tools."
+"Parece que «unsquashfs» no está disponible; asegúrate de tener instalado "
+"«squashfs-tools»."
 
 #: src/modules/unpackfs/main.py:481
 msgid "The destination \"{}\" in the target system is not a directory"

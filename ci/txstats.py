@@ -11,6 +11,7 @@
 # Run it with a -v command-line option to get extra output on
 # actual translation percentages.
 import sys
+import os
 import argparse
 
 class TXError(Exception):
@@ -172,7 +173,6 @@ def get_tx_stats(languages, outputter, verbose):
 
     If @p verbose is True, prints out language stats as well.
     """
-    suppressed_languages = ( "es_ES", )  # In Transifex, but not used
     # Some languages go into the "incomplete" list by definition,
     # regardless of their completion status: this can have various reasons.
     #
@@ -187,8 +187,6 @@ def get_tx_stats(languages, outputter, verbose):
     all_langs = []
     outputter.print("# Total %d languages" % len(languages))
     for lang_name in languages:
-        if lang_name in suppressed_languages:
-            continue
         stats = languages[lang_name]["translated"]["percentage"]
         # Make the by-definition-incomplete languages have a percentage
         # lower than zero; this way they end up sorted (in -v output)
@@ -204,6 +202,38 @@ def get_tx_stats(languages, outputter, verbose):
     output_langs(all_langs, outputter, "good", lambda s : 1.0 > s >= 0.75)
     output_langs(all_langs, outputter, "ok", lambda s : 0.75 > s >= 0.05)
     output_langs(all_langs, outputter, "incomplete", lambda s : 0.05 > s)
+
+    # Audit the languages that are in TX, mapped to git
+    for lang_name in languages:
+        if not os.path.exists("lang/calamares_{}.ts".format(lang_name)):
+            print("# !! Missing translation file for {}".format(lang_name))
+        if not os.path.isdir("lang/python/{}/LC_MESSAGES".format(lang_name)):
+            print("# !! Missing Python translation file for {}".format(lang_name))
+
+    # Audit the files that are in git, mapped to TX
+    special_cases = ("python.pot", "python", "CMakeLists.txt", "txload.cpp", "calamares_i18n.qrc.in")
+    for file_name in os.listdir("lang"):
+        if file_name in special_cases:
+            continue
+        elif file_name.startswith("calamares_") and file_name.endswith(".ts"):
+            key = file_name[10:-3]
+            if not key in languages and not key == "en":
+                print("# !! Translation file for {} not in TX".format(key))
+        elif file_name.startswith("tz_") and file_name.endswith(".ts"):
+            key = file_name[3:-3]
+            if not key in languages and not key == "en":
+                print("# !! Translation file for TZ {} not in TX".format(key))
+        elif file_name.startswith("kb_") and file_name.endswith(".ts"):
+            key = file_name[3:-3]
+            if not key in languages and not key == "en":
+                print("# !! Translation file for KB {} not in TX".format(key))
+        else:
+            print("# !! Weird translation file {} not in TX".format(file_name))
+
+    # Audit the python translation files that are in git, mapped to TX
+    for file_name in os.listdir("lang/python"):
+        if file_name not in languages:
+            print("# !! Translation file for Python {} not in TX".format(file_name))
 
     return 0
 
