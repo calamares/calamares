@@ -230,6 +230,11 @@ def get_tx_stats(languages, outputter, verbose):
         else:
             print("# !! Weird translation file {} not in TX".format(file_name))
 
+    # Audit the python translation files that are in git, mapped to TX
+    for file_name in os.listdir("lang/python"):
+        if file_name not in languages:
+            print("# !! Translation file for Python {} not in TX".format(file_name))
+
     return 0
 
 
