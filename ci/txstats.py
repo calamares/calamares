@@ -207,7 +207,7 @@ def get_tx_stats(languages, outputter, verbose):
     for lang_name in languages:
         if not os.path.exists("lang/calamares_{}.ts".format(lang_name)):
             print("# !! Missing translation file for {}".format(lang_name))
-        if not os.path.isdir("lang/{}/LC_MESSAGES".format(lang_name)):
+        if not os.path.isdir("lang/python/{}/LC_MESSAGES".format(lang_name)):
             print("# !! Missing Python translation file for {}".format(lang_name))
 
     # Audit the files that are in git, mapped to TX
