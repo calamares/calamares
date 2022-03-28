@@ -132,9 +132,10 @@ ModuleSystemTests::testBadFromStringCases()
 void
 ModuleSystemTests::testBasicDescriptor()
 {
+    const QString path = QStringLiteral( "/bogus.desc" );
     {
         QVariantMap m;
-        auto d = Calamares::ModuleSystem::Descriptor::fromDescriptorData( m );
+        auto d = Calamares::ModuleSystem::Descriptor::fromDescriptorData( m, path );
 
         QVERIFY( !d.isValid() );
         QVERIFY( d.name().isEmpty() );
@@ -142,7 +143,7 @@ ModuleSystemTests::testBasicDescriptor()
     {
         QVariantMap m;
         m.insert( "name", QVariant() );
-        auto d = Calamares::ModuleSystem::Descriptor::fromDescriptorData( m );
+        auto d = Calamares::ModuleSystem::Descriptor::fromDescriptorData( m, path );
 
         QVERIFY( !d.isValid() );
         QVERIFY( d.name().isEmpty() );
@@ -150,7 +151,7 @@ ModuleSystemTests::testBasicDescriptor()
     {
         QVariantMap m;
         m.insert( "name", 17 );
-        auto d = Calamares::ModuleSystem::Descriptor::fromDescriptorData( m );
+        auto d = Calamares::ModuleSystem::Descriptor::fromDescriptorData( m, path );
 
         QVERIFY( !d.isValid() );
         QVERIFY( !d.name().isEmpty() );
@@ -161,7 +162,7 @@ ModuleSystemTests::testBasicDescriptor()
         m.insert( "name", "welcome" );
         m.insert( "type", "viewmodule" );
         m.insert( "interface", "qtplugin" );
-        auto d = Calamares::ModuleSystem::Descriptor::fromDescriptorData( m );
+        auto d = Calamares::ModuleSystem::Descriptor::fromDescriptorData( m, path );
 
         // QVERIFY( !d.isValid() );
         QCOMPARE( d.name(), QStringLiteral( "welcome" ) );

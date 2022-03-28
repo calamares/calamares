@@ -50,9 +50,10 @@ interfaceNames()
 Descriptor::Descriptor() {}
 
 Descriptor
-Descriptor::fromDescriptorData( const QVariantMap& moduleDesc )
+Descriptor::fromDescriptorData( const QVariantMap& moduleDesc, const QString& descriptorPath )
 {
     Descriptor d;
+    Logger::Once o;
 
     {
         bool typeOk = false;
@@ -60,7 +61,11 @@ Descriptor::fromDescriptorData( const QVariantMap& moduleDesc )
         Type t = typeNames().find( typeValue, typeOk );
         if ( !typeOk )
         {
-            cWarning() << "Module descriptor contains invalid *type*" << typeValue;
+            if ( o )
+            {
+                cWarning() << o << "Descriptor file" << descriptorPath;
+            }
+            cWarning() << o << "Module descriptor contains invalid *type*" << typeValue;
         }
 
         bool interfaceOk = false;
@@ -68,7 +73,11 @@ Descriptor::fromDescriptorData( const QVariantMap& moduleDesc )
         Interface i = interfaceNames().find( interfaceValue, interfaceOk );
         if ( !interfaceOk )
         {
-            cWarning() << "Module descriptor contains invalid *interface*" << interfaceValue;
+            if ( o )
+            {
+                cWarning() << o << "Descriptor file" << descriptorPath;
+            }
+            cWarning() << o << "Module descriptor contains invalid *interface*" << interfaceValue;
         }
 
         d.m_name = moduleDesc.value( "name" ).toString();
@@ -102,7 +111,11 @@ Descriptor::fromDescriptorData( const QVariantMap& moduleDesc )
         d.m_script = CalamaresUtils::getString( moduleDesc, "script" );
         if ( d.m_script.isEmpty() )
         {
-            cWarning() << "Module descriptor contains no *script*" << d.name();
+            if ( o )
+            {
+                cWarning() << o << "Descriptor file" << descriptorPath;
+            }
+            cWarning() << o << "Module descriptor contains no *script*" << d.name();
             d.m_isValid = false;
         }
         consumedKeys << "script";
@@ -117,7 +130,11 @@ Descriptor::fromDescriptorData( const QVariantMap& moduleDesc )
         }
         if ( d.m_script.isEmpty() )
         {
-            cWarning() << "Module descriptor contains no *script*" << d.name();
+            if ( o )
+            {
+                cWarning() << o << "Descriptor file" << descriptorPath;
+            }
+            cWarning() << o << "Module descriptor contains no *script*" << d.name();
             d.m_isValid = false;
         }
         consumedKeys << "command"
@@ -141,7 +158,11 @@ Descriptor::fromDescriptorData( const QVariantMap& moduleDesc )
     }
     if ( !superfluousKeys.isEmpty() )
     {
-        cWarning() << "Module descriptor contains extra keys:" << Logger::DebugList( superfluousKeys );
+        if ( o )
+        {
+            cWarning() << o << "Descriptor file" << descriptorPath;
+        }
+        cWarning() << o << "Module descriptor contains extra keys:" << Logger::DebugList( superfluousKeys );
         d.m_isValid = false;
     }
 
