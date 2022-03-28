@@ -221,11 +221,11 @@ def get_tx_stats(languages, outputter, verbose):
                 print("# !! Translation file for {} not in TX".format(key))
         elif file_name.startswith("tz_") and file_name.endswith(".ts"):
             key = file_name[3:-3]
-            if not key in languages:
+            if not key in languages and not key == "en":
                 print("# !! Translation file for TZ {} not in TX".format(key))
         elif file_name.startswith("kb_") and file_name.endswith(".ts"):
             key = file_name[3:-3]
-            if not key in languages:
+            if not key in languages and not key == "en":
                 print("# !! Translation file for KB {} not in TX".format(key))
         else:
             print("# !! Weird translation file {} not in TX".format(file_name))
