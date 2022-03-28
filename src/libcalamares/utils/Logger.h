@@ -364,6 +364,12 @@ public:
      */
     void refresh() { m = true; }
 
+    /** @brief Is this object "fresh"?
+     *
+     * Once a Once-object has printed (once) it is no longer fresh.
+     */
+    operator bool() const { return m; }
+
 private:
     mutable bool m = false;
 };
