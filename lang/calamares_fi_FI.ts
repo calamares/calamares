@@ -2847,12 +2847,12 @@ hiiren vieritystä skaalaamiseen.</translation>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="254"/>
       <source>Unsafe partition actions are enabled.</source>
-      <translation type="unfinished"/>
+      <translation>Epäturvalliset osiotoiminnot ovat käytössä.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="257"/>
       <source>Partitioning is configured to &lt;b&gt;always&lt;/b&gt; fail.</source>
-      <translation type="unfinished"/>
+      <translation>Osiointi on määritetty &lt;b&gt;aina&lt;/b&gt; epäonnistumaan.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="260"/>
@@ -2917,7 +2917,7 @@ hiiren vieritystä skaalaamiseen.</translation>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="594"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
-      <translation type="unfinished"/>
+      <translation>GPT-osiotaulukko on paras vaihtoehto kaikille järjestelmille. Kuitenkin asennusohjelma tukee myös BIOS-järjestelmää.&lt;br/&gt;&lt;br/&gt;Jos haluat määrittää GPT-osiotaulukon BIOS:ssa (jos et ole jo tehnyt) niin palaa takaisin ja aseta osiotaulukkoksi GPT. Luo seuraavaksi 8 Mt alustamaton osio &lt;strong&gt;%2&lt;/strong&gt; lipulla käyttöön.&lt;br/&gt;&lt;br/&gt;Alustamaton 8 Mt tarvitaan %1  käynnistämiseen BIOS-järjestelmässä, jossa on GPT.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="626"/>
