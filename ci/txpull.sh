@@ -69,9 +69,6 @@ drop_language() {
 	mv calamares.desktop.new calamares.desktop
 }
 
-drop_language es_ES
-drop_language pl_PL
-
 # Also fix the .desktop file, which has some fields removed by Transifex.
 #
 { cat calamares.desktop.in ; grep "\\[[a-zA-Z_@]*]=" calamares.desktop ; } > calamares.desktop.new
