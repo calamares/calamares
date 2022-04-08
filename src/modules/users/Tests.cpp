@@ -42,6 +42,7 @@ private Q_SLOTS:
 
     void testHostActions_data();
     void testHostActions();
+    void testHostActions2();
     void testPasswordChecks();
     void testUserPassword();
 
@@ -249,6 +250,22 @@ UserTests::testHostActions()
     m.insert( "writeHostsFile", true );
     QCOMPARE( getHostNameActions( m ), HostNameActions( result ) | HostNameAction::WriteEtcHosts );
 }
+
+void
+UserTests::testHostActions2()
+{
+    Config c;
+    QVariantMap legacy;
+
+    c.setConfigurationMap( legacy );
+    QCOMPARE( c.hostNameActions(), HostNameAction::EtcHostname | HostNameAction::WriteEtcHosts );
+
+    legacy.insert( "writeHostsFile", false );
+    legacy.insert( "setHostname", "Hostnamed" );
+    c.setConfigurationMap( legacy );
+    QCOMPARE( c.hostNameActions(), HostNameAction::SystemdHostname );
+}
+
 
 void
 UserTests::testPasswordChecks()
