@@ -738,7 +738,7 @@ STATICTEST HostNameActions
 getHostNameActions( const QVariantMap& configurationMap )
 {
     HostNameAction setHostName = HostNameAction::EtcHostname;
-    QString hostnameActionString = CalamaresUtils::getString( configurationMap, "setHostname" );
+    QString hostnameActionString = CalamaresUtils::getString( configurationMap, "location" );
     if ( !hostnameActionString.isEmpty() )
     {
         bool ok = false;
@@ -826,6 +826,17 @@ either( T ( *f )( const QVariantMap&, const QString&, U ),
     }
 }
 
+static void
+copyLegacy( const QVariantMap& source, const QString& sourceKey, QVariantMap& target, const QString& targetKey )
+{
+    if ( source.contains( sourceKey ) )
+    {
+        const QVariant legacyValue = source.value( sourceKey );
+        cWarning() << "Legacy *users* key" << sourceKey << "overrides hostname-settings.";
+        target.insert( targetKey, legacyValue );
+    }
+}
+
 void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
 {
@@ -844,7 +855,15 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         ? SudoStyle::UserAndGroup
         : SudoStyle::UserOnly;
 
-    m_hostNameActions = getHostNameActions( configurationMap );
+    // Handle *hostname* key and subkeys and legacy settings
+    {
+        bool ok = false;  // Ignored
+        QVariantMap hostnameSettings = CalamaresUtils::getSubMap( configurationMap, "hostname", ok );
+
+        copyLegacy( configurationMap, "setHostname", hostnameSettings, "location" );
+        copyLegacy( configurationMap, "writeHostsFile", hostnameSettings, "writeHostsFile" );
+        m_hostNameActions = getHostNameActions( hostnameSettings );
+    }
 
     setConfigurationDefaultGroups( configurationMap, m_defaultGroups );
 

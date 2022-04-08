@@ -240,7 +240,7 @@ UserTests::testHostActions()
     QVariantMap m;
     if ( set )
     {
-        m.insert( "setHostname", string );
+        m.insert( "location", string );
     }
     QCOMPARE( getHostNameActions( m ),
               HostNameActions( result ) | HostNameAction::WriteEtcHosts );  // write bits default to true
