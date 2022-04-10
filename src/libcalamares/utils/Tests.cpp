@@ -1043,7 +1043,7 @@ file_setup( const QTemporaryDir& tempRoot )
 void
 LibCalamaresTests::testReadWriteFile()
 {
-    static const QByteArray otherContents( "derp\n" );
+    static const QByteArray otherContents( "first\nsecond\n" );
 
     QTemporaryDir tempRoot( QDir::tempPath() + QStringLiteral( "/test-job-XXXXXX" ) );
     auto* ss = file_setup( tempRoot );
@@ -1080,15 +1080,16 @@ LibCalamaresTests::testReadWriteFile()
         QFileInfo fi( fullPath.path() );
         QVERIFY( fi.exists() );
         QVERIFY( fi.isFile() );
-        QCOMPARE( fi.size(), 5 );
+        QCOMPARE( fi.size(), 13 );
     }
 
     // Now it's been written, we can read it, too
     {
         auto contents = ss->readTargetFile( "test0" );
         QVERIFY( !contents.isEmpty() );
-        QCOMPARE( contents.count(), 1 );
-        QCOMPARE( contents[ 0 ], QStringLiteral( "derp" ) );  // No trailing \n
+        QCOMPARE( contents.count(), 2 );
+        QCOMPARE( contents[ 0 ], QStringLiteral( "first" ) );  // No trailing \n
+        QCOMPARE( contents[ 1 ], QStringLiteral( "second" ) );  // No trailing \n
     }
 }
 
