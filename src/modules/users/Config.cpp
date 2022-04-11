@@ -240,6 +240,11 @@ Config::loginNameStatus() const
 void
 Config::setHostName( const QString& host )
 {
+    if ( hostNameAction() != HostNameAction::EtcHostname && hostNameAction() != HostNameAction::SystemdHostname )
+    {
+        cDebug() << "Ignoring hostname" << host << "No hostname will be set.";
+        return;
+    }
     if ( host != m_hostName )
     {
         m_customHostName = !host.isEmpty();
