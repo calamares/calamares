@@ -19,6 +19,8 @@
 extern void setConfigurationDefaultGroups( const QVariantMap& map, QList< GroupDescription >& defaultGroups );
 extern HostNameAction getHostNameAction( const QVariantMap& configurationMap );
 extern bool addPasswordCheck( const QString& key, const QVariant& value, PasswordCheckList& passwordChecks );
+extern QString
+makeHostnameSuggestion( const QString& templateString, const QStringList& fullNameParts, const QString& loginName );
 
 /** @brief Test Config object methods and internals
  *
@@ -43,6 +45,9 @@ private Q_SLOTS:
     void testHostActions_data();
     void testHostActions();
     void testHostActions2();
+    void testHostSuggestions_data();
+    void testHostSuggestions();
+
     void testPasswordChecks();
     void testUserPassword();
 
@@ -276,6 +281,34 @@ UserTests::testHostActions2()
     c.setConfigurationMap( legacy );
     QCOMPARE( c.hostnameAction(), HostNameAction::SystemdHostname );
     QCOMPARE( c.writeEtcHosts(), false );
+}
+
+
+void
+UserTests::testHostSuggestions_data()
+{
+    QTest::addColumn< QString >( "templateString" );
+    QTest::addColumn< QString >( "result" );
+
+    QTest::newRow( "unset  " ) << QString() << QString();
+    QTest::newRow( "const  " ) << QStringLiteral( "derp" ) << QStringLiteral( "derp" );
+    QTest::newRow( "escaped" ) << QStringLiteral( "$$" ) << QString();  // Because invalid
+    QTest::newRow( "default" ) << QStringLiteral( "${first}-pc" )
+                               << QStringLiteral( "chuck-pc" );  // Avoid ${product} because it's DMI-based
+    QTest::newRow( "full   " ) << QStringLiteral( "${name}" ) << QStringLiteral( "chuckyeager" );
+    QTest::newRow( "login+ " ) << QStringLiteral( "${login}-${first}" ) << QStringLiteral( "bill-chuck" );
+}
+
+void
+UserTests::testHostSuggestions()
+{
+    const QStringList fullName { "Chuck", "Yeager" };
+    const QString login { "bill" };
+
+    QFETCH( QString, templateString );
+    QFETCH( QString, result );
+
+    QCOMPARE( makeHostnameSuggestion( templateString, fullName, login ), result );
 }
 
 

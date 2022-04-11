@@ -20,6 +20,8 @@
 #include "utils/String.h"
 #include "utils/Variant.h"
 
+#include <KMacroExpander>
+
 #include <QCoreApplication>
 #include <QFile>
 #include <QMetaProperty>
@@ -305,6 +307,12 @@ Config::hostnameStatus() const
     return QString();
 }
 
+static QString
+cleanupForHostname( const QString& s )
+{
+    QRegExp dmirx( "[^a-zA-Z0-9]", Qt::CaseInsensitive );
+    return s.toLower().replace( dmirx, " " ).remove( ' ' );
+}
 
 /** @brief Guess the machine's name
  *
@@ -319,16 +327,11 @@ guessProductName()
 
     if ( !tried )
     {
-        // yes validateHostnameText() but these files can be a mess
-        QRegExp dmirx( "[^a-zA-Z0-9]", Qt::CaseInsensitive );
         QFile dmiFile( QStringLiteral( "/sys/devices/virtual/dmi/id/product_name" ) );
 
         if ( dmiFile.exists() && dmiFile.open( QIODevice::ReadOnly ) )
         {
-            dmiProduct = QString::fromLocal8Bit( dmiFile.readAll().simplified().data() )
-                             .toLower()
-                             .replace( dmirx, " " )
-                             .remove( ' ' );
+            dmiProduct = cleanupForHostname( QString::fromLocal8Bit( dmiFile.readAll().simplified().data() ) );
         }
         if ( dmiProduct.isEmpty() )
         {
@@ -386,17 +389,37 @@ makeLoginNameSuggestion( const QStringList& parts )
     return USERNAME_RX.indexIn( usernameSuggestion ) != -1 ? usernameSuggestion : QString();
 }
 
+/** @brief Return an invalid string for use in a hostname, if @p s is empty
+ *
+ * Maps empty to "^" (which is invalid in a hostname), everything else
+ * returns @p s itself.
+ */
 static QString
-makeHostnameSuggestion( const QStringList& parts )
+invalidEmpty( const QString& s )
 {
-    static const QRegExp HOSTNAME_RX( "^[a-zA-Z0-9][-a-zA-Z0-9_]*$" );
-    if ( parts.isEmpty() || parts.first().isEmpty() )
-    {
-        return QString();
-    }
+    return s.isEmpty() ? QStringLiteral( "^" ) : s;
+}
 
-    QString productName = guessProductName();
-    QString hostnameSuggestion = QStringLiteral( "%1-%2" ).arg( parts.first() ).arg( productName );
+STATICTEST QString
+makeHostnameSuggestion( const QString& templateString, const QStringList& fullNameParts, const QString& loginName )
+{
+    QHash< QString, QString > replace;
+    // User data
+    replace.insert( QStringLiteral( "first" ),
+                    invalidEmpty( fullNameParts.isEmpty() ? QString() : cleanupForHostname( fullNameParts.first() ) ) );
+    replace.insert( QStringLiteral( "name" ), invalidEmpty( cleanupForHostname( fullNameParts.join( QString() ) ) ) );
+    replace.insert( QStringLiteral( "login" ), invalidEmpty( cleanupForHostname( loginName ) ) );
+    // Hardware data
+    replace.insert( QStringLiteral( "product" ), guessProductName() );
+    replace.insert( QStringLiteral( "product2" ), cleanupForHostname( QSysInfo::prettyProductName() ) );
+    replace.insert( QStringLiteral( "cpu" ), cleanupForHostname( QSysInfo::currentCpuArchitecture() ) );
+    // Hostname data
+    replace.insert( QStringLiteral( "host" ), invalidEmpty( cleanupForHostname( QSysInfo::machineHostName() ) ) );
+
+    QString hostnameSuggestion = KMacroExpander::expandMacros( templateString, replace, '$' );
+
+    // RegExp for valid hostnames; if the suggestion produces a valid name, return it
+    static const QRegExp HOSTNAME_RX( "^[a-zA-Z0-9][-a-zA-Z0-9_]*$" );
     return HOSTNAME_RX.indexIn( hostnameSuggestion ) != -1 ? hostnameSuggestion : QString();
 }
 
@@ -427,18 +450,18 @@ Config::setFullName( const QString& name )
         // Build login and hostname, if needed
         static QRegExp rx( "[^a-zA-Z0-9 ]", Qt::CaseInsensitive );
 
-        QString cleanName = CalamaresUtils::removeDiacritics( transliterate( name ) )
-                                .replace( QRegExp( "[-']" ), "" )
-                                .replace( rx, " " )
-                                .toLower()
-                                .simplified();
+        const QString cleanName = CalamaresUtils::removeDiacritics( transliterate( name ) )
+                                      .replace( QRegExp( "[-']" ), "" )
+                                      .replace( rx, " " )
+                                      .toLower()
+                                      .simplified();
 
 
         QStringList cleanParts = cleanName.split( ' ' );
 
         if ( !m_customLoginName )
         {
-            QString login = makeLoginNameSuggestion( cleanParts );
+            const QString login = makeLoginNameSuggestion( cleanParts );
             if ( !login.isEmpty() && login != m_loginName )
             {
                 setLoginName( login );
@@ -448,7 +471,7 @@ Config::setFullName( const QString& name )
         }
         if ( !m_customHostName )
         {
-            QString hostname = makeHostnameSuggestion( cleanParts );
+            const QString hostname = makeHostnameSuggestion( m_hostnameTemplate, cleanParts, loginName() );
             if ( !hostname.isEmpty() && hostname != m_hostname )
             {
                 setHostName( hostname );
@@ -877,6 +900,8 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         copyLegacy( configurationMap, "writeHostsFile", hostnameSettings, "writeHostsFile" );
         m_hostnameAction = getHostNameAction( hostnameSettings );
         m_writeEtcHosts = CalamaresUtils::getBool( hostnameSettings, "writeHostsFile", true );
+        m_hostnameTemplate
+            = CalamaresUtils::getString( hostnameSettings, "template", QStringLiteral( "${first}-${product}" ) );
     }
 
     setConfigurationDefaultGroups( configurationMap, m_defaultGroups );

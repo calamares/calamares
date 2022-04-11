@@ -345,6 +345,8 @@ private:
 
     HostNameAction m_hostnameAction = HostNameAction::EtcHostname;
     bool m_writeEtcHosts = false;
+    QString m_hostnameTemplate;
+
     PasswordCheckList m_passwordChecks;
 };
 
