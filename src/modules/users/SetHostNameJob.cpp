@@ -61,16 +61,19 @@ STATICTEST bool
 writeFileEtcHosts( const QString& hostname )
 {
     // The actual hostname gets substituted in at %1
-    static const char etc_hosts[] = R"(# Host addresses
+    const QString standard_hosts = QStringLiteral( R"(# Standard host addresses
 127.0.0.1  localhost
-127.0.1.1  %1
 ::1        localhost ip6-localhost ip6-loopback
 ff02::1    ip6-allnodes
 ff02::2    ip6-allrouters
-)";
+)" );
+    const QString this_host = QStringLiteral( R"(# This host address
+127.0.1.1  %1
+)" );
 
+    const QString etc_hosts = standard_hosts + ( hostname.isEmpty() ? QString() : this_host.arg( hostname ) );
     return CalamaresUtils::System::instance()->createTargetFile(
-        QStringLiteral( "/etc/hosts" ), QString( etc_hosts ).arg( hostname ).toUtf8(), WriteMode::Overwrite );
+        QStringLiteral( "/etc/hosts" ), etc_hosts.toUtf8(), WriteMode::Overwrite );
 }
 
 STATICTEST bool
