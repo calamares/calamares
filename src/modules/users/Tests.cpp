@@ -268,13 +268,13 @@ UserTests::testHostActions2()
 
     // Test defaults
     c.setConfigurationMap( legacy );
-    QCOMPARE( c.hostNameAction(), HostNameAction::EtcHostname );
+    QCOMPARE( c.hostnameAction(), HostNameAction::EtcHostname );
     QCOMPARE( c.writeEtcHosts(), true );
 
     legacy.insert( "writeHostsFile", false );
     legacy.insert( "setHostname", "Hostnamed" );
     c.setConfigurationMap( legacy );
-    QCOMPARE( c.hostNameAction(), HostNameAction::SystemdHostname );
+    QCOMPARE( c.hostnameAction(), HostNameAction::SystemdHostname );
     QCOMPARE( c.writeEtcHosts(), false );
 }
 

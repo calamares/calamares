@@ -77,7 +77,7 @@ updateGSAutoLogin( bool doAutoLogin, const QString& login )
 }
 
 const NamedEnumTable< HostNameAction >&
-hostNameActionNames()
+hostnameActionNames()
 {
     // *INDENT-OFF*
     // clang-format off
@@ -100,7 +100,7 @@ Config::Config( QObject* parent )
     emit readyChanged( m_isReady );  // false
 
     // Gang together all the changes of status to one readyChanged() signal
-    connect( this, &Config::hostNameStatusChanged, this, &Config::checkReady );
+    connect( this, &Config::hostnameStatusChanged, this, &Config::checkReady );
     connect( this, &Config::loginNameStatusChanged, this, &Config::checkReady );
     connect( this, &Config::fullNameChanged, this, &Config::checkReady );
     connect( this, &Config::userPasswordStatusChanged, this, &Config::checkReady );
@@ -242,15 +242,15 @@ Config::loginNameStatus() const
 void
 Config::setHostName( const QString& host )
 {
-    if ( hostNameAction() != HostNameAction::EtcHostname && hostNameAction() != HostNameAction::SystemdHostname )
+    if ( hostnameAction() != HostNameAction::EtcHostname && hostnameAction() != HostNameAction::SystemdHostname )
     {
         cDebug() << "Ignoring hostname" << host << "No hostname will be set.";
         return;
     }
-    if ( host != m_hostName )
+    if ( host != m_hostname )
     {
         m_customHostName = !host.isEmpty();
-        m_hostName = host;
+        m_hostname = host;
         Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
         if ( host.isEmpty() )
         {
@@ -260,8 +260,8 @@ Config::setHostName( const QString& host )
         {
             gs->insert( "hostname", host );
         }
-        emit hostNameChanged( host );
-        emit hostNameStatusChanged( hostNameStatus() );
+        emit hostnameChanged( host );
+        emit hostnameStatusChanged( hostnameStatus() );
     }
 }
 
@@ -273,31 +273,31 @@ Config::forbiddenHostNames()
 }
 
 QString
-Config::hostNameStatus() const
+Config::hostnameStatus() const
 {
     // An empty hostname is "ok", even if it isn't really
-    if ( m_hostName.isEmpty() )
+    if ( m_hostname.isEmpty() )
     {
         return QString();
     }
 
-    if ( m_hostName.length() < HOSTNAME_MIN_LENGTH )
+    if ( m_hostname.length() < HOSTNAME_MIN_LENGTH )
     {
         return tr( "Your hostname is too short." );
     }
-    if ( m_hostName.length() > HOSTNAME_MAX_LENGTH )
+    if ( m_hostname.length() > HOSTNAME_MAX_LENGTH )
     {
         return tr( "Your hostname is too long." );
     }
     for ( const QString& badName : forbiddenHostNames() )
     {
-        if ( 0 == QString::compare( badName, m_hostName, Qt::CaseSensitive ) )
+        if ( 0 == QString::compare( badName, m_hostname, Qt::CaseSensitive ) )
         {
             return tr( "'%1' is not allowed as hostname." ).arg( badName );
         }
     }
 
-    if ( !HOSTNAME_RX.exactMatch( m_hostName ) )
+    if ( !HOSTNAME_RX.exactMatch( m_hostname ) )
     {
         return tr( "Only letters, numbers, underscore and hyphen are allowed." );
     }
@@ -449,7 +449,7 @@ Config::setFullName( const QString& name )
         if ( !m_customHostName )
         {
             QString hostname = makeHostnameSuggestion( cleanParts );
-            if ( !hostname.isEmpty() && hostname != m_hostName )
+            if ( !hostname.isEmpty() && hostname != m_hostname )
             {
                 setHostName( hostname );
                 // Still not custom
@@ -660,7 +660,7 @@ bool
 Config::isReady() const
 {
     bool readyFullName = !fullName().isEmpty();  // Needs some text
-    bool readyHostname = hostNameStatus().isEmpty();  // .. no warning message
+    bool readyHostname = hostnameStatus().isEmpty();  // .. no warning message
     bool readyUsername = !loginName().isEmpty() && loginNameStatus().isEmpty();  // .. no warning message
     bool readyUserPassword = userPasswordValidity() != Config::PasswordValidity::Invalid;
     bool readyRootPassword = rootPasswordValidity() != Config::PasswordValidity::Invalid;
@@ -749,7 +749,7 @@ getHostNameAction( const QVariantMap& configurationMap )
     if ( !hostnameActionString.isEmpty() )
     {
         bool ok = false;
-        setHostName = hostNameActionNames().find( hostnameActionString, ok );
+        setHostName = hostnameActionNames().find( hostnameActionString, ok );
         if ( !ok )
         {
             setHostName = HostNameAction::EtcHostname;  // Rather than none
@@ -875,7 +875,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         // TODO:3.3: Remove calls to copyLegacy
         copyLegacy( configurationMap, "setHostname", hostnameSettings, "location" );
         copyLegacy( configurationMap, "writeHostsFile", hostnameSettings, "writeHostsFile" );
-        m_hostNameAction = getHostNameAction( hostnameSettings );
+        m_hostnameAction = getHostNameAction( hostnameSettings );
         m_writeEtcHosts = CalamaresUtils::getBool( hostnameSettings, "writeHostsFile", true );
     }
 

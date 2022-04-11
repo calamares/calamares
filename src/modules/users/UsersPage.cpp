@@ -106,13 +106,13 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
     connect( config, &Config::fullNameChanged, this, &UsersPage::onFullNameTextEdited );
 
     // If the hostname is going to be written out, then show the field
-    if ( ( m_config->hostNameAction() == HostNameAction::EtcHostname )
-         || ( m_config->hostNameAction() == HostNameAction::SystemdHostname ) )
+    if ( ( m_config->hostnameAction() == HostNameAction::EtcHostname )
+         || ( m_config->hostnameAction() == HostNameAction::SystemdHostname ) )
     {
-        ui->textBoxHostname->setText( config->hostName() );
+        ui->textBoxHostname->setText( config->hostname() );
         connect( ui->textBoxHostname, &QLineEdit::textEdited, config, &Config::setHostName );
         connect( config,
-                 &Config::hostNameChanged,
+                 &Config::hostnameChanged,
                  [ this ]( const QString& name )
                  {
                      if ( !ui->textBoxHostname->hasFocus() )
@@ -120,7 +120,7 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
                          ui->textBoxHostname->setText( name );
                      }
                  } );
-        connect( config, &Config::hostNameStatusChanged, this, &UsersPage::reportHostNameStatus );
+        connect( config, &Config::hostnameStatusChanged, this, &UsersPage::reportHostNameStatus );
     }
     else
     {
@@ -168,7 +168,7 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
     onReuseUserPasswordChanged( m_config->reuseUserPasswordForRoot() );
     onFullNameTextEdited( m_config->fullName() );
     reportLoginNameStatus( m_config->loginNameStatus() );
-    reportHostNameStatus( m_config->hostNameStatus() );
+    reportHostNameStatus( m_config->hostnameStatus() );
 
     ui->textBoxLoginName->setEnabled( m_config->isEditable( "loginName" ) );
     ui->textBoxFullName->setEnabled( m_config->isEditable( "fullName" ) );
@@ -231,7 +231,7 @@ UsersPage::reportLoginNameStatus( const QString& status )
 void
 UsersPage::reportHostNameStatus( const QString& status )
 {
-    labelStatus( ui->labelHostname, ui->labelHostnameError, m_config->hostName(), status );
+    labelStatus( ui->labelHostname, ui->labelHostnameError, m_config->hostname(), status );
 }
 
 static inline void

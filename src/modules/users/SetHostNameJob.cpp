@@ -33,21 +33,21 @@ SetHostNameJob::SetHostNameJob( const Config* c )
 QString
 SetHostNameJob::prettyName() const
 {
-    return tr( "Set hostname %1" ).arg( m_config->hostName() );
+    return tr( "Set hostname %1" ).arg( m_config->hostname() );
 }
 
 
 QString
 SetHostNameJob::prettyDescription() const
 {
-    return tr( "Set hostname <strong>%1</strong>." ).arg( m_config->hostName() );
+    return tr( "Set hostname <strong>%1</strong>." ).arg( m_config->hostname() );
 }
 
 
 QString
 SetHostNameJob::prettyStatusMessage() const
 {
-    return tr( "Setting hostname %1." ).arg( m_config->hostName() );
+    return tr( "Setting hostname %1." ).arg( m_config->hostname() );
 }
 
 STATICTEST bool
@@ -131,12 +131,12 @@ SetHostNameJob::exec()
         return Calamares::JobResult::error( tr( "Internal Error" ) );
     }
 
-    switch ( m_config->hostNameAction() )
+    switch ( m_config->hostnameAction() )
     {
     case HostNameAction::None:
         break;
     case HostNameAction::EtcHostname:
-        if ( !setFileHostname( m_config->hostName() ) )
+        if ( !setFileHostname( m_config->hostname() ) )
         {
             cError() << "Can't write to hostname file";
             return Calamares::JobResult::error( tr( "Cannot write hostname to target system" ) );
@@ -144,7 +144,7 @@ SetHostNameJob::exec()
         break;
     case HostNameAction::SystemdHostname:
         // Does its own logging
-        setSystemdHostname( m_config->hostName() );
+        setSystemdHostname( m_config->hostname() );
         break;
     case HostNameAction::Transient:
         CalamaresUtils::System::instance()->removeTargetFile( QStringLiteral( "/etc/hostname" ) );
@@ -153,7 +153,7 @@ SetHostNameJob::exec()
 
     if ( m_config->writeEtcHosts() )
     {
-        if ( !writeFileEtcHosts( m_config->hostName() ) )
+        if ( !writeFileEtcHosts( m_config->hostname() ) )
         {
             cError() << "Can't write to hosts file";
             return Calamares::JobResult::error( tr( "Cannot write hostname to target system" ) );

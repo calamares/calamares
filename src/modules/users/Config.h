@@ -28,7 +28,7 @@ enum class HostNameAction
     Transient,  // Force target system transient, remove /etc/hostname
 };
 
-const NamedEnumTable< HostNameAction >& hostNameActionNames();
+const NamedEnumTable< HostNameAction >& hostnameActionNames();
 
 /** @brief Settings for a single group
  *
@@ -99,9 +99,9 @@ class PLUGINDLLEXPORT Config : public Calamares::ModuleSystem::Config
     Q_PROPERTY( QString loginName READ loginName WRITE setLoginName NOTIFY loginNameChanged )
     Q_PROPERTY( QString loginNameStatus READ loginNameStatus NOTIFY loginNameStatusChanged )
 
-    Q_PROPERTY( QString hostName READ hostName WRITE setHostName NOTIFY hostNameChanged )
-    Q_PROPERTY( QString hostNameStatus READ hostNameStatus NOTIFY hostNameStatusChanged )
-    Q_PROPERTY( HostNameAction hostNameAction READ hostNameAction CONSTANT )
+    Q_PROPERTY( QString hostname READ hostname WRITE setHostName NOTIFY hostnameChanged )
+    Q_PROPERTY( QString hostnameStatus READ hostnameStatus NOTIFY hostnameStatusChanged )
+    Q_PROPERTY( HostNameAction hostnameAction READ hostnameAction CONSTANT )
 
     Q_PROPERTY( QString userPassword READ userPassword WRITE setUserPassword NOTIFY userPasswordChanged )
     Q_PROPERTY( QString userPasswordSecondary READ userPasswordSecondary WRITE setUserPasswordSecondary NOTIFY
@@ -202,17 +202,17 @@ public:
     QString loginNameStatus() const;
 
     /// The host name (name for the system)
-    QString hostName() const
+    QString hostname() const
     {
-        return ( ( hostNameAction() == HostNameAction::EtcHostname )
-                 || ( hostNameAction() == HostNameAction::SystemdHostname ) )
-            ? m_hostName
+        return ( ( hostnameAction() == HostNameAction::EtcHostname )
+                 || ( hostnameAction() == HostNameAction::SystemdHostname ) )
+            ? m_hostname
             : QString();
     }
     /// Status message about hostname -- empty for "ok"
-    QString hostNameStatus() const;
+    QString hostnameStatus() const;
     /// How to write the hostname
-    HostNameAction hostNameAction() const { return m_hostNameAction; }
+    HostNameAction hostnameAction() const { return m_hostnameAction; }
     /// Write /etc/hosts ?
     bool writeEtcHosts() const { return m_writeEtcHosts; }
 
@@ -299,8 +299,8 @@ signals:
     void fullNameChanged( const QString& );
     void loginNameChanged( const QString& );
     void loginNameStatusChanged( const QString& );
-    void hostNameChanged( const QString& );
-    void hostNameStatusChanged( const QString& );
+    void hostnameChanged( const QString& );
+    void hostnameStatusChanged( const QString& );
     void autoLoginChanged( bool );
     void reuseUserPasswordForRootChanged( bool );
     void requireStrongPasswordsChanged( bool );
@@ -323,7 +323,7 @@ private:
     SudoStyle m_sudoStyle = SudoStyle::UserOnly;
     QString m_fullName;
     QString m_loginName;
-    QString m_hostName;
+    QString m_hostname;
 
     QString m_userPassword;
     QString m_userPasswordSecondary;  // enter again to be sure
@@ -343,7 +343,7 @@ private:
 
     bool m_isReady = false;  ///< Used to reduce readyChanged signals
 
-    HostNameAction m_hostNameAction = HostNameAction::EtcHostname;
+    HostNameAction m_hostnameAction = HostNameAction::EtcHostname;
     bool m_writeEtcHosts = false;
     PasswordCheckList m_passwordChecks;
 };
