@@ -169,7 +169,7 @@ System::readTargetFile( const QString& path ) const
 
     QTextStream in( &f );
     QStringList l;
-    while ( !f.atEnd() )
+    while ( !in.atEnd() )
     {
         l << in.readLine();
     }
