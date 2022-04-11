@@ -20,15 +20,14 @@ class SetHostNameJob : public Calamares::Job
 {
     Q_OBJECT
 public:
-    SetHostNameJob( const QString& hostname, HostNameActions a );
+    SetHostNameJob( const Config* c );
     QString prettyName() const override;
     QString prettyDescription() const override;
     QString prettyStatusMessage() const override;
     Calamares::JobResult exec() override;
 
 private:
-    const QString m_hostname;
-    const HostNameActions m_actions;
+    const Config* m_config;
 };
 
 #endif  // SETHOSTNAMEJOB_CPP_H

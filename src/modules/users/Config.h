@@ -20,15 +20,12 @@
 #include <QObject>
 #include <QVariantMap>
 
-enum HostNameAction
+enum class HostNameAction
 {
-    None = 0x0,
-    EtcHostname = 0x1,  // Write to /etc/hostname directly
-    SystemdHostname = 0x2,  // Set via hostnamed(1)
-    WriteEtcHosts = 0x4  // Write /etc/hosts (127.0.1.1 is this host)
+    None,
+    EtcHostname,  // Write to /etc/hostname directly
+    SystemdHostname,  // Set via hostnamed(1)
 };
-Q_DECLARE_FLAGS( HostNameActions, HostNameAction )
-Q_DECLARE_OPERATORS_FOR_FLAGS( HostNameActions )
 
 const NamedEnumTable< HostNameAction >& hostNameActionNames();
 
@@ -103,7 +100,7 @@ class PLUGINDLLEXPORT Config : public Calamares::ModuleSystem::Config
 
     Q_PROPERTY( QString hostName READ hostName WRITE setHostName NOTIFY hostNameChanged )
     Q_PROPERTY( QString hostNameStatus READ hostNameStatus NOTIFY hostNameStatusChanged )
-    Q_PROPERTY( HostNameActions hostNameActions READ hostNameActions CONSTANT )
+    Q_PROPERTY( HostNameAction hostNameAction READ hostNameAction CONSTANT )
 
     Q_PROPERTY( QString userPassword READ userPassword WRITE setUserPassword NOTIFY userPasswordChanged )
     Q_PROPERTY( QString userPasswordSecondary READ userPasswordSecondary WRITE setUserPasswordSecondary NOTIFY
@@ -208,7 +205,9 @@ public:
     /// Status message about hostname -- empty for "ok"
     QString hostNameStatus() const;
     /// How to write the hostname
-    HostNameActions hostNameActions() const { return m_hostNameActions; }
+    HostNameAction hostNameAction() const { return m_hostNameAction; }
+    /// Write /etc/hosts ?
+    bool writeEtcHosts() const { return m_writeEtcHosts; }
 
     /// Should the user be automatically logged-in?
     bool doAutoLogin() const { return m_doAutoLogin; }
@@ -337,7 +336,8 @@ private:
 
     bool m_isReady = false;  ///< Used to reduce readyChanged signals
 
-    HostNameActions m_hostNameActions;
+    HostNameAction m_hostNameAction = HostNameAction::EtcHostname;
+    bool m_writeEtcHosts = false;
     PasswordCheckList m_passwordChecks;
 };
 

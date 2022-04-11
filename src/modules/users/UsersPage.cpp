@@ -106,8 +106,8 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
     connect( config, &Config::fullNameChanged, this, &UsersPage::onFullNameTextEdited );
 
     // If the hostname is going to be written out, then show the field
-    if ( ( m_config->hostNameActions() & HostNameAction::EtcHostname )
-         || ( m_config->hostNameActions() & HostNameAction::SystemdHostname ) )
+    if ( ( m_config->hostNameAction() == HostNameAction::EtcHostname )
+         || ( m_config->hostNameAction() == HostNameAction::SystemdHostname ) )
     {
         ui->textBoxHostname->setText( config->hostName() );
         connect( ui->textBoxHostname, &QLineEdit::textEdited, config, &Config::setHostName );

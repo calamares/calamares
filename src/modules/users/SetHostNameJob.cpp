@@ -24,31 +24,30 @@
 
 using WriteMode = CalamaresUtils::System::WriteMode;
 
-SetHostNameJob::SetHostNameJob( const QString& hostname, HostNameActions a )
+SetHostNameJob::SetHostNameJob( const Config* c )
     : Calamares::Job()
-    , m_hostname( hostname )
-    , m_actions( a )
+    , m_config( c )
 {
 }
 
 QString
 SetHostNameJob::prettyName() const
 {
-    return tr( "Set hostname %1" ).arg( m_hostname );
+    return tr( "Set hostname %1" ).arg( m_config->hostName() );
 }
 
 
 QString
 SetHostNameJob::prettyDescription() const
 {
-    return tr( "Set hostname <strong>%1</strong>." ).arg( m_hostname );
+    return tr( "Set hostname <strong>%1</strong>." ).arg( m_config->hostName() );
 }
 
 
 QString
 SetHostNameJob::prettyStatusMessage() const
 {
-    return tr( "Setting hostname %1." ).arg( m_hostname );
+    return tr( "Setting hostname %1." ).arg( m_config->hostName() );
 }
 
 STATICTEST bool
@@ -129,29 +128,32 @@ SetHostNameJob::exec()
         return Calamares::JobResult::error( tr( "Internal Error" ) );
     }
 
-    if ( m_actions & HostNameAction::EtcHostname )
+    switch ( m_config->hostNameAction() )
     {
-        if ( !setFileHostname( m_hostname ) )
+    case HostNameAction::None:
+        break;
+    case HostNameAction::EtcHostname:
+        if ( !setFileHostname( m_config->hostName() ) )
         {
             cError() << "Can't write to hostname file";
             return Calamares::JobResult::error( tr( "Cannot write hostname to target system" ) );
         }
+        break;
+    case HostNameAction::SystemdHostname:
+        // Does its own logging
+        setSystemdHostname( m_config->hostName() );
+        break;
     }
 
-    if ( m_actions & HostNameAction::WriteEtcHosts )
+    if ( m_config->writeEtcHosts() )
     {
-        if ( !writeFileEtcHosts( m_hostname ) )
+        if ( !writeFileEtcHosts( m_config->hostName() ) )
         {
             cError() << "Can't write to hosts file";
             return Calamares::JobResult::error( tr( "Cannot write hostname to target system" ) );
         }
     }
 
-    if ( m_actions & HostNameAction::SystemdHostname )
-    {
-        // Does its own logging
-        setSystemdHostname( m_hostname );
-    }
 
     return Calamares::JobResult::ok();
 }

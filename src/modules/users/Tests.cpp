@@ -17,7 +17,7 @@
 
 // Implementation details
 extern void setConfigurationDefaultGroups( const QVariantMap& map, QList< GroupDescription >& defaultGroups );
-extern HostNameActions getHostNameActions( const QVariantMap& configurationMap );
+extern HostNameAction getHostNameAction( const QVariantMap& configurationMap );
 extern bool addPasswordCheck( const QString& key, const QVariant& value, PasswordCheckList& passwordChecks );
 
 /** @brief Test Config object methods and internals
@@ -243,12 +243,12 @@ UserTests::testHostActions()
     {
         m.insert( "location", string );
     }
-    QCOMPARE( getHostNameActions( m ),
-              HostNameActions( result ) | HostNameAction::WriteEtcHosts );  // write bits default to true
+    // action is independent of writeHostsFile
+    QCOMPARE( getHostNameAction( m ), HostNameAction( result ) );
     m.insert( "writeHostsFile", false );
-    QCOMPARE( getHostNameActions( m ), HostNameActions( result ) );
+    QCOMPARE( getHostNameAction( m ), HostNameAction( result ) );
     m.insert( "writeHostsFile", true );
-    QCOMPARE( getHostNameActions( m ), HostNameActions( result ) | HostNameAction::WriteEtcHosts );
+    QCOMPARE( getHostNameAction( m ), HostNameAction( result ) );
 }
 
 void
@@ -257,13 +257,16 @@ UserTests::testHostActions2()
     Config c;
     QVariantMap legacy;
 
+    // Test defaults
     c.setConfigurationMap( legacy );
-    QCOMPARE( c.hostNameActions(), HostNameAction::EtcHostname | HostNameAction::WriteEtcHosts );
+    QCOMPARE( c.hostNameAction(), HostNameAction::EtcHostname );
+    QCOMPARE( c.writeEtcHosts(), true );
 
     legacy.insert( "writeHostsFile", false );
     legacy.insert( "setHostname", "Hostnamed" );
     c.setConfigurationMap( legacy );
-    QCOMPARE( c.hostNameActions(), HostNameAction::SystemdHostname );
+    QCOMPARE( c.hostNameAction(), HostNameAction::SystemdHostname );
+    QCOMPARE( c.writeEtcHosts(), false );
 }
 
 

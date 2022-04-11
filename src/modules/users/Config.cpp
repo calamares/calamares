@@ -734,8 +734,8 @@ setConfigurationDefaultGroups( const QVariantMap& map, QList< GroupDescription >
     }
 }
 
-STATICTEST HostNameActions
-getHostNameActions( const QVariantMap& configurationMap )
+STATICTEST HostNameAction
+getHostNameAction( const QVariantMap& configurationMap )
 {
     HostNameAction setHostName = HostNameAction::EtcHostname;
     QString hostnameActionString = CalamaresUtils::getString( configurationMap, "location" );
@@ -749,10 +749,7 @@ getHostNameActions( const QVariantMap& configurationMap )
         }
     }
 
-    HostNameAction writeHosts = CalamaresUtils::getBool( configurationMap, "writeHostsFile", true )
-        ? HostNameAction::WriteEtcHosts
-        : HostNameAction::None;
-    return setHostName | writeHosts;
+    return setHostName;
 }
 
 /** @brief Process entries in the passwordRequirements config entry
@@ -871,7 +868,8 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         // TODO:3.3: Remove calls to copyLegacy
         copyLegacy( configurationMap, "setHostname", hostnameSettings, "location" );
         copyLegacy( configurationMap, "writeHostsFile", hostnameSettings, "writeHostsFile" );
-        m_hostNameActions = getHostNameActions( hostnameSettings );
+        m_hostNameAction = getHostNameAction( hostnameSettings );
+        m_writeEtcHosts = CalamaresUtils::getBool( hostnameSettings, "writeHostsFile", true );
     }
 
     setConfigurationDefaultGroups( configurationMap, m_defaultGroups );
@@ -951,7 +949,7 @@ Config::createJobs() const
     j = new SetPasswordJob( "root", rootPassword() );
     jobs.append( Calamares::job_ptr( j ) );
 
-    j = new SetHostNameJob( hostName(), hostNameActions() );
+    j = new SetHostNameJob( this );
     jobs.append( Calamares::job_ptr( j ) );
 
     return jobs;
