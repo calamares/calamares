@@ -105,18 +105,31 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
     connect( ui->textBoxFullName, &QLineEdit::textEdited, config, &Config::setFullName );
     connect( config, &Config::fullNameChanged, this, &UsersPage::onFullNameTextEdited );
 
-    ui->textBoxHostName->setText( config->hostName() );
-    connect( ui->textBoxHostName, &QLineEdit::textEdited, config, &Config::setHostName );
-    connect( config,
-             &Config::hostNameChanged,
-             [ this ]( const QString& name )
-             {
-                 if ( !ui->textBoxHostName->hasFocus() )
+    // If the hostname is going to be written out, then show the field
+    if ( ( m_config->hostNameActions() & HostNameAction::EtcHostname )
+         || ( m_config->hostNameActions() & HostNameAction::SystemdHostname ) )
+    {
+        ui->textBoxHostname->setText( config->hostName() );
+        connect( ui->textBoxHostname, &QLineEdit::textEdited, config, &Config::setHostName );
+        connect( config,
+                 &Config::hostNameChanged,
+                 [ this ]( const QString& name )
                  {
-                     ui->textBoxHostName->setText( name );
-                 }
-             } );
-    connect( config, &Config::hostNameStatusChanged, this, &UsersPage::reportHostNameStatus );
+                     if ( !ui->textBoxHostname->hasFocus() )
+                     {
+                         ui->textBoxHostname->setText( name );
+                     }
+                 } );
+        connect( config, &Config::hostNameStatusChanged, this, &UsersPage::reportHostNameStatus );
+    }
+    else
+    {
+        // Need to hide the hostname parts individually because there's no widget-group
+        ui->hostnameLabel->hide();
+        ui->labelHostname->hide();
+        ui->textBoxHostname->hide();
+        ui->labelHostnameError->hide();
+    }
 
     ui->textBoxLoginName->setText( config->loginName() );
     connect( ui->textBoxLoginName, &QLineEdit::textEdited, config, &Config::setLoginName );
