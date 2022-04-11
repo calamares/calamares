@@ -150,7 +150,7 @@ WelcomePage::setupButton( Button role, const QString& url )
     }
     if ( !button )
     {
-        qWarning() << "Unknown button role" << smash( role );
+        cWarning() << "Unknown button role" << smash( role );
         return;
     }
 
@@ -169,7 +169,7 @@ WelcomePage::setupButton( Button role, const QString& url )
     }
     else
     {
-        qWarning() << "Welcome button" << smash( role ) << "URL" << url << "is invalid.";
+        cWarning() << "Welcome button" << smash( role ) << "URL" << url << "is invalid.";
         button->hide();
     }
 }
