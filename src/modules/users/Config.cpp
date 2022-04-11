@@ -826,6 +826,7 @@ either( T ( *f )( const QVariantMap&, const QString&, U ),
     }
 }
 
+// TODO:3.3: Remove
 static void
 copyLegacy( const QVariantMap& source, const QString& sourceKey, QVariantMap& target, const QString& targetKey )
 {
@@ -860,6 +861,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         bool ok = false;  // Ignored
         QVariantMap hostnameSettings = CalamaresUtils::getSubMap( configurationMap, "hostname", ok );
 
+        // TODO:3.3: Remove calls to copyLegacy
         copyLegacy( configurationMap, "setHostname", hostnameSettings, "location" );
         copyLegacy( configurationMap, "writeHostsFile", hostnameSettings, "writeHostsFile" );
         m_hostNameActions = getHostNameActions( hostnameSettings );
