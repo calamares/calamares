@@ -789,7 +789,7 @@ El instalador se cerrará y todos tus cambios se perderán.</translation>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="53"/>
       <source>Network Installation. (Disabled: Incorrect configuration)</source>
-      <translation>Instalación de red. (Deshabilitada: configuración incorrecta)</translation>
+      <translation>Instalación de red. (Desactivada: configuración incorrecta)</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="55"/>
@@ -829,12 +829,12 @@ El instalador se cerrará y todos tus cambios se perderán.</translation>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="66"/>
       <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
-      <translation>Este equipo no cumple algunos de los requisitos recomendados para configurar %1.&lt;br/&gt;La configuración puede continuar, pero es posible que algunas funciones estén deshabilitadas.</translation>
+      <translation>El equipo no cumple con alguno de los requisitos recomendados para configurar %1. Se puede continuar con la configuración, pero puede que ciertas funciones no estén disponibles.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="70"/>
       <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
-      <translation>El ordenador no cumple con alguno de los requisitos recomendados para instalar %1. Se puede continuar con la instalación, pero algunas de las características pueden no estar disponibles.</translation>
+      <translation>El equipo no cumple con alguno de los requisitos recomendados para instalar %1. Se puede continuar con la instalación, pero puede que ciertas funciones no estén disponibles.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="80"/>
@@ -1567,7 +1567,7 @@ El instalador se cerrará y todos tus cambios se perderán.</translation>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="102"/>
       <source>&lt;h1&gt;Setup Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been set up on your computer.&lt;br/&gt;The error message was: %2.</source>
-      <translation>&lt;h1&gt;La configuración ha fallado&lt;/h1&gt;&lt;br/&gt;%1 no se ha configurado en tu equipo.&lt;br/&gt;El mensaje de error fue: %2.</translation>
+      <translation>&lt;h1&gt;La configuración ha fallado&lt;/h1&gt;&lt;br/&gt;%1 no ha podido configurar tu equipo.&lt;br/&gt;El mensaje de error fue: %2.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="110"/>
@@ -3150,8 +3150,8 @@ Información de salida:
       <location filename="../src/modules/welcomeq/Recommended.qml" line="40"/>
       <source>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
         Setup can continue, but some features might be disabled.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Este equipo no cumple algunos de los requisitos recomendados para configurar %1.&lt;br/&gt;
-        La configuración puede continuar, pero es posible que algunas funciones estén deshabilitadas.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;El equipo no cumple con alguno de los requisitos recomendados para configurar %1.&lt;br/&gt;
+        Se puede continuar con la configuración, pero puede que ciertas funciones no estén disponibles.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -3262,15 +3262,15 @@ Información de salida:
       <location filename="../src/modules/welcomeq/Requirements.qml" line="38"/>
       <source>&lt;p&gt;This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;
         Installation cannot continue.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Esta computadora no cumple con los requisitos mínimos para instalar %1.&lt;br/&gt;
+      <translation>&lt;p&gt;El equipo no cumple con los requisitos mínimos para instalar %1.&lt;br/&gt;
         La instalación no puede continuar.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/Requirements.qml" line="40"/>
       <source>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
         Setup can continue, but some features might be disabled.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Este equipo no cumple algunos de los requisitos recomendados para configurar %1.&lt;br/&gt;
-        La configuración puede continuar, pero es posible que algunas funciones estén deshabilitadas.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;El equipo no cumple con alguno de los requisitos recomendados para configurar %1.&lt;br/&gt;
+        Se puede continuar con la configuración, pero puede que ciertas funciones no estén disponibles.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -3397,7 +3397,7 @@ Información de salida:
     <message>
       <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="137"/>
       <source>For best results, please ensure that this computer:</source>
-      <translation>Para obtener los mejores resultados, por favor asegúrese que este ordenador:</translation>
+      <translation>Para un mejor desempeño se recomienda que este equipo:</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="138"/>
@@ -3879,12 +3879,12 @@ Información de salida:
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="177"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
-      <translation>&lt;small&gt;Si va a haber más de una persona usando el equipo se pueden crear otras cuentas de usuario una vez configurado.&lt;/small&gt;</translation>
+      <translation>&lt;small&gt;Si va a haber más de una persona usando el equipo se pueden crear otras cuentas de usuario una vez terminado el asistente de configuración.&lt;/small&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="183"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
-      <translation>&lt;small&gt;Si va a haber más de una persona usando el equipo se pueden crear otras cuentas de usuario una vez instalado..&lt;/small&gt;</translation>
+      <translation>&lt;small&gt;Si va a haber más de una persona usando el equipo se pueden crear otras cuentas de usuario una vez instalado.&lt;/small&gt;</translation>
     </message>
   </context>
   <context>
@@ -4032,22 +4032,22 @@ Información de salida:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="216"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Bienvenido a Calamares; el programa de instalación de %1.&lt;/h1&gt;</translation>
+      <translation>&lt;h1&gt;Te damos la bienvenida a Calamares; el configurador de %1.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="217"/>
       <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Bienvenido al instalador de %1.&lt;/h1&gt;</translation>
+      <translation>&lt;h1&gt;Te damos la bienvenida al configurador de %1.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="222"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Bienvenido a Calamares; el instalador de %1.&lt;/h1&gt;</translation>
+      <translation>&lt;h1&gt;Te damos la bienvenida a Calamares; el instalador de %1.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="223"/>
       <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Bienvenido al instalador %1.&lt;/h1&gt;</translation>
+      <translation>&lt;h1&gt;Te damos la bienvenida al instalador de %1.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="228"/>
@@ -4083,7 +4083,7 @@ Información de salida:
     <message>
       <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="46"/>
       <source>Welcome</source>
-      <translation>Bienvenido</translation>
+      <translation>Te damos la bienvenida</translation>
     </message>
   </context>
   <context>
@@ -4185,7 +4185,7 @@ Información de salida:
       <source>%1 has been installed on your computer.&lt;br/&gt;
             You may now restart into your new system, or continue using the Live environment.</source>
       <translation>Se ha instalado %1 en tu equipo.
-             A partir de ahora puedes reiniciar para empezar con el sistema operativo nuevo o seguir usando el entorno temporal.</translation>
+             A partir de ahora puedes reiniciar para empezar a usar el sistema operativo nuevo o seguir usando el entorno temporal («live»).</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="65"/>
@@ -4218,7 +4218,7 @@ Información de salida:
       <source>%1 has been installed on your computer.&lt;br/&gt;
             You may now restart your device.</source>
       <translation>Se ha instalado %1 en tu equipo.&lt;br/&gt;
-             Ahora puedes reiniciar para empezar con el sistema operativo.</translation>
+             Ya puedes reiniciar para empezar a usar tu nuevo sistema operativo.</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="65"/>
@@ -4422,7 +4422,7 @@ Información de salida:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="116"/>
       <source>If more than one person will use this computer, you can create multiple accounts after installation.</source>
-      <translation>Si va a haber más de una persona usando el equipo se pueden crear otras cuentas de usuario una vez instalado.</translation>
+      <translation>Si va a haber más de una persona usando el equipo se pueden crear otras cuentas de usuario una vez terminada la instalación.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="128"/>
@@ -4531,7 +4531,7 @@ Información de salida:
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="35"/>
       <source>&lt;h3&gt;Welcome to the %1 &lt;quote&gt;%2&lt;/quote&gt; installer&lt;/h3&gt;
             &lt;p&gt;This program will ask you some questions and set up %1 on your computer.&lt;/p&gt;</source>
-      <translation>&lt;h3&gt;Bienvenido al instalador de &lt;quote&gt;%2&lt;/quote&gt;&lt;/h3&gt;
+      <translation>&lt;h3&gt;Te damos la bienvenida al instalador de &lt;quote&gt;%2&lt;/quote&gt;&lt;/h3&gt;
             &lt;p&gt;Este programa te hará algunas preguntas y configurará %1 en tu equipo.&lt;/p&gt;</translation>
     </message>
     <message>
