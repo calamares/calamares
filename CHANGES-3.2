@@ -23,6 +23,11 @@ This release contains contributions from (alphabetically by first name):
  - *users* module has a new hostname.location setting, *Transient*, which
    will force the installed system to transient-hostname-setting by removing
    the file `/etc/hostname`.
+ - *users* module has a new hostname.template setting, which allows some
+   tweaking of how the hostname suggestion is constructed. In particular,
+   it can be configured to use the current hostname (whatever that may be).
+   See the example `users.conf` for details on available keys.
+
 
 # 3.2.54 (2022-03-21) #
 

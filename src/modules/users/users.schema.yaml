@@ -46,6 +46,7 @@ properties:
         properties:
             location: { type: string, enum: [ None, EtcFile, Hostnamed, Transient ] }
             writeHostsFile: { type: boolean, default: true }
+            template: { type: string, default: "${first}-${product}" }
     # Legacy Hostname setting
     setHostname: { type: string, enum: [ None, EtcFile, Hostnamed ] }
     writeHostsFile: { type: boolean, default: true }
