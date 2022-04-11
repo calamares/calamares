@@ -44,7 +44,7 @@ properties:
         additionalProperties: false
         type: object
         properties:
-            location: { type: string, enum: [ None, EtcFile, Hostnamed ] }
+            location: { type: string, enum: [ None, EtcFile, Hostnamed, Transient ] }
             writeHostsFile: { type: boolean, default: true }
     # Legacy Hostname setting
     setHostname: { type: string, enum: [ None, EtcFile, Hostnamed ] }

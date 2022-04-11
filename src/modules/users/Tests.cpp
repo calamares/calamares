@@ -229,6 +229,15 @@ UserTests::testHostActions_data()
     QTest::newRow( "bad    " ) << true << QString( "derp" ) << int( HostNameAction::EtcHostname );
     QTest::newRow( "none   " ) << true << QString( "none" ) << int( HostNameAction::None );
     QTest::newRow( "systemd" ) << true << QString( "Hostnamed" ) << int( HostNameAction::SystemdHostname );
+    QTest::newRow( "etc(1) " ) << true << QString( "etcfile" ) << int( HostNameAction::EtcHostname );
+    QTest::newRow( "etc(2) " ) << true << QString( "etc" ) << int( HostNameAction::EtcHostname );
+    QTest::newRow( "etc-bad" )
+        << true << QString( "etchost" )
+        << int( HostNameAction::EtcHostname );  // This isn't a valid name, but defaults to EtcHostname
+    QTest::newRow( "ci-sysd" ) << true << QString( "hOsTnaMed" )
+                               << int( HostNameAction::SystemdHostname );  // Case-insensitive
+    QTest::newRow( "trbs   " ) << true << QString( "transient" ) << int( HostNameAction::Transient );
+    QTest::newRow( "ci-trns" ) << true << QString( "trANSient" ) << int( HostNameAction::Transient );
 }
 
 void
