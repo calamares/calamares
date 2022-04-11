@@ -832,9 +832,16 @@ copyLegacy( const QVariantMap& source, const QString& sourceKey, QVariantMap& ta
 {
     if ( source.contains( sourceKey ) )
     {
-        const QVariant legacyValue = source.value( sourceKey );
-        cWarning() << "Legacy *users* key" << sourceKey << "overrides hostname-settings.";
-        target.insert( targetKey, legacyValue );
+        if ( target.contains( targetKey ) )
+        {
+            cWarning() << "Legacy *users* key" << sourceKey << "ignored.";
+        }
+        else
+        {
+            const QVariant legacyValue = source.value( sourceKey );
+            cWarning() << "Legacy *users* key" << sourceKey << "overrides hostname-settings.";
+            target.insert( targetKey, legacyValue );
+        }
     }
 }
 
