@@ -201,7 +201,13 @@ public:
     QString loginNameStatus() const;
 
     /// The host name (name for the system)
-    QString hostName() const { return m_hostName; }
+    QString hostName() const
+    {
+        return ( ( hostNameAction() == HostNameAction::EtcHostname )
+                 || ( hostNameAction() == HostNameAction::SystemdHostname ) )
+            ? m_hostName
+            : QString();
+    }
     /// Status message about hostname -- empty for "ok"
     QString hostNameStatus() const;
     /// How to write the hostname
