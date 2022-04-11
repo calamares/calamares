@@ -149,7 +149,7 @@ Kirigami.ScrollablePage {
                 id: _hostName
                 width: parent.width
                 placeholderText: qsTr("Computer Name")
-                text: config.hostName
+                text: config.hostname
                 validator: RegularExpressionValidator { regularExpression: /[a-zA-Z0-9][-a-zA-Z0-9_]+/ }
 
                 onTextChanged: acceptableInput

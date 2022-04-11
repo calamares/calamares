@@ -42,7 +42,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QHBoxLayout" name="fullNameLayout">
      <item>
       <widget class="QLineEdit" name="textBoxFullName">
        <property name="minimumSize">
@@ -129,7 +129,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <layout class="QHBoxLayout" name="usernameLayout">
      <item>
       <widget class="QLineEdit" name="textBoxLoginName">
        <property name="sizePolicy">
@@ -218,7 +218,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
     </spacer>
    </item>
    <item>
-    <widget class="QLabel" name="hostname_label_2">
+    <widget class="QLabel" name="hostnameLabel">
      <property name="text">
       <string>What is the name of this computer?</string>
      </property>
@@ -228,9 +228,9 @@ SPDX-License-Identifier: GPL-3.0-or-later
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_4">
+    <layout class="QHBoxLayout" name="hostnameLayout">
      <item>
-      <widget class="QLineEdit" name="textBoxHostName">
+      <widget class="QLineEdit" name="textBoxHostname">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -304,7 +304,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
     </layout>
    </item>
    <item>
-    <spacer name="verticalSpacer_3">
+    <spacer name="hostnameVSpace">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
@@ -330,7 +330,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
+    <layout class="QHBoxLayout" name="userPasswordLayout">
      <item>
       <widget class="QLineEdit" name="textBoxUserPassword">
        <property name="sizePolicy">
@@ -500,7 +500,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_5">
+    <layout class="QHBoxLayout" name="rootPasswordLayout">
      <item>
       <widget class="QLineEdit" name="textBoxRootPassword">
        <property name="sizePolicy">

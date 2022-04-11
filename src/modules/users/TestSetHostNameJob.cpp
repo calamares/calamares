@@ -92,18 +92,19 @@ UsersTests::testEtcHostname()
     QVERIFY( QFile::exists( m_dir.path() ) );
     QVERIFY( !QFile::exists( m_dir.filePath( "etc" ) ) );
 
+    const QString testHostname = QStringLiteral( "tubophone.calamares.io" );
     // Doesn't create intermediate directories
-    QVERIFY( !setFileHostname( QStringLiteral( "tubophone.calamares.io" ) ) );
+    QVERIFY( !setFileHostname( testHostname ) );
 
     QVERIFY( CalamaresUtils::System::instance()->createTargetDirs( "/etc" ) );
     QVERIFY( QFile::exists( m_dir.filePath( "etc" ) ) );
 
     // Does write the file
-    QVERIFY( setFileHostname( QStringLiteral( "tubophone.calamares.io" ) ) );
+    QVERIFY( setFileHostname( testHostname ) );
     QVERIFY( QFile::exists( m_dir.filePath( "etc/hostname" ) ) );
 
     // 22 for the test string, above, and 1 for the newline
-    QCOMPARE( QFileInfo( m_dir.filePath( "etc/hostname" ) ).size(), 22 + 1 );
+    QCOMPARE( QFileInfo( m_dir.filePath( "etc/hostname" ) ).size(), testHostname.length() + 1 );
 }
 
 void
@@ -113,11 +114,12 @@ UsersTests::testEtcHosts()
     QVERIFY( QFile::exists( m_dir.path() ) );
     QVERIFY( QFile::exists( m_dir.filePath( "etc" ) ) );
 
-    QVERIFY( writeFileEtcHosts( QStringLiteral( "tubophone.calamares.io" ) ) );
+    const QString testHostname = QStringLiteral( "tubophone.calamares.io" );
+    QVERIFY( writeFileEtcHosts( testHostname ) );
     QVERIFY( QFile::exists( m_dir.filePath( "etc/hosts" ) ) );
     // The skeleton contains %1 which has the hostname substituted in, so we lose two,
-    // and the rest of the blabla is 150 (according to Python)
-    QCOMPARE( QFileInfo( m_dir.filePath( "etc/hosts" ) ).size(), 150 + 22 - 2 );
+    // and the rest of the blabla is 145 (the "standard" part) and 34 (the "for this host" part)
+    QCOMPARE( QFileInfo( m_dir.filePath( "etc/hosts" ) ).size(), 145 + 34 + testHostname.length() - 2 );
 }
 
 void

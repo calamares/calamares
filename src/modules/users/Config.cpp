@@ -20,6 +20,8 @@
 #include "utils/String.h"
 #include "utils/Variant.h"
 
+#include <KMacroExpander>
+
 #include <QCoreApplication>
 #include <QFile>
 #include <QMetaProperty>
@@ -77,14 +79,16 @@ updateGSAutoLogin( bool doAutoLogin, const QString& login )
 }
 
 const NamedEnumTable< HostNameAction >&
-hostNameActionNames()
+hostnameActionNames()
 {
     // *INDENT-OFF*
     // clang-format off
     static const NamedEnumTable< HostNameAction > names {
         { QStringLiteral( "none" ), HostNameAction::None },
         { QStringLiteral( "etcfile" ), HostNameAction::EtcHostname },
-        { QStringLiteral( "hostnamed" ), HostNameAction::SystemdHostname }
+        { QStringLiteral( "etc" ), HostNameAction::EtcHostname },
+        { QStringLiteral( "hostnamed" ), HostNameAction::SystemdHostname },
+        { QStringLiteral( "transient" ), HostNameAction::Transient },
     };
     // clang-format on
     // *INDENT-ON*
@@ -98,7 +102,7 @@ Config::Config( QObject* parent )
     emit readyChanged( m_isReady );  // false
 
     // Gang together all the changes of status to one readyChanged() signal
-    connect( this, &Config::hostNameStatusChanged, this, &Config::checkReady );
+    connect( this, &Config::hostnameStatusChanged, this, &Config::checkReady );
     connect( this, &Config::loginNameStatusChanged, this, &Config::checkReady );
     connect( this, &Config::fullNameChanged, this, &Config::checkReady );
     connect( this, &Config::userPasswordStatusChanged, this, &Config::checkReady );
@@ -240,10 +244,15 @@ Config::loginNameStatus() const
 void
 Config::setHostName( const QString& host )
 {
-    if ( host != m_hostName )
+    if ( hostnameAction() != HostNameAction::EtcHostname && hostnameAction() != HostNameAction::SystemdHostname )
+    {
+        cDebug() << "Ignoring hostname" << host << "No hostname will be set.";
+        return;
+    }
+    if ( host != m_hostname )
     {
         m_customHostName = !host.isEmpty();
-        m_hostName = host;
+        m_hostname = host;
         Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
         if ( host.isEmpty() )
         {
@@ -253,8 +262,8 @@ Config::setHostName( const QString& host )
         {
             gs->insert( "hostname", host );
         }
-        emit hostNameChanged( host );
-        emit hostNameStatusChanged( hostNameStatus() );
+        emit hostnameChanged( host );
+        emit hostnameStatusChanged( hostnameStatus() );
     }
 }
 
@@ -266,31 +275,31 @@ Config::forbiddenHostNames()
 }
 
 QString
-Config::hostNameStatus() const
+Config::hostnameStatus() const
 {
     // An empty hostname is "ok", even if it isn't really
-    if ( m_hostName.isEmpty() )
+    if ( m_hostname.isEmpty() )
     {
         return QString();
     }
 
-    if ( m_hostName.length() < HOSTNAME_MIN_LENGTH )
+    if ( m_hostname.length() < HOSTNAME_MIN_LENGTH )
     {
         return tr( "Your hostname is too short." );
     }
-    if ( m_hostName.length() > HOSTNAME_MAX_LENGTH )
+    if ( m_hostname.length() > HOSTNAME_MAX_LENGTH )
     {
         return tr( "Your hostname is too long." );
     }
     for ( const QString& badName : forbiddenHostNames() )
     {
-        if ( 0 == QString::compare( badName, m_hostName, Qt::CaseSensitive ) )
+        if ( 0 == QString::compare( badName, m_hostname, Qt::CaseSensitive ) )
         {
             return tr( "'%1' is not allowed as hostname." ).arg( badName );
         }
     }
 
-    if ( !HOSTNAME_RX.exactMatch( m_hostName ) )
+    if ( !HOSTNAME_RX.exactMatch( m_hostname ) )
     {
         return tr( "Only letters, numbers, underscore and hyphen are allowed." );
     }
@@ -298,6 +307,12 @@ Config::hostNameStatus() const
     return QString();
 }
 
+static QString
+cleanupForHostname( const QString& s )
+{
+    QRegExp dmirx( "[^a-zA-Z0-9]", Qt::CaseInsensitive );
+    return s.toLower().replace( dmirx, " " ).remove( ' ' );
+}
 
 /** @brief Guess the machine's name
  *
@@ -312,16 +327,11 @@ guessProductName()
 
     if ( !tried )
     {
-        // yes validateHostnameText() but these files can be a mess
-        QRegExp dmirx( "[^a-zA-Z0-9]", Qt::CaseInsensitive );
         QFile dmiFile( QStringLiteral( "/sys/devices/virtual/dmi/id/product_name" ) );
 
         if ( dmiFile.exists() && dmiFile.open( QIODevice::ReadOnly ) )
         {
-            dmiProduct = QString::fromLocal8Bit( dmiFile.readAll().simplified().data() )
-                             .toLower()
-                             .replace( dmirx, " " )
-                             .remove( ' ' );
+            dmiProduct = cleanupForHostname( QString::fromLocal8Bit( dmiFile.readAll().simplified().data() ) );
         }
         if ( dmiProduct.isEmpty() )
         {
@@ -379,17 +389,37 @@ makeLoginNameSuggestion( const QStringList& parts )
     return USERNAME_RX.indexIn( usernameSuggestion ) != -1 ? usernameSuggestion : QString();
 }
 
+/** @brief Return an invalid string for use in a hostname, if @p s is empty
+ *
+ * Maps empty to "^" (which is invalid in a hostname), everything else
+ * returns @p s itself.
+ */
 static QString
-makeHostnameSuggestion( const QStringList& parts )
+invalidEmpty( const QString& s )
 {
-    static const QRegExp HOSTNAME_RX( "^[a-zA-Z0-9][-a-zA-Z0-9_]*$" );
-    if ( parts.isEmpty() || parts.first().isEmpty() )
-    {
-        return QString();
-    }
+    return s.isEmpty() ? QStringLiteral( "^" ) : s;
+}
 
-    QString productName = guessProductName();
-    QString hostnameSuggestion = QStringLiteral( "%1-%2" ).arg( parts.first() ).arg( productName );
+STATICTEST QString
+makeHostnameSuggestion( const QString& templateString, const QStringList& fullNameParts, const QString& loginName )
+{
+    QHash< QString, QString > replace;
+    // User data
+    replace.insert( QStringLiteral( "first" ),
+                    invalidEmpty( fullNameParts.isEmpty() ? QString() : cleanupForHostname( fullNameParts.first() ) ) );
+    replace.insert( QStringLiteral( "name" ), invalidEmpty( cleanupForHostname( fullNameParts.join( QString() ) ) ) );
+    replace.insert( QStringLiteral( "login" ), invalidEmpty( cleanupForHostname( loginName ) ) );
+    // Hardware data
+    replace.insert( QStringLiteral( "product" ), guessProductName() );
+    replace.insert( QStringLiteral( "product2" ), cleanupForHostname( QSysInfo::prettyProductName() ) );
+    replace.insert( QStringLiteral( "cpu" ), cleanupForHostname( QSysInfo::currentCpuArchitecture() ) );
+    // Hostname data
+    replace.insert( QStringLiteral( "host" ), invalidEmpty( cleanupForHostname( QSysInfo::machineHostName() ) ) );
+
+    QString hostnameSuggestion = KMacroExpander::expandMacros( templateString, replace, '$' );
+
+    // RegExp for valid hostnames; if the suggestion produces a valid name, return it
+    static const QRegExp HOSTNAME_RX( "^[a-zA-Z0-9][-a-zA-Z0-9_]*$" );
     return HOSTNAME_RX.indexIn( hostnameSuggestion ) != -1 ? hostnameSuggestion : QString();
 }
 
@@ -420,18 +450,18 @@ Config::setFullName( const QString& name )
         // Build login and hostname, if needed
         static QRegExp rx( "[^a-zA-Z0-9 ]", Qt::CaseInsensitive );
 
-        QString cleanName = CalamaresUtils::removeDiacritics( transliterate( name ) )
-                                .replace( QRegExp( "[-']" ), "" )
-                                .replace( rx, " " )
-                                .toLower()
-                                .simplified();
+        const QString cleanName = CalamaresUtils::removeDiacritics( transliterate( name ) )
+                                      .replace( QRegExp( "[-']" ), "" )
+                                      .replace( rx, " " )
+                                      .toLower()
+                                      .simplified();
 
 
         QStringList cleanParts = cleanName.split( ' ' );
 
         if ( !m_customLoginName )
         {
-            QString login = makeLoginNameSuggestion( cleanParts );
+            const QString login = makeLoginNameSuggestion( cleanParts );
             if ( !login.isEmpty() && login != m_loginName )
             {
                 setLoginName( login );
@@ -441,8 +471,8 @@ Config::setFullName( const QString& name )
         }
         if ( !m_customHostName )
         {
-            QString hostname = makeHostnameSuggestion( cleanParts );
-            if ( !hostname.isEmpty() && hostname != m_hostName )
+            const QString hostname = makeHostnameSuggestion( m_hostnameTemplate, cleanParts, loginName() );
+            if ( !hostname.isEmpty() && hostname != m_hostname )
             {
                 setHostName( hostname );
                 // Still not custom
@@ -653,7 +683,7 @@ bool
 Config::isReady() const
 {
     bool readyFullName = !fullName().isEmpty();  // Needs some text
-    bool readyHostname = hostNameStatus().isEmpty();  // .. no warning message
+    bool readyHostname = hostnameStatus().isEmpty();  // .. no warning message
     bool readyUsername = !loginName().isEmpty() && loginNameStatus().isEmpty();  // .. no warning message
     bool readyUserPassword = userPasswordValidity() != Config::PasswordValidity::Invalid;
     bool readyRootPassword = rootPasswordValidity() != Config::PasswordValidity::Invalid;
@@ -734,25 +764,22 @@ setConfigurationDefaultGroups( const QVariantMap& map, QList< GroupDescription >
     }
 }
 
-STATICTEST HostNameActions
-getHostNameActions( const QVariantMap& configurationMap )
+STATICTEST HostNameAction
+getHostNameAction( const QVariantMap& configurationMap )
 {
     HostNameAction setHostName = HostNameAction::EtcHostname;
-    QString hostnameActionString = CalamaresUtils::getString( configurationMap, "setHostname" );
+    QString hostnameActionString = CalamaresUtils::getString( configurationMap, "location" );
     if ( !hostnameActionString.isEmpty() )
     {
         bool ok = false;
-        setHostName = hostNameActionNames().find( hostnameActionString, ok );
+        setHostName = hostnameActionNames().find( hostnameActionString, ok );
         if ( !ok )
         {
             setHostName = HostNameAction::EtcHostname;  // Rather than none
         }
     }
 
-    HostNameAction writeHosts = CalamaresUtils::getBool( configurationMap, "writeHostsFile", true )
-        ? HostNameAction::WriteEtcHosts
-        : HostNameAction::None;
-    return setHostName | writeHosts;
+    return setHostName;
 }
 
 /** @brief Process entries in the passwordRequirements config entry
@@ -826,6 +853,25 @@ either( T ( *f )( const QVariantMap&, const QString&, U ),
     }
 }
 
+// TODO:3.3: Remove
+static void
+copyLegacy( const QVariantMap& source, const QString& sourceKey, QVariantMap& target, const QString& targetKey )
+{
+    if ( source.contains( sourceKey ) )
+    {
+        if ( target.contains( targetKey ) )
+        {
+            cWarning() << "Legacy *users* key" << sourceKey << "ignored.";
+        }
+        else
+        {
+            const QVariant legacyValue = source.value( sourceKey );
+            cWarning() << "Legacy *users* key" << sourceKey << "overrides hostname-settings.";
+            target.insert( targetKey, legacyValue );
+        }
+    }
+}
+
 void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
 {
@@ -844,7 +890,19 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         ? SudoStyle::UserAndGroup
         : SudoStyle::UserOnly;
 
-    m_hostNameActions = getHostNameActions( configurationMap );
+    // Handle *hostname* key and subkeys and legacy settings
+    {
+        bool ok = false;  // Ignored
+        QVariantMap hostnameSettings = CalamaresUtils::getSubMap( configurationMap, "hostname", ok );
+
+        // TODO:3.3: Remove calls to copyLegacy
+        copyLegacy( configurationMap, "setHostname", hostnameSettings, "location" );
+        copyLegacy( configurationMap, "writeHostsFile", hostnameSettings, "writeHostsFile" );
+        m_hostnameAction = getHostNameAction( hostnameSettings );
+        m_writeEtcHosts = CalamaresUtils::getBool( hostnameSettings, "writeHostsFile", true );
+        m_hostnameTemplate
+            = CalamaresUtils::getString( hostnameSettings, "template", QStringLiteral( "${first}-${product}" ) );
+    }
 
     setConfigurationDefaultGroups( configurationMap, m_defaultGroups );
 
@@ -923,7 +981,7 @@ Config::createJobs() const
     j = new SetPasswordJob( "root", rootPassword() );
     jobs.append( Calamares::job_ptr( j ) );
 
-    j = new SetHostNameJob( hostName(), hostNameActions() );
+    j = new SetHostNameJob( this );
     jobs.append( Calamares::job_ptr( j ) );
 
     return jobs;
