@@ -92,18 +92,19 @@ UsersTests::testEtcHostname()
     QVERIFY( QFile::exists( m_dir.path() ) );
     QVERIFY( !QFile::exists( m_dir.filePath( "etc" ) ) );
 
+    const QString testHostname = QStringLiteral( "tubophone.calamares.io" );
     // Doesn't create intermediate directories
-    QVERIFY( !setFileHostname( QStringLiteral( "tubophone.calamares.io" ) ) );
+    QVERIFY( !setFileHostname( testHostname ) );
 
     QVERIFY( CalamaresUtils::System::instance()->createTargetDirs( "/etc" ) );
     QVERIFY( QFile::exists( m_dir.filePath( "etc" ) ) );
 
     // Does write the file
-    QVERIFY( setFileHostname( QStringLiteral( "tubophone.calamares.io" ) ) );
+    QVERIFY( setFileHostname( testHostname ) );
     QVERIFY( QFile::exists( m_dir.filePath( "etc/hostname" ) ) );
 
     // 22 for the test string, above, and 1 for the newline
-    QCOMPARE( QFileInfo( m_dir.filePath( "etc/hostname" ) ).size(), 22 + 1 );
+    QCOMPARE( QFileInfo( m_dir.filePath( "etc/hostname" ) ).size(), testHostname.length() + 1 );
 }
 
 void
