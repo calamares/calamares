@@ -146,6 +146,9 @@ SetHostNameJob::exec()
         // Does its own logging
         setSystemdHostname( m_config->hostName() );
         break;
+    case HostNameAction::Transient:
+        CalamaresUtils::System::instance()->removeTargetFile( QStringLiteral( "/etc/hostname" ) );
+        break;
     }
 
     if ( m_config->writeEtcHosts() )

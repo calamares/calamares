@@ -84,7 +84,9 @@ hostNameActionNames()
     static const NamedEnumTable< HostNameAction > names {
         { QStringLiteral( "none" ), HostNameAction::None },
         { QStringLiteral( "etcfile" ), HostNameAction::EtcHostname },
-        { QStringLiteral( "hostnamed" ), HostNameAction::SystemdHostname }
+        { QStringLiteral( "etc" ), HostNameAction::EtcHostname },
+        { QStringLiteral( "hostnamed" ), HostNameAction::SystemdHostname },
+        { QStringLiteral( "transient" ), HostNameAction::Transient },
     };
     // clang-format on
     // *INDENT-ON*

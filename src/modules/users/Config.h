@@ -25,6 +25,7 @@ enum class HostNameAction
     None,
     EtcHostname,  // Write to /etc/hostname directly
     SystemdHostname,  // Set via hostnamed(1)
+    Transient,  // Force target system transient, remove /etc/hostname
 };
 
 const NamedEnumTable< HostNameAction >& hostNameActionNames();
