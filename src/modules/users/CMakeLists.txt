@@ -40,6 +40,7 @@ set(_users_src
     Config.cpp
 )
 
+# This part of the code is shared with the usersq module
 calamares_add_library(
     users_internal
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
@@ -49,6 +50,7 @@ calamares_add_library(
     SOURCES
         ${_users_src}
     LINK_LIBRARIES
+        KF5::CoreAddons
         Qt5::DBus
         ${CRYPT_LIBRARIES}
 )
@@ -78,6 +80,7 @@ calamares_add_test(
         TestGroupInformation.cpp
         ${_users_src} # Build again with test-visibility
     LIBRARIES
+        KF5::CoreAddons
         Qt5::DBus # HostName job can use DBus to systemd
         ${CRYPT_LIBRARIES} # SetPassword job uses crypt()
         ${USER_EXTRA_LIB}
@@ -96,6 +99,7 @@ calamares_add_test(
         Tests.cpp
         ${_users_src} # Build again with test-visibility
     LIBRARIES
+        KF5::CoreAddons
         Qt5::DBus # HostName job can use DBus to systemd
         ${CRYPT_LIBRARIES} # SetPassword job uses crypt()
         ${USER_EXTRA_LIB}
