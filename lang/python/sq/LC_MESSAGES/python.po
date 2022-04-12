@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-17 15:52+0100\n"
+"POT-Creation-Date: 2022-03-21 17:21+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>, 2022\n"
 "Language-Team: Albanian (https://www.transifex.com/calamares/teams/20061/sq/)\n"
@@ -26,8 +26,8 @@ msgid "Configuring initramfs."
 msgstr "Po formësohet initramfs."
 
 #: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
-#: src/modules/fstab/main.py:360 src/modules/fstab/main.py:366
-#: src/modules/fstab/main.py:393 src/modules/networkcfg/main.py:105
+#: src/modules/fstab/main.py:361 src/modules/fstab/main.py:367
+#: src/modules/fstab/main.py:394 src/modules/networkcfg/main.py:105
 #: src/modules/initcpiocfg/main.py:235 src/modules/initcpiocfg/main.py:239
 #: src/modules/localecfg/main.py:135 src/modules/mount/main.py:229
 #: src/modules/rawfs/main.py:164 src/modules/openrcdmcryptcfg/main.py:72
@@ -35,13 +35,13 @@ msgstr "Po formësohet initramfs."
 msgid "Configuration Error"
 msgstr "Gabim Formësimi"
 
-#: src/modules/initramfscfg/main.py:86 src/modules/fstab/main.py:361
+#: src/modules/initramfscfg/main.py:86 src/modules/fstab/main.py:362
 #: src/modules/initcpiocfg/main.py:236 src/modules/mount/main.py:230
 #: src/modules/rawfs/main.py:165 src/modules/openrcdmcryptcfg/main.py:73
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "S’ka pjesë të përkufizuara për <pre>{!s}</pre> për t’u përdorur."
 
-#: src/modules/initramfscfg/main.py:90 src/modules/fstab/main.py:367
+#: src/modules/initramfscfg/main.py:90 src/modules/fstab/main.py:368
 #: src/modules/networkcfg/main.py:106 src/modules/initcpiocfg/main.py:240
 #: src/modules/localecfg/main.py:136 src/modules/openrcdmcryptcfg/main.py:77
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
@@ -56,16 +56,16 @@ msgstr "Formësoni GRUB-in."
 msgid "Install bootloader."
 msgstr "Instalo ngarkues nisjesh."
 
-#: src/modules/bootloader/main.py:612
+#: src/modules/bootloader/main.py:614
 msgid "Failed to install grub, no partitions defined in global storage"
 msgstr ""
 "S'u arrit të instalohej grub, te depozita globale s’ka të përkufizuara pjesë"
 
-#: src/modules/bootloader/main.py:780
+#: src/modules/bootloader/main.py:782
 msgid "Bootloader installation error"
 msgstr "Gabim instalimi Ngarkuesi Nisësi"
 
-#: src/modules/bootloader/main.py:781
+#: src/modules/bootloader/main.py:783
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
@@ -77,7 +77,7 @@ msgstr ""
 msgid "Writing fstab."
 msgstr "Po shkruhet fstab."
 
-#: src/modules/fstab/main.py:394
+#: src/modules/fstab/main.py:395
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr ""
 "S’është dhënë formësim <pre>{!s}</pre> për t’u përdorur nga <pre>{!s}</pre>."

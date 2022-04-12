@@ -20,17 +20,15 @@
 #include <QObject>
 #include <QVariantMap>
 
-enum HostNameAction
+enum class HostNameAction
 {
-    None = 0x0,
-    EtcHostname = 0x1,  // Write to /etc/hostname directly
-    SystemdHostname = 0x2,  // Set via hostnamed(1)
-    WriteEtcHosts = 0x4  // Write /etc/hosts (127.0.1.1 is this host)
+    None,
+    EtcHostname,  // Write to /etc/hostname directly
+    SystemdHostname,  // Set via hostnamed(1)
+    Transient,  // Force target system transient, remove /etc/hostname
 };
-Q_DECLARE_FLAGS( HostNameActions, HostNameAction )
-Q_DECLARE_OPERATORS_FOR_FLAGS( HostNameActions )
 
-const NamedEnumTable< HostNameAction >& hostNameActionNames();
+const NamedEnumTable< HostNameAction >& hostnameActionNames();
 
 /** @brief Settings for a single group
  *
@@ -101,9 +99,9 @@ class PLUGINDLLEXPORT Config : public Calamares::ModuleSystem::Config
     Q_PROPERTY( QString loginName READ loginName WRITE setLoginName NOTIFY loginNameChanged )
     Q_PROPERTY( QString loginNameStatus READ loginNameStatus NOTIFY loginNameStatusChanged )
 
-    Q_PROPERTY( QString hostName READ hostName WRITE setHostName NOTIFY hostNameChanged )
-    Q_PROPERTY( QString hostNameStatus READ hostNameStatus NOTIFY hostNameStatusChanged )
-    Q_PROPERTY( HostNameActions hostNameActions READ hostNameActions CONSTANT )
+    Q_PROPERTY( QString hostname READ hostname WRITE setHostName NOTIFY hostnameChanged )
+    Q_PROPERTY( QString hostnameStatus READ hostnameStatus NOTIFY hostnameStatusChanged )
+    Q_PROPERTY( HostNameAction hostnameAction READ hostnameAction CONSTANT )
 
     Q_PROPERTY( QString userPassword READ userPassword WRITE setUserPassword NOTIFY userPasswordChanged )
     Q_PROPERTY( QString userPasswordSecondary READ userPasswordSecondary WRITE setUserPasswordSecondary NOTIFY
@@ -204,11 +202,19 @@ public:
     QString loginNameStatus() const;
 
     /// The host name (name for the system)
-    QString hostName() const { return m_hostName; }
+    QString hostname() const
+    {
+        return ( ( hostnameAction() == HostNameAction::EtcHostname )
+                 || ( hostnameAction() == HostNameAction::SystemdHostname ) )
+            ? m_hostname
+            : QString();
+    }
     /// Status message about hostname -- empty for "ok"
-    QString hostNameStatus() const;
+    QString hostnameStatus() const;
     /// How to write the hostname
-    HostNameActions hostNameActions() const { return m_hostNameActions; }
+    HostNameAction hostnameAction() const { return m_hostnameAction; }
+    /// Write /etc/hosts ?
+    bool writeEtcHosts() const { return m_writeEtcHosts; }
 
     /// Should the user be automatically logged-in?
     bool doAutoLogin() const { return m_doAutoLogin; }
@@ -293,8 +299,8 @@ signals:
     void fullNameChanged( const QString& );
     void loginNameChanged( const QString& );
     void loginNameStatusChanged( const QString& );
-    void hostNameChanged( const QString& );
-    void hostNameStatusChanged( const QString& );
+    void hostnameChanged( const QString& );
+    void hostnameStatusChanged( const QString& );
     void autoLoginChanged( bool );
     void reuseUserPasswordForRootChanged( bool );
     void requireStrongPasswordsChanged( bool );
@@ -317,7 +323,7 @@ private:
     SudoStyle m_sudoStyle = SudoStyle::UserOnly;
     QString m_fullName;
     QString m_loginName;
-    QString m_hostName;
+    QString m_hostname;
 
     QString m_userPassword;
     QString m_userPasswordSecondary;  // enter again to be sure
@@ -337,7 +343,10 @@ private:
 
     bool m_isReady = false;  ///< Used to reduce readyChanged signals
 
-    HostNameActions m_hostNameActions;
+    HostNameAction m_hostnameAction = HostNameAction::EtcHostname;
+    bool m_writeEtcHosts = false;
+    QString m_hostnameTemplate;
+
     PasswordCheckList m_passwordChecks;
 };
 

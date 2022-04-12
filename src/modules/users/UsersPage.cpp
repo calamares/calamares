@@ -105,18 +105,31 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
     connect( ui->textBoxFullName, &QLineEdit::textEdited, config, &Config::setFullName );
     connect( config, &Config::fullNameChanged, this, &UsersPage::onFullNameTextEdited );
 
-    ui->textBoxHostName->setText( config->hostName() );
-    connect( ui->textBoxHostName, &QLineEdit::textEdited, config, &Config::setHostName );
-    connect( config,
-             &Config::hostNameChanged,
-             [ this ]( const QString& name )
-             {
-                 if ( !ui->textBoxHostName->hasFocus() )
+    // If the hostname is going to be written out, then show the field
+    if ( ( m_config->hostnameAction() == HostNameAction::EtcHostname )
+         || ( m_config->hostnameAction() == HostNameAction::SystemdHostname ) )
+    {
+        ui->textBoxHostname->setText( config->hostname() );
+        connect( ui->textBoxHostname, &QLineEdit::textEdited, config, &Config::setHostName );
+        connect( config,
+                 &Config::hostnameChanged,
+                 [ this ]( const QString& name )
                  {
-                     ui->textBoxHostName->setText( name );
-                 }
-             } );
-    connect( config, &Config::hostNameStatusChanged, this, &UsersPage::reportHostNameStatus );
+                     if ( !ui->textBoxHostname->hasFocus() )
+                     {
+                         ui->textBoxHostname->setText( name );
+                     }
+                 } );
+        connect( config, &Config::hostnameStatusChanged, this, &UsersPage::reportHostNameStatus );
+    }
+    else
+    {
+        // Need to hide the hostname parts individually because there's no widget-group
+        ui->hostnameLabel->hide();
+        ui->labelHostname->hide();
+        ui->textBoxHostname->hide();
+        ui->labelHostnameError->hide();
+    }
 
     ui->textBoxLoginName->setText( config->loginName() );
     connect( ui->textBoxLoginName, &QLineEdit::textEdited, config, &Config::setLoginName );
@@ -155,7 +168,7 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
     onReuseUserPasswordChanged( m_config->reuseUserPasswordForRoot() );
     onFullNameTextEdited( m_config->fullName() );
     reportLoginNameStatus( m_config->loginNameStatus() );
-    reportHostNameStatus( m_config->hostNameStatus() );
+    reportHostNameStatus( m_config->hostnameStatus() );
 
     ui->textBoxLoginName->setEnabled( m_config->isEditable( "loginName" ) );
     ui->textBoxFullName->setEnabled( m_config->isEditable( "fullName" ) );
@@ -218,7 +231,7 @@ UsersPage::reportLoginNameStatus( const QString& status )
 void
 UsersPage::reportHostNameStatus( const QString& status )
 {
-    labelStatus( ui->labelHostname, ui->labelHostnameError, m_config->hostName(), status );
+    labelStatus( ui->labelHostname, ui->labelHostnameError, m_config->hostname(), status );
 }
 
 static inline void
