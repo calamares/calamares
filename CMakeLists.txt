@@ -139,89 +139,6 @@ set(CALAMARES_DESCRIPTION_SUMMARY "The distribution-independent installer framew
 #       `txstats.py -e`. See also
 #
 # Total 74 languages
-<<<<<<< HEAD
-set(_tx_complete
-    az
-    az_AZ
-    ca
-    de
-    fa
-    fi_FI
-    he
-    hi
-    hr
-    ja
-    ko
-    lt
-    pt_BR
-    pt_PT
-    si
-    sq
-    sv
-    tr_TR
-    uk
-    zh_TW
-)
-set(_tx_good
-    as
-    be
-    ca@valencia
-    cs_CZ
-    da
-    fr
-    fur
-    it_IT
-    ml
-    nl
-    ru
-    sk
-    tg
-    vi
-    zh_CN
-)
-set(_tx_ok
-    ar
-    ast
-    bg
-    bn
-    el
-    en_GB
-    es
-    es_MX
-    et
-    eu
-    gl
-    hu
-    id
-    is
-    mr
-    nb
-    pl
-    ro
-    sl
-    sr
-    sr@latin
-    th
-)
-set(_tx_incomplete
-    eo
-    es_PR
-    gu
-    ie
-    kk
-    kn
-    lo
-    lv
-    mk
-    ne
-    ne_NP
-    ta_IN
-    te
-    ur
-    zh
-    zh_HK
-)
-=======
 set( _tx_complete az az_AZ ca es fi_FI he hi hr ja lt pt_BR pt_PT
     sq sv uk zh_TW )
 set( _tx_good as be ca@valencia cs_CZ da de fa fr fur it_IT ko ml
@@ -230,7 +147,6 @@ set( _tx_ok ar ast bg bn el en_GB es_MX et eu gl hu id is mr nb oc
     pl ro sl sr sr@latin th )
 set( _tx_incomplete eo es_PR gu ie ja-Hira kk kn lo lv mk ne_NP
     ta_IN te ur zh zh_HK )
->>>>>>> calamares
 
 ### Required versions
 #
