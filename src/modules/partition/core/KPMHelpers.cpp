@@ -140,7 +140,7 @@ execute( Operation& operation, const QString& failureMessage )
 
     // Remove the === lines from the report by trimming them to empty
     QStringList l = report.toText().split( '\n' );
-    std::for_each( l.begin(), l.end(), []( QString& s ) { CalamaresUtils::removeLeading( s, '=' ); } );
+    std::for_each( l.begin(), l.end(), []( QString& s ) { Calamares::String::removeLeading( s, '=' ); } );
 
     return Calamares::JobResult::error( failureMessage, l.join( '\n' ) );
 }

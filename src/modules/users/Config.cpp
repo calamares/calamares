@@ -450,7 +450,7 @@ Config::setFullName( const QString& name )
         // Build login and hostname, if needed
         static QRegExp rx( "[^a-zA-Z0-9 ]", Qt::CaseInsensitive );
 
-        const QString cleanName = CalamaresUtils::removeDiacritics( transliterate( name ) )
+        const QString cleanName = Calamares::String::removeDiacritics( transliterate( name ) )
                                       .replace( QRegExp( "[-']" ), "" )
                                       .replace( rx, " " )
                                       .toLower()
@@ -948,7 +948,7 @@ Config::finalizeGlobalStorage() const
     {
         gs->insert( "reuseRootPassword", reuseUserPasswordForRoot() );
     }
-    gs->insert( "password", CalamaresUtils::obscure( userPassword() ) );
+    gs->insert( "password", Calamares::String::obscure( userPassword() ) );
 }
 
 Calamares::JobList

@@ -211,14 +211,14 @@ _process_output( Calamares::Utils::RunLocation location,
         bp::extract< bp::list > x( callback );
         if ( x.check() )
         {
-            QObject::connect( &r, &decltype( r )::output, [cb = callback.attr( "append" )]( const QString& s ) {
-                cb( s.toStdString() );
-            } );
+            QObject::connect( &r,
+                              &decltype( r )::output,
+                              [ cb = callback.attr( "append" ) ]( const QString& s ) { cb( s.toStdString() ); } );
         }
         else
         {
             QObject::connect(
-                &r, &decltype( r )::output, [&callback]( const QString& s ) { callback( s.toStdString() ); } );
+                &r, &decltype( r )::output, [ &callback ]( const QString& s ) { callback( s.toStdString() ); } );
         }
         r.enableOutputProcessing();
     }
@@ -262,7 +262,7 @@ host_env_process_output( const boost::python::list& args,
 std::string
 obscure( const std::string& string )
 {
-    return CalamaresUtils::obscure( QString::fromStdString( string ) ).toStdString();
+    return Calamares::String::obscure( QString::fromStdString( string ) ).toStdString();
 }
 
 static QStringList
