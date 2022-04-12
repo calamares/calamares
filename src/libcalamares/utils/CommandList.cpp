@@ -16,6 +16,7 @@
 // #include "utils/CalamaresUtils.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
+#include "utils/StringExpander.h"
 #include "utils/Variant.h"
 
 #include <QCoreApplication>
@@ -109,59 +110,57 @@ CommandList::CommandList::CommandList( const QVariant& v, bool doChroot, std::ch
 
 CommandList::~CommandList() {}
 
-static inline bool
-findInCommands( const CommandList& l, const QString& needle )
-{
-    for ( CommandList::const_iterator i = l.cbegin(); i != l.cend(); ++i )
-        if ( i->command().contains( needle ) )
-        {
-            return true;
-        }
-    return false;
-}
-
 Calamares::JobResult
 CommandList::run()
 {
-    QLatin1String rootMagic( "@@ROOT@@" );
-    QLatin1String userMagic( "@@USER@@" );
-
     System::RunLocation location = m_doChroot ? System::RunLocation::RunInTarget : System::RunLocation::RunInHost;
-
-    /* Figure out the replacement for @@ROOT@@ */
-    QString root = QStringLiteral( "/" );
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
 
-    bool needsRootSubstitution = findInCommands( *this, rootMagic );
-    if ( needsRootSubstitution && ( location == System::RunLocation::RunInHost ) )
+    Calamares::String::DictionaryExpander expander;
+
+    // Figure out the replacement for ${ROOT}
+    if ( location == System::RunLocation::RunInTarget )
     {
-        if ( !gs || !gs->contains( "rootMountPoint" ) )
-        {
-            cError() << "No rootMountPoint defined.";
-            return Calamares::JobResult::error(
-                QCoreApplication::translate( "CommandList", "Could not run command." ),
-                QCoreApplication::translate( "CommandList",
-                                             "The command runs in the host environment and needs to know the root "
-                                             "path, but no rootMountPoint is defined." ) );
-        }
-        root = gs->value( "rootMountPoint" ).toString();
+        expander.insert( QStringLiteral( "ROOT" ), QStringLiteral( "/" ) );
+    }
+    else if ( gs && gs->contains( "rootMountPoint" ) )
+    {
+        expander.insert( QStringLiteral( "ROOT" ), gs->value( "rootMountPoint" ).toString() );
     }
 
-    bool needsUserSubstitution = findInCommands( *this, userMagic );
-    if ( needsUserSubstitution && ( !gs || !gs->contains( "username" ) ) )
+    // Replacement for ${USER}
+    if ( gs && gs->contains( "username" ) )
     {
-        cError() << "No username defined.";
+        expander.insert( QStringLiteral( "USER" ), gs->value( "username" ).toString() );
+    }
+
+    // Copy and expand the list, collecting missing variables (so don't call expand())
+    CommandList_t expandedList;
+    std::transform( cbegin(),
+                    cend(),
+                    std::back_inserter( expandedList ),
+                    [ &expander ]( CommandLine c )
+                    {
+                        expander.expandMacros( c.first );
+                        return c;
+                    } );
+
+    if ( expander.hasErrors() )
+    {
+        const auto missing = expander.errorNames();
+        cError() << "Missing variables:" << missing;
         return Calamares::JobResult::error(
             QCoreApplication::translate( "CommandList", "Could not run command." ),
             QCoreApplication::translate( "CommandList",
-                                         "The command needs to know the user's name, but no username is defined." ) );
+                                         "The commands use variables that are not defined. "
+                                         "Missing variables are: %1." )
+                .arg( missing.join( ',' ) ) );
     }
-    QString user = gs->value( "username" ).toString();  // may be blank if unset
 
-    for ( CommandList::const_iterator i = cbegin(); i != cend(); ++i )
+
+    for ( CommandList::const_iterator i = expandedList.cbegin(); i != expandedList.cend(); ++i )
     {
         QString processed_cmd = i->command();
-        processed_cmd.replace( rootMagic, root ).replace( userMagic, user );
         bool suppress_result = false;
         if ( processed_cmd.startsWith( '-' ) )
         {
