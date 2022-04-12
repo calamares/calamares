@@ -69,6 +69,7 @@ set(libSources
     utils/Retranslator.cpp
     utils/Runner.cpp
     utils/String.cpp
+    utils/StringExpander.cpp
     utils/UMask.cpp
     utils/Variant.cpp
     utils/Yaml.cpp
@@ -146,7 +147,7 @@ calamares_automoc( calamares )
 target_link_libraries(
     calamares
     LINK_PRIVATE ${OPTIONAL_PRIVATE_LIBRARIES}
-    LINK_PUBLIC yamlcpp::yamlcpp Qt5::Core ${OPTIONAL_PUBLIC_LIBRARIES}
+    LINK_PUBLIC yamlcpp::yamlcpp Qt5::Core KF5::CoreAddons ${OPTIONAL_PUBLIC_LIBRARIES}
 )
 
 add_library(Calamares::calamares ALIAS calamares)
