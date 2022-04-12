@@ -554,7 +554,7 @@ LibCalamaresTests::testStringTruncation()
 {
     Logger::setupLogLevel( Logger::LOGDEBUG );
 
-    using namespace CalamaresUtils;
+    using namespace Calamares::String;
 
     const QString longString( R"(---
 --- src/libcalamares/utils/String.h
@@ -635,7 +635,7 @@ LibCalamaresTests::testStringTruncationShorter()
 {
     Logger::setupLogLevel( Logger::LOGDEBUG );
 
-    using namespace CalamaresUtils;
+    using namespace Calamares::String;
 
     const QString longString( R"(Some strange string artifacts appeared, leading to `{1?}` being
 displayed in various user-facing messages. These have been removed
@@ -730,7 +730,7 @@ LibCalamaresTests::testStringTruncationDegenerate()
 {
     Logger::setupLogLevel( Logger::LOGDEBUG );
 
-    using namespace CalamaresUtils;
+    using namespace Calamares::String;
 
     // This is quite long, 1 line only, with no newlines
     const QString longString( "The portscout new distfile checker has detected that one or more of your "
@@ -783,7 +783,7 @@ LibCalamaresTests::testStringRemoveLeading()
     QFETCH( QString, result );
 
     const QString initial = string;
-    CalamaresUtils::removeLeading( string, c );
+    Calamares::String::removeLeading( string, c );
     QCOMPARE( string, result );
 }
 
@@ -813,7 +813,7 @@ LibCalamaresTests::testStringRemoveTrailing()
     QFETCH( QString, result );
 
     const QString initial = string;
-    CalamaresUtils::removeTrailing( string, c );
+    Calamares::String::removeTrailing( string, c );
     QCOMPARE( string, result );
 }
 
@@ -993,7 +993,7 @@ LibCalamaresTests::testRunnerOutput()
 
         Calamares::Utils::Runner r( { "cat" } );
         r.enableOutputProcessing().setInput( QStringLiteral( "hello\nworld\n\n!\n" ) );
-        QObject::connect( &r, &decltype( r )::output, [&collectedOutput]( QString s ) { collectedOutput << s; } );
+        QObject::connect( &r, &decltype( r )::output, [ &collectedOutput ]( QString s ) { collectedOutput << s; } );
 
         {
             auto result = r.run();
