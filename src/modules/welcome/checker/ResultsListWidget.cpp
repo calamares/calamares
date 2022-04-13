@@ -110,10 +110,11 @@ ResultsListDialog::ResultsListDialog( const Calamares::RequirementsModel& model,
     m_title = new QLabel( this );
     m_title->setObjectName( "resultDialogTitle" );
 
-    createResultWidgets(
-        entriesLayout, m_resultWidgets, model, []( const Calamares::RequirementsModel& m, QModelIndex i ) {
-            return m.data( i, Calamares::RequirementsModel::HasDetails ).toBool();
-        } );
+    createResultWidgets( entriesLayout,
+                         m_resultWidgets,
+                         model,
+                         []( const Calamares::RequirementsModel& m, QModelIndex i )
+                         { return m.data( i, Calamares::RequirementsModel::HasDetails ).toBool(); } );
 
     QDialogButtonBox* buttonBox = new QDialogButtonBox( QDialogButtonBox::Close, Qt::Horizontal, this );
     buttonBox->setObjectName( "resultDialogButtons" );
@@ -154,75 +155,35 @@ ResultsListWidget::ResultsListWidget( Config* config, QWidget* parent )
 {
     setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
 
-    QBoxLayout* mainLayout = new QVBoxLayout;
-    QBoxLayout* entriesLayout = new QVBoxLayout;
+    m_mainLayout = new QVBoxLayout;
+    m_entriesLayout = new QVBoxLayout;
 
-    setLayout( mainLayout );
+    setLayout( m_mainLayout );
 
     int paddingSize = qBound( 32, CalamaresUtils::defaultFontHeight() * 4, 128 );
 
     QHBoxLayout* spacerLayout = new QHBoxLayout;
-    mainLayout->addLayout( spacerLayout );
+    m_mainLayout->addLayout( spacerLayout );
     spacerLayout->addSpacing( paddingSize );
-    spacerLayout->addLayout( entriesLayout );
+    spacerLayout->addLayout( m_entriesLayout );
     spacerLayout->addSpacing( paddingSize );
     CalamaresUtils::unmarginLayout( spacerLayout );
 
-    auto* explanation = new QLabel( m_config->warningMessage() );
-    explanation->setWordWrap( true );
-    explanation->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
-    explanation->setOpenExternalLinks( false );
-    explanation->setObjectName( "resultsExplanation" );
-    entriesLayout->addWidget( explanation );
+    m_explanation = new QLabel( m_config->warningMessage() );
+    m_explanation->setWordWrap( true );
+    m_explanation->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
+    m_explanation->setOpenExternalLinks( false );
+    m_explanation->setObjectName( "resultsExplanation" );
+    m_entriesLayout->addWidget( m_explanation );
 
-    connect( config, &Config::warningMessageChanged, explanation, &QLabel::setText );
-    connect( explanation, &QLabel::linkActivated, this, &ResultsListWidget::linkClicked );
+    requirementsChanged();
 
-    // Check that all are satisfied (gives warnings if not) and
-    // all *mandatory* entries are satisfied (gives errors if not).
-
-    const bool requirementsSatisfied = config->requirementsModel()->satisfiedRequirements();
-    auto isUnSatisfied = []( const Calamares::RequirementsModel& m, QModelIndex i ) {
-        return !m.data( i, Calamares::RequirementsModel::Satisfied ).toBool();
-    };
-
-    createResultWidgets( entriesLayout, m_resultWidgets, *( config->requirementsModel() ), isUnSatisfied );
-
-    if ( !requirementsSatisfied )
-    {
-        entriesLayout->insertSpacing( 1, CalamaresUtils::defaultFontHeight() / 2 );
-        mainLayout->addStretch();
-    }
-    else
-    {
-        if ( !Calamares::Branding::instance()->imagePath( Calamares::Branding::ProductWelcome ).isEmpty() )
-        {
-            QPixmap theImage
-                = QPixmap( Calamares::Branding::instance()->imagePath( Calamares::Branding::ProductWelcome ) );
-            if ( !theImage.isNull() )
-            {
-                QLabel* imageLabel;
-                if ( Calamares::Branding::instance()->welcomeExpandingLogo() )
-                {
-                    FixedAspectRatioLabel* p = new FixedAspectRatioLabel;
-                    p->setPixmap( theImage );
-                    imageLabel = p;
-                }
-                else
-                {
-                    imageLabel = new QLabel;
-                    imageLabel->setPixmap( theImage );
-                }
-
-                imageLabel->setContentsMargins( 4, CalamaresUtils::defaultFontHeight() * 3 / 4, 4, 4 );
-                imageLabel->setAlignment( Qt::AlignCenter );
-                imageLabel->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
-                imageLabel->setObjectName( "welcomeLogo" );
-                mainLayout->addWidget( imageLabel );
-            }
-        }
-        explanation->setAlignment( Qt::AlignCenter );
-    }
+    connect( config, &Config::warningMessageChanged, m_explanation, &QLabel::setText );
+    connect( m_explanation, &QLabel::linkActivated, this, &ResultsListWidget::linkClicked );
+    connect( config->requirementsModel(),
+             &Calamares::RequirementsModel::modelReset,
+             this,
+             &ResultsListWidget::requirementsChanged );
 
     CALAMARES_RETRANSLATE_SLOT( &ResultsListWidget::retranslate );
 }
@@ -251,6 +212,73 @@ ResultsListWidget::retranslate()
                 model.data( model.index( i ), Calamares::RequirementsModel::NegatedText ).toString() );
         }
     }
+}
+
+void
+ResultsListWidget::requirementsChanged()
+{
+    if ( m_config->requirementsModel()->count() < m_requirementsSeen )
+    {
+        return;
+    }
+    m_requirementsSeen = m_config->requirementsModel()->count();
+
+    // Check that all are satisfied (gives warnings if not) and
+    // all *mandatory* entries are satisfied (gives errors if not).
+
+    const bool requirementsSatisfied = m_config->requirementsModel()->satisfiedRequirements();
+    auto isUnSatisfied = []( const Calamares::RequirementsModel& m, QModelIndex i )
+    { return !m.data( i, Calamares::RequirementsModel::Satisfied ).toBool(); };
+
+
+    std::for_each( m_resultWidgets.begin(),
+                   m_resultWidgets.end(),
+                   []( QWidget* w )
+                   {
+                       if ( w )
+                       {
+                           w->deleteLater();
+                       }
+                   } );
+    createResultWidgets( m_entriesLayout, m_resultWidgets, *( m_config->requirementsModel() ), isUnSatisfied );
+
+    if ( !requirementsSatisfied )
+    {
+        m_entriesLayout->insertSpacing( 1, CalamaresUtils::defaultFontHeight() / 2 );
+        m_mainLayout->addStretch();
+    }
+    else
+    {
+        if ( !Calamares::Branding::instance()->imagePath( Calamares::Branding::ProductWelcome ).isEmpty() )
+        {
+            QPixmap theImage
+                = QPixmap( Calamares::Branding::instance()->imagePath( Calamares::Branding::ProductWelcome ) );
+            if ( !theImage.isNull() )
+            {
+                QLabel* imageLabel;
+                if ( Calamares::Branding::instance()->welcomeExpandingLogo() )
+                {
+                    FixedAspectRatioLabel* p = new FixedAspectRatioLabel;
+                    p->setPixmap( theImage );
+                    imageLabel = p;
+                }
+                else
+                {
+                    imageLabel = new QLabel;
+                    imageLabel->setPixmap( theImage );
+                }
+
+                imageLabel->setContentsMargins( 4, CalamaresUtils::defaultFontHeight() * 3 / 4, 4, 4 );
+                imageLabel->setAlignment( Qt::AlignCenter );
+                imageLabel->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
+                imageLabel->setObjectName( "welcomeLogo" );
+                m_mainLayout->addWidget( imageLabel );
+            }
+        }
+        m_explanation->setAlignment( Qt::AlignCenter );
+    }
+
+    retranslate();
 }
 
 #include "utils/moc-warnings.h"
