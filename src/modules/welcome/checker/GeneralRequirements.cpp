@@ -219,7 +219,7 @@ GeneralRequirements::checkRequirements()
         {
             checkEntries.append( { entry,
                                    [] { return tr( "is always false" ); },
-                                   [] { return tr( "is always false" ); },
+                                   [] { return tr( "The computer says no." ); },
                                    false,
                                    required } );
         }
@@ -227,7 +227,7 @@ GeneralRequirements::checkRequirements()
         {
             checkEntries.append( { entry,
                                    [] { return tr( "is always true" ); },
-                                   [] { return tr( "is always true" ); },
+                                   [] { return tr( "The computer says yes." ); },
                                    true,
                                    required } );
         }
