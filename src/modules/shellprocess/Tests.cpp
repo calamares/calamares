@@ -190,7 +190,14 @@ script:
     // But no user set yet
     QVERIFY( !bool( CommandList( userScript, false, 10s ).run() ) );
 
-    // Now play dangerous games with shell expansion
+    // Show that shell expansion is now quoted.
     gs->insert( "username", "`id -u`" );
-    QVERIFY( bool( CommandList( userScript, false, 10s ).run() ) );
+    {
+        CalamaresUtils::CommandLine c { QStringLiteral( "chown ${USER}" ), std::chrono::seconds( 0 ) };
+        QCOMPARE( c.expand().command(), QStringLiteral( "chown '`id -u`'" ) );
+    }
+    // Now play dangerous games with shell expansion -- except the internal command is now
+    // quoted, so this fails because it's **highly** unlikely that the literal string
+    // "`id -u`" is a valid username.
+    QVERIFY( !bool( CommandList( userScript, false, 10s ).run() ) );
 }
