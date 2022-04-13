@@ -445,6 +445,15 @@ Config::setFullName( const QString& name )
     if ( name != m_fullName )
     {
         m_fullName = name;
+        Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+        if ( name.isEmpty() )
+        {
+            gs->remove( "fullname" );
+        }
+        else
+        {
+            gs->insert( "fullname", name );
+        }
         emit fullNameChanged( name );
 
         // Build login and hostname, if needed
