@@ -68,6 +68,48 @@ get_variant_stringlist( const QVariantList& l )
     return retl;
 }
 
+static Calamares::String::DictionaryExpander
+get_gs_expander( System::RunLocation location )
+{
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+
+    Calamares::String::DictionaryExpander expander;
+
+    // Figure out the replacement for ${ROOT}
+    if ( location == System::RunLocation::RunInTarget )
+    {
+        expander.insert( QStringLiteral( "ROOT" ), QStringLiteral( "/" ) );
+    }
+    else if ( gs && gs->contains( "rootMountPoint" ) )
+    {
+        expander.insert( QStringLiteral( "ROOT" ), gs->value( "rootMountPoint" ).toString() );
+    }
+
+    // Replacement for ${USER}
+    if ( gs && gs->contains( "username" ) )
+    {
+        expander.insert( QStringLiteral( "USER" ), gs->value( "username" ).toString() );
+    }
+
+    return expander;
+}
+
+CommandLine
+CommandLine::expand( KMacroExpanderBase& expander ) const
+{
+    QString c = first;
+    expander.expandMacrosShellQuote( c );
+    return { c, second };
+}
+
+CalamaresUtils::CommandLine
+CommandLine::expand() const
+{
+    auto expander = get_gs_expander( System::RunLocation::RunInHost );
+    return expand( expander );
+}
+
+
 CommandList::CommandList( bool doChroot, std::chrono::seconds timeout )
     : m_doChroot( doChroot )
     , m_timeout( timeout )
@@ -91,7 +133,7 @@ CommandList::CommandList::CommandList( const QVariant& v, bool doChroot, std::ch
     }
     else if ( v.type() == QVariant::String )
     {
-        append( v.toString() );
+        append( { v.toString(), m_timeout } );
     }
     else if ( v.type() == QVariant::Map )
     {
@@ -114,37 +156,9 @@ Calamares::JobResult
 CommandList::run()
 {
     System::RunLocation location = m_doChroot ? System::RunLocation::RunInTarget : System::RunLocation::RunInHost;
-    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
 
-    Calamares::String::DictionaryExpander expander;
-
-    // Figure out the replacement for ${ROOT}
-    if ( location == System::RunLocation::RunInTarget )
-    {
-        expander.insert( QStringLiteral( "ROOT" ), QStringLiteral( "/" ) );
-    }
-    else if ( gs && gs->contains( "rootMountPoint" ) )
-    {
-        expander.insert( QStringLiteral( "ROOT" ), gs->value( "rootMountPoint" ).toString() );
-    }
-
-    // Replacement for ${USER}
-    if ( gs && gs->contains( "username" ) )
-    {
-        expander.insert( QStringLiteral( "USER" ), gs->value( "username" ).toString() );
-    }
-
-    // Copy and expand the list, collecting missing variables (so don't call expand())
-    CommandList_t expandedList;
-    std::transform( cbegin(),
-                    cend(),
-                    std::back_inserter( expandedList ),
-                    [ &expander ]( CommandLine c )
-                    {
-                        expander.expandMacros( c.first );
-                        return c;
-                    } );
-
+    auto expander = get_gs_expander( location );
+    auto expandedList = expand( expander );
     if ( expander.hasErrors() )
     {
         const auto missing = expander.errorNames();
@@ -156,7 +170,6 @@ CommandList::run()
                                          "Missing variables are: %1." )
                 .arg( missing.join( ',' ) ) );
     }
-
 
     for ( CommandList::const_iterator i = expandedList.cbegin(); i != expandedList.cend(); ++i )
     {
@@ -190,10 +203,24 @@ CommandList::run()
     return Calamares::JobResult::ok();
 }
 
-void
-CommandList::append( const QString& s )
+CommandList
+CommandList::expand( KMacroExpanderBase& expander ) const
 {
-    append( CommandLine( s, m_timeout ) );
+    // Copy and expand the list, collecting missing variables (so don't call expand())
+    CommandList expandedList( m_doChroot, m_timeout );
+    std::transform( cbegin(),
+                    cend(),
+                    std::back_inserter( expandedList ),
+                    [ &expander ]( const CommandLine& c ) { return c.expand( expander ); } );
+    return expandedList;
 }
+
+CommandList
+CommandList::expand() const
+{
+    auto expander = get_gs_expander( System::RunLocation::RunInHost );
+    return expand( expander );
+}
+
 
 }  // namespace CalamaresUtils

@@ -28,6 +28,13 @@ DictionaryExpander::DictionaryExpander()
 {
 }
 
+DictionaryExpander::DictionaryExpander( Calamares::String::DictionaryExpander&& other )
+    : KWordMacroExpander( other.escapeChar() )
+    , d( std::move( other.d ) )
+{
+}
+
+
 DictionaryExpander::~DictionaryExpander() {}
 
 

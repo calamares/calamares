@@ -10,6 +10,7 @@
  */
 
 #include "CalamaresUtilsSystem.h"
+#include "CommandList.h"
 #include "Entropy.h"
 #include "Logger.h"
 #include "RAII.h"
@@ -46,7 +47,10 @@ private Q_SLOTS:
     void testLoadSaveYaml();  // Just settings.conf
     void testLoadSaveYamlExtended();  // Do a find() in the src dir
 
+    /** @section Test running commands and command-expansion. */
     void testCommands();
+    void testCommandExpansion_data();
+    void testCommandExpansion();  // See also shellprocess tests
 
     /** @section Test that all the UMask objects work correctly. */
     void testUmask();
@@ -99,6 +103,16 @@ LibCalamaresTests::~LibCalamaresTests() {}
 void
 LibCalamaresTests::initTestCase()
 {
+    Calamares::GlobalStorage* gs
+        = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
+
+    if ( !gs )
+    {
+        cDebug() << "Creating new JobQueue";
+        (void)new Calamares::JobQueue();
+        gs = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
+    }
+    QVERIFY( gs );
 }
 
 void
@@ -254,6 +268,34 @@ LibCalamaresTests::testCommands()
 
     r = System::runCommand( System::RunLocation::RunInHost, { "/bin/ls" }, "/tmp" );
     QVERIFY( r.getOutput().contains( tfn.fileName() ) );
+}
+
+void
+LibCalamaresTests::testCommandExpansion_data()
+{
+    QTest::addColumn< QString >( "command" );
+    QTest::addColumn< QString >( "expected" );
+
+    QTest::newRow( "empty" ) << QString() << QString();
+    QTest::newRow( "ls   " ) << QStringLiteral( "ls" ) << QStringLiteral( "ls" );
+    QTest::newRow( "user " ) << QStringLiteral( "chmod $USER" ) << QStringLiteral( "chmod alice" );
+}
+
+void
+LibCalamaresTests::testCommandExpansion()
+{
+    Calamares::GlobalStorage* gs
+        = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
+    QVERIFY( gs );
+    gs->insert( QStringLiteral( "username" ), QStringLiteral( "alice" ) );
+
+    QFETCH( QString, command );
+    QFETCH( QString, expected );
+    CalamaresUtils::CommandLine c( command, std::chrono::seconds( 0 ) );
+    CalamaresUtils::CommandLine e = c.expand();
+
+    QCOMPARE( c.command(), command );
+    QCOMPARE( e.command(), expected );
 }
 
 void

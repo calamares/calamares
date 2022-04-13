@@ -42,6 +42,7 @@ class DictionaryExpander : public KWordMacroExpander
 {
 public:
     DictionaryExpander();
+    DictionaryExpander( DictionaryExpander&& );
     virtual ~DictionaryExpander() override;
 
     void insert( const QString& key, const QString& value );
