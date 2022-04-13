@@ -15,6 +15,9 @@
 #include "CheckerContainer.h"
 #include "partman_devices.h"
 
+#include "CalamaresVersion.h"  // For development-or-not
+#include "GlobalStorage.h"
+#include "JobQueue.h"
 #include "Settings.h"
 #include "modulesystem/Requirement.h"
 #include "network/Manager.h"
@@ -25,9 +28,6 @@
 #include "utils/Units.h"
 #include "utils/Variant.h"
 #include "widgets/WaitingWidget.h"
-
-#include "GlobalStorage.h"
-#include "JobQueue.h"
 
 #include <QDBusConnection>
 #include <QDBusInterface>
@@ -152,10 +152,10 @@ GeneralRequirements::checkRequirements()
         {
             checkEntries.append(
                 { entry,
-                  [req = m_requiredStorageGiB] { return tr( "has at least %1 GiB available drive space" ).arg( req ); },
-                  [req = m_requiredStorageGiB] {
-                      return tr( "There is not enough drive space. At least %1 GiB is required." ).arg( req );
-                  },
+                  [ req = m_requiredStorageGiB ]
+                  { return tr( "has at least %1 GiB available drive space" ).arg( req ); },
+                  [ req = m_requiredStorageGiB ]
+                  { return tr( "There is not enough drive space. At least %1 GiB is required." ).arg( req ); },
                   enoughStorage,
                   m_entriesToRequire.contains( entry ) } );
         }
@@ -163,8 +163,8 @@ GeneralRequirements::checkRequirements()
         {
             checkEntries.append(
                 { entry,
-                  [req = m_requiredRamGiB] { return tr( "has at least %1 GiB working memory" ).arg( req ); },
-                  [req = m_requiredRamGiB] {
+                  [ req = m_requiredRamGiB ] { return tr( "has at least %1 GiB working memory" ).arg( req ); },
+                  [ req = m_requiredRamGiB ] {
                       return tr( "The system does not have enough working memory. At least %1 GiB is required." )
                           .arg( req );
                   },
@@ -191,7 +191,8 @@ GeneralRequirements::checkRequirements()
         {
             checkEntries.append( { entry,
                                    [] { return tr( "is running the installer as an administrator (root)" ); },
-                                   [] {
+                                   []
+                                   {
                                        return Calamares::Settings::instance()->isSetupMode()
                                            ? tr( "The setup program is not running with administrator rights." )
                                            : tr( "The installer is not running with administrator rights." );
@@ -203,7 +204,8 @@ GeneralRequirements::checkRequirements()
         {
             checkEntries.append( { entry,
                                    [] { return tr( "has a screen large enough to show the whole installer" ); },
-                                   [] {
+                                   []
+                                   {
                                        return Calamares::Settings::instance()->isSetupMode()
                                            ? tr( "The screen is too small to display the setup program." )
                                            : tr( "The screen is too small to display the installer." );
@@ -211,6 +213,37 @@ GeneralRequirements::checkRequirements()
                                    enoughScreen,
                                    false } );
         }
+#ifdef CALAMARES_VERSION_RC
+        if ( entry == "false" )
+        {
+            checkEntries.append( { entry,
+                                   [] { return tr( "is always false" ); },
+                                   [] { return tr( "is always false" ); },
+                                   false,
+                                   m_entriesToRequire.contains( entry ) } );
+        }
+        if ( entry == "true" )
+        {
+            checkEntries.append( { entry,
+                                   [] { return tr( "is always true" ); },
+                                   [] { return tr( "is always true" ); },
+                                   true,
+                                   m_entriesToRequire.contains( entry ) } );
+        }
+        if ( entry == "snark" )
+        {
+            static unsigned int snark_count = 0;
+            checkEntries.append( { entry,
+                                   [] { return tr( "is checked three times." ); },
+                                   []
+                                   {
+                                       return tr( "The snark has not been checked three times.",
+                                                  "The (some mythological beast) has not been checked three times." );
+                                   },
+                                   ++snark_count > 3,
+                                   m_entriesToRequire.contains( entry ) } );
+        }
+#endif
     }
     return checkEntries;
 }
