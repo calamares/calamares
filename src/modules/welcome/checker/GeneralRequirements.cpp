@@ -148,6 +148,7 @@ GeneralRequirements::checkRequirements()
     Calamares::RequirementsList checkEntries;
     foreach ( const QString& entry, m_entriesToCheck )
     {
+        const bool required = m_entriesToRequire.contains( entry );
         if ( entry == "storage" )
         {
             checkEntries.append(
@@ -157,7 +158,7 @@ GeneralRequirements::checkRequirements()
                   [ req = m_requiredStorageGiB ]
                   { return tr( "There is not enough drive space. At least %1 GiB is required." ).arg( req ); },
                   enoughStorage,
-                  m_entriesToRequire.contains( entry ) } );
+                  required } );
         }
         else if ( entry == "ram" )
         {
@@ -169,7 +170,7 @@ GeneralRequirements::checkRequirements()
                           .arg( req );
                   },
                   enoughRam,
-                  m_entriesToRequire.contains( entry ) } );
+                  required } );
         }
         else if ( entry == "power" )
         {
@@ -177,7 +178,7 @@ GeneralRequirements::checkRequirements()
                                    [] { return tr( "is plugged in to a power source" ); },
                                    [] { return tr( "The system is not plugged in to a power source." ); },
                                    hasPower,
-                                   m_entriesToRequire.contains( entry ) } );
+                                   required } );
         }
         else if ( entry == "internet" )
         {
@@ -185,7 +186,7 @@ GeneralRequirements::checkRequirements()
                                    [] { return tr( "is connected to the Internet" ); },
                                    [] { return tr( "The system is not connected to the Internet." ); },
                                    hasInternet,
-                                   m_entriesToRequire.contains( entry ) } );
+                                   required } );
         }
         else if ( entry == "root" )
         {
@@ -198,7 +199,7 @@ GeneralRequirements::checkRequirements()
                                            : tr( "The installer is not running with administrator rights." );
                                    },
                                    isRoot,
-                                   m_entriesToRequire.contains( entry ) } );
+                                   required } );
         }
         else if ( entry == "screen" )
         {
@@ -211,7 +212,7 @@ GeneralRequirements::checkRequirements()
                                            : tr( "The screen is too small to display the installer." );
                                    },
                                    enoughScreen,
-                                   false } );
+                                   required } );
         }
 #ifdef CALAMARES_VERSION_RC
         if ( entry == "false" )
@@ -220,7 +221,7 @@ GeneralRequirements::checkRequirements()
                                    [] { return tr( "is always false" ); },
                                    [] { return tr( "is always false" ); },
                                    false,
-                                   m_entriesToRequire.contains( entry ) } );
+                                   required } );
         }
         if ( entry == "true" )
         {
@@ -228,7 +229,7 @@ GeneralRequirements::checkRequirements()
                                    [] { return tr( "is always true" ); },
                                    [] { return tr( "is always true" ); },
                                    true,
-                                   m_entriesToRequire.contains( entry ) } );
+                                   required } );
         }
         if ( entry == "snark" )
         {
@@ -241,7 +242,7 @@ GeneralRequirements::checkRequirements()
                                                   "The (some mythological beast) has not been checked three times." );
                                    },
                                    ++snark_count > 3,
-                                   m_entriesToRequire.contains( entry ) } );
+                                   required } );
         }
 #endif
     }
