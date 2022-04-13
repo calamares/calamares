@@ -58,10 +58,10 @@ Module descriptors for C++ modules **may** have the following key:
 Module descriptors for Python modules **must** have the following key:
 - *script* (the name of the Python script to load, nearly always `main.py`)
 
-Module descriptors for process modules **must** have the following key:  
-- *command* (the command to run)  
+Module descriptors for process modules **must** have the following key:
+- *command* (the command to run)
 
-Module descriptors for process modules **may** have the following keys:  
+Module descriptors for process modules **may** have the following keys:
 - *timeout* (how long, in seconds, to wait for the command to run)
 - *chroot* (if true, run the command in the target system rather than the host)
 Note that process modules are not recommended.
@@ -181,23 +181,25 @@ for determining the relative weights there.
 
 
 ## Global storage keys
+
 Some modules place values in global storage so that they can be referenced later by other modules or even other parts of the same module.  The following table represents a partial list of the values available as well as where they originate from and which module consume them.
 
-Key|Source|Consumers|Description
----|---|---|---
-btrfsSubvolumes|mount|fstab|List of maps containing the mountpoint and btrtfs subvolume
-btrfsRootSubvolume|mount|bootloader, luksopenswaphook|String containing the subvolume mounted at root
-efiSystemPartition|partition|bootloader, fstab|String containing the path to the ESP relative to the installed system
-extraMounts|mount|unpackfs|List of maps holding metadata for the temporary mountpoints used by the installer
-hostname|users||A string containing the hostname of the new system
-netinstallAdd|packagechooser|netinstall|Data to add to netinstall tree. Same format as netinstall.yaml
-netinstallSelect|packagechooser|netinstall|List of group names to select in the netinstall tree
-partitions|partition, rawfs|numerous modules|List of maps of metadata about each partition
-rootMountPoint|mount|numerous modules|A string with the absolute path to the root mountpoint
-username|users|networkcfg, plasmainf, preservefiles|A string containing the username of the new user
-zfsDatasets|zfs|bootloader, grubcfg, mount|List of maps of zfs datasets including the name and mount information
-zfsInfo|partition|mount, zfs|List of encrypted zfs partitions and the encription info
-zfsPoolInfo|zfs|mount, umount|List of maps of zfs pool info including the name and mountpoint
+Key               |Source          |Consumers|Description
+------------------|----------------|---|---
+btrfsSubvolumes   |mount           |fstab|List of maps containing the mountpoint and btrtfs subvolume
+btrfsRootSubvolume|mount           |bootloader, luksopenswaphook|String containing the subvolume mounted at root
+efiSystemPartition|partition       |bootloader, fstab|String containing the path to the ESP relative to the installed system
+extraMounts       |mount           |unpackfs|List of maps holding metadata for the temporary mountpoints used by the installer
+fullname          |users           ||The full username (e.g. "Jane Q. Public")
+hostname          |users           ||A string containing the hostname of the new system
+netinstallAdd     |packagechooser  |netinstall|Data to add to netinstall tree. Same format as netinstall.yaml
+netinstallSelect  |packagechooser  |netinstall|List of group names to select in the netinstall tree
+partitions        |partition, rawfs|numerous modules|List of maps of metadata about each partition
+rootMountPoint    |mount           |numerous modules|A string with the absolute path to the root mountpoint
+username          |users           |networkcfg, plasmainf, preservefiles|A string containing the username of the new user
+zfsDatasets       |zfs             |bootloader, grubcfg, mount|List of maps of zfs datasets including the name and mount information
+zfsInfo           |partition       |mount, zfs|List of encrypted zfs partitions and the encription info
+zfsPoolInfo       |zfs             |mount, umount|List of maps of zfs pool info including the name and mountpoint
 
 
 ## C++ modules
@@ -477,17 +479,6 @@ all be considered deprecated by the callback-enabled functions, above.
 
 All of the API functions for running commands set the environment
 LC_ALL and LANG to "C" for the called command.
-
-
-## PythonQt modules (deprecated)
-
-> Type: viewmodule, jobmodule
-> Interface: pythonqt
-
-The PythonQt modules are deprecated and will be removed in Calamares 3.3.
-Their documentation is also almost completely lacking.
-
-
 
 ## Process modules
 
