@@ -33,17 +33,31 @@ private:
 
     void retranslate();
 
-    QList< ResultWidget* > m_resultWidgets;  ///< One widget for each unsatisfied entry
+    /** @brief The model can be reset and re-filled, is it full yet?
+     *
+     * We count how many requirements we have seen; since the model
+     * does not shrink, we can avoid reacting to model-is-cleared
+     * events because the size of the model is then (briefly) smaller
+     * than what we expect.
+     *
+     * Returns true if the model contains at least m_requirementsSeen
+     * elements, and updates m_requirementsSeen. (Which is why the
+     * method is not const)
+     */
+    bool isModelFilled();
+
+    /** @brief A list of widgets, one per entry in the requirements model
+     *
+     * Unsatisfied entries have a non-null widget pointer, while requirements
+     * entries that **are** satisfied have no widget.
+     */
+    QList< ResultWidget* > m_resultWidgets;
     Config* m_config = nullptr;
 
     // UI parts, which need updating when the model changes
     QLabel* m_explanation = nullptr;
     QBoxLayout* m_mainLayout = nullptr;
     QBoxLayout* m_entriesLayout = nullptr;
-    // We count how many requirements we have seen; since the model
-    // does not shrink, we can avoid reacting to model-is-cleared
-    // events because the size of the model is then (briefly) smaller
-    // than what we expect.
     int m_requirementsSeen = 0;
 };
 

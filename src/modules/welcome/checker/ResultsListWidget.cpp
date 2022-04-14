@@ -217,11 +217,10 @@ ResultsListWidget::retranslate()
 void
 ResultsListWidget::requirementsChanged()
 {
-    if ( m_config->requirementsModel()->count() < m_requirementsSeen )
+    if ( !isModelFilled() )
     {
         return;
     }
-    m_requirementsSeen = m_config->requirementsModel()->count();
 
     // Check that all are satisfied (gives warnings if not) and
     // all *mandatory* entries are satisfied (gives errors if not).
@@ -280,6 +279,18 @@ ResultsListWidget::requirementsChanged()
 
     retranslate();
 }
+
+bool
+ResultsListWidget::isModelFilled()
+{
+    if ( m_config->requirementsModel()->count() < m_requirementsSeen )
+    {
+        return false;
+    }
+    m_requirementsSeen = m_config->requirementsModel()->count();
+    return true;
+}
+
 
 #include "utils/moc-warnings.h"
 
