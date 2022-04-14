@@ -175,6 +175,8 @@ ResultsListWidget::ResultsListWidget( Config* config, QWidget* parent )
     m_explanation->setOpenExternalLinks( false );
     m_explanation->setObjectName( "resultsExplanation" );
     m_entriesLayout->addWidget( m_explanation );
+    m_entriesLayout->insertSpacing( 1, CalamaresUtils::defaultFontHeight() / 2 );
+    m_mainLayout->addStretch();
 
     requirementsChanged();
 
@@ -212,7 +214,9 @@ void
 ResultsListWidget::retranslate()
 {
     const auto& model = *( m_config->requirementsModel() );
-    for ( auto i = 0; i < model.count(); i++ )
+    // Retranslate the widgets that there **are**;
+    // these remain in-order relative to the model.
+    for ( auto i = 0; i < model.count() && i < m_resultWidgets.count(); i++ )
     {
         if ( m_resultWidgets[ i ] )
         {
@@ -247,12 +251,10 @@ ResultsListWidget::requirementsChanged()
                            w->deleteLater();
                        }
                    } );
-    createResultWidgets( m_entriesLayout, m_resultWidgets, *( m_config->requirementsModel() ), isUnSatisfied );
 
     if ( !requirementsSatisfied )
     {
-        m_entriesLayout->insertSpacing( 1, CalamaresUtils::defaultFontHeight() / 2 );
-        m_mainLayout->addStretch();
+        createResultWidgets( m_entriesLayout, m_resultWidgets, *( m_config->requirementsModel() ), isUnSatisfied );
     }
     else
     {
