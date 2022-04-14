@@ -178,7 +178,15 @@ ResultsListWidget::ResultsListWidget( Config* config, QWidget* parent )
 
     requirementsChanged();
 
-    connect( config, &Config::warningMessageChanged, m_explanation, &QLabel::setText );
+    connect( config,
+             &Config::warningMessageChanged,
+             [ = ]( QString s )
+             {
+                 if ( isModelFilled() )
+                 {
+                     m_explanation->setText( s );
+                 }
+             } );
     connect( m_explanation, &QLabel::linkActivated, this, &ResultsListWidget::linkClicked );
     connect( config->requirementsModel(),
              &Calamares::RequirementsModel::modelReset,
