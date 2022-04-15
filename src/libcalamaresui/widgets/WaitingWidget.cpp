@@ -64,13 +64,11 @@ struct CountdownWaitingWidget::Private
     // and then wrap around to duration a second later.
     int count = 0;
     WaitingSpinnerWidget* spinner = nullptr;
-    QLabel* label = nullptr;
     QTimer* timer = nullptr;
 
     Private( std::chrono::seconds seconds, QWidget* parent )
         : duration( seconds )
         , spinner( new WaitingSpinnerWidget( parent ) )
-        , label( new QLabel( parent ) )
         , timer( new QTimer( parent ) )
     {
     }
@@ -81,11 +79,11 @@ CountdownWaitingWidget::CountdownWaitingWidget( std::chrono::seconds duration, Q
     , d( std::make_unique< Private >( duration, this ) )
 {
     // Set up the label first for sizing
-    const int labelHeight = qBound( 16, d->label->fontMetrics().height() * 3 / 2, 64 );
+    const int labelHeight = qBound( 16, CalamaresUtils::defaultFontHeight() * 3 / 2, 64 );
 
     // Set up the spinner
     d->spinner->setFixedSize( labelHeight, labelHeight );
-    d->spinner->setRevolutionsPerSecond( 1 );
+    d->spinner->setRevolutionsPerSecond( 1.0 / double(duration.count()) );
     d->spinner->setInnerRadius( labelHeight / 2 );
     d->spinner->setLineLength( labelHeight / 2 );
     d->spinner->setLineWidth( labelHeight / 8 );
@@ -93,7 +91,6 @@ CountdownWaitingWidget::CountdownWaitingWidget( std::chrono::seconds duration, Q
     // Overall UI layout
     QBoxLayout* box = new QHBoxLayout;
     box->addWidget( d->spinner );
-    box->addWidget( d->label );
     setLayout( box );
 
     // Last because it updates the text
@@ -146,7 +143,6 @@ CountdownWaitingWidget::tick()
     {
         d->count = int( d->duration.count() );
     }
-    d->label->setText( QString::number( d->count ) );
     if ( d->count == 0 )
     {
         timeout();
