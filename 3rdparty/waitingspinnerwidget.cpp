@@ -39,6 +39,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include <QPainter>
 #include <QTimer>
 
+static bool isAlignCenter(Qt::AlignmentFlag a)
+{
+    return a == Qt::AlignmentFlag::AlignVCenter;
+}
+
 WaitingSpinnerWidget::WaitingSpinnerWidget(QWidget *parent,
                                            bool centerOnParent,
                                            bool disableParentWhenSpinning)
@@ -120,8 +125,13 @@ void WaitingSpinnerWidget::paintEvent(QPaintEvent *) {
 
     if (!_text.isEmpty()) {
         painter.setPen(QPen(_textColor));
-        painter.drawText(QRect(0, _imageSize.height(), width(), height() - _imageSize.height()),
-                Qt::AlignBottom | Qt::AlignHCenter, _text);
+        if (isAlignCenter(alignment())) {
+            painter.drawText(QRect(0, 0, width(), height()),
+                    Qt::AlignVCenter | Qt::AlignHCenter, _text);
+        } else {
+            painter.drawText(QRect(0, _imageSize.height(), width(), height() - _imageSize.height()),
+                    Qt::AlignBottom | Qt::AlignHCenter, _text);
+        }
     }
 }
 
@@ -177,6 +187,12 @@ void WaitingSpinnerWidget::setInnerRadius(int radius) {
 
 void WaitingSpinnerWidget::setText(const QString& text) {
     _text = text;
+    updateSize();
+}
+
+void WaitingSpinnerWidget::setAlignment(Qt::AlignmentFlag align)
+{
+    _alignment = align;
     updateSize();
 }
 
@@ -264,7 +280,7 @@ void WaitingSpinnerWidget::rotate() {
 void WaitingSpinnerWidget::updateSize() {
     int size = (_innerRadius + _lineLength) * 2;
     _imageSize = QSize(size, size);
-    if (_text.isEmpty()) {
+    if (_text.isEmpty() || isAlignCenter(alignment())) {
         setFixedSize(size, size);
     } else {
         QFontMetrics fm(font());

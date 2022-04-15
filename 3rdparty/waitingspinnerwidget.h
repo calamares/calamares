@@ -72,11 +72,27 @@ public:
     void setLineLength(int length);
     void setLineWidth(int width);
     void setInnerRadius(int radius);
+
+    /** @brief Sets the text displayed in or below the spinner
+     *
+     * If the text is empty, no text is displayed. The text is displayed
+     * in or below the spinner depending on the value of alignment().
+     * With AlignBottom, the text is displayed below the spinner,
+     * centered horizontally relative to the spinner; any other alignment
+     * will put the text in the middle of the spinner itself.
+     */
     void setText(const QString& text);
+    /** @brief Sets the alignment of text for the spinner
+     *
+     * The only meaningful values are AlignBottom and AlignVCenter,
+     * for text below the spinner and text in the middle.
+     */
+    void setAlignment(Qt::AlignmentFlag align);
 
     QColor color() const;
     QColor textColor() const;
     QString text() const;
+    Qt::AlignmentFlag alignment() const { return _alignment; }
     qreal roundness()  const;
     qreal minimumTrailOpacity() const;
     qreal trailFadePercentage() const;
@@ -120,6 +136,7 @@ private:
     int     _lineLength;
     int     _lineWidth;
     int     _innerRadius;
+    Qt::AlignmentFlag _alignment = Qt::AlignmentFlag::AlignBottom;
     QString _text;
     QSize   _imageSize;
     QColor  _textColor;
