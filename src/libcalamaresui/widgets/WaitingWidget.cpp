@@ -143,6 +143,7 @@ CountdownWaitingWidget::tick()
     {
         d->count = int( d->duration.count() );
     }
+    d->spinner->setText( QString::number(d->count) );
     if ( d->count == 0 )
     {
         timeout();
