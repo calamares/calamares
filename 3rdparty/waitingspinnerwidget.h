@@ -69,19 +69,19 @@ public:
     void setLineLength(int length);
     void setLineWidth(int width);
     void setInnerRadius(int radius);
-    void setText(QString text);
+    void setText(const QString& text);
 
-    QColor color();
-    QColor textColor();
-    QString text();
-    qreal roundness();
-    qreal minimumTrailOpacity();
-    qreal trailFadePercentage();
-    qreal revolutionsPersSecond();
-    int numberOfLines();
-    int lineLength();
-    int lineWidth();
-    int innerRadius();
+    QColor color() const;
+    QColor textColor() const;
+    QString text() const;
+    qreal roundness()  const;
+    qreal minimumTrailOpacity() const;
+    qreal trailFadePercentage() const;
+    qreal revolutionsPersSecond() const;
+    int numberOfLines() const;
+    int lineLength() const;
+    int lineWidth() const;
+    int innerRadius() const;
 
     bool isSpinning() const;
 

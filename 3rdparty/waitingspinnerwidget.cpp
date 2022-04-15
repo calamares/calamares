@@ -120,7 +120,7 @@ void WaitingSpinnerWidget::paintEvent(QPaintEvent *) {
 
     if (!_text.isEmpty()) {
         painter.setPen(QPen(_textColor));
-        painter.drawText(QRect(0, _imageSize.height(), width(), height() - _imageSize.height()), 
+        painter.drawText(QRect(0, _imageSize.height(), width(), height() - _imageSize.height()),
                 Qt::AlignBottom | Qt::AlignHCenter, _text);
     }
 }
@@ -175,52 +175,52 @@ void WaitingSpinnerWidget::setInnerRadius(int radius) {
     updateSize();
 }
 
-void WaitingSpinnerWidget::setText(QString text) {
+void WaitingSpinnerWidget::setText(const QString& text) {
     _text = text;
     updateSize();
 }
 
-QColor WaitingSpinnerWidget::color() {
+QColor WaitingSpinnerWidget::color() const {
     return _color;
 }
 
-QColor WaitingSpinnerWidget::textColor() {
+QColor WaitingSpinnerWidget::textColor() const {
     return _textColor;
 }
 
-QString WaitingSpinnerWidget::text() {
+QString WaitingSpinnerWidget::text() const {
     return _text;
 }
 
-qreal WaitingSpinnerWidget::roundness() {
+qreal WaitingSpinnerWidget::roundness() const {
     return _roundness;
 }
 
-qreal WaitingSpinnerWidget::minimumTrailOpacity() {
+qreal WaitingSpinnerWidget::minimumTrailOpacity() const {
     return _minimumTrailOpacity;
 }
 
-qreal WaitingSpinnerWidget::trailFadePercentage() {
+qreal WaitingSpinnerWidget::trailFadePercentage() const {
     return _trailFadePercentage;
 }
 
-qreal WaitingSpinnerWidget::revolutionsPersSecond() {
+qreal WaitingSpinnerWidget::revolutionsPersSecond() const {
     return _revolutionsPerSecond;
 }
 
-int WaitingSpinnerWidget::numberOfLines() {
+int WaitingSpinnerWidget::numberOfLines() const {
     return _numberOfLines;
 }
 
-int WaitingSpinnerWidget::lineLength() {
+int WaitingSpinnerWidget::lineLength() const {
     return _lineLength;
 }
 
-int WaitingSpinnerWidget::lineWidth() {
+int WaitingSpinnerWidget::lineWidth() const {
     return _lineWidth;
 }
 
-int WaitingSpinnerWidget::innerRadius() {
+int WaitingSpinnerWidget::innerRadius() const {
     return _innerRadius;
 }
 
