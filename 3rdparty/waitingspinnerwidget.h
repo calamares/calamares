@@ -38,27 +38,30 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 class WaitingSpinnerWidget : public QWidget {
     Q_OBJECT
 public:
-    /*! Constructor for "standard" widget behaviour - use this
-   * constructor if you wish to, e.g. embed your widget in another. */
+    /** @brief Constructor for "standard" widget behaviour
+     *
+     * Use this constructor if you wish to, e.g. embed your widget in another.
+     */
     WaitingSpinnerWidget(QWidget *parent = nullptr,
                          bool centerOnParent = true,
                          bool disableParentWhenSpinning = true);
 
-    /*! Constructor - use this constructor to automatically create a modal
-   * ("blocking") spinner on top of the calling widget/window.  If a valid
-   * parent widget is provided, "centreOnParent" will ensure that
-   * QtWaitingSpinner automatically centres itself on it, if not,
-   * "centreOnParent" is ignored. */
+    /** @brief Constructor
+     *
+     * Use this constructor to automatically create a modal
+     * ("blocking") spinner on top of the calling widget/window.  If a valid
+     * parent widget is provided, "centreOnParent" will ensure that
+     * QtWaitingSpinner automatically centres itself on it, if not,
+     * @p centerOnParent is ignored.
+     */
     WaitingSpinnerWidget(Qt::WindowModality modality,
                          QWidget *parent = nullptr,
                          bool centerOnParent = true,
                          bool disableParentWhenSpinning = true);
 
-public slots:
-    void start();
-    void stop();
+    WaitingSpinnerWidget(const WaitingSpinnerWidget&) = delete;
+    WaitingSpinnerWidget& operator=(const WaitingSpinnerWidget&) = delete;
 
-public:
     void setColor(QColor color);
     void setTextColor(QColor color);
     void setRoundness(qreal roundness);
@@ -85,7 +88,11 @@ public:
 
     bool isSpinning() const;
 
-private slots:
+public Q_SLOTS:
+    void start();
+    void stop();
+
+private Q_SLOTS:
     void rotate();
 
 protected:
@@ -116,10 +123,6 @@ private:
     QString _text;
     QSize   _imageSize;
     QColor  _textColor;
-
-private:
-    WaitingSpinnerWidget(const WaitingSpinnerWidget&);
-    WaitingSpinnerWidget& operator=(const WaitingSpinnerWidget&);
 
     QTimer *_timer;
     bool    _centerOnParent;
