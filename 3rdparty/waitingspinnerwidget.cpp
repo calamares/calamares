@@ -2,6 +2,7 @@
  *   SPDX-FileCopyrightText: 2012-2014 Alexander Turkin
  *   SPDX-FileCopyrightText: 2014 William Hallatt
  *   SPDX-FileCopyrightText: 2015 Jacob Dawid
+ *   SPDX-FileCopyrightText: 2018 huxingyi
  *   SPDX-License-Identifier: MIT
  */
 
