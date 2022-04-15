@@ -81,10 +81,14 @@ CountdownWaitingWidget::CountdownWaitingWidget( std::chrono::seconds duration, Q
     , d( std::make_unique< Private >( duration, this ) )
 {
     // Set up the label first for sizing
-    const int labelHeight = d->label->fontMetrics().height() * 3 / 2;
+    const int labelHeight = qBound( 16, d->label->fontMetrics().height() * 3 / 2, 64 );
 
     // Set up the spinner
     d->spinner->setFixedSize( labelHeight, labelHeight );
+    d->spinner->setRevolutionsPerSecond( 1 );
+    d->spinner->setInnerRadius( labelHeight / 2 );
+    d->spinner->setLineLength( labelHeight / 2 );
+    d->spinner->setLineWidth( labelHeight / 8 );
 
     // Overall UI layout
     QBoxLayout* box = new QHBoxLayout;
@@ -122,12 +126,14 @@ CountdownWaitingWidget::start()
         tick();
     }
     d->timer->start();
+    d->spinner->start();
 }
 
 void
 CountdownWaitingWidget::stop()
 {
     d->timer->stop();
+    d->spinner->stop();
 }
 
 void
