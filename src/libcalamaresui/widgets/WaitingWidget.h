@@ -12,18 +12,65 @@
 
 #include <QWidget>
 
-class QLabel;
+#include <chrono>
+#include <memory>
 
+class QLabel;
+class QTimer;
+
+/** @brief A spinner and a label below it
+ *
+ * The spinner has a fixed size of 4* the font height,
+ * and the text is displayed centered below it. Use this
+ * to display a long-term waiting situation with a status report.
+ */
 class WaitingWidget : public QWidget
 {
     Q_OBJECT
 public:
+    /// Create a WaitingWidget with initial @p text label.
     explicit WaitingWidget( const QString& text, QWidget* parent = nullptr );
 
+    /// Update the @p text displayed in the label.
     void setText( const QString& text );
 
 private:
     QLabel* m_waitingLabel;
+};
+
+/** @brief A spinner and a countdown next to it
+ *
+ * The spinner is sized to the text-height and displays a
+ * numeric countdown next to it. The countdown is updated
+ * every second. The signal timeout() is sent every time
+ * the countdown reaches 0.
+ */
+class CountdownWaitingWidget : public QWidget
+{
+    Q_OBJECT
+public:
+    /// Create a countdown widget with a given @p duration
+    explicit CountdownWaitingWidget( std::chrono::seconds duration = std::chrono::seconds( 5 ),
+                                     QWidget* parent = nullptr );
+    ~CountdownWaitingWidget() override;
+
+    /// Changes the duration used and resets the countdown
+    void setInterval( std::chrono::seconds duration );
+
+    /// Start the countdown, resets to the full duration
+    void start();
+    /// Stop the countdown
+    void stop();
+
+Q_SIGNALS:
+    void timeout();
+
+protected Q_SLOTS:
+    void tick();
+
+private:
+    struct Private;
+    std::unique_ptr< Private > d;
 };
 
 #endif  // WAITINGWIDGET_H
