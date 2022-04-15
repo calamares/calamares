@@ -18,6 +18,7 @@
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 #include "widgets/FixedAspectRatioLabel.h"
+#include "widgets/WaitingWidget.h"
 
 #include <QAbstractButton>
 #include <QDialog>
@@ -169,12 +170,18 @@ ResultsListWidget::ResultsListWidget( Config* config, QWidget* parent )
     spacerLayout->addSpacing( paddingSize );
     CalamaresUtils::unmarginLayout( spacerLayout );
 
+    QHBoxLayout* explanationLayout = new QHBoxLayout;
     m_explanation = new QLabel( m_config->warningMessage() );
     m_explanation->setWordWrap( true );
     m_explanation->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
     m_explanation->setOpenExternalLinks( false );
     m_explanation->setObjectName( "resultsExplanation" );
-    m_entriesLayout->addWidget( m_explanation );
+    explanationLayout->addWidget( m_explanation );
+    m_countdown = new CountdownWaitingWidget;
+    explanationLayout->addWidget( m_countdown );
+    m_countdown->start();
+
+    m_entriesLayout->addLayout( explanationLayout );
     m_entriesLayout->insertSpacing( 1, CalamaresUtils::defaultFontHeight() / 2 );
     m_mainLayout->addStretch();
 
@@ -258,6 +265,8 @@ ResultsListWidget::requirementsChanged()
     }
     else
     {
+        m_countdown->stop();
+        m_countdown->hide();
         if ( !Calamares::Branding::instance()->imagePath( Calamares::Branding::ProductWelcome ).isEmpty() )
         {
             QPixmap theImage

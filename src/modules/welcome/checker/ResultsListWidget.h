@@ -17,8 +17,11 @@
 
 #include <QWidget>
 
+class CountdownWaitingWidget;
+
 class QBoxLayout;
 class QLabel;
+
 class ResultsListWidget : public QWidget
 {
     Q_OBJECT
@@ -56,6 +59,7 @@ private:
 
     // UI parts, which need updating when the model changes
     QLabel* m_explanation = nullptr;
+    CountdownWaitingWidget* m_countdown = nullptr;
     QBoxLayout* m_mainLayout = nullptr;
     QBoxLayout* m_entriesLayout = nullptr;
     int m_requirementsSeen = 0;
