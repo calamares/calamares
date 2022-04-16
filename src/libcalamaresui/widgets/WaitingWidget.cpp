@@ -37,35 +37,29 @@ struct CountdownWaitingWidget::Private
     // int because we count down, need to be able to show a 0,
     // and then wrap around to duration a second later.
     int count = 0;
-    WaitingSpinnerWidget* spinner = nullptr;
     QTimer* timer = nullptr;
 
     Private( std::chrono::seconds seconds, QWidget* parent )
         : duration( seconds )
-        , spinner( new WaitingSpinnerWidget( parent ) )
         , timer( new QTimer( parent ) )
     {
     }
 };
 
 CountdownWaitingWidget::CountdownWaitingWidget( std::chrono::seconds duration, QWidget* parent )
-    : QWidget( parent )
+    : WaitingSpinnerWidget( parent, false, false )
     , d( std::make_unique< Private >( duration, this ) )
 {
     // Set up the label first for sizing
     const int labelHeight = qBound( 16, CalamaresUtils::defaultFontHeight() * 3 / 2, 64 );
 
     // Set up the spinner
-    d->spinner->setFixedSize( labelHeight, labelHeight );
-    d->spinner->setRevolutionsPerSecond( 1.0 / double( duration.count() ) );
-    d->spinner->setInnerRadius( labelHeight / 2 );
-    d->spinner->setLineLength( labelHeight / 2 );
-    d->spinner->setLineWidth( labelHeight / 8 );
-
-    // Overall UI layout
-    QBoxLayout* box = new QHBoxLayout;
-    box->addWidget( d->spinner );
-    setLayout( box );
+    setFixedSize( labelHeight, labelHeight );
+    setRevolutionsPerSecond( 1.0 / double( duration.count() ) );
+    setInnerRadius( labelHeight / 2 );
+    setLineLength( labelHeight / 2 );
+    setLineWidth( labelHeight / 8 );
+    setAlignment( Qt::AlignmentFlag::AlignVCenter );
 
     // Last because it updates the text
     setInterval( duration );
@@ -97,14 +91,14 @@ CountdownWaitingWidget::start()
         tick();
     }
     d->timer->start();
-    d->spinner->start();
+    WaitingSpinnerWidget::start();
 }
 
 void
 CountdownWaitingWidget::stop()
 {
     d->timer->stop();
-    d->spinner->stop();
+    WaitingSpinnerWidget::stop();
 }
 
 void
@@ -117,7 +111,7 @@ CountdownWaitingWidget::tick()
     {
         d->count = int( d->duration.count() );
     }
-    d->spinner->setText( QString::number( d->count ) );
+    setText( QString::number( d->count ) );
     if ( d->count == 0 )
     {
         timeout();

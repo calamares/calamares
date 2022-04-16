@@ -39,7 +39,7 @@ public:
  * every second. The signal timeout() is sent every time
  * the countdown reaches 0.
  */
-class CountdownWaitingWidget : public QWidget
+class CountdownWaitingWidget : public WaitingSpinnerWidget
 {
     Q_OBJECT
 public:
