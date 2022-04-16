@@ -121,10 +121,6 @@ protected:
     void paintEvent( QPaintEvent* paintEvent ) override;
 
 private:
-    static int lineCountDistanceFromPrimary( int current, int primary, int totalNrOfLines );
-    static QColor
-    currentLineColor( int distance, int totalNrOfLines, qreal trailFadePerc, qreal minOpacity, QColor color );
-
     void updateSize();
     void updateTimer();
     void updatePosition();

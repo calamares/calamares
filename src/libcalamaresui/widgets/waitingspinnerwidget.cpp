@@ -45,6 +45,43 @@ isAlignCenter( Qt::AlignmentFlag a )
     return a == Qt::AlignmentFlag::AlignVCenter;
 }
 
+static int
+lineCountDistanceFromPrimary( int current, int primary, int totalNrOfLines )
+{
+    int distance = primary - current;
+    if ( distance < 0 )
+    {
+        distance += totalNrOfLines;
+    }
+    return distance;
+}
+
+static QColor
+currentLineColor( int countDistance, int totalNrOfLines, qreal trailFadePerc, qreal minOpacity, QColor color )
+{
+    if ( countDistance == 0 )
+    {
+        return color;
+    }
+    const qreal minAlphaF = minOpacity / 100.0;
+    int distanceThreshold = static_cast< int >( ceil( ( totalNrOfLines - 1 ) * trailFadePerc / 100.0 ) );
+    if ( countDistance > distanceThreshold )
+    {
+        color.setAlphaF( minAlphaF );
+    }
+    else
+    {
+        qreal alphaDiff = color.alphaF() - minAlphaF;
+        qreal gradient = alphaDiff / static_cast< qreal >( distanceThreshold + 1 );
+        qreal resultAlpha = color.alphaF() - gradient * countDistance;
+
+        // If alpha is out of bounds, clip it.
+        resultAlpha = std::min( 1.0, std::max( 0.0, resultAlpha ) );
+        color.setAlphaF( resultAlpha );
+    }
+    return color;
+}
+
 WaitingSpinnerWidget::WaitingSpinnerWidget( QWidget* parent, bool centerOnParent, bool disableParentWhenSpinning )
     : WaitingSpinnerWidget( Qt::WindowModality::NonModal, parent, centerOnParent, disableParentWhenSpinning )
 {
@@ -355,45 +392,4 @@ WaitingSpinnerWidget::updatePosition()
     {
         move( parentWidget()->width() / 2 - width() / 2, parentWidget()->height() / 2 - height() / 2 );
     }
-}
-
-int
-WaitingSpinnerWidget::lineCountDistanceFromPrimary( int current, int primary, int totalNrOfLines )
-{
-    int distance = primary - current;
-    if ( distance < 0 )
-    {
-        distance += totalNrOfLines;
-    }
-    return distance;
-}
-
-QColor
-WaitingSpinnerWidget::currentLineColor( int countDistance,
-                                        int totalNrOfLines,
-                                        qreal trailFadePerc,
-                                        qreal minOpacity,
-                                        QColor color )
-{
-    if ( countDistance == 0 )
-    {
-        return color;
-    }
-    const qreal minAlphaF = minOpacity / 100.0;
-    int distanceThreshold = static_cast< int >( ceil( ( totalNrOfLines - 1 ) * trailFadePerc / 100.0 ) );
-    if ( countDistance > distanceThreshold )
-    {
-        color.setAlphaF( minAlphaF );
-    }
-    else
-    {
-        qreal alphaDiff = color.alphaF() - minAlphaF;
-        qreal gradient = alphaDiff / static_cast< qreal >( distanceThreshold + 1 );
-        qreal resultAlpha = color.alphaF() - gradient * countDistance;
-
-        // If alpha is out of bounds, clip it.
-        resultAlpha = std::min( 1.0, std::max( 0.0, resultAlpha ) );
-        color.setAlphaF( resultAlpha );
-    }
-    return color;
 }
