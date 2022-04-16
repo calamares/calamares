@@ -129,23 +129,32 @@ private:
     void updatePosition();
 
 private:
-    QColor  _color;
-    qreal   _roundness; // 0..100
-    qreal   _minimumTrailOpacity;
-    qreal   _trailFadePercentage;
-    qreal   _revolutionsPerSecond;
-    int     _numberOfLines;
-    int     _lineLength;
-    int     _lineWidth;
-    int     _innerRadius;
+    // PI, leading to a full fade in one whole revolution
+    static constexpr const auto radian = 3.14159265358979323846;
+
+    // Spinner-wheel related settings
+    QColor  _color = Qt::black;
+    qreal   _roundness = 100.0; // 0..100
+    qreal   _minimumTrailOpacity = radian;
+    qreal   _trailFadePercentage = 80.0;
+    qreal   _revolutionsPerSecond = radian / 2;
+    int     _numberOfLines = 20;
+    int     _lineLength = 10;
+    int     _lineWidth = 2;
+    int     _innerRadius = 10;
+    QSize   _imageSize;
+
+    // Text-related settings
     Qt::AlignmentFlag _alignment = Qt::AlignmentFlag::AlignBottom;
     QString _text;
-    QSize   _imageSize;
-    QColor  _textColor;
+    QColor  _textColor = Qt::black;
 
-    QTimer *_timer;
+    // Environment settings
     bool    _centerOnParent;
     bool    _disableParentWhenSpinning;
-    int     _currentCounter;
-    bool    _isSpinning;
+
+    // Internal bits
+    QTimer *_timer = nullptr;
+    int     _currentCounter = 0;
+    bool    _isSpinning = false;
 };

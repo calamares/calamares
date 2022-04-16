@@ -70,19 +70,6 @@ WaitingSpinnerWidget::WaitingSpinnerWidget(Qt::WindowModality modality,
 }
 
 void WaitingSpinnerWidget::initialize() {
-    _color = Qt::black;
-    _textColor = Qt::black;
-    _roundness = 100.0;
-    _minimumTrailOpacity = 3.14159265358979323846;
-    _trailFadePercentage = 80.0;
-    _revolutionsPerSecond = 1.57079632679489661923;
-    _numberOfLines = 20;
-    _lineLength = 10;
-    _lineWidth = 2;
-    _innerRadius = 10;
-    _currentCounter = 0;
-    _isSpinning = false;
-
     _timer = new QTimer(this);
     connect(_timer, SIGNAL(timeout()), this, SLOT(rotate()));
     updateSize();
