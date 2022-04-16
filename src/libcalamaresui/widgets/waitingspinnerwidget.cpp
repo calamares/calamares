@@ -2,6 +2,7 @@
  *   SPDX-FileCopyrightText: 2012-2014 Alexander Turkin
  *   SPDX-FileCopyrightText: 2014 William Hallatt
  *   SPDX-FileCopyrightText: 2015 Jacob Dawid
+ *   SPDX-FileCopyrightText: 2018 huxingyi
  *   SPDX-License-Identifier: MIT
  */
 
@@ -38,49 +39,41 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include <QPainter>
 #include <QTimer>
 
+static bool isAlignCenter(Qt::AlignmentFlag a)
+{
+    return a == Qt::AlignmentFlag::AlignVCenter;
+}
+
 WaitingSpinnerWidget::WaitingSpinnerWidget(QWidget *parent,
                                            bool centerOnParent,
                                            bool disableParentWhenSpinning)
-    : QWidget(parent),
-      _centerOnParent(centerOnParent),
-      _disableParentWhenSpinning(disableParentWhenSpinning) {
-    initialize();
-}
+    : WaitingSpinnerWidget(Qt::WindowModality::NonModal, parent, centerOnParent, disableParentWhenSpinning)
+{}
 
 WaitingSpinnerWidget::WaitingSpinnerWidget(Qt::WindowModality modality,
                                            QWidget *parent,
                                            bool centerOnParent,
                                            bool disableParentWhenSpinning)
-    : QWidget(parent, Qt::Dialog | Qt::FramelessWindowHint),
+    : QWidget(parent, modality == Qt::WindowModality::NonModal ? Qt::WindowFlags() : Qt::Dialog | Qt::FramelessWindowHint),
       _centerOnParent(centerOnParent),
-      _disableParentWhenSpinning(disableParentWhenSpinning){
-    initialize();
-
-    // We need to set the window modality AFTER we've hidden the
-    // widget for the first time since changing this property while
-    // the widget is visible has no effect.
-    setWindowModality(modality);
-    setAttribute(Qt::WA_TranslucentBackground);
-}
-
-void WaitingSpinnerWidget::initialize() {
-    _color = Qt::black;
-    _roundness = 100.0;
-    _minimumTrailOpacity = 3.14159265358979323846;
-    _trailFadePercentage = 80.0;
-    _revolutionsPerSecond = 1.57079632679489661923;
-    _numberOfLines = 20;
-    _lineLength = 10;
-    _lineWidth = 2;
-    _innerRadius = 10;
-    _currentCounter = 0;
-    _isSpinning = false;
-
+      _disableParentWhenSpinning(disableParentWhenSpinning)
+{
     _timer = new QTimer(this);
     connect(_timer, SIGNAL(timeout()), this, SLOT(rotate()));
     updateSize();
     updateTimer();
     hide();
+
+    // We need to set the window modality AFTER we've hidden the
+    // widget for the first time since changing this property while
+    // the widget is visible has no effect.
+    //
+    // Non-modal windows don't need any work
+    if ( modality != Qt::WindowModality::NonModal )
+    {
+        setWindowModality(modality);
+        setAttribute(Qt::WA_TranslucentBackground);
+    }
 }
 
 void WaitingSpinnerWidget::paintEvent(QPaintEvent *) {
@@ -98,6 +91,7 @@ void WaitingSpinnerWidget::paintEvent(QPaintEvent *) {
         painter.save();
         painter.translate(_innerRadius + _lineLength,
                           _innerRadius + _lineLength);
+        painter.translate((width() - _imageSize.width()) / 2, 0);
         qreal rotateAngle =
                 static_cast<qreal>(360 * i) / static_cast<qreal>(_numberOfLines);
         painter.rotate(rotateAngle);
@@ -113,6 +107,17 @@ void WaitingSpinnerWidget::paintEvent(QPaintEvent *) {
                     QRect(0, -_lineWidth / 2, _lineLength, _lineWidth), _roundness,
                     _roundness, Qt::RelativeSize);
         painter.restore();
+    }
+
+    if (!_text.isEmpty()) {
+        painter.setPen(QPen(_textColor));
+        if (isAlignCenter(alignment())) {
+            painter.drawText(QRect(0, 0, width(), height()),
+                    Qt::AlignVCenter | Qt::AlignHCenter, _text);
+        } else {
+            painter.drawText(QRect(0, _imageSize.height(), width(), height() - _imageSize.height()),
+                    Qt::AlignBottom | Qt::AlignHCenter, _text);
+        }
     }
 }
 
@@ -166,39 +171,58 @@ void WaitingSpinnerWidget::setInnerRadius(int radius) {
     updateSize();
 }
 
-QColor WaitingSpinnerWidget::color() {
+void WaitingSpinnerWidget::setText(const QString& text) {
+    _text = text;
+    updateSize();
+}
+
+void WaitingSpinnerWidget::setAlignment(Qt::AlignmentFlag align)
+{
+    _alignment = align;
+    updateSize();
+}
+
+QColor WaitingSpinnerWidget::color() const {
     return _color;
 }
 
-qreal WaitingSpinnerWidget::roundness() {
+QColor WaitingSpinnerWidget::textColor() const {
+    return _textColor;
+}
+
+QString WaitingSpinnerWidget::text() const {
+    return _text;
+}
+
+qreal WaitingSpinnerWidget::roundness() const {
     return _roundness;
 }
 
-qreal WaitingSpinnerWidget::minimumTrailOpacity() {
+qreal WaitingSpinnerWidget::minimumTrailOpacity() const {
     return _minimumTrailOpacity;
 }
 
-qreal WaitingSpinnerWidget::trailFadePercentage() {
+qreal WaitingSpinnerWidget::trailFadePercentage() const {
     return _trailFadePercentage;
 }
 
-qreal WaitingSpinnerWidget::revolutionsPersSecond() {
+qreal WaitingSpinnerWidget::revolutionsPersSecond() const {
     return _revolutionsPerSecond;
 }
 
-int WaitingSpinnerWidget::numberOfLines() {
+int WaitingSpinnerWidget::numberOfLines() const {
     return _numberOfLines;
 }
 
-int WaitingSpinnerWidget::lineLength() {
+int WaitingSpinnerWidget::lineLength() const {
     return _lineLength;
 }
 
-int WaitingSpinnerWidget::lineWidth() {
+int WaitingSpinnerWidget::lineWidth() const {
     return _lineWidth;
 }
 
-int WaitingSpinnerWidget::innerRadius() {
+int WaitingSpinnerWidget::innerRadius() const {
     return _innerRadius;
 }
 
@@ -212,6 +236,10 @@ void WaitingSpinnerWidget::setRoundness(qreal roundness) {
 
 void WaitingSpinnerWidget::setColor(QColor color) {
     _color = color;
+}
+
+void WaitingSpinnerWidget::setTextColor(QColor color) {
+    _textColor = color;
 }
 
 void WaitingSpinnerWidget::setRevolutionsPerSecond(qreal revolutionsPerSecond) {
@@ -237,7 +265,14 @@ void WaitingSpinnerWidget::rotate() {
 
 void WaitingSpinnerWidget::updateSize() {
     int size = (_innerRadius + _lineLength) * 2;
-    setFixedSize(size, size);
+    _imageSize = QSize(size, size);
+    if (_text.isEmpty() || isAlignCenter(alignment())) {
+        setFixedSize(size, size);
+    } else {
+        QFontMetrics fm(font());
+        QSize textSize = QSize(fm.width(_text), fm.height());
+        setFixedSize(std::max(size, textSize.width()), size + size / 4 + textSize.height());
+    }
 }
 
 void WaitingSpinnerWidget::updateTimer() {

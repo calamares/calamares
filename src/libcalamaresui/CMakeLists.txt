@@ -30,14 +30,9 @@ set(calamaresui_SOURCES
     widgets/LogWidget.cpp
     widgets/TranslationFix.cpp
     widgets/WaitingWidget.cpp
-    ${CMAKE_SOURCE_DIR}/3rdparty/waitingspinnerwidget.cpp
+    widgets/waitingspinnerwidget.cpp
     Branding.cpp
     ViewManager.cpp
-)
-
-# Don't warn about third-party sources
-mark_thirdparty_code(
-    ${CMAKE_SOURCE_DIR}/3rdparty/waitingspinnerwidget.cpp
 )
 
 if(WITH_PYTHON)

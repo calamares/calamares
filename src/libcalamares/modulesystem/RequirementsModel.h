@@ -77,6 +77,10 @@ signals:
 protected:
     QHash< int, QByteArray > roleNames() const override;
 
+
+    ///@brief Clears the requirements; resets the model
+    void clear();
+
     ///@brief Append some requirements; resets the model
     void addRequirementsList( const Calamares::RequirementsList& requirements );
 

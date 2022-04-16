@@ -18,6 +18,7 @@
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 #include "widgets/FixedAspectRatioLabel.h"
+#include "widgets/WaitingWidget.h"
 
 #include <QAbstractButton>
 #include <QDialog>
@@ -110,10 +111,11 @@ ResultsListDialog::ResultsListDialog( const Calamares::RequirementsModel& model,
     m_title = new QLabel( this );
     m_title->setObjectName( "resultDialogTitle" );
 
-    createResultWidgets(
-        entriesLayout, m_resultWidgets, model, []( const Calamares::RequirementsModel& m, QModelIndex i ) {
-            return m.data( i, Calamares::RequirementsModel::HasDetails ).toBool();
-        } );
+    createResultWidgets( entriesLayout,
+                         m_resultWidgets,
+                         model,
+                         []( const Calamares::RequirementsModel& m, QModelIndex i )
+                         { return m.data( i, Calamares::RequirementsModel::HasDetails ).toBool(); } );
 
     QDialogButtonBox* buttonBox = new QDialogButtonBox( QDialogButtonBox::Close, Qt::Horizontal, this );
     buttonBox->setObjectName( "resultDialogButtons" );
@@ -154,47 +156,117 @@ ResultsListWidget::ResultsListWidget( Config* config, QWidget* parent )
 {
     setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
 
-    QBoxLayout* mainLayout = new QVBoxLayout;
-    QBoxLayout* entriesLayout = new QVBoxLayout;
+    m_mainLayout = new QVBoxLayout;
+    m_entriesLayout = new QVBoxLayout;
 
-    setLayout( mainLayout );
+    setLayout( m_mainLayout );
 
     int paddingSize = qBound( 32, CalamaresUtils::defaultFontHeight() * 4, 128 );
 
     QHBoxLayout* spacerLayout = new QHBoxLayout;
-    mainLayout->addLayout( spacerLayout );
+    m_mainLayout->addLayout( spacerLayout );
     spacerLayout->addSpacing( paddingSize );
-    spacerLayout->addLayout( entriesLayout );
+    spacerLayout->addLayout( m_entriesLayout );
     spacerLayout->addSpacing( paddingSize );
     CalamaresUtils::unmarginLayout( spacerLayout );
 
-    auto* explanation = new QLabel( m_config->warningMessage() );
-    explanation->setWordWrap( true );
-    explanation->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
-    explanation->setOpenExternalLinks( false );
-    explanation->setObjectName( "resultsExplanation" );
-    entriesLayout->addWidget( explanation );
+    QHBoxLayout* explanationLayout = new QHBoxLayout;
+    m_explanation = new QLabel( m_config->warningMessage() );
+    m_explanation->setWordWrap( true );
+    m_explanation->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
+    m_explanation->setOpenExternalLinks( false );
+    m_explanation->setObjectName( "resultsExplanation" );
+    explanationLayout->addWidget( m_explanation );
+    m_countdown = new CountdownWaitingWidget;
+    explanationLayout->addWidget( m_countdown );
+    m_countdown->start();
 
-    connect( config, &Config::warningMessageChanged, explanation, &QLabel::setText );
-    connect( explanation, &QLabel::linkActivated, this, &ResultsListWidget::linkClicked );
+    m_entriesLayout->addLayout( explanationLayout );
+    m_entriesLayout->insertSpacing( 1, CalamaresUtils::defaultFontHeight() / 2 );
+    m_mainLayout->addStretch();
+
+    requirementsChanged();
+
+    connect( config,
+             &Config::warningMessageChanged,
+             [ = ]( QString s )
+             {
+                 if ( isModelFilled() )
+                 {
+                     m_explanation->setText( s );
+                 }
+             } );
+    connect( m_explanation, &QLabel::linkActivated, this, &ResultsListWidget::linkClicked );
+    connect( config->requirementsModel(),
+             &Calamares::RequirementsModel::modelReset,
+             this,
+             &ResultsListWidget::requirementsChanged );
+
+    CALAMARES_RETRANSLATE_SLOT( &ResultsListWidget::retranslate );
+}
+
+
+void
+ResultsListWidget::linkClicked( const QString& link )
+{
+    if ( link == "#details" )
+    {
+        auto* dialog = new ResultsListDialog( *( m_config->requirementsModel() ), this );
+        dialog->exec();
+        dialog->deleteLater();
+    }
+}
+
+void
+ResultsListWidget::retranslate()
+{
+    const auto& model = *( m_config->requirementsModel() );
+    // Retranslate the widgets that there **are**;
+    // these remain in-order relative to the model.
+    for ( auto i = 0; i < model.count() && i < m_resultWidgets.count(); i++ )
+    {
+        if ( m_resultWidgets[ i ] )
+        {
+            m_resultWidgets[ i ]->setText(
+                model.data( model.index( i ), Calamares::RequirementsModel::NegatedText ).toString() );
+        }
+    }
+}
+
+void
+ResultsListWidget::requirementsChanged()
+{
+    if ( !isModelFilled() )
+    {
+        return;
+    }
 
     // Check that all are satisfied (gives warnings if not) and
     // all *mandatory* entries are satisfied (gives errors if not).
 
-    const bool requirementsSatisfied = config->requirementsModel()->satisfiedRequirements();
-    auto isUnSatisfied = []( const Calamares::RequirementsModel& m, QModelIndex i ) {
-        return !m.data( i, Calamares::RequirementsModel::Satisfied ).toBool();
-    };
+    const bool requirementsSatisfied = m_config->requirementsModel()->satisfiedRequirements();
+    auto isUnSatisfied = []( const Calamares::RequirementsModel& m, QModelIndex i )
+    { return !m.data( i, Calamares::RequirementsModel::Satisfied ).toBool(); };
 
-    createResultWidgets( entriesLayout, m_resultWidgets, *( config->requirementsModel() ), isUnSatisfied );
+
+    std::for_each( m_resultWidgets.begin(),
+                   m_resultWidgets.end(),
+                   []( QWidget* w )
+                   {
+                       if ( w )
+                       {
+                           w->deleteLater();
+                       }
+                   } );
 
     if ( !requirementsSatisfied )
     {
-        entriesLayout->insertSpacing( 1, CalamaresUtils::defaultFontHeight() / 2 );
-        mainLayout->addStretch();
+        createResultWidgets( m_entriesLayout, m_resultWidgets, *( m_config->requirementsModel() ), isUnSatisfied );
     }
     else
     {
+        m_countdown->stop();
+        m_countdown->hide();
         if ( !Calamares::Branding::instance()->imagePath( Calamares::Branding::ProductWelcome ).isEmpty() )
         {
             QPixmap theImage
@@ -218,40 +290,26 @@ ResultsListWidget::ResultsListWidget( Config* config, QWidget* parent )
                 imageLabel->setAlignment( Qt::AlignCenter );
                 imageLabel->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
                 imageLabel->setObjectName( "welcomeLogo" );
-                mainLayout->addWidget( imageLabel );
+                m_mainLayout->addWidget( imageLabel );
             }
         }
-        explanation->setAlignment( Qt::AlignCenter );
+        m_explanation->setAlignment( Qt::AlignCenter );
     }
 
-    CALAMARES_RETRANSLATE_SLOT( &ResultsListWidget::retranslate );
+    retranslate();
 }
 
-
-void
-ResultsListWidget::linkClicked( const QString& link )
+bool
+ResultsListWidget::isModelFilled()
 {
-    if ( link == "#details" )
+    if ( m_config->requirementsModel()->count() < m_requirementsSeen )
     {
-        auto* dialog = new ResultsListDialog( *( m_config->requirementsModel() ), this );
-        dialog->exec();
-        dialog->deleteLater();
+        return false;
     }
+    m_requirementsSeen = m_config->requirementsModel()->count();
+    return true;
 }
 
-void
-ResultsListWidget::retranslate()
-{
-    const auto& model = *( m_config->requirementsModel() );
-    for ( auto i = 0; i < model.count(); i++ )
-    {
-        if ( m_resultWidgets[ i ] )
-        {
-            m_resultWidgets[ i ]->setText(
-                model.data( model.index( i ), Calamares::RequirementsModel::NegatedText ).toString() );
-        }
-    }
-}
 
 #include "utils/moc-warnings.h"
 

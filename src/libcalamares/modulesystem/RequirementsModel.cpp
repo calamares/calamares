@@ -16,6 +16,16 @@ namespace Calamares
 {
 
 void
+RequirementsModel::clear()
+{
+    QMutexLocker l( &m_addLock );
+    emit beginResetModel();
+    m_requirements.clear();
+    changeRequirementsList();
+    emit endResetModel();
+}
+
+void
 RequirementsModel::addRequirementsList( const Calamares::RequirementsList& requirements )
 {
     QMutexLocker l( &m_addLock );
