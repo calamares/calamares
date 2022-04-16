@@ -336,7 +336,7 @@ WaitingSpinnerWidget::updateSize()
     else
     {
         QFontMetrics fm( font() );
-        QSize textSize = QSize( fm.width( _text ), fm.height() );
+        QSize textSize = QSize( fm.horizontalAdvance( _text ), fm.height() );
         setFixedSize( std::max( size, textSize.width() ), size + size / 4 + textSize.height() );
     }
 }
@@ -344,7 +344,8 @@ WaitingSpinnerWidget::updateSize()
 void
 WaitingSpinnerWidget::updateTimer()
 {
-    _timer->setInterval( 1000 / ( _numberOfLines * _revolutionsPerSecond ) );
+    // Old-style interval in milliseconds; force to int to suppress warning
+    _timer->setInterval( int( 1000 / ( _numberOfLines * _revolutionsPerSecond ) ) );
 }
 
 void
