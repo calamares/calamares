@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - calamares
+      - work-3.3
   pull_request:
     types:
       - opened
