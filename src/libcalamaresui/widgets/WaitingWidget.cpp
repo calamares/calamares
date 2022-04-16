@@ -17,7 +17,7 @@
 #include <QTimer>
 
 WaitingWidget::WaitingWidget( const QString& text, QWidget* parent )
-    : WaitingSpinnerWidget( parent )
+    : WaitingSpinnerWidget( parent, false, false )
 {
     int spnrSize = CalamaresUtils::defaultFontHeight() * 4;
     setFixedSize( spnrSize, spnrSize );
