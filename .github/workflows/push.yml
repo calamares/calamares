@@ -31,7 +31,7 @@ jobs:
       - name: "prepare env"
         uses: calamares/actions/prepare-neon@v3
       - name: "prepare source"
-        uses: actions/checkout@v2
+        uses: calamares/actions/generic-checkout@f728586301a8934497b4b41d38bb6e73f12fbb29
       - name: "build"
         id: build
         uses: calamares/actions/generic-build@v3
