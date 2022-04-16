@@ -10,7 +10,7 @@
 #ifndef WAITINGWIDGET_H
 #define WAITINGWIDGET_H
 
-#include "3rdparty/waitingspinnerwidget.h"
+#include "widgets/waitingspinnerwidget.h"
 
 #include <chrono>
 #include <memory>
