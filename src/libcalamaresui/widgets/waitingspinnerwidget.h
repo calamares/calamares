@@ -88,6 +88,8 @@ public:
      * for text below the spinner and text in the middle.
      */
     void setAlignment(Qt::AlignmentFlag align);
+    /// Convenience to set text-in-the-middle (@c true) or text-at-bottom (@c false)
+    void setCenteredText(bool centered) { setAlignment(centered ? Qt::AlignmentFlag::AlignVCenter : Qt::AlignmentFlag::AlignBottom ); }
 
     QColor color() const;
     QColor textColor() const;
