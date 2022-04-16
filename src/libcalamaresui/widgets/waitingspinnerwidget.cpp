@@ -28,14 +28,8 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-// Own includes
 #include "waitingspinnerwidget.h"
 
-// Standard includes
-#include <algorithm>
-#include <cmath>
-
-// Qt includes
 #include <QPainter>
 #include <QTimer>
 
@@ -76,7 +70,7 @@ currentLineColor( int countDistance, int totalNrOfLines, qreal trailFadePerc, qr
         qreal resultAlpha = color.alphaF() - gradient * countDistance;
 
         // If alpha is out of bounds, clip it.
-        resultAlpha = std::min( 1.0, std::max( 0.0, resultAlpha ) );
+        resultAlpha = qBound( 0.0, resultAlpha, 1.0 );
         color.setAlphaF( resultAlpha );
     }
     return color;
@@ -316,7 +310,7 @@ WaitingSpinnerWidget::isSpinning() const
 void
 WaitingSpinnerWidget::setRoundness( qreal roundness )
 {
-    _roundness = std::max( 0.0, std::min( 100.0, roundness ) );
+    _roundness = qBound( 0.0, roundness, 100.0 );
 }
 
 void
@@ -374,7 +368,7 @@ WaitingSpinnerWidget::updateSize()
     {
         QFontMetrics fm( font() );
         QSize textSize = QSize( fm.horizontalAdvance( _text ), fm.height() );
-        setFixedSize( std::max( size, textSize.width() ), size + size / 4 + textSize.height() );
+        setFixedSize( qMax( size, textSize.width() ), size + size / 4 + textSize.height() );
     }
 }
 
