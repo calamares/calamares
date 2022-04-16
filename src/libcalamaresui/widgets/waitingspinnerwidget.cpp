@@ -47,34 +47,33 @@ static bool isAlignCenter(Qt::AlignmentFlag a)
 WaitingSpinnerWidget::WaitingSpinnerWidget(QWidget *parent,
                                            bool centerOnParent,
                                            bool disableParentWhenSpinning)
-    : QWidget(parent),
-      _centerOnParent(centerOnParent),
-      _disableParentWhenSpinning(disableParentWhenSpinning) {
-    initialize();
-}
+    : WaitingSpinnerWidget(Qt::WindowModality::NonModal, parent, centerOnParent, disableParentWhenSpinning)
+{}
 
 WaitingSpinnerWidget::WaitingSpinnerWidget(Qt::WindowModality modality,
                                            QWidget *parent,
                                            bool centerOnParent,
                                            bool disableParentWhenSpinning)
-    : QWidget(parent, Qt::Dialog | Qt::FramelessWindowHint),
+    : QWidget(parent, modality == Qt::WindowModality::NonModal ? Qt::WindowFlags() : Qt::Dialog | Qt::FramelessWindowHint),
       _centerOnParent(centerOnParent),
-      _disableParentWhenSpinning(disableParentWhenSpinning){
-    initialize();
-
-    // We need to set the window modality AFTER we've hidden the
-    // widget for the first time since changing this property while
-    // the widget is visible has no effect.
-    setWindowModality(modality);
-    setAttribute(Qt::WA_TranslucentBackground);
-}
-
-void WaitingSpinnerWidget::initialize() {
+      _disableParentWhenSpinning(disableParentWhenSpinning)
+{
     _timer = new QTimer(this);
     connect(_timer, SIGNAL(timeout()), this, SLOT(rotate()));
     updateSize();
     updateTimer();
     hide();
+
+    // We need to set the window modality AFTER we've hidden the
+    // widget for the first time since changing this property while
+    // the widget is visible has no effect.
+    //
+    // Non-modal windows don't need any work
+    if ( modality != Qt::WindowModality::NonModal )
+    {
+        setWindowModality(modality);
+        setAttribute(Qt::WA_TranslucentBackground);
+    }
 }
 
 void WaitingSpinnerWidget::paintEvent(QPaintEvent *) {

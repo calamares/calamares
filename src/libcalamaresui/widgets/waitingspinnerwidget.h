@@ -123,7 +123,6 @@ private:
                                    qreal trailFadePerc, qreal minOpacity,
                                    QColor color);
 
-    void initialize();
     void updateSize();
     void updateTimer();
     void updatePosition();
