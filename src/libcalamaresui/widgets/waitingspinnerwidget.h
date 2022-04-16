@@ -31,20 +31,21 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #pragma once
 
 // Qt includes
-#include <QWidget>
-#include <QTimer>
 #include <QColor>
+#include <QTimer>
+#include <QWidget>
 
-class WaitingSpinnerWidget : public QWidget {
+class WaitingSpinnerWidget : public QWidget
+{
     Q_OBJECT
 public:
     /** @brief Constructor for "standard" widget behaviour
      *
      * Use this constructor if you wish to, e.g. embed your widget in another.
      */
-    WaitingSpinnerWidget(QWidget *parent = nullptr,
-                         bool centerOnParent = true,
-                         bool disableParentWhenSpinning = true);
+    WaitingSpinnerWidget( QWidget* parent = nullptr,
+                          bool centerOnParent = true,
+                          bool disableParentWhenSpinning = true );
 
     /** @brief Constructor
      *
@@ -54,24 +55,24 @@ public:
      * QtWaitingSpinner automatically centres itself on it, if not,
      * @p centerOnParent is ignored.
      */
-    WaitingSpinnerWidget(Qt::WindowModality modality,
-                         QWidget *parent = nullptr,
-                         bool centerOnParent = true,
-                         bool disableParentWhenSpinning = true);
+    WaitingSpinnerWidget( Qt::WindowModality modality,
+                          QWidget* parent = nullptr,
+                          bool centerOnParent = true,
+                          bool disableParentWhenSpinning = true );
 
-    WaitingSpinnerWidget(const WaitingSpinnerWidget&) = delete;
-    WaitingSpinnerWidget& operator=(const WaitingSpinnerWidget&) = delete;
+    WaitingSpinnerWidget( const WaitingSpinnerWidget& ) = delete;
+    WaitingSpinnerWidget& operator=( const WaitingSpinnerWidget& ) = delete;
 
-    void setColor(QColor color);
-    void setTextColor(QColor color);
-    void setRoundness(qreal roundness);
-    void setMinimumTrailOpacity(qreal minimumTrailOpacity);
-    void setTrailFadePercentage(qreal trail);
-    void setRevolutionsPerSecond(qreal revolutionsPerSecond);
-    void setNumberOfLines(int lines);
-    void setLineLength(int length);
-    void setLineWidth(int width);
-    void setInnerRadius(int radius);
+    void setColor( QColor color );
+    void setTextColor( QColor color );
+    void setRoundness( qreal roundness );
+    void setMinimumTrailOpacity( qreal minimumTrailOpacity );
+    void setTrailFadePercentage( qreal trail );
+    void setRevolutionsPerSecond( qreal revolutionsPerSecond );
+    void setNumberOfLines( int lines );
+    void setLineLength( int length );
+    void setLineWidth( int width );
+    void setInnerRadius( int radius );
 
     /** @brief Sets the text displayed in or below the spinner
      *
@@ -81,21 +82,24 @@ public:
      * centered horizontally relative to the spinner; any other alignment
      * will put the text in the middle of the spinner itself.
      */
-    void setText(const QString& text);
+    void setText( const QString& text );
     /** @brief Sets the alignment of text for the spinner
      *
      * The only meaningful values are AlignBottom and AlignVCenter,
      * for text below the spinner and text in the middle.
      */
-    void setAlignment(Qt::AlignmentFlag align);
+    void setAlignment( Qt::AlignmentFlag align );
     /// Convenience to set text-in-the-middle (@c true) or text-at-bottom (@c false)
-    void setCenteredText(bool centered) { setAlignment(centered ? Qt::AlignmentFlag::AlignVCenter : Qt::AlignmentFlag::AlignBottom ); }
+    void setCenteredText( bool centered )
+    {
+        setAlignment( centered ? Qt::AlignmentFlag::AlignVCenter : Qt::AlignmentFlag::AlignBottom );
+    }
 
     QColor color() const;
     QColor textColor() const;
     QString text() const;
     Qt::AlignmentFlag alignment() const { return _alignment; }
-    qreal roundness()  const;
+    qreal roundness() const;
     qreal minimumTrailOpacity() const;
     qreal trailFadePercentage() const;
     qreal revolutionsPersSecond() const;
@@ -114,14 +118,12 @@ private Q_SLOTS:
     void rotate();
 
 protected:
-    void paintEvent(QPaintEvent *paintEvent) override;
+    void paintEvent( QPaintEvent* paintEvent ) override;
 
 private:
-    static int lineCountDistanceFromPrimary(int current, int primary,
-                                            int totalNrOfLines);
-    static QColor currentLineColor(int distance, int totalNrOfLines,
-                                   qreal trailFadePerc, qreal minOpacity,
-                                   QColor color);
+    static int lineCountDistanceFromPrimary( int current, int primary, int totalNrOfLines );
+    static QColor
+    currentLineColor( int distance, int totalNrOfLines, qreal trailFadePerc, qreal minOpacity, QColor color );
 
     void updateSize();
     void updateTimer();
@@ -132,28 +134,28 @@ private:
     static constexpr const auto radian = 3.14159265358979323846;
 
     // Spinner-wheel related settings
-    QColor  _color = Qt::black;
-    qreal   _roundness = 100.0; // 0..100
-    qreal   _minimumTrailOpacity = radian;
-    qreal   _trailFadePercentage = 80.0;
-    qreal   _revolutionsPerSecond = radian / 2;
-    int     _numberOfLines = 20;
-    int     _lineLength = 10;
-    int     _lineWidth = 2;
-    int     _innerRadius = 10;
-    QSize   _imageSize;
+    QColor _color = Qt::black;
+    qreal _roundness = 100.0;  // 0..100
+    qreal _minimumTrailOpacity = radian;
+    qreal _trailFadePercentage = 80.0;
+    qreal _revolutionsPerSecond = radian / 2;
+    int _numberOfLines = 20;
+    int _lineLength = 10;
+    int _lineWidth = 2;
+    int _innerRadius = 10;
+    QSize _imageSize;
 
     // Text-related settings
     Qt::AlignmentFlag _alignment = Qt::AlignmentFlag::AlignBottom;
     QString _text;
-    QColor  _textColor = Qt::black;
+    QColor _textColor = Qt::black;
 
     // Environment settings
-    bool    _centerOnParent = true;
-    bool    _disableParentWhenSpinning = true;
+    bool _centerOnParent = true;
+    bool _disableParentWhenSpinning = true;
 
     // Internal bits
-    QTimer *_timer = nullptr;
-    int     _currentCounter = 0;
-    bool    _isSpinning = false;
+    QTimer* _timer = nullptr;
+    int _currentCounter = 0;
+    bool _isSpinning = false;
 };
