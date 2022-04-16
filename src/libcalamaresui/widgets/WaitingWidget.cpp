@@ -12,50 +12,24 @@
 
 #include "utils/CalamaresUtilsGui.h"
 
-#include "3rdparty/waitingspinnerwidget.h"
-
 #include <QBoxLayout>
 #include <QLabel>
 #include <QTimer>
 
 WaitingWidget::WaitingWidget( const QString& text, QWidget* parent )
-    : QWidget( parent )
+    : WaitingSpinnerWidget( parent )
 {
-    QBoxLayout* waitingLayout = new QVBoxLayout;
-    setLayout( waitingLayout );
-    waitingLayout->addStretch();
-    QBoxLayout* pbLayout = new QHBoxLayout;
-    waitingLayout->addLayout( pbLayout );
-    pbLayout->addStretch();
-
-    WaitingSpinnerWidget* spnr = new WaitingSpinnerWidget();
-    pbLayout->addWidget( spnr );
-
-    pbLayout->addStretch();
-
-    m_waitingLabel = new QLabel( text );
-
-    int spnrSize = m_waitingLabel->fontMetrics().height() * 4;
-    spnr->setFixedSize( spnrSize, spnrSize );
-    spnr->setInnerRadius( spnrSize / 2 );
-    spnr->setLineLength( spnrSize / 2 );
-    spnr->setLineWidth( spnrSize / 8 );
-    spnr->start();
-
-    m_waitingLabel->setAlignment( Qt::AlignCenter );
-    waitingLayout->addSpacing( spnrSize / 2 );
-    waitingLayout->addWidget( m_waitingLabel );
-    waitingLayout->addStretch();
-
-    CalamaresUtils::unmarginLayout( waitingLayout );
+    int spnrSize = CalamaresUtils::defaultFontHeight() * 4;
+    setFixedSize( spnrSize, spnrSize );
+    setInnerRadius( spnrSize / 2 );
+    setLineLength( spnrSize / 2 );
+    setLineWidth( spnrSize / 8 );
+    setAlignment( Qt::AlignmentFlag::AlignBottom );
+    setText( text );
+    start();
 }
 
-
-void
-WaitingWidget::setText( const QString& text )
-{
-    m_waitingLabel->setText( text );
-}
+WaitingWidget::~WaitingWidget() {}
 
 struct CountdownWaitingWidget::Private
 {
@@ -83,7 +57,7 @@ CountdownWaitingWidget::CountdownWaitingWidget( std::chrono::seconds duration, Q
 
     // Set up the spinner
     d->spinner->setFixedSize( labelHeight, labelHeight );
-    d->spinner->setRevolutionsPerSecond( 1.0 / double(duration.count()) );
+    d->spinner->setRevolutionsPerSecond( 1.0 / double( duration.count() ) );
     d->spinner->setInnerRadius( labelHeight / 2 );
     d->spinner->setLineLength( labelHeight / 2 );
     d->spinner->setLineWidth( labelHeight / 8 );
@@ -143,7 +117,7 @@ CountdownWaitingWidget::tick()
     {
         d->count = int( d->duration.count() );
     }
-    d->spinner->setText( QString::number(d->count) );
+    d->spinner->setText( QString::number( d->count ) );
     if ( d->count == 0 )
     {
         timeout();

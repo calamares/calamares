@@ -10,7 +10,7 @@
 #ifndef WAITINGWIDGET_H
 #define WAITINGWIDGET_H
 
-#include <QWidget>
+#include "3rdparty/waitingspinnerwidget.h"
 
 #include <chrono>
 #include <memory>
@@ -24,18 +24,12 @@ class QTimer;
  * and the text is displayed centered below it. Use this
  * to display a long-term waiting situation with a status report.
  */
-class WaitingWidget : public QWidget
+class WaitingWidget : public WaitingSpinnerWidget
 {
-    Q_OBJECT
 public:
     /// Create a WaitingWidget with initial @p text label.
     explicit WaitingWidget( const QString& text, QWidget* parent = nullptr );
-
-    /// Update the @p text displayed in the label.
-    void setText( const QString& text );
-
-private:
-    QLabel* m_waitingLabel;
+    ~WaitingWidget() override;
 };
 
 /** @brief A spinner and a countdown next to it
