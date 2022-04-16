@@ -150,8 +150,8 @@ private:
     QColor  _textColor = Qt::black;
 
     // Environment settings
-    bool    _centerOnParent;
-    bool    _disableParentWhenSpinning;
+    bool    _centerOnParent = true;
+    bool    _disableParentWhenSpinning = true;
 
     // Internal bits
     QTimer *_timer = nullptr;
