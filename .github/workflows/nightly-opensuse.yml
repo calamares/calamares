@@ -24,7 +24,7 @@ jobs:
       - name: "prepare env"
         uses: calamares/actions/prepare-opensuse@v4
       - name: "prepare source"
-        uses: actions/checkout@v2
+        uses: calamares/actions/generic-checkout@v4
       - name: "build"
         id: build
         uses: calamares/actions/generic-build@v4
