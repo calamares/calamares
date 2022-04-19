@@ -17,6 +17,7 @@ import os
 import re
 import shutil
 
+
 import libcalamares
 
 import gettext
@@ -71,8 +72,12 @@ def rewrite_locale_gen(srcfilename, destfilename, locale_conf):
 
     # Get entire source-file contents
     text = []
-    with open(srcfilename, "r") as gen:
-        text = gen.readlines()
+    try:
+        with open(srcfilename, "r") as gen:
+            text = gen.readlines()
+    except FileNotFoundError:
+        # That's ok, the file doesn't exist so assume empty
+        pass
 
     # we want unique values, so locale_values should have 1 or 2 items
     locale_values = set(locale_conf.values())
