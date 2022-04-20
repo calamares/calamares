@@ -22,7 +22,6 @@ calamares_add_plugin(welcome
         checker/CheckerContainer.cpp
         checker/GeneralRequirements.cpp
         checker/ResultDelegate.cpp
-        checker/ResultWidget.cpp
         checker/ResultsListWidget.cpp
         ${PARTMAN_SRC}
         WelcomeViewStep.cpp

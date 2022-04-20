@@ -11,8 +11,6 @@
 #ifndef CHECKER_RESULTSLISTWIDGET_H
 #define CHECKER_RESULTSLISTWIDGET_H
 
-#include "ResultWidget.h"
-
 #include "Config.h"
 
 #include <QWidget>
@@ -34,8 +32,6 @@ private:
     /// @brief The model of requirements changed
     void requirementsChanged();
 
-    void retranslate();
-
     /** @brief The model can be reset and re-filled, is it full yet?
      *
      * We count how many requirements we have seen; since the model
@@ -49,12 +45,6 @@ private:
      */
     bool isModelFilled();
 
-    /** @brief A list of widgets, one per entry in the requirements model
-     *
-     * Unsatisfied entries have a non-null widget pointer, while requirements
-     * entries that **are** satisfied have no widget.
-     */
-    QList< ResultWidget* > m_resultWidgets;
     Config* m_config = nullptr;
 
     // UI parts, which need updating when the model changes

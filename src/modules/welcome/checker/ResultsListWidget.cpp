@@ -27,54 +27,6 @@
 #include <QListView>
 #include <QVBoxLayout>
 
-/** @brief Add widgets to @p layout for the list @p checkEntries
- *
- * The @p resultWidgets is filled with pointers to the widgets;
- * for each entry in @p checkEntries that satisfies @p predicate,
- * a widget is created, otherwise a nullptr is added instead.
- *
- * Adds all the widgets to the given @p layout.
- *
- * Afterwards, @p resultWidgets has a length equal to @p checkEntries.
- */
-static void
-createResultWidgets( QLayout* layout,
-                     QList< ResultWidget* >& resultWidgets,
-                     const Calamares::RequirementsModel& model,
-                     std::function< bool( const Calamares::RequirementsModel&, QModelIndex ) > predicate )
-{
-    resultWidgets.clear();
-    resultWidgets.reserve( model.count() );
-    for ( auto i = 0; i < model.count(); i++ )
-    {
-        const auto& index = model.index( i );
-        if ( !predicate( model, index ) )
-        {
-            resultWidgets.append( nullptr );
-            continue;
-        }
-
-        const QString checkName = model.data( index, Calamares::RequirementsModel::Name ).toString();
-        const bool is_satisfied = model.data( index, Calamares::RequirementsModel::Satisfied ).toBool();
-        const bool is_mandatory = model.data( index, Calamares::RequirementsModel::Mandatory ).toBool();
-        ResultWidget* ciw = new ResultWidget( is_satisfied, is_mandatory );
-        ciw->setObjectName( checkName );
-
-        layout->addWidget( ciw );
-        ciw->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
-
-        ciw->setAutoFillBackground( true );
-        QPalette pal( ciw->palette() );
-        QColor bgColor = pal.window().color();
-        int bgHue = ( is_satisfied ) ? bgColor.hue() : ( is_mandatory ) ? 0 : 60;
-        bgColor.setHsv( bgHue, 64, bgColor.value() );
-        pal.setColor( QPalette::Window, bgColor );
-        ciw->setPalette( pal );
-
-        resultWidgets.append( ciw );
-    }
-}
-
 /** @brief A "details" dialog for the results-list
  *
  * This displays the same RequirementsList as ResultsListWidget,
@@ -96,7 +48,6 @@ public:
 
 private:
     QLabel* m_title;
-    QList< ResultWidget* > m_resultWidgets;  ///< One widget for each entry with details available
     const Calamares::RequirementsModel& m_model;
 
     void retranslate();
@@ -111,12 +62,6 @@ ResultsListDialog::ResultsListDialog( const Calamares::RequirementsModel& model,
 
     m_title = new QLabel( this );
     m_title->setObjectName( "resultDialogTitle" );
-
-    createResultWidgets( entriesLayout,
-                         m_resultWidgets,
-                         model,
-                         []( const Calamares::RequirementsModel& m, QModelIndex i )
-                         { return m.data( i, Calamares::RequirementsModel::HasDetails ).toBool(); } );
 
     QDialogButtonBox* buttonBox = new QDialogButtonBox( QDialogButtonBox::Close, Qt::Horizontal, this );
     buttonBox->setObjectName( "resultDialogButtons" );
@@ -139,15 +84,6 @@ ResultsListDialog::retranslate()
 {
     m_title->setText( tr( "For best results, please ensure that this computer:" ) );
     setWindowTitle( tr( "System requirements" ) );
-
-    for ( auto i = 0; i < m_model.count(); i++ )
-    {
-        if ( m_resultWidgets[ i ] )
-        {
-            m_resultWidgets[ i ]->setText(
-                m_model.data( m_model.index( i ), Calamares::RequirementsModel::Details ).toString() );
-        }
-    }
 }
 
 
@@ -198,8 +134,6 @@ ResultsListWidget::ResultsListWidget( Config* config, QWidget* parent )
                  }
              } );
     connect( m_explanation, &QLabel::linkActivated, this, &ResultsListWidget::linkClicked );
-
-    CALAMARES_RETRANSLATE_SLOT( &ResultsListWidget::retranslate );
 }
 
 
@@ -211,22 +145,6 @@ ResultsListWidget::linkClicked( const QString& link )
         auto* dialog = new ResultsListDialog( *( m_config->requirementsModel() ), this );
         dialog->exec();
         dialog->deleteLater();
-    }
-}
-
-void
-ResultsListWidget::retranslate()
-{
-    const auto& model = *( m_config->requirementsModel() );
-    // Retranslate the widgets that there **are**;
-    // these remain in-order relative to the model.
-    for ( auto i = 0; i < model.count() && i < m_resultWidgets.count(); i++ )
-    {
-        if ( m_resultWidgets[ i ] )
-        {
-            m_resultWidgets[ i ]->setText(
-                model.data( model.index( i ), Calamares::RequirementsModel::NegatedText ).toString() );
-        }
     }
 }
 
@@ -245,22 +163,7 @@ ResultsListWidget::requirementsChanged()
     auto isUnSatisfied = []( const Calamares::RequirementsModel& m, QModelIndex i )
     { return !m.data( i, Calamares::RequirementsModel::Satisfied ).toBool(); };
 
-
-    std::for_each( m_resultWidgets.begin(),
-                   m_resultWidgets.end(),
-                   []( QWidget* w )
-                   {
-                       if ( w )
-                       {
-                           w->deleteLater();
-                       }
-                   } );
-
-    if ( !requirementsSatisfied )
-    {
-        // createResultWidgets( m_entriesLayout, m_resultWidgets, *( m_config->requirementsModel() ), isUnSatisfied );
-    }
-    else
+    if ( requirementsSatisfied )
     {
         m_countdown->stop();
         m_countdown->hide();
@@ -297,8 +200,6 @@ ResultsListWidget::requirementsChanged()
         }
         m_explanation->setAlignment( Qt::AlignCenter );
     }
-
-    retranslate();
 }
 
 bool
