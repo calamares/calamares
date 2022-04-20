@@ -43,22 +43,19 @@ public:
      * The list must continue to exist for the lifetime of the dialog,
      * or UB happens.
      */
-    ResultsListDialog( const Calamares::RequirementsModel& model, QWidget* parent );
+    ResultsListDialog( QAbstractItemModel* model, QWidget* parent );
     ~ResultsListDialog() override;
 
 private:
     QLabel* m_title;
-    const Calamares::RequirementsModel& m_model;
 
     void retranslate();
 };
 
-ResultsListDialog::ResultsListDialog( const Calamares::RequirementsModel& model, QWidget* parent )
+ResultsListDialog::ResultsListDialog( QAbstractItemModel* model, QWidget* parent )
     : QDialog( parent )
-    , m_model( model )
 {
     auto* mainLayout = new QVBoxLayout;
-    auto* entriesLayout = new QVBoxLayout;
 
     m_title = new QLabel( this );
     m_title->setObjectName( "resultDialogTitle" );
@@ -67,7 +64,15 @@ ResultsListDialog::ResultsListDialog( const Calamares::RequirementsModel& model,
     buttonBox->setObjectName( "resultDialogButtons" );
 
     mainLayout->addWidget( m_title );
-    mainLayout->addLayout( entriesLayout );
+
+    auto* listview = new QListView( this );
+    listview->setSelectionMode( QAbstractItemView::NoSelection );
+    listview->setDragDropMode( QAbstractItemView::NoDragDrop );
+    listview->setAcceptDrops( false );
+    listview->setItemDelegate( new ResultDelegate( this, Calamares::RequirementsModel::Details ) );
+    listview->setModel( model );
+
+    mainLayout->addWidget( listview );
     mainLayout->addWidget( buttonBox );
 
     setLayout( mainLayout );
@@ -96,8 +101,6 @@ ResultsListWidget::ResultsListWidget( Config* config, QWidget* parent )
     auto mainLayout = new QVBoxLayout;
     setLayout( mainLayout );
 
-    int paddingSize = qBound( 32, CalamaresUtils::defaultFontHeight() * 4, 128 );
-
     QHBoxLayout* explanationLayout = new QHBoxLayout;
     m_explanation = new QLabel( m_config->warningMessage() );
     m_explanation->setWordWrap( true );
@@ -106,7 +109,7 @@ ResultsListWidget::ResultsListWidget( Config* config, QWidget* parent )
     m_explanation->setObjectName( "resultsExplanation" );
     explanationLayout->addWidget( m_explanation );
     m_countdown = new CountdownWaitingWidget;
-    m_countdown->setToolTip( tr("Checking requirements again in a few seconds ...") );
+    m_countdown->setToolTip( tr( "Checking requirements again in a few seconds ..." ) );
     m_countdown->start();
     explanationLayout->addWidget( m_countdown );
 
@@ -117,7 +120,7 @@ ResultsListWidget::ResultsListWidget( Config* config, QWidget* parent )
     listview->setSelectionMode( QAbstractItemView::NoSelection );
     listview->setDragDropMode( QAbstractItemView::NoDragDrop );
     listview->setAcceptDrops( false );
-    listview->setItemDelegate( new ResultDelegate( this ) );
+    listview->setItemDelegate( new ResultDelegate( this, Calamares::RequirementsModel::NegatedText ) );
     listview->setModel( config->unsatisfiedRequirements() );
     m_centralWidget = listview;
     m_centralLayout = mainLayout;
@@ -143,7 +146,7 @@ ResultsListWidget::linkClicked( const QString& link )
 {
     if ( link == "#details" )
     {
-        auto* dialog = new ResultsListDialog( *( m_config->requirementsModel() ), this );
+        auto* dialog = new ResultsListDialog( m_config->requirementsModel(), this );
         dialog->exec();
         dialog->deleteLater();
     }
@@ -161,8 +164,6 @@ ResultsListWidget::requirementsChanged()
     // all *mandatory* entries are satisfied (gives errors if not).
 
     const bool requirementsSatisfied = m_config->requirementsModel()->satisfiedRequirements();
-    auto isUnSatisfied = []( const Calamares::RequirementsModel& m, QModelIndex i )
-    { return !m.data( i, Calamares::RequirementsModel::Satisfied ).toBool(); };
 
     if ( requirementsSatisfied )
     {
