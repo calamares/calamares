@@ -12,6 +12,8 @@
 
 #include <QStyledItemDelegate>
 
+#include "modulesystem/RequirementsModel.h"
+
 /**
  * @brief Class for drawing (un)satisfied requirements
  */
@@ -19,10 +21,17 @@ class ResultDelegate : public QStyledItemDelegate
 {
 public:
     using QStyledItemDelegate::QStyledItemDelegate;
+    ResultDelegate( QObject* parent, Calamares::RequirementsModel::Roles text )
+        : QStyledItemDelegate( parent )
+        , m_textRole( text )
+    {
+    }
 
 protected:
     QSize sizeHint( const QStyleOptionViewItem& option, const QModelIndex& index ) const override;
     void paint( QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index ) const override;
+
+    int m_textRole = Calamares::RequirementsModel::Name;
 };
 
 #endif  // PROGRESSTREEDELEGATE_H

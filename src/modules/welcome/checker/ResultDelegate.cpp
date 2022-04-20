@@ -23,7 +23,7 @@ item_fontsize()
 }
 
 static void
-paintRequirement( QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index )
+paintRequirement( QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index, int role )
 {
     QRect textRect = option.rect.adjusted( item_margin, item_margin, -item_margin, -item_margin );
     QFont font = qApp->font();
@@ -48,8 +48,7 @@ paintRequirement( QPainter* painter, const QStyleOptionViewItem& option, const Q
         }
     }
 
-
-    painter->drawText( textRect, Qt::AlignLeft | Qt::AlignVCenter | Qt::TextSingleLine, index.data().toString() );
+    painter->drawText( textRect, Qt::AlignLeft | Qt::AlignVCenter | Qt::TextSingleLine, index.data( role ).toString() );
 }
 
 QSize
@@ -82,7 +81,7 @@ ResultDelegate::paint( QPainter* painter, const QStyleOptionViewItem& option, co
     initStyleOption( &opt, index );
     opt.text.clear();
 
-    paintRequirement( painter, opt, index );
+    paintRequirement( painter, opt, index, m_textRole );
 
     painter->restore();
 }
