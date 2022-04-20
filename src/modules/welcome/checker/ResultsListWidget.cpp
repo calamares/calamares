@@ -27,71 +27,6 @@
 #include <QListView>
 #include <QVBoxLayout>
 
-/** @brief A "details" dialog for the results-list
- *
- * This displays the same RequirementsList as ResultsListWidget,
- * but the *details* part rather than the show description.
- *
- * This is an internal-to-the-widget class.
- */
-class ResultsListDialog : public QDialog
-{
-    Q_OBJECT
-public:
-    /** @brief Create a dialog for the given @p checkEntries list of requirements.
-     *
-     * The list must continue to exist for the lifetime of the dialog,
-     * or UB happens.
-     */
-    ResultsListDialog( QAbstractItemModel* model, QWidget* parent );
-    ~ResultsListDialog() override;
-
-private:
-    QLabel* m_title;
-
-    void retranslate();
-};
-
-ResultsListDialog::ResultsListDialog( QAbstractItemModel* model, QWidget* parent )
-    : QDialog( parent )
-{
-    auto* mainLayout = new QVBoxLayout;
-
-    m_title = new QLabel( this );
-    m_title->setObjectName( "resultDialogTitle" );
-
-    QDialogButtonBox* buttonBox = new QDialogButtonBox( QDialogButtonBox::Close, Qt::Horizontal, this );
-    buttonBox->setObjectName( "resultDialogButtons" );
-
-    mainLayout->addWidget( m_title );
-
-    auto* listview = new QListView( this );
-    listview->setSelectionMode( QAbstractItemView::NoSelection );
-    listview->setDragDropMode( QAbstractItemView::NoDragDrop );
-    listview->setAcceptDrops( false );
-    listview->setItemDelegate( new ResultDelegate( this, Calamares::RequirementsModel::Details ) );
-    listview->setModel( model );
-
-    mainLayout->addWidget( listview );
-    mainLayout->addWidget( buttonBox );
-
-    setLayout( mainLayout );
-
-    connect( buttonBox, &QDialogButtonBox::clicked, this, &QDialog::close );
-
-    CALAMARES_RETRANSLATE_SLOT( &ResultsListDialog::retranslate );
-}
-
-ResultsListDialog::~ResultsListDialog() {}
-
-void
-ResultsListDialog::retranslate()
-{
-    m_title->setText( tr( "For best results, please ensure that this computer:" ) );
-    setWindowTitle( tr( "System requirements" ) );
-}
-
-
 ResultsListWidget::ResultsListWidget( Config* config, QWidget* parent )
     : QWidget( parent )
     , m_config( config )
@@ -129,19 +64,6 @@ ResultsListWidget::ResultsListWidget( Config* config, QWidget* parent )
     mainLayout->addStretch();
 
     connect( config, &Config::warningMessageChanged, m_explanation, &QLabel::setText );
-    connect( m_explanation, &QLabel::linkActivated, this, &ResultsListWidget::linkClicked );
-}
-
-
-void
-ResultsListWidget::linkClicked( const QString& link )
-{
-    if ( link == "#details" )
-    {
-        auto* dialog = new ResultsListDialog( m_config->requirementsModel(), this );
-        dialog->exec();
-        dialog->deleteLater();
-    }
 }
 
 void

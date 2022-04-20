@@ -27,8 +27,6 @@ public:
     explicit ResultsListWidget( Config* config, QWidget* parent );
 
 private:
-    /// @brief A link in the explanatory text has been clicked
-    void linkClicked( const QString& link );
     /// @brief The model of requirements changed
     void requirementsChanged();
 

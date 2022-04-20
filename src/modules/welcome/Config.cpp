@@ -54,12 +54,10 @@ Config::retranslate()
         {
             message = setup ? tr( "This computer does not satisfy the minimum "
                                   "requirements for setting up %1.<br/>"
-                                  "Setup cannot continue. "
-                                  "<a href=\"#details\">Details...</a>" )
+                                  "Setup cannot continue." )
                             : tr( "This computer does not satisfy the minimum "
                                   "requirements for installing %1.<br/>"
-                                  "Installation cannot continue. "
-                                  "<a href=\"#details\">Details...</a>" );
+                                  "Installation cannot continue." );
         }
         else
         {
@@ -124,16 +122,16 @@ Config::initLanguages()
     QLocale defaultLocale = QLocale( QLocale::system().name() );
 
     cDebug() << "Matching locale" << defaultLocale;
-    int matchedLocaleIndex = m_languages->find( [&]( const QLocale& x ) {
-        return x.language() == defaultLocale.language() && x.country() == defaultLocale.country();
-    } );
+    int matchedLocaleIndex = m_languages->find(
+        [ & ]( const QLocale& x )
+        { return x.language() == defaultLocale.language() && x.country() == defaultLocale.country(); } );
 
     if ( matchedLocaleIndex < 0 )
     {
         cDebug() << Logger::SubEntry << "Matching approximate locale" << defaultLocale.language();
 
         matchedLocaleIndex
-            = m_languages->find( [&]( const QLocale& x ) { return x.language() == defaultLocale.language(); } );
+            = m_languages->find( [ & ]( const QLocale& x ) { return x.language() == defaultLocale.language(); } );
     }
 
     if ( matchedLocaleIndex < 0 )
@@ -191,7 +189,8 @@ Config::setLocaleIndex( int index )
 
     QLocale::setDefault( selectedTranslation.locale() );
     const auto* branding = Calamares::Branding::instance();
-    CalamaresUtils::installTranslator( selectedTranslation.id(), branding ? branding->translationsDirectory() : QString() );
+    CalamaresUtils::installTranslator( selectedTranslation.id(),
+                                       branding ? branding->translationsDirectory() : QString() );
     if ( Calamares::JobQueue::instance() && Calamares::JobQueue::instance()->globalStorage() )
     {
         CalamaresUtils::Locale::insertGS( *Calamares::JobQueue::instance()->globalStorage(),
@@ -367,13 +366,16 @@ setGeoIP( Config* config, const QVariantMap& configurationMap )
         if ( handler->type() != CalamaresUtils::GeoIP::Handler::Type::None )
         {
             auto* future = new FWString();
-            QObject::connect( future, &FWString::finished, [config, future, handler]() {
-                QString countryResult = future->future().result();
-                cDebug() << "GeoIP result for welcome=" << countryResult;
-                ::setCountry( config, countryResult, handler );
-                future->deleteLater();
-                delete handler;
-            } );
+            QObject::connect( future,
+                              &FWString::finished,
+                              [ config, future, handler ]()
+                              {
+                                  QString countryResult = future->future().result();
+                                  cDebug() << "GeoIP result for welcome=" << countryResult;
+                                  ::setCountry( config, countryResult, handler );
+                                  future->deleteLater();
+                                  delete handler;
+                              } );
             future->setFuture( handler->queryRaw() );
         }
         else
