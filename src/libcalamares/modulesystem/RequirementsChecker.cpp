@@ -32,7 +32,6 @@ RequirementsChecker::RequirementsChecker( QVector< Module* > modules, Requiremen
     , m_progressTimer( nullptr )
     , m_progressTimeouts( 0 )
 {
-    m_model->clear();
     m_watchers.reserve( m_modules.count() );
     connect( this, &RequirementsChecker::requirementsProgress, model, &RequirementsModel::setProgressMessage );
 }
@@ -77,7 +76,7 @@ RequirementsChecker::finished()
         }
 
         m_model->describe();
-        m_model->changeRequirementsList();
+        m_model->reCheckList();
         QTimer::singleShot( 0, this, &RequirementsChecker::done );
     }
 }
