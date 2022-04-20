@@ -21,6 +21,7 @@ calamares_add_plugin(welcome
     SOURCES
         checker/CheckerContainer.cpp
         checker/GeneralRequirements.cpp
+        checker/ResultDelegate.cpp
         checker/ResultWidget.cpp
         checker/ResultsListWidget.cpp
         ${PARTMAN_SRC}
