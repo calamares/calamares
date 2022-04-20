@@ -43,11 +43,11 @@ public:
 
     enum Roles : short
     {
-        Name,
+        NegatedText = Qt::DisplayRole,
+        Details = Qt::ToolTipRole,
+        Name = Qt::UserRole,
         Satisfied,
         Mandatory,
-        Details,
-        NegatedText,
         HasDetails
     };
     // No Q_ENUM because these are exposed through roleNames()
