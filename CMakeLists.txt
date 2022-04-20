@@ -530,10 +530,10 @@ if(NOT BUILD_RELEASE AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.git/")
     extend_version( "${CALAMARES_VERSION}" OFF CALAMARES_VERSION_SHORT CALAMARES_VERSION )
 endif()
 
-# Special target for not-RC (e.g. might-be-release) builds.
-# This is used by the release script to get the version.
-if(CALAMARES_VERSION_RC EQUAL 0)
-    add_custom_target(show-version ${CMAKE_COMMAND} -E echo CALAMARES_VERSION=${CALAMARES_VERSION_SHORT} USES_TERMINAL)
+# Special define for RC (e.g. not-a-release) builds.
+# This is consumed via the CalamaresConfig.h header.
+if(NOT CALAMARES_RELEASE_MODE)
+    set(CALAMARES_VERSION_RC 1)
 endif()
 
 # enforce using constBegin, constEnd for const-iterators
