@@ -71,11 +71,11 @@ ResultDelegate::sizeHint( const QStyleOptionViewItem& option, const QModelIndex&
 
     font.setPointSize( item_fontsize() );
     QFontMetrics fm( font );
-    int height = fm.height();
 
-    height += 2 * item_margin;
+    const int height = fm.height() + 2 * item_margin;
+    int textwidth = fm.boundingRect( index.data( Calamares::RequirementsModel::NegatedText ).toString() ).width();
 
-    return QSize( option.rect.width(), height );
+    return QSize( qMax( option.rect.width(), textwidth ), height );
 }
 
 
