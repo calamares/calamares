@@ -32,19 +32,6 @@ private:
     /// @brief The model of requirements changed
     void requirementsChanged();
 
-    /** @brief The model can be reset and re-filled, is it full yet?
-     *
-     * We count how many requirements we have seen; since the model
-     * does not shrink, we can avoid reacting to model-is-cleared
-     * events because the size of the model is then (briefly) smaller
-     * than what we expect.
-     *
-     * Returns true if the model contains at least m_requirementsSeen
-     * elements, and updates m_requirementsSeen. (Which is why the
-     * method is not const)
-     */
-    bool isModelFilled();
-
     Config* m_config = nullptr;
 
     // UI parts, which need updating when the model changes
@@ -56,8 +43,6 @@ private:
     // it is placed in the central layout.
     QWidget* m_centralWidget = nullptr;
     QBoxLayout* m_centralLayout = nullptr;
-
-    int m_requirementsSeen = 0;
 };
 
 #endif  // CHECKER_RESULTSLISTWIDGET_H

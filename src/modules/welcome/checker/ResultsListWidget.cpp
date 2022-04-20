@@ -128,15 +128,7 @@ ResultsListWidget::ResultsListWidget( Config* config, QWidget* parent )
     mainLayout->addWidget( listview );
     mainLayout->addStretch();
 
-    connect( config,
-             &Config::warningMessageChanged,
-             [ = ]( QString s )
-             {
-                 if ( isModelFilled() )
-                 {
-                     m_explanation->setText( s );
-                 }
-             } );
+    connect( config, &Config::warningMessageChanged, m_explanation, &QLabel::setText );
     connect( m_explanation, &QLabel::linkActivated, this, &ResultsListWidget::linkClicked );
 }
 
@@ -155,11 +147,6 @@ ResultsListWidget::linkClicked( const QString& link )
 void
 ResultsListWidget::requirementsChanged()
 {
-    if ( !isModelFilled() )
-    {
-        return;
-    }
-
     // Check that all are satisfied (gives warnings if not) and
     // all *mandatory* entries are satisfied (gives errors if not).
 
@@ -203,18 +190,6 @@ ResultsListWidget::requirementsChanged()
         m_explanation->setAlignment( Qt::AlignCenter );
     }
 }
-
-bool
-ResultsListWidget::isModelFilled()
-{
-    if ( m_config->requirementsModel()->count() < m_requirementsSeen )
-    {
-        return false;
-    }
-    m_requirementsSeen = m_config->requirementsModel()->count();
-    return true;
-}
-
 
 #include "utils/moc-warnings.h"
 
