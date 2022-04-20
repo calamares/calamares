@@ -36,15 +36,24 @@ paintRequirement( QPainter* painter, const QStyleOptionViewItem& option, const Q
     CalamaresUtils::ImageType statusImage = CalamaresUtils::StatusOk;
 
     painter->setPen( QColorConstants::Black );
-    if ( index.data( Calamares::RequirementsModel::Satisfied ).toBool() ) {}
+    if ( index.data( Calamares::RequirementsModel::Satisfied ).toBool() )
+    {
+        painter->fillRect( textRect, option.palette.window().color() );
+    }
     else
     {
         if ( index.data( Calamares::RequirementsModel::Mandatory ).toBool() )
         {
+            QColor bgColor = option.palette.window().color();
+            bgColor.setHsv( 0, 64, bgColor.value() );
+            painter->fillRect( option.rect, bgColor );
             statusImage = CalamaresUtils::StatusError;
         }
         else
         {
+            QColor bgColor = option.palette.window().color();
+            bgColor.setHsv( 60, 64, bgColor.value() );
+            painter->fillRect( option.rect, bgColor );
             statusImage = CalamaresUtils::StatusWarning;
         }
     }
