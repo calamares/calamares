@@ -145,6 +145,7 @@ GeneralRequirements::checkRequirements()
              << TR( "hasInternet", hasInternet )
              << TR( "isRoot", isRoot );
     // clang-format on
+
     Calamares::RequirementsList checkEntries;
     foreach ( const QString& entry, m_entriesToCheck )
     {
@@ -154,7 +155,11 @@ GeneralRequirements::checkRequirements()
             checkEntries.append(
                 { entry,
                   [ req = m_requiredStorageGiB ]
-                  { return tr( "has at least %1 GiB available drive space" ).arg( req ); },
+                  {
+                      return tr( "Please ensure the system has at least %1 GiB available drive space." ).arg( req )
+                          + QStringLiteral( "<br/><br/>" )
+                          + tr( "Available drive space is all of the hard disks and SSDs connected to the system." );
+                  },
                   [ req = m_requiredStorageGiB ]
                   { return tr( "There is not enough drive space. At least %1 GiB is required." ).arg( req ); },
                   enoughStorage,
