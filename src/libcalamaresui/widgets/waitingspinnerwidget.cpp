@@ -30,6 +30,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #include "waitingspinnerwidget.h"
 
+#include <qmath.h>
 #include <QPainter>
 #include <QTimer>
 
@@ -58,7 +59,7 @@ currentLineColor( int countDistance, int totalNrOfLines, qreal trailFadePerc, qr
         return color;
     }
     const qreal minAlphaF = minOpacity / 100.0;
-    int distanceThreshold = static_cast< int >( ceil( ( totalNrOfLines - 1 ) * trailFadePerc / 100.0 ) );
+    int distanceThreshold = static_cast< int >( qCeil( ( totalNrOfLines - 1 ) * trailFadePerc / 100.0 ) );
     if ( countDistance > distanceThreshold )
     {
         color.setAlphaF( minAlphaF );
