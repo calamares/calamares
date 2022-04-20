@@ -10,7 +10,7 @@
 
 #include "ResultsListWidget.h"
 
-#include "ResultWidget.h"
+#include "ResultDelegate.h"
 
 #include "Branding.h"
 #include "Settings.h"
@@ -24,6 +24,7 @@
 #include <QDialog>
 #include <QDialogButtonBox>
 #include <QLabel>
+#include <QListView>
 #include <QVBoxLayout>
 
 /** @brief Add widgets to @p layout for the list @p checkEntries
@@ -156,19 +157,10 @@ ResultsListWidget::ResultsListWidget( Config* config, QWidget* parent )
 {
     setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
 
-    m_mainLayout = new QVBoxLayout;
-    m_entriesLayout = new QVBoxLayout;
-
-    setLayout( m_mainLayout );
+    auto mainLayout = new QVBoxLayout;
+    setLayout( mainLayout );
 
     int paddingSize = qBound( 32, CalamaresUtils::defaultFontHeight() * 4, 128 );
-
-    QHBoxLayout* spacerLayout = new QHBoxLayout;
-    m_mainLayout->addLayout( spacerLayout );
-    spacerLayout->addSpacing( paddingSize );
-    spacerLayout->addLayout( m_entriesLayout );
-    spacerLayout->addSpacing( paddingSize );
-    CalamaresUtils::unmarginLayout( spacerLayout );
 
     QHBoxLayout* explanationLayout = new QHBoxLayout;
     m_explanation = new QLabel( m_config->warningMessage() );
@@ -181,11 +173,20 @@ ResultsListWidget::ResultsListWidget( Config* config, QWidget* parent )
     explanationLayout->addWidget( m_countdown );
     m_countdown->start();
 
-    m_entriesLayout->addLayout( explanationLayout );
-    m_entriesLayout->insertSpacing( 1, CalamaresUtils::defaultFontHeight() / 2 );
-    m_mainLayout->addStretch();
+    mainLayout->addLayout( explanationLayout );
+    mainLayout->addSpacing( CalamaresUtils::defaultFontHeight() / 2 );
 
-    requirementsChanged();
+    auto* listview = new QListView( this );
+    listview->setSelectionMode( QAbstractItemView::NoSelection );
+    listview->setDragDropMode( QAbstractItemView::NoDragDrop );
+    listview->setAcceptDrops( false );
+    listview->setItemDelegate( new ResultDelegate( this ) );
+    listview->setModel( config->unsatisfiedRequirements() );
+    m_centralWidget = listview;
+    m_centralLayout = mainLayout;
+
+    mainLayout->addWidget( listview );
+    mainLayout->addStretch();
 
     connect( config,
              &Config::warningMessageChanged,
@@ -197,10 +198,6 @@ ResultsListWidget::ResultsListWidget( Config* config, QWidget* parent )
                  }
              } );
     connect( m_explanation, &QLabel::linkActivated, this, &ResultsListWidget::linkClicked );
-    connect( config->requirementsModel(),
-             &Calamares::RequirementsModel::modelReset,
-             this,
-             &ResultsListWidget::requirementsChanged );
 
     CALAMARES_RETRANSLATE_SLOT( &ResultsListWidget::retranslate );
 }
@@ -261,12 +258,16 @@ ResultsListWidget::requirementsChanged()
 
     if ( !requirementsSatisfied )
     {
-        createResultWidgets( m_entriesLayout, m_resultWidgets, *( m_config->requirementsModel() ), isUnSatisfied );
+        // createResultWidgets( m_entriesLayout, m_resultWidgets, *( m_config->requirementsModel() ), isUnSatisfied );
     }
     else
     {
         m_countdown->stop();
         m_countdown->hide();
+
+        delete m_centralWidget;
+        m_centralWidget = nullptr;
+
         if ( !Calamares::Branding::instance()->imagePath( Calamares::Branding::ProductWelcome ).isEmpty() )
         {
             QPixmap theImage
@@ -290,7 +291,8 @@ ResultsListWidget::requirementsChanged()
                 imageLabel->setAlignment( Qt::AlignCenter );
                 imageLabel->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
                 imageLabel->setObjectName( "welcomeLogo" );
-                m_mainLayout->addWidget( imageLabel );
+                // This specifically isn't assigned to m_centralWidget
+                m_centralLayout->addWidget( imageLabel );
             }
         }
         m_explanation->setAlignment( Qt::AlignCenter );

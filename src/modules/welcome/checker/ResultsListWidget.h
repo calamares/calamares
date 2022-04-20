@@ -60,8 +60,13 @@ private:
     // UI parts, which need updating when the model changes
     QLabel* m_explanation = nullptr;
     CountdownWaitingWidget* m_countdown = nullptr;
-    QBoxLayout* m_mainLayout = nullptr;
-    QBoxLayout* m_entriesLayout = nullptr;
+    // There is a central widget, which can be:
+    // - a list widget showing failed requirements
+    // - nullptr (when displaying a pretty label for language / splash purposes)
+    // it is placed in the central layout.
+    QWidget* m_centralWidget = nullptr;
+    QBoxLayout* m_centralLayout = nullptr;
+
     int m_requirementsSeen = 0;
 };
 
