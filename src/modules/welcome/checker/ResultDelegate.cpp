@@ -25,29 +25,37 @@ item_fontsize()
 static void
 paintRequirement( QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index, int role )
 {
+    const auto fontsize = item_fontsize();
+
     QRect textRect = option.rect.adjusted( item_margin, item_margin, -item_margin, -item_margin );
     QFont font = qApp->font();
-    font.setPointSize( item_fontsize() );
+    font.setPointSize( fontsize );
     font.setBold( false );
     painter->setFont( font );
 
-    if ( index.data( Calamares::RequirementsModel::Satisfied ).toBool() )
-    {
-        painter->setBrush( QColorConstants::Green );
-        painter->setPen( QColorConstants::Black );
-    }
+    CalamaresUtils::ImageType statusImage = CalamaresUtils::StatusOk;
+
+    painter->setPen( QColorConstants::Black );
+    if ( index.data( Calamares::RequirementsModel::Satisfied ).toBool() ) {}
     else
     {
         if ( index.data( Calamares::RequirementsModel::Mandatory ).toBool() )
         {
-            painter->setPen( QColorConstants::Red );
+            statusImage = CalamaresUtils::StatusError;
         }
         else
         {
-            painter->setPen( QColorConstants::Blue );
+            statusImage = CalamaresUtils::StatusWarning;
         }
     }
 
+    auto image
+        = CalamaresUtils::defaultPixmap( statusImage, CalamaresUtils::Original, QSize( 2 * fontsize, 2 * fontsize ) )
+              .toImage();
+    painter->drawImage( textRect.topLeft(), image );
+
+    // Leave space for that image (already drawn)
+    textRect.moveLeft( 2 * fontsize + 2 * item_margin );
     painter->drawText( textRect, Qt::AlignLeft | Qt::AlignVCenter | Qt::TextSingleLine, index.data( role ).toString() );
 }
 
