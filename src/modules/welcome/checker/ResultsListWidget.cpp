@@ -106,8 +106,9 @@ ResultsListWidget::ResultsListWidget( Config* config, QWidget* parent )
     m_explanation->setObjectName( "resultsExplanation" );
     explanationLayout->addWidget( m_explanation );
     m_countdown = new CountdownWaitingWidget;
-    explanationLayout->addWidget( m_countdown );
+    m_countdown->setToolTip( tr("Checking requirements again in a few seconds ...") );
     m_countdown->start();
+    explanationLayout->addWidget( m_countdown );
 
     mainLayout->addLayout( explanationLayout );
     mainLayout->addSpacing( CalamaresUtils::defaultFontHeight() / 2 );
