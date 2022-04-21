@@ -237,7 +237,7 @@ LuksBootKeyFileJob::exec()
     // But only if root partition is not encrypted
     if ( hasUnencryptedSeparateBoot() && !hasEncryptedRoot() )
     {
-    	cDebug() << Logger::SubEntry << "/boot partition is not encrypted, skipping keyfile creation.";
+        cDebug() << Logger::SubEntry << "/boot partition is not encrypted, skipping keyfile creation.";
         return Calamares::JobResult::ok();
     }
 
@@ -258,11 +258,11 @@ LuksBootKeyFileJob::exec()
 
     for ( const auto& d : s.devices )
     {
-    	// Skip setupLuks for root partition if system has an unencrypted /boot
+        // Skip setupLuks for root partition if system has an unencrypted /boot
         if ( d.isRoot && hasUnencryptedSeparateBoot() )
-        	continue;
+            continue;
 
-    	if ( !setupLuks( d ) )
+        if ( !setupLuks( d ) )
             return Calamares::JobResult::error(
                 tr( "Encrypted rootfs setup error" ),
                 tr( "Could not configure LUKS key file on partition %1." ).arg( d.device ) );
