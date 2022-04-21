@@ -142,13 +142,21 @@ class FstabGenerator(object):
         with open(crypttab_path, "w") as crypttab_file:
             print(CRYPTTAB_HEADER, file=crypttab_file)
 
+            # Check if /boot is unencrypted
+            unencrypted_separate_boot = False
             for partition in self.partitions:
-                dct = self.generate_crypttab_line_info(partition)
+                if (partition["mountPoint"] == "/boot"
+                    and "luksMapperName" not in partition):
+                        unencrypted_separate_boot = True
+                        break
+
+            for partition in self.partitions:
+                dct = self.generate_crypttab_line_info(partition, unencrypted_separate_boot)
 
                 if dct:
                     self.print_crypttab_line(dct, file=crypttab_file)
 
-    def generate_crypttab_line_info(self, partition):
+    def generate_crypttab_line_info(self, partition, unencrypted_separate_boot):
         """ Generates information for each crypttab entry. """
         if "luksMapperName" not in partition or "luksUuid" not in partition:
             return None
@@ -158,11 +166,19 @@ class FstabGenerator(object):
         if not mapper_name or not luks_uuid:
             return None
 
+        # Set crypttab password for partition to none and remove crypttab options
+        # on root partition when /boot is unencrypted
+        password = "/crypto_keyfile.bin"
+        crypttab_options = self.crypttab_options
+        if partition["mountPoint"] == "/" and unencrypted_separate_boot:
+            password = 'none'
+            crypttab_options = ''
+
         return dict(
             name=mapper_name,
             device="UUID=" + luks_uuid,
-            password="/crypto_keyfile.bin",
-            options=self.crypttab_options,
+            password=password,
+            options=crypttab_options,
         )
 
     def print_crypttab_line(self, dct, file=None):
@@ -264,6 +280,10 @@ class FstabGenerator(object):
             options = "subvol={},".format(partition["subvol"]) + options
 
         if has_luks:
+            # Check if user mounted a previously encrypted partition
+            if not partition["luksMapperName"]:
+                return None
+
             device = "/dev/mapper/" + partition["luksMapperName"]
         elif partition["uuid"]:
             device = "UUID=" + partition["uuid"]
