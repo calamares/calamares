@@ -8,15 +8,25 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.56 (unreleased) #
+# 3.2.56 (2022-04-22) #
+
+As of this release, Calamares 3.2 development is winding down. The
+reason is simple: systems where the backwards-compatibility of Calamares
+3.2 is important are becoming increasingly difficult to work with
+for **other** reasons. Foremost among these are deprecated versions
+of dependencies and tools. Calamares 3.2 branch remains open for
+bugfixes and will see a few more releases, but development is now
+shifting wholesale to the newer generation.
 
 This release contains contributions from (alphabetically by first name):
  - Victor Fuentes (new contributor! Welcome!)
 
 ## Core ##
- - No core changes yet
+ - Changes in git forced some changes on the CI tooling.
 
 ## Modules ##
+ - *locale* showed the wrong timezone for Dhaka, although it configured
+   the correct one. #1929
  - *users* module sets global storage key *fullname* to the full name
    of the user (e.g. what is entered in the "your full name" box on the
    users page). #1923 (Thanks Victor)

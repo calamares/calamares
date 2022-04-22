@@ -338,12 +338,12 @@ Link copied to clipboard</source>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="189"/>
       <source>Calamares Initialization Failed</source>
-      <translation>깔라마레스 초기화 실패</translation>
+      <translation>Calamares 초기화에 실패했습니다</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="190"/>
       <source>%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution.</source>
-      <translation>%1 가 설치될 수 없습니다. 깔라마레스가 모든 구성된 모듈을 불러올 수 없었습니다. 이것은 깔라마레스가 배포판에서 사용되는 방식에서 발생한 문제입니다.</translation>
+      <translation>%1 가 설치될 수 없습니다. Calamares가 모든 구성된 모듈을 불러올 수 없었습니다. 이것은 Calamares가 배포판에서 사용되는 방식에서 발생한 문제입니다.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="196"/>
@@ -1127,7 +1127,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="280"/>
       <source>The installer failed to create partition on disk '%1'.</source>
-      <translation>디스크 '%1'에 파티션을 생성하지 못했습니다.</translation>
+      <translation>설치 관리자가 디스크 '%1'에 파티션을 생성하지 못했습니다.</translation>
     </message>
   </context>
   <context>
@@ -1262,7 +1262,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="46"/>
       <source>The installer failed to deactivate a volume group named %1.</source>
-      <translation>%1로 이름 지정된 볼륨 그룹을 비활성화하지 못했습니다.</translation>
+      <translation>설치 관리자가 %1로 이름 지정된 볼륨 그룹을 비활성화하지 못했습니다.</translation>
     </message>
   </context>
   <context>
@@ -1672,7 +1672,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="205"/>
       <source>has a screen large enough to show the whole installer</source>
-      <translation>전체 설치 프로그램을 표시할 수 있을 만큼 큰 화면이 있습니다</translation>
+      <translation>전체 설치 관리자를 표시할 수 있을 만큼 큰 화면이 있습니다</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="208"/>
@@ -2835,17 +2835,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="254"/>
       <source>Unsafe partition actions are enabled.</source>
-      <translation type="unfinished"/>
+      <translation>안전하지 않은 파티션 작업이 활성화되었습니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="257"/>
       <source>Partitioning is configured to &lt;b&gt;always&lt;/b&gt; fail.</source>
-      <translation type="unfinished"/>
+      <translation>파티셔닝이 &lt;b&gt;항상&lt;/b&gt; 실패하도록 구성되어 있습니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="260"/>
       <source>No partitions will be changed.</source>
-      <translation type="unfinished"/>
+      <translation>파티션 없음은 변경될 것입니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="300"/>
@@ -2905,7 +2905,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="594"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
-      <translation type="unfinished"/>
+      <translation>GPT 파티션 테이블은 모든 시스템에 가장 적합한 옵션입니다. 이 설치 관리자는 BIOS 시스템에 대한 이러한 설정도 지원합니다.&lt;br/&gt;&lt;br/&gt;BIOS에서 GPT 파티션 테이블을 구성하려면(아직 수행하지 않은 경우) 돌아가서 파티션 테이블을 GPT로 설정한 다음 &lt;strong&gt;%2&lt;/strong&gt; 플래그가 활성화된 8MB의 포맷되지 않은 파티션을 생성하십시오.&lt;br/&gt;&lt;br/&gt;GPT가 있는 BIOS 시스템에서 %1을(를) 시작하려면 포맷되지 않은 8MB 파티션이 필요합니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="626"/>
@@ -3287,7 +3287,7 @@ Output:
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="175"/>
       <source>Calamares cannot start KPMCore for the file-system resize job.</source>
-      <translation>깔라마레스는 파일 시스템 크기 조정 작업을 위해 KPMCore를 시작할 수 없습니다.</translation>
+      <translation>Calamares는 파일 시스템 크기 조정 작업을 위해 KPMCore를 시작할 수 없습니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="183"/>
@@ -3791,7 +3791,7 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="176"/>
       <source>Could not configure machine feedback correctly, Calamares error %1.</source>
-      <translation>시스템 피드백을 정확하게 설정할 수 없습니다, %1 깔라마레스 오류.</translation>
+      <translation>시스템 피드백을 정확하게 설정할 수 없습니다, Calamares의 %1 오류입니다.</translation>
     </message>
   </context>
   <context>
@@ -4021,7 +4021,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="216"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;%1에 대한 깔라마레스 설정 프로그램에 오신 것을 환영합니다.&lt;/h1&gt;</translation>
+      <translation>&lt;h1&gt;%1용 Calamares 설정 프로그램에 오신 것을 환영합니다.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="217"/>
@@ -4031,7 +4031,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="222"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;%1을 위한 깔라마레스 설치 관리자에 오신 것을 환영합니다.&lt;/h1&gt;</translation>
+      <translation>&lt;h1&gt;%1용 Calamares 설치 관리자에 오신 것을 환영합니다.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="223"/>
@@ -4095,7 +4095,7 @@ Output:
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="181"/>
       <source>No partitions are available for ZFS.</source>
-      <translation>ZFS에 사용할 수 있는 파티션이 없습니다.</translation>
+      <translation>파티션 없음을 ZFS로 사용할 수 있습니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>
@@ -4525,7 +4525,7 @@ Output:
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="66"/>
       <source>About</source>
-      <translation>깔라마레스에 대하여</translation>
+      <translation>Calamares에 대하여</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="80"/>
