@@ -218,6 +218,7 @@ ViewManager::onInitComplete()
     if ( m_steps.count() > 0 )
     {
         m_steps.first()->onActivate();
+        Q_EMIT navigationPanelWidgetChanged( m_steps.first()->navigationPanelWidget() );
     }
 
     emit currentStepChanged();
@@ -341,6 +342,8 @@ ViewManager::next()
         if ( m_currentStep < m_steps.count() )
         {
             m_steps.at( m_currentStep )->onActivate();
+            Q_EMIT navigationPanelWidgetChanged( m_steps.at( m_currentStep )->navigationPanelWidget() );
+
             executing = qobject_cast< ExecutionViewStep* >( m_steps.at( m_currentStep ) ) != nullptr;
             emit currentStepChanged();
         }
@@ -440,6 +443,7 @@ ViewManager::back()
         m_stack->setCurrentIndex( m_currentStep );
         step->onLeave();
         m_steps.at( m_currentStep )->onActivate();
+        Q_EMIT navigationPanelWidgetChanged( m_steps.at( m_currentStep )->navigationPanelWidget() );
         emit currentStepChanged();
     }
     else if ( !step->isAtBeginning() )

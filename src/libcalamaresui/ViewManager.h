@@ -232,6 +232,8 @@ signals:
     void quitVisibleChanged( bool ) const;
     void quitTooltipChanged( QString ) const;
 
+    void navigationPanelWidgetChanged( QWidget* );
+
 private:
     explicit ViewManager( QObject* parent = nullptr );
     ~ViewManager() override;

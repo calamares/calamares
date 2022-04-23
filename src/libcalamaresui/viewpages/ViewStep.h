@@ -83,6 +83,8 @@ public:
      */
     virtual QWidget* widget() = 0;
 
+    virtual QWidget* navigationPanelWidget();
+
     /** @brief Get margins for this widget
      *
      * This is called by the layout manager to find the desired

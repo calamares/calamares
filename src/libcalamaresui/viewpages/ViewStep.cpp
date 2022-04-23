@@ -37,6 +37,12 @@ ViewStep::createSummaryWidget() const
     return nullptr;
 }
 
+QWidget*
+ViewStep::navigationPanelWidget()
+{
+    return nullptr;
+}
+
 void
 ViewStep::onActivate()
 {

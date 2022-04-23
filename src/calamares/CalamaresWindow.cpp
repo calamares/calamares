@@ -161,6 +161,31 @@ getWidgetNavigation( Calamares::DebugWindowManager*,
     QBoxLayout* bottomLayout = new QHBoxLayout;
     bottomLayout->addStretch();
 
+    QObject::connect( viewManager,
+                      &Calamares::ViewManager::navigationPanelWidgetChanged,
+                      bottomLayout,
+                      [ bottomLayout ]( QWidget* wgt )
+                      {
+                          if ( !bottomLayout )
+                          {
+                              return;
+                          }
+                          auto prevWgt = bottomLayout->parentWidget()->findChild< QWidget* >( "view-custom-item" );
+
+                          if ( prevWgt )
+                          {
+                              prevWgt->setObjectName( "" );
+                              prevWgt->setParent( nullptr );
+                              bottomLayout->removeWidget( prevWgt );
+                          }
+
+                          if ( wgt )
+                          {
+                              wgt->setObjectName( "view-custom-item" );
+                              bottomLayout->insertWidget( 0, wgt );
+                          }
+                      } );
+
     // Create buttons and sets an initial icon; the icons may change
     {
         auto* back
