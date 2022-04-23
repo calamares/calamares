@@ -157,21 +157,21 @@ partitionsFromGlobalStorage()
 }
 
 /// Checks if the partition (represented by @p map) mounts to the given @p path
-static bool
+STATICTEST bool
 hasMountPoint( const QVariantMap& map, const QString& path )
 {
     const QString mountPoint = map.value( QStringLiteral( "mountPoint" ) ).toString();
     return QDir::cleanPath( mountPoint ) == path;
 }
 
-static bool
+STATICTEST bool
 isEncrypted( const QVariantMap& map )
 {
     return map.contains( QStringLiteral( "luksMapperName" ) );
 }
 
 /// Checks for any partition satisfying @p pred
-static bool
+STATICTEST bool
 anyPartition( bool ( *pred )( const QVariantMap& ) )
 {
     const auto partitions = partitionsFromGlobalStorage();
@@ -181,7 +181,7 @@ anyPartition( bool ( *pred )( const QVariantMap& ) )
         != partitions.cend();
 }
 
-static bool
+STATICTEST bool
 hasUnencryptedSeparateBoot()
 {
     return anyPartition(
@@ -189,7 +189,7 @@ hasUnencryptedSeparateBoot()
         { return hasMountPoint( partition, QStringLiteral( "/boot" ) ) && !isEncrypted( partition ); } );
 }
 
-static bool
+STATICTEST bool
 hasEncryptedRoot()
 {
     return anyPartition( []( const QVariantMap& partition )
