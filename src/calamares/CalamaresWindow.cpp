@@ -164,21 +164,22 @@ getWidgetNavigation( Calamares::DebugWindowManager*,
     QObject::connect( viewManager,
                       &Calamares::ViewManager::navigationPanelWidgetChanged,
                       bottomLayout,
-                      [ bottomLayout ]( QWidget* wgt )
+                      [ bottomLayout ]( QWidget* widget )
                       {
-                          auto prevWgt = bottomLayout->parentWidget()->findChild< QWidget* >( "view-custom-item" );
+                          auto* previousCustomWidget
+                              = bottomLayout->parentWidget()->findChild< QWidget* >( "view-custom-item" );
 
-                          if ( prevWgt )
+                          if ( previousCustomWidget )
                           {
-                              prevWgt->setObjectName( "" );
-                              prevWgt->setParent( nullptr );
-                              bottomLayout->removeWidget( prevWgt );
+                              previousCustomWidget->setObjectName( QString() );
+                              previousCustomWidget->setParent( nullptr );
+                              bottomLayout->removeWidget( previousCustomWidget );
                           }
 
-                          if ( wgt )
+                          if ( widget )
                           {
-                              wgt->setObjectName( "view-custom-item" );
-                              bottomLayout->insertWidget( 0, wgt );
+                              widget->setObjectName( QStringLiteral( "view-custom-item" ) );
+                              bottomLayout->insertWidget( 0, widget );
                           }
                       } );
 
