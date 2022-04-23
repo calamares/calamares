@@ -160,8 +160,8 @@ partitionsFromGlobalStorage()
 STATICTEST bool
 hasMountPoint( const QVariantMap& map, const QString& path )
 {
-    const QString mountPoint = map.value( QStringLiteral( "mountPoint" ) ).toString();
-    return QDir::cleanPath( mountPoint ) == path;
+    const auto v = map.value( QStringLiteral( "mountPoint" ) );
+    return v.isValid() && QDir::cleanPath( v.toString() ) == path;
 }
 
 STATICTEST bool
