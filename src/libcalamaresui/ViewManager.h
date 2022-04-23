@@ -231,7 +231,8 @@ signals:
     void quitIconChanged( QString ) const;
     void quitVisibleChanged( bool ) const;
     void quitTooltipChanged( QString ) const;
-
+    
+    /// @brief Emits when a custom navigation panel widget changed (e.g. on step change)
     void navigationPanelWidgetChanged( QWidget* );
 
 private:

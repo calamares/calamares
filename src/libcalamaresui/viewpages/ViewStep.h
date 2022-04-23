@@ -83,6 +83,14 @@ public:
      */
     virtual QWidget* widget() = 0;
 
+    /** @brief Get the navigation panel widget for this view step
+     *
+     * Optional. This widget will be put to the navigation panel 
+     * (where back/next and quit buttons located) empty space, 
+     * usually the bottom-left corner of the window.
+     *
+     * All ViewStep::widget() rules apply here.
+     */
     virtual QWidget* navigationPanelWidget();
 
     /** @brief Get margins for this widget
