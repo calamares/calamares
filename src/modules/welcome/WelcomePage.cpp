@@ -35,6 +35,8 @@
 #include <QFocusEvent>
 #include <QLabel>
 #include <QMessageBox>
+#include <QToolButton>
+
 
 WelcomePage::WelcomePage( Config* config, QWidget* parent )
     : QWidget( parent )
@@ -47,8 +49,6 @@ WelcomePage::WelcomePage( Config* config, QWidget* parent )
 
     const int defaultFontHeight = CalamaresUtils::defaultFontHeight();
     ui->setupUi( this );
-    ui->aboutButton->setIcon( CalamaresUtils::defaultPixmap(
-        CalamaresUtils::Information, CalamaresUtils::Original, 2 * QSize( defaultFontHeight, defaultFontHeight ) ) );
 
     // insert system-check widget below welcome text
     const int welcome_text_idx = ui->verticalLayout->indexOf( ui->mainText );
@@ -73,11 +73,36 @@ WelcomePage::WelcomePage( Config* config, QWidget* parent )
         }
     }
 
+    {
+        m_aboutWidget = new QWidget;
+
+        auto layout = new QHBoxLayout;
+
+        m_aboutWidget->setLayout( layout );
+
+        auto poweredbyLabel = new QLabel( tr( "Powered by Calamares" ) );
+        poweredbyLabel->setEnabled( false );
+
+        layout->addWidget( poweredbyLabel );
+
+        auto aboutButton = new QToolButton;
+
+        aboutButton->setAutoRaise( true );
+
+        aboutButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::Information,
+                                                             CalamaresUtils::Original,
+                                                             2 * QSize( defaultFontHeight, defaultFontHeight ) ) );
+
+        connect( aboutButton, &QPushButton::clicked, this, &WelcomePage::showAboutBox );
+
+        layout->addWidget( aboutButton );
+    }
+
     initLanguages();
 
     CALAMARES_RETRANSLATE_SLOT( &WelcomePage::retranslate );
 
-    connect( ui->aboutButton, &QPushButton::clicked, this, &WelcomePage::showAboutBox );
+
     connect( Calamares::ModuleManager::instance(),
              &Calamares::ModuleManager::requirementsComplete,
              m_checkingWidget,
@@ -121,6 +146,12 @@ WelcomePage::initLanguages()
              static_cast< void ( QComboBox::* )( int ) >( &QComboBox::currentIndexChanged ),
              m_conf,
              &Config::setLocaleIndex );
+}
+
+QWidget*
+WelcomePage::aboutWidget() const
+{
+    return m_aboutWidget;
 }
 
 void

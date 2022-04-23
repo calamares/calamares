@@ -63,6 +63,8 @@ public:
 
     Calamares::RequirementsList checkRequirements() override;
 
+    QWidget* navigationPanelWidget() override;
+
 private:
     Config* m_conf;
     WelcomePage* m_widget;

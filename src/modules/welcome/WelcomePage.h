@@ -51,6 +51,8 @@ public:
 
     void init();
 
+    QWidget* aboutWidget() const;
+
 public slots:
     void retranslate();
     void showAboutBox();
@@ -67,6 +69,8 @@ private:
     CalamaresUtils::Locale::TranslationsModel* m_languages;
 
     Config* m_conf;
+
+    QWidget* m_aboutWidget;
 };
 
 /** @brief Delegate to display language information in two columns.

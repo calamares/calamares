@@ -103,3 +103,9 @@ WelcomeViewStep::checkRequirements()
 {
     return m_conf->checkRequirements();
 }
+
+QWidget*
+WelcomeViewStep::navigationPanelWidget()
+{
+    return m_widget->aboutWidget();
+}
