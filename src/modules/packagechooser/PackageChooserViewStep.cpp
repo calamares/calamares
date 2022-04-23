@@ -29,7 +29,6 @@ PackageChooserViewStep::PackageChooserViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_config( new Config( this ) )
     , m_widget( nullptr )
-    , m_stepName( nullptr )
 {
     emit nextStatusChanged( false );
 }
@@ -41,14 +40,13 @@ PackageChooserViewStep::~PackageChooserViewStep()
     {
         m_widget->deleteLater();
     }
-    delete m_stepName;
 }
 
 
 QString
 PackageChooserViewStep::prettyName() const
 {
-    return m_stepName ? m_stepName->get() : tr( "Packages" );
+    return m_config->prettyName();
 }
 
 
@@ -138,16 +136,6 @@ PackageChooserViewStep::setConfigurationMap( const QVariantMap& configurationMap
 {
     m_config->setDefaultId( moduleInstanceKey() );
     m_config->setConfigurationMap( configurationMap );
-
-    bool labels_ok = false;
-    auto labels = CalamaresUtils::getSubMap( configurationMap, "labels", labels_ok );
-    if ( labels_ok )
-    {
-        if ( labels.contains( "step" ) )
-        {
-            m_stepName = new CalamaresUtils::Locale::TranslatedString( labels, "step" );
-        }
-    }
 
     if ( m_widget )
     {

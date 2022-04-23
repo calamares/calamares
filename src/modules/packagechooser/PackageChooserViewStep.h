@@ -50,7 +50,6 @@ private:
 
     Config* m_config;
     PackageChooserPage* m_widget;
-    CalamaresUtils::Locale::TranslatedString* m_stepName;  // As it appears in the sidebar
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( PackageChooserViewStepFactory )
