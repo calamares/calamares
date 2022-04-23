@@ -284,7 +284,7 @@ class FstabGenerator(object):
             device = partition["device"]
 
         if not device:
-            # TODO: we get here when the user mounted a previously mounted partition
+            # TODO: we get here when the user mounted a previously encrypted partition
             # This should be catched early in the process
             return None
 
