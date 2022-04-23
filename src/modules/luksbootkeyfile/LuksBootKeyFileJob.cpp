@@ -172,6 +172,22 @@ hasUnencryptedSeparateBoot()
     return false;
 }
 
+static bool
+hasEncryptedRoot()
+{
+    const QVariantList partitions = ::partitions();
+    for ( const QVariant& partition : partitions )
+    {
+        QVariantMap partitionMap = partition.toMap();
+        QString mountPoint = partitionMap.value( QStringLiteral( "mountPoint" ) ).toString();
+        if ( QDir::cleanPath( mountPoint ) == QStringLiteral( "/" ) )
+        {
+            return partitionMap.contains( QStringLiteral( "luksMapperName" ) );
+        }
+    }
+    return false;
+}
+
 Calamares::JobResult
 LuksBootKeyFileJob::exec()
 {
@@ -218,7 +234,8 @@ LuksBootKeyFileJob::exec()
     }
 
     // /boot partition is not encrypted, keyfile must not be used
-    if ( hasUnencryptedSeparateBoot() )
+    // But only if root partition is not encrypted
+    if ( hasUnencryptedSeparateBoot() && !hasEncryptedRoot() )
     {
         cDebug() << Logger::SubEntry << "/boot partition is not encrypted, skipping keyfile creation.";
         return Calamares::JobResult::ok();
@@ -241,6 +258,10 @@ LuksBootKeyFileJob::exec()
 
     for ( const auto& d : s.devices )
     {
+        // Skip setupLuks for root partition if system has an unencrypted /boot
+        if ( d.isRoot && hasUnencryptedSeparateBoot() )
+            continue;
+
         if ( !setupLuks( d ) )
             return Calamares::JobResult::error(
                 tr( "Encrypted rootfs setup error" ),
