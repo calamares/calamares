@@ -158,11 +158,23 @@ class FstabGenerator(object):
         if not mapper_name or not luks_uuid:
             return None
 
+        password = "/crypto_keyfile.bin"
+        crypttab_options = self.crypttab_options
+
+        # Set crypttab password for partition to none and remove crypttab options
+        # on root partition when /boot is unencrypted
+        if partition["mountPoint"] == "/":
+            if any([p["mountPoint"] == "/boot"
+                   and "luksMapperName" not in p
+                   for p in self.partitions]):
+                password = "none"
+                crypttab_options = ""
+
         return dict(
             name=mapper_name,
             device="UUID=" + luks_uuid,
-            password="/crypto_keyfile.bin",
-            options=self.crypttab_options,
+            password=password,
+            options=crypttab_options,
         )
 
     def print_crypttab_line(self, dct, file=None):
@@ -220,7 +232,7 @@ class FstabGenerator(object):
         # Some "fs" names need special handling in /etc/fstab, so remap them.
         filesystem = partition["fs"].lower()
         filesystem = FS_MAP.get(filesystem, filesystem)
-        has_luks = "luksMapperName" in partition
+        luks_mapper_name = partition.get("luksMapperName", None)
         mount_point = partition["mountPoint"]
         disk_name = disk_name_for_partition(partition)
         is_ssd = disk_name in self.ssd_disks
@@ -263,12 +275,18 @@ class FstabGenerator(object):
         if filesystem == "btrfs" and partition.get("subvol",None):
             options = "subvol={},".format(partition["subvol"]) + options
 
-        if has_luks:
-            device = "/dev/mapper/" + partition["luksMapperName"]
+        device = None
+        if luks_mapper_name:
+            device = "/dev/mapper/" + luks_mapper_name
         elif partition["uuid"]:
             device = "UUID=" + partition["uuid"]
         else:
             device = partition["device"]
+
+        if not device:
+            # TODO: we get here when the user mounted a previously encrypted partition
+            # This should be catched early in the process
+            return None
 
         return dict(device=device,
                     mount_point=mount_point,

@@ -2850,17 +2850,17 @@ Sistem güç kaynağına bağlı değil.</translation>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="254"/>
       <source>Unsafe partition actions are enabled.</source>
-      <translation type="unfinished"/>
+      <translation>Güvenli olmayan bölümleme eylemi etkinleştirildi.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="257"/>
       <source>Partitioning is configured to &lt;b&gt;always&lt;/b&gt; fail.</source>
-      <translation type="unfinished"/>
+      <translation>Bölümleme, &lt;b&gt;her zaman&lt;/b&gt; başarısız olacak şekilde yapılandırılmıştır.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="260"/>
       <source>No partitions will be changed.</source>
-      <translation type="unfinished"/>
+      <translation>Hiçbir bölüm değiştirilmeyecek.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="300"/>
@@ -2920,7 +2920,7 @@ Sistem güç kaynağına bağlı değil.</translation>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="594"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
-      <translation type="unfinished"/>
+      <translation>GPT bölüm tablosu, tüm sistemler için en iyi seçenektir. Bu yükleyici, BIOS sistemleri için de böyle bir kurulumu destekler. &lt;br/&gt;&lt;br/&gt;BIOS'ta bir GPT bölüm tablosu yapılandırmak için (önceden yapılmadıysa) geri dönün ve bölüm tablosunu GPT olarak ayarlayın, ardından &lt;strong&gt;%2&lt;/strong&gt; bayrağı etkinleştirilmiş.&lt;br/&gt;&lt;br/&gt; 8 MB biçimlendirilmemiş bölüm oluşturun .GPT' ile  BIOS sisteminde %1 başlatmak için biçimlendirilmemiş 8 MB bir bölüm gereklidir.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="626"/>
