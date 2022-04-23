@@ -166,10 +166,6 @@ getWidgetNavigation( Calamares::DebugWindowManager*,
                       bottomLayout,
                       [ bottomLayout ]( QWidget* wgt )
                       {
-                          if ( !bottomLayout )
-                          {
-                              return;
-                          }
                           auto prevWgt = bottomLayout->parentWidget()->findChild< QWidget* >( "view-custom-item" );
 
                           if ( prevWgt )
