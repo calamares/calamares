@@ -142,21 +142,13 @@ class FstabGenerator(object):
         with open(crypttab_path, "w") as crypttab_file:
             print(CRYPTTAB_HEADER, file=crypttab_file)
 
-            # Check if /boot is unencrypted
-            unencrypted_separate_boot = False
             for partition in self.partitions:
-                if (partition["mountPoint"] == "/boot"
-                    and "luksMapperName" not in partition):
-                        unencrypted_separate_boot = True
-                        break
-
-            for partition in self.partitions:
-                dct = self.generate_crypttab_line_info(partition, unencrypted_separate_boot)
+                dct = self.generate_crypttab_line_info(partition)
 
                 if dct:
                     self.print_crypttab_line(dct, file=crypttab_file)
 
-    def generate_crypttab_line_info(self, partition, unencrypted_separate_boot):
+    def generate_crypttab_line_info(self, partition):
         """ Generates information for each crypttab entry. """
         if "luksMapperName" not in partition or "luksUuid" not in partition:
             return None
@@ -166,13 +158,17 @@ class FstabGenerator(object):
         if not mapper_name or not luks_uuid:
             return None
 
-        # Set crypttab password for partition to none and remove crypttab options
-        # on root partition when /boot is unencrypted
         password = "/crypto_keyfile.bin"
         crypttab_options = self.crypttab_options
-        if partition["mountPoint"] == "/" and unencrypted_separate_boot:
-            password = 'none'
-            crypttab_options = ''
+
+        # Set crypttab password for partition to none and remove crypttab options
+        # on root partition when /boot is unencrypted
+        if partition["mountPoint"] == "/":
+            if any([p["mountPoint"] == "/boot"
+                   and "luksMapperName" not in p
+                   for p in self.partitions]):
+                password = "none"
+                crypttab_options = ""
 
         return dict(
             name=mapper_name,
@@ -236,7 +232,7 @@ class FstabGenerator(object):
         # Some "fs" names need special handling in /etc/fstab, so remap them.
         filesystem = partition["fs"].lower()
         filesystem = FS_MAP.get(filesystem, filesystem)
-        has_luks = "luksMapperName" in partition
+        luks_mapper_name = partition.get("luksMapperName", None)
         mount_point = partition["mountPoint"]
         disk_name = disk_name_for_partition(partition)
         is_ssd = disk_name in self.ssd_disks
@@ -279,16 +275,18 @@ class FstabGenerator(object):
         if filesystem == "btrfs" and partition.get("subvol",None):
             options = "subvol={},".format(partition["subvol"]) + options
 
-        if has_luks:
-            # Check if user mounted a previously encrypted partition
-            if not partition["luksMapperName"]:
-                return None
-
-            device = "/dev/mapper/" + partition["luksMapperName"]
+        device = None
+        if luks_mapper_name:
+            device = "/dev/mapper/" + luks_mapper_name
         elif partition["uuid"]:
             device = "UUID=" + partition["uuid"]
         else:
             device = partition["device"]
+
+        if not device:
+            # TODO: we get here when the user mounted a previously mounted partition
+            # This should be catched early in the process
+            return None
 
         return dict(device=device,
                     mount_point=mount_point,
