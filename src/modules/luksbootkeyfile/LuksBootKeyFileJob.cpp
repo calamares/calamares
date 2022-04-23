@@ -150,42 +150,50 @@ setupLuks( const LuksDevice& d )
 }
 
 static QVariantList
-partitions()
+partitionsFromGlobalStorage()
 {
     Calamares::GlobalStorage* globalStorage = Calamares::JobQueue::instance()->globalStorage();
     return globalStorage->value( QStringLiteral( "partitions" ) ).toList();
 }
 
+/// Checks if the partition (represented by @p map) mounts to the given @p path
+static bool
+hasMountPoint( const QVariantMap& map, const QString& path )
+{
+    const QString mountPoint = map.value( QStringLiteral( "mountPoint" ) ).toString();
+    return QDir::cleanPath( mountPoint ) == path;
+}
+
+static bool
+isEncrypted( const QVariantMap& map )
+{
+    return map.contains( QStringLiteral( "luksMapperName" ) );
+}
+
+/// Checks for any partition satisfying @p pred
+static bool
+anyPartition( bool ( *pred )( const QVariantMap& ) )
+{
+    const auto partitions = partitionsFromGlobalStorage();
+    return std::find_if( partitions.cbegin(),
+                         partitions.cend(),
+                         [ &pred ]( const QVariant& partitionVariant ) { return pred( partitionVariant.toMap() ); } )
+        != partitions.cend();
+}
+
 static bool
 hasUnencryptedSeparateBoot()
 {
-    const QVariantList partitions = ::partitions();
-    for ( const QVariant& partition : partitions )
-    {
-        QVariantMap partitionMap = partition.toMap();
-        QString mountPoint = partitionMap.value( QStringLiteral( "mountPoint" ) ).toString();
-        if ( QDir::cleanPath( mountPoint ) == QStringLiteral( "/boot" ) )
-        {
-            return !partitionMap.contains( QStringLiteral( "luksMapperName" ) );
-        }
-    }
-    return false;
+    return anyPartition(
+        []( const QVariantMap& partition )
+        { return hasMountPoint( partition, QStringLiteral( "/boot" ) ) && !isEncrypted( partition ); } );
 }
 
 static bool
 hasEncryptedRoot()
 {
-    const QVariantList partitions = ::partitions();
-    for ( const QVariant& partition : partitions )
-    {
-        QVariantMap partitionMap = partition.toMap();
-        QString mountPoint = partitionMap.value( QStringLiteral( "mountPoint" ) ).toString();
-        if ( QDir::cleanPath( mountPoint ) == QStringLiteral( "/" ) )
-        {
-            return partitionMap.contains( QStringLiteral( "luksMapperName" ) );
-        }
-    }
-    return false;
+    return anyPartition( []( const QVariantMap& partition )
+                         { return hasMountPoint( partition, QStringLiteral( "/" ) ) && isEncrypted( partition ); } );
 }
 
 Calamares::JobResult
