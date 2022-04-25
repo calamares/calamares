@@ -108,7 +108,12 @@ private:
     void updateNextEnabled();
     void setupChoices();
     void checkInstallChoiceRadioButton( Config::InstallChoice choice );  ///< Sets the chosen button to "on"
-    QComboBox* createBootloaderComboBox( QWidget* parentButton );
+    /** @brief Create a panel with "boot loader location:"
+     *
+     * Panel + dropdown and handling for model updates. Returns a pointer
+     * to the panel's widget.
+     */
+    QWidget* createBootloaderPanel();
     Device* selectedDevice();
 
     /* Change the UI depending on the device selected. */
