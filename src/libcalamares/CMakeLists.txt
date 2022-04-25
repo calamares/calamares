@@ -88,14 +88,7 @@ endif()
 #
 if(WITH_PYTHON)
     list(APPEND libSources PythonHelper.cpp PythonJob.cpp PythonJobApi.cpp)
-
-    include_directories(${PYTHON_INCLUDE_DIRS})
-    link_directories(${PYTHON_LIBRARIES})
-
-    include_directories(${Boost_INCLUDE_DIRS})
-    link_directories(${Boost_LIBRARY_DIRS})
-
-    list(APPEND OPTIONAL_PRIVATE_LIBRARIES ${PYTHON_LIBRARIES} ${Boost_LIBRARIES})
+    list(APPEND OPTIONAL_PRIVATE_LIBRARIES Python::Python Boost::python)
 endif()
 
 ### OPTIONAL GeoIP XML support
