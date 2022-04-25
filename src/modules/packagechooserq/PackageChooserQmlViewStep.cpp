@@ -29,7 +29,7 @@ PackageChooserQmlViewStep::PackageChooserQmlViewStep( QObject* parent )
 QString
 PackageChooserQmlViewStep::prettyName() const
 {
-    return tr( "Packages" );
+    return m_config->prettyName();
 }
 
 QString

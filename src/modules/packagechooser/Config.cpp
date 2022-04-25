@@ -238,6 +238,12 @@ Config::setPackageChoice( const QString& packageChoice )
 }
 
 QString
+Config::prettyName() const
+{
+    return m_stepName ? m_stepName->get() : tr( "Packages" );
+}
+
+QString
 Config::prettyStatus() const
 {
     return tr( "Install option: <strong>%1</strong>" ).arg( m_packageChoice.value_or( tr( "None" ) ) );
@@ -341,6 +347,16 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         if ( m_method != PackageChooserMethod::Legacy )
         {
             cWarning() << "Single-selection QML module must use 'Legacy' method.";
+        }
+    }
+
+    bool labels_ok = false;
+    auto labels = CalamaresUtils::getSubMap( configurationMap, "labels", labels_ok );
+    if ( labels_ok )
+    {
+        if ( labels.contains( "step" ) )
+        {
+            m_stepName = new CalamaresUtils::Locale::TranslatedString( labels, "step" );
         }
     }
 }

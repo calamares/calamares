@@ -11,3 +11,10 @@ calamares_add_plugin(luksbootkeyfile
     SHARED_LIB
     NO_CONFIG
 )
+
+calamares_add_test(
+    luksbootkeyfiletest
+    SOURCES
+        Tests.cpp
+        LuksBootKeyFileJob.cpp
+)
