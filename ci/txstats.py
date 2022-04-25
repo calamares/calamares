@@ -97,10 +97,12 @@ class EditingOutputter(object):
             lines = f.readlines()
 
         mark = None
+        mark_text = None
         for l in lines:
             # Note that we didn't strip the lines, so need the \n here
             if l.startswith("# Total ") and l.endswith(" languages\n"):
                 mark = lines.index(l)
+                mark_text = l
                 break
         if mark is None:
             raise TXError("No CMakeLists.txt lines for TX stats found")
@@ -108,18 +110,17 @@ class EditingOutputter(object):
 
         nextmark = mark + 1
         for l in lines[mark+1:]:
-            if l.startswith("set( _tx_"):
-                nextmark += 1
-                continue
-            if l.startswith("    "):
-                nextmark += 1
-                continue
-            break
-        if nextmark > mark + 12 or nextmark > len(lines) - 4:
+            nextmark += 1
+            if l.startswith(mark_text):
+                break
+        if nextmark > mark + 100 or nextmark > len(lines) - 4:
             # Try to catch runaway nextmarks: we know there should
             # be four set-lines, which are unlikely to be 3 lines each;
             # similarly the CMakeLists.txt is supposed to end with
             # some boilerplate.
+            #
+            # However, gersemi will reformat to one-language-per-line,
+            # so we can get really long sections, that's why we use 100 as a limit.
             raise TXError("Could not find end of TX settings in CMakeLists.txt")
         self.post_lines = lines[nextmark:]
 
@@ -185,7 +186,8 @@ def get_tx_stats(languages, outputter, verbose):
         )
 
     all_langs = []
-    outputter.print("# Total %d languages" % len(languages))
+    mark_text = "# Total %d languages" % len(languages)
+    outputter.print(mark_text)
     for lang_name in languages:
         stats = languages[lang_name]["translated"]["percentage"]
         # Make the by-definition-incomplete languages have a percentage
@@ -202,6 +204,7 @@ def get_tx_stats(languages, outputter, verbose):
     output_langs(all_langs, outputter, "good", lambda s : 1.0 > s >= 0.75)
     output_langs(all_langs, outputter, "ok", lambda s : 0.75 > s >= 0.05)
     output_langs(all_langs, outputter, "incomplete", lambda s : 0.05 > s)
+    outputter.print(mark_text)
 
     # Audit the languages that are in TX, mapped to git
     for lang_name in languages:

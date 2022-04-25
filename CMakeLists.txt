@@ -147,6 +147,7 @@ set( _tx_ok ar ast bg bn el en_GB es_MX et eu gl hu id is mr nb oc
     pl ro sl sr sr@latin th )
 set( _tx_incomplete eo es_PR gu ie ja-Hira kk kn lo lv mk ne_NP
     ta_IN te ur zh zh_HK )
+# Total 74 languages
 
 ### Required versions
 #
