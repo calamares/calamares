@@ -155,7 +155,7 @@ set(QT_VERSION 5.15.0)
 set(YAMLCPP_VERSION 0.5.1)
 set(ECM_VERSION 5.18)
 set(PYTHONLIBS_VERSION 3.6)
-set(BOOSTPYTHON_VERSION 1.67.0)
+set(BOOSTPYTHON_VERSION 1.72.0)
 
 ### CMAKE SETUP
 #
@@ -343,18 +343,17 @@ if(NOT KF5Crash_FOUND)
     set(BUILD_KF5Crash OFF)
 endif()
 
-# TODO:3.3: Use FindPython3 instead
-find_package(PythonInterp ${PYTHONLIBS_VERSION})
+find_package(Python ${PYTHONLIBS_VERSION} COMPONENTS Interpreter Development)
 set_package_properties(
-    PythonInterp
+    Python
     PROPERTIES
-    DESCRIPTION "Python 3 interpreter."
+    DESCRIPTION "Python3 interpreter."
     URL "https://python.org"
-    PURPOSE "Python 3 interpreter for certain tests."
+    PURPOSE "Python3 interpreter for certain tests."
 )
 
 set(_schema_explanation "")
-if(PYTHONINTERP_FOUND)
+if(Python_Interpreter_FOUND)
     if(BUILD_SCHEMA_TESTING)
         # The configuration validator script has some dependencies,
         # and if they are not installed, don't run. If errors out
@@ -363,7 +362,7 @@ if(PYTHONINTERP_FOUND)
             set(_validator_deps ${CALAMARES_CONFIGVALIDATOR_RESULT})
         else()
             exec_program(
-                ${PYTHON_EXECUTABLE}
+                Python::Interpreter
                 ARGS
                 "${CMAKE_SOURCE_DIR}/ci/configvalidator.py"
                 -x
@@ -388,27 +387,12 @@ else()
 endif()
 add_feature_info(yaml-schema BUILD_SCHEMA_TESTING "Validate YAML (config files) with schema.${_schema_explanation}")
 
-find_package(PythonLibs ${PYTHONLIBS_VERSION})
-set_package_properties(
-    PythonLibs
-    PROPERTIES
-    DESCRIPTION "C interface libraries for the Python 3 interpreter."
-    URL "https://python.org"
-    PURPOSE "Python 3 is used for Python job modules."
-)
-
-if(PYTHONLIBS_FOUND)
-    # TODO:3.3: Require Boost + CMake; sort out Boost::Python
-    # Since Boost provides CMake config files (starting with Boost 1.70.
-    # or so) the mess that is the Calamares find code picks the wrong
-    # bits. Suppress those CMake config files, as suggested by @jmrcpn
-    set(Boost_NO_BOOST_CMAKE ON)
-    include(BoostPython3)
-    find_boost_python3( ${BOOSTPYTHON_VERSION} ${PYTHONLIBS_VERSION_STRING} CALAMARES_BOOST_PYTHON3_FOUND )
+if(Python_Development_FOUND)
+    find_package( Boost ${BOOSTPYTHON_VERSION} COMPONENTS python )
     set_package_properties(Boost PROPERTIES PURPOSE "Boost.Python is used for Python job modules.")
 endif()
 
-if(NOT PYTHONLIBS_FOUND OR NOT CALAMARES_BOOST_PYTHON3_FOUND)
+if(NOT Python_Development_FOUND OR NOT Boost_FOUND)
     message(STATUS "Disabling Boost::Python modules")
     set(WITH_PYTHON OFF)
 endif()
