@@ -761,8 +761,12 @@ def run():
 
     fw_type = libcalamares.globalstorage.value("firmwareType")
 
-    if (libcalamares.globalstorage.value("bootLoader") is None and fw_type != "efi"):
-        libcalamares.utils.warning( "Non-EFI system, and no bootloader is set." )
+    if libcalamares.globalstorage.value("bootLoader") is None:
+        # Don't want a bootloader, but do log that this has an effect:
+        if fw_type != "efi":
+            libcalamares.utils.warning( "Non-EFI system, and no bootloader is set." )
+        else:
+            libcalamares.utils.warning( "EFI system, and no bootloader is set." )
         return None
 
     partitions = libcalamares.globalstorage.value("partitions")
