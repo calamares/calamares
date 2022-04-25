@@ -24,6 +24,6 @@ if(KF5CoreAddons_FOUND)
     calamares_add_test(
         netinstalltest
         SOURCES Tests.cpp Config.cpp LoaderQueue.cpp PackageTreeItem.cpp PackageModel.cpp
-        LIBRARIES Qt5::Gui KF5::CoreAddons
+        LIBRARIES Qt5::Gui Qt5::Network KF5::CoreAddons
     )
 endif()
