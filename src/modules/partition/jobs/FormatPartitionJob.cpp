@@ -58,10 +58,13 @@ FormatPartitionJob::prettyDescription() const
 QString
 FormatPartitionJob::prettyStatusMessage() const
 {
+    QString partitionLabel = m_partition->label().isEmpty()
+        ? m_partition->partitionPath()
+        : tr( "%1 (%2)", "partition label %1 (device path %2)" )
+              .arg( m_partition->label(), m_partition->partitionPath() );
     return tr( "Formatting partition %1 with "
                "file system %2." )
-        .arg( m_partition->partitionPath() )
-        .arg( userVisibleFS( m_partition->fileSystem() ) );
+        .arg( partitionLabel, userVisibleFS( m_partition->fileSystem() ) );
 }
 
 
