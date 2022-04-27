@@ -30,8 +30,11 @@ class QListView;
 
 namespace Calamares
 {
+namespace Widgets
+{
 class PrettyRadioButton;
 }
+}  // namespace Calamares
 
 class Config;
 class DeviceInfoWidget;
@@ -142,10 +145,10 @@ private:
     QComboBox* m_drivesCombo;
 
     QButtonGroup* m_grp;
-    Calamares::PrettyRadioButton* m_alongsideButton;
-    Calamares::PrettyRadioButton* m_eraseButton;
-    Calamares::PrettyRadioButton* m_replaceButton;
-    Calamares::PrettyRadioButton* m_somethingElseButton;
+    Calamares::Widgets::PrettyRadioButton* m_alongsideButton;
+    Calamares::Widgets::PrettyRadioButton* m_eraseButton;
+    Calamares::Widgets::PrettyRadioButton* m_replaceButton;
+    Calamares::Widgets::PrettyRadioButton* m_somethingElseButton;
     QComboBox* m_eraseSwapChoiceComboBox = nullptr;  // UI, see also Config's swap choice
     QComboBox* m_eraseFsTypesChoiceComboBox = nullptr;  // UI, see also Config's erase-mode FS
 

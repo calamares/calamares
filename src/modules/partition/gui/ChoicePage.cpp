@@ -54,7 +54,7 @@
 #include <QListView>
 #include <QtConcurrent/QtConcurrent>
 
-using Calamares::PrettyRadioButton;
+using Calamares::Widgets::PrettyRadioButton;
 using CalamaresUtils::Partition::findPartitionByPath;
 using CalamaresUtils::Partition::isPartitionFreeSpace;
 using CalamaresUtils::Partition::PartitionIterator;
