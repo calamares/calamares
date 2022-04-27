@@ -14,10 +14,12 @@
 #include "DllMacro.h"
 #include "locale/Translation.h"
 
+#include <QList>
 #include <QObject>
 #include <QString>
 
 #include <functional>
+#include <optional>
 
 class QEvent;
 class QLocale;

@@ -16,6 +16,7 @@ set(calamaresui_SOURCES
     modulesystem/ModuleManager.cpp
     modulesystem/ProcessJobModule.cpp
     modulesystem/ViewModule.cpp
+    translation/Binding.cpp
     utils/Gui.cpp
     utils/ImageRegistry.cpp
     utils/Paste.cpp
