@@ -27,7 +27,7 @@ add_test(
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
 )
 
-if(BUILD_TESTING AND BUILD_SCHEMA_TESTING AND PYTHONINTERP_FOUND AND PYTHON_EXECUTABLE)
+if(BUILD_TESTING AND BUILD_SCHEMA_TESTING AND Python_Interpreter_FOUND)
     set(_module packages)
     set(_schema_file "${CMAKE_CURRENT_SOURCE_DIR}/${_module}/${_module}.schema.yaml")
     message(STATUS "Schema ${_schema_file}")
@@ -37,7 +37,7 @@ if(BUILD_TESTING AND BUILD_SCHEMA_TESTING AND PYTHONINTERP_FOUND AND PYTHON_EXEC
             add_test(
                 NAME validate-packages-${_cf}
                 COMMAND
-                    ${PYTHON_EXECUTABLE} "${CMAKE_SOURCE_DIR}/ci/configvalidator.py" "${_schema_file}" "${_conf_file}"
+                    ${Python_EXECUTABLE} "${CMAKE_SOURCE_DIR}/ci/configvalidator.py" "${_schema_file}" "${_conf_file}"
             )
         else()
             message(FATAL_ERROR "Missing ${_conf_file}")

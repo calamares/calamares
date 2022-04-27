@@ -25,8 +25,7 @@ foreach(SUBDIRECTORY ${SUBDIRECTORIES})
     calamares_add_module_subdirectory( ${SUBDIRECTORY} LIST_SKIPPED_MODULES )
 endforeach()
 
-# TODO:3.3: Use FindPython3
-if(BUILD_TESTING AND BUILD_SCHEMA_TESTING AND PYTHONINTERP_FOUND AND PYTHON_EXECUTABLE)
+if(BUILD_TESTING AND BUILD_SCHEMA_TESTING AND Python_Interpreter_FOUND)
     # The tests for each config file are independent of whether the
     # module is enabled or not: the config file should match its schema
     # regardless.
@@ -52,7 +51,7 @@ if(BUILD_TESTING AND BUILD_SCHEMA_TESTING AND PYTHONINTERP_FOUND AND PYTHON_EXEC
                     add_test(
                         NAME validate-${SUBDIRECTORY}-${_conf_base}
                         COMMAND
-                            ${PYTHON_EXECUTABLE} "${CMAKE_SOURCE_DIR}/ci/configvalidator.py" "${_schema_file}"
+                            ${Python_EXECUTABLE} "${CMAKE_SOURCE_DIR}/ci/configvalidator.py" "${_schema_file}"
                             "${_conf_file}"
                     )
                 endif()

@@ -364,7 +364,7 @@ if(Python_Interpreter_FOUND)
             set(_validator_deps ${CALAMARES_CONFIGVALIDATOR_RESULT})
         else()
             exec_program(
-                Python::Interpreter
+                ${Python_EXECUTABLE}
                 ARGS
                 "${CMAKE_SOURCE_DIR}/ci/configvalidator.py"
                 -x
