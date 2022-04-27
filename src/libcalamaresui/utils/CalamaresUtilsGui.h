@@ -98,7 +98,6 @@ UIDLLEXPORT void unmarginLayout( QLayout* layout );
 UIDLLEXPORT void setDefaultFontSize( int points );
 UIDLLEXPORT int defaultFontSize();  // in points
 UIDLLEXPORT int defaultFontHeight();  // in pixels, DPI-specific
-UIDLLEXPORT QFont defaultFont();  // TODO:3.3:This has one consumer, move to BlankViewStep
 UIDLLEXPORT QFont largeFont();
 UIDLLEXPORT QSize defaultIconSize();
 

@@ -224,15 +224,6 @@ defaultFontHeight()
 
 
 QFont
-defaultFont()
-{
-    QFont f;
-    f.setPointSize( defaultFontSize() );
-    return f;
-}
-
-
-QFont
 largeFont()
 {
     QFont f;
