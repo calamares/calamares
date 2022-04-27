@@ -90,11 +90,6 @@ ImageRegistry::pixmap( const QString& image, const QSize& size, CalamaresUtils::
 
     if ( !pixmap.isNull() )
     {
-        if ( mode == CalamaresUtils::RoundedCorners )
-        {
-            pixmap = CalamaresUtils::createRoundedImage( pixmap, size );
-        }
-
         if ( !size.isNull() && pixmap.size() != size )
         {
             if ( size.width() == 0 )

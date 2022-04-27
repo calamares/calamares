@@ -63,7 +63,6 @@ enum ImageMode
     CoverInCase,
     Grid,
     DropShadow,
-    RoundedCorners
 };
 
 /**
@@ -77,17 +76,6 @@ enum ImageMode
 UIDLLEXPORT QPixmap defaultPixmap( ImageType type,
                                    ImageMode mode = CalamaresUtils::Original,
                                    const QSize& size = QSize( 0, 0 ) );
-
-// TODO:3.3:This has only one consumer, move to ImageRegistry, make static
-/**
- * @brief createRoundedImage returns a rounded version of a pixmap.
- * @param avatar the input pixmap.
- * @param size the new size.
- * @param frameWidthPct the frame size, as percentage of width.
- * @return the transformed pixmap.
- * This one is currently unused.
- */
-UIDLLEXPORT QPixmap createRoundedImage( const QPixmap& avatar, const QSize& size, float frameWidthPct = 0.20f );
 
 /**
  * @brief unmarginLayout recursively walks the QLayout tree and removes all margins.

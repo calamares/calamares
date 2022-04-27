@@ -128,55 +128,6 @@ defaultPixmap( ImageType type, ImageMode mode, const QSize& size )
 }
 
 
-QPixmap
-createRoundedImage( const QPixmap& pixmap, const QSize& size, float frameWidthPct )
-{
-    int height;
-    int width;
-
-    if ( !size.isEmpty() )
-    {
-        height = size.height();
-        width = size.width();
-    }
-    else
-    {
-        height = pixmap.height();
-        width = pixmap.width();
-    }
-
-    if ( !height || !width )
-    {
-        return QPixmap();
-    }
-
-    QPixmap scaledAvatar = pixmap.scaled( width, height, Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
-    if ( frameWidthPct == 0.00f )
-    {
-        return scaledAvatar;
-    }
-
-    QPixmap frame( width, height );
-    frame.fill( Qt::transparent );
-
-    QPainter painter( &frame );
-    painter.setRenderHint( QPainter::Antialiasing );
-
-    QRect outerRect( 0, 0, width, height );
-    QBrush brush( scaledAvatar );
-    QPen pen;
-    pen.setColor( Qt::transparent );
-    pen.setJoinStyle( Qt::RoundJoin );
-
-    painter.setBrush( brush );
-    painter.setPen( pen );
-    painter.drawRoundedRect(
-        outerRect, qreal( frameWidthPct ) * 100.0, qreal( frameWidthPct ) * 100.0, Qt::RelativeSize );
-
-    return frame;
-}
-
-
 void
 unmarginLayout( QLayout* layout )
 {
