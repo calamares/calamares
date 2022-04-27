@@ -115,7 +115,11 @@ LicensePage::LicensePage( QWidget* parent )
 void
 LicensePage::setEntries( const QList< LicenseEntry >& entriesList )
 {
-    CalamaresUtils::clearLayout( ui->licenseEntriesLayout );
+    for ( QWidget* w : m_entries )
+    {
+        ui->licenseEntriesLayout->removeWidget( w );
+        w->deleteLater();
+    }
 
     m_allLicensesOptional = true;
 
@@ -128,7 +132,6 @@ LicensePage::setEntries( const QList< LicenseEntry >& entriesList )
         m_entries.append( w );
         m_allLicensesOptional &= !entry.isRequired();
     }
-    ui->licenseEntriesLayout->addSpacerItem( new QSpacerItem( 10, 10, QSizePolicy::Minimum, QSizePolicy::Expanding ) );
 
     ui->acceptCheckBox->setChecked( false );
     checkAcceptance( false );

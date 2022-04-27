@@ -95,14 +95,6 @@ UIDLLEXPORT QPixmap createRoundedImage( const QPixmap& avatar, const QSize& size
  */
 UIDLLEXPORT void unmarginLayout( QLayout* layout );
 
-// TODO:3.3:This has only one consumer, move to LicensePage, make static
-/**
- * @brief clearLayout recursively walks the QLayout tree and deletes all the child
- * widgets and layouts.
- * @param layout the layout to clear.
- */
-UIDLLEXPORT void clearLayout( QLayout* layout );
-
 UIDLLEXPORT void setDefaultFontSize( int points );
 UIDLLEXPORT int defaultFontSize();  // in points
 UIDLLEXPORT int defaultFontHeight();  // in pixels, DPI-specific
