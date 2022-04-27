@@ -45,11 +45,11 @@ test -x "$CF" || { echo "! $CF is not executable."; exit 1 ; }
 
 format_version=`"$CF" --version | tr -dc '[^.0-9]' | cut  -d . -f 1`
 case "$format_version" in
-	12|13 )
+	12|13|14 )
 		:
 		;;
 	* )
-		echo "! Clang-format version '$format_version' unsupported, version 12 required."
+		echo "! Clang-format version '$format_version' unsupported, version 12-14 required."
 		exit 1
 		;;
 esac
