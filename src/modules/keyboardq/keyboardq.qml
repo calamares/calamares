@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   SPDX-FileCopyrightText: 2020 - 2021 Anke Boersma <demm@kaosx.us>
+ *   SPDX-FileCopyrightText: 2020 - 2022 Anke Boersma <demm@kaosx.us>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -137,6 +137,7 @@ Item {
 
                         hoverEnabled: true
                         width: parent.width
+                        height: 18
                         highlighted: ListView.isCurrentItem
 
                         RowLayout {
@@ -216,6 +217,7 @@ Item {
                         delegate: ItemDelegate {
                             hoverEnabled: true
                             width: parent.width
+                            height: 18
                             highlighted: ListView.isCurrentItem
 
                             RowLayout {
