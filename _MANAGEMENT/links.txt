@@ -1,0 +1,5 @@
+
+https://github.com/calamares/calamares/wiki/Develop-Guide#quick-deployment-script
+
+https://github.com/calamares/calamares/issues/1554#issuecomment-1034718178
+

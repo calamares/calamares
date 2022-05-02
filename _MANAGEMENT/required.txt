@@ -1,0 +1,8 @@
+cmake
+extra-cmake-modules
+yaml-cpp
+boost
+cmake-extras
+kpmcore
+pythonqt
+kconfig-frontends
