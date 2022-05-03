@@ -48,7 +48,7 @@ Item {
                         <strong>%2<br/>
                         for %3</strong><br/><br/>
                         Copyright 2014-2017 Teo Mrnjavac &lt;teo@kde.org&gt;<br/>
-                        Copyright 2017-2020 Adriaan de Groot &lt;groot@kde.org&gt;<br/>
+                        Copyright 2017-2022 Adriaan de Groot &lt;groot@kde.org&gt;<br/>
                         Thanks to <a href='https://calamares.io/team/'>the Calamares team</a>
                         and the <a href='https://www.transifex.com/calamares/calamares/'>Calamares
                         translators team</a>.<br/><br/>
