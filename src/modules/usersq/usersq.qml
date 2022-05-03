@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   SPDX-FileCopyrightText: 2020 - 2021 Anke Boersma <demm@kaosx.us>
+ *   SPDX-FileCopyrightText: 2020 - 2022 Anke Boersma <demm@kaosx.us>
  *   SPDX-FileCopyrightText: 2021 Adriaan de Groot <groot@kde.org>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -123,6 +123,7 @@ Kirigami.ScrollablePage {
         Kirigami.InlineMessage {
             id: userMessage
             Layout.fillWidth: true
+            showCloseButton: true
             visible: false
             type: Kirigami.MessageType.Error
             text: qsTr("Only lowercase letters, numbers, underscore and hyphen are allowed.")
@@ -131,6 +132,7 @@ Kirigami.ScrollablePage {
         Kirigami.InlineMessage {
             id: forbiddenMessage
             Layout.fillWidth: true
+            showCloseButton: true
             visible: false
             type: Kirigami.MessageType.Error
             text: qsTr("root is not allowed as username.")
@@ -185,6 +187,7 @@ Kirigami.ScrollablePage {
         Kirigami.InlineMessage {
             id: hostMessage
             Layout.fillWidth: true
+            showCloseButton: true
             visible: false
             type: Kirigami.MessageType.Error
             text: qsTr("Only letters, numbers, underscore and hyphen are allowed, minimal of two characters.")
@@ -193,6 +196,7 @@ Kirigami.ScrollablePage {
         Kirigami.InlineMessage {
             id: forbiddenHost
             Layout.fillWidth: true
+            showCloseButton: true
             visible: false
             type: Kirigami.MessageType.Error
             text: qsTr("localhost is not allowed as hostname.")
