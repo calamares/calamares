@@ -76,10 +76,8 @@ public:
     {
         SidebarBackground,
         SidebarText,
-        SidebarTextSelect,
-        SidebarTextSelected = SidebarTextSelect,  // TODO:3.3:Remove SidebarTextSelect
-        SidebarTextHighlight,
-        SidebarBackgroundSelected = SidebarTextHighlight  // TODO:3.3:Remove SidebarTextHighlight
+        SidebarTextCurrent,
+        SidebarBackgroundCurrent,
     };
     Q_ENUM( StyleEntry )
 

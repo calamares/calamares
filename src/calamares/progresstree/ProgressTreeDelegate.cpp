@@ -36,9 +36,9 @@ paintViewStep( QPainter* painter, const QStyleOptionViewItem& option, const QMod
 
     if ( index.row() == index.data( Calamares::ViewManager::ProgressTreeItemCurrentIndex ).toInt() )
     {
-        painter->setPen( Calamares::Branding::instance()->styleString( Calamares::Branding::SidebarTextSelect ) );
+        painter->setPen( Calamares::Branding::instance()->styleString( Calamares::Branding::SidebarTextCurrent ) );
         QString textHighlight
-            = Calamares::Branding::instance()->styleString( Calamares::Branding::SidebarTextHighlight );
+            = Calamares::Branding::instance()->styleString( Calamares::Branding::SidebarBackgroundCurrent );
         if ( textHighlight.isEmpty() )
         {
             painter->setBrush( CalamaresApplication::instance()->mainWindow()->palette().window() );

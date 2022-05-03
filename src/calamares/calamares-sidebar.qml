@@ -46,12 +46,12 @@ Rectangle {
                 Layout.fillWidth: true;
                 height: 35;
                 radius: 6;
-                color: Branding.styleString( index == ViewManager.currentStepIndex ? Branding.SidebarBackgroundSelected : Branding.SidebarBackground );
+                color: Branding.styleString( index == ViewManager.currentStepIndex ? Branding.SidebarBackgroundCurrent : Branding.SidebarBackground );
 
                 Text {
                     anchors.verticalCenter: parent.verticalCenter;
                     anchors.horizontalCenter: parent.horizontalCenter;
-                    color: Branding.styleString( index == ViewManager.currentStepIndex ? Branding.SidebarTextSelected : Branding.SidebarText );
+                    color: Branding.styleString( index == ViewManager.currentStepIndex ? Branding.SidebarTextCurrent : Branding.SidebarText );
                     text: display;
                 }
             }
@@ -77,7 +77,7 @@ Rectangle {
                     anchors.verticalCenter: parent.verticalCenter;
                     x: parent.x + 4;
                     text: qsTr("Show debug information")
-                    color: Branding.styleString( mouseArea.containsMouse ? Branding.SidebarTextSelect : Branding.SidebarBackground );
+                    color: Branding.styleString( mouseArea.containsMouse ? Branding.SidebarTextCurrent : Branding.SidebarBackground );
                     font.pointSize : 9
                 }
 
