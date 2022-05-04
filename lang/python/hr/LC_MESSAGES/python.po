@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-21 17:21+0100\n"
+"POT-Creation-Date: 2022-04-22 11:03+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Lovro Kudelić <lovro.kudelic@outlook.com>, 2022\n"
 "Language-Team: Croatian (https://www.transifex.com/calamares/teams/20061/hr/)\n"
@@ -21,260 +21,9 @@ msgstr ""
 "Language: hr\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: src/modules/initramfscfg/main.py:32
-msgid "Configuring initramfs."
-msgstr "Konfiguriranje initramfs."
-
-#: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
-#: src/modules/fstab/main.py:361 src/modules/fstab/main.py:367
-#: src/modules/fstab/main.py:394 src/modules/networkcfg/main.py:105
-#: src/modules/initcpiocfg/main.py:235 src/modules/initcpiocfg/main.py:239
-#: src/modules/localecfg/main.py:135 src/modules/mount/main.py:229
-#: src/modules/rawfs/main.py:164 src/modules/openrcdmcryptcfg/main.py:72
-#: src/modules/openrcdmcryptcfg/main.py:76
-msgid "Configuration Error"
-msgstr "Greška konfiguracije"
-
-#: src/modules/initramfscfg/main.py:86 src/modules/fstab/main.py:362
-#: src/modules/initcpiocfg/main.py:236 src/modules/mount/main.py:230
-#: src/modules/rawfs/main.py:165 src/modules/openrcdmcryptcfg/main.py:73
-msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr "Nema definiranih particija za <pre>{!s}</pre> korištenje."
-
-#: src/modules/initramfscfg/main.py:90 src/modules/fstab/main.py:368
-#: src/modules/networkcfg/main.py:106 src/modules/initcpiocfg/main.py:240
-#: src/modules/localecfg/main.py:136 src/modules/openrcdmcryptcfg/main.py:77
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr ""
-"Nijedna root točka montiranja nije definirana za <pre>{!s}</pre> korištenje."
-
 #: src/modules/grubcfg/main.py:28
 msgid "Configure GRUB."
 msgstr "Konfigurirajte GRUB."
-
-#: src/modules/bootloader/main.py:43
-msgid "Install bootloader."
-msgstr "Instaliram bootloader."
-
-#: src/modules/bootloader/main.py:614
-msgid "Failed to install grub, no partitions defined in global storage"
-msgstr ""
-"Instalacija gruba nije uspjela, nema definiranih particija u globalnoj "
-"pohrani"
-
-#: src/modules/bootloader/main.py:782
-msgid "Bootloader installation error"
-msgstr "Greška prilikom instalacije bootloadera"
-
-#: src/modules/bootloader/main.py:783
-msgid ""
-"The bootloader could not be installed. The installation command "
-"<pre>{!s}</pre> returned error code {!s}."
-msgstr ""
-"Bootloader nije mogao biti instaliran. Instalacijska naredba <pre>{!s}</pre>"
-" je vratila kod pogreške {!s}."
-
-#: src/modules/fstab/main.py:29
-msgid "Writing fstab."
-msgstr "Zapisujem fstab."
-
-#: src/modules/fstab/main.py:395
-msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
-msgstr "Nije dana konfiguracija <pre>{!s}</pre> za <pre>{!s}</pre> upotrebu."
-
-#: src/modules/dracut/main.py:27
-msgid "Creating initramfs with dracut."
-msgstr "Stvaranje initramfs s dracut."
-
-#: src/modules/dracut/main.py:49
-msgid "Failed to run dracut on the target"
-msgstr "Nije uspjelo pokretanje dracuta na ciljanom sustavu"
-
-#: src/modules/dracut/main.py:50 src/modules/mkinitfs/main.py:50
-msgid "The exit code was {}"
-msgstr "Izlazni kod bio je {}"
-
-#: src/modules/displaymanager/main.py:524
-msgid "Cannot write KDM configuration file"
-msgstr "Ne mogu zapisati KDM konfiguracijsku datoteku"
-
-#: src/modules/displaymanager/main.py:525
-msgid "KDM config file {!s} does not exist"
-msgstr "KDM konfiguracijska datoteka {!s} ne postoji"
-
-#: src/modules/displaymanager/main.py:586
-msgid "Cannot write LXDM configuration file"
-msgstr "Ne mogu zapisati LXDM konfiguracijsku datoteku"
-
-#: src/modules/displaymanager/main.py:587
-msgid "LXDM config file {!s} does not exist"
-msgstr "LXDM konfiguracijska datoteka {!s} ne postoji"
-
-#: src/modules/displaymanager/main.py:670
-msgid "Cannot write LightDM configuration file"
-msgstr "Ne moku zapisati LightDM konfiguracijsku datoteku"
-
-#: src/modules/displaymanager/main.py:671
-msgid "LightDM config file {!s} does not exist"
-msgstr "LightDM konfiguracijska datoteka {!s} ne postoji"
-
-#: src/modules/displaymanager/main.py:745
-msgid "Cannot configure LightDM"
-msgstr "Ne mogu konfigurirati LightDM"
-
-#: src/modules/displaymanager/main.py:746
-msgid "No LightDM greeter installed."
-msgstr "Nije instaliran LightDM pozdravnik."
-
-#: src/modules/displaymanager/main.py:777
-msgid "Cannot write SLIM configuration file"
-msgstr "Ne mogu zapisati SLIM konfiguracijsku datoteku"
-
-#: src/modules/displaymanager/main.py:778
-msgid "SLIM config file {!s} does not exist"
-msgstr "SLIM konfiguracijska datoteka {!s} ne postoji"
-
-#: src/modules/displaymanager/main.py:991
-msgid "No display managers selected for the displaymanager module."
-msgstr "Nisu odabrani upravitelji zaslona za modul displaymanager."
-
-#: src/modules/displaymanager/main.py:992
-msgid ""
-"The displaymanagers list is empty or undefined in both globalstorage and "
-"displaymanager.conf."
-msgstr ""
-"Popis upravitelja zaslona je prazan ili nedefiniran u oba globalstorage i "
-"displaymanager.conf."
-
-#: src/modules/displaymanager/main.py:1074
-msgid "Display manager configuration was incomplete"
-msgstr "Konfiguracija upravitelja zaslona nije bila potpuna"
-
-#: src/modules/services-openrc/main.py:29
-msgid "Configure OpenRC services"
-msgstr "Konfigurirajte OpneRC servise"
-
-#: src/modules/services-openrc/main.py:57
-msgid "Cannot add service {name!s} to run-level {level!s}."
-msgstr "Ne mogu dodati servis {name!s} u run-level {level!s}."
-
-#: src/modules/services-openrc/main.py:59
-msgid "Cannot remove service {name!s} from run-level {level!s}."
-msgstr "Ne mogu ukloniti servis {name!s} iz run-level-a {level!s}."
-
-#: src/modules/services-openrc/main.py:61
-msgid ""
-"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
-"level {level!s}."
-msgstr ""
-"Nepoznat service-action <code>{arg!s}</code> za servis {name!s} u run-level "
-"{level!s}."
-
-#: src/modules/services-openrc/main.py:93
-#: src/modules/services-systemd/main.py:59
-msgid "Cannot modify service"
-msgstr "Ne mogu modificirati servis"
-
-#: src/modules/services-openrc/main.py:94
-msgid ""
-"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr ""
-"<code>rc-update {arg!s}</code> poziv u chroot-u vratio je kod pogreške "
-"{num!s}."
-
-#: src/modules/services-openrc/main.py:101
-msgid "Target runlevel does not exist"
-msgstr "Ciljni runlevel ne postoji"
-
-#: src/modules/services-openrc/main.py:102
-msgid ""
-"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr ""
-"Putanja za runlevel {level!s} je <code>{path!s}</code>, međutim ona ne "
-"postoji."
-
-#: src/modules/services-openrc/main.py:110
-msgid "Target service does not exist"
-msgstr "Ciljni servis ne postoji"
-
-#: src/modules/services-openrc/main.py:111
-msgid ""
-"The path for service {name!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr ""
-"Putanja servisa  {name!s} je <code>{path!s}</code>, međutim ona ne postoji."
-
-#: src/modules/networkcfg/main.py:29
-msgid "Saving network configuration."
-msgstr "Spremanje mrežne konfiguracije."
-
-#: src/modules/packages/main.py:54 src/modules/packages/main.py:65
-#: src/modules/packages/main.py:75
-msgid "Install packages."
-msgstr "Instaliraj pakete."
-
-#: src/modules/packages/main.py:63
-#, python-format
-msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "Obrađujem pakete (%(count)d / %(total)d)"
-
-#: src/modules/packages/main.py:68
-#, python-format
-msgid "Installing one package."
-msgid_plural "Installing %(num)d packages."
-msgstr[0] "Instaliram paket."
-msgstr[1] "Instaliram %(num)d pakete."
-msgstr[2] "Instaliram %(num)d pakete."
-
-#: src/modules/packages/main.py:71
-#, python-format
-msgid "Removing one package."
-msgid_plural "Removing %(num)d packages."
-msgstr[0] "Uklanjam paket."
-msgstr[1] "Uklanjam %(num)d pakete."
-msgstr[2] "Uklanjam %(num)d pakete."
-
-#: src/modules/packages/main.py:725 src/modules/packages/main.py:737
-#: src/modules/packages/main.py:765
-msgid "Package Manager error"
-msgstr "Pogreška upravitelja paketa"
-
-#: src/modules/packages/main.py:726
-msgid ""
-"The package manager could not prepare updates. The command <pre>{!s}</pre> "
-"returned error code {!s}."
-msgstr ""
-"Upravitelj paketa nije mogao pripremiti ažuriranja. Naredba <pre>{!s}</pre> "
-"je vratila kôd pogreške {!s}."
-
-#: src/modules/packages/main.py:738
-msgid ""
-"The package manager could not update the system. The command <pre>{!s}</pre>"
-" returned error code {!s}."
-msgstr ""
-"Upravitelj paketa nije mogao ažurirati sustav. Naredba <pre>{!s}</pre> je "
-"vratila kod pogreške {!s}."
-
-#: src/modules/packages/main.py:766
-msgid ""
-"The package manager could not make changes to the installed system. The "
-"command <pre>{!s}</pre> returned error code {!s}."
-msgstr ""
-"Upravitelj paketa nije mogao izvršiti promjene na instaliranom sustavu. "
-"Naredba <pre>{!s}</pre> je vratila kôd pogreške {!s}."
-
-#: src/modules/plymouthcfg/main.py:27
-msgid "Configure Plymouth theme"
-msgstr "Konfigurirajte Plymouth temu"
-
-#: src/modules/initcpiocfg/main.py:28
-msgid "Configuring mkinitcpio."
-msgstr "Konfiguriranje mkinitcpio."
-
-#: src/modules/localecfg/main.py:30
-msgid "Configuring locales."
-msgstr "Konfiguriranje lokalizacije."
 
 #: src/modules/mount/main.py:42
 msgid "Mounting partitions."
@@ -296,34 +45,34 @@ msgstr "Otključavanje zpool-a nije uspjelo"
 msgid "Failed to set zfs mountpoint"
 msgstr "Nije uspjelo postavljanje ZFS točke montiranja"
 
+#: src/modules/mount/main.py:229 src/modules/initcpiocfg/main.py:235
+#: src/modules/initcpiocfg/main.py:239 src/modules/rawfs/main.py:164
+#: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
+#: src/modules/openrcdmcryptcfg/main.py:72
+#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/fstab/main.py:361
+#: src/modules/fstab/main.py:367 src/modules/fstab/main.py:394
+#: src/modules/localecfg/main.py:140 src/modules/networkcfg/main.py:105
+msgid "Configuration Error"
+msgstr "Greška konfiguracije"
+
+#: src/modules/mount/main.py:230 src/modules/initcpiocfg/main.py:236
+#: src/modules/rawfs/main.py:165 src/modules/initramfscfg/main.py:86
+#: src/modules/openrcdmcryptcfg/main.py:73 src/modules/fstab/main.py:362
+msgid "No partitions are defined for <pre>{!s}</pre> to use."
+msgstr "Nema definiranih particija za <pre>{!s}</pre> korištenje."
+
 #: src/modules/mount/main.py:253
 msgid "zfs mounting error"
 msgstr "ZFS greška montiranja"
 
-#: src/modules/rawfs/main.py:26
-msgid "Installing data."
-msgstr "Instaliranje podataka."
-
-#: src/modules/dummypython/main.py:35
-msgid "Dummy python job."
-msgstr "Testni python posao."
-
-#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
-#: src/modules/dummypython/main.py:94
-msgid "Dummy python step {}"
-msgstr "Testni python korak {}"
-
-#: src/modules/hwclock/main.py:26
-msgid "Setting hardware clock."
-msgstr "Postavljanje hardverskog sata."
-
-#: src/modules/openrcdmcryptcfg/main.py:26
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "Konfiguriranje servisa OpenRC dmcrypt."
-
 #: src/modules/services-systemd/main.py:26
 msgid "Configure systemd services"
 msgstr "Konfiguriraj systemd servise"
+
+#: src/modules/services-systemd/main.py:59
+#: src/modules/services-openrc/main.py:93
+msgid "Cannot modify service"
+msgstr "Ne mogu modificirati servis"
 
 #: src/modules/services-systemd/main.py:60
 msgid ""
@@ -360,14 +109,6 @@ msgid ""
 msgstr ""
 "Nepoznata systemd naredba <code>{command!s}</code> i <code>{suffix!s}</code>"
 " za jedinicu {name!s}."
-
-#: src/modules/mkinitfs/main.py:27
-msgid "Creating initramfs with mkinitfs."
-msgstr "Stvaranje initramfs s mkinitfs."
-
-#: src/modules/mkinitfs/main.py:49
-msgid "Failed to run mkinitfs on the target"
-msgstr "Pokretanje mkinitfs na ciljanom sustavu nije uspjelo"
 
 #: src/modules/unpackfs/main.py:34
 msgid "Filling up filesystems."
@@ -434,3 +175,262 @@ msgstr ""
 #: src/modules/unpackfs/main.py:481
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "Odredište \"{}\" u ciljnom sustavu nije direktorij"
+
+#: src/modules/displaymanager/main.py:524
+msgid "Cannot write KDM configuration file"
+msgstr "Ne mogu zapisati KDM konfiguracijsku datoteku"
+
+#: src/modules/displaymanager/main.py:525
+msgid "KDM config file {!s} does not exist"
+msgstr "KDM konfiguracijska datoteka {!s} ne postoji"
+
+#: src/modules/displaymanager/main.py:586
+msgid "Cannot write LXDM configuration file"
+msgstr "Ne mogu zapisati LXDM konfiguracijsku datoteku"
+
+#: src/modules/displaymanager/main.py:587
+msgid "LXDM config file {!s} does not exist"
+msgstr "LXDM konfiguracijska datoteka {!s} ne postoji"
+
+#: src/modules/displaymanager/main.py:670
+msgid "Cannot write LightDM configuration file"
+msgstr "Ne moku zapisati LightDM konfiguracijsku datoteku"
+
+#: src/modules/displaymanager/main.py:671
+msgid "LightDM config file {!s} does not exist"
+msgstr "LightDM konfiguracijska datoteka {!s} ne postoji"
+
+#: src/modules/displaymanager/main.py:745
+msgid "Cannot configure LightDM"
+msgstr "Ne mogu konfigurirati LightDM"
+
+#: src/modules/displaymanager/main.py:746
+msgid "No LightDM greeter installed."
+msgstr "Nije instaliran LightDM pozdravnik."
+
+#: src/modules/displaymanager/main.py:777
+msgid "Cannot write SLIM configuration file"
+msgstr "Ne mogu zapisati SLIM konfiguracijsku datoteku"
+
+#: src/modules/displaymanager/main.py:778
+msgid "SLIM config file {!s} does not exist"
+msgstr "SLIM konfiguracijska datoteka {!s} ne postoji"
+
+#: src/modules/displaymanager/main.py:991
+msgid "No display managers selected for the displaymanager module."
+msgstr "Nisu odabrani upravitelji zaslona za modul displaymanager."
+
+#: src/modules/displaymanager/main.py:992
+msgid ""
+"The displaymanagers list is empty or undefined in both globalstorage and "
+"displaymanager.conf."
+msgstr ""
+"Popis upravitelja zaslona je prazan ili nedefiniran u oba globalstorage i "
+"displaymanager.conf."
+
+#: src/modules/displaymanager/main.py:1074
+msgid "Display manager configuration was incomplete"
+msgstr "Konfiguracija upravitelja zaslona nije bila potpuna"
+
+#: src/modules/initcpiocfg/main.py:28
+msgid "Configuring mkinitcpio."
+msgstr "Konfiguriranje mkinitcpio."
+
+#: src/modules/initcpiocfg/main.py:240 src/modules/initramfscfg/main.py:90
+#: src/modules/openrcdmcryptcfg/main.py:77 src/modules/fstab/main.py:368
+#: src/modules/localecfg/main.py:141 src/modules/networkcfg/main.py:106
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr ""
+"Nijedna root točka montiranja nije definirana za <pre>{!s}</pre> korištenje."
+
+#: src/modules/rawfs/main.py:26
+msgid "Installing data."
+msgstr "Instaliranje podataka."
+
+#: src/modules/services-openrc/main.py:29
+msgid "Configure OpenRC services"
+msgstr "Konfigurirajte OpneRC servise"
+
+#: src/modules/services-openrc/main.py:57
+msgid "Cannot add service {name!s} to run-level {level!s}."
+msgstr "Ne mogu dodati servis {name!s} u run-level {level!s}."
+
+#: src/modules/services-openrc/main.py:59
+msgid "Cannot remove service {name!s} from run-level {level!s}."
+msgstr "Ne mogu ukloniti servis {name!s} iz run-level-a {level!s}."
+
+#: src/modules/services-openrc/main.py:61
+msgid ""
+"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
+"level {level!s}."
+msgstr ""
+"Nepoznat service-action <code>{arg!s}</code> za servis {name!s} u run-level "
+"{level!s}."
+
+#: src/modules/services-openrc/main.py:94
+msgid ""
+"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"<code>rc-update {arg!s}</code> poziv u chroot-u vratio je kod pogreške "
+"{num!s}."
+
+#: src/modules/services-openrc/main.py:101
+msgid "Target runlevel does not exist"
+msgstr "Ciljni runlevel ne postoji"
+
+#: src/modules/services-openrc/main.py:102
+msgid ""
+"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr ""
+"Putanja za runlevel {level!s} je <code>{path!s}</code>, međutim ona ne "
+"postoji."
+
+#: src/modules/services-openrc/main.py:110
+msgid "Target service does not exist"
+msgstr "Ciljni servis ne postoji"
+
+#: src/modules/services-openrc/main.py:111
+msgid ""
+"The path for service {name!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr ""
+"Putanja servisa  {name!s} je <code>{path!s}</code>, međutim ona ne postoji."
+
+#: src/modules/plymouthcfg/main.py:27
+msgid "Configure Plymouth theme"
+msgstr "Konfigurirajte Plymouth temu"
+
+#: src/modules/packages/main.py:54 src/modules/packages/main.py:65
+#: src/modules/packages/main.py:75
+msgid "Install packages."
+msgstr "Instaliraj pakete."
+
+#: src/modules/packages/main.py:63
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "Obrađujem pakete (%(count)d / %(total)d)"
+
+#: src/modules/packages/main.py:68
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] "Instaliram paket."
+msgstr[1] "Instaliram %(num)d pakete."
+msgstr[2] "Instaliram %(num)d pakete."
+
+#: src/modules/packages/main.py:71
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] "Uklanjam paket."
+msgstr[1] "Uklanjam %(num)d pakete."
+msgstr[2] "Uklanjam %(num)d pakete."
+
+#: src/modules/packages/main.py:725 src/modules/packages/main.py:737
+#: src/modules/packages/main.py:765
+msgid "Package Manager error"
+msgstr "Pogreška upravitelja paketa"
+
+#: src/modules/packages/main.py:726
+msgid ""
+"The package manager could not prepare updates. The command <pre>{!s}</pre> "
+"returned error code {!s}."
+msgstr ""
+"Upravitelj paketa nije mogao pripremiti ažuriranja. Naredba <pre>{!s}</pre> "
+"je vratila kôd pogreške {!s}."
+
+#: src/modules/packages/main.py:738
+msgid ""
+"The package manager could not update the system. The command <pre>{!s}</pre>"
+" returned error code {!s}."
+msgstr ""
+"Upravitelj paketa nije mogao ažurirati sustav. Naredba <pre>{!s}</pre> je "
+"vratila kod pogreške {!s}."
+
+#: src/modules/packages/main.py:766
+msgid ""
+"The package manager could not make changes to the installed system. The "
+"command <pre>{!s}</pre> returned error code {!s}."
+msgstr ""
+"Upravitelj paketa nije mogao izvršiti promjene na instaliranom sustavu. "
+"Naredba <pre>{!s}</pre> je vratila kôd pogreške {!s}."
+
+#: src/modules/bootloader/main.py:43
+msgid "Install bootloader."
+msgstr "Instaliram bootloader."
+
+#: src/modules/bootloader/main.py:614
+msgid "Failed to install grub, no partitions defined in global storage"
+msgstr ""
+"Instalacija gruba nije uspjela, nema definiranih particija u globalnoj "
+"pohrani"
+
+#: src/modules/bootloader/main.py:782
+msgid "Bootloader installation error"
+msgstr "Greška prilikom instalacije bootloadera"
+
+#: src/modules/bootloader/main.py:783
+msgid ""
+"The bootloader could not be installed. The installation command "
+"<pre>{!s}</pre> returned error code {!s}."
+msgstr ""
+"Bootloader nije mogao biti instaliran. Instalacijska naredba <pre>{!s}</pre>"
+" je vratila kod pogreške {!s}."
+
+#: src/modules/hwclock/main.py:26
+msgid "Setting hardware clock."
+msgstr "Postavljanje hardverskog sata."
+
+#: src/modules/mkinitfs/main.py:27
+msgid "Creating initramfs with mkinitfs."
+msgstr "Stvaranje initramfs s mkinitfs."
+
+#: src/modules/mkinitfs/main.py:49
+msgid "Failed to run mkinitfs on the target"
+msgstr "Pokretanje mkinitfs na ciljanom sustavu nije uspjelo"
+
+#: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
+msgid "The exit code was {}"
+msgstr "Izlazni kod bio je {}"
+
+#: src/modules/dracut/main.py:27
+msgid "Creating initramfs with dracut."
+msgstr "Stvaranje initramfs s dracut."
+
+#: src/modules/dracut/main.py:49
+msgid "Failed to run dracut on the target"
+msgstr "Nije uspjelo pokretanje dracuta na ciljanom sustavu"
+
+#: src/modules/initramfscfg/main.py:32
+msgid "Configuring initramfs."
+msgstr "Konfiguriranje initramfs."
+
+#: src/modules/openrcdmcryptcfg/main.py:26
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "Konfiguriranje servisa OpenRC dmcrypt."
+
+#: src/modules/fstab/main.py:29
+msgid "Writing fstab."
+msgstr "Zapisujem fstab."
+
+#: src/modules/fstab/main.py:395
+msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
+msgstr "Nije dana konfiguracija <pre>{!s}</pre> za <pre>{!s}</pre> upotrebu."
+
+#: src/modules/dummypython/main.py:35
+msgid "Dummy python job."
+msgstr "Testni python posao."
+
+#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
+#: src/modules/dummypython/main.py:94
+msgid "Dummy python step {}"
+msgstr "Testni python korak {}"
+
+#: src/modules/localecfg/main.py:31
+msgid "Configuring locales."
+msgstr "Konfiguriranje lokalizacije."
+
+#: src/modules/networkcfg/main.py:29
+msgid "Saving network configuration."
+msgstr "Spremanje mrežne konfiguracije."
