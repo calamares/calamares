@@ -150,8 +150,6 @@ CommandList::CommandList::CommandList( const QVariant& v, bool doChroot, std::ch
     }
 }
 
-CommandList::~CommandList() {}
-
 Calamares::JobResult
 CommandList::run()
 {

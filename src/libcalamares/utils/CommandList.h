@@ -85,7 +85,6 @@ public:
     /** @brief empty command-list with timeout to apply to entries. */
     CommandList( bool doChroot = true, std::chrono::seconds timeout = std::chrono::seconds( 10 ) );
     CommandList( const QVariant& v, bool doChroot = true, std::chrono::seconds timeout = std::chrono::seconds( 10 ) );
-    ~CommandList();
 
     bool doChroot() const { return m_doChroot; }
 
