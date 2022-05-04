@@ -112,7 +112,3 @@ ResultsListWidget::requirementsChanged()
         m_explanation->setAlignment( Qt::AlignCenter );
     }
 }
-
-#include "utils/moc-warnings.h"
-
-#include "ResultsListWidget.moc"
