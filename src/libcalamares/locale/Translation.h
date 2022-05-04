@@ -117,6 +117,11 @@ operator<<( QDebug& s, const Translation::Id& id )
 {
     return s << id.name;
 }
+static inline bool
+operator==( const Translation::Id& lhs, const Translation::Id& rhs )
+{
+    return lhs.name == rhs.name;
+}
 
 }  // namespace Locale
 }  // namespace CalamaresUtils

@@ -103,13 +103,13 @@ TranslationsModel::find( std::function< bool( const Translation& ) > predicate )
 int
 TranslationsModel::find( std::function< bool( const QLocale& ) > predicate ) const
 {
-    return find( [&]( const Translation& l ) { return predicate( l.locale() ); } );
+    return find( [ & ]( const Translation& l ) { return predicate( l.locale() ); } );
 }
 
 int
 TranslationsModel::find( const QLocale& locale ) const
 {
-    return find( [&]( const Translation& l ) { return locale == l.locale(); } );
+    return find( [ & ]( const Translation& l ) { return locale == l.locale(); } );
 }
 
 int
@@ -121,13 +121,19 @@ TranslationsModel::find( const QString& countryCode ) const
     }
 
     auto c_l = countryData( countryCode );
-    int r = find(
-        [&]( const Translation& l ) { return ( l.language() == c_l.second ) && ( l.country() == c_l.first ); } );
+    int r = find( [ & ]( const Translation& l )
+                  { return ( l.language() == c_l.second ) && ( l.country() == c_l.first ); } );
     if ( r >= 0 )
     {
         return r;
     }
-    return find( [&]( const Translation& l ) { return l.language() == c_l.second; } );
+    return find( [ & ]( const Translation& l ) { return l.language() == c_l.second; } );
+}
+
+int
+TranslationsModel::find( const Translation::Id& id ) const
+{
+    return find( [ & ]( const Translation& l ) { return l.id() == id; } );
 }
 
 TranslationsModel*
