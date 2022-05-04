@@ -125,7 +125,8 @@ set( CALAMARES_DESCRIPTION_SUMMARY
 #
 # When adding a new language, take care that it is properly loaded
 # by the translation framework. Languages with alternate scripts
-# (sr@latin in particular) may need special handling in CalamaresUtils.cpp.
+# (sr@latin in particular) or location (ca@valencia) need special
+# handling in libcalamares/locale/Translation.h .
 #
 # NOTE: move eo (Esperanto) to _ok once Qt can actually create a
 #       locale for it. (Qt 5.12.2 can, see Translation Status section).
