@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-21 17:21+0100\n"
+"POT-Creation-Date: 2022-04-22 11:03+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Vincenzo Reale <vinx.reale@gmail.com>, 2022\n"
 "Language-Team: Italian (Italy) (https://www.transifex.com/calamares/teams/20061/it_IT/)\n"
@@ -25,249 +25,9 @@ msgstr ""
 "Language: it_IT\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/modules/initramfscfg/main.py:32
-msgid "Configuring initramfs."
-msgstr "Configurazione di initramfs."
-
-#: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
-#: src/modules/fstab/main.py:361 src/modules/fstab/main.py:367
-#: src/modules/fstab/main.py:394 src/modules/networkcfg/main.py:105
-#: src/modules/initcpiocfg/main.py:235 src/modules/initcpiocfg/main.py:239
-#: src/modules/localecfg/main.py:135 src/modules/mount/main.py:229
-#: src/modules/rawfs/main.py:164 src/modules/openrcdmcryptcfg/main.py:72
-#: src/modules/openrcdmcryptcfg/main.py:76
-msgid "Configuration Error"
-msgstr "Errore di Configurazione"
-
-#: src/modules/initramfscfg/main.py:86 src/modules/fstab/main.py:362
-#: src/modules/initcpiocfg/main.py:236 src/modules/mount/main.py:230
-#: src/modules/rawfs/main.py:165 src/modules/openrcdmcryptcfg/main.py:73
-msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr "Nessuna partizione definita per l'uso con <pre>{!s}</pre>."
-
-#: src/modules/initramfscfg/main.py:90 src/modules/fstab/main.py:368
-#: src/modules/networkcfg/main.py:106 src/modules/initcpiocfg/main.py:240
-#: src/modules/localecfg/main.py:136 src/modules/openrcdmcryptcfg/main.py:77
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr "Nessun punto di mount root è dato in l'uso per <pre>{!s}</pre>"
-
 #: src/modules/grubcfg/main.py:28
 msgid "Configure GRUB."
 msgstr "Configura GRUB."
-
-#: src/modules/bootloader/main.py:43
-msgid "Install bootloader."
-msgstr "Installa il bootloader."
-
-#: src/modules/bootloader/main.py:614
-msgid "Failed to install grub, no partitions defined in global storage"
-msgstr ""
-"Installazione di grub non riuscita, nessuna partizione definita "
-"nell'archiviazione globale"
-
-#: src/modules/bootloader/main.py:782
-msgid "Bootloader installation error"
-msgstr "Errore di installazione del boot loader"
-
-#: src/modules/bootloader/main.py:783
-msgid ""
-"The bootloader could not be installed. The installation command "
-"<pre>{!s}</pre> returned error code {!s}."
-msgstr ""
-
-#: src/modules/fstab/main.py:29
-msgid "Writing fstab."
-msgstr "Scrittura di fstab."
-
-#: src/modules/fstab/main.py:395
-msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
-msgstr ""
-
-#: src/modules/dracut/main.py:27
-msgid "Creating initramfs with dracut."
-msgstr "Creazione di initramfs con dracut."
-
-#: src/modules/dracut/main.py:49
-msgid "Failed to run dracut on the target"
-msgstr "Impossibile eseguire dracut sulla destinazione"
-
-#: src/modules/dracut/main.py:50 src/modules/mkinitfs/main.py:50
-msgid "The exit code was {}"
-msgstr "Il codice di uscita era {}"
-
-#: src/modules/displaymanager/main.py:524
-msgid "Cannot write KDM configuration file"
-msgstr "Impossibile scrivere il file di configurazione di KDM"
-
-#: src/modules/displaymanager/main.py:525
-msgid "KDM config file {!s} does not exist"
-msgstr "Il file di configurazione di KDM {!s} non esiste"
-
-#: src/modules/displaymanager/main.py:586
-msgid "Cannot write LXDM configuration file"
-msgstr "Impossibile scrivere il file di configurazione di LXDM"
-
-#: src/modules/displaymanager/main.py:587
-msgid "LXDM config file {!s} does not exist"
-msgstr "Il file di configurazione di LXDM {!s} non esiste"
-
-#: src/modules/displaymanager/main.py:670
-msgid "Cannot write LightDM configuration file"
-msgstr "Impossibile scrivere il file di configurazione di LightDM"
-
-#: src/modules/displaymanager/main.py:671
-msgid "LightDM config file {!s} does not exist"
-msgstr "Il file di configurazione di LightDM {!s} non esiste"
-
-#: src/modules/displaymanager/main.py:745
-msgid "Cannot configure LightDM"
-msgstr "Impossibile configurare LightDM"
-
-#: src/modules/displaymanager/main.py:746
-msgid "No LightDM greeter installed."
-msgstr "Nessun LightDM greeter installato."
-
-#: src/modules/displaymanager/main.py:777
-msgid "Cannot write SLIM configuration file"
-msgstr "Impossibile scrivere il file di configurazione di SLIM"
-
-#: src/modules/displaymanager/main.py:778
-msgid "SLIM config file {!s} does not exist"
-msgstr "Il file di configurazione di SLIM {!s} non esiste"
-
-#: src/modules/displaymanager/main.py:991
-msgid "No display managers selected for the displaymanager module."
-msgstr ""
-"Non è stato selezionato alcun display manager per il modulo displaymanager"
-
-#: src/modules/displaymanager/main.py:992
-msgid ""
-"The displaymanagers list is empty or undefined in both globalstorage and "
-"displaymanager.conf."
-msgstr ""
-"L'elenco dei display manager è vuota o non definita sia in globalstorage che"
-" in displaymanager.conf."
-
-#: src/modules/displaymanager/main.py:1074
-msgid "Display manager configuration was incomplete"
-msgstr "La configurazione del display manager è incompleta"
-
-#: src/modules/services-openrc/main.py:29
-msgid "Configure OpenRC services"
-msgstr "Configura i servizi OpenRC"
-
-#: src/modules/services-openrc/main.py:57
-msgid "Cannot add service {name!s} to run-level {level!s}."
-msgstr "Impossibile aggiungere il servizio {name!s} al run-level {level!s}."
-
-#: src/modules/services-openrc/main.py:59
-msgid "Cannot remove service {name!s} from run-level {level!s}."
-msgstr "Impossibile rimuovere il servizio {name!s} dal run-level {level!s}."
-
-#: src/modules/services-openrc/main.py:61
-msgid ""
-"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
-"level {level!s}."
-msgstr ""
-"Service-action sconosciuta <code>{arg!s}</code> per il servizio {name!s} nel"
-" run-level {level!s}."
-
-#: src/modules/services-openrc/main.py:93
-#: src/modules/services-systemd/main.py:59
-msgid "Cannot modify service"
-msgstr "Impossibile modificare il servizio"
-
-#: src/modules/services-openrc/main.py:94
-msgid ""
-"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr ""
-"La chiamata <code>rc-update {arg!s}</code> in chroot ha ritornato il codice "
-"di errore {num!s}."
-
-#: src/modules/services-openrc/main.py:101
-msgid "Target runlevel does not exist"
-msgstr "Il runlevel target non esiste"
-
-#: src/modules/services-openrc/main.py:102
-msgid ""
-"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr ""
-"Il percorso del runlevel {level!s} è <code>{path!s}</code>, ma non esiste."
-
-#: src/modules/services-openrc/main.py:110
-msgid "Target service does not exist"
-msgstr "Il servizio target non esiste"
-
-#: src/modules/services-openrc/main.py:111
-msgid ""
-"The path for service {name!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr ""
-"Il percorso del servizio {name!s} è <code>{path!s}</code>, ma non esiste."
-
-#: src/modules/networkcfg/main.py:29
-msgid "Saving network configuration."
-msgstr "Salvataggio della configurazione di rete."
-
-#: src/modules/packages/main.py:54 src/modules/packages/main.py:65
-#: src/modules/packages/main.py:75
-msgid "Install packages."
-msgstr "Installa pacchetti."
-
-#: src/modules/packages/main.py:63
-#, python-format
-msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "Elaborazione dei pacchetti (%(count)d / %(total)d)"
-
-#: src/modules/packages/main.py:68
-#, python-format
-msgid "Installing one package."
-msgid_plural "Installing %(num)d packages."
-msgstr[0] "Installando un pacchetto."
-msgstr[1] "Installazione di %(num)d pacchetti."
-
-#: src/modules/packages/main.py:71
-#, python-format
-msgid "Removing one package."
-msgid_plural "Removing %(num)d packages."
-msgstr[0] "Rimuovendo un pacchetto."
-msgstr[1] "Rimozione di %(num)d pacchetti."
-
-#: src/modules/packages/main.py:725 src/modules/packages/main.py:737
-#: src/modules/packages/main.py:765
-msgid "Package Manager error"
-msgstr "Errore del gestore dei pacchetti"
-
-#: src/modules/packages/main.py:726
-msgid ""
-"The package manager could not prepare updates. The command <pre>{!s}</pre> "
-"returned error code {!s}."
-msgstr ""
-
-#: src/modules/packages/main.py:738
-msgid ""
-"The package manager could not update the system. The command <pre>{!s}</pre>"
-" returned error code {!s}."
-msgstr ""
-
-#: src/modules/packages/main.py:766
-msgid ""
-"The package manager could not make changes to the installed system. The "
-"command <pre>{!s}</pre> returned error code {!s}."
-msgstr ""
-
-#: src/modules/plymouthcfg/main.py:27
-msgid "Configure Plymouth theme"
-msgstr "Configura il tema Plymouth"
-
-#: src/modules/initcpiocfg/main.py:28
-msgid "Configuring mkinitcpio."
-msgstr "Configurazione di mkinitcpio."
-
-#: src/modules/localecfg/main.py:30
-msgid "Configuring locales."
-msgstr "Configurazione della localizzazione."
 
 #: src/modules/mount/main.py:42
 msgid "Mounting partitions."
@@ -289,34 +49,34 @@ msgstr "Sblocco zpool non riuscito"
 msgid "Failed to set zfs mountpoint"
 msgstr ""
 
+#: src/modules/mount/main.py:229 src/modules/initcpiocfg/main.py:235
+#: src/modules/initcpiocfg/main.py:239 src/modules/rawfs/main.py:164
+#: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
+#: src/modules/openrcdmcryptcfg/main.py:72
+#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/fstab/main.py:361
+#: src/modules/fstab/main.py:367 src/modules/fstab/main.py:394
+#: src/modules/localecfg/main.py:140 src/modules/networkcfg/main.py:105
+msgid "Configuration Error"
+msgstr "Errore di Configurazione"
+
+#: src/modules/mount/main.py:230 src/modules/initcpiocfg/main.py:236
+#: src/modules/rawfs/main.py:165 src/modules/initramfscfg/main.py:86
+#: src/modules/openrcdmcryptcfg/main.py:73 src/modules/fstab/main.py:362
+msgid "No partitions are defined for <pre>{!s}</pre> to use."
+msgstr "Nessuna partizione definita per l'uso con <pre>{!s}</pre>."
+
 #: src/modules/mount/main.py:253
 msgid "zfs mounting error"
 msgstr "errore di mount zfs"
 
-#: src/modules/rawfs/main.py:26
-msgid "Installing data."
-msgstr "Installazione dei dati."
-
-#: src/modules/dummypython/main.py:35
-msgid "Dummy python job."
-msgstr "Job python fittizio."
-
-#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
-#: src/modules/dummypython/main.py:94
-msgid "Dummy python step {}"
-msgstr "Python step {} fittizio"
-
-#: src/modules/hwclock/main.py:26
-msgid "Setting hardware clock."
-msgstr "Impostazione del clock hardware."
-
-#: src/modules/openrcdmcryptcfg/main.py:26
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "Configurazione del servizio OpenRC dmcrypt."
-
 #: src/modules/services-systemd/main.py:26
 msgid "Configure systemd services"
 msgstr "Configura servizi  systemd"
+
+#: src/modules/services-systemd/main.py:59
+#: src/modules/services-openrc/main.py:93
+msgid "Cannot modify service"
+msgstr "Impossibile modificare il servizio"
 
 #: src/modules/services-systemd/main.py:60
 msgid ""
@@ -354,14 +114,6 @@ msgid ""
 msgstr ""
 "Comandi systemd sconosciuti <code>{command!s}</code> "
 "e<code>{suffix!s}</code> per l'unità {name!s}."
-
-#: src/modules/mkinitfs/main.py:27
-msgid "Creating initramfs with mkinitfs."
-msgstr "Sto creando initramfs con mkinitfs."
-
-#: src/modules/mkinitfs/main.py:49
-msgid "Failed to run mkinitfs on the target"
-msgstr "Impossibile eseguire mkinitfs sulla destinazione"
 
 #: src/modules/unpackfs/main.py:34
 msgid "Filling up filesystems."
@@ -426,3 +178,251 @@ msgstr ""
 #: src/modules/unpackfs/main.py:481
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "La destinazione del sistema \"{}\" non è una directory"
+
+#: src/modules/displaymanager/main.py:524
+msgid "Cannot write KDM configuration file"
+msgstr "Impossibile scrivere il file di configurazione di KDM"
+
+#: src/modules/displaymanager/main.py:525
+msgid "KDM config file {!s} does not exist"
+msgstr "Il file di configurazione di KDM {!s} non esiste"
+
+#: src/modules/displaymanager/main.py:586
+msgid "Cannot write LXDM configuration file"
+msgstr "Impossibile scrivere il file di configurazione di LXDM"
+
+#: src/modules/displaymanager/main.py:587
+msgid "LXDM config file {!s} does not exist"
+msgstr "Il file di configurazione di LXDM {!s} non esiste"
+
+#: src/modules/displaymanager/main.py:670
+msgid "Cannot write LightDM configuration file"
+msgstr "Impossibile scrivere il file di configurazione di LightDM"
+
+#: src/modules/displaymanager/main.py:671
+msgid "LightDM config file {!s} does not exist"
+msgstr "Il file di configurazione di LightDM {!s} non esiste"
+
+#: src/modules/displaymanager/main.py:745
+msgid "Cannot configure LightDM"
+msgstr "Impossibile configurare LightDM"
+
+#: src/modules/displaymanager/main.py:746
+msgid "No LightDM greeter installed."
+msgstr "Nessun LightDM greeter installato."
+
+#: src/modules/displaymanager/main.py:777
+msgid "Cannot write SLIM configuration file"
+msgstr "Impossibile scrivere il file di configurazione di SLIM"
+
+#: src/modules/displaymanager/main.py:778
+msgid "SLIM config file {!s} does not exist"
+msgstr "Il file di configurazione di SLIM {!s} non esiste"
+
+#: src/modules/displaymanager/main.py:991
+msgid "No display managers selected for the displaymanager module."
+msgstr ""
+"Non è stato selezionato alcun display manager per il modulo displaymanager"
+
+#: src/modules/displaymanager/main.py:992
+msgid ""
+"The displaymanagers list is empty or undefined in both globalstorage and "
+"displaymanager.conf."
+msgstr ""
+"L'elenco dei display manager è vuota o non definita sia in globalstorage che"
+" in displaymanager.conf."
+
+#: src/modules/displaymanager/main.py:1074
+msgid "Display manager configuration was incomplete"
+msgstr "La configurazione del display manager è incompleta"
+
+#: src/modules/initcpiocfg/main.py:28
+msgid "Configuring mkinitcpio."
+msgstr "Configurazione di mkinitcpio."
+
+#: src/modules/initcpiocfg/main.py:240 src/modules/initramfscfg/main.py:90
+#: src/modules/openrcdmcryptcfg/main.py:77 src/modules/fstab/main.py:368
+#: src/modules/localecfg/main.py:141 src/modules/networkcfg/main.py:106
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr "Nessun punto di mount root è dato in l'uso per <pre>{!s}</pre>"
+
+#: src/modules/rawfs/main.py:26
+msgid "Installing data."
+msgstr "Installazione dei dati."
+
+#: src/modules/services-openrc/main.py:29
+msgid "Configure OpenRC services"
+msgstr "Configura i servizi OpenRC"
+
+#: src/modules/services-openrc/main.py:57
+msgid "Cannot add service {name!s} to run-level {level!s}."
+msgstr "Impossibile aggiungere il servizio {name!s} al run-level {level!s}."
+
+#: src/modules/services-openrc/main.py:59
+msgid "Cannot remove service {name!s} from run-level {level!s}."
+msgstr "Impossibile rimuovere il servizio {name!s} dal run-level {level!s}."
+
+#: src/modules/services-openrc/main.py:61
+msgid ""
+"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
+"level {level!s}."
+msgstr ""
+"Service-action sconosciuta <code>{arg!s}</code> per il servizio {name!s} nel"
+" run-level {level!s}."
+
+#: src/modules/services-openrc/main.py:94
+msgid ""
+"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"La chiamata <code>rc-update {arg!s}</code> in chroot ha ritornato il codice "
+"di errore {num!s}."
+
+#: src/modules/services-openrc/main.py:101
+msgid "Target runlevel does not exist"
+msgstr "Il runlevel target non esiste"
+
+#: src/modules/services-openrc/main.py:102
+msgid ""
+"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr ""
+"Il percorso del runlevel {level!s} è <code>{path!s}</code>, ma non esiste."
+
+#: src/modules/services-openrc/main.py:110
+msgid "Target service does not exist"
+msgstr "Il servizio target non esiste"
+
+#: src/modules/services-openrc/main.py:111
+msgid ""
+"The path for service {name!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr ""
+"Il percorso del servizio {name!s} è <code>{path!s}</code>, ma non esiste."
+
+#: src/modules/plymouthcfg/main.py:27
+msgid "Configure Plymouth theme"
+msgstr "Configura il tema Plymouth"
+
+#: src/modules/packages/main.py:54 src/modules/packages/main.py:65
+#: src/modules/packages/main.py:75
+msgid "Install packages."
+msgstr "Installa pacchetti."
+
+#: src/modules/packages/main.py:63
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "Elaborazione dei pacchetti (%(count)d / %(total)d)"
+
+#: src/modules/packages/main.py:68
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] "Installando un pacchetto."
+msgstr[1] "Installazione di %(num)d pacchetti."
+
+#: src/modules/packages/main.py:71
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] "Rimuovendo un pacchetto."
+msgstr[1] "Rimozione di %(num)d pacchetti."
+
+#: src/modules/packages/main.py:725 src/modules/packages/main.py:737
+#: src/modules/packages/main.py:765
+msgid "Package Manager error"
+msgstr "Errore del gestore dei pacchetti"
+
+#: src/modules/packages/main.py:726
+msgid ""
+"The package manager could not prepare updates. The command <pre>{!s}</pre> "
+"returned error code {!s}."
+msgstr ""
+
+#: src/modules/packages/main.py:738
+msgid ""
+"The package manager could not update the system. The command <pre>{!s}</pre>"
+" returned error code {!s}."
+msgstr ""
+
+#: src/modules/packages/main.py:766
+msgid ""
+"The package manager could not make changes to the installed system. The "
+"command <pre>{!s}</pre> returned error code {!s}."
+msgstr ""
+
+#: src/modules/bootloader/main.py:43
+msgid "Install bootloader."
+msgstr "Installa il bootloader."
+
+#: src/modules/bootloader/main.py:614
+msgid "Failed to install grub, no partitions defined in global storage"
+msgstr ""
+"Installazione di grub non riuscita, nessuna partizione definita "
+"nell'archiviazione globale"
+
+#: src/modules/bootloader/main.py:782
+msgid "Bootloader installation error"
+msgstr "Errore di installazione del boot loader"
+
+#: src/modules/bootloader/main.py:783
+msgid ""
+"The bootloader could not be installed. The installation command "
+"<pre>{!s}</pre> returned error code {!s}."
+msgstr ""
+
+#: src/modules/hwclock/main.py:26
+msgid "Setting hardware clock."
+msgstr "Impostazione del clock hardware."
+
+#: src/modules/mkinitfs/main.py:27
+msgid "Creating initramfs with mkinitfs."
+msgstr "Sto creando initramfs con mkinitfs."
+
+#: src/modules/mkinitfs/main.py:49
+msgid "Failed to run mkinitfs on the target"
+msgstr "Impossibile eseguire mkinitfs sulla destinazione"
+
+#: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
+msgid "The exit code was {}"
+msgstr "Il codice di uscita era {}"
+
+#: src/modules/dracut/main.py:27
+msgid "Creating initramfs with dracut."
+msgstr "Creazione di initramfs con dracut."
+
+#: src/modules/dracut/main.py:49
+msgid "Failed to run dracut on the target"
+msgstr "Impossibile eseguire dracut sulla destinazione"
+
+#: src/modules/initramfscfg/main.py:32
+msgid "Configuring initramfs."
+msgstr "Configurazione di initramfs."
+
+#: src/modules/openrcdmcryptcfg/main.py:26
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "Configurazione del servizio OpenRC dmcrypt."
+
+#: src/modules/fstab/main.py:29
+msgid "Writing fstab."
+msgstr "Scrittura di fstab."
+
+#: src/modules/fstab/main.py:395
+msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
+msgstr ""
+
+#: src/modules/dummypython/main.py:35
+msgid "Dummy python job."
+msgstr "Job python fittizio."
+
+#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
+#: src/modules/dummypython/main.py:94
+msgid "Dummy python step {}"
+msgstr "Python step {} fittizio"
+
+#: src/modules/localecfg/main.py:31
+msgid "Configuring locales."
+msgstr "Configurazione della localizzazione."
+
+#: src/modules/networkcfg/main.py:29
+msgid "Saving network configuration."
+msgstr "Salvataggio della configurazione di rete."

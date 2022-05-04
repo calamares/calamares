@@ -119,32 +119,41 @@ void
 Config::initLanguages()
 {
     // Find the best initial translation
-    QLocale defaultLocale = QLocale( QLocale::system().name() );
+    CalamaresUtils::Locale::Translation defaultTranslation;
 
-    cDebug() << "Matching locale" << defaultLocale;
-    int matchedLocaleIndex = m_languages->find(
-        [ & ]( const QLocale& x )
-        { return x.language() == defaultLocale.language() && x.country() == defaultLocale.country(); } );
+    cDebug() << "Trying to match locale" << defaultTranslation.id();
+    int matchedLocaleIndex = m_languages->find( defaultTranslation.id() );
 
+    // Need to match by some other means than the exact translation Id
     if ( matchedLocaleIndex < 0 )
     {
-        cDebug() << Logger::SubEntry << "Matching approximate locale" << defaultLocale.language();
+        QLocale defaultLocale = defaultTranslation.locale();
 
-        matchedLocaleIndex
-            = m_languages->find( [ & ]( const QLocale& x ) { return x.language() == defaultLocale.language(); } );
-    }
+        cDebug() << "Trying to match locale" << defaultLocale;
+        matchedLocaleIndex = m_languages->find(
+            [ & ]( const QLocale& x )
+            { return x.language() == defaultLocale.language() && x.country() == defaultLocale.country(); } );
 
-    if ( matchedLocaleIndex < 0 )
-    {
-        QLocale en_us( QLocale::English, QLocale::UnitedStates );
-
-        cDebug() << Logger::SubEntry << "Matching English (US)";
-        matchedLocaleIndex = m_languages->find( en_us );
-
-        // Now, if it matched, because we didn't match the system locale, switch to the one found
-        if ( matchedLocaleIndex >= 0 )
+        if ( matchedLocaleIndex < 0 )
         {
-            QLocale::setDefault( m_languages->locale( matchedLocaleIndex ).locale() );
+            cDebug() << Logger::SubEntry << "Trying to match approximate locale" << defaultLocale.language();
+
+            matchedLocaleIndex
+                = m_languages->find( [ & ]( const QLocale& x ) { return x.language() == defaultLocale.language(); } );
+        }
+
+        if ( matchedLocaleIndex < 0 )
+        {
+            QLocale en_us( QLocale::English, QLocale::UnitedStates );
+
+            cDebug() << Logger::SubEntry << "Trying to match English (US)";
+            matchedLocaleIndex = m_languages->find( en_us );
+
+            // Now, if it matched, because we didn't match the system locale, switch to the one found
+            if ( matchedLocaleIndex >= 0 )
+            {
+                QLocale::setDefault( m_languages->locale( matchedLocaleIndex ).locale() );
+            }
         }
     }
 
@@ -154,7 +163,7 @@ Config::initLanguages()
     }
     else
     {
-        cWarning() << "No available translation matched" << defaultLocale;
+        cWarning() << "No available translation matched" << defaultTranslation.id() << defaultTranslation.locale();
     }
 }
 

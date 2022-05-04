@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-21 17:21+0100\n"
+"POT-Creation-Date: 2022-04-22 11:03+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2022\n"
 "Language-Team: Ukrainian (https://www.transifex.com/calamares/teams/20061/uk/)\n"
@@ -23,264 +23,9 @@ msgstr ""
 "Language: uk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
-#: src/modules/initramfscfg/main.py:32
-msgid "Configuring initramfs."
-msgstr "Налаштовуємо initramfs."
-
-#: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
-#: src/modules/fstab/main.py:361 src/modules/fstab/main.py:367
-#: src/modules/fstab/main.py:394 src/modules/networkcfg/main.py:105
-#: src/modules/initcpiocfg/main.py:235 src/modules/initcpiocfg/main.py:239
-#: src/modules/localecfg/main.py:135 src/modules/mount/main.py:229
-#: src/modules/rawfs/main.py:164 src/modules/openrcdmcryptcfg/main.py:72
-#: src/modules/openrcdmcryptcfg/main.py:76
-msgid "Configuration Error"
-msgstr "Помилка налаштовування"
-
-#: src/modules/initramfscfg/main.py:86 src/modules/fstab/main.py:362
-#: src/modules/initcpiocfg/main.py:236 src/modules/mount/main.py:230
-#: src/modules/rawfs/main.py:165 src/modules/openrcdmcryptcfg/main.py:73
-msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr "Не визначено розділів для використання <pre>{!s}</pre>."
-
-#: src/modules/initramfscfg/main.py:90 src/modules/fstab/main.py:368
-#: src/modules/networkcfg/main.py:106 src/modules/initcpiocfg/main.py:240
-#: src/modules/localecfg/main.py:136 src/modules/openrcdmcryptcfg/main.py:77
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr ""
-"Не вказано кореневої точки монтування для використання у <pre>{!s}</pre>."
-
 #: src/modules/grubcfg/main.py:28
 msgid "Configure GRUB."
 msgstr "Налаштовування GRUB."
-
-#: src/modules/bootloader/main.py:43
-msgid "Install bootloader."
-msgstr "Встановити завантажувач."
-
-#: src/modules/bootloader/main.py:614
-msgid "Failed to install grub, no partitions defined in global storage"
-msgstr ""
-"Не вдалося встановити grub — на загальному сховищі даних не визначено "
-"розділів"
-
-#: src/modules/bootloader/main.py:782
-msgid "Bootloader installation error"
-msgstr "Помилка встановлення завантажувача"
-
-#: src/modules/bootloader/main.py:783
-msgid ""
-"The bootloader could not be installed. The installation command "
-"<pre>{!s}</pre> returned error code {!s}."
-msgstr ""
-"Не вдалося встановити завантажувач. Програмою для встановлення "
-"<pre>{!s}</pre> повернуто код помилки {!s}."
-
-#: src/modules/fstab/main.py:29
-msgid "Writing fstab."
-msgstr "Записуємо fstab."
-
-#: src/modules/fstab/main.py:395
-msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
-msgstr ""
-"Не надано налаштувань <pre>{!s}</pre> для використання у <pre>{!s}</pre>."
-
-#: src/modules/dracut/main.py:27
-msgid "Creating initramfs with dracut."
-msgstr "Створюємо initramfs за допомогою dracut."
-
-#: src/modules/dracut/main.py:49
-msgid "Failed to run dracut on the target"
-msgstr "Не вдалося виконати dracut над призначенням"
-
-#: src/modules/dracut/main.py:50 src/modules/mkinitfs/main.py:50
-msgid "The exit code was {}"
-msgstr "Код виходу — {}"
-
-#: src/modules/displaymanager/main.py:524
-msgid "Cannot write KDM configuration file"
-msgstr "Не вдалося записати файл налаштувань KDM"
-
-#: src/modules/displaymanager/main.py:525
-msgid "KDM config file {!s} does not exist"
-msgstr "Файла налаштувань KDM {!s} не існує"
-
-#: src/modules/displaymanager/main.py:586
-msgid "Cannot write LXDM configuration file"
-msgstr "Не вдалося виконати запис до файла налаштувань LXDM"
-
-#: src/modules/displaymanager/main.py:587
-msgid "LXDM config file {!s} does not exist"
-msgstr "Файла налаштувань LXDM {!s} не існує"
-
-#: src/modules/displaymanager/main.py:670
-msgid "Cannot write LightDM configuration file"
-msgstr "Не вдалося виконати запис до файла налаштувань LightDM"
-
-#: src/modules/displaymanager/main.py:671
-msgid "LightDM config file {!s} does not exist"
-msgstr "Файла налаштувань LightDM {!s} не існує"
-
-#: src/modules/displaymanager/main.py:745
-msgid "Cannot configure LightDM"
-msgstr "Не вдалося налаштувати LightDM"
-
-#: src/modules/displaymanager/main.py:746
-msgid "No LightDM greeter installed."
-msgstr "Засіб входу до системи LightDM не встановлено."
-
-#: src/modules/displaymanager/main.py:777
-msgid "Cannot write SLIM configuration file"
-msgstr "Не вдалося виконати запис до файла налаштувань SLIM"
-
-#: src/modules/displaymanager/main.py:778
-msgid "SLIM config file {!s} does not exist"
-msgstr "Файла налаштувань SLIM {!s} не існує"
-
-#: src/modules/displaymanager/main.py:991
-msgid "No display managers selected for the displaymanager module."
-msgstr "Не вибрано засобу керування дисплеєм для модуля displaymanager."
-
-#: src/modules/displaymanager/main.py:992
-msgid ""
-"The displaymanagers list is empty or undefined in both globalstorage and "
-"displaymanager.conf."
-msgstr ""
-"Список засобів керування дисплеєм є порожнім або невизначеним у "
-"bothglobalstorage та displaymanager.conf."
-
-#: src/modules/displaymanager/main.py:1074
-msgid "Display manager configuration was incomplete"
-msgstr "Налаштування засобу керування дисплеєм є неповними"
-
-#: src/modules/services-openrc/main.py:29
-msgid "Configure OpenRC services"
-msgstr "Налаштувати служби OpenRC"
-
-#: src/modules/services-openrc/main.py:57
-msgid "Cannot add service {name!s} to run-level {level!s}."
-msgstr "Не вдалося додати службу {name!s} до рівня запуску {level!s}."
-
-#: src/modules/services-openrc/main.py:59
-msgid "Cannot remove service {name!s} from run-level {level!s}."
-msgstr "Не вдалося вилучити службу {name!s} з рівня запуску {level!s}."
-
-#: src/modules/services-openrc/main.py:61
-msgid ""
-"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
-"level {level!s}."
-msgstr ""
-"Невідома дія зі службою <code>{arg!s}</code> для служби {name!s} на рівні "
-"запуску {level!s}."
-
-#: src/modules/services-openrc/main.py:93
-#: src/modules/services-systemd/main.py:59
-msgid "Cannot modify service"
-msgstr "Не вдалося змінити службу"
-
-#: src/modules/services-openrc/main.py:94
-msgid ""
-"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr ""
-"Унаслідок виконання виклику <code>rc-update {arg!s}</code> chroot повернуто "
-"повідомлення про помилку із кодом {num!s}."
-
-#: src/modules/services-openrc/main.py:101
-msgid "Target runlevel does not exist"
-msgstr "Шляху до рівня запуску не існує"
-
-#: src/modules/services-openrc/main.py:102
-msgid ""
-"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr ""
-"Шляхом до рівня запуску {level!s} вказано <code>{path!s}</code>. Такого "
-"шляху не існує."
-
-#: src/modules/services-openrc/main.py:110
-msgid "Target service does not exist"
-msgstr "Служби призначення не існує"
-
-#: src/modules/services-openrc/main.py:111
-msgid ""
-"The path for service {name!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr ""
-"Шляхом до служби {name!s} вказано <code>{path!s}</code>. Такого шляху не "
-"існує."
-
-#: src/modules/networkcfg/main.py:29
-msgid "Saving network configuration."
-msgstr "Зберігаємо налаштування мережі."
-
-#: src/modules/packages/main.py:54 src/modules/packages/main.py:65
-#: src/modules/packages/main.py:75
-msgid "Install packages."
-msgstr "Встановити пакети."
-
-#: src/modules/packages/main.py:63
-#, python-format
-msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "Обробляємо пакунки (%(count)d з %(total)d)"
-
-#: src/modules/packages/main.py:68
-#, python-format
-msgid "Installing one package."
-msgid_plural "Installing %(num)d packages."
-msgstr[0] "Встановлюємо %(num)d пакунок."
-msgstr[1] "Встановлюємо %(num)d пакунки."
-msgstr[2] "Встановлюємо %(num)d пакунків."
-msgstr[3] "Встановлюємо один пакунок."
-
-#: src/modules/packages/main.py:71
-#, python-format
-msgid "Removing one package."
-msgid_plural "Removing %(num)d packages."
-msgstr[0] "Вилучаємо %(num)d пакунок."
-msgstr[1] "Вилучаємо %(num)d пакунки."
-msgstr[2] "Вилучаємо %(num)d пакунків."
-msgstr[3] "Вилучаємо один пакунок."
-
-#: src/modules/packages/main.py:725 src/modules/packages/main.py:737
-#: src/modules/packages/main.py:765
-msgid "Package Manager error"
-msgstr "Помилка засобу керування пакунками"
-
-#: src/modules/packages/main.py:726
-msgid ""
-"The package manager could not prepare updates. The command <pre>{!s}</pre> "
-"returned error code {!s}."
-msgstr ""
-"Засобу керування пакунками не вдалося приготувати оновлення. Програмою "
-"<pre>{!s}</pre> повернуто код помилки {!s}."
-
-#: src/modules/packages/main.py:738
-msgid ""
-"The package manager could not update the system. The command <pre>{!s}</pre>"
-" returned error code {!s}."
-msgstr ""
-"Засобу керування пакунками не вдалося оновити систему. Програмою "
-"<pre>{!s}</pre> повернуто код помилки {!s}."
-
-#: src/modules/packages/main.py:766
-msgid ""
-"The package manager could not make changes to the installed system. The "
-"command <pre>{!s}</pre> returned error code {!s}."
-msgstr ""
-"Засобу керування пакунками не вдалося внести зміну до встановленої системи. "
-"Програмою <pre>{!s}</pre> повернуто код помилки {!s}."
-
-#: src/modules/plymouthcfg/main.py:27
-msgid "Configure Plymouth theme"
-msgstr "Налаштувати тему Plymouth"
-
-#: src/modules/initcpiocfg/main.py:28
-msgid "Configuring mkinitcpio."
-msgstr "Налаштовуємо mkinitcpio."
-
-#: src/modules/localecfg/main.py:30
-msgid "Configuring locales."
-msgstr "Налаштовуємо локалі."
 
 #: src/modules/mount/main.py:42
 msgid "Mounting partitions."
@@ -302,34 +47,34 @@ msgstr "Не вдалося розблокувати zpool"
 msgid "Failed to set zfs mountpoint"
 msgstr "Не вдалося встановити точку монтування zfs"
 
+#: src/modules/mount/main.py:229 src/modules/initcpiocfg/main.py:235
+#: src/modules/initcpiocfg/main.py:239 src/modules/rawfs/main.py:164
+#: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
+#: src/modules/openrcdmcryptcfg/main.py:72
+#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/fstab/main.py:361
+#: src/modules/fstab/main.py:367 src/modules/fstab/main.py:394
+#: src/modules/localecfg/main.py:140 src/modules/networkcfg/main.py:105
+msgid "Configuration Error"
+msgstr "Помилка налаштовування"
+
+#: src/modules/mount/main.py:230 src/modules/initcpiocfg/main.py:236
+#: src/modules/rawfs/main.py:165 src/modules/initramfscfg/main.py:86
+#: src/modules/openrcdmcryptcfg/main.py:73 src/modules/fstab/main.py:362
+msgid "No partitions are defined for <pre>{!s}</pre> to use."
+msgstr "Не визначено розділів для використання <pre>{!s}</pre>."
+
 #: src/modules/mount/main.py:253
 msgid "zfs mounting error"
 msgstr "Помилка монтування zfs"
 
-#: src/modules/rawfs/main.py:26
-msgid "Installing data."
-msgstr "Встановлюємо дані."
-
-#: src/modules/dummypython/main.py:35
-msgid "Dummy python job."
-msgstr "Фіктивне завдання python."
-
-#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
-#: src/modules/dummypython/main.py:94
-msgid "Dummy python step {}"
-msgstr "Фіктивний крок python {}"
-
-#: src/modules/hwclock/main.py:26
-msgid "Setting hardware clock."
-msgstr "Встановлюємо значення для апаратного годинника."
-
-#: src/modules/openrcdmcryptcfg/main.py:26
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "Налаштовуємо службу dmcrypt OpenRC."
-
 #: src/modules/services-systemd/main.py:26
 msgid "Configure systemd services"
 msgstr "Налаштуйте служби systemd"
+
+#: src/modules/services-systemd/main.py:59
+#: src/modules/services-openrc/main.py:93
+msgid "Cannot modify service"
+msgstr "Не вдалося змінити службу"
 
 #: src/modules/services-systemd/main.py:60
 msgid ""
@@ -366,14 +111,6 @@ msgid ""
 msgstr ""
 "Невідомі команди systemd <code>{command!s}</code> та <code>{suffix!s}</code>"
 " для пристрою {name!s}."
-
-#: src/modules/mkinitfs/main.py:27
-msgid "Creating initramfs with mkinitfs."
-msgstr "Створення initramfs за допомогою mkinitfs."
-
-#: src/modules/mkinitfs/main.py:49
-msgid "Failed to run mkinitfs on the target"
-msgstr "Не вдалося виконати mkinitfs над призначенням"
 
 #: src/modules/unpackfs/main.py:34
 msgid "Filling up filesystems."
@@ -441,3 +178,266 @@ msgstr ""
 #: src/modules/unpackfs/main.py:481
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "Призначення «{}» у цільовій системі не є каталогом"
+
+#: src/modules/displaymanager/main.py:524
+msgid "Cannot write KDM configuration file"
+msgstr "Не вдалося записати файл налаштувань KDM"
+
+#: src/modules/displaymanager/main.py:525
+msgid "KDM config file {!s} does not exist"
+msgstr "Файла налаштувань KDM {!s} не існує"
+
+#: src/modules/displaymanager/main.py:586
+msgid "Cannot write LXDM configuration file"
+msgstr "Не вдалося виконати запис до файла налаштувань LXDM"
+
+#: src/modules/displaymanager/main.py:587
+msgid "LXDM config file {!s} does not exist"
+msgstr "Файла налаштувань LXDM {!s} не існує"
+
+#: src/modules/displaymanager/main.py:670
+msgid "Cannot write LightDM configuration file"
+msgstr "Не вдалося виконати запис до файла налаштувань LightDM"
+
+#: src/modules/displaymanager/main.py:671
+msgid "LightDM config file {!s} does not exist"
+msgstr "Файла налаштувань LightDM {!s} не існує"
+
+#: src/modules/displaymanager/main.py:745
+msgid "Cannot configure LightDM"
+msgstr "Не вдалося налаштувати LightDM"
+
+#: src/modules/displaymanager/main.py:746
+msgid "No LightDM greeter installed."
+msgstr "Засіб входу до системи LightDM не встановлено."
+
+#: src/modules/displaymanager/main.py:777
+msgid "Cannot write SLIM configuration file"
+msgstr "Не вдалося виконати запис до файла налаштувань SLIM"
+
+#: src/modules/displaymanager/main.py:778
+msgid "SLIM config file {!s} does not exist"
+msgstr "Файла налаштувань SLIM {!s} не існує"
+
+#: src/modules/displaymanager/main.py:991
+msgid "No display managers selected for the displaymanager module."
+msgstr "Не вибрано засобу керування дисплеєм для модуля displaymanager."
+
+#: src/modules/displaymanager/main.py:992
+msgid ""
+"The displaymanagers list is empty or undefined in both globalstorage and "
+"displaymanager.conf."
+msgstr ""
+"Список засобів керування дисплеєм є порожнім або невизначеним у "
+"bothglobalstorage та displaymanager.conf."
+
+#: src/modules/displaymanager/main.py:1074
+msgid "Display manager configuration was incomplete"
+msgstr "Налаштування засобу керування дисплеєм є неповними"
+
+#: src/modules/initcpiocfg/main.py:28
+msgid "Configuring mkinitcpio."
+msgstr "Налаштовуємо mkinitcpio."
+
+#: src/modules/initcpiocfg/main.py:240 src/modules/initramfscfg/main.py:90
+#: src/modules/openrcdmcryptcfg/main.py:77 src/modules/fstab/main.py:368
+#: src/modules/localecfg/main.py:141 src/modules/networkcfg/main.py:106
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr ""
+"Не вказано кореневої точки монтування для використання у <pre>{!s}</pre>."
+
+#: src/modules/rawfs/main.py:26
+msgid "Installing data."
+msgstr "Встановлюємо дані."
+
+#: src/modules/services-openrc/main.py:29
+msgid "Configure OpenRC services"
+msgstr "Налаштувати служби OpenRC"
+
+#: src/modules/services-openrc/main.py:57
+msgid "Cannot add service {name!s} to run-level {level!s}."
+msgstr "Не вдалося додати службу {name!s} до рівня запуску {level!s}."
+
+#: src/modules/services-openrc/main.py:59
+msgid "Cannot remove service {name!s} from run-level {level!s}."
+msgstr "Не вдалося вилучити службу {name!s} з рівня запуску {level!s}."
+
+#: src/modules/services-openrc/main.py:61
+msgid ""
+"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
+"level {level!s}."
+msgstr ""
+"Невідома дія зі службою <code>{arg!s}</code> для служби {name!s} на рівні "
+"запуску {level!s}."
+
+#: src/modules/services-openrc/main.py:94
+msgid ""
+"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"Унаслідок виконання виклику <code>rc-update {arg!s}</code> chroot повернуто "
+"повідомлення про помилку із кодом {num!s}."
+
+#: src/modules/services-openrc/main.py:101
+msgid "Target runlevel does not exist"
+msgstr "Шляху до рівня запуску не існує"
+
+#: src/modules/services-openrc/main.py:102
+msgid ""
+"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr ""
+"Шляхом до рівня запуску {level!s} вказано <code>{path!s}</code>. Такого "
+"шляху не існує."
+
+#: src/modules/services-openrc/main.py:110
+msgid "Target service does not exist"
+msgstr "Служби призначення не існує"
+
+#: src/modules/services-openrc/main.py:111
+msgid ""
+"The path for service {name!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr ""
+"Шляхом до служби {name!s} вказано <code>{path!s}</code>. Такого шляху не "
+"існує."
+
+#: src/modules/plymouthcfg/main.py:27
+msgid "Configure Plymouth theme"
+msgstr "Налаштувати тему Plymouth"
+
+#: src/modules/packages/main.py:54 src/modules/packages/main.py:65
+#: src/modules/packages/main.py:75
+msgid "Install packages."
+msgstr "Встановити пакети."
+
+#: src/modules/packages/main.py:63
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "Обробляємо пакунки (%(count)d з %(total)d)"
+
+#: src/modules/packages/main.py:68
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] "Встановлюємо %(num)d пакунок."
+msgstr[1] "Встановлюємо %(num)d пакунки."
+msgstr[2] "Встановлюємо %(num)d пакунків."
+msgstr[3] "Встановлюємо один пакунок."
+
+#: src/modules/packages/main.py:71
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] "Вилучаємо %(num)d пакунок."
+msgstr[1] "Вилучаємо %(num)d пакунки."
+msgstr[2] "Вилучаємо %(num)d пакунків."
+msgstr[3] "Вилучаємо один пакунок."
+
+#: src/modules/packages/main.py:725 src/modules/packages/main.py:737
+#: src/modules/packages/main.py:765
+msgid "Package Manager error"
+msgstr "Помилка засобу керування пакунками"
+
+#: src/modules/packages/main.py:726
+msgid ""
+"The package manager could not prepare updates. The command <pre>{!s}</pre> "
+"returned error code {!s}."
+msgstr ""
+"Засобу керування пакунками не вдалося приготувати оновлення. Програмою "
+"<pre>{!s}</pre> повернуто код помилки {!s}."
+
+#: src/modules/packages/main.py:738
+msgid ""
+"The package manager could not update the system. The command <pre>{!s}</pre>"
+" returned error code {!s}."
+msgstr ""
+"Засобу керування пакунками не вдалося оновити систему. Програмою "
+"<pre>{!s}</pre> повернуто код помилки {!s}."
+
+#: src/modules/packages/main.py:766
+msgid ""
+"The package manager could not make changes to the installed system. The "
+"command <pre>{!s}</pre> returned error code {!s}."
+msgstr ""
+"Засобу керування пакунками не вдалося внести зміну до встановленої системи. "
+"Програмою <pre>{!s}</pre> повернуто код помилки {!s}."
+
+#: src/modules/bootloader/main.py:43
+msgid "Install bootloader."
+msgstr "Встановити завантажувач."
+
+#: src/modules/bootloader/main.py:614
+msgid "Failed to install grub, no partitions defined in global storage"
+msgstr ""
+"Не вдалося встановити grub — на загальному сховищі даних не визначено "
+"розділів"
+
+#: src/modules/bootloader/main.py:782
+msgid "Bootloader installation error"
+msgstr "Помилка встановлення завантажувача"
+
+#: src/modules/bootloader/main.py:783
+msgid ""
+"The bootloader could not be installed. The installation command "
+"<pre>{!s}</pre> returned error code {!s}."
+msgstr ""
+"Не вдалося встановити завантажувач. Програмою для встановлення "
+"<pre>{!s}</pre> повернуто код помилки {!s}."
+
+#: src/modules/hwclock/main.py:26
+msgid "Setting hardware clock."
+msgstr "Встановлюємо значення для апаратного годинника."
+
+#: src/modules/mkinitfs/main.py:27
+msgid "Creating initramfs with mkinitfs."
+msgstr "Створення initramfs за допомогою mkinitfs."
+
+#: src/modules/mkinitfs/main.py:49
+msgid "Failed to run mkinitfs on the target"
+msgstr "Не вдалося виконати mkinitfs над призначенням"
+
+#: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
+msgid "The exit code was {}"
+msgstr "Код виходу — {}"
+
+#: src/modules/dracut/main.py:27
+msgid "Creating initramfs with dracut."
+msgstr "Створюємо initramfs за допомогою dracut."
+
+#: src/modules/dracut/main.py:49
+msgid "Failed to run dracut on the target"
+msgstr "Не вдалося виконати dracut над призначенням"
+
+#: src/modules/initramfscfg/main.py:32
+msgid "Configuring initramfs."
+msgstr "Налаштовуємо initramfs."
+
+#: src/modules/openrcdmcryptcfg/main.py:26
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "Налаштовуємо службу dmcrypt OpenRC."
+
+#: src/modules/fstab/main.py:29
+msgid "Writing fstab."
+msgstr "Записуємо fstab."
+
+#: src/modules/fstab/main.py:395
+msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
+msgstr ""
+"Не надано налаштувань <pre>{!s}</pre> для використання у <pre>{!s}</pre>."
+
+#: src/modules/dummypython/main.py:35
+msgid "Dummy python job."
+msgstr "Фіктивне завдання python."
+
+#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
+#: src/modules/dummypython/main.py:94
+msgid "Dummy python step {}"
+msgstr "Фіктивний крок python {}"
+
+#: src/modules/localecfg/main.py:31
+msgid "Configuring locales."
+msgstr "Налаштовуємо локалі."
+
+#: src/modules/networkcfg/main.py:29
+msgid "Saving network configuration."
+msgstr "Зберігаємо налаштування мережі."

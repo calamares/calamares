@@ -54,13 +54,39 @@ specialCase( const CalamaresUtils::Locale::Translation::Id& locale )
     return { nullptr, nullptr };
 }
 
+static QString
+specialCaseSystemLanguage()
+{
+    const QByteArray lang_p = qgetenv( "LANG" );
+    if ( lang_p.isEmpty() )
+        return {};
+    QString lang = QString::fromLatin1( lang_p );
+    if ( lang.isEmpty() )
+        return {};
+
+    const QString serbian_latin = QStringLiteral( "sr@latin" );
+    const QString serbian_latin_variant = QStringLiteral( "sr@latn" );
+    if ( ( lang == serbian_latin ) || ( lang == serbian_latin_variant ) )
+    {
+        return serbian_latin;
+    }
+
+    const QString valencian = QStringLiteral( "ca@valencia" );
+    if ( lang == valencian )
+    {
+        return valencian;
+    }
+
+    return {};
+}
+
 namespace CalamaresUtils
 {
 namespace Locale
 {
 
 Translation::Translation( QObject* parent )
-    : Translation( { QString() }, LabelFormat::IfNeededWithCountry, parent )
+    : Translation( { specialCaseSystemLanguage() }, LabelFormat::IfNeededWithCountry, parent )
 {
 }
 

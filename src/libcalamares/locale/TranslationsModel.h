@@ -63,6 +63,8 @@ public:
     int find( const QLocale& ) const;
     /// @brief Looks for an item that best matches the 2-letter country code
     int find( const QString& countryCode ) const;
+    /// @brief Looks up a translation Id
+    int find( const Translation::Id& id ) const;
 
 private:
     QVector< Translation* > m_locales;

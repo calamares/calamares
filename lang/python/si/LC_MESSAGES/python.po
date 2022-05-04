@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-21 17:21+0100\n"
+"POT-Creation-Date: 2022-04-22 11:03+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Sandaruwan Samaraweera, 2022\n"
 "Language-Team: Sinhala (https://www.transifex.com/calamares/teams/20061/si/)\n"
@@ -22,253 +22,9 @@ msgstr ""
 "Language: si\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/modules/initramfscfg/main.py:32
-msgid "Configuring initramfs."
-msgstr "initramfs වින්‍යාස කිරීම."
-
-#: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
-#: src/modules/fstab/main.py:361 src/modules/fstab/main.py:367
-#: src/modules/fstab/main.py:394 src/modules/networkcfg/main.py:105
-#: src/modules/initcpiocfg/main.py:235 src/modules/initcpiocfg/main.py:239
-#: src/modules/localecfg/main.py:135 src/modules/mount/main.py:229
-#: src/modules/rawfs/main.py:164 src/modules/openrcdmcryptcfg/main.py:72
-#: src/modules/openrcdmcryptcfg/main.py:76
-msgid "Configuration Error"
-msgstr "වින්‍යාස දෝෂය"
-
-#: src/modules/initramfscfg/main.py:86 src/modules/fstab/main.py:362
-#: src/modules/initcpiocfg/main.py:236 src/modules/mount/main.py:230
-#: src/modules/rawfs/main.py:165 src/modules/openrcdmcryptcfg/main.py:73
-msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr "{!s} සඳහා භාවිතා කිරීමට කිසිදු කොටස් නිර්වචනය කර නොමැත."
-
-#: src/modules/initramfscfg/main.py:90 src/modules/fstab/main.py:368
-#: src/modules/networkcfg/main.py:106 src/modules/initcpiocfg/main.py:240
-#: src/modules/localecfg/main.py:136 src/modules/openrcdmcryptcfg/main.py:77
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr "{!s} සඳහා භාවිතා කිරීමට root mount point ලබා දී නොමැත."
-
 #: src/modules/grubcfg/main.py:28
 msgid "Configure GRUB."
 msgstr "GRUB වින්‍යාස කරන්න."
-
-#: src/modules/bootloader/main.py:43
-msgid "Install bootloader."
-msgstr "bootloader ස්ථාපනය කරන්න."
-
-#: src/modules/bootloader/main.py:614
-msgid "Failed to install grub, no partitions defined in global storage"
-msgstr ""
-"Grub ස්ථාපනය කිරීමට අපොහොසත් විය, ගෝලීය ආචයනය තුළ කොටස් අර්ථ දක්වා නොමැත"
-
-#: src/modules/bootloader/main.py:782
-msgid "Bootloader installation error"
-msgstr "Bootloader ස්ථාපනය කිරීමේ දෝෂයකි"
-
-#: src/modules/bootloader/main.py:783
-msgid ""
-"The bootloader could not be installed. The installation command "
-"<pre>{!s}</pre> returned error code {!s}."
-msgstr ""
-"ඇරඹුම් කාරකය ස්ථාපනය කල නොහැක. ස්ථාපන විධානය <pre>{!s}</pre> දෝෂ කේතය {!s} "
-"ලබා දුන්නේය."
-
-#: src/modules/fstab/main.py:29
-msgid "Writing fstab."
-msgstr "fstab ලියමින්."
-
-#: src/modules/fstab/main.py:395
-msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
-msgstr ""
-"භාවිතා කිරීමට <pre>{!s}</pre> සඳහා <pre>{!s}</pre> වින්‍යාසයක් ලබා දී නොමැත."
-
-#: src/modules/dracut/main.py:27
-msgid "Creating initramfs with dracut."
-msgstr "dracut සමඟ initramfs නිර්මාණය කිරීම."
-
-#: src/modules/dracut/main.py:49
-msgid "Failed to run dracut on the target"
-msgstr "ඉලක්කය මත ඩ්‍රැකට් ධාවනය කිරීමට අපොහොසත් විය"
-
-#: src/modules/dracut/main.py:50 src/modules/mkinitfs/main.py:50
-msgid "The exit code was {}"
-msgstr "පිටවීමේ කේතය වූයේ {}"
-
-#: src/modules/displaymanager/main.py:524
-msgid "Cannot write KDM configuration file"
-msgstr "KDM වින්‍යාස ගොනුව ලිවිය නොහැක"
-
-#: src/modules/displaymanager/main.py:525
-msgid "KDM config file {!s} does not exist"
-msgstr "KDM වින්‍යාස ගොනුව {!s} නොපවතී"
-
-#: src/modules/displaymanager/main.py:586
-msgid "Cannot write LXDM configuration file"
-msgstr "LXDM වින්‍යාස ගොනුව ලිවිය නොහැක"
-
-#: src/modules/displaymanager/main.py:587
-msgid "LXDM config file {!s} does not exist"
-msgstr "LXDM වින්‍යාස ගොනුව {!s} නොපවතී"
-
-#: src/modules/displaymanager/main.py:670
-msgid "Cannot write LightDM configuration file"
-msgstr "LightDM වින්‍යාස ගොනුව ලිවිය නොහැක"
-
-#: src/modules/displaymanager/main.py:671
-msgid "LightDM config file {!s} does not exist"
-msgstr "LightDM වින්‍යාස ගොනුව {!s} නොපවතී"
-
-#: src/modules/displaymanager/main.py:745
-msgid "Cannot configure LightDM"
-msgstr "LightDM වින්‍යාස කළ නොහැක"
-
-#: src/modules/displaymanager/main.py:746
-msgid "No LightDM greeter installed."
-msgstr "LightDM ග්‍රීටර් ස්ථාපනය කර නැත."
-
-#: src/modules/displaymanager/main.py:777
-msgid "Cannot write SLIM configuration file"
-msgstr "SLIM වින්‍යාස ගොනුව ලිවිය නොහැක"
-
-#: src/modules/displaymanager/main.py:778
-msgid "SLIM config file {!s} does not exist"
-msgstr "SLIM වින්‍යාස ගොනුව {!s} නොපවතී"
-
-#: src/modules/displaymanager/main.py:991
-msgid "No display managers selected for the displaymanager module."
-msgstr "සංදර්ශක කළමනාකරු මොඩියුලය සඳහා සංදර්ශක කළමනාකරුවන් තෝරාගෙන නොමැත."
-
-#: src/modules/displaymanager/main.py:992
-msgid ""
-"The displaymanagers list is empty or undefined in both globalstorage and "
-"displaymanager.conf."
-msgstr ""
-"ගෝලීය ගබඩාව සහ displaymanager.conf යන දෙකෙහිම සංදර්ශක කළමනාකරු ලැයිස්තුව "
-"හිස් හෝ අර්ථ දක්වා නොමැත."
-
-#: src/modules/displaymanager/main.py:1074
-msgid "Display manager configuration was incomplete"
-msgstr "සංදර්ශක කළමනාකරු වින්‍යාසය අසම්පූර්ණ විය"
-
-#: src/modules/services-openrc/main.py:29
-msgid "Configure OpenRC services"
-msgstr "OpenRC සේවා වින්‍යාස කරන්න"
-
-#: src/modules/services-openrc/main.py:57
-msgid "Cannot add service {name!s} to run-level {level!s}."
-msgstr "ධාවන මට්ටම {level!s} වෙත සේවාව {name!s} එක් කළ නොහැක."
-
-#: src/modules/services-openrc/main.py:59
-msgid "Cannot remove service {name!s} from run-level {level!s}."
-msgstr "ධාවන මට්ටමේ {level!s} වෙතින් සේවාව {name!s} ඉවත් කළ නොහැක."
-
-#: src/modules/services-openrc/main.py:61
-msgid ""
-"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
-"level {level!s}."
-msgstr ""
-"{name!s} සේවාව සඳහා නොදන්නා සේවා-ක්‍රියාව <code>{arg!s}</code> ධාවන මට්ටමේ "
-"{level!s}."
-
-#: src/modules/services-openrc/main.py:93
-#: src/modules/services-systemd/main.py:59
-msgid "Cannot modify service"
-msgstr "සේවාව වෙනස් කළ නොහැක"
-
-#: src/modules/services-openrc/main.py:94
-msgid ""
-"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr ""
-"<code>rc-update {arg!s}</code> chroot හි ඇමතුම {num!s} දෝෂ කේතය ලබා දුන්නේය."
-
-#: src/modules/services-openrc/main.py:101
-msgid "Target runlevel does not exist"
-msgstr "ඉලක්ක ධාවන මට්ටම නොපවතී"
-
-#: src/modules/services-openrc/main.py:102
-msgid ""
-"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr "ධාවන මට්ටම {level!s} සඳහා මාර්ගය <code>{path!s}</code>, එය නොපවතී."
-
-#: src/modules/services-openrc/main.py:110
-msgid "Target service does not exist"
-msgstr "ඉලක්ක සේවාව නොපවතී"
-
-#: src/modules/services-openrc/main.py:111
-msgid ""
-"The path for service {name!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr "සේවාව සඳහා {name!s} මාර්ගය <code>{path!s}</code>, එය නොපවතී."
-
-#: src/modules/networkcfg/main.py:29
-msgid "Saving network configuration."
-msgstr "ජාල වින්‍යාසය සුරැකෙමින්."
-
-#: src/modules/packages/main.py:54 src/modules/packages/main.py:65
-#: src/modules/packages/main.py:75
-msgid "Install packages."
-msgstr "ඇසුරුම් ස්ථාපනය කරන්න."
-
-#: src/modules/packages/main.py:63
-#, python-format
-msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "පැකේජ සැකසීම (%(count)d / %(total)d)"
-
-#: src/modules/packages/main.py:68
-#, python-format
-msgid "Installing one package."
-msgid_plural "Installing %(num)d packages."
-msgstr[0] "ඇසුරුමක් ස්ථාපනය වෙමින්."
-msgstr[1] "ඇසුරුම් %(num)d ක් ස්ථාපනය වෙමින්."
-
-#: src/modules/packages/main.py:71
-#, python-format
-msgid "Removing one package."
-msgid_plural "Removing %(num)d packages."
-msgstr[0] "ඇසුරුමක් ඉවත් වෙමින්."
-msgstr[1] "ඇසුරුම් %(num)d ක් ඉවත් වෙමින්."
-
-#: src/modules/packages/main.py:725 src/modules/packages/main.py:737
-#: src/modules/packages/main.py:765
-msgid "Package Manager error"
-msgstr "පැකේජ කළමනාකරු දෝෂයකි"
-
-#: src/modules/packages/main.py:726
-msgid ""
-"The package manager could not prepare updates. The command <pre>{!s}</pre> "
-"returned error code {!s}."
-msgstr ""
-"පැකේජ කළමනාකරුට යාවත්කාලීන සකස් කිරීමට නොහැකි විය. විධානය <pre>{!s}</pre> "
-"දෝෂ කේතය {!s} ලබා දුන්නේය."
-
-#: src/modules/packages/main.py:738
-msgid ""
-"The package manager could not update the system. The command <pre>{!s}</pre>"
-" returned error code {!s}."
-msgstr ""
-"පැකේජ කළමනාකරුට පද්ධතිය යාවත්කාලීන කළ නොහැකි විය. විධානය <pre>{!s}</pre> දෝෂ"
-" කේතය {!s} ලබා දුන්නේය."
-
-#: src/modules/packages/main.py:766
-msgid ""
-"The package manager could not make changes to the installed system. The "
-"command <pre>{!s}</pre> returned error code {!s}."
-msgstr ""
-"පැකේජ කළමනාකරුට ස්ථාපිත පද්ධතියට වෙනස්කම් සිදු කළ නොහැක. විධානය "
-"<pre>{!s}</pre> දෝෂ කේතය {!s} ලබා දුන්නේය."
-
-#: src/modules/plymouthcfg/main.py:27
-msgid "Configure Plymouth theme"
-msgstr "Plymouth තේමාව වින්‍යාස කරන්න"
-
-#: src/modules/initcpiocfg/main.py:28
-msgid "Configuring mkinitcpio."
-msgstr "mkinitcpio වින්‍යාස කරමින්."
-
-#: src/modules/localecfg/main.py:30
-msgid "Configuring locales."
-msgstr "ස්ථාන වින්‍යාස කිරීම."
 
 #: src/modules/mount/main.py:42
 msgid "Mounting partitions."
@@ -290,34 +46,34 @@ msgstr "zpool අගුලු හැරීමට අසමත් විය"
 msgid "Failed to set zfs mountpoint"
 msgstr "zfs සවිකිරීමේ ලක්ෂ්‍යය සැකසීමට අසමත් විය"
 
+#: src/modules/mount/main.py:229 src/modules/initcpiocfg/main.py:235
+#: src/modules/initcpiocfg/main.py:239 src/modules/rawfs/main.py:164
+#: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
+#: src/modules/openrcdmcryptcfg/main.py:72
+#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/fstab/main.py:361
+#: src/modules/fstab/main.py:367 src/modules/fstab/main.py:394
+#: src/modules/localecfg/main.py:140 src/modules/networkcfg/main.py:105
+msgid "Configuration Error"
+msgstr "වින්‍යාස දෝෂය"
+
+#: src/modules/mount/main.py:230 src/modules/initcpiocfg/main.py:236
+#: src/modules/rawfs/main.py:165 src/modules/initramfscfg/main.py:86
+#: src/modules/openrcdmcryptcfg/main.py:73 src/modules/fstab/main.py:362
+msgid "No partitions are defined for <pre>{!s}</pre> to use."
+msgstr "{!s} සඳහා භාවිතා කිරීමට කිසිදු කොටස් නිර්වචනය කර නොමැත."
+
 #: src/modules/mount/main.py:253
 msgid "zfs mounting error"
 msgstr "zfs සවිකිරීමේ දෝෂයකි"
 
-#: src/modules/rawfs/main.py:26
-msgid "Installing data."
-msgstr "දත්ත ස්ථාපනය වෙමින්."
-
-#: src/modules/dummypython/main.py:35
-msgid "Dummy python job."
-msgstr "ඩමි python වැඩසටහන."
-
-#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
-#: src/modules/dummypython/main.py:94
-msgid "Dummy python step {}"
-msgstr "ව්‍යාජ python පියවර {}"
-
-#: src/modules/hwclock/main.py:26
-msgid "Setting hardware clock."
-msgstr "දෘඩාංග ඔරලෝසුව සැකසෙමින්."
-
-#: src/modules/openrcdmcryptcfg/main.py:26
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "OpenRC dmcrypt සේවාව වින්‍යාස කරමින්."
-
 #: src/modules/services-systemd/main.py:26
 msgid "Configure systemd services"
 msgstr "systemd සේවා වින්‍යාස කරන්න"
+
+#: src/modules/services-systemd/main.py:59
+#: src/modules/services-openrc/main.py:93
+msgid "Cannot modify service"
+msgstr "සේවාව වෙනස් කළ නොහැක"
 
 #: src/modules/services-systemd/main.py:60
 msgid ""
@@ -353,14 +109,6 @@ msgid ""
 msgstr ""
 "{name!s} ඒකකය සඳහා නොදන්නා systemd විධාන <code>{command!s}</code> සහ "
 "<code>{suffix!s}</code>."
-
-#: src/modules/mkinitfs/main.py:27
-msgid "Creating initramfs with mkinitfs."
-msgstr "mkinitfs සමඟ initramfs නිර්මාණය කිරීම."
-
-#: src/modules/mkinitfs/main.py:49
-msgid "Failed to run mkinitfs on the target"
-msgstr "ඉලක්කය මත mkinitfs ධාවනය කිරීමට අසමත් විය"
 
 #: src/modules/unpackfs/main.py:34
 msgid "Filling up filesystems."
@@ -427,3 +175,255 @@ msgstr ""
 #: src/modules/unpackfs/main.py:481
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "ඉලක්ක පද්ධතියේ \"{}\" ගමනාන්තය නාමාවලියක් නොවේ"
+
+#: src/modules/displaymanager/main.py:524
+msgid "Cannot write KDM configuration file"
+msgstr "KDM වින්‍යාස ගොනුව ලිවිය නොහැක"
+
+#: src/modules/displaymanager/main.py:525
+msgid "KDM config file {!s} does not exist"
+msgstr "KDM වින්‍යාස ගොනුව {!s} නොපවතී"
+
+#: src/modules/displaymanager/main.py:586
+msgid "Cannot write LXDM configuration file"
+msgstr "LXDM වින්‍යාස ගොනුව ලිවිය නොහැක"
+
+#: src/modules/displaymanager/main.py:587
+msgid "LXDM config file {!s} does not exist"
+msgstr "LXDM වින්‍යාස ගොනුව {!s} නොපවතී"
+
+#: src/modules/displaymanager/main.py:670
+msgid "Cannot write LightDM configuration file"
+msgstr "LightDM වින්‍යාස ගොනුව ලිවිය නොහැක"
+
+#: src/modules/displaymanager/main.py:671
+msgid "LightDM config file {!s} does not exist"
+msgstr "LightDM වින්‍යාස ගොනුව {!s} නොපවතී"
+
+#: src/modules/displaymanager/main.py:745
+msgid "Cannot configure LightDM"
+msgstr "LightDM වින්‍යාස කළ නොහැක"
+
+#: src/modules/displaymanager/main.py:746
+msgid "No LightDM greeter installed."
+msgstr "LightDM ග්‍රීටර් ස්ථාපනය කර නැත."
+
+#: src/modules/displaymanager/main.py:777
+msgid "Cannot write SLIM configuration file"
+msgstr "SLIM වින්‍යාස ගොනුව ලිවිය නොහැක"
+
+#: src/modules/displaymanager/main.py:778
+msgid "SLIM config file {!s} does not exist"
+msgstr "SLIM වින්‍යාස ගොනුව {!s} නොපවතී"
+
+#: src/modules/displaymanager/main.py:991
+msgid "No display managers selected for the displaymanager module."
+msgstr "සංදර්ශක කළමනාකරු මොඩියුලය සඳහා සංදර්ශක කළමනාකරුවන් තෝරාගෙන නොමැත."
+
+#: src/modules/displaymanager/main.py:992
+msgid ""
+"The displaymanagers list is empty or undefined in both globalstorage and "
+"displaymanager.conf."
+msgstr ""
+"ගෝලීය ගබඩාව සහ displaymanager.conf යන දෙකෙහිම සංදර්ශක කළමනාකරු ලැයිස්තුව "
+"හිස් හෝ අර්ථ දක්වා නොමැත."
+
+#: src/modules/displaymanager/main.py:1074
+msgid "Display manager configuration was incomplete"
+msgstr "සංදර්ශක කළමනාකරු වින්‍යාසය අසම්පූර්ණ විය"
+
+#: src/modules/initcpiocfg/main.py:28
+msgid "Configuring mkinitcpio."
+msgstr "mkinitcpio වින්‍යාස කරමින්."
+
+#: src/modules/initcpiocfg/main.py:240 src/modules/initramfscfg/main.py:90
+#: src/modules/openrcdmcryptcfg/main.py:77 src/modules/fstab/main.py:368
+#: src/modules/localecfg/main.py:141 src/modules/networkcfg/main.py:106
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr "{!s} සඳහා භාවිතා කිරීමට root mount point ලබා දී නොමැත."
+
+#: src/modules/rawfs/main.py:26
+msgid "Installing data."
+msgstr "දත්ත ස්ථාපනය වෙමින්."
+
+#: src/modules/services-openrc/main.py:29
+msgid "Configure OpenRC services"
+msgstr "OpenRC සේවා වින්‍යාස කරන්න"
+
+#: src/modules/services-openrc/main.py:57
+msgid "Cannot add service {name!s} to run-level {level!s}."
+msgstr "ධාවන මට්ටම {level!s} වෙත සේවාව {name!s} එක් කළ නොහැක."
+
+#: src/modules/services-openrc/main.py:59
+msgid "Cannot remove service {name!s} from run-level {level!s}."
+msgstr "ධාවන මට්ටමේ {level!s} වෙතින් සේවාව {name!s} ඉවත් කළ නොහැක."
+
+#: src/modules/services-openrc/main.py:61
+msgid ""
+"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
+"level {level!s}."
+msgstr ""
+"{name!s} සේවාව සඳහා නොදන්නා සේවා-ක්‍රියාව <code>{arg!s}</code> ධාවන මට්ටමේ "
+"{level!s}."
+
+#: src/modules/services-openrc/main.py:94
+msgid ""
+"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"<code>rc-update {arg!s}</code> chroot හි ඇමතුම {num!s} දෝෂ කේතය ලබා දුන්නේය."
+
+#: src/modules/services-openrc/main.py:101
+msgid "Target runlevel does not exist"
+msgstr "ඉලක්ක ධාවන මට්ටම නොපවතී"
+
+#: src/modules/services-openrc/main.py:102
+msgid ""
+"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr "ධාවන මට්ටම {level!s} සඳහා මාර්ගය <code>{path!s}</code>, එය නොපවතී."
+
+#: src/modules/services-openrc/main.py:110
+msgid "Target service does not exist"
+msgstr "ඉලක්ක සේවාව නොපවතී"
+
+#: src/modules/services-openrc/main.py:111
+msgid ""
+"The path for service {name!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr "සේවාව සඳහා {name!s} මාර්ගය <code>{path!s}</code>, එය නොපවතී."
+
+#: src/modules/plymouthcfg/main.py:27
+msgid "Configure Plymouth theme"
+msgstr "Plymouth තේමාව වින්‍යාස කරන්න"
+
+#: src/modules/packages/main.py:54 src/modules/packages/main.py:65
+#: src/modules/packages/main.py:75
+msgid "Install packages."
+msgstr "ඇසුරුම් ස්ථාපනය කරන්න."
+
+#: src/modules/packages/main.py:63
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "පැකේජ සැකසීම (%(count)d / %(total)d)"
+
+#: src/modules/packages/main.py:68
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] "ඇසුරුමක් ස්ථාපනය වෙමින්."
+msgstr[1] "ඇසුරුම් %(num)d ක් ස්ථාපනය වෙමින්."
+
+#: src/modules/packages/main.py:71
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] "ඇසුරුමක් ඉවත් වෙමින්."
+msgstr[1] "ඇසුරුම් %(num)d ක් ඉවත් වෙමින්."
+
+#: src/modules/packages/main.py:725 src/modules/packages/main.py:737
+#: src/modules/packages/main.py:765
+msgid "Package Manager error"
+msgstr "පැකේජ කළමනාකරු දෝෂයකි"
+
+#: src/modules/packages/main.py:726
+msgid ""
+"The package manager could not prepare updates. The command <pre>{!s}</pre> "
+"returned error code {!s}."
+msgstr ""
+"පැකේජ කළමනාකරුට යාවත්කාලීන සකස් කිරීමට නොහැකි විය. විධානය <pre>{!s}</pre> "
+"දෝෂ කේතය {!s} ලබා දුන්නේය."
+
+#: src/modules/packages/main.py:738
+msgid ""
+"The package manager could not update the system. The command <pre>{!s}</pre>"
+" returned error code {!s}."
+msgstr ""
+"පැකේජ කළමනාකරුට පද්ධතිය යාවත්කාලීන කළ නොහැකි විය. විධානය <pre>{!s}</pre> දෝෂ"
+" කේතය {!s} ලබා දුන්නේය."
+
+#: src/modules/packages/main.py:766
+msgid ""
+"The package manager could not make changes to the installed system. The "
+"command <pre>{!s}</pre> returned error code {!s}."
+msgstr ""
+"පැකේජ කළමනාකරුට ස්ථාපිත පද්ධතියට වෙනස්කම් සිදු කළ නොහැක. විධානය "
+"<pre>{!s}</pre> දෝෂ කේතය {!s} ලබා දුන්නේය."
+
+#: src/modules/bootloader/main.py:43
+msgid "Install bootloader."
+msgstr "bootloader ස්ථාපනය කරන්න."
+
+#: src/modules/bootloader/main.py:614
+msgid "Failed to install grub, no partitions defined in global storage"
+msgstr ""
+"Grub ස්ථාපනය කිරීමට අපොහොසත් විය, ගෝලීය ආචයනය තුළ කොටස් අර්ථ දක්වා නොමැත"
+
+#: src/modules/bootloader/main.py:782
+msgid "Bootloader installation error"
+msgstr "Bootloader ස්ථාපනය කිරීමේ දෝෂයකි"
+
+#: src/modules/bootloader/main.py:783
+msgid ""
+"The bootloader could not be installed. The installation command "
+"<pre>{!s}</pre> returned error code {!s}."
+msgstr ""
+"ඇරඹුම් කාරකය ස්ථාපනය කල නොහැක. ස්ථාපන විධානය <pre>{!s}</pre> දෝෂ කේතය {!s} "
+"ලබා දුන්නේය."
+
+#: src/modules/hwclock/main.py:26
+msgid "Setting hardware clock."
+msgstr "දෘඩාංග ඔරලෝසුව සැකසෙමින්."
+
+#: src/modules/mkinitfs/main.py:27
+msgid "Creating initramfs with mkinitfs."
+msgstr "mkinitfs සමඟ initramfs නිර්මාණය කිරීම."
+
+#: src/modules/mkinitfs/main.py:49
+msgid "Failed to run mkinitfs on the target"
+msgstr "ඉලක්කය මත mkinitfs ධාවනය කිරීමට අසමත් විය"
+
+#: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
+msgid "The exit code was {}"
+msgstr "පිටවීමේ කේතය වූයේ {}"
+
+#: src/modules/dracut/main.py:27
+msgid "Creating initramfs with dracut."
+msgstr "dracut සමඟ initramfs නිර්මාණය කිරීම."
+
+#: src/modules/dracut/main.py:49
+msgid "Failed to run dracut on the target"
+msgstr "ඉලක්කය මත ඩ්‍රැකට් ධාවනය කිරීමට අපොහොසත් විය"
+
+#: src/modules/initramfscfg/main.py:32
+msgid "Configuring initramfs."
+msgstr "initramfs වින්‍යාස කිරීම."
+
+#: src/modules/openrcdmcryptcfg/main.py:26
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "OpenRC dmcrypt සේවාව වින්‍යාස කරමින්."
+
+#: src/modules/fstab/main.py:29
+msgid "Writing fstab."
+msgstr "fstab ලියමින්."
+
+#: src/modules/fstab/main.py:395
+msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
+msgstr ""
+"භාවිතා කිරීමට <pre>{!s}</pre> සඳහා <pre>{!s}</pre> වින්‍යාසයක් ලබා දී නොමැත."
+
+#: src/modules/dummypython/main.py:35
+msgid "Dummy python job."
+msgstr "ඩමි python වැඩසටහන."
+
+#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
+#: src/modules/dummypython/main.py:94
+msgid "Dummy python step {}"
+msgstr "ව්‍යාජ python පියවර {}"
+
+#: src/modules/localecfg/main.py:31
+msgid "Configuring locales."
+msgstr "ස්ථාන වින්‍යාස කිරීම."
+
+#: src/modules/networkcfg/main.py:29
+msgid "Saving network configuration."
+msgstr "ජාල වින්‍යාසය සුරැකෙමින්."

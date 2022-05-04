@@ -862,52 +862,52 @@ The installer will quit and all changes will be lost.</source>
       <translation>&lt;strong&gt;%1 ස්ථාපකය වෙත සාදරයෙන් පිළිගනිමු&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="217"/>
+      <location filename="../src/modules/users/Config.cpp" line="221"/>
       <source>Your username is too long.</source>
       <translation>පරිශීලක නාමය දිග වැඩිය.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="223"/>
+      <location filename="../src/modules/users/Config.cpp" line="227"/>
       <source>'%1' is not allowed as username.</source>
       <translation>'%1' පරිශීලක නාමයක් ලෙස ඉඩ නොදේ.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="230"/>
+      <location filename="../src/modules/users/Config.cpp" line="234"/>
       <source>Your username must start with a lowercase letter or underscore.</source>
       <translation>ඔබගේ පරිශීලක නාමය කුඩා අකුරකින් හෝ යටි ඉරකින් ආරම්භ විය යුතුය.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="234"/>
+      <location filename="../src/modules/users/Config.cpp" line="238"/>
       <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
       <translation>කුඩා අකුරු, ඉලක්කම්, යටි ඉරි සහ තනි ඉර පමණක් ඉඩ දෙනු ලැබේ.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="279"/>
+      <location filename="../src/modules/users/Config.cpp" line="288"/>
       <source>Your hostname is too short.</source>
       <translation>ඔබගේ සත්කාරක නාමය කෙටි වැඩිය.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="283"/>
+      <location filename="../src/modules/users/Config.cpp" line="292"/>
       <source>Your hostname is too long.</source>
       <translation>ඔබේ සත්කාරක නාමය දිග වැඩියි.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="289"/>
+      <location filename="../src/modules/users/Config.cpp" line="298"/>
       <source>'%1' is not allowed as hostname.</source>
       <translation>'%1' ධාරක නාමය ලෙස ඉඩ නොදේ.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="295"/>
+      <location filename="../src/modules/users/Config.cpp" line="304"/>
       <source>Only letters, numbers, underscore and hyphen are allowed.</source>
       <translation>අකුරු, ඉලක්කම්, යටි ඉරි සහ තනි ඉර පමණක් ඉඩ දෙනු ලැබේ.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="534"/>
+      <location filename="../src/modules/users/Config.cpp" line="573"/>
       <source>Your passwords do not match!</source>
       <translation>ඔබගේ මුරපද නොගැලපේ!</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="548"/>
+      <location filename="../src/modules/users/Config.cpp" line="587"/>
       <source>OK!</source>
       <translation>හරි!</translation>
     </message>
@@ -2487,7 +2487,7 @@ The installer will quit and all changes will be lost.</source>
       <translation>නොදන්නා දෝෂයකි</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="782"/>
+      <location filename="../src/modules/users/Config.cpp" line="818"/>
       <source>Password is empty</source>
       <translation>මුරපදය හිස් ය</translation>
     </message>
@@ -3421,29 +3421,29 @@ Output:
   <context>
     <name>SetHostNameJob</name>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="37"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="36"/>
       <source>Set hostname %1</source>
       <translation>ධාරක නාමය සකසන්න %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="44"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="43"/>
       <source>Set hostname &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>ධාරක නාමය සකසන්න &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="51"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="50"/>
       <source>Setting hostname %1.</source>
       <translation>සත්කාරක නාමය %1 සැකසීම.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="122"/>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="129"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="124"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="131"/>
       <source>Internal Error</source>
       <translation>අභ්යන්තර දෝෂයකි</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="137"/>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="146"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="142"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="159"/>
       <source>Cannot write hostname to target system</source>
       <translation>ඉලක්ක පද්ධතියට සත්කාරක නාමය ලිවිය නොහැක</translation>
     </message>
@@ -3645,18 +3645,18 @@ Output:
   <context>
     <name>SetupGroupsJob</name>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="185"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="182"/>
       <source>Preparing groups.</source>
       <translation>කණ්ඩායම් සූදානම් කිරීම.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="197"/>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="202"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="194"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="199"/>
       <source>Could not create groups in target system</source>
       <translation>ඉලක්ක පද්ධතිය තුළ කණ්ඩායම් සෑදීමට නොහැකි විය</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="203"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="200"/>
       <source>These groups are missing in the target system: %1</source>
       <translation>ඉලක්ක පද්ධතිය තුළ මෙම කණ්ඩායම් අතුරුදහන් වී ඇත: %1</translation>
     </message>
@@ -3669,12 +3669,12 @@ Output:
       <translation>&lt;strong&gt;sudo&lt;/strong&gt; භාවිතා කරන්නන් වින්‍යාස කරන්න.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="74"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="71"/>
       <source>Cannot chmod sudoers file.</source>
       <translation>sudoers ගොනුව chmod කළ නොහැක.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="79"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="76"/>
       <source>Cannot create sudoers file for writing.</source>
       <translation>ලිවීම සඳහා sudoers ගොනුව සෑදිය නොහැක.</translation>
     </message>
@@ -3877,12 +3877,12 @@ Output:
   <context>
     <name>UsersPage</name>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="177"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="190"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
       <translation>&lt;small&gt;එක් අයෙකුට වඩා මෙම පරිගණකය භාවිතා කරන්නේ නම්, සැකසීමෙන් පසු ඔබට ගිණුම් කිහිපයක් සෑදිය හැක.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="183"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="196"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
       <translation>&lt;small&gt;මෙම පරිගණකය එක් අයෙකුට වඩා භාවිතා කරන්නේ නම්, ස්ථාපනය කිරීමෙන් පසු ඔබට ගිණුම් කිහිපයක් සෑදිය හැක.&lt;/small&gt;</translation>
     </message>
