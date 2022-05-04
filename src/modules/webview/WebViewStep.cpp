@@ -28,7 +28,7 @@ WebViewStep::WebViewStep( QObject* parent )
 #ifdef WEBVIEW_WITH_WEBENGINE
     QtWebEngine::initialize();
 #endif
-    m_view = new C_QWEBVIEW();
+    m_view = new WebViewWidget();
 #ifdef WEBVIEW_WITH_WEBKIT
     m_view->settings()->setFontFamily( QWebSettings::StandardFont,
                                        m_view->settings()->fontFamily( QWebSettings::SansSerifFont ) );

@@ -20,20 +20,21 @@
 
 #include <QVariantMap>
 
-#ifdef WEBVIEW_WITH_WEBKIT
-#define C_QWEBVIEW QWebView
-#endif
-#ifdef WEBVIEW_WITH_WEBENGINE
-#ifdef C_QWEBVIEW
+#if defined( WEBVIEW_WITH_WEBKIT ) && defined( WEBVIEW_WITH_WEBENGINE )
 #error Both WEBENGINE and WEBKIT enabled
 #endif
-#define C_QWEBVIEW QWebEngineView
-#endif
-#ifndef C_QWEBVIEW
+#if !defined( WEBVIEW_WITH_WEBKIT ) && !defined( WEBVIEW_WITH_WEBENGINE )
 #error Neither WEBENGINE nor WEBKIT enabled
 #endif
 
-class C_QWEBVIEW;
+#ifdef WEBVIEW_WITH_WEBKIT
+class QWebView;
+using WebViewWidget = QWebView;
+#endif
+#ifdef WEBVIEW_WITH_WEBENGINE
+class QWebEngineView;
+using WebViewWidget = QWebEngineView;
+#endif
 
 class PLUGINDLLEXPORT WebViewStep : public Calamares::ViewStep
 {
@@ -60,7 +61,7 @@ public:
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
 private:
-    C_QWEBVIEW* m_view;
+    WebViewWidget* m_view;
     QString m_url;
     QString m_prettyName;
 };
