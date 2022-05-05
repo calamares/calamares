@@ -64,17 +64,25 @@ specialCaseSystemLanguage()
     if ( lang.isEmpty() )
         return {};
 
-    const QString serbian_latin = QStringLiteral( "sr@latin" );
-    const QString serbian_latin_variant = QStringLiteral( "sr@latn" );
-    if ( ( lang == serbian_latin ) || ( lang == serbian_latin_variant ) )
+    QStringList lang_parts = lang.split(QLatin1Char('@'));
+    if (lang_parts.size()!=2)
+        return {};
+
+    QString region = lang_parts[1];
+
+    QLocale locale(lang);
+
+    const QString serbian_latin = QStringLiteral( "latin" );
+    const QString serbian_latin_variant = QStringLiteral( "latn" );
+    if ( locale.language() == QLocale::Serbian && ( region == serbian_latin || region == serbian_latin_variant ) )
     {
-        return serbian_latin;
+        return QStringLiteral( "sr@latin" );
     }
 
-    const QString valencian = QStringLiteral( "ca@valencia" );
-    if ( lang == valencian )
+    const QString valencian = QStringLiteral( "valencia" );
+    if ( locale.language() == QLocale::Catalan && region == valencian )
     {
-        return valencian;
+        return QStringLiteral( "ca@valencia" );
     }
 
     return {};
