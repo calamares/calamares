@@ -13,46 +13,59 @@
 
 #include <memory>
 
-/** @brief Handle special cases of Calamares language names
- *
- * If a given @p localeName (e.g. en_US, or sr@latin) has special handling,
- * returns a pair of pointers:
- * - a pointer to a QLocale; this is the locale to use, or may be @c nullptr
- *   to indicate that the Qt locale derived from @p localeName is accepatable.
- * - a pointer to a QString; this is the native language name to use, or may
- *   be @c nullptr to indicate that the Qt value is acceptable.
- *
- * Returns a pair of nullptrs for non-special cases.
- */
-static std::pair< QLocale*, QString* >
-specialCase( const CalamaresUtils::Locale::Translation::Id& locale )
+struct TranslationSpecialCase
 {
-    const QString localeName = locale.name;
-    if ( localeName == "sr@latin" )
+    const char* id;  // The Calamares ID for the translation
+
+    QLocale::Language language;
+    QLocale::Script script;
+    QLocale::Country country;
+
+    const char* name;  // Native name, if different from Qt
+
+    constexpr TranslationSpecialCase( const char* i,
+                                      QLocale::Language l,
+                                      QLocale::Script s,
+                                      QLocale::Country c,
+                                      const char* n )
+        : id( i )
+        , language( l )
+        , script( s )
+        , country( c )
+        , name( n )
     {
-        static QLocale loc( QLocale::Language::Serbian, QLocale::Script::LatinScript, QLocale::Country::Serbia );
-        return { &loc, nullptr };
-    }
-    if ( localeName == "ca@valencia" )
-    {
-        static QString name = QStringLiteral( "Català (València)" );
-        return { nullptr, &name };
-    }
-    if ( localeName == "zh_CN" )
-    {
-        // Simplified Chinese, but drop the (China) from the name
-        static QString name = QStringLiteral( "简体中文" );
-        return { nullptr, &name };
-    }
-    if ( localeName == "zh_TW" )
-    {
-        // Traditional Chinese, but drop (Taiwan) from the name
-        static QString name = QStringLiteral( "繁體中文" );
-        return { nullptr, &name };
     }
 
-    return { nullptr, nullptr };
-}
+    constexpr bool customLocale() const { return language != QLocale::Language::AnyLanguage; }
+};
+
+/** @brief Handle special cases of Calamares language names
+ *
+ * If a given @p id (e.g. en_US, or sr@latin) has special handling,
+ * put an entry in this table. The QLocale constants are used when a
+ * particular @p id needs specific configuration, **if** @p language
+ * is not @c AnyLanguage. The @p name is used as a human-readable
+ * native name if the Qt name is not suitable.
+ *
+ * Examples:
+ * - `sr@latin` needs specific Qt Locale settnigs, but the name is OK
+ * - Chinese needs a specific name, but the Locale is OK
+ */
+static constexpr const TranslationSpecialCase special_cases[] = {
+    { "sr@latin", QLocale::Language::Serbian, QLocale::Script::LatinScript, QLocale::Country::Serbia, nullptr },
+    // Valencian is a regional variant of Catalan
+    { "ca@valencia",
+      QLocale::Language::AnyLanguage,
+      QLocale::Script::AnyScript,
+      QLocale::Country::AnyCountry,
+      "Català (València)" },
+    // Simplified Chinese, but drop the (China) from the name
+    { "zh_CN", QLocale::Language::AnyLanguage, QLocale::Script::AnyScript, QLocale::Country::AnyCountry, "简体中文" },
+    // Traditional Chinese, but drop (Taiwan) from the name
+    { "zh_TW", QLocale::Language::AnyLanguage, QLocale::Script::AnyScript, QLocale::Country::AnyCountry, "繁體中文" },
+};
+
+static_assert( std::size( special_cases ) == 4 );
 
 static QString
 specialCaseSystemLanguage()
@@ -64,13 +77,13 @@ specialCaseSystemLanguage()
     if ( lang.isEmpty() )
         return {};
 
-    QStringList lang_parts = lang.split(QLatin1Char('@'));
-    if (lang_parts.size()!=2)
+    QStringList lang_parts = lang.split( QLatin1Char( '@' ) );
+    if ( lang_parts.size() != 2 )
         return {};
 
-    QString region = lang_parts[1];
+    QString region = lang_parts[ 1 ];
 
-    QLocale locale(lang);
+    QLocale locale( lang );
 
     const QString serbian_latin = QStringLiteral( "latin" );
     const QString serbian_latin_variant = QStringLiteral( "latn" );
@@ -103,11 +116,14 @@ Translation::Translation( const Id& localeId, LabelFormat format, QObject* paren
     , m_locale( getLocale( localeId ) )
     , m_localeId( localeId.name.isEmpty() ? m_locale.name() : localeId.name )
 {
-    auto [ _, name ] = specialCase( localeId );
+    auto it = std::find_if( std::cbegin( special_cases ),
+                            std::cend( special_cases ),
+                            [ &localeId ]( const TranslationSpecialCase& s ) { return localeId.name == s.id; } );
+    const char* name = ( it != std::cend( special_cases ) ) ? it->name : nullptr;
 
     QString longFormat = QObject::tr( "%1 (%2)" );
 
-    QString languageName = name ? *name : m_locale.nativeLanguageName();
+    QString languageName = name ? QString::fromUtf8( name ) : m_locale.nativeLanguageName();
     QString englishName = m_locale.languageToString( m_locale.language() );
 
     if ( languageName.isEmpty() )
@@ -133,8 +149,14 @@ Translation::getLocale( const Id& localeId )
         return QLocale();
     }
 
-    auto [ locale, _ ] = specialCase( localeId );
-    return locale ? *locale : QLocale( localeName );
+    auto it = std::find_if( std::cbegin( special_cases ),
+                            std::cend( special_cases ),
+                            [ &localeId ]( const TranslationSpecialCase& s ) { return localeId.name == s.id; } );
+    if ( it != std::cend( special_cases ) && it->customLocale() )
+    {
+        return QLocale( it->language, it->script, it->country );
+    }
+    return QLocale( localeName );
 }
 
 }  // namespace Locale
