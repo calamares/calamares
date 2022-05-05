@@ -16,25 +16,13 @@
 struct TranslationSpecialCase
 {
     const char* id;  // The Calamares ID for the translation
+    const char** regions;
 
     QLocale::Language language;
     QLocale::Script script;
     QLocale::Country country;
 
     const char* name;  // Native name, if different from Qt
-
-    constexpr TranslationSpecialCase( const char* i,
-                                      QLocale::Language l,
-                                      QLocale::Script s,
-                                      QLocale::Country c,
-                                      const char* n )
-        : id( i )
-        , language( l )
-        , script( s )
-        , country( c )
-        , name( n )
-    {
-    }
 
     constexpr bool customLocale() const { return language != QLocale::Language::AnyLanguage; }
 };
@@ -47,58 +35,87 @@ struct TranslationSpecialCase
  * is not @c AnyLanguage. The @p name is used as a human-readable
  * native name if the Qt name is not suitable.
  *
+ * Another form of lookup maps a @p language + a region-identifier
+ * to a @p id, running around Qt's neglect of `@region` variants.
+ *
  * Examples:
  * - `sr@latin` needs specific Qt Locale settnigs, but the name is OK
  * - Chinese needs a specific name, but the Locale is OK
  */
+static const char* serbian_latin_regions[] = { "latin", "latn", nullptr };
+static const char* catalan_regions[] = { "valencia", nullptr };
 static constexpr const TranslationSpecialCase special_cases[] = {
-    { "sr@latin", QLocale::Language::Serbian, QLocale::Script::LatinScript, QLocale::Country::Serbia, nullptr },
+    { "sr@latin",
+      serbian_latin_regions,
+      QLocale::Language::Serbian,
+      QLocale::Script::LatinScript,
+      QLocale::Country::Serbia,
+      nullptr },
     // Valencian is a regional variant of Catalan
     { "ca@valencia",
-      QLocale::Language::AnyLanguage,
+      catalan_regions,
+      QLocale::Language::Catalan,
       QLocale::Script::AnyScript,
       QLocale::Country::AnyCountry,
       "Català (València)" },
     // Simplified Chinese, but drop the (China) from the name
-    { "zh_CN", QLocale::Language::AnyLanguage, QLocale::Script::AnyScript, QLocale::Country::AnyCountry, "简体中文" },
+    { "zh_CN",
+      nullptr,
+      QLocale::Language::AnyLanguage,
+      QLocale::Script::AnyScript,
+      QLocale::Country::AnyCountry,
+      "简体中文" },
     // Traditional Chinese, but drop (Taiwan) from the name
-    { "zh_TW", QLocale::Language::AnyLanguage, QLocale::Script::AnyScript, QLocale::Country::AnyCountry, "繁體中文" },
+    { "zh_TW",
+      nullptr,
+      QLocale::Language::AnyLanguage,
+      QLocale::Script::AnyScript,
+      QLocale::Country::AnyCountry,
+      "繁體中文" },
 };
 
 static_assert( std::size( special_cases ) == 4 );
+
+static inline bool
+lookup_region( const QByteArray& region, const char** regions_list )
+{
+    if ( regions_list )
+    {
+        while ( *regions_list )
+        {
+            if ( region == *regions_list )
+            {
+                return true;
+            }
+            regions_list++;
+        }
+    }
+    return false;
+}
 
 static QString
 specialCaseSystemLanguage()
 {
     const QByteArray lang_p = qgetenv( "LANG" );
     if ( lang_p.isEmpty() )
+    {
+        // This will figure out the system language some other way
         return {};
-    QString lang = QString::fromLatin1( lang_p );
-    if ( lang.isEmpty() )
-        return {};
+    }
 
-    QStringList lang_parts = lang.split( QLatin1Char( '@' ) );
+    auto lang_parts = lang_p.split( '@' );
     if ( lang_parts.size() != 2 )
+    {
         return {};
-
-    QString region = lang_parts[ 1 ];
-
-    QLocale locale( lang );
-
-    const QString serbian_latin = QStringLiteral( "latin" );
-    const QString serbian_latin_variant = QStringLiteral( "latn" );
-    if ( locale.language() == QLocale::Serbian && ( region == serbian_latin || region == serbian_latin_variant ) )
-    {
-        return QStringLiteral( "sr@latin" );
     }
 
-    const QString valencian = QStringLiteral( "valencia" );
-    if ( locale.language() == QLocale::Catalan && region == valencian )
-    {
-        return QStringLiteral( "ca@valencia" );
-    }
-
-    return {};
+    QLocale locale( QString::fromLatin1( lang_p ) );
+    auto it
+        = std::find_if( std::cbegin( special_cases ),
+                        std::cend( special_cases ),
+                        [ language = locale.language(), region = lang_parts[ 1 ] ]( const TranslationSpecialCase& s )
+                        { return ( s.language == language ) && lookup_region( region, s.regions ); } );
+    return ( it != std::cend( special_cases ) ) ? QString::fromLatin1( it->id ) : QString();
 }
 
 namespace CalamaresUtils
