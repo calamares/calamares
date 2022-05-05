@@ -72,9 +72,13 @@ static constexpr const TranslationSpecialCase special_cases[] = {
       QLocale::Script::AnyScript,
       QLocale::Country::AnyCountry,
       "繁體中文" },
+    { "oc",
+      nullptr,
+      QLocale::Language::AnyLanguage,
+      QLocale::Script::AnyScript,
+      QLocale::Country::AnyCountry,
+      "Lenga d'òc" },
 };
-
-static_assert( std::size( special_cases ) == 4 );
 
 static inline bool
 lookup_region( const QByteArray& region, const char** regions_list )
