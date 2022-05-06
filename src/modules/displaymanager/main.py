@@ -896,6 +896,7 @@ class DMgreetd(DisplayManager):
     def desktop_environment_setup(self, default_desktop_environment):
         with open(self.environments_path(), 'w') as envs_file:
             envs_file.write(default_desktop_environment.desktop_file)
+            envs_file.write("\n")
 
     def greeter_setup(self):
         pass
