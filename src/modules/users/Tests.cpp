@@ -298,7 +298,8 @@ UserTests::testHostSuggestions_data()
     QTest::newRow( "full   " ) << QStringLiteral( "${name}" ) << QStringLiteral( "chuckyeager" );
     QTest::newRow( "login+ " ) << QStringLiteral( "${login}-${first}" ) << QStringLiteral( "bill-chuck" );
     // This is a bit dodgy: assumes CPU architecture of the testing host
-    QTest::newRow( " cpu   " ) << QStringLiteral( "${cpu}X" ) << QStringLiteral( "x8664X" );  // Assume we don't test on non-amd64
+    QTest::newRow( " cpu   " ) << QStringLiteral( "${cpu}X" )
+                               << QStringLiteral( "x8664X" );  // Assume we don't test on non-amd64
     // These have X X in the template to indicate that they are bogus. Mostly we want
     // to see what the template engine does for these.
     QTest::newRow( "@prod  " ) << QStringLiteral( "X${product}X" ) << QString();
@@ -315,10 +316,11 @@ UserTests::testHostSuggestions()
     QFETCH( QString, templateString );
     QFETCH( QString, result );
 
-    if ( templateString.startsWith('X') && templateString.endsWith('X'))
+    if ( templateString.startsWith( 'X' ) && templateString.endsWith( 'X' ) )
     {
         QEXPECT_FAIL( "", "Test is too host-specific", Continue );
-        cWarning() << Logger::SubEntry << "Next test" << templateString << "->" << makeHostnameSuggestion( templateString, fullName, login );
+        cWarning() << Logger::SubEntry << "Next test" << templateString << "->"
+                   << makeHostnameSuggestion( templateString, fullName, login );
     }
     QCOMPARE( makeHostnameSuggestion( templateString, fullName, login ), result );
 }
