@@ -8,6 +8,12 @@ type: object
 properties:
     # User shell, should be path to /bin/sh or so
     userShell: { type: string }
+    user:
+        additionalProperties: false
+        type: object
+        properties:
+            shell: { type: string }  # Overrides userShell
+            forbidden_names: { type: array, items: { type: string } }
     # Group settings
     defaultGroups:
         type: array
@@ -47,6 +53,7 @@ properties:
             location: { type: string, enum: [ None, EtcFile, Hostnamed, Transient ] }
             writeHostsFile: { type: boolean, default: true }
             template: { type: string, default: "${first}-${product}" }
+            forbidden_names: { type: array, items: { type: string } }
     # Legacy Hostname setting
     setHostname: { type: string, enum: [ None, EtcFile, Hostnamed ] }
     writeHostsFile: { type: boolean, default: true }

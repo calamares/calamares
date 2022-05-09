@@ -252,8 +252,8 @@ public:
 
     bool isReady() const;
 
-    static const QStringList& forbiddenLoginNames();
-    static const QStringList& forbiddenHostNames();
+    const QStringList& forbiddenLoginNames() const;
+    const QStringList& forbiddenHostNames() const;
 
 public Q_SLOTS:
     /** @brief Sets the user's shell if possible
@@ -346,6 +346,9 @@ private:
     HostNameAction m_hostnameAction = HostNameAction::EtcHostname;
     bool m_writeEtcHosts = false;
     QString m_hostnameTemplate;
+
+    QStringList m_forbiddenHostNames;
+    QStringList m_forbiddenLoginNames;
 
     PasswordCheckList m_passwordChecks;
 };
