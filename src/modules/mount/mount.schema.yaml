@@ -15,7 +15,7 @@ properties:
                 device: { type: string }
                 fs: { type: string }
                 mountPoint: { type: string }
-                options: { type: string }
+                options: { type: array, items: { type: string } }
                 efi: { type: boolean, default: false }
             required: [ device, mountPoint ]
     btrfsSubvolumes:
@@ -35,9 +35,9 @@ properties:
             additionalProperties: false
             properties:
                 filesystem: { type: string }
-                options: { type: array }
-                ssdOptions: { type: array }
-                hddOptions: { type: array }
+                options: { type: array, items: { type: string } }
+                ssdOptions: { type: array, items: { type: string } }
+                hddOptions: { type: array, items: { type: string } }
             required: [ filesystem ]
 
 
