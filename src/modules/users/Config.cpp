@@ -219,13 +219,6 @@ Config::loginNameStatus() const
     {
         return tr( "Your username is too long." );
     }
-    for ( const QString& badName : forbiddenLoginNames() )
-    {
-        if ( 0 == QString::compare( badName, m_loginName, Qt::CaseSensitive ) )
-        {
-            return tr( "'%1' is not allowed as username." ).arg( badName );
-        }
-    }
 
     QRegExp validateFirstLetter( "^[a-z_]" );
     if ( validateFirstLetter.indexIn( m_loginName ) != 0 )
@@ -235,6 +228,12 @@ Config::loginNameStatus() const
     if ( !USERNAME_RX.exactMatch( m_loginName ) )
     {
         return tr( "Only lowercase letters, numbers, underscore and hyphen are allowed." );
+    }
+
+    // Although we've made the list lower-case, and the RE above forces lower-case, still pass the flag
+    if ( forbiddenLoginNames().contains( m_loginName, Qt::CaseInsensitive ) )
+    {
+        return tr( "'%1' is not allowed as username." ).arg( m_loginName );
     }
 
     return QString();
@@ -289,12 +288,11 @@ Config::hostnameStatus() const
     {
         return tr( "Your hostname is too long." );
     }
-    for ( const QString& badName : forbiddenHostNames() )
+
+    // "LocalHost" is just as forbidden as "localhost"
+    if ( forbiddenHostNames().contains( m_hostname, Qt::CaseInsensitive ) )
     {
-        if ( 0 == QString::compare( badName, m_hostname, Qt::CaseSensitive ) )
-        {
-            return tr( "'%1' is not allowed as hostname." ).arg( badName );
-        }
+        return tr( "'%1' is not allowed as hostname." ).arg( m_hostname );
     }
 
     if ( !HOSTNAME_RX.exactMatch( m_hostname ) )
