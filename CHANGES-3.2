@@ -19,7 +19,12 @@ This release contains contributions from (alphabetically by first name):
    are all better supported. Thanks Enrique.
 
 ## Modules ##
- - No module changes yet
+ - *users* module now has a structured *user* key with settings specific
+   to the user (shell, in particular). This maintains backwards compatibility
+   with the *userShell* key.
+ - *users* module now has lists of forbidden login- and host-names, to
+   avoid settings that will mess up the install (e.g. using a login-name
+   that is one of the system's reserved names). #1944
 
 
 # 3.2.57 (2022-05-04) #
