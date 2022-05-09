@@ -858,25 +858,6 @@ either( T ( *f )( const QVariantMap&, const QString&, U ),
     }
 }
 
-// TODO:3.3: Remove
-static void
-copyLegacy( const QVariantMap& source, const QString& sourceKey, QVariantMap& target, const QString& targetKey )
-{
-    if ( source.contains( sourceKey ) )
-    {
-        if ( target.contains( targetKey ) )
-        {
-            cWarning() << "Legacy *users* key" << sourceKey << "ignored.";
-        }
-        else
-        {
-            const QVariant legacyValue = source.value( sourceKey );
-            cWarning() << "Legacy *users* key" << sourceKey << "overrides hostname-settings.";
-            target.insert( targetKey, legacyValue );
-        }
-    }
-}
-
 /** @brief Tidy up a list of names
  *
  * Remove duplicates, apply lowercase, sort.
@@ -896,9 +877,6 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     {
         bool ok = false;  // Ignored
         QVariantMap userSettings = CalamaresUtils::getSubMap( configurationMap, "user", ok );
-
-        // TODO:3.3: Remove calls to copyLegacy
-        copyLegacy( configurationMap, "userShell", userSettings, "shell" );
 
         QString shell( QLatin1String( "/bin/bash" ) );  // as if it's not set at all
         if ( userSettings.contains( "shell" ) )
@@ -925,9 +903,6 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         bool ok = false;  // Ignored
         QVariantMap hostnameSettings = CalamaresUtils::getSubMap( configurationMap, "hostname", ok );
 
-        // TODO:3.3: Remove calls to copyLegacy
-        copyLegacy( configurationMap, "setHostname", hostnameSettings, "location" );
-        copyLegacy( configurationMap, "writeHostsFile", hostnameSettings, "writeHostsFile" );
         m_hostnameAction = getHostNameAction( hostnameSettings );
         m_writeEtcHosts = CalamaresUtils::getBool( hostnameSettings, "writeHostsFile", true );
         m_hostnameTemplate
