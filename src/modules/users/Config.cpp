@@ -884,13 +884,22 @@ copyLegacy( const QVariantMap& source, const QString& sourceKey, QVariantMap& ta
 void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    QString shell( QLatin1String( "/bin/bash" ) );  // as if it's not set at all
-    if ( configurationMap.contains( "userShell" ) )
+    // Handle *user* key and subkeys and legacy settings
     {
-        shell = CalamaresUtils::getString( configurationMap, "userShell" );
+        bool ok = false;  // Ignored
+        QVariantMap userSettings = CalamaresUtils::getSubMap( configurationMap, "user", ok );
+
+        // TODO:3.3: Remove calls to copyLegacy
+        copyLegacy( configurationMap, "userShell", userSettings, "shell" );
+
+        QString shell( QLatin1String( "/bin/bash" ) );  // as if it's not set at all
+        if ( userSettings.contains( "shell" ) )
+        {
+            shell = CalamaresUtils::getString( userSettings, "shell" );
+        }
+        // Now it might be explicitly set to empty, which is ok
+        setUserShell( shell );
     }
-    // Now it might be explicitly set to empty, which is ok
-    setUserShell( shell );
 
     setAutoLoginGroup( either< QString, const QString& >(
         CalamaresUtils::getString, configurationMap, "autologinGroup", "autoLoginGroup", QString() ) );

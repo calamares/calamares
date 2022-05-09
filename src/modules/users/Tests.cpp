@@ -53,6 +53,9 @@ private Q_SLOTS:
 
     void testAutoLogin_data();
     void testAutoLogin();
+
+    void testUserYAML_data();
+    void testUserYAML();
 };
 
 UserTests::UserTests() {}
@@ -453,6 +456,58 @@ UserTests::testAutoLogin()
 
     QCOMPARE( c.doAutoLogin(), autoLoginIsSet );
     QCOMPARE( c.autoLoginGroup(), autoLoginGroupName );
+}
+
+void
+UserTests::testUserYAML_data()
+{
+    QTest::addColumn< QString >( "filename" );
+    QTest::addColumn< QString >( "shell" );
+
+    QTest::newRow( "old, unset   " ) << "tests/7ao-shell.conf"
+                                     << "/bin/bash";
+    QTest::newRow( "old, empty   " ) << "tests/7bo-shell.conf"
+                                     << "";
+    QTest::newRow( "old, relative" ) << "tests/7co-shell.conf"
+                                     << "/bin/ls";  // Setting is ignored
+    QTest::newRow( "old, invalid " ) << "tests/7do-shell.conf"
+                                     << "";
+    QTest::newRow( "old, absolute" ) << "tests/7eo-shell.conf"
+                                     << "/usr/bin/dash";
+
+    QTest::newRow( "new, unset   " ) << "tests/7an-shell.conf"
+                                     << "/bin/bash";
+    QTest::newRow( "new, empty   " ) << "tests/7bn-shell.conf"
+                                     << "";
+    QTest::newRow( "new, relative" ) << "tests/7cn-shell.conf"
+                                     << "/bin/ls";  // Setting is ignored
+    QTest::newRow( "new, invalid " ) << "tests/7dn-shell.conf"
+                                     << "";
+    QTest::newRow( "new, absolute" ) << "tests/7en-shell.conf"
+                                     << "/usr/bin/dash";
+}
+
+void
+UserTests::testUserYAML()
+{
+    Config c;
+    c.setUserShell( QStringLiteral( "/bin/ls" ) );
+
+    QFETCH( QString, filename );
+    QFETCH( QString, shell );
+
+    // BUILD_AS_TEST is the source-directory path
+    QFile fi( QString( "%1/%2" ).arg( BUILD_AS_TEST, filename ) );
+    QVERIFY( fi.exists() );
+
+    bool ok = false;
+    const auto map = CalamaresUtils::loadYaml( fi, &ok );
+    QVERIFY( ok );
+    QVERIFY( map.count() > 0 );
+
+    QCOMPARE( c.userShell(), QStringLiteral( "/bin/ls" ) );
+    c.setConfigurationMap( map );
+    QCOMPARE( c.userShell(), shell );
 }
 
 

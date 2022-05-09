@@ -8,6 +8,11 @@ type: object
 properties:
     # User shell, should be path to /bin/sh or so
     userShell: { type: string }
+    user:
+        additionalProperties: false
+        type: object
+        properties:
+            shell: { type: string }  # Overrides userShell
     # Group settings
     defaultGroups:
         type: array
