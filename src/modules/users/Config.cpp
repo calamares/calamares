@@ -201,10 +201,9 @@ Config::setLoginName( const QString& login )
 }
 
 const QStringList&
-Config::forbiddenLoginNames()
+Config::forbiddenLoginNames() const
 {
-    static QStringList forbidden { "root" };
-    return forbidden;
+    return m_forbiddenLoginNames;
 }
 
 QString
@@ -268,10 +267,9 @@ Config::setHostName( const QString& host )
 }
 
 const QStringList&
-Config::forbiddenHostNames()
+Config::forbiddenHostNames() const
 {
-    static QStringList forbidden { "localhost" };
-    return forbidden;
+    return m_forbiddenHostNames;
 }
 
 QString
@@ -881,6 +879,18 @@ copyLegacy( const QVariantMap& source, const QString& sourceKey, QVariantMap& ta
     }
 }
 
+/** @brief Tidy up a list of names
+ *
+ * Remove duplicates, apply lowercase, sort.
+ */
+static void
+tidy( QStringList& l )
+{
+    std::for_each( l.begin(), l.end(), []( QString& s ) { s = s.toLower(); } );
+    l.sort();
+    l.removeDuplicates();
+}
+
 void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
 {
@@ -899,6 +909,10 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         }
         // Now it might be explicitly set to empty, which is ok
         setUserShell( shell );
+
+        m_forbiddenLoginNames = CalamaresUtils::getStringList( userSettings, "forbidden_names" );
+        m_forbiddenLoginNames << QStringLiteral( "root" ) << QStringLiteral( "nobody" );
+        tidy( m_forbiddenLoginNames );
     }
 
     setAutoLoginGroup( either< QString, const QString& >(
@@ -920,6 +934,10 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         m_writeEtcHosts = CalamaresUtils::getBool( hostnameSettings, "writeHostsFile", true );
         m_hostnameTemplate
             = CalamaresUtils::getString( hostnameSettings, "template", QStringLiteral( "${first}-${product}" ) );
+
+        m_forbiddenHostNames = CalamaresUtils::getStringList( hostnameSettings, "forbidden_names" );
+        m_forbiddenHostNames << QStringLiteral( "localhost" );
+        tidy( m_forbiddenHostNames );
     }
 
     setConfigurationDefaultGroups( configurationMap, m_defaultGroups );
