@@ -14,7 +14,7 @@ namespace Calamares
 {
 namespace Translation
 {
-Binding::Binding( QObject* parent )
+Binding::Binding( QWidget* parent )
     : m_parent( parent )
 {
     connect( Calamares::Retranslator::instance(),
@@ -40,9 +40,9 @@ Binding::update()
 Binding::BaseUpdater::~BaseUpdater() {}
 
 QString
-Binding::BaseUpdater::tr( QObject* parent ) const
+Binding::BaseUpdater::tr( QWidget* parent ) const
 {
-    QString text = parent->tr( s );
+    QString text = parent->tr( untranslated_string );
     if ( args.has_value() )
     {
         for ( const QString& s : args.value() )

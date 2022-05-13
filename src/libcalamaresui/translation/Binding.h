@@ -15,6 +15,7 @@
 #include <QObject>
 #include <QString>
 #include <QStringList>
+#include <QWidget>
 
 #include <functional>
 #include <optional>
@@ -35,8 +36,8 @@ class DLLEXPORT Binding : public QObject
 {
     Q_OBJECT
 public:
-    Binding( QObject* parent );
-    virtual ~Binding();
+    Binding( QWidget* parent );
+    virtual ~Binding() override;
 
     void update();
 
@@ -59,42 +60,65 @@ public:
         p->setArgs( s );
     }
 
+    template < typename T >
+    void addUi( T* ui )
+    {
+        auto it = std::find_if( m_labels.begin(), m_labels.end(), [ = ]( BaseUpdater* p ) { return p->widget == ui; } );
+        if ( it == m_labels.end() )
+        {
+            auto* p = new UiUpdater< T > { ui };
+            m_labels.append( p );
+            p->update( m_parent );
+        }
+    }
+
 private:
     struct BaseUpdater
     {
-        QWidget* w = nullptr;
-        const char* s = nullptr;
+        void* widget = nullptr;
+        const char* untranslated_string = nullptr;
         std::optional< QStringList > args;
 
-        BaseUpdater( QWidget* widget, const char* string )
-            : w( widget )
-            , s( string )
+        BaseUpdater( QWidget* w, const char* s )
+            : widget( w )
+            , untranslated_string( s )
         {
         }
         virtual ~BaseUpdater();
 
-        virtual void update( QObject* parent ) = 0;
+        virtual void update( QWidget* parent ) = 0;
 
-        QString tr( QObject* parent ) const;
+        QString tr( QWidget* parent ) const;
         void setArgs( const QStringList& s ) { args = s; }
     };
     template < typename T >
     struct Updater : public BaseUpdater
     {
         using BaseUpdater::BaseUpdater;
-        void update( QObject* parent ) override { ( (T*)w )->setText( tr( parent ) ); }
+        void update( QWidget* parent ) override { static_cast< T* >( widget )->setText( tr( parent ) ); }
+    };
+    template < typename T >
+    struct UiUpdater : public BaseUpdater
+    {
+        UiUpdater( T* ui )
+            : BaseUpdater( nullptr, nullptr )
+        {
+            widget = ui;
+        }
+        void update( QWidget* parent ) override { static_cast< T* >( widget )->retranslateUi( parent ); }
     };
 
-    QObject* m_parent = nullptr;
+    QWidget* m_parent = nullptr;
     QList< BaseUpdater* > m_labels;
 
     template < typename T >
     BaseUpdater* add_internal( T* widget, const char* string )
     {
-        auto it = std::find_if( m_labels.begin(), m_labels.end(), [ = ]( BaseUpdater* p ) { return p->w == widget; } );
+        auto it
+            = std::find_if( m_labels.begin(), m_labels.end(), [ = ]( BaseUpdater* p ) { return p->widget == widget; } );
         if ( it != m_labels.end() )
         {
-            ( *it )->s = string;
+            ( *it )->untranslated_string = string;
             ( *it )->update( m_parent );
             return *it;
         }
