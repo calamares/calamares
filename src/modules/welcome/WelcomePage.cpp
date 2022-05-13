@@ -23,6 +23,7 @@
 
 #include "modulesystem/ModuleManager.h"
 #include "modulesystem/RequirementsModel.h"
+#include "translation/Binding.h"
 #include "utils/Gui.h"
 #include "utils/Logger.h"
 #include "utils/NamedEnum.h"
@@ -73,7 +74,30 @@ WelcomePage::WelcomePage( Config* config, QWidget* parent )
 
     initLanguages();
 
-    CALAMARES_RETRANSLATE_SLOT( &WelcomePage::retranslate );
+    auto* labeler = new Calamares::Translation::Binding( this );
+    labeler->add(
+        ui->supportButton, QT_TR_NOOP( "%1 support" ), { Calamares::Branding::instance()->shortProductName() } );
+    labeler->add( ui->mainText,
+                  []()
+                  {
+                      if ( Calamares::Settings::instance()->isSetupMode() )
+                      {
+                          return Calamares::Branding::instance()->welcomeStyleCalamares()
+                              ? QT_TR_NOOP( "<h1>Welcome to the Calamares setup program for %1.</h1>" )
+                              : QT_TR_NOOP( "<h1>Welcome to %1 setup.</h1>" );
+                      }
+                      else
+                      {
+                          return Calamares::Branding::instance()->welcomeStyleCalamares()
+                              ? QT_TR_NOOP( "<h1>Welcome to the Calamares installer for %1.</h1>" )
+                              : QT_TR_NOOP( "<h1>Welcome to the %1 installer.</h1>" );
+                      }
+                  }(),
+                  { Calamares::Branding::instance()->versionedName() } );
+
+    connect( CalamaresUtils::Retranslator::instance(),
+             &CalamaresUtils::Retranslator::languageChanged,
+             [ = ]() { ui->retranslateUi( this ); } );
 
     connect( Calamares::ModuleManager::instance(),
              &Calamares::ModuleManager::requirementsComplete,
