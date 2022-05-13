@@ -19,6 +19,7 @@
 #include "Settings.h"
 #include "ViewManager.h"
 #include "progresstree/ProgressTreeView.h"
+#include "translation/Binding.h"
 #include "utils/Gui.h"
 #include "utils/Logger.h"
 #include "utils/Qml.h"
@@ -153,10 +154,14 @@ getWidgetSidebar( Calamares::DebugWindowManager* debug,
         aboutDialog->setObjectName( "aboutButton" );
         aboutDialog->setIcon( Calamares::defaultPixmap(
             Calamares::Information, Calamares::Original, 2 * QSize( defaultFontHeight, defaultFontHeight ) ) );
-        CALAMARES_RETRANSLATE_FOR(
-            aboutDialog, aboutDialog->setText( QCoreApplication::translate( "calamares-sidebar", "About", "@button" ) );
-            aboutDialog->setToolTip(
-                QCoreApplication::translate( "calamares-sidebar", "Show information about Calamares", "@tooltip" ) ); );
+        Calamares::Retranslator::attach(
+            aboutDialog,
+            [ = ]()
+            {
+                aboutDialog->setText( QCoreApplication::translate( "calamares-sidebar", "About", "@button" ) );
+                aboutDialog->setToolTip( QCoreApplication::translate(
+                    "calamares-sidebar", "Show information about Calamares", "@tooltip" ) );
+            } );
         extraButtons->addWidget( aboutDialog );
         aboutDialog->setFlat( true );
         aboutDialog->setCheckable( true );
@@ -168,11 +173,14 @@ getWidgetSidebar( Calamares::DebugWindowManager* debug,
         debugWindowBtn->setObjectName( "debugButton" );
         debugWindowBtn->setIcon( Calamares::defaultPixmap(
             Calamares::Bugs, Calamares::Original, 2 * QSize( defaultFontHeight, defaultFontHeight ) ) );
-        CALAMARES_RETRANSLATE_FOR(
+        Calamares::Retranslator::attach(
             debugWindowBtn,
-            debugWindowBtn->setText( QCoreApplication::translate( "calamares-sidebar", "Debug", "@button" ) );
-            debugWindowBtn->setToolTip(
-                QCoreApplication::translate( "calamares-sidebar", "Show debug information", "@tooltip" ) ); );
+            [ = ]()
+            {
+                debugWindowBtn->setText( QCoreApplication::translate( "calamares-sidebar", "Debug", "@button" ) );
+                debugWindowBtn->setToolTip(
+                    QCoreApplication::translate( "calamares-sidebar", "Show debug information", "@tooltip" ) );
+            } );
         extraButtons->addWidget( debugWindowBtn );
         debugWindowBtn->setFlat( true );
         debugWindowBtn->setCheckable( true );

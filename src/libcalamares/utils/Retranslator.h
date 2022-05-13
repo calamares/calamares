@@ -117,16 +117,7 @@ private:
  *       setup and translation code to be mixed together.
  */
 #define CALAMARES_RETRANSLATE( body ) Calamares::Retranslator::attach( this, [ = ] { body } )
-/** @brief Call code for the given object (widget) when language changes
- *
- * This is identical to CALAMARES_RETRANSLATE, except the @p body is called
- * for the given object, not this object.
- *
- * NOTE: unlike plain QObject::connect(), the body is **also** called
- *       immediately after setting up the connection. This allows
- *       setup and translation code to be mixed together.
- */
-#define CALAMARES_RETRANSLATE_FOR( object, body ) Calamares::Retranslator::attach( object, [ = ] { body } )
+
 /** @brief Call a slot in this object when language changes
  *
  * Given a slot (in method-function-pointer notation), call that slot when the
