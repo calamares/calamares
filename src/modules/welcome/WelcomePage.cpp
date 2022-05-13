@@ -94,10 +94,7 @@ WelcomePage::WelcomePage( Config* config, QWidget* parent )
                       }
                   }(),
                   { Calamares::Branding::instance()->versionedName() } );
-
-    connect( CalamaresUtils::Retranslator::instance(),
-             &CalamaresUtils::Retranslator::languageChanged,
-             [ = ]() { ui->retranslateUi( this ); } );
+    labeler->addUi( ui );
 
     connect( Calamares::ModuleManager::instance(),
              &Calamares::ModuleManager::requirementsComplete,
