@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   SPDX-FileCopyrightText: 2020 Anke Boersma <demm@kaosx.us>
+ *   SPDX-FileCopyrightText: 2020 - 2022 Anke Boersma <demm@kaosx.us>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -112,7 +112,7 @@ Column {
 
         Plugin {
             id: mapPlugin
-            name: "esri" // "esri", "here", "itemsoverlay", "mapbox", "mapboxgl",  "osm"
+            preferred: ["osm", "esri"] // "esri", "here", "itemsoverlay", "mapbox", "mapboxgl",  "osm"
         }
 
         Map {
@@ -121,7 +121,7 @@ Column {
             plugin: mapPlugin
             activeMapType: supportedMapTypes[0]
             //might be desirable to set zoom level configurable?
-            zoomLevel: 5
+            zoomLevel: 7
             bearing: 0
             tilt: 0
             copyrightsVisible : true
@@ -167,12 +167,6 @@ Column {
                 anchors.fill: map
                 hoverEnabled: true
                 property var coordinate: map.toCoordinate(Qt.point(mouseX, mouseY))
-                Label {
-                    x: parent.mouseX - width -5
-                    y: parent.mouseY - height - 5
-                    text: "%1, %2".arg(
-                        parent.coordinate.latitude).arg(parent.coordinate.longitude)
-                }
 
                 onClicked: {
                     marker.coordinate = coordinate
