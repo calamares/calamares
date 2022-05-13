@@ -19,6 +19,7 @@
 #include <QString>
 
 #include <functional>
+#include <optional>
 
 class QEvent;
 class QLocale;
@@ -141,18 +142,14 @@ public:
     template < typename T >
     void add( T* widget, const char* string )
     {
-        auto it = std::find_if( m_labels.begin(), m_labels.end(), [ = ]( BaseUpdater* p ) { return p->w == widget; } );
-        if ( it != m_labels.end() )
-        {
-            ( *it )->s = string;
-            ( *it )->update( m_parent );
-        }
-        else
-        {
-            auto* p = new Updater< T > { widget, string };
-            m_labels.append( p );
-            p->update( m_parent );
-        }
+        (void)add_internal( widget, string );
+    }
+
+    template < typename T >
+    void add( T* widget, const char* string, const QStringList& s )
+    {
+        auto* p = add_internal( widget, string );
+        p->setArgs( s );
     }
 
 private:
@@ -160,17 +157,48 @@ private:
     {
         QWidget* w = nullptr;
         const char* s = nullptr;
+        std::optional< QStringList > args;
+
+        BaseUpdater( QWidget* widget, const char* string )
+            : w( widget )
+            , s( string )
+        {
+        }
         virtual ~BaseUpdater();
+
         virtual void update( QObject* parent ) = 0;
+
+        QString tr( QObject* parent ) const;
+        void setArgs( const QStringList& s ) { args = s; }
     };
     template < typename T >
     struct Updater : public BaseUpdater
     {
-        void update( QObject* parent ) override { ( (T*)w )->setText( parent->tr( s ) ); }
+        using BaseUpdater::BaseUpdater;
+        void update( QObject* parent ) override { ( (T*)w )->setText( tr( parent ) ); }
     };
 
     QObject* m_parent = nullptr;
     QList< BaseUpdater* > m_labels;
+
+    template < typename T >
+    BaseUpdater* add_internal( T* widget, const char* string )
+    {
+        auto it = std::find_if( m_labels.begin(), m_labels.end(), [ = ]( BaseUpdater* p ) { return p->w == widget; } );
+        if ( it != m_labels.end() )
+        {
+            ( *it )->s = string;
+            ( *it )->update( m_parent );
+            return *it;
+        }
+        else
+        {
+            auto* p = new Updater< T > { widget, string };
+            m_labels.append( p );
+            p->update( m_parent );
+            return p;
+        }
+    }
 };
 
 }  // namespace Calamares
