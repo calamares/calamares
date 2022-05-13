@@ -61,7 +61,7 @@ SummaryModel::rowCount( const QModelIndex& ) const
 void
 SummaryModel::setSummaryList( const Calamares::ViewStepList& steps, bool withWidgets )
 {
-    Q_EMIT beginResetModel();
+    beginResetModel();
     m_summary.clear();
 
     for ( Calamares::ViewStep* step : steps )
@@ -76,7 +76,7 @@ SummaryModel::setSummaryList( const Calamares::ViewStepList& steps, bool withWid
 
         m_summary << StepSummary { step->prettyName(), text, widget };
     }
-    Q_EMIT endResetModel();
+    endResetModel();
 }
 
 Config::Config( QObject* parent )
