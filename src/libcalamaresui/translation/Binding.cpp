@@ -17,8 +17,8 @@ namespace Translation
 Binding::Binding( QObject* parent )
     : m_parent( parent )
 {
-    connect( CalamaresUtils::Retranslator::instance(),
-             &CalamaresUtils::Retranslator::languageChanged,
+    connect( Calamares::Retranslator::instance(),
+             &Calamares::Retranslator::languageChanged,
              this,
              &Binding::update );
 };
