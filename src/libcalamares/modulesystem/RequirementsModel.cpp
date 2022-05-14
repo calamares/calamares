@@ -19,10 +19,10 @@ void
 RequirementsModel::addRequirementsList( const Calamares::RequirementsList& requirements )
 {
     QMutexLocker l( &m_addLock );
-    emit beginResetModel();
+    beginResetModel();
     m_requirements.append( requirements );
     changeRequirementsList();
-    emit endResetModel();
+    endResetModel();
 }
 
 void
