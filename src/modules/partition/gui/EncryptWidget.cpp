@@ -85,11 +85,6 @@ EncryptWidget::state() const
     return m_state;
 }
 
-void EncryptWidget::setChecked(bool checked)
-{
-    m_ui->m_encryptCheckBox->setChecked(checked);
-}
-
 
 void
 EncryptWidget::setText( const QString& text )

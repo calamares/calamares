@@ -36,7 +36,6 @@ public:
     void reset();
 
     Encryption state() const;
-    void setChecked( bool checked );
     void setText( const QString& text );
 
     QString passphrase() const;
