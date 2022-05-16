@@ -33,7 +33,7 @@ public:
 
     explicit EncryptWidget( QWidget* parent = nullptr );
 
-    void reset();
+    void reset( bool checkVisible = true );
 
     Encryption state() const;
     void setText( const QString& text );
