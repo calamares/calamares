@@ -162,13 +162,18 @@ class FstabGenerator(object):
         crypttab_options = self.crypttab_options
 
         # Set crypttab password for partition to none and remove crypttab options
+        # if crypto_keyfile.bin was not generated
+        if not os.path.exists(os.path.join(self.root_mount_point, "crypto_keyfile.bin")):
+            password = "none"
+            crypttab_options = ""
         # on root partition when /boot is unencrypted
-        if partition["mountPoint"] == "/":
+        elif partition["mountPoint"] == "/":
             if any([p["mountPoint"] == "/boot"
                    and "luksMapperName" not in p
                    for p in self.partitions]):
                 password = "none"
                 crypttab_options = ""
+        
 
         return dict(
             name=mapper_name,
