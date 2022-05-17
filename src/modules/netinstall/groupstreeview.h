@@ -8,4 +8,11 @@
  */
 #include <QTreeView>
 
-using GroupsTreeView = QTreeView;
+class GroupsTreeView : public QTreeView
+{
+public:
+    using QTreeView::QTreeView;
+
+protected:
+    virtual void drawBranches(QPainter*painter, const QRect& rect, const QModelIndex& index) const override;
+};
