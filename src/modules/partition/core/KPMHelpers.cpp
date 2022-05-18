@@ -129,6 +129,44 @@ clonePartition( Device* device, Partition* partition )
                           partition->activeFlags() );
 }
 
+#ifndef WITH_KPMCORE4API
+// This function was added in KPMCore 4, implementation copied from src/fs/luks.cpp
+/*
+    SPDX-FileCopyrightText: 2010 Volker Lanz <vl@fidra.de>
+    SPDX-FileCopyrightText: 2012-2019 Andrius Štikonas <andrius@stikonas.eu>
+    SPDX-FileCopyrightText: 2015-2016 Teo Mrnjavac <teo@kde.org>
+    SPDX-FileCopyrightText: 2016 Chantara Tith <tith.chantara@gmail.com>
+    SPDX-FileCopyrightText: 2017 Christian Morlok <christianmorlok@gmail.com>
+    SPDX-FileCopyrightText: 2018 Caio Jordão Carvalho <caiojcarvalho@gmail.com>
+    SPDX-FileCopyrightText: 2020 Arnaud Ferraris <arnaud.ferraris@collabora.com>
+    SPDX-FileCopyrightText: 2020 Gaël PORTAY <gael.portay@collabora.com>
+
+    SPDX-License-Identifier: GPL-3.0-or-later
+*/
+static bool
+testPassphrase( FS::luks* fs, const QString& deviceNode, const QString& passphrase )
+{
+    ExternalCommand cmd( QStringLiteral( "cryptsetup" ),
+                         { QStringLiteral( "open" ),
+                           QStringLiteral( "--tries" ),
+                           QStringLiteral( "1" ),
+                           QStringLiteral( "--test-passphrase" ),
+                           deviceNode } );
+    if ( cmd.write( passphrase.toLocal8Bit() + '\n' ) && cmd.start( -1 ) && cmd.exitCode() == 0 )
+    {
+        return true;
+    }
+
+    return false;
+}
+#else
+static bool
+testPassphrase( FS::luks* fs, const QString& deviceNode, const QString& passphrase )
+{
+    return fs->testPassphrase( deviceNode, passphrase );
+}
+#endif
+
 // Adapted from luks cryptOpen which always opens a dialog to ask for a passphrase
 int
 updateLuksDevice( Partition* partition, const QString& passphrase )
@@ -153,7 +191,7 @@ updateLuksDevice( Partition* partition, const QString& passphrase )
     FS::luks* luksFs = dynamic_cast< FS::luks* >( &partition->fileSystem() );
 
     // Test the given passphrase
-    if ( !luksFs->testPassphrase( deviceNode, passphrase ) )
+    if ( !testPassphrase( luksFs, deviceNode, passphrase ) )
     {
         cWarning() << Logger::SubEntry << "#3: Passphrase incorrect";
         return 3;
