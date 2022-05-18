@@ -36,7 +36,7 @@ public:
     {
         Partition* p;
     };
-    
+
     EditExistingPartitionDialog( Device* device,
                                  Partition* partition,
                                  const QStringList& usedMountPoints,

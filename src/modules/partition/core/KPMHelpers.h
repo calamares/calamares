@@ -43,56 +43,56 @@ class PartitionRole;
 namespace KPMHelpers
 {
 
-    /**
-     * Iterates on all devices and return the first partition which is associated
-     * with mountPoint. This uses PartitionInfo::mountPoint(), not Partition::mountPoint()
-     */
-    Partition* findPartitionByMountPoint( const QList< Device* >& devices, const QString& mountPoint );
+/**
+ * Iterates on all devices and return the first partition which is associated
+ * with mountPoint. This uses PartitionInfo::mountPoint(), not Partition::mountPoint()
+ */
+Partition* findPartitionByMountPoint( const QList< Device* >& devices, const QString& mountPoint );
 
-    /**
-     * Helper function to create a new Partition object (does not create anything
-     * on the disk) associated with a FileSystem.
-     */
-    Partition* createNewPartition( PartitionNode* parent,
-                                const Device& device,
-                                const PartitionRole& role,
-                                FileSystem::Type fsType,
-                                const QString& fsLabel,
-                                qint64 firstSector,
-                                qint64 lastSector,
-                                PartitionTable::Flags flags );
+/**
+ * Helper function to create a new Partition object (does not create anything
+ * on the disk) associated with a FileSystem.
+ */
+Partition* createNewPartition( PartitionNode* parent,
+                               const Device& device,
+                               const PartitionRole& role,
+                               FileSystem::Type fsType,
+                               const QString& fsLabel,
+                               qint64 firstSector,
+                               qint64 lastSector,
+                               PartitionTable::Flags flags );
 
-    Partition* createNewEncryptedPartition( PartitionNode* parent,
-                                            const Device& device,
-                                            const PartitionRole& role,
-                                            FileSystem::Type fsType,
-                                            const QString& fsLabel,
-                                            qint64 firstSector,
-                                            qint64 lastSector,
-                                            const QString& passphrase,
-                                            PartitionTable::Flags flags );
+Partition* createNewEncryptedPartition( PartitionNode* parent,
+                                        const Device& device,
+                                        const PartitionRole& role,
+                                        FileSystem::Type fsType,
+                                        const QString& fsLabel,
+                                        qint64 firstSector,
+                                        qint64 lastSector,
+                                        const QString& passphrase,
+                                        PartitionTable::Flags flags );
 
-    Partition* clonePartition( Device* device, Partition* partition );
+Partition* clonePartition( Device* device, Partition* partition );
 
-    int updateLuksDevice( Partition* partition, const QString& passphrase );
+int updateLuksDevice( Partition* partition, const QString& passphrase );
 
-    /** @brief Return a result for an @p operation
-     *
-     * Executes the operation, and if successful, returns a success result.
-     * Otherwise returns an error using @p failureMessage as the primary part
-     * of the error, and details obtained from the operation.
-     */
-    Calamares::JobResult execute( Operation& operation, const QString& failureMessage );
-    /** @brief Return a result for an @p operation
-     *
-     * It's acceptable to use an rvalue: the operation-running is the effect
-     * you're interested in, rather than keeping the temporary around.
-     */
-    static inline Calamares::JobResult
-    execute( Operation&& operation, const QString& failureMessage )
-    {
-        return execute( operation, failureMessage );
-    }
+/** @brief Return a result for an @p operation
+ *
+ * Executes the operation, and if successful, returns a success result.
+ * Otherwise returns an error using @p failureMessage as the primary part
+ * of the error, and details obtained from the operation.
+ */
+Calamares::JobResult execute( Operation& operation, const QString& failureMessage );
+/** @brief Return a result for an @p operation
+ *
+ * It's acceptable to use an rvalue: the operation-running is the effect
+ * you're interested in, rather than keeping the temporary around.
+ */
+static inline Calamares::JobResult
+execute( Operation&& operation, const QString& failureMessage )
+{
+    return execute( operation, failureMessage );
+}
 
 }  // namespace KPMHelpers
 
