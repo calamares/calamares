@@ -12,19 +12,20 @@
 
 #include <QPainter>
 
-void GroupsTreeView::drawBranches(QPainter* painter, const QRect& rect, const QModelIndex& index) const
+void
+GroupsTreeView::drawBranches( QPainter* painter, const QRect& rect, const QModelIndex& index ) const
 {
-    QTreeView::drawBranches(painter, rect, index);
+    QTreeView::drawBranches( painter, rect, index );
 
     // Empty names are handled specially: don't draw them as items,
     // so the "branch" seems to just pass them by.
     const QString s = index.data().toString();
-    if (s.isEmpty())
+    if ( s.isEmpty() )
     {
         QStyleOptionViewItem opt = viewOptions();
         opt.state = QStyle::State_Sibling;
-        opt.rect = QRect (!isRightToLeft() ? rect.left() : rect.right() + 1, rect.top(), indentation(), rect.height());
-        painter->eraseRect(opt.rect);
-        style()->drawPrimitive(QStyle::PE_IndicatorBranch, &opt, painter, this);
+        opt.rect = QRect( !isRightToLeft() ? rect.left() : rect.right() + 1, rect.top(), indentation(), rect.height() );
+        painter->eraseRect( opt.rect );
+        style()->drawPrimitive( QStyle::PE_IndicatorBranch, &opt, painter, this );
     }
 }

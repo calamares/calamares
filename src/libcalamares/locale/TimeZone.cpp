@@ -224,16 +224,19 @@ public:
             loadTZData( m_regions, m_altZones, in );
         }
 
-        std::sort( m_regions.begin(), m_regions.end(), []( const RegionData* lhs, const RegionData* rhs ) {
-            return lhs->key() < rhs->key();
-        } );
-        std::sort( m_zones.begin(), m_zones.end(), []( const TimeZoneData* lhs, const TimeZoneData* rhs ) {
-            if ( lhs->region() == rhs->region() )
-            {
-                return lhs->zone() < rhs->zone();
-            }
-            return lhs->region() < rhs->region();
-        } );
+        std::sort( m_regions.begin(),
+                   m_regions.end(),
+                   []( const RegionData* lhs, const RegionData* rhs ) { return lhs->key() < rhs->key(); } );
+        std::sort( m_zones.begin(),
+                   m_zones.end(),
+                   []( const TimeZoneData* lhs, const TimeZoneData* rhs )
+                   {
+                       if ( lhs->region() == rhs->region() )
+                       {
+                           return lhs->zone() < rhs->zone();
+                       }
+                       return lhs->region() < rhs->region();
+                   } );
 
         for ( auto* z : m_zones )
         {
@@ -399,7 +402,8 @@ ZonesModel::find( double latitude, double longitude ) const
      * either N/S or E/W equal to any other; this obviously
      * falls apart at the poles.
      */
-    auto distance = [&]( const TimeZoneData* zone ) -> double {
+    auto distance = [ & ]( const TimeZoneData* zone ) -> double
+    {
         // Latitude doesn't wrap around: there is nothing north of 90
         double latitudeDifference = abs( zone->latitude() - latitude );
 
@@ -445,7 +449,8 @@ ZonesModel::Iterator::operator bool() const
     return 0 <= m_index && m_index < m_p->m_zones.count();
 }
 
-const TimeZoneData* ZonesModel::Iterator::operator*() const
+const TimeZoneData*
+ZonesModel::Iterator::operator*() const
 {
     if ( *this )
     {

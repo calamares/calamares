@@ -63,9 +63,9 @@ RequirementsChecker::finished()
     static QMutex finishedMutex;
     QMutexLocker lock( &finishedMutex );
 
-    if ( m_progressTimer && std::all_of( m_watchers.cbegin(), m_watchers.cend(), []( const Watcher* w ) {
-             return w && w->isFinished();
-         } ) )
+    if ( m_progressTimer
+         && std::all_of(
+             m_watchers.cbegin(), m_watchers.cend(), []( const Watcher* w ) { return w && w->isFinished(); } ) )
     {
         cDebug() << "All requirements have been checked.";
         if ( m_progressTimer )
@@ -100,14 +100,17 @@ RequirementsChecker::reportProgress()
     m_progressTimeouts++;
 
     QStringList remainingNames;
-    auto remaining = std::count_if( m_watchers.cbegin(), m_watchers.cend(), [&]( const Watcher* w ) {
-        if ( w && !w->isFinished() )
-        {
-            remainingNames << w->objectName();
-            return true;
-        }
-        return false;
-    } );
+    auto remaining = std::count_if( m_watchers.cbegin(),
+                                    m_watchers.cend(),
+                                    [ & ]( const Watcher* w )
+                                    {
+                                        if ( w && !w->isFinished() )
+                                        {
+                                            remainingNames << w->objectName();
+                                            return true;
+                                        }
+                                        return false;
+                                    } );
     if ( remaining > 0 )
     {
         cDebug() << "Remaining modules:" << remaining << Logger::DebugList( remainingNames );

@@ -51,6 +51,6 @@ ProgressTreeView::setModel( QAbstractItemModel* model )
         Calamares::ViewManager::instance(),
         &Calamares::ViewManager::currentStepChanged,
         this,
-        [this]() { viewport()->update(); },
+        [ this ]() { viewport()->update(); },
         Qt::UniqueConnection );
 }

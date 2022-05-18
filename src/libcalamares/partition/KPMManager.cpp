@@ -102,9 +102,7 @@ KPMManager::KPMManager()
 {
 }
 
-KPMManager::~KPMManager()
-{
-}
+KPMManager::~KPMManager() {}
 
 KPMManager::operator bool() const
 {

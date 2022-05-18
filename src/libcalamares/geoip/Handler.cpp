@@ -150,7 +150,7 @@ Handler::query() const
     QString url = m_url;
     QString selector = m_selector;
 
-    return QtConcurrent::run( [=] { return do_query( type, url, selector ); } );
+    return QtConcurrent::run( [ = ] { return do_query( type, url, selector ); } );
 }
 
 QString
@@ -171,7 +171,7 @@ Handler::queryRaw() const
     QString url = m_url;
     QString selector = m_selector;
 
-    return QtConcurrent::run( [=] { return do_raw_query( type, url, selector ); } );
+    return QtConcurrent::run( [ = ] { return do_raw_query( type, url, selector ); } );
 }
 
 }  // namespace GeoIP

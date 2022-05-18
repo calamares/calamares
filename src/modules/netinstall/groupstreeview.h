@@ -14,5 +14,5 @@ public:
     using QTreeView::QTreeView;
 
 protected:
-    virtual void drawBranches(QPainter*painter, const QRect& rect, const QModelIndex& index) const override;
+    virtual void drawBranches( QPainter* painter, const QRect& rect, const QModelIndex& index ) const override;
 };

@@ -993,7 +993,7 @@ LibCalamaresTests::testRunnerOutput()
 
         Calamares::Utils::Runner r( { "cat" } );
         r.enableOutputProcessing().setInput( QStringLiteral( "hello\nworld\n\n!\n" ) );
-        QObject::connect( &r, &decltype( r )::output, [&collectedOutput]( QString s ) { collectedOutput << s; } );
+        QObject::connect( &r, &decltype( r )::output, [ &collectedOutput ]( QString s ) { collectedOutput << s; } );
 
         {
             auto result = r.run();

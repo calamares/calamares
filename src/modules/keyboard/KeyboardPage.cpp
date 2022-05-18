@@ -69,8 +69,9 @@ KeyboardPage::KeyboardPage( Config* config, QWidget* parent )
         cDebug() << "Variants now total=" << model->rowCount() << "selected=" << model->currentIndex();
     }
 
-    connect(
-        ui->buttonRestore, &QPushButton::clicked, [config = config] { config->keyboardModels()->setCurrentIndex(); } );
+    connect( ui->buttonRestore,
+             &QPushButton::clicked,
+             [ config = config ] { config->keyboardModels()->setCurrentIndex(); } );
 
     connect( ui->physicalModelSelector,
              QOverload< int >::of( &QComboBox::currentIndexChanged ),
@@ -83,21 +84,29 @@ KeyboardPage::KeyboardPage( Config* config, QWidget* parent )
 
     connect( ui->layoutSelector->selectionModel(),
              &QItemSelectionModel::currentChanged,
-             [this]( const QModelIndex& current ) { m_config->keyboardLayouts()->setCurrentIndex( current.row() ); } );
-    connect( config->keyboardLayouts(), &KeyboardLayoutModel::currentIndexChanged, [this]( int index ) {
-        ui->layoutSelector->setCurrentIndex( m_config->keyboardLayouts()->index( index ) );
-        m_keyboardPreview->setLayout( m_config->keyboardLayouts()->key( index ) );
-        m_keyboardPreview->setVariant(
-            m_config->keyboardVariants()->key( m_config->keyboardVariants()->currentIndex() ) );
-    } );
+             [ this ]( const QModelIndex& current )
+             { m_config->keyboardLayouts()->setCurrentIndex( current.row() ); } );
+    connect( config->keyboardLayouts(),
+             &KeyboardLayoutModel::currentIndexChanged,
+             [ this ]( int index )
+             {
+                 ui->layoutSelector->setCurrentIndex( m_config->keyboardLayouts()->index( index ) );
+                 m_keyboardPreview->setLayout( m_config->keyboardLayouts()->key( index ) );
+                 m_keyboardPreview->setVariant(
+                     m_config->keyboardVariants()->key( m_config->keyboardVariants()->currentIndex() ) );
+             } );
 
     connect( ui->variantSelector->selectionModel(),
              &QItemSelectionModel::currentChanged,
-             [this]( const QModelIndex& current ) { m_config->keyboardVariants()->setCurrentIndex( current.row() ); } );
-    connect( config->keyboardVariants(), &KeyboardVariantsModel::currentIndexChanged, [this]( int index ) {
-        ui->variantSelector->setCurrentIndex( m_config->keyboardVariants()->index( index ) );
-        m_keyboardPreview->setVariant( m_config->keyboardVariants()->key( index ) );
-    } );
+             [ this ]( const QModelIndex& current )
+             { m_config->keyboardVariants()->setCurrentIndex( current.row() ); } );
+    connect( config->keyboardVariants(),
+             &KeyboardVariantsModel::currentIndexChanged,
+             [ this ]( int index )
+             {
+                 ui->variantSelector->setCurrentIndex( m_config->keyboardVariants()->index( index ) );
+                 m_keyboardPreview->setVariant( m_config->keyboardVariants()->key( index ) );
+             } );
     CALAMARES_RETRANSLATE_SLOT( &KeyboardPage::retranslate );
 }
 

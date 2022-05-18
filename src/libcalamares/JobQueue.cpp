@@ -89,9 +89,10 @@ public:
             = m_queuedJobs->isEmpty() ? 0.0 : ( m_queuedJobs->last().cumulative + m_queuedJobs->last().weight );
 
         qreal totalJobWeight
-            = std::accumulate( jobs.cbegin(), jobs.cend(), qreal( 0.0 ), []( qreal total, const job_ptr& j ) {
-                  return total + j->getJobWeight();
-              } );
+            = std::accumulate( jobs.cbegin(),
+                               jobs.cend(),
+                               qreal( 0.0 ),
+                               []( qreal total, const job_ptr& j ) { return total + j->getJobWeight(); } );
         if ( totalJobWeight < 1 )
         {
             totalJobWeight = 1.0;

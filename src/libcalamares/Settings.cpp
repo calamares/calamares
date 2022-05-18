@@ -290,7 +290,7 @@ Settings::reconcileInstancesAndSequence()
     // Since moduleFinder captures targetKey by reference, we can
     //   update targetKey to change what the finder lambda looks for.
     Calamares::ModuleSystem::InstanceKey targetKey;
-    auto moduleFinder = [&targetKey]( const InstanceDescription& d ) { return d.isValid() && d.key() == targetKey; };
+    auto moduleFinder = [ &targetKey ]( const InstanceDescription& d ) { return d.isValid() && d.key() == targetKey; };
 
     // Check the sequence against the existing instances (which so far are only custom)
     for ( const auto& step : m_modulesSequence )

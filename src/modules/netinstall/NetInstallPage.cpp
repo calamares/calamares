@@ -35,10 +35,13 @@ NetInstallPage::NetInstallPage( Config* c, QWidget* parent )
     ui->groupswidget->header()->setSectionResizeMode( QHeaderView::ResizeToContents );
     ui->groupswidget->setModel( c->model() );
     connect( c, &Config::statusChanged, ui->netinst_status, &QLabel::setText );
-    connect( c, &Config::titleLabelChanged, [ui = this->ui]( const QString title ) {
-        ui->label->setVisible( !title.isEmpty() );
-        ui->label->setText( title );
-    } );
+    connect( c,
+             &Config::titleLabelChanged,
+             [ ui = this->ui ]( const QString title )
+             {
+                 ui->label->setVisible( !title.isEmpty() );
+                 ui->label->setText( title );
+             } );
     connect( c, &Config::statusReady, this, &NetInstallPage::expandGroups );
 }
 
