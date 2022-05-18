@@ -110,18 +110,6 @@ hostnameActionNames()
     return names;
 }
 
-static QStringList
-alwaysForbiddenLoginNames()
-{
-    return { "root", "nobody" };
-}
-
-static QStringList
-alwaysForbiddenHostNames()
-{
-    return { "localhost" };
-}
-
 Config::Config( QObject* parent )
     : Calamares::ModuleSystem::Config( parent )
     , m_forbiddenHostNames( alwaysForbiddenHostNames() )
