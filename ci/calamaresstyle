@@ -24,7 +24,7 @@ test -f "$TOPDIR/.clang-format" || { echo "! No .clang-format support files in $
 AS=$( which astyle )
 
 # Allow specifying CF_VERSIONS outside already
-CF_VERSIONS="$CF_VERSIONS clang-format13 clang-format-13 clang-format12 clang-format-12 clang-format"
+CF_VERSIONS="$CF_VERSIONS clang-format14 clang-format-14 clang-format13 clang-format-13 clang-format12 clang-format-12 clang-format"
 for _cf in $CF_VERSIONS
 do
 	# Not an error if this particular clang-format isn't found
@@ -45,11 +45,11 @@ test -x "$CF" || { echo "! $CF is not executable."; exit 1 ; }
 
 format_version=`"$CF" --version | tr -dc '[^.0-9]' | cut  -d . -f 1`
 case "$format_version" in
-	12|13 )
+	12|13|14 )
 		:
 		;;
 	* )
-		echo "! Clang-format version '$format_version' unsupported, version 12 required."
+		echo "! Clang-format version '$format_version' unsupported, versions 12 through 14 are ok."
 		exit 1
 		;;
 esac
