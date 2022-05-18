@@ -108,5 +108,5 @@ struct cScopedAssignment
 };
 
 template < typename T >
-cScopedAssignment( T p )->cScopedAssignment< decltype( *p ) >;
+cScopedAssignment( T p ) -> cScopedAssignment< decltype( *p ) >;
 #endif

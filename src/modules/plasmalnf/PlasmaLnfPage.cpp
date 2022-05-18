@@ -96,7 +96,8 @@ PlasmaLnfPage::PlasmaLnfPage( Config* config, QWidget* parent )
 
     connect( view->selectionModel(),
              &QItemSelectionModel::selectionChanged,
-             [this]( const QItemSelection& selected, const QItemSelection& ) {
+             [ this ]( const QItemSelection& selected, const QItemSelection& )
+             {
                  auto i = selected.indexes();
                  if ( !i.isEmpty() )
                  {

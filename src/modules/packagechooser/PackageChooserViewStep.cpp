@@ -56,9 +56,9 @@ PackageChooserViewStep::widget()
     if ( !m_widget )
     {
         m_widget = new PackageChooserPage( m_config->mode(), nullptr );
-        connect( m_widget, &PackageChooserPage::selectionChanged, [=]() {
-            emit nextStatusChanged( this->isNextEnabled() );
-        } );
+        connect( m_widget,
+                 &PackageChooserPage::selectionChanged,
+                 [ = ]() { emit nextStatusChanged( this->isNextEnabled() ); } );
         hookupModel();
     }
     return m_widget;

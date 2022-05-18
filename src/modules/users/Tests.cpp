@@ -120,6 +120,11 @@ UserTests::testGetSet()
         QVERIFY( c.loginNameStatus().isEmpty() );  // now it's still ok
         QCOMPARE( c.loginName(), lg );
         QCOMPARE( c.fullName(), ful );
+    }
+    // Test forbidden login names
+    {
+        QVERIFY( c.forbiddenLoginNames().contains( QStringLiteral( "root" ) ) );
+        QVERIFY( c.loginNameStatus().isEmpty() );  // it's ok now
         c.setLoginName( "root" );
         QVERIFY( !c.loginNameStatus().isEmpty() );  // can't be root
     }

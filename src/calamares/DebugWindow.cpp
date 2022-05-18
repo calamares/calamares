@@ -78,17 +78,22 @@ DebugWindow::DebugWindow()
     m_ui->globalStorageView->expandAll();
 
     // Do above when the GS changes, too
-    connect( gs, &GlobalStorage::changed, this, [=] {
-        m_globals = JobQueue::instance()->globalStorage()->data();
-        m_globals_model->reload();
-        m_ui->globalStorageView->expandAll();
-    } );
+    connect( gs,
+             &GlobalStorage::changed,
+             this,
+             [ = ]
+             {
+                 m_globals = JobQueue::instance()->globalStorage()->data();
+                 m_globals_model->reload();
+                 m_ui->globalStorageView->expandAll();
+             } );
 
     // JobQueue page
     m_ui->jobQueueText->setReadOnly( true );
-    connect( JobQueue::instance(), &JobQueue::queueChanged, this, [this]( const QStringList& jobs ) {
-        m_ui->jobQueueText->setText( jobs.join( '\n' ) );
-    } );
+    connect( JobQueue::instance(),
+             &JobQueue::queueChanged,
+             this,
+             [ this ]( const QStringList& jobs ) { m_ui->jobQueueText->setText( jobs.join( '\n' ) ); } );
 
     // Modules page
     QStringList modulesKeys;
@@ -122,27 +127,33 @@ DebugWindow::DebugWindow()
 
     // Tools page
     connect( m_ui->crashButton, &QPushButton::clicked, this, [] { ::crash(); } );
-    connect( m_ui->reloadStylesheetButton, &QPushButton::clicked, []() {
-        for ( auto* w : qApp->topLevelWidgets() )
-        {
-            // Needs to match what's set in CalamaresWindow
-            if ( w->objectName() == QStringLiteral( "mainApp" ) )
-            {
-                w->setStyleSheet( Calamares::Branding::instance()->stylesheet() );
-            }
-        }
-    } );
-    connect( m_ui->widgetTreeButton, &QPushButton::clicked, []() {
-        for ( auto* w : qApp->topLevelWidgets() )
-        {
-            Logger::CDebug deb;
-            dumpWidgetTree( deb, w, 0 );
-        }
-    } );
+    connect( m_ui->reloadStylesheetButton,
+             &QPushButton::clicked,
+             []()
+             {
+                 for ( auto* w : qApp->topLevelWidgets() )
+                 {
+                     // Needs to match what's set in CalamaresWindow
+                     if ( w->objectName() == QStringLiteral( "mainApp" ) )
+                     {
+                         w->setStyleSheet( Calamares::Branding::instance()->stylesheet() );
+                     }
+                 }
+             } );
+    connect( m_ui->widgetTreeButton,
+             &QPushButton::clicked,
+             []()
+             {
+                 for ( auto* w : qApp->topLevelWidgets() )
+                 {
+                     Logger::CDebug deb;
+                     dumpWidgetTree( deb, w, 0 );
+                 }
+             } );
 
     // Send Log button only if it would be useful
     m_ui->sendLogButton->setVisible( CalamaresUtils::Paste::isEnabled() );
-    connect( m_ui->sendLogButton, &QPushButton::clicked, [this]() { CalamaresUtils::Paste::doLogUploadUI( this ); } );
+    connect( m_ui->sendLogButton, &QPushButton::clicked, [ this ]() { CalamaresUtils::Paste::doLogUploadUI( this ); } );
 
     CALAMARES_RETRANSLATE( m_ui->retranslateUi( this ); setWindowTitle( tr( "Debug information" ) ); );
 }
@@ -186,11 +197,15 @@ DebugWindowManager::show( bool visible )
     {
         m_debugWindow = new Calamares::DebugWindow();
         m_debugWindow->show();
-        connect( m_debugWindow.data(), &Calamares::DebugWindow::closed, this, [=]() {
-            m_debugWindow->deleteLater();
-            m_visible = false;
-            emit visibleChanged( false );
-        } );
+        connect( m_debugWindow.data(),
+                 &Calamares::DebugWindow::closed,
+                 this,
+                 [ = ]()
+                 {
+                     m_debugWindow->deleteLater();
+                     m_visible = false;
+                     emit visibleChanged( false );
+                 } );
         m_visible = true;
         emit visibleChanged( true );
     }

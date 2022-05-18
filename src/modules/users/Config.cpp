@@ -78,6 +78,20 @@ updateGSAutoLogin( bool doAutoLogin, const QString& login )
     }
 }
 
+static const QStringList&
+alwaysForbiddenLoginNames()
+{
+    static QStringList s { QStringLiteral( "root" ), QStringLiteral( "nobody" ) };
+    return s;
+}
+
+static const QStringList&
+alwaysForbiddenHostNames()
+{
+    static QStringList s { QStringLiteral( "localhost" ) };
+    return s;
+}
+
 const NamedEnumTable< HostNameAction >&
 hostnameActionNames()
 {

@@ -47,7 +47,7 @@ Presets::Presets( const QVariantMap& configurationMap, const QStringList& recogn
 {
     reserve( recognizedKeys.size() );
     loadPresets(
-        *this, configurationMap, [&recognizedKeys]( const QString& s ) { return recognizedKeys.contains( s ); } );
+        *this, configurationMap, [ &recognizedKeys ]( const QString& s ) { return recognizedKeys.contains( s ); } );
 }
 
 bool

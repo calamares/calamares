@@ -70,14 +70,17 @@ EncryptWidget::EncryptWidget( QWidget* parent )
 
 
 void
-EncryptWidget::reset()
+EncryptWidget::reset( bool checkVisible )
 {
     m_ui->m_passphraseLineEdit->clear();
     m_ui->m_confirmLineEdit->clear();
 
     m_ui->m_encryptCheckBox->setChecked( false );
-}
 
+    m_ui->m_encryptCheckBox->setVisible( checkVisible );
+    m_ui->m_passphraseLineEdit->setVisible( !checkVisible );
+    m_ui->m_confirmLineEdit->setVisible( !checkVisible );
+}
 
 EncryptWidget::Encryption
 EncryptWidget::state() const
@@ -146,7 +149,7 @@ EncryptWidget::updateState()
     }
 
     Encryption newState;
-    if ( m_ui->m_encryptCheckBox->isChecked() )
+    if ( m_ui->m_encryptCheckBox->isChecked() || !m_ui->m_encryptCheckBox->isVisible() )
     {
         if ( !m_ui->m_passphraseLineEdit->text().isEmpty()
              && m_ui->m_passphraseLineEdit->text() == m_ui->m_confirmLineEdit->text() )

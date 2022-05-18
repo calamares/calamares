@@ -43,9 +43,9 @@ lookup( TwoChar c )
     }
 
     const CountryData* p
-        = std::find_if( country_data_table, country_data_table + country_data_size, [c = c]( const CountryData& d ) {
-              return ( d.cc1 == c.cc1 ) && ( d.cc2 == c.cc2 );
-          } );
+        = std::find_if( country_data_table,
+                        country_data_table + country_data_size,
+                        [ c = c ]( const CountryData& d ) { return ( d.cc1 == c.cc1 ) && ( d.cc2 == c.cc2 ); } );
     if ( p == country_data_table + country_data_size )
     {
         return nullptr;
@@ -86,7 +86,7 @@ languageForCountry( QLocale::Country country )
 {
     const CountryData* p = std::find_if( country_data_table,
                                          country_data_table + country_data_size,
-                                         [c = country]( const CountryData& d ) { return d.c == c; } );
+                                         [ c = country ]( const CountryData& d ) { return d.c == c; } );
     if ( p == country_data_table + country_data_size )
     {
         return QLocale::Language::AnyLanguage;

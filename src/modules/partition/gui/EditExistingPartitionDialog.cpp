@@ -17,6 +17,7 @@
 #include "ui_EditExistingPartitionDialog.h"
 
 #include "core/ColorUtils.h"
+#include "core/KPMHelpers.h"
 #include "core/PartUtils.h"
 #include "core/PartitionCoreModule.h"
 #include "core/PartitionInfo.h"
@@ -28,13 +29,17 @@
 #include "Settings.h"
 #include "partition/FileSystem.h"
 #include "utils/Logger.h"
+#include "widgets/TranslationFix.h"
 
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
 #include <kpmcore/fs/filesystemfactory.h>
+#include <kpmcore/fs/luks.h>
 
 #include <QComboBox>
 #include <QDir>
+#include <QMessageBox>
+#include <QProcess>
 #include <QPushButton>
 
 using CalamaresUtils::Partition::untranslatedFS;
@@ -52,6 +57,7 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device,
     , m_usedMountPoints( usedMountPoints )
 {
     m_ui->setupUi( this );
+    m_ui->encryptWidget->hide();
     standardMountPoints( *( m_ui->mountPointComboBox ), PartitionInfo::mountPoint( partition ) );
 
     QColor color = ColorUtils::colorForPartition( m_partition );
@@ -132,9 +138,7 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device,
     setFlagList( *( m_ui->m_listFlags ), m_partition->availableFlags(), PartitionInfo::flags( m_partition ) );
 }
 
-
 EditExistingPartitionDialog::~EditExistingPartitionDialog() {}
-
 
 PartitionTable::Flags
 EditExistingPartitionDialog::newFlags() const
@@ -242,7 +246,29 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
             {
                 core->setFilesystemLabel( m_device, m_partition, fsLabel );
             }
+
             core->refreshPartition( m_device, m_partition );
+        }
+
+        // Update the existing luks partition
+        const QString passphrase = m_ui->encryptWidget->passphrase();
+        if ( !passphrase.isEmpty() )
+        {
+            int retCode = KPMHelpers::updateLuksDevice( m_partition, passphrase );
+            if ( retCode != 0 )
+            {
+                QString message = tr( "Passphrase for existing partition" );
+                QString description = tr( "Partition %1 could not be decrypted "
+                                          "with the given passphrase."
+                                          "<br/><br/>"
+                                          "Edit the partition again and give the correct passphrase"
+                                          "or delete and create a new encrypted partition." )
+                                          .arg( m_partition->partitionPath() );
+
+                QMessageBox mb( QMessageBox::Information, message, description, QMessageBox::Ok, this->parentWidget() );
+                Calamares::fixButtonLabels( &mb );
+                mb.exec();
+            }
         }
     }
 }
@@ -265,7 +291,6 @@ EditExistingPartitionDialog::replacePartResizerWidget()
 
     m_partitionSizeController->setPartResizerWidget( widget, m_ui->formatRadioButton->isChecked() );
 }
-
 
 void
 EditExistingPartitionDialog::updateMountPointPicker()
@@ -293,13 +318,47 @@ EditExistingPartitionDialog::updateMountPointPicker()
     {
         setSelectedMountPoint( m_ui->mountPointComboBox, QString() );
     }
+
+    toggleEncryptWidget();
 }
 
 void
 EditExistingPartitionDialog::checkMountPointSelection()
 {
-    validateMountPoint( selectedMountPoint( m_ui->mountPointComboBox ),
-                        m_usedMountPoints,
-                        m_ui->mountPointExplanation,
-                        m_ui->buttonBox->button( QDialogButtonBox::Ok ) );
+    if ( validateMountPoint( selectedMountPoint( m_ui->mountPointComboBox ),
+                             m_usedMountPoints,
+                             m_ui->mountPointExplanation,
+                             m_ui->buttonBox->button( QDialogButtonBox::Ok ) ) )
+    {
+        toggleEncryptWidget();
+    }
+}
+
+void
+EditExistingPartitionDialog::toggleEncryptWidget()
+{
+    // Show/hide encryptWidget:
+    // check if partition is a previously luks formatted partition
+    // and not currently formatted
+    // and its mount point not a standard mount point except when it's /home
+    QString mp = selectedMountPoint( m_ui->mountPointComboBox );
+    if ( !mp.isEmpty() && m_partition->fileSystem().type() == FileSystem::Luks && !m_ui->formatRadioButton->isChecked()
+         && ( !standardMountPoints().contains( mp ) || mp == "/home" ) )
+    {
+        m_ui->encryptWidget->show();
+        m_ui->encryptWidget->reset( false );
+    }
+    // TODO: When formatting a partition user must be able to encrypt that partition
+    //       Probably need to delete this partition and create a new one
+    // else if ( m_ui->formatRadioButton->isChecked()
+    //           && !mp.isEmpty())
+    // {
+    //     m_ui->encryptWidget->show();
+    //     m_ui->encryptWidget->reset();
+    // }
+    else
+    {
+        m_ui->encryptWidget->reset();
+        m_ui->encryptWidget->hide();
+    }
 }
