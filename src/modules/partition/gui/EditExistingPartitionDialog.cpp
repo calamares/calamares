@@ -17,10 +17,10 @@
 #include "ui_EditExistingPartitionDialog.h"
 
 #include "core/ColorUtils.h"
+#include "core/KPMHelpers.h"
 #include "core/PartUtils.h"
 #include "core/PartitionCoreModule.h"
 #include "core/PartitionInfo.h"
-#include "core/KPMHelpers.h"
 #include "gui/PartitionDialogHelpers.h"
 #include "gui/PartitionSizeController.h"
 
@@ -38,9 +38,9 @@
 
 #include <QComboBox>
 #include <QDir>
-#include <QPushButton>
-#include <QProcess>
 #include <QMessageBox>
+#include <QProcess>
+#include <QPushButton>
 
 using CalamaresUtils::Partition::untranslatedFS;
 using CalamaresUtils::Partition::userVisibleFS;
@@ -265,8 +265,7 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
                                           "or delete and create a new encrypted partition." )
                                           .arg( m_partition->partitionPath() );
 
-                QMessageBox mb( QMessageBox::Information, message, description, 
-                                QMessageBox::Ok, this->parentWidget() );
+                QMessageBox mb( QMessageBox::Information, message, description, QMessageBox::Ok, this->parentWidget() );
                 Calamares::fixButtonLabels( &mb );
                 mb.exec();
             }
@@ -321,16 +320,15 @@ EditExistingPartitionDialog::updateMountPointPicker()
     }
 
     toggleEncryptWidget();
-
 }
 
 void
 EditExistingPartitionDialog::checkMountPointSelection()
 {
     if ( validateMountPoint( selectedMountPoint( m_ui->mountPointComboBox ),
-                           m_usedMountPoints,
-                           m_ui->mountPointExplanation,
-                           m_ui->buttonBox->button( QDialogButtonBox::Ok ) ) )
+                             m_usedMountPoints,
+                             m_ui->mountPointExplanation,
+                             m_ui->buttonBox->button( QDialogButtonBox::Ok ) ) )
     {
         toggleEncryptWidget();
     }
@@ -344,17 +342,15 @@ EditExistingPartitionDialog::toggleEncryptWidget()
     // and not currently formatted
     // and its mount point not a standard mount point except when it's /home
     QString mp = selectedMountPoint( m_ui->mountPointComboBox );
-    if ( !mp.isEmpty()
-         && m_partition->fileSystem().type() == FileSystem::Luks
-         && !m_ui->formatRadioButton->isChecked()
-         && ( !standardMountPoints().contains(mp) || mp == "/home" ) )
+    if ( !mp.isEmpty() && m_partition->fileSystem().type() == FileSystem::Luks && !m_ui->formatRadioButton->isChecked()
+         && ( !standardMountPoints().contains( mp ) || mp == "/home" ) )
     {
         m_ui->encryptWidget->show();
         m_ui->encryptWidget->reset( false );
     }
     // TODO: When formatting a partition user must be able to encrypt that partition
     //       Probably need to delete this partition and create a new one
-    // else if ( m_ui->formatRadioButton->isChecked() 
+    // else if ( m_ui->formatRadioButton->isChecked()
     //           && !mp.isEmpty())
     // {
     //     m_ui->encryptWidget->show();

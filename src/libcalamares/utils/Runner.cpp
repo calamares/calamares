@@ -151,16 +151,19 @@ Calamares::Utils::Runner::run()
 
     if ( m_output )
     {
-        connect( &process, &QProcess::readyReadStandardOutput, [this, &process]() {
-            do
-            {
-                QString s = process.readLine();
-                if ( !s.isEmpty() )
-                {
-                    Q_EMIT this->output( s );
-                }
-            } while ( process.canReadLine() );
-        } );
+        connect( &process,
+                 &QProcess::readyReadStandardOutput,
+                 [ this, &process ]()
+                 {
+                     do
+                     {
+                         QString s = process.readLine();
+                         if ( !s.isEmpty() )
+                         {
+                             Q_EMIT this->output( s );
+                         }
+                     } while ( process.canReadLine() );
+                 } );
     }
 
     cDebug() << Logger::SubEntry << "Running" << Logger::RedactedCommand( m_command );

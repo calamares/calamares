@@ -467,10 +467,14 @@ ChoicePage::onActionChanged()
     }
 
     // Whole disk encryption isn't implemented for zfs so disable the option for now
-    if ( m_eraseFsTypesChoiceComboBox != nullptr && m_enableEncryptionWidget ) {
-        if ( m_eraseFsTypesChoiceComboBox->currentText() == "zfs" ) {
+    if ( m_eraseFsTypesChoiceComboBox != nullptr && m_enableEncryptionWidget )
+    {
+        if ( m_eraseFsTypesChoiceComboBox->currentText() == "zfs" )
+        {
             m_encryptWidget->hide();
-        } else {
+        }
+        else
+        {
             m_encryptWidget->show();
         }
     }

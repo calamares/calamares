@@ -78,6 +78,20 @@ updateGSAutoLogin( bool doAutoLogin, const QString& login )
     }
 }
 
+static const QStringList&
+alwaysForbiddenLoginNames()
+{
+    static QStringList s { QStringLiteral( "root" ), QStringLiteral( "nobody" ) };
+    return s;
+}
+
+static const QStringList&
+alwaysForbiddenHostNames()
+{
+    static QStringList s { QStringLiteral( "localhost" ) };
+    return s;
+}
+
 const NamedEnumTable< HostNameAction >&
 hostnameActionNames()
 {
@@ -98,6 +112,8 @@ hostnameActionNames()
 
 Config::Config( QObject* parent )
     : Calamares::ModuleSystem::Config( parent )
+    , m_forbiddenHostNames( alwaysForbiddenHostNames() )
+    , m_forbiddenLoginNames( alwaysForbiddenLoginNames() )
 {
     emit readyChanged( m_isReady );  // false
 
@@ -909,7 +925,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         setUserShell( shell );
 
         m_forbiddenLoginNames = CalamaresUtils::getStringList( userSettings, "forbidden_names" );
-        m_forbiddenLoginNames << QStringLiteral( "root" ) << QStringLiteral( "nobody" );
+        m_forbiddenLoginNames << alwaysForbiddenLoginNames();
         tidy( m_forbiddenLoginNames );
     }
 
@@ -934,7 +950,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
             = CalamaresUtils::getString( hostnameSettings, "template", QStringLiteral( "${first}-${product}" ) );
 
         m_forbiddenHostNames = CalamaresUtils::getStringList( hostnameSettings, "forbidden_names" );
-        m_forbiddenHostNames << QStringLiteral( "localhost" );
+        m_forbiddenHostNames << alwaysForbiddenHostNames();
         tidy( m_forbiddenHostNames );
     }
 

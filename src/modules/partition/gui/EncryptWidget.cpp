@@ -149,7 +149,7 @@ EncryptWidget::updateState()
     }
 
     Encryption newState;
-    if ( m_ui->m_encryptCheckBox->isChecked() || !m_ui->m_encryptCheckBox->isVisible())
+    if ( m_ui->m_encryptCheckBox->isChecked() || !m_ui->m_encryptCheckBox->isVisible() )
     {
         if ( !m_ui->m_passphraseLineEdit->text().isEmpty()
              && m_ui->m_passphraseLineEdit->text() == m_ui->m_confirmLineEdit->text() )
