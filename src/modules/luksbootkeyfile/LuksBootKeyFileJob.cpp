@@ -17,6 +17,7 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 
+#include <QRegularExpression>
 #include <QDir>
 
 LuksBootKeyFileJob::LuksBootKeyFileJob( QObject* parent )
@@ -136,6 +137,28 @@ generateTargetKeyfile()
 static bool
 setupLuks( const LuksDevice& d )
 {
+    // Sometimes this error is thrown: "All key slots full"
+    // luksAddKey will fail. So, remove the first slot to make room
+    auto luks_dump = CalamaresUtils::System::instance()->targetEnvCommand(
+        { "cryptsetup", "luksDump", d.device }, QString(), QString(), std::chrono::seconds( 5 ) );
+    if ( luks_dump.getExitCode() == 0 )
+    {
+        QRegularExpression re( QStringLiteral( R"(\d+:\s*enabled)" ), QRegularExpression::CaseInsensitiveOption );
+        int count = luks_dump.getOutput().count(re);
+        cDebug() << "Luks Dump slot count: " << count;
+        if ( count >= 7 )
+        {
+            auto r = CalamaresUtils::System::instance()->targetEnvCommand(
+                { "cryptsetup", "luksKillSlot", d.device, "1" }, QString(), d.passphrase, std::chrono::seconds( 60 ) );
+            if ( r.getExitCode() != 0 )
+            {
+                cWarning() << "Could not kill a slot to make room on" << d.device << ':' << r.getOutput() << "(exit code"
+                   << r.getExitCode() << ')';
+                return false;
+            }
+        }
+    }
+
     // Adding the key can take some times, measured around 15 seconds with
     // a HDD (spinning rust) and a slow-ish computer. Give it a minute.
     auto r = CalamaresUtils::System::instance()->targetEnvCommand(
