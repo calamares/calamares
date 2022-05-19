@@ -43,6 +43,17 @@ class PartitionRole;
 namespace KPMHelpers
 {
 
+enum SavePassphraseValue
+{
+    NoError,
+    EmptyPassphrase,
+    NotLuksPartition,
+    IncorrectPassphrase,
+    CryptsetupError,
+    NoMapperNode,
+    DeviceNotDecrypted
+};
+
 /**
  * Iterates on all devices and return the first partition which is associated
  * with mountPoint. This uses PartitionInfo::mountPoint(), not Partition::mountPoint()
@@ -74,7 +85,7 @@ Partition* createNewEncryptedPartition( PartitionNode* parent,
 
 Partition* clonePartition( Device* device, Partition* partition );
 
-int updateLuksDevice( Partition* partition, const QString& passphrase );
+SavePassphraseValue savePassphrase( Partition* partition, const QString& passphrase );
 
 /** @brief Return a result for an @p operation
  *
