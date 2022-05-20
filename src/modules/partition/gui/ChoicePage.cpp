@@ -125,6 +125,8 @@ ChoicePage::ChoicePage( Config* config, QWidget* parent )
     m_encryptWidget->hide();
     m_reuseHomeCheckBox->hide();
     gs->insert( "reuseHome", false );
+
+    updateNextEnabled();
 }
 
 
@@ -478,6 +480,7 @@ ChoicePage::onActionChanged()
             m_encryptWidget->show();
         }
     }
+    updateNextEnabled();
 }
 
 void
@@ -1205,6 +1208,8 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
 
     m_beforePartitionBarsView->setSelectionMode( previewSelectionMode );
     m_beforePartitionLabelsView->setSelectionMode( previewSelectionMode );
+
+    updateNextEnabled();
 }
 
 
