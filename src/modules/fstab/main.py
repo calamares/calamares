@@ -106,14 +106,17 @@ class FstabGenerator(object):
     :param root_mount_point:
     :param mount_options:
     :param ssd_extra_mount_options:
+    :param crypttab_options:
+    :param tmp_options:
     """
     def __init__(self, partitions, root_mount_point, mount_options,
-                 ssd_extra_mount_options, crypttab_options):
+                 ssd_extra_mount_options, crypttab_options, tmp_options):
         self.partitions = partitions
         self.root_mount_point = root_mount_point
         self.mount_options = mount_options
         self.ssd_extra_mount_options = ssd_extra_mount_options
         self.crypttab_options = crypttab_options
+        self.tmp_options = tmp_options
         self.ssd_disks = set()
         self.root_is_ssd = False
 
@@ -221,14 +224,26 @@ class FstabGenerator(object):
                         self.print_fstab_line(dct, file=fstab_file)
 
             if self.root_is_ssd:
-                # Mount /tmp on a tmpfs
-                dct = dict(device="tmpfs",
-                           mount_point="/tmp",
-                           fs="tmpfs",
-                           options="defaults,noatime,mode=1777",
-                           check=0,
-                           )
-                self.print_fstab_line(dct, file=fstab_file)
+                # Old behavior was to mount /tmp as tmpfs
+                # New behavior is to use tmpOptions to decide
+                # if mounting /tmp as tmpfs and which options to use
+                print((">>> tmp_options = {}".format(self.tmp_options)))
+                ssd = self.tmp_options.get("ssd", {})
+                if not ssd:
+                    ssd = self.tmp_options.get("default", {})
+                # Default to True to mimic old behavior
+                tmpfs = ssd.get("tmpfs", True)
+
+                if tmpfs:
+                    options = ssd.get("options", "defaults,noatime,mode=1777")
+                    # Mount /tmp on a tmpfs
+                    dct = dict(device="tmpfs",
+                            mount_point="/tmp",
+                            fs="tmpfs",
+                            options=options,
+                            check=0,
+                            )
+                    self.print_fstab_line(dct, file=fstab_file)
 
     def generate_fstab_line_info(self, partition):
         """
@@ -411,6 +426,7 @@ def run():
     mount_options = conf.get("mountOptions", {})
     ssd_extra_mount_options = conf.get("ssdExtraMountOptions", {})
     crypttab_options = conf.get("crypttabOptions", "luks")
+    tmp_options = conf.get("tmpOptions", {})
 
     # We rely on mount_options having a default; if there wasn't one,
     # bail out with a meaningful error.
@@ -423,7 +439,8 @@ def run():
                                root_mount_point,
                                mount_options,
                                ssd_extra_mount_options,
-                               crypttab_options)
+                               crypttab_options,
+                               tmp_options)
 
     if swap_choice is not None:
         libcalamares.job.setprogress(0.2)
