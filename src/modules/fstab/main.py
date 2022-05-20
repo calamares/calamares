@@ -217,7 +217,7 @@ class FstabGenerator(object):
                         mount_entry["subvol"] = s["subvolume"]
                         dct = self.generate_fstab_line_info(mount_entry)
                         if dct:
-                                self.print_fstab_line(dct, file=fstab_file)
+                            self.print_fstab_line(dct, file=fstab_file)
                 elif partition["fs"] != "zfs":  # zfs partitions don't need an entry in fstab
                     dct = self.generate_fstab_line_info(partition)
                     if dct:
@@ -227,7 +227,6 @@ class FstabGenerator(object):
                 # Old behavior was to mount /tmp as tmpfs
                 # New behavior is to use tmpOptions to decide
                 # if mounting /tmp as tmpfs and which options to use
-                print((">>> tmp_options = {}".format(self.tmp_options)))
                 ssd = self.tmp_options.get("ssd", {})
                 if not ssd:
                     ssd = self.tmp_options.get("default", {})
@@ -238,11 +237,11 @@ class FstabGenerator(object):
                     options = ssd.get("options", "defaults,noatime,mode=1777")
                     # Mount /tmp on a tmpfs
                     dct = dict(device="tmpfs",
-                            mount_point="/tmp",
-                            fs="tmpfs",
-                            options=options,
-                            check=0,
-                            )
+                               mount_point="/tmp",
+                               fs="tmpfs",
+                               options=options,
+                               check=0,
+                               )
                     self.print_fstab_line(dct, file=fstab_file)
 
     def generate_fstab_line_info(self, partition):
