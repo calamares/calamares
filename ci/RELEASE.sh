@@ -7,8 +7,6 @@
 #
 # Release script for Calamares
 #
-# NOTE: this script contains Linuxisms (in particular, expects GNU mktemp(1))
-#
 # This attempts to perform the different steps of the RELEASE.md
 # document automatically. It's not tested on other machines or
 # setups other than [ade]'s development VM.
@@ -74,7 +72,7 @@ fi
 ### Setup
 #
 #
-BUILDDIR=$(mktemp -d --suffix=-build --tmpdir=.)
+BUILDDIR=$(mktemp -d ./cala-tmp-XXXXXX)
 KEY_ID="328D742D8807A435"
 
 # Try to make gpg cache the signing key, so we can leave the process
@@ -145,7 +143,7 @@ SHA256=$(sha256sum "$TAR_FILE" | cut -d" " -f1)
 #
 #
 D=$(date +%Y%m%d-%H%M%S)
-TMPDIR=$(mktemp -d --suffix="-calamares-$D")
+TMPDIR=$(mktemp -d ./cala-tar-XXXXXX)
 test -d "$TMPDIR" || { echo "Could not create tarball-build directory." ; exit 1 ; }
 tar xzf "$TAR_FILE" -C "$TMPDIR" || { echo "Could not unpack tarball." ; exit 1 ; }
 test -d "$TMPDIR/$TAR_V" || { echo "Tarball did not contain source directory." ; exit 1 ; }
