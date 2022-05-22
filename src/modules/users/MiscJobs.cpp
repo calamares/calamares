@@ -41,13 +41,10 @@ designatorForStyle( Config::SudoStyle style )
     {
     case Config::SudoStyle::UserOnly:
         return QStringLiteral( "(ALL)" );
-        break;
     case Config::SudoStyle::UserAndGroup:
         return QStringLiteral( "(ALL:ALL)" );
-        break;
     }
     __builtin_unreachable();
-    return QString();
 }
 
 Calamares::JobResult

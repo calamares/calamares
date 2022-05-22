@@ -156,18 +156,24 @@ Config::Config( QObject* parent )
     m_setxkbmapTimer.setSingleShot( true );
 
     // Connect signals and slots
-    connect( m_keyboardModelsModel, &KeyboardModelsModel::currentIndexChanged, [&]( int index ) {
-        // Set Xorg keyboard model
-        m_selectedModel = m_keyboardModelsModel->key( index );
-        QProcess::execute( "setxkbmap", xkbmap_model_args( m_selectedModel ) );
-        emit prettyStatusChanged();
-    } );
+    connect( m_keyboardModelsModel,
+             &KeyboardModelsModel::currentIndexChanged,
+             [ & ]( int index )
+             {
+                 // Set Xorg keyboard model
+                 m_selectedModel = m_keyboardModelsModel->key( index );
+                 QProcess::execute( "setxkbmap", xkbmap_model_args( m_selectedModel ) );
+                 emit prettyStatusChanged();
+             } );
 
-    connect( m_keyboardLayoutsModel, &KeyboardLayoutModel::currentIndexChanged, [&]( int index ) {
-        m_selectedLayout = m_keyboardLayoutsModel->item( index ).first;
-        updateVariants( QPersistentModelIndex( m_keyboardLayoutsModel->index( index ) ) );
-        emit prettyStatusChanged();
-    } );
+    connect( m_keyboardLayoutsModel,
+             &KeyboardLayoutModel::currentIndexChanged,
+             [ & ]( int index )
+             {
+                 m_selectedLayout = m_keyboardLayoutsModel->item( index ).first;
+                 updateVariants( QPersistentModelIndex( m_keyboardLayoutsModel->index( index ) ) );
+                 emit prettyStatusChanged();
+             } );
 
     connect( m_keyboardVariantsModel, &KeyboardVariantsModel::currentIndexChanged, this, &Config::xkbChanged );
 

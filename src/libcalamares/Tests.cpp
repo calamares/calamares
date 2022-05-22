@@ -425,9 +425,8 @@ sequence:
         // Make a lambda where we can adjust what it looks for from the outside,
         //   by capturing a reference.
         QString moduleKey = QString( "welcome" );
-        auto moduleFinder = [&moduleKey]( const Calamares::InstanceDescription& d ) {
-            return d.isValid() && d.key().module() == moduleKey;
-        };
+        auto moduleFinder = [ &moduleKey ]( const Calamares::InstanceDescription& d )
+        { return d.isValid() && d.key().module() == moduleKey; };
 
         const auto it0 = std::find_if( s.moduleInstances().constBegin(), s.moduleInstances().constEnd(), moduleFinder );
         QVERIFY( it0 != s.moduleInstances().constEnd() );

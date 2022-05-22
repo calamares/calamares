@@ -145,12 +145,12 @@
   <context>
     <name>Calamares::ExecutionViewStep</name>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="88"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="118"/>
       <source>Set up</source>
       <translation>Thiết lập</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="88"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="118"/>
       <source>Install</source>
       <translation>Cài đặt</translation>
     </message>
@@ -856,52 +856,52 @@ Trình cài đặt sẽ thoát và tất cả các thay đổi sẽ bị mất.<
       <translation>&lt;h1&gt;Chào mừng đến với bộ cài đặt %1 &lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="217"/>
+      <location filename="../src/modules/users/Config.cpp" line="221"/>
       <source>Your username is too long.</source>
       <translation>Tên bạn hơi dài.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="223"/>
+      <location filename="../src/modules/users/Config.cpp" line="227"/>
       <source>'%1' is not allowed as username.</source>
       <translation>'%1' không được phép dùng làm tên.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="230"/>
+      <location filename="../src/modules/users/Config.cpp" line="234"/>
       <source>Your username must start with a lowercase letter or underscore.</source>
       <translation>Tên người dùng của bạn phải bắt đầu bằng chữ cái viết thường hoặc dấu gạch dưới.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="234"/>
+      <location filename="../src/modules/users/Config.cpp" line="238"/>
       <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
       <translation>Chỉ cho phép các chữ cái viết thường, số, gạch dưới và gạch nối.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="279"/>
+      <location filename="../src/modules/users/Config.cpp" line="288"/>
       <source>Your hostname is too short.</source>
       <translation>Tên máy chủ quá ngắn.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="283"/>
+      <location filename="../src/modules/users/Config.cpp" line="292"/>
       <source>Your hostname is too long.</source>
       <translation>Tên máy chủ quá dài.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="289"/>
+      <location filename="../src/modules/users/Config.cpp" line="298"/>
       <source>'%1' is not allowed as hostname.</source>
       <translation>'%1' không được phép dùng làm tên máy chủ.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="295"/>
+      <location filename="../src/modules/users/Config.cpp" line="304"/>
       <source>Only letters, numbers, underscore and hyphen are allowed.</source>
       <translation>Chỉ cho phép các chữ cái, số, gạch dưới và gạch nối.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="534"/>
+      <location filename="../src/modules/users/Config.cpp" line="573"/>
       <source>Your passwords do not match!</source>
       <translation>Mật khẩu nhập lại không khớp!</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="548"/>
+      <location filename="../src/modules/users/Config.cpp" line="587"/>
       <source>OK!</source>
       <translation type="unfinished"/>
     </message>
@@ -1458,12 +1458,12 @@ Trình cài đặt sẽ thoát và tất cả các thay đổi sẽ bị mất.<
   <context>
     <name>ErrorDialog</name>
     <message>
-      <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="36"/>
+      <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="40"/>
       <source>Details:</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="52"/>
+      <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="56"/>
       <source>Would you like to paste the install log to the web?</source>
       <translation>Bạn có muốn gửi nhật ký cài đặt lên web không?</translation>
     </message>
@@ -1976,35 +1976,35 @@ Trình cài đặt sẽ thoát và tất cả các thay đổi sẽ bị mất.<
   <context>
     <name>LuksBootKeyFileJob</name>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="30"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="32"/>
       <source>Configuring LUKS key file.</source>
       <translation>Định cấu hình tệp khóa LUKS.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="186"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="194"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="188"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="196"/>
       <source>No partitions are defined.</source>
       <translation>Không có phân vùng nào được xác định.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="229"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="236"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="244"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="231"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="238"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="246"/>
       <source>Encrypted rootfs setup error</source>
       <translation>Lỗi thiết lập rootfs mã hóa</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="230"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="232"/>
       <source>Root partition %1 is LUKS but no passphrase has been set.</source>
       <translation>Phân vùng gốc %1 là LUKS nhưng không có cụm mật khẩu nào được đặt.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="237"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="239"/>
       <source>Could not create LUKS key file for root partition %1.</source>
       <translation>Không thể tạo tệp khóa LUKS cho phân vùng gốc %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="245"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="247"/>
       <source>Could not configure LUKS key file on partition %1.</source>
       <translation>Không thể định cấu hình tệp khóa LUKS trên phân vùng %1.</translation>
     </message>
@@ -2472,7 +2472,7 @@ Trình cài đặt sẽ thoát và tất cả các thay đổi sẽ bị mất.<
       <translation>Lỗi không xác định</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="782"/>
+      <location filename="../src/modules/users/Config.cpp" line="818"/>
       <source>Password is empty</source>
       <translation>Mật khẩu trống</translation>
     </message>
@@ -2829,82 +2829,97 @@ Trình cài đặt sẽ thoát và tất cả các thay đổi sẽ bị mất.<
       <translation>Phân vùng</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="297"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="254"/>
+      <source>Unsafe partition actions are enabled.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="257"/>
+      <source>Partitioning is configured to &lt;b&gt;always&lt;/b&gt; fail.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="260"/>
+      <source>No partitions will be changed.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="300"/>
       <source>Current:</source>
       <translation>Hiện tại:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="315"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="318"/>
       <source>After:</source>
       <translation>Sau:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="524"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="529"/>
       <source>No EFI system partition configured</source>
       <translation>Không có hệ thống phân vùng EFI được cài đặt</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="528"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="533"/>
       <source>EFI system partition configured incorrectly</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="533"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="538"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a suitable filesystem.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="544"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="549"/>
       <source>The filesystem must be mounted on &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="550"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="555"/>
       <source>The filesystem must have type FAT32.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="558"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="563"/>
       <source>The filesystem must be at least %1 MiB in size.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="564"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="569"/>
       <source>The filesystem must have flag &lt;strong&gt;%1&lt;/strong&gt; set.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="570"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="575"/>
       <source>You can continue without setting up an EFI system partition but your system may fail to start.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="587"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="593"/>
       <source>Option to use GPT on BIOS</source>
       <translation>Lựa chọn dùng GPT trên BIOS</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="588"/>
-      <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
-      <translation>Bảng phân vùng GPT là lựa chọn tốt nhất cho tất cả các hệ thống. Trình cài đặt này cũng hỗ trợ thiết lập như vậy cho các hệ thống BIOS. &lt;br/&gt; &lt;br/&gt; Để định cấu hình bảng phân vùng GPT trên BIOS, (nếu chưa thực hiện xong) hãy quay lại và đặt bảng phân vùng thành GPT, tiếp theo tạo 8 MB phân vùng chưa định dạng với cờ &lt;strong&gt; bios_grub &lt;/strong&gt; được bật. &lt;br/&gt; &lt;br/&gt; Cần có phân vùng 8 MB chưa được định dạng để khởi động %1 trên hệ thống BIOS có GPT.</translation>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="594"/>
+      <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="620"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="626"/>
       <source>Boot partition not encrypted</source>
       <translation>Phân vùng khởi động không được mã hóa</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="621"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="627"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
       <translation>Một phân vùng khởi động riêng biệt đã được thiết lập cùng với một phân vùng gốc được mã hóa, nhưng phân vùng khởi động không được mã hóa. &lt;br/&gt; &lt;br/&gt; Có những lo ngại về bảo mật với loại thiết lập này, vì các tệp hệ thống quan trọng được lưu giữ trên một phân vùng không được mã hóa . &lt;br/&gt; Bạn có thể tiếp tục nếu muốn, nhưng việc mở khóa hệ thống tệp sẽ diễn ra sau trong quá trình khởi động hệ thống. &lt;br/&gt; Để mã hóa phân vùng khởi động, hãy quay lại và tạo lại nó, chọn &lt;strong&gt; Mã hóa &lt;/strong&gt; trong phân vùng cửa sổ tạo.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="712"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="718"/>
       <source>has at least one disk device available.</source>
       <translation>có sẵn ít nhất một thiết bị đĩa.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="713"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="719"/>
       <source>There are no partitions to install on.</source>
       <translation>Không có phân vùng để cài đặt.</translation>
     </message>
@@ -3391,29 +3406,29 @@ Output:
   <context>
     <name>SetHostNameJob</name>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="37"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="36"/>
       <source>Set hostname %1</source>
       <translation>Đặt tên máy %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="44"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="43"/>
       <source>Set hostname &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Đặt tên máy &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="51"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="50"/>
       <source>Setting hostname %1.</source>
       <translation>Đặt tên máy %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="122"/>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="129"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="124"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="131"/>
       <source>Internal Error</source>
       <translation>Lỗi bên trong</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="137"/>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="146"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="142"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="159"/>
       <source>Cannot write hostname to target system</source>
       <translation>Không thể ghi tên máy chủ vào hệ thống đích</translation>
     </message>
@@ -3615,18 +3630,18 @@ Output:
   <context>
     <name>SetupGroupsJob</name>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="166"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="182"/>
       <source>Preparing groups.</source>
       <translation>Đang chuẩn bị các nhóm</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="178"/>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="183"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="194"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="199"/>
       <source>Could not create groups in target system</source>
       <translation>Không thể tạo các nhóm trên hệ thống đích </translation>
     </message>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="184"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="200"/>
       <source>These groups are missing in the target system: %1</source>
       <translation>Có vài nhóm đang bị thiếu trong hệ thống đích: %1</translation>
     </message>
@@ -3634,17 +3649,17 @@ Output:
   <context>
     <name>SetupSudoJob</name>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="33"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="34"/>
       <source>Configure &lt;pre&gt;sudo&lt;/pre&gt; users.</source>
       <translation>Cấu hình &lt;pre&gt;sudo&lt;/pre&gt;cho người dùng.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="55"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="71"/>
       <source>Cannot chmod sudoers file.</source>
       <translation>Không thể sửa đổi mod của tệp sudoers.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="60"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="76"/>
       <source>Cannot create sudoers file for writing.</source>
       <translation>Không thể tạo tệp sudoers để viết.</translation>
     </message>
@@ -3834,12 +3849,12 @@ Output:
       <translation>Gỡ kết nối các hệ thống tập tin.</translation>
     </message>
     <message>
-      <location filename="../src/modules/umount/UmountJob.cpp" line="122"/>
+      <location filename="../src/modules/umount/UmountJob.cpp" line="124"/>
       <source>No target system available.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/umount/UmountJob.cpp" line="130"/>
+      <location filename="../src/modules/umount/UmountJob.cpp" line="132"/>
       <source>No rootMountPoint is set.</source>
       <translation type="unfinished"/>
     </message>
@@ -3847,12 +3862,12 @@ Output:
   <context>
     <name>UsersPage</name>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="177"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="190"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
       <translation>&lt;small&gt; Nếu nhiều người cùng sử dụng máy tính này, bạn có thể tạo nhiều tài khoản sau khi thiết lập. &lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="183"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="196"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
       <translation>&lt;small&gt; Nếu nhiều người cùng sử dụng máy tính này, bạn có thể tạo nhiều tài khoản sau khi cài đặt. &lt;/small&gt;</translation>
     </message>

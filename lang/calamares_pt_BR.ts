@@ -145,12 +145,12 @@
   <context>
     <name>Calamares::ExecutionViewStep</name>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="88"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="118"/>
       <source>Set up</source>
       <translation>Configurar</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="88"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="118"/>
       <source>Install</source>
       <translation>Instalar</translation>
     </message>
@@ -862,52 +862,52 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
       <translation>&lt;h1&gt;Bem-vindo ao instalador de %1&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="217"/>
+      <location filename="../src/modules/users/Config.cpp" line="221"/>
       <source>Your username is too long.</source>
       <translation>O nome de usuário é grande demais.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="223"/>
+      <location filename="../src/modules/users/Config.cpp" line="227"/>
       <source>'%1' is not allowed as username.</source>
       <translation>'%1' não é permitido como nome de usuário.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="230"/>
+      <location filename="../src/modules/users/Config.cpp" line="234"/>
       <source>Your username must start with a lowercase letter or underscore.</source>
       <translation>Seu nome de usuário deve começar com uma letra minúscula ou com um sublinhado.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="234"/>
+      <location filename="../src/modules/users/Config.cpp" line="238"/>
       <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
       <translation>É permitido apenas letras minúsculas, números, sublinhado e hífen.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="279"/>
+      <location filename="../src/modules/users/Config.cpp" line="288"/>
       <source>Your hostname is too short.</source>
       <translation>O nome da máquina é muito curto.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="283"/>
+      <location filename="../src/modules/users/Config.cpp" line="292"/>
       <source>Your hostname is too long.</source>
       <translation>O nome da máquina é muito grande.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="289"/>
+      <location filename="../src/modules/users/Config.cpp" line="298"/>
       <source>'%1' is not allowed as hostname.</source>
       <translation>'%1' não é permitido como nome da máquina.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="295"/>
+      <location filename="../src/modules/users/Config.cpp" line="304"/>
       <source>Only letters, numbers, underscore and hyphen are allowed.</source>
       <translation>É permitido apenas letras, números, sublinhado e hífen.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="534"/>
+      <location filename="../src/modules/users/Config.cpp" line="573"/>
       <source>Your passwords do not match!</source>
       <translation>As senhas não estão iguais!</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="548"/>
+      <location filename="../src/modules/users/Config.cpp" line="587"/>
       <source>OK!</source>
       <translation>OK!</translation>
     </message>
@@ -1464,12 +1464,12 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
   <context>
     <name>ErrorDialog</name>
     <message>
-      <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="36"/>
+      <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="40"/>
       <source>Details:</source>
       <translation>Detalhes:</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="52"/>
+      <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="56"/>
       <source>Would you like to paste the install log to the web?</source>
       <translation>Deseja colar o registro de instalação na internet?</translation>
     </message>
@@ -1982,35 +1982,35 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
   <context>
     <name>LuksBootKeyFileJob</name>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="30"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="32"/>
       <source>Configuring LUKS key file.</source>
       <translation>Configurando o arquivo de chave do LUKS.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="186"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="194"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="188"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="196"/>
       <source>No partitions are defined.</source>
       <translation>Nenhuma partição está definida.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="229"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="236"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="244"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="231"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="238"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="246"/>
       <source>Encrypted rootfs setup error</source>
       <translation>Erro de configuração de rootfs encriptado</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="230"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="232"/>
       <source>Root partition %1 is LUKS but no passphrase has been set.</source>
       <translation>A partição raiz %1 é LUKS, mas nenhuma senha foi definida.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="237"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="239"/>
       <source>Could not create LUKS key file for root partition %1.</source>
       <translation>Não foi possível criar o arquivo de chave LUKS para a partição raiz %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="245"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="247"/>
       <source>Could not configure LUKS key file on partition %1.</source>
       <translation>Não foi possível configurar a chave LUKS na partição %1.</translation>
     </message>
@@ -2487,7 +2487,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
       <translation>Erro desconhecido</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="782"/>
+      <location filename="../src/modules/users/Config.cpp" line="818"/>
       <source>Password is empty</source>
       <translation>A senha está em branco</translation>
     </message>
@@ -2844,82 +2844,97 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
       <translation>Partições</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="297"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="254"/>
+      <source>Unsafe partition actions are enabled.</source>
+      <translation>As ações de partição não seguras estão habilitadas.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="257"/>
+      <source>Partitioning is configured to &lt;b&gt;always&lt;/b&gt; fail.</source>
+      <translation>O particionamento está configurado para &lt;b&gt;sempre&lt;/b&gt;  falhar.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="260"/>
+      <source>No partitions will be changed.</source>
+      <translation>Nenhuma partição será modificada.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="300"/>
       <source>Current:</source>
       <translation>Atualmente:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="315"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="318"/>
       <source>After:</source>
       <translation>Depois:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="524"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="529"/>
       <source>No EFI system partition configured</source>
       <translation>Nenhuma partição de sistema EFI configurada</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="528"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="533"/>
       <source>EFI system partition configured incorrectly</source>
       <translation>Partição EFI do sistema configurada incorretamente</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="533"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="538"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a suitable filesystem.</source>
       <translation>Uma partição de sistema EFI é necessária para iniciar o %1. &lt;br/&gt;&lt;br/&gt;Para configurar uma partição de sistema EFI, volte atrás e selecione ou crie um sistema de arquivos adequado.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="544"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="549"/>
       <source>The filesystem must be mounted on &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>O sistema de arquivos deve ser montado em &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="550"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="555"/>
       <source>The filesystem must have type FAT32.</source>
       <translation>O sistema de arquivos deve ter o tipo FAT32.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="558"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="563"/>
       <source>The filesystem must be at least %1 MiB in size.</source>
       <translation>O sistema de arquivos deve ter pelo menos %1 MiB de tamanho.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="564"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="569"/>
       <source>The filesystem must have flag &lt;strong&gt;%1&lt;/strong&gt; set.</source>
       <translation>O sistema de arquivos deve ter o marcador %1 definido.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="570"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="575"/>
       <source>You can continue without setting up an EFI system partition but your system may fail to start.</source>
       <translation>Você pode continuar sem configurar uma partição de sistema EFI, mas seu sistema pode não iniciar.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="587"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="593"/>
       <source>Option to use GPT on BIOS</source>
       <translation>Opção para usar GPT no BIOS</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="588"/>
-      <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
-      <translation>Uma tabela de partições GPT é a melhor opção para todos os sistemas. Este instalador suporta tal configuração para sistemas BIOS também.&lt;br/&gt;&lt;br/&gt;Para configurar uma tabela de partições GPT no BIOS, (caso não tenha sido feito ainda) volte e defina a tabela de partições como GPT, depois crie uma partição sem formatação de 8 MB com o marcador &lt;strong&gt;bios_grub&lt;/strong&gt; ativado.&lt;br/&gt;&lt;br/&gt;Uma partição não formatada de 8 MB é necessária para iniciar %1 num sistema BIOS com o GPT.</translation>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="594"/>
+      <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
+      <translation>Uma tabela de partições GPT é a melhor opção para todos os sistemas. Este instalador suporta tal configuração para sistemas BIOS também.&lt;br/&gt;&lt;br/&gt;Para configurar uma tabela de partições GPT no BIOS, (caso não tenha sido feito ainda) volte atrás e defina a tabela de partições como GPT, depois crie uma partição sem formatação de 8 MB com o marcador &lt;strong&gt;%2&lt;/strong&gt; ativado.&lt;br/&gt;&lt;br/&gt;Uma partição não formatada de 8 MB é necessária para iniciar %1 em um sistema BIOS com GPT.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="620"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="626"/>
       <source>Boot partition not encrypted</source>
       <translation>Partição de inicialização não criptografada</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="621"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="627"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
       <translation>Uma partição de inicialização separada foi configurada juntamente com uma partição raiz criptografada, mas a partição de inicialização não é criptografada.&lt;br/&gt;&lt;br/&gt;Há preocupações de segurança quanto a esse tipo de configuração, porque arquivos de sistema importantes são mantidos em uma partição não criptografada.&lt;br/&gt;Você pode continuar se quiser, mas o desbloqueio do sistema de arquivos acontecerá mais tarde durante a inicialização do sistema.&lt;br/&gt;Para criptografar a partição de inicialização, volte e recrie-a, selecionando &lt;strong&gt;Criptografar&lt;/strong&gt;  na janela de criação da partição.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="712"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="718"/>
       <source>has at least one disk device available.</source>
       <translation>tem pelo menos um dispositivo de disco disponível.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="713"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="719"/>
       <source>There are no partitions to install on.</source>
       <translation>Não há partições para instalar.</translation>
     </message>
@@ -3406,29 +3421,29 @@ Saída:
   <context>
     <name>SetHostNameJob</name>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="37"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="36"/>
       <source>Set hostname %1</source>
       <translation>Definir nome da máquina %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="44"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="43"/>
       <source>Set hostname &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Definir nome da máquina &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="51"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="50"/>
       <source>Setting hostname %1.</source>
       <translation>Definindo nome da máquina %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="122"/>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="129"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="124"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="131"/>
       <source>Internal Error</source>
       <translation>Erro interno</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="137"/>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="146"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="142"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="159"/>
       <source>Cannot write hostname to target system</source>
       <translation>Não é possível gravar o nome da máquina para o sistema alvo</translation>
     </message>
@@ -3630,18 +3645,18 @@ Saída:
   <context>
     <name>SetupGroupsJob</name>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="166"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="182"/>
       <source>Preparing groups.</source>
       <translation>Preparando grupos.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="178"/>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="183"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="194"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="199"/>
       <source>Could not create groups in target system</source>
       <translation>Não foi possível criar grupos no sistema alvo</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="184"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="200"/>
       <source>These groups are missing in the target system: %1</source>
       <translation>Estes grupos estão faltando no sistema alvo: %1</translation>
     </message>
@@ -3649,17 +3664,17 @@ Saída:
   <context>
     <name>SetupSudoJob</name>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="33"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="34"/>
       <source>Configure &lt;pre&gt;sudo&lt;/pre&gt; users.</source>
       <translation>Configurar usuários &lt;pre&gt;sudo&lt;/pre&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="55"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="71"/>
       <source>Cannot chmod sudoers file.</source>
       <translation>Não foi possível utilizar chmod no arquivo sudoers.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="60"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="76"/>
       <source>Cannot create sudoers file for writing.</source>
       <translation>Não foi possível criar arquivo sudoers para gravação.</translation>
     </message>
@@ -3849,12 +3864,12 @@ Saída:
       <translation>Desmontar os sistemas de arquivos.</translation>
     </message>
     <message>
-      <location filename="../src/modules/umount/UmountJob.cpp" line="122"/>
+      <location filename="../src/modules/umount/UmountJob.cpp" line="124"/>
       <source>No target system available.</source>
       <translation>Não há um sistema alvo disponível.</translation>
     </message>
     <message>
-      <location filename="../src/modules/umount/UmountJob.cpp" line="130"/>
+      <location filename="../src/modules/umount/UmountJob.cpp" line="132"/>
       <source>No rootMountPoint is set.</source>
       <translation>Nenhum rootMountPoint está definido.</translation>
     </message>
@@ -3862,12 +3877,12 @@ Saída:
   <context>
     <name>UsersPage</name>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="177"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="190"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Se mais de uma pessoa for utilizar este computador, você poderá criar múltiplas contas após terminar a configuração.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="183"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="196"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Se mais de uma pessoa for utilizar este computador, você poderá criar múltiplas contas após terminar de instalar.&lt;/small&gt;</translation>
     </message>
@@ -4091,7 +4106,7 @@ Saída:
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="181"/>
       <source>No partitions are available for ZFS.</source>
-      <translation type="unfinished"/>
+      <translation>Não há partições disponíveis para o ZFS.</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>

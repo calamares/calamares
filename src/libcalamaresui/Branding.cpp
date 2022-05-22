@@ -235,31 +235,35 @@ Branding::Branding( const QString& brandingFilePath, QObject* parent )
                 { QStringLiteral( "VARIANT" ), relInfo.variant() },
                 { QStringLiteral( "VARIANT_ID" ), relInfo.variantId() },
                 { QStringLiteral( "LOGO" ), relInfo.logo() } } };
-            auto expand = [&]( const QString& s ) -> QString {
-                return KMacroExpander::expandMacros( s, relMap, QLatin1Char( '@' ) );
-            };
+            auto expand = [ & ]( const QString& s ) -> QString
+            { return KMacroExpander::expandMacros( s, relMap, QLatin1Char( '@' ) ); };
 #else
             auto expand = []( const QString& s ) -> QString { return s; };
 #endif
             // Massage the strings, images and style sections.
             loadStrings( m_strings, doc, "strings", expand );
-            loadStrings( m_images, doc, "images", [&]( const QString& s ) -> QString {
-                // See also image()
-                const QString imageName( expand( s ) );
-                QFileInfo imageFi( componentDir.absoluteFilePath( imageName ) );
-                if ( !imageFi.exists() )
-                {
-                    const auto icon = QIcon::fromTheme( imageName );
-                    // Not found, bail out with the filename used
-                    if ( icon.isNull() )
-                    {
-                        bail( m_descriptorPath,
-                              QString( "Image file %1 does not exist." ).arg( imageFi.absoluteFilePath() ) );
-                    }
-                    return imageName;  // Not turned into a path
-                }
-                return imageFi.absoluteFilePath();
-            } );
+            loadStrings( m_images,
+                         doc,
+                         "images",
+                         [ & ]( const QString& s ) -> QString
+                         {
+                             // See also image()
+                             const QString imageName( expand( s ) );
+                             QFileInfo imageFi( componentDir.absoluteFilePath( imageName ) );
+                             if ( !imageFi.exists() )
+                             {
+                                 const auto icon = QIcon::fromTheme( imageName );
+                                 // Not found, bail out with the filename used
+                                 if ( icon.isNull() )
+                                 {
+                                     bail(
+                                         m_descriptorPath,
+                                         QString( "Image file %1 does not exist." ).arg( imageFi.absoluteFilePath() ) );
+                                 }
+                                 return imageName;  // Not turned into a path
+                             }
+                             return imageFi.absoluteFilePath();
+                         } );
             loadStrings( m_style, doc, "style", []( const QString& s ) -> QString { return s; } );
 
             m_uploadServer = uploadServerFromMap( CalamaresUtils::yamlMapToVariant( doc[ "uploadServer" ] ) );
@@ -348,18 +352,37 @@ Branding::image( const QString& imageName, const QSize& size ) const
 {
     QDir componentDir( componentDirectory() );
     QFileInfo imageFi( componentDir.absoluteFilePath( imageName ) );
-    if ( !imageFi.exists() )
+    if ( imageFi.exists() )
+    {
+        return ImageRegistry::instance()->pixmap( imageFi.absoluteFilePath(), size );
+    }
+    else
     {
         const auto icon = QIcon::fromTheme( imageName );
         // Not found, bail out with the filename used
-        if ( icon.isNull() )
+        if ( !icon.isNull() )
         {
-            return QPixmap();
+            return icon.pixmap( size );
         }
-        return icon.pixmap( size );
     }
-    return ImageRegistry::instance()->pixmap( imageFi.absoluteFilePath(), size );
+    return QPixmap();
 }
+
+QPixmap
+Branding::image( const QStringList& list, const QSize& size ) const
+{
+    QDir componentDir( componentDirectory() );
+    for ( const QString& imageName : list )
+    {
+        auto p = image( imageName, size );
+        if ( !p.isNull() )
+        {
+            return p;
+        }
+    }
+    return QPixmap();
+}
+
 
 static QString
 _stylesheet( const QDir& dir )

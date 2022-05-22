@@ -210,10 +210,11 @@ ExecViewModule::ExecViewModule()
 {
     // Normally the module-loader gives the module an instance key
     // (out of the settings file, or the descriptor of the module).
-    // We don't have one, so build one -- this gives us "x@x".
+    // We don't have one, so build one -- this gives us "execView@execView".
     QVariantMap m;
-    m.insert( "name", "x" );
-    Calamares::Module::initFrom( Calamares::ModuleSystem::Descriptor::fromDescriptorData( m ), "x" );
+    const QString execView = QStringLiteral( "execView" );
+    m.insert( "name", execView );
+    Calamares::Module::initFrom( Calamares::ModuleSystem::Descriptor::fromDescriptorData( m, execView ), execView );
 }
 
 ExecViewModule::~ExecViewModule() {}
@@ -291,7 +292,7 @@ load_module( const ModuleConfig& moduleConfig )
         return new ExecViewModule;
     }
 
-    QFileInfo fi;
+    QFileInfo fi;  // This is kept around to hold the path of the module descriptor
 
     bool ok = false;
     QVariantMap descriptor;
@@ -357,7 +358,10 @@ load_module( const ModuleConfig& moduleConfig )
     cDebug() << Logger::SubEntry << "Module" << moduleName << "job-configuration:" << configFile;
 
     Calamares::Module* module = Calamares::moduleFromDescriptor(
-        Calamares::ModuleSystem::Descriptor::fromDescriptorData( descriptor ), name, configFile, moduleDirectory );
+        Calamares::ModuleSystem::Descriptor::fromDescriptorData( descriptor, fi.absoluteFilePath() ),
+        name,
+        configFile,
+        moduleDirectory );
 
     return module;
 }

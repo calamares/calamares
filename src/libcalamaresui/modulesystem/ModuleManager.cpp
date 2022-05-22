@@ -104,10 +104,19 @@ ModuleManager::doInit()
                     if ( ok && !moduleName.isEmpty() && ( moduleName == currentDir.dirName() )
                          && !m_availableDescriptorsByModuleName.contains( moduleName ) )
                     {
-                        auto descriptor
-                            = Calamares::ModuleSystem::Descriptor::fromDescriptorData( moduleDescriptorMap );
+                        auto descriptor = Calamares::ModuleSystem::Descriptor::fromDescriptorData(
+                            moduleDescriptorMap, descriptorFileInfo.absoluteFilePath() );
                         descriptor.setDirectory( descriptorFileInfo.absoluteDir().absolutePath() );
                         m_availableDescriptorsByModuleName.insert( moduleName, descriptor );
+                    }
+                    else
+                    {
+                        // Duplicate modules are ok; other issues like empty name or dir-mismatch are reported.
+                        if ( !m_availableDescriptorsByModuleName.contains( moduleName ) )
+                        {
+                            cWarning() << deb << "ModuleManager module descriptor"
+                                       << descriptorFileInfo.absoluteFilePath() << "has bad name" << moduleName;
+                        }
                     }
                 }
                 else

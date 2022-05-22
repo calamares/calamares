@@ -112,7 +112,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
     // will log an error and set the type to Unknown if there's something wrong.
     FileSystem::Type type = FileSystem::Unknown;
     PartUtils::canonicalFilesystemName( o.defaultFsType, &type );
-    core->initLayout( type == FileSystem::Unknown ? FileSystem::Ext4 : type );
+    core->partitionLayout().setDefaultFsType( type == FileSystem::Unknown ? FileSystem::Ext4 : type );
 
     core->createPartitionTable( dev, partType );
 

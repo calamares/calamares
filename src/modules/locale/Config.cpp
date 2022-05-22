@@ -118,15 +118,15 @@ loadLocales( const QString& localeGenPath )
 
     // Assuming we have a list of supported locales, we usually only want UTF-8 ones
     // because it's not 1995.
-    auto notUtf8 = []( const QString& s ) {
-        return !s.contains( "UTF-8", Qt::CaseInsensitive ) && !s.contains( "utf8", Qt::CaseInsensitive );
-    };
+    auto notUtf8 = []( const QString& s )
+    { return !s.contains( "UTF-8", Qt::CaseInsensitive ) && !s.contains( "utf8", Qt::CaseInsensitive ); };
     auto it = std::remove_if( localeGenLines.begin(), localeGenLines.end(), notUtf8 );
     localeGenLines.erase( it, localeGenLines.end() );
 
     // We strip " UTF-8" from "en_US.UTF-8 UTF-8" because it's redundant redundant.
     // Also simplify whitespace.
-    auto unredundant = []( QString& s ) {
+    auto unredundant = []( QString& s )
+    {
         if ( s.endsWith( " UTF-8" ) )
         {
             s.chop( 6 );
@@ -183,30 +183,36 @@ Config::Config( QObject* parent )
     // we don't need to call an update-GS method, or introduce an intermediate
     // update-thing-and-GS method. And everywhere where we **do** change
     // language or location, we already emit the signal.
-    connect( this, &Config::currentLanguageCodeChanged, [&]() {
-        auto* gs = Calamares::JobQueue::instance()->globalStorage();
-        gs->insert( "locale", m_selectedLocaleConfiguration.toBcp47() );
-    } );
+    connect( this,
+             &Config::currentLanguageCodeChanged,
+             [ & ]()
+             {
+                 auto* gs = Calamares::JobQueue::instance()->globalStorage();
+                 gs->insert( "locale", m_selectedLocaleConfiguration.toBcp47() );
+             } );
 
-    connect( this, &Config::currentLCCodeChanged, [&]() {
-        updateGSLocale( Calamares::JobQueue::instance()->globalStorage(), localeConfiguration() );
-    } );
+    connect( this,
+             &Config::currentLCCodeChanged,
+             [ & ]() { updateGSLocale( Calamares::JobQueue::instance()->globalStorage(), localeConfiguration() ); } );
 
-    connect( this, &Config::currentLocationChanged, [&]() {
-        const bool locationChanged
-            = updateGSLocation( Calamares::JobQueue::instance()->globalStorage(), currentLocation() );
+    connect( this,
+             &Config::currentLocationChanged,
+             [ & ]()
+             {
+                 const bool locationChanged
+                     = updateGSLocation( Calamares::JobQueue::instance()->globalStorage(), currentLocation() );
 
-        if ( locationChanged && m_adjustLiveTimezone )
-        {
-            QProcess::execute( "timedatectl",  // depends on systemd
-                               { "set-timezone", currentTimezoneCode() } );
-        }
+                 if ( locationChanged && m_adjustLiveTimezone )
+                 {
+                     QProcess::execute( "timedatectl",  // depends on systemd
+                                        { "set-timezone", currentTimezoneCode() } );
+                 }
 
-        emit currentTimezoneCodeChanged( currentTimezoneCode() );
-        emit currentTimezoneNameChanged( currentTimezoneName() );
-    } );
+                 emit currentTimezoneCodeChanged( currentTimezoneCode() );
+                 emit currentTimezoneNameChanged( currentTimezoneName() );
+             } );
 
-    auto prettyStatusNotify = [&]() { emit prettyStatusChanged( prettyStatus() ); };
+    auto prettyStatusNotify = [ & ]() { emit prettyStatusChanged( prettyStatus() ); };
     connect( this, &Config::currentLanguageStatusChanged, prettyStatusNotify );
     connect( this, &Config::currentLCStatusChanged, prettyStatusNotify );
     connect( this, &Config::currentLocationStatusChanged, prettyStatusNotify );

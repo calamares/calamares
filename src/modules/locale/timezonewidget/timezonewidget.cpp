@@ -140,9 +140,9 @@ TimeZoneWidget::paintEvent( QPaintEvent* )
     // .. the lambda manages deprecations: the old one works in Qt 5.9 and Qt 5.10,
     //    while the new one avoids deprecation messages in Qt 5.13 and later.
 #if QT_VERSION >= QT_VERSION_CHECK( 5, 11, 0 )
-    auto textwidth = [&]( const QString& s ) { return fontMetrics.horizontalAdvance( s ); };
+    auto textwidth = [ & ]( const QString& s ) { return fontMetrics.horizontalAdvance( s ); };
 #else
-    auto textwidth = [&]( const QString& s ) { return fontMetrics.width( s ); };
+    auto textwidth = [ & ]( const QString& s ) { return fontMetrics.width( s ); };
 #endif
     const int textWidth = textwidth( m_currentLocation ? m_currentLocation->tr() : QString() );
     const int textHeight = fontMetrics.height();
@@ -185,7 +185,8 @@ TimeZoneWidget::mousePressEvent( QMouseEvent* event )
 
     int mX = event->pos().x();
     int mY = event->pos().y();
-    auto distance = [&]( const CalamaresUtils::Locale::TimeZoneData* zone ) {
+    auto distance = [ & ]( const CalamaresUtils::Locale::TimeZoneData* zone )
+    {
         QPoint locPos = TimeZoneImageList::getLocationPosition( zone->longitude(), zone->latitude() );
         return double( abs( mX - locPos.x() ) + abs( mY - locPos.y() ) );
     };

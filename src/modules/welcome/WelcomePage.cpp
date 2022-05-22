@@ -150,7 +150,7 @@ WelcomePage::setupButton( Button role, const QString& url )
     }
     if ( !button )
     {
-        qWarning() << "Unknown button role" << smash( role );
+        cWarning() << "Unknown button role" << smash( role );
         return;
     }
 
@@ -165,11 +165,11 @@ WelcomePage::setupButton( Button role, const QString& url )
     {
         auto size = 2 * QSize( CalamaresUtils::defaultFontHeight(), CalamaresUtils::defaultFontHeight() );
         button->setIcon( CalamaresUtils::defaultPixmap( icon, CalamaresUtils::Original, size ) );
-        connect( button, &QPushButton::clicked, [u]() { QDesktopServices::openUrl( u ); } );
+        connect( button, &QPushButton::clicked, [ u ]() { QDesktopServices::openUrl( u ); } );
     }
     else
     {
-        qWarning() << "Welcome button" << smash( role ) << "URL" << url << "is invalid.";
+        cWarning() << "Welcome button" << smash( role ) << "URL" << url << "is invalid.";
         button->hide();
     }
 }

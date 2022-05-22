@@ -52,8 +52,8 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
 
     m_waitingWidget = new WaitingWidget( QString() );
     m_widget->addWidget( m_waitingWidget );
-    CALAMARES_RETRANSLATE( if ( m_waitingWidget )
-                           { m_waitingWidget->setText( tr( "Gathering system information..." ) ); } );
+    CALAMARES_RETRANSLATE(
+        if ( m_waitingWidget ) { m_waitingWidget->setText( tr( "Gathering system information..." ) ); } );
 
     m_core = new PartitionCoreModule( this );  // Unusable before init is complete!
     // We're not done loading, but we need the configuration map first.
@@ -459,6 +459,8 @@ shouldWarnForGPTOnBIOS( const PartitionCoreModule* core )
         return false;
     }
 
+    const QString biosFlagName = PartitionTable::flagName( KPM_PARTITION_FLAG( BiosGrub ) );
+
     auto [ r, device ] = core->bootLoaderModel()->findBootLoader( core->bootLoaderInstallPath() );
     Q_UNUSED( r );
     if ( device )
@@ -476,12 +478,12 @@ shouldWarnForGPTOnBIOS( const PartitionCoreModule* core )
                      && ( partition->capacity() >= 8_MiB ) )
                 {
                     cDebug() << Logger::SubEntry << "Partition" << partition->devicePath() << partition->partitionPath()
-                             << "is a suitable bios_grub partition";
+                             << "is a suitable" << biosFlagName << "partition";
                     return false;
                 }
             }
         }
-        cDebug() << Logger::SubEntry << "No suitable partition for bios_grub found";
+        cDebug() << Logger::SubEntry << "No suitable partition for" << biosFlagName << "found";
     }
     else
     {
@@ -587,6 +589,7 @@ PartitionViewStep::onLeave()
 
             if ( shouldWarnForGPTOnBIOS( m_core ) )
             {
+                const QString biosFlagName = PartitionTable::flagName( KPM_PARTITION_FLAG( BiosGrub ) );
                 QString message = tr( "Option to use GPT on BIOS" );
                 QString description = tr( "A GPT partition table is the best option for all "
                                           "systems. This installer supports such a setup for "
@@ -596,10 +599,10 @@ PartitionViewStep::onLeave()
                                           "(if not done so already) go back "
                                           "and set the partition table to GPT, next create a 8 MB "
                                           "unformatted partition with the "
-                                          "<strong>bios_grub</strong> flag enabled.<br/><br/>"
+                                          "<strong>%2</strong> flag enabled.<br/><br/>"
                                           "An unformatted 8 MB partition is necessary "
                                           "to start %1 on a BIOS system with GPT." )
-                                          .arg( branding->shortProductName() );
+                                          .arg( branding->shortProductName(), biosFlagName );
 
                 QMessageBox mb(
                     QMessageBox::Information, message, description, QMessageBox::Ok, m_manualPartitionPage );
@@ -691,7 +694,7 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     QFuture< void > future = QtConcurrent::run( this, &PartitionViewStep::initPartitionCoreModule );
     m_future->setFuture( future );
 
-    m_core->initLayout( m_config->defaultFsType(), configurationMap.value( "partitionLayout" ).toList() );
+    m_core->partitionLayout().init( m_config->defaultFsType(), configurationMap.value( "partitionLayout" ).toList() );
 }
 
 

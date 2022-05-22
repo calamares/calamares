@@ -41,11 +41,11 @@
 # TODO:3.3: Require CMake 3.12
 cmake_minimum_required( VERSION 3.3 FATAL_ERROR )
 project( CALAMARES
-    VERSION 3.2.54
+    VERSION 3.2.58.1
     LANGUAGES C CXX
 )
 
-set( CALAMARES_VERSION_RC 1 )  # Set to 0 during release cycle, 1 during development
+set( CALAMARES_VERSION_RC 0 )  # Set to 0 during release cycle, 1 during development
 if( CALAMARES_VERSION_RC EQUAL 1 AND CMAKE_SOURCE_DIR STREQUAL CMAKE_BINARY_DIR )
     message( FATAL_ERROR "Do not build development versions in the source-directory." )
 endif()
@@ -124,9 +124,8 @@ set( CALAMARES_DESCRIPTION_SUMMARY
 #
 # When adding a new language, take care that it is properly loaded
 # by the translation framework. Languages with alternate scripts
-# (sr@latin in particular) may need special handling in CalamaresUtils.cpp.
-#
-# TODO: drop the es_ES translation from Transifex
+# (sr@latin in particular) or location (ca@valencia) need special
+# handling in libcalamares/locale/Translation.h .
 #
 # NOTE: move eo (Esperanto) to _ok once Qt can actually create a
 #       locale for it. (Qt 5.12.2 can, see Translation Status section).
@@ -135,14 +134,14 @@ set( CALAMARES_DESCRIPTION_SUMMARY
 #       `txstats.py -e`. See also
 #
 # Total 74 languages
-set( _tx_complete az az_AZ ca de fa fi_FI he hi hr ja ko lt pt_BR
-    pt_PT si sq sv tr_TR uk zh_TW )
-set( _tx_good as be ca@valencia cs_CZ da fr fur it_IT ml nl ru sk
-    tg vi zh_CN )
-set( _tx_ok ar ast bg bn el en_GB es es_MX et eu gl hu id is mr nb
+set( _tx_complete az az_AZ ca es fi_FI he hi hr ja lt pt_BR pt_PT
+    sq sv uk zh_TW )
+set( _tx_good as be ca@valencia cs_CZ da de fa fr fur it_IT ko ml
+    nl ru si sk tg tr_TR vi zh_CN )
+set( _tx_ok ar ast bg bn el en_GB es_MX et eu gl hu id is mr nb oc
     pl ro sl sr sr@latin th )
-set( _tx_incomplete eo es_PR gu ie kk kn lo lv mk ne ne_NP ta_IN te
-    ur zh zh_HK )
+set( _tx_incomplete eo es_PR gu ie ja-Hira kk kn lo lv mk ne_NP
+    ta_IN te ur zh zh_HK )
 
 ### Required versions
 #

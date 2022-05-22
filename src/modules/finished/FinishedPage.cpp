@@ -31,16 +31,19 @@ FinishedPage::FinishedPage( Config* config, QWidget* parent )
     ui->mainText->setWordWrap( true );
     ui->mainText->setOpenExternalLinks( true );
 
-    connect( config, &Config::restartModeChanged, [this]( Config::RestartMode mode ) {
-        using Mode = Config::RestartMode;
+    connect( config,
+             &Config::restartModeChanged,
+             [ this ]( Config::RestartMode mode )
+             {
+                 using Mode = Config::RestartMode;
 
-        ui->restartCheckBox->setVisible( mode != Mode::Never );
-        ui->restartCheckBox->setEnabled( mode != Mode::Always );
-    } );
+                 ui->restartCheckBox->setVisible( mode != Mode::Never );
+                 ui->restartCheckBox->setEnabled( mode != Mode::Always );
+             } );
     connect( config, &Config::restartNowWantedChanged, ui->restartCheckBox, &QCheckBox::setChecked );
-    connect( ui->restartCheckBox, &QCheckBox::stateChanged, [config]( int state ) {
-        config->setRestartNowWanted( state != 0 );
-    } );
+    connect( ui->restartCheckBox,
+             &QCheckBox::stateChanged,
+             [ config ]( int state ) { config->setRestartNowWanted( state != 0 ); } );
 
     CALAMARES_RETRANSLATE_SLOT( &FinishedPage::retranslate );
 }

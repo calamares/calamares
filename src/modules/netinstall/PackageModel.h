@@ -1,4 +1,3 @@
-
 /* === This file is part of Calamares - <https://calamares.io> ===
  *
  *   SPDX-FileCopyrightText: 2017 Kyle Robbertze <kyle@aims.ac.za>

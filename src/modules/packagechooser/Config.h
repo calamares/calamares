@@ -98,6 +98,7 @@ public:
     QString packageChoice() const { return m_packageChoice.value_or( QString() ); }
     void setPackageChoice( const QString& packageChoice );
 
+    QString prettyName() const;
     QString prettyStatus() const;
 
 signals:
@@ -120,6 +121,7 @@ private:
      * Reading the property will return an empty QString.
      */
     std::optional< QString > m_packageChoice;
+    CalamaresUtils::Locale::TranslatedString* m_stepName;  // As it appears in the sidebar
 };
 
 

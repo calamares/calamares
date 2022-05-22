@@ -25,10 +25,18 @@
 #include "utils/Dirs.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
+#include "widgets/LogWidget.h"
 
+#include <QAction>
 #include <QDir>
+#include <QHBoxLayout>
 #include <QLabel>
+#include <QPlainTextEdit>
 #include <QProgressBar>
+#include <QTabBar>
+#include <QTabWidget>
+#include <QToolBar>
+#include <QToolButton>
 #include <QVBoxLayout>
 
 static Calamares::Slideshow*
@@ -60,23 +68,45 @@ ExecutionViewStep::ExecutionViewStep( QObject* parent )
     , m_progressBar( new QProgressBar )
     , m_label( new QLabel )
     , m_slideshow( makeSlideshow( m_widget ) )
+    , m_tab_widget( new QTabWidget )
+    , m_log_widget( new LogWidget )
 {
     m_widget->setObjectName( "slideshow" );
     m_progressBar->setObjectName( "exec-progress" );
     m_label->setObjectName( "exec-message" );
 
     QVBoxLayout* layout = new QVBoxLayout( m_widget );
-    QVBoxLayout* innerLayout = new QVBoxLayout;
+    QVBoxLayout* bottomLayout = new QVBoxLayout;
+    QHBoxLayout* barLayout = new QHBoxLayout;
 
     m_progressBar->setMaximum( 10000 );
 
-    layout->addWidget( m_slideshow->widget() );
-    CalamaresUtils::unmarginLayout( layout );
-    layout->addLayout( innerLayout );
+    m_tab_widget->addTab( m_slideshow->widget(), "Slideshow" );
+    m_tab_widget->addTab( m_log_widget, "Log" );
+    m_tab_widget->tabBar()->hide();
 
-    innerLayout->addSpacing( CalamaresUtils::defaultFontHeight() / 2 );
-    innerLayout->addWidget( m_progressBar );
-    innerLayout->addWidget( m_label );
+    layout->addWidget( m_tab_widget );
+    CalamaresUtils::unmarginLayout( layout );
+    layout->addLayout( bottomLayout );
+
+    bottomLayout->addSpacing( CalamaresUtils::defaultFontHeight() / 2 );
+    bottomLayout->addLayout( barLayout );
+    bottomLayout->addWidget( m_label );
+
+    QToolBar* toolBar = new QToolBar;
+    const auto logButtonIcon = QIcon::fromTheme( "utilities-terminal" );
+    auto toggleLogAction = toolBar->addAction(
+        Branding::instance()->image(
+            { "utilities-log-viewer", "utilities-terminal", "text-x-log", "text-x-changelog", "preferences-log" },
+            QSize( 32, 32 ) ),
+        "Toggle log" );
+    auto toggleLogButton = dynamic_cast< QToolButton* >( toolBar->widgetForAction( toggleLogAction ) );
+    connect( toggleLogButton, &QToolButton::clicked, this, &ExecutionViewStep::toggleLog );
+
+
+    barLayout->addWidget( m_progressBar );
+    barLayout->addWidget( toolBar );
+
 
     connect( JobQueue::instance(), &JobQueue::progress, this, &ExecutionViewStep::updateFromJobQueue );
 }
@@ -151,7 +181,7 @@ ExecutionViewStep::onActivate()
         const auto instanceDescriptor
             = std::find_if( instanceDescriptors.constBegin(),
                             instanceDescriptors.constEnd(),
-                            [=]( const Calamares::InstanceDescription& d ) { return d.key() == instanceKey; } );
+                            [ = ]( const Calamares::InstanceDescription& d ) { return d.key() == instanceKey; } );
         int weight = moduleDescriptor.weight();
         if ( instanceDescriptor != instanceDescriptors.constEnd() && instanceDescriptor->explicitWeight() )
         {
@@ -201,9 +231,26 @@ ExecutionViewStep::updateFromJobQueue( qreal percent, const QString& message )
 }
 
 void
+ExecutionViewStep::toggleLog()
+{
+    const bool logBecomesVisible = m_tab_widget->currentIndex() == 0;  // ie. is not visible right now
+    if ( logBecomesVisible )
+    {
+        m_log_widget->start();
+    }
+    else
+    {
+        m_log_widget->stop();
+    }
+    m_tab_widget->setCurrentIndex( logBecomesVisible ? 1 : 0 );
+}
+
+void
 ExecutionViewStep::onLeave()
 {
+    m_log_widget->stop();
     m_slideshow->changeSlideShowState( Slideshow::Stop );
 }
+
 
 }  // namespace Calamares

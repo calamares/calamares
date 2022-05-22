@@ -135,14 +135,14 @@ addExpansions( QmlSearch method, QStringList& candidates, const QStringList& nam
         std::transform( names.constBegin(),
                         names.constEnd(),
                         std::back_inserter( candidates ),
-                        [&]( const QString& s ) { return s.isEmpty() ? QString() : bPath.arg( brandDir, s ); } );
+                        [ & ]( const QString& s ) { return s.isEmpty() ? QString() : bPath.arg( brandDir, s ); } );
     }
     if ( ( method == QmlSearch::Both ) || ( method == QmlSearch::QrcOnly ) )
     {
         std::transform( names.constBegin(),
                         names.constEnd(),
                         std::back_inserter( candidates ),
-                        [&]( const QString& s ) { return s.isEmpty() ? QString() : qrPath.arg( s ); } );
+                        [ & ]( const QString& s ) { return s.isEmpty() ? QString() : qrPath.arg( s ); } );
     }
 }
 
@@ -222,22 +222,30 @@ registerQmlModels()
         // Because branding and viewmanager have a parent (CalamaresApplication
         // and CalamaresWindow), they will not be deleted by QmlEngine.
         //   https://doc.qt.io/qt-5/qtqml-cppintegration-data.html#data-ownership
-        qmlRegisterSingletonType< Calamares::Branding >(
-            "io.calamares.ui", 1, 0, "Branding", []( QQmlEngine*, QJSEngine* ) -> QObject* {
-                return Calamares::Branding::instance();
-            } );
-        qmlRegisterSingletonType< Calamares::ViewManager >(
-            "io.calamares.ui", 1, 0, "ViewManager", []( QQmlEngine*, QJSEngine* ) -> QObject* {
-                return Calamares::ViewManager::instance();
-            } );
+        qmlRegisterSingletonType< Calamares::Branding >( "io.calamares.ui",
+                                                         1,
+                                                         0,
+                                                         "Branding",
+                                                         []( QQmlEngine*, QJSEngine* ) -> QObject*
+                                                         { return Calamares::Branding::instance(); } );
+        qmlRegisterSingletonType< Calamares::ViewManager >( "io.calamares.ui",
+                                                            1,
+                                                            0,
+                                                            "ViewManager",
+                                                            []( QQmlEngine*, QJSEngine* ) -> QObject*
+                                                            { return Calamares::ViewManager::instance(); } );
         qmlRegisterSingletonType< Calamares::GlobalStorage >(
-            "io.calamares.core", 1, 0, "Global", []( QQmlEngine*, QJSEngine* ) -> QObject* {
-                return Calamares::JobQueue::instance()->globalStorage();
-            } );
+            "io.calamares.core",
+            1,
+            0,
+            "Global",
+            []( QQmlEngine*, QJSEngine* ) -> QObject* { return Calamares::JobQueue::instance()->globalStorage(); } );
         qmlRegisterSingletonType< CalamaresUtils::Network::Manager >(
-            "io.calamares.core", 1, 0, "Network", []( QQmlEngine*, QJSEngine* ) -> QObject* {
-                return &CalamaresUtils::Network::Manager::instance();
-            } );
+            "io.calamares.core",
+            1,
+            0,
+            "Network",
+            []( QQmlEngine*, QJSEngine* ) -> QObject* { return &CalamaresUtils::Network::Manager::instance(); } );
     }
 }
 

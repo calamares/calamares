@@ -110,10 +110,11 @@ ResultsListDialog::ResultsListDialog( const Calamares::RequirementsModel& model,
     m_title = new QLabel( this );
     m_title->setObjectName( "resultDialogTitle" );
 
-    createResultWidgets(
-        entriesLayout, m_resultWidgets, model, []( const Calamares::RequirementsModel& m, QModelIndex i ) {
-            return m.data( i, Calamares::RequirementsModel::HasDetails ).toBool();
-        } );
+    createResultWidgets( entriesLayout,
+                         m_resultWidgets,
+                         model,
+                         []( const Calamares::RequirementsModel& m, QModelIndex i )
+                         { return m.data( i, Calamares::RequirementsModel::HasDetails ).toBool(); } );
 
     QDialogButtonBox* buttonBox = new QDialogButtonBox( QDialogButtonBox::Close, Qt::Horizontal, this );
     buttonBox->setObjectName( "resultDialogButtons" );
@@ -182,9 +183,8 @@ ResultsListWidget::ResultsListWidget( Config* config, QWidget* parent )
     // all *mandatory* entries are satisfied (gives errors if not).
 
     const bool requirementsSatisfied = config->requirementsModel()->satisfiedRequirements();
-    auto isUnSatisfied = []( const Calamares::RequirementsModel& m, QModelIndex i ) {
-        return !m.data( i, Calamares::RequirementsModel::Satisfied ).toBool();
-    };
+    auto isUnSatisfied = []( const Calamares::RequirementsModel& m, QModelIndex i )
+    { return !m.data( i, Calamares::RequirementsModel::Satisfied ).toBool(); };
 
     createResultWidgets( entriesLayout, m_resultWidgets, *( config->requirementsModel() ), isUnSatisfied );
 

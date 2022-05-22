@@ -160,11 +160,11 @@ public:
     /// @brief Set the path where the bootloader will be installed
     void setBootLoaderInstallPath( const QString& path );
 
-    /** @brief Initialize the default layout that will be applied
+    /** @brief Get the partition layout that will be applied.
      *
-     * See PartitionLayout::init()
+     * Layouts are applied only for erase and replace operations.
      */
-    void initLayout( FileSystem::Type defaultFsType, const QVariantList& config = QVariantList() );
+    PartitionLayout& partitionLayout() { return m_partLayout; }
 
     void layoutApply( Device* dev, qint64 firstSector, qint64 lastSector, QString luksPassphrase );
     void layoutApply( Device* dev,
