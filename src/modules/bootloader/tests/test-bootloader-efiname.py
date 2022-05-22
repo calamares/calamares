@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: no
+# SPDX-License-Identifier: CC0-1.0
+#
 # Calamares Boilerplate
 import libcalamares
 libcalamares.globalstorage = libcalamares.GlobalStorage(None)

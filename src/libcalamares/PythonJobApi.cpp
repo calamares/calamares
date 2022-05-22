@@ -211,14 +211,14 @@ _process_output( Calamares::Utils::RunLocation location,
         bp::extract< bp::list > x( callback );
         if ( x.check() )
         {
-            QObject::connect( &r, &decltype( r )::output, [cb = callback.attr( "append" )]( const QString& s ) {
-                cb( s.toStdString() );
-            } );
+            QObject::connect( &r,
+                              &decltype( r )::output,
+                              [ cb = callback.attr( "append" ) ]( const QString& s ) { cb( s.toStdString() ); } );
         }
         else
         {
             QObject::connect(
-                &r, &decltype( r )::output, [&callback]( const QString& s ) { callback( s.toStdString() ); } );
+                &r, &decltype( r )::output, [ &callback ]( const QString& s ) { callback( s.toStdString() ); } );
         }
         r.enableOutputProcessing();
     }

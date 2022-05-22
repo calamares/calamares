@@ -97,12 +97,12 @@ PythonQtViewModule::loadSelf()
             cala.addVariable( "configuration", m_configurationMap );
 
             // Basic stdout/stderr handling
-            QObject::connect( PythonQt::self(), &PythonQt::pythonStdOut, []( const QString& message ) {
-                cDebug() << "PythonQt OUT>" << message;
-            } );
-            QObject::connect( PythonQt::self(), &PythonQt::pythonStdErr, []( const QString& message ) {
-                cDebug() << "PythonQt ERR>" << message;
-            } );
+            QObject::connect( PythonQt::self(),
+                              &PythonQt::pythonStdOut,
+                              []( const QString& message ) { cDebug() << "PythonQt OUT>" << message; } );
+            QObject::connect( PythonQt::self(),
+                              &PythonQt::pythonStdErr,
+                              []( const QString& message ) { cDebug() << "PythonQt ERR>" << message; } );
         }
 
         QDir workingDir( m_workingPath );

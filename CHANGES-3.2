@@ -1,3 +1,4 @@
+
 <!-- SPDX-FileCopyrightText: no
      SPDX-License-Identifier: CC0-1.0
 -->
@@ -7,16 +8,122 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.54 (unreleased) #
+# 3.2.58.1 (2022-05-20)
+
+This is a hot-fix release for a regression in the *partition* module where
+it was impossible to proceed unless *Encrypt system* was checked.
+
+
+# 3.2.58 (2022-05-18) #
 
 This release contains contributions from (alphabetically by first name):
- - Nobody yet
+ - Anke Boersma
+ - Arjen Balfoort
+ - Enrique Medina Gremaldos
+ - Evan James
 
 ## Core ##
- - Nothing yet
+ - Internal improvements to translations-setup means that Catalan (in the
+   Valencian dialect), Occitan (Lenga d'Oc) and Serbian (in Latin script)
+   are all better supported. Thanks Enrique.
 
 ## Modules ##
- - Nothing yet
+ - *netinstall* Now displays entries with an empty name slightly differently.
+   An empty name is not generally useful, but in combination with
+   *immutable:true* and *selected:false* can be used to introduce separators
+   or descriptive comments into the list of packages.
+ - *partition* does not offer full-disk encryption when using ZFS. ZFS and the
+   way Calamares sets up FDE don't mix well. (Thanks Evan)
+ - *partition* Various bugs related to LUKS have been fixed. (Thanks Arjen)
+ - *users* module now has a structured *user* key with settings specific
+   to the user (shell, in particular). This maintains backwards compatibility
+   with the *userShell* key.
+ - *users* module now has lists of forbidden login- and host-names, to
+   avoid settings that will mess up the install (e.g. using a login-name
+   that is one of the system's reserved names). #1944
+
+
+# 3.2.57 (2022-05-04) #
+
+This release contains contributions from (alphabetically by first name):
+ - Arjen Balfoort (new contributor! Welcome!)
+ - Victor Fuentes
+
+## Core ##
+ - Calamares can now be started in Serbian (Latin Script) and Catalan
+   (Valencia) when the LANG environment variable is set to values
+   that indicate those languages.
+
+## Modules ##
+ - *fstab* and *luksbootkeyfile* have better support for an **un**encrypted
+   `/boot` partition. #1931 (thanks Arjen)
+ - *packagechooser* and *packagechooserq* can now be given a custom name
+   in the side-panel. #1932 (thanks Victor)
+
+
+# 3.2.56 (2022-04-22) #
+
+As of this release, Calamares 3.2 development is winding down. The
+reason is simple: systems where the backwards-compatibility of Calamares
+3.2 is important are becoming increasingly difficult to work with
+for **other** reasons. Foremost among these are deprecated versions
+of dependencies and tools. Calamares 3.2 branch remains open for
+bugfixes and will see a few more releases, but development is now
+shifting wholesale to the newer generation.
+
+This release contains contributions from (alphabetically by first name):
+ - Victor Fuentes (new contributor! Welcome!)
+
+## Core ##
+ - Changes in git forced some changes on the CI tooling.
+
+## Modules ##
+ - *locale* showed the wrong timezone for Dhaka, although it configured
+   the correct one. #1929
+ - *users* module sets global storage key *fullname* to the full name
+   of the user (e.g. what is entered in the "your full name" box on the
+   users page). #1923 (Thanks Victor)
+
+
+# 3.2.55 (2022-04-11) #
+
+This release contains contributions from (alphabetically by first name):
+ - vtriolet (new contributor! Welcome!)
+
+## Core ##
+ - `readTargetFile()` did not properly return all the lines of the target
+   file. #1918 (thanks vtriolet)
+
+## Modules ##
+ - *users* module has rearranged configuration for setting the hostname.
+   Legacy settings are preserved, but produce a warning. Please see
+   `users.conf` for details.
+ - *users* module has a new hostname.location setting, *Transient*, which
+   will force the installed system to transient-hostname-setting by removing
+   the file `/etc/hostname`.
+ - *users* module has a new hostname.template setting, which allows some
+   tweaking of how the hostname suggestion is constructed. In particular,
+   it can be configured to use the current hostname (whatever that may be).
+   See the example `users.conf` for details on available keys.
+
+
+# 3.2.54 (2022-03-21) #
+
+This release contains contributions from (alphabetically):
+ - Bob van der Linden (new contributor! Welcome!)
+ - El-Wumbus (new contributor! Welcome!)
+ - Evan James
+ - Santosh Mahto (new contributor! Welcome!)
+
+## Core ##
+ - During the installation ("exec") step, while the slideshow is displayed,
+   there is also a button to show the scrolling installation log as it
+   is written. (Thanks Bob)
+
+## Modules ##
+ - *fstab* module correctly handles empty UUID strings. (Thanks Evan)
+ - *partition* module no longer forgets configured partition-layouts.
+   It also respects configured partition labels better. (Thanks Santosh)
 
 
 # 3.2.53 (2022-03-04) #

@@ -45,16 +45,22 @@ TrackingPage::TrackingPage( Config* config, QWidget* parent )
                  &QCheckBox::stateChanged, \
                  config->x##Tracking(), \
                  QOverload< bool >::of( &TrackingStyleConfig::setTracking ) ); \
-        connect( config->x##Tracking(), &TrackingStyleConfig::trackingChanged, this, [this, config]() { \
-            this->trackerChanged( config->x##Tracking(), this->ui->x##Group, this->ui->x##CheckBox ); \
-        } ); \
-        connect( ui->x##PolicyButton, &QAbstractButton::clicked, config, [config] { \
-            QString url( config->x##Tracking()->policy() ); \
-            if ( !url.isEmpty() ) \
-            { \
-                QDesktopServices::openUrl( url ); \
-            } \
-        } ); \
+        connect( config->x##Tracking(), \
+                 &TrackingStyleConfig::trackingChanged, \
+                 this, \
+                 [ this, config ]() \
+                 { this->trackerChanged( config->x##Tracking(), this->ui->x##Group, this->ui->x##CheckBox ); } ); \
+        connect( ui->x##PolicyButton, \
+                 &QAbstractButton::clicked, \
+                 config, \
+                 [ config ] \
+                 { \
+                     QString url( config->x##Tracking()->policy() ); \
+                     if ( !url.isEmpty() ) \
+                     { \
+                         QDesktopServices::openUrl( url ); \
+                     } \
+                 } ); \
     } while ( false )
 
     trackingSetup( install );
@@ -63,16 +69,19 @@ TrackingPage::TrackingPage( Config* config, QWidget* parent )
 
 #undef trackingSetup
 
-    connect( config, &Config::generalPolicyChanged, [this]( const QString& url ) {
-        this->ui->generalPolicyLabel->setVisible( !url.isEmpty() );
-    } );
-    connect( ui->generalPolicyLabel, &QLabel::linkActivated, [config] {
-        QString url( config->generalPolicy() );
-        if ( !url.isEmpty() )
-        {
-            QDesktopServices::openUrl( url );
-        }
-    } );
+    connect( config,
+             &Config::generalPolicyChanged,
+             [ this ]( const QString& url ) { this->ui->generalPolicyLabel->setVisible( !url.isEmpty() ); } );
+    connect( ui->generalPolicyLabel,
+             &QLabel::linkActivated,
+             [ config ]
+             {
+                 QString url( config->generalPolicy() );
+                 if ( !url.isEmpty() )
+                 {
+                     QDesktopServices::openUrl( url );
+                 }
+             } );
 
     retranslate();
 }

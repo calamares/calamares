@@ -140,7 +140,7 @@ PackagesTests::testAdd()
             {
                 // This is the "original" instance, so it's missing extraEditor
                 auto op = action[ "install" ].toList();
-                QCOMPARE( op.length(), packages.length()-1 );  // changed from original length
+                QCOMPARE( op.length(), packages.length() - 1 );  // changed from original length
                 QVERIFY( !op.contains( extraEditor ) );
             }
         }

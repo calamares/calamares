@@ -349,11 +349,11 @@ PackageModel::setupModelData( const QVariantList& groupList, PackageTreeItem* pa
 void
 PackageModel::setupModelData( const QVariantList& l )
 {
-    Q_EMIT beginResetModel();
+    beginResetModel();
     delete m_rootItem;
     m_rootItem = new PackageTreeItem();
     setupModelData( l, m_rootItem );
-    Q_EMIT endResetModel();
+    endResetModel();
 }
 
 void
@@ -361,7 +361,7 @@ PackageModel::appendModelData( const QVariantList& groupList )
 {
     if ( m_rootItem )
     {
-        Q_EMIT beginResetModel();
+        beginResetModel();
 
         const QStringList sources = collectSources( groupList );
 
@@ -386,6 +386,6 @@ PackageModel::appendModelData( const QVariantList& groupList )
         // Add the new data to the model
         setupModelData( groupList, m_rootItem );
 
-        Q_EMIT endResetModel();
+        endResetModel();
     }
 }

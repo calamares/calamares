@@ -33,10 +33,10 @@ class Partition;
 namespace PartitionInfo
 {
 
-QString mountPoint( Partition* partition );
+QString mountPoint( const Partition* partition );
 void setMountPoint( Partition* partition, const QString& value );
 
-bool format( Partition* partition );
+bool format( const Partition* partition );
 void setFormat( Partition* partition, bool value );
 
 PartitionTable::Flags flags( const Partition* partition );

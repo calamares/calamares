@@ -59,8 +59,11 @@ public:
 
     /** @brief Fills a descriptor from the loaded (YAML) data.
      *
+     * The @p descriptorPath is used only for debug messages, the
+     * data is only read from @p moduleDesc.
+     *
      */
-    static Descriptor fromDescriptorData( const QVariantMap& moduleDesc );
+    static Descriptor fromDescriptorData( const QVariantMap& moduleDesc, const QString& descriptorPath );
 
     bool isValid() const { return m_isValid; }
 

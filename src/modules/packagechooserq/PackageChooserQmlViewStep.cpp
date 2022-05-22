@@ -41,7 +41,7 @@ PackageChooserQmlViewStep::onActivate()
 QString
 PackageChooserQmlViewStep::prettyName() const
 {
-    return m_stepName ? m_stepName->get() : tr( "Packages" );
+    return m_config->prettyName();
 }
 
 QString

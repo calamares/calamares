@@ -1,4 +1,5 @@
-/*
+/* === This file is part of Calamares - <https://calamares.io> ===
+ *
  *   SPDX-FileCopyrightText: 2016 Luca Giambonini <almack@chakraos.org>
  *   SPDX-FileCopyrightText: 2016 Lisa Vitolo <shainer@chakraos.org>
  *   SPDX-FileCopyrightText: 2017 Kyle Robbertze  <krobbertze@gmail.com>

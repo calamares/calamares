@@ -32,6 +32,11 @@ class EditExistingPartitionDialog : public QDialog
 {
     Q_OBJECT
 public:
+    struct FreeSpace
+    {
+        Partition* p;
+    };
+
     EditExistingPartitionDialog( Device* device,
                                  Partition* partition,
                                  const QStringList& usedMountPoints,
@@ -53,6 +58,7 @@ private:
     PartitionTable::Flags newFlags() const;
     void replacePartResizerWidget();
     void updateMountPointPicker();
+    void toggleEncryptWidget();
 };
 
 #endif /* EDITEXISTINGPARTITIONDIALOG_H */

@@ -27,7 +27,8 @@ retranslateKeyboardModels()
     {
         s_kbtranslator = new QTranslator;
     }
-    (void)CalamaresUtils::loadTranslator( CalamaresUtils::translatorLocaleName(), QStringLiteral( "kb_" ), s_kbtranslator );
+    (void)CalamaresUtils::loadTranslator(
+        CalamaresUtils::translatorLocaleName(), QStringLiteral( "kb_" ), s_kbtranslator );
 }
 
 
@@ -220,9 +221,8 @@ KeyboardLayoutModel::init()
     std::stable_sort( m_layouts.begin(),
                       m_layouts.end(),
                       []( const QPair< QString, KeyboardGlobal::KeyboardInfo >& a,
-                          const QPair< QString, KeyboardGlobal::KeyboardInfo >& b ) {
-                          return a.second.description < b.second.description;
-                      } );
+                          const QPair< QString, KeyboardGlobal::KeyboardInfo >& b )
+                      { return a.second.description < b.second.description; } );
 }
 
 QHash< int, QByteArray >

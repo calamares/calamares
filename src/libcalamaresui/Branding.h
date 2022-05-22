@@ -198,6 +198,13 @@ public:
      */
     QPixmap image( const QString& name, const QSize& size ) const;
 
+    /** @brief Look up image with alternate names
+     *
+     * Calls image() for each name in the @p list and returns the first
+     * one that is non-null. May return a null pixmap if nothing is found.
+     */
+    QPixmap image( const QStringList& list, const QSize& size ) const;
+
     /** @brief Stylesheet to apply for this branding. May be empty.
      *
      * The file is loaded every time this function is called, so

@@ -152,10 +152,10 @@ GeneralRequirements::checkRequirements()
         {
             checkEntries.append(
                 { entry,
-                  [req = m_requiredStorageGiB] { return tr( "has at least %1 GiB available drive space" ).arg( req ); },
-                  [req = m_requiredStorageGiB] {
-                      return tr( "There is not enough drive space. At least %1 GiB is required." ).arg( req );
-                  },
+                  [ req = m_requiredStorageGiB ]
+                  { return tr( "has at least %1 GiB available drive space" ).arg( req ); },
+                  [ req = m_requiredStorageGiB ]
+                  { return tr( "There is not enough drive space. At least %1 GiB is required." ).arg( req ); },
                   enoughStorage,
                   m_entriesToRequire.contains( entry ) } );
         }
@@ -163,8 +163,8 @@ GeneralRequirements::checkRequirements()
         {
             checkEntries.append(
                 { entry,
-                  [req = m_requiredRamGiB] { return tr( "has at least %1 GiB working memory" ).arg( req ); },
-                  [req = m_requiredRamGiB] {
+                  [ req = m_requiredRamGiB ] { return tr( "has at least %1 GiB working memory" ).arg( req ); },
+                  [ req = m_requiredRamGiB ] {
                       return tr( "The system does not have enough working memory. At least %1 GiB is required." )
                           .arg( req );
                   },
@@ -191,7 +191,8 @@ GeneralRequirements::checkRequirements()
         {
             checkEntries.append( { entry,
                                    [] { return tr( "is running the installer as an administrator (root)" ); },
-                                   [] {
+                                   []
+                                   {
                                        return Calamares::Settings::instance()->isSetupMode()
                                            ? tr( "The setup program is not running with administrator rights." )
                                            : tr( "The installer is not running with administrator rights." );
@@ -203,7 +204,8 @@ GeneralRequirements::checkRequirements()
         {
             checkEntries.append( { entry,
                                    [] { return tr( "has a screen large enough to show the whole installer" ); },
-                                   [] {
+                                   []
+                                   {
                                        return Calamares::Settings::instance()->isSetupMode()
                                            ? tr( "The screen is too small to display the setup program." )
                                            : tr( "The screen is too small to display the installer." );

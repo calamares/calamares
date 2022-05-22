@@ -74,6 +74,8 @@ Partition* createNewEncryptedPartition( PartitionNode* parent,
 
 Partition* clonePartition( Device* device, Partition* partition );
 
+int updateLuksDevice( Partition* partition, const QString& passphrase );
+
 /** @brief Return a result for an @p operation
  *
  * Executes the operation, and if successful, returns a success result.

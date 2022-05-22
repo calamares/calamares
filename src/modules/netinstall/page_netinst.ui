@@ -36,13 +36,13 @@ SPDX-License-Identifier: GPL-3.0-or-later
      <property name="widgetResizable">
       <bool>true</bool>
      </property>
-     <widget class="QTreeView" name="groupswidget">
+     <widget class="GroupsTreeView" name="groupswidget">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
         <width>981</width>
-        <height>407</height>
+        <height>410</height>
        </rect>
       </property>
       <property name="font">
@@ -63,6 +63,13 @@ SPDX-License-Identifier: GPL-3.0-or-later
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>GroupsTreeView</class>
+   <extends>QTreeView</extends>
+   <header>groupstreeview.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

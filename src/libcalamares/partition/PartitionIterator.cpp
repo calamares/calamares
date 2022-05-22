@@ -29,7 +29,8 @@ PartitionIterator::PartitionIterator( PartitionTable* table )
 {
 }
 
-Partition* PartitionIterator::operator*() const
+Partition*
+PartitionIterator::operator*() const
 {
     return m_current;
 }

@@ -60,16 +60,19 @@ LCLocaleDialog::LCLocaleDialog( const QString& guessedLCLocale, const QStringLis
     connect( dbb->button( QDialogButtonBox::Cancel ), &QPushButton::clicked, this, &QDialog::reject );
 
     connect( m_localesWidget, &QListWidget::itemDoubleClicked, this, &QDialog::accept );
-    connect( m_localesWidget, &QListWidget::itemSelectionChanged, [this, dbb]() {
-        if ( m_localesWidget->selectedItems().isEmpty() )
-        {
-            dbb->button( QDialogButtonBox::Ok )->setEnabled( false );
-        }
-        else
-        {
-            dbb->button( QDialogButtonBox::Ok )->setEnabled( true );
-        }
-    } );
+    connect( m_localesWidget,
+             &QListWidget::itemSelectionChanged,
+             [ this, dbb ]()
+             {
+                 if ( m_localesWidget->selectedItems().isEmpty() )
+                 {
+                     dbb->button( QDialogButtonBox::Ok )->setEnabled( false );
+                 }
+                 else
+                 {
+                     dbb->button( QDialogButtonBox::Ok )->setEnabled( true );
+                 }
+             } );
 
     if ( selected > -1 )
     {

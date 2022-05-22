@@ -184,8 +184,7 @@ installTranslator( const CalamaresUtils::Locale::Translation::Id& locale, const 
 void
 installTranslator()
 {
-    // Just wrap it up like an Id
-    installTranslator( { QLocale::system().name() }, QString() );
+    installTranslator( CalamaresUtils::Locale::Translation().id(), QString() );
 }
 
 CalamaresUtils::Locale::Translation::Id

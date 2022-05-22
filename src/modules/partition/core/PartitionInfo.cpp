@@ -25,7 +25,7 @@ static const char FORMAT_PROPERTY[] = "_calamares_format";
 static const char FLAGS_PROPERTY[] = "_calamares_flags";
 
 QString
-mountPoint( Partition* partition )
+mountPoint( const Partition* partition )
 {
     return partition->property( MOUNT_POINT_PROPERTY ).toString();
 }
@@ -37,7 +37,7 @@ setMountPoint( Partition* partition, const QString& value )
 }
 
 bool
-format( Partition* partition )
+format( const Partition* partition )
 {
     return partition->property( FORMAT_PROPERTY ).toBool();
 }
