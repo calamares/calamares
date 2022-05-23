@@ -24,6 +24,7 @@ set( OPTIONAL_PRIVATE_LIBRARIES "" )
 set( OPTIONAL_PUBLIC_LIBRARIES "" )
 
 set( libSources
+    CalamaresAbout.cpp
     CppJob.cpp
     GlobalStorage.cpp
     Job.cpp
