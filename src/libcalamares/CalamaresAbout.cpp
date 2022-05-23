@@ -9,6 +9,8 @@
 
 #include "CalamaresAbout.h"
 
+#include "CalamaresVersion.h"
+
 #include <QCoreApplication>
 
 static const char s_header[]
@@ -59,15 +61,21 @@ aboutMaintainers()
                             } );
 }
 
+static QString
+substituteVersions( const QString& s )
+{
+    return s.arg( CALAMARES_APPLICATION_NAME ).arg( CALAMARES_VERSION );
+}
+
 const QString
 Calamares::aboutString()
 {
-    return QCoreApplication::translate( "AboutData", s_header ) + aboutMaintainers()
+    return substituteVersions( QCoreApplication::translate( "AboutData", s_header ) ) + aboutMaintainers()
         + QCoreApplication::translate( "AboutData", s_footer );
 }
 
 const QString
 Calamares::aboutStringUntranslated()
 {
-    return QString( s_header ) + aboutMaintainers() + QString( s_footer );
+    return substituteVersions( QString( s_header ) ) + aboutMaintainers() + QString( s_footer );
 }
