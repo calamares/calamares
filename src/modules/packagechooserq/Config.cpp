@@ -197,6 +197,12 @@ Config::pageLeavingTasks()
 }
 
 QString
+Config::prettyName() const
+{
+    return m_stepName ? m_stepName->get() : tr( "Packages" );
+}
+
+QString
 Config::prettyStatus() const
 {
     return tr( "Install selections: <strong>%1</strong>" ).arg( m_selections.join( ',' ) );
@@ -313,6 +319,16 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
                 m_defaultModelIndex = item_idx;
                 break;
             }
+        }
+    }
+
+    bool labels_ok = false;
+    auto labels = CalamaresUtils::getSubMap( configurationMap, "labels", labels_ok );
+    if ( labels_ok )
+    {
+        if ( labels.contains( "step" ) )
+        {
+            m_stepName = new CalamaresUtils::Locale::TranslatedString( labels, "step" );
         }
     }
 

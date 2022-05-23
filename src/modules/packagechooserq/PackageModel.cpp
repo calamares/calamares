@@ -13,6 +13,16 @@
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
+/** @brief A wrapper for CalamaresUtils::getSubMap that excludes the success param
+ */
+static QVariantMap
+getSubMap( const QVariantMap& map, const QString& key )
+{
+    bool success;
+
+    return CalamaresUtils::getSubMap( map, key, success );
+}
+
 PackageItem::PackageItem() { }
 
 PackageItem::PackageItem( const QString& a_id,

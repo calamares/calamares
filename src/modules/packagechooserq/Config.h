@@ -96,8 +96,6 @@ public:
      */
     void pageLeavingTasks();
 
-    QString prettyStatus() const;
-
     QStringList m_displayedEntryIds;
     QStringList m_displayedEntryNames;
     QStringList m_displayedEntryDescriptions;
@@ -111,6 +109,9 @@ public:
     Q_INVOKABLE void removeSelection( const QString& selection );
     void updateDisplayedData();
     bool refreshNextButtonStatus();
+
+    QString prettyName() const;
+    QString prettyStatus() const;
 
 signals:
     void prettyStatusChanged();
@@ -146,6 +147,7 @@ private:
     QString m_outputConditionKey;
     QString m_promptMessage;
     bool m_configurationMapSet = false;
+    CalamaresUtils::Locale::TranslatedString* m_stepName;  // As it appears in the sidebar
 };
 
 #endif
