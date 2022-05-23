@@ -223,7 +223,7 @@ WelcomePage::showAboutBox()
         = Calamares::Settings::instance()->isSetupMode() ? tr( "About %1 setup" ) : tr( "About %1 installer" );
     QMessageBox mb( QMessageBox::Information,
                     title.arg( CALAMARES_APPLICATION_NAME ),
-                    Calamares::aboutString().arg( Calamares::Branding::instance()->versionedName() ),
+                    m_conf->aboutMessage().arg( Calamares::Branding::instance()->versionedName() ),
                     QMessageBox::Ok,
                     this );
     Calamares::fixButtonLabels( &mb );
