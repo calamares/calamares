@@ -125,6 +125,8 @@ ChoicePage::ChoicePage( Config* config, QWidget* parent )
     m_encryptWidget->hide();
     m_reuseHomeCheckBox->hide();
     gs->insert( "reuseHome", false );
+
+    updateNextEnabled();
 }
 
 
@@ -478,6 +480,7 @@ ChoicePage::onActionChanged()
             m_encryptWidget->show();
         }
     }
+    updateNextEnabled();
 }
 
 void
@@ -1205,6 +1208,8 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
 
     m_beforePartitionBarsView->setSelectionMode( previewSelectionMode );
     m_beforePartitionLabelsView->setSelectionMode( previewSelectionMode );
+
+    updateNextEnabled();
 }
 
 
@@ -1610,34 +1615,26 @@ ChoicePage::isNextEnabled() const
 bool
 ChoicePage::calculateNextEnabled() const
 {
-    bool enabled = false;
     auto sm_p = m_beforePartitionBarsView ? m_beforePartitionBarsView->selectionModel() : nullptr;
 
     switch ( m_config->installChoice() )
     {
     case InstallChoice::NoChoice:
-        cDebug() << "No partitioning choice";
+        cDebug() << "No partitioning choice has been made yet";
         return false;
     case InstallChoice::Replace:
     case InstallChoice::Alongside:
         if ( !( sm_p && sm_p->currentIndex().isValid() ) )
         {
-            cDebug() << "No partition selected";
+            cDebug() << "No partition selected for alongside or replace";
             return false;
         }
-        enabled = true;
         break;
     case InstallChoice::Erase:
     case InstallChoice::Manual:
-        enabled = true;
+        // Nothing to check for these
+        break;
     }
-
-    if ( !enabled )
-    {
-        cDebug() << "No valid choice made";
-        return false;
-    }
-
 
     if ( m_isEfi
          && ( m_config->installChoice() == InstallChoice::Alongside
@@ -1655,7 +1652,7 @@ ChoicePage::calculateNextEnabled() const
         switch ( m_encryptWidget->state() )
         {
         case EncryptWidget::Encryption::Unconfirmed:
-            cDebug() << "No passphrase provided";
+            cDebug() << "No passphrase provided or passphrase mismatch.";
             return false;
         case EncryptWidget::Encryption::Disabled:
         case EncryptWidget::Encryption::Confirmed:

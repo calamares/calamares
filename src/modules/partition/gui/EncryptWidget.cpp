@@ -85,7 +85,26 @@ EncryptWidget::reset( bool checkVisible )
 EncryptWidget::Encryption
 EncryptWidget::state() const
 {
-    return m_state;
+    Encryption newState = Encryption::Unconfirmed;
+
+    if ( m_ui->m_encryptCheckBox->isChecked() || !m_ui->m_encryptCheckBox->isVisible() )
+    {
+        if ( !m_ui->m_passphraseLineEdit->text().isEmpty()
+             && m_ui->m_passphraseLineEdit->text() == m_ui->m_confirmLineEdit->text() )
+        {
+            newState = Encryption::Confirmed;
+        }
+        else
+        {
+            newState = Encryption::Unconfirmed;
+        }
+    }
+    else
+    {
+        newState = Encryption::Disabled;
+    }
+
+    return newState;
 }
 
 
@@ -148,23 +167,7 @@ EncryptWidget::updateState()
         }
     }
 
-    Encryption newState;
-    if ( m_ui->m_encryptCheckBox->isChecked() || !m_ui->m_encryptCheckBox->isVisible() )
-    {
-        if ( !m_ui->m_passphraseLineEdit->text().isEmpty()
-             && m_ui->m_passphraseLineEdit->text() == m_ui->m_confirmLineEdit->text() )
-        {
-            newState = Encryption::Confirmed;
-        }
-        else
-        {
-            newState = Encryption::Unconfirmed;
-        }
-    }
-    else
-    {
-        newState = Encryption::Disabled;
-    }
+    Encryption newState = state();
 
     if ( newState != m_state )
     {

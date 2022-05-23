@@ -7,8 +7,6 @@
 #
 # Release script for Calamares
 #
-# NOTE: this script contains Linuxisms (in particular, expects GNU mktemp(1))
-#
 # This attempts to perform the different steps of the RELEASE.md
 # document automatically. It's not tested on other machines or
 # setups other than [ade]'s development VM.
@@ -29,11 +27,13 @@
 #   * `-B` do not build (before tagging)
 #   * `-P` do not package (tag, sign, tarball)
 #   * `-T` do not respect string freeze
+#   * '-b' do not build-and-test tarball
 #
 # The build / package settings can be influenced via environment variables:
 #   * BUILD_DEFAULT set to `false` to avoid first build with gcc
 #   * BUILD_CLANG   set to `false` to avoid second build with clang
 #   * BUILD_ONLY    set to `true` to break after building
+#   * TEST_TARBALL  set to 'false' to skip build-and-test phase after tarring
 #
 ### END USAGE
 
@@ -45,9 +45,10 @@ which cmake > /dev/null 2>&1 || { echo "No cmake(1) available." ; exit 1 ; }
 test -z "$BUILD_DEFAULT" && BUILD_DEFAULT=true
 test -z "$BUILD_CLANG" && BUILD_CLANG=true
 test -z "$BUILD_ONLY" && BUILD_ONLY=false
+test -z "$TEST_TARBALL" && TEST_TARBALL=true
 STRING_FREEZE=true
 
-while getopts "hBPT" opt ; do
+while getopts "hBbPT" opt ; do
     case "$opt" in
     h|\?)
         sed -e '1,/USAGE/d' -e '/END.USAGE/,$d' < "$0"
@@ -57,6 +58,9 @@ while getopts "hBPT" opt ; do
         BUILD_DEFAULT=false
         BUILD_CLANG=false
         ;;
+    b)
+	TEST_TARBALL=false
+	;;
     P)
         BUILD_ONLY=true
         ;;
@@ -74,7 +78,7 @@ fi
 ### Setup
 #
 #
-BUILDDIR=$(mktemp -d --suffix=-build --tmpdir=.)
+BUILDDIR=$(mktemp -d ./cala-tmp-XXXXXX)
 KEY_ID="328D742D8807A435"
 
 # Try to make gpg cache the signing key, so we can leave the process
@@ -144,12 +148,14 @@ SHA256=$(sha256sum "$TAR_FILE" | cut -d" " -f1)
 ### Build the tarball
 #
 #
-D=$(date +%Y%m%d-%H%M%S)
-TMPDIR=$(mktemp -d --suffix="-calamares-$D")
-test -d "$TMPDIR" || { echo "Could not create tarball-build directory." ; exit 1 ; }
-tar xzf "$TAR_FILE" -C "$TMPDIR" || { echo "Could not unpack tarball." ; exit 1 ; }
-test -d "$TMPDIR/$TAR_V" || { echo "Tarball did not contain source directory." ; exit 1 ; }
-( cd "$TMPDIR/$TAR_V" && cmake . && make -j4 && make test ) || { echo "Tarball build failed in $TMPDIR ." ; exit 1 ; }
+if test "x$TEST_TARBALL" = "xtrue" ; then
+    D=$(date +%Y%m%d-%H%M%S)
+    TMPDIR=$(mktemp -d ./cala-tar-XXXXXX)
+    test -d "$TMPDIR" || { echo "Could not create tarball-build directory." ; exit 1 ; }
+    tar xzf "$TAR_FILE" -C "$TMPDIR" || { echo "Could not unpack tarball." ; exit 1 ; }
+    test -d "$TMPDIR/$TAR_V" || { echo "Tarball did not contain source directory." ; exit 1 ; }
+    ( cd "$TMPDIR/$TAR_V" && cmake . && make -j4 && make test ) || { echo "Tarball build failed in $TMPDIR ." ; exit 1 ; }
+fi
 gpg -s -u $KEY_ID --detach --armor $TAR_FILE  # Sign the tarball
 
 ### Cleanup

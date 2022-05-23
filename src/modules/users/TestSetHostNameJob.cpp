@@ -140,7 +140,7 @@ UsersTests::testHostnamed()
         // then this one should, also; or, if the previous one failed, then this
         // changes to whatever-the-hostname-is, and systemd dbus seems to call that
         // a success, as well (since nothing changes). So no failure-expectation here.
-        // QEXPECT_FAIL( "", "Hostname changes are access-controlled (restore)", Continue );
+        QEXPECT_FAIL( "", "Hostname changes are access-controlled (restore)", Continue );
         QVERIFY( setSystemdHostname( m_originalHostName ) );
     }
 }
