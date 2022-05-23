@@ -28,6 +28,7 @@ struct PackageItem
     QStringList packageNames;
     bool selected;
     QStringList whenKeyValuePairs;
+    QVariantMap netinstallData;
 
     /// @brief Create blank PackageItem
     PackageItem();
@@ -117,6 +118,14 @@ public:
      * Concatenates installPackagesForName() for each id in @p ids.
      */
     QStringList getInstallPackagesForNames( const QStringList& ids ) const;
+
+    /** @brief Does a name lookup (based on id) and returns the netinstall data
+     *
+     * If there is a package with an id in @p ids, returns their netinstall data
+     *
+     * returns a list of netinstall data or an emply list if none is found
+     */
+    QVariantList getNetinstallDataForNames( const QStringList& ids ) const;
 
     QString preScript() const { return m_preScript; }
     QString postScript() const { return m_postScript; }
