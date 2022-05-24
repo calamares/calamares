@@ -25,6 +25,13 @@ This release contains contributions from (alphabetically by first name):
  - *partition* will cycle out a LUKS key if all the key slots are in use
    and a new key is added, rather than crashing the installer. (Thanks Arjen)
 
+# 3.2.58.2 (2022-05-24)
+
+This is a extra-quick release for an issue that shows up when using a
+swap **file** on a btrfs filesystem; the installation would fail with
+a Python error, raised from btrfs-progs. Reported by Evan James, Erik
+Dubois, TechXero.
+
 
 # 3.2.58.1 (2022-05-20)
 
