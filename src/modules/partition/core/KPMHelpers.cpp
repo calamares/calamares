@@ -168,13 +168,6 @@ testPassphrase( FS::luks* fs, const QString& deviceNode, const QString& passphra
 #endif
 
 // Adapted from src/fs/luks.cpp cryptOpen which always opens a dialog to ask for a passphrase
-/**
- * @brief
- * Save an existing passphrase for a previously encrypted partition.
- * @param partition
- * @param passphrase
- * @return SavePassphraseValue
- */
 SavePassphraseValue
 savePassphrase( Partition* partition, const QString& passphrase )
 {

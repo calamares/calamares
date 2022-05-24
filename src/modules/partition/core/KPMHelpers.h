@@ -43,7 +43,15 @@ class PartitionRole;
 namespace KPMHelpers
 {
 
-enum SavePassphraseValue
+/** @brief Return (errors) for savePassphrase()
+ *
+ * There's a handful of things that can go wrong when
+ * saving a passphrase for a given partition; this
+ * expresses clearly which ones are wrong.
+ *
+ * @c NoError is "Ok" when saving the passphrase succeeds.
+ */
+enum class SavePassphraseValue
 {
     NoError,
     EmptyPassphrase,
@@ -85,6 +93,14 @@ Partition* createNewEncryptedPartition( PartitionNode* parent,
 
 Partition* clonePartition( Device* device, Partition* partition );
 
+/** @brief Save an existing passphrase for a previously encrypted partition.
+ *
+ * Tries to apply the passphrase to the partition; this checks if the
+ * @p partition is one that can have a passphrase applied, and
+ * runs `cryptsetup` to check that the passphrase actually works
+ * for the partition. Returns `NoError` on success, or an explanatory
+ * other value if it fails.
+ */
 SavePassphraseValue savePassphrase( Partition* partition, const QString& passphrase );
 
 /** @brief Return a result for an @p operation
