@@ -34,11 +34,15 @@ Partition*
 findPartitionByMountPoint( const QList< Device* >& devices, const QString& mountPoint )
 {
     for ( auto device : devices )
+    {
         for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
+        {
             if ( PartitionInfo::mountPoint( *it ) == mountPoint )
             {
                 return *it;
             }
+        }
+    }
     return nullptr;
 }
 
@@ -171,7 +175,6 @@ testPassphrase( FS::luks* fs, const QString& deviceNode, const QString& passphra
 SavePassphraseValue
 savePassphrase( Partition* partition, const QString& passphrase )
 {
-    const QString deviceNode = partition->partitionPath();
 
     if ( passphrase.isEmpty() )
     {
@@ -183,8 +186,8 @@ savePassphrase( Partition* partition, const QString& passphrase )
         return SavePassphraseValue::NotLuksPartition;
     }
 
-    // Cast partition fs to luks fs
     FS::luks* luksFs = dynamic_cast< FS::luks* >( &partition->fileSystem() );
+    const QString deviceNode = partition->partitionPath();
 
     // Test the given passphrase
     if ( !testPassphrase( luksFs, deviceNode, passphrase ) )
@@ -207,7 +210,6 @@ savePassphrase( Partition* partition, const QString& passphrase )
 
     ExternalCommand openCmd( QStringLiteral( "cryptsetup" ),
                              { QStringLiteral( "open" ), deviceNode, luksFs->suggestedMapperName( deviceNode ) } );
-
     if ( !( openCmd.write( passphrase.toLocal8Bit() + '\n' ) && openCmd.start( -1 ) && openCmd.exitCode() == 0 ) )
     {
         cWarning() << Logger::SubEntry << openCmd.exitCode() << ": cryptsetup command failed";
@@ -216,9 +218,7 @@ savePassphrase( Partition* partition, const QString& passphrase )
 
     // Save the existing passphrase
     luksFs->setPassphrase( passphrase );
-
     luksFs->scan( deviceNode );
-
     if ( luksFs->mapperName().isEmpty() )
     {
         return SavePassphraseValue::NoMapperNode;
@@ -226,7 +226,6 @@ savePassphrase( Partition* partition, const QString& passphrase )
 
     luksFs->loadInnerFileSystem( luksFs->mapperName() );
     luksFs->setCryptOpen( luksFs->innerFS() != nullptr );
-
     if ( !luksFs->isCryptOpen() )
     {
         return SavePassphraseValue::DeviceNotDecrypted;
