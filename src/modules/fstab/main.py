@@ -341,8 +341,7 @@ def create_swapfile(root_mount_point, root_btrfs):
         swapfile_path = os.path.join(root_mount_point, "swap/swapfile")
         with open(swapfile_path, "wb") as f:
             pass
-        libcalamares.utils.host_env_process_output(["btrfs", "property", "set", swapfile_path, "compression", "none"])
-        libcalamares.utils.host_env_process_output(["chattr", "+C", swapfile_path])  # No Copy-on-Write
+        libcalamares.utils.host_env_process_output(["chattr", "+C", "+m", swapfile_path])  # No Copy-on-Write, no compression
     else:
         swapfile_path = os.path.join(root_mount_point, "swapfile")
         with open(swapfile_path, "wb") as f:
