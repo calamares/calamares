@@ -41,11 +41,11 @@
 # TODO:3.3: Require CMake 3.12
 cmake_minimum_required( VERSION 3.3 FATAL_ERROR )
 project( CALAMARES
-    VERSION 3.2.58.1
+    VERSION 3.2.59
     LANGUAGES C CXX
 )
 
-set( CALAMARES_VERSION_RC 0 )  # Set to 0 during release cycle, 1 during development
+set( CALAMARES_VERSION_RC 1 )  # Set to 0 during release cycle, 1 during development
 if( CALAMARES_VERSION_RC EQUAL 1 AND CMAKE_SOURCE_DIR STREQUAL CMAKE_BINARY_DIR )
     message( FATAL_ERROR "Do not build development versions in the source-directory." )
 endif()
