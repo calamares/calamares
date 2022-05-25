@@ -18,9 +18,6 @@ Item {
     height: parent.height
     focus: true
 
-    property var appName: "Calamares"
-    property var appVersion: "3.2.24"
-
     Rectangle {
         id: textArea
         x: 28
@@ -44,21 +41,7 @@ Item {
                     width: 400
                     height: 250
                     anchors.centerIn: parent
-                    text: qsTr("<h1>%1</h1><br/>
-                        <strong>%2<br/>
-                        for %3</strong><br/><br/>
-                        Copyright 2014-2017 Teo Mrnjavac &lt;teo@kde.org&gt;<br/>
-                        Copyright 2017-2020 Adriaan de Groot &lt;groot@kde.org&gt;<br/>
-                        Thanks to <a href='https://calamares.io/team/'>the Calamares team</a>
-                        and the <a href='https://www.transifex.com/calamares/calamares/'>Calamares
-                        translators team</a>.<br/><br/>
-                        <a href='https://calamares.io/'>Calamares</a>
-                        development is sponsored by <br/>
-                        <a href='http://www.blue-systems.com/'>Blue Systems</a> -
-                        Liberating Software." )
-                        .arg(appName)
-                        .arg(appVersion)
-                        .arg(Branding.string(Branding.VersionedName))
+                    text: config.aboutMessage.arg(Branding.string(Branding.VersionedName))
 
                         onLinkActivated: Qt.openUrlExternally(link)
 

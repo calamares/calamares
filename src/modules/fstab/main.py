@@ -14,7 +14,6 @@
 
 import os
 import re
-import subprocess
 
 import libcalamares
 
@@ -106,14 +105,17 @@ class FstabGenerator(object):
     :param root_mount_point:
     :param mount_options:
     :param ssd_extra_mount_options:
+    :param crypttab_options:
+    :param tmp_options:
     """
     def __init__(self, partitions, root_mount_point, mount_options,
-                 ssd_extra_mount_options, crypttab_options):
+                 ssd_extra_mount_options, crypttab_options, tmp_options):
         self.partitions = partitions
         self.root_mount_point = root_mount_point
         self.mount_options = mount_options
         self.ssd_extra_mount_options = ssd_extra_mount_options
         self.crypttab_options = crypttab_options
+        self.tmp_options = tmp_options
         self.ssd_disks = set()
         self.root_is_ssd = False
 
@@ -162,8 +164,10 @@ class FstabGenerator(object):
         crypttab_options = self.crypttab_options
 
         # Set crypttab password for partition to none and remove crypttab options
-        # if crypto_keyfile.bin was not generated
-        if not os.path.exists(os.path.join(self.root_mount_point, "crypto_keyfile.bin")):
+        # if root partition was not encrypted
+        if any([p["mountPoint"] == "/"
+                and "luksMapperName" not in p
+                for p in self.partitions]):
             password = "none"
             crypttab_options = ""
         # on root partition when /boot is unencrypted
@@ -173,7 +177,6 @@ class FstabGenerator(object):
                    for p in self.partitions]):
                 password = "none"
                 crypttab_options = ""
-        
 
         return dict(
             name=mapper_name,
@@ -213,21 +216,32 @@ class FstabGenerator(object):
                         mount_entry["subvol"] = s["subvolume"]
                         dct = self.generate_fstab_line_info(mount_entry)
                         if dct:
-                                self.print_fstab_line(dct, file=fstab_file)
+                            self.print_fstab_line(dct, file=fstab_file)
                 elif partition["fs"] != "zfs":  # zfs partitions don't need an entry in fstab
                     dct = self.generate_fstab_line_info(partition)
                     if dct:
                         self.print_fstab_line(dct, file=fstab_file)
 
             if self.root_is_ssd:
-                # Mount /tmp on a tmpfs
-                dct = dict(device="tmpfs",
-                           mount_point="/tmp",
-                           fs="tmpfs",
-                           options="defaults,noatime,mode=1777",
-                           check=0,
-                           )
-                self.print_fstab_line(dct, file=fstab_file)
+                # Old behavior was to mount /tmp as tmpfs
+                # New behavior is to use tmpOptions to decide
+                # if mounting /tmp as tmpfs and which options to use
+                ssd = self.tmp_options.get("ssd", {})
+                if not ssd:
+                    ssd = self.tmp_options.get("default", {})
+                # Default to True to mimic old behavior
+                tmpfs = ssd.get("tmpfs", True)
+
+                if tmpfs:
+                    options = ssd.get("options", "defaults,noatime,mode=1777")
+                    # Mount /tmp on a tmpfs
+                    dct = dict(device="tmpfs",
+                               mount_point="/tmp",
+                               fs="tmpfs",
+                               options=options,
+                               check=0,
+                               )
+                    self.print_fstab_line(dct, file=fstab_file)
 
     def generate_fstab_line_info(self, partition):
         """
@@ -342,10 +356,7 @@ def create_swapfile(root_mount_point, root_btrfs):
         swapfile_path = os.path.join(root_mount_point, "swap/swapfile")
         with open(swapfile_path, "wb") as f:
             pass
-        o = subprocess.check_output(["chattr", "+C", swapfile_path])
-        libcalamares.utils.debug("swapfile attributes: {!s}".format(o))
-        o = subprocess.check_output(["btrfs", "property", "set", swapfile_path, "compression", "none"])
-        libcalamares.utils.debug("swapfile compression: {!s}".format(o))
+        libcalamares.utils.host_env_process_output(["chattr", "+C", "+m", swapfile_path])  # No Copy-on-Write, no compression
     else:
         swapfile_path = os.path.join(root_mount_point, "swapfile")
         with open(swapfile_path, "wb") as f:
@@ -363,8 +374,7 @@ def create_swapfile(root_mount_point, root_btrfs):
             libcalamares.job.setprogress(0.2 + 0.3 * ( total / desired_size ) )
             total += chunk
     os.chmod(swapfile_path, 0o600)
-    o = subprocess.check_output(["mkswap", swapfile_path])
-    libcalamares.utils.debug("swapfile mkswap: {!s}".format(o))
+    libcalamares.utils.host_env_process_output(["mkswap", swapfile_path])
     libcalamares.job.setprogress(0.5)
 
 
@@ -410,6 +420,7 @@ def run():
     mount_options = conf.get("mountOptions", {})
     ssd_extra_mount_options = conf.get("ssdExtraMountOptions", {})
     crypttab_options = conf.get("crypttabOptions", "luks")
+    tmp_options = conf.get("tmpOptions", {})
 
     # We rely on mount_options having a default; if there wasn't one,
     # bail out with a meaningful error.
@@ -422,7 +433,8 @@ def run():
                                root_mount_point,
                                mount_options,
                                ssd_extra_mount_options,
-                               crypttab_options)
+                               crypttab_options,
+                               tmp_options)
 
     if swap_choice is not None:
         libcalamares.job.setprogress(0.2)

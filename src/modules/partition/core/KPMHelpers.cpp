@@ -34,11 +34,15 @@ Partition*
 findPartitionByMountPoint( const QList< Device* >& devices, const QString& mountPoint )
 {
     for ( auto device : devices )
+    {
         for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
+        {
             if ( PartitionInfo::mountPoint( *it ) == mountPoint )
             {
                 return *it;
             }
+        }
+    }
     return nullptr;
 }
 
@@ -167,42 +171,35 @@ testPassphrase( FS::luks* fs, const QString& deviceNode, const QString& passphra
 }
 #endif
 
-// Adapted from luks cryptOpen which always opens a dialog to ask for a passphrase
-int
-updateLuksDevice( Partition* partition, const QString& passphrase )
+// Adapted from src/fs/luks.cpp cryptOpen which always opens a dialog to ask for a passphrase
+SavePassphraseValue
+savePassphrase( Partition* partition, const QString& passphrase )
 {
-    const QString deviceNode = partition->partitionPath();
-
-    cDebug() << "Update Luks device: " << deviceNode;
 
     if ( passphrase.isEmpty() )
     {
-        cWarning() << Logger::SubEntry << "#1: Passphrase is empty";
-        return 1;
+        return SavePassphraseValue::EmptyPassphrase;
     }
 
     if ( partition->fileSystem().type() != FileSystem::Luks )
     {
-        cWarning() << Logger::SubEntry << "#2: Not a luks encrypted device";
-        return 2;
+        return SavePassphraseValue::NotLuksPartition;
     }
 
-    // Cast partition fs to luks fs
     FS::luks* luksFs = dynamic_cast< FS::luks* >( &partition->fileSystem() );
+    const QString deviceNode = partition->partitionPath();
 
     // Test the given passphrase
     if ( !testPassphrase( luksFs, deviceNode, passphrase ) )
     {
-        cWarning() << Logger::SubEntry << "#3: Passphrase incorrect";
-        return 3;
+        return SavePassphraseValue::IncorrectPassphrase;
     }
 
     if ( luksFs->isCryptOpen() )
     {
         if ( !luksFs->mapperName().isEmpty() )
         {
-            cWarning() << Logger::SubEntry << "#4: Device already decrypted";
-            return 4;
+            return SavePassphraseValue::NoError;
         }
         else
         {
@@ -213,34 +210,28 @@ updateLuksDevice( Partition* partition, const QString& passphrase )
 
     ExternalCommand openCmd( QStringLiteral( "cryptsetup" ),
                              { QStringLiteral( "open" ), deviceNode, luksFs->suggestedMapperName( deviceNode ) } );
-
     if ( !( openCmd.write( passphrase.toLocal8Bit() + '\n' ) && openCmd.start( -1 ) && openCmd.exitCode() == 0 ) )
     {
         cWarning() << Logger::SubEntry << openCmd.exitCode() << ": cryptsetup command failed";
-        return openCmd.exitCode();
+        return SavePassphraseValue::CryptsetupError;
     }
 
     // Save the existing passphrase
     luksFs->setPassphrase( passphrase );
-
     luksFs->scan( deviceNode );
-
     if ( luksFs->mapperName().isEmpty() )
     {
-        cWarning() << Logger::SubEntry << "#5: No mapper node found";
-        return 5;
+        return SavePassphraseValue::NoMapperNode;
     }
 
     luksFs->loadInnerFileSystem( luksFs->mapperName() );
     luksFs->setCryptOpen( luksFs->innerFS() != nullptr );
-
     if ( !luksFs->isCryptOpen() )
     {
-        cWarning() << Logger::SubEntry << "#6: Device could not be decrypted";
-        return 6;
+        return SavePassphraseValue::DeviceNotDecrypted;
     }
 
-    return 0;
+    return SavePassphraseValue::NoError;
 }
 
 Calamares::JobResult

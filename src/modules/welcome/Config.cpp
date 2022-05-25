@@ -10,6 +10,7 @@
 #include "Config.h"
 
 #include "Branding.h"
+#include "CalamaresAbout.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "Settings.h"
@@ -246,6 +247,13 @@ Config::setSupportUrl( const QString& url )
     m_supportUrl = url;
     emit supportUrlChanged();
 }
+
+QString
+Config::aboutMessage() const
+{
+    return Calamares::aboutString();
+}
+
 
 QString
 Config::genericWelcomeMessage() const

@@ -52,6 +52,7 @@ class Config : public QObject
     Q_PROPERTY( QString countryCode MEMBER m_countryCode NOTIFY countryCodeChanged FINAL )
     Q_PROPERTY( int localeIndex READ localeIndex WRITE setLocaleIndex NOTIFY localeIndexChanged )
 
+    Q_PROPERTY( QString aboutMessage READ aboutMessage CONSTANT FINAL )
     Q_PROPERTY( QString genericWelcomeMessage MEMBER m_genericWelcomeMessage NOTIFY genericWelcomeMessageChanged FINAL )
     Q_PROPERTY( QString warningMessage READ warningMessage NOTIFY warningMessageChanged FINAL )
 
@@ -89,6 +90,7 @@ public:
     QString donateUrl() const { return m_donateUrl; }
     void setDonateUrl( const QString& url );
 
+    QString aboutMessage() const;
     QString genericWelcomeMessage() const;
     QString warningMessage() const;
 
