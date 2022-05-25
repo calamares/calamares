@@ -46,6 +46,15 @@ Config::swapChoiceNames()
     return names;
 }
 
+const NamedEnumTable< Config::LuksGeneration >&
+Config::luksGenerationChoiceNames()
+{
+    static const NamedEnumTable< LuksGenerationChoice > names { { QStringLiteral( "luks1" ), LuksGenerationChoice::Luks1 },
+                                                      { QStringLiteral( "luks2" ), LuksGenerationChoice::Luks2 } };
+
+    return names;
+}
+
 Config::SwapChoice
 pickOne( const Config::SwapChoiceSet& s )
 {
@@ -211,6 +220,29 @@ Config::setSwapChoice( Config::SwapChoice c )
 }
 
 void
+Config::setLuksGenerationChoice( int c )
+{
+    if ( ( c < LuksGenerationChoice::Luks1 ) || ( c > LuksGenerationChoice::Luks2 ) )
+    {
+        cWarning() << "Invalid luks generation choice (int)" << c;
+        c = SwapChoice::Luks1;
+    }
+    setLuksGenerationChoice( static_cast< LuksGenerationChoice >( c ) );
+}
+
+void
+Config::setLuksGenerationChoice( Config::LuksGenerationChoice c )
+{
+    if ( c != m_luksGenerationChoice )
+    {
+        m_luksGenerationChoice = c;
+        Q_EMIT luksGenerationChoiceChanged( c );
+        // TODO(Artur): This doesn't seem right but is also done at line 217
+        ::updateGlobalStorage( m_installChoice, c );
+    }
+}
+
+void
 Config::setEraseFsTypeChoice( const QString& choice )
 {
     QString canonicalChoice = PartUtils::canonicalFilesystemName( choice, nullptr );
@@ -355,6 +387,12 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         m_initialSwapChoice = pickOne( m_swapChoices );
     }
     setSwapChoice( m_initialSwapChoice );
+
+    m_initialLuksGenerationChoice = luksGenerationChoiceNames().find(
+        CalamaresUtils::getString( configurationMap, "luksGeneration" ), nameFound );
+    setLuksGenerationChoice( m_initialLuksGenerationChoice );
+
+    setInstallChoice( m_initialInstallChoice );
 
     m_allowManualPartitioning = CalamaresUtils::getBool( configurationMap, "allowManualPartitioning", true );
     m_requiredPartitionTableType = CalamaresUtils::getStringList( configurationMap, "requiredPartitionTableType" );

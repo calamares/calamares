@@ -63,6 +63,15 @@ public:
 
     using EraseFsTypesSet = QStringList;
 
+    /** @brief Choice of luks disk encryption generation */
+
+    enum class LuksGenerationChoice {
+        Luks1,
+        Luks2
+    }
+    Q_ENUM( LuksGenerationChoice )
+    static const NamedEnumTable< LuksGeneration >& luksGenerationeChoiceNames();
+
     void setConfigurationMap( const QVariantMap& );
     /** @brief Set GS values where other modules configuration has priority
      *
@@ -112,6 +121,21 @@ public:
      */
     SwapChoice swapChoice() const { return m_swapChoice; }
 
+
+    /** @brief What kind of swap selection is requested **initially**?
+     *
+     * @return The swap choice (may be @c NoSwap )
+     */
+    LuksGenerationChoice initialLuksGenerationChoice() const { return m_initialLuksGenerationChoice; }
+
+    /** @brief What kind of swap selection is requested **now**?
+     *
+     * A choice of swap only makes sense when install choice Erase is made.
+     *
+     * @return The swap choice (may be @c NoSwap).
+     */
+    LuksGenerationChoice luksGenerationChoice() const { return m_luksGenerationChoice; }
+
     /** @brief Get the list of configured FS types to use with *erase* mode
      *
      * This list is not empty.
@@ -145,11 +169,14 @@ public Q_SLOTS:
     void setInstallChoice( InstallChoice );
     void setSwapChoice( int );  ///< Translates a button ID or so to SwapChoice
     void setSwapChoice( SwapChoice );
+    void setLuksGenerationChoice( int );  ///< Translates a button ID or so to SwapChoice
+    void setLuksGenerationChoice( LuksGenerationChoice );
     void setEraseFsTypeChoice( const QString& filesystemName );  ///< See property eraseModeFilesystem
 
 Q_SIGNALS:
     void installChoiceChanged( InstallChoice );
     void swapChoiceChanged( SwapChoice );
+    void luksGenerationChoiceChanged( LuksGenerationChoice );
     void eraseModeFilesystemChanged( const QString& );
 
 private:
@@ -162,6 +189,8 @@ private:
     SwapChoiceSet m_swapChoices;
     SwapChoice m_initialSwapChoice = NoSwap;
     SwapChoice m_swapChoice = NoSwap;
+    LuksGenerationChoice m_luksGenerationChoice = LuksGenerationChoice::Luks1;
+    LuksGenerationChoice m_initialLuksGenerationChoice = LuksGenerationChoice::Luks1;
     InstallChoice m_initialInstallChoice = NoChoice;
     InstallChoice m_installChoice = NoChoice;
     qreal m_requiredStorageGiB = 0.0;  // May duplicate setting in the welcome module
