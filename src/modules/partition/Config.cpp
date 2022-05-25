@@ -163,7 +163,7 @@ getSwapChoices( const QVariantMap& configurationMap )
 }
 
 void
-updateGlobalStorage( Config::InstallChoice installChoice, Config::SwapChoice swapChoice )
+updateGlobalStorage( Config::InstallChoice installChoice, Config::SwapChoice swapChoice, Config::LuksGenerationChoice luksGenerationChoice )
 {
     auto* gs = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
     if ( gs )
@@ -238,7 +238,7 @@ Config::setLuksGenerationChoice( Config::LuksGenerationChoice c )
         m_luksGenerationChoice = c;
         Q_EMIT luksGenerationChoiceChanged( c );
         // TODO(Artur): This doesn't seem right but is also done at line 217
-        ::updateGlobalStorage( m_installChoice, c );
+        ::updateGlobalStorage( m_installChoice, m_swapChoice, c );
     }
 }
 
