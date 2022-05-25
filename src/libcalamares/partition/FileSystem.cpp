@@ -46,6 +46,7 @@ prettyNameForFileSystemType( FileSystem::Type t )
     case FileSystem::Ufs:
     case FileSystem::Hpfs:
     case FileSystem::Luks:
+    case FileSystem::Luks2:
     case FileSystem::Ocfs2:
     case FileSystem::Zfs:
     case FileSystem::Nilfs2:

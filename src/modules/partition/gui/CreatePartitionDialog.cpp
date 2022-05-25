@@ -33,6 +33,7 @@
 #include <kpmcore/fs/filesystem.h>
 #include <kpmcore/fs/filesystemfactory.h>
 #include <kpmcore/fs/luks.h>
+#include <kpmcore/fs/luks2.h>
 
 #include <QComboBox>
 #include <QDir>
@@ -223,6 +224,8 @@ CreatePartitionDialog::initGptPartitionTypeUi()
 Partition*
 CreatePartitionDialog::getNewlyCreatedPartition()
 {
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+
     if ( m_role.roles() == PartitionRole::None )
     {
         m_role = PartitionRole( m_ui->extendedRadioButton->isChecked() ? PartitionRole::Extended
@@ -242,12 +245,21 @@ CreatePartitionDialog::getNewlyCreatedPartition()
     // newFlags() and the consumer (see PartitionPage::onCreateClicked)
     // does so, to set up the partition for create-and-then-set-flags.
     Partition* partition = nullptr;
+    QString luksFsType = gs->value( "luksFileSystemType" ).toString();
     QString luksPassphrase = m_ui->encryptWidget->passphrase();
     if ( m_ui->encryptWidget->state() == EncryptWidget::Encryption::Confirmed && !luksPassphrase.isEmpty()
          && fsType != FileSystem::Zfs )
     {
-        partition = KPMHelpers::createNewEncryptedPartition(
-            m_parent, *m_device, m_role, fsType, fsLabel, first, last, luksPassphrase, PartitionTable::Flags() );
+        partition = KPMHelpers::createNewEncryptedPartition( m_parent,
+                                                             *m_device,
+                                                             m_role,
+                                                             fsType,
+                                                             fsLabel,
+                                                             first,
+                                                             last,
+                                                             luksFsType,
+                                                             luksPassphrase,
+                                                             PartitionTable::Flags() );
     }
     else
     {
@@ -304,6 +316,12 @@ CreatePartitionDialog::updateMountPointUi()
 
         if ( FileSystemFactory::map()[ FileSystem::Type::Luks ]->supportCreate() && FS::luks::canEncryptType( type )
              && !m_role.has( PartitionRole::Extended ) )
+        {
+            m_ui->encryptWidget->show();
+            m_ui->encryptWidget->reset();
+        }
+        else if ( FileSystemFactory::map()[ FileSystem::Type::Luks2 ]->supportCreate()
+                  && FS::luks2::canEncryptType( type ) && !m_role.has( PartitionRole::Extended ) )
         {
             m_ui->encryptWidget->show();
             m_ui->encryptWidget->reset();

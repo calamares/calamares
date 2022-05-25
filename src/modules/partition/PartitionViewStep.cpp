@@ -616,7 +616,9 @@ PartitionViewStep::onLeave()
 
             // If the root partition is encrypted, and there's a separate boot
             // partition which is not encrypted
-            if ( root_p->fileSystem().type() == FileSystem::Luks && boot_p->fileSystem().type() != FileSystem::Luks )
+            if ( ( root_p->fileSystem().type() == FileSystem::Luks && boot_p->fileSystem().type() != FileSystem::Luks )
+                 || ( root_p->fileSystem().type() == FileSystem::Luks2
+                      && boot_p->fileSystem().type() != FileSystem::Luks2 ) )
             {
                 message = tr( "Boot partition not encrypted" );
                 description = tr( "A separate boot partition was set up together with "

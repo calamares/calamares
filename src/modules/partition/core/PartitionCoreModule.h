@@ -166,10 +166,11 @@ public:
      */
     PartitionLayout& partitionLayout() { return m_partLayout; }
 
-    void layoutApply( Device* dev, qint64 firstSector, qint64 lastSector, QString luksPassphrase );
+    void layoutApply( Device* dev, qint64 firstSector, qint64 lastSector, QString luksFsType, QString luksPassphrase );
     void layoutApply( Device* dev,
                       qint64 firstSector,
                       qint64 lastSector,
+                      QString luksFsType,
                       QString luksPassphrase,
                       PartitionNode* parent,
                       const PartitionRole& role );
