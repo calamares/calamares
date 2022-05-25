@@ -46,7 +46,7 @@ Config::swapChoiceNames()
     return names;
 }
 
-const NamedEnumTable< Config::LuksGeneration >&
+const NamedEnumTable< Config::LuksGenerationChoice >&
 Config::luksGenerationChoiceNames()
 {
     static const NamedEnumTable< LuksGenerationChoice > names { { QStringLiteral( "luks1" ), LuksGenerationChoice::Luks1 },
@@ -193,7 +193,7 @@ Config::setInstallChoice( InstallChoice c )
     {
         m_installChoice = c;
         Q_EMIT installChoiceChanged( c );
-        ::updateGlobalStorage( c, m_swapChoice );
+        ::updateGlobalStorage( c, m_swapChoice, m_luksGenerationChoice );
     }
 }
 
@@ -215,17 +215,17 @@ Config::setSwapChoice( Config::SwapChoice c )
     {
         m_swapChoice = c;
         Q_EMIT swapChoiceChanged( c );
-        ::updateGlobalStorage( m_installChoice, c );
+        ::updateGlobalStorage( m_installChoice, c, m_luksGenerationChoice );
     }
 }
 
 void
 Config::setLuksGenerationChoice( int c )
 {
-    if ( ( c < LuksGenerationChoice::Luks1 ) || ( c > LuksGenerationChoice::Luks2 ) )
+    if ( ( c != LuksGenerationChoice::Luks1 ) && ( c != LuksGenerationChoice::Luks2 ) )
     {
         cWarning() << "Invalid luks generation choice (int)" << c;
-        c = SwapChoice::Luks1;
+        c = LuksGenerationChoice::Luks1;
     }
     setLuksGenerationChoice( static_cast< LuksGenerationChoice >( c ) );
 }

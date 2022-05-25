@@ -65,12 +65,12 @@ public:
 
     /** @brief Choice of luks disk encryption generation */
 
-    enum class LuksGenerationChoice {
+    enum LuksGenerationChoice {
         Luks1,
         Luks2
-    }
+    };
     Q_ENUM( LuksGenerationChoice )
-    static const NamedEnumTable< LuksGeneration >& luksGenerationeChoiceNames();
+    static const NamedEnumTable< LuksGenerationChoice >& luksGenerationChoiceNames();
 
     void setConfigurationMap( const QVariantMap& );
     /** @brief Set GS values where other modules configuration has priority
