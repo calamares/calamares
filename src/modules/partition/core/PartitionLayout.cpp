@@ -204,6 +204,7 @@ QList< Partition* >
 PartitionLayout::createPartitions( Device* dev,
                                    qint64 firstSector,
                                    qint64 lastSector,
+                                   QString luksFsType,
                                    QString luksPassphrase,
                                    PartitionNode* parent,
                                    const PartitionRole& role )
@@ -317,6 +318,7 @@ PartitionLayout::createPartitions( Device* dev,
                                                             entry.partLabel,
                                                             currentSector,
                                                             currentSector + sectors - 1,
+                                                            luksFsType,
                                                             luksPassphrase,
                                                             KPM_PARTITION_FLAG( None ) );
         }

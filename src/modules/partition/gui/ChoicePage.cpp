@@ -496,6 +496,7 @@ ChoicePage::applyActionChoice( InstallChoice choice )
         auto gs = Calamares::JobQueue::instance()->globalStorage();
         PartitionActions::Choices::AutoPartitionOptions options { gs->value( "defaultPartitionTableType" ).toString(),
                                                                   m_config->eraseFsType(),
+                                                                  gs->value( "luksFileSystemType" ).toString(),
                                                                   m_encryptWidget->passphrase(),
                                                                   gs->value( "efiSystemPartition" ).toString(),
                                                                   CalamaresUtils::GiBtoBytes(
@@ -752,6 +753,7 @@ ChoicePage::doAlongsideApply()
             m_core->layoutApply( dev,
                                  newLastSector + 2,
                                  oldLastSector,
+                                 m_config->luksFileSystemType(),
                                  m_encryptWidget->passphrase(),
                                  candidate->parent(),
                                  candidate->roles() );
@@ -826,6 +828,7 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
                     m_core->layoutApply( selectedDevice(),
                                          selectedPartition->firstSector(),
                                          selectedPartition->lastSector(),
+                                         m_config->luksFileSystemType(),
                                          m_encryptWidget->passphrase(),
                                          newParent,
                                          newRoles );
@@ -858,6 +861,7 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
                                                               selectedPartition,
                                                               { gs->value( "defaultPartitionType" ).toString(),
                                                                 gs->value( "defaultFileSystemType" ).toString(),
+                                                                gs->value( "luksFileSystemType" ).toString(),
                                                                 m_encryptWidget->passphrase() } );
                         Partition* homePartition = findPartitionByPath( { selectedDevice() }, *homePartitionPath );
 
