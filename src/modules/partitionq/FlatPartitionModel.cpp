@@ -1,3 +1,12 @@
+/* === This file is part of Calamares - <https://calamares.io> ===
+ *
+ *   SPDX-FileCopyrightText: 2022 Aditya Mehra <aix.m@outlook.com>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
+ *
+ *   Calamares is Free Software: see the License-Identifier above.
+ *
+ */
+
 #include "FlatPartitionModel.h"
 #include "core/PartitionModel.h"
 
