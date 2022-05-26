@@ -30,6 +30,7 @@ PartitionQmlViewStep::PartitionQmlViewStep( QObject* parent )
     m_core = new PartitionCoreModule( this );  // Unusable before init is complete!
     Calamares::QmlViewStep::setContextProperty( "core", m_core );
     Calamares::QmlViewStep::setContextProperty( "choicePage", m_choicePage );
+
     emit nextStatusChanged( true );
 }
 

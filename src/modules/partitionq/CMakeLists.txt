@@ -4,7 +4,7 @@
 #   SPDX-License-Identifier: BSD-2-Clause
 #
 if( NOT WITH_QML )
-    calamares_skip_module( "localeq (QML is not supported in this build)" )
+    calamares_skip_module( "partitionq (QML is not supported in this build)" )
     return()
 endif()
 
@@ -60,6 +60,7 @@ if ( KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND
         SOURCES
             PartitionQmlViewStep.cpp
             ChoicePageQml.cpp
+            FlatPartitionModel.cpp
             ${_partition}/Config.cpp
             ${_partition}/core/PartUtils.cpp
             ${_partition}/core/DeviceModel.cpp

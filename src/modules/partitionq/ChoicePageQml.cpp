@@ -12,6 +12,7 @@
 
 #include "ChoicePageQml.h"
 #include "Config.h"
+#include "FlatPartitionModel.h"
 #include "core/BootLoaderModel.h"
 #include "core/DeviceModel.h"
 #include "core/KPMHelpers.h"
@@ -59,6 +60,7 @@ ChoicePageQml::ChoicePageQml( Config* config, QObject* parent )
     , m_isEfi( false )
     , m_enableEncryptionWidget( true )
     , m_partitionModel( new PartitionModel( this ) )
+    , m_partitionListModel( nullptr )
 {
     auto gs = Calamares::JobQueue::instance()->globalStorage();
     m_enableEncryptionWidget = gs->value( "enableLuksAutomatedPartitioning" ).toBool();
@@ -132,6 +134,12 @@ PartitionModel*
 ChoicePageQml::partitionModel() const
 {
     return m_partitionModel;
+}
+
+PartitionListModel*
+ChoicePageQml::partitionListModel() const
+{
+    return m_partitionListModel;
 }
 
 QVariantList 
@@ -306,6 +314,12 @@ ChoicePageQml::continueApplyDeviceChoice()
     Q_EMIT deviceChosen();
 }
 
+void ChoicePageQml::setSelectedPartitionForAction(QModelIndex index)
+{
+   // map the index from partition list to partition model
+    QModelIndex mappedIndex = m_partitionListModel->mapToSource(index);
+    Partition* partition = m_partitionModel->partitionForIndex(mappedIndex);
+}
 
 void
 ChoicePageQml::onActionChanged()
@@ -607,6 +621,9 @@ void
 ChoicePageQml::setupActions()
 {
     Logger::Once o;
+
+    m_partitionListModel = new PartitionListModel(m_partitionModel, this);
+    emit partitionListModelInitialized();
 
     Device* currentDevice = selectedDevice();
     OsproberEntryList osproberEntriesForCurrentDevice = getOsproberEntriesForDevice( currentDevice );

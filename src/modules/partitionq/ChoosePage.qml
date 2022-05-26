@@ -22,6 +22,24 @@ Item {
     width: partitionPage.width
     height: partitionPage.height
 
+    function listProperty(item)
+    {
+        for (var p in item)
+        console.log(p + ": " + item[p]);
+    }
+
+    Connections {
+        target: choicePage
+        onPartitionListModelInitialized: {
+            // Need to wait for partition model to initialize
+            // followed by partitionListModel
+            // Requires further refactor to have partitionListModel ready
+            // when choicePage is loaded instead of waiting for choicePage
+            // to load partitionModel first.
+            partitionView.model = choicePage.partitionListModel
+        }
+    }
+
     RowLayout {
         id: headerRowLayout
         anchors.top: parent.top
@@ -32,7 +50,7 @@ Item {
             id: partitionTypeBox
             Layout.preferredWidth: Kirigami.Units.gridUnit * 5
             Layout.fillHeight: true
-            
+
             Item {
                 id: partitionTypeIcon
                 anchors.left: parent.left
@@ -40,10 +58,10 @@ Item {
                 height: parent.height
 
                 Image {
-                    anchors.centerIn: parent                        
+                    anchors.centerIn: parent
                     width: Kirigami.Units.iconSizes.large
                     height: width
-                    source: "images/partition-table.svg"                
+                    source: "images/partition-table.svg"
                 }
             }
             Label {
@@ -55,14 +73,14 @@ Item {
             }
         }
 
-        Kirigami.Separator {                
+        Kirigami.Separator {
             Layout.fillHeight: true
-            Layout.preferredWidth: 1                
+            Layout.preferredWidth: 1
         }
 
         Label {
             text: "Select Storage Device:"
-            font.bold: true              
+            font.bold: true
             Layout.fillHeight: true
             verticalAlignment: Qt.AlignVCenter
             horizontalAlignment: Qt.AlignLeft
@@ -70,10 +88,10 @@ Item {
 
         ComboBox {
             id: deviceComboBox
-            
+
             Layout.fillWidth: true
             Layout.fillHeight: true
-            
+
             model: core.deviceModel
             textRole: "display"
             currentIndex: core.currentDeviceIndex
@@ -87,7 +105,7 @@ Item {
             }
         }
 
-        Item {                
+        Item {
             Layout.preferredWidth: Kirigami.Units.gridUnit * 5
             Layout.fillHeight: true
         }
@@ -166,19 +184,69 @@ Item {
                 }
             }
 
-            // ToDo: Partitioning Tree View Before and After View
+            RowLayout {
+                id: partitionViewLayout
 
-            // TableView {
-            //     id: partitionModelView
-            //     Layout.fillWidth: true
-            //     Layout.fillHeight: true
-            //     model: choicePage.partitionModel
-            //     delegate: Rectangle {
-            //         width: 100
-            //         height: 100
-            //         color: "red"
-            //     }
-            // }
+                Layout.fillWidth: true
+                Layout.preferredHeight: Kirigami.Units.gridUnits * 3
+                spacing: Kirigami.Units.smallSpacing
+
+                Repeater {
+                    id: partitionView
+
+                    delegate: Item {
+                        id: partitionItem
+                        Layout.preferredWidth: Kirigami.Units.gridUnit * 4
+                        Layout.preferredHeight: Kirigami.Units.gridUnit * 3
+                        
+                        ColumnLayout{
+                            anchors.fill: parent
+                            spacing: Kirigami.Units.smallSpacing
+
+                            Rectangle {
+                                Layout.fillWidth: true
+                                Layout.preferredHeight: Kirigami.Units.gridUnit * 1.5
+
+                                color: model.decoration
+
+                                Label {
+                                    anchors.centerIn: parent
+                                    text: model.display
+                                    fontSizeMode: Text.Fit
+                                    font.pixelSize: parent.height * 0.25
+                                    minimumPixelSize: 8
+                                    color: Kirigami.Theme.textColor
+                                }
+
+                                MouseArea {
+                                    anchors.fill: parent
+                                    onClicked: {
+                                        listProperty(model)
+                                    }
+                                }
+                            }
+
+                            Label {                                
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+                                fontSizeMode: Text.Fit
+                                font.pixelSize: parent.height * 0.25
+                                minimumPixelSize: 8
+                                color: Kirigami.Theme.textColor
+                                text: model.toolTip.replace(" ", "\n")
+                            }
+                        }
+                    }
+
+                    onCountChanged: {
+                        partitionView.forceLayout()
+                    }
+                }
+            }
+
+            // ToDo: Partitioning Tree View Before and After View
         }
     }
 
@@ -205,7 +273,7 @@ Item {
 
             ComboBox {
                 id: eraseSwapComboBox
-                Layout.fillWidth: true                
+                Layout.fillWidth: true
                 Layout.fillHeight: true
                 model: choicePage.getEraseSwapChoices()
                 textRole: "label"

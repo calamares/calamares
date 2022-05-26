@@ -18,6 +18,7 @@
 #include <QSet>
 #include "Config.h"
 #include "core/OsproberEntry.h"
+#include "FlatPartitionModel.h"
 
 namespace Calamares
 {
@@ -53,6 +54,7 @@ class ChoicePageQml : public QObject
     Q_PROPERTY( QString somethingElseButtonLabel READ somethingElseButtonLabel WRITE setSomethingElseButtonLabel NOTIFY somethingElseButtonLabelChanged )
 
     Q_PROPERTY( QAbstractItemModel* partitionModel READ partitionModel CONSTANT FINAL )
+    Q_PROPERTY( QAbstractListModel* partitionListModel READ partitionListModel CONSTANT FINAL )
 
 public:
     explicit ChoicePageQml( Config* config, QObject* parent = nullptr );
@@ -119,6 +121,7 @@ public:
     void setSomethingElseButtonLabel( QString somethingElseButtonLabel );
 
     PartitionModel* partitionModel() const;
+    PartitionListModel* partitionListModel() const;
     void setPartitionModelForDevice();
 
 public Q_SLOTS:
@@ -132,8 +135,10 @@ public Q_SLOTS:
     bool encryptWidgetEnabled() const;
     void setEncryptionSelected(bool enabled);
     void setEncryptionPhrase(const QString& phrase);
+    void setSelectedPartitionForAction(QModelIndex index);
 
 Q_SIGNALS:
+    void partitionListModelInitialized();
     void labelsUpdated();
     void setEFIMessageLabel( const QString& message );
     void scanningDialogShow();
@@ -170,6 +175,7 @@ private:
     bool m_nextEnabled;
     PartitionCoreModule* m_core;
     PartitionModel* m_partitionModel;
+    PartitionListModel* m_partitionListModel;
 
     QMutex m_previewsMutex;
 
