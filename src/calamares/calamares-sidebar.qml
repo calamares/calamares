@@ -66,7 +66,7 @@ Rectangle {
             Layout.fillWidth: true;
             height: 35
             Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
-            color: Branding.styleString( mouseArea.containsMouse ? Branding.SidebarTextHighlight : Branding.SidebarBackground);
+            color: Branding.styleString( mouseAreaAbout.containsMouse ? Branding.SidebarTextHighlight : Branding.SidebarBackground);
             visible: true;
 
             MouseArea {
@@ -78,7 +78,7 @@ Rectangle {
                     anchors.verticalCenter: parent.verticalCenter;
                     x: parent.x + 4;
                     text: qsTr("About Calamares")
-                    color: Branding.styleString( mouseArea.containsMouse ? Branding.SidebarTextSelect : Branding.SidebarBackground );
+                    color: Branding.styleString( mouseAreaAbout.containsMouse ? Branding.SidebarTextSelect : Branding.SidebarBackground );
                     font.pointSize : 9
                 }
 
@@ -90,7 +90,7 @@ Rectangle {
             Layout.fillWidth: true;
             height: 35
             Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
-            color: Branding.styleString( mouseArea.containsMouse ? Branding.SidebarTextHighlight : Branding.SidebarBackground);
+            color: Branding.styleString( mouseAreaDebug.containsMouse ? Branding.SidebarTextHighlight : Branding.SidebarBackground);
             visible: debug.enabled
 
             MouseArea {
@@ -102,7 +102,7 @@ Rectangle {
                     anchors.verticalCenter: parent.verticalCenter;
                     x: parent.x + 4;
                     text: qsTr("Show debug information")
-                    color: Branding.styleString( mouseArea.containsMouse ? Branding.SidebarTextSelect : Branding.SidebarBackground );
+                    color: Branding.styleString( mouseAreaDebug.containsMouse ? Branding.SidebarTextSelect : Branding.SidebarBackground );
                     font.pointSize : 9
                 }
 
