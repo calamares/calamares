@@ -42,9 +42,7 @@
 // KPMcore
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
-#ifdef WITH_KPMCORE4API
 #include <kpmcore/core/softwareraid.h>
-#endif
 #include <kpmcore/ops/deactivatevolumegroupoperation.h>
 #include <kpmcore/ops/removevolumegroupoperation.h>
 
@@ -179,14 +177,12 @@ PartitionPage::updateButtons()
         {
             allow_create_table = true;
 
-#ifdef WITH_KPMCORE4API
             if ( device->type() == Device::Type::SoftwareRAID_Device
                  && static_cast< SoftwareRAID* >( device )->status() == SoftwareRAID::Status::Inactive )
             {
                 allow_create_table = false;
                 allow_create = false;
             }
-#endif
         }
         else
         {

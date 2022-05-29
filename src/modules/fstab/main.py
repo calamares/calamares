@@ -99,21 +99,11 @@ def disk_name_for_partition(partition):
 
 
 class FstabGenerator(object):
-    """ Class header
-
-    :param partitions:
-    :param root_mount_point:
-    :param mount_options:
-    :param ssd_extra_mount_options:
-    :param crypttab_options:
-    :param tmp_options:
-    """
-    def __init__(self, partitions, root_mount_point, mount_options,
+    def __init__(self, partitions, root_mount_point, mount_options_list,
                  ssd_extra_mount_options, crypttab_options, tmp_options):
         self.partitions = partitions
         self.root_mount_point = root_mount_point
-        self.mount_options = mount_options
-        self.ssd_extra_mount_options = ssd_extra_mount_options
+        self.mount_options_list = mount_options_list
         self.crypttab_options = crypttab_options
         self.tmp_options = tmp_options
         self.ssd_disks = set()
@@ -268,17 +258,7 @@ class FstabGenerator(object):
             libcalamares.utils.debug("Ignoring foreign swap {!s} {!s}".format(disk_name, partition.get("uuid", None)))
             return None
 
-        # If this is btrfs subvol a dedicated to a swapfile, use different options than a normal btrfs subvol
-        if filesystem == "btrfs" and partition.get("subvol", None) == "/@swap":
-            options = self.get_mount_options("btrfs_swap", mount_point)
-        else:
-            options = self.get_mount_options(filesystem, mount_point)
-
-        if is_ssd:
-            extra = self.ssd_extra_mount_options.get(filesystem)
-
-            if extra:
-                options += "," + extra
+        options = self.get_mount_options(mount_point)
 
         if mount_point == "/" and filesystem != "btrfs":
             check = 1
@@ -330,15 +310,18 @@ class FstabGenerator(object):
             if partition["mountPoint"]:
                 mkdir_p(self.root_mount_point + partition["mountPoint"])
 
-    def get_mount_options(self, filesystem, mount_point):
-        efiMountPoint = libcalamares.globalstorage.value("efiSystemPartition")
-        job_config = libcalamares.job.configuration
+    def get_mount_options(self, mountpoint):
+        """
+        Returns the mount options for a given mountpoint
 
-        if (mount_point == efiMountPoint and "efiMountOptions" in job_config):
-            return job_config["efiMountOptions"]
-
-        return self.mount_options.get(filesystem,
-                                      self.mount_options["default"])
+        :param mountpoint: A string containing the mountpoint for the fstab entry
+        :return: A string containing the mount options for the entry or "defaults" if nothing is found
+        """
+        mount_options_item = next((x for x in self.mount_options_list if x.get("mountpoint") == mountpoint), None)
+        if mount_options_item:
+            return mount_options_item.get("option_string", "defaults")
+        else:
+            return "defaults"
 
 
 def create_swapfile(root_mount_point, root_btrfs):
@@ -417,21 +400,20 @@ def run():
             swap_choice = None
 
     libcalamares.job.setprogress(0.1)
-    mount_options = conf.get("mountOptions", {})
-    ssd_extra_mount_options = conf.get("ssdExtraMountOptions", {})
+    mount_options_list = global_storage.value("mountOptionsList")
     crypttab_options = conf.get("crypttabOptions", "luks")
     tmp_options = conf.get("tmpOptions", {})
 
     # We rely on mount_options having a default; if there wasn't one,
     # bail out with a meaningful error.
-    if not mount_options:
+    if not mount_options_list:
         return (_("Configuration Error"),
                 _("No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use.")
                 .format("mountOptions", "fstab"))
 
     generator = FstabGenerator(partitions,
                                root_mount_point,
-                               mount_options,
+                               mount_options_list,
                                ssd_extra_mount_options,
                                crypttab_options,
                                tmp_options)

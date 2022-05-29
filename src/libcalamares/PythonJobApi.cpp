@@ -262,7 +262,7 @@ host_env_process_output( const boost::python::list& args,
 std::string
 obscure( const std::string& string )
 {
-    return CalamaresUtils::obscure( QString::fromStdString( string ) ).toStdString();
+    return Calamares::String::obscure( QString::fromStdString( string ) ).toStdString();
 }
 
 static QStringList

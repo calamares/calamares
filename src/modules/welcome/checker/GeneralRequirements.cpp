@@ -15,6 +15,9 @@
 #include "CheckerContainer.h"
 #include "partman_devices.h"
 
+#include "CalamaresVersion.h"  // For development-or-not
+#include "GlobalStorage.h"
+#include "JobQueue.h"
 #include "Settings.h"
 #include "modulesystem/Requirement.h"
 #include "network/Manager.h"
@@ -25,9 +28,6 @@
 #include "utils/Units.h"
 #include "utils/Variant.h"
 #include "widgets/WaitingWidget.h"
-
-#include "GlobalStorage.h"
-#include "JobQueue.h"
 
 #include <QDBusConnection>
 #include <QDBusInterface>
@@ -145,19 +145,25 @@ GeneralRequirements::checkRequirements()
              << TR( "hasInternet", hasInternet )
              << TR( "isRoot", isRoot );
     // clang-format on
+
     Calamares::RequirementsList checkEntries;
     foreach ( const QString& entry, m_entriesToCheck )
     {
+        const bool required = m_entriesToRequire.contains( entry );
         if ( entry == "storage" )
         {
             checkEntries.append(
                 { entry,
                   [ req = m_requiredStorageGiB ]
-                  { return tr( "has at least %1 GiB available drive space" ).arg( req ); },
+                  {
+                      return tr( "Please ensure the system has at least %1 GiB available drive space." ).arg( req )
+                          + QStringLiteral( "<br/><br/>" )
+                          + tr( "Available drive space is all of the hard disks and SSDs connected to the system." );
+                  },
                   [ req = m_requiredStorageGiB ]
                   { return tr( "There is not enough drive space. At least %1 GiB is required." ).arg( req ); },
                   enoughStorage,
-                  m_entriesToRequire.contains( entry ) } );
+                  required } );
         }
         else if ( entry == "ram" )
         {
@@ -169,7 +175,7 @@ GeneralRequirements::checkRequirements()
                           .arg( req );
                   },
                   enoughRam,
-                  m_entriesToRequire.contains( entry ) } );
+                  required } );
         }
         else if ( entry == "power" )
         {
@@ -177,7 +183,7 @@ GeneralRequirements::checkRequirements()
                                    [] { return tr( "is plugged in to a power source" ); },
                                    [] { return tr( "The system is not plugged in to a power source." ); },
                                    hasPower,
-                                   m_entriesToRequire.contains( entry ) } );
+                                   required } );
         }
         else if ( entry == "internet" )
         {
@@ -185,7 +191,7 @@ GeneralRequirements::checkRequirements()
                                    [] { return tr( "is connected to the Internet" ); },
                                    [] { return tr( "The system is not connected to the Internet." ); },
                                    hasInternet,
-                                   m_entriesToRequire.contains( entry ) } );
+                                   required } );
         }
         else if ( entry == "root" )
         {
@@ -198,7 +204,7 @@ GeneralRequirements::checkRequirements()
                                            : tr( "The installer is not running with administrator rights." );
                                    },
                                    isRoot,
-                                   m_entriesToRequire.contains( entry ) } );
+                                   required } );
         }
         else if ( entry == "screen" )
         {
@@ -211,8 +217,39 @@ GeneralRequirements::checkRequirements()
                                            : tr( "The screen is too small to display the installer." );
                                    },
                                    enoughScreen,
-                                   false } );
+                                   required } );
         }
+#ifdef CALAMARES_VERSION_RC
+        if ( entry == "false" )
+        {
+            checkEntries.append( { entry,
+                                   [] { return tr( "is always false" ); },
+                                   [] { return tr( "The computer says no." ); },
+                                   false,
+                                   required } );
+        }
+        if ( entry == "true" )
+        {
+            checkEntries.append( { entry,
+                                   [] { return tr( "is always true" ); },
+                                   [] { return tr( "The computer says yes." ); },
+                                   true,
+                                   required } );
+        }
+        if ( entry == "snark" )
+        {
+            static unsigned int snark_count = 0;
+            checkEntries.append( { entry,
+                                   [] { return tr( "is checked three times." ); },
+                                   []
+                                   {
+                                       return tr( "The snark has not been checked three times.",
+                                                  "The (some mythological beast) has not been checked three times." );
+                                   },
+                                   ++snark_count > 3,
+                                   required } );
+        }
+#endif
     }
     return checkEntries;
 }

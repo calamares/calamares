@@ -46,12 +46,12 @@ Rectangle {
                 Layout.fillWidth: true;
                 height: 35;
                 radius: 6;
-                color: Branding.styleString( index == ViewManager.currentStepIndex ? Branding.SidebarBackgroundSelected : Branding.SidebarBackground );
+                color: Branding.styleString( index == ViewManager.currentStepIndex ? Branding.SidebarBackgroundCurrent : Branding.SidebarBackground );
 
                 Text {
                     anchors.verticalCenter: parent.verticalCenter;
                     anchors.horizontalCenter: parent.horizontalCenter;
-                    color: Branding.styleString( index == ViewManager.currentStepIndex ? Branding.SidebarTextSelected : Branding.SidebarText );
+                    color: Branding.styleString( index == ViewManager.currentStepIndex ? Branding.SidebarTextCurrent : Branding.SidebarText );
                     text: display;
                 }
             }

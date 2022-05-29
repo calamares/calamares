@@ -1,0 +1,55 @@
+<!-- SPDX-FileCopyrightText: no
+     SPDX-License-Identifier: CC0-1.0
+-->
+
+This is the changelog for Calamares. For each release, the major changes and
+contributors are listed. Note that Calamares does not have a historical
+changelog -- this log starts with version 3.3.0. See CHANGES-3.2 for
+the history of the 3.2 series (2018-05 - 2021-12).
+
+# 3.3.0 (unreleased) #
+
+This release contains contributions from (alphabetically by first name):
+ - Anubhav Choudhary
+ - Evan James
+ - Vitor Lopes
+
+This is a "minor" version change, but the size of the changes is very
+large. Configuration files from previous versions of Calamares will
+**certainly** need to be re-validated. Take heed of the many changes
+in the *Modules* heading, below.
+
+## Project ##
+ - The C++ code in the project is now formatted with clang-format 12 or 13,
+   with the coding-style as found in `.clang-format`; there are minor
+   differences from the tool, compared to the clang-format 9 usually applied
+   to Calamares 3.2.
+ - The CMake code in the project is now formatted with gersemi 0.7.5.
+
+## Core ##
+ - CMake 3.16, Qt 5.15 are now required; the newer CMake is to support
+   new features (also for KDE Frameworks), Qt is the current LTS version.
+ - KDE Framework "DBusAddons" is now required, and is used to "activate"
+   Calamares; the KDAB Single Application Guard is no longer used.
+   KDSAG needed patching to chase Qt 5.15 deprecations, and the DBus
+   activation code is tried and tested in Frameworks (tier 1).
+   Running `calamares -d` no longer enforces a single-application
+   (it is for debugging purposes, after all).
+ - Python 3.6 or later is now required, to allow for F-strings in
+   Python code and allow other tidy-ups in the Python modules.
+   Boost::Python now requires 1.67 or later (for CMake support).
+ - The log file now **always** contains a debug-log, and the `-D` flag
+   primarily controls what is printed to stdout. By default, stdout
+   only gets errors; use `-D6` to match stdout with the file. Use `-D8`
+   to get a verbose log file **and** verbose stdout.
+
+## Modules ##
+ - *bootloader* now supports more options when building the kernel
+   command-line. (Thanks Evan)
+ - *displaymanager* no longer supports the discontinued *kdm* display manager.
+ - *grubcfg* changed the key *keepDistributor* to *keep_distributor*.
+   Please update configurations.
+ - *partition* requires KPMCore 21.12 (e.g. KPMCore 4.2 API, or later).
+ - *partition* can now skip installing the bootloader in more scenarios.
+   #1632 (Thanks Anubhav)
+

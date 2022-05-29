@@ -17,13 +17,10 @@
 #define PARTITION_GLOBAL_H
 
 #include "DllMacro.h"
+#include "FileSystem.h"
 #include "JobQueue.h"
 
-#ifdef WITH_KPMCORE4API
-#include "FileSystem.h"
-
 #include <kpmcore/fs/filesystem.h>
-#endif
 
 namespace CalamaresUtils
 {
@@ -78,7 +75,6 @@ isFilesystemUsedGS( const QString& filesystemType )
     return isFilesystemUsedGS( Calamares::JobQueue::instanceGlobalStorage(), filesystemType );
 }
 
-#ifdef WITH_KPMCORE4API
 /** @brief Mark a particular filesystem type as used (or not)
  *
  * See useFilesystemGS(const QString&, bool); this method uses the filesystem type
@@ -100,7 +96,6 @@ isFilesystemUsedGS( FileSystem::Type filesystem )
     return isFilesystemUsedGS( untranslatedFS( filesystem ) );
 }
 
-#endif
 }  // namespace Partition
 }  // namespace CalamaresUtils
 

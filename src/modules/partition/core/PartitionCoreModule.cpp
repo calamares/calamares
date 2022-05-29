@@ -553,6 +553,11 @@ PartitionCoreModule::formatPartition( Device* device, Partition* partition )
 void
 PartitionCoreModule::setFilesystemLabel( Device* device, Partition* partition, const QString& newLabel )
 {
+    if ( newLabel.isEmpty() )
+    {
+        // Don't bother
+        return;
+    }
     auto deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
 
@@ -842,13 +847,8 @@ PartitionCoreModule::scanForLVMPVs()
         }
     }
 
-#if defined( WITH_KPMCORE4API )
     VolumeManagerDevice::scanDevices( physicalDevices );
     for ( auto p : LVM::pvList::list() )
-#else
-    LvmDevice::scanSystemLVM( physicalDevices );
-    for ( auto p : LVM::pvList )
-#endif
     {
         m_lvmPVs << p.partition().data();
 
@@ -885,7 +885,6 @@ PartitionCoreModule::scanForLVMPVs()
                         m_lvmPVs << p;
                     }
                 }
-#if defined( WITH_KPMCORE4API )
                 else if ( p->fileSystem().type() == FileSystem::Type::Luks2 )
                 {
                     // Encrypted LVM PVs
@@ -896,7 +895,6 @@ PartitionCoreModule::scanForLVMPVs()
                         m_lvmPVs << p;
                     }
                 }
-#endif
             }
         }
     }

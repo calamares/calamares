@@ -284,8 +284,10 @@ UserTests::testHostActions2()
     QCOMPARE( c.hostnameAction(), HostNameAction::EtcHostname );
     QCOMPARE( c.writeEtcHosts(), true );
 
-    legacy.insert( "writeHostsFile", false );
-    legacy.insert( "setHostname", "Hostnamed" );
+    QVariantMap hostSettings;
+    hostSettings.insert( "writeHostsFile", false );
+    hostSettings.insert( "location", "Hostnamed" );
+    legacy.insert( "hostname", hostSettings );
     c.setConfigurationMap( legacy );
     QCOMPARE( c.hostnameAction(), HostNameAction::SystemdHostname );
     QCOMPARE( c.writeEtcHosts(), false );
@@ -469,16 +471,14 @@ UserTests::testUserYAML_data()
     QTest::addColumn< QString >( "filename" );
     QTest::addColumn< QString >( "shell" );
 
-    QTest::newRow( "old, unset   " ) << "tests/7ao-shell.conf"
-                                     << "/bin/bash";
-    QTest::newRow( "old, empty   " ) << "tests/7bo-shell.conf"
-                                     << "";
-    QTest::newRow( "old, relative" ) << "tests/7co-shell.conf"
-                                     << "/bin/ls";  // Setting is ignored
-    QTest::newRow( "old, invalid " ) << "tests/7do-shell.conf"
-                                     << "";
-    QTest::newRow( "old, absolute" ) << "tests/7eo-shell.conf"
-                                     << "/usr/bin/dash";
+    const QString bash = QStringLiteral( "/bin/bash" );
+
+    // All the old settings are ignored
+    QTest::newRow( "old, unset   " ) << "tests/7ao-shell.conf" << bash;
+    QTest::newRow( "old, empty   " ) << "tests/7bo-shell.conf" << bash;
+    QTest::newRow( "old, relative" ) << "tests/7co-shell.conf" << bash;
+    QTest::newRow( "old, invalid " ) << "tests/7do-shell.conf" << bash;
+    QTest::newRow( "old, absolute" ) << "tests/7eo-shell.conf" << bash;
 
     QTest::newRow( "new, unset   " ) << "tests/7an-shell.conf"
                                      << "/bin/bash";

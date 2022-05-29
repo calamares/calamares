@@ -14,29 +14,33 @@ add_test(
 )
 add_test(
     NAME configure-packages-${_pm}-ops-1
-    COMMAND env PYTHONPATH=.: python3 ${CMAKE_CURRENT_LIST_DIR}/test-pm-${_pm}.py ${CMAKE_CURRENT_LIST_DIR}/pm-pacman-1.yaml 4 1 1
+    COMMAND
+        env PYTHONPATH=.: python3 ${CMAKE_CURRENT_LIST_DIR}/test-pm-${_pm}.py ${CMAKE_CURRENT_LIST_DIR}/pm-pacman-1.yaml
+        4 1 1
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
 )
 add_test(
     NAME configure-packages-${_pm}-ops-2
-    COMMAND env PYTHONPATH=.: python3 ${CMAKE_CURRENT_LIST_DIR}/test-pm-${_pm}.py ${CMAKE_CURRENT_LIST_DIR}/pm-pacman-2.yaml 3 0 0
+    COMMAND
+        env PYTHONPATH=.: python3 ${CMAKE_CURRENT_LIST_DIR}/test-pm-${_pm}.py ${CMAKE_CURRENT_LIST_DIR}/pm-pacman-2.yaml
+        3 0 0
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
 )
 
-if ( BUILD_TESTING AND BUILD_SCHEMA_TESTING AND PYTHONINTERP_FOUND AND PYTHON_EXECUTABLE )
-    set( _module packages )
-    set( _schema_file "${CMAKE_CURRENT_SOURCE_DIR}/${_module}/${_module}.schema.yaml" )
+if(BUILD_TESTING AND BUILD_SCHEMA_TESTING AND Python_Interpreter_FOUND)
+    set(_module packages)
+    set(_schema_file "${CMAKE_CURRENT_SOURCE_DIR}/${_module}/${_module}.schema.yaml")
     message(STATUS "Schema ${_schema_file}")
-    foreach( _cf pm-pacman-1.yaml pm-pacman-2.yaml )
-        set( _conf_file "${CMAKE_CURRENT_SOURCE_DIR}/${_module}/tests/${_cf}" )
-        if ( EXISTS "${_schema_file}" AND EXISTS "${_conf_file}" )
+    foreach(_cf pm-pacman-1.yaml pm-pacman-2.yaml)
+        set(_conf_file "${CMAKE_CURRENT_SOURCE_DIR}/${_module}/tests/${_cf}")
+        if(EXISTS "${_schema_file}" AND EXISTS "${_conf_file}")
             add_test(
                 NAME validate-packages-${_cf}
-                COMMAND ${PYTHON_EXECUTABLE} "${CMAKE_SOURCE_DIR}/ci/configvalidator.py" "${_schema_file}" "${_conf_file}"
+                COMMAND
+                    ${Python_EXECUTABLE} "${CMAKE_SOURCE_DIR}/ci/configvalidator.py" "${_schema_file}" "${_conf_file}"
             )
         else()
             message(FATAL_ERROR "Missing ${_conf_file}")
         endif()
     endforeach()
 endif()
-

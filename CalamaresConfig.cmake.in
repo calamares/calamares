@@ -87,5 +87,4 @@ include(CalamaresAddPlugin)
 # This list should match the one in libcalamares/CalamaresConfig.h,
 # which is the C++-language side of the same configuration.
 set(Calamares_WITH_PYTHON @WITH_PYTHON@)
-set(Calamares_WITH_PYTHONQT @WITH_PYTHONQT@)
 set(Calamares_WITH_QML @WITH_QML@)

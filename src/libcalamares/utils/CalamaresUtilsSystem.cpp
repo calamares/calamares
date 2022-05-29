@@ -230,7 +230,7 @@ System::createTargetParentDirs( const QString& filePath ) const
 }
 
 
-QPair< qint64, qreal >
+QPair< quint64, qreal >
 System::getTotalMemoryB() const
 {
 #ifdef Q_OS_LINUX

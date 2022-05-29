@@ -349,7 +349,18 @@ ModuleManager::checkRequirements()
     connect( rq,
              &RequirementsChecker::done,
              this,
-             [ = ]() { this->requirementsComplete( m_requirementsModel->satisfiedMandatory() ); } );
+             [ = ]()
+             {
+                 if ( m_requirementsModel->satisfiedMandatory() )
+                 {
+                     /* we're done */ this->requirementsComplete( true );
+                 }
+                 else
+                 {
+                     this->requirementsComplete( false );
+                     QTimer::singleShot( std::chrono::seconds( 5 ), this, &ModuleManager::checkRequirements );
+                 }
+             } );
 
     QTimer::singleShot( 0, rq, &RequirementsChecker::run );
 }

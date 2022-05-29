@@ -49,12 +49,8 @@ ResizeFSJob::PartitionMatch
 ResizeFSJob::findPartition()
 {
     using DeviceList = QList< Device* >;
-#if defined( WITH_KPMCORE4API )
     DeviceList devices
         = m_kpmcore.backend()->scanDevices( /* not includeReadOnly, not includeLoopback */ ScanFlag( 0 ) );
-#else
-    DeviceList devices = m_kpmcore.backend()->scanDevices( /* excludeReadOnly */ true );
-#endif
 
     cDebug() << "ResizeFSJob found" << devices.count() << "devices.";
     for ( DeviceList::iterator dev_it = devices.begin(); dev_it != devices.end(); ++dev_it )
