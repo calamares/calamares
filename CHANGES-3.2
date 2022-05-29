@@ -24,6 +24,8 @@ or translations are expected. This is also the final release done
    rather than keeping it in the Welcome module. The about information
    is somewhat more flexible now, so that a new maintainer can be added
    easily without frustrating translators.
+ - The progress panels (both Widgets and QML) now have an About button
+   on them, showing the traditional *About Calamares* dialog.
  - Translations for the (QML) slideshow were not being loaded correctly.
    The log is now somewhat more informative when that fails.
 
@@ -35,6 +37,9 @@ or translations are expected. This is also the final release done
    (Thanks Arjen)
  - *partition* will cycle out a LUKS key if all the key slots are in use
    and a new key is added, rather than crashing the installer. (Thanks Arjen)
+ - *welcome* and *welcomeq* have no *About* button anymore; this is now
+   available from the progress panel, since it's also not-really about the
+   distro itself.
 
 
 # 3.2.58.2 (2022-05-24)
