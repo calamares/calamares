@@ -12,6 +12,8 @@
 #include "ui_DebugWindow.h"
 
 #include "Branding.h"
+#include "CalamaresAbout.h"
+#include "CalamaresVersion.h"
 #include "GlobalStorage.h"
 #include "Job.h"
 #include "JobQueue.h"
@@ -19,9 +21,11 @@
 #include "VariantModel.h"
 #include "modulesystem/Module.h"
 #include "modulesystem/ModuleManager.h"
+#include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/Paste.h"
 #include "utils/Retranslator.h"
+#include "widgets/TranslationFix.h"
 
 #ifdef WITH_PYTHONQT
 #include "ViewManager.h"
@@ -30,6 +34,7 @@
 #include <gui/PythonQtScriptingConsole.h>
 #endif
 
+#include <QMessageBox>
 #include <QSplitter>
 #include <QStringListModel>
 #include <QTreeView>
@@ -307,5 +312,28 @@ DebugWindowManager::toggle()
     show( !m_visible );
 }
 
+void
+DebugWindowManager::about()
+{
+    QString title = Calamares::Settings::instance()->isSetupMode()
+        ? QCoreApplication::translate( "WelcomePage", "About %1 setup" )
+        : QCoreApplication::translate( "WelcomePage", "About %1 installer" );
+    QMessageBox mb( QMessageBox::Information,
+                    title.arg( CALAMARES_APPLICATION_NAME ),
+                    Calamares::aboutString().arg( Calamares::Branding::instance()->versionedName() ),
+                    QMessageBox::Ok,
+                    nullptr );
+    Calamares::fixButtonLabels( &mb );
+    mb.setIconPixmap( CalamaresUtils::defaultPixmap(
+        CalamaresUtils::Squid,
+        CalamaresUtils::Original,
+        QSize( CalamaresUtils::defaultFontHeight() * 6, CalamaresUtils::defaultFontHeight() * 6 ) ) );
+    QGridLayout* layout = reinterpret_cast< QGridLayout* >( mb.layout() );
+    if ( layout )
+    {
+        layout->setColumnMinimumWidth( 2, CalamaresUtils::defaultFontHeight() * 24 );
+    }
+    mb.exec();
+}
 
 }  // namespace Calamares

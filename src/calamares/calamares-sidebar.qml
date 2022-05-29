@@ -62,6 +62,31 @@ Rectangle {
         }
 
         Rectangle {
+            id: aboutArea
+            Layout.fillWidth: true;
+            height: 35
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
+            color: Branding.styleString( mouseArea.containsMouse ? Branding.SidebarTextHighlight : Branding.SidebarBackground);
+            visible: true;
+
+            MouseArea {
+                id: mouseAreaAbout
+                anchors.fill: parent;
+                cursorShape: Qt.PointingHandCursor
+                hoverEnabled: true
+                Text {
+                    anchors.verticalCenter: parent.verticalCenter;
+                    x: parent.x + 4;
+                    text: qsTr("About Calamares")
+                    color: Branding.styleString( mouseArea.containsMouse ? Branding.SidebarTextSelect : Branding.SidebarBackground );
+                    font.pointSize : 9
+                }
+
+                onClicked: debug.about()
+            }
+        }
+        Rectangle {
+            id: debugArea
             Layout.fillWidth: true;
             height: 35
             Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
@@ -69,7 +94,7 @@ Rectangle {
             visible: debug.enabled
 
             MouseArea {
-                id: mouseArea
+                id: mouseAreaDebug
                 anchors.fill: parent;
                 cursorShape: Qt.PointingHandCursor
                 hoverEnabled: true
