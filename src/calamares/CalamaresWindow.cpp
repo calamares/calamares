@@ -14,7 +14,9 @@
 #include "CalamaresWindow.h"
 
 #include "Branding.h"
+#include "CalamaresAbout.h"
 #include "CalamaresConfig.h"
+#include "CalamaresVersion.h"
 #include "DebugWindow.h"
 #include "Settings.h"
 #include "ViewManager.h"
@@ -23,6 +25,7 @@
 #include "utils/Logger.h"
 #include "utils/Qml.h"
 #include "utils/Retranslator.h"
+#include "widgets/TranslationFix.h"
 
 #include <QApplication>
 #include <QBoxLayout>
@@ -31,6 +34,7 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QLabel>
+#include <QMessageBox>
 #ifdef WITH_QML
 #include <QQmlContext>
 #include <QQmlEngine>
@@ -85,6 +89,30 @@ setButtonIcon( QPushButton* button, const QString& name )
     {
         button->setIcon( icon );
     }
+}
+
+static void
+showAboutBox()
+{
+    QString title = Calamares::Settings::instance()->isSetupMode()
+        ? QCoreApplication::translate( "WelcomePage", "About %1 setup" )
+        : QCoreApplication::translate( "WelcomePage", "About %1 installer" );
+    QMessageBox mb( QMessageBox::Information,
+                    title.arg( CALAMARES_APPLICATION_NAME ),
+                    Calamares::aboutString().arg( Calamares::Branding::instance()->versionedName() ),
+                    QMessageBox::Ok,
+                    nullptr );
+    Calamares::fixButtonLabels( &mb );
+    mb.setIconPixmap( CalamaresUtils::defaultPixmap(
+        CalamaresUtils::Squid,
+        CalamaresUtils::Original,
+        QSize( CalamaresUtils::defaultFontHeight() * 6, CalamaresUtils::defaultFontHeight() * 6 ) ) );
+    QGridLayout* layout = reinterpret_cast< QGridLayout* >( mb.layout() );
+    if ( layout )
+    {
+        layout->setColumnMinimumWidth( 2, CalamaresUtils::defaultFontHeight() * 24 );
+    }
+    mb.exec();
 }
 
 static QWidget*
@@ -149,7 +177,7 @@ getWidgetSidebar( Calamares::DebugWindowManager* debug,
         extraButtons->addWidget( aboutDialog );
         aboutDialog->setFlat( true );
         aboutDialog->setCheckable( true );
-        QObject::connect( aboutDialog, &QPushButton::clicked, debug, &Calamares::DebugWindowManager::show );
+        QObject::connect( aboutDialog, &QPushButton::clicked, []() { showAboutBox(); } );
     }
     if ( debug && debug->enabled() )
     {
