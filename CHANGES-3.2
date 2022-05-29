@@ -7,7 +7,7 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.59 (unreleased) #
+# 3.2.59 (2022-05-29) #
 
 This release contains contributions from (alphabetically by first name):
  - Arjen Balfoort
@@ -21,7 +21,11 @@ or translations are expected. This is also the final release done
 
 ## Core ##
  - Prep-work for moving the *About Calamares* button to the panels,
-   rather than keeping it in the Welcome module.
+   rather than keeping it in the Welcome module. The about information
+   is somewhat more flexible now, so that a new maintainer can be added
+   easily without frustrating translators.
+ - Translations for the (QML) slideshow were not being loaded correctly.
+   The log is now somewhat more informative when that fails.
 
 ## Modules ##
  - *fstab* can now be configured to put `/tmp` on a *tmpfs*, and this can
