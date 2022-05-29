@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-22 11:03+0200\n"
+"POT-Creation-Date: 2022-05-27 11:18+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Deep Jyoti Choudhury <deep.choudhury@libresoft.in>, 2020\n"
 "Language-Team: Assamese (https://www.transifex.com/calamares/teams/20061/as/)\n"
@@ -21,92 +21,98 @@ msgstr ""
 "Language: as\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/modules/grubcfg/main.py:28
-msgid "Configure GRUB."
-msgstr "GRUB কনফিগাৰ কৰক।"
+#: src/modules/packages/main.py:54 src/modules/packages/main.py:65
+#: src/modules/packages/main.py:75
+msgid "Install packages."
+msgstr "পেকেজ ইন্স্তল কৰক।"
 
-#: src/modules/mount/main.py:42
-msgid "Mounting partitions."
-msgstr "বিভাজন মাউন্ট্ কৰা।"
+#: src/modules/packages/main.py:63
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "(%(count)d / %(total)d) পেকেজবোৰ সংশোধন কৰি আছে"
 
-#: src/modules/mount/main.py:88 src/modules/mount/main.py:124
-msgid "Internal error mounting zfs datasets"
+#: src/modules/packages/main.py:68
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] "Installing one package."
+msgstr[1] "%(num)d পেকেজবোৰ ইনস্তল হৈ আছে।"
+
+#: src/modules/packages/main.py:71
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] "Removing one package."
+msgstr[1] "%(num)d পেকেজবোৰ আতৰোৱা হৈ আছে।"
+
+#: src/modules/packages/main.py:725 src/modules/packages/main.py:737
+#: src/modules/packages/main.py:765
+msgid "Package Manager error"
 msgstr ""
 
-#: src/modules/mount/main.py:100
-msgid "Failed to import zpool"
+#: src/modules/packages/main.py:726
+msgid ""
+"The package manager could not prepare updates. The command <pre>{!s}</pre> "
+"returned error code {!s}."
 msgstr ""
 
-#: src/modules/mount/main.py:116
-msgid "Failed to unlock zpool"
+#: src/modules/packages/main.py:738
+msgid ""
+"The package manager could not update the system. The command <pre>{!s}</pre>"
+" returned error code {!s}."
 msgstr ""
 
-#: src/modules/mount/main.py:133 src/modules/mount/main.py:138
-msgid "Failed to set zfs mountpoint"
+#: src/modules/packages/main.py:766
+msgid ""
+"The package manager could not make changes to the installed system. The "
+"command <pre>{!s}</pre> returned error code {!s}."
 msgstr ""
 
-#: src/modules/mount/main.py:229 src/modules/initcpiocfg/main.py:235
-#: src/modules/initcpiocfg/main.py:239 src/modules/rawfs/main.py:164
+#: src/modules/networkcfg/main.py:29
+msgid "Saving network configuration."
+msgstr "নেটৱৰ্ক কন্ফিগাৰ জমা কৰি আছে।"
+
+#: src/modules/networkcfg/main.py:105 src/modules/initcpiocfg/main.py:235
+#: src/modules/initcpiocfg/main.py:239 src/modules/openrcdmcryptcfg/main.py:72
+#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/localecfg/main.py:140
+#: src/modules/mount/main.py:229 src/modules/fstab/main.py:394
+#: src/modules/fstab/main.py:400 src/modules/fstab/main.py:428
 #: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
-#: src/modules/openrcdmcryptcfg/main.py:72
-#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/fstab/main.py:361
-#: src/modules/fstab/main.py:367 src/modules/fstab/main.py:394
-#: src/modules/localecfg/main.py:140 src/modules/networkcfg/main.py:105
+#: src/modules/rawfs/main.py:164
 msgid "Configuration Error"
 msgstr "কনফিগাৰেচন ত্ৰুটি"
 
-#: src/modules/mount/main.py:230 src/modules/initcpiocfg/main.py:236
-#: src/modules/rawfs/main.py:165 src/modules/initramfscfg/main.py:86
-#: src/modules/openrcdmcryptcfg/main.py:73 src/modules/fstab/main.py:362
+#: src/modules/networkcfg/main.py:106 src/modules/initcpiocfg/main.py:240
+#: src/modules/openrcdmcryptcfg/main.py:77 src/modules/localecfg/main.py:141
+#: src/modules/fstab/main.py:401 src/modules/initramfscfg/main.py:90
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr "ব্যৱহাৰৰ বাবে <pre>{!s}</pre>ৰ কোনো মাউন্ট্ পাইন্ট্ দিয়া হোৱা নাই।"
+
+#: src/modules/initcpiocfg/main.py:28
+msgid "Configuring mkinitcpio."
+msgstr "mkinitcpio কনফিগাৰ কৰি আছে।"
+
+#: src/modules/initcpiocfg/main.py:236 src/modules/openrcdmcryptcfg/main.py:73
+#: src/modules/mount/main.py:230 src/modules/fstab/main.py:395
+#: src/modules/initramfscfg/main.py:86 src/modules/rawfs/main.py:165
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "<pre>{!s}</pre>ৰ ব্যৱহাৰৰ বাবে কোনো বিভাজনৰ বৰ্ণনা দিয়া হোৱা নাই।"
 
-#: src/modules/mount/main.py:253
-msgid "zfs mounting error"
+#: src/modules/mkinitfs/main.py:27
+msgid "Creating initramfs with mkinitfs."
 msgstr ""
 
-#: src/modules/services-systemd/main.py:26
-msgid "Configure systemd services"
-msgstr "systemd সেৱা সমুহ কনফিগাৰ কৰক"
-
-#: src/modules/services-systemd/main.py:59
-#: src/modules/services-openrc/main.py:93
-msgid "Cannot modify service"
-msgstr "সেৱা সমুহৰ সংশোধন কৰিব নোৱাৰি"
-
-#: src/modules/services-systemd/main.py:60
-msgid ""
-"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr "chrootত systemctl <code>{arg!s}</code>ৰ call ক্ৰুটি কোড {num!s}।"
-
-#: src/modules/services-systemd/main.py:63
-#: src/modules/services-systemd/main.py:69
-msgid "Cannot enable systemd service <code>{name!s}</code>."
-msgstr "systemd সেৱা <code>{name!s}</code> সক্ৰিয় কৰিব নোৱাৰি।"
-
-#: src/modules/services-systemd/main.py:65
-msgid "Cannot enable systemd target <code>{name!s}</code>."
-msgstr "systemd গন্তব্য স্থান <code>{name!s}</code> সক্ৰিয় কৰিব নোৱাৰি।"
-
-#: src/modules/services-systemd/main.py:67
-msgid "Cannot enable systemd timer <code>{name!s}</code>."
+#: src/modules/mkinitfs/main.py:49
+msgid "Failed to run mkinitfs on the target"
 msgstr ""
 
-#: src/modules/services-systemd/main.py:71
-msgid "Cannot disable systemd target <code>{name!s}</code>."
-msgstr "systemd গন্তব্য স্থান <code>{name!s}</code> নিষ্ক্ৰিয় কৰিব নোৱাৰি।"
+#: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
+msgid "The exit code was {}"
+msgstr "এক্সিড্ কোড্ আছিল {}"
 
-#: src/modules/services-systemd/main.py:73
-msgid "Cannot mask systemd unit <code>{name!s}</code>."
-msgstr "systemd একক <code>{name!s}</code> মাস্ক্ কৰিব নোৱাৰি।"
-
-#: src/modules/services-systemd/main.py:75
-msgid ""
-"Unknown systemd commands <code>{command!s}</code> and "
-"<code>{suffix!s}</code> for unit {name!s}."
-msgstr ""
-"একক {name!s}ৰ বাবে <code>{command!s}</code> আৰু <code>{suffix!s}</code> "
-"অজ্ঞাত systemd কমাণ্ড্।"
+#: src/modules/openrcdmcryptcfg/main.py:26
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "OpenRC dmcrypt সেৱা কন্ফিগাৰ কৰি আছে।"
 
 #: src/modules/unpackfs/main.py:34
 msgid "Filling up filesystems."
@@ -172,73 +178,115 @@ msgstr ""
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "লক্ষ্যৰ চিছটেম গন্তব্য স্থান \"{}\" এটা ডিৰেক্টৰী নহয়"
 
-#: src/modules/displaymanager/main.py:524
-msgid "Cannot write KDM configuration file"
-msgstr "KDM কনফিগাৰেচন ফাইলত লিখিব নোৱাৰি"
+#: src/modules/services-systemd/main.py:26
+msgid "Configure systemd services"
+msgstr "systemd সেৱা সমুহ কনফিগাৰ কৰক"
 
-#: src/modules/displaymanager/main.py:525
-msgid "KDM config file {!s} does not exist"
-msgstr "KDM কনফিগ্ ফাইল {!s} উপস্থিত নাই"
+#: src/modules/services-systemd/main.py:59
+#: src/modules/services-openrc/main.py:93
+msgid "Cannot modify service"
+msgstr "সেৱা সমুহৰ সংশোধন কৰিব নোৱাৰি"
 
-#: src/modules/displaymanager/main.py:586
-msgid "Cannot write LXDM configuration file"
-msgstr "LXDM কনফিগাৰেচন ফাইলত লিখিব নোৱাৰি"
-
-#: src/modules/displaymanager/main.py:587
-msgid "LXDM config file {!s} does not exist"
-msgstr "LXDM কনফিগ্ ফাইল {!s} উপস্থিত নাই"
-
-#: src/modules/displaymanager/main.py:670
-msgid "Cannot write LightDM configuration file"
-msgstr "LightDM কনফিগাৰেচন ফাইলত লিখিব নোৱাৰি"
-
-#: src/modules/displaymanager/main.py:671
-msgid "LightDM config file {!s} does not exist"
-msgstr "LightDM কনফিগ্ ফাইল {!s} উপস্থিত নাই"
-
-#: src/modules/displaymanager/main.py:745
-msgid "Cannot configure LightDM"
-msgstr "LightDM কনফিগাৰ কৰিব নোৱাৰি"
-
-#: src/modules/displaymanager/main.py:746
-msgid "No LightDM greeter installed."
-msgstr "কোনো LightDM স্ৱাগতকৰ্তা ইন্স্তল নাই।"
-
-#: src/modules/displaymanager/main.py:777
-msgid "Cannot write SLIM configuration file"
-msgstr "SLIM কনফিগাৰেচন ফাইলত লিখিব নোৱাৰি"
-
-#: src/modules/displaymanager/main.py:778
-msgid "SLIM config file {!s} does not exist"
-msgstr "SLIM কনফিগ্ ফাইল {!s} উপস্থিত নাই"
-
-#: src/modules/displaymanager/main.py:991
-msgid "No display managers selected for the displaymanager module."
-msgstr "displaymanager মডিউলৰ বাবে কোনো ডিস্প্লে প্ৰবন্ধক নাই।"
-
-#: src/modules/displaymanager/main.py:992
+#: src/modules/services-systemd/main.py:60
 msgid ""
-"The displaymanagers list is empty or undefined in both globalstorage and "
-"displaymanager.conf."
+"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr "chrootত systemctl <code>{arg!s}</code>ৰ call ক্ৰুটি কোড {num!s}।"
+
+#: src/modules/services-systemd/main.py:63
+#: src/modules/services-systemd/main.py:69
+msgid "Cannot enable systemd service <code>{name!s}</code>."
+msgstr "systemd সেৱা <code>{name!s}</code> সক্ৰিয় কৰিব নোৱাৰি।"
+
+#: src/modules/services-systemd/main.py:65
+msgid "Cannot enable systemd target <code>{name!s}</code>."
+msgstr "systemd গন্তব্য স্থান <code>{name!s}</code> সক্ৰিয় কৰিব নোৱাৰি।"
+
+#: src/modules/services-systemd/main.py:67
+msgid "Cannot enable systemd timer <code>{name!s}</code>."
 msgstr ""
 
-#: src/modules/displaymanager/main.py:1074
-msgid "Display manager configuration was incomplete"
-msgstr "ডিস্প্লে প্ৰবন্ধক কন্ফিগাৰেচন অসমাপ্ত"
+#: src/modules/services-systemd/main.py:71
+msgid "Cannot disable systemd target <code>{name!s}</code>."
+msgstr "systemd গন্তব্য স্থান <code>{name!s}</code> নিষ্ক্ৰিয় কৰিব নোৱাৰি।"
 
-#: src/modules/initcpiocfg/main.py:28
-msgid "Configuring mkinitcpio."
-msgstr "mkinitcpio কনফিগাৰ কৰি আছে।"
+#: src/modules/services-systemd/main.py:73
+msgid "Cannot mask systemd unit <code>{name!s}</code>."
+msgstr "systemd একক <code>{name!s}</code> মাস্ক্ কৰিব নোৱাৰি।"
 
-#: src/modules/initcpiocfg/main.py:240 src/modules/initramfscfg/main.py:90
-#: src/modules/openrcdmcryptcfg/main.py:77 src/modules/fstab/main.py:368
-#: src/modules/localecfg/main.py:141 src/modules/networkcfg/main.py:106
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr "ব্যৱহাৰৰ বাবে <pre>{!s}</pre>ৰ কোনো মাউন্ট্ পাইন্ট্ দিয়া হোৱা নাই।"
+#: src/modules/services-systemd/main.py:75
+msgid ""
+"Unknown systemd commands <code>{command!s}</code> and "
+"<code>{suffix!s}</code> for unit {name!s}."
+msgstr ""
+"একক {name!s}ৰ বাবে <code>{command!s}</code> আৰু <code>{suffix!s}</code> "
+"অজ্ঞাত systemd কমাণ্ড্।"
 
-#: src/modules/rawfs/main.py:26
-msgid "Installing data."
-msgstr "ডাটা ইন্স্তল কৰি আছে।"
+#: src/modules/dummypython/main.py:35
+msgid "Dummy python job."
+msgstr "ডামী Pythonৰ কায্য"
+
+#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
+#: src/modules/dummypython/main.py:94
+msgid "Dummy python step {}"
+msgstr "ডামী Pythonৰ পদক্ষেপ {}"
+
+#: src/modules/bootloader/main.py:43
+msgid "Install bootloader."
+msgstr "বুতলোডাৰ ইন্স্তল কৰক।"
+
+#: src/modules/bootloader/main.py:614
+msgid "Failed to install grub, no partitions defined in global storage"
+msgstr ""
+
+#: src/modules/bootloader/main.py:782
+msgid "Bootloader installation error"
+msgstr ""
+
+#: src/modules/bootloader/main.py:783
+msgid ""
+"The bootloader could not be installed. The installation command "
+"<pre>{!s}</pre> returned error code {!s}."
+msgstr ""
+
+#: src/modules/localecfg/main.py:31
+msgid "Configuring locales."
+msgstr "স্থানীয়বোৰ কন্ফিগাৰ কৰি আছে।"
+
+#: src/modules/mount/main.py:42
+msgid "Mounting partitions."
+msgstr "বিভাজন মাউন্ট্ কৰা।"
+
+#: src/modules/mount/main.py:88 src/modules/mount/main.py:124
+msgid "Internal error mounting zfs datasets"
+msgstr ""
+
+#: src/modules/mount/main.py:100
+msgid "Failed to import zpool"
+msgstr ""
+
+#: src/modules/mount/main.py:116
+msgid "Failed to unlock zpool"
+msgstr ""
+
+#: src/modules/mount/main.py:133 src/modules/mount/main.py:138
+msgid "Failed to set zfs mountpoint"
+msgstr ""
+
+#: src/modules/mount/main.py:253
+msgid "zfs mounting error"
+msgstr ""
+
+#: src/modules/plymouthcfg/main.py:27
+msgid "Configure Plymouth theme"
+msgstr "Plymouth theme কন্ফিগাৰ কৰি আছে।​"
+
+#: src/modules/fstab/main.py:28
+msgid "Writing fstab."
+msgstr "fstab লিখি আছে।"
+
+#: src/modules/fstab/main.py:429
+msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
+msgstr ""
 
 #: src/modules/services-openrc/main.py:29
 msgid "Configure OpenRC services"
@@ -286,91 +334,6 @@ msgid ""
 "exist."
 msgstr "{name!s}ৰ বাবে পথ হ'ল <code>{path!s}</code> যিটো উপস্থিত নাই।"
 
-#: src/modules/plymouthcfg/main.py:27
-msgid "Configure Plymouth theme"
-msgstr "Plymouth theme কন্ফিগাৰ কৰি আছে।​"
-
-#: src/modules/packages/main.py:54 src/modules/packages/main.py:65
-#: src/modules/packages/main.py:75
-msgid "Install packages."
-msgstr "পেকেজ ইন্স্তল কৰক।"
-
-#: src/modules/packages/main.py:63
-#, python-format
-msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "(%(count)d / %(total)d) পেকেজবোৰ সংশোধন কৰি আছে"
-
-#: src/modules/packages/main.py:68
-#, python-format
-msgid "Installing one package."
-msgid_plural "Installing %(num)d packages."
-msgstr[0] "Installing one package."
-msgstr[1] "%(num)d পেকেজবোৰ ইনস্তল হৈ আছে।"
-
-#: src/modules/packages/main.py:71
-#, python-format
-msgid "Removing one package."
-msgid_plural "Removing %(num)d packages."
-msgstr[0] "Removing one package."
-msgstr[1] "%(num)d পেকেজবোৰ আতৰোৱা হৈ আছে।"
-
-#: src/modules/packages/main.py:725 src/modules/packages/main.py:737
-#: src/modules/packages/main.py:765
-msgid "Package Manager error"
-msgstr ""
-
-#: src/modules/packages/main.py:726
-msgid ""
-"The package manager could not prepare updates. The command <pre>{!s}</pre> "
-"returned error code {!s}."
-msgstr ""
-
-#: src/modules/packages/main.py:738
-msgid ""
-"The package manager could not update the system. The command <pre>{!s}</pre>"
-" returned error code {!s}."
-msgstr ""
-
-#: src/modules/packages/main.py:766
-msgid ""
-"The package manager could not make changes to the installed system. The "
-"command <pre>{!s}</pre> returned error code {!s}."
-msgstr ""
-
-#: src/modules/bootloader/main.py:43
-msgid "Install bootloader."
-msgstr "বুতলোডাৰ ইন্স্তল কৰক।"
-
-#: src/modules/bootloader/main.py:614
-msgid "Failed to install grub, no partitions defined in global storage"
-msgstr ""
-
-#: src/modules/bootloader/main.py:782
-msgid "Bootloader installation error"
-msgstr ""
-
-#: src/modules/bootloader/main.py:783
-msgid ""
-"The bootloader could not be installed. The installation command "
-"<pre>{!s}</pre> returned error code {!s}."
-msgstr ""
-
-#: src/modules/hwclock/main.py:26
-msgid "Setting hardware clock."
-msgstr "হাৰ্ডৱেৰৰ ঘড়ী চেত্ কৰি আছে।"
-
-#: src/modules/mkinitfs/main.py:27
-msgid "Creating initramfs with mkinitfs."
-msgstr ""
-
-#: src/modules/mkinitfs/main.py:49
-msgid "Failed to run mkinitfs on the target"
-msgstr ""
-
-#: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
-msgid "The exit code was {}"
-msgstr "এক্সিড্ কোড্ আছিল {}"
-
 #: src/modules/dracut/main.py:27
 msgid "Creating initramfs with dracut."
 msgstr "dracutৰ সৈতে initramfs বনাই আছে।"
@@ -379,35 +342,72 @@ msgstr "dracutৰ সৈতে initramfs বনাই আছে।"
 msgid "Failed to run dracut on the target"
 msgstr "গন্তব্য স্থানত dracut চলোৱাত বিফল হ'ল"
 
+#: src/modules/grubcfg/main.py:28
+msgid "Configure GRUB."
+msgstr "GRUB কনফিগাৰ কৰক।"
+
+#: src/modules/displaymanager/main.py:524
+msgid "Cannot write KDM configuration file"
+msgstr "KDM কনফিগাৰেচন ফাইলত লিখিব নোৱাৰি"
+
+#: src/modules/displaymanager/main.py:525
+msgid "KDM config file {!s} does not exist"
+msgstr "KDM কনফিগ্ ফাইল {!s} উপস্থিত নাই"
+
+#: src/modules/displaymanager/main.py:586
+msgid "Cannot write LXDM configuration file"
+msgstr "LXDM কনফিগাৰেচন ফাইলত লিখিব নোৱাৰি"
+
+#: src/modules/displaymanager/main.py:587
+msgid "LXDM config file {!s} does not exist"
+msgstr "LXDM কনফিগ্ ফাইল {!s} উপস্থিত নাই"
+
+#: src/modules/displaymanager/main.py:670
+msgid "Cannot write LightDM configuration file"
+msgstr "LightDM কনফিগাৰেচন ফাইলত লিখিব নোৱাৰি"
+
+#: src/modules/displaymanager/main.py:671
+msgid "LightDM config file {!s} does not exist"
+msgstr "LightDM কনফিগ্ ফাইল {!s} উপস্থিত নাই"
+
+#: src/modules/displaymanager/main.py:745
+msgid "Cannot configure LightDM"
+msgstr "LightDM কনফিগাৰ কৰিব নোৱাৰি"
+
+#: src/modules/displaymanager/main.py:746
+msgid "No LightDM greeter installed."
+msgstr "কোনো LightDM স্ৱাগতকৰ্তা ইন্স্তল নাই।"
+
+#: src/modules/displaymanager/main.py:777
+msgid "Cannot write SLIM configuration file"
+msgstr "SLIM কনফিগাৰেচন ফাইলত লিখিব নোৱাৰি"
+
+#: src/modules/displaymanager/main.py:778
+msgid "SLIM config file {!s} does not exist"
+msgstr "SLIM কনফিগ্ ফাইল {!s} উপস্থিত নাই"
+
+#: src/modules/displaymanager/main.py:992
+msgid "No display managers selected for the displaymanager module."
+msgstr "displaymanager মডিউলৰ বাবে কোনো ডিস্প্লে প্ৰবন্ধক নাই।"
+
+#: src/modules/displaymanager/main.py:993
+msgid ""
+"The displaymanagers list is empty or undefined in both globalstorage and "
+"displaymanager.conf."
+msgstr ""
+
+#: src/modules/displaymanager/main.py:1075
+msgid "Display manager configuration was incomplete"
+msgstr "ডিস্প্লে প্ৰবন্ধক কন্ফিগাৰেচন অসমাপ্ত"
+
 #: src/modules/initramfscfg/main.py:32
 msgid "Configuring initramfs."
 msgstr "initramfs কন্ফিগাৰ কৰি আছে।"
 
-#: src/modules/openrcdmcryptcfg/main.py:26
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "OpenRC dmcrypt সেৱা কন্ফিগাৰ কৰি আছে।"
+#: src/modules/hwclock/main.py:26
+msgid "Setting hardware clock."
+msgstr "হাৰ্ডৱেৰৰ ঘড়ী চেত্ কৰি আছে।"
 
-#: src/modules/fstab/main.py:29
-msgid "Writing fstab."
-msgstr "fstab লিখি আছে।"
-
-#: src/modules/fstab/main.py:395
-msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
-msgstr ""
-
-#: src/modules/dummypython/main.py:35
-msgid "Dummy python job."
-msgstr "ডামী Pythonৰ কায্য"
-
-#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
-#: src/modules/dummypython/main.py:94
-msgid "Dummy python step {}"
-msgstr "ডামী Pythonৰ পদক্ষেপ {}"
-
-#: src/modules/localecfg/main.py:31
-msgid "Configuring locales."
-msgstr "স্থানীয়বোৰ কন্ফিগাৰ কৰি আছে।"
-
-#: src/modules/networkcfg/main.py:29
-msgid "Saving network configuration."
-msgstr "নেটৱৰ্ক কন্ফিগাৰ জমা কৰি আছে।"
+#: src/modules/rawfs/main.py:26
+msgid "Installing data."
+msgstr "ডাটা ইন্স্তল কৰি আছে।"

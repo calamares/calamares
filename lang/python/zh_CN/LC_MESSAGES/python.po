@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-22 11:03+0200\n"
+"POT-Creation-Date: 2022-05-27 11:18+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: 玉堂白鹤 <yjwork@qq.com>, 2022\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/calamares/teams/20061/zh_CN/)\n"
@@ -26,92 +26,96 @@ msgstr ""
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/modules/grubcfg/main.py:28
-msgid "Configure GRUB."
-msgstr "配置 GRUB."
+#: src/modules/packages/main.py:54 src/modules/packages/main.py:65
+#: src/modules/packages/main.py:75
+msgid "Install packages."
+msgstr "安装软件包。"
 
-#: src/modules/mount/main.py:42
-msgid "Mounting partitions."
-msgstr "挂载分区。"
+#: src/modules/packages/main.py:63
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "软件包处理中（%(count)d/%(total)d）"
 
-#: src/modules/mount/main.py:88 src/modules/mount/main.py:124
-msgid "Internal error mounting zfs datasets"
-msgstr "装载 zfs 数据集时出现内部错误"
+#: src/modules/packages/main.py:68
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] "安装%(num)d软件包。"
 
-#: src/modules/mount/main.py:100
-msgid "Failed to import zpool"
-msgstr "导入 zpool 失败"
+#: src/modules/packages/main.py:71
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] "移除%(num)d软件包。"
 
-#: src/modules/mount/main.py:116
-msgid "Failed to unlock zpool"
-msgstr "解锁 zpool 失败"
+#: src/modules/packages/main.py:725 src/modules/packages/main.py:737
+#: src/modules/packages/main.py:765
+msgid "Package Manager error"
+msgstr "软件包管理器错误"
 
-#: src/modules/mount/main.py:133 src/modules/mount/main.py:138
-msgid "Failed to set zfs mountpoint"
-msgstr "设置 zfs 挂载点失败"
+#: src/modules/packages/main.py:726
+msgid ""
+"The package manager could not prepare updates. The command <pre>{!s}</pre> "
+"returned error code {!s}."
+msgstr "软件包管理器无法准备更新。命令<pre>{!s}</pre>返回错误代码{!s}。"
 
-#: src/modules/mount/main.py:229 src/modules/initcpiocfg/main.py:235
-#: src/modules/initcpiocfg/main.py:239 src/modules/rawfs/main.py:164
+#: src/modules/packages/main.py:738
+msgid ""
+"The package manager could not update the system. The command <pre>{!s}</pre>"
+" returned error code {!s}."
+msgstr "软件包管理器无法更新系统。命令<pre>{!s}</pre>返回错误代码{!s}。"
+
+#: src/modules/packages/main.py:766
+msgid ""
+"The package manager could not make changes to the installed system. The "
+"command <pre>{!s}</pre> returned error code {!s}."
+msgstr "软件包管理器无法对已安装的系统进行更改。命令<pre>{!s}</pre>返回错误代码{!s}。"
+
+#: src/modules/networkcfg/main.py:29
+msgid "Saving network configuration."
+msgstr "正在保存网络配置。"
+
+#: src/modules/networkcfg/main.py:105 src/modules/initcpiocfg/main.py:235
+#: src/modules/initcpiocfg/main.py:239 src/modules/openrcdmcryptcfg/main.py:72
+#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/localecfg/main.py:140
+#: src/modules/mount/main.py:229 src/modules/fstab/main.py:394
+#: src/modules/fstab/main.py:400 src/modules/fstab/main.py:428
 #: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
-#: src/modules/openrcdmcryptcfg/main.py:72
-#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/fstab/main.py:361
-#: src/modules/fstab/main.py:367 src/modules/fstab/main.py:394
-#: src/modules/localecfg/main.py:140 src/modules/networkcfg/main.py:105
+#: src/modules/rawfs/main.py:164
 msgid "Configuration Error"
 msgstr "配置错误"
 
-#: src/modules/mount/main.py:230 src/modules/initcpiocfg/main.py:236
-#: src/modules/rawfs/main.py:165 src/modules/initramfscfg/main.py:86
-#: src/modules/openrcdmcryptcfg/main.py:73 src/modules/fstab/main.py:362
+#: src/modules/networkcfg/main.py:106 src/modules/initcpiocfg/main.py:240
+#: src/modules/openrcdmcryptcfg/main.py:77 src/modules/localecfg/main.py:141
+#: src/modules/fstab/main.py:401 src/modules/initramfscfg/main.py:90
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr " 未设置 <pre>{!s}</pre> 要使用的根挂载点。"
+
+#: src/modules/initcpiocfg/main.py:28
+msgid "Configuring mkinitcpio."
+msgstr "配置 mkinitcpio."
+
+#: src/modules/initcpiocfg/main.py:236 src/modules/openrcdmcryptcfg/main.py:73
+#: src/modules/mount/main.py:230 src/modules/fstab/main.py:395
+#: src/modules/initramfscfg/main.py:86 src/modules/rawfs/main.py:165
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "没有分配分区给 <pre>{!s}</pre>。"
 
-#: src/modules/mount/main.py:253
-msgid "zfs mounting error"
-msgstr "zfs 挂载出错"
+#: src/modules/mkinitfs/main.py:27
+msgid "Creating initramfs with mkinitfs."
+msgstr "正在用 mkinitfs 创建initramfs。"
 
-#: src/modules/services-systemd/main.py:26
-msgid "Configure systemd services"
-msgstr "配置 systemd 服务"
+#: src/modules/mkinitfs/main.py:49
+msgid "Failed to run mkinitfs on the target"
+msgstr "无法在目标中运行 mkinitfs"
 
-#: src/modules/services-systemd/main.py:59
-#: src/modules/services-openrc/main.py:93
-msgid "Cannot modify service"
-msgstr "无法修改服务"
+#: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
+msgid "The exit code was {}"
+msgstr "退出码是 {}"
 
-#: src/modules/services-systemd/main.py:60
-msgid ""
-"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr "chroot 中的 <code>systemctl {arg!s}</code> 命令返回错误 {num!s}."
-
-#: src/modules/services-systemd/main.py:63
-#: src/modules/services-systemd/main.py:69
-msgid "Cannot enable systemd service <code>{name!s}</code>."
-msgstr "无法启用 systemd 服务 <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:65
-msgid "Cannot enable systemd target <code>{name!s}</code>."
-msgstr "无法启用 systemd 目标 <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:67
-msgid "Cannot enable systemd timer <code>{name!s}</code>."
-msgstr "无法启用 systemd 计时器 <code>{name!s}</code>。"
-
-#: src/modules/services-systemd/main.py:71
-msgid "Cannot disable systemd target <code>{name!s}</code>."
-msgstr "无法禁用 systemd 目标 <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:73
-msgid "Cannot mask systemd unit <code>{name!s}</code>."
-msgstr "无法屏蔽 systemd 单元 <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:75
-msgid ""
-"Unknown systemd commands <code>{command!s}</code> and "
-"<code>{suffix!s}</code> for unit {name!s}."
-msgstr ""
-"未知的 systemd 命令 <code>{command!s}</code> 和 {name!s}  单元前缀 "
-"<code>{suffix!s}</code>."
+#: src/modules/openrcdmcryptcfg/main.py:26
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "配置 OpenRC dmcrypt 服务。"
 
 #: src/modules/unpackfs/main.py:34
 msgid "Filling up filesystems."
@@ -177,73 +181,115 @@ msgstr "寻找 unsquashfs 失败，请确定您已安装 squashfs-tools 软体�
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "目标系统中的 \"{}\" 不是一个目录"
 
-#: src/modules/displaymanager/main.py:524
-msgid "Cannot write KDM configuration file"
-msgstr "无法写入 KDM 配置文件"
+#: src/modules/services-systemd/main.py:26
+msgid "Configure systemd services"
+msgstr "配置 systemd 服务"
 
-#: src/modules/displaymanager/main.py:525
-msgid "KDM config file {!s} does not exist"
-msgstr "KDM 配置文件 {!s} 不存在"
+#: src/modules/services-systemd/main.py:59
+#: src/modules/services-openrc/main.py:93
+msgid "Cannot modify service"
+msgstr "无法修改服务"
 
-#: src/modules/displaymanager/main.py:586
-msgid "Cannot write LXDM configuration file"
-msgstr "无法写入 LXDM 配置文件"
-
-#: src/modules/displaymanager/main.py:587
-msgid "LXDM config file {!s} does not exist"
-msgstr "LXDM 配置文件 {!s} 不存在"
-
-#: src/modules/displaymanager/main.py:670
-msgid "Cannot write LightDM configuration file"
-msgstr "无法写入 LightDM 配置文件"
-
-#: src/modules/displaymanager/main.py:671
-msgid "LightDM config file {!s} does not exist"
-msgstr "LightDM 配置文件 {!s} 不存在"
-
-#: src/modules/displaymanager/main.py:745
-msgid "Cannot configure LightDM"
-msgstr "无法配置 LightDM"
-
-#: src/modules/displaymanager/main.py:746
-msgid "No LightDM greeter installed."
-msgstr "未安装 LightDM 欢迎程序。"
-
-#: src/modules/displaymanager/main.py:777
-msgid "Cannot write SLIM configuration file"
-msgstr "无法写入 SLIM 配置文件"
-
-#: src/modules/displaymanager/main.py:778
-msgid "SLIM config file {!s} does not exist"
-msgstr "SLIM 配置文件 {!s} 不存在"
-
-#: src/modules/displaymanager/main.py:991
-msgid "No display managers selected for the displaymanager module."
-msgstr "显示管理器模块中未选择显示管理器。"
-
-#: src/modules/displaymanager/main.py:992
+#: src/modules/services-systemd/main.py:60
 msgid ""
-"The displaymanagers list is empty or undefined in both globalstorage and "
-"displaymanager.conf."
-msgstr "globalstorage 和 displaymanager.conf 配置文件中都没有配置显示管理器。"
+"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr "chroot 中的 <code>systemctl {arg!s}</code> 命令返回错误 {num!s}."
 
-#: src/modules/displaymanager/main.py:1074
-msgid "Display manager configuration was incomplete"
-msgstr "显示管理器配置不完全"
+#: src/modules/services-systemd/main.py:63
+#: src/modules/services-systemd/main.py:69
+msgid "Cannot enable systemd service <code>{name!s}</code>."
+msgstr "无法启用 systemd 服务 <code>{name!s}</code>."
 
-#: src/modules/initcpiocfg/main.py:28
-msgid "Configuring mkinitcpio."
-msgstr "配置 mkinitcpio."
+#: src/modules/services-systemd/main.py:65
+msgid "Cannot enable systemd target <code>{name!s}</code>."
+msgstr "无法启用 systemd 目标 <code>{name!s}</code>."
 
-#: src/modules/initcpiocfg/main.py:240 src/modules/initramfscfg/main.py:90
-#: src/modules/openrcdmcryptcfg/main.py:77 src/modules/fstab/main.py:368
-#: src/modules/localecfg/main.py:141 src/modules/networkcfg/main.py:106
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr " 未设置 <pre>{!s}</pre> 要使用的根挂载点。"
+#: src/modules/services-systemd/main.py:67
+msgid "Cannot enable systemd timer <code>{name!s}</code>."
+msgstr "无法启用 systemd 计时器 <code>{name!s}</code>。"
 
-#: src/modules/rawfs/main.py:26
-msgid "Installing data."
-msgstr "安装数据."
+#: src/modules/services-systemd/main.py:71
+msgid "Cannot disable systemd target <code>{name!s}</code>."
+msgstr "无法禁用 systemd 目标 <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:73
+msgid "Cannot mask systemd unit <code>{name!s}</code>."
+msgstr "无法屏蔽 systemd 单元 <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:75
+msgid ""
+"Unknown systemd commands <code>{command!s}</code> and "
+"<code>{suffix!s}</code> for unit {name!s}."
+msgstr ""
+"未知的 systemd 命令 <code>{command!s}</code> 和 {name!s}  单元前缀 "
+"<code>{suffix!s}</code>."
+
+#: src/modules/dummypython/main.py:35
+msgid "Dummy python job."
+msgstr "占位 Python 任务。"
+
+#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
+#: src/modules/dummypython/main.py:94
+msgid "Dummy python step {}"
+msgstr "占位 Python 步骤 {}"
+
+#: src/modules/bootloader/main.py:43
+msgid "Install bootloader."
+msgstr "安装启动加载器。"
+
+#: src/modules/bootloader/main.py:614
+msgid "Failed to install grub, no partitions defined in global storage"
+msgstr "无法安装 grub，全局存储中未定义分区"
+
+#: src/modules/bootloader/main.py:782
+msgid "Bootloader installation error"
+msgstr "启动加载器安装出错"
+
+#: src/modules/bootloader/main.py:783
+msgid ""
+"The bootloader could not be installed. The installation command "
+"<pre>{!s}</pre> returned error code {!s}."
+msgstr "无法安装启动加载器。安装命令<pre>{!s}</pre>返回错误代码 {!s}。"
+
+#: src/modules/localecfg/main.py:31
+msgid "Configuring locales."
+msgstr "正在进行本地化配置。"
+
+#: src/modules/mount/main.py:42
+msgid "Mounting partitions."
+msgstr "挂载分区。"
+
+#: src/modules/mount/main.py:88 src/modules/mount/main.py:124
+msgid "Internal error mounting zfs datasets"
+msgstr "装载 zfs 数据集时出现内部错误"
+
+#: src/modules/mount/main.py:100
+msgid "Failed to import zpool"
+msgstr "导入 zpool 失败"
+
+#: src/modules/mount/main.py:116
+msgid "Failed to unlock zpool"
+msgstr "解锁 zpool 失败"
+
+#: src/modules/mount/main.py:133 src/modules/mount/main.py:138
+msgid "Failed to set zfs mountpoint"
+msgstr "设置 zfs 挂载点失败"
+
+#: src/modules/mount/main.py:253
+msgid "zfs mounting error"
+msgstr "zfs 挂载出错"
+
+#: src/modules/plymouthcfg/main.py:27
+msgid "Configure Plymouth theme"
+msgstr "配置 Plymouth 主题"
+
+#: src/modules/fstab/main.py:28
+msgid "Writing fstab."
+msgstr "正在写入 fstab。"
+
+#: src/modules/fstab/main.py:429
+msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
+msgstr "无 <pre>{!s}</pre> 配置可供 <pre>{!s}</pre> 使用。"
 
 #: src/modules/services-openrc/main.py:29
 msgid "Configure OpenRC services"
@@ -288,89 +334,6 @@ msgid ""
 "exist."
 msgstr "服务 {name!s} 的路径 <code>{path!s}</code> 不存在。"
 
-#: src/modules/plymouthcfg/main.py:27
-msgid "Configure Plymouth theme"
-msgstr "配置 Plymouth 主题"
-
-#: src/modules/packages/main.py:54 src/modules/packages/main.py:65
-#: src/modules/packages/main.py:75
-msgid "Install packages."
-msgstr "安装软件包。"
-
-#: src/modules/packages/main.py:63
-#, python-format
-msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "软件包处理中（%(count)d/%(total)d）"
-
-#: src/modules/packages/main.py:68
-#, python-format
-msgid "Installing one package."
-msgid_plural "Installing %(num)d packages."
-msgstr[0] "安装%(num)d软件包。"
-
-#: src/modules/packages/main.py:71
-#, python-format
-msgid "Removing one package."
-msgid_plural "Removing %(num)d packages."
-msgstr[0] "移除%(num)d软件包。"
-
-#: src/modules/packages/main.py:725 src/modules/packages/main.py:737
-#: src/modules/packages/main.py:765
-msgid "Package Manager error"
-msgstr "软件包管理器错误"
-
-#: src/modules/packages/main.py:726
-msgid ""
-"The package manager could not prepare updates. The command <pre>{!s}</pre> "
-"returned error code {!s}."
-msgstr "软件包管理器无法准备更新。命令<pre>{!s}</pre>返回错误代码{!s}。"
-
-#: src/modules/packages/main.py:738
-msgid ""
-"The package manager could not update the system. The command <pre>{!s}</pre>"
-" returned error code {!s}."
-msgstr "软件包管理器无法更新系统。命令<pre>{!s}</pre>返回错误代码{!s}。"
-
-#: src/modules/packages/main.py:766
-msgid ""
-"The package manager could not make changes to the installed system. The "
-"command <pre>{!s}</pre> returned error code {!s}."
-msgstr "软件包管理器无法对已安装的系统进行更改。命令<pre>{!s}</pre>返回错误代码{!s}。"
-
-#: src/modules/bootloader/main.py:43
-msgid "Install bootloader."
-msgstr "安装启动加载器。"
-
-#: src/modules/bootloader/main.py:614
-msgid "Failed to install grub, no partitions defined in global storage"
-msgstr "无法安装 grub，全局存储中未定义分区"
-
-#: src/modules/bootloader/main.py:782
-msgid "Bootloader installation error"
-msgstr "启动加载器安装出错"
-
-#: src/modules/bootloader/main.py:783
-msgid ""
-"The bootloader could not be installed. The installation command "
-"<pre>{!s}</pre> returned error code {!s}."
-msgstr "无法安装启动加载器。安装命令<pre>{!s}</pre>返回错误代码 {!s}。"
-
-#: src/modules/hwclock/main.py:26
-msgid "Setting hardware clock."
-msgstr "设置硬件时钟。"
-
-#: src/modules/mkinitfs/main.py:27
-msgid "Creating initramfs with mkinitfs."
-msgstr "正在用 mkinitfs 创建initramfs。"
-
-#: src/modules/mkinitfs/main.py:49
-msgid "Failed to run mkinitfs on the target"
-msgstr "无法在目标中运行 mkinitfs"
-
-#: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
-msgid "The exit code was {}"
-msgstr "退出码是 {}"
-
 #: src/modules/dracut/main.py:27
 msgid "Creating initramfs with dracut."
 msgstr "用 dracut 创建 initramfs."
@@ -379,35 +342,72 @@ msgstr "用 dracut 创建 initramfs."
 msgid "Failed to run dracut on the target"
 msgstr "无法在目标中运行 dracut "
 
+#: src/modules/grubcfg/main.py:28
+msgid "Configure GRUB."
+msgstr "配置 GRUB."
+
+#: src/modules/displaymanager/main.py:524
+msgid "Cannot write KDM configuration file"
+msgstr "无法写入 KDM 配置文件"
+
+#: src/modules/displaymanager/main.py:525
+msgid "KDM config file {!s} does not exist"
+msgstr "KDM 配置文件 {!s} 不存在"
+
+#: src/modules/displaymanager/main.py:586
+msgid "Cannot write LXDM configuration file"
+msgstr "无法写入 LXDM 配置文件"
+
+#: src/modules/displaymanager/main.py:587
+msgid "LXDM config file {!s} does not exist"
+msgstr "LXDM 配置文件 {!s} 不存在"
+
+#: src/modules/displaymanager/main.py:670
+msgid "Cannot write LightDM configuration file"
+msgstr "无法写入 LightDM 配置文件"
+
+#: src/modules/displaymanager/main.py:671
+msgid "LightDM config file {!s} does not exist"
+msgstr "LightDM 配置文件 {!s} 不存在"
+
+#: src/modules/displaymanager/main.py:745
+msgid "Cannot configure LightDM"
+msgstr "无法配置 LightDM"
+
+#: src/modules/displaymanager/main.py:746
+msgid "No LightDM greeter installed."
+msgstr "未安装 LightDM 欢迎程序。"
+
+#: src/modules/displaymanager/main.py:777
+msgid "Cannot write SLIM configuration file"
+msgstr "无法写入 SLIM 配置文件"
+
+#: src/modules/displaymanager/main.py:778
+msgid "SLIM config file {!s} does not exist"
+msgstr "SLIM 配置文件 {!s} 不存在"
+
+#: src/modules/displaymanager/main.py:992
+msgid "No display managers selected for the displaymanager module."
+msgstr "显示管理器模块中未选择显示管理器。"
+
+#: src/modules/displaymanager/main.py:993
+msgid ""
+"The displaymanagers list is empty or undefined in both globalstorage and "
+"displaymanager.conf."
+msgstr "globalstorage 和 displaymanager.conf 配置文件中都没有配置显示管理器。"
+
+#: src/modules/displaymanager/main.py:1075
+msgid "Display manager configuration was incomplete"
+msgstr "显示管理器配置不完全"
+
 #: src/modules/initramfscfg/main.py:32
 msgid "Configuring initramfs."
 msgstr "正在配置初始内存文件系统。"
 
-#: src/modules/openrcdmcryptcfg/main.py:26
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "配置 OpenRC dmcrypt 服务。"
+#: src/modules/hwclock/main.py:26
+msgid "Setting hardware clock."
+msgstr "设置硬件时钟。"
 
-#: src/modules/fstab/main.py:29
-msgid "Writing fstab."
-msgstr "正在写入 fstab。"
-
-#: src/modules/fstab/main.py:395
-msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
-msgstr "无 <pre>{!s}</pre> 配置可供 <pre>{!s}</pre> 使用。"
-
-#: src/modules/dummypython/main.py:35
-msgid "Dummy python job."
-msgstr "占位 Python 任务。"
-
-#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
-#: src/modules/dummypython/main.py:94
-msgid "Dummy python step {}"
-msgstr "占位 Python 步骤 {}"
-
-#: src/modules/localecfg/main.py:31
-msgid "Configuring locales."
-msgstr "正在进行本地化配置。"
-
-#: src/modules/networkcfg/main.py:29
-msgid "Saving network configuration."
-msgstr "正在保存网络配置。"
+#: src/modules/rawfs/main.py:26
+msgid "Installing data."
+msgstr "安装数据."

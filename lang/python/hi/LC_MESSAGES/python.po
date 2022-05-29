@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-22 11:03+0200\n"
+"POT-Creation-Date: 2022-05-27 11:18+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Panwar108 <caspian7pena@gmail.com>, 2022\n"
 "Language-Team: Hindi (https://www.transifex.com/calamares/teams/20061/hi/)\n"
@@ -21,92 +21,105 @@ msgstr ""
 "Language: hi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/modules/grubcfg/main.py:28
-msgid "Configure GRUB."
-msgstr "GRUB विन्यस्त करना।"
+#: src/modules/packages/main.py:54 src/modules/packages/main.py:65
+#: src/modules/packages/main.py:75
+msgid "Install packages."
+msgstr "पैकेज इंस्टॉल करना।"
 
-#: src/modules/mount/main.py:42
-msgid "Mounting partitions."
-msgstr "विभाजन माउंट करना।"
+#: src/modules/packages/main.py:63
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "पैकेज (%(count)d / %(total)d) संसाधित किए जा रहे हैं"
 
-#: src/modules/mount/main.py:88 src/modules/mount/main.py:124
-msgid "Internal error mounting zfs datasets"
-msgstr "zfs डेटासेट माउंट करते समय आंतरिक त्रुटि"
+#: src/modules/packages/main.py:68
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] "एक पैकेज इंस्टॉल किया जा रहा है।"
+msgstr[1] "%(num)d पैकेज इंस्टॉल किए जा रहे हैं।"
 
-#: src/modules/mount/main.py:100
-msgid "Failed to import zpool"
-msgstr "zpool आयात विफल"
+#: src/modules/packages/main.py:71
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] "एक पैकेज हटाया जा रहा है।"
+msgstr[1] "%(num)d पैकेज हटाए जा रहे हैं।"
 
-#: src/modules/mount/main.py:116
-msgid "Failed to unlock zpool"
-msgstr "zpool अनलॉक करना विफल"
+#: src/modules/packages/main.py:725 src/modules/packages/main.py:737
+#: src/modules/packages/main.py:765
+msgid "Package Manager error"
+msgstr "पैकेज प्रबंधक त्रुटि"
 
-#: src/modules/mount/main.py:133 src/modules/mount/main.py:138
-msgid "Failed to set zfs mountpoint"
-msgstr "zfs माउंट पॉइंट निर्धारण विफल"
+#: src/modules/packages/main.py:726
+msgid ""
+"The package manager could not prepare updates. The command <pre>{!s}</pre> "
+"returned error code {!s}."
+msgstr ""
+"पैकेज प्रबंधक द्वारा अपडेट तैयार करना विफल। कमांड <pre>{!s}</pre> हेतु "
+"त्रुटि कोड {!s} प्राप्त।"
 
-#: src/modules/mount/main.py:229 src/modules/initcpiocfg/main.py:235
-#: src/modules/initcpiocfg/main.py:239 src/modules/rawfs/main.py:164
+#: src/modules/packages/main.py:738
+msgid ""
+"The package manager could not update the system. The command <pre>{!s}</pre>"
+" returned error code {!s}."
+msgstr ""
+"पैकेज प्रबंधक द्वारा सिस्टम अपडेट करना विफल। कमांड <pre>{!s}</pre> हेतु "
+"त्रुटि कोड {!s} प्राप्त।"
+
+#: src/modules/packages/main.py:766
+msgid ""
+"The package manager could not make changes to the installed system. The "
+"command <pre>{!s}</pre> returned error code {!s}."
+msgstr ""
+"पैकेज प्रबंधक द्वारा इंस्टॉल हो रखें सिस्टम पर परिवर्तन करना विफल। कमांड "
+"<pre>{!s}</pre> हेतु त्रुटि कोड {!s} प्राप्त।"
+
+#: src/modules/networkcfg/main.py:29
+msgid "Saving network configuration."
+msgstr "नेटवर्क विन्यास सेटिंग्स संचित करना।"
+
+#: src/modules/networkcfg/main.py:105 src/modules/initcpiocfg/main.py:235
+#: src/modules/initcpiocfg/main.py:239 src/modules/openrcdmcryptcfg/main.py:72
+#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/localecfg/main.py:140
+#: src/modules/mount/main.py:229 src/modules/fstab/main.py:394
+#: src/modules/fstab/main.py:400 src/modules/fstab/main.py:428
 #: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
-#: src/modules/openrcdmcryptcfg/main.py:72
-#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/fstab/main.py:361
-#: src/modules/fstab/main.py:367 src/modules/fstab/main.py:394
-#: src/modules/localecfg/main.py:140 src/modules/networkcfg/main.py:105
+#: src/modules/rawfs/main.py:164
 msgid "Configuration Error"
 msgstr "विन्यास त्रुटि"
 
-#: src/modules/mount/main.py:230 src/modules/initcpiocfg/main.py:236
-#: src/modules/rawfs/main.py:165 src/modules/initramfscfg/main.py:86
-#: src/modules/openrcdmcryptcfg/main.py:73 src/modules/fstab/main.py:362
+#: src/modules/networkcfg/main.py:106 src/modules/initcpiocfg/main.py:240
+#: src/modules/openrcdmcryptcfg/main.py:77 src/modules/localecfg/main.py:141
+#: src/modules/fstab/main.py:401 src/modules/initramfscfg/main.py:90
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr ""
+"<pre>{!s}</pre> के उपयोग हेतु कोई रुट माउंट पॉइंट प्रदान नहीं किया गया।"
+
+#: src/modules/initcpiocfg/main.py:28
+msgid "Configuring mkinitcpio."
+msgstr "mkinitcpio को विन्यस्त करना।"
+
+#: src/modules/initcpiocfg/main.py:236 src/modules/openrcdmcryptcfg/main.py:73
+#: src/modules/mount/main.py:230 src/modules/fstab/main.py:395
+#: src/modules/initramfscfg/main.py:86 src/modules/rawfs/main.py:165
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "<pre>{!s}</pre> के उपयोग हेतु कोई विभाजन परिभाषित नहीं हैं।"
 
-#: src/modules/mount/main.py:253
-msgid "zfs mounting error"
-msgstr "zfs माउंट संबंधी त्रुटि"
+#: src/modules/mkinitfs/main.py:27
+msgid "Creating initramfs with mkinitfs."
+msgstr "mkinitfs के साथ initramfs बनाना।"
 
-#: src/modules/services-systemd/main.py:26
-msgid "Configure systemd services"
-msgstr "systemd सेवाएँ विन्यस्त करना"
+#: src/modules/mkinitfs/main.py:49
+msgid "Failed to run mkinitfs on the target"
+msgstr "लक्ष्य पर mkinitfs निष्पादन विफल"
 
-#: src/modules/services-systemd/main.py:59
-#: src/modules/services-openrc/main.py:93
-msgid "Cannot modify service"
-msgstr "सेवा को संशोधित नहीं किया जा सकता"
+#: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
+msgid "The exit code was {}"
+msgstr "त्रुटि कोड  {}"
 
-#: src/modules/services-systemd/main.py:60
-msgid ""
-"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr "chroot में <code>systemctl {arg!s}</code> कॉल त्रुटि कोड {num!s}।"
-
-#: src/modules/services-systemd/main.py:63
-#: src/modules/services-systemd/main.py:69
-msgid "Cannot enable systemd service <code>{name!s}</code>."
-msgstr "systemd सेवा <code>{name!s}</code> को सक्रिय नहीं किया जा सकता।"
-
-#: src/modules/services-systemd/main.py:65
-msgid "Cannot enable systemd target <code>{name!s}</code>."
-msgstr "systemd लक्ष्य <code>{name!s}</code>सक्रिय करना विफल।"
-
-#: src/modules/services-systemd/main.py:67
-msgid "Cannot enable systemd timer <code>{name!s}</code>."
-msgstr "systemd टाइमर <code>{name!s}</code>सक्रिय करना विफल।"
-
-#: src/modules/services-systemd/main.py:71
-msgid "Cannot disable systemd target <code>{name!s}</code>."
-msgstr "systemd लक्ष्य <code>{name!s}</code> निष्क्रिय करना विफल।"
-
-#: src/modules/services-systemd/main.py:73
-msgid "Cannot mask systemd unit <code>{name!s}</code>."
-msgstr "systemd यूनिट <code>{name!s}</code> को मास्क नहीं किया जा सकता।"
-
-#: src/modules/services-systemd/main.py:75
-msgid ""
-"Unknown systemd commands <code>{command!s}</code> and "
-"<code>{suffix!s}</code> for unit {name!s}."
-msgstr ""
-"यूनिट {name!s} हेतु अज्ञात systemd कमांड <code>{command!s}</code> व "
-"<code>{suffix!s}</code>।"
+#: src/modules/openrcdmcryptcfg/main.py:26
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "OpenRC dmcrypt सेवा विन्यस्त करना।"
 
 #: src/modules/unpackfs/main.py:34
 msgid "Filling up filesystems."
@@ -174,76 +187,119 @@ msgstr ""
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "लक्षित सिस्टम में \"{}\" स्थान कोई डायरेक्टरी नहीं है"
 
-#: src/modules/displaymanager/main.py:524
-msgid "Cannot write KDM configuration file"
-msgstr "KDM विन्यास फ़ाइल राइट नहीं की जा सकती"
+#: src/modules/services-systemd/main.py:26
+msgid "Configure systemd services"
+msgstr "systemd सेवाएँ विन्यस्त करना"
 
-#: src/modules/displaymanager/main.py:525
-msgid "KDM config file {!s} does not exist"
-msgstr "KDM विन्यास फ़ाइल {!s} मौजूद नहीं है"
+#: src/modules/services-systemd/main.py:59
+#: src/modules/services-openrc/main.py:93
+msgid "Cannot modify service"
+msgstr "सेवा को संशोधित नहीं किया जा सकता"
 
-#: src/modules/displaymanager/main.py:586
-msgid "Cannot write LXDM configuration file"
-msgstr "LXDM विन्यास फ़ाइल राइट नहीं की जा सकती"
-
-#: src/modules/displaymanager/main.py:587
-msgid "LXDM config file {!s} does not exist"
-msgstr "LXDM विन्यास फ़ाइल {!s} मौजूद नहीं है"
-
-#: src/modules/displaymanager/main.py:670
-msgid "Cannot write LightDM configuration file"
-msgstr "LightDM विन्यास फ़ाइल राइट नहीं की जा सकती"
-
-#: src/modules/displaymanager/main.py:671
-msgid "LightDM config file {!s} does not exist"
-msgstr "LightDM विन्यास फ़ाइल {!s} मौजूद नहीं है"
-
-#: src/modules/displaymanager/main.py:745
-msgid "Cannot configure LightDM"
-msgstr "LightDM को विन्यस्त नहीं किया जा सकता"
-
-#: src/modules/displaymanager/main.py:746
-msgid "No LightDM greeter installed."
-msgstr "कोई LightDM लॉगिन स्क्रीन इंस्टॉल नहीं है।"
-
-#: src/modules/displaymanager/main.py:777
-msgid "Cannot write SLIM configuration file"
-msgstr "SLIM विन्यास फ़ाइल राइट नहीं की जा सकती"
-
-#: src/modules/displaymanager/main.py:778
-msgid "SLIM config file {!s} does not exist"
-msgstr "SLIM विन्यास फ़ाइल {!s} मौजूद नहीं है"
-
-#: src/modules/displaymanager/main.py:991
-msgid "No display managers selected for the displaymanager module."
-msgstr "चयनित डिस्प्ले प्रबंधक मॉड्यूल हेतु कोई डिस्प्ले प्रबंधक नहीं मिला।"
-
-#: src/modules/displaymanager/main.py:992
+#: src/modules/services-systemd/main.py:60
 msgid ""
-"The displaymanagers list is empty or undefined in both globalstorage and "
-"displaymanager.conf."
+"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr "chroot में <code>systemctl {arg!s}</code> कॉल त्रुटि कोड {num!s}।"
+
+#: src/modules/services-systemd/main.py:63
+#: src/modules/services-systemd/main.py:69
+msgid "Cannot enable systemd service <code>{name!s}</code>."
+msgstr "systemd सेवा <code>{name!s}</code> को सक्रिय नहीं किया जा सकता।"
+
+#: src/modules/services-systemd/main.py:65
+msgid "Cannot enable systemd target <code>{name!s}</code>."
+msgstr "systemd लक्ष्य <code>{name!s}</code>सक्रिय करना विफल।"
+
+#: src/modules/services-systemd/main.py:67
+msgid "Cannot enable systemd timer <code>{name!s}</code>."
+msgstr "systemd टाइमर <code>{name!s}</code>सक्रिय करना विफल।"
+
+#: src/modules/services-systemd/main.py:71
+msgid "Cannot disable systemd target <code>{name!s}</code>."
+msgstr "systemd लक्ष्य <code>{name!s}</code> निष्क्रिय करना विफल।"
+
+#: src/modules/services-systemd/main.py:73
+msgid "Cannot mask systemd unit <code>{name!s}</code>."
+msgstr "systemd यूनिट <code>{name!s}</code> को मास्क नहीं किया जा सकता।"
+
+#: src/modules/services-systemd/main.py:75
+msgid ""
+"Unknown systemd commands <code>{command!s}</code> and "
+"<code>{suffix!s}</code> for unit {name!s}."
 msgstr ""
-"globalstorage व displaymanager.conf में डिस्प्ले प्रबंधक सूची रिक्त या "
-"अपरिभाषित है।"
+"यूनिट {name!s} हेतु अज्ञात systemd कमांड <code>{command!s}</code> व "
+"<code>{suffix!s}</code>।"
 
-#: src/modules/displaymanager/main.py:1074
-msgid "Display manager configuration was incomplete"
-msgstr "डिस्प्ले प्रबंधक विन्यास अधूरा था"
+#: src/modules/dummypython/main.py:35
+msgid "Dummy python job."
+msgstr "डमी पाइथन प्रक्रिया ।"
 
-#: src/modules/initcpiocfg/main.py:28
-msgid "Configuring mkinitcpio."
-msgstr "mkinitcpio को विन्यस्त करना।"
+#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
+#: src/modules/dummypython/main.py:94
+msgid "Dummy python step {}"
+msgstr "डमी पाइथन प्रक्रिया की चरण संख्या {}"
 
-#: src/modules/initcpiocfg/main.py:240 src/modules/initramfscfg/main.py:90
-#: src/modules/openrcdmcryptcfg/main.py:77 src/modules/fstab/main.py:368
-#: src/modules/localecfg/main.py:141 src/modules/networkcfg/main.py:106
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
+#: src/modules/bootloader/main.py:43
+msgid "Install bootloader."
+msgstr "बूट लोडर इंस्टॉल करना।"
+
+#: src/modules/bootloader/main.py:614
+msgid "Failed to install grub, no partitions defined in global storage"
+msgstr "grub इंस्टॉल करना विफल, सर्वत्र संचयन में कोई विभाजन परिभाषित नहीं है"
+
+#: src/modules/bootloader/main.py:782
+msgid "Bootloader installation error"
+msgstr "बूट लोडर इंस्टॉल त्रुटि"
+
+#: src/modules/bootloader/main.py:783
+msgid ""
+"The bootloader could not be installed. The installation command "
+"<pre>{!s}</pre> returned error code {!s}."
 msgstr ""
-"<pre>{!s}</pre> के उपयोग हेतु कोई रुट माउंट पॉइंट प्रदान नहीं किया गया।"
+"बूट लोडर इंस्टॉल करना विफल। इंस्टॉल कमांड <pre>{!s}</pre> हेतु त्रुटि कोड "
+"{!s} प्राप्त।"
 
-#: src/modules/rawfs/main.py:26
-msgid "Installing data."
-msgstr "डाटा इंस्टॉल करना।"
+#: src/modules/localecfg/main.py:31
+msgid "Configuring locales."
+msgstr "स्थानिकी को विन्यस्त करना।"
+
+#: src/modules/mount/main.py:42
+msgid "Mounting partitions."
+msgstr "विभाजन माउंट करना।"
+
+#: src/modules/mount/main.py:88 src/modules/mount/main.py:124
+msgid "Internal error mounting zfs datasets"
+msgstr "zfs डेटासेट माउंट करते समय आंतरिक त्रुटि"
+
+#: src/modules/mount/main.py:100
+msgid "Failed to import zpool"
+msgstr "zpool आयात विफल"
+
+#: src/modules/mount/main.py:116
+msgid "Failed to unlock zpool"
+msgstr "zpool अनलॉक करना विफल"
+
+#: src/modules/mount/main.py:133 src/modules/mount/main.py:138
+msgid "Failed to set zfs mountpoint"
+msgstr "zfs माउंट पॉइंट निर्धारण विफल"
+
+#: src/modules/mount/main.py:253
+msgid "zfs mounting error"
+msgstr "zfs माउंट संबंधी त्रुटि"
+
+#: src/modules/plymouthcfg/main.py:27
+msgid "Configure Plymouth theme"
+msgstr "Plymouth थीम विन्यस्त करना "
+
+#: src/modules/fstab/main.py:28
+msgid "Writing fstab."
+msgstr "fstab पर राइट करना।"
+
+#: src/modules/fstab/main.py:429
+msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
+msgstr ""
+"कोई <pre>{!s}</pre> विन्यास प्रदान नहीं किया गया <pre>{!s}</pre> के उपयोग "
+"हेतु।"
 
 #: src/modules/services-openrc/main.py:29
 msgid "Configure OpenRC services"
@@ -291,99 +347,6 @@ msgid ""
 "exist."
 msgstr "सेवा {name!s} हेतु पथ <code>{path!s}</code> है, जो कि मौजूद नहीं है।"
 
-#: src/modules/plymouthcfg/main.py:27
-msgid "Configure Plymouth theme"
-msgstr "Plymouth थीम विन्यस्त करना "
-
-#: src/modules/packages/main.py:54 src/modules/packages/main.py:65
-#: src/modules/packages/main.py:75
-msgid "Install packages."
-msgstr "पैकेज इंस्टॉल करना।"
-
-#: src/modules/packages/main.py:63
-#, python-format
-msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "पैकेज (%(count)d / %(total)d) संसाधित किए जा रहे हैं"
-
-#: src/modules/packages/main.py:68
-#, python-format
-msgid "Installing one package."
-msgid_plural "Installing %(num)d packages."
-msgstr[0] "एक पैकेज इंस्टॉल किया जा रहा है।"
-msgstr[1] "%(num)d पैकेज इंस्टॉल किए जा रहे हैं।"
-
-#: src/modules/packages/main.py:71
-#, python-format
-msgid "Removing one package."
-msgid_plural "Removing %(num)d packages."
-msgstr[0] "एक पैकेज हटाया जा रहा है।"
-msgstr[1] "%(num)d पैकेज हटाए जा रहे हैं।"
-
-#: src/modules/packages/main.py:725 src/modules/packages/main.py:737
-#: src/modules/packages/main.py:765
-msgid "Package Manager error"
-msgstr "पैकेज प्रबंधक त्रुटि"
-
-#: src/modules/packages/main.py:726
-msgid ""
-"The package manager could not prepare updates. The command <pre>{!s}</pre> "
-"returned error code {!s}."
-msgstr ""
-"पैकेज प्रबंधक द्वारा अपडेट तैयार करना विफल। कमांड <pre>{!s}</pre> हेतु "
-"त्रुटि कोड {!s} प्राप्त।"
-
-#: src/modules/packages/main.py:738
-msgid ""
-"The package manager could not update the system. The command <pre>{!s}</pre>"
-" returned error code {!s}."
-msgstr ""
-"पैकेज प्रबंधक द्वारा सिस्टम अपडेट करना विफल। कमांड <pre>{!s}</pre> हेतु "
-"त्रुटि कोड {!s} प्राप्त।"
-
-#: src/modules/packages/main.py:766
-msgid ""
-"The package manager could not make changes to the installed system. The "
-"command <pre>{!s}</pre> returned error code {!s}."
-msgstr ""
-"पैकेज प्रबंधक द्वारा इंस्टॉल हो रखें सिस्टम पर परिवर्तन करना विफल। कमांड "
-"<pre>{!s}</pre> हेतु त्रुटि कोड {!s} प्राप्त।"
-
-#: src/modules/bootloader/main.py:43
-msgid "Install bootloader."
-msgstr "बूट लोडर इंस्टॉल करना।"
-
-#: src/modules/bootloader/main.py:614
-msgid "Failed to install grub, no partitions defined in global storage"
-msgstr "grub इंस्टॉल करना विफल, सर्वत्र संचयन में कोई विभाजन परिभाषित नहीं है"
-
-#: src/modules/bootloader/main.py:782
-msgid "Bootloader installation error"
-msgstr "बूट लोडर इंस्टॉल त्रुटि"
-
-#: src/modules/bootloader/main.py:783
-msgid ""
-"The bootloader could not be installed. The installation command "
-"<pre>{!s}</pre> returned error code {!s}."
-msgstr ""
-"बूट लोडर इंस्टॉल करना विफल। इंस्टॉल कमांड <pre>{!s}</pre> हेतु त्रुटि कोड "
-"{!s} प्राप्त।"
-
-#: src/modules/hwclock/main.py:26
-msgid "Setting hardware clock."
-msgstr "हार्डवेयर घड़ी सेट करना।"
-
-#: src/modules/mkinitfs/main.py:27
-msgid "Creating initramfs with mkinitfs."
-msgstr "mkinitfs के साथ initramfs बनाना।"
-
-#: src/modules/mkinitfs/main.py:49
-msgid "Failed to run mkinitfs on the target"
-msgstr "लक्ष्य पर mkinitfs निष्पादन विफल"
-
-#: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
-msgid "The exit code was {}"
-msgstr "त्रुटि कोड  {}"
-
 #: src/modules/dracut/main.py:27
 msgid "Creating initramfs with dracut."
 msgstr "dracut के साथ initramfs बनाना।"
@@ -392,37 +355,74 @@ msgstr "dracut के साथ initramfs बनाना।"
 msgid "Failed to run dracut on the target"
 msgstr "लक्ष्य पर dracut निष्पादन विफल"
 
+#: src/modules/grubcfg/main.py:28
+msgid "Configure GRUB."
+msgstr "GRUB विन्यस्त करना।"
+
+#: src/modules/displaymanager/main.py:524
+msgid "Cannot write KDM configuration file"
+msgstr "KDM विन्यास फ़ाइल राइट नहीं की जा सकती"
+
+#: src/modules/displaymanager/main.py:525
+msgid "KDM config file {!s} does not exist"
+msgstr "KDM विन्यास फ़ाइल {!s} मौजूद नहीं है"
+
+#: src/modules/displaymanager/main.py:586
+msgid "Cannot write LXDM configuration file"
+msgstr "LXDM विन्यास फ़ाइल राइट नहीं की जा सकती"
+
+#: src/modules/displaymanager/main.py:587
+msgid "LXDM config file {!s} does not exist"
+msgstr "LXDM विन्यास फ़ाइल {!s} मौजूद नहीं है"
+
+#: src/modules/displaymanager/main.py:670
+msgid "Cannot write LightDM configuration file"
+msgstr "LightDM विन्यास फ़ाइल राइट नहीं की जा सकती"
+
+#: src/modules/displaymanager/main.py:671
+msgid "LightDM config file {!s} does not exist"
+msgstr "LightDM विन्यास फ़ाइल {!s} मौजूद नहीं है"
+
+#: src/modules/displaymanager/main.py:745
+msgid "Cannot configure LightDM"
+msgstr "LightDM को विन्यस्त नहीं किया जा सकता"
+
+#: src/modules/displaymanager/main.py:746
+msgid "No LightDM greeter installed."
+msgstr "कोई LightDM लॉगिन स्क्रीन इंस्टॉल नहीं है।"
+
+#: src/modules/displaymanager/main.py:777
+msgid "Cannot write SLIM configuration file"
+msgstr "SLIM विन्यास फ़ाइल राइट नहीं की जा सकती"
+
+#: src/modules/displaymanager/main.py:778
+msgid "SLIM config file {!s} does not exist"
+msgstr "SLIM विन्यास फ़ाइल {!s} मौजूद नहीं है"
+
+#: src/modules/displaymanager/main.py:992
+msgid "No display managers selected for the displaymanager module."
+msgstr "चयनित डिस्प्ले प्रबंधक मॉड्यूल हेतु कोई डिस्प्ले प्रबंधक नहीं मिला।"
+
+#: src/modules/displaymanager/main.py:993
+msgid ""
+"The displaymanagers list is empty or undefined in both globalstorage and "
+"displaymanager.conf."
+msgstr ""
+"globalstorage व displaymanager.conf में डिस्प्ले प्रबंधक सूची रिक्त या "
+"अपरिभाषित है।"
+
+#: src/modules/displaymanager/main.py:1075
+msgid "Display manager configuration was incomplete"
+msgstr "डिस्प्ले प्रबंधक विन्यास अधूरा था"
+
 #: src/modules/initramfscfg/main.py:32
 msgid "Configuring initramfs."
 msgstr "initramfs को विन्यस्त करना। "
 
-#: src/modules/openrcdmcryptcfg/main.py:26
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "OpenRC dmcrypt सेवा विन्यस्त करना।"
+#: src/modules/hwclock/main.py:26
+msgid "Setting hardware clock."
+msgstr "हार्डवेयर घड़ी सेट करना।"
 
-#: src/modules/fstab/main.py:29
-msgid "Writing fstab."
-msgstr "fstab पर राइट करना।"
-
-#: src/modules/fstab/main.py:395
-msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
-msgstr ""
-"कोई <pre>{!s}</pre> विन्यास प्रदान नहीं किया गया <pre>{!s}</pre> के उपयोग "
-"हेतु।"
-
-#: src/modules/dummypython/main.py:35
-msgid "Dummy python job."
-msgstr "डमी पाइथन प्रक्रिया ।"
-
-#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
-#: src/modules/dummypython/main.py:94
-msgid "Dummy python step {}"
-msgstr "डमी पाइथन प्रक्रिया की चरण संख्या {}"
-
-#: src/modules/localecfg/main.py:31
-msgid "Configuring locales."
-msgstr "स्थानिकी को विन्यस्त करना।"
-
-#: src/modules/networkcfg/main.py:29
-msgid "Saving network configuration."
-msgstr "नेटवर्क विन्यास सेटिंग्स संचित करना।"
+#: src/modules/rawfs/main.py:26
+msgid "Installing data."
+msgstr "डाटा इंस्टॉल करना।"
