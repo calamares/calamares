@@ -57,9 +57,6 @@ enum class SavePassphraseValue
     EmptyPassphrase,
     NotLuksPartition,
     IncorrectPassphrase,
-    CryptsetupError,
-    NoMapperNode,
-    DeviceNotDecrypted
 };
 
 /**
@@ -102,6 +99,27 @@ Partition* clonePartition( Device* device, Partition* partition );
  * other value if it fails.
  */
 SavePassphraseValue savePassphrase( Partition* partition, const QString& passphrase );
+
+/** @brief Decrypt an encrypted partition.
+ *
+ * Uses @p partition to decrypt the partition.
+ * The passphrase saved in @p partition is used.
+ * Returns the mapped device path or an empty string if it fails.
+ */
+QString openLuksDevice( Partition* partition );
+void closeLuksDevice( Partition* partition );
+
+/** @brief Set label of luks encrypted partition.
+ *
+ * Returns true on success or false if it fails.
+ */
+bool setLuksLabel( Partition* partition, const QString& label );
+
+/** @brief Returns the luks version used to encrypt the partition.
+ *
+ * Used by setLuksLabel
+ */
+int luksVersion( Partition* partition );
 
 /** @brief Return a result for an @p operation
  *
