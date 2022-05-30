@@ -183,7 +183,7 @@ style:
    sidebarBackground:    "#292F34"
    sidebarText:          "#FFFFFF"
    sidebarTextCurrent:    "#292F34"
-   SidebarBackgroundCurrent: "#D35400"
+   sidebarBackgroundCurrent: "#D35400"
 
 ### SLIDESHOW
 #
