@@ -1,7 +1,7 @@
 /* Sample of QML progress tree.
 
    SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
-   SPDX-FileCopyrightText: 2021 Anke Boersma <demm@kaosx.us>
+   SPDX-FileCopyrightText: 2021 - 2022 Anke Boersma <demm@kaosx.us>
    SPDX-License-Identifier: GPL-3.0-or-later
 
 
@@ -51,7 +51,7 @@ Rectangle {
                 Text {
                     anchors.verticalCenter: parent.verticalCenter;
                     anchors.horizontalCenter: parent.horizontalCenter;
-                    color: Branding.styleString( index == ViewManager.currentStepIndex ? Branding.SidebarTextCurrent : Branding.SidebarText );
+                    color: Branding.styleString( index == ViewManager.currentStepIndex ? Branding.SidebarTextSelect : Branding.SidebarText );
                     text: display;
                 }
             }
@@ -66,7 +66,7 @@ Rectangle {
             Layout.fillWidth: true;
             height: 35
             Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
-            color: Branding.styleString( Branding.SidebarTextHighlight );
+            color: Branding.styleString( Branding.SidebarBackgroundCurrent );
             visible: true;
 
             Rectangle {
@@ -74,7 +74,7 @@ Rectangle {
                 height: 35
                 width: parent.width / 2;
                 anchors.left: parent.left
-                color: Branding.styleString( Branding.SidebarTextHighlight );
+                color: Branding.styleString( Branding.SidebarBackgroundCurrent );
                 visible: true;
 
                 MouseArea {
@@ -100,7 +100,7 @@ Rectangle {
                 height: 35
                 width: parent.width / 2;
                 anchors.right: parent.right
-                color: Branding.styleString( Branding.SidebarTextHighlight );
+                color: Branding.styleString( Branding.SidebarBackgroundCurrent );
                 visible: debug.enabled
 
                 MouseArea {
