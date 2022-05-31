@@ -111,7 +111,6 @@ CreatePartitionJob::CreatePartitionJob( Device* device, Partition* partition )
 static QString
 prettyGptType( const Partition* partition )
 {
-#ifdef WITH_KPMCORE42API
     static const QMap< QString, QString > gptTypePrettyStrings = {
         { "44479540-f297-41b2-9af7-d131d5f0458a", "Linux Root Partition (x86)" },
         { "4f68bce3-e8cd-4db1-96e7-fbcaf984b709", "Linux Root Partition (x86-64)" },
@@ -146,9 +145,6 @@ prettyGptType( const Partition* partition )
 
     auto type = partition->type();
     return gptTypePrettyStrings.value( type.toLower(), type );
-#else
-    return QString();
-#endif
 }
 
 static QString

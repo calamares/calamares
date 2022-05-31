@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-22 11:03+0200\n"
+"POT-Creation-Date: 2022-05-27 11:18+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Victor Ibragimov <victor.ibragimov@gmail.com>, 2020\n"
 "Language-Team: Tajik (https://www.transifex.com/calamares/teams/20061/tg/)\n"
@@ -21,94 +21,98 @@ msgstr ""
 "Language: tg\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/modules/grubcfg/main.py:28
-msgid "Configure GRUB."
-msgstr "Танзимоти GRUB."
+#: src/modules/packages/main.py:54 src/modules/packages/main.py:65
+#: src/modules/packages/main.py:75
+msgid "Install packages."
+msgstr "Насбкунии қуттиҳо."
 
-#: src/modules/mount/main.py:42
-msgid "Mounting partitions."
-msgstr "Васлкунии қисмҳои диск."
+#: src/modules/packages/main.py:63
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "Коргузории қуттиҳо (%(count)d / %(total)d)"
 
-#: src/modules/mount/main.py:88 src/modules/mount/main.py:124
-msgid "Internal error mounting zfs datasets"
+#: src/modules/packages/main.py:68
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] "Насбкунии як баста."
+msgstr[1] "Насбкунии %(num)d баста."
+
+#: src/modules/packages/main.py:71
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] "Тозакунии як баста"
+msgstr[1] "Тозакунии %(num)d баста."
+
+#: src/modules/packages/main.py:725 src/modules/packages/main.py:737
+#: src/modules/packages/main.py:765
+msgid "Package Manager error"
 msgstr ""
 
-#: src/modules/mount/main.py:100
-msgid "Failed to import zpool"
+#: src/modules/packages/main.py:726
+msgid ""
+"The package manager could not prepare updates. The command <pre>{!s}</pre> "
+"returned error code {!s}."
 msgstr ""
 
-#: src/modules/mount/main.py:116
-msgid "Failed to unlock zpool"
+#: src/modules/packages/main.py:738
+msgid ""
+"The package manager could not update the system. The command <pre>{!s}</pre>"
+" returned error code {!s}."
 msgstr ""
 
-#: src/modules/mount/main.py:133 src/modules/mount/main.py:138
-msgid "Failed to set zfs mountpoint"
+#: src/modules/packages/main.py:766
+msgid ""
+"The package manager could not make changes to the installed system. The "
+"command <pre>{!s}</pre> returned error code {!s}."
 msgstr ""
 
-#: src/modules/mount/main.py:229 src/modules/initcpiocfg/main.py:235
-#: src/modules/initcpiocfg/main.py:239 src/modules/rawfs/main.py:164
+#: src/modules/networkcfg/main.py:29
+msgid "Saving network configuration."
+msgstr "Нигоҳдории танзимоти шабака."
+
+#: src/modules/networkcfg/main.py:105 src/modules/initcpiocfg/main.py:235
+#: src/modules/initcpiocfg/main.py:239 src/modules/openrcdmcryptcfg/main.py:72
+#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/localecfg/main.py:140
+#: src/modules/mount/main.py:229 src/modules/fstab/main.py:394
+#: src/modules/fstab/main.py:400 src/modules/fstab/main.py:428
 #: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
-#: src/modules/openrcdmcryptcfg/main.py:72
-#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/fstab/main.py:361
-#: src/modules/fstab/main.py:367 src/modules/fstab/main.py:394
-#: src/modules/localecfg/main.py:140 src/modules/networkcfg/main.py:105
+#: src/modules/rawfs/main.py:164
 msgid "Configuration Error"
 msgstr "Хатои танзимкунӣ"
 
-#: src/modules/mount/main.py:230 src/modules/initcpiocfg/main.py:236
-#: src/modules/rawfs/main.py:165 src/modules/initramfscfg/main.py:86
-#: src/modules/openrcdmcryptcfg/main.py:73 src/modules/fstab/main.py:362
+#: src/modules/networkcfg/main.py:106 src/modules/initcpiocfg/main.py:240
+#: src/modules/openrcdmcryptcfg/main.py:77 src/modules/localecfg/main.py:141
+#: src/modules/fstab/main.py:401 src/modules/initramfscfg/main.py:90
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr "Нуқтаи васли реша (root) барои истифодаи <pre>{!s}</pre> дода нашуд."
+
+#: src/modules/initcpiocfg/main.py:28
+msgid "Configuring mkinitcpio."
+msgstr "Танзимкунии mkinitcpio."
+
+#: src/modules/initcpiocfg/main.py:236 src/modules/openrcdmcryptcfg/main.py:73
+#: src/modules/mount/main.py:230 src/modules/fstab/main.py:395
+#: src/modules/initramfscfg/main.py:86 src/modules/rawfs/main.py:165
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "Ягон қисми диск барои истифодаи <pre>{!s}</pre> муайян карда нашуд."
 
-#: src/modules/mount/main.py:253
-msgid "zfs mounting error"
-msgstr ""
+#: src/modules/mkinitfs/main.py:27
+msgid "Creating initramfs with mkinitfs."
+msgstr "Эҷодкунии initramfs бо mkinitfs."
 
-#: src/modules/services-systemd/main.py:26
-msgid "Configure systemd services"
-msgstr "Танзимоти хидматҳои systemd"
+#: src/modules/mkinitfs/main.py:49
+msgid "Failed to run mkinitfs on the target"
+msgstr "mkinitfs дар низоми интихобшуда иҷро нашуд"
 
-#: src/modules/services-systemd/main.py:59
-#: src/modules/services-openrc/main.py:93
-msgid "Cannot modify service"
-msgstr "Хидмат тағйир дода намешавад"
+#: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
+msgid "The exit code was {}"
+msgstr "Рамзи барориш: {}"
 
-#: src/modules/services-systemd/main.py:60
-msgid ""
-"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr ""
-"Дархости <code>systemctl {arg!s}</code> дар chroot рамзи хатои {num!s}-ро ба"
-" вуҷуд овард."
-
-#: src/modules/services-systemd/main.py:63
-#: src/modules/services-systemd/main.py:69
-msgid "Cannot enable systemd service <code>{name!s}</code>."
-msgstr "Хидмати systemd-и <code>{name!s}</code> фаъол карда намешавад."
-
-#: src/modules/services-systemd/main.py:65
-msgid "Cannot enable systemd target <code>{name!s}</code>."
-msgstr "Интихоби systemd-и <code>{name!s}</code> фаъол карда намешавад."
-
-#: src/modules/services-systemd/main.py:67
-msgid "Cannot enable systemd timer <code>{name!s}</code>."
-msgstr ""
-
-#: src/modules/services-systemd/main.py:71
-msgid "Cannot disable systemd target <code>{name!s}</code>."
-msgstr "Интихоби systemd-и <code>{name!s}</code> ғайрифаъол карда намешавад."
-
-#: src/modules/services-systemd/main.py:73
-msgid "Cannot mask systemd unit <code>{name!s}</code>."
-msgstr "Воҳиди systemd-и <code>{name!s}</code> пинҳон карда намешавад."
-
-#: src/modules/services-systemd/main.py:75
-msgid ""
-"Unknown systemd commands <code>{command!s}</code> and "
-"<code>{suffix!s}</code> for unit {name!s}."
-msgstr ""
-"Фармонҳои systemd-и номаълум <code>{command!s}</code> ва "
-"<code>{suffix!s}</code> барои воҳиди {name!s}."
+#: src/modules/openrcdmcryptcfg/main.py:26
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "Танзимкунии хидмати OpenRC dmcrypt."
 
 #: src/modules/unpackfs/main.py:34
 msgid "Filling up filesystems."
@@ -174,75 +178,117 @@ msgstr ""
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "Ҷойи таъиноти \"{}\" дар низоми интихобшуда феҳрист намебошад"
 
-#: src/modules/displaymanager/main.py:524
-msgid "Cannot write KDM configuration file"
-msgstr "Файли танзимии KDM сабт карда намешавад"
+#: src/modules/services-systemd/main.py:26
+msgid "Configure systemd services"
+msgstr "Танзимоти хидматҳои systemd"
 
-#: src/modules/displaymanager/main.py:525
-msgid "KDM config file {!s} does not exist"
-msgstr "Файли танзимии KDM {!s} вуҷуд надорад"
+#: src/modules/services-systemd/main.py:59
+#: src/modules/services-openrc/main.py:93
+msgid "Cannot modify service"
+msgstr "Хидмат тағйир дода намешавад"
 
-#: src/modules/displaymanager/main.py:586
-msgid "Cannot write LXDM configuration file"
-msgstr "Файли танзимии LXDM сабт карда намешавад"
-
-#: src/modules/displaymanager/main.py:587
-msgid "LXDM config file {!s} does not exist"
-msgstr "Файли танзимии LXDM {!s} вуҷуд надорад"
-
-#: src/modules/displaymanager/main.py:670
-msgid "Cannot write LightDM configuration file"
-msgstr "Файли танзимии LightDM сабт карда намешавад"
-
-#: src/modules/displaymanager/main.py:671
-msgid "LightDM config file {!s} does not exist"
-msgstr "Файли танзимии LightDM {!s} вуҷуд надорад"
-
-#: src/modules/displaymanager/main.py:745
-msgid "Cannot configure LightDM"
-msgstr "LightDM танзим карда намешавад"
-
-#: src/modules/displaymanager/main.py:746
-msgid "No LightDM greeter installed."
-msgstr "Хушомади LightDM насб нашудааст."
-
-#: src/modules/displaymanager/main.py:777
-msgid "Cannot write SLIM configuration file"
-msgstr "Файли танзимии SLIM сабт карда намешавад"
-
-#: src/modules/displaymanager/main.py:778
-msgid "SLIM config file {!s} does not exist"
-msgstr "Файли танзимии SLIM {!s} вуҷуд надорад"
-
-#: src/modules/displaymanager/main.py:991
-msgid "No display managers selected for the displaymanager module."
-msgstr "Ягон мудири намоиш барои модули displaymanager интихоб нашудааст."
-
-#: src/modules/displaymanager/main.py:992
+#: src/modules/services-systemd/main.py:60
 msgid ""
-"The displaymanagers list is empty or undefined in both globalstorage and "
-"displaymanager.conf."
+"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
 msgstr ""
-"Рӯйхати displaymanagers ҳам дар globalstorage ва ҳам дар displaymanager.conf"
-" холӣ ё номаълум аст."
+"Дархости <code>systemctl {arg!s}</code> дар chroot рамзи хатои {num!s}-ро ба"
+" вуҷуд овард."
 
-#: src/modules/displaymanager/main.py:1074
-msgid "Display manager configuration was incomplete"
-msgstr "Раванди танзимкунии мудири намоиш ба анҷом нарасид"
+#: src/modules/services-systemd/main.py:63
+#: src/modules/services-systemd/main.py:69
+msgid "Cannot enable systemd service <code>{name!s}</code>."
+msgstr "Хидмати systemd-и <code>{name!s}</code> фаъол карда намешавад."
 
-#: src/modules/initcpiocfg/main.py:28
-msgid "Configuring mkinitcpio."
-msgstr "Танзимкунии mkinitcpio."
+#: src/modules/services-systemd/main.py:65
+msgid "Cannot enable systemd target <code>{name!s}</code>."
+msgstr "Интихоби systemd-и <code>{name!s}</code> фаъол карда намешавад."
 
-#: src/modules/initcpiocfg/main.py:240 src/modules/initramfscfg/main.py:90
-#: src/modules/openrcdmcryptcfg/main.py:77 src/modules/fstab/main.py:368
-#: src/modules/localecfg/main.py:141 src/modules/networkcfg/main.py:106
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr "Нуқтаи васли реша (root) барои истифодаи <pre>{!s}</pre> дода нашуд."
+#: src/modules/services-systemd/main.py:67
+msgid "Cannot enable systemd timer <code>{name!s}</code>."
+msgstr ""
 
-#: src/modules/rawfs/main.py:26
-msgid "Installing data."
-msgstr "Насбкунии иттилоот."
+#: src/modules/services-systemd/main.py:71
+msgid "Cannot disable systemd target <code>{name!s}</code>."
+msgstr "Интихоби systemd-и <code>{name!s}</code> ғайрифаъол карда намешавад."
+
+#: src/modules/services-systemd/main.py:73
+msgid "Cannot mask systemd unit <code>{name!s}</code>."
+msgstr "Воҳиди systemd-и <code>{name!s}</code> пинҳон карда намешавад."
+
+#: src/modules/services-systemd/main.py:75
+msgid ""
+"Unknown systemd commands <code>{command!s}</code> and "
+"<code>{suffix!s}</code> for unit {name!s}."
+msgstr ""
+"Фармонҳои systemd-и номаълум <code>{command!s}</code> ва "
+"<code>{suffix!s}</code> барои воҳиди {name!s}."
+
+#: src/modules/dummypython/main.py:35
+msgid "Dummy python job."
+msgstr "Вазифаи амсилаи python."
+
+#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
+#: src/modules/dummypython/main.py:94
+msgid "Dummy python step {}"
+msgstr "Қадами амсилаи python {}"
+
+#: src/modules/bootloader/main.py:43
+msgid "Install bootloader."
+msgstr "Насбкунии боркунандаи роҳандозӣ."
+
+#: src/modules/bootloader/main.py:614
+msgid "Failed to install grub, no partitions defined in global storage"
+msgstr ""
+
+#: src/modules/bootloader/main.py:782
+msgid "Bootloader installation error"
+msgstr ""
+
+#: src/modules/bootloader/main.py:783
+msgid ""
+"The bootloader could not be installed. The installation command "
+"<pre>{!s}</pre> returned error code {!s}."
+msgstr ""
+
+#: src/modules/localecfg/main.py:31
+msgid "Configuring locales."
+msgstr "Танзимкунии маҳаллигардониҳо."
+
+#: src/modules/mount/main.py:42
+msgid "Mounting partitions."
+msgstr "Васлкунии қисмҳои диск."
+
+#: src/modules/mount/main.py:88 src/modules/mount/main.py:124
+msgid "Internal error mounting zfs datasets"
+msgstr ""
+
+#: src/modules/mount/main.py:100
+msgid "Failed to import zpool"
+msgstr ""
+
+#: src/modules/mount/main.py:116
+msgid "Failed to unlock zpool"
+msgstr ""
+
+#: src/modules/mount/main.py:133 src/modules/mount/main.py:138
+msgid "Failed to set zfs mountpoint"
+msgstr ""
+
+#: src/modules/mount/main.py:253
+msgid "zfs mounting error"
+msgstr ""
+
+#: src/modules/plymouthcfg/main.py:27
+msgid "Configure Plymouth theme"
+msgstr "Танзимоти мавзӯи Plymouth"
+
+#: src/modules/fstab/main.py:28
+msgid "Writing fstab."
+msgstr "Сабткунии fstab."
+
+#: src/modules/fstab/main.py:429
+msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
+msgstr ""
 
 #: src/modules/services-openrc/main.py:29
 msgid "Configure OpenRC services"
@@ -295,91 +341,6 @@ msgstr ""
 "Масир барои хидмати {name!s} аз <code>{path!s}</code> иборат аст, аммо он "
 "вуҷуд надорад."
 
-#: src/modules/plymouthcfg/main.py:27
-msgid "Configure Plymouth theme"
-msgstr "Танзимоти мавзӯи Plymouth"
-
-#: src/modules/packages/main.py:54 src/modules/packages/main.py:65
-#: src/modules/packages/main.py:75
-msgid "Install packages."
-msgstr "Насбкунии қуттиҳо."
-
-#: src/modules/packages/main.py:63
-#, python-format
-msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "Коргузории қуттиҳо (%(count)d / %(total)d)"
-
-#: src/modules/packages/main.py:68
-#, python-format
-msgid "Installing one package."
-msgid_plural "Installing %(num)d packages."
-msgstr[0] "Насбкунии як баста."
-msgstr[1] "Насбкунии %(num)d баста."
-
-#: src/modules/packages/main.py:71
-#, python-format
-msgid "Removing one package."
-msgid_plural "Removing %(num)d packages."
-msgstr[0] "Тозакунии як баста"
-msgstr[1] "Тозакунии %(num)d баста."
-
-#: src/modules/packages/main.py:725 src/modules/packages/main.py:737
-#: src/modules/packages/main.py:765
-msgid "Package Manager error"
-msgstr ""
-
-#: src/modules/packages/main.py:726
-msgid ""
-"The package manager could not prepare updates. The command <pre>{!s}</pre> "
-"returned error code {!s}."
-msgstr ""
-
-#: src/modules/packages/main.py:738
-msgid ""
-"The package manager could not update the system. The command <pre>{!s}</pre>"
-" returned error code {!s}."
-msgstr ""
-
-#: src/modules/packages/main.py:766
-msgid ""
-"The package manager could not make changes to the installed system. The "
-"command <pre>{!s}</pre> returned error code {!s}."
-msgstr ""
-
-#: src/modules/bootloader/main.py:43
-msgid "Install bootloader."
-msgstr "Насбкунии боркунандаи роҳандозӣ."
-
-#: src/modules/bootloader/main.py:614
-msgid "Failed to install grub, no partitions defined in global storage"
-msgstr ""
-
-#: src/modules/bootloader/main.py:782
-msgid "Bootloader installation error"
-msgstr ""
-
-#: src/modules/bootloader/main.py:783
-msgid ""
-"The bootloader could not be installed. The installation command "
-"<pre>{!s}</pre> returned error code {!s}."
-msgstr ""
-
-#: src/modules/hwclock/main.py:26
-msgid "Setting hardware clock."
-msgstr "Танзимкунии соати сахтафзор."
-
-#: src/modules/mkinitfs/main.py:27
-msgid "Creating initramfs with mkinitfs."
-msgstr "Эҷодкунии initramfs бо mkinitfs."
-
-#: src/modules/mkinitfs/main.py:49
-msgid "Failed to run mkinitfs on the target"
-msgstr "mkinitfs дар низоми интихобшуда иҷро нашуд"
-
-#: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
-msgid "The exit code was {}"
-msgstr "Рамзи барориш: {}"
-
 #: src/modules/dracut/main.py:27
 msgid "Creating initramfs with dracut."
 msgstr "Эҷодкунии initramfs бо dracut."
@@ -388,35 +349,74 @@ msgstr "Эҷодкунии initramfs бо dracut."
 msgid "Failed to run dracut on the target"
 msgstr "dracut дар низоми интихобшуда иҷро нашуд"
 
+#: src/modules/grubcfg/main.py:28
+msgid "Configure GRUB."
+msgstr "Танзимоти GRUB."
+
+#: src/modules/displaymanager/main.py:524
+msgid "Cannot write KDM configuration file"
+msgstr "Файли танзимии KDM сабт карда намешавад"
+
+#: src/modules/displaymanager/main.py:525
+msgid "KDM config file {!s} does not exist"
+msgstr "Файли танзимии KDM {!s} вуҷуд надорад"
+
+#: src/modules/displaymanager/main.py:586
+msgid "Cannot write LXDM configuration file"
+msgstr "Файли танзимии LXDM сабт карда намешавад"
+
+#: src/modules/displaymanager/main.py:587
+msgid "LXDM config file {!s} does not exist"
+msgstr "Файли танзимии LXDM {!s} вуҷуд надорад"
+
+#: src/modules/displaymanager/main.py:670
+msgid "Cannot write LightDM configuration file"
+msgstr "Файли танзимии LightDM сабт карда намешавад"
+
+#: src/modules/displaymanager/main.py:671
+msgid "LightDM config file {!s} does not exist"
+msgstr "Файли танзимии LightDM {!s} вуҷуд надорад"
+
+#: src/modules/displaymanager/main.py:745
+msgid "Cannot configure LightDM"
+msgstr "LightDM танзим карда намешавад"
+
+#: src/modules/displaymanager/main.py:746
+msgid "No LightDM greeter installed."
+msgstr "Хушомади LightDM насб нашудааст."
+
+#: src/modules/displaymanager/main.py:777
+msgid "Cannot write SLIM configuration file"
+msgstr "Файли танзимии SLIM сабт карда намешавад"
+
+#: src/modules/displaymanager/main.py:778
+msgid "SLIM config file {!s} does not exist"
+msgstr "Файли танзимии SLIM {!s} вуҷуд надорад"
+
+#: src/modules/displaymanager/main.py:992
+msgid "No display managers selected for the displaymanager module."
+msgstr "Ягон мудири намоиш барои модули displaymanager интихоб нашудааст."
+
+#: src/modules/displaymanager/main.py:993
+msgid ""
+"The displaymanagers list is empty or undefined in both globalstorage and "
+"displaymanager.conf."
+msgstr ""
+"Рӯйхати displaymanagers ҳам дар globalstorage ва ҳам дар displaymanager.conf"
+" холӣ ё номаълум аст."
+
+#: src/modules/displaymanager/main.py:1075
+msgid "Display manager configuration was incomplete"
+msgstr "Раванди танзимкунии мудири намоиш ба анҷом нарасид"
+
 #: src/modules/initramfscfg/main.py:32
 msgid "Configuring initramfs."
 msgstr "Танзимкунии initramfs."
 
-#: src/modules/openrcdmcryptcfg/main.py:26
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "Танзимкунии хидмати OpenRC dmcrypt."
+#: src/modules/hwclock/main.py:26
+msgid "Setting hardware clock."
+msgstr "Танзимкунии соати сахтафзор."
 
-#: src/modules/fstab/main.py:29
-msgid "Writing fstab."
-msgstr "Сабткунии fstab."
-
-#: src/modules/fstab/main.py:395
-msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
-msgstr ""
-
-#: src/modules/dummypython/main.py:35
-msgid "Dummy python job."
-msgstr "Вазифаи амсилаи python."
-
-#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
-#: src/modules/dummypython/main.py:94
-msgid "Dummy python step {}"
-msgstr "Қадами амсилаи python {}"
-
-#: src/modules/localecfg/main.py:31
-msgid "Configuring locales."
-msgstr "Танзимкунии маҳаллигардониҳо."
-
-#: src/modules/networkcfg/main.py:29
-msgid "Saving network configuration."
-msgstr "Нигоҳдории танзимоти шабака."
+#: src/modules/rawfs/main.py:26
+msgid "Installing data."
+msgstr "Насбкунии иттилоот."

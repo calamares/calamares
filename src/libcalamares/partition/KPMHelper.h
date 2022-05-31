@@ -25,6 +25,8 @@
 #pragma clang diagnostic ignored "-Wdocumentation"
 #pragma clang diagnostic ignored "-Wsuggest-destructor-override"
 #pragma clang diagnostic ignored "-Winconsistent-missing-destructor-override"
+// Because of __lastType
+#pragma clang diagnostic ignored "-Wreserved-identifier"
 #endif
 
 #include <backend/corebackend.h>

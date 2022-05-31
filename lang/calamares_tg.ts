@@ -2,6 +2,25 @@
 <!DOCTYPE TS>
 <TS language="tg" version="2.1">
   <context>
+    <name>AboutData</name>
+    <message>
+      <location filename="../src/libcalamares/CalamaresAbout.cpp" line="17"/>
+      <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt; for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/libcalamares/CalamaresAbout.cpp" line="20"/>
+      <source>Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/libcalamares/CalamaresAbout.cpp" line="38"/>
+      <source>Copyright %1-%2 %3 &amp;lt;%4&amp;gt;&lt;br/&gt;</source>
+      <extracomment>Copyright year-year Name &lt;email-address&gt;</extracomment>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
     <name>AutoMountManagementJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/AutoMountManagementJob.cpp" line="22"/>
@@ -137,7 +156,7 @@
       <translation>Дарахти виҷетҳо</translation>
     </message>
     <message>
-      <location filename="../src/calamares/DebugWindow.cpp" line="221"/>
+      <location filename="../src/calamares/DebugWindow.cpp" line="239"/>
       <source>Debug information</source>
       <translation>Иттилооти ислоҳи нуқсонҳо</translation>
     </message>
@@ -171,7 +190,7 @@
   <context>
     <name>Calamares::JobThread</name>
     <message>
-      <location filename="../src/libcalamares/JobQueue.cpp" line="202"/>
+      <location filename="../src/libcalamares/JobQueue.cpp" line="203"/>
       <source>Done</source>
       <translation>Анҷоми кор</translation>
     </message>
@@ -261,7 +280,7 @@
       <translation>Санҷиши талабот барои модули &lt;i&gt;%1&lt;/i&gt; ба анҷом расид.</translation>
     </message>
     <message numerus="yes">
-      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="115"/>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="118"/>
       <source>Waiting for %n module(s).</source>
       <translation>
         <numerusform>Дар ҳоли интизори %n модул.</numerusform>
@@ -269,7 +288,7 @@
       </translation>
     </message>
     <message numerus="yes">
-      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="116"/>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="119"/>
       <source>(%n second(s))</source>
       <translation>
         <numerusform>(%n сония)</numerusform>
@@ -277,7 +296,7 @@
       </translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="121"/>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="124"/>
       <source>System-requirements checking is complete.</source>
       <translation>Санҷиши талаботи низомӣ ба анҷом расид.</translation>
     </message>
@@ -484,12 +503,12 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>CalamaresWindow</name>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="370"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="369"/>
       <source>%1 Setup Program</source>
       <translation>Барномаи танзимкунии %1</translation>
     </message>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="371"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="370"/>
       <source>%1 Installer</source>
       <translation>Насбкунандаи %1</translation>
     </message>
@@ -528,149 +547,149 @@ The installer will quit and all changes will be lost.</source>
       <translation>Шакл</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="137"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="139"/>
       <source>Select storage de&amp;vice:</source>
       <translation>Интихоби дастгоҳи &amp;захирагоҳ:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="138"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1014"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1062"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1159"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="140"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1029"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1077"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1174"/>
       <source>Current:</source>
       <translation>Танзимоти ҷорӣ:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="139"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="141"/>
       <source>After:</source>
       <translation>Баъд аз тағйир:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1723"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1732"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
       <translation>&lt;strong&gt;Қисмбандии диск ба таври дастӣ&lt;/strong&gt;&lt;br/&gt;Шумо худатон метавонед қисмҳои дискро эҷод кунед ё андозаи онҳоро иваз намоед.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="879"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="894"/>
       <source>Reuse %1 as home partition for %2.</source>
       <translation>Дубора истифода бурдани %1 ҳамчун диски асосӣ барои %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1015"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1030"/>
       <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;Қисми дискеро, ки мехоҳед хурдтар кунед, интихоб намоед, пас лавҳаи поёнро барои ивази андоза кашед&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1033"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1048"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
       <translation>%1 то андозаи %2MiB хурдтар мешавад ва қисми диски нав бо андозаи %3MiB барои %4 эҷод карда мешавад.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1091"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1106"/>
       <source>Boot loader location:</source>
       <translation>Ҷойгиршавии боркунандаи роҳандозӣ:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1150"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1165"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;Қисми дискеро барои насб интихоб намоед&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1209"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1226"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation>Қисми диски низомии EFI дар дохили низоми ҷорӣ ёфт нашуд. Лутфан, ба қафо гузаред ва барои танзим кардани %1 аз имкони қисмбандии диск ба таври дастӣ истифода баред.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1217"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1234"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>Қисми диски низомии EFI дар %1 барои оғоз кардани %2 истифода бурда мешавад.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1225"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1242"/>
       <source>EFI system partition:</source>
       <translation>Қисми диски низомии:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1385"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1402"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Чунин менамояд, ки ин захирагоҳ низоми амалкунандаро дар бар намегирад. Шумо чӣ кор кардан мехоҳед?&lt;br/&gt;Шумо метавонед пеш аз татбиқ кардани тағйирот ба дастгоҳи захирагоҳ интихоби худро аз назар гузаронед ва тасдиқ кунед.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1390"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1427"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1449"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1474"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1407"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1444"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1466"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1491"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
       <translation>&lt;strong&gt;Пок кардани диск&lt;/strong&gt;&lt;br/&gt;Ин амал ҳамаи иттилооти ҷориро дар дастгоҳи захирагоҳи интихобшуда &lt;font color="red"&gt;нест мекунад&lt;/font&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1394"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1423"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1445"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1470"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1411"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1440"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1462"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1487"/>
       <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
       <translation>&lt;strong&gt;Насбкунии паҳлуӣ&lt;/strong&gt;&lt;br/&gt;Насбкунанда барои %1 фазоро омода карда, қисми дискеро хурдтар мекунад.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1398"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1432"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1453"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1478"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1415"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1449"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1470"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1495"/>
       <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
       <translation>&lt;strong&gt;Ивазкунии қисми диск&lt;/strong&gt;&lt;br/&gt;Қисми дисекро бо %1 иваз мекунад.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1417"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1434"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Ин захирагоҳ %1-ро дар бар мегирад. Шумо чӣ кор кардан мехоҳед?&lt;br/&gt;Шумо метавонед пеш аз татбиқ кардани тағйирот ба дастгоҳи захирагоҳ интихоби худро аз назар гузаронед ва тасдиқ кунед.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1440"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1457"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Ин захирагоҳ аллакай низоми амалкунандаро дар бар мегирад. Шумо чӣ кор кардан мехоҳед?&lt;br/&gt;Шумо метавонед пеш аз татбиқ кардани тағйирот ба дастгоҳи захирагоҳ интихоби худро аз назар гузаронед ва тасдиқ кунед.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1465"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1482"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Ин захирагоҳ якчанд низоми амалкунандаро дар бар мегирад. Шумо чӣ кор кардан мехоҳед?&lt;br/&gt;Шумо метавонед пеш аз татбиқ кардани тағйирот ба дастгоҳи захирагоҳ интихоби худро аз назар гузаронед ва тасдиқ кунед.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1537"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1554"/>
       <source>This storage device already has an operating system on it, but the partition table &lt;strong&gt;%1&lt;/strong&gt; is different from the needed &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</source>
       <translation>Ин дастгоҳи захирагоҳ аллакай дорои низоми амалкунанда мебошад, аммо ҷадвали қисми диски &lt;strong&gt;%1&lt;/strong&gt; аз диски лозимии &lt;strong&gt;%2&lt;/strong&gt; фарқ мекунад.&lt;br/&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1560"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1577"/>
       <source>This storage device has one of its partitions &lt;strong&gt;mounted&lt;/strong&gt;.</source>
       <translation>Яке аз қисмҳои диски ин дастгоҳи захирагоҳ &lt;strong&gt;васлшуда&lt;/strong&gt; мебошад.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1565"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1582"/>
       <source>This storage device is a part of an &lt;strong&gt;inactive RAID&lt;/strong&gt; device.</source>
       <translation>Ин дастгоҳи захирагоҳ қисми дасгоҳи &lt;strong&gt;RAID-и ғайрифаъол&lt;/strong&gt; мебошад.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1692"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1701"/>
       <source>No Swap</source>
       <translation>Бе мубодила</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1701"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1710"/>
       <source>Reuse Swap</source>
       <translation>Истифодаи муҷаддади мубодила</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1704"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1713"/>
       <source>Swap (no Hibernate)</source>
       <translation>Мубодила (бе реҷаи Нигаҳдорӣ)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1707"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1716"/>
       <source>Swap (with Hibernate)</source>
       <translation>Мубодила (бо реҷаи Нигаҳдорӣ)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1710"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1719"/>
       <source>Swap to file</source>
       <translation>Мубодила ба файл</translation>
     </message>
@@ -758,27 +777,27 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>Config</name>
     <message>
-      <location filename="../src/modules/keyboard/Config.cpp" line="354"/>
+      <location filename="../src/modules/keyboard/Config.cpp" line="360"/>
       <source>Set keyboard model to %1.&lt;br/&gt;</source>
       <translation>Намунаи клавиатура ба %1 танзим карда мешавад.&lt;br/&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/Config.cpp" line="361"/>
+      <location filename="../src/modules/keyboard/Config.cpp" line="367"/>
       <source>Set keyboard layout to %1/%2.</source>
       <translation>Тарҳбандии клавиатура ба %1 %1/%2 танзим карда мешавад.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="353"/>
+      <location filename="../src/modules/locale/Config.cpp" line="359"/>
       <source>Set timezone to %1/%2.</source>
       <translation>Минтақаи вақт ба %1/%2 танзим карда мешавад.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="391"/>
+      <location filename="../src/modules/locale/Config.cpp" line="397"/>
       <source>The system language will be set to %1.</source>
       <translation>Забони низом ба %1 танзим карда мешавад.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="398"/>
+      <location filename="../src/modules/locale/Config.cpp" line="404"/>
       <source>The numbers and dates locale will be set to %1.</source>
       <translation>Низоми рақамҳо ва санаҳо ба %1 танзим карда мешавад.</translation>
     </message>
@@ -813,97 +832,97 @@ The installer will quit and all changes will be lost.</source>
       <translation>Насбкунии шабака. (Ғайрифаъол: Рӯйхати қуттиҳо гирифта намешавад. Пайвасти шабакаро тафтиш кунед)</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="55"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="56"/>
       <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
       <translation>Ин компютер ба талаботи камтарин барои танзимкунии %1 ҷавобгӯ намебошад.&lt;br/&gt;Танзимот идома дода намешавад. &lt;a href="#details"&gt;Тафсилот...&lt;/a&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="59"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="60"/>
       <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
       <translation>Ин компютер ба талаботи камтарин барои насбкунии %1 ҷавобгӯ намебошад.&lt;br/&gt;Насбкунӣ идома дода намешавад. &lt;a href="#details"&gt;Тафсилот...&lt;/a&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="66"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="67"/>
       <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
       <translation>Ин компютер ба баъзеи талаботи тавсияшуда барои танзимкунии %1 ҷавобгӯ намебошад.&lt;br/&gt;Танзимот идома дода мешавад, аммо баъзеи хусусиятҳо ғайрифаъол карда мешаванд.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="70"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="71"/>
       <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
       <translation>Ин компютер ба баъзеи талаботи тавсияшуда барои насбкунии %1 ҷавобгӯ намебошад.&lt;br/&gt;Насбкунӣ идома дода мешавад, аммо баъзеи хусусиятҳо ғайрифаъол карда мешаванд.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="80"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="81"/>
       <source>This program will ask you some questions and set up %2 on your computer.</source>
       <translation>Ин барнома аз Шумо якчанд савол мепурсад ва %2-ро дар компютери шумо танзим мекунад.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="250"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="269"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Хуш омадед ба барномаи танзимкунии Calamares барои %1&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="251"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="270"/>
       <source>&lt;h1&gt;Welcome to %1 setup&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Хуш омадед ба танзимкунии %1&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="255"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="274"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Хуш омадед ба насбкунандаи Calamares барои %1&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="256"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="275"/>
       <source>&lt;h1&gt;Welcome to the %1 installer&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Хуш омадед ба насбкунандаи %1&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="221"/>
+      <location filename="../src/modules/users/Config.cpp" line="236"/>
       <source>Your username is too long.</source>
       <translation>Номи корбари шумо хеле дароз аст.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="227"/>
+      <location filename="../src/modules/users/Config.cpp" line="252"/>
       <source>'%1' is not allowed as username.</source>
       <translation>'%1' ҳамчун номи корбар истифода намешавад.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="234"/>
+      <location filename="../src/modules/users/Config.cpp" line="242"/>
       <source>Your username must start with a lowercase letter or underscore.</source>
       <translation>Номи корбари шумо бояд бо ҳарфи хурд ё зерхат сар шавад.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="238"/>
+      <location filename="../src/modules/users/Config.cpp" line="246"/>
       <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
       <translation>Шумо метавонед танҳо ҳарфҳои хурд, рақамҳо, зерхат ва нимтиреро истифода баред.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="288"/>
+      <location filename="../src/modules/users/Config.cpp" line="301"/>
       <source>Your hostname is too short.</source>
       <translation>Номи мизбони шумо хеле кӯтоҳ аст.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="292"/>
+      <location filename="../src/modules/users/Config.cpp" line="305"/>
       <source>Your hostname is too long.</source>
       <translation>Номи мизбони шумо хеле дароз аст.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="298"/>
+      <location filename="../src/modules/users/Config.cpp" line="311"/>
       <source>'%1' is not allowed as hostname.</source>
       <translation>'%1' ҳамчун номи мизбон истифода намешавад.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="304"/>
+      <location filename="../src/modules/users/Config.cpp" line="316"/>
       <source>Only letters, numbers, underscore and hyphen are allowed.</source>
       <translation>Шумо метавонед танҳо ҳарфҳо, рақамҳо, зерхат ва нимтиреро истифода баред.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="573"/>
+      <location filename="../src/modules/users/Config.cpp" line="585"/>
       <source>Your passwords do not match!</source>
       <translation>Ниҳонвожаҳои шумо мувофиқат намекунанд!</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="587"/>
+      <location filename="../src/modules/users/Config.cpp" line="599"/>
       <source>OK!</source>
       <translation type="unfinished"/>
     </message>
@@ -959,11 +978,16 @@ The installer will quit and all changes will be lost.</source>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/Config.cpp" line="243"/>
+      <source>Packages</source>
+      <translation>Бастаҳо</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/packagechooser/Config.cpp" line="249"/>
       <source>Install option: &lt;strong&gt;%1&lt;/strong&gt;</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/Config.cpp" line="243"/>
+      <location filename="../src/modules/packagechooser/Config.cpp" line="249"/>
       <source>None</source>
       <translation type="unfinished"/>
     </message>
@@ -1422,6 +1446,16 @@ The installer will quit and all changes will be lost.</source>
       <source>FS Label:</source>
       <translation type="unfinished"/>
     </message>
+    <message>
+      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="259"/>
+      <source>Passphrase for existing partition</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="260"/>
+      <source>Partition %1 could not be decrypted with the given passphrase.&lt;br/&gt;&lt;br/&gt;Edit the partition again and give the correct passphraseor delete and create a new encrypted partition.</source>
+      <translation type="unfinished"/>
+    </message>
   </context>
   <context>
     <name>EncryptWidget</name>
@@ -1451,8 +1485,8 @@ The installer will quit and all changes will be lost.</source>
       <translation>Гузарвожаро тасдиқ намоед</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="134"/>
-      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="144"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="156"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="166"/>
       <source>Please enter the same passphrase in both boxes.</source>
       <translation>Лутфан, гузарвожаи ягонаро дар ҳар дуи сатр ворид намоед.</translation>
     </message>
@@ -1541,32 +1575,32 @@ The installer will quit and all changes will be lost.</source>
       <translation>&amp;Ҳозир аз нав оғоз карда шавад</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="72"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="75"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been set up on your computer.&lt;br/&gt;You may now start using your new system.</source>
       <translation>&lt;h1&gt;Ҳамааш тайёр.&lt;/h1&gt;&lt;br/&gt;%1 дар компютери шумо танзим карда шуд.&lt;br/&gt;Акнун шумо метавонед истифодаи низоми навро оғоз намоед.</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="76"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="79"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style="font-style:italic;"&gt;Done&lt;/span&gt; or close the setup program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Агар ин имконро интихоб кунед, низоми шумо пас аз зер кардани тугмаи &lt;span style="font-style:italic;"&gt;Анҷоми кор&lt;/span&gt; ё пӯшидани барномаи танзимкунӣ дарҳол аз нав оғоз карда мешавад.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="84"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="87"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
       <translation>&lt;h1&gt;Ҳамааш тайёр.&lt;/h1&gt;&lt;br/&gt;%1 дар компютери шумо насб карда шуд.&lt;br/&gt;Акнун шумо метавонед компютерро аз нав оғоз карда, ба низоми нав ворид шавед ё истифодаи муҳити зиндаи %2-ро идома диҳед.</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="89"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="92"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style="font-style:italic;"&gt;Done&lt;/span&gt; or close the installer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Агар ин имконро интихоб кунед, низоми шумо пас аз зер кардани тугмаи &lt;span style="font-style:italic;"&gt;Анҷоми кор&lt;/span&gt; ё пӯшидани насбкунанда дарҳол аз нав оғоз карда мешавад.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="102"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="105"/>
       <source>&lt;h1&gt;Setup Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been set up on your computer.&lt;br/&gt;The error message was: %2.</source>
       <translation>&lt;h1&gt;Танзимкунӣ қатъ шуд&lt;/h1&gt;&lt;br/&gt;%1 дар компютери шумо танзим карда нашуд.&lt;br/&gt;Паёми хато: %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="110"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="113"/>
       <source>&lt;h1&gt;Installation Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been installed on your computer.&lt;br/&gt;The error message was: %2.</source>
       <translation>&lt;h1&gt;Насбкунӣ қатъ шуд&lt;/h1&gt;&lt;br/&gt;%1 дар компютери шумо насб карда нашуд.&lt;br/&gt;Паёми хато: %2.</translation>
     </message>
@@ -1600,12 +1634,18 @@ The installer will quit and all changes will be lost.</source>
       <translation>Шаклбандии қисми диск бо ҳаҷми &lt;strong&gt;%3MiB&lt;/strong&gt; - &lt;strong&gt;%1&lt;/strong&gt; бо низоми файлии &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="61"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="63"/>
+      <source>%1 (%2)</source>
+      <comment>partition label %1 (device path %2)</comment>
+      <translation>%1 (%2)</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="65"/>
       <source>Formatting partition %1 with file system %2.</source>
       <translation>Шаклбандии қисми диски %1 бо низоми файлии %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="73"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="76"/>
       <source>The installer failed to format partition %1 on disk '%2'.</source>
       <translation>Насбкунанда қисми диски %1-ро дар диски '%2' шаклбандӣ карда натавонист.</translation>
     </message>
@@ -1613,12 +1653,12 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>GeneralRequirements</name>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="155"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="156"/>
       <source>has at least %1 GiB available drive space</source>
       <translation>ақаллан %1 ГБ фазои диск дастрас аст</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="157"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="158"/>
       <source>There is not enough drive space. At least %1 GiB is required.</source>
       <translation>Дар диск фазои кофӣ нест. Ақаллан %1 ГБ лозим аст.</translation>
     </message>
@@ -1658,27 +1698,27 @@ The installer will quit and all changes will be lost.</source>
       <translation>насбкунанда бо ҳуқуқҳои маъмурӣ (root) иҷро шуда истодааст.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="196"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="197"/>
       <source>The setup program is not running with administrator rights.</source>
       <translation>Барномаи насбкунӣ бе ҳуқуқҳои маъмурӣ иҷро шуда истодааст.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="197"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="198"/>
       <source>The installer is not running with administrator rights.</source>
       <translation>Насбкунанда бе ҳуқуқҳои маъмурӣ иҷро шуда истодааст.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="205"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="206"/>
       <source>has a screen large enough to show the whole installer</source>
       <translation>экран равзанаи насбкунандаро ба таври пурра нишон медиҳад</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="208"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="210"/>
       <source>The screen is too small to display the setup program.</source>
       <translation>Экран барои нишон додани барномаи насбкунӣ хеле хурд аст.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="209"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="211"/>
       <source>The screen is too small to display the installer.</source>
       <translation>Экран барои нишон додани насбкунанда хеле хурд аст.</translation>
     </message>
@@ -1978,35 +2018,35 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>LuksBootKeyFileJob</name>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="32"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="33"/>
       <source>Configuring LUKS key file.</source>
       <translation>Танзимкунии файли калиди LUKS.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="188"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="196"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="235"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="243"/>
       <source>No partitions are defined.</source>
       <translation>Ягон қисми диск муайян карда нашуд.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="231"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="238"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="246"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="279"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="286"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="300"/>
       <source>Encrypted rootfs setup error</source>
       <translation>Хатои танзими рамзгузории "rootfs"</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="232"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="280"/>
       <source>Root partition %1 is LUKS but no passphrase has been set.</source>
       <translation>Қисми диски реша (root)-и %1 дар LUKS асос меёбад, вале гузарвожа танзим нашудааст.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="239"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="287"/>
       <source>Could not create LUKS key file for root partition %1.</source>
       <translation>Файли калидии LUKS барои қисми диски реша (root)-и %1 эҷод карда нашуд.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="247"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="301"/>
       <source>Could not configure LUKS key file on partition %1.</source>
       <translation>Файли калидии LUKS дар қисми диски %1 танзим карда нашуд.</translation>
     </message>
@@ -2032,12 +2072,12 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>Map</name>
     <message>
-      <location filename="../src/modules/localeq/Map.qml" line="243"/>
+      <location filename="../src/modules/localeq/Map.qml" line="237"/>
       <source>Timezone: %1</source>
       <translation>Минтақаи вақт: %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/localeq/Map.qml" line="264"/>
+      <location filename="../src/modules/localeq/Map.qml" line="258"/>
       <source>Please select your preferred location on the map so the installer can suggest the locale
             and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
             to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</source>
@@ -2049,99 +2089,111 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>NetInstallViewStep</name>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="49"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="50"/>
       <source>Package selection</source>
       <translation>Интихоби бастаҳо</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="50"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="51"/>
       <source>Office software</source>
       <translation>Нармафзори идорӣ</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="51"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="52"/>
       <source>Office package</source>
       <translation>Бастаҳои идорӣ</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="52"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="53"/>
       <source>Browser software</source>
       <translation>Нармафзори браузерӣ</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="53"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="54"/>
       <source>Browser package</source>
       <translation>Бастаҳои браузерӣ</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="54"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="55"/>
       <source>Web browser</source>
       <translation>Браузери сомона</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="55"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="56"/>
       <source>Kernel</source>
+      <comment>label for netinstall module, Linux kernel</comment>
       <translation>Ҳаста</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="56"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="57"/>
       <source>Services</source>
+      <comment>label for netinstall module, system services</comment>
       <translation>Хидматҳо</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="57"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="58"/>
       <source>Login</source>
+      <comment>label for netinstall module, choose login manager</comment>
       <translation>Воридшавӣ</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="58"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="59"/>
       <source>Desktop</source>
+      <comment>label for netinstall module, choose desktop environment</comment>
       <translation>Мизи корӣ</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="59"/>
-      <source>Applications</source>
-      <translation>Барномаҳо</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="60"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="61"/>
       <source>Communication</source>
+      <comment>label for netinstall module</comment>
       <translation>Воситаҳои алоқа</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="61"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="62"/>
       <source>Development</source>
+      <comment>label for netinstall module</comment>
       <translation>Барномарезӣ</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="62"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="63"/>
       <source>Office</source>
+      <comment>label for netinstall module</comment>
       <translation>Идора</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="63"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="64"/>
       <source>Multimedia</source>
+      <comment>label for netinstall module</comment>
       <translation>Мултимедиа</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="64"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="65"/>
       <source>Internet</source>
+      <comment>label for netinstall module</comment>
       <translation>Интернет</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="65"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="66"/>
       <source>Theming</source>
+      <comment>label for netinstall module</comment>
       <translation>Мавзӯъҳо</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="66"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="67"/>
       <source>Gaming</source>
+      <comment>label for netinstall module</comment>
       <translation>Бозиҳо</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="67"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="68"/>
       <source>Utilities</source>
+      <comment>label for netinstall module</comment>
       <translation>Барномаҳои муфид</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="60"/>
+      <source>Applications</source>
+      <translation>Барномаҳо</translation>
     </message>
   </context>
   <context>
@@ -2191,24 +2243,24 @@ The installer will quit and all changes will be lost.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/localeq/Offline.qml" line="98"/>
-      <location filename="../src/modules/localeq/Offline.qml" line="173"/>
-      <location filename="../src/modules/localeq/Offline.qml" line="217"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="99"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="175"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="219"/>
       <source>Timezone: %1</source>
       <translation>Минтақаи вақт: %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/localeq/Offline.qml" line="115"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="116"/>
       <source>Select your preferred Zone within your Region.</source>
       <translation>Шаҳри пазируфтаи худро дар ҳудуди минтақаи худ интихоб намоед.</translation>
     </message>
     <message>
-      <location filename="../src/modules/localeq/Offline.qml" line="186"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="188"/>
       <source>Zones</source>
       <translation>Шаҳрҳо</translation>
     </message>
     <message>
-      <location filename="../src/modules/localeq/Offline.qml" line="233"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="235"/>
       <source>You can fine-tune Language and Locale settings below.</source>
       <translation>Шумо метавонед танзимоти забон ва маҳаллисозиро дар зер дуруст кунед.</translation>
     </message>
@@ -2483,7 +2535,7 @@ The installer will quit and all changes will be lost.</source>
       <translation>Хатои номаълум</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="818"/>
+      <location filename="../src/modules/users/Config.cpp" line="830"/>
       <source>Password is empty</source>
       <translation>Ниҳонвожаро ворид накардед</translation>
     </message>
@@ -2519,22 +2571,6 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="26"/>
       <source>Please pick a product from the list. The selected product will be installed.</source>
       <translation>Лутфан, маҳсулеро аз рӯйхат интихоб намоед. Маҳсули интихобшуда насб карда мешавад.</translation>
-    </message>
-  </context>
-  <context>
-    <name>PackageChooserQmlViewStep</name>
-    <message>
-      <location filename="../src/modules/packagechooserq/PackageChooserQmlViewStep.cpp" line="32"/>
-      <source>Packages</source>
-      <translation>Бастаҳо</translation>
-    </message>
-  </context>
-  <context>
-    <name>PackageChooserViewStep</name>
-    <message>
-      <location filename="../src/modules/packagechooser/PackageChooserViewStep.cpp" line="51"/>
-      <source>Packages</source>
-      <translation>Бастаҳо</translation>
     </message>
   </context>
   <context>
@@ -3065,7 +3101,7 @@ Output:
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../src/libcalamares/locale/Translation.cpp" line="74"/>
+      <location filename="../src/libcalamares/locale/Translation.cpp" line="145"/>
       <source>%1 (%2)</source>
       <translation>%1 (%2)</translation>
     </message>
@@ -3391,12 +3427,12 @@ Output:
   <context>
     <name>ResultsListDialog</name>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="137"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="138"/>
       <source>For best results, please ensure that this computer:</source>
       <translation>Барои натиҷаҳои беҳтарин, мутмаин шавед, ки дар ин компютер:</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="138"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="139"/>
       <source>System requirements</source>
       <translation>Талаботи низом</translation>
     </message>
@@ -3824,22 +3860,22 @@ Output:
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href="placeholder"&gt;&lt;span style=" text-decoration: underline; color:#2980b9;"&gt;Барои гирифтани маълумоти муфассал оид ба изҳори назари корбар, дар ин ҷо зер кунед&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingPage.cpp" line="86"/>
+      <location filename="../src/modules/tracking/TrackingPage.cpp" line="95"/>
       <source>Tracking helps %1 to see how often it is installed, what hardware it is installed on and which applications are used. To see what will be sent, please click the help icon next to each area.</source>
       <translation>Пайгирӣ ба %1 барои дидани шумораи насбҳо, намудҳои сахтафзорҳо ва маҷмӯаи барномаҳои истифодашуда кумак мерасонад. Барои дидани маълумоте, ки фиристода мешавад нишонаи кумакро дар назди ҳар як мавод зер кунед.</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingPage.cpp" line="91"/>
+      <location filename="../src/modules/tracking/TrackingPage.cpp" line="100"/>
       <source>By selecting this you will send information about your installation and hardware. This information will only be sent &lt;b&gt;once&lt;/b&gt; after the installation finishes.</source>
       <translation>Агар ин имконро интихоб кунед, шумо маълумотро дар бораи насбкунӣ ва сахтафзори худ мефиристонед. Ин маълумот &lt;b&gt;танҳо як маротиба&lt;/b&gt; баъд аз анҷоми насбкунӣ фиристода мешавад.</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingPage.cpp" line="94"/>
+      <location filename="../src/modules/tracking/TrackingPage.cpp" line="103"/>
       <source>By selecting this you will periodically send information about your &lt;b&gt;machine&lt;/b&gt; installation, hardware and applications, to %1.</source>
       <translation>Агар ин имконро интихоб кунед, шумо маълумотро ба таври мунтазам дар бораи насбкунӣ, сахтафзор ва барномаҳои &lt;b&gt;компютери&lt;/b&gt; худ ба %1 мефиристонед.</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingPage.cpp" line="98"/>
+      <location filename="../src/modules/tracking/TrackingPage.cpp" line="107"/>
       <source>By selecting this you will regularly send information about your &lt;b&gt;user&lt;/b&gt; installation, hardware, applications and application usage patterns, to %1.</source>
       <translation>Агар ин имконро интихоб кунед, шумо маълумотро ба таври мунтазам дар бораи насбкунӣ, сахтафзор ва барномаҳои &lt;b&gt;корбари&lt;/b&gt; худ ба %1 мефиристонед.</translation>
     </message>
@@ -4027,43 +4063,18 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="216"/>
-      <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Хуш омадед ба барномаи танзимкунии Calamares барои %1.&lt;/h1&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="217"/>
-      <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Хуш омадед ба танзимкунии %1.&lt;/h1&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="222"/>
-      <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Хуш омадед ба насбкунандаи Calamares барои %1.&lt;/h1&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="223"/>
-      <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Хуш омадед ба насбкунандаи %1.&lt;/h1&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="228"/>
       <source>%1 support</source>
       <translation>Дастгирии %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="235"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="223"/>
       <source>About %1 setup</source>
       <translation>Дар бораи танзими %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="235"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="223"/>
       <source>About %1 installer</source>
       <translation>Дар бораи насбкунандаи %1</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="238"/>
-      <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;барои %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Ҳуқуқи муаллиф 2014-2017 Тео Марҷавак &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Ҳуқуқи муаллиф 2017-2020 Адриан де Грут &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Ташаккури зиёд ба &lt;a href="https://calamares.io/team/"&gt;дастаи Calamares&lt;/a&gt; ва &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;гурӯҳи тарҷумонони Calamares&lt;/a&gt; (тарҷумаи тоҷикӣ аз ҷониби Виктор Ибрагимов &amp;lt;victor.ibragimov@gmail.com&amp;gt;).&lt;br/&gt;&lt;br/&gt;Барномарезии насбкунандаи &lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; аз тарафи &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software дастгирӣ карда мешавад.</translation>
     </message>
   </context>
   <context>
@@ -4129,33 +4140,7 @@ Output:
   <context>
     <name>about</name>
     <message>
-      <location filename="../src/modules/welcomeq/about.qml" line="47"/>
-      <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;
-                        &lt;strong&gt;%2&lt;br/&gt;
-                        for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;
-                        Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;
-                        Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;
-                        Thanks to &lt;a href='https://calamares.io/team/'&gt;the Calamares team&lt;/a&gt;
-                        and the &lt;a href='https://www.transifex.com/calamares/calamares/'&gt;Calamares
-                        translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;
-                        &lt;a href='https://calamares.io/'&gt;Calamares&lt;/a&gt;
-                        development is sponsored by &lt;br/&gt;
-                        &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; -
-                        Liberating Software.</source>
-      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;
-                        &lt;strong&gt;%2&lt;br/&gt;
-                        барои %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;
-                        Ҳуқуқи муаллиф 2014-2017 Тео Марҷавак &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;
-                        Ҳуқуқи муаллиф 2017-2020 Адриан де Грут &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;
-                        Ташаккури зиёд ба &lt;a href='https://calamares.io/team/'&gt;дастаи Calamares&lt;/a&gt; 
-                        ва &lt;a href='https://www.transifex.com/calamares/calamares/'&gt;гурӯҳи тарҷумонони Calamares&lt;/a&gt; (тарҷумаи тоҷикӣ аз ҷониби Виктор Ибрагимов &amp;lt;victor.ibragimov@gmail.com&amp;gt;).&lt;br/&gt;&lt;br/&gt;
-                        Барномарезии насбкунандаи &lt;a href='https://calamares.io/'&gt;Calamares&lt;/a&gt; 
-                        аз тарафи &lt;br/&gt;
-                        &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; - 
-                        Liberating Software дастгирӣ карда мешавад.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcomeq/about.qml" line="96"/>
+      <location filename="../src/modules/welcomeq/about.qml" line="79"/>
       <source>Back</source>
       <translation>Ба қафо</translation>
     </message>
@@ -4258,17 +4243,17 @@ Output:
       <translation>Намунаи клавиатура:</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="254"/>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="256"/>
       <source>Layouts</source>
       <translation>Тарҳбандиҳо</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="263"/>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="265"/>
       <source>Type here to test your keyboard</source>
       <translation>Барои санҷидани клавиатура ҳарфҳоро дар ин сатр ворид намоед</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="179"/>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="180"/>
       <source>Variants</source>
       <translation>Имконот</translation>
     </message>
@@ -4416,102 +4401,102 @@ Output:
       <translation>Агар зиёда аз як корбар ин компютерро истифода барад, шумо метавонед баъд аз насбкунӣ якчанд ҳисобро эҷод намоед.</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="128"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="129"/>
       <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
       <translation>Шумо метавонед танҳо ҳарфҳои хурд, рақамҳо, зерхат ва нимтиреро истифода баред.</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="136"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="138"/>
       <source>root is not allowed as username.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="145"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="147"/>
       <source>What is the name of this computer?</source>
       <translation>Номи ин компютер чист?</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="151"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="153"/>
       <source>Computer Name</source>
       <translation>Номи компютери шумо</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="178"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="180"/>
       <source>This name will be used if you make the computer visible to others on a network.</source>
       <translation>Ин ном истифода мешавад, агар шумо компютери худро барои дигарон дар шабака намоён кунед.</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="198"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="202"/>
       <source>localhost is not allowed as hostname.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="207"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="211"/>
       <source>Choose a password to keep your account safe.</source>
       <translation>Барои эмин нигоҳ доштани ҳисоби худ ниҳонвожаеро интихоб намоед.</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="217"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="221"/>
       <source>Password</source>
       <translation>Ниҳонвожаро ворид намоед</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="234"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="238"/>
       <source>Repeat Password</source>
       <translation>Ниҳонвожаро тасдиқ намоед</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="261"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="265"/>
       <source>Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.</source>
       <translation>Ниҳонвожаи ягонаро ду маротиба ворид намоед, то ки он барои хатоҳои имлоӣ тафтиш карда шавад. Ниҳонвожаи хуб бояд дар омезиш калимаҳо, рақамҳо ва аломатҳои китобатиро дар бар гирад, ақаллан аз ҳашт аломат иборат шавад ва мунтазам иваз карда шавад.</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="406"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="410"/>
       <source>Validate passwords quality</source>
       <translation>Санҷиши сифати ниҳонвожаҳо</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="416"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="420"/>
       <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password.</source>
       <translation>Агар шумо ин имконро интихоб кунед, қувваи ниҳонвожа тафтиш карда мешавад ва шумо ниҳонвожаи заифро истифода карда наметавонед.</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="398"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="402"/>
       <source>Log in automatically without asking for the password</source>
       <translation>Ба таври худкор бе дархости ниҳонвожа ворид карда шавад</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="190"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="193"/>
       <source>Only letters, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="293"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="297"/>
       <source>Reuse user password as root password</source>
       <translation>Ниҳонвожаи корбар ҳам барои ниҳонвожаи root истифода карда шавад</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="301"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="305"/>
       <source>Use the same password for the administrator account.</source>
       <translation>Ниҳонвожаи ягона барои ҳисоби маъмурӣ истифода бурда шавад.</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="314"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="318"/>
       <source>Choose a root password to keep your account safe.</source>
       <translation>Барои эмин нигоҳ доштани ҳисоби худ ниҳонвожаи root-ро интихоб намоед.</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="324"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="328"/>
       <source>Root Password</source>
       <translation>Ниҳонвожаи root</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="342"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="346"/>
       <source>Repeat Root Password</source>
       <translation>Ниҳонвожаи root-ро тасдиқ намоед</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="368"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="372"/>
       <source>Enter the same password twice, so that it can be checked for typing errors.</source>
       <translation>Ниҳонвожаи ягонаро ду маротиба ворид намоед, то ки он барои хатоҳои имлоӣ тафтиш карда шавад.</translation>
     </message>

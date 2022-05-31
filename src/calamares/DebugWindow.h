@@ -49,11 +49,13 @@ private:
     std::unique_ptr< VariantModel > m_module_model;
 };
 
-/** @brief Manager for the (single) DebugWindow
+/** @brief Manager for meta-windows (Debug and About windows)
  *
  * Only one DebugWindow is expected to be around. This class manages
  * (exactly one) DebugWindow and can create and destroy it as needed.
  * It is available to the Calamares panels as object `DebugWindow`.
+ *
+ * The about() method shows a modal pop-up about Calamares.
  */
 class DebugWindowManager : public QObject
 {
@@ -78,6 +80,8 @@ public Q_SLOTS:
     bool visible() const { return m_visible; }
     void show( bool visible );
     void toggle();
+
+    void about();
 
 signals:
     void visibleChanged( bool visible );

@@ -2,6 +2,25 @@
 <!DOCTYPE TS>
 <TS language="fi_FI" version="2.1">
   <context>
+    <name>AboutData</name>
+    <message>
+      <location filename="../src/libcalamares/CalamaresAbout.cpp" line="17"/>
+      <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt; for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/libcalamares/CalamaresAbout.cpp" line="20"/>
+      <source>Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/libcalamares/CalamaresAbout.cpp" line="38"/>
+      <source>Copyright %1-%2 %3 &amp;lt;%4&amp;gt;&lt;br/&gt;</source>
+      <extracomment>Copyright year-year Name &lt;email-address&gt;</extracomment>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
     <name>AutoMountManagementJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/AutoMountManagementJob.cpp" line="22"/>
@@ -137,7 +156,7 @@
       <translation>Widgettipuu</translation>
     </message>
     <message>
-      <location filename="../src/calamares/DebugWindow.cpp" line="221"/>
+      <location filename="../src/calamares/DebugWindow.cpp" line="239"/>
       <source>Debug information</source>
       <translation>Vianetsinnän tiedot</translation>
     </message>
@@ -171,7 +190,7 @@
   <context>
     <name>Calamares::JobThread</name>
     <message>
-      <location filename="../src/libcalamares/JobQueue.cpp" line="202"/>
+      <location filename="../src/libcalamares/JobQueue.cpp" line="203"/>
       <source>Done</source>
       <translation>Valmis</translation>
     </message>
@@ -261,7 +280,7 @@
       <translation>Moduulin vaatimusten tarkistaminen &lt;i&gt;%1&lt;/i&gt; on valmis.</translation>
     </message>
     <message numerus="yes">
-      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="115"/>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="118"/>
       <source>Waiting for %n module(s).</source>
       <translation>
         <numerusform>Odotetaan %n moduulia.</numerusform>
@@ -269,7 +288,7 @@
       </translation>
     </message>
     <message numerus="yes">
-      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="116"/>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="119"/>
       <source>(%n second(s))</source>
       <translation>
         <numerusform>(%n sekunti)</numerusform>
@@ -277,7 +296,7 @@
       </translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="121"/>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="124"/>
       <source>System-requirements checking is complete.</source>
       <translation>Järjestelmän vaatimusten tarkistus on valmis.</translation>
     </message>
@@ -488,12 +507,12 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
   <context>
     <name>CalamaresWindow</name>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="370"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="369"/>
       <source>%1 Setup Program</source>
       <translation>%1-asennusohjelma</translation>
     </message>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="371"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="370"/>
       <source>%1 Installer</source>
       <translation>%1-asentaja</translation>
     </message>
@@ -532,149 +551,149 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
       <translation>Lomake</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="137"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="139"/>
       <source>Select storage de&amp;vice:</source>
       <translation>Valitse kiintole&amp;vy:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="138"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1014"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1062"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1159"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="140"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1029"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1077"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1174"/>
       <source>Current:</source>
       <translation>Nykyinen:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="139"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="141"/>
       <source>After:</source>
       <translation>Jälkeen:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1723"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1732"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
       <translation>&lt;strong&gt;Manuaalinen osiointi &lt;/strong&gt;&lt;br/&gt;Voit luoda tai muuttaa osioita itse.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="879"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="894"/>
       <source>Reuse %1 as home partition for %2.</source>
       <translation>Käytä %1 uudelleen kotiosiona kohteelle %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1015"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1030"/>
       <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;Valitse supistettava osio ja säädä alarivillä kokoa vetämällä&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1033"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1048"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
       <translation>%1 supistetaan %2Mib:iin ja uusi %3MiB-osio luodaan kohteelle %4.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1091"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1106"/>
       <source>Boot loader location:</source>
       <translation>Käynnistyslataajan sijainti:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1150"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1165"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;Valitse asennettava osio&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1209"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1226"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation>EFI-järjestelmäosiota ei löydy tästä järjestelmästä. Siirry takaisin ja käytä manuaalista osiointia, kun haluat määrittää %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1217"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1234"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>EFI-järjestelmäosiota %1 käytetään %2 käynnistämiseen.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1225"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1242"/>
       <source>EFI system partition:</source>
       <translation>EFI-järjestelmäosio:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1385"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1402"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Tällä massamuistilla ei näytä olevan käyttöjärjestelmää. Mitä haluat tehdä?&lt;br/&gt;Voit tarkistaa ja vahvistaa valintasi ennen kuin massamuistille tehdään muutoksia.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1390"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1427"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1449"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1474"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1407"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1444"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1466"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1491"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
       <translation>&lt;strong&gt;Tyhjennä asema&lt;/strong&gt;&lt;br/&gt;Tämä &lt;font color="red"&gt;poistaa&lt;/font&gt; kaikki tiedot valitusta massamuistista.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1394"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1423"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1445"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1470"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1411"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1440"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1462"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1487"/>
       <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
       <translation>&lt;strong&gt;Asenna nykyisen rinnalle&lt;/strong&gt;&lt;br/&gt;Asennusohjelma supistaa osiota tehdäkseen tilaa kohteelle %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1398"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1432"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1453"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1478"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1415"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1449"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1470"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1495"/>
       <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
       <translation>&lt;strong&gt;Osion korvaaminen&lt;/strong&gt;&lt;br/&gt;korvaa osion %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1417"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1434"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Tässä massamuistissa on %1 dataa. Mitä haluat tehdä?&lt;br/&gt;Voit tarkistaa ja vahvistaa valintasi ennen kuin massamuistiin tehdään muutoksia.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1440"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1457"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Tämä massamuisti sisältää jo käyttöjärjestelmän. Mitä haluaisit tehdä?&lt;br/&gt;Voit tarkistaa ja vahvistaa valintasi, ennen kuin massamuistiin tehdään muutoksia.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1465"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1482"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Tämä massamuisti sisältää jo useita käyttöjärjestelmiä. Mitä haluaisit tehdä?&lt;br/&gt;Voit tarkistaa ja vahvistaa valintasi, ennen kuin massamuistiin tehdään muutoksia.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1537"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1554"/>
       <source>This storage device already has an operating system on it, but the partition table &lt;strong&gt;%1&lt;/strong&gt; is different from the needed &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</source>
       <translation>Tällä massamuistilla on jo käyttöjärjestelmä, mutta osiotaulukko &lt;strong&gt;%1&lt;/strong&gt; on erilainen kuin tarvittava &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1560"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1577"/>
       <source>This storage device has one of its partitions &lt;strong&gt;mounted&lt;/strong&gt;.</source>
       <translation>Tähän massamuistiin on &lt;strong&gt;liitetty&lt;/strong&gt; yksi osioista.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1565"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1582"/>
       <source>This storage device is a part of an &lt;strong&gt;inactive RAID&lt;/strong&gt; device.</source>
       <translation>Tämä massamuisti on osa &lt;strong&gt;passiivista RAID&lt;/strong&gt; kokoonpanoa.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1692"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1701"/>
       <source>No Swap</source>
       <translation>Swap ei</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1701"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1710"/>
       <source>Reuse Swap</source>
       <translation>Swap käytä uudellen</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1704"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1713"/>
       <source>Swap (no Hibernate)</source>
       <translation>Swap (ei lepotilaa)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1707"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1716"/>
       <source>Swap (with Hibernate)</source>
       <translation>Swap (lepotilan kanssa)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1710"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1719"/>
       <source>Swap to file</source>
       <translation>Swap tiedostona</translation>
     </message>
@@ -762,27 +781,27 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
   <context>
     <name>Config</name>
     <message>
-      <location filename="../src/modules/keyboard/Config.cpp" line="354"/>
+      <location filename="../src/modules/keyboard/Config.cpp" line="360"/>
       <source>Set keyboard model to %1.&lt;br/&gt;</source>
       <translation>Aseta näppäimiston malli %1.&lt;br/&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/Config.cpp" line="361"/>
+      <location filename="../src/modules/keyboard/Config.cpp" line="367"/>
       <source>Set keyboard layout to %1/%2.</source>
       <translation>Aseta näppäimiston asetteluksi %1/%2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="353"/>
+      <location filename="../src/modules/locale/Config.cpp" line="359"/>
       <source>Set timezone to %1/%2.</source>
       <translation>Aseta aikavyöhykkeeksi %1/%2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="391"/>
+      <location filename="../src/modules/locale/Config.cpp" line="397"/>
       <source>The system language will be set to %1.</source>
       <translation>Järjestelmän kielen asetuksena on %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="398"/>
+      <location filename="../src/modules/locale/Config.cpp" line="404"/>
       <source>The numbers and dates locale will be set to %1.</source>
       <translation>Numerot ja päivämäärät, paikallinen asetus on %1.</translation>
     </message>
@@ -817,98 +836,98 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
       <translation>Verkkoasennus. (Ei käytössä: Pakettiluetteloita ei voi hakea, tarkista verkkoyhteys)</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="55"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="56"/>
       <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
       <translation>Tämä tietokone ei täytä vähimmäisvaatimuksia,  %1.&lt;br/&gt;Asennusta ei voi jatkaa. &lt;a href="#details"&gt;Yksityiskohdat...&lt;/a&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="59"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="60"/>
       <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
       <translation>Tämä tietokone ei täytä asennuksen vähimmäisvaatimuksia,  %1.&lt;br/&gt;Asennus ei voi jatkua. &lt;a href="#details"&gt;Yksityiskohdat...&lt;/a&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="66"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="67"/>
       <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
       <translation>Tämä tietokone ei täytä joitakin suositeltuja vaatimuksia %1.&lt;br/&gt;Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="70"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="71"/>
       <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
       <translation>Tämä tietokone ei täytä joitakin suositeltuja vaatimuksia %1.
 Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="80"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="81"/>
       <source>This program will ask you some questions and set up %2 on your computer.</source>
       <translation>Tämä ohjelma kysyy joitakin kysymyksiä liittyen järjestelmään %2 ja asentaa sen tietokoneeseen.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="250"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="269"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Tervetuloa Calamares-asennusohjelmaan %1&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="251"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="270"/>
       <source>&lt;h1&gt;Welcome to %1 setup&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Tervetuloa %1 asennukseen&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="255"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="274"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Tervetuloa Calamares-asentajaan %1&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="256"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="275"/>
       <source>&lt;h1&gt;Welcome to the %1 installer&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Tervetuloa %1-asentajaan&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="221"/>
+      <location filename="../src/modules/users/Config.cpp" line="236"/>
       <source>Your username is too long.</source>
       <translation>Käyttäjänimesi on liian pitkä.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="227"/>
+      <location filename="../src/modules/users/Config.cpp" line="252"/>
       <source>'%1' is not allowed as username.</source>
       <translation>Käyttäjänimessä '%1' ei ole sallittu.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="234"/>
+      <location filename="../src/modules/users/Config.cpp" line="242"/>
       <source>Your username must start with a lowercase letter or underscore.</source>
       <translation>Sinun käyttäjänimi täytyy alkaa pienellä kirjaimella tai alaviivalla.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="238"/>
+      <location filename="../src/modules/users/Config.cpp" line="246"/>
       <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
       <translation>Vain pienet kirjaimet, numerot, alaviivat ja tavuviivat ovat sallittuja.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="288"/>
+      <location filename="../src/modules/users/Config.cpp" line="301"/>
       <source>Your hostname is too short.</source>
       <translation>Koneen nimi on liian lyhyt.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="292"/>
+      <location filename="../src/modules/users/Config.cpp" line="305"/>
       <source>Your hostname is too long.</source>
       <translation>Koneen nimi on liian pitkä.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="298"/>
+      <location filename="../src/modules/users/Config.cpp" line="311"/>
       <source>'%1' is not allowed as hostname.</source>
       <translation>Koneen nimessä '%1' ei ole sallittu.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="304"/>
+      <location filename="../src/modules/users/Config.cpp" line="316"/>
       <source>Only letters, numbers, underscore and hyphen are allowed.</source>
       <translation>Vain kirjaimet, numerot, alaviivat ja tavuviivat ovat sallittuja.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="573"/>
+      <location filename="../src/modules/users/Config.cpp" line="585"/>
       <source>Your passwords do not match!</source>
       <translation>Salasanasi eivät täsmää!</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="587"/>
+      <location filename="../src/modules/users/Config.cpp" line="599"/>
       <source>OK!</source>
       <translation>OK!</translation>
     </message>
@@ -964,11 +983,16 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
     </message>
     <message>
       <location filename="../src/modules/packagechooser/Config.cpp" line="243"/>
+      <source>Packages</source>
+      <translation>Paketit</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/packagechooser/Config.cpp" line="249"/>
       <source>Install option: &lt;strong&gt;%1&lt;/strong&gt;</source>
       <translation>Asennuksen vaihtoehto: &lt;strong&gt;%1&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/Config.cpp" line="243"/>
+      <location filename="../src/modules/packagechooser/Config.cpp" line="249"/>
       <source>None</source>
       <translation>Ei käytössä</translation>
     </message>
@@ -1427,6 +1451,16 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
       <source>FS Label:</source>
       <translation>Tiedostojärjestelmän nimike:</translation>
     </message>
+    <message>
+      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="259"/>
+      <source>Passphrase for existing partition</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="260"/>
+      <source>Partition %1 could not be decrypted with the given passphrase.&lt;br/&gt;&lt;br/&gt;Edit the partition again and give the correct passphraseor delete and create a new encrypted partition.</source>
+      <translation type="unfinished"/>
+    </message>
   </context>
   <context>
     <name>EncryptWidget</name>
@@ -1456,8 +1490,8 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
       <translation>Vahvista salasana</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="134"/>
-      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="144"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="156"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="166"/>
       <source>Please enter the same passphrase in both boxes.</source>
       <translation>Anna sama salasana molempiin kenttiin.</translation>
     </message>
@@ -1546,32 +1580,32 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
       <translation>&amp;Käynnistä uudelleen</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="72"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="75"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been set up on your computer.&lt;br/&gt;You may now start using your new system.</source>
       <translation>&lt;h1&gt;Valmista.&lt;/h1&gt;&lt;br/&gt;%1 on määritetty tietokoneellesi.&lt;br/&gt;Voit nyt alkaa käyttää uutta järjestelmääsi.</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="76"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="79"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style="font-style:italic;"&gt;Done&lt;/span&gt; or close the setup program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kun tämä valintaruutu on valittu, järjestelmä käynnistyy heti, kun napsautat  &lt;span style="font-style:italic;"&gt;Valmis&lt;/span&gt; -painiketta tai suljet asennusohjelman.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="84"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="87"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
       <translation>&lt;h1&gt;Kaikki tehty.&lt;/h1&gt;&lt;br/&gt;%1 on asennettu tietokoneellesi.&lt;br/&gt;Voit käynnistää tietokoneen nyt uuteen järjestelmääsi, tai voit jatkaa käyttöjärjestelmän %2 live-ympäristön käyttöä.</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="89"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="92"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style="font-style:italic;"&gt;Done&lt;/span&gt; or close the installer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kun tämä valintaruutu on valittuna, järjestelmä käynnistyy heti, kun napsautat &lt;span style="font-style:italic;"&gt;Valmis&lt;/span&gt; tai suljet asentimen.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="102"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="105"/>
       <source>&lt;h1&gt;Setup Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been set up on your computer.&lt;br/&gt;The error message was: %2.</source>
       <translation>&lt;h1&gt;Asennus epäonnistui&lt;/h1&gt;&lt;br/&gt;%1 ei ole määritetty tietokoneellesi.&lt;br/&gt; Virhesanoma oli: %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="110"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="113"/>
       <source>&lt;h1&gt;Installation Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been installed on your computer.&lt;br/&gt;The error message was: %2.</source>
       <translation>&lt;h1&gt;Asennus epäonnistui &lt;/h1&gt;&lt;br/&gt;%1 ei ole asennettu tietokoneeseesi.&lt;br/&gt;Virhesanoma oli: %2.</translation>
     </message>
@@ -1605,12 +1639,18 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
       <translation>Alustus &lt;strong&gt;%3MiB&lt;/strong&gt; osio &lt;strong&gt;%1&lt;/strong&gt; tiedostojärjestelmällä &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="61"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="63"/>
+      <source>%1 (%2)</source>
+      <comment>partition label %1 (device path %2)</comment>
+      <translation>%1 (%2)</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="65"/>
       <source>Formatting partition %1 with file system %2.</source>
       <translation>Alustaa osiota %1 tiedostojärjestelmällä %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="73"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="76"/>
       <source>The installer failed to format partition %1 on disk '%2'.</source>
       <translation>Aseman '%2' osion %1 alustus epäonnistui.</translation>
     </message>
@@ -1618,12 +1658,12 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
   <context>
     <name>GeneralRequirements</name>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="155"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="156"/>
       <source>has at least %1 GiB available drive space</source>
       <translation>vähintään %1 GiB vapaata levytilaa</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="157"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="158"/>
       <source>There is not enough drive space. At least %1 GiB is required.</source>
       <translation>Levytilaa ei ole riittävästi. Vähintään %1 GiB tarvitaan.</translation>
     </message>
@@ -1663,27 +1703,27 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
       <translation>ajaa asennusohjelmaa järjestelmänvalvojana (root)</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="196"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="197"/>
       <source>The setup program is not running with administrator rights.</source>
       <translation>Asennusohjelma ei ole käynnissä järjestelmänvalvojan oikeuksin.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="197"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="198"/>
       <source>The installer is not running with administrator rights.</source>
       <translation>Asennusohjelma ei ole käynnissä järjestelmänvalvojan oikeuksin.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="205"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="206"/>
       <source>has a screen large enough to show the whole installer</source>
       <translation>näytöllä on riittävän suuri tarkkuus asentajalle</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="208"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="210"/>
       <source>The screen is too small to display the setup program.</source>
       <translation>Näyttö on liian pieni, jotta asennus -ohjelma voidaan näyttää.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="209"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="211"/>
       <source>The screen is too small to display the installer.</source>
       <translation>Näyttö on liian pieni asentajan näyttämiseksi.</translation>
     </message>
@@ -1983,35 +2023,35 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
   <context>
     <name>LuksBootKeyFileJob</name>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="32"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="33"/>
       <source>Configuring LUKS key file.</source>
       <translation>LUKS-avaintiedoston määrittäminen.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="188"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="196"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="235"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="243"/>
       <source>No partitions are defined.</source>
       <translation>Osioita ei ole määritelty.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="231"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="238"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="246"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="279"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="286"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="300"/>
       <source>Encrypted rootfs setup error</source>
       <translation>Salattu rootfs asennusvirhe</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="232"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="280"/>
       <source>Root partition %1 is LUKS but no passphrase has been set.</source>
       <translation>Juuriosio %1 on LUKS, mutta salasanaa ei ole asetettu.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="239"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="287"/>
       <source>Could not create LUKS key file for root partition %1.</source>
       <translation>LUKS-avaintiedostoa ei voitu luoda juuriosioon %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="247"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="301"/>
       <source>Could not configure LUKS key file on partition %1.</source>
       <translation>LUKS-avaintiedostoa ei voi määrittää osiossa %1.</translation>
     </message>
@@ -2037,12 +2077,12 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
   <context>
     <name>Map</name>
     <message>
-      <location filename="../src/modules/localeq/Map.qml" line="243"/>
+      <location filename="../src/modules/localeq/Map.qml" line="237"/>
       <source>Timezone: %1</source>
       <translation>Aikavyöhyke: %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/localeq/Map.qml" line="264"/>
+      <location filename="../src/modules/localeq/Map.qml" line="258"/>
       <source>Please select your preferred location on the map so the installer can suggest the locale
             and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
             to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</source>
@@ -2054,99 +2094,111 @@ hiiren vieritystä skaalaamiseen.</translation>
   <context>
     <name>NetInstallViewStep</name>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="49"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="50"/>
       <source>Package selection</source>
       <translation>Paketin valinta</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="50"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="51"/>
       <source>Office software</source>
       <translation>Office-ohjelmisto</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="51"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="52"/>
       <source>Office package</source>
       <translation>Office-paketti</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="52"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="53"/>
       <source>Browser software</source>
       <translation>Selainohjelmisto</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="53"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="54"/>
       <source>Browser package</source>
       <translation>Selainpaketti</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="54"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="55"/>
       <source>Web browser</source>
       <translation>Nettiselain</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="55"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="56"/>
       <source>Kernel</source>
+      <comment>label for netinstall module, Linux kernel</comment>
       <translation>Kernel</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="56"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="57"/>
       <source>Services</source>
+      <comment>label for netinstall module, system services</comment>
       <translation>Palvelut</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="57"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="58"/>
       <source>Login</source>
+      <comment>label for netinstall module, choose login manager</comment>
       <translation>Kirjaudu</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="58"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="59"/>
       <source>Desktop</source>
+      <comment>label for netinstall module, choose desktop environment</comment>
       <translation>Työpöytä</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="59"/>
-      <source>Applications</source>
-      <translation>Sovellukset</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="60"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="61"/>
       <source>Communication</source>
+      <comment>label for netinstall module</comment>
       <translation>Viestintä</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="61"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="62"/>
       <source>Development</source>
+      <comment>label for netinstall module</comment>
       <translation>Ohjelmistokehitys</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="62"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="63"/>
       <source>Office</source>
+      <comment>label for netinstall module</comment>
       <translation>Toimisto</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="63"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="64"/>
       <source>Multimedia</source>
+      <comment>label for netinstall module</comment>
       <translation>Multimedia</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="64"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="65"/>
       <source>Internet</source>
+      <comment>label for netinstall module</comment>
       <translation>Internetti</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="65"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="66"/>
       <source>Theming</source>
+      <comment>label for netinstall module</comment>
       <translation>Teema</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="66"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="67"/>
       <source>Gaming</source>
+      <comment>label for netinstall module</comment>
       <translation>Pelit</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="67"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="68"/>
       <source>Utilities</source>
+      <comment>label for netinstall module</comment>
       <translation>Apuohjelmat</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="60"/>
+      <source>Applications</source>
+      <translation>Sovellukset</translation>
     </message>
   </context>
   <context>
@@ -2196,24 +2248,24 @@ hiiren vieritystä skaalaamiseen.</translation>
       <translation>Valitse sinun asuinalue tai käytä oletusta.</translation>
     </message>
     <message>
-      <location filename="../src/modules/localeq/Offline.qml" line="98"/>
-      <location filename="../src/modules/localeq/Offline.qml" line="173"/>
-      <location filename="../src/modules/localeq/Offline.qml" line="217"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="99"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="175"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="219"/>
       <source>Timezone: %1</source>
       <translation>Aikavyöhyke: %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/localeq/Offline.qml" line="115"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="116"/>
       <source>Select your preferred Zone within your Region.</source>
       <translation>Valitse haluamasi alue alueesi sisällä.</translation>
     </message>
     <message>
-      <location filename="../src/modules/localeq/Offline.qml" line="186"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="188"/>
       <source>Zones</source>
       <translation>Vyöhykkeet</translation>
     </message>
     <message>
-      <location filename="../src/modules/localeq/Offline.qml" line="233"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="235"/>
       <source>You can fine-tune Language and Locale settings below.</source>
       <translation>Voit hienosäätää kieli- ja alueasetuksia alla.</translation>
     </message>
@@ -2488,7 +2540,7 @@ hiiren vieritystä skaalaamiseen.</translation>
       <translation>Tuntematon virhe</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="818"/>
+      <location filename="../src/modules/users/Config.cpp" line="830"/>
       <source>Password is empty</source>
       <translation>Salasana on tyhjä</translation>
     </message>
@@ -2524,22 +2576,6 @@ hiiren vieritystä skaalaamiseen.</translation>
       <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="26"/>
       <source>Please pick a product from the list. The selected product will be installed.</source>
       <translation>Valitse tuote luettelosta. Valittu tuote asennetaan.</translation>
-    </message>
-  </context>
-  <context>
-    <name>PackageChooserQmlViewStep</name>
-    <message>
-      <location filename="../src/modules/packagechooserq/PackageChooserQmlViewStep.cpp" line="32"/>
-      <source>Packages</source>
-      <translation>Paketit</translation>
-    </message>
-  </context>
-  <context>
-    <name>PackageChooserViewStep</name>
-    <message>
-      <location filename="../src/modules/packagechooser/PackageChooserViewStep.cpp" line="51"/>
-      <source>Packages</source>
-      <translation>Paketit</translation>
     </message>
   </context>
   <context>
@@ -3070,7 +3106,7 @@ Ulostulo:
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../src/libcalamares/locale/Translation.cpp" line="74"/>
+      <location filename="../src/libcalamares/locale/Translation.cpp" line="145"/>
       <source>%1 (%2)</source>
       <translation>%1 (%2)</translation>
     </message>
@@ -3396,12 +3432,12 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
   <context>
     <name>ResultsListDialog</name>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="137"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="138"/>
       <source>For best results, please ensure that this computer:</source>
       <translation>Saadaksesi parhaan lopputuloksen, tarkista että tämä tietokone:</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="138"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="139"/>
       <source>System requirements</source>
       <translation>Järjestelmävaatimukset</translation>
     </message>
@@ -3829,22 +3865,22 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href="placeholder"&gt;&lt;span style=" text-decoration: underline; color:#2980b9;"&gt;Klikkaa tästä saadaksesi lisätietoja käyttäjäpalautteesta&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingPage.cpp" line="86"/>
+      <location filename="../src/modules/tracking/TrackingPage.cpp" line="95"/>
       <source>Tracking helps %1 to see how often it is installed, what hardware it is installed on and which applications are used. To see what will be sent, please click the help icon next to each area.</source>
       <translation>Seuranta auttaa %1 näkemään, kuinka usein se asennetaan, mihin laitteistoon se on asennettu ja mihin sovelluksiin sitä käytetään. Jos haluat nähdä, mitä lähetetään, napsauta kunkin alueen vieressä olevaa ohjekuvaketta.</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingPage.cpp" line="91"/>
+      <location filename="../src/modules/tracking/TrackingPage.cpp" line="100"/>
       <source>By selecting this you will send information about your installation and hardware. This information will only be sent &lt;b&gt;once&lt;/b&gt; after the installation finishes.</source>
       <translation>Valitsemalla tämän lähetät tietoja asennuksesta ja laitteistosta. Nämä tiedot lähetetään vain &lt;/b&gt;kerran&lt;/b&gt; asennuksen päätyttyä.</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingPage.cpp" line="94"/>
+      <location filename="../src/modules/tracking/TrackingPage.cpp" line="103"/>
       <source>By selecting this you will periodically send information about your &lt;b&gt;machine&lt;/b&gt; installation, hardware and applications, to %1.</source>
       <translation>Valitsemalla tämän lähetät määräajoin tietoja &lt;b&gt;koneesi&lt;/b&gt; asennuksesta, laitteistosta ja sovelluksista, %1:lle.</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingPage.cpp" line="98"/>
+      <location filename="../src/modules/tracking/TrackingPage.cpp" line="107"/>
       <source>By selecting this you will regularly send information about your &lt;b&gt;user&lt;/b&gt; installation, hardware, applications and application usage patterns, to %1.</source>
       <translation>Valitsemalla tämän lähetät säännöllisesti tietoja &lt;b&gt;käyttäjän&lt;/b&gt; asennuksesta, laitteistosta, sovelluksista ja sovellusten käyttötavoista %1:lle.</translation>
     </message>
@@ -4032,43 +4068,18 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="216"/>
-      <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Tervetuloa Calamares-asennusohjelmaan %1.&lt;/h1&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="217"/>
-      <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Tervetuloa %1 asennukseen.&lt;/h1&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="222"/>
-      <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Tervetuloa Calamares-asennusohjelmaan %1.&lt;/h1&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="223"/>
-      <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Tervetuloa %1 -asennusohjelmaan.&lt;/h1&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="228"/>
       <source>%1 support</source>
       <translation>%1 tuki</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="235"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="223"/>
       <source>About %1 setup</source>
       <translation>Tietoja %1 asetuksista</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="235"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="223"/>
       <source>About %1 installer</source>
       <translation>Tietoa %1-asennusohjelmasta</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="238"/>
-      <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;- %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Tekijänoikeus 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Tekijänoikeus 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Kiitokset &lt;a href="https://calamares.io/team/"&gt;Calamares-tiimille&lt;/a&gt; ja &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares-kääntäjille&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamaresin&lt;/a&gt; kehitystä sponsoroi &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</translation>
     </message>
   </context>
   <context>
@@ -4134,34 +4145,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
   <context>
     <name>about</name>
     <message>
-      <location filename="../src/modules/welcomeq/about.qml" line="47"/>
-      <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;
-                        &lt;strong&gt;%2&lt;br/&gt;
-                        for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;
-                        Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;
-                        Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;
-                        Thanks to &lt;a href='https://calamares.io/team/'&gt;the Calamares team&lt;/a&gt;
-                        and the &lt;a href='https://www.transifex.com/calamares/calamares/'&gt;Calamares
-                        translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;
-                        &lt;a href='https://calamares.io/'&gt;Calamares&lt;/a&gt;
-                        development is sponsored by &lt;br/&gt;
-                        &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; -
-                        Liberating Software.</source>
-      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;
-                        &lt;strong&gt;%2&lt;br/&gt;
-                        for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;
-                        Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;
-                        Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;
-                        Kiitokset &lt;a href='https://calamares.io/team/'&gt;the Calamares tiimille&lt;/a&gt; 
-                        ja &lt;a href='https://www.transifex.com/calamares/calamares/'&gt;Calamares 
-                        kääntäjäille&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;
-                        &lt;a href='https://calamares.io/'&gt;Calamares&lt;/a&gt; 
-                        ohjelmistokehitystä sponsoroi &lt;br/&gt;
-                        &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; -
-                        Liberating Software.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcomeq/about.qml" line="96"/>
+      <location filename="../src/modules/welcomeq/about.qml" line="79"/>
       <source>Back</source>
       <translation>Takaisin</translation>
     </message>
@@ -4266,17 +4250,17 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
       <translation>Näppäimistön malli:</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="254"/>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="256"/>
       <source>Layouts</source>
       <translation>Asettelut</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="263"/>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="265"/>
       <source>Type here to test your keyboard</source>
       <translation>Kirjoita tähän testaksesi näppäimistöäsi.</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="179"/>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="180"/>
       <source>Variants</source>
       <translation>Vaihtoehdot</translation>
     </message>
@@ -4425,102 +4409,102 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
       <translation>Jos tätä tietokonetta käyttää useampi kuin yksi henkilö, voit luoda useita tilejä asennuksen jälkeen.</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="128"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="129"/>
       <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
       <translation>Vain pienet kirjaimet, numerot, alaviivat ja tavuviivat ovat sallittuja.</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="136"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="138"/>
       <source>root is not allowed as username.</source>
       <translation>root ei ole sallittu käyttäjänimeksi.</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="145"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="147"/>
       <source>What is the name of this computer?</source>
       <translation>Mikä on tämän tietokoneen nimi?</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="151"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="153"/>
       <source>Computer Name</source>
       <translation>Tietokoneen nimi</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="178"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="180"/>
       <source>This name will be used if you make the computer visible to others on a network.</source>
       <translation>Tätä nimeä käytetään, jos teet tietokoneen näkyväksi verkon muille käyttäjille.</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="198"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="202"/>
       <source>localhost is not allowed as hostname.</source>
       <translation>localhost ei ole sallittu koneen nimeksi.</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="207"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="211"/>
       <source>Choose a password to keep your account safe.</source>
       <translation>Valitse salasana pitääksesi tilisi turvallisena.</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="217"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="221"/>
       <source>Password</source>
       <translation>Salasana</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="234"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="238"/>
       <source>Repeat Password</source>
       <translation>Toista salasana</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="261"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="265"/>
       <source>Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.</source>
       <translation>Syötä sama salasana kahdesti, jotta se voidaan tarkistaa kirjoittamisvirheiden varalta. Hyvä salasana sisältää sekoituksen kirjaimia, numeroita ja välimerkkejä. Vähintään kahdeksan merkkiä pitkä ja se on vaihdettava säännöllisin väliajoin.</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="406"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="410"/>
       <source>Validate passwords quality</source>
       <translation>Tarkista salasanojen laatu</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="416"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="420"/>
       <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password.</source>
       <translation>Kun tämä valintaruutu on valittu, salasanan vahvuus tarkistetaan, etkä voi käyttää heikkoa salasanaa.</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="398"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="402"/>
       <source>Log in automatically without asking for the password</source>
       <translation>Kirjaudu automaattisesti ilman salasanaa</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="190"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="193"/>
       <source>Only letters, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
       <translation>Vain kirjaimet, numerot, alaviiva ja väliviiva ovat sallittuja, vähintään kaksi merkkiä.</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="293"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="297"/>
       <source>Reuse user password as root password</source>
       <translation>Käytä käyttäjän salasanaa myös root-salasanana</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="301"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="305"/>
       <source>Use the same password for the administrator account.</source>
       <translation>Käytä pääkäyttäjän tilillä samaa salasanaa.</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="314"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="318"/>
       <source>Choose a root password to keep your account safe.</source>
       <translation>Valitse root-salasana, jotta tilisi pysyy turvassa.</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="324"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="328"/>
       <source>Root Password</source>
       <translation>Root-salasana</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="342"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="346"/>
       <source>Repeat Root Password</source>
       <translation>Toista Root-salasana</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="368"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="372"/>
       <source>Enter the same password twice, so that it can be checked for typing errors.</source>
       <translation>Syötä sama salasana kahdesti, jotta se voidaan tarkistaa kirjoitusvirheiden varalta.</translation>
     </message>

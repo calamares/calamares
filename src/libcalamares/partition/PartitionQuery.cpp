@@ -50,12 +50,7 @@ isPartitionFreeSpace( const Partition* partition )
 bool
 isPartitionNew( const Partition* partition )
 {
-#if defined( WITH_KPMCORE4API )
-    constexpr auto NewState = Partition::State::New;
-#else
-    constexpr auto NewState = Partition::StateNew;
-#endif
-    return partition->state() == NewState;
+    return partition->state() == Partition::State::New;
 }
 
 

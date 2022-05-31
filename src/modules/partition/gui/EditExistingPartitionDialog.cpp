@@ -260,7 +260,7 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
                 QString description = tr( "Partition %1 could not be decrypted "
                                           "with the given passphrase."
                                           "<br/><br/>"
-                                          "Edit the partition again and give the correct passphrase"
+                                          "Edit the partition again and give the correct passphrase "
                                           "or delete and create a new encrypted partition." )
                                           .arg( m_partition->partitionPath() );
 

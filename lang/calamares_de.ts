@@ -2,6 +2,25 @@
 <!DOCTYPE TS>
 <TS language="de" version="2.1">
   <context>
+    <name>AboutData</name>
+    <message>
+      <location filename="../src/libcalamares/CalamaresAbout.cpp" line="17"/>
+      <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt; for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/libcalamares/CalamaresAbout.cpp" line="20"/>
+      <source>Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/libcalamares/CalamaresAbout.cpp" line="38"/>
+      <source>Copyright %1-%2 %3 &amp;lt;%4&amp;gt;&lt;br/&gt;</source>
+      <extracomment>Copyright year-year Name &lt;email-address&gt;</extracomment>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
     <name>AutoMountManagementJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/AutoMountManagementJob.cpp" line="22"/>
@@ -137,7 +156,7 @@
       <translation>Widget-Baum</translation>
     </message>
     <message>
-      <location filename="../src/calamares/DebugWindow.cpp" line="221"/>
+      <location filename="../src/calamares/DebugWindow.cpp" line="239"/>
       <source>Debug information</source>
       <translation>Debug-Information</translation>
     </message>
@@ -171,7 +190,7 @@
   <context>
     <name>Calamares::JobThread</name>
     <message>
-      <location filename="../src/libcalamares/JobQueue.cpp" line="202"/>
+      <location filename="../src/libcalamares/JobQueue.cpp" line="203"/>
       <source>Done</source>
       <translation>Fertig</translation>
     </message>
@@ -261,7 +280,7 @@
       <translation>Die Anforderungsprüfung für das Modul &lt;i&gt;%1&lt;/i&gt; ist abgeschlossen.</translation>
     </message>
     <message numerus="yes">
-      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="115"/>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="118"/>
       <source>Waiting for %n module(s).</source>
       <translation>
         <numerusform>Warten auf %n Modul.</numerusform>
@@ -269,7 +288,7 @@
       </translation>
     </message>
     <message numerus="yes">
-      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="116"/>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="119"/>
       <source>(%n second(s))</source>
       <translation>
         <numerusform>(%n Sekunde)</numerusform>
@@ -277,7 +296,7 @@
       </translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="121"/>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="124"/>
       <source>System-requirements checking is complete.</source>
       <translation>Die Überprüfung der Systemvoraussetzungen ist abgeschlossen.</translation>
     </message>
@@ -488,12 +507,12 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
   <context>
     <name>CalamaresWindow</name>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="370"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="369"/>
       <source>%1 Setup Program</source>
       <translation>%1 Installationsprogramm</translation>
     </message>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="371"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="370"/>
       <source>%1 Installer</source>
       <translation>%1 Installationsprogramm</translation>
     </message>
@@ -533,149 +552,149 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
       <translation>Form</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="137"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="139"/>
       <source>Select storage de&amp;vice:</source>
       <translation>Speichermedium auswählen</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="138"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1014"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1062"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1159"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="140"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1029"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1077"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1174"/>
       <source>Current:</source>
       <translation>Aktuell:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="139"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="141"/>
       <source>After:</source>
       <translation>Nachher:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1723"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1732"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
       <translation>&lt;strong&gt;Manuelle Partitionierung&lt;/strong&gt;&lt;br/&gt;Sie können Partitionen eigenhändig erstellen oder in der Grösse verändern.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="879"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="894"/>
       <source>Reuse %1 as home partition for %2.</source>
       <translation>%1 als Home-Partition für %2 wiederverwenden.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1015"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1030"/>
       <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;Wählen Sie die zu verkleinernde Partition, dann ziehen Sie den Regler, um die Größe zu ändern&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1033"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1048"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
       <translation>%1 wird auf %2MiB verkleinert und eine neue Partition mit einer Größe von %3MiB wird für %4 erstellt werden.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1091"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1106"/>
       <source>Boot loader location:</source>
       <translation>Installationsziel des Bootloaders:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1150"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1165"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;Wählen Sie eine Partition für die Installation&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1209"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1226"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation>Es wurde keine EFI-Systempartition auf diesem System gefunden. Bitte gehen Sie zurück und nutzen Sie die manuelle Partitionierung für das Einrichten von %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1217"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1234"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>Die EFI-Systempartition %1 wird benutzt, um %2 zu starten.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1225"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1242"/>
       <source>EFI system partition:</source>
       <translation>EFI-Systempartition:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1385"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1402"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Auf diesem Speichermedium scheint kein Betriebssystem installiert zu sein. Was möchten Sie tun?&lt;br/&gt;Sie können Ihre Auswahl überprüfen und bestätigen, bevor Änderungen auf diesem Speichermedium vorgenommen werden.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1390"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1427"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1449"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1474"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1407"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1444"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1466"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1491"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
       <translation>&lt;strong&gt;Festplatte löschen&lt;/strong&gt;&lt;br/&gt;Dies wird alle vorhandenen Daten auf dem gewählten Speichermedium &lt;font color="red"&gt;löschen&lt;/font&gt;. </translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1394"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1423"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1445"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1470"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1411"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1440"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1462"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1487"/>
       <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
       <translation>&lt;strong&gt;Parallel dazu installieren&lt;/strong&gt;&lt;br/&gt;Das Installationsprogramm wird eine Partition verkleinern, um Platz für %1 zu schaffen.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1398"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1432"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1453"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1478"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1415"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1449"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1470"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1495"/>
       <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
       <translation>&lt;strong&gt;Ersetze eine Partition&lt;/strong&gt;&lt;br/&gt;Ersetzt eine Partition durch %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1417"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1434"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Auf diesem Speichermedium ist %1 installiert. Was möchten Sie tun?&lt;br/&gt;Sie können Ihre Auswahl überprüfen und bestätigen, bevor Änderungen an dem Speichermedium vorgenommen werden.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1440"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1457"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Dieses Speichermedium enthält bereits ein Betriebssystem. Was möchten Sie tun?&lt;br/&gt;Sie können Ihre Auswahl überprüfen und bestätigen, bevor Änderungen an dem Speichermedium vorgenommen wird.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1465"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1482"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Auf diesem Speichermedium sind mehrere Betriebssysteme installiert. Was möchten Sie tun?&lt;br/&gt;Sie können Ihre Auswahl überprüfen und bestätigen, bevor Änderungen an dem Speichermedium vorgenommen werden.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1537"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1554"/>
       <source>This storage device already has an operating system on it, but the partition table &lt;strong&gt;%1&lt;/strong&gt; is different from the needed &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</source>
       <translation>Auf diesem Speichergerät befindet sich bereits ein Betriebssystem, aber die Partitionstabelle &lt;strong&gt;%1&lt;/strong&gt; unterscheidet sich von den erforderlichen &lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1560"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1577"/>
       <source>This storage device has one of its partitions &lt;strong&gt;mounted&lt;/strong&gt;.</source>
       <translation>Bei diesem Speichergerät ist eine seiner Partitionen &lt;strong&gt;eingehängt&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1565"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1582"/>
       <source>This storage device is a part of an &lt;strong&gt;inactive RAID&lt;/strong&gt; device.</source>
       <translation>Dieses Speichergerät ist ein Teil eines &lt;strong&gt;inaktiven RAID&lt;/strong&gt;-Geräts.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1692"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1701"/>
       <source>No Swap</source>
       <translation>Kein Swap</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1701"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1710"/>
       <source>Reuse Swap</source>
       <translation>Swap wiederverwenden</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1704"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1713"/>
       <source>Swap (no Hibernate)</source>
       <translation>Swap (ohne Ruhezustand)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1707"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1716"/>
       <source>Swap (with Hibernate)</source>
       <translation>Swap (mit Ruhezustand)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1710"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1719"/>
       <source>Swap to file</source>
       <translation>Auslagerungsdatei verwenden</translation>
     </message>
@@ -763,27 +782,27 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
   <context>
     <name>Config</name>
     <message>
-      <location filename="../src/modules/keyboard/Config.cpp" line="354"/>
+      <location filename="../src/modules/keyboard/Config.cpp" line="360"/>
       <source>Set keyboard model to %1.&lt;br/&gt;</source>
       <translation>Setze Tastaturmodell auf %1.&lt;br/&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/Config.cpp" line="361"/>
+      <location filename="../src/modules/keyboard/Config.cpp" line="367"/>
       <source>Set keyboard layout to %1/%2.</source>
       <translation>Setze Tastaturbelegung auf %1/%2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="353"/>
+      <location filename="../src/modules/locale/Config.cpp" line="359"/>
       <source>Set timezone to %1/%2.</source>
       <translation>Setze Zeitzone auf %1%2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="391"/>
+      <location filename="../src/modules/locale/Config.cpp" line="397"/>
       <source>The system language will be set to %1.</source>
       <translation>Die Systemsprache wird auf %1 eingestellt.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="398"/>
+      <location filename="../src/modules/locale/Config.cpp" line="404"/>
       <source>The numbers and dates locale will be set to %1.</source>
       <translation>Das Format für Zahlen und Datum wird auf %1 gesetzt.</translation>
     </message>
@@ -818,97 +837,97 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
       <translation>Netzwerk-Installation. (Deaktiviert: Paketlisten nicht erreichbar, prüfen Sie Ihre Netzwerk-Verbindung)</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="55"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="56"/>
       <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
       <translation>Dieser Computer erfüllt nicht die Mindestvoraussetzungen für die Installation von %1.&lt;br/&gt;Die Installation kann nicht fortgesetzt werden. &lt;a href="#details"&gt;Details...&lt;/a&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="59"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="60"/>
       <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
       <translation>Dieser Computer erfüllt nicht die Mindestvoraussetzungen für die Installation von %1.&lt;br/&gt;Die Installation kann nicht fortgesetzt werden. &lt;a href="#details"&gt;Details...&lt;/a&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="66"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="67"/>
       <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
       <translation>Dieser Computer erfüllt nicht alle empfohlenen Voraussetzungen für die Installation von %1.&lt;br/&gt;Die Installation kann fortgesetzt werden, aber es werden eventuell nicht alle Funktionen verfügbar sein.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="70"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="71"/>
       <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
       <translation>Dieser Computer erfüllt nicht alle empfohlenen Voraussetzungen für die Installation von %1.&lt;br/&gt;Die Installation kann fortgesetzt werden, aber es werden eventuell nicht alle Funktionen verfügbar sein.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="80"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="81"/>
       <source>This program will ask you some questions and set up %2 on your computer.</source>
       <translation>Dieses Programm wird Ihnen einige Fragen stellen, um %2 auf Ihrem Computer zu installieren.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="250"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="269"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Willkommen bei Calamares, dem Installationsprogramm für %1&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="251"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="270"/>
       <source>&lt;h1&gt;Welcome to %1 setup&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Willkommen zur Installation von %1&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="255"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="274"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Willkommen bei Calamares, dem Installationsprogramm für %1&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="256"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="275"/>
       <source>&lt;h1&gt;Welcome to the %1 installer&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Willkommen zum Installationsprogramm für %1&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="221"/>
+      <location filename="../src/modules/users/Config.cpp" line="236"/>
       <source>Your username is too long.</source>
       <translation>Ihr Benutzername ist zu lang.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="227"/>
+      <location filename="../src/modules/users/Config.cpp" line="252"/>
       <source>'%1' is not allowed as username.</source>
       <translation>'%1' ist als Benutzername nicht erlaubt.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="234"/>
+      <location filename="../src/modules/users/Config.cpp" line="242"/>
       <source>Your username must start with a lowercase letter or underscore.</source>
       <translation>Ihr Benutzername muss mit einem Kleinbuchstaben oder Unterstrich beginnen.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="238"/>
+      <location filename="../src/modules/users/Config.cpp" line="246"/>
       <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
       <translation>Es sind nur Kleinbuchstaben, Zahlen, Unterstrich und Bindestrich erlaubt.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="288"/>
+      <location filename="../src/modules/users/Config.cpp" line="301"/>
       <source>Your hostname is too short.</source>
       <translation>Ihr Computername ist zu kurz.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="292"/>
+      <location filename="../src/modules/users/Config.cpp" line="305"/>
       <source>Your hostname is too long.</source>
       <translation>Ihr Computername ist zu lang.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="298"/>
+      <location filename="../src/modules/users/Config.cpp" line="311"/>
       <source>'%1' is not allowed as hostname.</source>
       <translation>'%1' ist als Computername nicht erlaubt.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="304"/>
+      <location filename="../src/modules/users/Config.cpp" line="316"/>
       <source>Only letters, numbers, underscore and hyphen are allowed.</source>
       <translation>Es sind nur Buchstaben, Zahlen, Unter- und Bindestriche erlaubt.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="573"/>
+      <location filename="../src/modules/users/Config.cpp" line="585"/>
       <source>Your passwords do not match!</source>
       <translation>Ihre Passwörter stimmen nicht überein!</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="587"/>
+      <location filename="../src/modules/users/Config.cpp" line="599"/>
       <source>OK!</source>
       <translation>OK!</translation>
     </message>
@@ -964,11 +983,16 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     </message>
     <message>
       <location filename="../src/modules/packagechooser/Config.cpp" line="243"/>
+      <source>Packages</source>
+      <translation>Pakete</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/packagechooser/Config.cpp" line="249"/>
       <source>Install option: &lt;strong&gt;%1&lt;/strong&gt;</source>
       <translation>Installations-Option: &lt;strong&gt;%1&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/Config.cpp" line="243"/>
+      <location filename="../src/modules/packagechooser/Config.cpp" line="249"/>
       <source>None</source>
       <translation>Nichts</translation>
     </message>
@@ -1427,6 +1451,16 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
       <source>FS Label:</source>
       <translation>FS Label:</translation>
     </message>
+    <message>
+      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="259"/>
+      <source>Passphrase for existing partition</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="260"/>
+      <source>Partition %1 could not be decrypted with the given passphrase.&lt;br/&gt;&lt;br/&gt;Edit the partition again and give the correct passphraseor delete and create a new encrypted partition.</source>
+      <translation type="unfinished"/>
+    </message>
   </context>
   <context>
     <name>EncryptWidget</name>
@@ -1456,8 +1490,8 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
       <translation>Passwort wiederholen </translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="134"/>
-      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="144"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="156"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="166"/>
       <source>Please enter the same passphrase in both boxes.</source>
       <translation>Bitte tragen Sie dasselbe Passwort in beide Felder ein.</translation>
     </message>
@@ -1546,32 +1580,32 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
       <translation>Jetzt &amp;Neustarten</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="72"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="75"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been set up on your computer.&lt;br/&gt;You may now start using your new system.</source>
       <translation>&lt;h1&gt;Alles erledigt.&lt;/h1&gt;&lt;br/&gt;%1 wurde auf Ihrem Computer eingerichtet.&lt;br/&gt;Sie können nun mit Ihrem neuen System arbeiten.</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="76"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="79"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style="font-style:italic;"&gt;Done&lt;/span&gt; or close the setup program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Wenn diese Option aktiviert ist, genügt zum Neustart des Systems ein Klick auf &lt;span style="font-style:italic;"&gt;Fertig&lt;/span&gt; oder das Schließen des Installationsprogramms.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="84"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="87"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
       <translation>&lt;h1&gt;Alles erledigt.&lt;/h1&gt;&lt;br/&gt;%1 wurde auf Ihrem Computer installiert.&lt;br/&gt;Sie können nun in Ihr neues System neustarten oder mit der %2 Live-Umgebung fortfahren.</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="89"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="92"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style="font-style:italic;"&gt;Done&lt;/span&gt; or close the installer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Wenn diese Option aktiviert ist, genügt zum Neustart des Systems ein Klick auf &lt;span style="font-style:italic;"&gt;Fertig&lt;/span&gt; oder das Schließen des Installationsprogramms.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="102"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="105"/>
       <source>&lt;h1&gt;Setup Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been set up on your computer.&lt;br/&gt;The error message was: %2.</source>
       <translation>&lt;h1&gt;Installation fehlgeschlagen&lt;/h1&gt;&lt;br/&gt;%1 wurde nicht auf Ihrem Computer eingerichtet.&lt;br/&gt;Die Fehlermeldung war: %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="110"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="113"/>
       <source>&lt;h1&gt;Installation Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been installed on your computer.&lt;br/&gt;The error message was: %2.</source>
       <translation>&lt;h1&gt;Installation fehlgeschlagen&lt;/h1&gt;&lt;br/&gt;%1 wurde nicht auf deinem Computer installiert.&lt;br/&gt;Die Fehlermeldung lautet: %2.</translation>
     </message>
@@ -1605,12 +1639,18 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
       <translation>Formatiere &lt;strong&gt;%3MiB&lt;/strong&gt; Partition &lt;strong&gt;%1&lt;/strong&gt; mit dem Dateisystem &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="61"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="63"/>
+      <source>%1 (%2)</source>
+      <comment>partition label %1 (device path %2)</comment>
+      <translation>%1 (%2)</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="65"/>
       <source>Formatting partition %1 with file system %2.</source>
       <translation>Formatiere Partition %1 mit Dateisystem %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="73"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="76"/>
       <source>The installer failed to format partition %1 on disk '%2'.</source>
       <translation>Das Formatieren von Partition %1 auf Datenträger '%2' ist fehlgeschlagen.</translation>
     </message>
@@ -1618,12 +1658,12 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
   <context>
     <name>GeneralRequirements</name>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="155"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="156"/>
       <source>has at least %1 GiB available drive space</source>
       <translation>mindestens %1 GiB freien Festplattenplatz hat</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="157"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="158"/>
       <source>There is not enough drive space. At least %1 GiB is required.</source>
       <translation>Zu wenig Speicherplatz auf der Festplatte. Es wird mindestens %1 GiB benötigt.</translation>
     </message>
@@ -1663,27 +1703,27 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
       <translation>führt das Installationsprogramm als Administrator (root) aus</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="196"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="197"/>
       <source>The setup program is not running with administrator rights.</source>
       <translation>Das Installationsprogramm wird nicht mit Administratorrechten ausgeführt.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="197"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="198"/>
       <source>The installer is not running with administrator rights.</source>
       <translation>Das Installationsprogramm wird nicht mit Administratorrechten ausgeführt.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="205"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="206"/>
       <source>has a screen large enough to show the whole installer</source>
       <translation>hat einen ausreichend großen Bildschirm für die Anzeige des gesamten Installationsprogramm</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="208"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="210"/>
       <source>The screen is too small to display the setup program.</source>
       <translation>Der Bildschirm ist zu klein, um das Installationsprogramm anzuzeigen.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="209"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="211"/>
       <source>The screen is too small to display the installer.</source>
       <translation>Der Bildschirm ist zu klein, um das Installationsprogramm anzuzeigen.</translation>
     </message>
@@ -1983,35 +2023,35 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
   <context>
     <name>LuksBootKeyFileJob</name>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="32"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="33"/>
       <source>Configuring LUKS key file.</source>
       <translation>Konfiguriere LUKS-Schlüsseldatei.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="188"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="196"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="235"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="243"/>
       <source>No partitions are defined.</source>
       <translation>Keine Partitionen definiert.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="231"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="238"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="246"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="279"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="286"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="300"/>
       <source>Encrypted rootfs setup error</source>
       <translation>Fehler bei der Einrichtung der verschlüsselten Root-Partition</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="232"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="280"/>
       <source>Root partition %1 is LUKS but no passphrase has been set.</source>
       <translation>Root-Partition %1 ist mit LUKS verschlüsselt, aber es wurde kein Passwort gesetzt.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="239"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="287"/>
       <source>Could not create LUKS key file for root partition %1.</source>
       <translation>Konnte die LUKS-Schlüsseldatei für die Root-Partition %1 nicht erstellen. </translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="247"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="301"/>
       <source>Could not configure LUKS key file on partition %1.</source>
       <translation>Die LUKS-Schlüsseldatei konnte nicht auf Partition %1 eingerichtet werden.</translation>
     </message>
@@ -2037,12 +2077,12 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
   <context>
     <name>Map</name>
     <message>
-      <location filename="../src/modules/localeq/Map.qml" line="243"/>
+      <location filename="../src/modules/localeq/Map.qml" line="237"/>
       <source>Timezone: %1</source>
       <translation>Zeitzone: %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/localeq/Map.qml" line="264"/>
+      <location filename="../src/modules/localeq/Map.qml" line="258"/>
       <source>Please select your preferred location on the map so the installer can suggest the locale
             and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
             to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</source>
@@ -2054,99 +2094,111 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
   <context>
     <name>NetInstallViewStep</name>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="49"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="50"/>
       <source>Package selection</source>
       <translation>Paketauswahl</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="50"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="51"/>
       <source>Office software</source>
       <translation>Office-Software</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="51"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="52"/>
       <source>Office package</source>
       <translation>Office-Paket</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="52"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="53"/>
       <source>Browser software</source>
       <translation>Browser-Software</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="53"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="54"/>
       <source>Browser package</source>
       <translation>Browser-Paket</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="54"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="55"/>
       <source>Web browser</source>
       <translation>Webbrowser</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="55"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="56"/>
       <source>Kernel</source>
+      <comment>label for netinstall module, Linux kernel</comment>
       <translation>Kernel</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="56"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="57"/>
       <source>Services</source>
+      <comment>label for netinstall module, system services</comment>
       <translation>Dienste</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="57"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="58"/>
       <source>Login</source>
+      <comment>label for netinstall module, choose login manager</comment>
       <translation>Anmeldung</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="58"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="59"/>
       <source>Desktop</source>
+      <comment>label for netinstall module, choose desktop environment</comment>
       <translation>Desktop</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="59"/>
-      <source>Applications</source>
-      <translation>Anwendungen</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="60"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="61"/>
       <source>Communication</source>
+      <comment>label for netinstall module</comment>
       <translation>Kommunikation</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="61"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="62"/>
       <source>Development</source>
+      <comment>label for netinstall module</comment>
       <translation>Entwicklung</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="62"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="63"/>
       <source>Office</source>
+      <comment>label for netinstall module</comment>
       <translation>Büro</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="63"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="64"/>
       <source>Multimedia</source>
+      <comment>label for netinstall module</comment>
       <translation>Multimedia</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="64"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="65"/>
       <source>Internet</source>
+      <comment>label for netinstall module</comment>
       <translation>Internet</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="65"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="66"/>
       <source>Theming</source>
+      <comment>label for netinstall module</comment>
       <translation>Anpassung</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="66"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="67"/>
       <source>Gaming</source>
+      <comment>label for netinstall module</comment>
       <translation>Spielen</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="67"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="68"/>
       <source>Utilities</source>
+      <comment>label for netinstall module</comment>
       <translation>Dienstprogramme</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="60"/>
+      <source>Applications</source>
+      <translation>Anwendungen</translation>
     </message>
   </context>
   <context>
@@ -2196,24 +2248,24 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
       <translation>Wählen Sie Ihre bevorzugte Region oder nutzen Sie die Standardeinstellungen.</translation>
     </message>
     <message>
-      <location filename="../src/modules/localeq/Offline.qml" line="98"/>
-      <location filename="../src/modules/localeq/Offline.qml" line="173"/>
-      <location filename="../src/modules/localeq/Offline.qml" line="217"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="99"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="175"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="219"/>
       <source>Timezone: %1</source>
       <translation>Zeitzone: %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/localeq/Offline.qml" line="115"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="116"/>
       <source>Select your preferred Zone within your Region.</source>
       <translation>Wählen Sie Ihre bevorzugte Zone innerhalb Ihrer Region.</translation>
     </message>
     <message>
-      <location filename="../src/modules/localeq/Offline.qml" line="186"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="188"/>
       <source>Zones</source>
       <translation>Zonen</translation>
     </message>
     <message>
-      <location filename="../src/modules/localeq/Offline.qml" line="233"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="235"/>
       <source>You can fine-tune Language and Locale settings below.</source>
       <translation>Sie können Sprache und Regionalschema unten weiter anpassen.</translation>
     </message>
@@ -2488,7 +2540,7 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
       <translation>Unbekannter Fehler</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="818"/>
+      <location filename="../src/modules/users/Config.cpp" line="830"/>
       <source>Password is empty</source>
       <translation>Passwort nicht vergeben</translation>
     </message>
@@ -2524,22 +2576,6 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
       <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="26"/>
       <source>Please pick a product from the list. The selected product will be installed.</source>
       <translation>Bitte wählen Sie ein Produkt aus der Liste aus. Das ausgewählte Produkt wird installiert.</translation>
-    </message>
-  </context>
-  <context>
-    <name>PackageChooserQmlViewStep</name>
-    <message>
-      <location filename="../src/modules/packagechooserq/PackageChooserQmlViewStep.cpp" line="32"/>
-      <source>Packages</source>
-      <translation>Pakete</translation>
-    </message>
-  </context>
-  <context>
-    <name>PackageChooserViewStep</name>
-    <message>
-      <location filename="../src/modules/packagechooser/PackageChooserViewStep.cpp" line="51"/>
-      <source>Packages</source>
-      <translation>Pakete</translation>
     </message>
   </context>
   <context>
@@ -3070,7 +3106,7 @@ Ausgabe:
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../src/libcalamares/locale/Translation.cpp" line="74"/>
+      <location filename="../src/libcalamares/locale/Translation.cpp" line="145"/>
       <source>%1 (%2)</source>
       <translation>%1 (%2)</translation>
     </message>
@@ -3396,12 +3432,12 @@ Ausgabe:
   <context>
     <name>ResultsListDialog</name>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="137"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="138"/>
       <source>For best results, please ensure that this computer:</source>
       <translation>Für das beste Ergebnis stellen Sie bitte sicher, dass dieser Computer:</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="138"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="139"/>
       <source>System requirements</source>
       <translation>Systemanforderungen</translation>
     </message>
@@ -3829,22 +3865,22 @@ Ausgabe:
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href="placeholder"&gt;&lt;span style=" text-decoration: underline; color:#2980b9;"&gt;Klicken sie hier für weitere Informationen über Benutzer-Rückmeldungen&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingPage.cpp" line="86"/>
+      <location filename="../src/modules/tracking/TrackingPage.cpp" line="95"/>
       <source>Tracking helps %1 to see how often it is installed, what hardware it is installed on and which applications are used. To see what will be sent, please click the help icon next to each area.</source>
       <translation>Tracking hilft %1 festzustellen, wie oft es installiert wurde, welche Hardware und welche Anwendungen benutzt werden. Um zu sehen, welche Informationen gesendet werden, klicken Sie auf das Hilfesymbol daneben. </translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingPage.cpp" line="91"/>
+      <location filename="../src/modules/tracking/TrackingPage.cpp" line="100"/>
       <source>By selecting this you will send information about your installation and hardware. This information will only be sent &lt;b&gt;once&lt;/b&gt; after the installation finishes.</source>
       <translation>Wenn Sie dies auswählen, werden Informationen über Ihre Installation und Hardware gesendet. Diese Informationen werden nur &lt;b&gt;einmal&lt;/b&gt; nach der Installation gesendet.</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingPage.cpp" line="94"/>
+      <location filename="../src/modules/tracking/TrackingPage.cpp" line="103"/>
       <source>By selecting this you will periodically send information about your &lt;b&gt;machine&lt;/b&gt; installation, hardware and applications, to %1.</source>
       <translation>Wenn Sie dies auswählen, werden gelegentlich Informationen über Installation, Hardware und Anwendungen dieses &lt;b&gt;Computers&lt;/b&gt;  an %1 gesendet.</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingPage.cpp" line="98"/>
+      <location filename="../src/modules/tracking/TrackingPage.cpp" line="107"/>
       <source>By selecting this you will regularly send information about your &lt;b&gt;user&lt;/b&gt; installation, hardware, applications and application usage patterns, to %1.</source>
       <translation>Wenn Sie dies auswählen, werden regelmäßig Informationen über Installation, Hardware, Anwendungen und Benutzungsmuster dieses &lt;b&gt;Benutzers&lt;/b&gt; an %1 gesendet.</translation>
     </message>
@@ -4032,43 +4068,18 @@ Ausgabe:
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="216"/>
-      <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Willkommen bei Calamares, dem Installationsprogramm für %1.&lt;/h1&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="217"/>
-      <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Willkommen zur Installation von %1.&lt;/h1&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="222"/>
-      <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Willkommen beim Calamares-Installationsprogramm für %1.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="223"/>
-      <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Willkommen im %1 Installationsprogramm.&lt;/h1&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="228"/>
       <source>%1 support</source>
       <translation>Unterstützung für %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="235"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="223"/>
       <source>About %1 setup</source>
       <translation>Über das Installationsprogramm %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="235"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="223"/>
       <source>About %1 installer</source>
       <translation>Über das %1 Installationsprogramm</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="238"/>
-      <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;für %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Dank an &lt;a href="https://calamares.io/team/"&gt;das Calamares Team&lt;/a&gt; und das &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares Übersetzerteam&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; wird in der Entwicklung unterstützt von &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</translation>
     </message>
   </context>
   <context>
@@ -4134,34 +4145,7 @@ Ausgabe:
   <context>
     <name>about</name>
     <message>
-      <location filename="../src/modules/welcomeq/about.qml" line="47"/>
-      <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;
-                        &lt;strong&gt;%2&lt;br/&gt;
-                        for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;
-                        Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;
-                        Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;
-                        Thanks to &lt;a href='https://calamares.io/team/'&gt;the Calamares team&lt;/a&gt;
-                        and the &lt;a href='https://www.transifex.com/calamares/calamares/'&gt;Calamares
-                        translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;
-                        &lt;a href='https://calamares.io/'&gt;Calamares&lt;/a&gt;
-                        development is sponsored by &lt;br/&gt;
-                        &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; -
-                        Liberating Software.</source>
-      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;
-                        &lt;strong&gt;%2&lt;br/&gt;
-                        für %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;
-                        Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;
-                        Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;
-                        Dank an &lt;a href='https://calamares.io/team/'&gt;das Calamares Team&lt;/a&gt;
-                        und das &lt;a href='https://www.transifex.com/calamares/calamares/'&gt;Calamares
-                        Übersetzerteam&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;
-                        &lt;a href='https://calamares.io/'&gt;Calamares&lt;/a&gt;
-                        wird bei der Entwicklung unterstützt von &lt;br/&gt;
-                        &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; -
-                        Liberating Software.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcomeq/about.qml" line="96"/>
+      <location filename="../src/modules/welcomeq/about.qml" line="79"/>
       <source>Back</source>
       <translation>Zurück</translation>
     </message>
@@ -4266,17 +4250,17 @@ Ausgabe:
       <translation>Tastaturmodell:</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="254"/>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="256"/>
       <source>Layouts</source>
       <translation>Tastaturbelegungen</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="263"/>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="265"/>
       <source>Type here to test your keyboard</source>
       <translation>Tippen Sie hier, um die Tastaturbelegung zu testen.</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="179"/>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="180"/>
       <source>Variants</source>
       <translation>Varianten</translation>
     </message>
@@ -4425,102 +4409,102 @@ Ausgabe:
       <translation>Falls mehrere Personen diesen Computer benutzen, können Sie nach der Installation weitere Konten hinzufügen.</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="128"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="129"/>
       <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
       <translation>Es sind nur Kleinbuchstaben, Zahlen, Unterstrich und Bindestrich erlaubt.</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="136"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="138"/>
       <source>root is not allowed as username.</source>
       <translation>root ist als Benutzername nicht erlaubt.</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="145"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="147"/>
       <source>What is the name of this computer?</source>
       <translation>Wie ist der Name dieses Computers?</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="151"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="153"/>
       <source>Computer Name</source>
       <translation>Computername</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="178"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="180"/>
       <source>This name will be used if you make the computer visible to others on a network.</source>
       <translation>Dieser Name wird benutzt, wenn Sie den Computer im Netzwerk für andere sichtbar machen.</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="198"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="202"/>
       <source>localhost is not allowed as hostname.</source>
       <translation>localhost ist als Computername nicht erlaubt.</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="207"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="211"/>
       <source>Choose a password to keep your account safe.</source>
       <translation>Wählen Sie ein Passwort, um Ihr Konto zu sichern.</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="217"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="221"/>
       <source>Password</source>
       <translation>Passwort</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="234"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="238"/>
       <source>Repeat Password</source>
       <translation>Passwort wiederholen</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="261"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="265"/>
       <source>Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.</source>
       <translation>Geben Sie das Passwort zweimal ein, damit es auf Tippfehler überprüft werden kann. Ein gutes Passwort sollte eine Mischung aus Buchstaben, Zahlen sowie Sonderzeichen enthalten, mindestens acht Zeichen lang sein und regelmäßig geändert werden. </translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="406"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="410"/>
       <source>Validate passwords quality</source>
       <translation>Passwort-Qualität überprüfen</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="416"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="420"/>
       <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password.</source>
       <translation>Wenn dieses Kontrollkästchen aktiviert ist, wird die Passwortstärke überprüft und verhindert, dass Sie ein schwaches Passwort verwenden.</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="398"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="402"/>
       <source>Log in automatically without asking for the password</source>
       <translation>Automatisch anmelden ohne Passwortabfrage</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="190"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="193"/>
       <source>Only letters, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
       <translation>Es sind nur Buchstaben, Zahlen, Unterstrich und Bindestrich erlaubt, minimal zwei Zeichen.</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="293"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="297"/>
       <source>Reuse user password as root password</source>
       <translation>Benutzerpasswort als Root-Passwort benutzen </translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="301"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="305"/>
       <source>Use the same password for the administrator account.</source>
       <translation>Nutze das gleiche Passwort auch für das Administratorkonto.</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="314"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="318"/>
       <source>Choose a root password to keep your account safe.</source>
       <translation>Wählen Sie ein Root-Passwort, um Ihr Konto zu schützen.</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="324"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="328"/>
       <source>Root Password</source>
       <translation>Root-Passwort</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="342"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="346"/>
       <source>Repeat Root Password</source>
       <translation>Root-Passwort wiederholen</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="368"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="372"/>
       <source>Enter the same password twice, so that it can be checked for typing errors.</source>
       <translation>Geben Sie das Passwort zweimal ein, damit es auf Tippfehler überprüft werden kann.</translation>
     </message>

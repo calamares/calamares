@@ -7,8 +7,8 @@
  *
  */
 
-#ifndef LIBCALAMARESUI_PRETTYRADIOBUTTON_H
-#define LIBCALAMARESUI_PRETTYRADIOBUTTON_H
+#ifndef LIBCALAMARESUI_WIDGETS_PRETTYRADIOBUTTON_H
+#define LIBCALAMARESUI_WIDGETS_PRETTYRADIOBUTTON_H
 
 #include "DllMacro.h"
 
@@ -20,6 +20,8 @@ class QGridLayout;
 class QHBoxLayout;
 
 namespace Calamares
+{
+namespace Widgets
 {
 class ClickableLabel;
 
@@ -72,6 +74,6 @@ protected:
     QGridLayout* m_mainLayout;
     QHBoxLayout* m_optionsLayout;
 };
-
+}  // namespace Widgets
 }  // namespace Calamares
-#endif  // LIBCALAMARESUI_PRETTYRADIOBUTTON_H
+#endif  // LIBCALAMARESUI_WIDGETS_PRETTYRADIOBUTTON_H

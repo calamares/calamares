@@ -24,10 +24,6 @@
 #include "PythonJobModule.h"
 #endif
 
-#ifdef WITH_PYTHONQT
-#include "PythonQtViewModule.h"
-#endif
-
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
@@ -58,14 +54,6 @@ moduleFromDescriptor( const Calamares::ModuleSystem::Descriptor& moduleDescripto
         if ( moduleDescriptor.interface() == Interface::QtPlugin )
         {
             m.reset( new ViewModule() );
-        }
-        else if ( moduleDescriptor.interface() == Interface::PythonQt )
-        {
-#ifdef WITH_PYTHONQT
-            m.reset( new PythonQtViewModule() );
-#else
-            cError() << "PythonQt view modules are not supported in this version of Calamares.";
-#endif
         }
         else
         {

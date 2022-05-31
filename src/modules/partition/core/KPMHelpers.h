@@ -27,15 +27,10 @@ class Partition;
 class PartitionNode;
 class PartitionRole;
 
-#if defined( WITH_KPMCORE4API )
+// TODO:3.3: Remove defines, expand in-place
 #define KPM_PARTITION_FLAG( x ) PartitionTable::Flag::x
 #define KPM_PARTITION_STATE( x ) Partition::State::x
 #define KPM_PARTITION_FLAG_ESP PartitionTable::Flag::Boot
-#else
-#define KPM_PARTITION_FLAG( x ) PartitionTable::Flag##x
-#define KPM_PARTITION_STATE( x ) Partition::State##x
-#define KPM_PARTITION_FLAG_ESP PartitionTable::FlagEsp
-#endif
 
 /**
  * Helper functions to manipulate partitions

@@ -6,7 +6,7 @@
 
 # Because LUKS Open Swap Hook (Job) is such a mouthful, we'll
 # use LOSH all over the place as a shorthand.
-calamares_add_plugin( luksopenswaphookcfg
+calamares_add_plugin(luksopenswaphookcfg
     TYPE job
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
@@ -14,9 +14,4 @@ calamares_add_plugin( luksopenswaphookcfg
     SHARED_LIB
 )
 
-calamares_add_test(
-    luksopenswaphooktest
-    SOURCES
-        LOSHJob.cpp
-        Tests.cpp
-)
+calamares_add_test(luksopenswaphooktest SOURCES LOSHJob.cpp Tests.cpp)

@@ -27,7 +27,6 @@
 #include "utils/Logger.h"
 #include "utils/NamedEnum.h"
 #include "utils/Retranslator.h"
-#include "widgets/TranslationFix.h"
 
 #include <QApplication>
 #include <QBoxLayout>
@@ -48,8 +47,6 @@ WelcomePage::WelcomePage( Config* config, QWidget* parent )
 
     const int defaultFontHeight = CalamaresUtils::defaultFontHeight();
     ui->setupUi( this );
-    ui->aboutButton->setIcon( CalamaresUtils::defaultPixmap(
-        CalamaresUtils::Information, CalamaresUtils::Original, 2 * QSize( defaultFontHeight, defaultFontHeight ) ) );
 
     // insert system-check widget below welcome text
     const int welcome_text_idx = ui->verticalLayout->indexOf( ui->mainText );
@@ -78,7 +75,6 @@ WelcomePage::WelcomePage( Config* config, QWidget* parent )
 
     CALAMARES_RETRANSLATE_SLOT( &WelcomePage::retranslate );
 
-    connect( ui->aboutButton, &QPushButton::clicked, this, &WelcomePage::showAboutBox );
     connect( Calamares::ModuleManager::instance(),
              &Calamares::ModuleManager::requirementsComplete,
              m_checkingWidget,
@@ -215,30 +211,6 @@ WelcomePage::retranslate()
     ui->retranslateUi( this );
     ui->supportButton->setText( tr( "%1 support" ).arg( Calamares::Branding::instance()->shortProductName() ) );
 }
-
-void
-WelcomePage::showAboutBox()
-{
-    QString title
-        = Calamares::Settings::instance()->isSetupMode() ? tr( "About %1 setup" ) : tr( "About %1 installer" );
-    QMessageBox mb( QMessageBox::Information,
-                    title.arg( CALAMARES_APPLICATION_NAME ),
-                    m_conf->aboutMessage().arg( Calamares::Branding::instance()->versionedName() ),
-                    QMessageBox::Ok,
-                    this );
-    Calamares::fixButtonLabels( &mb );
-    mb.setIconPixmap( CalamaresUtils::defaultPixmap(
-        CalamaresUtils::Squid,
-        CalamaresUtils::Original,
-        QSize( CalamaresUtils::defaultFontHeight() * 6, CalamaresUtils::defaultFontHeight() * 6 ) ) );
-    QGridLayout* layout = reinterpret_cast< QGridLayout* >( mb.layout() );
-    if ( layout )
-    {
-        layout->setColumnMinimumWidth( 2, CalamaresUtils::defaultFontHeight() * 24 );
-    }
-    mb.exec();
-}
-
 
 void
 LocaleTwoColumnDelegate::paint( QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index ) const

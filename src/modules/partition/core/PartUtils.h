@@ -107,7 +107,7 @@ bool isEfiFilesystemSuitableSize( const Partition* candidate );
  *
  * A minimum of 32MiB (which is bonkers-small) is enforced.
  */
-size_t efiFilesystemMinimumSize();
+qint64 efiFilesystemMinimumSize();
 
 /**
  * @brief Is the given @p partition bootable in EFI? Depending on

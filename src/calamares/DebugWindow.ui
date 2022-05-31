@@ -5,7 +5,7 @@ SPDX-FileCopyrightText: 2015 Teo Mrnjavac &lt;teo@kde.org&gt;
 SPDX-License-Identifier: GPL-3.0-or-later
  </author>
  <class>Calamares::DebugWindow</class>
- <widget class="QWidget" name="Calamares::DebugWindow">
+ <widget class="QWidget" name="DebugWindow">
   <property name="geometry">
    <rect>
     <x>0</x>

@@ -204,3 +204,22 @@ Adding the subdirectory can be done as follows:
    to `.qm` files before being installed. The CMake macro's do this
    automatically. For manual packaging, use `lrelease` to compile
    the files.
+
+## Global Storage keys
+
+The following keys from the `branding.desc` file are copied into
+Global Storage under a *branding* parent key:
+    "productName",
+    "version",
+    "shortVersion",
+    "versionedName",
+    "shortVersionedName",
+    "shortProductName",
+    "bootloaderEntryName",
+    "productUrl",
+    "supportUrl",
+    "knownIssuesUrl",
+    "releaseNotesUrl",
+    "donateUrl"
+
+<!-- see Branding::s_stringEntryStrings and Branding::setGlobals() -->

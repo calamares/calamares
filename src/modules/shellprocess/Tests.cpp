@@ -146,14 +146,14 @@ script:
     QVariant plainScript = CalamaresUtils::yamlMapToVariant( doc ).value( "script" );
     QVariant rootScript = CalamaresUtils::yamlMapToVariant( YAML::Load( R"(---
 script:
-    - "ls @@ROOT@@"
+    - "ls ${ROOT}"
 )" ) )
                               .value( "script" );
     QVariant userScript = CalamaresUtils::yamlMapToVariant( YAML::Load( R"(---
 script:
-    - mktemp -d @@ROOT@@/calatestXXXXXXXX
-    - "chown @@USER@@ @@ROOT@@/calatest*"
-    - rm -rf @@ROOT@@/calatest*
+    - mktemp -d ${ROOT}/calatestXXXXXXXX
+    - "chown ${USER} ${ROOT}/calatest*"
+    - rm -rf ${ROOT}/calatest*
 )" ) )
                               .value( "script" );
 
@@ -167,13 +167,13 @@ script:
 
     qDebug() << "Expect WARNING, ERROR, WARNING";
 
-    // Doesn't use @@ROOT@@, so no failures
+    // Doesn't use ${ROOT}, so no failures
     QVERIFY( bool( CommandList( plainScript, false, 10s ).run() ) );
 
-    // Doesn't use @@ROOT@@, but does chroot, so fails
+    // Doesn't use ${ROOT}, but does chroot, so fails
     QVERIFY( !bool( CommandList( plainScript, true, 10s ).run() ) );
 
-    // Does use @@ROOT@@, which is not set, so fails
+    // Does use ${ROOT}, which is not set, so fails
     QVERIFY( !bool( CommandList( rootScript, false, 10s ).run() ) );
     // .. fails for two reasons
     QVERIFY( !bool( CommandList( rootScript, true, 10s ).run() ) );
@@ -190,7 +190,14 @@ script:
     // But no user set yet
     QVERIFY( !bool( CommandList( userScript, false, 10s ).run() ) );
 
-    // Now play dangerous games with shell expansion
+    // Show that shell expansion is now quoted.
     gs->insert( "username", "`id -u`" );
-    QVERIFY( bool( CommandList( userScript, false, 10s ).run() ) );
+    {
+        CalamaresUtils::CommandLine c { QStringLiteral( "chown ${USER}" ), std::chrono::seconds( 0 ) };
+        QCOMPARE( c.expand().command(), QStringLiteral( "chown '`id -u`'" ) );
+    }
+    // Now play dangerous games with shell expansion -- except the internal command is now
+    // quoted, so this fails because it's **highly** unlikely that the literal string
+    // "`id -u`" is a valid username.
+    QVERIFY( !bool( CommandList( userScript, false, 10s ).run() ) );
 }

@@ -11,7 +11,6 @@
 #include "LocaleViewStep.h"
 
 #include "LocalePage.h"
-#include "widgets/WaitingWidget.h"
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"

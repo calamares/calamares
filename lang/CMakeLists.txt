@@ -13,15 +13,15 @@
 # - defines an OBJECT LIBRARY calamares-i18n for linking the compiled
 #   translations into an executable.
 
-include( CalamaresAddTranslations )
+include(CalamaresAddTranslations)
 
 find_package(Qt5 COMPONENTS Xml)
-if( Qt5Xml_FOUND )
+if(Qt5Xml_FOUND)
     add_executable(txload txload.cpp)
     target_link_libraries(txload Qt5::Xml)
 endif()
 
-install_calamares_gettext_translations( python
+install_calamares_gettext_translations(python
     SOURCE_DIR ${CMAKE_SOURCE_DIR}/lang/python
     FILENAME python.mo
     RENAME calamares-python.mo
@@ -30,25 +30,25 @@ install_calamares_gettext_translations( python
 ### TRANSLATIONS
 #
 #
-set( TS_FILES "" )
-set( calamares_i18n_qrc_content "" )
+set(TS_FILES "")
+set(calamares_i18n_qrc_content "")
 
 # calamares and qt language files
-foreach( lang ${CALAMARES_TRANSLATION_LANGUAGES} )
-    foreach( tlsource "calamares_${lang}" "tz_${lang}" "kb_${lang}" )
-        if( EXISTS "${CMAKE_SOURCE_DIR}/lang/${tlsource}.ts" )
-            string( APPEND calamares_i18n_qrc_content "<file>${tlsource}.qm</file>\n" )
-            list( APPEND TS_FILES "${CMAKE_SOURCE_DIR}/lang/${tlsource}.ts" )
+foreach(lang ${CALAMARES_TRANSLATION_LANGUAGES})
+    foreach(tlsource "calamares_${lang}" "tz_${lang}" "kb_${lang}")
+        if(EXISTS "${CMAKE_SOURCE_DIR}/lang/${tlsource}.ts")
+            string(APPEND calamares_i18n_qrc_content "<file>${tlsource}.qm</file>\n")
+            list(APPEND TS_FILES "${CMAKE_SOURCE_DIR}/lang/${tlsource}.ts")
         endif()
     endforeach()
 endforeach()
 
-set( trans_file calamares_i18n )
-set( trans_infile ${CMAKE_CURRENT_BINARY_DIR}/${trans_file}.qrc )
-set( trans_outfile ${CMAKE_CURRENT_BINARY_DIR}/calamares-i18n.cxx )
-set( CALAMARES_TRANSLATIONS_SOURCE ${trans_outfile} )
+set(trans_file calamares_i18n)
+set(trans_infile ${CMAKE_CURRENT_BINARY_DIR}/${trans_file}.qrc)
+set(trans_outfile ${CMAKE_CURRENT_BINARY_DIR}/calamares-i18n.cxx)
+set(CALAMARES_TRANSLATIONS_SOURCE ${trans_outfile})
 
-configure_file( ${CMAKE_SOURCE_DIR}/lang/calamares_i18n.qrc.in ${trans_infile} @ONLY )
+configure_file(${CMAKE_SOURCE_DIR}/lang/calamares_i18n.qrc.in ${trans_infile} @ONLY)
 
 qt5_add_translation(QM_FILES ${TS_FILES})
 

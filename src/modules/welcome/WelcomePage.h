@@ -53,7 +53,6 @@ public:
 
 public slots:
     void retranslate();
-    void showAboutBox();
 
 protected:
     void focusInEvent( QFocusEvent* e ) override;  //choose the child widget to focus

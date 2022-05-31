@@ -10,7 +10,7 @@
 
 #include "ScanningDialog.h"
 
-#include "3rdparty/waitingspinnerwidget.h"
+#include "widgets/waitingspinnerwidget.h"
 
 #include <QBoxLayout>
 #include <QFutureWatcher>

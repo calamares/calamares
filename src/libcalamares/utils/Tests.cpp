@@ -10,11 +10,13 @@
  */
 
 #include "CalamaresUtilsSystem.h"
+#include "CommandList.h"
 #include "Entropy.h"
 #include "Logger.h"
 #include "RAII.h"
 #include "Runner.h"
 #include "String.h"
+#include "StringExpander.h"
 #include "Traits.h"
 #include "UMask.h"
 #include "Variant.h"
@@ -45,7 +47,10 @@ private Q_SLOTS:
     void testLoadSaveYaml();  // Just settings.conf
     void testLoadSaveYamlExtended();  // Do a find() in the src dir
 
+    /** @section Test running commands and command-expansion. */
     void testCommands();
+    void testCommandExpansion_data();
+    void testCommandExpansion();  // See also shellprocess tests
 
     /** @section Test that all the UMask objects work correctly. */
     void testUmask();
@@ -75,6 +80,10 @@ private Q_SLOTS:
     void testStringRemoveTrailing_data();
     void testStringRemoveTrailing();
 
+    /** @section Test String expansion. */
+    void testStringMacroExpander_data();
+    void testStringMacroExpander();  // The KF5::CoreAddons bits
+
     /** @section Test Runner directory-manipulation. */
     void testRunnerDirs();
     void testCalculateWorkingDirectory();
@@ -94,6 +103,16 @@ LibCalamaresTests::~LibCalamaresTests() {}
 void
 LibCalamaresTests::initTestCase()
 {
+    Calamares::GlobalStorage* gs
+        = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
+
+    if ( !gs )
+    {
+        cDebug() << "Creating new JobQueue";
+        (void)new Calamares::JobQueue();
+        gs = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
+    }
+    QVERIFY( gs );
 }
 
 void
@@ -249,6 +268,34 @@ LibCalamaresTests::testCommands()
 
     r = System::runCommand( System::RunLocation::RunInHost, { "/bin/ls" }, "/tmp" );
     QVERIFY( r.getOutput().contains( tfn.fileName() ) );
+}
+
+void
+LibCalamaresTests::testCommandExpansion_data()
+{
+    QTest::addColumn< QString >( "command" );
+    QTest::addColumn< QString >( "expected" );
+
+    QTest::newRow( "empty" ) << QString() << QString();
+    QTest::newRow( "ls   " ) << QStringLiteral( "ls" ) << QStringLiteral( "ls" );
+    QTest::newRow( "user " ) << QStringLiteral( "chmod $USER" ) << QStringLiteral( "chmod alice" );
+}
+
+void
+LibCalamaresTests::testCommandExpansion()
+{
+    Calamares::GlobalStorage* gs
+        = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
+    QVERIFY( gs );
+    gs->insert( QStringLiteral( "username" ), QStringLiteral( "alice" ) );
+
+    QFETCH( QString, command );
+    QFETCH( QString, expected );
+    CalamaresUtils::CommandLine c( command, std::chrono::seconds( 0 ) );
+    CalamaresUtils::CommandLine e = c.expand();
+
+    QCOMPARE( c.command(), command );
+    QCOMPARE( e.command(), expected );
 }
 
 void
@@ -554,7 +601,7 @@ LibCalamaresTests::testStringTruncation()
 {
     Logger::setupLogLevel( Logger::LOGDEBUG );
 
-    using namespace CalamaresUtils;
+    using namespace Calamares::String;
 
     const QString longString( R"(---
 --- src/libcalamares/utils/String.h
@@ -635,7 +682,7 @@ LibCalamaresTests::testStringTruncationShorter()
 {
     Logger::setupLogLevel( Logger::LOGDEBUG );
 
-    using namespace CalamaresUtils;
+    using namespace Calamares::String;
 
     const QString longString( R"(Some strange string artifacts appeared, leading to `{1?}` being
 displayed in various user-facing messages. These have been removed
@@ -730,7 +777,7 @@ LibCalamaresTests::testStringTruncationDegenerate()
 {
     Logger::setupLogLevel( Logger::LOGDEBUG );
 
-    using namespace CalamaresUtils;
+    using namespace Calamares::String;
 
     // This is quite long, 1 line only, with no newlines
     const QString longString( "The portscout new distfile checker has detected that one or more of your "
@@ -783,7 +830,7 @@ LibCalamaresTests::testStringRemoveLeading()
     QFETCH( QString, result );
 
     const QString initial = string;
-    CalamaresUtils::removeLeading( string, c );
+    Calamares::String::removeLeading( string, c );
     QCOMPARE( string, result );
 }
 
@@ -813,8 +860,62 @@ LibCalamaresTests::testStringRemoveTrailing()
     QFETCH( QString, result );
 
     const QString initial = string;
-    CalamaresUtils::removeTrailing( string, c );
+    Calamares::String::removeTrailing( string, c );
     QCOMPARE( string, result );
+}
+
+void
+LibCalamaresTests::testStringMacroExpander_data()
+{
+    QTest::addColumn< QString >( "source" );
+    QTest::addColumn< QString >( "result" );
+    QTest::addColumn< QStringList >( "errors" );
+
+    QTest::newRow( "empty   " ) << QString() << QString() << QStringList {};
+    QTest::newRow( "constant" ) << QStringLiteral( "bunnies!" ) << QStringLiteral( "bunnies!" ) << QStringList {};
+    QTest::newRow( "escaped " ) << QStringLiteral( "$$bun" ) << QStringLiteral( "$bun" )
+                                << QStringList {};  // Double $$ is an escaped $
+    QTest::newRow( "whole   " ) << QStringLiteral( "${ROOT}" ) << QStringLiteral( "wortel" ) << QStringList {};
+    QTest::newRow( "unbraced" ) << QStringLiteral( "$ROOT" ) << QStringLiteral( "wortel" )
+                                << QStringList {};  // Does not need {}
+    QTest::newRow( "bad-var1" ) << QStringLiteral( "${ROOF}" ) << QStringLiteral( "${ROOF}" )
+                                << QStringList { QStringLiteral( "ROOF" ) };  // Not replaced
+    QTest::newRow( "twice   " ) << QStringLiteral( "${ROOT}x${ROOT}" ) << QStringLiteral( "wortelxwortel" )
+                                << QStringList {};
+    QTest::newRow( "bad-var2" ) << QStringLiteral( "${ROOT}x${ROPE}" ) << QStringLiteral( "wortelx${ROPE}" )
+                                << QStringList { QStringLiteral( "ROPE" ) };  // Not replaced
+    // This is a borked string with a "nested" variable. The variable-name-
+    // scanner goes from ${ to the next } and tries to match that.
+    QTest::newRow( "confuse1" ) << QStringLiteral( "${RO${ROOT}" ) << QStringLiteral( "${ROwortel" )
+                                << QStringList { "RO${ROOT" };
+    // This one doesn't have a { for the first name to match with
+    QTest::newRow( "confuse2" ) << QStringLiteral( "$RO${ROOT}" ) << QStringLiteral( "$ROwortel" )
+                                << QStringList { "RO" };
+    // Here we see it just doesn't nest
+    QTest::newRow( "confuse3" ) << QStringLiteral( "${RO${ROOT}}" ) << QStringLiteral( "${ROwortel}" )
+                                << QStringList { "RO${ROOT" };
+}
+
+void
+LibCalamaresTests::testStringMacroExpander()
+{
+    QHash< QString, QString > dict;
+    dict.insert( QStringLiteral( "ROOT" ), QStringLiteral( "wortel" ) );
+
+    Calamares::String::DictionaryExpander d;
+    d.insert( QStringLiteral( "ROOT" ), QStringLiteral( "wortel" ) );
+
+    QFETCH( QString, source );
+    QFETCH( QString, result );
+    QFETCH( QStringList, errors );
+
+    QString km_expanded = KMacroExpander::expandMacros( source, dict, '$' );
+    QCOMPARE( km_expanded, result );
+
+    QString de_expanded = d.expand( source );
+    QCOMPARE( de_expanded, result );
+    QCOMPARE( d.errorNames(), errors );
+    QCOMPARE( d.hasErrors(), !errors.isEmpty() );
 }
 
 static QString

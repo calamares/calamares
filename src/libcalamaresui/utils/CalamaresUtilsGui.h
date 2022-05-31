@@ -63,7 +63,6 @@ enum ImageMode
     CoverInCase,
     Grid,
     DropShadow,
-    RoundedCorners
 };
 
 /**
@@ -78,35 +77,15 @@ UIDLLEXPORT QPixmap defaultPixmap( ImageType type,
                                    ImageMode mode = CalamaresUtils::Original,
                                    const QSize& size = QSize( 0, 0 ) );
 
-// TODO:3.3:This has only one consumer, move to ImageRegistry, make static
-/**
- * @brief createRoundedImage returns a rounded version of a pixmap.
- * @param avatar the input pixmap.
- * @param size the new size.
- * @param frameWidthPct the frame size, as percentage of width.
- * @return the transformed pixmap.
- * This one is currently unused.
- */
-UIDLLEXPORT QPixmap createRoundedImage( const QPixmap& avatar, const QSize& size, float frameWidthPct = 0.20f );
-
 /**
  * @brief unmarginLayout recursively walks the QLayout tree and removes all margins.
  * @param layout the layout to unmargin.
  */
 UIDLLEXPORT void unmarginLayout( QLayout* layout );
 
-// TODO:3.3:This has only one consumer, move to LicensePage, make static
-/**
- * @brief clearLayout recursively walks the QLayout tree and deletes all the child
- * widgets and layouts.
- * @param layout the layout to clear.
- */
-UIDLLEXPORT void clearLayout( QLayout* layout );
-
 UIDLLEXPORT void setDefaultFontSize( int points );
 UIDLLEXPORT int defaultFontSize();  // in points
 UIDLLEXPORT int defaultFontHeight();  // in pixels, DPI-specific
-UIDLLEXPORT QFont defaultFont();  // TODO:3.3:This has one consumer, move to BlankViewStep
 UIDLLEXPORT QFont largeFont();
 UIDLLEXPORT QSize defaultIconSize();
 

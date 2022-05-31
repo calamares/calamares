@@ -30,11 +30,8 @@
 
 using namespace CalamaresUtils::Units;
 
-namespace PartitionActions
-{
-
-qint64
-swapSuggestion( const qint64 availableSpaceB, Config::SwapChoice swap )
+static quint64
+swapSuggestion( const quint64 availableSpaceB, Config::SwapChoice swap )
 {
     if ( ( swap != Config::SwapChoice::SmallSwap ) && ( swap != Config::SwapChoice::FullSwap ) )
     {
@@ -42,10 +39,8 @@ swapSuggestion( const qint64 availableSpaceB, Config::SwapChoice swap )
     }
 
     // See partition.conf for explanation
-    qint64 suggestedSwapSizeB = 0;
-    auto memory = CalamaresUtils::System::instance()->getTotalMemoryB();
-    qint64 availableRamB = memory.first;
-    qreal overestimationFactor = memory.second;
+    quint64 suggestedSwapSizeB = 0;
+    auto [ availableRamB, overestimationFactor ] = CalamaresUtils::System::instance()->getTotalMemoryB();
 
     bool ensureSuspendToDisk = swap == Config::SwapChoice::FullSwap;
 
@@ -66,12 +61,13 @@ swapSuggestion( const qint64 availableSpaceB, Config::SwapChoice swap )
     // .. top out at 8GiB if we don't care about suspend
     if ( !ensureSuspendToDisk )
     {
-        suggestedSwapSizeB = qMin( 8_GiB, suggestedSwapSizeB );
+        // TODO: make the _GiB operator return unsigned
+        suggestedSwapSizeB = qMin( quint64( 8_GiB ), suggestedSwapSizeB );
     }
 
 
     // Allow for a fudge factor
-    suggestedSwapSizeB = qRound64( suggestedSwapSizeB * overestimationFactor );
+    suggestedSwapSizeB = quint64( qRound64( qreal( suggestedSwapSizeB ) * overestimationFactor ) );
 
     // don't use more than 10% of available space
     if ( !ensureSuspendToDisk )
@@ -79,10 +75,14 @@ swapSuggestion( const qint64 availableSpaceB, Config::SwapChoice swap )
         suggestedSwapSizeB = qMin( suggestedSwapSizeB, availableSpaceB / 10 /* 10% is 0.1 */ );
     }
 
+    // TODO: make Units functions work on unsigned
     cDebug() << "Suggested swap size:" << CalamaresUtils::BytesToGiB( suggestedSwapSizeB ) << "GiB";
 
     return suggestedSwapSizeB;
 }
+
+namespace PartitionActions
+{
 
 void
 doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionOptions o )
@@ -118,7 +118,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
 
     if ( isEfi )
     {
-        size_t uefisys_part_sizeB = PartUtils::efiFilesystemMinimumSize();
+        qint64 uefisys_part_sizeB = PartUtils::efiFilesystemMinimumSize();
         qint64 efiSectorCount = CalamaresUtils::bytesToSectors( uefisys_part_sizeB, dev->logicalSize() );
         Q_ASSERT( efiSectorCount > 0 );
 
@@ -147,16 +147,17 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
     const bool mayCreateSwap
         = ( o.swap == Config::SwapChoice::SmallSwap ) || ( o.swap == Config::SwapChoice::FullSwap );
     bool shouldCreateSwap = false;
-    qint64 suggestedSwapSizeB = 0;
+    quint64 suggestedSwapSizeB = 0;
 
+    const quint64 sectorSize = quint64( dev->logicalSize() );
     if ( mayCreateSwap )
     {
-        qint64 availableSpaceB = ( dev->totalLogical() - firstFreeSector ) * dev->logicalSize();
+        quint64 availableSpaceB = quint64( dev->totalLogical() - firstFreeSector ) * sectorSize;
         suggestedSwapSizeB = swapSuggestion( availableSpaceB, o.swap );
         // Space required by this installation is what the distro claims is needed
         // (via global configuration) plus the swap size plus a fudge factor of
         // 0.6GiB (this was 2.1GiB up to Calamares 3.2.2).
-        qint64 requiredSpaceB = o.requiredSpaceB + 600_MiB + suggestedSwapSizeB;
+        quint64 requiredSpaceB = o.requiredSpaceB + 600_MiB + suggestedSwapSizeB;
 
         // If there is enough room for ESP + root + swap, create swap, otherwise don't.
         shouldCreateSwap = availableSpaceB > requiredSpaceB;
@@ -165,7 +166,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
     qint64 lastSectorForRoot = dev->totalLogical() - 1;  //last sector of the device
     if ( shouldCreateSwap )
     {
-        lastSectorForRoot -= suggestedSwapSizeB / dev->logicalSize() + 1;
+        lastSectorForRoot -= suggestedSwapSizeB / sectorSize + 1;
     }
 
     core->layoutApply( dev, firstFreeSector, lastSectorForRoot, o.luksPassphrase );

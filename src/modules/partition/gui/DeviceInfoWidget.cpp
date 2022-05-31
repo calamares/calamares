@@ -100,9 +100,7 @@ DeviceInfoWidget::retranslateUi()
                             "that makes a file accessible as a block device. "
                             "This kind of setup usually only contains a single filesystem." );
         break;
-#if defined( WITH_KPMCORE42API )
     case PartitionTable::none:
-#endif
     case PartitionTable::unknownTableType:
         typeString = " ? ";
         toolTipString = tr( "This installer <strong>cannot detect a partition table</strong> on the "

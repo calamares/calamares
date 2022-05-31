@@ -43,7 +43,7 @@ RequirementsChecker::run()
 {
     m_progressTimer = new QTimer( this );
     connect( m_progressTimer, &QTimer::timeout, this, &RequirementsChecker::reportProgress );
-    m_progressTimer->start( 1200 );  // msec
+    m_progressTimer->start( std::chrono::milliseconds( 1200 ) );
 
     for ( const auto& module : m_modules )
     {
@@ -76,7 +76,7 @@ RequirementsChecker::finished()
         }
 
         m_model->describe();
-        m_model->changeRequirementsList();
+        m_model->reCheckList();
         QTimer::singleShot( 0, this, &RequirementsChecker::done );
     }
 }

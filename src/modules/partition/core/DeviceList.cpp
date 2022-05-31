@@ -127,11 +127,7 @@ getDevices( DeviceType which )
         cWarning() << "No KPM backend found.";
         return {};
     }
-#if defined( WITH_KPMCORE4API )
     DeviceList devices = backend->scanDevices( /* not includeReadOnly, not includeLoopback */ ScanFlag( 0 ) );
-#else
-    DeviceList devices = backend->scanDevices( /* excludeReadOnly */ true );
-#endif
 
     /* The list of devices is cleaned up for use:
      *  - some devices can **never** be used (e.g. floppies, nullptr)

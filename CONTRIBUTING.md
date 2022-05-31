@@ -77,16 +77,15 @@ instructions are on the wiki.
 ### Dependencies
 
 Main:
-* Compiler with C++17 support: GCC >= 7 or Clang >= 5
-* CMake >= 3.3
-* Qt >= 5.9
+* Compiler with C++17 support
+* CMake >= 3.16
+* Qt >= 5.15
 * yaml-cpp >= 0.5.1
-* Python >= 3.3 (required for some modules)
-* Boost.Python >= 1.55.0 (required for some modules)
+* Python >= 3.6 (required for some modules)
+* Boost.Python >= 1.67.0 (required for some modules)
 * KDE extra-cmake-modules >= 5.18 (recommended; required for some modules;
   required for some tests)
 * KDE Frameworks KCoreAddons (>= 5.58 recommended)
-* PythonQt (optional, deprecated)
 
 Individual modules may have their own requirements;
 these are listed in CMake output.
