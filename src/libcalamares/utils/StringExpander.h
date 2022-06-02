@@ -18,6 +18,8 @@
 #include <QString>
 #include <QStringList>
 
+#include <memory>
+
 namespace Calamares
 {
 namespace String
