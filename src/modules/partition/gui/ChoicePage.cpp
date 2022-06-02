@@ -288,6 +288,13 @@ ChoicePage::setupChoices()
             m_eraseFsTypesChoiceComboBox, &QComboBox::currentTextChanged, m_config, &Config::setEraseFsTypeChoice );
         connect( m_config, &Config::eraseModeFilesystemChanged, this, &ChoicePage::onActionChanged );
         m_eraseButton->addOptionsComboBox( m_eraseFsTypesChoiceComboBox );
+
+        // Also offer it for "replace
+        auto* box = new QComboBox;
+        box->addItems( m_config->eraseFsTypes() );
+        connect( box, &QComboBox::currentTextChanged, m_config, &Config : setReplaceFsChoice );
+        connect( m_config, &Config::replaceModeFilesystemChanged, this, &ChoicePage::onActionChanged );
+        m_replaceButton->addOptionsComboBox( box );
     }
 
     m_itemsLayout->addWidget( m_alongsideButton );
