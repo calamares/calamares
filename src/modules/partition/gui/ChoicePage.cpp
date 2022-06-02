@@ -310,13 +310,8 @@ ChoicePage::setupChoices()
 
     m_itemsLayout->addStretch();
 
-#if ( QT_VERSION < QT_VERSION_CHECK( 5, 15, 0 ) )
-    auto buttonSignal = QOverload< int, bool >::of( &QButtonGroup::buttonToggled );
-#else
-    auto buttonSignal = &QButtonGroup::idToggled;
-#endif
     connect( m_grp,
-             buttonSignal,
+             &QButtonGroup::idToggled,
              this,
              [ this ]( int id, bool checked )
              {
