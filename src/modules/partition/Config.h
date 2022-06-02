@@ -31,7 +31,8 @@ class Config : public QObject
     Q_PROPERTY(
         QString eraseModeFilesystem READ eraseFsType WRITE setEraseFsTypeChoice NOTIFY eraseModeFilesystemChanged )
 
-    Q_PROPERTY( QString replaceModeFilesystem READ replaceModeFilesystem WRITE setReplaceFilesystem NOTIFY replaceModeFilesystemChanged )
+    Q_PROPERTY( QString replaceModeFilesystem READ replaceModeFilesystem WRITE setReplaceFilesystemChoice NOTIFY
+                    replaceModeFilesystemChanged )
 
     Q_PROPERTY( bool allowManualPartitioning READ allowManualPartitioning CONSTANT FINAL )
 
@@ -143,6 +144,9 @@ public:
      */
     QString eraseFsType() const { return m_eraseFsTypeChoice; }
 
+    /// @brief Currently-selected FS type for *replace* mode
+    QString replaceModeFilesystem() const { return m_replaceFileSystemChoice; }
+
     /** @brief Configured default FS type (for other modes than erase)
      *
      * This is not "Unknown" or "Unformatted"
@@ -180,6 +184,7 @@ private:
     void fillConfigurationFSTypes( const QVariantMap& configurationMap );
     EraseFsTypesSet m_eraseFsTypes;
     QString m_eraseFsTypeChoice;
+    QString m_replaceFileSystemChoice;
     FileSystem::Type m_defaultFsType;
 
     SwapChoiceSet m_swapChoices;

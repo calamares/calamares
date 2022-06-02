@@ -239,11 +239,22 @@ Config::setSwapChoice( Config::SwapChoice c )
 void
 Config::setEraseFsTypeChoice( const QString& choice )
 {
-    QString canonicalChoice = PartUtils::canonicalFilesystemName( choice, nullptr );
+    const QString canonicalChoice = PartUtils::canonicalFilesystemName( choice, nullptr );
     if ( canonicalChoice != m_eraseFsTypeChoice )
     {
         m_eraseFsTypeChoice = canonicalChoice;
         Q_EMIT eraseModeFilesystemChanged( canonicalChoice );
+    }
+}
+
+void
+Config::setReplaceFilesystemChoice( const QString& filesystemName )
+{
+    const QString canonicalChoice = PartUtils::canonicalFilesystemName( filesystemName, nullptr );
+    if ( canonicalChoice != m_replaceFileSystemChoice )
+    {
+        m_replaceFileSystemChoice = canonicalChoice;
+        Q_EMIT replaceModeFilesystemChanged( canonicalChoice );
     }
 }
 
