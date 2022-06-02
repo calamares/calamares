@@ -292,7 +292,7 @@ ChoicePage::setupChoices()
         // Also offer it for "replace
         auto* box = new QComboBox;
         box->addItems( m_config->eraseFsTypes() );
-        connect( box, &QComboBox::currentTextChanged, m_config, &Config : setReplaceFsChoice );
+        connect( box, &QComboBox::currentTextChanged, m_config, &Config::setReplaceFilesystemChoice );
         connect( m_config, &Config::replaceModeFilesystemChanged, this, &ChoicePage::onActionChanged );
         m_replaceButton->addOptionsComboBox( box );
     }
