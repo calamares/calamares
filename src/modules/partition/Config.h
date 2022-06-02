@@ -31,6 +31,8 @@ class Config : public QObject
     Q_PROPERTY(
         QString eraseModeFilesystem READ eraseFsType WRITE setEraseFsTypeChoice NOTIFY eraseModeFilesystemChanged )
 
+    Q_PROPERTY( QString replaceModeFilesystem READ replaceModeFilesystem WRITE setReplaceFilesystem NOTIFY replaceModeFilesystemChanged )
+
     Q_PROPERTY( bool allowManualPartitioning READ allowManualPartitioning CONSTANT FINAL )
 
 public:
@@ -146,11 +148,13 @@ public Q_SLOTS:
     void setSwapChoice( int );  ///< Translates a button ID or so to SwapChoice
     void setSwapChoice( SwapChoice );
     void setEraseFsTypeChoice( const QString& filesystemName );  ///< See property eraseModeFilesystem
+    void setReplaceFilesystemChoice( const QString& filesystemName );
 
 Q_SIGNALS:
     void installChoiceChanged( InstallChoice );
     void swapChoiceChanged( SwapChoice );
     void eraseModeFilesystemChanged( const QString& );
+    void replaceModeFilesystemChanged( const QString& );
 
 private:
     /** @brief Handle FS-type configuration, for erase and default */
