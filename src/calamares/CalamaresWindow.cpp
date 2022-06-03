@@ -138,7 +138,7 @@ getWidgetSidebar( Calamares::DebugWindowManager* debug,
     if ( /* About-Calamares Button enabled */ true )
     {
         QPushButton* aboutDialog = new QPushButton;
-        aboutDialog->setObjectName( "aboutDialogButton" );
+        aboutDialog->setObjectName( "aboutButton" );
         aboutDialog->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::Information,
                                                              CalamaresUtils::Original,
                                                              2 * QSize( defaultFontHeight, defaultFontHeight ) ) );
