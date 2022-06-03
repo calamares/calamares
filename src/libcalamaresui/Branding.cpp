@@ -24,6 +24,7 @@
 #include <QDir>
 #include <QFile>
 #include <QIcon>
+#include <QMetaEnum>
 #include <QPixmap>
 #include <QVariantMap>
 
@@ -83,19 +84,6 @@ const QStringList Branding::s_imageEntryStrings =
     "productLogo",
     "productWallpaper",
     "productWelcome"
-};
-
-/** @brief Mapping of enum values to key names
- *
- * The key names can be found in `branding.desc` and need to match
- * that (and the branding schema).
- */
-static const QStringList s_styleEntryStrings =
-{
-    "sidebarBackground",
-    "sidebarText",
-    "sidebarTextSelect",  // enum value TextCurrent
-    "sidebarTextHighlight",  // enum value BackgroundCurrent
 };
 
 const QStringList Branding::s_uploadServerStrings =
@@ -322,7 +310,8 @@ Branding::string( Branding::StringEntry stringEntry ) const
 QString
 Branding::styleString( Branding::StyleEntry styleEntry ) const
 {
-    return m_style.value( s_styleEntryStrings.value( styleEntry ) );
+    const auto meta = QMetaEnum::fromType<Branding::StyleEntry>();
+    return meta.valueToKey(styleEntry);
 }
 
 
