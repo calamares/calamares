@@ -72,6 +72,12 @@ public:
     };
     Q_ENUM( ImageEntry )
 
+    /** @brief Names of style entries, for use in code
+     *
+     * These names are mapped to names in the branding.desc file through
+     * an internal table s_styleEntryStrings, which defines which names
+     * in `branding.desc` key *style* are used for which entry.
+     */
     enum StyleEntry : short
     {
         SidebarBackground,
@@ -256,6 +262,12 @@ public slots:
     QString shortProductName() const { return string( ShortProductName ); }
     QString shortVersionedName() const { return string( ShortVersionedName ); }
 
+    /** @brief Map an enum-value to the entry from the *style* key.
+     *
+     * e.g. StyleEntry::SidebarTextCurrent maps to the corresponding
+     * *style* entry, which is (confusingly) named "sidebarTextSelect"
+     * in the branding file.
+     */
     QString styleString( StyleEntry styleEntry ) const;
     QString imagePath( ImageEntry imageEntry ) const;
 
@@ -267,7 +279,6 @@ private:
 
     static const QStringList s_stringEntryStrings;
     static const QStringList s_imageEntryStrings;
-    static const QStringList s_styleEntryStrings;
     static const QStringList s_uploadServerStrings;
 
     QString m_descriptorPath;  // Path to descriptor (e.g. "/etc/calamares/default/branding.desc")

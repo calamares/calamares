@@ -85,12 +85,17 @@ const QStringList Branding::s_imageEntryStrings =
     "productWelcome"
 };
 
-const QStringList Branding::s_styleEntryStrings =
+/** @brief Mapping of enum values to key names
+ *
+ * The key names can be found in `branding.desc` and need to match
+ * that (and the branding schema).
+ */
+static const QStringList s_styleEntryStrings =
 {
     "sidebarBackground",
     "sidebarText",
-    "sidebarTextSelect",
-    "sidebarTextHighlight"
+    "sidebarTextSelect",  // enum value TextCurrent
+    "sidebarTextHighlight",  // enum value BackgroundCurrent
 };
 
 const QStringList Branding::s_uploadServerStrings =
