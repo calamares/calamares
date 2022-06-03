@@ -66,7 +66,7 @@ Rectangle {
             Layout.fillWidth: true;
             height: 35
             Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
-            color: Branding.styleString( Branding.SidebarTextHighlight );
+            color: Branding.styleString( Branding.SidebarBackground );
             visible: true;
 
             Rectangle {
@@ -74,7 +74,7 @@ Rectangle {
                 height: 35
                 width: parent.width / 2;
                 anchors.left: parent.left
-                color: Branding.styleString( Branding.SidebarTextHighlight );
+                color: Branding.styleString( Branding.SidebarBackgroundCurrent );
                 visible: true;
 
                 MouseArea {
@@ -87,7 +87,7 @@ Rectangle {
                         anchors.horizontalCenter: parent.horizontalCenter;
                         x: parent.x + 4;
                         text: qsTr("About")
-                        color: Branding.styleString( Branding.SidebarTextSelect );
+                        color: Branding.styleString( Branding.SidebarTextCurrent );
                         font.pointSize : 9
                     }
 
@@ -100,7 +100,7 @@ Rectangle {
                 height: 35
                 width: parent.width / 2;
                 anchors.right: parent.right
-                color: Branding.styleString( Branding.SidebarTextHighlight );
+                color: Branding.styleString( Branding.SidebarBackgroundCurrent );
                 visible: debug.enabled
 
                 MouseArea {
@@ -113,7 +113,7 @@ Rectangle {
                         anchors.horizontalCenter: parent.horizontalCenter;
                         x: parent.x + 4;
                         text: qsTr("Debug")
-                        color: Branding.styleString( Branding.SidebarTextSelect );
+                        color: Branding.styleString( Branding.SidebarTextCurrent );
                         font.pointSize : 9
                     }
 
