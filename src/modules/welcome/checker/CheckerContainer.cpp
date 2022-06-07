@@ -71,7 +71,11 @@ CheckerContainer::requirementsComplete( bool ok )
         m_waitingWidget->deleteLater();
         m_waitingWidget = nullptr;  // Don't delete in destructor
     }
-    if ( !m_checkerWidget )
+    if ( m_checkerWidget )
+    {
+        m_checkerWidget->requirementsComplete();
+    }
+    else
     {
         m_checkerWidget = new ResultsListWidget( m_config, this );
         m_checkerWidget->setObjectName( "requirementsChecker" );
