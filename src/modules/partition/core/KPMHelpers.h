@@ -98,6 +98,27 @@ Partition* clonePartition( Device* device, Partition* partition );
  */
 SavePassphraseValue savePassphrase( Partition* partition, const QString& passphrase );
 
+/** @brief Decrypt an encrypted partition.
+ *
+ * Uses @p partition to decrypt the partition.
+ * The passphrase saved in @p partition is used.
+ * Returns the mapped device path or an empty string if it fails.
+ */
+QString cryptOpen( Partition* partition );
+void cryptClose( Partition* partition );
+
+/** @brief Set label of luks encrypted partition.
+ *
+ * Returns true on success or false if it fails.
+ */
+bool cryptLabel( Partition* partition, const QString& label );
+
+/** @brief Returns the luks version used to encrypt the partition.
+ *
+ * Used by cryptLabel
+ */
+int cryptVersion( Partition* partition );
+
 /** @brief Return a result for an @p operation
  *
  * Executes the operation, and if successful, returns a success result.
