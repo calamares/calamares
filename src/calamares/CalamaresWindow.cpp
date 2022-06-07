@@ -138,12 +138,14 @@ getWidgetSidebar( Calamares::DebugWindowManager* debug,
     if ( /* About-Calamares Button enabled */ true )
     {
         QPushButton* aboutDialog = new QPushButton;
-        aboutDialog->setObjectName( "aboutDialogButton" );
+        aboutDialog->setObjectName( "aboutButton" );
         aboutDialog->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::Information,
                                                              CalamaresUtils::Original,
                                                              2 * QSize( defaultFontHeight, defaultFontHeight ) ) );
         CALAMARES_RETRANSLATE_FOR(
             aboutDialog,
+            aboutDialog->setText(
+                QCoreApplication::translate( CalamaresWindow::staticMetaObject.className(), "About" ) );
             aboutDialog->setToolTip( QCoreApplication::translate( CalamaresWindow::staticMetaObject.className(),
                                                                   "Show information about Calamares" ) ); );
         extraButtons->addWidget( aboutDialog );
@@ -158,6 +160,8 @@ getWidgetSidebar( Calamares::DebugWindowManager* debug,
         debugWindowBtn->setIcon( CalamaresUtils::defaultPixmap(
             CalamaresUtils::Bugs, CalamaresUtils::Original, 2 * QSize( defaultFontHeight, defaultFontHeight ) ) );
         CALAMARES_RETRANSLATE_FOR( debugWindowBtn,
+                                   debugWindowBtn->setText( QCoreApplication::translate(
+                                       CalamaresWindow::staticMetaObject.className(), "Debug" ) );
                                    debugWindowBtn->setToolTip( QCoreApplication::translate(
                                        CalamaresWindow::staticMetaObject.className(), "Show debug information" ) ); );
         extraButtons->addWidget( debugWindowBtn );
