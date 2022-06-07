@@ -18,7 +18,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: docker://debian:10
+      image: docker://debian:11
       options: --tmpfs /build:rw --user 0:0
     steps:
       - name: "prepare env"

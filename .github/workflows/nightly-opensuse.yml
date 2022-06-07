@@ -18,7 +18,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: docker://opensuse/leap
+      image: docker://opensuse/tumbleweed
       options: --tmpfs /build:rw --user 0:0
     steps:
       - name: "prepare env"
