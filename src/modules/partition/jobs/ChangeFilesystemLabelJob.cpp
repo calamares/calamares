@@ -9,6 +9,8 @@
 
 #include "ChangeFilesystemLabelJob.h"
 
+#include "core/KPMHelpers.h"
+
 #include "utils/Logger.h"
 
 #include <kpmcore/backend/corebackend.h>
@@ -56,6 +58,17 @@ ChangeFilesystemLabelJob::exec()
     if ( m_label == partition()->fileSystem().label() )
     {
         return Calamares::JobResult::ok();
+    }
+
+    // Check for luks device
+    if ( partition()->fileSystem().type() == FileSystem::Luks )
+    {
+        if ( KPMHelpers::cryptLabel( partition(), m_label ) )
+        {
+            return Calamares::JobResult::ok();
+        }
+        return Calamares::JobResult::error(
+            tr( "The installer failed to update partition table on disk '%1'." ).arg( m_device->name() ) );
     }
 
     Report report( nullptr );
