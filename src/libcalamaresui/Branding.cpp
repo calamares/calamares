@@ -24,6 +24,7 @@
 #include <QDir>
 #include <QFile>
 #include <QIcon>
+#include <QMetaEnum>
 #include <QPixmap>
 #include <QVariantMap>
 
@@ -85,14 +86,6 @@ const QStringList Branding::s_imageEntryStrings =
     "productWelcome"
 };
 
-const QStringList Branding::s_styleEntryStrings =
-{
-    "sidebarBackground",
-    "sidebarText",
-    "sidebarTextSelect",
-    "sidebarTextHighlight"
-};
-
 const QStringList Branding::s_uploadServerStrings =
 {
     "type",
@@ -102,6 +95,36 @@ const QStringList Branding::s_uploadServerStrings =
 // clang-format on
 // *INDENT-ON*
 
+/** @brief Check that all the entries in the @p style map make sense
+ *
+ * This will catch typo's in key names.
+ */
+static bool
+validateStyleEntries( const QMap< QString, QString >& style )
+{
+    using SE = Branding::StyleEntry;
+
+    Logger::Once o;
+    bool valid = true;
+
+    const auto meta = QMetaEnum::fromType< SE >();
+    QSet< QString > validNames;
+    for ( SE i : { SE::SidebarBackground, SE::SidebarBackgroundCurrent, SE::SidebarText, SE::SidebarTextCurrent } )
+    {
+        validNames.insert( meta.valueToKey( i ) );
+    }
+
+    for ( const auto& k : style.keys() )
+    {
+        if ( !validNames.contains( k ) )
+        {
+            cWarning() << o << "Unknown branding *style* entry" << k;
+            valid = false;
+        }
+    }
+
+    return valid;
+}
 
 const NamedEnumTable< Branding::WindowDimensionUnit >&
 Branding::WindowDimension::suffixes()
@@ -296,6 +319,7 @@ Branding::Branding( const QString& brandingFilePath, QObject* parent )
     {
         cDebug() << "Loaded branding component" << m_componentName;
     }
+    validateStyleEntries( m_style );
 }
 
 
@@ -317,7 +341,8 @@ Branding::string( Branding::StringEntry stringEntry ) const
 QString
 Branding::styleString( Branding::StyleEntry styleEntry ) const
 {
-    return m_style.value( s_styleEntryStrings.value( styleEntry ) );
+    const auto meta = QMetaEnum::fromType< Branding::StyleEntry >();
+    return m_style.value( meta.valueToKey( styleEntry ) );
 }
 
 
