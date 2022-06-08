@@ -100,7 +100,7 @@ def disk_name_for_partition(partition):
 
 class FstabGenerator(object):
     def __init__(self, partitions, root_mount_point, mount_options_list,
-                 ssd_extra_mount_options, crypttab_options, tmp_options):
+                 crypttab_options, tmp_options):
         self.partitions = partitions
         self.root_mount_point = root_mount_point
         self.mount_options_list = mount_options_list
@@ -414,7 +414,6 @@ def run():
     generator = FstabGenerator(partitions,
                                root_mount_point,
                                mount_options_list,
-                               ssd_extra_mount_options,
                                crypttab_options,
                                tmp_options)
 
