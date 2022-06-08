@@ -2,7 +2,27 @@
     <qresource>
         <file alias="kbd-model-map">../keyboard/kbd-model-map</file>
         <file alias="images/restore.png">../keyboard/images/restore.png</file>
-        <file>keyboardq.qml</file>
         <file alias="non-ascii-layouts">../keyboard/non-ascii-layouts</file>
+        <file>keyboardq.qml</file>
+        <file>data/Keyboard.qml</file>
+        <file>data/Key.qml</file>
+        <file>data/backspace.svg</file>
+        <file>data/enter.svg</file>
+        <file>data/shift.svg</file>
+        <file>data/afgani.xml</file>
+        <file>data/ar.xml</file>
+        <file>data/de.xml</file>
+        <file>data/en.xml</file>
+        <file>data/empty.xml</file>
+        <file>data/es.xml</file>
+        <file>data/fr.xml</file>
+        <file>data/generic_qz.xml</file>
+        <file>data/generic.xml</file>
+        <file>data/pt.xml</file>
+        <file>data/ru.xml</file>
+        <file>data/scan.xml</file>
+        <file>data/button_bkg_center.png</file>
+        <file>data/button_bkg_left.png</file>
+        <file>data/button_bkg_right.png</file>
     </qresource>
 </RCC>
