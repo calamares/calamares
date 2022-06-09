@@ -91,7 +91,7 @@ RequirementsChecker::addCheckedRequirements( Module* m )
         m_model->addRequirementsList( l );
     }
 
-    Q_EMIT requirementsProgress( tr( "Requirements checking for module <i>%1</i> is complete." ).arg( m->name() ) );
+    Q_EMIT requirementsProgress( tr( "Requirements checking for module '%1' is complete." ).arg( m->name() ) );
 }
 
 void
