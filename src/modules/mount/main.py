@@ -351,6 +351,9 @@ def run():
     except ZfsException as ze:
         return _("zfs mounting error"), ze.message
 
+    if not mount_options_list:
+        libcalamares.utils.warning("No mount options defined, {!s} partitions, {!s} mountable".format(len(partitions), len(mountable_partitions)))
+
     libcalamares.globalstorage.insert("rootMountPoint", root_mount_point)
     libcalamares.globalstorage.insert("mountOptionsList", mount_options_list)
 
