@@ -425,6 +425,7 @@ def run():
     # We rely on mount_options having a default; if there wasn't one,
     # bail out with a meaningful error.
     if not mount_options:
+        libcalamares.utils.warning("No mount options defined, {!s} partitions".format(len(partitions)))
         return (_("Configuration Error"),
                 _("No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use.")
                 .format("mountOptions", "fstab"))
