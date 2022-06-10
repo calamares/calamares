@@ -32,10 +32,10 @@ public:
     ~WaitingWidget() override;
 };
 
-/** @brief A spinner and a countdown next to it
+/** @brief A spinner and a countdown inside it
  *
  * The spinner is sized to the text-height and displays a
- * numeric countdown next to it. The countdown is updated
+ * numeric countdown iside the spinner. The countdown is updated
  * every second. The signal timeout() is sent every time
  * the countdown reaches 0.
  */

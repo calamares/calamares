@@ -228,11 +228,29 @@ GeneralRequirements::checkRequirements()
                                    false,
                                    required } );
         }
+        if ( entry == "slow-false" )
+        {
+            sleep(3);
+            checkEntries.append( { entry,
+                                   [] { return tr( "is always false (slowly)" ); },
+                                   [] { return tr( "The computer says no (slowly)." ); },
+                                   false,
+                                   required } );
+        }
         if ( entry == "true" )
         {
             checkEntries.append( { entry,
                                    [] { return tr( "is always true" ); },
                                    [] { return tr( "The computer says yes." ); },
+                                   true,
+                                   required } );
+        }
+        if ( entry == "slow-true" )
+        {
+            sleep(3);
+            checkEntries.append( { entry,
+                                   [] { return tr( "is always true (slowly)" ); },
+                                   [] { return tr( "The computer says yes (slowly)." ); },
                                    true,
                                    required } );
         }

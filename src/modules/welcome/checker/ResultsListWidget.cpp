@@ -67,18 +67,25 @@ ResultsListWidget::ResultsListWidget( Config* config, QWidget* parent )
 }
 
 void
-ResultsListWidget::requirementsChanged()
+ResultsListWidget::requirementsComplete()
 {
-    // Check that all are satisfied (gives warnings if not) and
-    // all *mandatory* entries are satisfied (gives errors if not).
-
+    // Check that the satisfaction of the requirements:
+    // - if everything is satisfied, show the welcome image
+    // - otherwise, if all the mandatory ones are satisfied,
+    //   we won't be re-checking (see ModuleManager::checkRequirements)
+    //   so hide the countdown,
+    // - otherwise we have unsatisfied mandatory requirements,
+    //   so keep the countdown and the list of problems.
     const bool requirementsSatisfied = m_config->requirementsModel()->satisfiedRequirements();
+    const bool mandatoryRequirementsSatisfied = m_config->requirementsModel()->satisfiedMandatory();
 
-    if ( requirementsSatisfied )
+    if ( mandatoryRequirementsSatisfied )
     {
         m_countdown->stop();
         m_countdown->hide();
-
+    }
+    if ( requirementsSatisfied )
+    {
         delete m_centralWidget;
         m_centralWidget = nullptr;
 

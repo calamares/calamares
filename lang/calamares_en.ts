@@ -283,16 +283,16 @@
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="118"/>
       <source>Waiting for %n module(s).</source>
       <translation>
-        <numerusform>Waiting for %n module(s).</numerusform>
-        <numerusform>Waiting for %n module(s).</numerusform>
+        <numerusform>Waiting for %n module.</numerusform>
+        <numerusform>Waiting for %n modules.</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="119"/>
       <source>(%n second(s))</source>
       <translation>
-        <numerusform>(%n second(s))</numerusform>
-        <numerusform>(%n second(s))</numerusform>
+        <numerusform>(%n second)</numerusform>
+        <numerusform>(%n seconds)</numerusform>
       </translation>
     </message>
     <message>

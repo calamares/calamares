@@ -26,10 +26,10 @@ class ResultsListWidget : public QWidget
 public:
     explicit ResultsListWidget( Config* config, QWidget* parent );
 
-private:
-    /// @brief The model of requirements changed
-    void requirementsChanged();
+    /// @brief The model of requirements has finished a round of checking
+    void requirementsComplete();
 
+private:
     Config* m_config = nullptr;
 
     // UI parts, which need updating when the model changes

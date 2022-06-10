@@ -81,6 +81,10 @@ public:
      * With AlignBottom, the text is displayed below the spinner,
      * centered horizontally relative to the spinner; any other alignment
      * will put the text in the middle of the spinner itself.
+     *
+     * TODO: this does not support rich text. Rich text could be done
+     *       through a QStaticText, or an HTML document. However, then
+     *       we need to do more alignment calculations ourselves.
      */
     void setText( const QString& text );
     /** @brief Sets the alignment of text for the spinner

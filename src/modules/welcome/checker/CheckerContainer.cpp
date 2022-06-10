@@ -77,6 +77,7 @@ CheckerContainer::requirementsComplete( bool ok )
         m_checkerWidget->setObjectName( "requirementsChecker" );
         layout()->addWidget( m_checkerWidget );
     }
+    m_checkerWidget->requirementsComplete();
 
     m_verdict = ok;
 }
