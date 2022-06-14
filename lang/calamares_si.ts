@@ -156,7 +156,7 @@
       <translation>විජට් ගස</translation>
     </message>
     <message>
-      <location filename="../src/calamares/DebugWindow.cpp" line="239"/>
+      <location filename="../src/calamares/DebugWindow.cpp" line="244"/>
       <source>Debug information</source>
       <translation>දෝශ නිරාකරණ තොරතුරු</translation>
     </message>
@@ -507,12 +507,12 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>CalamaresWindow</name>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="369"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="392"/>
       <source>%1 Setup Program</source>
       <translation>%1 සැකසුම් වැඩසටහන</translation>
     </message>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="370"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="393"/>
       <source>%1 Installer</source>
       <translation>%1 ස්ථාපකය</translation>
     </message>
@@ -1457,7 +1457,7 @@ The installer will quit and all changes will be lost.</source>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="260"/>
-      <source>Partition %1 could not be decrypted with the given passphrase.&lt;br/&gt;&lt;br/&gt;Edit the partition again and give the correct passphraseor delete and create a new encrypted partition.</source>
+      <source>Partition %1 could not be decrypted with the given passphrase.&lt;br/&gt;&lt;br/&gt;Edit the partition again and give the correct passphrase or delete and create a new encrypted partition.</source>
       <translation type="unfinished"/>
     </message>
   </context>
@@ -4022,61 +4022,56 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="140"/>
-      <source>&amp;About</source>
-      <translation>ගැන (&amp;A)</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="150"/>
       <source>Open donations website</source>
       <translation>පරිත්‍යාග වෙබ් අඩවිය විවෘත කරන්න</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="153"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="143"/>
       <source>&amp;Donate</source>
       <translation>පරිත්‍යාග කරන්න (&amp;D)</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="163"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="153"/>
       <source>Open help and support website</source>
       <translation>උදව් සහ සහාය වෙබ් අඩවිය විවෘත කරන්න</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="166"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="156"/>
       <source>&amp;Support</source>
       <translation>සහාය (&amp;S)</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="176"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="166"/>
       <source>Open issues and bug-tracking website</source>
       <translation>ගැටළු සහ දෝෂ ලුහුබැඳීමේ වෙබ් අඩවිය විවෘත කරන්න</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="169"/>
       <source>&amp;Known issues</source>
       <translation>දන්නා ගැටළු (&amp;K)</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="189"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
       <source>Open release notes website</source>
       <translation>නිකුතු සටහන් වෙබ් අඩවිය විවෘත කරන්න</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="192"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="182"/>
       <source>&amp;Release notes</source>
       <translation>නිකුත් කිරීමේ සටහන් (&amp;R)</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="216"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="212"/>
       <source>%1 support</source>
       <translation>%1 සහාය</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="223"/>
+      <location filename="../src/calamares/DebugWindow.cpp" line="319"/>
       <source>About %1 setup</source>
       <translation>%1 පිහිටුවීම ගැන</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="223"/>
+      <location filename="../src/calamares/DebugWindow.cpp" line="320"/>
       <source>About %1 installer</source>
       <translation>%1 ස්ථාපකය ගැන</translation>
     </message>
@@ -4142,19 +4137,16 @@ Output:
     </message>
   </context>
   <context>
-    <name>about</name>
-    <message>
-      <location filename="../src/modules/welcomeq/about.qml" line="79"/>
-      <source>Back</source>
-      <translation>ආපසු</translation>
-    </message>
-  </context>
-  <context>
     <name>calamares-sidebar</name>
     <message>
-      <location filename="../src/calamares/calamares-sidebar.qml" line="79"/>
-      <source>Show debug information</source>
-      <translation>දෝශ නිරාකරණ තොරතුරු පෙන්වන්න</translation>
+      <location filename="../src/calamares/calamares-sidebar.qml" line="89"/>
+      <source>About</source>
+      <translation>ගැන</translation>
+    </message>
+    <message>
+      <location filename="../src/calamares/calamares-sidebar.qml" line="115"/>
+      <source>Debug</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -4519,26 +4511,21 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="66"/>
-      <source>About</source>
-      <translation>ගැන</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="80"/>
       <source>Support</source>
       <translation>සහාය</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="91"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="77"/>
       <source>Known issues</source>
       <translation>දන්නා ගැටළු</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="102"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="88"/>
       <source>Release notes</source>
       <translation>නිකුත් කිරීමේ සටහන්</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="114"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="100"/>
       <source>Donate</source>
       <translation>පරිත්‍යාග කරන්න</translation>
     </message>

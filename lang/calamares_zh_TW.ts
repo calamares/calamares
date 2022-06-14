@@ -6,18 +6,18 @@
     <message>
       <location filename="../src/libcalamares/CalamaresAbout.cpp" line="17"/>
       <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt; for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt; for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/CalamaresAbout.cpp" line="20"/>
       <source>Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-      <translation type="unfinished"/>
+      <translation>感謝 &lt;a href="https://calamares.io/team/"&gt;Calamares 團隊&lt;/a&gt;與 &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares 翻譯者團隊&lt;/a&gt;。&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; 的開發由 &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software 贊助。</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/CalamaresAbout.cpp" line="38"/>
       <source>Copyright %1-%2 %3 &amp;lt;%4&amp;gt;&lt;br/&gt;</source>
       <extracomment>Copyright year-year Name &lt;email-address&gt;</extracomment>
-      <translation type="unfinished"/>
+      <translation>Copyright %1-%2 %3 &amp;lt;%4&amp;gt;&lt;br/&gt;</translation>
     </message>
   </context>
   <context>
@@ -156,7 +156,7 @@
       <translation>小工具樹</translation>
     </message>
     <message>
-      <location filename="../src/calamares/DebugWindow.cpp" line="239"/>
+      <location filename="../src/calamares/DebugWindow.cpp" line="244"/>
       <source>Debug information</source>
       <translation>除錯資訊</translation>
     </message>
@@ -505,12 +505,12 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>CalamaresWindow</name>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="369"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="392"/>
       <source>%1 Setup Program</source>
       <translation>%1 設定程式</translation>
     </message>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="370"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="393"/>
       <source>%1 Installer</source>
       <translation>%1 安裝程式</translation>
     </message>
@@ -1451,12 +1451,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="259"/>
       <source>Passphrase for existing partition</source>
-      <translation type="unfinished"/>
+      <translation>既有分割區的密碼</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="260"/>
-      <source>Partition %1 could not be decrypted with the given passphrase.&lt;br/&gt;&lt;br/&gt;Edit the partition again and give the correct passphraseor delete and create a new encrypted partition.</source>
-      <translation type="unfinished"/>
+      <source>Partition %1 could not be decrypted with the given passphrase.&lt;br/&gt;&lt;br/&gt;Edit the partition again and give the correct passphrase or delete and create a new encrypted partition.</source>
+      <translation>分割區 %1 無法使用給予的密碼解密。&lt;br/&gt;&lt;br/&gt;再次編輯分割區並給予正確的密碼或刪除並建立新的加密分割區。</translation>
     </message>
   </context>
   <context>
@@ -4011,61 +4011,56 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="140"/>
-      <source>&amp;About</source>
-      <translation>關於(&amp;A)</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="150"/>
       <source>Open donations website</source>
       <translation>開啟捐款網頁</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="153"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="143"/>
       <source>&amp;Donate</source>
       <translation>捐款(&amp;D)</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="163"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="153"/>
       <source>Open help and support website</source>
       <translation>開啟說明與支援網頁</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="166"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="156"/>
       <source>&amp;Support</source>
       <translation>支援(&amp;S)</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="176"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="166"/>
       <source>Open issues and bug-tracking website</source>
       <translation>開啟問題與錯誤追蹤網頁</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="169"/>
       <source>&amp;Known issues</source>
       <translation>已知問題(&amp;K)</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="189"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
       <source>Open release notes website</source>
       <translation>開啟發行記事網站</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="192"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="182"/>
       <source>&amp;Release notes</source>
       <translation>發行註記(&amp;R)</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="216"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="212"/>
       <source>%1 support</source>
       <translation>%1 支援</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="223"/>
+      <location filename="../src/calamares/DebugWindow.cpp" line="319"/>
       <source>About %1 setup</source>
       <translation>關於 %1 安裝程式</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="223"/>
+      <location filename="../src/calamares/DebugWindow.cpp" line="320"/>
       <source>About %1 installer</source>
       <translation>關於 %1 安裝程式</translation>
     </message>
@@ -4131,19 +4126,16 @@ Output:
     </message>
   </context>
   <context>
-    <name>about</name>
-    <message>
-      <location filename="../src/modules/welcomeq/about.qml" line="79"/>
-      <source>Back</source>
-      <translation>返回</translation>
-    </message>
-  </context>
-  <context>
     <name>calamares-sidebar</name>
     <message>
-      <location filename="../src/calamares/calamares-sidebar.qml" line="79"/>
-      <source>Show debug information</source>
-      <translation>顯示除錯資訊</translation>
+      <location filename="../src/calamares/calamares-sidebar.qml" line="89"/>
+      <source>About</source>
+      <translation>關於</translation>
+    </message>
+    <message>
+      <location filename="../src/calamares/calamares-sidebar.qml" line="115"/>
+      <source>Debug</source>
+      <translation>Debug</translation>
     </message>
   </context>
   <context>
@@ -4508,26 +4500,21 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="66"/>
-      <source>About</source>
-      <translation>關於</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="80"/>
       <source>Support</source>
       <translation>支援</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="91"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="77"/>
       <source>Known issues</source>
       <translation>已知問題</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="102"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="88"/>
       <source>Release notes</source>
       <translation>發行記事</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="114"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="100"/>
       <source>Donate</source>
       <translation>捐助</translation>
     </message>

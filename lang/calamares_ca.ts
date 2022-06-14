@@ -156,7 +156,7 @@
       <translation>Arbre de ginys</translation>
     </message>
     <message>
-      <location filename="../src/calamares/DebugWindow.cpp" line="239"/>
+      <location filename="../src/calamares/DebugWindow.cpp" line="244"/>
       <source>Debug information</source>
       <translation>Informació de depuració</translation>
     </message>
@@ -507,12 +507,12 @@ L'instal·lador es tancarà i tots els canvis es perdran.</translation>
   <context>
     <name>CalamaresWindow</name>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="369"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="392"/>
       <source>%1 Setup Program</source>
       <translation>Programa de configuració %1</translation>
     </message>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="370"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="393"/>
       <source>%1 Installer</source>
       <translation>Instal·lador de %1</translation>
     </message>
@@ -1457,8 +1457,8 @@ L'instal·lador es tancarà i tots els canvis es perdran.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="260"/>
-      <source>Partition %1 could not be decrypted with the given passphrase.&lt;br/&gt;&lt;br/&gt;Edit the partition again and give the correct passphraseor delete and create a new encrypted partition.</source>
-      <translation>La partició %1 no s'ha pogut desencriptar amb la frase de contrasenya proporcionada. &lt;br/&gt;&lt;br/&gt; Torneu a editar la partició i proporcioneu la contrasenya correcta o suprimiu-la i creeu una partició encriptada nova.</translation>
+      <source>Partition %1 could not be decrypted with the given passphrase.&lt;br/&gt;&lt;br/&gt;Edit the partition again and give the correct passphrase or delete and create a new encrypted partition.</source>
+      <translation>La partició %1 no s'ha pogut desencriptar amb la contrasenya proporcionada. &lt;br/&gt;&lt;br/&gt; Torneu a editar la partició i proporcioneu la contrasenya correcta, o suprimiu-la i creeu una partició encriptada nova.</translation>
     </message>
   </context>
   <context>
@@ -4022,61 +4022,56 @@ La configuració pot continuar, però algunes característiques podrien estar in
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="140"/>
-      <source>&amp;About</source>
-      <translation>&amp;Quant a</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="150"/>
       <source>Open donations website</source>
       <translation>Obre el lloc web per a les donacions</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="153"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="143"/>
       <source>&amp;Donate</source>
       <translation>Feu una &amp;donació</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="163"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="153"/>
       <source>Open help and support website</source>
       <translation>Obre el lloc web per a l'ajuda i el suport</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="166"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="156"/>
       <source>&amp;Support</source>
       <translation>&amp;Suport</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="176"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="166"/>
       <source>Open issues and bug-tracking website</source>
       <translation>Obre el lloc web de problemes i de seguiment d'errors</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="169"/>
       <source>&amp;Known issues</source>
       <translation>&amp;Problemes coneguts</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="189"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
       <source>Open release notes website</source>
       <translation>Obre el lloc web de les notes de la versió</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="192"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="182"/>
       <source>&amp;Release notes</source>
       <translation>&amp;Notes de la versió</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="216"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="212"/>
       <source>%1 support</source>
       <translation>%1 suport</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="223"/>
+      <location filename="../src/calamares/DebugWindow.cpp" line="319"/>
       <source>About %1 setup</source>
       <translation>Quant a la configuració de %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="223"/>
+      <location filename="../src/calamares/DebugWindow.cpp" line="320"/>
       <source>About %1 installer</source>
       <translation>Quant a l'instal·lador %1</translation>
     </message>
@@ -4142,19 +4137,16 @@ La configuració pot continuar, però algunes característiques podrien estar in
     </message>
   </context>
   <context>
-    <name>about</name>
-    <message>
-      <location filename="../src/modules/welcomeq/about.qml" line="79"/>
-      <source>Back</source>
-      <translation>Enrere</translation>
-    </message>
-  </context>
-  <context>
     <name>calamares-sidebar</name>
     <message>
-      <location filename="../src/calamares/calamares-sidebar.qml" line="79"/>
-      <source>Show debug information</source>
-      <translation>Informació de depuració</translation>
+      <location filename="../src/calamares/calamares-sidebar.qml" line="89"/>
+      <source>About</source>
+      <translation>Quant a</translation>
+    </message>
+    <message>
+      <location filename="../src/calamares/calamares-sidebar.qml" line="115"/>
+      <source>Debug</source>
+      <translation>Depuració</translation>
     </message>
   </context>
   <context>
@@ -4519,26 +4511,21 @@ Opció predeterminada.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="66"/>
-      <source>About</source>
-      <translation>Quant a</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="80"/>
       <source>Support</source>
       <translation>Suport</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="91"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="77"/>
       <source>Known issues</source>
       <translation>Problemes coneguts</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="102"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="88"/>
       <source>Release notes</source>
       <translation>Notes de la versió</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="114"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="100"/>
       <source>Donate</source>
       <translation>Feu una donació</translation>
     </message>

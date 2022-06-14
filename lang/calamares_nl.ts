@@ -156,7 +156,7 @@
       <translation>Widget-boom</translation>
     </message>
     <message>
-      <location filename="../src/calamares/DebugWindow.cpp" line="239"/>
+      <location filename="../src/calamares/DebugWindow.cpp" line="244"/>
       <source>Debug information</source>
       <translation>Debug informatie</translation>
     </message>
@@ -507,12 +507,12 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
   <context>
     <name>CalamaresWindow</name>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="369"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="392"/>
       <source>%1 Setup Program</source>
       <translation>%1 Voorbereidingsprogramma</translation>
     </message>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="370"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="393"/>
       <source>%1 Installer</source>
       <translation>%1 Installatieprogramma</translation>
     </message>
@@ -1457,7 +1457,7 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="260"/>
-      <source>Partition %1 could not be decrypted with the given passphrase.&lt;br/&gt;&lt;br/&gt;Edit the partition again and give the correct passphraseor delete and create a new encrypted partition.</source>
+      <source>Partition %1 could not be decrypted with the given passphrase.&lt;br/&gt;&lt;br/&gt;Edit the partition again and give the correct passphrase or delete and create a new encrypted partition.</source>
       <translation type="unfinished"/>
     </message>
   </context>
@@ -4018,61 +4018,56 @@ De installatie kan niet doorgaan.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="140"/>
-      <source>&amp;About</source>
-      <translation>&amp;Over</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="150"/>
       <source>Open donations website</source>
       <translation>Open donatiewebsite</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="153"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="143"/>
       <source>&amp;Donate</source>
       <translation>&amp;Doneren</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="163"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="153"/>
       <source>Open help and support website</source>
       <translation>Open help en ondersteuningswebsite.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="166"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="156"/>
       <source>&amp;Support</source>
       <translation>Onder&amp;steuning</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="176"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="166"/>
       <source>Open issues and bug-tracking website</source>
       <translation>Open problemen en bug-tracking website.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="169"/>
       <source>&amp;Known issues</source>
       <translation>Be&amp;kende problemen</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="189"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
       <source>Open release notes website</source>
       <translation>Open release-opmerkingen website.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="192"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="182"/>
       <source>&amp;Release notes</source>
       <translation>Aantekeningen bij deze ve&amp;rsie</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="216"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="212"/>
       <source>%1 support</source>
       <translation> %1 ondersteuning</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="223"/>
+      <location filename="../src/calamares/DebugWindow.cpp" line="319"/>
       <source>About %1 setup</source>
       <translation>Over %1 installatieprogramma.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="223"/>
+      <location filename="../src/calamares/DebugWindow.cpp" line="320"/>
       <source>About %1 installer</source>
       <translation>Over het %1 installatieprogramma</translation>
     </message>
@@ -4138,19 +4133,16 @@ De installatie kan niet doorgaan.</translation>
     </message>
   </context>
   <context>
-    <name>about</name>
-    <message>
-      <location filename="../src/modules/welcomeq/about.qml" line="79"/>
-      <source>Back</source>
-      <translation>Terug</translation>
-    </message>
-  </context>
-  <context>
     <name>calamares-sidebar</name>
     <message>
-      <location filename="../src/calamares/calamares-sidebar.qml" line="79"/>
-      <source>Show debug information</source>
-      <translation>Toon debug informatie</translation>
+      <location filename="../src/calamares/calamares-sidebar.qml" line="89"/>
+      <source>About</source>
+      <translation>Over</translation>
+    </message>
+    <message>
+      <location filename="../src/calamares/calamares-sidebar.qml" line="115"/>
+      <source>Debug</source>
+      <translation>Fouten opsporen</translation>
     </message>
   </context>
   <context>
@@ -4512,26 +4504,21 @@ De systeemstijdinstellingen beïnvloeden de cijfer- en datumsformaat. De huidige
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="66"/>
-      <source>About</source>
-      <translation>Over</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="80"/>
       <source>Support</source>
       <translation>Ondersteuning</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="91"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="77"/>
       <source>Known issues</source>
       <translation>Bekende problemen</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="102"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="88"/>
       <source>Release notes</source>
       <translation>Aantekeningen bij deze versie</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="114"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="100"/>
       <source>Donate</source>
       <translation>Doneren</translation>
     </message>
