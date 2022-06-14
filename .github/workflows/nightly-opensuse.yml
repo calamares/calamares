@@ -22,7 +22,7 @@ jobs:
       options: --tmpfs /build:rw --user 0:0
     steps:
       - name: "prepare env"
-        uses: calamares/actions/prepare-opensuse@v4
+        uses: calamares/actions/prepare-opensuse@0947b82b55adbb1055018d706da46eb70f8bcce5
       - name: "prepare source"
         uses: calamares/actions/generic-checkout@v4
       - name: "build"

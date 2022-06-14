@@ -1,4 +1,4 @@
-name: nightly-debian-10
+name: nightly-debian-11
 
 on:
   schedule:
@@ -22,7 +22,7 @@ jobs:
       options: --tmpfs /build:rw --user 0:0
     steps:
       - name: "prepare env"
-        uses: calamares/actions/prepare-debian@v4
+        uses: calamares/actions/prepare-debian@v5
       - name: "prepare source"
         uses: calamares/actions/generic-checkout@v4
       - name: "build"
