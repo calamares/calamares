@@ -78,6 +78,7 @@ Rectangle {
                         }
 
                         Text {
+                            id: message
                             text: satisfied ? details : negatedText
                             anchors.centerIn: parent
                             font.pointSize: 11
