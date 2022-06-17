@@ -136,15 +136,15 @@ set( CALAMARES_DESCRIPTION_SUMMARY
 # NOTE: update these lines by running `txstats.py`, or for full automation
 #       `txstats.py -e`. See also
 #
-# Total 74 languages
-set( _tx_complete az az_AZ ca es fi_FI he hi hr ja lt pt_BR pt_PT
-    sq sv uk zh_TW )
-set( _tx_good as be ca@valencia cs_CZ da de fa fr fur it_IT ko ml
-    nl ru si sk tg tr_TR vi zh_CN )
+# Total 75 languages
+set( _tx_complete az az_AZ ca fi_FI fr he hr ja ko lt pt_BR pt_PT
+    sv tr_TR uk zh_TW )
+set( _tx_good as be ca@valencia cs_CZ da de es fa fur hi it_IT ml
+    nl ru si sk sq tg vi zh_CN )
 set( _tx_ok ar ast bg bn el en_GB es_MX et eu gl hu id is mr nb oc
     pl ro sl sr sr@latin th )
 set( _tx_incomplete eo es_PR gu ie ja-Hira kk kn lo lv mk ne_NP
-    ta_IN te ur zh zh_HK )
+    ta_IN te ur uz zh zh_HK )
 
 ### Required versions
 #
