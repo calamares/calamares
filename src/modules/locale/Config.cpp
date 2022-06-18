@@ -305,8 +305,14 @@ Config::automaticLocaleConfiguration() const
     {
         return LocaleConfiguration();
     }
-    return LocaleConfiguration::fromLanguageAndLocation(
-        QLocale().name(), supportedLocales(), currentLocation()->country() );
+
+    auto* gs = Calamares::JobQueue::instance()->globalStorage();
+    QString lang = CalamaresUtils::Locale::readGS( *gs, QStringLiteral( "LANG" ) );
+    if ( lang.isEmpty() )
+    {
+        lang = QLocale().name();
+    }
+    return LocaleConfiguration::fromLanguageAndLocation( lang, supportedLocales(), currentLocation()->country() );
 }
 
 LocaleConfiguration
