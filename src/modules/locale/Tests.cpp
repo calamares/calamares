@@ -40,6 +40,8 @@ private Q_SLOTS:
 
     // Check the Config loading
     void testConfigInitialization();
+    void testLanguageDetection_data();
+    void testLanguageDetection();
 };
 
 QTEST_MAIN( LocaleTests )
@@ -265,6 +267,50 @@ LocaleTests::testConfigInitialization()
 
     QVERIFY( !c.currentLocation() );
     QVERIFY( !c.currentLocationStatus().isEmpty() );
+}
+
+void
+LocaleTests::testLanguageDetection_data()
+{
+    QTest::addColumn< QString >( "locale" );
+    QTest::addColumn< QString >( "country" );
+    QTest::addColumn< QString >( "expected" );
+
+    QTest::newRow( "english (US)" ) << QStringLiteral( "en" ) << QStringLiteral( "US" ) << QStringLiteral( "en_US" );
+    QTest::newRow( "english (CA)" ) << QStringLiteral( "en" ) << QStringLiteral( "CA" ) << QStringLiteral( "en" );
+    QTest::newRow( "english (GB)" ) << QStringLiteral( "en" ) << QStringLiteral( "GB" ) << QStringLiteral( "en_GB" );
+    QTest::newRow( "english (NL)" ) << QStringLiteral( "en" ) << QStringLiteral( "NL" ) << QStringLiteral( "en" );
+
+    QTest::newRow( "portuguese (PT)" ) << QStringLiteral( "pt" ) << QStringLiteral( "PT" ) << QStringLiteral( "pt" );
+    QTest::newRow( "portuguese (NL)" ) << QStringLiteral( "pt" ) << QStringLiteral( "NL" ) << QStringLiteral( "pt" );
+    QTest::newRow( "portuguese (BR)" ) << QStringLiteral( "pt" ) << QStringLiteral( "BR" ) << QStringLiteral( "pt_BR" );
+
+    QTest::newRow( "catalan ()" ) << QStringLiteral( "ca" ) << QStringLiteral( "" )
+                                  << QStringLiteral( "ca_ES" );  // no country given? Matches first
+    QTest::newRow( "catalan (ES)" ) << QStringLiteral( "ca" ) << QStringLiteral( "ES" ) << QStringLiteral( "ca_ES" );
+    QTest::newRow( "catalan (NL)" ) << QStringLiteral( "ca" ) << QStringLiteral( "NL" ) << QStringLiteral( "ca" );
+    QTest::newRow( "catalan (@valencia)" )
+        << QStringLiteral( "ca@valencia" ) << QStringLiteral( "ES" ) << QStringLiteral( "ca@valencia" );
+    QTest::newRow( "catalan (@valencia_NL)" )
+        << QStringLiteral( "ca@valencia" ) << QStringLiteral( "NL" ) << QStringLiteral( "ca@valencia" );
+}
+
+
+void
+LocaleTests::testLanguageDetection()
+{
+    // This **might** be representative
+    static const QStringList availableLocales { "en.UTF-8",         "en_US.UTF-8", "en_GB.UTF-8", "fr.UTF-8",
+                                                "pt.UTF-8",         "pt_BR.UTF-8", "ca.UTF-8",    "ca_ES.UTF-8",
+                                                "es.UTF-8",         "es_ES.UTF-8", "sr.UTF-8",    "sr@latin.UTF-8",
+                                                "ca@valencia.UTF-8" };
+
+    QFETCH( QString, locale );
+    QFETCH( QString, country );
+    QFETCH( QString, expected );
+
+    auto r = LocaleConfiguration::fromLanguageAndLocation( locale, availableLocales, country );
+    QCOMPARE( r.language(), expected + QStringLiteral( ".UTF-8" ) );
 }
 
 
