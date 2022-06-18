@@ -46,11 +46,13 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
                                               const QStringList& availableLocales,
                                               const QString& countryCode )
 {
+    cDebug() << "Mapping" << languageLocale << "in" << countryCode << "to locale.";
     QString language = languageLocale.split( '_' ).first();
 
     // Either an exact match, or the whole language part matches
     // (followed by .<encoding> or _<country>
     QStringList linesForLanguage = availableLocales.filter( QRegularExpression( language + "[._]" ) );
+    cDebug() << Logger::SubEntry << "Matching" << linesForLanguage;
 
     QString lang;
     if ( linesForLanguage.length() == 0 || languageLocale.isEmpty() )
