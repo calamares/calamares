@@ -10,16 +10,26 @@ website will have to do for older versions.
 
 > Note that the 3.2 series is now in LTS / bug-fix-only mode.
 
-# 3.2.60 (unreleased) #
+# 3.2.60 (2022-06-19) #
 
-This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+This is the first community-maintainence release of Calamares 3.2.
+Somewhat ironically, all the commits in the branch come from
+Adriaan de Groot -- the community is working in the 3.3 (*calamares*)
+branch.
 
 ## Core ##
- - No core changes yet
+ - No core changes
 
 ## Modules ##
- - No module changes yet
+ - *fstab* now warns when the mount options are empty (which is non-
+   sensical, and indicates that the configuration is bad).
+ - *locale* does a better job of preserving Catalan (Valencia)
+   across modules; previously it dropped the *Valencia*
+   after the locale module unless you specifically re-selected
+   `ca@valencia` in the locale module. (Reported by Lliurex)
+ - *welcome* now has text labels on the special buttons (nominally,
+   this is part of the core, but the *About* button was always on the
+   welcome page).
 
 
 # 3.2.59 (2022-05-29) #
