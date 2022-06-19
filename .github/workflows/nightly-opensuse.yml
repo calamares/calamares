@@ -22,7 +22,50 @@ jobs:
       options: --tmpfs /build:rw --user 0:0
     steps:
       - name: "prepare env"
-        uses: calamares/actions/prepare-opensuse@0947b82b55adbb1055018d706da46eb70f8bcce5
+        shell: bash
+        run: |
+          zypper --non-interactive up
+          zypper --non-interactive in git-core jq curl
+          # From deploycala.py
+          zypper --non-interactive in \
+            "autoconf" \
+            "automake" \
+            "bison" \
+            "flex" \
+            "git" \
+            "libtool" \
+            "m4" \
+            "make" \
+            "cmake" \
+            "extra-cmake-modules" \
+            "gcc-c++"
+          zypper --non-interactive in \
+            "libqt5-qtbase-devel" \
+            "libqt5-linguist-devel" \
+            "libqt5-qtsvg-devel" \
+            "libqt5-qtdeclarative-devel" \
+            "libqt5-qtwebengine-devel" \
+            "yaml-cpp-devel" \
+            "libpolkit-qt5-1-devel" \
+            "libpwquality-devel" \
+            "parted-devel" \
+            "python-devel" \
+            "libboost_headers-devel" \
+            "libboost_python3-devel"
+          zypper --non-interactive in \
+            "kdbusaddons-devel" \
+            "kservice-devel" \
+            "kpackage-devel" \
+            "kparts-devel" \
+            "kcrash-devel" \
+            "kpmcore-devel" \
+            "plasma5-workspace-devel" \
+            "plasma-framework-devel" \
+          # Additional dependencies
+          zypper --non-interactive in \
+            libicu-devel \
+            libAppStreamQt-devel \
+            libatasmart-devel
       - name: "prepare source"
         uses: calamares/actions/generic-checkout@v4
       - name: "build"
