@@ -42,6 +42,7 @@ private Q_SLOTS:
     void testConfigInitialization();
     void testLanguageDetection_data();
     void testLanguageDetection();
+    void testLanguageDetectionValencia();
 };
 
 QTEST_MAIN( LocaleTests )
@@ -311,6 +312,26 @@ LocaleTests::testLanguageDetection()
 
     auto r = LocaleConfiguration::fromLanguageAndLocation( locale, availableLocales, country );
     QCOMPARE( r.language(), expected + QStringLiteral( ".UTF-8" ) );
+}
+
+void
+LocaleTests::testLanguageDetectionValencia()
+{
+    Logger::setupLogLevel( Logger::LOGDEBUG );
+    static const QStringList availableLocales { "nl_AW",       "nl_BE.UTF-8", "nl_NL.UTF-8",
+                                                "en_AU.UTF-8", "en_US.UTF-8", "en_GB.UTF-8",
+                                                "ca_AD.UTF-8", "ca_ES.UTF-8", "ca_ES@valencia" };
+
+    {
+        auto r = LocaleConfiguration::fromLanguageAndLocation(
+            QStringLiteral( "nl" ), availableLocales, QStringLiteral( "NL" ) );
+        QCOMPARE( r.language(), "nl_NL.UTF-8" );
+    }
+    {
+        auto r = LocaleConfiguration::fromLanguageAndLocation(
+            QStringLiteral( "ca@valencia" ), availableLocales, QStringLiteral( "NL" ) );
+        QCOMPARE( r.language(), "ca@valencia" );
+    }
 }
 
 
