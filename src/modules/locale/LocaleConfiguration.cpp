@@ -62,7 +62,7 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
     cDebug() << Logger::SubEntry << "Matching" << linesForLanguage;
 
     QString lang;
-    if ( linesForLanguage.length() == 0 || languageLocale.isEmpty() )
+    if ( linesForLanguage.isEmpty() || languageLocale.isEmpty() )
     {
         lang = "en_US.UTF-8";
     }
@@ -72,6 +72,16 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
     }
 
     // lang could still be empty if we found multiple locales that satisfy myLanguage
+    const QString combinedLanguageAndCountry = QString( "%1_%2" ).arg( language ).arg( countryCode );
+    if ( lang.isEmpty() && region.isEmpty() )
+    {
+        auto l = linesForLanguage.filter(
+            QRegularExpression( combinedLanguageAndCountry + "[._]" ) );  // no regional variants
+        if ( l.length() == 1 )
+        {
+            lang = l.first();
+        }
+    }
 
     // The following block was inspired by Ubiquity, scripts/localechooser-apply.
     // No copyright statement found in file, assuming GPL v2 or later.
@@ -178,15 +188,33 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
     // We make a proposed locale based on the UI language and the timezone's country. There is no
     // guarantee that this will be a valid, supported locale (often it won't).
     QString lc_formats;
-    QString combined = QString( "%1_%2" ).arg( language ).arg( countryCode );
-    // We look up if it's a supported locale.
-    for ( const QString& line : availableLocales )
+    const QString combined = QString( "%1_%2" ).arg( language ).arg( countryCode );
+    if ( lang.isEmpty() )
     {
-        if ( line.startsWith( combined ) )
+        cDebug() << Logger::SubEntry << "Looking up formats for" << combinedLanguageAndCountry;
+        // We look up if it's a supported locale.
+        for ( const QString& line : availableLocales )
         {
-            lang = line;
-            lc_formats = line;
-            break;
+            if ( line.startsWith( combinedLanguageAndCountry ) )
+            {
+                lang = line;
+                lc_formats = line;
+                break;
+            }
+        }
+    }
+    else
+    {
+        if ( availableLocales.contains( lang ) )
+        {
+            cDebug() << Logger::SubEntry << "Exact formats match for language tag" << lang;
+            lc_formats = lang;
+        }
+        else if ( availableLocales.contains( combinedLanguageAndCountry ) )
+        {
+            cDebug() << Logger::SubEntry << "Exact formats match for combined" << combinedLanguageAndCountry;
+            lang = combinedLanguageAndCountry;
+            lc_formats = combinedLanguageAndCountry;
         }
     }
 
