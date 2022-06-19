@@ -15,6 +15,7 @@
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "locale/Global.h"
 #include "utils/Logger.h"
 #include "utils/RAII.h"
 #include "utils/Retranslator.h"
@@ -483,7 +484,7 @@ Config::guessLocaleKeyboardLayout()
 
     // Try to preselect a layout, depending on language and locale
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-    QString lang = gs->value( "localeConf" ).toMap().value( "LANG" ).toString();
+    QString lang = CalamaresUtils::Locale::readGS( *gs, QStringLiteral( "LANG" ) );
 
     cDebug() << "Got locale language" << lang;
     if ( !lang.isEmpty() )

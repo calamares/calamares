@@ -40,6 +40,7 @@
 static QStringList
 loadLocales( const QString& localeGenPath )
 {
+    Logger::Once o;
     QStringList localeGenLines;
 
     // Some distros come with a meaningfully commented and easy to parse locale.gen,
@@ -52,6 +53,7 @@ loadLocales( const QString& localeGenPath )
 
     if ( supported.exists() && supported.open( QIODevice::ReadOnly | QIODevice::Text ) )
     {
+        cDebug() << o << "Loading locales from" << supported.fileName();
         ba = supported.readAll();
         supported.close();
 
@@ -66,6 +68,7 @@ loadLocales( const QString& localeGenPath )
         QFile localeGen( localeGenPath );
         if ( localeGen.open( QIODevice::ReadOnly | QIODevice::Text ) )
         {
+            cDebug() << o << "Loading locales from" << localeGenPath;
             ba = localeGen.readAll();
             localeGen.close();
         }
@@ -115,6 +118,10 @@ loadLocales( const QString& localeGenPath )
                    << "* a complete pre-compiled locale-gen database which allows complete locale -a output.";
         return localeGenLines;  // something went wrong and there's nothing we can do about it.
     }
+    else
+    {
+        cDebug() << o << "Read" << localeGenLines.length() << "lines";
+    }
 
     // Assuming we have a list of supported locales, we usually only want UTF-8 ones
     // because it's not 1995.
@@ -134,6 +141,7 @@ loadLocales( const QString& localeGenPath )
         s = s.simplified();
     };
     std::for_each( localeGenLines.begin(), localeGenLines.end(), unredundant );
+    cDebug() << o << "After filtering" << localeGenLines.length() << "lines";
 
     return localeGenLines;
 }
@@ -305,8 +313,14 @@ Config::automaticLocaleConfiguration() const
     {
         return LocaleConfiguration();
     }
-    return LocaleConfiguration::fromLanguageAndLocation(
-        QLocale().name(), supportedLocales(), currentLocation()->country() );
+
+    auto* gs = Calamares::JobQueue::instance()->globalStorage();
+    QString lang = CalamaresUtils::Locale::readGS( *gs, QStringLiteral( "LANG" ) );
+    if ( lang.isEmpty() )
+    {
+        lang = QLocale().name();
+    }
+    return LocaleConfiguration::fromLanguageAndLocation( lang, supportedLocales(), currentLocation()->country() );
 }
 
 LocaleConfiguration

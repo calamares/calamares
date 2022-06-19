@@ -73,6 +73,19 @@ clearGS( Calamares::GlobalStorage& gs )
     gs.remove( gsKey );
 }
 
+QString
+readGS( Calamares::GlobalStorage& gs, const QString& key )
+{
+    if ( gs.contains( gsKey ) )
+    {
+        QVariantMap localeConf = gs.value( gsKey ).toMap();
+        if ( localeConf.contains( key ) )
+        {
+            return localeConf.value( key ).toString();
+        }
+    }
+    return QString();
+}
 
 }  // namespace Locale
 }  // namespace CalamaresUtils

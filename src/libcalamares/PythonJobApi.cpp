@@ -13,6 +13,7 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "PythonHelper.h"
+#include "locale/Global.h"
 #include "partition/Mount.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
@@ -280,24 +281,19 @@ _gettext_languages()
     Calamares::GlobalStorage* gs
         = jq ? jq->globalStorage() : CalamaresPython::GlobalStoragePythonWrapper::globalStorageInstance();
 
-    QVariant localeConf_ = gs->value( "localeConf" );
-    if ( localeConf_.canConvert< QVariantMap >() )
+    QString lang = CalamaresUtils::Locale::readGS( *gs, QStringLiteral( "LANG" ) );
+    if ( !lang.isEmpty() )
     {
-        QVariant lang_ = localeConf_.value< QVariantMap >()[ "LANG" ];
-        if ( lang_.canConvert< QString >() )
+        languages.append( lang );
+        if ( lang.indexOf( '.' ) > 0 )
         {
-            QString lang = lang_.value< QString >();
+            lang.truncate( lang.indexOf( '.' ) );
             languages.append( lang );
-            if ( lang.indexOf( '.' ) > 0 )
-            {
-                lang.truncate( lang.indexOf( '.' ) );
-                languages.append( lang );
-            }
-            if ( lang.indexOf( '_' ) > 0 )
-            {
-                lang.truncate( lang.indexOf( '_' ) );
-                languages.append( lang );
-            }
+        }
+        if ( lang.indexOf( '_' ) > 0 )
+        {
+            lang.truncate( lang.indexOf( '_' ) );
+            languages.append( lang );
         }
     }
     return languages;
