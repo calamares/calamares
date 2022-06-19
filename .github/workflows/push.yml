@@ -3,8 +3,7 @@ name: ci-push
 on:
   push:
     branches:
-      - calamares
-      - work-3.3
+      - 3.2.x-stable
   pull_request:
     types:
       - opened
