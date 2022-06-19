@@ -48,6 +48,13 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
 {
     cDebug() << "Mapping" << languageLocale << "in" << countryCode << "to locale.";
     QString language = languageLocale.split( '_' ).first();
+    QString region;
+    if ( language.contains( '@' ) )
+    {
+        auto r = language.split( '@' );
+        language = r.first();
+        region = r[ 1 ];  // second()
+    }
 
     // Either an exact match, or the whole language part matches
     // (followed by .<encoding> or _<country>
@@ -75,16 +82,33 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
         # locale categories reflect the selected location. */
     if ( language == "pt" || language == "zh" )
     {
+        cDebug() << Logger::SubEntry << "Special-case Portuguese and Chinese";
         QString proposedLocale = QString( "%1_%2" ).arg( language ).arg( countryCode );
         for ( const QString& line : linesForLanguage )
         {
             if ( line.contains( proposedLocale ) )
             {
+                cDebug() << Logger::SubEntry << "Country-variant" << line << "chosen.";
                 lang = line;
                 break;
             }
         }
     }
+    if ( lang.isEmpty() && !region.isEmpty() )
+    {
+        cDebug() << Logger::SubEntry << "Special-case region @" << region;
+        QString proposedRegion = QString( "@%1" ).arg( region );
+        for ( const QString& line : linesForLanguage )
+        {
+            if ( line.startsWith( language ) && line.contains( proposedRegion ) )
+            {
+                cDebug() << Logger::SubEntry << "Region-variant" << line << "chosen.";
+                lang = line;
+                break;
+            }
+        }
+    }
+
 
     // If we found no good way to set a default lang, do a search with the whole
     // language locale and pick the first result, if any.
