@@ -58,6 +58,12 @@ static constexpr const TranslationSpecialCase special_cases[] = {
       QLocale::Script::AnyScript,
       QLocale::Country::AnyCountry,
       "Català (València)" },
+    { "ca_ES@valencia",
+      catalan_regions,
+      QLocale::Language::Catalan,
+      QLocale::Script::AnyScript,
+      QLocale::Country::AnyCountry,
+      "Català (València)" },
     // Simplified Chinese, but drop the (China) from the name
     { "zh_CN",
       nullptr,
