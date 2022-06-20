@@ -39,8 +39,7 @@ makedepends=('extra-cmake-modules'
 provides=("${pkgname}")
 conflicts=("${pkgname}")
 source=()
-replaces=('calamares'
-          'calamares-core')
+replaces=('calamares')
 
 PROJECT_DIRECTORY="$(dirname -- "$(dirname -- "$(pwd)")")"
 BUILD_DIRECTORY="$PROJECT_DIRECTORY/build"
