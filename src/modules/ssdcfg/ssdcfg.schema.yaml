@@ -1,0 +1,17 @@
+# SPDX-FileCopyrightText: 2022 Arjen Balfoort <arjenbalfoort@hotmail.com>
+# SPDX-License-Identifier: GPL-3.0-or-later
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/grubcfg
+additionalProperties: false
+type: object
+properties:
+    swappiness:
+        type: object
+        additionalProperties: true  # Other fields are acceptable
+        properties:
+            vm.swappiness: { type: integer, default: 1 }
+            vm.vfs_cache_pressure: { type: integer }
+            vm.dirty_ratio: { type: integer }
+            vm.dirty_background_ratio: { type: integer }
+        required: [ vm.swappiness ]
