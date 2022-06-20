@@ -63,8 +63,7 @@ build() {
 
 package() {
     # To bypass makepkg's dependency check during build-time
-    depends+=('calamares-configuration'
-               'calamares-branding')
+    depends+=('calamares-configuration')
 
     DESTDIR="${pkgdir}" cmake --install "$BUILD_DIRECTORY" # Install after setting an environment variable
 
