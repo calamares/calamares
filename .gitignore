@@ -57,6 +57,6 @@ CMakeLists.txt.user
 tags
 
 # Packaging
-scripts/packaging/**/pkg
-scripts/packaging/**/src
-scripts/packaging/**/*.pkg.tar.zst*
+scripts/packaging/pkg
+scripts/packaging/src
+scripts/packaging/*.pkg.tar.zst*

@@ -9,13 +9,6 @@ if( NOT WITH_QML )
     return()
 endif()
 
-find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Core )
-
-# Add optional libraries here
-set( USER_EXTRA_LIB )
-
-# find_package(Qt5 COMPONENTS Test REQUIRED)
-
 calamares_add_plugin( netinstallq
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
@@ -28,12 +21,11 @@ calamares_add_plugin( netinstallq
     RESOURCES
         netinstallq.qrc
     LINK_PRIVATE_LIBRARIES
-        calamaresui
-        ${_extra_libraries}
-        # Qt5::Test
+        Qt5::Network
     SHARED_LIB
 )
 
+if(KF5CoreAddons_FOUND)
 calamares_add_test(
     netinstallqtest
     SOURCES
@@ -42,7 +34,7 @@ calamares_add_test(
         LoaderQueue.cpp
         PackageTreeItem.cpp
         PackageModel.cpp
-    LIBRARIES
-        Qt5::Gui
+    LIBRARIES 
+        Qt5::Gui Qt5::Network KF5::CoreAddons
 )
-
+endif()

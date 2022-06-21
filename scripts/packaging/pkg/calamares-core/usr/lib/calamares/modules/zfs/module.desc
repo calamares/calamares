@@ -1,7 +1,0 @@
-# AUTO-GENERATED metadata file
-# Syntax is YAML 1.2
----
-type: "job"
-name: "zfs"
-interface: "qtplugin"
-load: "libcalamares_job_zfs.so"
