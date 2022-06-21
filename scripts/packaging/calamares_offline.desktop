@@ -7,7 +7,7 @@ Version=1.0
 Type=Application
 
 # The name of the application
-Name=RebornOS Installer - Offline (Calamares)
+Name=RebornOS Offline Installer (Calamares)
 
 # A comment which can/will be used as a tooltip
 Comment=Install RebornOS on your computer (Locally from the ISO)
