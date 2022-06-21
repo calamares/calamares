@@ -3,6 +3,7 @@
  *   SPDX-FileCopyrightText: 2014-2017 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2017-2019 Adriaan de Groot <groot@kde.org>
  *   SPDX-FileCopyrightText: 2019 Collabora Ltd
+ *   SPDX-FileCopyrightText: 2021 Anubhav Choudhary <ac.10edu@gmail.com>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -42,9 +43,7 @@
 #include "widgets/PrettyRadioButton.h"
 
 #include <kpmcore/core/device.h>
-#ifdef WITH_KPMCORE4API
 #include <kpmcore/core/softwareraid.h>
-#endif
 
 #include <QBoxLayout>
 #include <QButtonGroup>
@@ -55,7 +54,7 @@
 #include <QListView>
 #include <QtConcurrent/QtConcurrent>
 
-using Calamares::PrettyRadioButton;
+using Calamares::Widgets::PrettyRadioButton;
 using CalamaresUtils::Partition::findPartitionByPath;
 using CalamaresUtils::Partition::isPartitionFreeSpace;
 using CalamaresUtils::Partition::PartitionIterator;
@@ -1038,6 +1037,12 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
         QLabel* sizeLabel = new QLabel( m_previewAfterFrame );
         layout->addWidget( sizeLabel );
         sizeLabel->setWordWrap( true );
+
+        if ( !m_isEfi )
+        {
+            layout->addWidget( createBootloaderPanel() );
+        }
+
         connect( m_afterPartitionSplitterWidget,
                  &PartitionSplitterWidget::partitionResized,
                  this,
@@ -1096,51 +1101,7 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
 
         if ( !m_isEfi )
         {
-            QWidget* eraseWidget = new QWidget;
-
-            QHBoxLayout* eraseLayout = new QHBoxLayout;
-            eraseWidget->setLayout( eraseLayout );
-            eraseLayout->setContentsMargins( 0, 0, 0, 0 );
-            QLabel* eraseBootloaderLabel = new QLabel( eraseWidget );
-            eraseLayout->addWidget( eraseBootloaderLabel );
-            eraseBootloaderLabel->setText( tr( "Boot loader location:" ) );
-
-            m_bootloaderComboBox = createBootloaderComboBox( eraseWidget );
-            connect( m_core->bootLoaderModel(),
-                     &QAbstractItemModel::modelReset,
-                     [ this ]()
-                     {
-                         if ( !m_bootloaderComboBox.isNull() )
-                         {
-                             Calamares::restoreSelectedBootLoader( *m_bootloaderComboBox,
-                                                                   m_core->bootLoaderInstallPath() );
-                         }
-                     } );
-            connect(
-                m_core,
-                &PartitionCoreModule::deviceReverted,
-                this,
-                [ this ]( Device* dev )
-                {
-                    Q_UNUSED( dev )
-                    if ( !m_bootloaderComboBox.isNull() )
-                    {
-                        if ( m_bootloaderComboBox->model() != m_core->bootLoaderModel() )
-                        {
-                            m_bootloaderComboBox->setModel( m_core->bootLoaderModel() );
-                        }
-
-                        m_bootloaderComboBox->setCurrentIndex( m_lastSelectedDeviceIndex );
-                    }
-                },
-                Qt::QueuedConnection );
-            // ^ Must be Queued so it's sure to run when the widget is already visible.
-
-            eraseLayout->addWidget( m_bootloaderComboBox );
-            eraseBootloaderLabel->setBuddy( m_bootloaderComboBox );
-            eraseLayout->addStretch();
-
-            layout->addWidget( eraseWidget );
+            layout->addWidget( createBootloaderPanel() );
         }
 
         m_previewAfterFrame->show();
@@ -1254,35 +1215,6 @@ ChoicePage::setupEfiSystemPartitionSelector()
     }
 }
 
-
-QComboBox*
-ChoicePage::createBootloaderComboBox( QWidget* parent )
-{
-    QComboBox* comboForBootloader = new QComboBox( parent );
-    comboForBootloader->setModel( m_core->bootLoaderModel() );
-
-    // When the chosen bootloader device changes, we update the choice in the PCM
-    connect( comboForBootloader,
-             QOverload< int >::of( &QComboBox::currentIndexChanged ),
-             this,
-             [ this ]( int newIndex )
-             {
-                 QComboBox* bootloaderCombo = qobject_cast< QComboBox* >( sender() );
-                 if ( bootloaderCombo )
-                 {
-                     QVariant var = bootloaderCombo->itemData( newIndex, BootLoaderModel::BootLoaderPathRole );
-                     if ( !var.isValid() )
-                     {
-                         return;
-                     }
-                     m_core->setBootLoaderInstallPath( var.toString() );
-                 }
-             } );
-
-    return comboForBootloader;
-}
-
-
 static inline void
 force_uncheck( QButtonGroup* grp, PrettyRadioButton* button )
 {
@@ -1361,14 +1293,12 @@ ChoicePage::setupActions()
     bool isInactiveRAID = false;
     bool matchTableType = false;
 
-#ifdef WITH_KPMCORE4API
     if ( currentDevice->type() == Device::Type::SoftwareRAID_Device
          && static_cast< SoftwareRAID* >( currentDevice )->status() == SoftwareRAID::Status::Inactive )
     {
         cDebug() << Logger::SubEntry << "part of an inactive RAID device";
         isInactiveRAID = true;
     }
-#endif
 
     PartitionTable::TableType tableType = PartitionTable::unknownTableType;
     if ( currentDevice->partitionTable() )
@@ -1745,4 +1675,73 @@ ChoicePage::setLastSelectedDeviceIndex( int index )
 {
     m_lastSelectedDeviceIndex = index;
     m_drivesCombo->setCurrentIndex( m_lastSelectedDeviceIndex );
+}
+
+QWidget*
+ChoicePage::createBootloaderPanel()
+{
+    QWidget* panelWidget = new QWidget;
+
+    QHBoxLayout* mainLayout = new QHBoxLayout;
+    panelWidget->setLayout( mainLayout );
+    mainLayout->setContentsMargins( 0, 0, 0, 0 );
+    QLabel* widgetLabel = new QLabel( panelWidget );
+    mainLayout->addWidget( widgetLabel );
+    widgetLabel->setText( tr( "Boot loader location:" ) );
+
+    QComboBox* comboForBootloader = new QComboBox( panelWidget );
+    comboForBootloader->setModel( m_core->bootLoaderModel() );
+
+    // When the chosen bootloader device changes, we update the choice in the PCM
+    connect( comboForBootloader,
+             QOverload< int >::of( &QComboBox::currentIndexChanged ),
+             this,
+             [ this ]( int newIndex )
+             {
+                 QComboBox* bootloaderCombo = qobject_cast< QComboBox* >( sender() );
+                 if ( bootloaderCombo )
+                 {
+                     QVariant var = bootloaderCombo->itemData( newIndex, BootLoaderModel::BootLoaderPathRole );
+                     if ( !var.isValid() )
+                     {
+                         return;
+                     }
+                     m_core->setBootLoaderInstallPath( var.toString() );
+                 }
+             } );
+    m_bootloaderComboBox = comboForBootloader;
+
+    connect( m_core->bootLoaderModel(),
+             &QAbstractItemModel::modelReset,
+             [ this ]()
+             {
+                 if ( !m_bootloaderComboBox.isNull() )
+                 {
+                     Calamares::restoreSelectedBootLoader( *m_bootloaderComboBox, m_core->bootLoaderInstallPath() );
+                 }
+             } );
+    connect(
+        m_core,
+        &PartitionCoreModule::deviceReverted,
+        this,
+        [ this ]( Device* )
+        {
+            if ( !m_bootloaderComboBox.isNull() )
+            {
+                if ( m_bootloaderComboBox->model() != m_core->bootLoaderModel() )
+                {
+                    m_bootloaderComboBox->setModel( m_core->bootLoaderModel() );
+                }
+
+                m_bootloaderComboBox->setCurrentIndex( m_lastSelectedDeviceIndex );
+            }
+        },
+        Qt::QueuedConnection );
+    // ^ Must be Queued so it's sure to run when the widget is already visible.
+
+    mainLayout->addWidget( m_bootloaderComboBox );
+    widgetLabel->setBuddy( m_bootloaderComboBox );
+    mainLayout->addStretch();
+
+    return panelWidget;
 }

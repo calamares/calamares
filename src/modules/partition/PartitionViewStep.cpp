@@ -233,7 +233,7 @@ PartitionViewStep::createSummaryWidget() const
     QWidget* widget = new QWidget;
     QVBoxLayout* mainLayout = new QVBoxLayout;
     widget->setLayout( mainLayout );
-    mainLayout->setMargin( 0 );
+    CalamaresUtils::unmarginLayout( mainLayout );
 
     Config::InstallChoice choice = m_config->installChoice();
 
@@ -508,11 +508,6 @@ PartitionViewStep::onLeave()
         {
             const QString espMountPoint
                 = Calamares::JobQueue::instance()->globalStorage()->value( "efiSystemPartition" ).toString();
-#ifdef WITH_KPMCORE4API
-            const auto espFlag = PartitionTable::Flag::Boot;
-#else
-            const auto espFlag = PartitionTable::FlagEsp;
-#endif
             Partition* esp = m_core->findPartitionByMountPoint( espMountPoint );
 
             QString message;
@@ -567,7 +562,7 @@ PartitionViewStep::onLeave()
                 cDebug() << o << "ESP missing flag";
                 description.append( ' ' );
                 description.append( tr( "The filesystem must have flag <strong>%1</strong> set." )
-                                        .arg( PartitionTable::flagName( espFlag ) ) );
+                                        .arg( PartitionTable::flagName( PartitionTable::Flag::Boot ) ) );
             }
             if ( !description.isEmpty() )
             {

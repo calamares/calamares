@@ -1,0 +1,35 @@
+# SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+# SPDX-License-Identifier: GPL-3.0-or-later
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/bootloader
+additionalProperties: false
+type: object
+properties:
+    efiBootLoader: { type: string }
+    kernel:  { type: string }
+    img:  { type: string }
+    fallback:  { type: string }
+    timeout:  { type: string }  # Inserted verbatim
+    bootloaderEntryName:  { type: string }
+    kernelLine:  { type: string }
+    fallbackKernelLine:  { type: string }
+
+    # Programs
+    grubInstall:  { type: string }
+    grubMkconfig:  { type: string }
+    grubCfg:  { type: string }
+    grubProbe: { type: string }
+    efiBootMgr: { type: string }
+
+    efiBootloaderId:  { type: string }
+    installEFIFallback: { type: boolean }
+
+required:
+    - efiBootLoader
+    - kernel
+    - img
+    - grubInstall
+    - grubMkconfig
+    - grubCfg
+    - grubProbe

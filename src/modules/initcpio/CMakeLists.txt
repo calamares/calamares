@@ -3,7 +3,7 @@
 #   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
 #   SPDX-License-Identifier: BSD-2-Clause
 #
-calamares_add_plugin( initcpio
+calamares_add_plugin(initcpio
     TYPE job
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
@@ -13,8 +13,7 @@ calamares_add_plugin( initcpio
 
 calamares_add_test(
     initcpiotest
-    SOURCES
-        Tests.cpp
+    SOURCES Tests.cpp
     LIBRARIES
         calamares_job_initcpio # From above
         yamlcpp::yamlcpp

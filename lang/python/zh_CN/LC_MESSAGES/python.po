@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-22 11:03+0200\n"
+"POT-Creation-Date: 2022-05-29 16:17+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: 玉堂白鹤 <yjwork@qq.com>, 2022\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/calamares/teams/20061/zh_CN/)\n"
@@ -54,15 +54,15 @@ msgstr "设置 zfs 挂载点失败"
 #: src/modules/initcpiocfg/main.py:239 src/modules/rawfs/main.py:164
 #: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
 #: src/modules/openrcdmcryptcfg/main.py:72
-#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/fstab/main.py:361
-#: src/modules/fstab/main.py:367 src/modules/fstab/main.py:394
+#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/fstab/main.py:394
+#: src/modules/fstab/main.py:400 src/modules/fstab/main.py:428
 #: src/modules/localecfg/main.py:140 src/modules/networkcfg/main.py:105
 msgid "Configuration Error"
 msgstr "配置错误"
 
 #: src/modules/mount/main.py:230 src/modules/initcpiocfg/main.py:236
 #: src/modules/rawfs/main.py:165 src/modules/initramfscfg/main.py:86
-#: src/modules/openrcdmcryptcfg/main.py:73 src/modules/fstab/main.py:362
+#: src/modules/openrcdmcryptcfg/main.py:73 src/modules/fstab/main.py:395
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "没有分配分区给 <pre>{!s}</pre>。"
 
@@ -217,17 +217,17 @@ msgstr "无法写入 SLIM 配置文件"
 msgid "SLIM config file {!s} does not exist"
 msgstr "SLIM 配置文件 {!s} 不存在"
 
-#: src/modules/displaymanager/main.py:991
+#: src/modules/displaymanager/main.py:992
 msgid "No display managers selected for the displaymanager module."
 msgstr "显示管理器模块中未选择显示管理器。"
 
-#: src/modules/displaymanager/main.py:992
+#: src/modules/displaymanager/main.py:993
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
 msgstr "globalstorage 和 displaymanager.conf 配置文件中都没有配置显示管理器。"
 
-#: src/modules/displaymanager/main.py:1074
+#: src/modules/displaymanager/main.py:1075
 msgid "Display manager configuration was incomplete"
 msgstr "显示管理器配置不完全"
 
@@ -236,7 +236,7 @@ msgid "Configuring mkinitcpio."
 msgstr "配置 mkinitcpio."
 
 #: src/modules/initcpiocfg/main.py:240 src/modules/initramfscfg/main.py:90
-#: src/modules/openrcdmcryptcfg/main.py:77 src/modules/fstab/main.py:368
+#: src/modules/openrcdmcryptcfg/main.py:77 src/modules/fstab/main.py:401
 #: src/modules/localecfg/main.py:141 src/modules/networkcfg/main.py:106
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
 msgstr " 未设置 <pre>{!s}</pre> 要使用的根挂载点。"
@@ -387,11 +387,11 @@ msgstr "正在配置初始内存文件系统。"
 msgid "Configuring OpenRC dmcrypt service."
 msgstr "配置 OpenRC dmcrypt 服务。"
 
-#: src/modules/fstab/main.py:29
+#: src/modules/fstab/main.py:28
 msgid "Writing fstab."
 msgstr "正在写入 fstab。"
 
-#: src/modules/fstab/main.py:395
+#: src/modules/fstab/main.py:429
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr "无 <pre>{!s}</pre> 配置可供 <pre>{!s}</pre> 使用。"
 

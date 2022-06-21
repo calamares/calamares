@@ -128,62 +128,12 @@ defaultPixmap( ImageType type, ImageMode mode, const QSize& size )
 }
 
 
-QPixmap
-createRoundedImage( const QPixmap& pixmap, const QSize& size, float frameWidthPct )
-{
-    int height;
-    int width;
-
-    if ( !size.isEmpty() )
-    {
-        height = size.height();
-        width = size.width();
-    }
-    else
-    {
-        height = pixmap.height();
-        width = pixmap.width();
-    }
-
-    if ( !height || !width )
-    {
-        return QPixmap();
-    }
-
-    QPixmap scaledAvatar = pixmap.scaled( width, height, Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
-    if ( frameWidthPct == 0.00f )
-    {
-        return scaledAvatar;
-    }
-
-    QPixmap frame( width, height );
-    frame.fill( Qt::transparent );
-
-    QPainter painter( &frame );
-    painter.setRenderHint( QPainter::Antialiasing );
-
-    QRect outerRect( 0, 0, width, height );
-    QBrush brush( scaledAvatar );
-    QPen pen;
-    pen.setColor( Qt::transparent );
-    pen.setJoinStyle( Qt::RoundJoin );
-
-    painter.setBrush( brush );
-    painter.setPen( pen );
-    painter.drawRoundedRect(
-        outerRect, qreal( frameWidthPct ) * 100.0, qreal( frameWidthPct ) * 100.0, Qt::RelativeSize );
-
-    return frame;
-}
-
-
 void
 unmarginLayout( QLayout* layout )
 {
     if ( layout )
     {
         layout->setContentsMargins( 0, 0, 0, 0 );
-        layout->setMargin( 0 );
         layout->setSpacing( 0 );
 
         for ( int i = 0; i < layout->count(); i++ )
@@ -225,15 +175,6 @@ defaultFontHeight()
 
 
 QFont
-defaultFont()
-{
-    QFont f;
-    f.setPointSize( defaultFontSize() );
-    return f;
-}
-
-
-QFont
 largeFont()
 {
     QFont f;
@@ -255,26 +196,6 @@ defaultIconSize()
 {
     const int w = int( defaultFontHeight() * 1.6 );
     return QSize( w, w );
-}
-
-
-void
-clearLayout( QLayout* layout )
-{
-    while ( QLayoutItem* item = layout->takeAt( 0 ) )
-    {
-        if ( QWidget* widget = item->widget() )
-        {
-            widget->deleteLater();
-        }
-
-        if ( QLayout* childLayout = item->layout() )
-        {
-            clearLayout( childLayout );
-        }
-
-        delete item;
-    }
 }
 
 }  // namespace CalamaresUtils

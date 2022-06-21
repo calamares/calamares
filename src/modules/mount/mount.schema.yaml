@@ -6,7 +6,6 @@ $id: https://calamares.io/schemas/mount
 additionalProperties: false
 type: object
 properties:
-    # TODO: share the schema definition, since these are identical
     extraMounts:
         type: array
         items:
@@ -16,18 +15,8 @@ properties:
                 device: { type: string }
                 fs: { type: string }
                 mountPoint: { type: string }
-                options: { type: string }
-            required: [ device, mountPoint ]
-    extraMountsEfi:
-        type: array
-        items:
-            type: object
-            additionalProperties: false
-            properties:
-                device: { type: string }
-                fs: { type: string }
-                mountPoint: { type: string }
-                options: { type: string }
+                options: { type: array, items: { type: string } }
+                efi: { type: boolean, default: false }
             required: [ device, mountPoint ]
     btrfsSubvolumes:
         type: array
@@ -38,3 +27,17 @@ properties:
                 mountPoint: { type: string }
                 subvolume: { type: string }
             required: [ subvolume, mountPoint ]
+    btrfsSwapSubvol: { type: string }
+    mountOptions:
+        type: array
+        items:
+            type: object
+            additionalProperties: false
+            properties:
+                filesystem: { type: string }
+                options: { type: array, items: { type: string } }
+                ssdOptions: { type: array, items: { type: string } }
+                hddOptions: { type: array, items: { type: string } }
+            required: [ filesystem ]
+
+

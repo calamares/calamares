@@ -135,16 +135,6 @@ SPDX-License-Identifier: GPL-3.0-or-later
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_4">
          <item>
-          <widget class="QPushButton" name="aboutButton">
-           <property name="text">
-            <string>&amp;About</string>
-           </property>
-           <property name="flat">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
           <widget class="QPushButton" name="donateButton">
            <property name="toolTip">
             <string>Open donations website</string>

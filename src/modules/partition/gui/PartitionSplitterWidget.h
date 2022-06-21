@@ -72,12 +72,6 @@ private:
     void drawSection( QPainter* painter, const QRect& rect_, int x, int width, const PartitionSplitterItem& item );
     void drawResizeHandle( QPainter* painter, const QRect& rect_, int x );
 
-    PartitionSplitterItem _findItem( QVector< PartitionSplitterItem >& items,
-                                     std::function< bool( PartitionSplitterItem& ) > condition ) const;
-
-    int _eachItem( QVector< PartitionSplitterItem >& items,
-                   std::function< bool( PartitionSplitterItem& ) > operation ) const;
-
     QPair< QVector< PartitionSplitterItem >, qreal >
     computeItemsVector( const QVector< PartitionSplitterItem >& originalItems ) const;
 

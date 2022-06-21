@@ -42,10 +42,15 @@ constexpr static const auto SplitKeepEmptyParts =
 #endif
     ;
 
+namespace Calamares
+{
 /**
- * @brief The CalamaresUtils namespace contains utility functions.
+ * @brief The Calamares::String namespace
+ *
+ * This namespace contains functions related to string-handling,
+ * string-expansion, etc.
  */
-namespace CalamaresUtils
+namespace String
 {
 /**
  * @brief removeDiacritics replaces letters with diacritics and ligatures with
@@ -113,6 +118,7 @@ DLLEXPORT void removeLeading( QString& string, QChar c );
  */
 DLLEXPORT void removeTrailing( QString& string, QChar c );
 
-}  // namespace CalamaresUtils
+}  // namespace String
+}  // namespace Calamares
 
 #endif

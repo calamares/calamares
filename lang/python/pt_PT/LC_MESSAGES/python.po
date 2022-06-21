@@ -5,23 +5,23 @@
 # 
 # Translators:
 # Nuno Amorim <inovaty@gmail.com>, 2018
-# Ricardo Simões <xmcorporation@gmail.com>, 2020
 # Hugo Carvalho <hugokarvalho@hotmail.com>, 2022
+# Ricardo Simões <xmcorporation@gmail.com>, 2022
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-22 11:03+0200\n"
+"POT-Creation-Date: 2022-05-29 16:17+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>, 2022\n"
+"Last-Translator: Ricardo Simões <xmcorporation@gmail.com>, 2022\n"
 "Language-Team: Portuguese (Portugal) (https://www.transifex.com/calamares/teams/20061/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pt_PT\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: src/modules/grubcfg/main.py:28
 msgid "Configure GRUB."
@@ -51,15 +51,15 @@ msgstr "Falha ao definir o ponto de montagem zfs"
 #: src/modules/initcpiocfg/main.py:239 src/modules/rawfs/main.py:164
 #: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
 #: src/modules/openrcdmcryptcfg/main.py:72
-#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/fstab/main.py:361
-#: src/modules/fstab/main.py:367 src/modules/fstab/main.py:394
+#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/fstab/main.py:394
+#: src/modules/fstab/main.py:400 src/modules/fstab/main.py:428
 #: src/modules/localecfg/main.py:140 src/modules/networkcfg/main.py:105
 msgid "Configuration Error"
 msgstr "Erro de configuração"
 
 #: src/modules/mount/main.py:230 src/modules/initcpiocfg/main.py:236
 #: src/modules/rawfs/main.py:165 src/modules/initramfscfg/main.py:86
-#: src/modules/openrcdmcryptcfg/main.py:73 src/modules/fstab/main.py:362
+#: src/modules/openrcdmcryptcfg/main.py:73 src/modules/fstab/main.py:395
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "Nenhuma partição está definida para <pre>{!s}</pre> usar."
 
@@ -220,12 +220,12 @@ msgstr "Não é possível gravar o ficheiro de configuração SLIM"
 msgid "SLIM config file {!s} does not exist"
 msgstr "O ficheiro de configuração do SLIM {!s} não existe"
 
-#: src/modules/displaymanager/main.py:991
+#: src/modules/displaymanager/main.py:992
 msgid "No display managers selected for the displaymanager module."
 msgstr ""
 "Nenhum gestor de exibição selecionado para o módulo de gestor de exibição."
 
-#: src/modules/displaymanager/main.py:992
+#: src/modules/displaymanager/main.py:993
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
@@ -233,7 +233,7 @@ msgstr ""
 "A lista de gestores de visualização está vazia ou indefinida tanto no "
 "globalstorage como no displaymanager.conf."
 
-#: src/modules/displaymanager/main.py:1074
+#: src/modules/displaymanager/main.py:1075
 msgid "Display manager configuration was incomplete"
 msgstr "A configuração do gestor de exibição estava incompleta"
 
@@ -242,7 +242,7 @@ msgid "Configuring mkinitcpio."
 msgstr "A configurar o mkintcpio."
 
 #: src/modules/initcpiocfg/main.py:240 src/modules/initramfscfg/main.py:90
-#: src/modules/openrcdmcryptcfg/main.py:77 src/modules/fstab/main.py:368
+#: src/modules/openrcdmcryptcfg/main.py:77 src/modules/fstab/main.py:401
 #: src/modules/localecfg/main.py:141 src/modules/networkcfg/main.py:106
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
 msgstr "Nenhum ponto de montagem root é fornecido para <pre>{!s}</pre> usar."
@@ -323,6 +323,7 @@ msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
 msgstr[0] "A instalar um pacote."
 msgstr[1] "A instalar %(num)d pacotes."
+msgstr[2] "A instalar %(num)d pacotes."
 
 #: src/modules/packages/main.py:71
 #, python-format
@@ -330,6 +331,7 @@ msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
 msgstr[0] "A remover um pacote."
 msgstr[1] "A remover %(num)d pacotes."
+msgstr[2] "A remover %(num)d pacotes."
 
 #: src/modules/packages/main.py:725 src/modules/packages/main.py:737
 #: src/modules/packages/main.py:765
@@ -413,11 +415,11 @@ msgstr "A configurar o initramfs."
 msgid "Configuring OpenRC dmcrypt service."
 msgstr "A configurar o serviço OpenRC dmcrypt."
 
-#: src/modules/fstab/main.py:29
+#: src/modules/fstab/main.py:28
 msgid "Writing fstab."
 msgstr "A escrever o fstab."
 
-#: src/modules/fstab/main.py:395
+#: src/modules/fstab/main.py:429
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr ""
 "Não é dada nenhuma configuração <pre>{!s}</pre> para <pre>{!s}</pre> "

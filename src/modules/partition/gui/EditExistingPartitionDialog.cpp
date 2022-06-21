@@ -254,14 +254,13 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
         const QString passphrase = m_ui->encryptWidget->passphrase();
         if ( !passphrase.isEmpty() )
         {
-            int retCode = KPMHelpers::updateLuksDevice( m_partition, passphrase );
-            if ( retCode != 0 )
+            if ( KPMHelpers::savePassphrase( m_partition, passphrase ) != KPMHelpers::SavePassphraseValue::NoError )
             {
                 QString message = tr( "Passphrase for existing partition" );
                 QString description = tr( "Partition %1 could not be decrypted "
                                           "with the given passphrase."
                                           "<br/><br/>"
-                                          "Edit the partition again and give the correct passphrase"
+                                          "Edit the partition again and give the correct passphrase "
                                           "or delete and create a new encrypted partition." )
                                           .arg( m_partition->partitionPath() );
 

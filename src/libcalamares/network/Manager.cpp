@@ -29,16 +29,11 @@ namespace Network
 void
 RequestOptions::applyToRequest( QNetworkRequest* request ) const
 {
-#if QT_VERSION < QT_VERSION_CHECK( 5, 15, 0 )
-    constexpr const auto RedirectPolicyAttribute = QNetworkRequest::FollowRedirectsAttribute;
-#else
-    constexpr const auto RedirectPolicyAttribute = QNetworkRequest::RedirectPolicyAttribute;
-#endif
 
     if ( m_flags & Flag::FollowRedirect )
     {
         // Follows all redirects except unsafe ones (https to http).
-        request->setAttribute( RedirectPolicyAttribute, true );
+        request->setAttribute( QNetworkRequest::RedirectPolicyAttribute, true );
     }
 
     if ( m_flags & Flag::FakeUserAgent )

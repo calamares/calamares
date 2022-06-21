@@ -30,7 +30,7 @@ Page
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
             horizontalAlignment: Text.AlignHCenter
-            padding: 40
+            padding: 20
             // In QML, QString::arg() only takes one argument
             text: qsTr("<h3>Welcome to the %1 <quote>%2</quote> installer</h3>
             <p>This program will ask you some questions and set up %1 on your computer.</p>").arg(Branding.string(Branding.ProductName)).arg(Branding.string(Branding.Version))
@@ -60,20 +60,6 @@ Page
             anchors.horizontalCenter: parent.horizontalCenter
 
             spacing: Kirigami.Units.largeSpacing* 2
-
-            Button {
-                Layout.fillWidth: true
-                text: qsTr("About")
-                icon.name: "dialog-information"
-                Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
-                Kirigami.Theme.textColor: Kirigami.Theme.textColor
-
-                visible: true
-                onClicked: {
-                    //onClicked: load.source = "file:/usr/share/calamares/branding/default/show.qml"
-                    onClicked: load.source = "about.qml"
-                }
-            }
 
             Button {
                 Layout.fillWidth: true

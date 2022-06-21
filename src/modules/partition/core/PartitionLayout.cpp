@@ -154,11 +154,9 @@ PartitionLayout::setDefaultFsType( FileSystem::Type defaultFsType )
     case FileSystem::Lvm2_PV:
     case FileSystem::Udf:
     case FileSystem::Iso9660:
-#ifdef WITH_KPMCORE4API
     case FileSystem::Luks2:
     case FileSystem::LinuxRaidMember:
     case FileSystem::BitLocker:
-#endif
         // bad bad
         cWarning() << "The selected default FS" << defaultFsType << "is not suitable."
                    << "Using ext4 instead.";
@@ -185,11 +183,9 @@ PartitionLayout::setDefaultFsType( FileSystem::Type defaultFsType )
     case FileSystem::Hpfs:
     case FileSystem::Zfs:
     case FileSystem::Nilfs2:
-#ifdef WITH_KPMCORE4API
     case FileSystem::Fat12:
     case FileSystem::Apfs:
     case FileSystem::Minix:
-#endif
         // weird
         cWarning() << "The selected default FS" << defaultFsType << "is unusual, but not wrong.";
         break;
@@ -355,30 +351,18 @@ PartitionLayout::createPartitions( Device* dev,
         }
         if ( !entry.partType.isEmpty() )
         {
-#if defined( WITH_KPMCORE42API )
             part->setType( entry.partType );
-#else
-            cWarning() << "Ignoring type; requires KPMcore >= 4.2.0.";
-#endif
         }
         if ( entry.partAttributes )
         {
-#if defined( WITH_KPMCORE42API )
             part->setAttributes( entry.partAttributes );
-#else
-            cWarning() << "Ignoring attributes; requires KPMcore >= 4.2.0.";
-#endif
         }
         if ( !entry.partFeatures.isEmpty() )
         {
-#if defined( WITH_KPMCORE42API )
             for ( const auto& k : entry.partFeatures.keys() )
             {
                 part->fileSystem().addFeature( k, entry.partFeatures.value( k ) );
             }
-#else
-            cWarning() << "Ignoring features; requires KPMcore >= 4.2.0.";
-#endif
         }
         // Some buggy (legacy) BIOSes test if the bootflag of at least one partition is set.
         // Otherwise they ignore the device in boot-order, so add it here.

@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - calamares
-      - work-3.3
+      - 3.2.x-stable
   pull_request:
     types:
       - opened
@@ -31,7 +31,7 @@ jobs:
       - name: "prepare env"
         uses: calamares/actions/prepare-neon@v4
       - name: "prepare source"
-        uses: calamares/actions/generic-checkout@v4
+        uses: calamares/actions/generic-checkout@330c45ae1eb6efad4ad75a6dd887c3c5d5fe1590
       - name: "build"
         id: build
         uses: calamares/actions/generic-build@v4

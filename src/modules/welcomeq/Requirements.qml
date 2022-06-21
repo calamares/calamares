@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   SPDX-FileCopyrightText: 2020 Anke Boersma <demm@kaosx.us>
+ *   SPDX-FileCopyrightText: 2020 - 2022 Anke Boersma <demm@kaosx.us>
  *   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -20,15 +20,14 @@ Rectangle {
     focus: true
     Kirigami.Theme.backgroundColor: Kirigami.Theme.backgroundColor
     anchors.fill: parent
-    anchors.topMargin: 50
+    anchors.topMargin: 60
 
     TextArea {
         id: required
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
-        anchors.topMargin: 1
         horizontalAlignment: TextEdit.AlignHCenter
-        width: 640
+        width: parent.width
         font.pointSize: 11
         textFormat: Text.RichText
         antialiasing: true
@@ -44,8 +43,8 @@ Rectangle {
     }
 
     Rectangle {
-        width: 640
-        height: 360
+        width: parent.width * 0.8
+        height: parent.height * 0.6
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: required.bottom
         anchors.topMargin: 5
@@ -54,8 +53,8 @@ Rectangle {
             id: requirementsDelegate
 
             Item {
-                width: 640
-                height: 35
+                width: parent.width
+                implicitHeight: message.implicitHeight + 30
                 visible: true
 
                 Column {
@@ -63,7 +62,7 @@ Rectangle {
 
                     Rectangle {
                         implicitWidth: 640
-                        implicitHeight: 35
+                        implicitHeight: message.implicitHeight + 30
                         // Colors and images based on the two satisfied-bools:
                         // - if satisfied, then green / ok
                         // - otherwise if mandatory, then red / stop
@@ -79,6 +78,7 @@ Rectangle {
                         }
 
                         Text {
+                            id: message
                             text: satisfied ? details : negatedText
                             anchors.centerIn: parent
                             font.pointSize: 11
@@ -92,11 +92,16 @@ Rectangle {
             id: requirementsList
             anchors.fill: parent
             spacing: 5
-            // This uses the filtered model, so that only unsatisfied
-            // requirements are ever shown. You could use *requirementsModel*
-            // to get all of them.
-            model: config.unsatisfiedRequirements
+            clip: true
+            // This uses the unfiltered model, so that all requirements are
+            // shown. You could use *unsatisfiedRequirements* to get the
+            // filtered model so that only unsatisfied requirements are ever shown.
+            //model: config.unsatisfiedRequirements
+            model: config.requirementsModel
             delegate: requirementsDelegate
+            ScrollBar.vertical: ScrollBar {
+                active: true
+            }
         }
     }
 }

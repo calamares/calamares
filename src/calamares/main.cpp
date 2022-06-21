@@ -16,15 +16,9 @@
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 
-#ifndef WITH_KF5DBus
-#include "3rdparty/kdsingleapplicationguard/kdsingleapplicationguard.h"
-#endif
-
 #include <KCoreAddons/KAboutData>
-#ifdef WITH_KF5DBus
 #include <KDBusAddons/KDBusService>
-#endif
-#ifdef WITH_KF5Crash
+#ifdef BUILD_KF5Crash
 #include <KCrash/KCrash>
 #endif
 
@@ -123,37 +117,16 @@ main( int argc, char* argv[] )
     KAboutData::setApplicationData( aboutData );
     a.setApplicationDisplayName( QString() );  // To avoid putting an extra "Calamares/" into the log-file
 
-#ifdef WITH_KF5Crash
+#ifdef BUILD_KF5Crash
     KCrash::initialize();
     // KCrash::setCrashHandler();
     KCrash::setDrKonqiEnabled( true );
     KCrash::setFlags( KCrash::SaferDialog | KCrash::AlwaysDirectly );
-    // TODO: umount anything in /tmp/calamares-... as an emergency save function
 #endif
 
     bool is_debug = handle_args( a );
 
-#ifdef WITH_KF5DBus
     KDBusService service( is_debug ? KDBusService::Multiple : KDBusService::Unique );
-#else
-    KDSingleApplicationGuard guard( is_debug ? KDSingleApplicationGuard::NoPolicy
-                                             : KDSingleApplicationGuard::AutoKillOtherInstances );
-    if ( !is_debug && !guard.isPrimaryInstance() )
-    {
-        // Here we have not yet set-up the logger system, so qDebug() is ok
-        auto instancelist = guard.instances();
-        qDebug() << "Calamares is already running, shutting down.";
-        if ( instancelist.count() > 0 )
-        {
-            qDebug() << "Other running Calamares instances:";
-        }
-        for ( const auto& i : instancelist )
-        {
-            qDebug() << "  " << i.isValid() << i.pid() << i.arguments();
-        }
-        return 69;  // EX_UNAVAILABLE on FreeBSD
-    }
-#endif
 
     Calamares::Settings::init( is_debug );
     if ( !Calamares::Settings::instance() || !Calamares::Settings::instance()->isValid() )

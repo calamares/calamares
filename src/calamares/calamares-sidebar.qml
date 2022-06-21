@@ -46,12 +46,12 @@ Rectangle {
                 Layout.fillWidth: true;
                 height: 35;
                 radius: 6;
-                color: Branding.styleString( index == ViewManager.currentStepIndex ? Branding.SidebarBackgroundSelected : Branding.SidebarBackground );
+                color: Branding.styleString( index == ViewManager.currentStepIndex ? Branding.SidebarBackgroundCurrent : Branding.SidebarBackground );
 
                 Text {
                     anchors.verticalCenter: parent.verticalCenter;
                     anchors.horizontalCenter: parent.horizontalCenter;
-                    color: Branding.styleString( index == ViewManager.currentStepIndex ? Branding.SidebarTextSelected : Branding.SidebarText );
+                    color: Branding.styleString( index == ViewManager.currentStepIndex ? Branding.SidebarTextCurrent : Branding.SidebarText );
                     text: display;
                 }
             }
@@ -62,26 +62,63 @@ Rectangle {
         }
 
         Rectangle {
+            id: metaArea
             Layout.fillWidth: true;
             height: 35
             Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
-            color: Branding.styleString( mouseArea.containsMouse ? Branding.SidebarTextHighlight : Branding.SidebarBackground);
-            visible: debug.enabled
+            color: Branding.styleString( Branding.SidebarBackground );
+            visible: true;
 
-            MouseArea {
-                id: mouseArea
-                anchors.fill: parent;
-                cursorShape: Qt.PointingHandCursor
-                hoverEnabled: true
-                Text {
-                    anchors.verticalCenter: parent.verticalCenter;
-                    x: parent.x + 4;
-                    text: qsTr("Show debug information")
-                    color: Branding.styleString( mouseArea.containsMouse ? Branding.SidebarTextSelect : Branding.SidebarBackground );
-                    font.pointSize : 9
+            Rectangle {
+                id: aboutArea
+                height: 35
+                width: parent.width / 2;
+                anchors.left: parent.left
+                color: Branding.styleString( Branding.SidebarBackgroundCurrent );
+                visible: true;
+
+                MouseArea {
+                    id: mouseAreaAbout
+                    anchors.fill: parent;
+                    cursorShape: Qt.PointingHandCursor
+                    hoverEnabled: true
+                    Text {
+                        anchors.verticalCenter: parent.verticalCenter;
+                        anchors.horizontalCenter: parent.horizontalCenter;
+                        x: parent.x + 4;
+                        text: qsTr("About")
+                        color: Branding.styleString( Branding.SidebarTextCurrent );
+                        font.pointSize : 9
+                    }
+
+                    onClicked: debug.about()
                 }
+            }
 
-                onClicked: debug.toggle()
+            Rectangle {
+                id: debugArea
+                height: 35
+                width: parent.width / 2;
+                anchors.right: parent.right
+                color: Branding.styleString( Branding.SidebarBackgroundCurrent );
+                visible: debug.enabled
+
+                MouseArea {
+                    id: mouseAreaDebug
+                    anchors.fill: parent;
+                    cursorShape: Qt.PointingHandCursor
+                    hoverEnabled: true
+                    Text {
+                        anchors.verticalCenter: parent.verticalCenter;
+                        anchors.horizontalCenter: parent.horizontalCenter;
+                        x: parent.x + 4;
+                        text: qsTr("Debug")
+                        color: Branding.styleString( Branding.SidebarTextCurrent );
+                        font.pointSize : 9
+                    }
+
+                    onClicked: debug.toggle()
+                }
             }
         }
     }

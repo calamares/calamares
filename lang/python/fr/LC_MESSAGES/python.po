@@ -6,28 +6,28 @@
 # Translators:
 # Paul Combal <abonnementspaul@gmail.com>, 2017
 # Abdellah B <bahassinea@gmail.com>, 2017
-# Aestan <anthony.margerand@protonmail.com>, 2018
 # Aurnytoraink <adressetempo@aurny2mail.ddns.net>, 2018
 # a270031086f2a0d3514bc0cb507b48f6, 2019
 # Seboss666 <sebastien_verdet@seboss666.info>, 2019
 # Florian B <florianb3522@gmail.com>, 2019
 # Arnaud Ferraris <arnaud.ferraris@gmail.com>, 2019
-# roxfr <roxfr@outlook.fr>, 2021
+# Aestan <anthony.margerand@protonmail.com>, 2022
+# roxfr <roxfr@outlook.fr>, 2022
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-22 11:03+0200\n"
+"POT-Creation-Date: 2022-05-29 16:17+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: roxfr <roxfr@outlook.fr>, 2021\n"
+"Last-Translator: roxfr <roxfr@outlook.fr>, 2022\n"
 "Language-Team: French (https://www.transifex.com/calamares/teams/20061/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: src/modules/grubcfg/main.py:28
 msgid "Configure GRUB."
@@ -39,40 +39,40 @@ msgstr "Montage des partitions."
 
 #: src/modules/mount/main.py:88 src/modules/mount/main.py:124
 msgid "Internal error mounting zfs datasets"
-msgstr ""
+msgstr "Erreur interne lors du montage des jeux de données zfs"
 
 #: src/modules/mount/main.py:100
 msgid "Failed to import zpool"
-msgstr ""
+msgstr "Échec de l'importation de zpool"
 
 #: src/modules/mount/main.py:116
 msgid "Failed to unlock zpool"
-msgstr ""
+msgstr "Impossible de déverrouiller zpool"
 
 #: src/modules/mount/main.py:133 src/modules/mount/main.py:138
 msgid "Failed to set zfs mountpoint"
-msgstr ""
+msgstr "Impossible de définir le point de montage zfs"
 
 #: src/modules/mount/main.py:229 src/modules/initcpiocfg/main.py:235
 #: src/modules/initcpiocfg/main.py:239 src/modules/rawfs/main.py:164
 #: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
 #: src/modules/openrcdmcryptcfg/main.py:72
-#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/fstab/main.py:361
-#: src/modules/fstab/main.py:367 src/modules/fstab/main.py:394
+#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/fstab/main.py:394
+#: src/modules/fstab/main.py:400 src/modules/fstab/main.py:428
 #: src/modules/localecfg/main.py:140 src/modules/networkcfg/main.py:105
 msgid "Configuration Error"
 msgstr "Erreur de configuration"
 
 #: src/modules/mount/main.py:230 src/modules/initcpiocfg/main.py:236
 #: src/modules/rawfs/main.py:165 src/modules/initramfscfg/main.py:86
-#: src/modules/openrcdmcryptcfg/main.py:73 src/modules/fstab/main.py:362
+#: src/modules/openrcdmcryptcfg/main.py:73 src/modules/fstab/main.py:395
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr ""
 "Aucune partition n'est définie pour être utilisée par <pre>{!s}</pre>."
 
 #: src/modules/mount/main.py:253
 msgid "zfs mounting error"
-msgstr ""
+msgstr "erreur de montage zfs"
 
 #: src/modules/services-systemd/main.py:26
 msgid "Configure systemd services"
@@ -101,7 +101,7 @@ msgstr "Impossible d'activer la cible systemd <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:67
 msgid "Cannot enable systemd timer <code>{name!s}</code>."
-msgstr ""
+msgstr "Impossible d'activer le minuteur systemd <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:71
 msgid "Cannot disable systemd target <code>{name!s}</code>."
@@ -145,7 +145,7 @@ msgstr "Pas de point de montage pour la partition racine"
 
 #: src/modules/unpackfs/main.py:431
 msgid "globalstorage does not contain a \"rootMountPoint\" key."
-msgstr ""
+msgstr "globalstorage ne contient pas de clé \"rootMountPoint\"."
 
 #: src/modules/unpackfs/main.py:434
 msgid "Bad mount point for root partition"
@@ -153,17 +153,17 @@ msgstr "Mauvais point de montage pour la partition racine"
 
 #: src/modules/unpackfs/main.py:435
 msgid "rootMountPoint is \"{}\", which does not exist."
-msgstr ""
+msgstr "Le point de montage racine est \"{}\", qui n'existe pas."
 
 #: src/modules/unpackfs/main.py:439 src/modules/unpackfs/main.py:455
 #: src/modules/unpackfs/main.py:459 src/modules/unpackfs/main.py:465
 #: src/modules/unpackfs/main.py:480
 msgid "Bad unpackfs configuration"
-msgstr ""
+msgstr "Mauvaise configuration unpackfs"
 
 #: src/modules/unpackfs/main.py:440
 msgid "There is no configuration information."
-msgstr ""
+msgstr "Il n'y a pas d'informations de configuration."
 
 #: src/modules/unpackfs/main.py:456
 msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
@@ -180,6 +180,8 @@ msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed."
 msgstr ""
+"Impossible de trouver unsquashfs, assurez-vous que le package squashfs-tools"
+" est installé."
 
 #: src/modules/unpackfs/main.py:481
 msgid "The destination \"{}\" in the target system is not a directory"
@@ -225,13 +227,13 @@ msgstr "Impossible d'écrire le fichier de configuration SLIM"
 msgid "SLIM config file {!s} does not exist"
 msgstr "Le fichier de configuration SLIM {!S} n'existe pas"
 
-#: src/modules/displaymanager/main.py:991
+#: src/modules/displaymanager/main.py:992
 msgid "No display managers selected for the displaymanager module."
 msgstr ""
 "Aucun gestionnaire d'affichage n'a été sélectionné pour le module de "
 "gestionnaire d'affichage"
 
-#: src/modules/displaymanager/main.py:992
+#: src/modules/displaymanager/main.py:993
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
@@ -239,7 +241,7 @@ msgstr ""
 "La liste des gestionnaires d'affichage est vide ou indéfinie à la fois dans "
 "globalstorage et displaymanager.conf."
 
-#: src/modules/displaymanager/main.py:1074
+#: src/modules/displaymanager/main.py:1075
 msgid "Display manager configuration was incomplete"
 msgstr "La configuration du gestionnaire d'affichage était incomplète"
 
@@ -248,7 +250,7 @@ msgid "Configuring mkinitcpio."
 msgstr "Configuration de mkinitcpio."
 
 #: src/modules/initcpiocfg/main.py:240 src/modules/initramfscfg/main.py:90
-#: src/modules/openrcdmcryptcfg/main.py:77 src/modules/fstab/main.py:368
+#: src/modules/openrcdmcryptcfg/main.py:77 src/modules/fstab/main.py:401
 #: src/modules/localecfg/main.py:141 src/modules/networkcfg/main.py:106
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
 msgstr ""
@@ -330,6 +332,7 @@ msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
 msgstr[0] "Installation d'un paquet."
 msgstr[1] "Installation de %(num)d paquets."
+msgstr[2] "Installation de %(num)d paquets."
 
 #: src/modules/packages/main.py:71
 #, python-format
@@ -337,29 +340,36 @@ msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
 msgstr[0] "Suppression d'un paquet."
 msgstr[1] "Suppression de %(num)d paquets."
+msgstr[2] "Suppression de %(num)d paquets."
 
 #: src/modules/packages/main.py:725 src/modules/packages/main.py:737
 #: src/modules/packages/main.py:765
 msgid "Package Manager error"
-msgstr ""
+msgstr "Erreur du gestionnaire de paquets"
 
 #: src/modules/packages/main.py:726
 msgid ""
 "The package manager could not prepare updates. The command <pre>{!s}</pre> "
 "returned error code {!s}."
 msgstr ""
+"Le gestionnaire de paquets n'a pas pu préparer les mises à jour. La commande"
+" <pre>{!s}</pre> a renvoyé le code d'erreur {!s}."
 
 #: src/modules/packages/main.py:738
 msgid ""
 "The package manager could not update the system. The command <pre>{!s}</pre>"
 " returned error code {!s}."
 msgstr ""
+"Le gestionnaire de paquets n'a pas pu mettre à jour le système. La commande "
+"<pre>{!s}</pre> a renvoyé le code d'erreur {!s}."
 
 #: src/modules/packages/main.py:766
 msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."
 msgstr ""
+"Le gestionnaire de paquets n'a pas pu apporter de modifications au système "
+"installé. La commande <pre>{!s}</pre> a renvoyé le code d'erreur {!s}."
 
 #: src/modules/bootloader/main.py:43
 msgid "Install bootloader."
@@ -368,16 +378,20 @@ msgstr "Installation du bootloader."
 #: src/modules/bootloader/main.py:614
 msgid "Failed to install grub, no partitions defined in global storage"
 msgstr ""
+"Échec de l'installation de grub, aucune partition définie dans le stockage "
+"global"
 
 #: src/modules/bootloader/main.py:782
 msgid "Bootloader installation error"
-msgstr ""
+msgstr "Erreur d'installation du chargeur de démarrage"
 
 #: src/modules/bootloader/main.py:783
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
 msgstr ""
+"Le chargeur de démarrage n'a pas pu être installé. La commande "
+"d'installation <pre>{!s}</pre> a renvoyé le code d'erreur {!s}."
 
 #: src/modules/hwclock/main.py:26
 msgid "Setting hardware clock."
@@ -411,13 +425,15 @@ msgstr "Configuration du initramfs."
 msgid "Configuring OpenRC dmcrypt service."
 msgstr "Configuration du service OpenRC dmcrypt."
 
-#: src/modules/fstab/main.py:29
+#: src/modules/fstab/main.py:28
 msgid "Writing fstab."
 msgstr "Écriture du fstab."
 
-#: src/modules/fstab/main.py:395
+#: src/modules/fstab/main.py:429
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr ""
+"Aucune configuration <pre>{!s}</pre>n'est donnée pour <pre>{!s}</pre> à "
+"utiliser."
 
 #: src/modules/dummypython/main.py:35
 msgid "Dummy python job."

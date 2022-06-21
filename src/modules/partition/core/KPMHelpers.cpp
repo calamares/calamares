@@ -25,6 +25,8 @@
 #include <kpmcore/fs/luks.h>
 #include <kpmcore/util/externalcommand.h>
 
+#include <qregularexpression.h>
+
 using CalamaresUtils::Partition::PartitionIterator;
 
 namespace KPMHelpers
@@ -34,11 +36,15 @@ Partition*
 findPartitionByMountPoint( const QList< Device* >& devices, const QString& mountPoint )
 {
     for ( auto device : devices )
+    {
         for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
+        {
             if ( PartitionInfo::mountPoint( *it ) == mountPoint )
             {
                 return *it;
             }
+        }
+    }
     return nullptr;
 }
 
@@ -129,118 +135,170 @@ clonePartition( Device* device, Partition* partition )
                           partition->activeFlags() );
 }
 
-#ifndef WITH_KPMCORE4API
-// This function was added in KPMCore 4, implementation copied from src/fs/luks.cpp
-/*
-    SPDX-FileCopyrightText: 2010 Volker Lanz <vl@fidra.de>
-    SPDX-FileCopyrightText: 2012-2019 Andrius Štikonas <andrius@stikonas.eu>
-    SPDX-FileCopyrightText: 2015-2016 Teo Mrnjavac <teo@kde.org>
-    SPDX-FileCopyrightText: 2016 Chantara Tith <tith.chantara@gmail.com>
-    SPDX-FileCopyrightText: 2017 Christian Morlok <christianmorlok@gmail.com>
-    SPDX-FileCopyrightText: 2018 Caio Jordão Carvalho <caiojcarvalho@gmail.com>
-    SPDX-FileCopyrightText: 2020 Arnaud Ferraris <arnaud.ferraris@collabora.com>
-    SPDX-FileCopyrightText: 2020 Gaël PORTAY <gael.portay@collabora.com>
-
-    SPDX-License-Identifier: GPL-3.0-or-later
-*/
-static bool
-testPassphrase( FS::luks* fs, const QString& deviceNode, const QString& passphrase )
+SavePassphraseValue
+savePassphrase( Partition* partition, const QString& passphrase )
 {
-    ExternalCommand cmd( QStringLiteral( "cryptsetup" ),
-                         { QStringLiteral( "open" ),
-                           QStringLiteral( "--tries" ),
-                           QStringLiteral( "1" ),
-                           QStringLiteral( "--test-passphrase" ),
-                           deviceNode } );
-    if ( cmd.write( passphrase.toLocal8Bit() + '\n' ) && cmd.start( -1 ) && cmd.exitCode() == 0 )
-    {
-        return true;
-    }
-
-    return false;
-}
-#else
-static bool
-testPassphrase( FS::luks* fs, const QString& deviceNode, const QString& passphrase )
-{
-    return fs->testPassphrase( deviceNode, passphrase );
-}
-#endif
-
-// Adapted from luks cryptOpen which always opens a dialog to ask for a passphrase
-int
-updateLuksDevice( Partition* partition, const QString& passphrase )
-{
-    const QString deviceNode = partition->partitionPath();
-
-    cDebug() << "Update Luks device: " << deviceNode;
 
     if ( passphrase.isEmpty() )
     {
-        cWarning() << Logger::SubEntry << "#1: Passphrase is empty";
-        return 1;
+        return SavePassphraseValue::EmptyPassphrase;
     }
 
-    if ( partition->fileSystem().type() != FileSystem::Luks )
-    {
-        cWarning() << Logger::SubEntry << "#2: Not a luks encrypted device";
-        return 2;
-    }
-
-    // Cast partition fs to luks fs
     FS::luks* luksFs = dynamic_cast< FS::luks* >( &partition->fileSystem() );
+    if ( luksFs == nullptr )
+    {
+        // No luks device
+        return SavePassphraseValue::NotLuksPartition;
+    }
 
     // Test the given passphrase
-    if ( !testPassphrase( luksFs, deviceNode, passphrase ) )
+    if ( !luksFs->testPassphrase( partition->partitionPath(), passphrase ) )
     {
-        cWarning() << Logger::SubEntry << "#3: Passphrase incorrect";
-        return 3;
+        // Save the existing passphrase
+        luksFs->setPassphrase( passphrase );
+    }
+    else
+    {
+        return SavePassphraseValue::IncorrectPassphrase;
+    }
+    return SavePassphraseValue::NoError;
+}
+
+// Adapted from src/fs/luks.cpp cryptOpen which always opens a dialog to ask for a passphrase
+QString
+cryptOpen( Partition* partition )
+{
+    FS::luks* luksFs = dynamic_cast< FS::luks* >( &partition->fileSystem() );
+    if ( luksFs == nullptr )
+    {
+        // No luks device
+        return QString();
     }
 
     if ( luksFs->isCryptOpen() )
     {
         if ( !luksFs->mapperName().isEmpty() )
         {
-            cWarning() << Logger::SubEntry << "#4: Device already decrypted";
-            return 4;
+            // Already decrypted
+            return luksFs->mapperName();
         }
         else
         {
-            cDebug() << Logger::SubEntry << "No mapper node found";
+            cDebug() << Logger::SubEntry << "No mapper node found - reset cryptOpen";
             luksFs->setCryptOpen( false );
         }
     }
 
-    ExternalCommand openCmd( QStringLiteral( "cryptsetup" ),
-                             { QStringLiteral( "open" ), deviceNode, luksFs->suggestedMapperName( deviceNode ) } );
-
-    if ( !( openCmd.write( passphrase.toLocal8Bit() + '\n' ) && openCmd.start( -1 ) && openCmd.exitCode() == 0 ) )
+    if ( luksFs->passphrase().isEmpty() )
     {
-        cWarning() << Logger::SubEntry << openCmd.exitCode() << ": cryptsetup command failed";
-        return openCmd.exitCode();
+        // No passphrase for decryption
+        return QString();
     }
 
-    // Save the existing passphrase
-    luksFs->setPassphrase( passphrase );
+    // Decrypt the partition
+    const QString deviceNode = partition->partitionPath();
+    ExternalCommand openCmd( QStringLiteral( "cryptsetup" ),
+                             { QStringLiteral( "open" ), deviceNode, luksFs->suggestedMapperName( deviceNode ) } );
+    if ( ( openCmd.write( luksFs->passphrase().toLocal8Bit() + '\n' ) && openCmd.start( -1 ) && openCmd.exitCode() == 0 ) )
+    {
+        luksFs->scan( deviceNode );
+        if ( luksFs->mapperName().isEmpty() )
+        {
+            return QString();
+        }
+        luksFs->loadInnerFileSystem( luksFs->mapperName() );
+        luksFs->setCryptOpen( luksFs->innerFS() != nullptr );
+        if ( !luksFs->isCryptOpen() )
+        {
+            return QString();
+        }
+        return luksFs->mapperName();
+    }
+    return QString();
+}
 
-    luksFs->scan( deviceNode );
+void
+cryptClose( Partition* partition )
+{
+    FS::luks* luksFs = dynamic_cast< FS::luks* >( &partition->fileSystem() );
+    if ( luksFs == nullptr )
+    {
+        // No luks device
+        return;
+    }
 
     if ( luksFs->mapperName().isEmpty() )
     {
-        cWarning() << Logger::SubEntry << "#5: No mapper node found";
-        return 5;
+        // Not opened
+        return;
     }
 
-    luksFs->loadInnerFileSystem( luksFs->mapperName() );
-    luksFs->setCryptOpen( luksFs->innerFS() != nullptr );
+    // Close the partition
+    luksFs->cryptClose( partition->partitionPath() );
+}
 
-    if ( !luksFs->isCryptOpen() )
+bool
+cryptLabel( Partition* partition, const QString& label )
+{
+    int version = cryptVersion( partition );
+    if ( version == 0 || label.isEmpty() )
     {
-        cWarning() << Logger::SubEntry << "#6: Device could not be decrypted";
-        return 6;
+        return false;
     }
 
-    return 0;
+    if ( version == 1 )
+    {
+        QString mappedDevice = cryptOpen( partition );
+        if ( !mappedDevice.isEmpty() )
+        {
+            // Label mapped device
+            ExternalCommand openCmd( QStringLiteral( "e2label" ),
+                                     { mappedDevice,
+                                     label } );
+            openCmd.start( -1 );
+            cryptClose( partition );
+            return true;
+        }
+    }
+    else
+    {
+        ExternalCommand openCmd( QStringLiteral( "cryptsetup" ),
+                                 { QStringLiteral( "config" ),
+                                 partition->partitionPath(),
+                                 QStringLiteral( "--label" ),
+                                 label } );
+        if ( openCmd.start( -1 ) && openCmd.exitCode() == 0 )
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+int
+cryptVersion( Partition* partition )
+{
+    if ( partition->fileSystem().type() != FileSystem::Luks )
+    {
+        return 0;
+    }
+
+    // Get luks version from header information
+    int luksVersion = 1;
+    ExternalCommand openCmd( QStringLiteral( "cryptsetup" ),
+                             { QStringLiteral( "luksDump" ),
+                             partition->partitionPath() } );
+    if ( openCmd.start( -1 ) && openCmd.exitCode() == 0 )
+    {
+        QRegularExpression re( QStringLiteral( R"(version:\s+(\d))" ),
+                               QRegularExpression::CaseInsensitiveOption );
+        QRegularExpressionMatch rem = re.match( openCmd.output() );
+        if ( rem.hasMatch() )
+        {
+            luksVersion = rem.captured( 1 ).toInt();
+        }
+    }
+    return luksVersion;
 }
 
 Calamares::JobResult
@@ -256,7 +314,7 @@ execute( Operation& operation, const QString& failureMessage )
 
     // Remove the === lines from the report by trimming them to empty
     QStringList l = report.toText().split( '\n' );
-    std::for_each( l.begin(), l.end(), []( QString& s ) { CalamaresUtils::removeLeading( s, '=' ); } );
+    std::for_each( l.begin(), l.end(), []( QString& s ) { Calamares::String::removeLeading( s, '=' ); } );
 
     return Calamares::JobResult::error( failureMessage, l.join( '\n' ) );
 }

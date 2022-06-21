@@ -44,7 +44,7 @@ struct ReplacePartitionOptions
 struct AutoPartitionOptions : ReplacePartitionOptions
 {
     QString efiPartitionMountPoint;  // optional, e.g. "/boot"
-    qint64 requiredSpaceB;  // estimated required space for root partition
+    quint64 requiredSpaceB;  // estimated required space for root partition
     Config::SwapChoice swap;
 
     AutoPartitionOptions( const QString& pt,
@@ -55,7 +55,7 @@ struct AutoPartitionOptions : ReplacePartitionOptions
                           Config::SwapChoice s )
         : ReplacePartitionOptions( pt, fs, luks )
         , efiPartitionMountPoint( efi )
-        , requiredSpaceB( requiredBytes > 0 ? requiredBytes : 0 )
+        , requiredSpaceB( requiredBytes > 0 ? quint64( requiredBytes ) : 0U )
         , swap( s )
     {
     }

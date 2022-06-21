@@ -1,0 +1,7 @@
+# SPDX-FileCopyrightText: no
+# SPDX-License-Identifier: CC0-1.0
+rootMountPoint: /tmp/mount
+bootLoader:
+    installPath: /dev/sdb
+branding:
+    shortProductName: "Generic Distro"

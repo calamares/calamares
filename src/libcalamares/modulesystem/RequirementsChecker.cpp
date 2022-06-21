@@ -43,7 +43,7 @@ RequirementsChecker::run()
 {
     m_progressTimer = new QTimer( this );
     connect( m_progressTimer, &QTimer::timeout, this, &RequirementsChecker::reportProgress );
-    m_progressTimer->start( 1200 );  // msec
+    m_progressTimer->start( std::chrono::milliseconds( 1200 ) );
 
     for ( const auto& module : m_modules )
     {
@@ -76,7 +76,7 @@ RequirementsChecker::finished()
         }
 
         m_model->describe();
-        m_model->changeRequirementsList();
+        m_model->reCheckList();
         QTimer::singleShot( 0, this, &RequirementsChecker::done );
     }
 }
@@ -91,7 +91,7 @@ RequirementsChecker::addCheckedRequirements( Module* m )
         m_model->addRequirementsList( l );
     }
 
-    requirementsProgress( tr( "Requirements checking for module <i>%1</i> is complete." ).arg( m->name() ) );
+    Q_EMIT requirementsProgress( tr( "Requirements checking for module '%1' is complete." ).arg( m->name() ) );
 }
 
 void
@@ -117,11 +117,11 @@ RequirementsChecker::reportProgress()
         unsigned int posInterval = ( m_progressTimer->interval() < 0 ) ? 1000 : uint( m_progressTimer->interval() );
         QString waiting = tr( "Waiting for %n module(s).", "", remaining );
         QString elapsed = tr( "(%n second(s))", "", m_progressTimeouts * posInterval / 1000 );
-        emit requirementsProgress( waiting + QString( " " ) + elapsed );
+        Q_EMIT requirementsProgress( waiting + QString( " " ) + elapsed );
     }
     else
     {
-        emit requirementsProgress( tr( "System-requirements checking is complete." ) );
+        Q_EMIT requirementsProgress( tr( "System-requirements checking is complete." ) );
     }
 }
 

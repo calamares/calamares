@@ -10,6 +10,7 @@
 #include "Config.h"
 
 #include "Branding.h"
+#include "CalamaresAbout.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "Settings.h"
@@ -54,12 +55,10 @@ Config::retranslate()
         {
             message = setup ? tr( "This computer does not satisfy the minimum "
                                   "requirements for setting up %1.<br/>"
-                                  "Setup cannot continue. "
-                                  "<a href=\"#details\">Details...</a>" )
+                                  "Setup cannot continue." )
                             : tr( "This computer does not satisfy the minimum "
                                   "requirements for installing %1.<br/>"
-                                  "Installation cannot continue. "
-                                  "<a href=\"#details\">Details...</a>" );
+                                  "Installation cannot continue." );
         }
         else
         {
@@ -129,7 +128,6 @@ Config::initLanguages()
     // Need to match by some other means than the exact translation Id
     if ( matchedLocaleIndex < 0 )
     {
-
         QLocale defaultLocale = defaultTranslation.locale();
 
         cDebug() << "Trying to match locale" << defaultLocale;
@@ -246,6 +244,13 @@ Config::setSupportUrl( const QString& url )
     m_supportUrl = url;
     emit supportUrlChanged();
 }
+
+QString
+Config::aboutMessage() const
+{
+    return Calamares::aboutString();
+}
+
 
 QString
 Config::genericWelcomeMessage() const

@@ -20,6 +20,8 @@
 
 namespace Calamares
 {
+namespace Widgets
+{
 
 PrettyRadioButton::PrettyRadioButton( QWidget* parent )
     : QWidget( parent )
@@ -124,5 +126,5 @@ PrettyRadioButton::toggleOptions( bool toggle )
         m_optionsLayout->parentWidget()->setVisible( toggle );
     }
 }
-
+}  // namespace Widgets
 }  // namespace Calamares

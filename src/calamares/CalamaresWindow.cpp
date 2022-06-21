@@ -130,14 +130,41 @@ getWidgetSidebar( Calamares::DebugWindowManager* debug,
     tv->setFocusPolicy( Qt::NoFocus );
     sideLayout->addWidget( tv );
 
+    QHBoxLayout* extraButtons = new QHBoxLayout;
+    sideLayout->addLayout( extraButtons );
+
+    const int defaultFontHeight = CalamaresUtils::defaultFontHeight();
+
+    if ( /* About-Calamares Button enabled */ true )
+    {
+        QPushButton* aboutDialog = new QPushButton;
+        aboutDialog->setObjectName( "aboutButton" );
+        aboutDialog->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::Information,
+                                                             CalamaresUtils::Original,
+                                                             2 * QSize( defaultFontHeight, defaultFontHeight ) ) );
+        CALAMARES_RETRANSLATE_FOR(
+            aboutDialog,
+            aboutDialog->setText(
+                QCoreApplication::translate( CalamaresWindow::staticMetaObject.className(), "About" ) );
+            aboutDialog->setToolTip( QCoreApplication::translate( CalamaresWindow::staticMetaObject.className(),
+                                                                  "Show information about Calamares" ) ); );
+        extraButtons->addWidget( aboutDialog );
+        aboutDialog->setFlat( true );
+        aboutDialog->setCheckable( true );
+        QObject::connect( aboutDialog, &QPushButton::clicked, debug, &Calamares::DebugWindowManager::about );
+    }
     if ( debug && debug->enabled() )
     {
         QPushButton* debugWindowBtn = new QPushButton;
         debugWindowBtn->setObjectName( "debugButton" );
+        debugWindowBtn->setIcon( CalamaresUtils::defaultPixmap(
+            CalamaresUtils::Bugs, CalamaresUtils::Original, 2 * QSize( defaultFontHeight, defaultFontHeight ) ) );
         CALAMARES_RETRANSLATE_FOR( debugWindowBtn,
                                    debugWindowBtn->setText( QCoreApplication::translate(
+                                       CalamaresWindow::staticMetaObject.className(), "Debug" ) );
+                                   debugWindowBtn->setToolTip( QCoreApplication::translate(
                                        CalamaresWindow::staticMetaObject.className(), "Show debug information" ) ); );
-        sideLayout->addWidget( debugWindowBtn );
+        extraButtons->addWidget( debugWindowBtn );
         debugWindowBtn->setFlat( true );
         debugWindowBtn->setCheckable( true );
         QObject::connect( debugWindowBtn, &QPushButton::clicked, debug, &Calamares::DebugWindowManager::show );

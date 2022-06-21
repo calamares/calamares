@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-22 11:03+0200\n"
+"POT-Creation-Date: 2022-05-29 16:17+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Moo, 2022\n"
 "Language-Team: Lithuanian (https://www.transifex.com/calamares/teams/20061/lt/)\n"
@@ -50,15 +50,15 @@ msgstr "Nepavyko nustatyti zfs prijungimo taško"
 #: src/modules/initcpiocfg/main.py:239 src/modules/rawfs/main.py:164
 #: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
 #: src/modules/openrcdmcryptcfg/main.py:72
-#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/fstab/main.py:361
-#: src/modules/fstab/main.py:367 src/modules/fstab/main.py:394
+#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/fstab/main.py:394
+#: src/modules/fstab/main.py:400 src/modules/fstab/main.py:428
 #: src/modules/localecfg/main.py:140 src/modules/networkcfg/main.py:105
 msgid "Configuration Error"
 msgstr "Konfigūracijos klaida"
 
 #: src/modules/mount/main.py:230 src/modules/initcpiocfg/main.py:236
 #: src/modules/rawfs/main.py:165 src/modules/initramfscfg/main.py:86
-#: src/modules/openrcdmcryptcfg/main.py:73 src/modules/fstab/main.py:362
+#: src/modules/openrcdmcryptcfg/main.py:73 src/modules/fstab/main.py:395
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "Nėra apibrėžta jokių skaidinių, skirtų <pre>{!s}</pre> naudojimui."
 
@@ -217,11 +217,11 @@ msgstr "Nepavyksta įrašyti SLIM konfigūracijos failą"
 msgid "SLIM config file {!s} does not exist"
 msgstr "SLIM konfigūracijos failo {!s} nėra"
 
-#: src/modules/displaymanager/main.py:991
+#: src/modules/displaymanager/main.py:992
 msgid "No display managers selected for the displaymanager module."
 msgstr "Displaymanagers moduliui nėra pasirinkta jokių ekranų tvarkytuvių."
 
-#: src/modules/displaymanager/main.py:992
+#: src/modules/displaymanager/main.py:993
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
@@ -229,7 +229,7 @@ msgstr ""
 "Displaymanagers sąrašas yra tuščias arba neapibrėžtas tiek globalstorage, "
 "tiek ir displaymanager.conf faile."
 
-#: src/modules/displaymanager/main.py:1074
+#: src/modules/displaymanager/main.py:1075
 msgid "Display manager configuration was incomplete"
 msgstr "Ekranų tvarkytuvės konfigūracija yra nepilna"
 
@@ -238,7 +238,7 @@ msgid "Configuring mkinitcpio."
 msgstr "Konfigūruojama mkinitcpio."
 
 #: src/modules/initcpiocfg/main.py:240 src/modules/initramfscfg/main.py:90
-#: src/modules/openrcdmcryptcfg/main.py:77 src/modules/fstab/main.py:368
+#: src/modules/openrcdmcryptcfg/main.py:77 src/modules/fstab/main.py:401
 #: src/modules/localecfg/main.py:141 src/modules/networkcfg/main.py:106
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
 msgstr ""
@@ -414,11 +414,11 @@ msgstr "Konfigūruojama initramfs."
 msgid "Configuring OpenRC dmcrypt service."
 msgstr "Konfigūruojama OpenRC dmcrypt tarnyba."
 
-#: src/modules/fstab/main.py:29
+#: src/modules/fstab/main.py:28
 msgid "Writing fstab."
 msgstr "Rašoma fstab."
 
-#: src/modules/fstab/main.py:395
+#: src/modules/fstab/main.py:429
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr ""
 "Nenurodyta jokia <pre>{!s}</pre> konfigūracija, kurią <pre>{!s}</pre> galėtų"

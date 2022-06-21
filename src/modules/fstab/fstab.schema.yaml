@@ -10,9 +10,9 @@ properties:
         type: object
         additionalProperties: true  # we don't know which FS exist
         properties:
-            default: { type: string }
+            "default": { type: string }
             btrfs: { type: string }
-        required: [ default ]
+        required: [ "default" ]
     ssdExtraMountOptions:
         type: object
         additionalProperties: true  # we don't know which FS exist
@@ -25,4 +25,23 @@ properties:
             btrfs_swap: { type: string }
     efiMountOptions: { type: string }
     crypttabOptions: { type: string }
-required: [ mountOptions ]
+    tmpOptions:
+        type: object
+        additionalProperties: false
+        properties:
+            "default":
+                type: object
+                additionalProperties: false
+                properties:
+                    tmpfs: { type: boolean }
+                    options: { type: string }
+            ssd:
+                type: object
+                additionalProperties: false
+                properties:
+                    tmpfs: { type: boolean }
+                    options: { type: string }
+        required: [ "default" ]
+required:
+    - mountOptions
+    - tmpOptions

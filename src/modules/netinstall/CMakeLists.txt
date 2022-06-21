@@ -3,7 +3,7 @@
 #   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
 #   SPDX-License-Identifier: BSD-2-Clause
 #
-calamares_add_plugin( netinstall
+calamares_add_plugin(netinstall
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
@@ -21,15 +21,10 @@ calamares_add_plugin( netinstall
     SHARED_LIB
 )
 
-calamares_add_test(
-    netinstalltest
-    SOURCES
-        Tests.cpp
-        Config.cpp
-        LoaderQueue.cpp
-        PackageTreeItem.cpp
-        PackageModel.cpp
-    LIBRARIES
-        Qt5::Gui
-)
-
+if(KF5CoreAddons_FOUND)
+    calamares_add_test(
+        netinstalltest
+        SOURCES Tests.cpp Config.cpp LoaderQueue.cpp PackageTreeItem.cpp PackageModel.cpp
+        LIBRARIES Qt5::Gui Qt5::Network KF5::CoreAddons
+    )
+endif()

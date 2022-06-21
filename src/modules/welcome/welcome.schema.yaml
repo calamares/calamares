@@ -21,10 +21,10 @@ properties:
             internetCheckUrl: { type: string }
             check:
                 type: array
-                items: { type: string, enum: [storage, ram, power, internet, root, screen], unique: true }
+                items: { type: string, enum: [storage, ram, power, internet, root, screen, "false", "true", "slow-false", "slow-true", snark], unique: true }
             required:  # Key-name in the config-file
                 type: array
-                items: { type: string, enum: [storage, ram, power, internet, root, screen], unique: true }
+                items: { type: string, enum: [storage, ram, power, internet, root, screen, "false", "true", "slow-false", "slow-true", snark], unique: true }
         required: [ requiredStorage, requiredRam, check ]  # Schema keyword
 
     # TODO: refactor, this is reused in locale

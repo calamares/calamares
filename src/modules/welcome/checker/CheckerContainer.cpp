@@ -65,13 +65,19 @@ CheckerContainer::requirementsComplete( bool ok )
         }
     }
 
-    layout()->removeWidget( m_waitingWidget );
-    m_waitingWidget->deleteLater();
-    m_waitingWidget = nullptr;  // Don't delete in destructor
-
-    m_checkerWidget = new ResultsListWidget( m_config, this );
-    m_checkerWidget->setObjectName( "requirementsChecker" );
-    layout()->addWidget( m_checkerWidget );
+    if ( m_waitingWidget )
+    {
+        layout()->removeWidget( m_waitingWidget );
+        m_waitingWidget->deleteLater();
+        m_waitingWidget = nullptr;  // Don't delete in destructor
+    }
+    if ( !m_checkerWidget )
+    {
+        m_checkerWidget = new ResultsListWidget( m_config, this );
+        m_checkerWidget->setObjectName( "requirementsChecker" );
+        layout()->addWidget( m_checkerWidget );
+    }
+    m_checkerWidget->requirementsComplete();
 
     m_verdict = ok;
 }

@@ -15,6 +15,7 @@
 #include "ui_WelcomePage.h"
 
 #include "Branding.h"
+#include "CalamaresAbout.h"
 #include "CalamaresVersion.h"
 #include "Config.h"
 #include "Settings.h"
@@ -26,7 +27,6 @@
 #include "utils/Logger.h"
 #include "utils/NamedEnum.h"
 #include "utils/Retranslator.h"
-#include "widgets/TranslationFix.h"
 
 #include <QApplication>
 #include <QBoxLayout>
@@ -47,8 +47,6 @@ WelcomePage::WelcomePage( Config* config, QWidget* parent )
 
     const int defaultFontHeight = CalamaresUtils::defaultFontHeight();
     ui->setupUi( this );
-    ui->aboutButton->setIcon( CalamaresUtils::defaultPixmap(
-        CalamaresUtils::Information, CalamaresUtils::Original, 2 * QSize( defaultFontHeight, defaultFontHeight ) ) );
 
     // insert system-check widget below welcome text
     const int welcome_text_idx = ui->verticalLayout->indexOf( ui->mainText );
@@ -77,7 +75,6 @@ WelcomePage::WelcomePage( Config* config, QWidget* parent )
 
     CALAMARES_RETRANSLATE_SLOT( &WelcomePage::retranslate );
 
-    connect( ui->aboutButton, &QPushButton::clicked, this, &WelcomePage::showAboutBox );
     connect( Calamares::ModuleManager::instance(),
              &Calamares::ModuleManager::requirementsComplete,
              m_checkingWidget,
@@ -208,63 +205,12 @@ WelcomePage::setLanguageIcon( QPixmap i )
 void
 WelcomePage::retranslate()
 {
-    QString message;
-
-    if ( Calamares::Settings::instance()->isSetupMode() )
-    {
-        message = Calamares::Branding::instance()->welcomeStyleCalamares()
-            ? tr( "<h1>Welcome to the Calamares setup program for %1.</h1>" )
-            : tr( "<h1>Welcome to %1 setup.</h1>" );
-    }
-    else
-    {
-        message = Calamares::Branding::instance()->welcomeStyleCalamares()
-            ? tr( "<h1>Welcome to the Calamares installer for %1.</h1>" )
-            : tr( "<h1>Welcome to the %1 installer.</h1>" );
-    }
+    const QString message = m_conf->genericWelcomeMessage();
 
     ui->mainText->setText( message.arg( Calamares::Branding::instance()->versionedName() ) );
     ui->retranslateUi( this );
     ui->supportButton->setText( tr( "%1 support" ).arg( Calamares::Branding::instance()->shortProductName() ) );
 }
-
-void
-WelcomePage::showAboutBox()
-{
-    QString title
-        = Calamares::Settings::instance()->isSetupMode() ? tr( "About %1 setup" ) : tr( "About %1 installer" );
-    QMessageBox mb( QMessageBox::Information,
-                    title.arg( CALAMARES_APPLICATION_NAME ),
-                    tr( "<h1>%1</h1><br/>"
-                        "<strong>%2<br/>"
-                        "for %3</strong><br/><br/>"
-                        "Copyright 2014-2017 Teo Mrnjavac &lt;teo@kde.org&gt;<br/>"
-                        "Copyright 2017-2020 Adriaan de Groot &lt;groot@kde.org&gt;<br/>"
-                        "Thanks to <a href=\"https://calamares.io/team/\">the Calamares team</a> "
-                        "and the <a href=\"https://www.transifex.com/calamares/calamares/\">Calamares "
-                        "translators team</a>.<br/><br/>"
-                        "<a href=\"https://calamares.io/\">Calamares</a> "
-                        "development is sponsored by <br/>"
-                        "<a href=\"http://www.blue-systems.com/\">Blue Systems</a> - "
-                        "Liberating Software." )
-                        .arg( CALAMARES_APPLICATION_NAME )
-                        .arg( CALAMARES_VERSION )
-                        .arg( Calamares::Branding::instance()->versionedName() ),
-                    QMessageBox::Ok,
-                    this );
-    Calamares::fixButtonLabels( &mb );
-    mb.setIconPixmap( CalamaresUtils::defaultPixmap(
-        CalamaresUtils::Squid,
-        CalamaresUtils::Original,
-        QSize( CalamaresUtils::defaultFontHeight() * 6, CalamaresUtils::defaultFontHeight() * 6 ) ) );
-    QGridLayout* layout = reinterpret_cast< QGridLayout* >( mb.layout() );
-    if ( layout )
-    {
-        layout->setColumnMinimumWidth( 2, CalamaresUtils::defaultFontHeight() * 24 );
-    }
-    mb.exec();
-}
-
 
 void
 LocaleTwoColumnDelegate::paint( QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index ) const

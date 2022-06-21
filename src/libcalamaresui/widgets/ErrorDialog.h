@@ -15,7 +15,7 @@
 namespace Ui
 {
 class ErrorDialog;
-}
+}  // namespace Ui
 
 namespace Calamares
 {
@@ -78,6 +78,6 @@ private:
     bool m_shouldOfferWebPaste = false;
 };
 
-};  // namespace Calamares
+}  // namespace Calamares
 
 #endif  // LIBCALAMARESUI_ERRORDIALOG_H

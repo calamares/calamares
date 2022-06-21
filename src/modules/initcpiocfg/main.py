@@ -11,7 +11,6 @@
 #
 #   Calamares is Free Software: see the License-Identifier above.
 #
-
 import libcalamares
 from libcalamares.utils import debug, target_env_call
 import os
@@ -102,7 +101,7 @@ def get_host_initcpio():
         with open(hostfile, "r") as mkinitcpio_file:
             mklins = [x.strip() for x in mkinitcpio_file.readlines()]
     except FileNotFoundError:
-        libcalamares.utils.debug("Could not open host file '%s'" % hostfile)
+        libcalamares.utils.debug(f"Could not open host file {hostfile}")
         mklins = []
 
     return mklins
@@ -125,11 +124,11 @@ def write_mkinitcpio_lines(hooks, modules, files, root_mount_point):
             # Replace HOOKS, MODULES and FILES lines with what we
             # have found via find_initcpio_features()
             if line.startswith("HOOKS"):
-                line = "HOOKS=\"{!s}\"".format(' '.join(hooks))
+                line = 'HOOKS="{!s}"'.format(' '.join(hooks))
             elif line.startswith("MODULES"):
-                line = "MODULES=\"{!s}\"".format(' '.join(modules))
+                line = 'MODULES="{!s}"'.format(' '.join(modules))
             elif line.startswith("FILES"):
-                line = "FILES=\"{!s}\"".format(' '.join(files))
+                line = 'FILES="{!s}"'.format(' '.join(files))
             mkinitcpio_file.write(line + "\n")
 
 
@@ -144,7 +143,16 @@ def find_initcpio_features(partitions, root_mount_point):
 
     :return 3-tuple of lists
     """
-    hooks = ["base", "udev", "autodetect", "modconf", "block", "keyboard", "keymap", "consolefont"]
+    hooks = [
+        "base",
+        "udev",
+        "autodetect",
+        "modconf",
+        "block",
+        "keyboard",
+        "keymap",
+        "consolefont",
+    ]
     modules = []
     files = []
 
@@ -161,6 +169,8 @@ def find_initcpio_features(partitions, root_mount_point):
         hooks.append("plymouth")
 
     for partition in partitions:
+        hooks.extend(["filesystems"])
+
         if partition["fs"] == "linuxswap" and not partition.get("claimed", None):
             # Skip foreign swap
             continue
@@ -194,11 +204,12 @@ def find_initcpio_features(partitions, root_mount_point):
             hooks.append("plymouth-encrypt")
         else:
             hooks.append("encrypt")
+        crypto_file = "crypto_keyfile.bin"
         if not unencrypted_separate_boot and \
            os.path.isfile(
-               os.path.join(root_mount_point, "crypto_keyfile.bin")
+               os.path.join(root_mount_point, crypto_file)
                ):
-            files.append("/crypto_keyfile.bin")
+            files.append(f"/{crypto_file}")
 
     if uses_lvm2:
         hooks.append("lvm2")
@@ -207,11 +218,9 @@ def find_initcpio_features(partitions, root_mount_point):
         hooks.append("zfs")
 
     if swap_uuid != "":
+        hooks.extend(["resume"])
         if encrypt_hook and openswap_hook:
             hooks.extend(["openswap"])
-        hooks.extend(["resume", "filesystems"])
-    else:
-        hooks.extend(["filesystems"])
 
     if uses_btrfs:
         modules.append("crc32c-intel" if cpuinfo().is_intel else "crc32c")
@@ -223,7 +232,7 @@ def find_initcpio_features(partitions, root_mount_point):
 
 def run():
     """
-    Calls routine with given parameters to modify '/etc/mkinitcpio.conf'.
+    Calls routine with given parameters to modify "/etc/mkinitcpio.conf".
 
     :return:
     """
@@ -231,13 +240,13 @@ def run():
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
 
     if not partitions:
-        libcalamares.utils.warning("partitions is empty, {!s}".format(partitions))
+        libcalamares.utils.warning(f"partitions are empty, {partitions}")
         return (_("Configuration Error"),
-                _("No partitions are defined for <pre>{!s}</pre> to use." ).format("initcpiocfg"))
+                _("No partitions are defined for <pre>initcpiocfg</pre>."))
     if not root_mount_point:
-        libcalamares.utils.warning("rootMountPoint is empty, {!s}".format(root_mount_point))
+        libcalamares.utils.warning(f"rootMountPoint is empty, {root_mount_point}")
         return (_("Configuration Error"),
-                _("No root mount point is given for <pre>{!s}</pre> to use." ).format("initcpiocfg"))
+                _("No root mount point for <pre>initcpiocfg</pre>."))
 
     hooks, modules, files = find_initcpio_features(partitions, root_mount_point)
     write_mkinitcpio_lines(hooks, modules, files, root_mount_point)

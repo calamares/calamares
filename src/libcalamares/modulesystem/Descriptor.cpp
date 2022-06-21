@@ -40,7 +40,6 @@ interfaceNames()
         { QStringLiteral("process"), Interface::Process },
         { QStringLiteral("qtplugin"), Interface::QtPlugin },
         { QStringLiteral("python"), Interface::Python },
-        { QStringLiteral("pythonqt"), Interface::PythonQt }
     };
     // *INDENT-ON*
     // clang-format on
@@ -107,7 +106,6 @@ Descriptor::fromDescriptorData( const QVariantMap& moduleDesc, const QString& de
         consumedKeys << "load";
         break;
     case Interface::Python:
-    case Interface::PythonQt:
         d.m_script = CalamaresUtils::getString( moduleDesc, "script" );
         if ( d.m_script.isEmpty() )
         {

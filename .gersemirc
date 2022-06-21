@@ -1,0 +1,10 @@
+#   SPDX-FileCopyrightText: no
+#   SPDX-License-Identifier: CC0-1.0
+#
+# Gersemi configuration
+color: false
+definitions: [ CMakeModules/CalamaresAddTest.cmake ]
+line_length: 120
+quiet: false
+unsafe: false
+

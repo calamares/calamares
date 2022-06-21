@@ -457,9 +457,7 @@ isEfiFilesystemSuitableType( const Partition* candidate )
     {
     case FileSystem::Type::Fat32:
         return true;
-#ifdef WITH_KPMCORE4API
     case FileSystem::Type::Fat12:
-#endif
     case FileSystem::Type::Fat16:
         cWarning() << "FAT12 and FAT16 are probably not supported by EFI";
         return false;
@@ -479,7 +477,7 @@ isEfiFilesystemSuitableSize( const Partition* candidate )
         return false;
     }
 
-    if ( size_t( size ) >= efiFilesystemMinimumSize() )
+    if ( size >= efiFilesystemMinimumSize() )
     {
         return true;
     }
@@ -496,40 +494,18 @@ isEfiBootable( const Partition* candidate )
 {
     const auto flags = PartitionInfo::flags( candidate );
 
-#if defined( WITH_KPMCORE4API )
     // In KPMCore4, the flags are remapped, and the ESP flag is the same as Boot.
     static_assert( KPM_PARTITION_FLAG_ESP == KPM_PARTITION_FLAG( Boot ), "KPMCore API enum changed" );
     return flags.testFlag( KPM_PARTITION_FLAG_ESP );
-#else
-    // In KPMCore3, bit 17 is the old-style Esp flag, and it's OK
-    if ( flags.testFlag( KPM_PARTITION_FLAG_ESP ) )
-    {
-        return true;
-    }
-
-    /* Otherwise, if it's a GPT table, Boot (bit 0) is the same as Esp */
-    const PartitionTable* table = CalamaresUtils::Partition::getPartitionTable( candidate );
-    if ( !table )
-    {
-        cWarning() << "Root of partition table is not a PartitionTable object";
-        return false;
-    }
-    if ( table->type() == PartitionTable::TableType::gpt )
-    {
-        const auto bootFlag = KPM_PARTITION_FLAG( Boot );
-        return flags.testFlag( bootFlag );
-    }
-    return false;
-#endif
 }
 
 // TODO: this is configurable via the config file **already**
-size_t
+qint64
 efiFilesystemMinimumSize()
 {
     using CalamaresUtils::Units::operator""_MiB;
 
-    size_t uefisys_part_sizeB = 300_MiB;
+    qint64 uefisys_part_sizeB = 300_MiB;
 
     // The default can be overridden; the key used here comes
     // from the partition module Config.cpp
@@ -537,7 +513,7 @@ efiFilesystemMinimumSize()
     if ( gs->contains( "efiSystemPartitionSize_i" ) )
     {
         qint64 v = gs->value( "efiSystemPartitionSize_i" ).toLongLong();
-        uefisys_part_sizeB = v > 0 ? static_cast< size_t >( v ) : 0;
+        uefisys_part_sizeB = v > 0 ? v : 0;
     }
     // There is a lower limit of what can be configured
     if ( uefisys_part_sizeB < 32_MiB )

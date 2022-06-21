@@ -16,6 +16,7 @@
 import tempfile
 import subprocess
 import os
+import re
 
 import libcalamares
 
@@ -40,6 +41,79 @@ class ZfsException(Exception):
 
 def pretty_name():
     return _("Mounting partitions.")
+
+
+def disk_name_for_partition(partition):
+    """ Returns disk name for each found partition.
+
+    :param partition:
+    :return:
+    """
+    name = os.path.basename(partition["device"])
+
+    if name.startswith("/dev/mmcblk") or name.startswith("/dev/nvme"):
+        return re.sub("p[0-9]+$", "", name)
+
+    return re.sub("[0-9]+$", "", name)
+
+
+def is_ssd_disk(partition):
+    """ Checks if given partition is on an ssd disk.
+
+    :param partition: A dict containing the partition information
+    :return: True is the partition in on an ssd, False otherwise
+    """
+
+    try:
+        disk_name = disk_name_for_partition(partition)
+        filename = os.path.join("/sys/block", disk_name, "queue/rotational")
+
+        with open(filename) as sysfile:
+            return sysfile.read() == "0\n"
+    except:
+        return False
+
+
+def get_mount_options(filesystem, mount_options, partition):
+    """
+    Returns the mount options for the partition object and filesystem
+
+    :param filesystem: A string containing the filesystem
+    :param mount_options: A list of dicts that descripes the mount options for each mountpoint
+    :param partition: A dict containing information about the partition
+    :return: A comma seperated string containing the mount options suitable for passing to mount
+    """
+
+    # Extra mounts can optionally have "options" set, in this case, they override other all other settings
+    if "options" in partition:
+        return ",".join(partition["options"])
+
+    # If there are no mount options defined then we use the defaults
+    if mount_options is None:
+        return "defaults"
+
+    options = next((x for x in mount_options if x["filesystem"] == filesystem), None)
+
+    # If there is no match then check for default options
+    if options is None:
+        options = next((x for x in mount_options if x["filesystem"] == "default"), None)
+
+    # If it is still None, then fallback to returning defaults
+    if options is None:
+        return "defaults"
+
+    option_items = options.get("options", []).copy()
+
+    # Append the appropriate options for ssd or hdd if set
+    if is_ssd_disk(partition):
+        option_items.extend(options.get("ssdOptions", []))
+    else:
+        option_items.extend(options.get("hddOptions", []))
+
+    if option_items:
+        return ",".join(option_items)
+    else:
+        return "defaults"
 
 
 def get_btrfs_subvolumes(partitions):
@@ -69,7 +143,9 @@ def get_btrfs_subvolumes(partitions):
     # If we have a swap **file**, give it a separate subvolume.
     swap_choice = libcalamares.globalstorage.value("partitionChoices")
     if swap_choice and swap_choice.get("swap", None) == "file":
-        btrfs_subvolumes.append({'mountPoint': '/swap', 'subvolume': '/@swap'})
+        swap_subvol = libcalamares.job.configuration.get("btrfsSwapSubvol", "/@swap")
+        btrfs_subvolumes.append({'mountPoint': '/swap', 'subvolume': swap_subvol})
+        libcalamares.globalstorage.insert("btrfsSwapSubvol", swap_subvol)
 
     return btrfs_subvolumes
 
@@ -138,9 +214,16 @@ def mount_zfs(root_mount_point, partition):
             raise ZfsException(_("Failed to set zfs mountpoint"))
 
 
-def mount_partition(root_mount_point, partition, partitions):
+def mount_partition(root_mount_point, partition, partitions, mount_options, mount_options_list):
     """
     Do a single mount of @p partition inside @p root_mount_point.
+
+    :param root_mount_point: A string containing the root of the install
+    :param partition: A dict containing information about the partition
+    :param partitions: The full list of partitions used to filter out btrfs subvols which have duplicate mountpoints
+    :param mount_options: The mount options from the config file
+    :param mount_options_list: A list of options for each mountpoint to be placed in global storage for future modules
+    :return:
     """
     # Create mount point with `+` rather than `os.path.join()` because
     # `partition["mountPoint"]` starts with a '/'.
@@ -176,11 +259,13 @@ def mount_partition(root_mount_point, partition, partitions):
     if fstype == "zfs":
         mount_zfs(root_mount_point, partition)
     else:  # fstype == "zfs"
+        mount_options_string = get_mount_options(fstype, mount_options, partition)
         if libcalamares.utils.mount(device,
                                     mount_point,
                                     fstype,
-                                    partition.get("options", "")) != 0:
+                                    mount_options_string) != 0:
             libcalamares.utils.warning("Cannot mount {}".format(device))
+        mount_options_list.append({"mountpoint": raw_mount_point, "option_string": mount_options_string})
 
     # Special handling for btrfs subvolumes. Create the subvolumes listed in mount.conf
     if fstype == "btrfs" and partition["mountPoint"] == '/':
@@ -207,13 +292,19 @@ def mount_partition(root_mount_point, partition, partitions):
             device = os.path.join("/dev/mapper", partition["luksMapperName"])
 
         # Mount the subvolumes
+        swap_subvol = libcalamares.job.configuration.get("btrfsSwapSubvol", "/@swap")
         for s in btrfs_subvolumes:
             mount_option = "subvol={}".format(s['subvolume'])
+            if s['subvolume'] == swap_subvol:
+                mount_option += "," + get_mount_options("btrfs_swap", mount_options, partition)
+            else:
+                mount_option += "," + get_mount_options(fstype, mount_options, partition)
             subvolume_mountpoint = mount_point[:-1] + s['mountPoint']
+            mount_options_list.append({"mountpoint": s['mountPoint'], "option_string": mount_option})
             if libcalamares.utils.mount(device,
                                         subvolume_mountpoint,
                                         fstype,
-                                        ",".join([mount_option, partition.get("options", "")])) != 0:
+                                        mount_option) != 0:
                 libcalamares.utils.warning("Cannot mount {}".format(device))
 
 
@@ -222,6 +313,7 @@ def run():
     Mount all the partitions from GlobalStorage and from the job configuration.
     Partitions are mounted in-lexical-order of their mountPoint.
     """
+
     partitions = libcalamares.globalstorage.value("partitions")
 
     if not partitions:
@@ -231,14 +323,18 @@ def run():
 
     root_mount_point = tempfile.mkdtemp(prefix="calamares-root-")
 
+    # Get the mountOptions, if this is None, that is OK and will be handled later
+    mount_options = libcalamares.job.configuration.get("mountOptions")
+
     # Guard against missing keys (generally a sign that the config file is bad)
     extra_mounts = libcalamares.job.configuration.get("extraMounts") or []
-    extra_mounts_efi = libcalamares.job.configuration.get("extraMountsEfi") or []
-    if not extra_mounts and not extra_mounts_efi:
+    if not extra_mounts:
         libcalamares.utils.warning("No extra mounts defined. Does mount.conf exist?")
 
-    if libcalamares.globalstorage.value("firmwareType") == "efi":
-        extra_mounts.extend(extra_mounts_efi)
+    if libcalamares.globalstorage.value("firmwareType") != "efi":
+        for mount in extra_mounts:
+            if mount.get("efi", None) is True:
+                extra_mounts.remove(mount)
 
     # Add extra mounts to the partitions list and sort by mount points.
     # This way, we ensure / is mounted before the rest, and every mount point
@@ -246,13 +342,20 @@ def run():
     # under /tmp, we make sure /tmp is mounted before the partition)
     mountable_partitions = [p for p in partitions + extra_mounts if "mountPoint" in p and p["mountPoint"]]
     mountable_partitions.sort(key=lambda x: x["mountPoint"])
+
+    # mount_options_list will be inserted into global storage for use in fstab later
+    mount_options_list = []
     try:
         for partition in mountable_partitions:
-            mount_partition(root_mount_point, partition, partitions)
+            mount_partition(root_mount_point, partition, partitions, mount_options, mount_options_list)
     except ZfsException as ze:
         return _("zfs mounting error"), ze.message
 
+    if not mount_options_list:
+        libcalamares.utils.warning("No mount options defined, {!s} partitions, {!s} mountable".format(len(partitions), len(mountable_partitions)))
+
     libcalamares.globalstorage.insert("rootMountPoint", root_mount_point)
+    libcalamares.globalstorage.insert("mountOptionsList", mount_options_list)
 
     # Remember the extra mounts for the unpackfs module
     libcalamares.globalstorage.insert("extraMounts", extra_mounts)

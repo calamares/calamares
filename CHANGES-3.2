@@ -1,4 +1,3 @@
-
 <!-- SPDX-FileCopyrightText: no
      SPDX-License-Identifier: CC0-1.0
 -->
@@ -7,6 +6,86 @@ This is the changelog for Calamares. For each release, the major changes and
 contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
+
+
+> Note that the 3.2 series is now in LTS / bug-fix-only mode.
+
+# 3.2.61 (unreleased) #
+
+This release contains contributions from (alphabetically by first name):
+ - No external contributors yet
+
+## Core ##
+ - No core changes yet
+
+## Modules ##
+ - No module changes yet
+
+
+ # 3.2.60 (2022-06-19) #
+
+This is the first community-maintainence release of Calamares 3.2.
+Somewhat ironically, all the commits in the branch come from
+Adriaan de Groot -- the community is working in the 3.3 (*calamares*)
+branch.
+
+## Core ##
+ - No core changes
+
+## Modules ##
+ - *fstab* now warns when the mount options are empty (which is non-
+   sensical, and indicates that the configuration is bad).
+ - *locale* does a better job of preserving Catalan (Valencia)
+   across modules; previously it dropped the *Valencia*
+   after the locale module unless you specifically re-selected
+   `ca@valencia` in the locale module. (Reported by Lliurex)
+ - *welcome* now has text labels on the special buttons (nominally,
+   this is part of the core, but the *About* button was always on the
+   welcome page).
+
+
+# 3.2.59 (2022-05-29) #
+
+This release contains contributions from (alphabetically by first name):
+ - Arjen Balfoort
+
+This is the final release of Calamares 3.2 where the release is from
+the *calamares* branch -- that is, where the primary development
+branch is also the branch being released regularly. Future releases
+of the 3.2 series are bugfix-only, and no new feature development
+or translations are expected. This is also the final release done
+*as work-work* by the current maintainer.
+
+## Core ##
+ - Prep-work for moving the *About Calamares* button to the panels,
+   rather than keeping it in the Welcome module. The about information
+   is somewhat more flexible now, so that a new maintainer can be added
+   easily without frustrating translators.
+ - The progress panels (both Widgets and QML) now have an About button
+   on them, showing the traditional *About Calamares* dialog.
+ - Translations for the (QML) slideshow were not being loaded correctly.
+   The log is now somewhat more informative when that fails.
+
+## Modules ##
+ - *fstab* can now be configured to put `/tmp` on a *tmpfs*, and this can
+   depend on it being on an SSD or not. Options applicable to `/tmp` can
+   be configured separately as well. #1818 (Thanks Arjen)
+ - *partition* now has some support for re-using LUKS partitions.
+   (Thanks Arjen)
+ - *partition* will cycle out a LUKS key if all the key slots are in use
+   and a new key is added, rather than crashing the installer. (Thanks Arjen)
+ - *welcome* and *welcomeq* have no *About* button anymore; this is now
+   available from the progress panel, since it's also not-really about the
+   distro itself.
+
+
+# 3.2.58.2 (2022-05-24)
+
+This is a extra-quick release for an issue that shows up when using a
+swap **file** on a btrfs filesystem; the installation would fail with
+a Python error, raised from btrfs-progs. Reported by Evan James, Erik
+Dubois, TechXero.
+
 
 # 3.2.58.1 (2022-05-20)
 
