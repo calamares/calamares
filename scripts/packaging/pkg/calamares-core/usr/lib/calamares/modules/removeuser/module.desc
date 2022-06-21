@@ -1,0 +1,7 @@
+# AUTO-GENERATED metadata file
+# Syntax is YAML 1.2
+---
+type: "job"
+name: "removeuser"
+interface: "qtplugin"
+load: "libcalamares_job_removeuser.so"

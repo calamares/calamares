@@ -1,0 +1,10 @@
+# SPDX-FileCopyrightText: no
+# SPDX-License-Identifier: CC0-1.0
+---
+type:       "job"
+interface:  "python"
+name:       "bootloader"
+script:     "main.py"
+# The partition module sets up the EFI firmware type
+# global key, which is used to decide how to install.
+requiredModules: [ "partition" ]
