@@ -1,0 +1,29 @@
+#!/bin/sh
+#
+# SPDX-FileCopyrightText: 2016 David McKinney <mckinney@subgraph.com>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+  PREREQ=""
+
+  prereqs()
+  {
+          echo "$PREREQ"
+  }
+
+  case $1 in
+  # get pre-requisites
+  prereqs)
+          prereqs
+          exit 0
+          ;;
+  esac
+
+  . /usr/share/initramfs-tools/hook-functions
+  if [ -f /crypto_keyfile.bin ]
+  then
+  	cp /crypto_keyfile.bin ${DESTDIR}
+  fi
+  if [ -f /etc/crypttab ]
+  then
+  	cp /etc/crypttab ${DESTDIR}/etc/
+  fi

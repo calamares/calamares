@@ -1,0 +1,13 @@
+# SPDX-FileCopyrightText: no
+# SPDX-License-Identifier: CC0-1.0
+#
+# Writes a mkinitcpio.conf into the target system. It copies
+# the host system's /etc/mkinitcpio.conf, and replaces any
+# HOOKS, MODULES, and FILES lines with calculated values
+# based on what the installation (seems to) need.
+---
+type:       "job"
+name:       "initcpiocfg"
+interface:  "python"
+script:     "main.py"
+noconfig:   true

@@ -1,0 +1,10 @@
+# SPDX-FileCopyrightText: no
+# SPDX-License-Identifier: CC0-1.0
+# Syntax is YAML 1.2
+---
+type:       "job"
+name:       "unpackfs"
+interface:  "python"
+script:     "main.py"
+requiredModules: [ mount ]
+weight:     12

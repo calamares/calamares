@@ -1,0 +1,21 @@
+# SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+# SPDX-License-Identifier: GPL-3.0-or-later
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/unpackfs
+additionalProperties: false
+type: object
+properties:
+    unpack:
+        type: array
+        items:
+            type: object
+            additionalProperties: false
+            properties:
+                source: { type: string }
+                sourcefs: { type: string }
+                destination: { type: string }
+                excludeFile: { type: string }
+                exclude: { type: array, items: { type: string } }
+                weight: { type: integer, exclusiveMinimum: 0 }
+            required: [ source , sourcefs, destination ]

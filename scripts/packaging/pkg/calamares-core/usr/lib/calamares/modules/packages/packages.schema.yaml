@@ -1,0 +1,53 @@
+# SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+# SPDX-License-Identifier: GPL-3.0-or-later
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/packages
+additionalProperties: false
+type: object
+properties:
+    backend:
+        type: string
+        enum:
+            - apk
+            - apt
+            - dnf
+            - entropy
+            - luet
+            - packagekit
+            - pacman
+            - pamac
+            - portage
+            - yum
+            - zypp
+            - dummy
+
+    update_db: { type: boolean, default: true }
+    update_system: { type: boolean, default: false }
+    skip_if_no_internet: { type: boolean, default: false }
+
+    pacman:
+        additionalProperties: false
+        type: object
+        properties:
+            num_retries: { type: integer, default: 0 }
+            disable_download_timeout: { type: boolean, default: false }
+            needed_only: { type: boolean, default: false }
+
+    operations:
+        type: array
+        items:
+            additionalProperties: false
+            type: object
+            properties:
+                # TODO: these are either-string-or-struct items,
+                #       need their own little schema.
+                install: { type: array }
+                remove: { type: array }
+                try_install: { type: array }
+                try_remove: { type: array }
+                localInstall: { type: array }
+                source: { type: string }
+
+
+required: [ backend ]
