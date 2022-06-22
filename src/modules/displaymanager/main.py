@@ -827,7 +827,7 @@ class DMgreetd(DisplayManager):
         self.config_load()
 
         de_command = default_desktop_environment.executable
-        if os.path.exists(self.os_path("usr/bin/gtkgreed")) and os.path.exists(self.os_path("usr/bin/cage")):
+        if os.path.exists(self.os_path("usr/bin/gtkgreet")) and os.path.exists(self.os_path("usr/bin/cage")):
             self.config_data['default_session']['command'] = "cage -s -- gtkgreet"
         elif os.path.exists(self.os_path("usr/bin/tuigreet")):
             tuigreet_base_cmd = "tuigreet --remember --time --issue --asterisks --cmd "
@@ -837,8 +837,12 @@ class DMgreetd(DisplayManager):
         else:
             self.config_data['default_session']['command'] = "agreety --cmd " + de_command
 
-        if do_autologin == True:
+        if do_autologin:
+            # Log in as user, with given DE
             self.config_data['initial_session'] = dict(command = de_command, user = username)
+        elif 'initial_session' in self.config_data:
+            # No autologin, remove any autologin that was copied from the live ISO
+            del self.config_data['initial_session']
 
         self.config_write()
 
