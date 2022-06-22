@@ -481,6 +481,84 @@ class DMgdm(DisplayManager):
         pass
 
 
+class DMkdm(DisplayManager):
+    name = "kdm"
+    executable = "kdm"
+
+    def set_autologin(self, username, do_autologin, default_desktop_environment):
+        # Systems with KDM as Desktop Manager
+        kdm_conf_path = os.path.join(
+            self.root_mount_point, "usr/share/config/kdm/kdmrc"
+            )
+        # Check which path is in use: SUSE does something else.
+        # Also double-check the default setting. Pick the first
+        # one that exists in the target.
+        for candidate_kdmrc in (
+            "usr/share/config/kdm/kdmrc",
+            "usr/share/kde4/config/kdm/kdmrc",
+        ):
+            p = os.path.join(self.root_mount_point, candidate_kdmrc)
+            if os.path.exists(p):
+                kdm_conf_path = p
+                break
+        text = []
+
+        if os.path.exists(kdm_conf_path):
+            with open(kdm_conf_path, 'r') as kdm_conf:
+                text = kdm_conf.readlines()
+
+            with open(kdm_conf_path, 'w') as kdm_conf:
+                for line in text:
+                    if 'AutoLoginEnable=' in line:
+                        if do_autologin:
+                            line = 'AutoLoginEnable=true\n'
+                        else:
+                            line = 'AutoLoginEnable=false\n'
+
+                    if do_autologin and 'AutoLoginUser=' in line:
+                        line = "AutoLoginUser={!s}\n".format(username)
+
+                    kdm_conf.write(line)
+        else:
+            return (
+                _("Cannot write KDM configuration file"),
+                _("KDM config file {!s} does not exist").format(kdm_conf_path)
+                )
+
+    def basic_setup(self):
+        if libcalamares.utils.target_env_call(
+                ['getent', 'group', 'kdm']
+                ) != 0:
+            libcalamares.utils.target_env_call(
+                ['groupadd', '-g', '135', 'kdm']
+                )
+
+        if libcalamares.utils.target_env_call(
+                ['getent', 'passwd', 'kdm']
+                ) != 0:
+            libcalamares.utils.target_env_call(
+                ['useradd',
+                    '-u', '135',
+                    '-g', 'kdm',
+                    '-d', '/var/lib/kdm',
+                    '-s', '/bin/false',
+                    '-r',
+                    '-M',
+                    'kdm'
+                    ]
+                )
+
+        libcalamares.utils.target_env_call(
+            ['chown', '-R', '135:135', 'var/lib/kdm']
+            )
+
+    def desktop_environment_setup(self, desktop_environment):
+        pass
+
+    def greeter_setup(self):
+        pass
+
+
 class DMlxdm(DisplayManager):
     name = "lxdm"
     executable = "lxdm"
@@ -827,7 +905,7 @@ class DMgreetd(DisplayManager):
         self.config_load()
 
         de_command = default_desktop_environment.executable
-        if os.path.exists(self.os_path("usr/bin/gtkgreet")) and os.path.exists(self.os_path("usr/bin/cage")):
+        if os.path.exists(self.os_path("usr/bin/gtkgreed")) and os.path.exists(self.os_path("usr/bin/cage")):
             self.config_data['default_session']['command'] = "cage -s -- gtkgreet"
         elif os.path.exists(self.os_path("usr/bin/tuigreet")):
             tuigreet_base_cmd = "tuigreet --remember --time --issue --asterisks --cmd "
@@ -837,12 +915,8 @@ class DMgreetd(DisplayManager):
         else:
             self.config_data['default_session']['command'] = "agreety --cmd " + de_command
 
-        if do_autologin:
-            # Log in as user, with given DE
+        if do_autologin == True:
             self.config_data['initial_session'] = dict(command = de_command, user = username)
-        elif 'initial_session' in self.config_data:
-            # No autologin, remove any autologin that was copied from the live ISO
-            del self.config_data['initial_session']
 
         self.config_write()
 

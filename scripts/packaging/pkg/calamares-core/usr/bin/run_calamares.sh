@@ -1,0 +1,1 @@
+/usr/share/calamares/./run_calamares.sh
