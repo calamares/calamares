@@ -7,7 +7,7 @@ Version=1.0
 Type=Application
 
 # The name of the application
-Name=RebornOS Online Installer (Calamares)
+Name=RebornOS Online Installer
 
 # A comment which can/will be used as a tooltip
 Comment=Install RebornOS on your computer (From the internet)
