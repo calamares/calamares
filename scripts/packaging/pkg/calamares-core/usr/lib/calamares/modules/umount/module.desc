@@ -1,8 +1,0 @@
-# AUTO-GENERATED metadata file
-# Syntax is YAML 1.2
----
-type: "job"
-name: "umount"
-interface: "qtplugin"
-load: "libcalamares_job_umount.so"
-emergency: true
