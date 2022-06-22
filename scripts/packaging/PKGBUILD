@@ -74,9 +74,9 @@ package() {
             -type f \
             -name '*.sh' \
             -exec \
-                install -Dm 755 "{}" "${pkgdir}/usr/share/calamares/{}" \; \
+                install -Dm 755 "{}" "${pkgdir}/etc/calamares/{}" \; \
             -exec \
-                ln -s "/usr/share/calamares/{}" "${pkgdir}/usr/bin/{}" \;           
+                ln -s "/etc/calamares/{}" "${pkgdir}/usr/bin/{}" \;           
     )
     (
         cd "$RESOURCE_DIRECTORY" && \
