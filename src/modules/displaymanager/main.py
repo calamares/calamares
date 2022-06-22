@@ -827,7 +827,7 @@ class DMgreetd(DisplayManager):
         self.config_load()
 
         de_command = default_desktop_environment.executable
-        if os.path.exists(self.os_path("usr/bin/gtkgreed")) and os.path.exists(self.os_path("usr/bin/cage")):
+        if os.path.exists(self.os_path("usr/bin/gtkgreet")) and os.path.exists(self.os_path("usr/bin/cage")):
             self.config_data['default_session']['command'] = "cage -s -- gtkgreet"
         elif os.path.exists(self.os_path("usr/bin/tuigreet")):
             tuigreet_base_cmd = "tuigreet --remember --time --issue --asterisks --cmd "
