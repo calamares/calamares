@@ -14,4 +14,5 @@ shift 1
     cd "$SCRIPT_DIRECTORY" && \
     sudo cp -f settings_"$MODE".conf settings.conf
 )
-pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY KDE_SESSION_VERSION=5 KDE_FULL_SESSION=true dbus-launch calamares "$@"
+
+pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY KDE_SESSION_VERSION=5 KDE_FULL_SESSION=true dbus-launch calamares "$@" > ~/install.log
