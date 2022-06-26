@@ -36,13 +36,9 @@ calamares_automoc( calamares_bin )
 calamares_autouic( calamares_bin )
 calamares_autorcc( calamares_bin )
 
-if(kdsagSources)
-    set_source_files_properties(${kdsagSources} PROPERTIES AUTOMOC OFF)
-endif()
-
 target_link_libraries(
     calamares_bin
-    PRIVATE calamares calamaresui calamares-i18n Qt5::Core Qt5::Widgets KF5::CoreAddons KF5::DBusAddons
+    PRIVATE calamares calamaresui calamares-i18n kdsingleapplication Qt5::Core Qt5::Widgets KF5::CoreAddons
 )
 if(BUILD_KF5Crash)
     target_link_libraries(calamares_bin PRIVATE KF5::Crash)
