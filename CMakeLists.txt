@@ -617,7 +617,7 @@ if(INSTALL_COMPLETION)
     install(FILES ${CMAKE_SOURCE_DIR}/data/completion/bash/calamares DESTINATION "${CMAKE_INSTALL_BASHCOMPLETIONDIR}")
 endif()
 
-install(FILES calamares.desktop DESTINATION ${CMAKE_INSTALL_DATADIR}/applications)
+# install(FILES calamares.desktop DESTINATION ${CMAKE_INSTALL_DATADIR}/applications)
 
 install(FILES man/calamares.8 DESTINATION ${CMAKE_INSTALL_MANDIR}/man8/)
 
