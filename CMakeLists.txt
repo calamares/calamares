@@ -321,7 +321,7 @@ if(ECM_FOUND)
     include(KDEInstallDirs)
 endif()
 
-find_package(KF5 QUIET COMPONENTS CoreAddons Crash DBusAddons)
+find_package(KF5 QUIET COMPONENTS CoreAddons Crash)
 set_package_properties(
     KF5::CoreAddons
     PROPERTIES
@@ -329,14 +329,6 @@ set_package_properties(
     DESCRIPTION "Classes built on QtCore for About Data"
     URL "https://api.kde.org/frameworks/kcoreaddons/"
     PURPOSE "About Calamares"
-)
-set_package_properties(
-    KF5::DBusAddons
-    PROPERTIES
-    TYPE REQUIRED
-    DESCRIPTION "Classes for DBus activation"
-    URL "https://api.kde.org/frameworks/dbusaddons/"
-    PURPOSE "Unique instance of Calamares"
 )
 if(NOT KF5Crash_FOUND)
     if(BUILD_KF5Crash)
@@ -551,6 +543,7 @@ include(GNUInstallDirs)
 # libraries for Calamares.
 set(Calamares_LIBRARIES calamares)
 
+add_subdirectory(3rdparty/kdsingleapplication)
 add_subdirectory(src)
 
 add_feature_info(Python ${WITH_PYTHON} "Python job modules")

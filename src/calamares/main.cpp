@@ -16,8 +16,10 @@
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 
+// From 3rdparty/
+#include "kdsingleapplication.h"
+
 #include <KCoreAddons/KAboutData>
-#include <KDBusAddons/KDBusService>
 #ifdef BUILD_KF5Crash
 #include <KCrash/KCrash>
 #endif
@@ -25,6 +27,8 @@
 #include <QCommandLineParser>
 #include <QDebug>
 #include <QDir>
+
+#include <memory>
 
 /** @brief Gets debug-level from -D command-line-option
  *
@@ -124,9 +128,17 @@ main( int argc, char* argv[] )
     KCrash::setFlags( KCrash::SaferDialog | KCrash::AlwaysDirectly );
 #endif
 
-    bool is_debug = handle_args( a );
-
-    KDBusService service( is_debug ? KDBusService::Multiple : KDBusService::Unique );
+    std::unique_ptr< KDSingleApplication > possiblyUnique;
+    const bool is_debug = handle_args( a );
+    if ( !is_debug )
+    {
+        possiblyUnique = std::make_unique< KDSingleApplication >();
+        if ( !possiblyUnique->isPrimaryInstance() )
+        {
+            qCritical() << "Calamares is already running.";
+            return 87;  // EUSERS on Linux
+        }
+    }
 
     Calamares::Settings::init( is_debug );
     if ( !Calamares::Settings::instance() || !Calamares::Settings::instance()->isValid() )
