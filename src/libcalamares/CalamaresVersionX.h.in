@@ -11,6 +11,6 @@
 #include "CalamaresVersion.h"
 
 #undef CALAMARES_VERSION
-#cmakedefine CALAMARES_VERSION "${CALAMARES_VERSION}"
+#cmakedefine CALAMARES_VERSION "${CALAMARES_VERSION_LONG}"
 
 #endif  // CALAMARES_VERSION_H

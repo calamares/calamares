@@ -43,18 +43,24 @@
 
 cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
 
-set(CALAMARES_VERSION 3.3.0)
-set(CALAMARES_RELEASE_MODE OFF) # Set to ON during a release
+set(CALAMARES_VERSION 3.3.0-alpha1)
+set(CALAMARES_RELEASE_MODE ON) # Set to ON during a release
 
 if(CMAKE_SCRIPT_MODE_FILE)
     include(${CMAKE_CURRENT_LIST_DIR}/CMakeModules/ExtendedVersion.cmake)
     set(CMAKE_SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR})
-    extend_version( ${CALAMARES_VERSION} OFF _vshort _vlong )
+    extend_version( ${CALAMARES_VERSION} ${CALAMARES_RELEASE_MODE}  _vshort _vlong )
     message("${_vlong}")
     return()
 endif()
 
-project(CALAMARES VERSION ${CALAMARES_VERSION} LANGUAGES C CXX HOMEPAGE_URL "https://calamares.io/")
+# Massage the version for CMake if there is a version-suffix
+string(REGEX REPLACE "-.*" "" CALAMARES_VERSION_SHORT "${CALAMARES_VERSION}")
+# And preserve the original version (suffix and all) because project() overwrites
+# .. but if we're doing non-release builds, this gets replaced with git versioning.
+set(CALAMARES_VERSION_LONG "${CALAMARES_VERSION}")
+
+project(CALAMARES VERSION ${CALAMARES_VERSION_SHORT} LANGUAGES C CXX HOMEPAGE_URL "https://calamares.io/")
 
 if(NOT CALAMARES_RELEASE_MODE AND CMAKE_SOURCE_DIR STREQUAL CMAKE_BINARY_DIR)
     message(FATAL_ERROR "Do not build development versions in the source-directory.")
@@ -497,21 +503,15 @@ add_feature_info(ExampleDistro ${mksquashfs_FOUND} "Create example-distro target
 
 ### CALAMARES PROPER
 #
-set(CALAMARES_VERSION ${CALAMARES_VERSION_MAJOR}.${CALAMARES_VERSION_MINOR}.${CALAMARES_VERSION_PATCH})
-# In rare cases we have hotfix-releases with a tweak
-if(CALAMARES_VERSION_TWEAK)
-    set(CALAMARES_VERSION "${CALAMARES_VERSION}.${CALAMARES_VERSION_TWEAK}")
-endif()
-set(CALAMARES_VERSION_SHORT "${CALAMARES_VERSION}")
 
 # Additional info for non-release builds. The "extended" version information
 # with date and git information (commit, dirty status) is used only
 # by CalamaresVersionX.h, which is included by consumers that need a full
 # version number with all that information; normal consumers can include
 # CalamaresVersion.h with more stable numbers.
-if(NOT BUILD_RELEASE AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.git/")
+if(NOT CALAMARES_RELEASE_MODE AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.git/")
     include(ExtendedVersion)
-    extend_version( "${CALAMARES_VERSION}" OFF CALAMARES_VERSION_SHORT CALAMARES_VERSION )
+    extend_version( "${CALAMARES_VERSION}" OFF CALAMARES_VERSION_SHORT CALAMARES_VERSION_LONG )
 endif()
 
 # Special define for RC (e.g. not-a-release) builds.
