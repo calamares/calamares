@@ -214,7 +214,7 @@ ModuleManager::loadModules()
                 continue;
             }
 
-            ModuleSystem::Descriptor descriptor
+            const ModuleSystem::Descriptor descriptor
                 = m_availableDescriptorsByModuleName.value( instanceKey.module(), ModuleSystem::Descriptor() );
             if ( !descriptor.isValid() )
             {
