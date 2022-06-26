@@ -16,7 +16,7 @@ Comment=Install RebornOS on your computer (From the internet)
 Path=
 
 # The executable of the application, possibly with arguments.
-Exec=run_calamares.sh "online" -D 8 --style Oxygen
+Exec=run_calamares.sh "online" -D 8
 
 # The name of the icon that will be used to display this entry
 Icon=/usr/share/pixmaps/calamares_online.svg
