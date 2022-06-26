@@ -29,7 +29,7 @@ class QNetworkReply;
 namespace Ui
 {
 class Page_NetInst;
-}
+}  // namespace Ui
 
 class NetInstallPage : public QWidget
 {

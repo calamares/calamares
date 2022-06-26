@@ -15,7 +15,7 @@
 namespace Ui
 {
 class PlasmaLnfPage;
-}
+}  // namespace Ui
 
 class Config;
 

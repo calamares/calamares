@@ -27,7 +27,7 @@ class Partition;
 namespace Logger
 {
 class Once;
-}
+}  // namespace Logger
 
 namespace PartUtils
 {

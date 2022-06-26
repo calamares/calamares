@@ -33,7 +33,7 @@ namespace Calamares
 namespace Widgets
 {
 class PrettyRadioButton;
-}
+}  // namespace Widgets
 }  // namespace Calamares
 
 class Config;

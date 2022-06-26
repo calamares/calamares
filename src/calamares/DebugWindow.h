@@ -26,7 +26,7 @@ namespace Calamares
 namespace Ui
 {
 class DebugWindow;
-}
+}  // namespace Ui
 
 class DebugWindow : public QWidget
 {

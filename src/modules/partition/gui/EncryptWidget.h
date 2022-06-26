@@ -17,7 +17,7 @@
 namespace Ui
 {
 class EncryptWidget;
-}
+}  // namespace Ui
 
 class EncryptWidget : public QWidget
 {

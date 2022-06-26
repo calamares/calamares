@@ -28,7 +28,7 @@
 namespace YAML
 {
 class Node;
-}
+}  // namespace YAML
 
 namespace Calamares
 {

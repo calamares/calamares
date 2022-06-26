@@ -17,7 +17,7 @@
 namespace Ui
 {
 class VolumeGroupBaseDialog;
-}
+}  // namespace Ui
 
 class QComboBox;
 class QLineEdit;

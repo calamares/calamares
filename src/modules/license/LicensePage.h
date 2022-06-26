@@ -21,7 +21,7 @@
 namespace Ui
 {
 class LicensePage;
-}
+}  // namespace Ui
 
 class LicenseWidget;
 

@@ -15,7 +15,7 @@
 namespace AppStream
 {
 class Pool;
-}
+}  // namespace AppStream
 
 /** @brief Loads an item from AppStream data.
  *

@@ -25,7 +25,7 @@ class QLabel;
 namespace Ui
 {
 class Page_UserSetup;
-}
+}  // namespace Ui
 
 class UsersPage : public QWidget
 {

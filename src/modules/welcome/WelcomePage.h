@@ -19,7 +19,7 @@
 namespace Ui
 {
 class WelcomePage;
-}
+}  // namespace Ui
 
 class CheckerContainer;
 class Config;

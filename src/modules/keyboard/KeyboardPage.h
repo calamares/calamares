@@ -25,7 +25,7 @@
 namespace Ui
 {
 class Page_Keyboard;
-}
+}  // namespace Ui
 
 class Config;
 class KeyBoardPreview;
