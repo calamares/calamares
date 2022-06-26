@@ -15,4 +15,4 @@ shift 1
     sudo cp -f settings_"$MODE".conf settings.conf
 )
 
-pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY KDE_SESSION_VERSION=5 KDE_FULL_SESSION=true dbus-launch calamares "$@" > ~/install.log
+pkexec env DISPLAY="$DISPLAY" XAUTHORITY="$XAUTHORITY" KDE_SESSION_VERSION=5 KDE_FULL_SESSION=true QT_QUICK_CONTROLS_STYLE="org.kde.desktop" dbus-launch calamares "$@" > ~/install.log
