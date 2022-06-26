@@ -9,7 +9,7 @@
 
 #include "CalamaresAbout.h"
 
-#include "CalamaresVersion.h"
+#include "CalamaresVersionX.h"
 
 #include <QCoreApplication>
 
