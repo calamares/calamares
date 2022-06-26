@@ -19,7 +19,7 @@
 namespace Calamares
 {
 class GlobalStorage;
-}
+}  // namespace Calamares
 
 namespace CalamaresPython
 {

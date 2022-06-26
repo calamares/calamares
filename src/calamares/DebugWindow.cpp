@@ -116,7 +116,8 @@ DebugWindow::DebugWindow()
     connect( m_ui->modulesListView->selectionModel(),
              &QItemSelectionModel::selectionChanged,
              this,
-             [this] {
+             [ this ]
+             {
                  QString moduleName = m_ui->modulesListView->currentIndex().data().toString();
                  Module* module
                      = ModuleManager::instance()->moduleInstance( ModuleSystem::InstanceKey::fromString( moduleName ) );

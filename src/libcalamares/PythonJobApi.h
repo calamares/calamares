@@ -18,7 +18,7 @@
 namespace Calamares
 {
 class PythonJob;
-}
+}  // namespace Calamares
 
 namespace CalamaresPython
 {

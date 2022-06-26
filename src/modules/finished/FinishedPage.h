@@ -20,7 +20,7 @@ class Config;
 namespace Ui
 {
 class FinishedPage;
-}
+}  // namespace Ui
 
 class FinishedPage : public QWidget
 {

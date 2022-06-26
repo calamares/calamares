@@ -26,7 +26,7 @@ namespace CalamaresUtils
 namespace GeoIP
 {
 class Handler;
-}
+}  // namespace GeoIP
 }  // namespace CalamaresUtils
 
 

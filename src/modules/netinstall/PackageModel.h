@@ -20,7 +20,7 @@
 namespace YAML
 {
 class Node;
-}
+}  // namespace YAML
 
 class PackageModel : public QAbstractItemModel
 {

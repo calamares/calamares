@@ -28,7 +28,7 @@ namespace CalamaresUtils
 namespace GeoIP
 {
 class Handler;
-}
+}  // namespace GeoIP
 }  // namespace CalamaresUtils
 
 class PLUGINDLLEXPORT WelcomeViewStep : public Calamares::ViewStep

@@ -199,7 +199,8 @@ cryptOpen( Partition* partition )
     const QString deviceNode = partition->partitionPath();
     ExternalCommand openCmd( QStringLiteral( "cryptsetup" ),
                              { QStringLiteral( "open" ), deviceNode, luksFs->suggestedMapperName( deviceNode ) } );
-    if ( ( openCmd.write( luksFs->passphrase().toLocal8Bit() + '\n' ) && openCmd.start( -1 ) && openCmd.exitCode() == 0 ) )
+    if ( ( openCmd.write( luksFs->passphrase().toLocal8Bit() + '\n' ) && openCmd.start( -1 )
+           && openCmd.exitCode() == 0 ) )
     {
         luksFs->scan( deviceNode );
         if ( luksFs->mapperName().isEmpty() )
@@ -252,9 +253,7 @@ cryptLabel( Partition* partition, const QString& label )
         if ( !mappedDevice.isEmpty() )
         {
             // Label mapped device
-            ExternalCommand openCmd( QStringLiteral( "e2label" ),
-                                     { mappedDevice,
-                                     label } );
+            ExternalCommand openCmd( QStringLiteral( "e2label" ), { mappedDevice, label } );
             openCmd.start( -1 );
             cryptClose( partition );
             return true;
@@ -262,11 +261,9 @@ cryptLabel( Partition* partition, const QString& label )
     }
     else
     {
-        ExternalCommand openCmd( QStringLiteral( "cryptsetup" ),
-                                 { QStringLiteral( "config" ),
-                                 partition->partitionPath(),
-                                 QStringLiteral( "--label" ),
-                                 label } );
+        ExternalCommand openCmd(
+            QStringLiteral( "cryptsetup" ),
+            { QStringLiteral( "config" ), partition->partitionPath(), QStringLiteral( "--label" ), label } );
         if ( openCmd.start( -1 ) && openCmd.exitCode() == 0 )
         {
             return true;
@@ -286,12 +283,10 @@ cryptVersion( Partition* partition )
     // Get luks version from header information
     int luksVersion = 1;
     ExternalCommand openCmd( QStringLiteral( "cryptsetup" ),
-                             { QStringLiteral( "luksDump" ),
-                             partition->partitionPath() } );
+                             { QStringLiteral( "luksDump" ), partition->partitionPath() } );
     if ( openCmd.start( -1 ) && openCmd.exitCode() == 0 )
     {
-        QRegularExpression re( QStringLiteral( R"(version:\s+(\d))" ),
-                               QRegularExpression::CaseInsensitiveOption );
+        QRegularExpression re( QStringLiteral( R"(version:\s+(\d))" ), QRegularExpression::CaseInsensitiveOption );
         QRegularExpressionMatch rem = re.match( openCmd.output() );
         if ( rem.hasMatch() )
         {

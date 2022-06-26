@@ -22,11 +22,11 @@
 namespace CalamaresUtils
 {
 class CommandList;
-}
+}  // namespace CalamaresUtils
 namespace Calamares
 {
 class GlobalStorage;
-}
+}  // namespace Calamares
 
 struct ValueCheck : public QPair< QString, CalamaresUtils::CommandList* >
 {

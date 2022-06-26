@@ -18,7 +18,7 @@ class CalamaresWindow;
 namespace Calamares
 {
 class ModuleManager;
-}
+}  // namespace Calamares
 
 
 /**

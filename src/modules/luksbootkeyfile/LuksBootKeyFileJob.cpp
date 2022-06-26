@@ -17,8 +17,8 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 
-#include <QRegularExpression>
 #include <QDir>
+#include <QRegularExpression>
 
 LuksBootKeyFileJob::LuksBootKeyFileJob( QObject* parent )
     : Calamares::CppJob( parent )
@@ -144,7 +144,7 @@ setupLuks( const LuksDevice& d )
     if ( luks_dump.getExitCode() == 0 )
     {
         QRegularExpression re( QStringLiteral( R"(\d+:\s*enabled)" ), QRegularExpression::CaseInsensitiveOption );
-        int count = luks_dump.getOutput().count(re);
+        int count = luks_dump.getOutput().count( re );
         cDebug() << "Luks Dump slot count: " << count;
         if ( count >= 7 )
         {
@@ -152,8 +152,8 @@ setupLuks( const LuksDevice& d )
                 { "cryptsetup", "luksKillSlot", d.device, "1" }, QString(), d.passphrase, std::chrono::seconds( 60 ) );
             if ( r.getExitCode() != 0 )
             {
-                cWarning() << "Could not kill a slot to make room on" << d.device << ':' << r.getOutput() << "(exit code"
-                   << r.getExitCode() << ')';
+                cWarning() << "Could not kill a slot to make room on" << d.device << ':' << r.getOutput()
+                           << "(exit code" << r.getExitCode() << ')';
                 return false;
             }
         }

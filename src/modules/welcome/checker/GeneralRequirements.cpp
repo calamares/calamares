@@ -230,7 +230,7 @@ GeneralRequirements::checkRequirements()
         }
         if ( entry == "slow-false" )
         {
-            sleep(3);
+            sleep( 3 );
             checkEntries.append( { entry,
                                    [] { return tr( "is always false (slowly)" ); },
                                    [] { return tr( "The computer says no (slowly)." ); },
@@ -247,7 +247,7 @@ GeneralRequirements::checkRequirements()
         }
         if ( entry == "slow-true" )
         {
-            sleep(3);
+            sleep( 3 );
             checkEntries.append( { entry,
                                    [] { return tr( "is always true (slowly)" ); },
                                    [] { return tr( "The computer says yes (slowly)." ); },

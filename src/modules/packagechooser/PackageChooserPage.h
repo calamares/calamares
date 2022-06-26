@@ -19,7 +19,7 @@
 namespace Ui
 {
 class PackageChooserPage;
-}
+}  // namespace Ui
 
 class PackageChooserPage : public QWidget
 {

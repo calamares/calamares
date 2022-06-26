@@ -19,7 +19,7 @@
 namespace Ui
 {
 class TrackingPage;
-}
+}  // namespace Ui
 
 class Config;
 class TrackingStyleConfig;
