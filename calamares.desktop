@@ -3,14 +3,16 @@ Type=Application
 Version=1.0
 Name=Install System
 GenericName=System Installer
+Comment=Calamares — System Installer
 Keywords=calamares;system;installer;
 TryExec=calamares
 Exec=sh -c "pkexec calamares"
-Comment=Calamares — System Installer
+
+Categories=Qt;System;
 Icon=calamares
 Terminal=false
+SingleMainWindow=true
 StartupNotify=true
-Categories=Qt;System;
 X-AppStream-Ignore=true
 
 Name[ar]=تثبيت النظام 
