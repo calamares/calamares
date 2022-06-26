@@ -15,6 +15,10 @@ Files: man/calamares.8
 License: GPL-3.0-or-later
 Copyright: 2017 Jonathan Carter <jcarter@linux.com>
 
+Files: 3rdparty/kdsingleapplication/*
+License: MIT
+Copyright: Copyright (C) 2019-2021 Klarälvdalens Datakonsult AB, a KDAB Group company, info@ kdab.com
+
 ### BUILD ARTIFACTS / NOT SOURCE
 #
 # QRC Files are basically build artifacts

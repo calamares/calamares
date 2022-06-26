@@ -1,0 +1,7 @@
+include(CMakeFindDependencyMacro)
+
+find_dependency(Qt5Widgets REQUIRED)
+find_dependency(Qt5Network REQUIRED)
+
+# Add the targets file
+include("${CMAKE_CURRENT_LIST_DIR}/KDSingleApplicationTargets.cmake")
