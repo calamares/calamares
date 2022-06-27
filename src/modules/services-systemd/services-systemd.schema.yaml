@@ -5,7 +5,7 @@ $schema: https://json-schema.org/schema#
 $id: https://calamares.io/schemas/services-systemd
 definitions:
     service:
-        $id: '#definitions/service'
+        $id: 'definitions/service'
         type: object
         description: a name and a flag for services, targets, and others
         additionalProperties: false
@@ -17,9 +17,9 @@ definitions:
 additionalProperties: false
 type: object
 properties:
-    services: { type: array, items: { $ref: '#definitions/service' } }
-    targets: { type: array, items: { $ref: '#definitions/service' } }
-    timers: { type: array, items: { $ref: '#definitions/service' } }
-    disable: { type: array, items: { $ref: '#definitions/service' } }
-    disable-targets: { type: array, items: { $ref: '#definitions/service' } }
-    mask: { type: array, items: { $ref: '#definitions/service' } }
+    services: { type: array, items: { $ref: 'definitions/service' } }
+    targets: { type: array, items: { $ref: 'definitions/service' } }
+    timers: { type: array, items: { $ref: 'definitions/service' } }
+    disable: { type: array, items: { $ref: 'definitions/service' } }
+    disable-targets: { type: array, items: { $ref: 'definitions/service' } }
+    mask: { type: array, items: { $ref: 'definitions/service' } }
