@@ -33,11 +33,7 @@ that the distribution configuration files follow the current schema.
 ## Core ##
  - CMake 3.16, Qt 5.15 are now required; the newer CMake is to support
    new features (also for KDE Frameworks), Qt is the current LTS version.
- - KDE Framework "DBusAddons" is now required, and is used to "activate"
-   Calamares; the KDAB Single Application Guard is no longer used.
-   KDSAG needed patching to chase Qt 5.15 deprecations, and the DBus
-   activation code is tried and tested in Frameworks (tier 1).
-   Running `calamares -d` no longer enforces a single-application
+ - Running `calamares -d` no longer enforces a single-application
    (it is for debugging purposes, after all).
  - Python 3.6 or later is now required, to allow for F-strings in
    Python code and allow other tidy-ups in the Python modules.
@@ -45,7 +41,7 @@ that the distribution configuration files follow the current schema.
  - The log file now **always** contains a debug-log, and the `-D` flag
    primarily controls what is printed to stdout. By default, stdout
    only gets errors; use `-D6` to match stdout with the file. Use `-D8`
-   to get a verbose log file **and** verbose stdout.
+   to get an extra-verbose log file **and** verbose stdout.
 
 ## Modules ##
  - *bootloader* now supports more options when building the kernel
