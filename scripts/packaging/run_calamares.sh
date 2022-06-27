@@ -10,9 +10,20 @@ if [ "$MODE" != "offline" ] && [ "$MODE" != "online" ]; then
 fi
 shift 1
 
-(
-    cd "$SCRIPT_DIRECTORY" && \
-    sudo cp -f settings_"$MODE".conf settings.conf
-)
+UPDATE_INSTALL_MODE_COMMAND="cp -f \
+    "$SCRIPT_DIRECTORY"/settings_"$MODE".conf \
+    "$SCRIPT_DIRECTORY"/settings.conf"
 
-pkexec env DISPLAY="$DISPLAY" XAUTHORITY="$XAUTHORITY" KDE_SESSION_VERSION=5 KDE_FULL_SESSION=true QT_QUICK_CONTROLS_STYLE="org.kde.desktop" dbus-launch calamares "$@" > ~/install.log
+LAUNCH_INSTALLER_COMMAND="env \
+    DISPLAY="$DISPLAY" \
+    XAUTHORITY="$XAUTHORITY" \
+    XDG_RUNTIME_DIR="/tmp/runtime-root" \
+    KDE_SESSION_VERSION=5 \
+    KDE_FULL_SESSION=true \
+    QT_QUICK_CONTROLS_STYLE="org.kde.desktop" \
+    dbus-launch calamares "$@" \
+    > ~/install.log"
+
+pkexec \
+    bash -c \
+        "$UPDATE_INSTALL_MODE_COMMAND && $LAUNCH_INSTALLER_COMMAND"       
