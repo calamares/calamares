@@ -131,7 +131,10 @@ UsersTests::testHostnamed()
     // root, assume it will succeed.
     if ( geteuid() != 0 )
     {
-        QEXPECT_FAIL( "", "Hostname changes are access-controlled", Continue );
+        if ( !setSystemdHostname( QStringLiteral( "tubophone.calamares.io" ) ) )
+        {
+            QEXPECT_FAIL( "", "Hostname changes are access-controlled", Continue );
+        }
     }
     QVERIFY( setSystemdHostname( QStringLiteral( "tubophone.calamares.io" ) ) );
     if ( !m_originalHostName.isEmpty() )
