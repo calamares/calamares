@@ -281,7 +281,10 @@ def run():
     partitions = libcalamares.globalstorage.value("partitions")
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
     branding = libcalamares.globalstorage.value("branding")
-    distributor = branding["bootloaderEntryName"]
+    if branding is None:
+        distributor = None
+    else:
+        distributor = branding["bootloaderEntryName"]
 
     if libcalamares.globalstorage.value("bootLoader") is None and fw_type != "efi":
         return None
