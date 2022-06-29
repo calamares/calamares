@@ -21,9 +21,10 @@ LAUNCH_INSTALLER_COMMAND="env \
     KDE_SESSION_VERSION=5 \
     KDE_FULL_SESSION=true \
     QT_QUICK_CONTROLS_STYLE="org.kde.desktop" \
-    dbus-launch calamares "$@" \
-    > ~/install.log"
+    dbus-launch calamares "$@""
 
-pkexec \
+{
+    pkexec \
     bash -c \
-        "$UPDATE_INSTALL_MODE_COMMAND && $LAUNCH_INSTALLER_COMMAND"       
+        "$UPDATE_INSTALL_MODE_COMMAND && $LAUNCH_INSTALLER_COMMAND" 
+} > ~/install.log      
