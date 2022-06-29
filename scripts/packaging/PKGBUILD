@@ -2,7 +2,7 @@
 
 pkgname=calamares-core
 pkgver=0.0.1
-pkgrel=3
+pkgrel=4
 arch=('i686' 'x86_64' 'armv6h' 'armv7h')
 pkgdesc='Calamares Installer for RebornOS. This is practically just bare Calamares. Please also install rebornos-calamares-configuration.'
 license=('GPL3')
