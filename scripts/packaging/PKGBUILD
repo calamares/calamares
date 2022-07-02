@@ -2,7 +2,7 @@
 
 pkgname=calamares-core
 pkgver=0.0.1
-pkgrel=5
+pkgrel=7
 arch=('i686' 'x86_64' 'armv6h' 'armv7h')
 pkgdesc='Calamares Installer for RebornOS. This is practically just bare Calamares. Please also install rebornos-calamares-configuration.'
 license=('GPL3')
@@ -69,15 +69,8 @@ package() {
 
     (
         cd "$RESOURCE_DIRECTORY" && \
-        find . \
-            -mindepth 1 \
-            -maxdepth 1 \
-            -type f \
-            -name '*.sh' \
-            -exec \
-                install -Dm 755 "{}" "${pkgdir}/etc/calamares/{}" \; \
-            -exec \
-                ln -s "/etc/calamares/{}" "${pkgdir}/usr/bin/{}" \;           
+        install -Dm 755 run_calamares.sh "${pkgdir}"/etc/calamares/run_calamares.sh
+        ln -s /etc/calamares/run_calamares.sh "${pkgdir}"/usr/bin/run_calamares         
     )
     (
         cd "$RESOURCE_DIRECTORY" && \

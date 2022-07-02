@@ -16,7 +16,7 @@ Comment=Install RebornOS on your computer (Locally from the ISO)
 Path=
 
 # The executable of the application, possibly with arguments.
-Exec=run_calamares.sh "offline" -D 8
+Exec=run_calamares "offline" -D 8
 
 # The name of the icon that will be used to display this entry
 Icon=/usr/share/pixmaps/calamares_offline.svg
