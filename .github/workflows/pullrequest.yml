@@ -8,25 +8,20 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
-      - name: "notify: any"
+      - name: "notify: new"
+        if: github.event.action == 'opened'
         uses: calamares/actions/matrix-notify@v4
         with:
           token: ${{ secrets.MATRIX_TOKEN }}
           room: ${{ secrets.MATRIX_ROOM }}
           message: |
-            PR something ${{ github.event.pull_request.html_url }} by ${{ github.actor }} ${{ github.event.pull_request.action }}
-            .. ${{ github.event.pull_request.title }}
-      - name: "notify: new"
-        if: github.event.pull_request.action == 'opened'
-        uses: calamares/actions/matrix-notify@v4
-        with:
-          token: ${{ secrets.MATRIX_TOKEN }}
-          room: ${{ secrets.MATRIX_ROOM }}
-          message: "NEW PR ${{ github.event.pull_request.html_url }} by ${{ github.actor }} ${{ github.event.pull_request.title }}"
+            PR OPENED ${{ github.event.pull_request.html_url }} by ${{ github.actor }}
+            .. ${{ github.event.pull_request.title }}"
       - name: "notify: closed"
-        if: github.event.pull_request.action == 'closed'
+        if: github.event.action == 'closed'
         uses: calamares/actions/matrix-notify@v4
         with:
           token: ${{ secrets.MATRIX_TOKEN }}
           room: ${{ secrets.MATRIX_ROOM }}
-          message: "CLOSED ${{ github.event.pull_request.html_url }} by ${{ github.actor }} ${{ github.event.pull_request.title }}"
+          message: |
+            PR CLOSED ${{ github.event.pull_request.html_url }} by ${{ github.actor }}
