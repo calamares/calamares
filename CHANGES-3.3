@@ -25,6 +25,9 @@ that the distribution configuration files follow the current schema.
 
 Pre-release versions:
  - 3.3.0-alpha1 (2022-06-27)
+   Initial 3.3.0 release to check the release scripts &c.
+ - 3.3.0-alpha2 (unreleased)
+   Incompatible module-configuration changes, see #1438.
 
 ## Project ##
  - The C++ code in the project is now formatted with clang-format 12 or 13,
@@ -49,6 +52,8 @@ Pre-release versions:
 ## Modules ##
  - *bootloader* now supports more options when building the kernel
    command-line. (Thanks Evan)
+ - *bootloader* no longer supports `@@`-style suffixes for unique-EFI-id
+   generation. Use `${}` instead.
  - *displaymanager* no longer supports the discontinued *kdm* display manager.
  - *fstab* configuration has been completely re-done. Many configuration
    options have moved to the *mount* module. See #1993
