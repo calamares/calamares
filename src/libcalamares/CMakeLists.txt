@@ -17,6 +17,22 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/CalamaresConfig.h.in ${CMAKE_CURRENT_
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/CalamaresVersion.h.in ${CMAKE_CURRENT_BINARY_DIR}/CalamaresVersion.h)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/CalamaresVersionX.h.in ${CMAKE_CURRENT_BINARY_DIR}/CalamaresVersionX.h)
 
+# Map the available translations names into a suitable constexpr list
+# of names in C++. This gets us Calamares::Locale::availableLanguages,
+# a QStringList of names.
+set(_names_tu "#ifndef CALAMARES_TRANSLATIONS_H
+#define CALAMARES_TRANSLATIONS_H
+#include <QStringList>
+namespace Calamares {
+namespace Locale {
+static const QStringList availableLanguages{
+")
+foreach( l ${CALAMARES_TRANSLATION_LANGUAGES})
+    string(APPEND _names_tu "\"${l}\",\n")
+endforeach()
+string(APPEND _names_tu "};\n}} // namespaces\n#endif\n\n")
+file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/CalamaresTranslations.h "${_names_tu}")
+
 add_library(
     calamares
     SHARED
