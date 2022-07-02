@@ -140,8 +140,6 @@ set( CALAMARES_DESCRIPTION_SUMMARY
 # (sr@latin in particular) or location (ca@valencia) need special
 # handling in libcalamares/locale/Translation.h .
 #
-# NOTE: move eo (Esperanto) to _ok once Qt can actually create a
-#       locale for it. (Qt 5.12.2 can, see Translation Status section).
 # NOTE: move ie (Interlingue) to _ok once Qt supports it.
 # NOTE: update these lines by running `txstats.py`, or for full automation
 #       `txstats.py -e`. See also
@@ -412,19 +410,10 @@ set(Calamares_WITH_QML ${WITH_QML})
 
 ### Transifex Translation status
 #
-# Construct language lists for use. This massages the language lists
-# for use with older Qt (which does not support Esperanto) and checks
-# for some obvious error. The actual work of compiling translations
-# is done in the lang/ directory.
+# Construct language lists for use. This massages the language lists if
+# needed and checks for some obvious errors. The actual work of
+# compiling translations is done in the lang/ directory.
 #
-if(Qt5_VERSION VERSION_GREATER 5.12.1)
-    # At least Qt 5.12.2 seems to support Esperanto in QLocale
-    if("eo" IN_LIST _tx_incomplete)
-        message(STATUS "Esperanto support since Qt 5.12.2, enabling Esperanto locale")
-        list(REMOVE_ITEM _tx_incomplete "eo")
-        list(APPEND _tx_ok "eo")
-    endif()
-endif()
 
 set(curr_tx ${_tx_complete} ${_tx_good} ${_tx_ok} ${_tx_incomplete})
 set(tx_errors OFF)
