@@ -8,6 +8,14 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
+      - name: "notify: any"
+        uses: calamares/actions/matrix-notify@v4
+        with:
+          token: ${{ secrets.MATRIX_TOKEN }}
+          room: ${{ secrets.MATRIX_ROOM }}
+          message: |
+            PR something ${{ github.event.pull_request.html_url }} by ${{ github.actor }} ${{ github.event.pull_request.action }}
+            .. ${{ github.event.pull_request.title }}
       - name: "notify: new"
         if: github.event.pull_request.action == 'opened'
         uses: calamares/actions/matrix-notify@v4
