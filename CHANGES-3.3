@@ -56,6 +56,8 @@ Pre-release versions:
    Please update configurations.
  - *mount* now does most of the mounting; options that were in *fstab*
    have moved here. See #1993
+ - *oemid* now uses consistent variable replacement (e.g. KMacroExpander)
+   and does not support `@@DATE@@` anymore (use `${DATE}`).
  - *partition* requires KPMCore 21.12 (e.g. KPMCore 4.2 API, or later).
  - *partition* can now skip installing the bootloader in more scenarios.
    #1632 (Thanks Anubhav)
