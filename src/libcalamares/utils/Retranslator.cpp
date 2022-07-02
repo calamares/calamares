@@ -178,7 +178,7 @@ static QTranslator* s_tztranslator = nullptr;
 static QString s_translatorLocaleName;
 
 void
-installTranslator( const CalamaresUtils::Locale::Translation::Id& locale, const QString& brandingTranslationsPrefix )
+installTranslator( const Calamares::Locale::Translation::Id& locale, const QString& brandingTranslationsPrefix )
 {
     s_translatorLocaleName = locale.name;
 
@@ -190,17 +190,17 @@ installTranslator( const CalamaresUtils::Locale::Translation::Id& locale, const 
 void
 installTranslator()
 {
-    installTranslator( CalamaresUtils::Locale::Translation().id(), QString() );
+    installTranslator( Calamares::Locale::Translation().id(), QString() );
 }
 
-CalamaresUtils::Locale::Translation::Id
+Calamares::Locale::Translation::Id
 translatorLocaleName()
 {
     return { s_translatorLocaleName };
 }
 
 bool
-loadTranslator( const CalamaresUtils::Locale::Translation::Id& locale, const QString& prefix, QTranslator* translator )
+loadTranslator( const Calamares::Locale::Translation::Id& locale, const QString& prefix, QTranslator* translator )
 {
     return ::tryLoad( translator, prefix, locale.name );
 }

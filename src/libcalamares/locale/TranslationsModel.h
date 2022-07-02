@@ -19,7 +19,7 @@
 #include <QVector>
 
 
-namespace CalamaresUtils
+namespace Calamares
 {
 namespace Locale
 {
@@ -85,5 +85,5 @@ private:
  */
 DLLEXPORT TranslationsModel* availableTranslations();
 }  // namespace Locale
-}  // namespace CalamaresUtils
+}  // namespace Calamares
 #endif

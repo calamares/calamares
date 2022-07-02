@@ -72,7 +72,7 @@ LocaleTests::initTestCase()
 void
 LocaleTests::testLanguageModelCount()
 {
-    const auto* m = CalamaresUtils::Locale::availableTranslations();
+    const auto* m = Calamares::Locale::availableTranslations();
 
     QVERIFY( m );
     QVERIFY( m->rowCount( QModelIndex() ) > 1 );
@@ -91,7 +91,7 @@ LocaleTests::testLanguageModelCount()
 void
 LocaleTests::testLanguageScripts()
 {
-    const auto* m = CalamaresUtils::Locale::availableTranslations();
+    const auto* m = Calamares::Locale::availableTranslations();
 
     QVERIFY( m );
 

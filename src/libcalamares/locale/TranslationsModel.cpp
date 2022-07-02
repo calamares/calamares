@@ -15,7 +15,7 @@
 
 #include "CalamaresTranslations.h"  // For the list of translations
 
-namespace CalamaresUtils
+namespace Calamares
 {
 namespace Locale
 {
@@ -144,4 +144,4 @@ availableTranslations()
 }
 
 }  // namespace Locale
-}  // namespace CalamaresUtils
+}  // namespace Calamares

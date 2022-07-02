@@ -128,7 +128,7 @@ specialCaseSystemLanguage()
     return ( it != std::cend( special_cases ) ) ? QString::fromLatin1( it->id ) : QString();
 }
 
-namespace CalamaresUtils
+namespace Calamares
 {
 namespace Locale
 {
@@ -187,4 +187,4 @@ Translation::getLocale( const Id& localeId )
 }
 
 }  // namespace Locale
-}  // namespace CalamaresUtils
+}  // namespace Calamares
