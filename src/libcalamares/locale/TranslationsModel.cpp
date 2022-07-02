@@ -13,7 +13,7 @@
 
 #include "Lookup.h"
 
-#include "CalamaresVersion.h"  // For the list of translations
+#include "CalamaresTranslations.h"  // For the list of translations
 
 namespace CalamaresUtils
 {
@@ -139,8 +139,7 @@ TranslationsModel::find( const Translation::Id& id ) const
 TranslationsModel*
 availableTranslations()
 {
-    static TranslationsModel* model
-        = new TranslationsModel( QStringLiteral( CALAMARES_TRANSLATION_LANGUAGES ).split( ';' ) );
+    static TranslationsModel* model = new TranslationsModel( Calamares::Locale::availableLanguages );
     return model;
 }
 

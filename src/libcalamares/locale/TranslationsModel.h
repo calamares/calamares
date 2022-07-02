@@ -75,6 +75,8 @@ private:
  *
  * The translations are set when Calamares is compiled; the list
  * is provided by CMake via the CALAMARES_TRANSLATION_LANGUAGES
+ * CMake variable (top-level CMakeLists.txt in Calamares) and
+ * compiled into the CalamaresTranslations.h internal header.
  * #define.
  *
  * This model is a singleton and can be shared.
