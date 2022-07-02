@@ -177,11 +177,9 @@ def get_tx_stats(languages, outputter, verbose):
     # Some languages go into the "incomplete" list by definition,
     # regardless of their completion status: this can have various reasons.
     #
-    # Note that Esperanto (eo) is special-cased in CMakeLists.txt
-    # during the build; recent Qt releases *do* support the language,
-    # and it's at-the-least ok.
+    # - (Esperanto wasn't supported until Qt 5.12.2)
+    # - Interlingue still is not supported by the minimum Qt version
     incomplete_languages = (
-        "eo",   # Not supported by QLocale < 5.12.1
         "ie",   # Not supported by Qt at least through 5.15.0
         )
 
