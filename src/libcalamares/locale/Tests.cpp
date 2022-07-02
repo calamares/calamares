@@ -13,7 +13,6 @@
 #include "locale/TranslatableConfiguration.h"
 #include "locale/TranslationsModel.h"
 
-#include "CalamaresTranslations.h"
 #include "CalamaresVersion.h"
 #include "GlobalStorage.h"
 #include "utils/Logger.h"
@@ -154,11 +153,11 @@ someLanguages()
 void
 LocaleTests::testTranslatableLanguages()
 {
-    cDebug() << "Translation languages:" << Calamares::Locale::availableLanguages;
+    cDebug() << "Translation languages:" << Calamares::Locale::availableLanguages();
     for ( const auto& language : someLanguages() )
     {
         // Could be QVERIFY, but then we don't see what language code fails
-        QCOMPARE( Calamares::Locale::availableLanguages.contains( language ) ? language : QString(), language );
+        QCOMPARE( Calamares::Locale::availableLanguages().contains( language ) ? language : QString(), language );
     }
 }
 

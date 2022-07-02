@@ -10,7 +10,6 @@
 #include "CalamaresApplication.h"
 
 #include "CalamaresConfig.h"
-#include "CalamaresTranslations.h"
 #include "CalamaresVersionX.h"
 #include "CalamaresWindow.h"
 #include "progresstree/ProgressTreeView.h"
@@ -19,6 +18,7 @@
 #include "JobQueue.h"
 #include "Settings.h"
 #include "ViewManager.h"
+#include "locale/TranslationsModel.h"
 #include "modulesystem/ModuleManager.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/CalamaresUtilsSystem.h"
@@ -68,7 +68,7 @@ CalamaresApplication::init()
 {
     Logger::setupLogfile();
     cDebug() << "Calamares version:" << CALAMARES_VERSION;
-    cDebug() << Logger::SubEntry << "languages:" << Calamares::Locale::availableLanguages;
+    cDebug() << Logger::SubEntry << "languages:" << Calamares::Locale::availableLanguages();
 
     if ( !Calamares::Settings::instance() )
     {

@@ -13,7 +13,7 @@
 
 #include "Lookup.h"
 
-#include "CalamaresTranslations.h"  // For the list of translations
+#include "CalamaresTranslations.cc"  // For the list of translations, generated at build time
 
 namespace Calamares
 {
@@ -139,8 +139,14 @@ TranslationsModel::find( const Translation::Id& id ) const
 TranslationsModel*
 availableTranslations()
 {
-    static TranslationsModel* model = new TranslationsModel( Calamares::Locale::availableLanguages );
+    static TranslationsModel* model = new TranslationsModel( availableLanguageList );
     return model;
+}
+
+const QStringList&
+availableLanguages()
+{
+    return availableLanguageList;
 }
 
 }  // namespace Locale
