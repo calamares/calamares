@@ -18,10 +18,17 @@ if ( NOT KPMcore_searched_for )
         TYPE RECOMMENDED
         PURPOSE "For disk partitioning support"
     )
+    find_package(Qt5 REQUIRED DBus) # Needed for KPMCore
+    find_package(KF5 REQUIRED I18n WidgetsAddons) # Needed for KPMCore
 
     if( KPMcore_FOUND )
         set( KPMcore_API_DEFINITIONS "" )
     else()
         set( KPMcore_API_DEFINITIONS WITHOUT_KPMcore )
     endif()
+
+    foreach(d ${KPMcore_API_DEFINITIONS})
+        target_compile_definitions(kpmcore INTERFACE ${d})
+    endforeach()
+    target_include_directories(kpmcore INTERFACE ${KPMCORE_INCLUDE_DIR})
 endif()
