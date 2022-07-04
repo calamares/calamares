@@ -6,6 +6,9 @@ $id: https://calamares.io/schemas/mount
 additionalProperties: false
 type: object
 properties:
+    skipBtrfs:
+        type: boolean
+        default: false
     extraMounts:
         type: array
         items:
