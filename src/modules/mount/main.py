@@ -268,7 +268,7 @@ def mount_partition(root_mount_point, partition, partitions, mount_options, moun
         mount_options_list.append({"mountpoint": raw_mount_point, "option_string": mount_options_string})
 
     # Special handling for btrfs subvolumes. Create the subvolumes listed in mount.conf
-    if fstype == "btrfs" and partition["mountPoint"] == '/' and not libcalamares.job.configuration.get("skipBtrfs", false):
+    if fstype == "btrfs" and partition["mountPoint"] == '/' and not libcalamares.job.configuration.get("skipBtrfs", False):
         # Root has been mounted to btrfs volume -> create subvolumes from configuration
         btrfs_subvolumes = get_btrfs_subvolumes(partitions)
 
