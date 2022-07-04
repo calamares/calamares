@@ -18,6 +18,8 @@ additionalProperties: false
 type: object
 properties:
     services: { type: array, items: { $ref: 'definitions/service' } }
+    sockets: { type: array, items: { $ref: 'definitions/service' } }
+    paths: { type: array, items: { $ref: 'definitions/service' } }
     targets: { type: array, items: { $ref: 'definitions/service' } }
     timers: { type: array, items: { $ref: 'definitions/service' } }
     disable: { type: array, items: { $ref: 'definitions/service' } }
