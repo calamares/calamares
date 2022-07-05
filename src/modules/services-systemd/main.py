@@ -61,6 +61,10 @@ def systemctl(targets, command, suffix):
 
                 if command == "enable" and suffix == ".service":
                     description = _("Cannot enable systemd service <code>{name!s}</code>.")
+                elif command == "enable" and suffix == ".socket":
+                    description = _("Cannot enable systemd socket <code>{name!s}</code>.")
+                elif command == "enable" and suffix == ".path":
+                    description = _("Cannot enable systemd path <code>{name!s}</code>.")
                 elif command == "enable" and suffix == ".target":
                     description = _("Cannot enable systemd target <code>{name!s}</code>.")
                 elif command == "enable" and suffix == ".timer":
@@ -92,6 +96,14 @@ def run():
     # http://0pointer.de/blog/projects/changing-roots.html
 
     r = systemctl(cfg.get("services", []), "enable", ".service")
+    if r is not None:
+        return r
+
+    r = systemctl(cfg.get("sockets", []), "enable", ".socket")
+    if r is not None:
+        return r
+
+    r = systemctl(cfg.get("paths", []), "enable", ".path")
     if r is not None:
         return r
 
