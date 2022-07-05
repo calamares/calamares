@@ -50,7 +50,7 @@ def systemctl(command, units):
 
         if exit_code != 0:
             libcalamares.utils.warning(
-                "Cannot {} systemd {} {}".format(command, name)
+                "Cannot {} systemd unit {}".format(command, name)
                 )
             libcalamares.utils.warning(
                 "systemctl {} call in chroot returned error code {}".format(command, exit_code)
