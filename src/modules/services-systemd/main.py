@@ -58,7 +58,7 @@ def systemctl(units):
                 "systemctl {} call in chroot returned error code {}".format(action, exit_code)
             )
             if mandatory:
-                title = _("Cannot modify service")
+                title = _("Cannot modify unit")
                 diagnostic = _("<code>systemctl {_action!s}</code> call in chroot returned error code {_exit_code!s}.").format(_action=action, _exit_code=exit_code)
                 description = _("Cannot {_action!s} systemd unit <code>{_name!s}</code>.").format(_action=action, _name=name)
                 return (
@@ -70,7 +70,7 @@ def systemctl(units):
 
 def run():
     """
-    Setup systemd services
+    Setup systemd units
     """
     cfg = libcalamares.job.configuration
 
