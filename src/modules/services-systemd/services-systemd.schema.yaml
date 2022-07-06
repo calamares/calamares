@@ -7,16 +7,15 @@ definitions:
     unit:
         $id: 'definitions/unit'
         type: object
-        description: a name and a flag for services, targets, and others
+        description: a map containing a unit name, an action, and whether it is mandatory
         additionalProperties: false
         properties:
             name: { type: string }
+            action: { type: string, default: "enable" }
             mandatory: { type: boolean, default: false }
         required: [ name ]
 
 additionalProperties: false
 type: object
 properties:
-    enable: { type: array, items: { $ref: 'definitions/unit' } }
-    disable: { type: array, items: { $ref: 'definitions/unit' } }
-    mask: { type: array, items: { $ref: 'definitions/unit' } }
+    units: { type: array, items: { $ref: 'definitions/unit' } }
