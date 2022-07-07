@@ -29,7 +29,7 @@ def pretty_name():
 def systemctl(units):
     """
     For each entry in @p units, run "systemctl <action> <name>",
-    where each unit is a map of unit name, action, and a flag.
+    where each unit is a mapping of unit name, action, and a flag.
 
     Returns a failure message, or None if this was successful.
     Units that are not mandatory have their failures suppressed
@@ -42,6 +42,9 @@ def systemctl(units):
             action = "enable"
             mandatory = False
         else:
+            if not unit.has_key("name"):
+                libcalamares.utils.error("The key 'name' is missing from the mapping {_unit!s}. Continuing to the next unit.".format(_unit=str(unit)))
+                continue 
             name = unit["name"]
             action = unit.get("action", "enable")
             mandatory = unit.get("mandatory", False)
