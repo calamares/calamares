@@ -467,18 +467,6 @@ ChoicePage::onActionChanged()
         applyActionChoice( m_config->installChoice() );
     }
 
-    // Whole disk encryption isn't implemented for zfs so disable the option for now
-    if ( m_eraseFsTypesChoiceComboBox != nullptr && m_enableEncryptionWidget )
-    {
-        if ( m_eraseFsTypesChoiceComboBox->currentText() == "zfs" )
-        {
-            m_encryptWidget->hide();
-        }
-        else
-        {
-            m_encryptWidget->show();
-        }
-    }
     updateNextEnabled();
 }
 
@@ -1075,10 +1063,7 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
     case InstallChoice::Erase:
     case InstallChoice::Replace:
     {
-        if ( m_enableEncryptionWidget )
-        {
-            m_encryptWidget->show();
-        }
+        m_encryptWidget->setVisible( m_enableEncryptionWidget && m_eraseFsTypesChoiceComboBox->currentText() != "zfs" && choice == InstallChoice::Erase );
         m_previewBeforeLabel->setText( tr( "Current:" ) );
         m_afterPartitionBarsView = new PartitionBarsView( m_previewAfterFrame );
         m_afterPartitionBarsView->setNestedPartitionsMode( mode );
