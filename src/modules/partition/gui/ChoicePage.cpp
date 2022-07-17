@@ -1063,7 +1063,8 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
     case InstallChoice::Erase:
     case InstallChoice::Replace:
     {
-        m_encryptWidget->setVisible( m_enableEncryptionWidget && m_eraseFsTypesChoiceComboBox->currentText() != "zfs" && choice == InstallChoice::Erase );
+        m_encryptWidget->setVisible( m_enableEncryptionWidget && m_eraseFsTypesChoiceComboBox->currentText() != "zfs"
+                                     && choice == InstallChoice::Erase );
         m_previewBeforeLabel->setText( tr( "Current:" ) );
         m_afterPartitionBarsView = new PartitionBarsView( m_previewAfterFrame );
         m_afterPartitionBarsView->setNestedPartitionsMode( mode );
