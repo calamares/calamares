@@ -28,7 +28,7 @@ class Config : public QObject
      * This is a list-model, with names and descriptions for the translations
      * available to Calamares.
      */
-    Q_PROPERTY( CalamaresUtils::Locale::TranslationsModel* languagesModel READ languagesModel CONSTANT FINAL )
+    Q_PROPERTY( Calamares::Locale::TranslationsModel* languagesModel READ languagesModel CONSTANT FINAL )
     /** @brief The requirements (from modules) and their checked-status
      *
      * The model grows rows over time as each module is checked and its
@@ -95,7 +95,7 @@ public:
     QString warningMessage() const;
 
 public slots:
-    CalamaresUtils::Locale::TranslationsModel* languagesModel() const;
+    Calamares::Locale::TranslationsModel* languagesModel() const;
     void retranslate();
 
     ///@brief The **global** requirements model, from ModuleManager
@@ -122,7 +122,7 @@ signals:
 private:
     void initLanguages();
 
-    CalamaresUtils::Locale::TranslationsModel* m_languages = nullptr;
+    Calamares::Locale::TranslationsModel* m_languages = nullptr;
     std::unique_ptr< QSortFilterProxyModel > m_filtermodel;
     std::unique_ptr< GeneralRequirements > m_requirementsChecker;
 

@@ -16,7 +16,7 @@
 #include <QLocale>
 #include <QPair>
 
-namespace CalamaresUtils
+namespace Calamares
 {
 namespace Locale
 {
@@ -42,6 +42,6 @@ DLLEXPORT QPair< QLocale::Country, QLocale::Language > countryData( const QStrin
 /// @brief Get a likely locale for a 2-letter country code
 DLLEXPORT QLocale countryLocale( const QString& code );
 }  // namespace Locale
-}  // namespace CalamaresUtils
+}  // namespace Calamares
 
 #endif

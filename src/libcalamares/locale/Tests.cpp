@@ -71,7 +71,7 @@ LocaleTests::initTestCase()
 void
 LocaleTests::testLanguageModelCount()
 {
-    const auto* m = CalamaresUtils::Locale::availableTranslations();
+    const auto* m = Calamares::Locale::availableTranslations();
 
     QVERIFY( m );
     QVERIFY( m->rowCount( QModelIndex() ) > 1 );
@@ -90,7 +90,7 @@ LocaleTests::testLanguageModelCount()
 void
 LocaleTests::testLanguageScripts()
 {
-    const auto* m = CalamaresUtils::Locale::availableTranslations();
+    const auto* m = Calamares::Locale::availableTranslations();
 
     QVERIFY( m );
 
@@ -153,12 +153,11 @@ someLanguages()
 void
 LocaleTests::testTranslatableLanguages()
 {
-    QStringList availableLanguages = QString( CALAMARES_TRANSLATION_LANGUAGES ).split( ';' );
-    cDebug() << "Translation languages:" << availableLanguages;
+    cDebug() << "Translation languages:" << Calamares::Locale::availableLanguages();
     for ( const auto& language : someLanguages() )
     {
         // Could be QVERIFY, but then we don't see what language code fails
-        QCOMPARE( availableLanguages.contains( language ) ? language : QString(), language );
+        QCOMPARE( Calamares::Locale::availableLanguages().contains( language ) ? language : QString(), language );
     }
 }
 

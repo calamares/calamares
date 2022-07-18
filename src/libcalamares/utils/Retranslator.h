@@ -29,7 +29,7 @@ namespace CalamaresUtils
  * @param locale the new locale (names as defined by Calamares).
  * @param brandingTranslationsPrefix the branding path prefix, from Calamares::Branding.
  */
-DLLEXPORT void installTranslator( const CalamaresUtils::Locale::Translation::Id& locale,
+DLLEXPORT void installTranslator( const Calamares::Locale::Translation::Id& locale,
                                   const QString& brandingTranslationsPrefix );
 
 /** @brief Initializes the translations with the current system settings
@@ -42,7 +42,7 @@ DLLEXPORT void installTranslator();
  * QLocale passed in, because Calamares will munge some names and
  * may remap translations.
  */
-DLLEXPORT CalamaresUtils::Locale::Translation::Id translatorLocaleName();
+DLLEXPORT Calamares::Locale::Translation::Id translatorLocaleName();
 
 /** @brief Loads <prefix><locale> translations into the given @p translator
  *
@@ -58,7 +58,7 @@ DLLEXPORT CalamaresUtils::Locale::Translation::Id translatorLocaleName();
  * @returns @c true on success
  */
 DLLEXPORT bool
-loadTranslator( const CalamaresUtils::Locale::Translation::Id& locale, const QString& prefix, QTranslator* translator );
+loadTranslator( const Calamares::Locale::Translation::Id& locale, const QString& prefix, QTranslator* translator );
 
 /** @brief Set @p allow to true to load translations from current dir.
  *

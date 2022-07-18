@@ -13,9 +13,9 @@
 
 #include "Lookup.h"
 
-#include "CalamaresVersion.h"  // For the list of translations
+#include "CalamaresTranslations.cc"  // For the list of translations, generated at build time
 
-namespace CalamaresUtils
+namespace Calamares
 {
 namespace Locale
 {
@@ -139,10 +139,15 @@ TranslationsModel::find( const Translation::Id& id ) const
 TranslationsModel*
 availableTranslations()
 {
-    static TranslationsModel* model
-        = new TranslationsModel( QStringLiteral( CALAMARES_TRANSLATION_LANGUAGES ).split( ';' ) );
+    static TranslationsModel* model = new TranslationsModel( availableLanguageList );
     return model;
 }
 
+const QStringList&
+availableLanguages()
+{
+    return availableLanguageList;
+}
+
 }  // namespace Locale
-}  // namespace CalamaresUtils
+}  // namespace Calamares

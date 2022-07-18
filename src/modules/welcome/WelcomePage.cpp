@@ -222,5 +222,5 @@ LocaleTwoColumnDelegate::paint( QPainter* painter, const QStyleOptionViewItem& o
         Qt::AlignRight | Qt::AlignVCenter,
         option.palette,
         false,
-        index.data( CalamaresUtils::Locale::TranslationsModel::EnglishLabelRole ).toString() );
+        index.data( Calamares::Locale::TranslationsModel::EnglishLabelRole ).toString() );
 }

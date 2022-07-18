@@ -63,7 +63,7 @@ private:
 
     Ui::WelcomePage* ui;
     CheckerContainer* m_checkingWidget;
-    CalamaresUtils::Locale::TranslationsModel* m_languages;
+    Calamares::Locale::TranslationsModel* m_languages;
 
     Config* m_conf;
 };
