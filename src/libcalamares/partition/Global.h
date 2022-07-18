@@ -20,6 +20,8 @@
 #include "FileSystem.h"
 #include "JobQueue.h"
 
+// TODO: this assumes KPMcore is present, but the header and TU
+//       are used always.
 #include <kpmcore/fs/filesystem.h>
 
 namespace CalamaresUtils

@@ -9,9 +9,7 @@ env:
   BUILDDIR: /build
   SRCDIR: ${{ github.workspace }}
   CMAKE_ARGS: |
-    -DWEBVIEW_FORCE_WEBKIT=1
     -DKDE_INSTALL_USE_QT_SYS_PATHS=ON
-    -DWITH_PYTHONQT=OFF"
     -DCMAKE_BUILD_TYPE=Debug
 
 jobs:
