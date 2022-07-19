@@ -11,7 +11,9 @@
 #include "LocaleConfiguration.h"
 #include "timezonewidget/TimeZoneImage.h"
 
+#include "Settings.h"
 #include "locale/TimeZone.h"
+#include "locale/TranslationsModel.h"
 #include "utils/Logger.h"
 
 #include <QtTest/QtTest>
@@ -43,6 +45,15 @@ private Q_SLOTS:
     void testLanguageDetection_data();
     void testLanguageDetection();
     void testLanguageDetectionValencia();
+
+    // Check realistic language mapping for issue 2008
+    void testKDENeonLanguageData();
+    void testLanguageMapping_data();
+    void testLanguageMapping();
+
+private:
+    QStringList m_KDEneonLocales;
+    QStringList m_FreeBSDLocales;
 };
 
 QTEST_MAIN( LocaleTests )
@@ -55,6 +66,12 @@ LocaleTests::~LocaleTests() {}
 void
 LocaleTests::initTestCase()
 {
+    Logger::setupLogLevel( Logger::LOGDEBUG );
+    const auto* settings = Calamares::Settings::instance();
+    if ( !settings )
+    {
+        (void)new Calamares::Settings( true );
+    }
 }
 
 void
@@ -351,6 +368,78 @@ LocaleTests::testLanguageDetectionValencia()
             QStringLiteral( "sr@latin" ), availableLocales, QStringLiteral( "NL" ) );
         QCOMPARE( r.language(), "sr_RS@latin" );
     }
+}
+
+static QStringList
+splitTestFileIntoLines( const QString& filename )
+{
+    // BUILD_AS_TEST is the source-directory path
+    const QFileInfo fi( QString( "%1/tests/%2" ).arg( BUILD_AS_TEST, filename ) );
+    const QString path = fi.absoluteFilePath();
+    QFile testData( path );
+    if ( testData.open( QIODevice::ReadOnly ) )
+    {
+        return QString::fromUtf8( testData.readAll() ).split( '\n', Qt::SkipEmptyParts );
+    }
+    return QStringList {};
+}
+
+void
+LocaleTests::testKDENeonLanguageData()
+{
+    const QStringList neonLocales = splitTestFileIntoLines( QStringLiteral( "locale-data-neon" ) );
+    cDebug() << "Loaded KDE neon locales test data" << neonLocales.front() << "to" << neonLocales.back();
+    QCOMPARE( neonLocales.length(), 318 );  // wc -l tells me 318 lines
+
+    m_KDEneonLocales = neonLocales;
+}
+
+void
+LocaleTests::testLanguageMapping_data()
+{
+    QTest::addColumn< QString >( "selectedLanguage" );
+    QTest::addColumn< QString >( "KDEneonLanguage" );
+
+    // Tired of writing QString or QStringLiteral all the time.
+    auto l = []( const char* p ) { return QString::fromUtf8( p ); };
+
+    // The KDEneon columns include the .UTF-8 from the source data
+    //
+    // Each column shows how a language -- which can be selected from the
+    // welcome page, and is inserted into GS as the language key that
+    // Calamares knows -- should be mapped to a supported system locale.
+    //
+    // All the mappings are for ".. in NL", which can trigger minor variation
+    // if there are languages with a _NL variant (e.g. nl_NL and nl_BE).
+
+    // clang-format off
+    QTest::newRow( "en   " ) << l( "en" )           << l( "en_US.UTF-8" );
+    QTest::newRow( "en_GB" ) << l( "en_GB" )        << l( "en_GB.UTF-8" );
+    QTest::newRow( "ca   " ) << l( "ca" )           << l( "ca_ES.UTF-8" );
+    QTest::newRow( "ca@vl" ) << l( "ca@valencia" )  << l( "ca_ES@valencia" );
+    QTest::newRow( "sr   " ) << l( "sr" )           << l( "sr_RS" );
+    QTest::newRow( "sr@lt" ) << l( "sr@latin" )     << l( "sr_RS@latin" );
+    QTest::newRow( "pt_PT" ) << l( "pt_PT" )        << l( "pt_PT.UTF-8" );
+    QTest::newRow( "pt_BR" ) << l( "pt_BR" )        << l( "pt_BR.UTF-8" );
+    QTest::newRow( "nl   " ) << l( "nl" )           << l( "nl_NL.UTF-8" );
+    QTest::newRow( "zh_TW" ) << l( "zh_TW" )        << l( "zh_TW.UTF-8" );
+    // clang-format on
+}
+
+
+void
+LocaleTests::testLanguageMapping()
+{
+    QVERIFY( !m_KDEneonLocales.isEmpty() );
+
+    QFETCH( QString, selectedLanguage );
+    QFETCH( QString, KDEneonLanguage );
+
+    QVERIFY( Calamares::Locale::availableLanguages().contains( selectedLanguage ) );
+
+    const auto r = LocaleConfiguration::fromLanguageAndLocation(
+        ( selectedLanguage ), m_KDEneonLocales, QStringLiteral( "NL" ) );
+    QCOMPARE( r.language(), KDEneonLanguage );
 }
 
 
