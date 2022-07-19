@@ -50,16 +50,10 @@ private Q_SLOTS:
     void testLanguageDetection();
     void testLanguageDetectionValencia();
 
-    // Check that the test-data is available and ok
-    void testKDENeonLanguageData();
-    void testLocaleNameParts();
-
     // Check realistic language mapping for issue 2008
-    void testLanguageMappingNeon_data();
-    void testLanguageMappingNeon();
-    void testLanguageMappingFreeBSD_data();
-    void testLanguageMappingFreeBSD();
-    void testLanguageSimilarity();
+    void testKDENeonLanguageData();
+    void testLanguageMapping_data();
+    void testLanguageMapping();
 
 private:
     QStringList m_KDEneonLocales;
@@ -397,37 +391,25 @@ splitTestFileIntoLines( const QString& filename )
 void
 LocaleTests::testKDENeonLanguageData()
 {
-    if ( !m_KDEneonLocales.isEmpty() )
-    {
-        return;
-    }
     const QStringList neonLocales = splitTestFileIntoLines( QStringLiteral( "locale-data-neon" ) );
     cDebug() << "Loaded KDE neon locales test data" << neonLocales.front() << "to" << neonLocales.back();
     QCOMPARE( neonLocales.length(), 318 );  // wc -l tells me 318 lines
-    m_KDEneonLocales = neonLocales;
 
-    const QStringList bsdLocales = splitTestFileIntoLines( QStringLiteral( "locale-data-freebsd" ) );
-    cDebug() << "Loaded FreeBSD locales test data" << bsdLocales.front() << "to" << bsdLocales.back();
-    QCOMPARE( bsdLocales.length(), 79 );
-    m_FreeBSDLocales = bsdLocales;
+    m_KDEneonLocales = neonLocales;
 }
 
 void
-LocaleTests::MappingData()
+LocaleTests::testLanguageMapping_data()
 {
     QTest::addColumn< QString >( "selectedLanguage" );
     QTest::addColumn< QString >( "KDEneonLanguage" );
-    QTest::addColumn< QString >( "FreeBSDLanguage" );
 
     // Tired of writing QString or QStringLiteral all the time.
     auto l = []( const char* p ) { return QString::fromUtf8( p ); };
-    auto u = []() { return QString(); };
 
     // The KDEneon columns include the .UTF-8 from the source data
-    // The FreeBSD columns may have u() to indicate "same as KDEneon",
-    //      that's an empty string.
     //
-    // Each row shows how a language -- which can be selected from the
+    // Each column shows how a language -- which can be selected from the
     // welcome page, and is inserted into GS as the language key that
     // Calamares knows -- should be mapped to a supported system locale.
     //
@@ -435,149 +417,33 @@ LocaleTests::MappingData()
     // if there are languages with a _NL variant (e.g. nl_NL and nl_BE).
 
     // clang-format off
-    QTest::newRow( "en   " ) << l( "en" )           << l( "en_US.UTF-8" )       << u();
-    QTest::newRow( "en_GB" ) << l( "en_GB" )        << l( "en_GB.UTF-8" )       << u();
-    QTest::newRow( "ca   " ) << l( "ca" )           << l( "ca_ES.UTF-8" )       << u();
-    // FreeBSD has no Valencian variant
-    QTest::newRow( "ca@vl" ) << l( "ca@valencia" )  << l( "ca_ES@valencia" )    << l( "ca_ES.UTF-8" );
-    // FreeBSD has the UTF-8 marker before the @region part
-    QTest::newRow( "sr   " ) << l( "sr" )           << l( "sr_RS" )             << l( "sr_RS.UTF-8" );
-    QTest::newRow( "sr@lt" ) << l( "sr@latin" )     << l( "sr_RS@latin" )       << l( "sr_RS.UTF-8@latin" );
-    QTest::newRow( "pt_PT" ) << l( "pt_PT" )        << l( "pt_PT.UTF-8" )       << u();
-    QTest::newRow( "pt_BR" ) << l( "pt_BR" )        << l( "pt_BR.UTF-8" )       << u();
-    QTest::newRow( "nl   " ) << l( "nl" )           << l( "nl_NL.UTF-8" )       << u();
-    QTest::newRow( "zh_TW" ) << l( "zh_TW" )        << l( "zh_TW.UTF-8" )       << u();
+    QTest::newRow( "en   " ) << l( "en" )           << l( "en_US.UTF-8" );
+    QTest::newRow( "en_GB" ) << l( "en_GB" )        << l( "en_GB.UTF-8" );
+    QTest::newRow( "ca   " ) << l( "ca" )           << l( "ca_ES.UTF-8" );
+    QTest::newRow( "ca@vl" ) << l( "ca@valencia" )  << l( "ca_ES@valencia" );
+    QTest::newRow( "sr   " ) << l( "sr" )           << l( "sr_RS" );
+    QTest::newRow( "sr@lt" ) << l( "sr@latin" )     << l( "sr_RS@latin" );
+    QTest::newRow( "pt_PT" ) << l( "pt_PT" )        << l( "pt_PT.UTF-8" );
+    QTest::newRow( "pt_BR" ) << l( "pt_BR" )        << l( "pt_BR.UTF-8" );
+    QTest::newRow( "nl   " ) << l( "nl" )           << l( "nl_NL.UTF-8" );
+    QTest::newRow( "zh_TW" ) << l( "zh_TW" )        << l( "zh_TW.UTF-8" );
     // clang-format on
 }
 
 
 void
-LocaleTests::testLanguageMappingNeon_data()
+LocaleTests::testLanguageMapping()
 {
-    MappingData();
-}
-
-void
-LocaleTests::testLanguageMappingFreeBSD_data()
-{
-    MappingData();
-}
-
-void
-LocaleTests::testLanguageMappingNeon()
-{
-    testKDENeonLanguageData();
     QVERIFY( !m_KDEneonLocales.isEmpty() );
 
     QFETCH( QString, selectedLanguage );
     QFETCH( QString, KDEneonLanguage );
-    QFETCH( QString, FreeBSDLanguage );
 
     QVERIFY( Calamares::Locale::availableLanguages().contains( selectedLanguage ) );
 
-    const auto neon = LocaleConfiguration::fromLanguageAndLocation(
+    const auto r = LocaleConfiguration::fromLanguageAndLocation(
         ( selectedLanguage ), m_KDEneonLocales, QStringLiteral( "NL" ) );
-    QCOMPARE( neon.language(), KDEneonLanguage );
-}
-
-void
-LocaleTests::testLanguageMappingFreeBSD()
-{
-    testKDENeonLanguageData();
-    QVERIFY( !m_FreeBSDLocales.isEmpty() );
-
-    QFETCH( QString, selectedLanguage );
-    QFETCH( QString, KDEneonLanguage );
-    QFETCH( QString, FreeBSDLanguage );
-
-    QVERIFY( Calamares::Locale::availableLanguages().contains( selectedLanguage ) );
-
-    const auto bsd = LocaleConfiguration::fromLanguageAndLocation(
-        ( selectedLanguage ), m_FreeBSDLocales, QStringLiteral( "NL" ) );
-    const auto expected = FreeBSDLanguage.isEmpty() ? KDEneonLanguage : FreeBSDLanguage;
-    QCOMPARE( bsd.language(), expected );
-}
-
-void
-LocaleTests::testLocaleNameParts()
-{
-    testKDENeonLanguageData();
-    QVERIFY( !m_FreeBSDLocales.isEmpty() );
-    QVERIFY( !m_KDEneonLocales.isEmpty() );
-
-    // Example constant locales
-    {
-        auto c_parts = LocaleNameParts::fromName( QStringLiteral( "nl_NL.UTF-8" ) );
-        QCOMPARE( c_parts.language, QStringLiteral( "nl" ) );
-        QCOMPARE( c_parts.country, QStringLiteral( "NL" ) );
-        QCOMPARE( c_parts.encoding, QStringLiteral( "UTF-8" ) );
-        QVERIFY( c_parts.region.isEmpty() );
-    }
-    {
-        auto c_parts = LocaleNameParts::fromName( QStringLiteral( "C.UTF-8" ) );
-        QCOMPARE( c_parts.language, QStringLiteral( "C" ) );
-        QVERIFY( c_parts.country.isEmpty() );
-        QCOMPARE( c_parts.encoding, QStringLiteral( "UTF-8" ) );
-        QVERIFY( c_parts.region.isEmpty() );
-    }
-
-    // Check all the loaded test locales
-    for ( const auto& s : m_FreeBSDLocales )
-    {
-        auto parts = LocaleNameParts::fromName( s );
-        QVERIFY( parts.isValid() );
-        QCOMPARE( parts.name(), s );
-    }
-
-    for ( const auto& s : m_KDEneonLocales )
-    {
-        auto parts = LocaleNameParts::fromName( s );
-        QVERIFY( parts.isValid() );
-        QCOMPARE( parts.name(), s );
-    }
-}
-
-void
-LocaleTests::testLanguageSimilarity()
-{
-    // Empty
-    {
-        QCOMPARE( LocaleNameParts().similarity( LocaleNameParts() ), 0 );
-    }
-    // Some simple Dutch situations
-    {
-        auto nl_parts = LocaleNameParts::fromName( QStringLiteral( "nl_NL.UTF-8" ) );
-        auto be_parts = LocaleNameParts::fromName( QStringLiteral( "nl_BE.UTF-8" ) );
-        auto nl_short_parts = LocaleNameParts::fromName( QStringLiteral( "nl" ) );
-        QCOMPARE( nl_parts.similarity( nl_parts ), 100 );
-        QCOMPARE( nl_parts.similarity( LocaleNameParts() ), 0 );
-        QCOMPARE( nl_parts.similarity( be_parts ), 80 );  // Language + (empty) region match
-        QCOMPARE( nl_parts.similarity( nl_short_parts ), 90 );
-    }
-
-    // Everything matches itself
-    {
-        if ( m_KDEneonLocales.isEmpty() )
-        {
-            testKDENeonLanguageData();
-        }
-        QVERIFY( !m_FreeBSDLocales.isEmpty() );
-        QVERIFY( !m_KDEneonLocales.isEmpty() );
-        for ( const auto& l : m_KDEneonLocales )
-        {
-            auto locale_name = LocaleNameParts::fromName( l );
-            auto self_similarity = locale_name.similarity( locale_name );
-            if ( self_similarity != 100 )
-            {
-                cDebug() << "Locale" << l << "is unusual.";
-                if ( l == QStringLiteral( "eo" ) )
-                {
-                    QEXPECT_FAIL( "", "Esperanto has no country to match", Continue );
-                }
-            }
-            QCOMPARE( self_similarity, 100 );
-        }
-    }
+    QCOMPARE( r.language(), KDEneonLanguage );
 }
 
 
