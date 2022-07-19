@@ -138,8 +138,9 @@ if(KPMcore_FOUND)
             partition/PartitionIterator.cpp
             partition/PartitionQuery.cpp
     )
-    target_link_libraries(calamares PRIVATE calamares::kpmcore)
 endif()
+# Always, since this also handles the no-KPMcore case
+target_link_libraries(calamares PRIVATE calamares::kpmcore)
 
 ### LIBRARY
 #
