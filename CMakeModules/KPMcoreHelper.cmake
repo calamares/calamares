@@ -45,7 +45,7 @@ if(NOT KPMcore_searched_for AND NOT TARGET calapmcore)
 
     add_library(calamares::kpmcore ALIAS calapmcore)
 else()
-    if(TARGET calapmcore)
+    if(TARGET kpmcore)
         message(STATUS "KPMcore has already been found")
         set(KPMcore_FOUND TRUE)
     else()
