@@ -165,7 +165,7 @@ globalStoragePartitionInfo( Calamares::GlobalStorage* gs, LOSHInfo& info )
     {
         CalamaresUtils::removeLeading( btrfsRootSubvolume, '/' );
         info.keyfile_device_mount_options
-            = QStringLiteral( "keyfile_device_mount_options=--options=subvol=" ) + btrfsRootSubvolume;
+            = QStringLiteral( "--options=subvol=" ) + btrfsRootSubvolume;
     }
 }
 
