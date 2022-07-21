@@ -10,9 +10,7 @@
 # If KPMcore is not found, still create calamares::kpmcore interface
 # library, which will add definition WITHOUT_KPMcore.
 #
-if(NOT KPMcore_searched_for AND NOT TARGET calapmcore)
-    set(KPMcore_searched_for TRUE)
-
+if(NOT TARGET calapmcore)
     find_package(KPMcore 20.04.0)
     set_package_properties(
         KPMcore
@@ -34,14 +32,11 @@ if(NOT KPMcore_searched_for AND NOT TARGET calapmcore)
 
         target_link_libraries(calapmcore INTERFACE kpmcore Qt5::DBus KF5::I18n KF5::WidgetsAddons)
         target_include_directories(calapmcore INTERFACE ${KPMCORE_INCLUDE_DIR})
-        set(KPMcore_API_DEFINITIONS "")
+        # If there were KPMcore API variations, figure them out here
+        # target_compile_definitions(calapmcore INTERFACE WITH_KPMcore)
     else()
-        set(KPMcore_API_DEFINITIONS WITHOUT_KPMcore)
+        target_compile_definitions(calapmcore INTERFACE WITHOUT_KPMcore)
     endif()
-
-    foreach(d ${KPMcore_API_DEFINITIONS})
-        target_compile_definitions(calapmcore INTERFACE ${d})
-    endforeach()
 
     add_library(calamares::kpmcore ALIAS calapmcore)
 else()
