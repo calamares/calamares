@@ -34,16 +34,18 @@ if(NOT TARGET calapmcore)
         target_include_directories(calapmcore INTERFACE ${KPMCORE_INCLUDE_DIR})
         # If there were KPMcore API variations, figure them out here
         # target_compile_definitions(calapmcore INTERFACE WITH_KPMcore)
-        set_target_properties(calapmcore PROPERTIES KPMcore_FOUND TRUE)
+
+        # Flag that this library has KPMcore support. A variable
+        # set here has the wrong scope. ENV{} would be visible
+        # everywhere but seems the wrong thing to do. Setting
+        # properties on calapmcore requires a newer CMake than
+        # Debian 11 has, so runs into support issues.
+        add_library(calamares::kpmcore ALIAS calapmcore)
     else()
         target_compile_definitions(calapmcore INTERFACE WITHOUT_KPMcore)
-        set_target_properties(calapmcore PROPERTIES KPMcore_FOUND FALSE)
     endif()
-
-    add_library(calamares::kpmcore ALIAS calapmcore)
 else()
-    get_target_property(KPMcore_FOUND calapmcore KPMcore_FOUND)
-    if(KPMcore_FOUND)
+    if(TARGET calamares::kpmcore)
         message(STATUS "KPMcore has already been found")
         set(KPMcore_FOUND TRUE)
     else()
