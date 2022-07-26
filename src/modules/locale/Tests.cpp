@@ -9,6 +9,7 @@
 
 #include "Config.h"
 #include "LocaleConfiguration.h"
+#include "LocaleNames.h"
 #include "timezonewidget/TimeZoneImage.h"
 
 #include "Settings.h"
@@ -49,8 +50,11 @@ private Q_SLOTS:
     void testLanguageDetection();
     void testLanguageDetectionValencia();
 
-    // Check realistic language mapping for issue 2008
+    // Check that the test-data is available and ok
     void testKDENeonLanguageData();
+    void testLocaleNameParts();
+
+    // Check realistic language mapping for issue 2008
     void testLanguageMappingNeon_data();
     void testLanguageMappingNeon();
     void testLanguageMappingFreeBSD_data();
@@ -392,6 +396,10 @@ splitTestFileIntoLines( const QString& filename )
 void
 LocaleTests::testKDENeonLanguageData()
 {
+    if ( !m_KDEneonLocales.isEmpty() )
+    {
+        return;
+    }
     const QStringList neonLocales = splitTestFileIntoLines( QStringLiteral( "locale-data-neon" ) );
     cDebug() << "Loaded KDE neon locales test data" << neonLocales.front() << "to" << neonLocales.back();
     QCOMPARE( neonLocales.length(), 318 );  // wc -l tells me 318 lines
@@ -412,7 +420,7 @@ LocaleTests::MappingData()
 
     // Tired of writing QString or QStringLiteral all the time.
     auto l = []( const char* p ) { return QString::fromUtf8( p ); };
-    auto u = [](){ return QString(); };
+    auto u = []() { return QString(); };
 
     // The KDEneon columns include the .UTF-8 from the source data
     // The FreeBSD columns may have u() to indicate "same as KDEneon",
@@ -442,12 +450,14 @@ LocaleTests::MappingData()
 }
 
 
-void LocaleTests::testLanguageMappingNeon_data()
+void
+LocaleTests::testLanguageMappingNeon_data()
 {
     MappingData();
 }
 
-void LocaleTests::testLanguageMappingFreeBSD_data()
+void
+LocaleTests::testLanguageMappingFreeBSD_data()
 {
     MappingData();
 }
@@ -455,6 +465,7 @@ void LocaleTests::testLanguageMappingFreeBSD_data()
 void
 LocaleTests::testLanguageMappingNeon()
 {
+    testKDENeonLanguageData();
     QVERIFY( !m_KDEneonLocales.isEmpty() );
 
     QFETCH( QString, selectedLanguage );
@@ -471,6 +482,7 @@ LocaleTests::testLanguageMappingNeon()
 void
 LocaleTests::testLanguageMappingFreeBSD()
 {
+    testKDENeonLanguageData();
     QVERIFY( !m_FreeBSDLocales.isEmpty() );
 
     QFETCH( QString, selectedLanguage );
@@ -483,6 +495,45 @@ LocaleTests::testLanguageMappingFreeBSD()
         ( selectedLanguage ), m_FreeBSDLocales, QStringLiteral( "NL" ) );
     const auto expected = FreeBSDLanguage.isEmpty() ? KDEneonLanguage : FreeBSDLanguage;
     QCOMPARE( bsd.language(), expected );
+}
+
+void
+LocaleTests::testLocaleNameParts()
+{
+    testKDENeonLanguageData();
+    QVERIFY( !m_FreeBSDLocales.isEmpty() );
+    QVERIFY( !m_KDEneonLocales.isEmpty() );
+
+    // Example constant locales
+    {
+        auto c_parts = LocaleNameParts::fromName( QStringLiteral( "nl_NL.UTF-8" ) );
+        QCOMPARE( c_parts.language, QStringLiteral( "nl" ) );
+        QCOMPARE( c_parts.country, QStringLiteral( "NL" ) );
+        QCOMPARE( c_parts.encoding, QStringLiteral( "UTF-8" ) );
+        QVERIFY( c_parts.region.isEmpty() );
+    }
+    {
+        auto c_parts = LocaleNameParts::fromName( QStringLiteral( "C.UTF-8" ) );
+        QCOMPARE( c_parts.language, QStringLiteral( "C" ) );
+        QVERIFY( c_parts.country.isEmpty() );
+        QCOMPARE( c_parts.encoding, QStringLiteral( "UTF-8" ) );
+        QVERIFY( c_parts.region.isEmpty() );
+    }
+
+    // Check all the loaded test locales
+    for ( const auto& s : m_FreeBSDLocales )
+    {
+        auto parts = LocaleNameParts::fromName( s );
+        QVERIFY( parts.isValid() );
+        QCOMPARE( parts.name(), s );
+    }
+
+    for ( const auto& s : m_KDEneonLocales )
+    {
+        auto parts = LocaleNameParts::fromName( s );
+        QVERIFY( parts.isValid() );
+        QCOMPARE( parts.name(), s );
+    }
 }
 
 
