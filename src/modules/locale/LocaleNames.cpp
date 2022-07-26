@@ -70,21 +70,3 @@ LocaleNameParts::name() const
             + insertLeadingChar( '@', region );
     }
 }
-
-
-int
-LocaleNameParts::similarity( const LocaleNameParts& other ) const
-{
-    if ( !isValid() || !other.isValid() )
-    {
-        return 0;
-    }
-    if ( language != other.language )
-    {
-        return 0;
-    }
-    const auto matched_region = ( region == other.region ? 30 : 0 );
-    const auto matched_country = ( country == other.country ? ( country.isEmpty() ? 10 : 20 ) : 0 );
-    const auto no_other_country_given = ( ( country != other.country && other.country.isEmpty() ) ? 10 : 0 );
-    return 50 + matched_region + matched_country + no_other_country_given;
-}
