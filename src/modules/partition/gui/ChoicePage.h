@@ -126,6 +126,7 @@ private:
 
     void updateDeviceStatePreview();
     void updateActionChoicePreview( Config::InstallChoice choice );
+    bool shouldShowEncryptWidget( Config::InstallChoice choice ) const;
     void setupActions();
     OsproberEntryList getOsproberEntriesForDevice( Device* device ) const;
     void doAlongsideApply();
@@ -167,7 +168,7 @@ private:
     int m_lastSelectedDeviceIndex = -1;
     int m_lastSelectedActionIndex = -1;
 
-    bool m_enableEncryptionWidget;
+    bool m_enableEncryptionWidget = false;
 
     QMutex m_coreMutex;
 };
