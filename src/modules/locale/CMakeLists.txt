@@ -22,6 +22,7 @@ calamares_add_plugin(locale
         Config.cpp
         LCLocaleDialog.cpp
         LocaleConfiguration.cpp
+        LocaleNames.cpp
         LocalePage.cpp
         LocaleViewStep.cpp
         SetTimezoneJob.cpp
@@ -39,15 +40,7 @@ calamares_add_plugin(locale
 
 calamares_add_test(
     localetest
-    SOURCES
-        Tests.cpp
-        Config.cpp
-        LocaleConfiguration.cpp
-        SetTimezoneJob.cpp
-        timezonewidget/TimeZoneImage.cpp
-    DEFINITIONS
-        SOURCE_DIR="${CMAKE_CURRENT_LIST_DIR}/images"
-        DEBUG_TIMEZONES=1
-    LIBRARIES
-        Qt5::Gui
+    SOURCES Tests.cpp Config.cpp LocaleConfiguration.cpp LocaleNames.cpp SetTimezoneJob.cpp timezonewidget/TimeZoneImage.cpp
+    DEFINITIONS SOURCE_DIR="${CMAKE_CURRENT_LIST_DIR}/images" DEBUG_TIMEZONES=1
+    LIBRARIES Qt5::Gui
 )
