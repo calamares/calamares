@@ -145,8 +145,8 @@ getWidgetSidebar( Calamares::DebugWindowManager* debug,
         CALAMARES_RETRANSLATE_FOR(
             aboutDialog,
             aboutDialog->setText(
-                QCoreApplication::translate( CalamaresWindow::staticMetaObject.className(), "About" ) );
-            aboutDialog->setToolTip( QCoreApplication::translate( CalamaresWindow::staticMetaObject.className(),
+                QCoreApplication::translate( "calamares-sidebar", "About" ) );
+            aboutDialog->setToolTip( QCoreApplication::translate( "calamares-sidebar",
                                                                   "Show information about Calamares" ) ); );
         extraButtons->addWidget( aboutDialog );
         aboutDialog->setFlat( true );
@@ -161,9 +161,9 @@ getWidgetSidebar( Calamares::DebugWindowManager* debug,
             CalamaresUtils::Bugs, CalamaresUtils::Original, 2 * QSize( defaultFontHeight, defaultFontHeight ) ) );
         CALAMARES_RETRANSLATE_FOR( debugWindowBtn,
                                    debugWindowBtn->setText( QCoreApplication::translate(
-                                       CalamaresWindow::staticMetaObject.className(), "Debug" ) );
+                                       "calamares-sidebar", "Debug" ) );
                                    debugWindowBtn->setToolTip( QCoreApplication::translate(
-                                       CalamaresWindow::staticMetaObject.className(), "Show debug information" ) ); );
+                                       "calamares-sidebar", "Show debug information" ) ); );
         extraButtons->addWidget( debugWindowBtn );
         debugWindowBtn->setFlat( true );
         debugWindowBtn->setCheckable( true );
