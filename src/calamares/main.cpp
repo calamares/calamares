@@ -107,6 +107,7 @@ handle_args( CalamaresApplication& a )
 int
 main( int argc, char* argv[] )
 {
+    QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     CalamaresApplication a( argc, argv );
 
     KAboutData aboutData( "calamares",
