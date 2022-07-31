@@ -431,11 +431,13 @@ class PMPacman(PackageManager):
                     libcalamares.utils.target_env_process_output(command)
 
                 return
-            except subprocess.CalledProcessError:
+            except subprocess.CalledProcessError:		
                 if pacman_count <= self.pacman_num_retries:
+                    libcalamares.utils.debug("Pacman failed... Retrying...")
                     if self.pacman_pre_retry_scripts is not None: 
                         self._run_pacman_pre_retry_scripts()
                 else:
+                    libcalamares.utils.debug("Pacman failed... Maximum retries exceeded...")
                     raise
 
     def _run_pacman_pre_retry_scripts(self):
@@ -445,7 +447,10 @@ class PMPacman(PackageManager):
             self.pacman_pre_retry_scripts = [ self.pacman_pre_retry_scripts ]
 
         for script in self.pacman_pre_retry_scripts:
-            libcalamares.utils.target_env_process_output(shlex.split(script))
+            try: 
+                libcalamares.utils.target_env_process_output(shlex.split(script))
+            except: 
+                libcalamares.utils.debug("Pre-Retry script execution failed... Proceeding...")
 
     def install(self, pkgs, from_local=False):
         command = ["pacman"]
