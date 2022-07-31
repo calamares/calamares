@@ -404,6 +404,7 @@ class PMPacman(PackageManager):
             libcalamares.utils.warning("Job configuration *pacman* will be ignored.")
             pacman = dict()
         self.pacman_num_retries = pacman.get("num_retries", 0)
+        self.pacman_pre_retry_scripts = pacman.get("pre_retry_scripts", None)
         self.pacman_disable_timeout = pacman.get("disable_download_timeout", False)
         self.pacman_needed_only = pacman.get("needed_only", False)
 
@@ -432,9 +433,19 @@ class PMPacman(PackageManager):
                 return
             except subprocess.CalledProcessError:
                 if pacman_count <= self.pacman_num_retries:
-                    pass
+                    if self.pacman_pre_retry_scripts is not None: 
+                        self._run_pacman_pre_retry_scripts()
                 else:
                     raise
+
+    def _run_pacman_pre_retry_scripts(self):
+        import shlex
+
+        if isinstance(self.pacman_pre_retry_scripts, str):
+            self.pacman_pre_retry_scripts = [ self.pacman_pre_retry_scripts ]
+
+        for script in self.pacman_pre_retry_scripts:
+            libcalamares.utils.target_env_process_output(shlex.split(script))
 
     def install(self, pkgs, from_local=False):
         command = ["pacman"]

@@ -31,6 +31,7 @@ properties:
         type: object
         properties:
             num_retries: { type: integer, default: 0 }
+            pre_retry_scripts: { type: array }
             disable_download_timeout: { type: boolean, default: false }
             needed_only: { type: boolean, default: false }
 
