@@ -6,18 +6,18 @@
     <message>
       <location filename="../src/libcalamares/CalamaresAbout.cpp" line="17"/>
       <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt; for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;para %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/CalamaresAbout.cpp" line="20"/>
       <source>Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-      <translation type="unfinished"/>
+      <translation>Gracias al &lt;a href="https://calamares.io/team/"&gt;equipo de Calamares&lt;/a&gt; y al &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;equipo de traductores de Calamares&lt;/a&gt;. &lt;br/&gt;&lt;br/&gt;El desarrollo de &lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; está patrocinado por &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt;- Liberador de Software.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/CalamaresAbout.cpp" line="38"/>
       <source>Copyright %1-%2 %3 &amp;lt;%4&amp;gt;&lt;br/&gt;</source>
       <extracomment>Copyright year-year Name &lt;email-address&gt;</extracomment>
-      <translation type="unfinished"/>
+      <translation>Copyright %1-%2 %3 &amp;lt;%4&amp;gt;&lt;br/&gt;</translation>
     </message>
   </context>
   <context>
@@ -1455,12 +1455,12 @@ El instalador se cerrará y todos tus cambios se perderán.</translation>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="259"/>
       <source>Passphrase for existing partition</source>
-      <translation type="unfinished"/>
+      <translation>Frase de contraseña para la partición existente</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="260"/>
       <source>Partition %1 could not be decrypted with the given passphrase.&lt;br/&gt;&lt;br/&gt;Edit the partition again and give the correct passphrase or delete and create a new encrypted partition.</source>
-      <translation type="unfinished"/>
+      <translation>La partición %1 no se pudo descifrar con la frase de contraseña proporcionada. Edite la partición nuevamente y proporcione la frase de contraseña correcta o elimine y cree una nueva partición cifrada.</translation>
     </message>
   </context>
   <context>

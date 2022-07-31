@@ -451,7 +451,7 @@ Ligação copiada para a área de transferência</translation>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="403"/>
       <source>&amp;Done</source>
-      <translation>&amp;Feito</translation>
+      <translation>&amp;Concluído</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="422"/>
@@ -524,7 +524,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="32"/>
       <source>Set filesystem label on %1.</source>
-      <translation>A definir a identificação do sistema de ficheiros em %1</translation>
+      <translation>A definir a identificação do sistema de ficheiros em %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="39"/>
@@ -603,7 +603,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1226"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-      <translation>Nenhuma partição de sistema EFI foi encontrada neste sistema. Por favor volte atrás e use o particionamento manual para configurar %1.</translation>
+      <translation>Nenhuma partição de sistema EFI foi encontrada neste sistema. Volte atrás e use o particionamento manual para configurar %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1234"/>
@@ -705,7 +705,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="272"/>
       <source>Successfully unmounted %1.</source>
-      <translation>% 1 desmontado com sucesso.</translation>
+      <translation>%1 desmontado com sucesso.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="279"/>
@@ -715,17 +715,17 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="305"/>
       <source>Successfully cleared swap %1.</source>
-      <translation>Swap % 1 limpa com sucesso.</translation>
+      <translation>Swap %1 limpa com sucesso.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="319"/>
       <source>Successfully closed mapper device %1.</source>
-      <translation>Dispositivo mapeador % 1 fechado com sucesso.</translation>
+      <translation>Dispositivo mapeador %1 fechado com sucesso.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="332"/>
       <source>Successfully disabled volume group %1.</source>
-      <translation>Grupo de volume % 1 desativado com sucesso.</translation>
+      <translation>Grupo de volume %1 desativado com sucesso.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="371"/>
@@ -980,7 +980,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
       <location filename="../src/modules/packagechooser/Config.cpp" line="113"/>
       <source>Please pick a product from the list. The selected product will be installed.</source>
-      <translation>Por favor, escolha um produto da lista. O produto selecionado será instalado.</translation>
+      <translation>Escolha um produto da lista. O produto selecionado será instalado.</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/Config.cpp" line="243"/>
@@ -1046,7 +1046,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="71"/>
       <source>Primar&amp;y</source>
-      <translation>Principal</translation>
+      <translation>Pri&amp;mária</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="81"/>
@@ -1106,7 +1106,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
       <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="91"/>
       <source>Mountpoint already in use. Please select another one.</source>
-      <translation>Ponto de montagem já em uso. Por favor selecione outro.</translation>
+      <translation>Ponto de montagem já em uso. Selecione outro.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="96"/>
@@ -1341,7 +1341,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="80"/>
       <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. GPT is recommended in most other cases.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MBR partition table is an obsolete MS-DOS era standard.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.</source>
-      <translation>&lt;br&gt;&lt;br&gt;Este tipo de tabela de partições é aconselhável apenas em sistemas mais antigos que iniciam a partir de um ambiente de arranque &lt;strong&gt;BIOS&lt;/strong&gt;. GPT é recomendado na maior parte dos outros casos.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Aviso:&lt;/strong&gt; A tabela de partições MBR é um standard obsoleto da era MS-DOS.&lt;br&gt;Apenas 4 partições &lt;em&gt;primárias&lt;/em&gt; podem ser criadas, e dessa 4, apenas uma pode ser partição &lt;em&gt;estendida&lt;/em&gt;, que por sua vez podem ser tornadas em várias partições &lt;em&gt;lógicas&lt;/em&gt;.</translation>
+      <translation>&lt;br&gt;&lt;br&gt;Este tipo de tabela de partições é aconselhável apenas em sistemas mais antigos que iniciam a partir de um ambiente de arranque &lt;strong&gt;BIOS&lt;/strong&gt;. GPT é recomendado na maior parte dos outros casos.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Aviso:&lt;/strong&gt; A tabela de partições MBR é um padrão obsoleto da era MS-DOS.&lt;br&gt;Apenas 4 partições &lt;em&gt;primárias&lt;/em&gt; podem ser criadas, e dessas 4, apenas uma pode ser partição &lt;em&gt;estendida&lt;/em&gt;, que por sua vez podem ser tornadas em várias partições &lt;em&gt;lógicas&lt;/em&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="151"/>
@@ -1494,7 +1494,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
       <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="156"/>
       <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="166"/>
       <source>Please enter the same passphrase in both boxes.</source>
-      <translation>Por favor insira a mesma frase-passe em ambas as caixas.</translation>
+      <translation>Introduza a mesma frase-passe em ambas as caixas.</translation>
     </message>
   </context>
   <context>
@@ -1593,7 +1593,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="87"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
-      <translation>&lt;h1&gt;Tudo feito&lt;/h1&gt;&lt;br/&gt;%1 foi instalado no seu computador.&lt;br/&gt;Pode agora reiniciar para o seu novo sistema, ou continuar a usar o %2 ambiente Live.</translation>
+      <translation>&lt;h1&gt;Tudo concluído&lt;/h1&gt;&lt;br/&gt;%1 foi instalado no seu computador.&lt;br/&gt;Pode agora reiniciar para o seu novo sistema, ou continuar a usar o %2 ambiente Live.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="92"/>
@@ -1789,7 +1789,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
       <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="47"/>
       <source>Please install KDE Konsole and try again!</source>
-      <translation>Por favor instale a consola KDE e tente novamente!</translation>
+      <translation>Instale o Konsole do KDE e tente novamente!</translation>
     </message>
     <message>
       <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="118"/>
@@ -2585,7 +2585,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
       <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="26"/>
       <source>Please pick a product from the list. The selected product will be installed.</source>
-      <translation>Por favor, escolha um produto da lista. O produto selecionado será instalado.</translation>
+      <translation>Escolha um produto da lista. O produto selecionado será instalado.</translation>
     </message>
   </context>
   <context>
@@ -2875,7 +2875,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="264"/>
       <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
-      <translation>A tabela de partições em %1 já tem %2 partições primárias, e não podem ser adicionadas mais. Em vez disso, por favor remova uma partição primária e adicione uma partição estendida.</translation>
+      <translation>A tabela de partições em %1 já tem %2 partições primárias, e não podem ser adicionadas mais. Em vez disso, remova uma partição primária e adicione uma partição estendida.</translation>
     </message>
   </context>
   <context>
@@ -3015,7 +3015,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="84"/>
       <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is installed. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
-      <translation>Por favor escolha a aparência para o Ambiente de Trabalho KDE Plasma. Pode também saltar este passo e configurar a aparência uma vez instalado o sistema. Ao clicar numa seleção de aparência irá ter uma pré-visualização ao vivo dessa aparência.</translation>
+      <translation>Escolha a aparência para o Ambiente de trabalho KDE Plasma. Pode também saltar este passo e configurar a aparência uma vez instalado o sistema. Ao clicar numa seleção de aparência irá ter uma pré-visualização ao vivo dessa aparência.</translation>
     </message>
   </context>
   <context>
@@ -3248,12 +3248,12 @@ Saída de Dados:
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="158"/>
       <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
-      <translation>%1 não pode ser instalado no espaço vazio. Por favor selecione uma partição existente.</translation>
+      <translation>%1 não pode ser instalado no espaço vazio. Selecione uma partição existente.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="168"/>
       <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
-      <translation>%1 não pode ser instalado numa partição estendida. Por favor selecione uma partição primária ou lógica existente.</translation>
+      <translation>%1 não pode ser instalado numa partição estendida. Selecione uma partição primária ou lógica existente.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="178"/>
@@ -3278,12 +3278,12 @@ Saída de Dados:
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="220"/>
       <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
-      <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;A partição %1 é demasiado pequena para %2. Por favor selecione uma partição com pelo menos %3 GiB de capacidade.</translation>
+      <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;A partição %1 é demasiado pequena para %2. Selecione uma partição com pelo menos %3 GiB de capacidade.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="242"/>
       <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-      <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Uma partição de sistema EFI não pode ser encontrada em nenhum sítio neste sistema. Por favor volte atrás e use o particionamento manual para instalar %1.</translation>
+      <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Uma partição de sistema EFI não pode ser encontrada em nenhum sítio neste sistema. Volte atrás e use o particionamento manual para instalar %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="253"/>
@@ -3444,7 +3444,7 @@ Saída de Dados:
     <message>
       <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="138"/>
       <source>For best results, please ensure that this computer:</source>
-      <translation>Para melhores resultados, por favor certifique-se que este computador:</translation>
+      <translation>Para melhores resultados, certifique-se que este computador:</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="139"/>
@@ -3877,7 +3877,7 @@ Saída de Dados:
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="95"/>
       <source>Tracking helps %1 to see how often it is installed, what hardware it is installed on and which applications are used. To see what will be sent, please click the help icon next to each area.</source>
-      <translation>O rastreio ajuda %1 a ver quão frequentemente ele é instalado, em qual hardware ele é instalado e quais aplicações são utilizadas. Para ver o que será enviado, por favor, clique no ícone de ajuda próximo a cada área.</translation>
+      <translation>O rastreio ajuda %1 a ver quão frequentemente ele é instalado, em qual hardware ele é instalado e quais aplicações são utilizadas. Para ver o que será enviado, clique no ícone de ajuda próximo a cada área.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="100"/>
@@ -4113,7 +4113,7 @@ Saída de Dados:
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="162"/>
       <source>Failed to create zpool on </source>
-      <translation>Falha ao criar zpool on</translation>
+      <translation>Falha ao criar zpool em </translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="180"/>
@@ -4144,7 +4144,7 @@ Saída de Dados:
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="330"/>
       <source>The output was: </source>
-      <translation>O resultado foi:</translation>
+      <translation>O resultado foi: </translation>
     </message>
   </context>
   <context>
