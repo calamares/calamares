@@ -4,8 +4,8 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Guilherme Marçal Silva, 2022
-# André Marcelo Alvarenga <alvarenga@kde.org>, 2022
+# André Marcelo Alvarenga <alvarenga@kde.org>, 2020
+# Guilherme MS, 2022
 # 
 #, fuzzy
 msgid ""
@@ -14,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-29 16:17+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: André Marcelo Alvarenga <alvarenga@kde.org>, 2022\n"
+"Last-Translator: Guilherme MS, 2022\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/calamares/teams/20061/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"

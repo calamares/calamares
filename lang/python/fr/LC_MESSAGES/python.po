@@ -6,12 +6,12 @@
 # Translators:
 # Paul Combal <abonnementspaul@gmail.com>, 2017
 # Abdellah B <bahassinea@gmail.com>, 2017
+# Aestan <anthony.margerand@protonmail.com>, 2018
 # Aurnytoraink <adressetempo@aurny2mail.ddns.net>, 2018
 # a270031086f2a0d3514bc0cb507b48f6, 2019
 # Seboss666 <sebastien_verdet@seboss666.info>, 2019
 # Florian B <florianb3522@gmail.com>, 2019
 # Arnaud Ferraris <arnaud.ferraris@gmail.com>, 2019
-# Aestan <anthony.margerand@protonmail.com>, 2022
 # roxfr <roxfr@outlook.fr>, 2022
 # 
 #, fuzzy

@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# හෙළබස, 2021
+# හෙළබස සමූහය, 2021
 # Sandaruwan Samaraweera, 2022
 # 
 #, fuzzy
