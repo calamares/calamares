@@ -57,11 +57,6 @@ function( extend_version version short_only short_var long_var )
     set( ${short_var} "${version}" PARENT_SCOPE )
     set( _v "${version}" )
     if ( NOT short_only )
-        # Additional info for non-release builds which want "long" version info
-        # with date and git information (commit, dirty status). That is used only
-        # by CalamaresVersionX.h, which is included by consumers that need a full
-        # version number with all that information; normal consumers can include
-        # CalamaresVersion.h with more stable numbers.
         string( TIMESTAMP CALAMARES_VERSION_DATE "%Y%m%d" )
         if( CALAMARES_VERSION_DATE GREATER 0 )
             set( _v ${_v}.${CALAMARES_VERSION_DATE} )

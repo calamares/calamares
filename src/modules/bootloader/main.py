@@ -393,28 +393,28 @@ class phraseEfi(object):
 
 def get_efi_suffix_generator(name):
     """
-    Handle EFI bootloader Ids with @@<something>@@ for suffix-processing.
+    Handle EFI bootloader Ids with ${<something>} for suffix-processing.
     """
-    if "@@" not in name:
-        raise ValueError("Misplaced call to get_efi_suffix_generator, no @@")
-    parts = name.split("@@")
-    if len(parts) != 3:
-        raise ValueError("EFI Id {!r} is malformed".format(name))
-    if parts[2]:
-        # Supposed to be empty because the string ends with "@@"
-        raise ValueError("EFI Id {!r} is malformed".format(name))
-    if parts[1] not in ("SERIAL", "RANDOM", "PHRASE"):
-        raise ValueError("EFI suffix {!r} is unknown".format(parts[1]))
+    if "${" not in name:
+        raise ValueError("Misplaced call to get_efi_suffix_generator, no ${}")
+    if not name.endswith("}"):
+        raise ValueError("Misplaced call to get_efi_suffix_generator, no trailing ${}")
+    if name.count("${") > 1:
+        raise ValueError("EFI ID {!r} contains multiple generators".format(name))
+    import re
+    prefix, generator_name = re.match("(.*)\${([^}]*)}$", name).groups()
+    if generator_name not in ("SERIAL", "RANDOM", "PHRASE"):
+        raise ValueError("EFI suffix {!r} is unknown".format(generator_name))
 
     generator = None
-    if parts[1] == "SERIAL":
-        generator = serialEfi(parts[0])
-    elif parts[1] == "RANDOM":
-        generator = randomEfi(parts[0])
-    elif parts[1] == "PHRASE":
-        generator = phraseEfi(parts[0])
+    if generator_name == "SERIAL":
+        generator = serialEfi(prefix)
+    elif generator_name == "RANDOM":
+        generator = randomEfi(prefix)
+    elif generator_name == "PHRASE":
+        generator = phraseEfi(prefix)
     if generator is None:
-        raise ValueError("EFI suffix {!r} is unsupported".format(parts[1]))
+        raise ValueError("EFI suffix {!r} is unsupported".format(generator_name))
 
     return generator
 
@@ -422,10 +422,10 @@ def get_efi_suffix_generator(name):
 def change_efi_suffix(efi_directory, bootloader_id):
     """
     Returns a label based on @p bootloader_id that is usable within
-    @p efi_directory. If there is a @@<something>@@ suffix marker
+    @p efi_directory. If there is a ${<something>} suffix marker
     in the given id, tries to generate a unique label.
     """
-    if bootloader_id.endswith("@@"):
+    if bootloader_id.endswith("}") and "${" in bootloader_id:
         # Do 10 attempts with any suffix generator
         g = suffix_iterator(10, get_efi_suffix_generator(bootloader_id))
     else:

@@ -72,7 +72,7 @@ fromComponent( AppStream::Component& component )
     map.insert( "name", en_name );
     map.insert( "description", en_description );
 
-    for ( const QString& locale : CalamaresUtils::Locale::availableTranslations()->localeIds() )
+    for ( const QString& locale : Calamares::Locale::availableTranslations()->localeIds() )
     {
         component.setActiveLocale( locale );
         QString name = component.name();

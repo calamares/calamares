@@ -15,6 +15,7 @@
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/CommandList.h"
 #include "utils/Logger.h"
+#include "utils/StringExpander.h"
 #include "utils/Units.h"
 
 #include <QFile>
@@ -37,7 +38,8 @@ atReplacements( QString s )
         user = gs->value( "username" ).toString();
     }
 
-    return s.replace( "@@ROOT@@", root ).replace( "@@USER@@", user );
+    Calamares::String::DictionaryExpander d;
+    return d.add( QStringLiteral( "ROOT" ), root ).add( QStringLiteral( "USER" ), user ).expand( s );
 }
 
 PreserveFiles::PreserveFiles( QObject* parent )

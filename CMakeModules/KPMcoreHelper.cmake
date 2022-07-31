@@ -7,21 +7,49 @@
 #
 # Finds KPMcore and consistently sets API flags based on the version.
 #
-if ( NOT KPMcore_searched_for )
-    set( KPMcore_searched_for TRUE )
-
-    find_package( KPMcore 21.12.0 )
+# If KPMcore is not found, still create calamares::kpmcore interface
+# library, which will add definition WITHOUT_KPMcore.
+#
+if(NOT TARGET calapmcore)
+    find_package(KPMcore 20.04.0)
     set_package_properties(
-        KPMcore PROPERTIES
+        KPMcore
+        PROPERTIES
         URL "https://invent.kde.org/kde/kpmcore"
         DESCRIPTION "KDE Partitioning library"
         TYPE RECOMMENDED
         PURPOSE "For disk partitioning support"
     )
 
-    if( KPMcore_FOUND )
-        set( KPMcore_API_DEFINITIONS "" )
+    # Create an internal Calamares interface to KPMcore
+    # and give it a nice alias name. If kpmcore is not found,
+    # then make a "no KPMcore" library.
+    add_library(calapmcore INTERFACE)
+
+    if(KPMcore_FOUND)
+        find_package(Qt5 REQUIRED DBus) # Needed for KPMCore
+        find_package(KF5 REQUIRED I18n WidgetsAddons) # Needed for KPMCore
+
+        target_link_libraries(calapmcore INTERFACE kpmcore Qt5::DBus KF5::I18n KF5::WidgetsAddons)
+        target_include_directories(calapmcore INTERFACE ${KPMCORE_INCLUDE_DIR})
+        # If there were KPMcore API variations, figure them out here
+        # target_compile_definitions(calapmcore INTERFACE WITH_KPMcore)
+
+        # Flag that this library has KPMcore support. A variable
+        # set here has the wrong scope. ENV{} would be visible
+        # everywhere but seems the wrong thing to do. Setting
+        # properties on calapmcore requires a newer CMake than
+        # Debian 11 has, so runs into support issues.
+        add_library(calamares::kpmcore ALIAS calapmcore)
     else()
-        set( KPMcore_API_DEFINITIONS WITHOUT_KPMcore )
+        target_compile_definitions(calapmcore INTERFACE WITHOUT_KPMcore)
+    endif()
+else()
+    if(TARGET calamares::kpmcore)
+        message(STATUS "KPMcore has already been found")
+        set(KPMcore_FOUND TRUE)
+    else()
+        message(STATUS "KPMcore has been searched-for and not found")
+        set(KPMcore_FOUND FALSE)
     endif()
 endif()

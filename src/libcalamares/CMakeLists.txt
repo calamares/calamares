@@ -17,6 +17,21 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/CalamaresConfig.h.in ${CMAKE_CURRENT_
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/CalamaresVersion.h.in ${CMAKE_CURRENT_BINARY_DIR}/CalamaresVersion.h)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/CalamaresVersionX.h.in ${CMAKE_CURRENT_BINARY_DIR}/CalamaresVersionX.h)
 
+# Map the available translations names into a suitable constexpr list
+# of names in C++. This gets us Calamares::Locale::availableLanguages,
+# a QStringList of names.
+set(_names_tu "#ifndef CALAMARES_TRANSLATIONS_H
+#define CALAMARES_TRANSLATIONS_H
+#include <QStringList>
+namespace {
+static const QStringList availableLanguageList{
+")
+foreach( l ${CALAMARES_TRANSLATION_LANGUAGES})
+    string(APPEND _names_tu "\"${l}\",\n")
+endforeach()
+string(APPEND _names_tu "};\n} // namespace\n#endif\n\n")
+file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/CalamaresTranslations.cc "${_names_tu}")
+
 add_library(
     calamares
     SHARED
@@ -115,13 +130,6 @@ endif()
 include(KPMcoreHelper)
 
 if(KPMcore_FOUND)
-    find_package(Qt5 REQUIRED DBus) # Needed for KPMCore
-    find_package(KF5 REQUIRED I18n WidgetsAddons) # Needed for KPMCore
-
-    foreach(d ${KPMcore_API_DEFINITIONS})
-        add_definitions(-D${d})
-    endforeach()
-    include_directories(${KPMCORE_INCLUDE_DIR})
     target_sources(
         calamares
         PRIVATE
@@ -130,8 +138,11 @@ if(KPMcore_FOUND)
             partition/PartitionIterator.cpp
             partition/PartitionQuery.cpp
     )
-    target_link_libraries(calamares PRIVATE kpmcore)
 endif()
+# Always, since this also handles the no-KPMcore case; we don't
+# call it calamares::kpmcore because that name exists only
+# when KPMcore is actually found.
+target_link_libraries(calamares PRIVATE calapmcore)
 
 ### LIBRARY
 #
@@ -245,8 +256,8 @@ calamares_add_test(libcalamaresnetworktest SOURCES network/Tests.cpp)
 calamares_add_test(libcalamarespackagestest SOURCES packages/Tests.cpp)
 
 if(KPMcore_FOUND)
-    calamares_add_test(libcalamarespartitiontest SOURCES partition/Global.cpp partition/Tests.cpp LIBRARIES kpmcore)
-    calamares_add_test(libcalamarespartitionkpmtest SOURCES partition/KPMTests.cpp LIBRARIES kpmcore)
+    calamares_add_test(libcalamarespartitiontest SOURCES partition/Global.cpp partition/Tests.cpp LIBRARIES calamares::kpmcore)
+    calamares_add_test(libcalamarespartitionkpmtest SOURCES partition/KPMTests.cpp LIBRARIES calamares::kpmcore)
 endif()
 
 calamares_add_test(libcalamaresutilstest SOURCES utils/Tests.cpp utils/Runner.cpp)

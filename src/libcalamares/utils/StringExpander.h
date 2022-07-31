@@ -48,6 +48,14 @@ public:
     virtual ~DictionaryExpander() override;
 
     void insert( const QString& key, const QString& value );
+    /** @brief As insert(), but supports method-chaining.
+     *
+     */
+    DictionaryExpander& add( const QString& key, const QString& value )
+    {
+        insert( key, value );
+        return *this;
+    }
 
     void clearErrors();
     bool hasErrors() const;

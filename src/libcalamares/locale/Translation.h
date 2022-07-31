@@ -18,7 +18,7 @@
 #include <QObject>
 #include <QString>
 
-namespace CalamaresUtils
+namespace Calamares
 {
 namespace Locale
 {
@@ -124,6 +124,6 @@ operator==( const Translation::Id& lhs, const Translation::Id& rhs )
 }
 
 }  // namespace Locale
-}  // namespace CalamaresUtils
+}  // namespace Calamares
 
 #endif

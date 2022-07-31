@@ -19,6 +19,7 @@
 #define PARTITION_FILESYSTEM_H
 
 #include "DllMacro.h"
+#include "partition/Global.h"
 
 #include <kpmcore/fs/filesystem.h>
 
@@ -70,6 +71,28 @@ userVisibleFS( FileSystem* fs )
     return fs ? userVisibleFS( *fs ) : QString();
 }
 
+/** @brief Mark a particular filesystem type as used (or not)
+ *
+ * See useFilesystemGS(const QString&, bool); this method uses the filesystem type
+ * enumeration to pick the name. (The other implementation is in `Global.h`
+ * because it touches Global Storage, but this one needs KPMcore)
+ */
+inline void
+useFilesystemGS( FileSystem::Type filesystem, bool used )
+{
+    useFilesystemGS( untranslatedFS( filesystem ), used );
+}
+
+/* @brief Reads from global storage whether the typesystem type is used
+ *
+ * See isFilesystemUsedGS(const QString&). (The other implementation is in `Global.h`
+ * because it touches Global Storage, but this one needs KPMcore)
+ */
+inline bool
+isFilesystemUsedGS( FileSystem::Type filesystem )
+{
+    return isFilesystemUsedGS( untranslatedFS( filesystem ) );
+}
 
 }  // namespace Partition
 }  // namespace CalamaresUtils

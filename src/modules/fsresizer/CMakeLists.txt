@@ -9,7 +9,7 @@ find_package(KF5WidgetsAddons CONFIG)
 
 include(KPMcoreHelper)
 
-if(KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND)
+if(KPMcore_FOUND)
     include_directories(${KPMCORE_INCLUDE_DIR} ${CMAKE_SOURCE_DIR}/src/modules/partition)
 
     # The PartitionIterator is a small class, and it's easiest -- but also a
@@ -20,7 +20,7 @@ if(KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND)
         SOURCES
             ResizeFSJob.cpp
         LINK_PRIVATE_LIBRARIES
-            kpmcore
+            calamares::kpmcore
         COMPILE_DEFINITIONS ${KPMcore_API_DEFINITIONS}
         SHARED_LIB
     )

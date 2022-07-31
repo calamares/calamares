@@ -14,6 +14,7 @@
 #include "IDJob.h"
 
 #include "utils/Retranslator.h"
+#include "utils/StringExpander.h"
 #include "utils/Variant.h"
 
 #include <QDate>
@@ -82,14 +83,10 @@ OEMViewStep::isAtEnd() const
 static QString
 substitute( QString s )
 {
-    QString t_date = QStringLiteral( "@@DATE@@" );
-    if ( s.contains( t_date ) )
-    {
-        auto date = QDate::currentDate();
-        s = s.replace( t_date, date.toString( Qt::ISODate ) );
-    }
+    Calamares::String::DictionaryExpander d;
+    d.insert( QStringLiteral( "DATE" ), QDate::currentDate().toString( Qt::ISODate ) );
 
-    return s;
+    return d.expand( s );
 }
 
 void

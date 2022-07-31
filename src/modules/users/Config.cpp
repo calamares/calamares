@@ -18,9 +18,8 @@
 #include "JobQueue.h"
 #include "utils/Logger.h"
 #include "utils/String.h"
+#include "utils/StringExpander.h"
 #include "utils/Variant.h"
-
-#include <KMacroExpander>
 
 #include <QCoreApplication>
 #include <QFile>
@@ -415,20 +414,20 @@ invalidEmpty( const QString& s )
 STATICTEST QString
 makeHostnameSuggestion( const QString& templateString, const QStringList& fullNameParts, const QString& loginName )
 {
-    QHash< QString, QString > replace;
+    Calamares::String::DictionaryExpander d;
     // User data
-    replace.insert( QStringLiteral( "first" ),
-                    invalidEmpty( fullNameParts.isEmpty() ? QString() : cleanupForHostname( fullNameParts.first() ) ) );
-    replace.insert( QStringLiteral( "name" ), invalidEmpty( cleanupForHostname( fullNameParts.join( QString() ) ) ) );
-    replace.insert( QStringLiteral( "login" ), invalidEmpty( cleanupForHostname( loginName ) ) );
-    // Hardware data
-    replace.insert( QStringLiteral( "product" ), guessProductName() );
-    replace.insert( QStringLiteral( "product2" ), cleanupForHostname( QSysInfo::prettyProductName() ) );
-    replace.insert( QStringLiteral( "cpu" ), cleanupForHostname( QSysInfo::currentCpuArchitecture() ) );
-    // Hostname data
-    replace.insert( QStringLiteral( "host" ), invalidEmpty( cleanupForHostname( QSysInfo::machineHostName() ) ) );
+    d.add( QStringLiteral( "first" ),
+           invalidEmpty( fullNameParts.isEmpty() ? QString() : cleanupForHostname( fullNameParts.first() ) ) )
+        .add( QStringLiteral( "name" ), invalidEmpty( cleanupForHostname( fullNameParts.join( QString() ) ) ) )
+        .add( QStringLiteral( "login" ), invalidEmpty( cleanupForHostname( loginName ) ) )
+        // Hardware data
+        .add( QStringLiteral( "product" ), guessProductName() )
+        .add( QStringLiteral( "product2" ), cleanupForHostname( QSysInfo::prettyProductName() ) )
+        .add( QStringLiteral( "cpu" ), cleanupForHostname( QSysInfo::currentCpuArchitecture() ) )
+        // Hostname data
+        .add( QStringLiteral( "host" ), invalidEmpty( cleanupForHostname( QSysInfo::machineHostName() ) ) );
 
-    QString hostnameSuggestion = KMacroExpander::expandMacros( templateString, replace, '$' );
+    QString hostnameSuggestion = d.expand( templateString );
 
     // RegExp for valid hostnames; if the suggestion produces a valid name, return it
     static const QRegExp HOSTNAME_RX( "^[a-zA-Z0-9][-a-zA-Z0-9_]*$" );
