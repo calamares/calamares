@@ -454,7 +454,7 @@ def efi_boot_next():
     """
     boot_mgr = libcalamares.job.configuration["efiBootMgr"]
     boot_entry = None
-    efi_bootvars = subprocess.check_output([boot_mgr], text=True)
+    efi_bootvars = subprocess.check_output([boot_mgr], universal_newlines=True)
     for line in efi_bootvars.split('\n'):
         if not line:
             continue
