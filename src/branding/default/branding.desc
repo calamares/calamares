@@ -109,7 +109,7 @@ navigation: widget
 #
 # These strings support substitution from /etc/os-release
 # if KDE Frameworks 5.58 are available at build-time. When
-# enabled, @{var-name} is replaced by the equivalent value
+# enabled, ${varname} is replaced by the equivalent value
 # from os-release. All the supported var-names are in all-caps,
 # and are listed on the FreeDesktop.org site,
 #       https://www.freedesktop.org/software/systemd/man/os-release.html
@@ -121,7 +121,7 @@ navigation: widget
 # are visible as buttons there if the corresponding *show* keys
 # are set to "true" (they can also be overridden).
 strings:
-    productName:         "@{NAME}"
+    productName:         "${NAME}"
     shortProductName:    Generic
     version:             2020.2 LTS
     shortVersion:        2020.2
