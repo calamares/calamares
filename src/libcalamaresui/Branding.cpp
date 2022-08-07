@@ -259,7 +259,7 @@ Branding::Branding( const QString& brandingFilePath, QObject* parent )
                 { QStringLiteral( "VARIANT_ID" ), relInfo.variantId() },
                 { QStringLiteral( "LOGO" ), relInfo.logo() } } };
             auto expand = [ & ]( const QString& s ) -> QString
-            { return KMacroExpander::expandMacros( s, relMap, QLatin1Char( '@' ) ); };
+            { return KMacroExpander::expandMacros( s, relMap, QLatin1Char( '$' ) ); };
 #else
             auto expand = []( const QString& s ) -> QString { return s; };
 #endif
