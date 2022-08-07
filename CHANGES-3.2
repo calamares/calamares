@@ -12,14 +12,23 @@ website will have to do for older versions.
 
 # 3.2.61 (unreleased) #
 
+This is the second community-maintainence release of Calamares 3.2.
+It corrects a handful of bugs foud in the stable release. There
+are also translation updates.
+
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - Adriaan de Groot
+ - Anke Boersma
 
 ## Core ##
- - No core changes yet
+ - The "About" and "Debug" buttons in a QWidgets-based panel were no
+   longer translated. This has been fixed (by re-using translations
+   of the same buttons from the QML module. #2030 (Thanks Anke)
 
 ## Modules ##
- - No module changes yet
+ - *bootloader* Python code slipped in that was incompatible with
+   the minimum required Python version. #2033 (Thanks Adriaan)
+ - *luksopenswaphookcfg* Remove duplicate options. #1659 (Thanks Anke)
 
 
 # 3.2.60 (2022-06-19) #
