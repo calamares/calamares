@@ -5,6 +5,7 @@
 # 
 # Translators:
 # Georgi Georgiev (Жоро) <g.georgiev.shumen@gmail.com>, 2022
+# Mincho Kondarev, 2022
 # 
 #, fuzzy
 msgid ""
@@ -13,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-29 16:17+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Georgi Georgiev (Жоро) <g.georgiev.shumen@gmail.com>, 2022\n"
+"Last-Translator: Mincho Kondarev, 2022\n"
 "Language-Team: Bulgarian (https://www.transifex.com/calamares/teams/20061/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,7 +54,7 @@ msgstr ""
 #: src/modules/fstab/main.py:400 src/modules/fstab/main.py:428
 #: src/modules/localecfg/main.py:140 src/modules/networkcfg/main.py:105
 msgid "Configuration Error"
-msgstr ""
+msgstr "Грешка в конфигурацията"
 
 #: src/modules/mount/main.py:230 src/modules/initcpiocfg/main.py:236
 #: src/modules/rawfs/main.py:165 src/modules/initramfscfg/main.py:86
