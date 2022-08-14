@@ -9,11 +9,13 @@
  */
 
 #include "LocaleConfiguration.h"
+#include "LocaleNames.h"
 
 #include "utils/Logger.h"
 
 #include <QLocale>
 #include <QRegularExpression>
+#include <QVector>
 
 LocaleConfiguration::LocaleConfiguration()
     : explicit_lang( false )
@@ -47,90 +49,45 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
                                               const QString& countryCode )
 {
     cDebug() << "Mapping" << languageLocale << "in" << countryCode << "to locale.";
-    QString language = languageLocale.split( '_' ).first();
-    QString region;
-    if ( language.contains( '@' ) )
-    {
-        auto r = language.split( '@' );
-        language = r.first();
-        region = r[ 1 ];  // second()
-    }
 
-    // Either an exact match, or the whole language part matches
-    // (followed by .<encoding> or _<country>
-    QStringList linesForLanguage = availableLocales.filter( QRegularExpression( language + "[._]" ) );
-    cDebug() << Logger::SubEntry << "Matching" << linesForLanguage;
-
+    const QString default_lang = QStringLiteral( "en_US.UTF-8" );
     QString lang;
-    if ( linesForLanguage.isEmpty() || languageLocale.isEmpty() )
-    {
-        lang = "en_US.UTF-8";
-    }
-    else if ( linesForLanguage.length() == 1 )
-    {
-        lang = linesForLanguage.first();
-    }
 
-    // lang could still be empty if we found multiple locales that satisfy myLanguage
-    const QString combinedLanguageAndCountry = QString( "%1_%2" ).arg( language ).arg( countryCode );
-    if ( lang.isEmpty() && region.isEmpty() )
+    const LocaleNameParts self = LocaleNameParts::fromName( languageLocale );
+    if ( self.isValid() && !availableLocales.isEmpty() )
     {
-        auto l = linesForLanguage.filter(
-            QRegularExpression( combinedLanguageAndCountry + "[._]" ) );  // no regional variants
-        if ( l.length() == 1 )
+        QVector< LocaleNameParts > others;
+        others.resize( availableLocales.length() );  // Makes default structs
+        std::transform( availableLocales.begin(), availableLocales.end(), others.begin(), LocaleNameParts::fromName );
+        std::sort( others.begin(),
+                   others.end(),
+                   [ reference = self ]( const LocaleNameParts& lhs, const LocaleNameParts& rhs )
+                   { return reference.similarity( lhs ) < reference.similarity( rhs ); } );
+
+        // The best match is at the end
+        LocaleNameParts best_match = others.last();
+        if ( !( self.similarity( best_match ) > LocaleNameParts::no_match ) )
         {
-            lang = l.first();
+            best_match = LocaleNameParts {};
         }
-    }
-
-    // The following block was inspired by Ubiquity, scripts/localechooser-apply.
-    // No copyright statement found in file, assuming GPL v2 or later.
-    /*  # In the special cases of Portuguese and Chinese, selecting a
-        # different location may imply a different dialect of the language.
-        # In such cases, make LANG reflect the selected language (for
-        # messages, character types, and collation) and make the other
-        # locale categories reflect the selected location. */
-    if ( language == "pt" || language == "zh" )
-    {
-        cDebug() << Logger::SubEntry << "Special-case Portuguese and Chinese";
-        QString proposedLocale = QString( "%1_%2" ).arg( language ).arg( countryCode );
-        for ( const QString& line : linesForLanguage )
+        // .. but it might match **better** with the chosen location country Code
+        if ( self.similarity( best_match ) < LocaleNameParts::complete_match )
         {
-            if ( line.contains( proposedLocale ) )
+            auto self_other_country( self );
+            self_other_country.country = countryCode;
+            std::sort( others.begin(),
+                       others.end(),
+                       [ reference = self_other_country ]( const LocaleNameParts& lhs, const LocaleNameParts& rhs )
+                       { return reference.similarity( lhs ) < reference.similarity( rhs ); } );
+            if ( self_other_country.similarity( others.last() ) > self.similarity( best_match ) )
             {
-                cDebug() << Logger::SubEntry << "Country-variant" << line << "chosen.";
-                lang = line;
-                break;
+                best_match = others.last();
             }
         }
-    }
-    if ( lang.isEmpty() && !region.isEmpty() )
-    {
-        cDebug() << Logger::SubEntry << "Special-case region @" << region;
-        QString proposedRegion = QString( "@%1" ).arg( region );
-        for ( const QString& line : linesForLanguage )
+        if ( best_match.isValid() )
         {
-            if ( line.startsWith( language ) && line.contains( proposedRegion ) )
-            {
-                cDebug() << Logger::SubEntry << "Region-variant" << line << "chosen.";
-                lang = line;
-                break;
-            }
-        }
-    }
 
-
-    // If we found no good way to set a default lang, do a search with the whole
-    // language locale and pick the first result, if any.
-    if ( lang.isEmpty() )
-    {
-        for ( const QString& line : availableLocales )
-        {
-            if ( line.startsWith( languageLocale ) )
-            {
-                lang = line;
-                break;
-            }
+            lang = best_match.name();
         }
     }
 
@@ -138,7 +95,7 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
     // en_US.UTF-8 UTF-8. This completes all default language setting guesswork.
     if ( lang.isEmpty() )
     {
-        lang = "en_US.UTF-8";
+        lang = default_lang;
     }
 
 
@@ -188,34 +145,16 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
     // We make a proposed locale based on the UI language and the timezone's country. There is no
     // guarantee that this will be a valid, supported locale (often it won't).
     QString lc_formats;
-    const QString combined = QString( "%1_%2" ).arg( language ).arg( countryCode );
-    if ( lang.isEmpty() )
+    const QString combined = QString( "%1_%2" ).arg( self.language ).arg( countryCode );
+    if ( availableLocales.contains( lang ) )
     {
-        cDebug() << Logger::SubEntry << "Looking up formats for" << combinedLanguageAndCountry;
-        // We look up if it's a supported locale.
-        for ( const QString& line : availableLocales )
-        {
-            if ( line.startsWith( combinedLanguageAndCountry ) )
-            {
-                lang = line;
-                lc_formats = line;
-                break;
-            }
-        }
+        cDebug() << Logger::SubEntry << "Exact formats match for language tag" << lang;
+        lc_formats = lang;
     }
-    else
+    else if ( availableLocales.contains( combined ) )
     {
-        if ( availableLocales.contains( lang ) )
-        {
-            cDebug() << Logger::SubEntry << "Exact formats match for language tag" << lang;
-            lc_formats = lang;
-        }
-        else if ( availableLocales.contains( combinedLanguageAndCountry ) )
-        {
-            cDebug() << Logger::SubEntry << "Exact formats match for combined" << combinedLanguageAndCountry;
-            lang = combinedLanguageAndCountry;
-            lc_formats = combinedLanguageAndCountry;
-        }
+        cDebug() << Logger::SubEntry << "Exact formats match for combined" << combined;
+        lc_formats = combined;
     }
 
     if ( lc_formats.isEmpty() )
