@@ -186,7 +186,7 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
         }
         if ( best_match.isValid() )
         {
-
+            cDebug() << Logger::SubEntry << "Matched best with" << best_match.name();
             lang = best_match.name();
         }
     }
