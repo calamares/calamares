@@ -149,7 +149,55 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
                                               const QString& countryCode )
 {
     cDebug() << "Mapping" << languageLocale << "in" << countryCode << "to locale.";
-    const auto bestLocale = identifyBestLanguageMatch( languageLocale, availableLocales, countryCode );
+
+    const QString default_lang = QStringLiteral( "en_US.UTF-8" );
+    QString lang;
+
+    const LocaleNameParts self = LocaleNameParts::fromName( languageLocale );
+    if ( self.isValid() && !availableLocales.isEmpty() )
+    {
+        QVector< LocaleNameParts > others;
+        others.resize( availableLocales.length() );  // Makes default structs
+        std::transform( availableLocales.begin(), availableLocales.end(), others.begin(), LocaleNameParts::fromName );
+        std::sort( others.begin(),
+                   others.end(),
+                   [ reference = self ]( const LocaleNameParts& lhs, const LocaleNameParts& rhs )
+                   { return reference.similarity( lhs ) < reference.similarity( rhs ); } );
+
+        // The best match is at the end
+        LocaleNameParts best_match = others.last();
+        if ( !( self.similarity( best_match ) > LocaleNameParts::no_match ) )
+        {
+            best_match = LocaleNameParts {};
+        }
+        // .. but it might match **better** with the chosen location country Code
+        if ( self.similarity( best_match ) < LocaleNameParts::complete_match )
+        {
+            auto self_other_country( self );
+            self_other_country.country = countryCode;
+            std::sort( others.begin(),
+                       others.end(),
+                       [ reference = self_other_country ]( const LocaleNameParts& lhs, const LocaleNameParts& rhs )
+                       { return reference.similarity( lhs ) < reference.similarity( rhs ); } );
+            if ( self_other_country.similarity( others.last() ) > self.similarity( best_match ) )
+            {
+                best_match = others.last();
+            }
+        }
+        if ( best_match.isValid() )
+        {
+
+            lang = best_match.name();
+        }
+    }
+
+    // Else we have an unrecognized or unsupported locale, all we can do is go with
+    // en_US.UTF-8 UTF-8. This completes all default language setting guesswork.
+    if ( lang.isEmpty() )
+    {
+        lang = default_lang;
+    }
+
 
     // The following block was inspired by Ubiquity, scripts/localechooser-apply.
     // No copyright statement found in file, assuming GPL v2 or later.
@@ -197,11 +245,11 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
     // We make a proposed locale based on the UI language and the timezone's country. There is no
     // guarantee that this will be a valid, supported locale (often it won't).
     QString lc_formats;
-    const QString combined = QString( "%1_%2" ).arg( bestLocale.language ).arg( countryCode );
-    if ( availableLocales.contains( bestLocale.language ) )
+    const QString combined = QString( "%1_%2" ).arg( self.language ).arg( countryCode );
+    if ( availableLocales.contains( lang ) )
     {
-        cDebug() << Logger::SubEntry << "Exact formats match for language tag" << bestLocale.language;
-        lc_formats = bestLocale.language;
+        cDebug() << Logger::SubEntry << "Exact formats match for language tag" << lang;
+        lc_formats = lang;
     }
     else if ( availableLocales.contains( combined ) )
     {
