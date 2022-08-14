@@ -59,6 +59,7 @@ private Q_SLOTS:
     void testLanguageMappingNeon();
     void testLanguageMappingFreeBSD_data();
     void testLanguageMappingFreeBSD();
+    void testLanguageSimilarity();
 
 private:
     QStringList m_KDEneonLocales;
@@ -533,6 +534,45 @@ LocaleTests::testLocaleNameParts()
         auto parts = LocaleNameParts::fromName( s );
         QVERIFY( parts.isValid() );
         QCOMPARE( parts.name(), s );
+    }
+}
+
+void
+LocaleTests::testLanguageSimilarity()
+{
+    // Empty
+    {
+        QCOMPARE( LocaleNameParts().similarity( LocaleNameParts() ), 0 );
+    }
+    // Some simple Dutch situations
+    {
+        auto nl_parts = LocaleNameParts::fromName( QStringLiteral( "nl_NL.UTF-8" ) );
+        auto be_parts = LocaleNameParts::fromName( QStringLiteral( "nl_BE.UTF-8" ) );
+        auto nl_short_parts = LocaleNameParts::fromName( QStringLiteral( "nl" ) );
+        QCOMPARE( nl_parts.similarity( nl_parts ), 100 );
+        QCOMPARE( nl_parts.similarity( LocaleNameParts() ), 0 );
+        QCOMPARE( nl_parts.similarity( be_parts ), 80 );  // Language + (empty) region match
+        QCOMPARE( nl_parts.similarity( nl_short_parts ), 90 );
+    }
+
+    // Everything matches itself
+    {
+        if ( m_KDEneonLocales.isEmpty() )
+        {
+            testKDENeonLanguageData();
+        }
+        QVERIFY( !m_FreeBSDLocales.isEmpty() );
+        QVERIFY( !m_KDEneonLocales.isEmpty() );
+        for ( const auto& l : m_KDEneonLocales )
+        {
+            auto locale_name = LocaleNameParts::fromName( l );
+            auto self_similarity = locale_name.similarity( locale_name );
+            if ( self_similarity != 100 )
+            {
+                cDebug() << "Locale" << l << "is unusual.";
+            }
+            QCOMPARE( self_similarity, 100 );
+        }
     }
 }
 

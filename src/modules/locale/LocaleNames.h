@@ -30,6 +30,14 @@ struct LocaleNameParts
     QString name() const;
 
     static LocaleNameParts fromName( const QString& name );
+
+    /** @brief Compute similarity-score with another locale-name.
+     *
+     * Similarity is driven by language and region, then country.
+     * Returns a number between 0 (no similarity, e.g. the
+     * language is different) and 100 (complete match).
+     */
+    int similarity( const LocaleNameParts& other ) const;
 };
 
 #endif
