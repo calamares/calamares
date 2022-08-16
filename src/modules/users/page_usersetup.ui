@@ -52,7 +52,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
         </size>
        </property>
        <property name="placeholderText">
-        <string>Your Full Name</string>
+        <string>Your full name</string>
        </property>
       </widget>
      </item>
@@ -247,7 +247,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
         <string>&lt;small&gt;This name will be used if you make the computer visible to others on a network.&lt;/small&gt;</string>
        </property>
        <property name="placeholderText">
-        <string>Computer Name</string>
+        <string>Computer name</string>
        </property>
       </widget>
      </item>
@@ -377,7 +377,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
         <enum>QLineEdit::Password</enum>
        </property>
        <property name="placeholderText">
-        <string>Repeat Password</string>
+        <string>Repeat password</string>
        </property>
       </widget>
      </item>
