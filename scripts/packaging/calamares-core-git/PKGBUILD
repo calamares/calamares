@@ -1,0 +1,122 @@
+# Maintainer: shivanandvp <shivanandvp@rebornos.org>
+
+pkgname=calamares-core-git
+pkgver=0.0.1
+pkgrel=1
+arch=('i686' 'x86_64' 'armv6h' 'armv7h' 'aarch64')
+pkgdesc='Calamares Installer for RebornOS. This is practically just bare Calamares. Please also install rebornos-calamares-configuration.'
+url='https://github.com/RebornOS-Developers/calamares-core'
+license=('GPL3')
+depends=('qt5-location' 
+         'qt5-svg'
+         'qt5-tools'
+         'qt5-webengine'
+         'qt5-xmlpatterns'         
+         'qt5ct'
+         'qqc2-desktop-style'
+         'polkit-qt5'         
+         'kconfig'
+         'kcoreaddons'
+         'kdbusaddons'
+         'ki18n'    
+         'kpackage'
+         'kparts'     
+         'kpmcore'
+         'plasma-framework'        
+         'boost'
+         'boost-libs'
+         'appstream-qt'
+         'libatasmart'
+         'libpwquality'
+         'parted' 
+         'solid'       
+         'udisks2' 
+         'yaml-cpp'
+         'polkit'
+         'ckbcomp')
+optdepends=()
+makedepends=('extra-cmake-modules'
+             'git'
+             'qt5-tools') 
+provides=('calamares-core')
+conflicts=('calamares-core-git' 'calamares-core')
+source=("git+https://github.com/RebornOS-Developers/calamares-core")
+replaces=('calamares')
+
+PROJECT_DIRECTORY=""
+BUILD_DIRECTORY=""
+RESOURCE_DIRECTORY=""
+NUMBER_OF_PROCESSORS=""
+
+pkgver() {
+  cd "$pkgname"
+  ( set -o pipefail
+    git describe --long 2>/dev/null | sed 's/\([^-]*-g\)/r\1/;s/-/./g' ||
+    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  )
+}
+
+prepare() {
+    PROJECT_DIRECTORY="${srcdir}/calamares-core"
+    BUILD_DIRECTORY="$PROJECT_DIRECTORY/build"
+    RESOURCE_DIRECTORY="$PROJECT_DIRECTORY/scripts/packaging"
+    NUMBER_OF_PROCESSORS="$(nproc)"
+
+    echo "PROJECT_DIRECTORY=$PROJECT_DIRECTORY"
+    echo "BUILD_DIRECTORY=$BUILD_DIRECTORY"
+    echo "RESOURCE_DIRECTORY=$RESOURCE_DIRECTORY"
+    echo "NUMBER_OF_PROCESSORS=$NUMBER_OF_PROCESSORS"
+}
+
+build() {     
+    mkdir -p "$BUILD_DIRECTORY" && \
+    cmake \
+        -DCMAKE_BUILD_TYPE=Debug \
+        -DCMAKE_INSTALL_PREFIX=/usr \
+        -DCMAKE_INSTALL_LIBDIR=lib \
+        -B "$BUILD_DIRECTORY" -S "$PROJECT_DIRECTORY" && \
+    cmake --build "$BUILD_DIRECTORY" --parallel "$NUMBER_OF_PROCESSORS"
+}
+
+package() {
+    # To bypass makepkg's dependency check during build-time
+    depends+=('calamares-configuration')
+
+    DESTDIR="${pkgdir}" cmake --install "$BUILD_DIRECTORY" # Install after setting an environment variable
+
+    (
+        cd "$RESOURCE_DIRECTORY" && \
+        install -Dm 755 run_calamares.sh "${pkgdir}"/etc/calamares/run_calamares.sh
+        ln -s /etc/calamares/run_calamares.sh "${pkgdir}"/usr/bin/run_calamares         
+    )
+    (
+        cd "$RESOURCE_DIRECTORY" && \
+        find . \
+            -mindepth 1 \
+            -maxdepth 1 \
+            -type f \
+            -name '*.policy' \
+            -exec \
+                install -Dm 755 "{}" "${pkgdir}/usr/share/polkit-1/actions/{}" \;
+    )
+    (
+        cd "$RESOURCE_DIRECTORY" && \
+        find . \
+            -mindepth 1 \
+            -maxdepth 1 \
+            -type f \
+            -name '*.desktop' \
+            -exec \
+                install -Dm 755 "{}" "${pkgdir}/usr/share/applications/{}" \;
+    )
+    (
+        cd "$RESOURCE_DIRECTORY" && \
+        find . \
+            -mindepth 1 \
+            -maxdepth 1 \
+            -type f \
+            -name '*.svg' \
+            -exec \
+                install -Dm 755 "{}" "${pkgdir}/usr/share/pixmaps/{}" \;
+    )
+}

@@ -60,3 +60,5 @@ tags
 scripts/packaging/**/pkg
 scripts/packaging/**/src
 scripts/packaging/**/*.pkg.tar.*
+scripts/packaging/**/calamares-core-git/calamares-core
+scripts/packaging/**/calamares-core/calamares-core
