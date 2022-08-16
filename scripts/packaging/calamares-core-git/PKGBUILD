@@ -1,7 +1,7 @@
 # Maintainer: shivanandvp <shivanandvp@rebornos.org>
 
 pkgname=calamares-core-git
-pkgver=0.0.1
+pkgver=v3.2.48.r1093.gf614e8157
 pkgrel=1
 arch=('i686' 'x86_64' 'armv6h' 'armv7h' 'aarch64')
 pkgdesc='Calamares Installer for RebornOS. This is practically just bare Calamares. Please also install rebornos-calamares-configuration.'
@@ -44,11 +44,6 @@ source=("git+https://github.com/RebornOS-Developers/calamares-core")
 replaces=('calamares')
 md5sums=('SKIP')
 
-PROJECT_DIRECTORY=""
-BUILD_DIRECTORY=""
-RESOURCE_DIRECTORY=""
-NUMBER_OF_PROCESSORS=""
-
 pkgver() {
   cd "${srcdir}/calamares-core"
   ( set -o pipefail
@@ -58,18 +53,15 @@ pkgver() {
 }
 
 prepare() {
+    :
+}
+
+build() {     
     PROJECT_DIRECTORY="${srcdir}/calamares-core"
     BUILD_DIRECTORY="$PROJECT_DIRECTORY/build"
     RESOURCE_DIRECTORY="$PROJECT_DIRECTORY/scripts/packaging"
     NUMBER_OF_PROCESSORS="$(nproc)"
 
-    echo "PROJECT_DIRECTORY=$PROJECT_DIRECTORY"
-    echo "BUILD_DIRECTORY=$BUILD_DIRECTORY"
-    echo "RESOURCE_DIRECTORY=$RESOURCE_DIRECTORY"
-    echo "NUMBER_OF_PROCESSORS=$NUMBER_OF_PROCESSORS"
-}
-
-build() {     
     mkdir -p "$BUILD_DIRECTORY" && \
     cmake \
         -DCMAKE_BUILD_TYPE=Debug \
@@ -80,6 +72,11 @@ build() {
 }
 
 package() {
+    PROJECT_DIRECTORY="${srcdir}/calamares-core"
+    BUILD_DIRECTORY="$PROJECT_DIRECTORY/build"
+    RESOURCE_DIRECTORY="$PROJECT_DIRECTORY/scripts/packaging"
+    NUMBER_OF_PROCESSORS="$(nproc)"
+
     # To bypass makepkg's dependency check during build-time
     depends+=('calamares-configuration')
 
