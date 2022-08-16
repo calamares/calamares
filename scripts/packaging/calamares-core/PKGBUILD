@@ -40,7 +40,7 @@ makedepends=('extra-cmake-modules'
              'qt5-tools') 
 provides=('calamares-core')
 conflicts=('calamares-core-git' 'calamares-core')
-source=("git+https://github.com/RebornOS-Developers/calamares-core#tag=v${pkgver}")
+source=("git+https://github.com/RebornOS-Developers/calamares-core/archive/refs/tags/v${pkgver}.tar.gz")
 replaces=('calamares')
 md5sums=('SKIP')
 
@@ -49,7 +49,7 @@ prepare() {
 }
 
 build() {     
-    PROJECT_DIRECTORY="${srcdir}/calamares-core"
+    PROJECT_DIRECTORY="${srcdir}/calamares-core-${pkgver}"
     BUILD_DIRECTORY="$PROJECT_DIRECTORY/build"
     RESOURCE_DIRECTORY="$PROJECT_DIRECTORY/scripts/packaging"
     NUMBER_OF_PROCESSORS="$(nproc)"
@@ -64,7 +64,7 @@ build() {
 }
 
 package() {
-    PROJECT_DIRECTORY="${srcdir}/calamares-core"
+    PROJECT_DIRECTORY="${srcdir}/calamares-core-${pkgver}"
     BUILD_DIRECTORY="$PROJECT_DIRECTORY/build"
     RESOURCE_DIRECTORY="$PROJECT_DIRECTORY/scripts/packaging"
     NUMBER_OF_PROCESSORS="$(nproc)"
