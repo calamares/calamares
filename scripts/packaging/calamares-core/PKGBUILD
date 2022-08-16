@@ -40,7 +40,7 @@ makedepends=('extra-cmake-modules'
              'qt5-tools') 
 provides=('calamares-core')
 conflicts=('calamares-core-git' 'calamares-core')
-source=("git+https://github.com/RebornOS-Developers/calamares-core/archive/refs/tags/v${pkgver}.tar.gz")
+source=("https://github.com/RebornOS-Developers/calamares-core/archive/refs/tags/v${pkgver}.tar.gz")
 replaces=('calamares')
 md5sums=('SKIP')
 
