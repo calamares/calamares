@@ -68,8 +68,14 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
         LocaleNameParts best_match = others.last();
         if ( !( self.similarity( best_match ) > LocaleNameParts::no_match ) )
         {
+            cDebug() << Logger::SubEntry << "Got no good match for" << languageLocale;
             best_match = LocaleNameParts {};
         }
+        else
+        {
+            cDebug() << Logger::SubEntry << "Got best match for" << languageLocale << "as" << best_match.name();
+        }
+
         // .. but it might match **better** with the chosen location country Code
         if ( self.similarity( best_match ) < LocaleNameParts::complete_match )
         {
@@ -82,6 +88,8 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
             if ( self_other_country.similarity( others.last() ) > self.similarity( best_match ) )
             {
                 best_match = others.last();
+                cDebug() << Logger::SubEntry << "Found better match with country" << countryCode << "as"
+                         << best_match.name();
             }
         }
         if ( best_match.isValid() )
