@@ -42,6 +42,34 @@ LocaleConfiguration::setLanguage( const QString& localeName )
     m_lang = localeName;
 }
 
+static LocaleNameParts
+updateCountry( LocaleNameParts p, const QString& country )
+{
+    p.country = country;
+    return p;
+}
+
+static QPair< int, LocaleNameParts >
+identifyBestLanguageMatch( const LocaleNameParts& referenceLocale, QVector< LocaleNameParts >& others )
+{
+    std::sort( others.begin(),
+               others.end(),
+               [ & ]( const LocaleNameParts& lhs, const LocaleNameParts& rhs )
+               { return referenceLocale.similarity( lhs ) < referenceLocale.similarity( rhs ); } );
+    // The best match is at the end
+    LocaleNameParts best_match = others.last();
+    if ( !( referenceLocale.similarity( best_match ) > LocaleNameParts::no_match ) )
+    {
+        cDebug() << Logger::SubEntry << "Got no good match for" << referenceLocale.name();
+        return { LocaleNameParts::no_match, LocaleNameParts {} };
+    }
+    else
+    {
+        cDebug() << Logger::SubEntry << "Got best match for" << referenceLocale.name() << "as" << best_match.name();
+        return { referenceLocale.similarity( best_match ), best_match };
+    }
+}
+
 /** @brief Returns the QString from @p availableLocales that best-matches.
  */
 static LocaleNameParts
@@ -57,39 +85,52 @@ identifyBestLanguageMatch( const QString& languageLocale,
         QVector< LocaleNameParts > others;
         others.resize( availableLocales.length() );  // Makes default structs
         std::transform( availableLocales.begin(), availableLocales.end(), others.begin(), LocaleNameParts::fromName );
-        std::sort( others.begin(),
-                   others.end(),
-                   [ reference = self ]( const LocaleNameParts& lhs, const LocaleNameParts& rhs )
-                   { return reference.similarity( lhs ) < reference.similarity( rhs ); } );
 
-        // The best match is at the end
-        LocaleNameParts best_match = others.last();
-        if ( !( self.similarity( best_match ) > LocaleNameParts::no_match ) )
-        {
-            cDebug() << Logger::SubEntry << "Got no good match for" << languageLocale;
-            best_match = LocaleNameParts {};
-        }
-        else
-        {
-            cDebug() << Logger::SubEntry << "Got best match for" << languageLocale << "as" << best_match.name();
-        }
+        // Keep track of the best match in various attempts
+        int best_score = LocaleNameParts::no_match;
+        LocaleNameParts best_match;
 
-        // .. but it might match **better** with the chosen location country Code
-        if ( self.similarity( best_match ) < LocaleNameParts::complete_match )
+        // Check with the unmodified language setting
         {
-            auto self_other_country( self );
-            self_other_country.country = countryCode;
-            std::sort( others.begin(),
-                       others.end(),
-                       [ reference = self_other_country ]( const LocaleNameParts& lhs, const LocaleNameParts& rhs )
-                       { return reference.similarity( lhs ) < reference.similarity( rhs ); } );
-            if ( self_other_country.similarity( others.last() ) > self.similarity( best_match ) )
+            auto [ score, match ] = identifyBestLanguageMatch( self, others );
+            if ( score >= LocaleNameParts::complete_match )
             {
-                best_match = others.last();
-                cDebug() << Logger::SubEntry << "Found better match with country" << countryCode << "as"
-                         << best_match.name();
+                return match;
+            }
+            else if ( score > best_score )
+            {
+                best_match = match;
             }
         }
+
+
+        // .. but it might match **better** with the chosen location country Code
+        {
+            auto [ score, match ] = identifyBestLanguageMatch( updateCountry( self, countryCode ), others );
+            if ( score >= LocaleNameParts::complete_match )
+            {
+                return match;
+            }
+            else if ( score > best_score )
+            {
+                best_match = match;
+            }
+        }
+
+        // .. or better yet with the QLocale-derived country
+        {
+            const QString localeCountry = LocaleNameParts::fromName( QLocale( languageLocale ).name() ).country;
+            auto [ score, match ] = identifyBestLanguageMatch( updateCountry( self, localeCountry ), others );
+            if ( score >= LocaleNameParts::complete_match )
+            {
+                return match;
+            }
+            else if ( score > best_score )
+            {
+                best_match = match;
+            }
+        }
+
         if ( best_match.isValid() )
         {
             cDebug() << Logger::SubEntry << "Matched best with" << best_match.name();
