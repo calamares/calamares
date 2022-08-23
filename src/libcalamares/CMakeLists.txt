@@ -20,13 +20,16 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/CalamaresVersionX.h.in ${CMAKE_CURREN
 # Map the available translations names into a suitable constexpr list
 # of names in C++. This gets us Calamares::Locale::availableLanguages,
 # a QStringList of names.
-set(_names_tu "#ifndef CALAMARES_TRANSLATIONS_H
+set(_names_tu
+    "
+#ifndef CALAMARES_TRANSLATIONS_H
 #define CALAMARES_TRANSLATIONS_H
 #include <QStringList>
 namespace {
 static const QStringList availableLanguageList{
-")
-foreach( l ${CALAMARES_TRANSLATION_LANGUAGES})
+"
+)
+foreach(l ${CALAMARES_TRANSLATION_LANGUAGES})
     string(APPEND _names_tu "\"${l}\",\n")
 endforeach()
 string(APPEND _names_tu "};\n} // namespace\n#endif\n\n")
@@ -256,7 +259,11 @@ calamares_add_test(libcalamaresnetworktest SOURCES network/Tests.cpp)
 calamares_add_test(libcalamarespackagestest SOURCES packages/Tests.cpp)
 
 if(KPMcore_FOUND)
-    calamares_add_test(libcalamarespartitiontest SOURCES partition/Global.cpp partition/Tests.cpp LIBRARIES calamares::kpmcore)
+    calamares_add_test(
+        libcalamarespartitiontest
+        SOURCES partition/Global.cpp partition/Tests.cpp
+        LIBRARIES calamares::kpmcore
+    )
     calamares_add_test(libcalamarespartitionkpmtest SOURCES partition/KPMTests.cpp LIBRARIES calamares::kpmcore)
 endif()
 
