@@ -17,6 +17,14 @@ try:
 except FileNotFoundError as e:
     pass
 
+try:
+    import toml
+except ImportError:
+    # This is a failure of the test-environment.
+    import sys
+    print("Can't find module toml.", file=sys.stderr)
+    sys.exit(0)
+
 # Specific DM test
 d = main.DMgreetd("/tmp")
 d.set_autologin("d", True, default_desktop_environment)
