@@ -371,7 +371,7 @@ LocaleTests::testLanguageDetectionValencia()
     {
         auto r = LocaleConfiguration::fromLanguageAndLocation(
             QStringLiteral( "sr" ), availableLocales, QStringLiteral( "NL" ) );
-        QCOMPARE( r.language(), "sr_ME" );  // Because that one is first in the list
+        QCOMPARE( r.language(), "sr_RS" );  // Because that one is first in the list
     }
     {
         auto r = LocaleConfiguration::fromLanguageAndLocation(
@@ -570,6 +570,10 @@ LocaleTests::testLanguageSimilarity()
             if ( self_similarity != 100 )
             {
                 cDebug() << "Locale" << l << "is unusual.";
+                if ( l == QStringLiteral( "eo" ) )
+                {
+                    QEXPECT_FAIL( "", "Esperanto has no country to match", Continue );
+                }
             }
             QCOMPARE( self_similarity, 100 );
         }
