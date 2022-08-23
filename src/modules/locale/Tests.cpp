@@ -570,6 +570,10 @@ LocaleTests::testLanguageSimilarity()
             if ( self_similarity != 100 )
             {
                 cDebug() << "Locale" << l << "is unusual.";
+                if ( l == QStringLiteral( "eo" ) )
+                {
+                    QEXPECT_FAIL( "", "Esperanto has no country to match", Continue );
+                }
             }
             QCOMPARE( self_similarity, 100 );
         }
