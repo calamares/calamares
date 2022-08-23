@@ -4142,12 +4142,12 @@ Output:
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="149"/>
       <source>Show information about Calamares</source>
-      <translation type="unfinished"/>
+      <translation>Calamares에 대한 정보 표시하기</translation>
     </message>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="165"/>
       <source>Show debug information</source>
-      <translation>디버그 정보 보기</translation>
+      <translation>디버그 정보 표시하기</translation>
     </message>
   </context>
   <context>

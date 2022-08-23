@@ -123,7 +123,7 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="102"/>
       <source>Crashes Calamares, so that Dr. Konqui can look at it.</source>
-      <translation>Предизвиква срива на Calamares, за да може Dr.Konqui да го анализира.</translation>
+      <translation>Предизвиква срив на Calamares, за да може Dr.Konqui да го анализира.</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="115"/>

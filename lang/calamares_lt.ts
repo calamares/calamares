@@ -4175,7 +4175,7 @@ Išvestis:
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="149"/>
       <source>Show information about Calamares</source>
-      <translation type="unfinished"/>
+      <translation>Rodyti informaciją apie Calamares</translation>
     </message>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="165"/>
