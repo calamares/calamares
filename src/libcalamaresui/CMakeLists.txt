@@ -53,6 +53,7 @@ calamares_add_library(calamaresui
     UI
         utils/ErrorDialog/ErrorDialog.ui
     VERSION ${CALAMARES_VERSION_SHORT}
+    SOVERSION ${CALAMARES_SOVERSION}
 )
 target_link_libraries(calamaresui PRIVATE yamlcpp::yamlcpp)
 if(KF5CoreAddons_FOUND AND KF5CoreAddons_VERSION VERSION_GREATER_EQUAL 5.58)
