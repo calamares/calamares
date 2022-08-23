@@ -124,8 +124,8 @@ tx push --source --no-interactive -r calamares.fdo
 PYGETTEXT="xgettext --keyword=_n:1,2 -L python"
 
 SHARED_PYTHON=""
-for MODULE_DIR in $(find src/modules -maxdepth 1 -mindepth 1 -type d) ; do
-	FILES=$(find "$MODULE_DIR" -name "*.py" -a -type f)
+for MODULE_DIR in $(find src/modules -maxdepth 1 -mindepth 1 -type d | sort) ; do
+	FILES=$(find "$MODULE_DIR" -name "*.py" -a -type f | sort)
 	if test -n "$FILES" ; then
 		MODULE_NAME=$(basename ${MODULE_DIR})
 		if [ -d ${MODULE_DIR}/lang ]; then

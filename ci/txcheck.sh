@@ -120,7 +120,7 @@ tx_sum()
 	WORKTREE_NAME="$1"
 	WORKTREE_TAG="$2"
 
-	git worktree add $WORKTREE_NAME $WORKTREE_TAG > /dev/null 2>&1 || { echo "! Could not create worktree." ; exit 1 ; }
+	git worktree add -d $WORKTREE_NAME $WORKTREE_TAG > /dev/null 2>&1 || { echo "! Could not create worktree." ; exit 1 ; }
 	( cd $WORKTREE_NAME && sh "$CURDIR"/ci/txpush.sh --no-tx ) > /dev/null 2>&1 || { echo "! Could not re-create translations." ; exit 1 ; }
 
 	# Remove linenumbers from .ts (XML) and .pot
