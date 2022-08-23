@@ -12,9 +12,4 @@ calamares_add_plugin(luksbootkeyfile
     NO_CONFIG
 )
 
-calamares_add_test(
-    luksbootkeyfiletest
-    SOURCES
-        Tests.cpp
-        LuksBootKeyFileJob.cpp
-)
+calamares_add_test(luksbootkeyfiletest SOURCES Tests.cpp LuksBootKeyFileJob.cpp)
