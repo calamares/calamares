@@ -13,9 +13,10 @@
 # The base version can be a tag or git-hash; it will be checked-out
 # in a worktree.
 #
-# Note that the hash here now is the very start of 3.3, when ABI
-# compatibility was not expected yet at **all**.
-BASE_VERSION=419be4df25bc6fcc1958cb6e44afc1b9e64fce71
+# Note that the hash here now is 3.3-alpha1, when ABI
+# compatibility was not expected much. From 3.3-beta,
+# whenever that is, ABI compatibility should be more of a concern.
+BASE_VERSION=0c794183936b6d916a109784829e605cc4582e9f
 
 ### Build a tree and cache the ABI info into ci/
 #
