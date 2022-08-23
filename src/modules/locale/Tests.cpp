@@ -310,10 +310,10 @@ LocaleTests::testLanguageDetection_data()
     QTest::newRow( "english (US)" ) << QStringLiteral( "en" ) << QStringLiteral( "US" )
                                     << QStringLiteral( "en_US.UTF-8" );
     QTest::newRow( "english (CA)" ) << QStringLiteral( "en" ) << QStringLiteral( "CA" )
-                                    << QStringLiteral( "en" );  // because it's first in the list
+                                    << QStringLiteral( "en_US.UTF-8" );
     QTest::newRow( "english (GB)" ) << QStringLiteral( "en" ) << QStringLiteral( "GB" )
                                     << QStringLiteral( "en_GB.UTF-8" );
-    QTest::newRow( "english (NL)" ) << QStringLiteral( "en" ) << QStringLiteral( "NL" ) << QStringLiteral( "en" );
+    QTest::newRow( "english (NL)" ) << QStringLiteral( "en" ) << QStringLiteral( "NL" ) << QStringLiteral( "en_US.UTF-8" );
 
     QTest::newRow( "portuguese (PT)" ) << QStringLiteral( "pt" ) << QStringLiteral( "PT" )
                                        << QStringLiteral( "pt_PT.UTF-8" );
@@ -323,11 +323,11 @@ LocaleTests::testLanguageDetection_data()
                                        << QStringLiteral( "pt_BR.UTF-8" );
 
     QTest::newRow( "catalan ()" ) << QStringLiteral( "ca" ) << QStringLiteral( "" )
-                                  << QStringLiteral( "ca_AD.UTF-8" );  // no country given? Matches first
+                                  << QStringLiteral( "ca_ES.UTF-8" );  // no country given? Matches QLocale-default
     QTest::newRow( "catalan (ES)" ) << QStringLiteral( "ca" ) << QStringLiteral( "ES" )
                                     << QStringLiteral( "ca_ES.UTF-8" );
     QTest::newRow( "catalan (NL)" ) << QStringLiteral( "ca" ) << QStringLiteral( "NL" )
-                                    << QStringLiteral( "ca_AD.UTF-8" );
+                                    << QStringLiteral( "ca_ES.UTF-8" );
     QTest::newRow( "catalan (@valencia)" ) << QStringLiteral( "ca@valencia" ) << QStringLiteral( "ES" )
                                            << QStringLiteral( "ca_ES@valencia" );  // Prefers regional variant
     QTest::newRow( "catalan (@valencia_NL)" )
