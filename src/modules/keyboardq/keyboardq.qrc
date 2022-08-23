@@ -24,5 +24,6 @@
         <file>data/button_bkg_center.png</file>
         <file>data/button_bkg_left.png</file>
         <file>data/button_bkg_right.png</file>
+        <file>data/pan-end-symbolic.svg</file>
     </qresource>
 </RCC>
