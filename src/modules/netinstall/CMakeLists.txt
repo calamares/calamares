@@ -3,7 +3,7 @@
 #   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
 #   SPDX-License-Identifier: BSD-2-Clause
 #
-calamares_add_plugin( netinstall
+calamares_add_plugin(netinstall
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
@@ -32,4 +32,3 @@ calamares_add_test(
     LIBRARIES
         Qt5::Gui
 )
-

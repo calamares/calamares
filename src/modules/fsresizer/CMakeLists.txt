@@ -3,18 +3,21 @@
 #   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
 #   SPDX-License-Identifier: BSD-2-Clause
 #
-find_package( KF5Config CONFIG )
-find_package( KF5I18n CONFIG )
-find_package( KF5WidgetsAddons CONFIG )
+find_package(KF5Config CONFIG)
+find_package(KF5I18n CONFIG)
+find_package(KF5WidgetsAddons CONFIG)
 
-include( KPMcoreHelper )
+include(KPMcoreHelper)
 
-if ( KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND )
-    include_directories( ${KPMCORE_INCLUDE_DIR} ${CMAKE_SOURCE_DIR}/src/modules/partition )
+if(KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND)
+    include_directories(
+        ${KPMCORE_INCLUDE_DIR}
+        ${CMAKE_SOURCE_DIR}/src/modules/partition
+    )
 
     # The PartitionIterator is a small class, and it's easiest -- but also a
     # gross hack -- to just compile it again from the partition module tree.
-    calamares_add_plugin( fsresizer
+    calamares_add_plugin(fsresizer
         TYPE job
         EXPORT_MACRO PLUGINDLLEXPORT_PRO
         SOURCES
@@ -35,7 +38,7 @@ if ( KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND
         DEFINITIONS ${KPMcore_API_DEFINITIONS}
     )
 else()
-    if ( NOT KPMcore_FOUND )
+    if(NOT KPMcore_FOUND)
         calamares_skip_module( "fsresizer (missing suitable KPMcore)" )
     else()
         calamares_skip_module( "fsresizer (missing dependencies for KPMcore)" )

@@ -18,45 +18,49 @@
 # modules since the partitions on disk won't match GS, but it can be
 # useful for debugging simulated installations that don't need to
 # mount the target filesystems.
-option( DEBUG_PARTITION_UNSAFE "Allow unsafe partitioning choices." OFF )
-option( DEBUG_PARTITION_BAIL_OUT "Unsafe partitioning will error out on exec." ON )
-option( DEBUG_PARTITION_SKIP "Don't actually do any partitioning." OFF)
+option(DEBUG_PARTITION_UNSAFE "Allow unsafe partitioning choices." OFF)
+option(
+    DEBUG_PARTITION_BAIL_OUT
+    "Unsafe partitioning will error out on exec."
+    ON
+)
+option(DEBUG_PARTITION_SKIP "Don't actually do any partitioning." OFF)
 
 # This is very chatty, useful mostly if you don't know what KPMCore offers.
-option( DEBUG_FILESYSTEMS      "Log all available Filesystems from KPMCore." OFF )
+option(DEBUG_FILESYSTEMS "Log all available Filesystems from KPMCore." OFF)
 
-include_directories( ${CMAKE_SOURCE_DIR} )  # For 3rdparty
+include_directories(${CMAKE_SOURCE_DIR}) # For 3rdparty
 
-set( _partition_defs )
-if( DEBUG_PARTITION_UNSAFE )
-    if( DEBUG_PARTITION_BAIL_OUT )
-        list( APPEND _partition_defs DEBUG_PARTITION_BAIL_OUT )
+set(_partition_defs)
+if(DEBUG_PARTITION_UNSAFE)
+    if(DEBUG_PARTITION_BAIL_OUT)
+        list(APPEND _partition_defs DEBUG_PARTITION_BAIL_OUT)
     endif()
-    list( APPEND _partition_defs DEBUG_PARTITION_UNSAFE )
+    list(APPEND _partition_defs DEBUG_PARTITION_UNSAFE)
 endif()
-if ( DEBUG_FILESYSTEMS )
-    list( APPEND _partition_defs DEBUG_FILESYSTEMS )
+if(DEBUG_FILESYSTEMS)
+    list(APPEND _partition_defs DEBUG_FILESYSTEMS)
 endif()
-if( DEBUG_PARTITION_SKIP )
-    list( APPEND _partition_defs DEBUG_PARTITION_SKIP )
+if(DEBUG_PARTITION_SKIP)
+    list(APPEND _partition_defs DEBUG_PARTITION_SKIP)
 endif()
 
 find_package(ECM ${ECM_VERSION} REQUIRED NO_MODULE)
 
-include( KPMcoreHelper )
+include(KPMcoreHelper)
 
-find_package( KF5Config CONFIG )
-find_package( KF5I18n CONFIG )
-find_package( KF5WidgetsAddons CONFIG )
+find_package(KF5Config CONFIG)
+find_package(KF5I18n CONFIG)
+find_package(KF5WidgetsAddons CONFIG)
 
-if ( KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND )
-    list( APPEND _partition_defs ${KPMcore_API_DEFINITIONS} )
-    include_directories( ${KPMCORE_INCLUDE_DIR} )
-    include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
+if(KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND)
+    list(APPEND _partition_defs ${KPMcore_API_DEFINITIONS})
+    include_directories(${KPMCORE_INCLUDE_DIR})
+    include_directories(${PROJECT_BINARY_DIR}/src/libcalamaresui)
 
-    add_subdirectory( tests )
+    add_subdirectory(tests)
 
-    calamares_add_plugin( partition
+    calamares_add_plugin(partition
         TYPE viewmodule
         EXPORT_MACRO PLUGINDLLEXPORT_PRO
         SOURCES
@@ -124,10 +128,9 @@ if ( KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND
         SHARED_LIB
     )
 else()
-    if ( NOT KPMcore_FOUND )
+    if(NOT KPMcore_FOUND)
         calamares_skip_module( "partition (missing suitable KPMcore)" )
     else()
         calamares_skip_module( "partition (missing dependencies for KPMcore)" )
     endif()
 endif()
-

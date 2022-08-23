@@ -7,14 +7,14 @@
 # When debugging the timezone widget, add this debugging definition
 # to have a debugging-friendly timezone widget, debug logging,
 # and no intrusive timezone-setting while clicking around.
-option( DEBUG_TIMEZONES "Debug-friendly timezone widget." OFF )
-if( DEBUG_TIMEZONES )
-    add_definitions( -DDEBUG_TIMEZONES )
+option(DEBUG_TIMEZONES "Debug-friendly timezone widget." OFF)
+if(DEBUG_TIMEZONES)
+    add_definitions(-DDEBUG_TIMEZONES)
 endif()
 
-include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
+include_directories(${PROJECT_BINARY_DIR}/src/libcalamaresui)
 
-calamares_add_plugin( locale
+calamares_add_plugin(locale
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES

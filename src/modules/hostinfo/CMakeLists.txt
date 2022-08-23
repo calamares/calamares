@@ -23,7 +23,7 @@
 #   - *hostCPU* the make (brand) of the CPU, if it can be determined.
 #       Values are "Intel" or "AMD" or blank.
 
-calamares_add_plugin( hostinfo
+calamares_add_plugin(hostinfo
     TYPE job
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
@@ -32,8 +32,8 @@ calamares_add_plugin( hostinfo
     NO_CONFIG
 )
 
-if ( KF5CoreAddons_FOUND AND KF5CoreAddons_VERSION VERSION_GREATER_EQUAL 5.58 )
-    target_compile_definitions( calamares_job_hostinfo PRIVATE WITH_KOSRelease )
+if(KF5CoreAddons_FOUND AND KF5CoreAddons_VERSION VERSION_GREATER_EQUAL 5.58)
+    target_compile_definitions(calamares_job_hostinfo PRIVATE WITH_KOSRelease)
 endif()
 
 calamares_add_test(

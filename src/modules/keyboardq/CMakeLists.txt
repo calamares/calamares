@@ -3,16 +3,16 @@
 #   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
 #   SPDX-License-Identifier: BSD-2-Clause
 #
-if( NOT WITH_QML )
+if(NOT WITH_QML)
     calamares_skip_module( "keyboardq (QML is not supported in this build)" )
     return()
 endif()
 
-set( _keyboard ${CMAKE_CURRENT_SOURCE_DIR}/../keyboard )
+set(_keyboard ${CMAKE_CURRENT_SOURCE_DIR}/../keyboard)
 
-include_directories( ${_keyboard} )
+include_directories(${_keyboard})
 
-calamares_add_plugin( keyboardq
+calamares_add_plugin(keyboardq
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
