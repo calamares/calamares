@@ -86,6 +86,16 @@ KEY_ID="328D742D8807A435"
 rm -f CMakeLists.txt.gpg
 gpg -s -u $KEY_ID CMakeLists.txt
 
+### Get version number for this release
+#
+# Do this early, in a clean build-dir, since it doesn't cost much.
+# Redirect stderr from CMake script mode, because the message()
+# in CMakeLists.txt that prints the version, goes to stderr.
+rm -rf "$BUILDDIR"
+mkdir "$BUILDDIR" || { echo "Could not create build directory." ; exit 1 ; }
+V=$( cd "$BUILDDIR" && cmake -P ../CMakeLists.txt 2>&1 )
+test -n "$V" || { echo "Could not obtain version in $BUILDDIR ." ; exit 1 ; }
+
 ### Build with default compiler
 #
 #
@@ -123,12 +133,6 @@ else
     mkdir "$BUILDDIR" || { echo "Could not create build directory." ; exit 1 ; }
     ( cd "$BUILDDIR" && cmake .. ) || { echo "Could not run cmake in $BUILDDIR ." ; exit 1 ; }
 fi
-
-### Get version number for this release
-#
-#
-V=$( cd "$BUILDDIR" && cmake -P ../CMakeLists.txt | grep ^CALAMARES_VERSION | sed s/^[A-Z_]*=// )
-test -n "$V" || { echo "Could not obtain version in $BUILDDIR ." ; exit 1 ; }
 
 ### Create signed tag
 #
