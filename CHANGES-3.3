@@ -7,7 +7,45 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.3.0. See CHANGES-3.2 for
 the history of the 3.2 series (2018-05 - 2021-12).
 
-# 3.3.0 (unreleased) #
+# 3.3.0-alpha2 (2022-08-23)
+
+Second alpha release, with updated ABI compatibility checking,
+some 3.3.0 release goals, new features in modules and important bugfixes.
+
+This release contains contributions from (alphabetically by first name):
+ - Adriaan de Groot
+ - Anke Boersma
+ - Evan James
+ - Shivanand
+ - Vitor Lopes
+
+## Core ##
+
+A core **TODO** is moving all library code into the `Calamares` namespace,
+dropping the `CalamaresUtils` namespace. Modern C++ supports nested namespaces,
+so in some cases we can use those. This has a drastic effect on ABI compatibility,
+though, as functions move from one namespace to another. This needs to be
+completed before a 3.3.0 with ABI stability is released.
+
+## Modules ##
+
+Module schemas have been updated to reflect all the incompatible changes.
+
+
+# 3.3.0-alpha1 (2022-06-27)
+
+Initial 3.3.0 alpha release to check the release scripts &c.
+
+This release contains contributions from (alphabetically by first name):
+ - Adriaan de Groot
+ - Aleksey Samoilov
+ - Anke Boersma
+ - Dan Simmons
+ - Evan James
+ - Peter Jung
+
+
+# 3.3.0-pre-alpha (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
  - Anubhav Choudhary
@@ -23,9 +61,6 @@ Users (distributions) are **strongly** advised to use the tools
 for configuration validation (`ci/configvalidator.py`) to check
 that the distribution configuration files follow the current schema.
 
-Pre-release versions:
- - 3.3.0-alpha1 (2022-06-27)
-   Initial 3.3.0 release to check the release scripts &c.
  - 3.3.0-alpha2 (unreleased)
    Incompatible module-configuration changes, see #1438.
 
