@@ -97,7 +97,7 @@ set_target_properties(
     calamares
     PROPERTIES
         VERSION ${CALAMARES_VERSION_SHORT}
-        SOVERSION ${CALAMARES_VERSION_SHORT}
+        SOVERSION ${CALAMARES_SOVERSION}
         INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_INSTALL_FULL_INCLUDEDIR}/libcalamares
 )
 target_link_libraries(calamares LINK_PUBLIC yamlcpp::yamlcpp Qt5::Core KF5::CoreAddons)
