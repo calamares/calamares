@@ -92,10 +92,3 @@ Files: lang/python/*/LC_MESSAGES/python.po
 License: GPL-3.0-or-later
 Copyright: 2020 Calamares authors and translators
 
-Files: src/modules/dummypythonqt/lang/dummypythonqt.pot
-License: GPL-3.0-or-later
-Copyright: 2020 Calamares authors and translators
-
-Files: src/modules/dummypythonqt/lang/*/LC_MESSAGES/dummypythonqt.po
-License: GPL-3.0-or-later
-Copyright: 2020 Calamares authors and translators
