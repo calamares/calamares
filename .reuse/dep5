@@ -54,6 +54,13 @@ Files: data/example-root/usr/share/zoneinfo/Zulu data/example-root/usr/share/zon
 License: CC0-1.0
 Copyright: no
 
+# Test data
+#
+# These first files are mere lists of locale identifiers
+Files: src/modules/locale/tests/locale-data-neon src/modules/locale/tests/locale-data-freebsd
+License: CC0-1.0
+Copyright: no
+
 ### TRANSLATIONS
 #
 # .desktop files and template change only with translation
