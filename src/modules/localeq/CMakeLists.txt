@@ -41,8 +41,9 @@ calamares_add_plugin(localeq
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
         LocaleQmlViewStep.cpp
-        ${_locale}/LocaleConfiguration.cpp
         ${_locale}/Config.cpp
+        ${_locale}/LocaleConfiguration.cpp
+        ${_locale}/LocaleNames.cpp
         ${_locale}/SetTimezoneJob.cpp
     RESOURCES
         localeq.qrc
