@@ -36,10 +36,10 @@ def run_dracut():
     """
     kernelName = libcalamares.job.configuration['kernelName']
 
-    if not kernelName:
-        return check_target_env_call(['dracut', '-f'])
-    else:
+    if kernelName != 0:
         return check_target_env_call(['dracut', '-f', '{}'.format(kernelName)])
+    else:
+        return check_target_env_call(['dracut', '-f'])
 
 
 def run():
