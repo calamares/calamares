@@ -1731,10 +1731,11 @@ ChoicePage::createBootloaderPanel()
     return panelWidget;
 }
 
-bool ChoicePage::shouldShowEncryptWidget( Config::InstallChoice choice ) const
+bool
+ChoicePage::shouldShowEncryptWidget( Config::InstallChoice choice ) const
 {
     // If there are any choices for FS, check it's not ZFS because that doesn't
     // support the kind of encryption we enable here.
     const bool suitableFS = m_eraseFsTypesChoiceComboBox ? m_eraseFsTypesChoiceComboBox->currentText() != "zfs" : true;
-    return (choice == InstallChoice::Erase) && m_enableEncryptionWidget && suitableFS;
+    return ( choice == InstallChoice::Erase ) && m_enableEncryptionWidget && suitableFS;
 }
