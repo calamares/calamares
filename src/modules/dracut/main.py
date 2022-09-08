@@ -7,13 +7,14 @@
 #   SPDX-FileCopyrightText: 2014 Teo Mrnjavac <teo@kde.org>
 #   SPDX-FileCopyrightText: 2017 Alf Gaida <agaid@siduction.org>
 #   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
+#   SPDX-FileCopyrightText: 2022 Anke Boersma <demm@kaosx.us>
 #   SPDX-License-Identifier: GPL-3.0-or-later
 #
 #   Calamares is Free Software: see the License-Identifier above.
 #
 
 import libcalamares
-from libcalamares.utils import target_env_call
+from libcalamares.utils import check_target_env_call
 
 
 import gettext
@@ -33,7 +34,12 @@ def run_dracut():
 
     :return:
     """
-    return target_env_call(['dracut', '-f'])
+    kernelName = libcalamares.job.configuration['kernelName']
+
+    if not kernelName:
+        return check_target_env_call(['dracut', '-f'])
+    else:
+        return check_target_env_call(['dracut', '-f', '{}'.format(kernelName)])
 
 
 def run():
@@ -46,5 +52,5 @@ def run():
     return_code = run_dracut()
 
     if return_code != 0:
-        return ( _("Failed to run dracut on the target"),
-                 _("The exit code was {}").format(return_code) )
+        return (_("Failed to run dracut on the target"),
+                _("The exit code was {}").format(return_code))
