@@ -42,7 +42,7 @@ def systemctl(units):
             action = "enable"
             mandatory = False
         else:
-            if not unit.has_key("name"):
+            if "name" not in unit:
                 libcalamares.utils.error("The key 'name' is missing from the mapping {_unit!s}. Continuing to the next unit.".format(_unit=str(unit)))
                 continue 
             name = unit["name"]
