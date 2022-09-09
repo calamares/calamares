@@ -73,7 +73,6 @@ set(CALAMARES_SOVERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}")
 
 ### OPTIONS
 #
-option(INSTALL_CONFIG "Install configuration files" OFF)
 option(INSTALL_POLKIT "Install Polkit configuration" ON)
 option(INSTALL_COMPLETION "Install shell completions" OFF)
 # When adding WITH_* that affects the ABI offered by libcalamares,
@@ -542,7 +541,6 @@ add_subdirectory(src)
 
 add_feature_info(Python ${WITH_PYTHON} "Python job modules")
 add_feature_info(Qml ${WITH_QML} "QML UI support")
-add_feature_info(Config ${INSTALL_CONFIG} "Install Calamares configuration")
 add_feature_info(Polkit ${INSTALL_POLKIT} "Install Polkit files")
 add_feature_info(KCrash ${BUILD_KF5Crash} "Crash dumps via KCrash")
 
@@ -587,8 +585,8 @@ install(
 ### Miscellaneous installs
 #
 #
-if(INSTALL_CONFIG)
-    install(FILES settings.conf DESTINATION share/calamares)
+if( settings.conf IS_NEWER_THAN ${CMAKE_BINARY_DIR}/settings.conf )
+    install(FILES settings.conf DESTINATION ${CMAKE_BINARY_DIR})
 endif()
 
 if(INSTALL_POLKIT)
