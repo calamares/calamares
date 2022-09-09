@@ -15,11 +15,17 @@ This release contains contributions from (alphabetically by first name):
  - Anke Boersma
 
 ## Core ##
- - No core changes yet
+ - Incompatible module-configuration changes, see #1438.
+ - Branding entries use ${var} instead of @{var} for substitutions,
+   in line with all the other substitution mechanisms used from C++
+   core. See documentation in `branding.desc`.
+ - Boost::Python requires at least version 1.72
+ - KDE Frameworks must be version 5.58 or later
 
 ## Modules ##
- - **Dracut** add option to set a configurable kernel name
- - **Localeq** & **Keyboard** moved to using Drawer instead of ComboBox
+ - *dracut* added a configurable kernel name. (thanks Anke)
+ - *localeq* moved to using Drawer instead of ComboBox in UI. (thanks Anke)
+ - *keyboardq* moved to using Drawer instead of ComboBox in UI. (thanks Anke)
 
 
 # 3.3.0-alpha2 (2022-08-23)
@@ -63,6 +69,7 @@ This release contains contributions from (alphabetically by first name):
 # 3.3.0-pre-alpha (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
+ - Anke Boersma
  - Anubhav Choudhary
  - Evan James
  - Vitor Lopes
@@ -75,9 +82,6 @@ in the *Modules* heading, below.
 Users (distributions) are **strongly** advised to use the tools
 for configuration validation (`ci/configvalidator.py`) to check
 that the distribution configuration files follow the current schema.
-
- - 3.3.0-alpha2 (unreleased)
-   Incompatible module-configuration changes, see #1438.
 
 ## Project ##
  - The C++ code in the project is now formatted with clang-format 12 or 13,
