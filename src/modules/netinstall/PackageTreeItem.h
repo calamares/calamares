@@ -109,10 +109,10 @@ public:
      */
     bool isImmutable() const { return m_showReadOnly; }
 
-    /** @brief Is this an non-checkable group?
+    /** @brief Is this a non-checkable item?
      *
-     * Groups can be non checkable: then you can't toggle the selected
-     * state of the group.
+     * Groups can be non-checkable: then you can't toggle the selected
+     * state of the group. This does not affect subgroups or packages.
      */
     bool isNoncheckable() const { return m_showNoncheckable; }
 
