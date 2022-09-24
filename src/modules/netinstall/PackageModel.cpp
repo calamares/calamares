@@ -188,7 +188,7 @@ PackageModel::flags( const QModelIndex& index ) const
     if ( index.column() == NameColumn )
     {
         PackageTreeItem* item = static_cast< PackageTreeItem* >( index.internalPointer() );
-        if ( item->isImmutable() )
+        if ( item->isImmutable() || item->isNoncheckable() )
         {
             return QAbstractItemModel::flags( index );  //Qt::NoItemFlags;
         }

@@ -33,6 +33,7 @@ definitions:
             selected: { type: boolean }
             critical: { type: boolean, default: false }
             immutable: { type: boolean }
+            noncheckable: { type: boolean }
             expanded: { type: boolean }
             subgroups:
                 type: array
