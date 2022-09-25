@@ -109,6 +109,13 @@ public:
      */
     bool isImmutable() const { return m_showReadOnly; }
 
+    /** @brief Is this a non-checkable item?
+     *
+     * Groups can be non-checkable: then you can't toggle the selected
+     * state of the group. This does not affect subgroups or packages.
+     */
+    bool isNoncheckable() const { return m_showNoncheckable; }
+
     /** @brief is this item selected?
      *
      * Groups may be partially selected; packages are only on or off.
@@ -165,6 +172,7 @@ private:
     bool m_isCritical = false;
     bool m_isHidden = false;
     bool m_showReadOnly = false;
+    bool m_showNoncheckable = false;
     bool m_startExpanded = false;
 };
 

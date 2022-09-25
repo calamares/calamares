@@ -49,6 +49,7 @@ PackageTreeItem::PackageTreeItem( const QString& packageName, PackageTreeItem* p
     , m_isGroup( false )
     , m_isCritical( parent ? parent->isCritical() : false )
     , m_showReadOnly( parent ? parent->isImmutable() : false )
+    , m_showNoncheckable( false )
 {
 }
 
@@ -60,6 +61,7 @@ PackageTreeItem::PackageTreeItem( const QVariantMap& groupData, PackageTag&& par
     , m_isGroup( false )
     , m_isCritical( parent.parent ? parent.parent->isCritical() : false )
     , m_showReadOnly( parent.parent ? parent.parent->isImmutable() : false )
+    , m_showNoncheckable( false )
 {
 }
 
@@ -75,6 +77,7 @@ PackageTreeItem::PackageTreeItem( const QVariantMap& groupData, GroupTag&& paren
     , m_isCritical( parentCriticality( groupData, parent.parent ) )
     , m_isHidden( CalamaresUtils::getBool( groupData, "hidden", false ) )
     , m_showReadOnly( CalamaresUtils::getBool( groupData, "immutable", false ) )
+    , m_showNoncheckable( CalamaresUtils::getBool( groupData, "noncheckable", false ) )
     , m_startExpanded( CalamaresUtils::getBool( groupData, "expanded", false ) )
 {
 }
