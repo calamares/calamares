@@ -84,6 +84,7 @@ createNewEncryptedPartition( PartitionNode* parent,
                              const QString& fsLabel,
                              qint64 firstSector,
                              qint64 lastSector,
+                             const QString& luksFsType,  // "luks" or "luks2"
                              const QString& passphrase,
                              PartitionTable::Flags flags )
 {
@@ -93,8 +94,10 @@ createNewEncryptedPartition( PartitionNode* parent,
         newRoles |= PartitionRole::Luks;
     }
 
+    FileSystem::Type luksType = FileSystem::typeForName( luksFsType );
+
     FS::luks* fs = dynamic_cast< FS::luks* >(
-        FileSystemFactory::create( FileSystem::Luks, firstSector, lastSector, device.logicalSize() ) );
+        FileSystemFactory::create( luksType, firstSector, lastSector, device.logicalSize() ) );
     if ( !fs )
     {
         cError() << "cannot create LUKS filesystem. Giving up.";

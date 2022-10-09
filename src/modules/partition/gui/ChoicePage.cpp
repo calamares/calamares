@@ -496,6 +496,7 @@ ChoicePage::applyActionChoice( InstallChoice choice )
         auto gs = Calamares::JobQueue::instance()->globalStorage();
         PartitionActions::Choices::AutoPartitionOptions options { gs->value( "defaultPartitionTableType" ).toString(),
                                                                   m_config->eraseFsType(),
+                                                                  gs->value( "luksFileSystemType" ).toString(),
                                                                   m_encryptWidget->passphrase(),
                                                                   gs->value( "efiSystemPartition" ).toString(),
                                                                   CalamaresUtils::GiBtoBytes(
@@ -752,6 +753,7 @@ ChoicePage::doAlongsideApply()
             m_core->layoutApply( dev,
                                  newLastSector + 2,
                                  oldLastSector,
+                                 m_config->luksFileSystemType(),
                                  m_encryptWidget->passphrase(),
                                  candidate->parent(),
                                  candidate->roles() );
@@ -826,6 +828,7 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
                     m_core->layoutApply( selectedDevice(),
                                          selectedPartition->firstSector(),
                                          selectedPartition->lastSector(),
+                                         m_config->luksFileSystemType(),
                                          m_encryptWidget->passphrase(),
                                          newParent,
                                          newRoles );
@@ -858,6 +861,7 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
                                                               selectedPartition,
                                                               { gs->value( "defaultPartitionType" ).toString(),
                                                                 gs->value( "defaultFileSystemType" ).toString(),
+                                                                gs->value( "luksFileSystemType" ).toString(),
                                                                 m_encryptWidget->passphrase() } );
                         Partition* homePartition = findPartitionByPath( { selectedDevice() }, *homePartitionPath );
 
@@ -1731,10 +1735,11 @@ ChoicePage::createBootloaderPanel()
     return panelWidget;
 }
 
-bool ChoicePage::shouldShowEncryptWidget( Config::InstallChoice choice ) const
+bool
+ChoicePage::shouldShowEncryptWidget( Config::InstallChoice choice ) const
 {
     // If there are any choices for FS, check it's not ZFS because that doesn't
     // support the kind of encryption we enable here.
     const bool suitableFS = m_eraseFsTypesChoiceComboBox ? m_eraseFsTypesChoiceComboBox->currentText() != "zfs" : true;
-    return (choice == InstallChoice::Erase) && m_enableEncryptionWidget && suitableFS;
+    return ( choice == InstallChoice::Erase ) && m_enableEncryptionWidget && suitableFS;
 }
