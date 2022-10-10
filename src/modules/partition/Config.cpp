@@ -25,23 +25,36 @@ Config::Config( QObject* parent )
 const NamedEnumTable< Config::InstallChoice >&
 Config::installChoiceNames()
 {
-    static const NamedEnumTable< InstallChoice > names { { QStringLiteral( "none" ), InstallChoice::NoChoice },
-                                                         { QStringLiteral( "nochoice" ), InstallChoice::NoChoice },
-                                                         { QStringLiteral( "alongside" ), InstallChoice::Alongside },
-                                                         { QStringLiteral( "erase" ), InstallChoice::Erase },
-                                                         { QStringLiteral( "replace" ), InstallChoice::Replace },
-                                                         { QStringLiteral( "manual" ), InstallChoice::Manual } };
+    // *INDENT-OFF*
+    // clang-format off
+    static const NamedEnumTable< InstallChoice > names {
+        { QStringLiteral( "none" ), InstallChoice::NoChoice },
+        { QStringLiteral( "nochoice" ), InstallChoice::NoChoice },
+        { QStringLiteral( "alongside" ), InstallChoice::Alongside },
+        { QStringLiteral( "erase" ), InstallChoice::Erase },
+        { QStringLiteral( "replace" ), InstallChoice::Replace },
+        { QStringLiteral( "manual" ), InstallChoice::Manual },
+    };
+    // clang-format on
+    // *INDENT-ON*
+
     return names;
 }
 
 const NamedEnumTable< Config::SwapChoice >&
 Config::swapChoiceNames()
 {
-    static const NamedEnumTable< SwapChoice > names { { QStringLiteral( "none" ), SwapChoice::NoSwap },
-                                                      { QStringLiteral( "small" ), SwapChoice::SmallSwap },
-                                                      { QStringLiteral( "suspend" ), SwapChoice::FullSwap },
-                                                      { QStringLiteral( "reuse" ), SwapChoice::ReuseSwap },
-                                                      { QStringLiteral( "file" ), SwapChoice::SwapFile } };
+    // *INDENT-OFF*
+    // clang-format off
+    static const NamedEnumTable< SwapChoice > names {
+        { QStringLiteral( "none" ), SwapChoice::NoSwap },
+        { QStringLiteral( "small" ), SwapChoice::SmallSwap },
+        { QStringLiteral( "suspend" ), SwapChoice::FullSwap },
+        { QStringLiteral( "reuse" ), SwapChoice::ReuseSwap },
+        { QStringLiteral( "file" ), SwapChoice::SwapFile },
+    };
+    // clang-format on
+    // *INDENT-ON*
 
     return names;
 }
@@ -49,8 +62,14 @@ Config::swapChoiceNames()
 const NamedEnumTable< Config::LuksGeneration >&
 Config::luksGenerationNames()
 {
-    static const NamedEnumTable< LuksGeneration > names { { QStringLiteral( "luks1" ), LuksGeneration::Luks1 },
-                                                          { QStringLiteral( "luks2" ), LuksGeneration::Luks2 } };
+    // *INDENT-OFF*
+    // clang-format off
+    static const NamedEnumTable< LuksGeneration > names {
+        { QStringLiteral( "luks1" ), LuksGeneration::Luks1 },
+        { QStringLiteral( "luks2" ), LuksGeneration::Luks2 },
+    };
+    // clang-format on
+    // *INDENT-ON*
 
     return names;
 }
