@@ -29,13 +29,15 @@ This release contains contributions from (alphabetically by first name):
 
 ## Modules ##
  - *dracut* added a configurable kernel name. (thanks Anke)
+ - *dracut* copies hostid file, when ZFS is in use.
  - *initcpiocfg* orders hookds slightly differently. (thanks Peter)
  - *localeq* moved to using Drawer instead of ComboBox in UI. (thanks Anke)
  - *keyboardq* moved to using Drawer instead of ComboBox in UI. (thanks Anke)
  - *netinstall* now has a new *noncheckable* option for groups, which prevent
    it a group from being checked/uncheckd as a whole. You can still check
    individual items **in** the group though. (thanks Shivanand)
-- *partition* can now pick LUKS or LUKS2. (thanks Jeremy)
+ - *partition* can now pick LUKS or LUKS2. (thanks Jeremy)
+ - *zfs* creates a hostid through zgenhostid.
 
 
 # 3.3.0-alpha2 (2022-08-23)
