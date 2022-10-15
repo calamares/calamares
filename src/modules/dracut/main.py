@@ -34,12 +34,12 @@ def run_dracut():
 
     :return:
     """
-    kernelName = libcalamares.job.configuration['kernelName']
+    initramfs_name = libcalamares.job.configuration['initramfsName']
 
-    if not kernelName:
+    if not initramfs_name:
         return check_target_env_call(['dracut', '-f'])
     else:
-        return check_target_env_call(['dracut', '-f', '{}'.format(kernelName)])
+        return check_target_env_call(['dracut', '-f', initramfs_name])
 
 
 def run():
@@ -53,4 +53,4 @@ def run():
 
     if return_code != 0:
         return (_("Failed to run dracut on the target"),
-                _("The exit code was {}").format(return_code))
+                _(f"The exit code was {return_code}"))
