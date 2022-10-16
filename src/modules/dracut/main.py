@@ -42,11 +42,13 @@ def run_dracut():
         try:
             target_env_process_output(['dracut', '-f'])
         except subprocess.CalledProcessError as cpe:
-            return cpe.returncode, cpe.output
+            libcalamares.utils.warning(f"Dracut failed with output: {cpe.output}")
+            return cpe.returncode
     except subprocess.CalledProcessError as cpe:
-        return cpe.returncode, cpe.output
+        libcalamares.utils.warning(f"Dracut failed with output: {cpe.output}")
+        return cpe.returncode
 
-    return 0, None
+    return 0
 
 
 def run():
@@ -56,8 +58,7 @@ def run():
 
     :return:
     """
-    return_code, output = run_dracut()
+    return_code = run_dracut()
     if return_code != 0:
-        libcalamares.utils.warning(f"Dracut failed with output: {output}")
         return (_("Failed to run dracut"),
-                _(f"Dracut failed with on the target with return code: {return_code}"))
+                _(f"Dracut failed to run on the target with return code: {return_code}"))
