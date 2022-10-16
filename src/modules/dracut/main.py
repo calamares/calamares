@@ -12,9 +12,10 @@
 #
 #   Calamares is Free Software: see the License-Identifier above.
 #
+import subprocess
 
 import libcalamares
-from libcalamares.utils import check_target_env_call
+from libcalamares.utils import target_env_process_output
 
 
 import gettext
@@ -34,12 +35,18 @@ def run_dracut():
 
     :return:
     """
-    initramfs_name = libcalamares.job.configuration['initramfsName']
+    try:
+        initramfs_name = libcalamares.job.configuration['initramfsName']
+        target_env_process_output(['dracut', '-f', initramfs_name])
+    except KeyError:
+        try:
+            target_env_process_output(['dracut', '-f'])
+        except subprocess.CalledProcessError as cpe:
+            return cpe.returncode, cpe.output
+    except subprocess.CalledProcessError as cpe:
+        return cpe.returncode, cpe.output
 
-    if not initramfs_name:
-        return check_target_env_call(['dracut', '-f'])
-    else:
-        return check_target_env_call(['dracut', '-f', initramfs_name])
+    return 0, None
 
 
 def run():
@@ -49,8 +56,8 @@ def run():
 
     :return:
     """
-    return_code = run_dracut()
-
+    return_code, output = run_dracut()
     if return_code != 0:
-        return (_("Failed to run dracut on the target"),
-                _(f"The exit code was {return_code}"))
+        libcalamares.utils.warning(f"Dracut failed with output: {output}")
+        return (_("Failed to run dracut"),
+                _(f"Dracut failed with on the target with return code: {return_code}"))
