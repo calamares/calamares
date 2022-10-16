@@ -5,6 +5,3 @@ $schema: https://json-schema.org/schema#
 $id: https://calamares.io/schemas/zfshostid
 additionalProperties: false
 type: object
-
-required:
-    - zfs
