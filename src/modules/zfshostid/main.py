@@ -36,10 +36,9 @@ def run():
         hostid_source = '/etc/hostid'
         hostid_destination = '{!s}/etc/hostid'.format(root_mount_point)
 
-        if os.path.exists(hostid_source):
-            try:
-                shutil.copy2(hostid_source, hostid_destination)
-            except Exception as e:
-                libcalamares.utils.warning("Could not copy hostid")
+        try:
+            shutil.copy2(hostid_source, hostid_destination)
+        except Exception as e:
+            libcalamares.utils.warning("Could not copy hostid")
 
     return None
