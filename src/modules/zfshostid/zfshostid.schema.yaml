@@ -1,0 +1,7 @@
+# SPDX-FileCopyrightText: 2022 Anke Boersma <demm@kaosx.us>
+# SPDX-License-Identifier: GPL-3.0-or-later
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/zfshostid
+additionalProperties: false
+type: object
