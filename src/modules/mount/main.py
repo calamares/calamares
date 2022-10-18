@@ -294,13 +294,13 @@ def mount_partition(root_mount_point, partition, partitions, mount_options, moun
         # Mount the subvolumes
         swap_subvol = libcalamares.job.configuration.get("btrfsSwapSubvol", "/@swap")
         for s in btrfs_subvolumes:
-            mount_option = "subvol={}".format(s['subvolume'])
             if s['subvolume'] == swap_subvol:
-                mount_option += "," + get_mount_options("btrfs_swap", mount_options, partition)
+                mount_option_no_subvol = get_mount_options("btrfs_swap", mount_options, partition)
             else:
-                mount_option += "," + get_mount_options(fstype, mount_options, partition)
+                mount_option_no_subvol = get_mount_options(fstype, mount_options, partition)
+            mount_option = f"subvol={s['subvolume']},{mount_option_no_subvol}"
             subvolume_mountpoint = mount_point[:-1] + s['mountPoint']
-            mount_options_list.append({"mountpoint": s['mountPoint'], "option_string": mount_option})
+            mount_options_list.append({"mountpoint": s['mountPoint'], "option_string": mount_option_no_subvol})
             if libcalamares.utils.mount(device,
                                         subvolume_mountpoint,
                                         fstype,
