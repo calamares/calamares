@@ -15,12 +15,6 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.3
 
 Item {
-    width:  parent.width
-    height: parent.height
-
-    //property var config.PackageChoice: Global.value("firmwareType") === "efi" ? "systemd-boot" : "grub"
-    //property var grubEntry: (Global.value("firmwareType") === "bios") ?
-
     Rectangle {
         anchors.fill: parent
         color: "#f2f2f2"
@@ -32,7 +26,6 @@ Item {
         Loader {
             anchors.centerIn: parent
             source: Global.value("firmwareType") === "efi" ? "UEFI.qml" : "BIOS.qml"
-            //source: "BIOS.qml"
         }
     }
 
