@@ -116,7 +116,6 @@ canBeReplaced( Partition* candidate, const Logger::Once& o )
     }
 }
 
-
 bool
 canBeResized( Partition* candidate, const Logger::Once& o )
 {
@@ -196,7 +195,6 @@ canBeResized( Partition* candidate, const Logger::Once& o )
     }
 }
 
-
 bool
 canBeResized( DeviceModel* dm, const QString& partitionPath, const Logger::Once& o )
 {
@@ -220,7 +218,6 @@ canBeResized( DeviceModel* dm, const QString& partitionPath, const Logger::Once&
         return false;
     }
 }
-
 
 static FstabEntryList
 lookForFstabEntries( const QString& partitionPath )
@@ -278,7 +275,6 @@ lookForFstabEntries( const QString& partitionPath )
 
     return fstabEntries;
 }
-
 
 static QString
 findPartitionPathForMountPoint( const FstabEntryList& fstab, const QString& mountPoint )
@@ -355,7 +351,6 @@ findPartitionPathForMountPoint( const FstabEntryList& fstab, const QString& moun
     return QString();
 }
 
-
 OsproberEntryList
 runOsprober( DeviceModel* dm )
 {
@@ -398,7 +393,7 @@ runOsprober( DeviceModel* dm )
             }
 
             QString file, path = lineColumns.value( 0 ).simplified();
-            if ( !path.startsWith( "/dev/" ) )  //basic sanity check
+            if ( !path.startsWith( "/dev/" ) )  // basic sanity check
             {
                 continue;
             }
@@ -443,7 +438,15 @@ runOsprober( DeviceModel* dm )
 bool
 isEfiSystem()
 {
-    return QDir( "/sys/firmware/efi/efivars" ).exists();
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+    if ( gs->contains( "arm_install" ) && gs->value( "arm_install" ).toBool() )
+    {
+        return true;
+    }
+    else
+    {
+        return QDir( "/sys/firmware/efi/efivars" ).exists();
+    }
 }
 
 bool
@@ -488,7 +491,6 @@ isEfiFilesystemSuitableSize( const Partition* candidate )
     }
 }
 
-
 bool
 isEfiBootable( const Partition* candidate )
 {
@@ -522,7 +524,6 @@ efiFilesystemMinimumSize()
     }
     return uefisys_part_sizeB;
 }
-
 
 QString
 canonicalFilesystemName( const QString& fsName, FileSystem::Type* fsType )
@@ -606,7 +607,7 @@ FstabEntry::fromEtcFstab( const QString& rawLine )
         splitLine.at( 1 ),  // mount point
         splitLine.at( 2 ),  // fs type
         splitLine.at( 3 ),  // options
-        splitLine.at( 4 ).toInt(),  //dump
-        splitLine.at( 5 ).toInt()  //pass
+        splitLine.at( 4 ).toInt(),  // dump
+        splitLine.at( 5 ).toInt()  // pass
     };
 }

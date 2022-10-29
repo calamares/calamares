@@ -63,8 +63,8 @@ CreateLayoutsTests::testFixedSizePartition()
         QFAIL( qPrintable( "Unable to create / partition" ) );
     }
 
-    partitions = layout.createPartitions(
-        static_cast< Device* >( &dev ), 0, dev.totalLogical(), nullptr, nullptr, nullptr, role );
+    partitions
+        = layout.createPartitions( static_cast< Device* >( &dev ), 0, dev.totalLogical(), nullptr, nullptr, role );
 
     QCOMPARE( partitions.count(), 1 );
 
@@ -84,8 +84,8 @@ CreateLayoutsTests::testPercentSizePartition()
         QFAIL( qPrintable( "Unable to create / partition" ) );
     }
 
-    partitions = layout.createPartitions(
-        static_cast< Device* >( &dev ), 0, dev.totalLogical(), nullptr, nullptr, nullptr, role );
+    partitions
+        = layout.createPartitions( static_cast< Device* >( &dev ), 0, dev.totalLogical(), nullptr, nullptr, role );
 
     QCOMPARE( partitions.count(), 1 );
 
@@ -115,8 +115,8 @@ CreateLayoutsTests::testMixedSizePartition()
         QFAIL( qPrintable( "Unable to create /bkup partition" ) );
     }
 
-    partitions = layout.createPartitions(
-        static_cast< Device* >( &dev ), 0, dev.totalLogical(), nullptr, nullptr, nullptr, role );
+    partitions
+        = layout.createPartitions( static_cast< Device* >( &dev ), 0, dev.totalLogical(), nullptr, nullptr, role );
 
     QCOMPARE( partitions.count(), 3 );
 

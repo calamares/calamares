@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="Calque_1"
+   x="0px"
+   y="0px"
+   width="22px"
+   height="22px"
+   viewBox="0 22 22 22"
+   style="enable-background:new 0 22 22 22;"
+   xml:space="preserve"
+   sodipodi:docname="state-warning.svg"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"><metadata
+   id="metadata9"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title /></cc:Work></rdf:RDF></metadata><defs
+   id="defs7" /><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="1440"
+   inkscape:window-height="840"
+   id="namedview5"
+   showgrid="false"
+   inkscape:zoom="28.409091"
+   inkscape:cx="11"
+   inkscape:cy="11"
+   inkscape:window-x="0"
+   inkscape:window-y="0"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Calque_1"
+   inkscape:document-rotation="0" />
+<path
+   style="fill:#1b0b3c;fill-opacity:1"
+   d="M21.705,41.771L12.252,22.8C11.951,22.268,11.537,21.999,11,22c-0.56,0-0.977,0.265-1.273,0.859  c0,0-9.515,18.942-9.507,19.02C0.119,42.089,0,42.36,0,42.625C0,43.384,0.616,44,1.375,44h19.25C21.385,44,22,43.384,22,42.625  C22,42.315,21.95,42.261,21.705,41.771z M11,26.578c0.83,0,1.5,0.671,1.5,1.5v7.612c-0.366-0.419-0.899-0.688-1.5-0.688  c-0.601,0-1.133,0.27-1.5,0.688v-7.612C9.5,27.25,10.172,26.578,11,26.578z M11,41.832c-1.077,0-1.95-0.872-1.95-1.949  c0-1.076,0.873-1.95,1.95-1.95c1.076,0,1.95,0.874,1.95,1.95C12.95,40.959,12.076,41.832,11,41.832z"
+   id="path2" />
+</svg>

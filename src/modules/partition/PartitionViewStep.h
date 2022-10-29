@@ -82,6 +82,8 @@ private:
 
     WaitingWidget* m_waitingWidget;
     QFutureWatcher< void >* m_future;
+
+    QString m_bootloader;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( PartitionViewStepFactory )

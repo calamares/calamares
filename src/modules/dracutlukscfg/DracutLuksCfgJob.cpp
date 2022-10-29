@@ -84,6 +84,16 @@ hasUnencryptedSeparateBoot()
     return false;
 }
 
+static bool
+usesGrub()
+{
+    if( Calamares::JobQueue::instance()->globalStorage()->contains("packagechooser_packagechooserq") ) {
+        const QString bootloader = Calamares::JobQueue::instance()->globalStorage()->value("packagechooser_packagechooserq").toString();
+        return bootloader.toLower().trimmed() == "grub";
+    }
+    return false;
+}
+
 static QString
 swapOuterUuid()
 {
@@ -139,7 +149,7 @@ DracutLuksCfgJob::exec()
         }
         QTextStream outStream( &configFile );
         outStream << CONFIG_FILE_HEADER
-                  << ( hasUnencryptedSeparateBoot() ? CONFIG_FILE_CRYPTTAB_LINE : CONFIG_FILE_CRYPTTAB_KEYFILE_LINE );
+                  << ( hasUnencryptedSeparateBoot() || !usesGrub() ? CONFIG_FILE_CRYPTTAB_LINE : CONFIG_FILE_CRYPTTAB_KEYFILE_LINE );
         const QString swapOuterUuid = ::swapOuterUuid();
         if ( !swapOuterUuid.isEmpty() )
         {

@@ -26,9 +26,6 @@
 #include <kpmcore/core/partition.h>
 #include <kpmcore/fs/filesystem.h>
 #include <kpmcore/fs/luks.h>
-#ifdef WITH_KPMCORE42API
-#include <kpmcore/fs/luks2.h>
-#endif
 
 #include <QDebug>
 #include <QDir>
@@ -99,13 +96,6 @@ mapForPartition( Partition* partition, const QString& uuid )
     {
         map[ "fs" ] = untranslatedFS( dynamic_cast< FS::luks& >( partition->fileSystem() ).innerFS() );
     }
-#ifdef WITH_KPMCORE42API
-    if ( partition->fileSystem().type() == FileSystem::Luks2
-         && dynamic_cast< FS::luks2& >( partition->fileSystem() ).innerFS() )
-    {
-        map[ "fs" ] = untranslatedFS( dynamic_cast< FS::luks2& >( partition->fileSystem() ).innerFS() );
-    }
-#endif
     map[ "uuid" ] = uuid;
     map[ "claimed" ] = PartitionInfo::format( partition );  // If we formatted it, it's ours
 

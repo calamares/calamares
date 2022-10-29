@@ -1,0 +1,10 @@
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/userpkglist
+additionalProperties: false
+type: object
+properties:
+    name: { type: string }
+    file_location: { type: string }
+    netinstall_name: { type: string }
+    netinstall_desc: { type: string }

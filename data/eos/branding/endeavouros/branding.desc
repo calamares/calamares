@@ -1,0 +1,47 @@
+componentName: endeavouros
+
+welcomeStyleCalamares: false
+
+welcomeExpandingLogo: true
+
+# windowExpanding: normal
+windowExpanding: noexpand
+
+windowSize: 1215px,715px
+
+windowPlacement: center
+
+sidebar: widget
+
+navigation: widget
+
+strings:
+    productName:         EndeavourOS
+    shortProductName:    EndeavourOS
+    version:             2021.05.28
+    shortVersion:        2021.05.28
+    versionedName:       EndeavourOS
+    shortVersionedName:  EndeavourOS
+    bootloaderEntryName: EndeavourOS
+    
+images:
+    productLogo:         "endeavouros-logo.png"
+    productIcon:         "endeavouros-icon.png"
+    productWelcome:      "opening-banner.jpg"
+    
+slideshowAPI: 2
+
+style:
+   SidebarBackground:        "#0d0e22"
+   SidebarText:              "#f5f6f7"
+   SidebarTextCurrent:       "#0d0e22"
+   SidebarBackgroundCurrent: "#f5f6f7"
+
+slideshow:               "show.qml"
+
+# log feature
+
+uploadServer :
+    type :    "fiche"
+    url :     "http://termbin.com:9999"
+    sizeLimit : -1

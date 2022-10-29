@@ -46,32 +46,6 @@ Config::swapChoiceNames()
     return names;
 }
 
-const NamedEnumTable< Config::LuksGeneration >&
-Config::luksGenerationNames()
-{
-    static const NamedEnumTable< LuksGeneration > names { { QStringLiteral( "luks1" ), LuksGeneration::Luks1 },
-                                                          { QStringLiteral( "luks2" ), LuksGeneration::Luks2 } };
-
-    return names;
-}
-
-const QString
-Config::luksGenerationToFSName( Config::LuksGeneration luksGeneration )
-{
-    // Convert luksGenerationChoice from partition.conf into its
-    // corresponding file system type from KPMCore.
-    switch ( luksGeneration )
-    {
-    case Config::LuksGeneration::Luks2:
-        return QStringLiteral( "luks2" );
-    case Config::LuksGeneration::Luks1:
-        return QStringLiteral( "luks" );
-    default:
-        cWarning() << "luksGeneration not supported, defaulting to \"luks\"";
-        return QStringLiteral( "luks" );
-    }
-}
-
 Config::SwapChoice
 pickOne( const Config::SwapChoiceSet& s )
 {
@@ -349,23 +323,12 @@ Config::fillConfigurationFSTypes( const QVariantMap& configurationMap )
         }
     }
 
-    // Set LUKS file system based on luksGeneration provided, defaults to 'luks'.
-    bool nameFound = false;
-    Config::LuksGeneration luksGeneration
-        = luksGenerationNames().find( CalamaresUtils::getString( configurationMap, "luksGeneration" ), nameFound );
-    if ( !nameFound )
-    {
-        cWarning() << "Partition-module setting *luksGeneration* not found or invalid. Defaulting to luks1.";
-        luksGeneration = Config::LuksGeneration::Luks1;
-    }
-    m_luksFileSystemType = Config::luksGenerationToFSName( luksGeneration );
-    gs->insert( "luksFileSystemType", m_luksFileSystemType );
-
     Q_ASSERT( !m_eraseFsTypes.isEmpty() );
     Q_ASSERT( m_eraseFsTypes.contains( fsRealName ) );
     m_eraseFsTypeChoice = fsRealName;
     Q_EMIT eraseModeFilesystemChanged( m_eraseFsTypeChoice );
 }
+
 
 void
 Config::setConfigurationMap( const QVariantMap& configurationMap )

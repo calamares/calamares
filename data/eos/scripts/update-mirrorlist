@@ -1,0 +1,244 @@
+#!/bin/bash
+
+CodeToCountry() {  # convert country code to country name
+    echo "$REFLECTOR_COUNTRIES" | grep -w "$1" | sed 's|^\(.*[a-z]\)[ ]*[A-Z][A-Z].*$|\1|'
+}
+CountryToCode() {  # convert name to code; used for checking
+    echo "$REFLECTOR_COUNTRIES" | grep -w "$1" | awk '{print $(NF-1)}'
+}
+
+CCCheck() {   # check validity of country code
+    case "$1" in
+        [A-Z][A-Z]) test -n "$(CodeToCountry "$1")" && return 0 ;;
+    esac
+    return 1  # fail
+}
+GetYourCountryCode() {
+    local IP code
+
+    code="$(show-location-info country)"
+    CCCheck "$code" && {
+        echo "$code" ; return
+    }
+
+    IP="$(dig -4 TXT +short o-o.myaddr.l.google.com @ns1.google.com | tr -d '"')"  # ipv4 address
+    code="$(geoiplookup "$IP" | sed 's|^.*: \([A-Z][A-Z]\),.*$|\1|')"
+    CCCheck "$code" && {
+        echo "$code" ; return
+    }
+    code="$(whois "$IP" | grep ^country: | awk '{print $NF}')"
+    CCCheck "$code" && {
+        echo "$code" ; return
+    }
+
+    IP="$(dig -6 TXT +short o-o.myaddr.l.google.com @ns1.google.com | tr -d '"')"  # ipv6 address
+    code="$(geoiplookup6 "$IP" | sed 's|^.*: \([A-Z][A-Z]\),.*$|\1|')"
+    CCCheck "$code" && {
+        echo "$code" ; return
+    }
+    code="$(whois "$IP" | grep ^country: | awk '{print $NF}')"
+    CCCheck "$code" && {
+        echo "$code" ; return
+    }
+
+    code="$(show-location-info country)"
+    CCCheck "$code" && {
+        echo "$code" ; return
+    }
+
+    # net services failed, use local variables, but may be wrong
+    code="$(locale | grep ^LC_TIME | cut -d '"' -f 2 | sed 's|^.*_\([A-Z][A-Z]\)\..*$|\1|')"
+    CCCheck "$code" && {
+        echo "$code" ; return
+    }
+}
+GetYourCountry() {
+    local code="$(GetYourCountryCode)"
+    local country="$(test -n "$code" && CodeToCountry "$code")"
+    echo "$country"
+}
+
+Debug() {
+    if [ "$dryrun" = "yes" ] ; then
+        echo "$@" >&2
+    fi
+}
+logterminal() {
+    local msg="$1"
+    local extra="$2"
+
+    case "$extra" in
+        "") echo "==> $progname: $msg" ;;
+        --nh) echo "$msg" ;;
+    esac
+}
+
+DIE() {
+    logterminal "$FUNCNAME: $1"
+    exit 1
+}
+
+UseBestMirrorsIfAvailable() {
+    [ -n "$this_country" ] || return
+    # ad hoc mirror "ranking"
+    declare -A BEST_MIRRORS     # mirrors here will be the *first* mirrors
+
+    # Add a list of *known* best mirrors for a country:
+    BEST_MIRRORS[FI]='https://mirror.f4st.host/archlinux/$repo/os/$arch https://mirror.pseudoform.org/$repo/os/$arch'  # FI uses these!
+
+    local best="${BEST_MIRRORS[$this_country]}"
+    local bb
+
+    if [ -n "$best" ] ; then
+        rm -f $tf.new
+        for bb in $best ; do
+            logterminal "Adding mirror '$bb'"
+            echo "Server = $bb" >> $tf.new
+
+            # remove $bb from the current list if it is there
+            grep -v "$bb" $tf > $tf.tmp
+            mv $tf.tmp $tf
+        done
+        cat $tf >> $tf.new
+        mv $tf.new $tf
+    fi
+}
+
+RunCmd() {
+    $cmd > $tf
+    retval=$?
+    [ $retval -eq 0 ] || return
+
+    UseBestMirrorsIfAvailable
+
+    if [ -x /usr/bin/rate-mirrors ] ; then
+        grep '^Server = ' $tf > $tf.tmp
+        mv $tf.tmp $tf
+    fi
+}
+
+Main() {
+    local VERSION="2.1"                   # started from 2.0!
+    local progname="$(basename "$0")"
+    local mf=/etc/pacman.d/mirrorlist
+    local bu=/tmp/mirrorlist.bu             # original mirrorlist, saved by Welcome
+
+    logterminal "version $VERSION"
+
+    /usr/bin/eos-connection-checker || {
+        logterminal "Internet connection is not available, cannot rank mirrorlist."
+        return
+    }
+
+    if [ -r $mf ] && [ -r $bu ] ; then
+        if (/usr/bin/diff $mf $bu >& /dev/null) ; then
+            # Current and original mirrorlists are the same, so carry on.
+            logterminal "Updating mirrorlist."
+        else
+            # Current and original mirrorlist are different, so stop.
+            logterminal "Mirrorlist already changed, not updating it."
+            logterminal "This is the current mirrorlist:"
+            echo "#===================================#"
+            cat "$mf"
+            echo "#===================================#"
+            return
+        fi
+    fi
+
+    REFLECTOR_COUNTRIES="$(reflector --list-countries --connection-timeout 20 --download-timeout 20)"
+    if [ -z "$REFLECTOR_COUNTRIES" ] ; then
+        logterminal "no result from command 'reflector --listcountries', mirrorlist not updated."
+        return
+    fi
+    local this_country="$(GetYourCountryCode)"
+    local retval
+    local cmd=""
+    local ranker="reflector"   # rate-mirrors or reflector
+    local dryrun=no
+    local arg
+
+    if [ -n "$this_country" ] ; then
+        logterminal "detected country: $(CodeToCountry $this_country)"
+    else
+        logterminal "country code not found on Arch mirrorlist"
+    fi
+
+    for arg in "$@" ; do
+        case "$arg" in
+            -n | --dryrun) dryrun=yes ;;    # don't save mirrorlist to /etc/pacman.d
+            -cc=*) this_country="${arg#*=}" ; logterminal "country changed to '$this_country'" ;;
+            *) DIE "parameter '$arg' is not supported" ;;
+        esac
+    done
+
+    if [ -x /usr/bin/rate-mirrors ] ; then
+        # new implementation (after 2021-06-27)
+        case "$this_country" in
+            FI)
+                # Some other European countries (e.g. DE) could use this command as well!
+                cmd="$ranker -phttps -l5 -cDE --sort rate --threads 5"
+                ;;
+            *)
+                # rate-mirrors should create a reasonably good mirrorlist generally
+                ranker="rate-mirrors"
+                cmd="$ranker --allow-root arch"
+                ;;
+        esac
+    else
+        # old implementation (before 2021-06-27)
+        cmd="$ranker -phttps --latest 10 --sort rate "  # reflector and common options
+        case "$this_country" in
+            "" | IS | IE)
+                # no mirrors or mirror problems here, search well-updated https mirrors globally
+                cmd+=" --verbose"
+                ;;
+            FI)
+                # special command for FI
+                cmd+=" -cde --threads 5"
+                cmd+=" -x orbit-os -x ratenzahlung -x satis-faction"
+                cmd+=" -x xtom.de -x metalgamer -x agdsn -x fsrv -x appuals -x wrz -x clientvps"
+                cmd+=" -x fef.moe -x gnomus"
+                ;;
+            DE|DK|FR|GB|HK|NL|NZ|SE|SG|US)
+                # search https mirrors only in this country
+                cmd+=" -c $this_country --threads 5"
+                ;;
+            CA|CH|CZ)
+                cmd+=" --threads 5"
+                ;;
+            *)
+                # this country may lack https mirrors
+                cmd+=" -phttp --latest 15 --verbose"
+                ;;
+        esac
+    fi
+
+    local tf=$(mktemp)
+
+    logterminal "command: $cmd"
+    logterminal "please wait..."
+    logterminal "" --nh
+    logterminal "'time' output:" --nh
+    time RunCmd
+    logterminal "" --nh
+
+    if [ $retval -eq 0 ] ; then
+        logterminal "Arch mirrorlist by $ranker:"
+        logterminal "" --nh
+        logterminal "$(cat $tf)" --nh
+        logterminal "" --nh
+        if [ "$dryrun" = "no" ] ; then
+            logterminal "writing file $mf"
+            sudo bash -c "cp $tf $mf && chmod 0644 $mf"
+        else
+            logterminal "you used option --dryrun, will not write file $mf"
+        fi
+    else
+        logterminal "$ranker returned error code $retval, mirrorlist not updated."
+    fi
+
+    rm -f $tf
+    return 0            # return $retval   # 0=OK, other is FAIL
+}
+
+Main "$@"

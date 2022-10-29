@@ -98,7 +98,7 @@ colorForPartition( Partition* partition )
     if ( partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone
          && !partition->fileSystem().uuid().isEmpty() )
     {
-        if ( partition->fileSystem().type() == FileSystem::Luks || partition->fileSystem().type() == FileSystem::Luks2 )
+        if ( partition->fileSystem().type() == FileSystem::Luks )
         {
             FS::luks& luksFs = dynamic_cast< FS::luks& >( partition->fileSystem() );
             if ( !luksFs.outerUuid().isEmpty() && s_partitionColorsCache.contains( luksFs.outerUuid() ) )
@@ -146,7 +146,7 @@ colorForPartition( Partition* partition )
     if ( partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone
          && !partition->fileSystem().uuid().isEmpty() )
     {
-        if ( partition->fileSystem().type() == FileSystem::Luks || partition->fileSystem().type() == FileSystem::Luks2 )
+        if ( partition->fileSystem().type() == FileSystem::Luks )
         {
             FS::luks& luksFs = dynamic_cast< FS::luks& >( partition->fileSystem() );
             if ( !luksFs.outerUuid().isEmpty() )

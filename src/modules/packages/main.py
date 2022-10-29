@@ -17,11 +17,12 @@
 import abc
 from string import Template
 import subprocess
+import time
 
 import libcalamares
 from libcalamares.utils import check_target_env_call, target_env_call
 from libcalamares.utils import gettext_path, gettext_languages
-
+import io
 import gettext
 _translation = gettext.translation("calamares-python",
                                    localedir=gettext_path(),
@@ -389,11 +390,14 @@ class PMPacman(PackageManager):
                     # progress percentage, since there may be more "installing..."
                     # lines in the output for the group, than packages listed
                     # explicitly. We don't know how to calculate proper progress.
-                    global custom_status_message
-                    custom_status_message = "pacman: " + line.strip()
-                    libcalamares.job.setprogress(self.progress_fraction)
-            libcalamares.utils.debug(line)
+                    if (time.time() - self.status_update_time) > 0.5:
+                        global custom_status_message
+                        custom_status_message = "pacman: " + line.strip()
+                        self.status_update_time = time.time()
+                        libcalamares.job.setprogress(self.progress_fraction)
+            libcalamares.utils.debug(line.strip())
 
+        self.status_update_time = 0
         self.in_package_changes = False
         self.line_cb = line_cb
 
@@ -424,7 +428,7 @@ class PMPacman(PackageManager):
         while pacman_count <= self.pacman_num_retries:
             pacman_count += 1
             try:
-                if False: # callback:
+                if callback is True:
                     libcalamares.utils.target_env_process_output(command, self.line_cb)
                 else:
                     libcalamares.utils.target_env_process_output(command)

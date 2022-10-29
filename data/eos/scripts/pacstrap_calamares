@@ -1,0 +1,359 @@
+#!/bin/bash
+
+# auto mount removed since calamares already does the job, pacstrap-old get error "/proc already mounted" for example.
+
+#
+# Assumptions:
+#  1) User has partitioned, formatted, and mounted partitions on /mnt
+#  2) Network is functional
+#  3) Arguments passed to the script are valid pacman targets
+#  4) A valid mirror appears in /etc/pacman.d/mirrorlist
+#
+
+shopt -s extglob
+
+# generated from util-linux source: libmount/src/utils.c
+declare -A pseudofs_types=([anon_inodefs]=1
+                           [autofs]=1
+                           [bdev]=1
+                           [bpf]=1
+                           [binfmt_misc]=1
+                           [cgroup]=1
+                           [cgroup2]=1
+                           [configfs]=1
+                           [cpuset]=1
+                           [debugfs]=1
+                           [devfs]=1
+                           [devpts]=1
+                           [devtmpfs]=1
+                           [dlmfs]=1
+                           [efivarfs]=1
+                           [fuse.gvfs-fuse-daemon]=1
+                           [fusectl]=1
+                           [hugetlbfs]=1
+                           [mqueue]=1
+                           [nfsd]=1
+                           [none]=1
+                           [pipefs]=1
+                           [proc]=1
+                           [pstore]=1
+                           [ramfs]=1
+                           [rootfs]=1
+                           [rpc_pipefs]=1
+                           [securityfs]=1
+                           [sockfs]=1
+                           [spufs]=1
+                           [sysfs]=1
+                           [tmpfs]=1)
+
+# generated from: pkgfile -vbr '/fsck\..+' | awk -F. '{ print $NF }' | sort
+declare -A fsck_types=([cramfs]=1
+                       [exfat]=1
+                       [ext2]=1
+                       [ext3]=1
+                       [ext4]=1
+                       [ext4dev]=1
+                       [jfs]=1
+                       [minix]=1
+                       [msdos]=1
+                       [reiserfs]=1
+                       [vfat]=1
+                       [xfs]=1)
+
+out() { printf "$1 $2\n" "${@:3}"; }
+error() { out "==> ERROR:" "$@"; } >&2
+warning() { out "==> WARNING:" "$@"; } >&2
+msg() { out "==>" "$@"; }
+msg2() { out "  ->" "$@";}
+die() { error "$@"; exit 1; }
+
+ignore_error() {
+  "$@" 2>/dev/null
+  return 0
+}
+
+in_array() {
+  local i
+  for i in "${@:2}"; do
+    [[ $1 = "$i" ]] && return 0
+  done
+  return 1
+}
+
+chroot_add_mount() {
+  mount "$@" && CHROOT_ACTIVE_MOUNTS=("$2" "${CHROOT_ACTIVE_MOUNTS[@]}")
+}
+
+chroot_maybe_add_mount() {
+  local cond=$1; shift
+  if eval "$cond"; then
+    chroot_add_mount "$@"
+  fi
+}
+
+chroot_setup() {
+  CHROOT_ACTIVE_MOUNTS=()
+  [[ $(trap -p EXIT) ]] && die '(BUG): attempting to overwrite existing EXIT trap'
+  trap 'chroot_teardown' EXIT
+
+}
+
+chroot_teardown() {
+  if (( ${#CHROOT_ACTIVE_MOUNTS[@]} )); then
+    umount "${CHROOT_ACTIVE_MOUNTS[@]}"
+  fi
+  unset CHROOT_ACTIVE_MOUNTS
+}
+
+try_cast() (
+  _=$(( $1#$2 ))
+) 2>/dev/null
+
+valid_number_of_base() {
+  local base=$1 len=${#2} i=
+
+  for (( i = 0; i < len; i++ )); do
+    try_cast "$base" "${2:i:1}" || return 1
+  done
+
+  return 0
+}
+
+mangle() {
+  local i= chr= out=
+  local {a..f}= {A..F}=
+
+  for (( i = 0; i < ${#1}; i++ )); do
+    chr=${1:i:1}
+    case $chr in
+      [[:space:]\\])
+        printf -v chr '%03o' "'$chr"
+        out+=\\
+        ;;
+    esac
+    out+=$chr
+  done
+
+  printf '%s' "$out"
+}
+
+unmangle() {
+  local i= chr= out= len=$(( ${#1} - 4 ))
+  local {a..f}= {A..F}=
+
+  for (( i = 0; i < len; i++ )); do
+    chr=${1:i:1}
+    case $chr in
+      \\)
+        if valid_number_of_base 8 "${1:i+1:3}" ||
+            valid_number_of_base 16 "${1:i+1:3}"; then
+          printf -v chr '%b' "${1:i:4}"
+          (( i += 3 ))
+        fi
+        ;;
+    esac
+    out+=$chr
+  done
+
+  printf '%s' "$out${1:i}"
+}
+
+optstring_match_option() {
+  local candidate pat patterns
+
+  IFS=, read -ra patterns <<<"$1"
+  for pat in "${patterns[@]}"; do
+    if [[ $pat = *=* ]]; then
+      # "key=val" will only ever match "key=val"
+      candidate=$2
+    else
+      # "key" will match "key", but also "key=anyval"
+      candidate=${2%%=*}
+    fi
+
+    [[ $pat = "$candidate" ]] && return 0
+  done
+
+  return 1
+}
+
+optstring_remove_option() {
+  local o options_ remove=$2 IFS=,
+
+  read -ra options_ <<<"${!1}"
+
+  for o in "${!options_[@]}"; do
+    optstring_match_option "$remove" "${options_[o]}" && unset 'options_[o]'
+  done
+
+  declare -g "$1=${options_[*]}"
+}
+
+optstring_normalize() {
+  local o options_ norm IFS=,
+
+  read -ra options_ <<<"${!1}"
+
+  # remove empty fields
+  for o in "${options_[@]}"; do
+    [[ $o ]] && norm+=("$o")
+  done
+
+  # avoid empty strings, reset to "defaults"
+  declare -g "$1=${norm[*]:-defaults}"
+}
+
+optstring_append_option() {
+  if ! optstring_has_option "$1" "$2"; then
+    declare -g "$1=${!1},$2"
+  fi
+
+  optstring_normalize "$1"
+}
+
+optstring_prepend_option() {
+  local options_=$1
+
+  if ! optstring_has_option "$1" "$2"; then
+    declare -g "$1=$2,${!1}"
+  fi
+
+  optstring_normalize "$1"
+}
+
+optstring_get_option() {
+  local opts o
+
+  IFS=, read -ra opts <<<"${!1}"
+  for o in "${opts[@]}"; do
+    if optstring_match_option "$2" "$o"; then
+      declare -g "$o"
+      return 0
+    fi
+  done
+
+  return 1
+}
+
+optstring_has_option() {
+  local "${2%%=*}"
+
+  optstring_get_option "$1" "$2"
+}
+
+dm_name_for_devnode() {
+  read dm_name <"/sys/class/block/${1#/dev/}/dm/name"
+  if [[ $dm_name ]]; then
+    printf '/dev/mapper/%s' "$dm_name"
+  else
+    # don't leave the caller hanging, just print the original name
+    # along with the failure.
+    print '%s' "$1"
+    error 'Failed to resolve device mapper name for: %s' "$1"
+  fi
+}
+
+fstype_is_pseudofs() {
+  (( pseudofs_types["$1"] ))
+}
+
+fstype_has_fsck() {
+  (( fsck_types["$1"] ))
+}
+
+
+hostcache=0
+copykeyring=1
+copymirrorlist=1
+
+usage() {
+  cat <<EOF
+usage: ${0##*/} [options] root [packages...]
+
+  Options:
+    -C <config>    Use an alternate config file for pacman
+    -c             Use the package cache on the host, rather than the target
+    -G             Avoid copying the host's pacman keyring to the target
+    -i             Prompt for package confirmation when needed (run interactively)
+    -M             Avoid copying the host's mirrorlist to the target
+
+    -h             Print this help message
+
+pacstrap installs packages to the specified new root directory. If no packages
+are given, pacstrap defaults to the "base" group.
+
+EOF
+}
+
+if [[ -z $1 || $1 = @(-h|--help) ]]; then
+  usage
+  exit $(( $# ? 0 : 1 ))
+fi
+
+(( EUID == 0 )) || die 'This script must be run with root privileges'
+
+while getopts ':C:cdGiM' flag; do
+  case $flag in
+    C)
+      pacman_config=$OPTARG
+      ;;
+    d)
+      # retired flag. does nothing.
+      ;;
+    c)
+      hostcache=1
+      ;;
+    i)
+      interactive=1
+      ;;
+    G)
+      copykeyring=0
+      ;;
+    M)
+      copymirrorlist=0
+      ;;
+    :)
+      die '%s: option requires an argument -- '\''%s'\' "${0##*/}" "$OPTARG"
+      ;;
+    ?)
+      die '%s: invalid option -- '\''%s'\' "${0##*/}" "$OPTARG"
+      ;;
+  esac
+done
+shift $(( OPTIND - 1 ))
+
+(( $# )) || die "No root directory specified"
+newroot=$1; shift
+pacman_args=("${@:-base}")
+
+if (( ! hostcache )); then
+  pacman_args+=(--cachedir="$newroot/var/cache/pacman/pkg")
+fi
+
+if (( ! interactive )); then
+  pacman_args+=(--noconfirm)
+fi
+
+if [[ $pacman_config ]]; then
+  pacman_args+=(--config="$pacman_config")
+fi
+
+[[ -d $newroot ]] || die "%s is not a directory" "$newroot"
+
+# create obligatory directories
+msg 'Creating install root at %s' "$newroot"
+mkdir -m 0755 -p "$newroot"/var/{cache/pacman/pkg,lib/pacman,log} "$newroot"/{dev,run,etc/pacman.d}
+mkdir -m 1777 -p "$newroot"/tmp
+mkdir -m 0555 -p "$newroot"/{sys,proc}
+
+# mount API filesystems
+chroot_setup "$newroot" || die "failed to setup chroot %s" "$newroot"
+
+
+msg 'Installing packages to %s' "$newroot"
+if ! pacman -r "$newroot" -Sy "${pacman_args[@]}"; then
+  die 'Failed to install packages to new root'
+fi
+
+
+# vim: et ts=2 sw=2 ft=sh:

@@ -20,9 +20,7 @@ properties:
     defaultFileSystemType: { type: string }
     availableFileSystemTypes: { type: array, items: { type: string } }
 
-    luksGeneration: { type: string, enum: [luks1, luks2] }
     enableLuksAutomatedPartitioning: { type: boolean, default: false }
-
     allowManualPartitioning: { type: boolean, default: true }
     partitionLayout: { type: array }  # TODO: specify items
     initialPartitioningChoice: { type: string, enum: [ none, erase, replace, alongside, manual ] }

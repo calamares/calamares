@@ -1,0 +1,6 @@
+# Syntax is YAML 1.2
+---
+type:       "job"
+name:       "copy_kernel"
+interface:  "python"
+script:     "main.py"

@@ -1,0 +1,261 @@
+- name: "Desktop-Base + Common packages"
+  description: "Recommended. Don't change unless you know what you're doing (generic)."
+  hidden: false
+  selected: true
+  critical: true
+  subgroups:
+      - name: "X-system"
+        description: "Default X-system"
+        selected: true
+        packages:
+           - libwnck3
+           - mesa-utils
+           - xf86-input-libinput
+           - xorg-xdpyinfo
+           - xorg-server
+           - xorg-xinit
+           - xorg-xinput
+           - xorg-xkill
+           - xorg-xrandr
+      - name: "GPU drivers"
+        description: "Graphics hardware drivers"
+        selected: true
+        packages:
+          - xf86-video-amdgpu
+          - xf86-video-ati
+          - xf86-video-intel
+      - name: "Network"
+        description: "Network apps drivers and tools"
+        selected: true
+        packages:
+          - b43-fwcutter
+          - broadcom-wl-dkms
+          - dhclient
+          - dialog
+          - dnsmasq
+          - dnsutils
+          - ethtool
+          - gnu-netcat
+          - iwd
+          - modemmanager
+          - nbd
+          - ndisc6
+          - networkmanager
+          - networkmanager-openvpn
+          - nmap
+          - nss-mdns
+          - openconnect
+          - openvpn
+          - ppp
+          - pptpclient
+          - rp-pppoe
+          - sshfs
+          - usb_modeswitch
+          - vpnc
+          - whois
+          - wireless-regdb
+          - wireless_tools
+          - wpa_supplicant
+          - xl2tpd
+      - name: "firewall"
+        description: "Firewall support"
+        selected: true
+        packages:
+          - firewalld
+          - python-pyqt5
+          - python-capng
+      - name: "packages management"
+        description: "Packages tools"
+        selected: true
+        packages:
+          - downgrade
+          - pacman-contrib
+          - pkgfile
+          - rebuild-detector
+          - reflector
+          - yay
+      - name: "desktop integration"
+        description: "Useful helper tools and libs for desktop usage"
+        selected: true
+        packages:
+          - accountsservice
+          - bash-completion
+          - bluez
+          - bluez-utils
+          - ffmpegthumbnailer
+          - gst-libav
+          - gst-plugin-pipewire
+          - gst-plugins-bad
+          - gst-plugins-ugly
+          - libdvdcss
+          - libgsf
+          - libopenraw
+          - mlocate
+          - poppler-glib
+          - xdg-user-dirs
+          - xdg-utils
+      - name: "filesystem"
+        description: "Filesystem tools and apps"
+        selected: true
+        packages:
+          - efitools
+          - haveged
+          - nfs-utils
+          - nilfs-utils
+          - ntp
+          - smartmontools
+          - unrar
+          - unzip
+          - xz
+      - name: "fonts"
+        description: "EndeavourOS font selection"
+        selected: true
+        packages:
+          - adobe-source-han-sans-cn-fonts
+          - adobe-source-han-sans-jp-fonts
+          - adobe-source-han-sans-kr-fonts
+          - cantarell-fonts
+          - freetype2
+          - noto-fonts
+          - ttf-bitstream-vera
+          - ttf-dejavu
+          - ttf-liberation
+          - ttf-opensans
+      - name: "audio"
+        description: "Audio handling tools apps and libs"
+        selected: true
+        packages:
+          - alsa-firmware
+          - alsa-plugins
+          - alsa-utils
+          - pavucontrol
+          - pipewire-pulse
+          - wireplumber
+          - pipewire-alsa
+          - pipewire-jack
+          - rtkit
+      - name: "hardware"
+        description: "Hardware support libs and firmware"
+        selected: true
+        packages:
+          - amd-ucode
+          - dmidecode
+          - dmraid
+          - hdparm
+          - hwdetect
+          - intel-ucode
+          - lsscsi
+          - mtools
+          - sg3_utils
+          - sof-firmware
+      - name: "power"
+        description: "Powermanagement support"
+        selected: true
+        packages:
+          - power-profiles-daemon
+          - upower
+      - name: "EndeavourOS Apps"
+        description: "EndeavourOS tools and applications"
+        selected: true
+        packages:
+          - endeavouros-theming
+          - eos-apps-info
+          - eos-hooks
+          - eos-log-tool
+          - eos-packagelist
+          - eos-quickstart
+          - eos-rankmirrors
+          - eos-update-notifier
+          - reflector-simple
+          - welcome
+          - yad-eos
+      - name: "EndeavourOS applications selection"
+        description: "General tools and applications"
+        selected: true
+        packages:
+          - duf
+          - findutils
+          - fsarchiver
+          - git
+          - glances
+          - hwinfo
+          - inxi
+          - meld
+          - nano-syntax-highlighting
+          - neofetch
+          - pv
+          - python-defusedxml
+          - python-packaging
+          - rsync
+          - tldr
+          - sed
+          - vi
+          - wget
+- name: "Firefox and language package"
+  description: "Add firefox and language pack if possible"
+  hidden: false
+  selected: true
+  critical: false
+  packages:
+    - firefox
+    - firefox-i18n-$LOCALE
+- name: "LTS Kernel in addition"
+  description: "Adding Long Term Supported Kernel in addition to main one"
+  hidden: false
+  selected: false
+  expanded: false
+  critical: true
+  packages:
+    - linux-lts
+    - linux-lts-headers
+- name: "Zen Kernel in addition"
+  description: "Adding ZEN kernel in addition to main one"
+  hidden: false
+  selected: false
+  expanded: false
+  critical: true
+  packages:
+    - linux-zen
+    - linux-zen-headers
+- name: "Printing-Support"
+  description: "Support for printing (Cups)"
+  hidden: false
+  selected: false
+  critical: true
+  packages:
+    - cups
+    - cups-filters
+    - cups-pdf
+    - foomatic-db
+    - foomatic-db-engine
+    - foomatic-db-gutenprint-ppds
+    - foomatic-db-nonfree
+    - foomatic-db-nonfree-ppds
+    - foomatic-db-ppds
+    - ghostscript
+    - gsfonts
+    - gutenprint
+    - splix
+    - system-config-printer
+- name: "Support for HP Printer/Scanner"
+  description: "Extra Packages for HP Printer/Scanner"
+  hidden: false
+  selected: false
+  critical: true
+  packages:
+    - hplip
+    - python-pyqt5
+    - python-reportlab
+    - xsane
+    - cups
+    - cups-filters
+    - cups-pdf
+- name: "Accessibility Tools"
+  description: "Screen reader and mouse tweaks (impaired vision)"
+  hidden: false
+  selected: false
+  critical: true
+  packages:
+    - espeak-ng
+    - mousetweaks
+    - orca

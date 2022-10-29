@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Remove the "wrong" microcode.
+case "$(grep -w "^vendor_id" /proc/cpuinfo | head -n 1 | awk '{print $3}')" in
+    GenuineIntel)       pkgname=amd-ucode ;;
+    AuthenticAMD | *)   pkgname=intel-ucode ;;
+esac
+
+[[ $(pacman -Q "${pkgname}"  2</dev/null) ]] && pacman -R --noconfirm "${pkgname}"
+
+exit 0

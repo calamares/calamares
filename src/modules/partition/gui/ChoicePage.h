@@ -86,6 +86,7 @@ public:
 
     int lastSelectedDeviceIndex();
     void setLastSelectedDeviceIndex( int index );
+    int efiIndex();
 
 signals:
     void nextStatusChanged( bool );

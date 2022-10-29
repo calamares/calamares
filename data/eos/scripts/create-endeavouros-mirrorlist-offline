@@ -1,0 +1,22 @@
+#!/bin/bash
+
+Main()
+{
+    # Create endeavouros-mirrorlist.offline for offline install.
+    # Prefer mirrors that work well worldwide.
+    #
+    # Assumptions:
+    #  - official /etc/pacman.d/endeavouros-mirrorlist exists
+    #  - the format of country comments is static and unique, e.g.:
+    #      ## Germany
+
+    local suffix=".offline-install"
+    local mirrorlist="/etc/pacman.d/endeavouros-mirrorlist"
+    local offline="$mirrorlist$suffix"
+
+    printf "# EndeavourOS mirrorlist for offline install only.\n\n" > $offline
+    cat "$mirrorlist" | sed -n '/^## Germany/,/^$/p'  >> "$offline"
+    cat "$mirrorlist" | sed -n '/^## [A-Z].*/,$p'     >> "$offline"
+}
+
+Main "$@"

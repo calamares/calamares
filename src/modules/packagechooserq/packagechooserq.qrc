@@ -1,8 +1,7 @@
 <RCC>
-    <qresource>
+    <qresource prefix="/">
+        <file>BIOS.qml</file>
+        <file>UEFI.qml</file>
         <file>packagechooserq.qml</file>
-        <file>images/libreoffice.jpg</file>
-        <file>images/no-selection.png</file>
-        <file>images/plasma.png</file>
     </qresource>
 </RCC>

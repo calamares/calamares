@@ -1,0 +1,13 @@
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/eos_script
+additionalProperties: false
+type: object
+properties:
+    name: { type: string }
+    scriptPath: { type: string }
+    runInTarget: { type: boolean, default: false }
+    includeRoot: { type: boolean, default: false }
+    includeUser: { type: boolean, default: false }
+    isOnline: { type: boolean, default: false }
+    userOutput: { type: boolean, default: false }
