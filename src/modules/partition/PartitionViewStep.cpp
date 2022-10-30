@@ -548,7 +548,7 @@ PartitionViewStep::onLeave()
             = Calamares::JobQueue::instance()->globalStorage()->value( "efiSystemPartition" ).toString();
         Partition* esp = m_core->findPartitionByMountPoint( espMountPoint );
 
-        if ( !PartUtils::isEfiFilesystemSuitableSize( esp ) )
+        if ( esp != nullptr && !PartUtils::isEfiFilesystemSuitableSize( esp ) )
         {
             const qint64 atLeastBytes = static_cast< qint64 >( PartUtils::efiFilesystemMinimumSize() );
             const auto atLeastMiB = CalamaresUtils::BytesToMiB( atLeastBytes );
