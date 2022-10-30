@@ -9,4 +9,5 @@ calamares_add_plugin(zfs
     SOURCES
         ZfsJob.cpp
     SHARED_LIB
+    REQUIRES zfshostid
 )
