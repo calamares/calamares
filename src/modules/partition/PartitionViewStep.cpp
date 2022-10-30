@@ -541,6 +541,18 @@ shouldWarnForGPTOnBIOS( const PartitionCoreModule* core )
 void
 PartitionViewStep::onLeave()
 {
+    // Put the ESPs in global storage
+    if ( PartUtils::isEfiSystem() )
+    {
+        QList< Partition* > efiSystemPartitions = m_core->efiSystemPartitions();
+        QStringList espPaths;
+        for ( auto partition : efiSystemPartitions )
+        {
+            espPaths.append( partition->devicePath() );
+        }
+        Calamares::JobQueue::instance()->globalStorage()->insert( "espList", espPaths );
+    }
+
     // Check the size of the ESP for systemd-boot
     if ( PartUtils::isEfiSystem() && m_bootloader.trimmed() == "systemd-boot" )
     {
