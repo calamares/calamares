@@ -548,7 +548,7 @@ PartitionViewStep::onLeave()
         QStringList espPaths;
         for ( auto partition : efiSystemPartitions )
         {
-            espPaths.append( partition->devicePath() );
+            espPaths.append( partition->partitionPath() );
         }
         Calamares::JobQueue::instance()->globalStorage()->insert( "espList", espPaths );
     }
