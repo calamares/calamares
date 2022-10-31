@@ -138,12 +138,10 @@
         description: "Hardware support libs and firmware"
         selected: true
         packages:
-          - amd-ucode
           - dmidecode
           - dmraid
           - hdparm
           - hwdetect
-          - intel-ucode
           - lsscsi
           - mtools
           - sg3_utils
@@ -191,6 +189,14 @@
           - sed
           - vi
           - wget
+- name: "CPU specific Microcode update packages"
+  description: "Microcode update image for AMD and Intel CPU"
+  hidden: false
+  selected: true
+  critical: false
+  packages:
+    - amd-ucode
+    - intel-ucode
 - name: "Firefox and language package"
   description: "Add firefox and language pack if possible"
   hidden: false
