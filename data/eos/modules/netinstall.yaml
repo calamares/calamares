@@ -138,12 +138,10 @@
         description: "Hardware support libs and firmware"
         selected: true
         packages:
-          - amd-ucode
           - dmidecode
           - dmraid
           - hdparm
           - hwdetect
-          - intel-ucode
           - lsscsi
           - mtools
           - sg3_utils
@@ -191,6 +189,14 @@
           - sed
           - vi
           - wget
+- name: "CPU specific Microcode update packages"
+  description: "Microcode update image for AMD and Intel CPU"
+  hidden: false
+  selected: true
+  critical: false
+  packages:
+    - amd-ucode
+    - intel-ucode
 - name: "Firefox and language package"
   description: "Add firefox and language pack if possible"
   hidden: false
@@ -280,14 +286,14 @@
     - arandr
     - arc-gtk-theme-eos
     - archlinux-xdg-menu
-    - endeavouros-skel-i3wm
-    - eos-lightdm-slick-theme
-    - eos-qogir-icons
     - awesome-terminal-fonts
     - dex
     - dmenu
     - dunst
+    - endeavouros-skel-i3wm
     - endeavouros-xfce4-terminal-colors
+    - eos-lightdm-slick-theme
+    - eos-qogir-icons
     - file-roller
     - galculator
     - gthumb
@@ -298,8 +304,8 @@
     - gvfs-mtp
     - gvfs-nfs
     - gvfs-smb
-    - i3blocks
     - i3-gaps
+    - i3blocks
     - i3lock
     - i3status
     - jq
@@ -371,6 +377,7 @@
   packages:
     - adwaita-icon-theme
     - arc-gtk-theme-eos
+    - endeavouros-gschema-gnome-git
     - eos-qogir-icons
     - eog
     - evince
@@ -407,6 +414,7 @@
   critical: true
   packages:
     - arc-gtk-theme-eos
+    - endeavouros-skel-mate-git
     - eos-lightdm-slick-theme
     - eos-qogir-icons
     - celluloid
@@ -461,6 +469,7 @@
   critical: true
   packages:
     - arc-gtk-theme-eos
+    - endeavouros-gschema-budgie-git
     - eos-lightdm-slick-theme
     - eos-qogir-icons
     - budgie-control-center
@@ -499,6 +508,7 @@
     - baka-mplayer
     - breeze
     - breeze-gtk
+    - endeavouros-skel-lxqt-git
     - eos-sddm-theme
     - featherpad
     - gvfs
@@ -524,6 +534,7 @@
   critical: true
   packages:
     - arc-gtk-theme-eos
+    - endeavouros-skel-lxde-git
     - eos-lxdm-gtk3
     - eos-qogir-icons
     - celluloid
