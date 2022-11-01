@@ -12,6 +12,7 @@ import tempfile
 import libcalamares
 
 from libcalamares.utils import check_target_env_call
+from libcalamares.utils import check_target_env_output
 
 import gettext
 
@@ -20,29 +21,9 @@ _ = gettext.translation("calamares-python",
                         languages=libcalamares.utils.gettext_languages(),
                         fallback=True).gettext
 
-# This is the sanitizer used all over to tidy up filenames
-# to make identifiers (or to clean up names to make filenames).
-file_name_sanitizer = str.maketrans(" /()", "_-__")
-
 
 def pretty_name():
     return _("Install bootloader.")
-
-
-def get_uuid():
-    """
-    Checks and passes 'uuid' to other routine.
-
-    :return:
-    """
-    partitions = libcalamares.globalstorage.value("partitions")
-
-    for partition in partitions:
-        if partition["mountPoint"] == "/":
-            libcalamares.utils.debug(f'Root partition uuid: "{partition["uuid"]}"')
-            return partition["uuid"]
-
-    return ""
 
 
 def handle_systemdboot(efi_directory):
@@ -95,10 +76,72 @@ def handle_systemdboot(efi_directory):
             pass
 
 
-def handle_grub(esp, fw_type):
+def enable_osprober(installation_root_path, enable):
     """
-    Not yet implemented
+    Enabled or disabled os-prober in the target based on the value of the enable parameter
     """
+
+    # Update the config in the file to enable or disable os-prober
+    for line in fileinput.input(os.path.join(installation_root_path, "etc/default/grub"), inplace=True):
+        line = line.strip()
+        if line.startswith("#GRUB_DISABLE_OS_PROBER=false") and enable:
+            print(line.lstrip("#"))
+        if line.startswith("GRUB_DISABLE_OS_PROBER=false") and not enable:
+            print("#" + line)
+        print(line)
+
+
+def write_grub_config(installation_root_path, filename, entry):
+    """
+    Creates a custom grub entry with the data found in "entry" with the name "filename"
+    """
+
+    conf_path = os.path.join(installation_root_path, "etc", "grub.d", filename)
+    with open(conf_path, 'w') as conf_file:
+        conf_file.write("#!/bin/sh\n")
+        conf_file.write("exec tail -n +3 $0\n\n")
+        conf_file.writelines(entry)
+
+    return None
+
+
+def handle_grub():
+    """
+    Enables os-prober and checks for a windows entry.  If it finds one, it is written to /etc/grub.d/45_eos_windows.
+    """
+
+    # Get the root mount point
+    try:
+        installation_root_path = libcalamares.globalstorage.value("rootMountPoint")
+    except KeyError:
+        libcalamares.utils.warning('Global storage value "rootMountPoint" missing')
+        return None
+
+    enable_osprober(installation_root_path, True)
+
+    mkconfig_output = check_target_env_output(["grub-mkconfig"])
+
+    # Find the contents of the entry
+    found_osprober = False
+    found_windows = False
+    for line in mkconfig_output.splitlines():
+        if line.strip() == "### BEGIN /etc/grub.d/30_os-prober ###":
+            found_osprober = True
+        elif "menuentry" in line and "Windows" in line and found_osprober:
+            found_windows = True
+            entry = [line]
+        elif found_windows and found_osprober:
+            entry.append(line)
+            if line.strip().startswith("}"):
+                break
+
+    if found_windows:
+        write_grub_config(installation_root_path, "45_eos_windows", entry)
+    else:
+        libcalamares.utils.debug("No Windows entry found by os-prober")
+
+    # We are done, disable os-prober
+    enable_osprober(installation_root_path, False)
     return None
 
 
@@ -130,7 +173,7 @@ def run():
     if boot_loader == "systemd-boot":
         handle_systemdboot(efi_directory)
     elif boot_loader == "grub":
-        handle_grub(efi_directory, fw_type)
+        handle_grub()
     else:
         libcalamares.utils.debug(f"No manual Windows entry creation available for {boot_loader}")
 
