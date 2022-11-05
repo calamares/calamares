@@ -75,23 +75,6 @@ Config::luksGenerationNames()
     return names;
 }
 
-const QString
-Config::luksGenerationToFSName( Config::LuksGeneration luksGeneration )
-{
-    // Convert luksGenerationChoice from partition.conf into its
-    // corresponding file system type from KPMCore.
-    switch ( luksGeneration )
-    {
-    case Config::LuksGeneration::Luks2:
-        return QStringLiteral( "luks2" );
-    case Config::LuksGeneration::Luks1:
-        return QStringLiteral( "luks" );
-    default:
-        cWarning() << "luksGeneration not supported, defaulting to \"luks\"";
-        return QStringLiteral( "luks" );
-    }
-}
-
 Config::SwapChoice
 pickOne( const Config::SwapChoiceSet& s )
 {
@@ -378,8 +361,8 @@ Config::fillConfigurationFSTypes( const QVariantMap& configurationMap )
         cWarning() << "Partition-module setting *luksGeneration* not found or invalid. Defaulting to luks1.";
         luksGeneration = Config::LuksGeneration::Luks1;
     }
-    m_luksFileSystemType = Config::luksGenerationToFSName( luksGeneration );
-    gs->insert( "luksFileSystemType", m_luksFileSystemType );
+    m_luksFileSystemType = luksGeneration;
+    gs->insert( "luksFileSystemType", luksGenerationNames().find(luksGeneration) );
 
     Q_ASSERT( !m_eraseFsTypes.isEmpty() );
     Q_ASSERT( m_eraseFsTypes.contains( fsRealName ) );

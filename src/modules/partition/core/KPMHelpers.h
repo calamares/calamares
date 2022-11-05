@@ -84,7 +84,7 @@ Partition* createNewEncryptedPartition( PartitionNode* parent,
                                         const QString& fsLabel,
                                         qint64 firstSector,
                                         qint64 lastSector,
-                                        const QString& luksFsType,
+                                        Config::LuksGeneration luksFsType,
                                         const QString& passphrase,
                                         PartitionTable::Flags flags );
 

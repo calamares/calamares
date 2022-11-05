@@ -957,9 +957,10 @@ PartitionCoreModule::layoutApply( Device* dev,
                                   PartitionNode* parent,
                                   const PartitionRole& role )
 {
-    bool isEfi = PartUtils::isEfiSystem();
+    const bool isEfi = PartUtils::isEfiSystem();
+    const auto fsType = Config::luksGenerationNames().find(luksFsType, Config::LuksGeneration::Luks1);
     QList< Partition* > partList
-        = m_partLayout.createPartitions( dev, firstSector, lastSector, luksFsType, luksPassphrase, parent, role );
+        = m_partLayout.createPartitions( dev, firstSector, lastSector, fsType, luksPassphrase, parent, role );
 
     // Partition::mountPoint() tells us where it is mounted **now**, while
     // PartitionInfo::mountPoint() says where it will be mounted in the target system.

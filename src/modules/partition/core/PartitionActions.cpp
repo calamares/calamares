@@ -194,7 +194,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
                                                                      QStringLiteral( "swap" ),
                                                                      lastSectorForRoot + 1,
                                                                      dev->totalLogical() - 1,
-                                                                     o.luksFsType,
+                                                                     Config::luksGenerationNames().find(o.luksFsType, Config::LuksGeneration::Luks1),
                                                                      o.luksPassphrase,
                                                                      KPM_PARTITION_FLAG( None ) );
         }
