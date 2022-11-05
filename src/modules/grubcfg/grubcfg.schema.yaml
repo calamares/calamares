@@ -19,4 +19,5 @@ properties:
             GRUB_DISABLE_SUBMENU: { type: boolean, default: true }
             GRUB_TERMINAL_OUTPUT: { type: string }
             GRUB_DISABLE_RECOVERY: { type: boolean, default: true }
-        required: [ GRUB_TIMEOUT, GRUB_DEFAULT, GRUB_TERMINAL_OUTPUT ]
+        required: [ GRUB_TIMEOUT, GRUB_DEFAULT ]
+    always_use_defaults: { type: boolean, default: false }
