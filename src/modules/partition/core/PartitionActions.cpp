@@ -169,8 +169,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
         lastSectorForRoot -= suggestedSwapSizeB / sectorSize + 1;
     }
 
-    // TODO: LUKS
-    core->layoutApply( dev, firstFreeSector, lastSectorForRoot, Config::luksGenerationNames().find(o.luksFsType), o.luksPassphrase );
+    core->layoutApply( dev, firstFreeSector, lastSectorForRoot, o.luksFsType, o.luksPassphrase );
 
     if ( shouldCreateSwap )
     {
@@ -246,8 +245,7 @@ doReplacePartition( PartitionCoreModule* core, Device* dev, Partition* partition
         core->deletePartition( dev, partition );
     }
 
-    // TODO: LUKS
-    core->layoutApply( dev, firstSector, lastSector, Config::luksGenerationNames().find(o.luksFsType), o.luksPassphrase );
+    core->layoutApply( dev, firstSector, lastSector, o.luksFsType, o.luksPassphrase );
 
     core->dumpQueue();
 }
