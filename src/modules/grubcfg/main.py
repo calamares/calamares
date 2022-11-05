@@ -254,7 +254,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     if always_use_defaults or overwrite or not os.path.exists(default_grub):
         if "defaults" in libcalamares.job.configuration:
             for key, value in libcalamares.job.configuration["defaults"].items():
-                if value.__class__.__name__ == "bool":
+                if isinstance(value, bool):
                     if value:
                         escaped_value = "true"
                     else:
