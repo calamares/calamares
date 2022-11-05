@@ -31,12 +31,12 @@ struct ReplacePartitionOptions
 {
     QString defaultPartitionTableType;  // e.g. "gpt" or "msdos"
     QString defaultFsType;  // e.g. "ext4" or "btrfs"
-    QString luksFsType;  // optional ("luks", "luks2")
+    Config::LuksGeneration luksFsType = Config::LuksGeneration::Luks1;  // optional ("luks", "luks2")
     QString luksPassphrase;  // optional
 
     ReplacePartitionOptions( const QString& pt,
                              const QString& fs,
-                             const QString& luksFs,
+                             Config::LuksGeneration luksFs,
                              const QString& luksPassphrase )
         : defaultPartitionTableType( pt )
         , defaultFsType( fs )
@@ -54,7 +54,7 @@ struct AutoPartitionOptions : ReplacePartitionOptions
 
     AutoPartitionOptions( const QString& pt,
                           const QString& fs,
-                          const QString& luksFs,
+                          Config::LuksGeneration luksFs,
                           const QString& luksPassphrase,
                           const QString& efi,
                           qint64 requiredBytes,

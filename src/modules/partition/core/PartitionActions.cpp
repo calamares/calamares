@@ -169,7 +169,8 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
         lastSectorForRoot -= suggestedSwapSizeB / sectorSize + 1;
     }
 
-    core->layoutApply( dev, firstFreeSector, lastSectorForRoot, o.luksFsType, o.luksPassphrase );
+    // TODO: LUKS
+    core->layoutApply( dev, firstFreeSector, lastSectorForRoot, Config::luksGenerationNames().find(o.luksFsType), o.luksPassphrase );
 
     if ( shouldCreateSwap )
     {
@@ -194,7 +195,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
                                                                      QStringLiteral( "swap" ),
                                                                      lastSectorForRoot + 1,
                                                                      dev->totalLogical() - 1,
-                                                                     Config::luksGenerationNames().find(o.luksFsType, Config::LuksGeneration::Luks1),
+                                                                     o.luksFsType,
                                                                      o.luksPassphrase,
                                                                      KPM_PARTITION_FLAG( None ) );
         }
@@ -245,7 +246,8 @@ doReplacePartition( PartitionCoreModule* core, Device* dev, Partition* partition
         core->deletePartition( dev, partition );
     }
 
-    core->layoutApply( dev, firstSector, lastSector, o.luksFsType, o.luksPassphrase );
+    // TODO: LUKS
+    core->layoutApply( dev, firstSector, lastSector, Config::luksGenerationNames().find(o.luksFsType), o.luksPassphrase );
 
     core->dumpQueue();
 }

@@ -90,7 +90,8 @@ ReplaceWidget::applyChanges()
                                                   partition,
                                                   { gs->value( "defaultPartitionTableType" ).toString(),
                                                     gs->value( "defaultFileSystemType" ).toString(),
-                                                    gs->value( "luksFileSystemType" ).toString(),
+                                                    // TODO: LUKS
+                                                    Config::luksGenerationNames().find(gs->value( "luksFileSystemType" ).toString(), Config::LuksGeneration::Luks1),
                                                     QString() } );
 
             if ( m_isEfi )
