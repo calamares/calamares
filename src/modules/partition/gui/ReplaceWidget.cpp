@@ -32,11 +32,12 @@
 using CalamaresUtils::Partition::untranslatedFS;
 using CalamaresUtils::Partition::userVisibleFS;
 
-ReplaceWidget::ReplaceWidget( PartitionCoreModule* core, QComboBox* devicesComboBox, QWidget* parent )
+ReplaceWidget::ReplaceWidget( Nurble n, Config *config, PartitionCoreModule* core, QComboBox* devicesComboBox, QWidget* parent )
     : QWidget( parent )
     , m_ui( new Ui_ReplaceWidget )
     , m_core( core )
     , m_isEfi( false )
+    , m_luksFsType( config->luksFileSystemType())
 {
     m_ui->setupUi( this );
 

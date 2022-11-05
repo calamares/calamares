@@ -12,21 +12,27 @@
 #ifndef REPLACEWIDGET_H
 #define REPLACEWIDGET_H
 
+#include "Config.h"
+
 #include "utils/CalamaresUtilsGui.h"
 
 #include <QScopedPointer>
 #include <QWidget>
 
-class Ui_ReplaceWidget;
-class QComboBox;
+class Config;
 class PartitionCoreModule;
 class Partition;
+class Ui_ReplaceWidget;
+
+class QComboBox;
+
+struct TotallyBogus {};
 
 class ReplaceWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ReplaceWidget( PartitionCoreModule* core, QComboBox* devicesComboBox, QWidget* parent = nullptr );
+    explicit ReplaceWidget( TotallyBogus n, Config *config, PartitionCoreModule* core, QComboBox* devicesComboBox, QWidget* parent = nullptr );
     virtual ~ReplaceWidget() override;
 
     bool isNextEnabled() const;
@@ -52,6 +58,7 @@ private:
     bool m_nextEnabled;
 
     bool m_isEfi;
+    Config::LuksGeneration m_luksFsType;
 
     void updateFromCurrentDevice( QComboBox* devicesComboBox );
     void onPartitionViewActivated();
