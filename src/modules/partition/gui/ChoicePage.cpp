@@ -28,7 +28,6 @@
 #include "gui/PartitionBarsView.h"
 #include "gui/PartitionLabelsView.h"
 #include "gui/PartitionSplitterWidget.h"
-#include "gui/ReplaceWidget.h"
 #include "gui/ScanningDialog.h"
 
 #include "Branding.h"
