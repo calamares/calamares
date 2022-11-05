@@ -27,15 +27,50 @@ checkDependencies () {
 	local missing=()
 
 	local dependencies=(
-		boost@/usr/bin/b2
+		ack@/usr/bin/vendor_perl/ack
+		autoconf@/usr/bin/autoconf
+		automake@/usr/bin/automake
+		binutils@/usr/bin/addr2line
+		bison@/usr/bin/bison
+		boost-dev@/usr/include/boost/accumulators/accumulators.hpp
+		boost-python3-dev@/usr/include/boost/mpi/python.hpp
 		cmake@/usr/bin/cmake
 		extra-cmake-modules@/usr/share/ECM/cmake/ECMConfig.cmake
+		fakeroot@/usr/bin/fakeroot
+		flex@/usr/bin/flex
 		gcc@/usr/bin/gcc
+		gettext@/usr/bin/gettext
+		git@/usr/bin/git
+		icu@/usr/bin/icuinfo
 		kcoreaddons@/usr/bin/desktoptojson
-		kpmcore@/usr/include/kpmcore/backend/corebackend.h
-		python3@/usr/bin/python3
-		qt@/usr/bin/qmake
-		yaml-cpp@/usr/include/yaml-cpp/binary.h
+		kcrash@/usr/include/KF5/KCrash/kcrash.h
+		kiconthemes@/usr/bin/kiconfinder5
+		kio@/usr/bin/kcookiejar5
+		kpackage-dev@/usr/include/KF5/KPackage/kpackage/package.h
+		kparts-dev@/usr/include/KF5/KParts/kparts/part.h
+		kpmcore-dev@/usr/include/kpmcore/backend/corebackend.h
+		kservice-dev@/usr/include/KF5/KService/kservice.h
+		libatasmart-dev@/usr/include/atasmart.h
+		libkf5parts-dev@/usr/include/KF5/KParts/kparts_version.h
+		libpwquality-dev@/usr/include/pwquality.h
+		libtool@/usr/bin/libtool
+		libyaml-dev@/usr/include/yaml.h
+		m4@/usr/bin/m4
+		make@/usr/bin/make
+		parted-dev@/usr/include/parted/device.h
+		patch@/usr/bin/patch
+		plasma-framework-dev@/usr/include/KF5/plasma/plasma.h
+		plasma-workspace-dev@/usr/include/kworkspace5/kworkspace.h
+		polkit-qt5-dev@/usr/include/polkit-qt5-1/polkitqt1-agent-export.h
+		python3-dev@/usr/bin/python3
+		qt5-base-dev@/usr/include/qt/QtConcurrent/qtconcurrentversion.h
+		qt5-declarative-dev@/usr/include/qt/QtQml/qtqmlversion.h
+		qt5-svg-dev@/usr/include/qt/QtSvg/qtsvgversion.h
+		qt5-tools-dev@/usr/include/qt/QtDesigner/qtdesignerversion.h
+		qt5-translations@/usr/share/licenses/qt5-translations
+		qt5-webengine-dev@/usr/include/qt/QtPdf/qtpdfversion.h
+		qt5-xmlpatterns@/usr/share/licenses/qt5-xmlpatterns
+		yaml-cpp-dev@/usr/include/yaml-cpp/binary.h
 	)
 
 	for dependency in "${dependencies[@]}"; do
