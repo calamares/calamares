@@ -90,13 +90,13 @@ class cpuinfo(object):
         return cpu_info
 
 
-def get_host_initcpio():
+def get_host_initcpio(host_initcpio_path):
     """
     Reads the host system mkinitcpio.conf and returns all
     the lines from that file, or an empty list if it does
     not exist.
     """
-    hostfile = "/etc/mkinitcpio.conf"
+    hostfile = host_initcpio_path
     try:
         with open(hostfile, "r") as mkinitcpio_file:
             mklins = [x.strip() for x in mkinitcpio_file.readlines()]
@@ -107,7 +107,7 @@ def get_host_initcpio():
     return mklins
 
 
-def write_mkinitcpio_lines(hooks, modules, files, root_mount_point):
+def write_mkinitcpio_lines(host_initcpio_path, hooks, modules, files, root_mount_point):
     """
     Set up mkinitcpio.conf.
 
@@ -116,7 +116,7 @@ def write_mkinitcpio_lines(hooks, modules, files, root_mount_point):
     :param files:
     :param root_mount_point:
     """
-    mklins = get_host_initcpio()
+    mklins = get_host_initcpio(host_initcpio_path)
 
     target_path = os.path.join(root_mount_point, "etc/mkinitcpio.conf")
     with open(target_path, "w") as mkinitcpio_file:
@@ -236,6 +236,8 @@ def run():
 
     :return:
     """
+    cfg = libcalamares.job.configuration
+    host_initcpio_path = cfg.get("path", "/etc/mkinitcpio.conf")
     partitions = libcalamares.globalstorage.value("partitions")
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
 
@@ -249,6 +251,6 @@ def run():
                 _("No root mount point for <pre>initcpiocfg</pre>."))
 
     hooks, modules, files = find_initcpio_features(partitions, root_mount_point)
-    write_mkinitcpio_lines(hooks, modules, files, root_mount_point)
+    write_mkinitcpio_lines(host_initcpio_path, hooks, modules, files, root_mount_point)
 
     return None
