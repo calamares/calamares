@@ -33,7 +33,10 @@ depends=('qt5-location'
          'udisks2' 
          'yaml-cpp'
          'polkit'
-         'ckbcomp')
+         'ckbcomp'
+         'adobe-source-han-sans-fonts'
+         'adobe-source-han-serif-fonts'
+         )
 optdepends=()
 makedepends=('extra-cmake-modules'
              'git'
