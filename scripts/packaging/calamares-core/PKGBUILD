@@ -34,8 +34,8 @@ depends=('qt5-location'
          'yaml-cpp'
          'polkit'
          'ckbcomp'
-         'adobe-source-han-sans-fonts'
-         'adobe-source-han-serif-fonts'         
+         'adobe-source-han-sans-otc-fonts'
+         'adobe-source-han-serif-otc-fonts'         
          )
 optdepends=()
 makedepends=('extra-cmake-modules'
