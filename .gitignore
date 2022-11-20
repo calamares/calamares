@@ -57,8 +57,8 @@ CMakeLists.txt.user
 tags
 
 # Packaging
-scripts/packaging/**/pkg
-scripts/packaging/**/src
-scripts/packaging/**/*.tar.*
-scripts/packaging/**/calamares-core-git/calamares-core
-scripts/packaging/**/calamares-core/calamares-core
+packaging/**/pkg
+packaging/**/src
+packaging/**/*.tar.*
+packaging/**/calamares-core-git/calamares-core
+packaging/**/calamares-core/calamares-core
