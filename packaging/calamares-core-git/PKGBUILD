@@ -1,8 +1,8 @@
 # Maintainer: shivanandvp <shivanandvp@rebornos.org>
 
 pkgname=calamares-core-git
-pkgver=v3.3.0_alpha2_2.r2.g2fdb42db9
-pkgrel=1
+pkgver=v3.3.0_alpha2_2.r1.g13e6ce12a
+pkgrel=2
 
 arch=('i686' 'x86_64' 'armv6h' 'armv7h' 'aarch64')
 pkgdesc='Calamares Installer for RebornOS. This is practically just bare Calamares. Please also install rebornos-calamares-configuration.'
@@ -49,11 +49,11 @@ makedepends=('extra-cmake-modules'
 source=("git+https://github.com/RebornOS-Developers/calamares-core")             
 
 pkgver() {
-  ( cd "${srcdir}/calamares-core"
-    set -o pipefail
-    git describe --long 2>/dev/null | sed 's/\([^-]*-g\)/r\1/;s/-/./g' ||
-    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
-  )
+    (   cd "${srcdir}/calamares-core"
+        set -o pipefail
+        git describe --long 2>/dev/null | sed 's/\([^-]*-g\)/r\1/;s/-/./g' ||
+        printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+    )
 }
 
 build() {     

@@ -26,7 +26,7 @@ fi
 
 if ls "$PACKAGE_DIRECTORY"/*.pkg.tar.* > /dev/null 2>&1;then
     set -o xtrace
-    sudo pacman -U "$@" "$PACKAGE_DIRECTORY"/*.pkg.tar.zst
+    sudo pacman -U "$@" "$PACKAGE_DIRECTORY"/*.pkg.tar.*
     set +o xtrace
 else
     set -o xtrace
