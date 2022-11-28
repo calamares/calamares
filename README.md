@@ -56,7 +56,8 @@ Change to the project directory (`cd calamares-core`) and run any of the below s
 - `sh packaging/setup.sh <MODE>`: Builds and installs a package
 - `sh packaging/build-package.sh <MODE>`: Just builds a package without installing it locally
 - `sh packaging/install-package.sh <MODE>`: Just installs a package locally, except if no built package is detected, a package is built.
-where `<MODE>` can be one of the below
+
+- where `<MODE>` can be one of the below
      1. `local`: Selects *calamares-core-local* from the local project that you have cloned already.
      2. `git`: Selects *calamares-core-git* from the latest git commit.
      3. `stable`: Selects *calamares-core* from the git tag corresponding to the [`pkgver` specified in the PKGBUILD](https://github.com/RebornOS-Developers/calamares-core/blob/main/packaging/calamares-core/PKGBUILD#L4). If `pkgver=3.3.0_alpha2_2`, then the git tag `v3.3.0_alpha2_2` is used for packaging. 
