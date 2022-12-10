@@ -585,9 +585,6 @@ install(
 ### Miscellaneous installs
 #
 #
-if( settings.conf IS_NEWER_THAN ${CMAKE_BINARY_DIR}/settings.conf )
-    install(FILES settings.conf DESTINATION ${CMAKE_BINARY_DIR})
-endif()
 
 if(INSTALL_POLKIT)
     install(FILES com.github.calamares.calamares.policy DESTINATION "${POLKITQT-1_POLICY_FILES_INSTALL_DIR}")
