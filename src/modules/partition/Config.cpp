@@ -375,7 +375,9 @@ Config::fillConfigurationFSTypes( const QVariantMap& configurationMap )
     Q_ASSERT( !m_eraseFsTypes.isEmpty() );
     Q_ASSERT( m_eraseFsTypes.contains( fsRealName ) );
     m_eraseFsTypeChoice = fsRealName;
+    m_replaceFileSystemChoice = fsRealName;
     Q_EMIT eraseModeFilesystemChanged( m_eraseFsTypeChoice );
+    Q_EMIT replaceModeFilesystemChanged( m_replaceFileSystemChoice );
 }
 
 void
