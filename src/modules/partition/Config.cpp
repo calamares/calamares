@@ -289,8 +289,8 @@ fillGSConfigurationEFI( Calamares::GlobalStorage* gs, const QVariantMap& configu
             gs->insert( "efiSystemPartitionSize_i", part_size.toBytes() );
 
             // Assign long long int to long unsigned int to prevent compilation warning
-            size_t unsigned_part_size = part_size.toBytes();
-            if ( unsigned_part_size != PartUtils::efiFilesystemMinimumSize() )
+            auto byte_part_size = part_size.toBytes();
+            if ( byte_part_size != PartUtils::efiFilesystemMinimumSize() )
             {
                 cWarning() << "EFI partition size" << sizeString << "has been adjusted to"
                            << PartUtils::efiFilesystemMinimumSize() << "bytes";
