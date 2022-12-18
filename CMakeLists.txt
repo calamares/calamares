@@ -586,10 +586,6 @@ install(
 ### Miscellaneous installs
 #
 #
-if( settings.conf IS_NEWER_THAN ${CMAKE_BINARY_DIR}/settings.conf )
-    install(FILES settings.conf DESTINATION ${CMAKE_BINARY_DIR})
-endif()
-
 if(INSTALL_POLKIT)
     install(FILES com.github.calamares.calamares.policy DESTINATION "${POLKITQT-1_POLICY_FILES_INSTALL_DIR}")
 endif()
@@ -606,7 +602,9 @@ endif()
 
 install(FILES man/calamares.8 DESTINATION ${CMAKE_INSTALL_MANDIR}/man8/)
 
-# uninstall target
+### Uninstall
+#
+#
 configure_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in"
     "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
@@ -615,6 +613,17 @@ configure_file(
 )
 
 add_custom_target(uninstall COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
+
+### Developer convenience
+#
+# The module support files -- .desc files, .conf files -- are copied into the build
+# directory so that it is possible to run `calamares -d` from there. Copy the
+# top-level settings.conf as well, into the build directory.
+if( settings.conf IS_NEWER_THAN ${CMAKE_BINARY_DIR}/settings.conf )
+    configure_file(settings.conf ${CMAKE_BINARY_DIR}/settings.conf COPYONLY)
+endif()
+
+
 
 ### CMAKE SUMMARY REPORT
 #
