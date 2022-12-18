@@ -146,6 +146,7 @@ def find_initcpio_features(partitions, root_mount_point):
     hooks = [
         "base",
         "udev",
+        "kms",
         "autodetect",
         "modconf",
         "block",
