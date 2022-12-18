@@ -239,11 +239,22 @@ Config::setSwapChoice( Config::SwapChoice c )
 void
 Config::setEraseFsTypeChoice( const QString& choice )
 {
-    QString canonicalChoice = PartUtils::canonicalFilesystemName( choice, nullptr );
+    const QString canonicalChoice = PartUtils::canonicalFilesystemName( choice, nullptr );
     if ( canonicalChoice != m_eraseFsTypeChoice )
     {
         m_eraseFsTypeChoice = canonicalChoice;
         Q_EMIT eraseModeFilesystemChanged( canonicalChoice );
+    }
+}
+
+void
+Config::setReplaceFilesystemChoice( const QString& filesystemName )
+{
+    const QString canonicalChoice = PartUtils::canonicalFilesystemName( filesystemName, nullptr );
+    if ( canonicalChoice != m_replaceFileSystemChoice )
+    {
+        m_replaceFileSystemChoice = canonicalChoice;
+        Q_EMIT replaceModeFilesystemChanged( canonicalChoice );
     }
 }
 
@@ -278,8 +289,8 @@ fillGSConfigurationEFI( Calamares::GlobalStorage* gs, const QVariantMap& configu
             gs->insert( "efiSystemPartitionSize_i", part_size.toBytes() );
 
             // Assign long long int to long unsigned int to prevent compilation warning
-            size_t unsigned_part_size = part_size.toBytes();
-            if ( unsigned_part_size != PartUtils::efiFilesystemMinimumSize() )
+            auto byte_part_size = part_size.toBytes();
+            if ( byte_part_size != PartUtils::efiFilesystemMinimumSize() )
             {
                 cWarning() << "EFI partition size" << sizeString << "has been adjusted to"
                            << PartUtils::efiFilesystemMinimumSize() << "bytes";
@@ -364,7 +375,9 @@ Config::fillConfigurationFSTypes( const QVariantMap& configurationMap )
     Q_ASSERT( !m_eraseFsTypes.isEmpty() );
     Q_ASSERT( m_eraseFsTypes.contains( fsRealName ) );
     m_eraseFsTypeChoice = fsRealName;
+    m_replaceFileSystemChoice = fsRealName;
     Q_EMIT eraseModeFilesystemChanged( m_eraseFsTypeChoice );
+    Q_EMIT replaceModeFilesystemChanged( m_replaceFileSystemChoice );
 }
 
 void

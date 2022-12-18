@@ -288,6 +288,13 @@ ChoicePage::setupChoices()
             m_eraseFsTypesChoiceComboBox, &QComboBox::currentTextChanged, m_config, &Config::setEraseFsTypeChoice );
         connect( m_config, &Config::eraseModeFilesystemChanged, this, &ChoicePage::onActionChanged );
         m_eraseButton->addOptionsComboBox( m_eraseFsTypesChoiceComboBox );
+
+        // Also offer it for "replace
+        auto* box = new QComboBox;
+        box->addItems( m_config->eraseFsTypes() );
+        connect( box, &QComboBox::currentTextChanged, m_config, &Config::setReplaceFilesystemChoice );
+        connect( m_config, &Config::replaceModeFilesystemChanged, this, &ChoicePage::onActionChanged );
+        m_replaceButton->addOptionsComboBox( box );
     }
 
     m_itemsLayout->addWidget( m_alongsideButton );
@@ -303,13 +310,8 @@ ChoicePage::setupChoices()
 
     m_itemsLayout->addStretch();
 
-#if ( QT_VERSION < QT_VERSION_CHECK( 5, 15, 0 ) )
-    auto buttonSignal = QOverload< int, bool >::of( &QButtonGroup::buttonToggled );
-#else
-    auto buttonSignal = &QButtonGroup::idToggled;
-#endif
     connect( m_grp,
-             buttonSignal,
+             &QButtonGroup::idToggled,
              this,
              [ this ]( int id, bool checked )
              {
@@ -860,7 +862,7 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
                                                               selectedDevice(),
                                                               selectedPartition,
                                                               { gs->value( "defaultPartitionType" ).toString(),
-                                                                gs->value( "defaultFileSystemType" ).toString(),
+                                                                m_config->replaceModeFilesystem(),
                                                                 gs->value( "luksFileSystemType" ).toString(),
                                                                 m_encryptWidget->passphrase() } );
                         Partition* homePartition = findPartitionByPath( { selectedDevice() }, *homePartitionPath );
