@@ -10,8 +10,8 @@ SPDX-License-Identifier: GPL-3.0-or-later
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>997</width>
-    <height>474</height>
+    <width>624</width>
+    <height>460</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -41,8 +41,8 @@ SPDX-License-Identifier: GPL-3.0-or-later
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>981</width>
-        <height>410</height>
+        <width>604</width>
+        <height>380</height>
        </rect>
       </property>
       <property name="font">
@@ -55,11 +55,34 @@ SPDX-License-Identifier: GPL-3.0-or-later
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="netinst_status">
-     <property name="text">
-      <string/>
+    <layout class="QHBoxLayout" name="bottomArea">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetDefaultConstraint</enum>
      </property>
-    </widget>
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <item alignment="Qt::AlignLeft">
+      <widget class="QPushButton" name="reset_button">
+       <property name="text">
+        <string>     Reset to Defaults     </string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="netinst_status">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>

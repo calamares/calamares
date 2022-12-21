@@ -40,6 +40,8 @@ public:
 
     void onActivate();
 
+    void reset();
+
     /** @brief Expand entries that should be pre-expanded.
      *
      * Follows the *expanded* key / the startExpanded field in the

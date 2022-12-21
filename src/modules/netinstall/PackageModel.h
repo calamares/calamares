@@ -62,7 +62,31 @@ public:
      * Individual packages will not be matched.
      *
      */
-    void setSelections( const QStringList& selectNames );
+    void setGroupSelections( const QStringList& selectNames );
+
+    void updateDuplicates( const QList<QString> * selectNames, const QList<Qt::CheckState> * selectStates);
+
+    /** @brief Updates the checked flag on matching packages in the tree
+     *
+     * Recursively traverses the tree pointed to by m_rootItem and
+     * checks if a package name matches @p selectName.
+     * If a match is found, updates the check the box for that package.
+     *
+     */
+    void updateDuplicates( const QString& selectName, const Qt::CheckState& selectState );
+
+    void updateInitialDuplicates();
+
+    /** @brief Propagates selection state @p selectState over @p item
+    *
+    * Propagates @p selectState throughout the tree under @p item
+    * and all the duplicates of its packages
+    */
+    void propagateAndUpdateDuplicates( const Qt::CheckState& selectState, PackageTreeItem* item );
+
+    void packageSelectionStates( QList<QString> * packageNames, QList<Qt::CheckState> * packageStates );    
+
+    void resetToDefaults();
 
     PackageTreeItem::List getPackages() const;
     PackageTreeItem::List getItemPackages( PackageTreeItem* item ) const;
@@ -85,8 +109,13 @@ private:
 
     void setupModelData( const QVariantList& l, PackageTreeItem* parent );
 
+    void storeInitialState();
+
     PackageTreeItem* m_rootItem = nullptr;
     PackageTreeItem::List m_hiddenItems;
+
+    QList<QString> m_InitialPackageNames;
+    QList<Qt::CheckState> m_InitialPackageStates;
 };
 
 #endif  // PACKAGEMODEL_H

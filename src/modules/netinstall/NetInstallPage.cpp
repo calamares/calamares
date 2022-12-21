@@ -34,6 +34,7 @@ NetInstallPage::NetInstallPage( Config* c, QWidget* parent )
     ui->setupUi( this );
     ui->groupswidget->header()->setSectionResizeMode( QHeaderView::ResizeToContents );
     ui->groupswidget->setModel( c->model() );
+    connect( ui->reset_button, &QPushButton::released, this, &NetInstallPage::reset);
     connect( c, &Config::statusChanged, ui->netinst_status, &QLabel::setText );
     connect( c,
              &Config::titleLabelChanged,
@@ -63,6 +64,13 @@ NetInstallPage::expandGroups()
 }
 
 void
+NetInstallPage::reset()
+{
+    m_config->model()->resetToDefaults();
+    ui->groupswidget->setFocus();
+}
+
+void
 NetInstallPage::onActivate()
 {
     ui->groupswidget->setFocus();
@@ -72,7 +80,7 @@ NetInstallPage::onActivate()
     const QStringList selectNames = gs->value( "netinstallSelect" ).toStringList();
     if ( !selectNames.isEmpty() )
     {
-        m_config->model()->setSelections( selectNames );
+        m_config->model()->setGroupSelections( selectNames );
     }
 
     // If NetInstallAdd is found in global storage, add those items to the tree
@@ -81,4 +89,6 @@ NetInstallPage::onActivate()
     {
         m_config->model()->appendModelData( groups );
     }
+
+    m_config->model()->updateInitialDuplicates();
 }

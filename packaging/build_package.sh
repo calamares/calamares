@@ -22,17 +22,29 @@ if [ "$MODE" != "local" ]; then
         rm -rf $(ls | grep -v PKGBUILD)
     )
     set +o xtrace
+
+    ( # Create subshell to nullify directory changes on exit
+        # Run makepkg
+        set -o xtrace
+        cd "$PACKAGE_DIRECTORY" && \
+        makepkg \
+            --cleanbuild \
+            --force \
+            --syncdeps \
+            --clean \
+            "$@"
+        set +o xtrace
+    )
+else
+    ( # Create subshell to nullify directory changes on exit
+        # Run makepkg
+        set -o xtrace
+        cd "$PACKAGE_DIRECTORY" && \
+        makepkg \
+            --force \
+            --syncdeps \
+            "$@"
+        set +o xtrace
+    )
 fi
 
-( # Create subshell to nullify directory changes on exit
-    # Run makepkg
-    set -o xtrace
-    cd "$PACKAGE_DIRECTORY" && \
-    makepkg \
-        --cleanbuild \
-        --force \
-        --syncdeps \
-        --clean \
-        "$@"
-    set +o xtrace
-)
