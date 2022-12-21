@@ -258,7 +258,6 @@ PackageModel::data( const QModelIndex& index, int role ) const
 bool
 PackageModel::setData( const QModelIndex& index, const QVariant& value, int role )
 {
-    cDebug()<<">> In PackageModel::setData("<<index<<", "<<value<<", "<<role<<")";
     if ( !m_rootItem )
     {
         return false;
@@ -268,13 +267,9 @@ PackageModel::setData( const QModelIndex& index, const QVariant& value, int role
     {
         PackageTreeItem* item = static_cast< PackageTreeItem* >( index.internalPointer() );
         item->setSelected( static_cast< Qt::CheckState >( value.toInt() ) );
-        cDebug() << Logger::SubEntry << " item->isGroup()" << item->isGroup();
-        cDebug() << Logger::SubEntry << " item->name()" << item->name();
-        cDebug() << Logger::SubEntry << " item->packageName()" << item->packageName();
 
         if( !item->isGroup() )
         {
-            cDebug() << Logger::SubEntry << "Running this->updateDuplicates(" <<item->packageName()<<" ,"<<item->isSelected()<<")";
             this->updateDuplicates(item->packageName(), item->isSelected());
         } else {
             propagateAndUpdateDuplicates( item->isSelected(), item );
