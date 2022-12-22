@@ -1,0 +1,75 @@
+name: Pre-Release (Git)
+run-name: Pre-Release (Git) triggered by ${{ github.actor }}
+on:
+  # push:
+  #     tags:
+  #     - "v**"
+  - workflow_dispatch
+  - workflow_call
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    container: 
+      image: rebornos/rebornos:latest
+      ports:
+        - 80
+    steps:
+      - id: init_docker_step
+        name: Initialize RebornOS Docker Container        
+        run: sh /usr/bin/init-rebornos-docker.sh
+      - id: checkout_repository_step
+        name: Checkout Git Repository
+        uses: actions/checkout@v3
+      - id: build_package_step
+        name: Build Package
+        run: |
+          chown -R rebornos packaging
+          chmod -R +x packaging
+          sudo -u rebornos sh -c "packaging/build_package.sh git --noconfirm"
+      - id: upload_package_step
+        name: Upload Package Artifact
+        uses: actions/upload-artifact@v3
+        with: 
+          name: Unstable Package
+          path: packaging/${{ github.event.repository.name }}-git/${{ github.event.repository.name }}*.pkg.tar.*
+          if-no-files-found: error
+  release:  
+    needs: build        
+    name: Pre-Release
+    runs-on: ubuntu-latest
+    steps:
+      - id: checkout_repository_step
+        name: Checkout Git Repository
+        uses: actions/checkout@v3
+      - id: set_git_version
+        name: Determine Git Version
+        run: |
+          git fetch --prune --unshallow --tags
+          echo "LATEST_TAG=$(git tag | grep -v -P '^v([0-9]+)\.([0-9]+)\.([0-9]+).' | sort --version-sort | tail -n1)" >> $GITHUB_ENV
+          GIT_VERSION="$(git describe --long 2>/dev/null | sed 's/\([^-]*-g\)/r\1/;s/-/./g' || printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)")"
+          echo "GIT_VERSION=$GIT_VERSION" >> $GITHUB_ENV 
+          echo "LATEST_TAG=$(git tag | sort --version-sort | tail -n1)"  
+          echo "GIT_VERSION=$GIT_VERSION"     
+      - id: download_package_step 
+        name: Download Package Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: Unstable Package
+          path: output
+      - id: generate_checksum_step
+        name: Generate CheckSum
+        run: find ${{ steps.download_package_step.outputs.download-path }} -type f -exec sh -c 'md5sum $0 > $0.md5sum' {} \;
+      - id: create_release_step
+        name: Create Pre-Release        
+        uses: softprops/action-gh-release@v1
+        with:          
+          draft: false
+          prerelease: true
+          fail_on_unmatched_files: true
+          generate_release_notes: true
+          append_body: false
+          tag_name: ${{ env.GIT_VERSION }}
+          name: ${{ env.GIT_VERSION }}
+          files: |
+            ${{ steps.download_package_step.outputs.download-path }}/**${{ github.event.repository.name }}*.pkg.tar*  
