@@ -6,17 +6,13 @@ $id: https://calamares.io/schemas/bootloader
 additionalProperties: false
 type: object
 properties:
+    efiBootLoaderVar: { type: string }
     efiBootLoader: { type: string }
     kernelSearchPath:  { type: string }
     kernelName:  { type: string }
-    timeout:  { type: string }  # Inserted verbatim
-    additionalInitrdFiles:
-        type: array
-        items:
-            type: string
-    bootloaderEntryName:  { type: string }
-    kernelLine:  { type: string }
-    fallbackKernelLine:  { type: string }
+    kernelParams: { type: array, items: { type: string } }
+    loaderEntries: { type: array, items: { type: string } }
+    refindKernelList: { type: array, items: { type: string } }
 
     # Programs
     grubInstall:  { type: string }
@@ -27,12 +23,3 @@ properties:
 
     efiBootloaderId:  { type: string }
     installEFIFallback: { type: boolean }
-
-required:
-    - efiBootLoader
-    - kernelSearchPath
-    - kernelName
-    - grubInstall
-    - grubMkconfig
-    - grubCfg
-    - grubProbe
