@@ -1,8 +1,8 @@
 # Maintainer: shivanandvp <shivanandvp@rebornos.org>
 
 pkgname=calamares-core-local
-pkgver=v3.3.0_alpha2_2.r2.g2fdb42db9
-pkgrel=2
+pkgver=3.3.0_alpha3_2
+pkgrel=1
 
 arch=('i686' 'x86_64' 'armv6h' 'armv7h' 'aarch64')
 pkgdesc='Calamares Installer for RebornOS. This is practically just bare Calamares. Please also install rebornos-calamares-configuration.'
