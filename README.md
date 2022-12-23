@@ -3,6 +3,11 @@
 -->
 # Calamares Core for RebornOS
 
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/rebornos-developers/calamares-core)
+[![Release](https://github.com/RebornOS-Developers/calamares-core/actions/workflows/release.yml/badge.svg)](https://github.com/RebornOS-Developers/calamares-core/actions/workflows/release.yml)
+[![Pre-Release (Git)](https://github.com/RebornOS-Developers/calamares-core/actions/workflows/pre_release.yml/badge.svg)](https://github.com/RebornOS-Developers/calamares-core/actions/workflows/pre_release.yml)
+
 > **Note**: This project should not carry any RebornOS-specific configuration except for the installer packaging files (PKGBUILD, build scripts), icons, and launch scripts. Use the [calamares-configuration](https://github.com/RebornOS-Developers/calamares-configuration) project for other RebornOS-specific configuration.
 
 This is a fork of the [Calamares project](https://github.com/calamares/calamares). It is highly recommended to [keep this project updated](https://github.com/RebornOS-Developers/calamares-core#updating).
