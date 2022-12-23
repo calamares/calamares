@@ -46,7 +46,7 @@ jobs:
         name: Determine Latest Tag
         run: |
           git fetch --prune --unshallow --tags
-          echo "LATEST_TAG=$(git tag | grep -v -P '^v([0-9]+)\.([0-9]+)\.([0-9]+).' | sort --version-sort | tail -n1)" >> $GITHUB_ENV        
+          echo "LATEST_TAG=$(git tag | grep -v -P '^v([0-9]+)\.([0-9]+)\.([0-9]+).*\.' | sort --version-sort | tail -n1)" >> $GITHUB_ENV        
       - id: download_package_step 
         name: Download Package Artifact
         uses: actions/download-artifact@v3
