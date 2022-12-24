@@ -1,11 +1,11 @@
 name: Release
 run-name: Release triggered by ${{ github.actor }}
 on:
-  # push:
-  #     tags:
-  #     - "v**"
-  - workflow_dispatch
-  - workflow_call
+  workflow_dispatch:
+  workflow_call:
+  push:
+      tags:
+        - "v**"
 jobs:
   build:
     name: Build
