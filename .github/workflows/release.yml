@@ -1,4 +1,4 @@
-name: Release
+name: 🎉 Release
 run-name: Release triggered by ${{ github.actor }}
 on:
   workflow_dispatch:
@@ -8,27 +8,27 @@ on:
         - "v**"
 jobs:
   build:
-    name: Build
+    name: 🏗 Build
     runs-on: ubuntu-latest
     container: 
       image: rebornos/rebornos:latest
       ports:
         - 80
     steps:
-      - id: init_docker_step
-        name: Initialize RebornOS Docker Container        
+      - name: 🐋 Initialize RebornOS Docker Container 
+        id: init_docker_step           
         run: sh /usr/bin/init-rebornos-docker.sh
-      - id: checkout_repository_step
-        name: Checkout Git Repository
+      - name: 🎟 Checkout Git Repository
+        id: checkout_repository_step
         uses: actions/checkout@v3
-      - id: build_package_step
-        name: Build Package
+      - name: 🛠 Build Package
+        id: build_package_step        
         run: |
           chown -R rebornos packaging
           chmod -R +x packaging
           sudo -u rebornos sh -c "packaging/build_package.sh stable --noconfirm"
-      - id: upload_package_step
-        name: Upload Package Artifact
+      - name: ⬆ Upload Package Artifact
+        id: upload_package_step
         uses: actions/upload-artifact@v3
         with: 
           name: Stable Package
@@ -36,28 +36,33 @@ jobs:
           if-no-files-found: error
   release:  
     needs: build        
-    name: Release
+    name: 🎉 Release
     runs-on: ubuntu-latest
     steps:
-      - id: checkout_repository_step
-        name: Checkout Git Repository
+      - name: 🎟 Checkout Git Repository
+        id: checkout_repository_step
         uses: actions/checkout@v3
-      - id: set_latest_tag
-        name: Determine Latest Tag
+      - name:  🏷 Determine Tags and Versions
+        id: set_versions_step
         run: |
           git fetch --prune --unshallow --tags
-          echo "LATEST_TAG=$(git tag | grep -v -P '^v([0-9]+)\.([0-9]+)\.([0-9]+).*\.' | sort --version-sort | tail -n1)" >> $GITHUB_ENV        
-      - id: download_package_step 
-        name: Download Package Artifact
+          LATEST_TAG="$(git tag | grep -v -P '^v([0-9]+)\.([0-9]+)\.([0-9]+).*\.' | grep -v -P '^v([0-9]+)\.([0-9]+)\.([0-9]+).*\_' | grep -v -P '^v([0-9]+)\.([0-9]+)\.([0-9]+)_$' | sort --version-sort | tail -n1)"
+          GIT_VERSION="$(git describe --long 2>/dev/null | sed 's/\([^-]*-g\)/r\1/;s/-/./g' || printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)")"
+          echo "LATEST_TAG=$LATEST_TAG" >> $GITHUB_ENV 
+          echo "GIT_VERSION=$GIT_VERSION" >> $GITHUB_ENV 
+          echo "LATEST_TAG=$LATEST_TAG"
+          echo "GIT_VERSION=$GIT_VERSION"
+      - name: ⬇ Download Package Artifact
+        id: download_package_step         
         uses: actions/download-artifact@v3
         with:
           name: Stable Package
           path: output
-      - id: generate_checksum_step
-        name: Generate CheckSum
+      - name: 🖩 Generate CheckSum
+        id: generate_checksum_step
         run: find ${{ steps.download_package_step.outputs.download-path }} -type f -exec sh -c 'md5sum $0 > $0.md5sum' {} \;
-      - id: create_release_step
-        name: Create Release        
+      - name: 🎉 Create Release
+        id: create_release_step
         uses: softprops/action-gh-release@v1
         with:          
           draft: false
