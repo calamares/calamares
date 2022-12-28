@@ -862,7 +862,7 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
                                                               selectedDevice(),
                                                               selectedPartition,
                                                               { gs->value( "defaultPartitionType" ).toString(),
-                                                                gs->value( "defaultFileSystemType" ).toString(),
+                                                                m_config->replaceModeFilesystem(),
                                                                 gs->value( "luksFileSystemType" ).toString(),
                                                                 m_encryptWidget->passphrase() } );
                         Partition* homePartition = findPartitionByPath( { selectedDevice() }, *homePartitionPath );
