@@ -8,6 +8,8 @@
  *
  */
 
+#include <QObject>
+
 #include "PackageModel.h"
 
 #include "utils/Logger.h"
@@ -15,8 +17,8 @@
 #include "utils/Yaml.h"
 
 /// Recursive helper for setGroupSelections()
-static void
-setGroupSelections( const QStringList& selectNames, PackageTreeItem* item )
+void
+PackageModel::setGroupSelections( const QStringList& selectNames, PackageTreeItem* item )
 {
     for ( int i = 0; i < item->childCount(); i++ )
     {
@@ -26,104 +28,165 @@ setGroupSelections( const QStringList& selectNames, PackageTreeItem* item )
     if ( item->isGroup() && selectNames.contains( item->name() ) )
     {
         item->setSelected( Qt::CheckState::Checked );
+        if ( this->isSharedState() && !item->isIgnoringShareState() ) 
+        {
+            Qt::CheckState state = Qt::CheckState::Checked;
+            this -> applyStateToGroupAndCopies( state, *item );
+        }
     }
 }
 
+/** @brief Obtain the selection states of packages in @p item
+ *
+ * Obtains the selection states of packages under @p item and stores them in the
+ * hash-map @p stateHashMap with package names as keys and selection states as
+ * values. Each package only appears once in the hash-map and the output eagerly
+ * takes on a Qt::CheckState::Checked status if it is encountered for any 
+ * of the package copies 
+ *
+ * Note: This function's behaviour is copy-aware 
+ */
 static void
-packageSelectionStates( QList<QString> * packageNames, QList<Qt::CheckState> * packageStates, PackageTreeItem* item )
+fetchDeduplicatedPackageStates( QHash<QString, Qt::CheckState>& stateHashMap, PackageTreeItem& item )
 {
-    if ( !item->isGroup() )
+    if ( !item.isGroup() )
     {
-        int index = packageNames->indexOf(item->packageName());
-        QString packageName = item->packageName();
-        Qt::CheckState packageState = item->isSelected();
-        if ( !packageName.isEmpty() )
-        {
-            if ( index < 0)
-            {
-                packageNames->append(packageName);
-                packageStates->append(packageState);
-            }
-            else if ( packageState == Qt::CheckState::Checked )
-            {
-                packageStates->replace(index, Qt::CheckState::Checked);
-            }
+        QString packageName = item.packageName();
+        Qt::CheckState packageState = item.isSelected();
+        if ( 
+            !packageName.isEmpty() 
+            && (
+                !stateHashMap.contains( packageName )
+                || packageState == Qt::CheckState::Checked 
+            ) 
+        ){
+            stateHashMap.insert( packageName, packageState );
         }
     }
     else
     {
-        for ( int i = 0; i < item->childCount(); i++ )
+        for ( int i = 0; i < item.childCount(); i++ )
         {
-            auto* child = item->child( i );
-            packageSelectionStates( packageNames, packageStates, child );
+            auto* child = item.child( i );
+            fetchDeduplicatedPackageStates( stateHashMap, *child );
         }
     }
 }
 
-/** @brief Propagates selection state @p selectState over @p item
+/** @brief Obtain the selection states of packages in @p item
  *
- * Propagates @p selectState throughout the tree under @p item
- * and all the duplicates of its packages
+ * Obtains the selection states of packages under @p item and makes a cumulative
+ * list of packages and their selection states in the list @p stateMap with 
+ * each list item containing a PackageTreeItem object and its selection state
+ *
+ * Note: This function's behaviour is not copy-aware 
+ */
+static void
+fetchPackageStates( QList<QPair<PackageTreeItem,Qt::CheckState>>& stateMap, PackageTreeItem& item )
+{
+    if ( !item.isGroup() )
+    {
+        QString packageName = item.packageName();
+        Qt::CheckState packageState = item.isSelected();
+        if ( !packageName.isEmpty() )
+        {
+            stateMap.append( QPair( item, packageState ) );
+        }
+    }
+    else
+    {
+        for ( int i = 0; i < item.childCount(); i++ )
+        {
+            auto* child = item.child( i );
+            fetchPackageStates( stateMap, *child );
+        }
+    }
+}
+
+/** @brief Apply state @p selectState to group @p item
+ *
+ * Applies @p selectState to the group @p item and items under it.
+ *
+ * Note: This funtion exists because its behaviour is copy-aware 
  */
 void
-PackageModel::propagateAndUpdateDuplicates( const Qt::CheckState& selectState, PackageTreeItem* item )
+PackageModel::applyStateToGroupAndCopies( Qt::CheckState& selectState, PackageTreeItem& item )
 {
-    if ( selectState != Qt::PartiallyChecked && item->isGroup() )
+
+    if ( !this->isSharedState() || item.isIgnoringShareState() ) {
+        return;
+    }
+
+    if ( selectState != Qt::PartiallyChecked && item.isGroup() )
     {
-        for ( int i = 0; i < item->childCount(); i++ )
+        for ( int i = 0; i < item.childCount(); i++ )
         {
-            auto* child = item->child( i );
+            auto* child = item.child( i );
             if ( !child->isGroup() )
             {
-                this->updateDuplicates( child->packageName(), selectState );
+                QString packageName = child->packageName();
+                this->applyStateToCopies( packageName, selectState );
             }
             else
             {
-                propagateAndUpdateDuplicates(selectState, child);
+                applyStateToGroupAndCopies(selectState, *child);
             }
         }
     }
 }
 
-/** @brief Copies selection state @p selectStates
- * for packages with name @p selectNames over @p item
+/** @brief Applies states from @p stateHashMap to package names @p selectNames
+ * for items under @p item 
  *
- * Sets state to @p selectState for all copies of "packageName" @p selectName
- * throughout the tree under @p item 
+ * Sets states according to @p stateHashMap for all copies of packages
+ * throughout the tree under @p item. 
+ *
+ * Note: This function's behaviour is copy-aware
  */
-static void
-updateDuplicates( const QList<QString> * selectNames, const QList<Qt::CheckState> * selectStates, PackageTreeItem* item )
+void
+PackageModel::applyStateToCopies( QHash<QString, Qt::CheckState>& stateHashMap, PackageTreeItem& item )
 {
-    if ( item->isGroup() )
+    if ( !this->isSharedState() || item.isIgnoringShareState() ) {
+        return;
+    }
+
+    if ( item.isGroup() )
     {
-        for ( int i = 0; i < item->childCount(); i++ )
+        for ( int i = 0; i < item.childCount(); i++ )
         {
-            auto* child = item->child( i );
-            updateDuplicates( selectNames, selectStates, child );
+            auto* child = item.child( i );
+            applyStateToCopies( stateHashMap, *child );
         }
     }
     else 
     {
-        int index = selectNames->indexOf(item->packageName());
-        if ( index >= 0 && !item->packageName().isEmpty() && !item->isImmutable() && item->isSelected() != selectStates->value(index) )
+        QString packageName = item.packageName();
+        Qt::CheckState packageState = item.isSelected();
+        if ( 
+            !packageName.isEmpty()
+            && !item.isImmutable() 
+            && stateHashMap.contains( packageName )             
+            && packageState != stateHashMap.value( packageName ) 
+        )
         {
-            item->setSelected( selectStates->value(index) );
+            item.setSelected( stateHashMap.value( packageName ) );
         }
     }
 }
 
-/** @brief Copies selection state @p selectState
- * for packages with name @p selectName over @p item
+/** @brief Applies state @p selectState to package name @p selectName
+ * for items under @p item 
  *
  * Sets state to @p selectState for all copies of "packageName" @p selectName
- * throughout the tree under @p item 
+ * throughout the tree under @p item. 
+ * Note: This function's behaviour is copy-aware
  */
-static void
-updateDuplicates( const QString& selectName, const Qt::CheckState& selectState, PackageTreeItem* item )
+void
+PackageModel::applyStateToCopies( QString& selectName, Qt::CheckState& selectState, PackageTreeItem& item )
 {
-    QList<QString> selectNames = { selectName };
-    QList<Qt::CheckState> selectStates = { selectState };
-    updateDuplicates( &selectNames, &selectStates, item );
+    QHash<QString, Qt::CheckState> stateHashMap = QHash<QString, Qt::CheckState>();    
+    stateHashMap.insert( selectName, selectState );
+    this->applyStateToCopies( stateHashMap, item );
 }
 
 /** @brief Collects all the "source" values from @p groupList
@@ -268,11 +331,16 @@ PackageModel::setData( const QModelIndex& index, const QVariant& value, int role
         PackageTreeItem* item = static_cast< PackageTreeItem* >( index.internalPointer() );
         item->setSelected( static_cast< Qt::CheckState >( value.toInt() ) );
 
-        if( !item->isGroup() )
+        if ( this->isSharedState() && !item->isIgnoringShareState() )
         {
-            this->updateDuplicates(item->packageName(), item->isSelected());
-        } else {
-            propagateAndUpdateDuplicates( item->isSelected(), item );
+            Qt::CheckState state = item->isSelected();
+            if( !item->isGroup() )
+            {
+                QString packageName = item->packageName();                
+                this->applyStateToCopies( packageName, state );
+            } else {
+                applyStateToGroupAndCopies( state, *item );
+            }
         }
 
         emit dataChanged( this->index( 0, 0 ),
@@ -320,58 +388,79 @@ PackageModel::setGroupSelections( const QStringList& selectNames )
 {
     if ( m_rootItem )
     {
-        ::setGroupSelections( selectNames, m_rootItem );
+        this->setGroupSelections( selectNames, m_rootItem );
     }
 }
 
 void
-PackageModel::packageSelectionStates( QList<QString> * packageNames, QList<Qt::CheckState> * packageStates )
+PackageModel::fetchDeduplicatedPackageStates( QHash<QString, Qt::CheckState>& stateHashMap )
 {
     if ( m_rootItem )
     {
-        ::packageSelectionStates( packageNames , packageStates, m_rootItem );
+        ::fetchDeduplicatedPackageStates( stateHashMap, *m_rootItem );
     }
 }
 
 void
-PackageModel::updateDuplicates( const QList<QString> * selectNames, const QList<Qt::CheckState> * selectStates)
+PackageModel::fetchPackageStates( QList<QPair<PackageTreeItem,Qt::CheckState>>& stateMap )
 {
     if ( m_rootItem )
     {
-        ::updateDuplicates( selectNames, selectStates, m_rootItem );
+        ::fetchPackageStates( stateMap, *m_rootItem );
     }
 }
 
 void
-PackageModel::updateDuplicates( const QString& selectName, const Qt::CheckState& selectState )
+PackageModel::applyStateToCopies( QHash<QString, Qt::CheckState>& stateHashMap )
 {
     if ( m_rootItem )
     {
-        ::updateDuplicates( selectName, selectState, m_rootItem );
+        this->applyStateToCopies( stateHashMap, *m_rootItem );
+    }
+}
+
+void
+PackageModel::applyStateToCopies( QString& selectName, Qt::CheckState& selectState )
+{
+    if ( m_rootItem )
+    {
+        this->applyStateToCopies( selectName, selectState, *m_rootItem );
     }
 }
 
 void 
-PackageModel::updateInitialDuplicates()
+PackageModel::applyInitialStateToCopies()
 {
-    QList<QString> packageNames = QList<QString>();
-    QList<Qt::CheckState> packageStates = QList<Qt::CheckState>();
-    this->packageSelectionStates( &packageNames, &packageStates );
-    this->updateDuplicates( &packageNames, &packageStates );
+    QHash<QString,Qt::CheckState> stateHashMap = QHash<QString,Qt::CheckState>();
+    this->fetchDeduplicatedPackageStates( stateHashMap );
+    this->applyStateToCopies( stateHashMap );
 }
 
 void
 PackageModel::storeInitialState()
 {
-    m_InitialPackageNames = QList<QString>();
-    m_InitialPackageStates = QList<Qt::CheckState>();
-    this->packageSelectionStates( &m_InitialPackageNames, &m_InitialPackageStates );
+    if ( this->isSharedState() ) {
+        m_InitialStateHashMap = new QHash<QString,Qt::CheckState>();
+        this->fetchDeduplicatedPackageStates( *m_InitialStateHashMap );
+    } else {
+        m_InitialStateMap = new QList<QPair<PackageTreeItem,Qt::CheckState>>();    
+        this->fetchPackageStates( *m_InitialStateMap );
+    }
 }
 
 void
 PackageModel::resetToDefaults()
 {
-    this->updateDuplicates( &m_InitialPackageNames, &m_InitialPackageStates );
+    if ( this->isSharedState() ) {
+        this->applyStateToCopies( *m_InitialStateHashMap );
+    } else {
+        QListIterator<QPair<PackageTreeItem, Qt::CheckState>> i(*m_InitialStateMap);
+        while( i.hasNext() )
+        {
+            QPair<PackageTreeItem, Qt::CheckState> p = i.next();
+            p.first.setSelected(p.second);
+        }
+    }
 }
 
 PackageTreeItem::List
@@ -533,7 +622,11 @@ PackageModel::appendModelData( const QVariantList& groupList )
                 PackageTreeItem* child = m_rootItem->child( i );
                 if ( sources.contains( child->source() ) )
                 {
-                    this->propagateAndUpdateDuplicates( Qt::CheckState::Unchecked, child );
+                    if ( this->isSharedState() && !child->isIgnoringShareState() )
+                    {
+                        Qt::CheckState state = Qt::CheckState::Unchecked;
+                        this->applyStateToGroupAndCopies( state, *child );
+                    }
                     removeList.insert( 0, i );                    
                 }
             }

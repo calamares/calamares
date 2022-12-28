@@ -59,7 +59,6 @@ build() {
 
     mkdir -p "$BUILD_DIRECTORY" && \
     cmake \
-        -DCMAKE_BUILD_TYPE=Debug \
         -DCMAKE_INSTALL_PREFIX=/usr \
         -DCMAKE_INSTALL_LIBDIR=lib \
         -B "$BUILD_DIRECTORY" -S "$PROJECT_DIRECTORY" && \

@@ -115,6 +115,8 @@ void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
 {
     setRequired( CalamaresUtils::getBool( configurationMap, "required", false ) );
+    setShareState( CalamaresUtils::getBool( configurationMap, "share-state", false ) );
+    m_model->setSharedState( m_shareState );
 
     // Get the translations, if any
     bool bogus = false;

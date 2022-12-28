@@ -90,5 +90,7 @@ NetInstallPage::onActivate()
         m_config->model()->appendModelData( groups );
     }
 
-    m_config->model()->updateInitialDuplicates();
+    if ( m_config -> isSharedState() ) {
+        m_config->model()->applyInitialStateToCopies();
+    }
 }

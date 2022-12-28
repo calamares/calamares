@@ -116,6 +116,15 @@ public:
      */
     bool isNoncheckable() const { return m_showNoncheckable; }
 
+    /** @brief Is this group ignoring share-state?
+     *
+     * Groups can ignore the global "share-state" setting so that child packages
+     * do not share selection/deselection state with other packages
+     * elsewhere. This setting has no effect if the global "share-state"
+     * setting is false
+     */
+    bool isIgnoringShareState() const { return m_ignoreShareState; }
+
     /** @brief is this item selected?
      *
      * Groups may be partially selected; packages are only on or off.
@@ -155,6 +164,7 @@ public:
     bool operator!=( const PackageTreeItem& rhs ) const { return !( *this == rhs ); }
 
 private:
+
     PackageTreeItem* m_parentItem;
     List m_childItems;
 
@@ -173,6 +183,7 @@ private:
     bool m_isHidden = false;
     bool m_showReadOnly = false;
     bool m_showNoncheckable = false;
+    bool m_ignoreShareState = false;
     bool m_startExpanded = false;
 };
 

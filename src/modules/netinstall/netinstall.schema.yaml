@@ -33,8 +33,9 @@ definitions:
             selected: { type: boolean }
             critical: { type: boolean, default: false }
             immutable: { type: boolean }
-            noncheckable: { type: boolean }
+            noncheckable: { type: boolean }            
             expanded: { type: boolean }
+            ignore-share-state: { type: boolean, default: false }
             subgroups:
                 type: array
                 items: { $ref: 'definitions/group' }
@@ -76,6 +77,7 @@ oneOf:
                 sidebar: { type: string }
                 title: { type: string }
         groups: { $ref: 'definitions/groups' }
+        share-state: { type: boolean, default: false }
     required: [ groupsUrl ]
 
 -   # Groups file with top level *groups* key

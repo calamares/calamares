@@ -58,7 +58,9 @@ public:
     void setStatus( Status s );
 
     bool required() const { return m_required; }
+    bool isSharedState() const { return m_shareState; }
     void setRequired( bool r ) { m_required = r; }
+    void setShareState( bool s ) { m_shareState = s; }
 
     PackageModel* model() const { return m_model; }
 
@@ -96,6 +98,7 @@ private:
     LoaderQueue* m_queue = nullptr;
     Status m_status = Status::Ok;
     bool m_required = false;
+    bool m_shareState = false;
 };
 
 #endif

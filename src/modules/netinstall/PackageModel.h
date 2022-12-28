@@ -13,8 +13,8 @@
 
 #include "PackageTreeItem.h"
 
-#include <QAbstractItemModel>
 #include <QObject>
+#include <QAbstractItemModel>
 #include <QString>
 
 namespace YAML
@@ -42,6 +42,9 @@ public:
 
     void setupModelData( const QVariantList& l );
 
+    bool isSharedState() { return m_shareState; }
+    void setSharedState(bool s) { m_shareState = s; }
+
     QVariant data( const QModelIndex& index, int role ) const override;
     bool setData( const QModelIndex& index, const QVariant& value, int role = Qt::EditRole ) override;
     Qt::ItemFlags flags( const QModelIndex& index ) const override;
@@ -64,27 +67,46 @@ public:
      */
     void setGroupSelections( const QStringList& selectNames );
 
-    void updateDuplicates( const QList<QString> * selectNames, const QList<Qt::CheckState> * selectStates);
-
-    /** @brief Updates the checked flag on matching packages in the tree
-     *
-     * Recursively traverses the tree pointed to by m_rootItem and
-     * checks if a package name matches @p selectName.
-     * If a match is found, updates the check the box for that package.
-     *
-     */
-    void updateDuplicates( const QString& selectName, const Qt::CheckState& selectState );
-
-    void updateInitialDuplicates();
-
-    /** @brief Propagates selection state @p selectState over @p item
+    /** @brief Applies states @p selectStates to package names @p selectNames
     *
-    * Propagates @p selectState throughout the tree under @p item
-    * and all the duplicates of its packages
+    * Sets states according to @p stateHashMap for all copies of package names
+    * and selection states in each item of the hash-map
+    *
+    * Note: This function's behaviour is copy-aware
     */
-    void propagateAndUpdateDuplicates( const Qt::CheckState& selectState, PackageTreeItem* item );
+    void applyStateToCopies( QHash<QString,Qt::CheckState>& stateHashMap );
 
-    void packageSelectionStates( QList<QString> * packageNames, QList<Qt::CheckState> * packageStates );    
+
+    /** @brief Applies state @p selectState to package name @p selectName
+    *
+    * Sets state to @p selectState for all copies of "packageName"
+    * @p selectName throughout the netinstall tree 
+    *
+    * Note: This function's behaviour is copy-aware
+    */
+    void applyStateToCopies( QString& selectName, Qt::CheckState& selectState );
+
+    void applyInitialStateToCopies();
+
+    /** @brief Obtain the selection states of packages
+    *
+    * Obtains the selection states of packages and stores them in the
+    * hash-map @p stateHashMap with package names as keys and selection states as
+    * values. Each package only appears once in the hash-map and the output eagerly
+    * takes on a Qt::CheckState::Checked status if it is encountered for any 
+    * of the package copies 
+    *
+    * Note: This function's behaviour is copy-aware 
+    */
+    void fetchDeduplicatedPackageStates( QHash<QString, Qt::CheckState>& stateHashMap );
+
+    /** @brief Obtain the selection states of packages
+    *
+    * Obtain the selection states of packages and makes a cumulative
+    * list of names in @p packageNames and selection states in @p packageStates
+    * Note: This funtion's behaviour is copy-aware 
+    */
+    void fetchPackageStates( QList<QPair<PackageTreeItem,Qt::CheckState>>& stateMap );    
 
     void resetToDefaults();
 
@@ -111,11 +133,50 @@ private:
 
     void storeInitialState();
 
+    bool m_shareState = false;
+
     PackageTreeItem* m_rootItem = nullptr;
     PackageTreeItem::List m_hiddenItems;
 
-    QList<QString> m_InitialPackageNames;
-    QList<Qt::CheckState> m_InitialPackageStates;
+    QHash<QString,Qt::CheckState>* m_InitialStateHashMap = nullptr;
+    QList<QPair<PackageTreeItem,Qt::CheckState>>* m_InitialStateMap = nullptr;
+
+    /** @brief Applies state @p selectState to package name @p selectName
+    * for items under @p item 
+    *
+    * Sets state to @p selectState for all copies of "packageName" @p selectName
+    * throughout the tree under @p item. 
+    * Note: This function's behaviour is copy-aware
+    */
+    void applyStateToCopies( QString& selectName, Qt::CheckState& selectState, PackageTreeItem& item );
+
+    /** @brief Propagates selection state @p selectState over @p item
+    *
+    * Propagates @p selectState throughout the tree under @p item
+    * and all the duplicates of its packages
+    */
+    void applyStateToGroupAndCopies( Qt::CheckState& selectState, PackageTreeItem& item );
+
+    /** @brief Sets the checked flag on matching groups in the @p item tree
+     *
+     * Recursively traverses the tree pointed to by @p item and
+     * checks if a group name matches any of the items in @p selectNames.
+     * If a match is found, set check the box for that group and it's children.
+     *
+     * Individual packages will not be matched.
+     *
+     */
+    void setGroupSelections( const QStringList& selectNames, PackageTreeItem* item );
+
+    /** @brief Applies states from @p stateHashMap to package names @p selectNames
+    * for items under @p item 
+    *
+    * Sets states according to @p stateHashMap for all copies of packages
+    * throughout the tree under @p item. 
+    *
+    * Note: This function's behaviour is copy-aware
+    */
+    void applyStateToCopies( QHash<QString, Qt::CheckState>& stateHashMap, PackageTreeItem& item );       
 };
 
 #endif  // PACKAGEMODEL_H
