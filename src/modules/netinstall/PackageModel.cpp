@@ -212,15 +212,6 @@ PackageModel::headerData( int section, Qt::Orientation orientation, int role ) c
 }
 
 void
-PackageModel::setGroupSelections( const QStringList& selectNames )
-{
-    if ( m_rootItem )
-    {
-        this->setGroupSelections( selectNames, m_rootItem );
-    }
-}
-
-void
 PackageModel::setGroupSelections( const QStringList& selectNames, PackageTreeItem* item )
 {
     for ( int i = 0; i < item->childCount(); i++ )
@@ -240,11 +231,11 @@ PackageModel::setGroupSelections( const QStringList& selectNames, PackageTreeIte
 }
 
 void
-PackageModel::fetchDeduplicatedPackageStates( QHash<QString, Qt::CheckState>& stateHashMap )
+PackageModel::setGroupSelections( const QStringList& selectNames )
 {
     if ( m_rootItem )
     {
-        ::fetchDeduplicatedPackageStates( stateHashMap, *m_rootItem );
+        this->setGroupSelections( selectNames, m_rootItem );
     }
 }
 
@@ -276,11 +267,11 @@ fetchDeduplicatedPackageStates( QHash<QString, Qt::CheckState>& stateHashMap, Pa
 }
 
 void
-PackageModel::fetchPackageStates( QList<QPair<PackageTreeItem*,Qt::CheckState>>& stateMap )
+PackageModel::fetchDeduplicatedPackageStates( QHash<QString, Qt::CheckState>& stateHashMap )
 {
     if ( m_rootItem )
     {
-        ::fetchPackageStates( stateMap, m_rootItem );
+        ::fetchDeduplicatedPackageStates( stateHashMap, *m_rootItem );
     }
 }
 
@@ -307,11 +298,11 @@ fetchPackageStates( QList<QPair<PackageTreeItem*,Qt::CheckState>>& stateMap, Pac
 }
 
 void
-PackageModel::applyStateToCopies( QHash<QString, Qt::CheckState>& stateHashMap )
+PackageModel::fetchPackageStates( QList<QPair<PackageTreeItem*,Qt::CheckState>>& stateMap )
 {
     if ( m_rootItem )
     {
-        this->applyStateToCopies( stateHashMap, *m_rootItem );
+        ::fetchPackageStates( stateMap, m_rootItem );
     }
 }
 
@@ -347,11 +338,11 @@ PackageModel::applyStateToCopies( QHash<QString, Qt::CheckState>& stateHashMap, 
 }
 
 void
-PackageModel::applyStateToCopies( QString& selectName, Qt::CheckState& selectState )
+PackageModel::applyStateToCopies( QHash<QString, Qt::CheckState>& stateHashMap )
 {
     if ( m_rootItem )
     {
-        this->applyStateToCopies( selectName, selectState, *m_rootItem );
+        this->applyStateToCopies( stateHashMap, *m_rootItem );
     }
 }
 
@@ -361,6 +352,15 @@ PackageModel::applyStateToCopies( QString& selectName, Qt::CheckState& selectSta
     QHash<QString, Qt::CheckState> stateHashMap = QHash<QString, Qt::CheckState>();    
     stateHashMap.insert( selectName, selectState );
     this->applyStateToCopies( stateHashMap, item );
+}
+
+void
+PackageModel::applyStateToCopies( QString& selectName, Qt::CheckState& selectState )
+{
+    if ( m_rootItem )
+    {
+        this->applyStateToCopies( selectName, selectState, *m_rootItem );
+    }
 }
 
 void 
