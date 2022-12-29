@@ -399,25 +399,13 @@ PackageModel::applyStateToGroupAndCopies( Qt::CheckState& selectState, PackageTr
 
 void
 PackageModel::storeInitialState()
-{
-    cDebug() << "isSharedState: "<< this->isSharedState();    
+{  
     if ( this->isSharedState() ) {
         m_InitialStateHashMap = new QHash<QString,Qt::CheckState>();        
         this->fetchDeduplicatedPackageStates( *m_InitialStateHashMap );
-        
-        QHash<QString, Qt::CheckState>::iterator i;
-        for (i = m_InitialStateHashMap->begin(); i != m_InitialStateHashMap->end(); ++i)
-            cDebug() << Logger::SubEntry << i.key() << ": " << i.value();
     } else {
         m_InitialStateMap = new QList<QPair<PackageTreeItem*,Qt::CheckState>>();    
-        this->fetchPackageStates( *m_InitialStateMap );
-
-        QListIterator<QPair<PackageTreeItem*, Qt::CheckState>> i(*m_InitialStateMap);
-        while( i.hasNext() )
-        {
-            QPair<PackageTreeItem*, Qt::CheckState> p = i.next();
-            cDebug() << Logger::SubEntry << p.first->packageName() <<" : "<< p.second;
-        }        
+        this->fetchPackageStates( *m_InitialStateMap );    
     }
 }
 
@@ -431,17 +419,6 @@ PackageModel::resetToDefaults()
         while( i.hasNext() )
         {
             QPair<PackageTreeItem*, Qt::CheckState> p = i.next();
-
-            if ( p.first->isSelected() != p.second )
-            {
-                
-                cDebug() << Logger::SubEntry << Logger::SubEntry<<"p.first->isSelected(): "<<p.first->isSelected()<<", "<<"p.second: "<<p.second;
-            } 
-            else
-            {
-                cDebug() << Logger::SubEntry << Logger::SubEntry;
-            }
-
             p.first->setSelected(p.second);
         }
     }
