@@ -2,6 +2,7 @@
 <ui version="4.0">
  <author>
 SPDX-FileCopyrightText: 2016 shainer &lt;syn.shainer@gmail.com&gt;
+SPDX-FileCopyrightText: 2022 shivanandvp &lt;shivanandvp@rebornos.org&gt;
 SPDX-License-Identifier: GPL-3.0-or-later
  </author>
  <class>Page_NetInst</class>

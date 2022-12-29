@@ -2,6 +2,7 @@
  *
  *   SPDX-FileCopyrightText: 2017 Kyle Robbertze <kyle@aims.ac.za>
  *   SPDX-FileCopyrightText: 2017 Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2022, shivanandvp <shivanandvp@rebornos.org> 
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -67,47 +68,64 @@ public:
      */
     void setGroupSelections( const QStringList& selectNames );
 
-    /** @brief Applies states @p selectStates to package names @p selectNames
+    /** @brief Applies selection states from @p stateHashMap to package names
+    * @p selectNames and all copies
     *
-    * Sets states according to @p stateHashMap for all copies of package names
-    * and selection states in each item of the hash-map
-    *
-    * Note: This function's behaviour is copy-aware
+    * Uses the hash-map @p stateHashMap to modify packages ( whose names are
+    * stored as keys ) and all their copies, to the selection states specified
+    * as the corresponding values of those keys
     */
     void applyStateToCopies( QHash<QString,Qt::CheckState>& stateHashMap );
 
-
-    /** @brief Applies state @p selectState to package name @p selectName
+    /** @brief Applies state @p selectState to package name @p selectName and 
+    * all its copies
     *
     * Sets state to @p selectState for all copies of "packageName"
     * @p selectName throughout the netinstall tree 
-    *
-    * Note: This function's behaviour is copy-aware
     */
     void applyStateToCopies( QString& selectName, Qt::CheckState& selectState );
 
+    /** @brief Propagates selection state @p selectState over @p item
+    *
+    * Propagates @p selectState throughout the tree under @p item
+    * and all the copies of its packages
+    */
+    void applyStateToGroupAndCopies( Qt::CheckState& selectState, PackageTreeItem& item );
+
+    /** @brief Initializes copies of the initially selected packages
+    *
+    * Shares the state of the initially selected packages to all their copies
+    */
     void applyInitialStateToCopies();
 
-    /** @brief Obtain the selection states of packages
+    /** @brief Obtains the selection states of all packages into the output
+    * @p stateMap
     *
-    * Obtains the selection states of packages and stores them in the
-    * hash-map @p stateHashMap with package names as keys and selection states as
-    * values. Each package only appears once in the hash-map and the output eagerly
-    * takes on a Qt::CheckState::Checked status if it is encountered for any 
-    * of the package copies 
+    * Obtains the selection states of packages and makes a cumulative QList
+    * of QPairs of packages and selection states. Copies of packages are treated
+    * as separate items with their own selection states 
+    */
+    void fetchPackageStates( QList<QPair<PackageTreeItem*,Qt::CheckState>>& stateMap );
+
+    /** @brief Obtains the selection states of all package names into 
+    * the output @p stateHashMap
     *
-    * Note: This function's behaviour is copy-aware 
+    * Obtains the selection states of all package names and stores them in the
+    * hash-map @p stateHashMap with package names as keys and selection states
+    * as values. Each package only appears once in the hash-map and the output 
+    * eagerly takes on a Qt::CheckState::Checked status if it is encountered for
+    * any of the package copies 
     */
     void fetchDeduplicatedPackageStates( QHash<QString, Qt::CheckState>& stateHashMap );
-
-    /** @brief Obtain the selection states of packages
-    *
-    * Obtain the selection states of packages and makes a cumulative
-    * list of names in @p packageNames and selection states in @p packageStates
-    * Note: This funtion's behaviour is copy-aware 
+   
+    /** @brief Reset package selection states to the default values initially
+    * recorded
+    * 
+    * Brings the selection states of packages to those initially recorded. This
+    * function is smart - it recognizes and behaves differently according to 
+    * the global "share-state" setting and honours local override through 
+    * "ignore-share-state"
     */
-    void fetchPackageStates( QList<QPair<PackageTreeItem*,Qt::CheckState>>& stateMap );    
-
     void resetToDefaults();
 
     PackageTreeItem::List getPackages() const;
@@ -129,33 +147,14 @@ public:
 private:
     friend class ItemTests;
 
-    void setupModelData( const QVariantList& l, PackageTreeItem* parent );
-
-    void storeInitialState();
-
-    bool m_shareState = false;
+    void setupModelData( const QVariantList& l, PackageTreeItem* parent );  
 
     PackageTreeItem* m_rootItem = nullptr;
     PackageTreeItem::List m_hiddenItems;
 
+    bool m_shareState = false;
     QHash<QString,Qt::CheckState>* m_InitialStateHashMap = nullptr;
-    QList<QPair<PackageTreeItem*,Qt::CheckState>>* m_InitialStateMap = nullptr;
-
-    /** @brief Applies state @p selectState to package name @p selectName
-    * for items under @p item 
-    *
-    * Sets state to @p selectState for all copies of "packageName" @p selectName
-    * throughout the tree under @p item. 
-    * Note: This function's behaviour is copy-aware
-    */
-    void applyStateToCopies( QString& selectName, Qt::CheckState& selectState, PackageTreeItem& item );
-
-    /** @brief Propagates selection state @p selectState over @p item
-    *
-    * Propagates @p selectState throughout the tree under @p item
-    * and all the duplicates of its packages
-    */
-    void applyStateToGroupAndCopies( Qt::CheckState& selectState, PackageTreeItem& item );
+    QList<QPair<PackageTreeItem*,Qt::CheckState>>* m_InitialStateMap = nullptr;  
 
     /** @brief Sets the checked flag on matching groups in the @p item tree
      *
@@ -168,13 +167,21 @@ private:
      */
     void setGroupSelections( const QStringList& selectNames, PackageTreeItem* item );
 
-    /** @brief Applies states from @p stateHashMap to package names @p selectNames
-    * for items under @p item 
-    *
-    * Sets states according to @p stateHashMap for all copies of packages
-    * throughout the tree under @p item. 
-    *
-    * Note: This function's behaviour is copy-aware
+    /** @brief Stores the initial selection states of packages smartly
+     *
+     * Either stores a list of packages and selection states or a hash-map of
+     * package names and selection states depending upon the global
+     * "share-state" setting
+     */
+    void storeInitialState();
+
+    /** @brief Recursive helper function for another function with the same 
+    * signature excluding @p item
+    */
+    void applyStateToCopies( QString& selectName, Qt::CheckState& selectState, PackageTreeItem& item );    
+
+    /** @brief Recursive helper function for another function with the same 
+    * signature excluding @p item
     */
     void applyStateToCopies( QHash<QString, Qt::CheckState>& stateHashMap, PackageTreeItem& item );       
 };
