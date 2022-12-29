@@ -106,7 +106,7 @@ public:
     * list of names in @p packageNames and selection states in @p packageStates
     * Note: This funtion's behaviour is copy-aware 
     */
-    void fetchPackageStates( QList<QPair<PackageTreeItem,Qt::CheckState>>& stateMap );    
+    void fetchPackageStates( QList<QPair<PackageTreeItem*,Qt::CheckState>>& stateMap );    
 
     void resetToDefaults();
 
@@ -139,7 +139,7 @@ private:
     PackageTreeItem::List m_hiddenItems;
 
     QHash<QString,Qt::CheckState>* m_InitialStateHashMap = nullptr;
-    QList<QPair<PackageTreeItem,Qt::CheckState>>* m_InitialStateMap = nullptr;
+    QList<QPair<PackageTreeItem*,Qt::CheckState>>* m_InitialStateMap = nullptr;
 
     /** @brief Applies state @p selectState to package name @p selectName
     * for items under @p item 
