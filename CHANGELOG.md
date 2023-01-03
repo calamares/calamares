@@ -1,6 +1,6 @@
 # CHANGELOG
 
-Calamares Core `v3.3.0_alpha2_1` -> `v3.3.0_alpha3_2` ChangeLog
+Calamares Core `v3.3.0_alpha2_1` -> `v3.3.0_alpha3_3` ChangeLog
 
 ### For Users
 
