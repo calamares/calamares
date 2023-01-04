@@ -37,6 +37,7 @@ depends=('qt5-location'
          'ckbcomp'
          'adobe-source-han-sans-otc-fonts'
          'adobe-source-han-serif-otc-fonts'
+         'python'
          )
 optdepends=()
 provides=('calamares')
@@ -44,7 +45,8 @@ conflicts=('calamares' 'calamares-core' 'calamares-core-git' 'calamares-core-loc
 md5sums=()
 makedepends=('extra-cmake-modules'
              'git'
-             'qt5-tools')
+             'qt5-tools'
+             'python')
 
 source=()
 

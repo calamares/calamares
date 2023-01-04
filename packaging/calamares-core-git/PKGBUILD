@@ -36,7 +36,8 @@ depends=('qt5-location'
          'polkit'
          'ckbcomp'
          'adobe-source-han-sans-otc-fonts'
-         'adobe-source-han-serif-otc-fonts'         
+         'adobe-source-han-serif-otc-fonts'    
+         'python'     
          )
 optdepends=()
 provides=('calamares')
@@ -44,7 +45,8 @@ conflicts=('calamares' 'calamares-core' 'calamares-core-git' 'calamares-core-loc
 md5sums=('SKIP')
 makedepends=('extra-cmake-modules'
              'git'
-             'qt5-tools') 
+             'qt5-tools'
+             'python') 
 
 source=("git+https://github.com/RebornOS-Developers/calamares-core")             
 
