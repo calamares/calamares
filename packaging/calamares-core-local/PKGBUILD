@@ -46,7 +46,8 @@ md5sums=()
 makedepends=('extra-cmake-modules'
              'git'
              'qt5-tools'
-             'python')
+             'python'
+             'yaml-cpp')
 
 source=()
 
