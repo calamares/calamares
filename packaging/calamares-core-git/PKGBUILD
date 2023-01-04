@@ -47,7 +47,9 @@ makedepends=('extra-cmake-modules'
              'git'
              'qt5-tools'
              'python'
-             'yaml-cpp') 
+             'python-yaml'
+             'python-pyaml'
+             'yaml-cpp')
 
 source=("git+https://github.com/RebornOS-Developers/calamares-core")             
 
