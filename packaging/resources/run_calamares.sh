@@ -10,6 +10,8 @@ if [ "$MODE" != "offline" ] && [ "$MODE" != "online" ]; then
 fi
 shift 1
 
+UNMOUNT_FILESYSTEMS_COMMAND="umount -rf /run/media/rebornos/*"
+
 UPDATE_INSTALL_MODE_COMMAND="cp -f \
     "$SCRIPT_DIRECTORY"/settings_"$MODE".conf \
     "$SCRIPT_DIRECTORY"/settings.conf"
@@ -26,5 +28,5 @@ LAUNCH_INSTALLER_COMMAND="env \
 {
     pkexec \
     bash -c \
-        "$UPDATE_INSTALL_MODE_COMMAND && $LAUNCH_INSTALLER_COMMAND" 
+        "$UNMOUNT_FILESYSTEMS_COMMAND; $UPDATE_INSTALL_MODE_COMMAND && $LAUNCH_INSTALLER_COMMAND" 
 } > ~/install.log      
