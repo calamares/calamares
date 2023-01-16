@@ -60,7 +60,9 @@ jobs:
           path: output
       - name: 🖩 Generate CheckSum
         id: generate_checksum_step
-        run: find ${{ steps.download_package_step.outputs.download-path }} -type f -exec sh -c 'md5sum $0 > $0.md5sum' {} \;
+        run: |
+          cd ${{ steps.download_package_step.outputs.download-path }}
+          find . -type f -exec sh -c 'md5sum "$0 > $0.md5sum' {} \;
       - name: 🎉 Create Release
         id: create_release_step
         uses: softprops/action-gh-release@v1
