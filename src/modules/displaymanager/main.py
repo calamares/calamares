@@ -983,6 +983,11 @@ def run():
     # Do the actual configuration and collect messages
     dm_setup_message = []
     for dm in dm_impl:
+        dm_specific_configuration = libcalamares.job.configuration.get(dm.name, None)
+        if dm_specific_configuration and isinstance(dm_specific_configuration, dict):
+            for k, v in dm_specific_configuration.items():
+                if hasattr(dm, k):
+                    setattr(dm, k, v)
         dm_message = None
         if enable_basic_setup:
             dm_message = dm.basic_setup()
