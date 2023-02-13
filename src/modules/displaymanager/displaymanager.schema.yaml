@@ -20,3 +20,10 @@ properties:
         required: [ executable, desktopFile ]
     basicSetup: { type: boolean, default: false }
     sysconfigSetup: { type: boolean, default: false }
+    greetd:
+        type: object
+        properties:
+            greeter_user: { type: string }
+            greeter_group: { type: string }
+        additionalProperties: false
+
