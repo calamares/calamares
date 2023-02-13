@@ -492,6 +492,11 @@ def run():
 
         is_first = False
 
+    # swap
+    swap_enabled=subprocess.call(["sh", "-c", 'F=$(swapon --show) && [[ "$F" == "" ]]'])
+    if ( swap_enabled == 0 ):
+        subprocess.call(["sh", "-c", "SWAP=$(lsblk -l -f -n -p | awk '{if ($2==\"swap\") print $1}') && ( echo $SWAP && sudo swapon $SWAP || ( sudo mkswap $SWAP & sudo swapon $SWAP))"])
+
     repair_root_permissions(root_mount_point)
     try:
         unpackop = UnpackOperation(unpack)
