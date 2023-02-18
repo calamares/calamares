@@ -28,7 +28,6 @@
 #include "gui/PartitionBarsView.h"
 #include "gui/PartitionLabelsView.h"
 #include "gui/PartitionSplitterWidget.h"
-#include "gui/ReplaceWidget.h"
 #include "gui/ScanningDialog.h"
 
 #include "Branding.h"
@@ -500,7 +499,7 @@ ChoicePage::applyActionChoice( InstallChoice choice )
         auto gs = Calamares::JobQueue::instance()->globalStorage();
         PartitionActions::Choices::AutoPartitionOptions options { gs->value( "defaultPartitionTableType" ).toString(),
                                                                   m_config->eraseFsType(),
-                                                                  gs->value( "luksFileSystemType" ).toString(),
+                                                                  m_config->luksFileSystemType(),
                                                                   m_encryptWidget->passphrase(),
                                                                   gs->value( "efiSystemPartition" ).toString(),
                                                                   CalamaresUtils::GiBtoBytes(

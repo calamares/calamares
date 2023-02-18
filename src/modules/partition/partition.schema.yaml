@@ -20,7 +20,7 @@ properties:
     defaultFileSystemType: { type: string }
     availableFileSystemTypes: { type: array, items: { type: string } }
 
-    luksGeneration: { type: string, enum: [luks1, luks2] }
+    luksGeneration: { type: string, enum: [luks1, luks2] }  # Also allows "luks" as alias of "luks1"
     enableLuksAutomatedPartitioning: { type: boolean, default: false }
 
     allowManualPartitioning: { type: boolean, default: true }
