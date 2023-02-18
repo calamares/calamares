@@ -1750,10 +1750,8 @@ ChoicePage::shouldShowEncryptWidget( Config::InstallChoice choice ) const
     // If there are any choices for FS, check it's not ZFS because that doesn't
     // support the kind of encryption we enable here.
     bool suitableFS = true;
-    if ( ( m_eraseFsTypesChoiceComboBox && m_eraseFsTypesChoiceComboBox->isVisible()
-           && m_eraseFsTypesChoiceComboBox->currentText() == "zfs" )
-         || ( m_replaceFsTypesChoiceComboBox && m_replaceFsTypesChoiceComboBox->isVisible()
-              && m_replaceFsTypesChoiceComboBox->currentText() == "zfs" ) )
+    if ( m_replaceFsTypesChoiceComboBox && m_replaceFsTypesChoiceComboBox->isVisible()
+         && m_replaceFsTypesChoiceComboBox->currentText() == "zfs" )
     {
         suitableFS = false;
     }
