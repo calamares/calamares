@@ -64,7 +64,7 @@ CreateLayoutsTests::testFixedSizePartition()
     }
 
     partitions = layout.createPartitions(
-        static_cast< Device* >( &dev ), 0, dev.totalLogical(), nullptr, nullptr, nullptr, role );
+        static_cast< Device* >( &dev ), 0, dev.totalLogical(), Config::LuksGeneration::Luks1, nullptr, nullptr, role );
 
     QCOMPARE( partitions.count(), 1 );
 
@@ -85,7 +85,7 @@ CreateLayoutsTests::testPercentSizePartition()
     }
 
     partitions = layout.createPartitions(
-        static_cast< Device* >( &dev ), 0, dev.totalLogical(), nullptr, nullptr, nullptr, role );
+        static_cast< Device* >( &dev ), 0, dev.totalLogical(), Config::LuksGeneration::Luks1, nullptr, nullptr, role );
 
     QCOMPARE( partitions.count(), 1 );
 
@@ -116,7 +116,7 @@ CreateLayoutsTests::testMixedSizePartition()
     }
 
     partitions = layout.createPartitions(
-        static_cast< Device* >( &dev ), 0, dev.totalLogical(), nullptr, nullptr, nullptr, role );
+        static_cast< Device* >( &dev ), 0, dev.totalLogical(), Config::LuksGeneration::Luks1, nullptr, nullptr, role );
 
     QCOMPARE( partitions.count(), 3 );
 

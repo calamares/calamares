@@ -88,7 +88,6 @@ if(KPMcore_FOUND)
             gui/PartitionSplitterWidget.cpp
             gui/ResizeVolumeGroupDialog.cpp
             gui/ScanningDialog.cpp
-            gui/ReplaceWidget.cpp
             gui/VolumeGroupBaseDialog.cpp
             jobs/AutoMountManagementJob.cpp
             jobs/ChangeFilesystemLabelJob.cpp
@@ -113,7 +112,6 @@ if(KPMcore_FOUND)
             gui/EditExistingPartitionDialog.ui
             gui/EncryptWidget.ui
             gui/PartitionPage.ui
-            gui/ReplaceWidget.ui
             gui/VolumeGroupBaseDialog.ui
         LINK_PRIVATE_LIBRARIES
             calamares::kpmcore

@@ -67,14 +67,13 @@ public:
     using EraseFsTypesSet = QStringList;
 
     /** @brief Choice of LUKS disk encryption generation */
-    enum LuksGeneration
+    enum class LuksGeneration
     {
         Luks1,  // First generation of LUKS
         Luks2,  // Second generation of LUKS, default since cryptsetup >= 2.1.0
     };
     Q_ENUM( LuksGeneration )
     static const NamedEnumTable< LuksGeneration >& luksGenerationNames();
-    static const QString luksGenerationToFSName( LuksGeneration choice );
 
     void setConfigurationMap( const QVariantMap& );
     /** @brief Set GS values where other modules configuration has priority
@@ -125,15 +124,6 @@ public:
      */
     SwapChoice swapChoice() const { return m_swapChoice; }
 
-    /** @brief The conversion of the luksGeneration into its FS type.
-     *
-     * Will convert Luks1 into "luks" and Luks2 into "luks2" for KPMCore
-     * partitionning functions.
-     *
-     * @return The LUKS FS type (default @c "luks" )
-     */
-    QString luksFileSystemType() const { return m_luksFileSystemType; }
-
     /** @brief Get the list of configured FS types to use with *erase* mode
      *
      * This list is not empty.
@@ -165,6 +155,10 @@ public:
     /// @brief Returns list of acceptable types. May be empty.
     QStringList partitionTableTypes() const { return m_requiredPartitionTableType; }
 
+    /** @brief The configured LUKS generation (1 or 2)
+     */
+    LuksGeneration luksFileSystemType() const { return m_luksFileSystemType; }
+
 public Q_SLOTS:
     void setInstallChoice( int );  ///< Translates a button ID or so to InstallChoice
     void setInstallChoice( InstallChoice );
@@ -190,7 +184,7 @@ private:
     SwapChoiceSet m_swapChoices;
     SwapChoice m_initialSwapChoice = NoSwap;
     SwapChoice m_swapChoice = NoSwap;
-    QString m_luksFileSystemType;
+    LuksGeneration m_luksFileSystemType = LuksGeneration::Luks1;
     InstallChoice m_initialInstallChoice = NoChoice;
     InstallChoice m_installChoice = NoChoice;
     qreal m_requiredStorageGiB = 0.0;  // May duplicate setting in the welcome module
