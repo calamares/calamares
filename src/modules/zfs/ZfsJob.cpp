@@ -241,6 +241,13 @@ ZfsJob::exec()
             }
         }
 
+        // Generate the zfs hostid file
+        auto i = system->runCommand( { "zgenhostid" }, std::chrono::seconds( 3 ) );
+        if ( i.getExitCode() != 0 )
+        {
+            cWarning() << "Failed to create /etc/hostid";
+        }
+
         // Create the zpool
         ZfsResult zfsResult;
         if ( encrypt )

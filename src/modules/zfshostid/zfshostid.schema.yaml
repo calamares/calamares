@@ -2,8 +2,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 ---
 $schema: https://json-schema.org/schema#
-$id: https://calamares.io/schemas/dracut
+$id: https://calamares.io/schemas/zfshostid
 additionalProperties: false
 type: object
-properties:
-    initramfsName: { type: string }

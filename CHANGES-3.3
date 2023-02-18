@@ -24,8 +24,11 @@ This release contains contributions from (alphabetically by first name):
  - Branding entries use ${var} instead of @{var} for substitutions,
    in line with all the other substitution mechanisms used from C++
    core. See documentation in `branding.desc`.
- - Boost::Python requires at least version 1.72
- - KDE Frameworks must be version 5.58 or later
+ - Boost::Python requires at least version 1.72.
+ - KDE Frameworks must be version 5.58 or later.
+ - The `INSTALL_CONFIG` option has been removed. If you are installing
+   the example configuration files from the Calamares repository, just
+   stop. That was never a good idea, and you should keep your configs elsewhere.
 
 ## Modules ##
  - *dracut* added a configurable kernel name. (thanks Anke)
@@ -35,7 +38,9 @@ This release contains contributions from (alphabetically by first name):
  - *netinstall* now has a new *noncheckable* option for groups, which prevent
    it a group from being checked/uncheckd as a whole. You can still check
    individual items **in** the group though. (thanks Shivanand)
-- *partition* can now pick LUKS or LUKS2. (thanks Jeremy)
+ - *partition* can now pick LUKS or LUKS2. (thanks Jeremy)
+ - *zfs* creates a hostid through zgenhostid.
+ - *zfshostid* new module to copy zfs generated /etc/hostid
 
 
 # 3.3.0-alpha2 (2022-08-23)

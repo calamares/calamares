@@ -73,7 +73,6 @@ set(CALAMARES_SOVERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}")
 
 ### OPTIONS
 #
-option(INSTALL_CONFIG "Install configuration files" OFF)
 option(INSTALL_POLKIT "Install Polkit configuration" ON)
 option(INSTALL_COMPLETION "Install shell completions" OFF)
 # When adding WITH_* that affects the ABI offered by libcalamares,
@@ -542,7 +541,6 @@ add_subdirectory(src)
 
 add_feature_info(Python ${WITH_PYTHON} "Python job modules")
 add_feature_info(Qml ${WITH_QML} "QML UI support")
-add_feature_info(Config ${INSTALL_CONFIG} "Install Calamares configuration")
 add_feature_info(Polkit ${INSTALL_POLKIT} "Install Polkit files")
 add_feature_info(KCrash ${BUILD_KF5Crash} "Crash dumps via KCrash")
 
@@ -587,10 +585,6 @@ install(
 ### Miscellaneous installs
 #
 #
-if(INSTALL_CONFIG)
-    install(FILES settings.conf DESTINATION share/calamares)
-endif()
-
 if(INSTALL_POLKIT)
     install(FILES com.github.calamares.calamares.policy DESTINATION "${POLKITQT-1_POLICY_FILES_INSTALL_DIR}")
 endif()
@@ -607,7 +601,9 @@ install(FILES calamares.desktop DESTINATION ${CMAKE_INSTALL_DATADIR}/application
 
 install(FILES man/calamares.8 DESTINATION ${CMAKE_INSTALL_MANDIR}/man8/)
 
-# uninstall target
+### Uninstall
+#
+#
 configure_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in"
     "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
@@ -616,6 +612,17 @@ configure_file(
 )
 
 add_custom_target(uninstall COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
+
+### Developer convenience
+#
+# The module support files -- .desc files, .conf files -- are copied into the build
+# directory so that it is possible to run `calamares -d` from there. Copy the
+# top-level settings.conf as well, into the build directory.
+if( settings.conf IS_NEWER_THAN ${CMAKE_BINARY_DIR}/settings.conf )
+    configure_file(settings.conf ${CMAKE_BINARY_DIR}/settings.conf COPYONLY)
+endif()
+
+
 
 ### CMAKE SUMMARY REPORT
 #
