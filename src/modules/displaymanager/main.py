@@ -644,8 +644,22 @@ class DMlightdm(DisplayManager):
         None to indicate nothing-was-found.
         """
         greeters_dir = "usr/share/xgreeters"
-        greeter_path = os.path.join(self.root_mount_point, greeters_dir, "lightdm-greeter.desktop")
-        return greeter_path
+        greeters_target_path = os.path.join(self.root_mount_point, greeters_dir)
+        preferred_names = ("lightdm-greeter.desktop", )
+        available_names = os.listdir(greeters_target_path)
+        available_names.sort()
+        desktop_names = [n for n in preferred_names if n in available_names] # Preferred ones
+        if desktop_names:
+            return desktop_names[0]
+        desktop_names = [n for n in available_names if n.endswith(".desktop")] # .. otherwise any .desktop
+        if desktop_names:
+            return desktop_names[0]
+        desktop_names = [n for n in available_names if not n.startswith(".")] # .. otherwise any non-dot-file
+        if desktop_names:
+            return desktop_names[0]
+        if available_names: # Anything?
+            return available_names[0]
+        return None
 
 
     def greeter_setup(self):
