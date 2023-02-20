@@ -633,39 +633,39 @@ class DMlightdm(DisplayManager):
                 )
             )
 
+    def find_preferred_greeter(self, greeters_dir):
+        """
+        On Debian, lightdm-greeter.desktop is typically a symlink managed
+        by update-alternatives pointing to /etc/alternatives/lightdm-greeter
+        which is also a symlink to a real .desktop file back in /usr/share/xgreeters/
+
+        Returns a path *into the mounted target* of the preferred greeter -- usually
+        a .desktop file that specifies where the actual executable is. May return
+        None to indicate nothing-was-found.
+        """
+        greeters_dir = "usr/share/xgreeters"
+        greeter_path = os.path.join(self.root_mount_point, greeters_dir, "lightdm-greeter.desktop")
+        return greeter_path
+
+
     def greeter_setup(self):
-        lightdm_conf_path = os.path.join(
-            self.root_mount_point, "etc/lightdm/lightdm.conf"
-            )
+        lightdm_conf_path = os.path.join(self.root_mount_point, "etc/lightdm/lightdm.conf")
+        greeter_path = self.find_preferred_greeter()
 
-        # configure lightdm-greeter
-        greeter_path = os.path.join(
-            self.root_mount_point, "usr/share/xgreeters/lightdm-greeter.desktop"
-            # lightdm-greeter.desktop is typically a symlink managed
-            # by update-alternatives pointing to
-            # /etc/alternatives/lightdm-greeter which is also a
-            # symlink to a real .desktop file back in
-            # /usr/share/xgreeters/
-            )
+        if greeter_path is not None and os.path.exists(greeter_path):
+            greeter = os.path.basename(os.path.realpath(greeter_path)) # Follow symlinks, hope they are not absolute
+            if greeter.endswith('.desktop'):
+                greeter = greeter[:-8] # Remove ".desktop" from end
 
-        if (os.path.exists(greeter_path)):
-            # find the default lightdm-greeter
-            entry = os.path.basename(os.path.realpath(greeter_path))
-            if entry.endswith('.desktop'):
-                greeter = entry.split('.')[0]
-                libcalamares.utils.debug(
-                    "found greeter {!s}".format(greeter)
+            libcalamares.utils.debug("found greeter {!s}".format(greeter))
+            os.system(
+                "sed -i -e \"s/^.*greeter-session=.*"
+                "/greeter-session={!s}/\" {!s}".format(
+                    greeter,
+                    lightdm_conf_path
                 )
-                os.system(
-                    "sed -i -e \"s/^.*greeter-session=.*"
-                    "/greeter-session={!s}/\" {!s}".format(
-                        greeter,
-                        lightdm_conf_path
-                    )
-                )
-                libcalamares.utils.debug(
-                    "{!s} configured as greeter.".format(greeter)
-                )
+            )
+            libcalamares.utils.debug("{!s} configured as greeter.".format(greeter))
         else:
             return (
                 _("Cannot configure LightDM"),
