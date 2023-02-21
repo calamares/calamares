@@ -329,7 +329,8 @@ def run():
 
     # swap
     swap_partitions = [p['device'] for p in partitions if p['fs'] == 'linuxswap' ]
-    enable_swap_partitions(swap_partitions)
+    if ( swap_partitions != [] ):
+        enable_swap_partition(swap_partitions)
 
     root_mount_point = tempfile.mkdtemp(prefix="calamares-root-")
 
