@@ -12,6 +12,7 @@
 #ifndef PARTITIONCOREMODULE_H
 #define PARTITIONCOREMODULE_H
 
+#include "Config.h"
 #include "core/KPMHelpers.h"
 #include "core/PartitionLayout.h"
 #include "core/PartitionModel.h"
@@ -166,11 +167,11 @@ public:
      */
     PartitionLayout& partitionLayout() { return m_partLayout; }
 
-    void layoutApply( Device* dev, qint64 firstSector, qint64 lastSector, QString luksFsType, QString luksPassphrase );
+    void layoutApply( Device* dev, qint64 firstSector, qint64 lastSector, Config::LuksGeneration luksFsType, QString luksPassphrase );
     void layoutApply( Device* dev,
                       qint64 firstSector,
                       qint64 lastSector,
-                      QString luksFsType,
+                      Config::LuksGeneration luksFsType,
                       QString luksPassphrase,
                       PartitionNode* parent,
                       const PartitionRole& role );

@@ -11,9 +11,9 @@
 #ifndef PARTITIONLAYOUT_H
 #define PARTITIONLAYOUT_H
 
-#include "partition/PartitionSize.h"
-
+#include "Config.h"
 #include "core/PartUtils.h"
+#include "partition/PartitionSize.h"
 
 // KPMcore
 #include <kpmcore/core/partitiontable.h>
@@ -116,7 +116,7 @@ public:
     QList< Partition* > createPartitions( Device* dev,
                                           qint64 firstSector,
                                           qint64 lastSector,
-                                          QString luksFsType,
+                                          Config::LuksGeneration luksFsType,
                                           QString luksPassphrase,
                                           PartitionNode* parent,
                                           const PartitionRole& role );

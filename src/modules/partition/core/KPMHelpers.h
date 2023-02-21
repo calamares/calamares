@@ -11,6 +11,7 @@
 #ifndef KPMHELPERS_H
 #define KPMHELPERS_H
 
+#include "Config.h"
 #include "Job.h"
 
 #include <kpmcore/core/partitiontable.h>
@@ -83,7 +84,7 @@ Partition* createNewEncryptedPartition( PartitionNode* parent,
                                         const QString& fsLabel,
                                         qint64 firstSector,
                                         qint64 lastSector,
-                                        const QString& luksFsType,
+                                        Config::LuksGeneration luksFsType,
                                         const QString& passphrase,
                                         PartitionTable::Flags flags );
 
@@ -119,6 +120,17 @@ bool cryptLabel( Partition* partition, const QString& label );
  * Used by cryptLabel
  */
 int cryptVersion( Partition* partition );
+
+/** @brief Convert a luksGeneration into its FS type for KPMCore.
+ *
+ * Will convert Luks1 into FileSystem::Type::luks and Luks2 into
+ * FileSystem::Type::luks2 for KPMCore partitioning functions.
+ *
+ * @return The LUKS FS type (default @c luks )
+ */
+FileSystem::Type
+luksGenerationToFSName( Config::LuksGeneration luksGeneration );
+
 
 /** @brief Return a result for an @p operation
  *

@@ -28,7 +28,6 @@
 #include "gui/PartitionBarsView.h"
 #include "gui/PartitionLabelsView.h"
 #include "gui/PartitionSplitterWidget.h"
-#include "gui/ReplaceWidget.h"
 #include "gui/ScanningDialog.h"
 
 #include "Branding.h"
@@ -498,7 +497,7 @@ ChoicePage::applyActionChoice( InstallChoice choice )
         auto gs = Calamares::JobQueue::instance()->globalStorage();
         PartitionActions::Choices::AutoPartitionOptions options { gs->value( "defaultPartitionTableType" ).toString(),
                                                                   m_config->eraseFsType(),
-                                                                  gs->value( "luksFileSystemType" ).toString(),
+                                                                  m_config->luksFileSystemType(),
                                                                   m_encryptWidget->passphrase(),
                                                                   gs->value( "efiSystemPartition" ).toString(),
                                                                   CalamaresUtils::GiBtoBytes(
@@ -863,7 +862,7 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
                                                               selectedPartition,
                                                               { gs->value( "defaultPartitionType" ).toString(),
                                                                 m_config->replaceModeFilesystem(),
-                                                                gs->value( "luksFileSystemType" ).toString(),
+                                                                m_config->luksFileSystemType(),
                                                                 m_encryptWidget->passphrase() } );
                         Partition* homePartition = findPartitionByPath( { selectedDevice() }, *homePartitionPath );
 
@@ -1743,5 +1742,7 @@ ChoicePage::shouldShowEncryptWidget( Config::InstallChoice choice ) const
     // If there are any choices for FS, check it's not ZFS because that doesn't
     // support the kind of encryption we enable here.
     const bool suitableFS = m_eraseFsTypesChoiceComboBox ? m_eraseFsTypesChoiceComboBox->currentText() != "zfs" : true;
-    return ( choice == InstallChoice::Erase ) && m_enableEncryptionWidget && suitableFS;
+    const bool suitableChoice
+        = choice == InstallChoice::Erase || choice == InstallChoice::Alongside || choice == InstallChoice::Replace;
+    return suitableChoice && m_enableEncryptionWidget && suitableFS;
 }
