@@ -289,11 +289,14 @@ ChoicePage::setupChoices()
         m_eraseButton->addOptionsComboBox( m_eraseFsTypesChoiceComboBox );
 
         // Also offer it for "replace
-        auto* box = new QComboBox;
-        box->addItems( m_config->eraseFsTypes() );
-        connect( box, &QComboBox::currentTextChanged, m_config, &Config::setReplaceFilesystemChoice );
+        m_replaceFsTypesChoiceComboBox = new QComboBox;
+        m_replaceFsTypesChoiceComboBox->addItems( m_config->eraseFsTypes() );
+        connect( m_replaceFsTypesChoiceComboBox,
+                 &QComboBox::currentTextChanged,
+                 m_config,
+                 &Config::setReplaceFilesystemChoice );
         connect( m_config, &Config::replaceModeFilesystemChanged, this, &ChoicePage::onActionChanged );
-        m_replaceButton->addOptionsComboBox( box );
+        m_replaceButton->addOptionsComboBox( m_replaceFsTypesChoiceComboBox );
     }
 
     m_itemsLayout->addWidget( m_alongsideButton );
@@ -450,7 +453,6 @@ ChoicePage::continueApplyDeviceChoice()
     if ( m_lastSelectedDeviceIndex != m_drivesCombo->currentIndex() )
     {
         m_lastSelectedDeviceIndex = m_drivesCombo->currentIndex();
-        m_lastSelectedActionIndex = -1;
         m_config->setInstallChoice( m_config->initialInstallChoice() );
         checkInstallChoiceRadioButton( m_config->installChoice() );
     }
@@ -484,9 +486,9 @@ ChoicePage::onEraseSwapChoiceChanged()
 void
 ChoicePage::applyActionChoice( InstallChoice choice )
 {
-    cDebug() << "Prev" << m_lastSelectedActionIndex << "InstallChoice" << choice
-             << Config::installChoiceNames().find( choice );
+    cDebug() << "InstallChoice" << choice << Config::installChoiceNames().find( choice );
     m_beforePartitionBarsView->selectionModel()->disconnect( SIGNAL( currentRowChanged( QModelIndex, QModelIndex ) ) );
+    auto priorSelection = m_beforePartitionBarsView->selectionModel()->currentIndex();
     m_beforePartitionBarsView->selectionModel()->clearSelection();
     m_beforePartitionBarsView->selectionModel()->clearCurrentIndex();
 
@@ -545,6 +547,12 @@ ChoicePage::applyActionChoice( InstallChoice choice )
                  this,
                  SLOT( onPartitionToReplaceSelected( QModelIndex, QModelIndex ) ),
                  Qt::UniqueConnection );
+
+        // Maintain the selection for replace
+        if ( priorSelection.isValid() )
+        {
+            m_beforePartitionBarsView->selectionModel()->setCurrentIndex( priorSelection, QItemSelectionModel::Select );
+        }
         break;
 
     case InstallChoice::Alongside:
@@ -1741,7 +1749,14 @@ ChoicePage::shouldShowEncryptWidget( Config::InstallChoice choice ) const
 {
     // If there are any choices for FS, check it's not ZFS because that doesn't
     // support the kind of encryption we enable here.
-    const bool suitableFS = m_eraseFsTypesChoiceComboBox ? m_eraseFsTypesChoiceComboBox->currentText() != "zfs" : true;
+    bool suitableFS = true;
+    if ( ( m_eraseFsTypesChoiceComboBox && m_eraseFsTypesChoiceComboBox->isVisible()
+           && m_eraseFsTypesChoiceComboBox->currentText() == "zfs" )
+         || ( m_replaceFsTypesChoiceComboBox && m_replaceFsTypesChoiceComboBox->isVisible()
+              && m_replaceFsTypesChoiceComboBox->currentText() == "zfs" ) )
+    {
+        suitableFS = false;
+    }
     const bool suitableChoice
         = choice == InstallChoice::Erase || choice == InstallChoice::Alongside || choice == InstallChoice::Replace;
     return suitableChoice && m_enableEncryptionWidget && suitableFS;
