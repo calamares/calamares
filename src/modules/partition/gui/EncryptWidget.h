@@ -38,6 +38,12 @@ public:
     Encryption state() const;
     void setText( const QString& text );
 
+    /**
+     * @brief setFilesystem sets the filesystem name used for password validation
+     * @param fs A QString containing the name of the filesystem
+     */
+    void setFilesystem( const QString& fs );
+
     QString passphrase() const;
 
     void retranslate();
@@ -52,6 +58,8 @@ private:
 
     Ui::EncryptWidget* m_ui;
     Encryption m_state;
+
+    QString m_filesystem;
 };
 
 #endif  // ENCRYPTWIDGET_H
