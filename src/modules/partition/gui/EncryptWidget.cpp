@@ -18,7 +18,7 @@
 #include "utils/Retranslator.h"
 #include <kpmcore/fs/filesystem.h>
 
-constexpr uint ZFS_MIN_LENGTH = 8;
+constexpr int ZFS_MIN_LENGTH = 8;
 
 /** @brief Does this system support whole-disk encryption?
  *
@@ -146,7 +146,7 @@ applyPixmap( QLabel* label, CalamaresUtils::ImageType pixmap )
 }
 
 void
-EncryptWidget::updateState()
+EncryptWidget::updateState( const bool notify )
 {
     if ( m_ui->m_passphraseLineEdit->isVisible() )
     {
@@ -181,7 +181,10 @@ EncryptWidget::updateState()
     if ( newState != m_state )
     {
         m_state = newState;
-        Q_EMIT stateChanged( m_state );
+        if ( notify )
+        {
+            Q_EMIT stateChanged( m_state );
+        }
     }
 }
 
@@ -215,5 +218,8 @@ void
 EncryptWidget::setFilesystem( const QString& fs )
 {
     m_filesystem = fs;
-    updateState();
+    if ( m_state != Encryption::Disabled )
+    {
+        updateState( false );
+    }
 }

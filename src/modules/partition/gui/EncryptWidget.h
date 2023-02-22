@@ -52,7 +52,7 @@ signals:
     void stateChanged( Encryption );
 
 private:
-    void updateState();
+    void updateState( const bool notify = true );
     void onPassphraseEdited();
     void onCheckBoxStateChanged( int checked );
 
