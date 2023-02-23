@@ -1,4 +1,5 @@
 # SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+# SPDX-FileCopyrightText: 2023 Evan James <dalto@fastmail.com>
 # SPDX-License-Identifier: GPL-3.0-or-later
 ---
 $schema: https://json-schema.org/schema#
@@ -14,6 +15,7 @@ properties:
     # ensureSuspendToDisk: { type: boolean, default: true }  # Legacy
     # neverCreateSwap: { type: boolean, default: false }  # Legacy
 
+    allowZfsEncryption: { type: boolean, default: true }
     drawNestedPartitions: { type: boolean, default: false }
     alwaysShowPartitionLabels: { type: boolean, default: true }
 

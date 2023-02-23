@@ -159,6 +159,9 @@ public:
      */
     LuksGeneration luksFileSystemType() const { return m_luksFileSystemType; }
 
+    /// @brief If zfs encryption should be allowed
+    bool allowZfsEncryption() const { return m_allowZfsEncryption; }
+
 public Q_SLOTS:
     void setInstallChoice( int );  ///< Translates a button ID or so to InstallChoice
     void setInstallChoice( InstallChoice );
@@ -189,7 +192,7 @@ private:
     InstallChoice m_installChoice = NoChoice;
     qreal m_requiredStorageGiB = 0.0;  // May duplicate setting in the welcome module
     QStringList m_requiredPartitionTableType;
-
+    bool m_allowZfsEncryption = true;
     bool m_allowManualPartitioning = true;
 };
 
