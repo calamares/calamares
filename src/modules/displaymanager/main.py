@@ -659,8 +659,6 @@ class DMlightdm(DisplayManager):
         desktop_names = [n for n in available_names if not n.startswith(".")] # .. otherwise any non-dot-file
         if desktop_names:
             return desktop_names[0]
-        if available_names: # Anything?
-            return available_names[0]
         return None
 
 
@@ -683,6 +681,10 @@ class DMlightdm(DisplayManager):
             )
             libcalamares.utils.debug("{!s} configured as greeter.".format(greeter))
         else:
+            if greeter_path is None:
+                libcalamares.utils.error("No greeter found at all, preferred {!s}".format(self.preferred_greeters))
+            else:
+                libcalamares.utils.error("Greeter {!s} selected but file does not exist".format(greeter_path))
             return (
                 _("Cannot configure LightDM"),
                 _("No LightDM greeter installed.")
