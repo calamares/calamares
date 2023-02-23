@@ -544,8 +544,10 @@ class DMlightdm(DisplayManager):
     name = "lightdm"
     executable = "lightdm"
 
-    # Can be overridden in the .conf file
-    preferred_greeters = ["lightdm-greeter.desktop"]
+    # Can be overridden in the .conf file. With no value it won't match any
+    # desktop file in the xgreeters directory and instead we end up picking
+    # the alphabetically first file there.
+    preferred_greeters = []
 
     def set_autologin(self, username, do_autologin, default_desktop_environment):
         # Systems with LightDM as Desktop Manager
@@ -654,9 +656,6 @@ class DMlightdm(DisplayManager):
         if desktop_names:
             return desktop_names[0]
         desktop_names = [n for n in available_names if n.endswith(".desktop")] # .. otherwise any .desktop
-        if desktop_names:
-            return desktop_names[0]
-        desktop_names = [n for n in available_names if not n.startswith(".")] # .. otherwise any non-dot-file
         if desktop_names:
             return desktop_names[0]
         return None
