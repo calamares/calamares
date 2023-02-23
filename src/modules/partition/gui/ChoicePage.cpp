@@ -468,11 +468,11 @@ ChoicePage::onActionChanged()
     {
         if ( m_config->installChoice() == InstallChoice::Erase && m_eraseFsTypesChoiceComboBox )
         {
-            m_encryptWidget->setFilesystem( m_eraseFsTypesChoiceComboBox->currentText() );
+            m_encryptWidget->setFilesystem( FileSystem::typeForName( m_eraseFsTypesChoiceComboBox->currentText() ) );
         }
         else if ( m_config->installChoice() == InstallChoice::Replace && m_replaceFsTypesChoiceComboBox )
         {
-            m_encryptWidget->setFilesystem( m_replaceFsTypesChoiceComboBox->currentText() );
+            m_encryptWidget->setFilesystem( FileSystem::typeForName( m_replaceFsTypesChoiceComboBox->currentText() ) );
         }
     }
 

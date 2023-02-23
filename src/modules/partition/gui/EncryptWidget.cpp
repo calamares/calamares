@@ -16,7 +16,6 @@
 #include "Branding.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Retranslator.h"
-#include <kpmcore/fs/filesystem.h>
 
 constexpr int ZFS_MIN_LENGTH = 8;
 
@@ -153,13 +152,12 @@ EncryptWidget::updateState( const bool notify )
         QString p1 = m_ui->m_passphraseLineEdit->text();
         QString p2 = m_ui->m_confirmLineEdit->text();
 
-
         if ( p1.isEmpty() && p2.isEmpty() )
         {
             applyPixmap( m_ui->m_iconLabel, CalamaresUtils::StatusWarning );
             m_ui->m_iconLabel->setToolTip( tr( "Please enter the same passphrase in both boxes." ) );
         }
-        else if ( FileSystem::typeForName( m_filesystem ) == FileSystem::Zfs && p1.length() < ZFS_MIN_LENGTH )
+        else if ( m_filesystem == FileSystem::Zfs && p1.length() < ZFS_MIN_LENGTH )
         {
             applyPixmap( m_ui->m_iconLabel, CalamaresUtils::StatusError );
             m_ui->m_iconLabel->setToolTip( tr( "Password must be a minimum of %1 characters" ).arg( ZFS_MIN_LENGTH ) );
@@ -215,7 +213,7 @@ EncryptWidget::onCheckBoxStateChanged( int checked )
 }
 
 void
-EncryptWidget::setFilesystem( const QString& fs )
+EncryptWidget::setFilesystem( const FileSystem::Type fs )
 {
     m_filesystem = fs;
     if ( m_state != Encryption::Disabled )
