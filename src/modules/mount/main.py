@@ -307,23 +307,12 @@ def mount_partition(root_mount_point, partition, partitions, mount_options, moun
                                         mount_option) != 0:
                 libcalamares.utils.warning("Cannot mount {}".format(device))
 
-<<<<<<< ours
-def enable_swap_partitions(swap_partitions):
-    try:
-        for swap_device in swap_partitions:
-            libcalamares.utils.host_env_process_output(["swapon", swap_device])
-    except subprocess.CalledProcessError:
-        libcalamares.utils.warning("Failed to swapon " + swap_device) 
-||||||| base
-=======
 def enable_swap_partition(swap_device):
     try:
         for d in swap_device:
         	subprocess.check_call(["swapon", d])
     except subprocess.CalledProcessError:
         raise Exception(_("Failed to swapon " + swap_device))
-
->>>>>>> theirs
 
 def run():
     """
@@ -338,19 +327,10 @@ def run():
         return (_("Configuration Error"),
                 _("No partitions are defined for <pre>{!s}</pre> to use.").format("mount"))
 
-<<<<<<< ours
-    # swap
-    swap_partitions = [p['device'] for p in partitions if ( p['fs'] == 'linuxswap' and p.get("claimed", None) )]
-    if ( swap_partitions != [] ):
-        enable_swap_partition(swap_partitions)
-
-||||||| base
-=======
     swap_partitions = [p['device'] for p in partitions if ( p['fs'] == 'linuxswap' and p['claimed'] == True ) ]
     if swap_partitions != [] :
     	enable_swap_partition(swap_partitions)
 
->>>>>>> theirs
     root_mount_point = tempfile.mkdtemp(prefix="calamares-root-")
 
     # Get the mountOptions, if this is None, that is OK and will be handled later
