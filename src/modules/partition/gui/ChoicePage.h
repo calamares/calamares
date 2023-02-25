@@ -152,6 +152,7 @@ private:
     Calamares::Widgets::PrettyRadioButton* m_somethingElseButton;
     QComboBox* m_eraseSwapChoiceComboBox = nullptr;  // UI, see also Config's swap choice
     QComboBox* m_eraseFsTypesChoiceComboBox = nullptr;  // UI, see also Config's erase-mode FS
+    QComboBox* m_replaceFsTypesChoiceComboBox = nullptr;  // UI, see also Config's erase-mode FS
 
 
     DeviceInfoWidget* m_deviceInfoWidget;
@@ -166,7 +167,6 @@ private:
     QPointer< QComboBox > m_efiComboBox;
 
     int m_lastSelectedDeviceIndex = -1;
-    int m_lastSelectedActionIndex = -1;
 
     bool m_enableEncryptionWidget = false;
 
