@@ -310,7 +310,7 @@ def mount_partition(root_mount_point, partition, partitions, mount_options, moun
 def enable_swap_partition(swap_device):
     try:
         for d in swap_device:
-        	subprocess.check_call(["swapon", d])
+            libcalamares.utils.host_env_process_output(["swapon", d])
     except subprocess.CalledProcessError:
         raise Exception(_("Failed to swapon " + swap_device))
 
@@ -327,7 +327,7 @@ def run():
         return (_("Configuration Error"),
                 _("No partitions are defined for <pre>{!s}</pre> to use.").format("mount"))
 
-    swap_partitions = [p['device'] for p in partitions if ( p['fs'] == 'linuxswap' and p['claimed'] == True ) ]
+    swap_partitions = [p['device'] for p in partitions if ( p['fs'] == 'linuxswap' and p['claimed'] ) ]
     if swap_partitions != [] :
     	enable_swap_partition(swap_partitions)
 
