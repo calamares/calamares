@@ -854,6 +854,8 @@ class DMgreetd(DisplayManager):
             self.config_data['default_session']['command'] = tuigreet_base_cmd + de_command
         elif os.path.exists(self.os_path("usr/bin/ddlm")):
             self.config_data['default_session']['command'] = "ddlm --target " + de_command
+        elif os.path.exists(self.os_path("usr/bin/regreet")) and os.path.exists(self.os_path("usr/bin/cage")):
+            self.config_data['default_session']['command'] = "cage -d -s -- regreet"
         else:
             self.config_data['default_session']['command'] = "agreety --cmd " + de_command
 
