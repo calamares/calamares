@@ -444,7 +444,6 @@ class DMgdm(DisplayManager):
 
                     userfile.write("Icon=\n")
 
-
     def basic_setup(self):
         if libcalamares.utils.target_env_call(
                 ['getent', 'group', 'gdm']
@@ -598,7 +597,6 @@ class DMlightdm(DisplayManager):
                     _("LightDM config file {!s} does not exist").format(lightdm_conf_path)
                     )
 
-
     def basic_setup(self):
         libcalamares.utils.target_env_call(
             ['mkdir', '-p', '/run/lightdm']
@@ -638,7 +636,7 @@ class DMlightdm(DisplayManager):
                 )
             )
 
-    def find_preferred_greeter(self, greeters_dir):
+    def find_preferred_greeter(self):
         """
         On Debian, lightdm-greeter.desktop is typically a symlink managed
         by update-alternatives pointing to /etc/alternatives/lightdm-greeter
@@ -659,7 +657,6 @@ class DMlightdm(DisplayManager):
         if desktop_names:
             return desktop_names[0]
         return None
-
 
     def greeter_setup(self):
         lightdm_conf_path = os.path.join(self.root_mount_point, "etc/lightdm/lightdm.conf")
@@ -688,6 +685,7 @@ class DMlightdm(DisplayManager):
                 _("Cannot configure LightDM"),
                 _("No LightDM greeter installed.")
             )
+
 
 class DMslim(DisplayManager):
     name = "slim"
