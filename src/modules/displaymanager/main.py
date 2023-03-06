@@ -660,12 +660,12 @@ class DMlightdm(DisplayManager):
 
     def greeter_setup(self):
         lightdm_conf_path = os.path.join(self.root_mount_point, "etc/lightdm/lightdm.conf")
-        greeter_path = self.find_preferred_greeter()
+        greeter_name = self.find_preferred_greeter()
 
-        if greeter_path is not None and os.path.exists(greeter_path):
-            greeter = os.path.basename(os.path.realpath(greeter_path)) # Follow symlinks, hope they are not absolute
+        if greeter_name is not None:
+            greeter = os.path.basename(greeter_name)  # Follow symlinks, hope they are not absolute
             if greeter.endswith('.desktop'):
-                greeter = greeter[:-8] # Remove ".desktop" from end
+                greeter = greeter[:-8]  # Remove ".desktop" from end
 
             libcalamares.utils.debug("found greeter {!s}".format(greeter))
             os.system(
@@ -677,10 +677,7 @@ class DMlightdm(DisplayManager):
             )
             libcalamares.utils.debug("{!s} configured as greeter.".format(greeter))
         else:
-            if greeter_path is None:
-                libcalamares.utils.error("No greeter found at all, preferred {!s}".format(self.preferred_greeters))
-            else:
-                libcalamares.utils.error("Greeter {!s} selected but file does not exist".format(greeter_path))
+            libcalamares.utils.error("No greeter found at all, preferred {!s}".format(self.preferred_greeters))
             return (
                 _("Cannot configure LightDM"),
                 _("No LightDM greeter installed.")
