@@ -2,6 +2,7 @@
  *
  *   SPDX-FileCopyrightText: 2016 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2023 Evan James <dalto@fastmail.com>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -16,6 +17,8 @@
 #include "Branding.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Retranslator.h"
+
+constexpr int ZFS_MIN_LENGTH = 8;
 
 /** @brief Does this system support whole-disk encryption?
  *
@@ -143,7 +146,7 @@ applyPixmap( QLabel* label, CalamaresUtils::ImageType pixmap )
 }
 
 void
-EncryptWidget::updateState()
+EncryptWidget::updateState( const bool notify )
 {
     if ( m_ui->m_passphraseLineEdit->isVisible() )
     {
@@ -154,6 +157,11 @@ EncryptWidget::updateState()
         {
             applyPixmap( m_ui->m_iconLabel, CalamaresUtils::StatusWarning );
             m_ui->m_iconLabel->setToolTip( tr( "Please enter the same passphrase in both boxes." ) );
+        }
+        else if ( m_filesystem == FileSystem::Zfs && p1.length() < ZFS_MIN_LENGTH )
+        {
+            applyPixmap( m_ui->m_iconLabel, CalamaresUtils::StatusError );
+            m_ui->m_iconLabel->setToolTip( tr( "Password must be a minimum of %1 characters" ).arg( ZFS_MIN_LENGTH ) );
         }
         else if ( p1 == p2 )
         {
@@ -172,7 +180,10 @@ EncryptWidget::updateState()
     if ( newState != m_state )
     {
         m_state = newState;
-        Q_EMIT stateChanged( m_state );
+        if ( notify )
+        {
+            Q_EMIT stateChanged( m_state );
+        }
     }
 }
 
@@ -200,4 +211,14 @@ EncryptWidget::onCheckBoxStateChanged( int checked )
     m_ui->m_iconLabel->clear();
 
     updateState();
+}
+
+void
+EncryptWidget::setFilesystem( const FileSystem::Type fs )
+{
+    m_filesystem = fs;
+    if ( m_state != Encryption::Disabled )
+    {
+        updateState( false );
+    }
 }

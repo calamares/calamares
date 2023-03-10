@@ -4,6 +4,7 @@
  *   SPDX-FileCopyrightText: 2017-2019 Adriaan de Groot <groot@kde.org>
  *   SPDX-FileCopyrightText: 2019 Collabora Ltd
  *   SPDX-FileCopyrightText: 2021 Anubhav Choudhary <ac.10edu@gmail.com>
+ *   SPDX-FileCopyrightText: 2023 Evan James <dalto@fastmail.com>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -464,6 +465,18 @@ ChoicePage::continueApplyDeviceChoice()
 void
 ChoicePage::onActionChanged()
 {
+    if ( m_enableEncryptionWidget )
+    {
+        if ( m_config->installChoice() == InstallChoice::Erase && m_eraseFsTypesChoiceComboBox )
+        {
+            m_encryptWidget->setFilesystem( FileSystem::typeForName( m_eraseFsTypesChoiceComboBox->currentText() ) );
+        }
+        else if ( m_config->installChoice() == InstallChoice::Replace && m_replaceFsTypesChoiceComboBox )
+        {
+            m_encryptWidget->setFilesystem( FileSystem::typeForName( m_replaceFsTypesChoiceComboBox->currentText() ) );
+        }
+    }
+
     Device* currd = selectedDevice();
     if ( currd )
     {
@@ -1747,16 +1760,16 @@ ChoicePage::createBootloaderPanel()
 bool
 ChoicePage::shouldShowEncryptWidget( Config::InstallChoice choice ) const
 {
-    // If there are any choices for FS, check it's not ZFS because that doesn't
-    // support the kind of encryption we enable here.
     bool suitableFS = true;
-    if ( ( m_eraseFsTypesChoiceComboBox && m_eraseFsTypesChoiceComboBox->isVisible()
-           && m_eraseFsTypesChoiceComboBox->currentText() == "zfs" )
-         || ( m_replaceFsTypesChoiceComboBox && m_replaceFsTypesChoiceComboBox->isVisible()
-              && m_replaceFsTypesChoiceComboBox->currentText() == "zfs" ) )
+    if ( !m_config->allowZfsEncryption()
+         && ( ( m_eraseFsTypesChoiceComboBox && m_eraseFsTypesChoiceComboBox->isVisible()
+                && m_eraseFsTypesChoiceComboBox->currentText() == "zfs" )
+              || ( m_replaceFsTypesChoiceComboBox && m_replaceFsTypesChoiceComboBox->isVisible()
+                   && m_replaceFsTypesChoiceComboBox->currentText() == "zfs" ) ) )
     {
         suitableFS = false;
     }
+
     const bool suitableChoice
         = choice == InstallChoice::Erase || choice == InstallChoice::Alongside || choice == InstallChoice::Replace;
     return suitableChoice && m_enableEncryptionWidget && suitableFS;
