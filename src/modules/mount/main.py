@@ -313,7 +313,7 @@ def enable_swap_partition(devices):
         for d in devices:
             libcalamares.utils.host_env_process_output(["swapon", d])
     except subprocess.CalledProcessError:
-        raise Exception(_(f"Failed to enable swap for devices: {devices}"))
+        libcalamares.utils.warning(f"Failed to enable swap for devices: {devices}")
 
 
 def run():
