@@ -1,0 +1,14 @@
+Calamares is an installer framework. By design it is very customizable,
+in order to satisfy a wide variety of needs and use cases.
+
+Calamares aims to be easy, usable, beautiful, pragmatic, inclusive and
+distribution-agnostic.
+
+Got a Linux distribution but no system installer? Grab Calamares, mix
+and match any number of Calamares modules (or write your own in Python
+or C++), throw together some branding, package it up and you are ready
+to ship!
+
+(The above applies to FreeBSD as well)
+
+WWW: https://calamares.io/

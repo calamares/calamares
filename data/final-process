@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+
+set -e
+
+script_path="$( cd -P "$( dirname "$(readlink -f "${0}")" )" && pwd )"
+script_name="$(basename "$(realpath "${0}")")"
+
+function remove () {
+    rm -rf "${@}"
+}
+
+while getopts 'u:' arg; do
+    case "${arg}" in
+        u) user="${OPTARG}";;
+    esac
+done
+
+function remove_user_file(){
+    remove "/etc/skel/${@}"
+    remove "/home/${user}/${@}"
+}
+
+
+remove /etc/skel/Desktop
+remove /usr/share/calamares/
+
+remove_user_file "Desktop/calamares.desktop"
+remove_user_file ".config/gtk-3.0/bookmarks"
+
+
+remove /etc/polkit-1/rules.d/01-nopasswork.rules
+
+# Delete unnecessary files of archiso.
+remove /root/.automated_script.sh
+remove /etc/mkinitcpio-archiso.conf
+remove /etc/initcpio
+
+# Delete systemd files
+remove /etc/systemd/journald.conf.d/volatile-storage.conf
+remove /etc/systemd/system/getty@.service.d
+
+# Disabled auto login for LightDM
+if [[ -f "/etc/lightdm/lightdm.conf" ]]; then
+    sed -i "s/^autologin/#autologin/g" "/etc/lightdm/lightdm.conf"
+fi
+remove "/etc/lightdm/lightdm.conf.d/02-autologin-"*
+
+# Disabled auto login for GDM
+if [[ -f "/etc/gdm/custom.conf" ]]; then
+    sed -i "s/Automatic*/#Automatic/g" "/etc/gdm/custom.conf"
+fi
+
+# Remove dconf for live environment
+remove "/etc/dconf/db/local.d/02-disable-lock"
+remove "/etc/dconf/db/local.d/02-live-"*
+
+# Update system datebase
+if type dconf > /dev/null 2>&1 ; then
+    dconf update
+fi
+
+# 追加のスクリプトを実行
+if [[ -d "${script_path}/${script_name}.d/" ]]; then
+    for extra_script in "${script_path}/${script_name}.d/"*; do
+        bash -c "${extra_script} ${user}"
+    done
+fi

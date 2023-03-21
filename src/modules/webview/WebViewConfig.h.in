@@ -1,0 +1,10 @@
+/* SPDX-FileCopyrightText: no
+   SPDX-License-Identifier: CC0-1.0
+*/
+#ifndef CALAMARESWEBVIEWCONFIG_H
+#define CALAMARESWEBVIEWCONFIG_H
+
+#cmakedefine WEBVIEW_WITH_WEBENGINE
+#cmakedefine WEBVIEW_WITH_WEBKIT
+
+#endif // CALAMARESWEBVIEWCONFIG_H

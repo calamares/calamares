@@ -73,6 +73,7 @@ set(CALAMARES_SOVERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}")
 
 ### OPTIONS
 #
+option(INSTALL_CONFIG "Install configuration files" ON)
 option(INSTALL_POLKIT "Install Polkit configuration" ON)
 option(INSTALL_COMPLETION "Install shell completions" OFF)
 # When adding WITH_* that affects the ABI offered by libcalamares,
@@ -202,8 +203,8 @@ include(CMakeColors)
 #
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror=return-type")
-set(CMAKE_CXX_FLAGS_DEBUG "-Og -g ${CMAKE_CXX_FLAGS_DEBUG}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
+set(CMAKE_CXX_FLAGS_DEBUG "-g -fvar-tracking-assignments ${CMAKE_CXX_FLAGS_DEBUG}")
 set(CMAKE_CXX_FLAGS_MINSIZEREL "-Os -DNDEBUG")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")
 set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O2 -g")
@@ -211,9 +212,9 @@ set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O2 -g")
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
-set(CMAKE_C_FLAGS_DEBUG "-Og -g")
+set(CMAKE_C_FLAGS_DEBUG "-g -fvar-tracking-assignments")
 set(CMAKE_C_FLAGS_MINSIZEREL "-Os -DNDEBUG")
-set(CMAKE_C_FLAGS_RELEASE "-O4 -DNDEBUG")
+set(CMAKE_C_FLAGS_RELEASE "-O3 -DNDEBUG")
 set(CMAKE_C_FLAGS_RELWITHDEBINFO "-O2 -g")
 
 set(CMAKE_SHARED_LINKER_FLAGS "-Wl,--no-undefined -Wl,--fatal-warnings ${CMAKE_SHARED_LINKER_FLAGS}")
@@ -541,6 +542,7 @@ add_subdirectory(src)
 
 add_feature_info(Python ${WITH_PYTHON} "Python job modules")
 add_feature_info(Qml ${WITH_QML} "QML UI support")
+add_feature_info(Config ${INSTALL_CONFIG} "Install Calamares configuration")
 add_feature_info(Polkit ${INSTALL_POLKIT} "Install Polkit files")
 add_feature_info(KCrash ${BUILD_KF5Crash} "Crash dumps via KCrash")
 
@@ -618,9 +620,12 @@ add_custom_target(uninstall COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_D
 # The module support files -- .desc files, .conf files -- are copied into the build
 # directory so that it is possible to run `calamares -d` from there. Copy the
 # top-level settings.conf as well, into the build directory.
-if( settings.conf IS_NEWER_THAN ${CMAKE_BINARY_DIR}/settings.conf )
-    configure_file(settings.conf ${CMAKE_BINARY_DIR}/settings.conf COPYONLY)
+if(INSTALL_CONFIG)
+    install(FILES settings.conf DESTINATION share/calamares)
 endif()
+#if(settings.conf IS_NEWER_THAN ${CMAKE_BINARY_DIR}/settings.conf)
+#    configure_file(settings.conf ${CMAKE_BINARY_DIR}/settings.conf COPYONLY)
+#endif()
 
 
 
