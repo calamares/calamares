@@ -257,7 +257,7 @@ CreatePartitionDialog::getNewlyCreatedPartition()
                                                              fsLabel,
                                                              first,
                                                              last,
-                                                             Config::luksGenerationNames().find(luksFsType, Config::LuksGeneration::Luks1),
+                                                             Config::luksGenerationNames().find(luksFsType, Config::LuksGeneration::Luks2),
                                                              luksPassphrase,
                                                              PartitionTable::Flags() );
     }
