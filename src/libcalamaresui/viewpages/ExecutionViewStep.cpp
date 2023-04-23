@@ -73,7 +73,7 @@ ExecutionViewStep::ExecutionViewStep( QObject* parent )
 {
     m_widget->setObjectName( "slideshow" );
     m_progressBar->setObjectName( "exec-progress" );
-    m_progressBar->setFormat(tr("%p%"));
+    m_progressBar->setFormat(tr("%p%", "Progress percentage indicator: %p is where the number 0..100 is placed"));
     m_label->setObjectName( "exec-message" );
 
     QVBoxLayout* layout = new QVBoxLayout( m_widget );
