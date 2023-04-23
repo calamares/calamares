@@ -217,6 +217,12 @@ doReplacePartition( PartitionCoreModule* core, Device* dev, Partition* partition
 
     cDebug() << "doReplacePartition for device" << partition->partitionPath();
 
+    // Looking up the defaultFsType (which should name a filesystem type)
+    // will log an error and set the type to Unknown if there's something wrong.
+    FileSystem::Type type = FileSystem::Unknown;
+    PartUtils::canonicalFilesystemName( o.defaultFsType, &type );
+    core->partitionLayout().setDefaultFsType( type == FileSystem::Unknown ? FileSystem::Ext4 : type );
+
     PartitionRole newRoles( partition->roles() );
     if ( partition->roles().has( PartitionRole::Extended ) )
     {

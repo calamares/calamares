@@ -444,7 +444,6 @@ class DMgdm(DisplayManager):
 
                     userfile.write("Icon=\n")
 
-
     def basic_setup(self):
         if libcalamares.utils.target_env_call(
                 ['getent', 'group', 'gdm']
@@ -544,6 +543,11 @@ class DMlightdm(DisplayManager):
     name = "lightdm"
     executable = "lightdm"
 
+    # Can be overridden in the .conf file. With no value it won't match any
+    # desktop file in the xgreeters directory and instead we end up picking
+    # the alphabetically first file there.
+    preferred_greeters = []
+
     def set_autologin(self, username, do_autologin, default_desktop_environment):
         # Systems with LightDM as Desktop Manager
         # Ideally, we should use configparser for the ini conf file,
@@ -593,7 +597,6 @@ class DMlightdm(DisplayManager):
                     _("LightDM config file {!s} does not exist").format(lightdm_conf_path)
                     )
 
-
     def basic_setup(self):
         libcalamares.utils.target_env_call(
             ['mkdir', '-p', '/run/lightdm']
@@ -633,40 +636,52 @@ class DMlightdm(DisplayManager):
                 )
             )
 
+    def find_preferred_greeter(self):
+        """
+        On Debian, lightdm-greeter.desktop is typically a symlink managed
+        by update-alternatives pointing to /etc/alternatives/lightdm-greeter
+        which is also a symlink to a real .desktop file back in /usr/share/xgreeters/
+
+        Returns a path *into the mounted target* of the preferred greeter -- usually
+        a .desktop file that specifies where the actual executable is. May return
+        None to indicate nothing-was-found.
+        """
+        greeters_dir = "usr/share/xgreeters"
+        greeters_target_path = os.path.join(self.root_mount_point, greeters_dir)
+        available_names = os.listdir(greeters_target_path)
+        available_names.sort()
+        desktop_names = [n for n in self.preferred_greeters if n in available_names] # Preferred ones
+        if desktop_names:
+            return desktop_names[0]
+        desktop_names = [n for n in available_names if n.endswith(".desktop")] # .. otherwise any .desktop
+        if desktop_names:
+            return desktop_names[0]
+        return None
+
     def greeter_setup(self):
-        lightdm_conf_path = os.path.join(
-            self.root_mount_point, "etc/lightdm/lightdm.conf"
-            )
+        lightdm_conf_path = os.path.join(self.root_mount_point, "etc/lightdm/lightdm.conf")
+        greeter_name = self.find_preferred_greeter()
 
-        # configure lightdm-greeter
-        greeter_path = os.path.join(
-            self.root_mount_point, "usr/share/xgreeters"
-            )
+        if greeter_name is not None:
+            greeter = os.path.basename(greeter_name)  # Follow symlinks, hope they are not absolute
+            if greeter.endswith('.desktop'):
+                greeter = greeter[:-8]  # Remove ".desktop" from end
 
-        if (os.path.exists(greeter_path)):
-            # configure first found lightdm-greeter
-            for entry in os.listdir(greeter_path):
-                if entry.endswith('.desktop'):
-                    greeter = entry.split('.')[0]
-                    libcalamares.utils.debug(
-                        "found greeter {!s}".format(greeter)
-                        )
-                    os.system(
-                        "sed -i -e \"s/^.*greeter-session=.*"
-                        "/greeter-session={!s}/\" {!s}".format(
-                            greeter,
-                            lightdm_conf_path
-                            )
-                        )
-                    libcalamares.utils.debug(
-                        "{!s} configured as greeter.".format(greeter)
-                        )
-                    break
-            else:
-                return (
-                    _("Cannot configure LightDM"),
-                    _("No LightDM greeter installed.")
-                    )
+            libcalamares.utils.debug("found greeter {!s}".format(greeter))
+            os.system(
+                "sed -i -e \"s/^.*greeter-session=.*"
+                "/greeter-session={!s}/\" {!s}".format(
+                    greeter,
+                    lightdm_conf_path
+                )
+            )
+            libcalamares.utils.debug("{!s} configured as greeter.".format(greeter))
+        else:
+            libcalamares.utils.error("No greeter found at all, preferred {!s}".format(self.preferred_greeters))
+            return (
+                _("Cannot configure LightDM"),
+                _("No LightDM greeter installed.")
+            )
 
 
 class DMslim(DisplayManager):
@@ -817,7 +832,7 @@ class DMgreetd(DisplayManager):
 
     def desktop_environment_setup(self, default_desktop_environment):
         with open(self.environments_path(), 'w') as envs_file:
-            envs_file.write(default_desktop_environment.desktop_file)
+            envs_file.write(default_desktop_environment.executable)
             envs_file.write("\n")
 
     def greeter_setup(self):
@@ -828,7 +843,7 @@ class DMgreetd(DisplayManager):
 
         de_command = default_desktop_environment.executable
         if os.path.exists(self.os_path("usr/bin/gtkgreet")) and os.path.exists(self.os_path("usr/bin/cage")):
-            self.config_data['default_session']['command'] = "cage -s -- gtkgreet"
+            self.config_data['default_session']['command'] = "cage -d -s -- gtkgreet"
         elif os.path.exists(self.os_path("usr/bin/tuigreet")):
             tuigreet_base_cmd = "tuigreet --remember --time --issue --asterisks --cmd "
             self.config_data['default_session']['command'] = tuigreet_base_cmd + de_command
@@ -983,6 +998,11 @@ def run():
     # Do the actual configuration and collect messages
     dm_setup_message = []
     for dm in dm_impl:
+        dm_specific_configuration = libcalamares.job.configuration.get(dm.name, None)
+        if dm_specific_configuration and isinstance(dm_specific_configuration, dict):
+            for k, v in dm_specific_configuration.items():
+                if hasattr(dm, k):
+                    setattr(dm, k, v)
         dm_message = None
         if enable_basic_setup:
             dm_message = dm.basic_setup()

@@ -14,6 +14,7 @@
 #
 
 import libcalamares
+import fileinput
 import os
 import re
 
@@ -85,6 +86,30 @@ def get_zfs_root():
     return None
 
 
+def update_existing_config(default_grub, grub_config_items):
+    """
+    Updates the existing grub configuration file with any items present in @p grub_config_items
+
+    Items that exist in the file will be updated and new items will be appended to the end
+
+    :param default_grub: The absolute path to the grub config file
+    :param grub_config_items: A dict holding the key value pairs representing the items
+    """
+    for line in fileinput.input(default_grub, inplace=True):
+        line = line.strip()
+        if "=" in line:
+            # This may be a key, strip the leading comment if it has one
+            key = line.lstrip("#").split("=")[0].strip()
+
+            # check if this is one of the keys we care about
+            if key in grub_config_items.keys():
+                print(f"{key}={grub_config_items[key]}")
+            else:
+                print(line)
+        else:
+            print(line)
+
+
 def modify_grub_default(partitions, root_mount_point, distributor):
     """
     Configures '/etc/default/grub' for hibernation and plymouth.
@@ -103,7 +128,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     :return:
     """
     default_grub = get_grub_config_path(root_mount_point)
-    distributor_replace = distributor.replace("'", "'\\''")
+    distributor = distributor.replace("'", "'\\''")
     dracut_bin = libcalamares.utils.target_env_call(
         ["sh", "-c", "which dracut"]
         )
@@ -125,7 +150,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     zfs_root_path = None
 
     for partition in partitions:
-        if partition["mountPoint"] in ("/", "/boot") and partition["fs"] in ("btrfs", "f2fs"):
+        if partition["mountPoint"] in ("/", "/boot") and partition["fs"] in ("btrfs", "f2fs", "zfs"):
             no_save_default = True
             break
 
@@ -190,63 +215,46 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     if swap_outer_mappername:
         kernel_params.append(f"resume=/dev/mapper/{swap_outer_mappername}")
 
-    if "overwrite" in libcalamares.job.configuration:
-        overwrite = libcalamares.job.configuration["overwrite"]
-    else:
-        overwrite = False
+    overwrite = libcalamares.job.configuration.get("overwrite", False)
 
-    distributor_line = f"GRUB_DISTRIBUTOR='{distributor_replace}'"
-    kernel_cmd = f'GRUB_CMDLINE_LINUX_DEFAULT="{" ".join(kernel_params)}"'
-    have_kernel_cmd = False
-    have_distributor_line = False
+    grub_config_items = {}
+    # read the lines we need from the existing config
     if os.path.exists(default_grub) and not overwrite:
         with open(default_grub, 'r') as grub_file:
             lines = [x.strip() for x in grub_file.readlines()]
 
-        for i in range(len(lines)):
-            if lines[i].startswith("#GRUB_CMDLINE_LINUX_DEFAULT"):
-                lines[i] = kernel_cmd
-                have_kernel_cmd = True
-            elif lines[i].startswith("GRUB_CMDLINE_LINUX_DEFAULT"):
-                regex = re.compile(r"^GRUB_CMDLINE_LINUX_DEFAULT\s*=\s*")
-                line = regex.sub("", lines[i])
-                line = line.lstrip()
-                line = line.lstrip("\"")
-                line = line.lstrip("'")
-                line = line.rstrip()
-                line = line.rstrip("\"")
-                line = line.rstrip("'")
-                existing_params = line.split()
+        for line in lines:
+            if line.startswith("GRUB_CMDLINE_LINUX_DEFAULT"):
+                existing_params = re.sub(r"^GRUB_CMDLINE_LINUX_DEFAULT\s*=\s*", "", line).strip("\"'").split()
 
                 for existing_param in existing_params:
-                    existing_param_name = existing_param.split("=")[0]
+                    existing_param_name = existing_param.split("=")[0].strip()
 
-                    # the only ones we ever add
-                    if existing_param_name not in [
-                            "quiet", "resume", "splash"]:
+                    # Ensure we aren't adding duplicated params
+                    param_exists = False
+                    for param in kernel_params:
+                        if param.split("=")[0].strip() == existing_param_name:
+                            param_exists = True
+                            break
+                    if not param_exists and existing_param_name not in ["quiet", "resume", "splash"]:
                         kernel_params.append(existing_param)
 
-                lines[i] = kernel_cmd
-                have_kernel_cmd = True
-            elif (lines[i].startswith("#GRUB_DISTRIBUTOR")
-                  or lines[i].startswith("GRUB_DISTRIBUTOR")):
-                if libcalamares.job.configuration.get("keep_distributor", False):
-                    lines[i] = distributor_line
-                    have_distributor_line = True
-                else:
-                    # We're not updating because of *keep_distributor*, but if
-                    # this was a comment line, then it's still not been set.
-                    have_distributor_line = have_distributor_line or not lines[i].startswith("#")
-            # If btrfs or f2fs is used, don't save default
-            if no_save_default and lines[i].startswith("GRUB_SAVEDEFAULT="):
-                lines[i] = "#GRUB_SAVEDEFAULT=\"true\""
-    else:
-        lines = []
+            elif line.startswith("GRUB_DISTRIBUTOR") and libcalamares.job.configuration.get("keep_distributor", False):
+                distributor_parts = line.split("=")
+                if len(distributor_parts) > 1:
+                    distributor = distributor_parts[1].strip("'\"")
 
+            # If a filesystem grub can't write to is used, disable save default
+            if no_save_default and line.strip().startswith("GRUB_SAVEDEFAULT"):
+                grub_config_items["GRUB_SAVEDEFAULT"] = "false"
+
+    always_use_defaults = libcalamares.job.configuration.get("always_use_defaults", False)
+
+    # If applicable add the items from defaults to the dict containing the grub config to wirte/modify
+    if always_use_defaults or overwrite or not os.path.exists(default_grub):
         if "defaults" in libcalamares.job.configuration:
-            for key, value in libcalamares.job.configuration[
-                    "defaults"].items():
-                if value.__class__.__name__ == "bool":
+            for key, value in libcalamares.job.configuration["defaults"].items():
+                if isinstance(value, bool):
                     if value:
                         escaped_value = "true"
                     else:
@@ -254,19 +262,20 @@ def modify_grub_default(partitions, root_mount_point, distributor):
                 else:
                     escaped_value = str(value).replace("'", "'\\''")
 
-                lines.append(f"{key}='{escaped_value}'")
+                grub_config_items[key] = f"'{escaped_value}'"
 
-    if not have_kernel_cmd:
-        lines.append(kernel_cmd)
-
-    if not have_distributor_line:
-        lines.append(distributor_line)
+    grub_config_items['GRUB_CMDLINE_LINUX_DEFAULT'] = f"'{' '.join(kernel_params)}'"
+    grub_config_items["GRUB_DISTRIBUTOR"] = f"'{distributor}'"
 
     if cryptdevice_params and not unencrypted_separate_boot:
-        lines.append("GRUB_ENABLE_CRYPTODISK=y")
+        grub_config_items["GRUB_ENABLE_CRYPTODISK"] = "y"
 
-    with open(default_grub, 'w') as grub_file:
-        grub_file.write("\n".join(lines) + "\n")
+    if overwrite or not os.path.exists(default_grub) or libcalamares.job.configuration.get("prefer_grub_d", False):
+        with open(default_grub, 'w') as grub_file:
+            for key, value in grub_config_items.items():
+                grub_file.write(f"{key}={value}\n")
+    else:
+        update_existing_config(default_grub, grub_config_items)
 
     return None
 

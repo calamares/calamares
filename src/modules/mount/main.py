@@ -308,6 +308,14 @@ def mount_partition(root_mount_point, partition, partitions, mount_options, moun
                 libcalamares.utils.warning("Cannot mount {}".format(device))
 
 
+def enable_swap_partition(devices):
+    try:
+        for d in devices:
+            libcalamares.utils.host_env_process_output(["swapon", d])
+    except subprocess.CalledProcessError:
+        libcalamares.utils.warning(f"Failed to enable swap for devices: {devices}")
+
+
 def run():
     """
     Mount all the partitions from GlobalStorage and from the job configuration.
@@ -320,6 +328,11 @@ def run():
         libcalamares.utils.warning("partitions is empty, {!s}".format(partitions))
         return (_("Configuration Error"),
                 _("No partitions are defined for <pre>{!s}</pre> to use.").format("mount"))
+
+    # Find existing swap partitions that are part of the installation and enable them now
+    swap_devices = [p['device'] for p in partitions if (p['fs'] == 'linuxswap' and p['claimed'])]
+
+    enable_swap_partition(swap_devices)
 
     root_mount_point = tempfile.mkdtemp(prefix="calamares-root-")
 

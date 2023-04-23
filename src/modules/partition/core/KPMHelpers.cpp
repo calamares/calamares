@@ -84,7 +84,7 @@ createNewEncryptedPartition( PartitionNode* parent,
                              const QString& fsLabel,
                              qint64 firstSector,
                              qint64 lastSector,
-                             const QString& luksFsType,  // "luks" or "luks2"
+                             Config::LuksGeneration luksFsType,
                              const QString& passphrase,
                              PartitionTable::Flags flags )
 {
@@ -94,7 +94,7 @@ createNewEncryptedPartition( PartitionNode* parent,
         newRoles |= PartitionRole::Luks;
     }
 
-    FileSystem::Type luksType = FileSystem::typeForName( luksFsType );
+    FileSystem::Type luksType = luksGenerationToFSName( luksFsType );
 
     FS::luks* fs = dynamic_cast< FS::luks* >(
         FileSystemFactory::create( luksType, firstSector, lastSector, device.logicalSize() ) );
@@ -298,6 +298,24 @@ cryptVersion( Partition* partition )
     }
     return luksVersion;
 }
+
+FileSystem::Type
+luksGenerationToFSName( Config::LuksGeneration luksGeneration )
+{
+    // Convert luksGenerationChoice from partition.conf into its
+    // corresponding file system type from KPMCore.
+    switch ( luksGeneration )
+    {
+    case Config::LuksGeneration::Luks2:
+        return FileSystem::Type::Luks2;
+    case Config::LuksGeneration::Luks1:
+        return FileSystem::Type::Luks;
+    default:
+        cWarning() << "luksGeneration not supported, defaulting to \"luks\"";
+        return FileSystem::Type::Luks;
+    }
+}
+
 
 Calamares::JobResult
 execute( Operation& operation, const QString& failureMessage )

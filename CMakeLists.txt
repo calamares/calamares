@@ -214,10 +214,10 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
 set(CMAKE_C_FLAGS_DEBUG "-Og -g")
 set(CMAKE_C_FLAGS_MINSIZEREL "-Os -DNDEBUG")
-set(CMAKE_C_FLAGS_RELEASE "-O4 -DNDEBUG")
+set(CMAKE_C_FLAGS_RELEASE "-O3 -DNDEBUG")
 set(CMAKE_C_FLAGS_RELWITHDEBINFO "-O2 -g")
 
-set(CMAKE_SHARED_LINKER_FLAGS "-Wl,--no-undefined -Wl,--fatal-warnings")
+set(CMAKE_SHARED_LINKER_FLAGS "-Wl,--no-undefined -Wl,--fatal-warnings ${CMAKE_SHARED_LINKER_FLAGS}")
 
 # If no build type is set, pick a reasonable one
 if(NOT CMAKE_BUILD_TYPE)
