@@ -11,7 +11,7 @@
 [![GitHub license](https://img.shields.io/badge/license-Multiple-green)](https://github.com/calamares/calamares/tree/calamares/LICENSES)
 
 
-| [Report a Bug](https://github.com/calamares/calamares/issues/new) | [Translate](https://www.transifex.com/projects/p/calamares/) | [Contribute](CONTRIBUTING.md) | [Matrix: #calamares:kde.org](https://webchat.kde.org/#/room/%23calamares:kde.org) | [IRC: Libera.Chat #calamares](https://kiwiirc.com/client/irc.libera.chat/#calamares) | [Wiki](https://github.com/calamares/calamares/wiki) |
+| [Report a Bug](https://github.com/calamares/calamares/issues/new) | [Translate](https://app.transifex.com/calamares/calamares/) | [Contribute](CONTRIBUTING.md) | [Matrix: #calamares:kde.org](https://webchat.kde.org/#/room/%23calamares:kde.org) | [IRC: Libera.Chat #calamares](https://kiwiirc.com/client/irc.libera.chat/#calamares) | [Wiki](https://github.com/calamares/calamares/wiki) |
 |:--:|:--:|:--:|:--:|:--:|:--:|
 
 

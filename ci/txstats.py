@@ -53,7 +53,7 @@ class TransifexGetter(object):
                 parser = configparser.ConfigParser()
                 parser.read_file(f)
 
-                return parser.get("https://www.transifex.com", "password")
+                return parser.get("https://app.transifex.com", "password")
         except IOError as e:
             return None
 
