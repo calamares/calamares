@@ -6,12 +6,12 @@
     <message>
       <location filename="../src/libcalamares/CalamaresAbout.cpp" line="17"/>
       <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt; for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt; pro %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/CalamaresAbout.cpp" line="20"/>
       <source>Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-      <translation type="unfinished"/>
+      <translation>Díky &lt;a href="https://calamares.io/team/"&gt;týmu Calamares&lt;/a&gt; a &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares týmu překladatelů&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; vývoj je sponzorován &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/CalamaresAbout.cpp" line="38"/>
@@ -1462,7 +1462,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="260"/>
       <source>Partition %1 could not be decrypted with the given passphrase.&lt;br/&gt;&lt;br/&gt;Edit the partition again and give the correct passphrase or delete and create a new encrypted partition.</source>
-      <translation type="unfinished"/>
+      <translation>Oddíl %1 nemohl být dešifrován pomocí zadané přístupové fráze.&lt;br/&gt;&lt;br/&gt;Znovu upravte oddíl a zadejte správné heslo a nebo odstraňte a vytvořte nový zašifrovaný oddíl.</translation>
     </message>
   </context>
   <context>
@@ -2904,17 +2904,17 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="254"/>
       <source>Unsafe partition actions are enabled.</source>
-      <translation type="unfinished"/>
+      <translation>Nebezpečné akce oddílů jsou povoleny.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="257"/>
       <source>Partitioning is configured to &lt;b&gt;always&lt;/b&gt; fail.</source>
-      <translation type="unfinished"/>
+      <translation>Rozdělení je nakonfigurováno tak &lt;b&gt; aby vždy &lt;/b&gt; selhalo.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="260"/>
       <source>No partitions will be changed.</source>
-      <translation type="unfinished"/>
+      <translation>Žádné oddíly nebudou změněny.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="300"/>
@@ -2974,7 +2974,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="594"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
-      <translation type="unfinished"/>
+      <translation>Tabulka oddílů GPT je nejlepší volbou pro všechny systémy. Tento instalační program podporuje toto nastavení i pro systémy BIOS.&lt;br/&gt;&lt;br/&gt;Chcete-li nakonfigurovat tabulku oddílů GPT v systému BIOS (pokud jste tak již neučinili), vraťte se a nastavte tabulku oddílů na GPT, dále vytvořte 8 MB nenaformátovaný oddíl  &lt;strong&gt;%2&lt;/strong&gt; s povoleným příznakem.&lt;br/&gt;&lt;br/&gt;Neformátovaný oddíl o velikosti 8 MB je nutný ke spuštění %1 v systému BIOS s GPT.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="626"/>
@@ -4175,7 +4175,7 @@ Výstup:
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="149"/>
       <source>Show information about Calamares</source>
-      <translation type="unfinished"/>
+      <translation>Zobrazit informace o Calamares.</translation>
     </message>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="165"/>

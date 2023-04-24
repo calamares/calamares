@@ -616,7 +616,7 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1402"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation>Tällä massamuistilla ei näytä olevan käyttöjärjestelmää. Mitä haluat tehdä?&lt;br/&gt;Voit tarkistaa ja vahvistaa valintasi ennen kuin massamuistille tehdään muutoksia.</translation>
+      <translation>Tällä kiintolevyllä ei näytä olevan käyttöjärjestelmää. Mitä haluat tehdä?&lt;br/&gt;Voit tarkistaa valintasi ennen kuin kiintolevylle tehdään muutoksia.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1407"/>
@@ -624,7 +624,7 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1466"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1491"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
-      <translation>&lt;strong&gt;Tyhjennä asema&lt;/strong&gt;&lt;br/&gt;Tämä &lt;font color="red"&gt;poistaa&lt;/font&gt; kaikki tiedot valitusta massamuistista.</translation>
+      <translation>&lt;strong&gt;Tyhjennä levy&lt;/strong&gt;&lt;br/&gt;Tämä tulee&lt;font color="red"&gt;poistamaan&lt;/font&gt; kaikki tiedot valitusta kiintolevystä.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1411"/>
@@ -645,32 +645,32 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1434"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation>Tässä massamuistissa on %1 dataa. Mitä haluat tehdä?&lt;br/&gt;Voit tarkistaa ja vahvistaa valintasi ennen kuin massamuistiin tehdään muutoksia.</translation>
+      <translation>Kiintolevyllä on %1 dataa. Mitä haluat tehdä?&lt;br/&gt;Voit tarkistaa valintasi ennen kuin kiintolevylle tehdään muutoksia.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1457"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation>Tämä massamuisti sisältää jo käyttöjärjestelmän. Mitä haluaisit tehdä?&lt;br/&gt;Voit tarkistaa ja vahvistaa valintasi, ennen kuin massamuistiin tehdään muutoksia.</translation>
+      <translation>Tämä kiintolevy sisältää jo käyttöjärjestelmän. Mitä haluaisit tehdä?&lt;br/&gt;Voit tarkistaa valintasi, ennen kuin kiintolevylle tehdään muutoksia.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1482"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation>Tämä massamuisti sisältää jo useita käyttöjärjestelmiä. Mitä haluaisit tehdä?&lt;br/&gt;Voit tarkistaa ja vahvistaa valintasi, ennen kuin massamuistiin tehdään muutoksia.</translation>
+      <translation>Kiintolevy sisältää jo useita käyttöjärjestelmiä. Mitä haluaisit tehdä?&lt;br/&gt;Voit tarkistaa valintasi, ennen kuin kiintolevylle tehdään muutoksia.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1554"/>
       <source>This storage device already has an operating system on it, but the partition table &lt;strong&gt;%1&lt;/strong&gt; is different from the needed &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</source>
-      <translation>Tällä massamuistilla on jo käyttöjärjestelmä, mutta osiotaulukko &lt;strong&gt;%1&lt;/strong&gt; on erilainen kuin tarvittava &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</translation>
+      <translation>Kiintolevyllä on jo käyttöjärjestelmä, mutta osiotaulukko &lt;strong&gt;%1&lt;/strong&gt; on erilainen kuin tarvitaan &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1577"/>
       <source>This storage device has one of its partitions &lt;strong&gt;mounted&lt;/strong&gt;.</source>
-      <translation>Tähän massamuistiin on &lt;strong&gt;liitetty&lt;/strong&gt; yksi osioista.</translation>
+      <translation>Tähän kiintolevyyn on kiinnitys, &lt;strong&gt;liitetty&lt;/strong&gt; yksi osioista.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1582"/>
       <source>This storage device is a part of an &lt;strong&gt;inactive RAID&lt;/strong&gt; device.</source>
-      <translation>Tämä massamuisti on osa &lt;strong&gt;passiivista RAID&lt;/strong&gt; kokoonpanoa.</translation>
+      <translation>Tämä kiintolevy on osa &lt;strong&gt;passiivista RAID&lt;/strong&gt; kokoonpanoa.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1701"/>
@@ -1330,7 +1330,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="108"/>
       <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
-      <translation>Asennusohjelma &lt;strong&gt;ei tunnista osiotaulukkoa&lt;/strong&gt; valitussa massamuistissa.&lt;br&gt;&lt;br&gt;Laitteessa ei ole osiotaulukkoa, taulukko on vioittunut tai tuntematon.&lt;br&gt;Asennusohjelma voi tehdä uuden osiotaulukon, joko automaattisesti tai manuaalisesti.</translation>
+      <translation>Asentaja &lt;strong&gt;ei tunnista osiotaulukkoa&lt;/strong&gt; valitussa kiintolevyssä.&lt;br&gt;&lt;br&gt;Joko ei ole osiotaulukkoa, taulukko on vioittunut tai tuntematon.&lt;br&gt;Asentaja voi tehdä uuden osiotaulukon automaattisesti tai voit tehdä sen käsin.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="91"/>
@@ -1345,7 +1345,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="151"/>
       <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-      <translation>Valitun massamuistin &lt;strong&gt;osiotaulukon&lt;/strong&gt; tyyppi.&lt;br&gt;&lt;br&gt;Ainoa tapa muuttaa osiotaulukon tyyppiä on poistaa ja luoda uudelleen osiot tyhjästä, mikä tuhoaa kaikki massamuistin sisältämät tiedot. &lt;br&gt;Asennusohjelma säilyttää nykyisen osiotaulukon, ellet nimenomaisesti valitse muuta.&lt;br&gt;Jos olet epävarma niin nykyaikaisissa järjestelmissä GPT on suositus.</translation>
+      <translation>Valitun kiintolevyn &lt;strong&gt;osiotaulukon&lt;/strong&gt; tyyppi.&lt;br&gt;&lt;br&gt;Ainoa tapa muuttaa osiotaulukon tyyppiä on poistaa ja luoda osiot alusta uudelleen, mikä tuhoaa kaikki kiintolevyn sisältämät tiedot. &lt;br&gt;Asentaja säilyttää nykyisen osiotaulukon, ellet nimenomaisesti valitse muuta.&lt;br&gt;Jos olet epävarma niin suositus on käyttää GPT:tä.</translation>
     </message>
   </context>
   <context>
@@ -1830,7 +1830,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="30"/>
       <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>Järjestelmän maa-asetus vaikuttaa komentorivin käyttöliittymän kieleen ja merkistön käyttöön.&lt;br/&gt;Nykyinen asetus on &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+      <translation>Järjestelmän maa-asetus vaikuttaa komentorivin käyttöliittymän kieleen ja merkistöön.&lt;br/&gt;Nykyinen asetus on &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="54"/>
@@ -2086,9 +2086,9 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
       <source>Please select your preferred location on the map so the installer can suggest the locale
             and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
             to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</source>
-      <translation>Valitse sijainti kartalla, jotta asentaja voi ehdottaa maa- ja aikavyöhyke-asetukset.
-             Voit hienosäätää alla olevia asetuksia. Etsi kartalta vetämällä ja suurenna/pienennä +/- -painikkeella tai käytä
-hiiren vieritystä skaalaamiseen.</translation>
+      <translation>Valitse sijaintisi kartalla, jotta asentaja voi ehdottaa aikavyöhykeen asetuksia.
+            Voit hienosäätää ehdotettuja asetuksia alla. Hae kartasta vetämällä ja käyttämällä +/- -painikkeita ja
+             suurenna tai pienennä käyttäen hiirtä.</translation>
     </message>
   </context>
   <context>
@@ -2267,7 +2267,7 @@ hiiren vieritystä skaalaamiseen.</translation>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="235"/>
       <source>You can fine-tune Language and Locale settings below.</source>
-      <translation>Voit hienosäätää kieli- ja alueasetuksia alla.</translation>
+      <translation>Voit hienosäätää alla kielen ja maa-asetukset.</translation>
     </message>
   </context>
   <context>
@@ -2606,7 +2606,7 @@ hiiren vieritystä skaalaamiseen.</translation>
     <message>
       <location filename="../src/modules/keyboard/KeyboardPage.ui" line="135"/>
       <source>Type here to test your keyboard</source>
-      <translation>Kirjoita tähän testaksesi näppäimistöäsi.</translation>
+      <translation>Testaa näppäimistöäsi, kirjoittamalla tähän</translation>
     </message>
   </context>
   <context>
@@ -2629,7 +2629,7 @@ hiiren vieritystä skaalaamiseen.</translation>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="124"/>
       <source>What name do you want to use to log in?</source>
-      <translation>Mitä nimeä haluat käyttää sisäänkirjautumisessa?</translation>
+      <translation>Mitä nimeä haluat käyttää kirjautumiseen?</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="148"/>
@@ -3447,7 +3447,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
     <message>
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="68"/>
       <source>Scanning storage devices...</source>
-      <translation>Etsitään massamuisteja...</translation>
+      <translation>Etsitään kiintolevyjä...</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="68"/>
@@ -3495,7 +3495,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="368"/>
       <source>Failed to write keyboard configuration for the virtual console.</source>
-      <translation>Virtuaalikonsolin näppäimistöasetuksen tallentaminen epäonnistui.</translation>
+      <translation>Näppäimistön asetuksen tallennus virtuaaliseen konsoliin epäonnistui.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="369"/>
@@ -3507,12 +3507,12 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="396"/>
       <source>Failed to write keyboard configuration for X11.</source>
-      <translation>X11-näppäimistöasetusten tallentaminen epäonnistui.</translation>
+      <translation>Näppäimistön asetuksen tallennus X11:lle epäonnistui.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="413"/>
       <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
-      <translation>Näppäimistöasetusten kirjoittaminen epäonnistui olemassa olevaan /etc/default-hakemistoon.</translation>
+      <translation>Näppäimistön asetusten kirjoittus epäonnistui /etc/default hakemistoon.</translation>
     </message>
   </context>
   <context>
@@ -3867,7 +3867,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="95"/>
       <source>Tracking helps %1 to see how often it is installed, what hardware it is installed on and which applications are used. To see what will be sent, please click the help icon next to each area.</source>
-      <translation>Seuranta auttaa %1 näkemään, kuinka usein se asennetaan, mihin laitteistoon se on asennettu ja mihin sovelluksiin sitä käytetään. Jos haluat nähdä, mitä lähetetään, napsauta kunkin alueen vieressä olevaa ohjekuvaketta.</translation>
+      <translation>Seuranta auttaa %1 näkemään, asennusten määrän, mikä on tyypillinen laitteisto ja sovellukset joihin sitä käytetään. Jos haluat tietää, mitä tietoja lähetetään, paina kunkin alueen vieressä olevaa ohjekuvaketta.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="100"/>
@@ -4154,7 +4154,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="149"/>
       <source>Show information about Calamares</source>
-      <translation type="unfinished"/>
+      <translation>Näytä tietoa Calamaresista</translation>
     </message>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="165"/>
@@ -4190,8 +4190,8 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
       <location filename="../src/modules/finishedq/finishedq.qml" line="89"/>
       <source>&lt;p&gt;A full log of the install is available as installation.log in the home directory of the Live user.&lt;br/&gt;
             This log is copied to /var/log/installation.log of the target system.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Täydellinen loki asennuksesta on saatavana nimellä install.log Live-käyttäjän kotihakemistossa.&lt;br/&gt;
-            Tämä loki on kopioitu /var/log/installation.log-tiedostoon.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Täydellinen asennusloki on saatavilla nimellä install.log Live-käyttäjän kotihakemistossa.&lt;br/&gt;
+            Se on myös kopioitu /var/log/installation.log tähän tietokoneeseen.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -4246,7 +4246,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="60"/>
       <source>To activate keyboard preview, select a layout.</source>
-      <translation>Jos haluat aktivoida näppäimistön esikatselun, valitse asettelu.</translation>
+      <translation>Aktivoi näppäimistön esikatselu valitsemalla asettelu.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="86"/>
@@ -4261,7 +4261,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="265"/>
       <source>Type here to test your keyboard</source>
-      <translation>Kirjoita tähän testaksesi näppäimistöäsi.</translation>
+      <translation>Testaa näppäimistöäsi, kirjoittamalla tähän</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="180"/>
@@ -4385,7 +4385,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="43"/>
       <source>Pick your user name and credentials to login and perform admin tasks</source>
-      <translation>Valitse käyttäjänimi kirjautumiseen ja järjestelmänvalvojan tehtävien suorittamiseen</translation>
+      <translation>Valitse käyttäjänimesi kirjautumiseen ja surittaksesi pääkäyttäjän tehtäviä</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="56"/>
@@ -4400,7 +4400,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="80"/>
       <source>What name do you want to use to log in?</source>
-      <translation>Mitä nimeä haluat käyttää sisäänkirjautumisessa?</translation>
+      <translation>Mitä nimeä haluat käyttää kirjautumiseen?</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="87"/>

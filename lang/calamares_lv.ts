@@ -171,7 +171,7 @@
     <message>
       <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="118"/>
       <source>Install</source>
-      <translation type="unfinished"/>
+      <translation>Uzstādīt</translation>
     </message>
   </context>
   <context>
@@ -192,7 +192,7 @@
     <message>
       <location filename="../src/libcalamares/JobQueue.cpp" line="203"/>
       <source>Done</source>
-      <translation type="unfinished"/>
+      <translation>Gatavs</translation>
     </message>
   </context>
   <context>
@@ -259,7 +259,7 @@
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="67"/>
       <source>Loading ...</source>
-      <translation type="unfinished"/>
+      <translation>Notiek ielāde...</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="88"/>
@@ -318,17 +318,17 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="163"/>
       <source>Error</source>
-      <translation type="unfinished"/>
+      <translation>Kļūda</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="90"/>
       <source>&amp;Yes</source>
-      <translation type="unfinished"/>
+      <translation>&amp;Jā</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="91"/>
       <source>&amp;No</source>
-      <translation type="unfinished"/>
+      <translation>&amp;Nē</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="92"/>
@@ -397,7 +397,7 @@ Link copied to clipboard</source>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="318"/>
       <source>&amp;Install now</source>
-      <translation type="unfinished"/>
+      <translation>&amp;Instalēt</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="326"/>
@@ -407,7 +407,7 @@ Link copied to clipboard</source>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="376"/>
       <source>&amp;Set up</source>
-      <translation type="unfinished"/>
+      <translation>&amp;Iestatīt</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="376"/>
@@ -557,12 +557,12 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1077"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1174"/>
       <source>Current:</source>
-      <translation type="unfinished"/>
+      <translation>Šobrīd:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="141"/>
       <source>After:</source>
-      <translation type="unfinished"/>
+      <translation>Pēc iestatīšanas:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1732"/>
@@ -592,7 +592,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1165"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;Atlasiet nodalījumu, kurā instalēt&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1226"/>
@@ -671,7 +671,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1701"/>
       <source>No Swap</source>
-      <translation type="unfinished"/>
+      <translation>Bez mijmaiņas nodalījuma</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1710"/>
@@ -761,7 +761,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/libcalamares/utils/CommandList.cpp" line="142"/>
       <location filename="../src/libcalamares/utils/CommandList.cpp" line="155"/>
       <source>Could not run command.</source>
-      <translation type="unfinished"/>
+      <translation>Nevarēja palaist komandu.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CommandList.cpp" line="143"/>
@@ -2900,12 +2900,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="300"/>
       <source>Current:</source>
-      <translation type="unfinished"/>
+      <translation>Šobrīd:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="318"/>
       <source>After:</source>
-      <translation type="unfinished"/>
+      <translation>Pēc iestatīšanas:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="529"/>
@@ -3739,12 +3739,12 @@ Output:
     <message>
       <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="24"/>
       <source>&amp;Yes</source>
-      <translation type="unfinished"/>
+      <translation>&amp;Jā</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="25"/>
       <source>&amp;No</source>
-      <translation type="unfinished"/>
+      <translation>&amp;Nē</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="26"/>
@@ -4078,7 +4078,7 @@ Output:
     <message>
       <location filename="../src/modules/welcomeq/WelcomeQmlViewStep.cpp" line="40"/>
       <source>Welcome</source>
-      <translation type="unfinished"/>
+      <translation>Laipni lūdzam!</translation>
     </message>
   </context>
   <context>
@@ -4086,7 +4086,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="46"/>
       <source>Welcome</source>
-      <translation type="unfinished"/>
+      <translation>Laipni lūdzam!</translation>
     </message>
   </context>
   <context>

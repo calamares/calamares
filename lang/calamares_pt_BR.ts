@@ -25,7 +25,7 @@
     <message>
       <location filename="../src/modules/partition/jobs/AutoMountManagementJob.cpp" line="22"/>
       <source>Manage auto-mount settings</source>
-      <translation>Gerenciar configurações de automontagem</translation>
+      <translation>Gerenciar configurações de auto montagem</translation>
     </message>
   </context>
   <context>
@@ -285,7 +285,7 @@
       <translation>
         <numerusform>Esperando por %n módulo.</numerusform>
         <numerusform>Esperando por %n módulos.</numerusform>
-        <numerusform>Esperando por %n módulos.</numerusform>
+        <numerusform>Esperando por %n módulo(s).</numerusform>
       </translation>
     </message>
     <message numerus="yes">
@@ -294,7 +294,7 @@
       <translation>
         <numerusform>(%n segundo)</numerusform>
         <numerusform>(%n segundos)</numerusform>
-        <numerusform>(%n segundos)</numerusform>
+        <numerusform>(%n segundo(s))</numerusform>
       </translation>
     </message>
     <message>
@@ -461,7 +461,7 @@ Link copiado para a área de transferência</translation>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="495"/>
       <source>Cancel setup?</source>
-      <translation>Cancelar a configuração?</translation>
+      <translation>Cancelar a instalador?</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="495"/>
@@ -473,7 +473,7 @@ Link copiado para a área de transferência</translation>
       <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
       <translation>Você realmente quer cancelar o processo atual de configuração?
-O programa de configuração será fechado e todas as mudanças serão perdidas.</translation>
+O programa de instalação será fechado e todas as alterações serão perdidas.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="498"/>
@@ -511,7 +511,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="396"/>
       <source>%1 Setup Program</source>
-      <translation>Programa de configuração %1</translation>
+      <translation>Programa de instalação %1</translation>
     </message>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="397"/>
@@ -524,12 +524,12 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="32"/>
       <source>Set filesystem label on %1.</source>
-      <translation>Definir etiqueta do sistema de arquivos em %1.</translation>
+      <translation>Definir sistema de arquivos em %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="39"/>
       <source>Set filesystem label &lt;strong&gt;%1&lt;/strong&gt; to partition &lt;strong&gt;%2&lt;/strong&gt;.</source>
-      <translation>Definir etiqueta do sistema de arquivos &lt;strong&gt;%1&lt;/strong&gt; para partição &lt;strong&gt;%2&lt;/strong&gt;.</translation>
+      <translation>Definir o sistema de arquivos &lt;strong&gt;%1&lt;/strong&gt; para partição &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="70"/>
@@ -573,12 +573,12 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1732"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
-      <translation>&lt;strong&gt;Particionamento manual&lt;/strong&gt;&lt;br/&gt;Você pode criar ou redimensionar partições.</translation>
+      <translation>&lt;strong&gt;Particionamento manual&lt;/strong&gt;&lt;br/&gt;Você mesmo pode criar e redimensionar elas</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="894"/>
       <source>Reuse %1 as home partition for %2.</source>
-      <translation>Reutilizar %1 como partição home para %2.</translation>
+      <translation>Usar %1 como partição home para %2.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1030"/>
@@ -598,7 +598,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1165"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
-      <translation>&lt;strong&gt;Selecione uma partição para instalação&lt;/strong&gt;</translation>
+      <translation>&lt;strong&gt;Selecione uma partição para instalação em&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1226"/>
@@ -626,7 +626,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1466"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1491"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
-      <translation>&lt;strong&gt;Apagar disco&lt;/strong&gt;&lt;br/&gt;Isto &lt;font color="red"&gt;excluirá&lt;/font&gt; todos os dados presentes atualmente no dispositivo de armazenamento selecionado.</translation>
+      <translation>&lt;strong&gt;Formatar o disco&lt;/strong&gt;&lt;br/&gt;isso vai &lt;font color="red"&gt;excluir&lt;/font&gt; todos os dados presentes atualmente no dispositivo de armazenamento selecionado.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1411"/>
@@ -1041,7 +1041,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="59"/>
       <source>Partition &amp;Type:</source>
-      <translation>&amp;Tipo da partição:</translation>
+      <translation>partição &amp;Type:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="71"/>
@@ -1173,7 +1173,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="69"/>
       <source>What kind of partition table do you want to create?</source>
-      <translation>Que tipo de tabela de partições você deseja criar?</translation>
+      <translation>Qual tipo de tabela de partição quer criar?</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="76"/>
@@ -1206,7 +1206,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="88"/>
       <source>The installer failed to create a partition table on %1.</source>
-      <translation>O instalador não conseguiu criar uma tabela de partições em %1.</translation>
+      <translation>O instalador não conseguiu criar a tabela de partições em %1.</translation>
     </message>
   </context>
   <context>

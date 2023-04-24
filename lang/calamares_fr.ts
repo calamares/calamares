@@ -184,7 +184,7 @@
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="30"/>
       <source>Programmed job failure was explicitly requested.</source>
-      <translation>L'échec de la tâche programmée a été explicitement demandée.</translation>
+      <translation>L'échec de la tâche programmée a été explicitement demandé.</translation>
     </message>
   </context>
   <context>
@@ -386,12 +386,12 @@ Lien copié dans le presse-papiers</translation>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="312"/>
       <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-      <translation>Le programme de configuration de %1 est sur le point de procéder aux changements sur le disque afin de configurer %2.&lt;br/&gt; &lt;strong&gt;Vous ne pourrez pas annulez ces changements.&lt;/strong&gt;</translation>
+      <translation>Le programme de configuration de %1 est sur le point de procéder aux changements sur le disque afin de configurer %2.&lt;br/&gt; &lt;strong&gt;Vous ne pourrez pas annuler ces changements.&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="315"/>
       <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-      <translation>L'installateur %1 est sur le point de procéder aux changements sur le disque afin d'installer %2.&lt;br/&gt; &lt;strong&gt;Vous ne pourrez pas annulez ces changements.&lt;strong&gt;</translation>
+      <translation>L'installateur %1 est sur le point de procéder aux changements sur le disque afin d'installer %2.&lt;br/&gt; &lt;strong&gt;Vous ne pourrez pas annuler ces changements.&lt;strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="318"/>
@@ -657,7 +657,7 @@ L'installateur se fermera et les changements seront perdus.</translation>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1482"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation>Ce péiphérique de stockage contient déjà plusieurs systèmes d'exploitation. Que souhaitez-vous faire ?&lt;br/&gt;Vous pourrez relire et confirmer vos choix avant que les modifications soient effectuées sur le périphérique de stockage.</translation>
+      <translation>Ce périphérique de stockage contient déjà plusieurs systèmes d'exploitation. Que souhaitez-vous faire ?&lt;br/&gt;Vous pourrez relire et confirmer vos choix avant que les modifications soient effectuées sur le périphérique de stockage.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1554"/>
@@ -1336,7 +1336,7 @@ L'installateur se fermera et les changements seront perdus.</translation>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="91"/>
       <source>&lt;br&gt;&lt;br&gt;This is the recommended partition table type for modern systems which start from an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.</source>
-      <translation>&lt;br&gt;&lt;br&gt;Ceci est le type de tables de partition recommandé pour les systèmes modernes qui démarrent depuis un environnement &lt;strong&gt;EFI&lt;/strong&gt;.</translation>
+      <translation>&lt;br&gt;&lt;br&gt;Ceci est le type de table de partitions recommandé pour les systèmes modernes qui démarrent depuis un environnement &lt;strong&gt;EFI&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="80"/>
@@ -1374,7 +1374,7 @@ L'installateur se fermera et les changements seront perdus.</translation>
     <message>
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="121"/>
       <source>Skip writing LUKS configuration for Dracut: "/" partition is not encrypted</source>
-      <translation>Ne pas enreigstrer la configuration LUKS pour Dracut : la partition "/" n'est pas chiffrée</translation>
+      <translation>Ne pas enregistrer la configuration LUKS pour Dracut : la partition "/" n'est pas chiffrée</translation>
     </message>
     <message>
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="138"/>
@@ -1831,7 +1831,7 @@ L'installateur se fermera et les changements seront perdus.</translation>
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="30"/>
       <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>Les paramètres régionaux systèmes affectent la langue et le jeu de caractère pour la ligne de commande et différents éléments d'interface.&lt;br/&gt;Le paramètre actuel est &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+      <translation>Les paramètres régionaux systèmes affectent la langue et le jeu de caractères pour la ligne de commande et différents éléments d'interface.&lt;br/&gt;Le paramètre actuel est &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="54"/>
@@ -1902,7 +1902,7 @@ L'installateur se fermera et les changements seront perdus.</translation>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="150"/>
       <source>This setup procedure can install proprietary software that is subject to licensing terms in order to provide additional features and enhance the user experience.</source>
-      <translation>La procédure de configuration peut installer des logiciels propriétaires qui sont assujetti à des accords de licence afin de fournir des fonctionnalités supplémentaires et améliorer l'expérience utilisateur.</translation>
+      <translation>La procédure de configuration peut installer des logiciels propriétaires qui sont assujettis à des accords de licence afin de fournir des fonctionnalités supplémentaires et améliorer l'expérience utilisateur.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="155"/>
@@ -2502,7 +2502,7 @@ L'installateur se fermera et les changements seront perdus.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="311"/>
       <source>Bad integer value of setting - %1</source>
-      <translation>Valeur incorrect du paramètre - %1</translation>
+      <translation>Valeur incorrecte du paramètre - %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="313"/>
@@ -2532,7 +2532,7 @@ L'installateur se fermera et les changements seront perdus.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="327"/>
       <source>Opening the configuration file failed</source>
-      <translation>L'ouverture du fichier de configuration a échouée</translation>
+      <translation>L'ouverture du fichier de configuration a échoué</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="329"/>
@@ -2670,7 +2670,7 @@ L'installateur se fermera et les changements seront perdus.</translation>
       <location filename="../src/modules/users/page_usersetup.ui" line="349"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="374"/>
       <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</source>
-      <translation>&lt;small&gt;Veuillez entrer le même mot de passe deux fois afin de vérifier qu'il n'y ait pas d'erreur de frappe. Un bon mot de passe doit contenir un mélange de lettres, de nombres et de caractères de ponctuation, contenir au moins huit caractères et être changé à des intervalles réguliers.&lt;/small&gt;</translation>
+      <translation>&lt;small&gt;Veuillez entrer le même mot de passe deux fois afin de vérifier qu'il n'y ait pas d'erreur de frappe. Un bon mot de passe doit contenir un mélange de lettres, de nombres et de caractères de ponctuation, contenir au moins huit caractères et être changé à intervalles réguliers.&lt;/small&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="355"/>
@@ -2713,7 +2713,7 @@ L'installateur se fermera et les changements seront perdus.</translation>
       <location filename="../src/modules/users/page_usersetup.ui" line="519"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="544"/>
       <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</source>
-      <translation>&lt;small&gt;Veuillez entrer le même mot de passe deux fois, afin de vérifier qu'ils n'y ait pas d'erreur de frappe.&lt;/small&gt;</translation>
+      <translation>&lt;small&gt;Veuillez entrer le même mot de passe deux fois, afin de vérifier qu'il n'y ait pas d'erreur de frappe.&lt;/small&gt;</translation>
     </message>
   </context>
   <context>
@@ -3639,7 +3639,7 @@ Sortie
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="89"/>
       <source>passwd terminated with error code %1.</source>
-      <translation>passwd c'est arrêté avec le code d'erreur %1.</translation>
+      <translation>passwd s'est arrêté avec le code d'erreur %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="97"/>
@@ -3687,7 +3687,7 @@ Sortie
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="78"/>
       <source>Cannot open /etc/timezone for writing</source>
-      <translation>Impossible d'ourvir /etc/timezone pour écriture</translation>
+      <translation>Impossible d'ouvrir /etc/timezone pour écriture</translation>
     </message>
   </context>
   <context>
@@ -4160,12 +4160,12 @@ Sortie
       <location filename="../src/calamares/calamares-sidebar.qml" line="115"/>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="163"/>
       <source>Debug</source>
-      <translation>Débug</translation>
+      <translation>Debug</translation>
     </message>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="149"/>
       <source>Show information about Calamares</source>
-      <translation type="unfinished"/>
+      <translation>Afficher les informations à propos de Calamares</translation>
     </message>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="165"/>
