@@ -19,7 +19,7 @@ static const char s_header[]
 static const char s_footer[]
     = QT_TRANSLATE_NOOP( "AboutData",
                          "Thanks to <a href=\"https://calamares.io/team/\">the Calamares team</a> "
-                         "and the <a href=\"https://www.transifex.com/calamares/calamares/\">Calamares "
+                         "and the <a href=\"https://app.transifex.com/calamares/calamares/\">Calamares "
                          "translators team</a>.<br/><br/>"
                          "<a href=\"https://calamares.io/\">Calamares</a> "
                          "development is sponsored by <br/>"
