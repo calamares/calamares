@@ -4,10 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Adriaan de Groot <groot@kde.org>, 2018
-# Balázs Meskó <meskobalazs@mailbox.org>, 2018
-# miku84, 2019
-# Lajos Pasztor <mrlajos@gmail.com>, 2019
+# Temuri Doghonadze <temuri.doghonadze@gmail.com>, 2023
 # 
 #, fuzzy
 msgid ""
@@ -16,37 +13,37 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-29 16:17+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Lajos Pasztor <mrlajos@gmail.com>, 2019\n"
-"Language-Team: Hungarian (https://app.transifex.com/calamares/teams/20061/hu/)\n"
+"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>, 2023\n"
+"Language-Team: Georgian (https://app.transifex.com/calamares/teams/20061/ka/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: hu\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: ka\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: src/modules/grubcfg/main.py:28
 msgid "Configure GRUB."
-msgstr "GRUB konfigurálása."
+msgstr "GRUB-ის მორგება."
 
 #: src/modules/mount/main.py:42
 msgid "Mounting partitions."
-msgstr "Partíciók csatolása."
+msgstr "დანაყოფების მიმაგრება."
 
 #: src/modules/mount/main.py:88 src/modules/mount/main.py:124
 msgid "Internal error mounting zfs datasets"
-msgstr ""
+msgstr "ZFS მონაცემის სეტების მიმაგრების შიდა შეცდომა"
 
 #: src/modules/mount/main.py:100
 msgid "Failed to import zpool"
-msgstr ""
+msgstr "Zpool- ის შემოტანის შეცდომა"
 
 #: src/modules/mount/main.py:116
 msgid "Failed to unlock zpool"
-msgstr ""
+msgstr "Zpool- ის განბლოკვის შეცდომა"
 
 #: src/modules/mount/main.py:133 src/modules/mount/main.py:138
 msgid "Failed to set zfs mountpoint"
-msgstr ""
+msgstr "ZFS-ის მიმაგრების წერტილის დაყენების შეცდომა"
 
 #: src/modules/mount/main.py:229 src/modules/initcpiocfg/main.py:235
 #: src/modules/initcpiocfg/main.py:239 src/modules/rawfs/main.py:164
@@ -56,108 +53,106 @@ msgstr ""
 #: src/modules/fstab/main.py:400 src/modules/fstab/main.py:428
 #: src/modules/localecfg/main.py:140 src/modules/networkcfg/main.py:105
 msgid "Configuration Error"
-msgstr "Konfigurációs hiba"
+msgstr "კონფიგურაციის შეცდომა"
 
 #: src/modules/mount/main.py:230 src/modules/initcpiocfg/main.py:236
 #: src/modules/rawfs/main.py:165 src/modules/initramfscfg/main.py:86
 #: src/modules/openrcdmcryptcfg/main.py:73 src/modules/fstab/main.py:395
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr "Nincsenek partíciók meghatározva a <pre>{!s}</pre> használatához."
+msgstr "<pre>{!s}</pre>-სთვის გამოსაყენებელი დანაყოფები აღწერილი არაა."
 
 #: src/modules/mount/main.py:253
 msgid "zfs mounting error"
-msgstr ""
+msgstr "zfs-ის მიმაგრების შეცდომა"
 
 #: src/modules/services-systemd/main.py:26
 msgid "Configure systemd services"
-msgstr "systemd szolgáltatások beállítása"
+msgstr "Systemd-ის სერვისების მორგება"
 
 #: src/modules/services-systemd/main.py:59
 #: src/modules/services-openrc/main.py:93
 msgid "Cannot modify service"
-msgstr "a szolgáltatást nem lehet módosítani"
+msgstr "სერვისის შეცვლის შეცდომა"
 
 #: src/modules/services-systemd/main.py:60
 msgid ""
 "<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
 msgstr ""
-"<code>systemctl {arg!s}</code> hívás a chroot-ban hibakódot okozott {num!s}."
+"<code>systemctl {arg!s}</code>-ის გამოძახებამ chroot-ში დააბრუნა შეცდომის "
+"კოდი{num!s}."
 
 #: src/modules/services-systemd/main.py:63
 #: src/modules/services-systemd/main.py:69
 msgid "Cannot enable systemd service <code>{name!s}</code>."
-msgstr ""
-"Nem sikerült a systemd szolgáltatást engedélyezni: <code>{name!s}</code>."
+msgstr "შეცდომა systemd-ის სერვისის <code>{name!s}</code> ჩართვისას."
 
 #: src/modules/services-systemd/main.py:65
 msgid "Cannot enable systemd target <code>{name!s}</code>."
-msgstr "Nem sikerült a systemd célt engedélyezni: <code>{name!s}</code>."
+msgstr "შეცდომა systemd-ის სამიზნის <code>{name!s}</code> ჩართვისას."
 
 #: src/modules/services-systemd/main.py:67
 msgid "Cannot enable systemd timer <code>{name!s}</code>."
-msgstr ""
+msgstr "შეცდომა systemd-ის ტაიმერის <code>{name!s}</code> ჩართვისას."
 
 #: src/modules/services-systemd/main.py:71
 msgid "Cannot disable systemd target <code>{name!s}</code>."
-msgstr "Nem sikerült a systemd cél <code>{name!s}</code> letiltása."
+msgstr "შეცდომა systemd-ის სამიზნის <code>{name!s}</code> ჩართვისას."
 
 #: src/modules/services-systemd/main.py:73
 msgid "Cannot mask systemd unit <code>{name!s}</code>."
-msgstr "Nem maszkolható systemd egység: <code>{name!s}</code>."
+msgstr "შეცდომა systemd-ის სერვისის <code>{name!s}</code> გამორთვისას."
 
 #: src/modules/services-systemd/main.py:75
 msgid ""
 "Unknown systemd commands <code>{command!s}</code> and "
 "<code>{suffix!s}</code> for unit {name!s}."
 msgstr ""
-"Ismeretlen systemd parancsok <code>{command!s}</code> és "
-"<code>{suffix!s}</code> a {name!s} egységhez. "
 
 #: src/modules/unpackfs/main.py:34
 msgid "Filling up filesystems."
-msgstr "Fájlrendszerek betöltése."
+msgstr "ფაილური სისტემების შევსება."
 
 #: src/modules/unpackfs/main.py:254
 msgid "rsync failed with error code {}."
-msgstr "az rsync elhalt a(z) {} hibakóddal"
+msgstr "rsync დასრულდა შეცდომის კოდით {}."
 
 #: src/modules/unpackfs/main.py:299
 msgid "Unpacking image {}/{}, file {}/{}"
-msgstr ""
+msgstr "გაშლა გამოსახულების {}/{}, ფაილის {}/{}"
 
 #: src/modules/unpackfs/main.py:314
 msgid "Starting to unpack {}"
-msgstr ""
+msgstr "{}-ის გაშლის დასაწყისი"
 
 #: src/modules/unpackfs/main.py:323 src/modules/unpackfs/main.py:467
 msgid "Failed to unpack image \"{}\""
-msgstr "\"{}\" kép kicsomagolása nem sikerült"
+msgstr "შეცდომა გამოსახულების (\"{}\") გაშლისას"
 
 #: src/modules/unpackfs/main.py:430
 msgid "No mount point for root partition"
-msgstr "Nincs betöltési pont a root partíciónál"
+msgstr "ძირითადი დანაყოფის მიმაგრების წერტილი ვერ ვიპოვე"
 
 #: src/modules/unpackfs/main.py:431
 msgid "globalstorage does not contain a \"rootMountPoint\" key."
-msgstr ""
+msgstr "globalstorage \"rootMountPoint\" გასაღებს არ შეიცავს."
 
 #: src/modules/unpackfs/main.py:434
 msgid "Bad mount point for root partition"
-msgstr "Rossz betöltési pont a root partíciónál"
+msgstr "ძირითადი დანაყოფის არასწორი მიმაგრების წერტილი"
 
 #: src/modules/unpackfs/main.py:435
 msgid "rootMountPoint is \"{}\", which does not exist."
-msgstr ""
+msgstr "ძირითადი დანაყოფის მიმაგრების წერტილია \"{}\", რომელიც არ არსებობს."
 
 #: src/modules/unpackfs/main.py:439 src/modules/unpackfs/main.py:455
 #: src/modules/unpackfs/main.py:459 src/modules/unpackfs/main.py:465
 #: src/modules/unpackfs/main.py:480
 msgid "Bad unpackfs configuration"
-msgstr ""
+msgstr "არასწორი unpackfs-ის კონფიგურაცია"
 
 #: src/modules/unpackfs/main.py:440
 msgid "There is no configuration information."
-msgstr ""
+msgstr "კონფიგურაციის ინფორმაცია მითითებული არაა."
 
 #: src/modules/unpackfs/main.py:456
 msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
@@ -165,7 +160,7 @@ msgstr ""
 
 #: src/modules/unpackfs/main.py:460
 msgid "The source filesystem \"{}\" does not exist"
-msgstr "A forrás fájlrendszer \"{}\" nem létezik"
+msgstr "საწყისი ფაილური სისტემა \"{}\" არ არსებობს"
 
 #: src/modules/unpackfs/main.py:466
 msgid ""
@@ -175,51 +170,51 @@ msgstr ""
 
 #: src/modules/unpackfs/main.py:481
 msgid "The destination \"{}\" in the target system is not a directory"
-msgstr "Az elérés \"{}\" nem létező könyvtár a cél rendszerben"
+msgstr ""
 
 #: src/modules/displaymanager/main.py:524
 msgid "Cannot write KDM configuration file"
-msgstr "A KDM konfigurációs fájl nem írható"
+msgstr "KDM-ის კონფიგურაციის ფაილის ჩაწერა შეუძლებელია"
 
 #: src/modules/displaymanager/main.py:525
 msgid "KDM config file {!s} does not exist"
-msgstr "A(z) {!s} KDM konfigurációs fájl nem létezik"
+msgstr "KDM-ის კონფიგურაციის ფაილი არ არსებობს"
 
 #: src/modules/displaymanager/main.py:586
 msgid "Cannot write LXDM configuration file"
-msgstr "Az LXDM konfigurációs fájl nem írható"
+msgstr "LXDM-ის კონფიგურაციის ფაილის ჩაწერა შეუძლებელია"
 
 #: src/modules/displaymanager/main.py:587
 msgid "LXDM config file {!s} does not exist"
-msgstr "A(z) {!s} LXDM konfigurációs fájl nem létezik"
+msgstr "LXDM-ის კონფიგურაციის ფაილი არ არსებობს"
 
 #: src/modules/displaymanager/main.py:670
 msgid "Cannot write LightDM configuration file"
-msgstr "A LightDM konfigurációs fájl nem írható"
+msgstr "LightDM-ის კონფიგურაციის ფაილის ჩაწერა შეუძლებელია"
 
 #: src/modules/displaymanager/main.py:671
 msgid "LightDM config file {!s} does not exist"
-msgstr "A(z) {!s} LightDM konfigurációs fájl nem létezik"
+msgstr "LightDM-ის კონფიგურაციის ფაილი არ არსებობს"
 
 #: src/modules/displaymanager/main.py:745
 msgid "Cannot configure LightDM"
-msgstr "A LightDM nem állítható be"
+msgstr "LightDM-ის მორგების შეცდომა"
 
 #: src/modules/displaymanager/main.py:746
 msgid "No LightDM greeter installed."
-msgstr "Nincs LightDM üdvözlő telepítve."
+msgstr "LightDM greeter დაყენებული არაა."
 
 #: src/modules/displaymanager/main.py:777
 msgid "Cannot write SLIM configuration file"
-msgstr "A SLIM konfigurációs fájl nem írható"
+msgstr "SLIM-ის კონფიგურაციის ფაილის ჩაწერის შეცდომა"
 
 #: src/modules/displaymanager/main.py:778
 msgid "SLIM config file {!s} does not exist"
-msgstr "A(z) {!s} SLIM konfigurációs fájl nem létezik"
+msgstr "SLIM-ის კონფიგურაციის ფაილი არ არსებობს"
 
 #: src/modules/displaymanager/main.py:992
 msgid "No display managers selected for the displaymanager module."
-msgstr "Nincs kijelzőkezelő kiválasztva a kijelzőkezelő modulhoz."
+msgstr ""
 
 #: src/modules/displaymanager/main.py:993
 msgid ""
@@ -229,103 +224,97 @@ msgstr ""
 
 #: src/modules/displaymanager/main.py:1075
 msgid "Display manager configuration was incomplete"
-msgstr "A kijelzőkezelő konfigurációja hiányos volt"
+msgstr "ეკრანის მმართველის მორგება დასრულებული არაა"
 
 #: src/modules/initcpiocfg/main.py:28
 msgid "Configuring mkinitcpio."
-msgstr "mkinitcpio konfigurálása."
+msgstr "Mkinitcpio-ის მორგება."
 
 #: src/modules/initcpiocfg/main.py:240 src/modules/initramfscfg/main.py:90
 #: src/modules/openrcdmcryptcfg/main.py:77 src/modules/fstab/main.py:401
 #: src/modules/localecfg/main.py:141 src/modules/networkcfg/main.py:106
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr "Nincs root csatolási pont megadva a <pre>{!s}</pre> használatához."
+msgstr ""
 
 #: src/modules/rawfs/main.py:26
 msgid "Installing data."
-msgstr "Adatok telepítése."
+msgstr "მონაცემების დაყენება."
 
 #: src/modules/services-openrc/main.py:29
 msgid "Configure OpenRC services"
-msgstr "OpenRC szolgáltatások beállítása"
+msgstr "OpenRC-ის სერვისების მორგება"
 
 #: src/modules/services-openrc/main.py:57
 msgid "Cannot add service {name!s} to run-level {level!s}."
-msgstr "Nem lehet  {name!s} szolgáltatást hozzáadni a run-level {level!s}."
+msgstr ""
 
 #: src/modules/services-openrc/main.py:59
 msgid "Cannot remove service {name!s} from run-level {level!s}."
-msgstr "Nem lehet törölni a {name!s} szolgáltatást a {level!s} futás-szintből"
+msgstr ""
 
 #: src/modules/services-openrc/main.py:61
 msgid ""
 "Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
 "level {level!s}."
 msgstr ""
-"Ismeretlen service-action <code>{arg!s}</code> a szolgáltatáshoz {name!s} in"
-" run-level {level!s}."
 
 #: src/modules/services-openrc/main.py:94
 msgid ""
 "<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
 msgstr ""
-"<code>rc-update {arg!s}</code> hívás a chroot-ban hibakódot adott: {num!s}."
 
 #: src/modules/services-openrc/main.py:101
 msgid "Target runlevel does not exist"
-msgstr "A cél futási szint nem létezik"
+msgstr "სამიზნე გაშვების დონე არ არსებობს"
 
 #: src/modules/services-openrc/main.py:102
 msgid ""
 "The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
 "exist."
 msgstr ""
-"A futási-szint elérési útja {level!s} ami <code>{path!s}</code>, nem "
-"létezik."
 
 #: src/modules/services-openrc/main.py:110
 msgid "Target service does not exist"
-msgstr "A cél szolgáltatás nem létezik"
+msgstr "სამიზნე სერვისი არ არსებობს"
 
 #: src/modules/services-openrc/main.py:111
 msgid ""
 "The path for service {name!s} is <code>{path!s}</code>, which does not "
 "exist."
 msgstr ""
-"A szolgáltatás {name!s} elérési útja <code>{path!s}</code>, nem létezik."
 
 #: src/modules/plymouthcfg/main.py:27
 msgid "Configure Plymouth theme"
-msgstr "Plymouth téma beállítása"
+msgstr "Plymouth-ის თემის მორგება"
 
 #: src/modules/packages/main.py:54 src/modules/packages/main.py:65
 #: src/modules/packages/main.py:75
 msgid "Install packages."
-msgstr "Csomagok telepítése."
+msgstr "პაკეტების დაყენება."
 
 #: src/modules/packages/main.py:63
 #, python-format
 msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "Csomagok feldolgozása (%(count)d / %(total)d)"
+msgstr ""
 
 #: src/modules/packages/main.py:68
 #, python-format
 msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
-msgstr[0] "Egy csomag telepítése."
-msgstr[1] "%(num)d csomag telepítése."
+msgstr[0] "ერთი პაკეტის დაყენება."
+msgstr[1] "%(num)d პაკეტის დაყენება."
 
 #: src/modules/packages/main.py:71
 #, python-format
 msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
-msgstr[0] "Egy csomag eltávolítása."
-msgstr[1] "%(num)d csomag eltávolítása."
+msgstr[0] "ერთი პაკეტის წაშლა."
+msgstr[1] "%(num)d პაკეტის წაშლა."
 
 #: src/modules/packages/main.py:725 src/modules/packages/main.py:737
 #: src/modules/packages/main.py:765
 msgid "Package Manager error"
-msgstr ""
+msgstr "პაკეტების მმართველის შეცდომა"
 
 #: src/modules/packages/main.py:726
 msgid ""
@@ -347,15 +336,15 @@ msgstr ""
 
 #: src/modules/bootloader/main.py:43
 msgid "Install bootloader."
-msgstr "Rendszerbetöltő telepítése."
+msgstr "ჩამტვირთავის დაყენება."
 
 #: src/modules/bootloader/main.py:614
 msgid "Failed to install grub, no partitions defined in global storage"
-msgstr ""
+msgstr "GRUB-ის დაყენების შეცდომა. გლობალურ საცავში დანაყოფები აღწერილი არაა"
 
 #: src/modules/bootloader/main.py:782
 msgid "Bootloader installation error"
-msgstr ""
+msgstr "ჩამტვირთავის დაყენების შეცდომა"
 
 #: src/modules/bootloader/main.py:783
 msgid ""
@@ -365,7 +354,7 @@ msgstr ""
 
 #: src/modules/hwclock/main.py:26
 msgid "Setting hardware clock."
-msgstr "Rendszeridő beállítása."
+msgstr "აპარატურული საათის დაყენება."
 
 #: src/modules/mkinitfs/main.py:27
 msgid "Creating initramfs with mkinitfs."
@@ -377,27 +366,27 @@ msgstr ""
 
 #: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
 msgid "The exit code was {}"
-msgstr "A kilépési kód {} volt."
+msgstr "გამოსვლის კოდია {}"
 
 #: src/modules/dracut/main.py:27
 msgid "Creating initramfs with dracut."
-msgstr "initramfs létrehozása ezzel: dracut."
+msgstr ""
 
 #: src/modules/dracut/main.py:49
 msgid "Failed to run dracut on the target"
-msgstr "dracut futtatása nem sikerült a célon."
+msgstr ""
 
 #: src/modules/initramfscfg/main.py:32
 msgid "Configuring initramfs."
-msgstr "initramfs konfigurálása."
+msgstr "Initramfs-ის გენერაცია."
 
 #: src/modules/openrcdmcryptcfg/main.py:26
 msgid "Configuring OpenRC dmcrypt service."
-msgstr "OpenRC dmcrypt szolgáltatás konfigurálása."
+msgstr "OpenRC dmcrypt-ის სერვისის მორგება."
 
 #: src/modules/fstab/main.py:28
 msgid "Writing fstab."
-msgstr "fstab írása."
+msgstr "'fstab'-ის ჩაწერა."
 
 #: src/modules/fstab/main.py:429
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
@@ -405,17 +394,17 @@ msgstr ""
 
 #: src/modules/dummypython/main.py:35
 msgid "Dummy python job."
-msgstr "Hamis Python feladat."
+msgstr ""
 
 #: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
 #: src/modules/dummypython/main.py:94
 msgid "Dummy python step {}"
-msgstr "Hamis {}. Python lépés"
+msgstr ""
 
 #: src/modules/localecfg/main.py:31
 msgid "Configuring locales."
-msgstr "nyelvi értékek konfigurálása."
+msgstr "ენების მორგება."
 
 #: src/modules/networkcfg/main.py:29
 msgid "Saving network configuration."
-msgstr "Hálózati konfiguráció mentése."
+msgstr "ქსელის კონფიგურაციის შენახვა."

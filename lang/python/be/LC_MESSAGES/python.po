@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Źmicier Turok <nashtlumach@gmail.com>, 2020
+# Źmicier Turok <nashtlumach@gmail.com>, 2022
 # 
 #, fuzzy
 msgid ""
@@ -13,8 +13,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-29 16:17+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Źmicier Turok <nashtlumach@gmail.com>, 2020\n"
-"Language-Team: Belarusian (https://www.transifex.com/calamares/teams/20061/be/)\n"
+"Last-Translator: Źmicier Turok <nashtlumach@gmail.com>, 2022\n"
+"Language-Team: Belarusian (https://app.transifex.com/calamares/teams/20061/be/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,7 +23,7 @@ msgstr ""
 
 #: src/modules/grubcfg/main.py:28
 msgid "Configure GRUB."
-msgstr "Наладзіць GRUB."
+msgstr "Наладжванне GRUB."
 
 #: src/modules/mount/main.py:42
 msgid "Mounting partitions."
@@ -31,19 +31,19 @@ msgstr "Мантаванне раздзелаў."
 
 #: src/modules/mount/main.py:88 src/modules/mount/main.py:124
 msgid "Internal error mounting zfs datasets"
-msgstr ""
+msgstr "Унутраная памылка мантавання набораў даных zfs"
 
 #: src/modules/mount/main.py:100
 msgid "Failed to import zpool"
-msgstr ""
+msgstr "Не ўдалося імпартаваць zpool"
 
 #: src/modules/mount/main.py:116
 msgid "Failed to unlock zpool"
-msgstr ""
+msgstr "Не ўдалося разблакаваць zpool"
 
 #: src/modules/mount/main.py:133 src/modules/mount/main.py:138
 msgid "Failed to set zfs mountpoint"
-msgstr ""
+msgstr "Не ўдалося вызначыць пункт мантавання zfs"
 
 #: src/modules/mount/main.py:229 src/modules/initcpiocfg/main.py:235
 #: src/modules/initcpiocfg/main.py:239 src/modules/rawfs/main.py:164
@@ -63,11 +63,11 @@ msgstr "Раздзелы для <pre>{!s}</pre> не вызначаныя."
 
 #: src/modules/mount/main.py:253
 msgid "zfs mounting error"
-msgstr ""
+msgstr "памылка мантавання zfs"
 
 #: src/modules/services-systemd/main.py:26
 msgid "Configure systemd services"
-msgstr "Наладзіць службы systemd"
+msgstr "Наладжванне службаў systemd"
 
 #: src/modules/services-systemd/main.py:59
 #: src/modules/services-openrc/main.py:93
@@ -90,7 +90,7 @@ msgstr "Немагчыма ўключыць мэту systemd <code>{name!s}</cod
 
 #: src/modules/services-systemd/main.py:67
 msgid "Cannot enable systemd timer <code>{name!s}</code>."
-msgstr ""
+msgstr "Не ўдалося ўключыць таймер systemd <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:71
 msgid "Cannot disable systemd target <code>{name!s}</code>."
@@ -126,7 +126,7 @@ msgstr "Запуск распакоўвання {}"
 
 #: src/modules/unpackfs/main.py:323 src/modules/unpackfs/main.py:467
 msgid "Failed to unpack image \"{}\""
-msgstr "Не атрымалася распакаваць вобраз \"{}\""
+msgstr "Не ўдалося распакаваць вобраз \"{}\""
 
 #: src/modules/unpackfs/main.py:430
 msgid "No mount point for root partition"
@@ -134,7 +134,7 @@ msgstr "Для каранёвага раздзела няма пункта ма�
 
 #: src/modules/unpackfs/main.py:431
 msgid "globalstorage does not contain a \"rootMountPoint\" key."
-msgstr ""
+msgstr "globalstorage не змяшчае ключа \"rootMountPoint\"."
 
 #: src/modules/unpackfs/main.py:434
 msgid "Bad mount point for root partition"
@@ -142,17 +142,17 @@ msgstr "Хібны пункт мантавання для каранёвага �
 
 #: src/modules/unpackfs/main.py:435
 msgid "rootMountPoint is \"{}\", which does not exist."
-msgstr ""
+msgstr "rootMountPoint \"{}\" не існуе."
 
 #: src/modules/unpackfs/main.py:439 src/modules/unpackfs/main.py:455
 #: src/modules/unpackfs/main.py:459 src/modules/unpackfs/main.py:465
 #: src/modules/unpackfs/main.py:480
 msgid "Bad unpackfs configuration"
-msgstr ""
+msgstr "Хібная канфігурацыя unpackfs"
 
 #: src/modules/unpackfs/main.py:440
 msgid "There is no configuration information."
-msgstr ""
+msgstr "Няма звестак канфігурацыі."
 
 #: src/modules/unpackfs/main.py:456
 msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
@@ -167,10 +167,12 @@ msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed."
 msgstr ""
+"Не ўдалося знайсці unsquashfs, праверце ці ўсталяваны ў вас пакунак "
+"squashfs-tools."
 
 #: src/modules/unpackfs/main.py:481
 msgid "The destination \"{}\" in the target system is not a directory"
-msgstr "Пункт прызначэння \"{}\" у мэтавай сістэме не з’яўляецца каталогам"
+msgstr "Пункт прызначэння \"{}\" у мэтавай сістэме не ёсць каталогам"
 
 #: src/modules/displaymanager/main.py:524
 msgid "Cannot write KDM configuration file"
@@ -214,23 +216,23 @@ msgstr "Файл канфігурацыі SLIM {!s} не існуе"
 
 #: src/modules/displaymanager/main.py:992
 msgid "No display managers selected for the displaymanager module."
-msgstr "У модулі дысплейных кіраўнікоў нічога не абрана."
+msgstr "У модулі кіраўнікоў дысплэяў нічога не абрана."
 
 #: src/modules/displaymanager/main.py:993
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
 msgstr ""
-"Спіс дысплейных кіраўнікоў пусты альбо не вызначаны ў both globalstorage і "
+"Спіс кіраўнікоў дысплэяў пусты альбо не вызначаны ў both globalstorage і "
 "displaymanager.conf."
 
 #: src/modules/displaymanager/main.py:1075
 msgid "Display manager configuration was incomplete"
-msgstr "Наладка дысплейнага кіраўніка не завершаная."
+msgstr "Наладжванне кіраўніка дысплэяў не завершана"
 
 #: src/modules/initcpiocfg/main.py:28
 msgid "Configuring mkinitcpio."
-msgstr "Наладка mkinitcpio."
+msgstr "Наладжванне mkinitcpio."
 
 #: src/modules/initcpiocfg/main.py:240 src/modules/initramfscfg/main.py:90
 #: src/modules/openrcdmcryptcfg/main.py:77 src/modules/fstab/main.py:401
@@ -240,19 +242,19 @@ msgstr "Каранёвы пункт мантавання для<pre>{!s}</pre> �
 
 #: src/modules/rawfs/main.py:26
 msgid "Installing data."
-msgstr "Усталёўка даных."
+msgstr "Усталяванне даных."
 
 #: src/modules/services-openrc/main.py:29
 msgid "Configure OpenRC services"
-msgstr "Наладзіць службы OpenRC"
+msgstr "Наладжванне службаў OpenRC"
 
 #: src/modules/services-openrc/main.py:57
 msgid "Cannot add service {name!s} to run-level {level!s}."
-msgstr "Не атрымалася дадаць службу {name!s} на ўзровень запуску  {level!s}."
+msgstr "Не ўдалося дадаць службу {name!s} на ўзровень запуску {level!s}."
 
 #: src/modules/services-openrc/main.py:59
 msgid "Cannot remove service {name!s} from run-level {level!s}."
-msgstr "Не атрымалася выдаліць службу {name!s} з узроўню запуску {level!s}."
+msgstr "Не ўдалося выдаліць службу {name!s} з узроўню запуску {level!s}."
 
 #: src/modules/services-openrc/main.py:61
 msgid ""
@@ -276,7 +278,7 @@ msgstr "Мэтавы ўзровень запуску не існуе"
 msgid ""
 "The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
 "exist."
-msgstr "Шлях <code>{path!s}</code> да ўзроўня запуску {level!s} не існуе."
+msgstr "Шлях <code>{path!s}</code> да ўзроўню запуску {level!s} не існуе."
 
 #: src/modules/services-openrc/main.py:110
 msgid "Target service does not exist"
@@ -290,7 +292,7 @@ msgstr "Шлях <code>{path!s}</code> да службы {level!s} не існу
 
 #: src/modules/plymouthcfg/main.py:27
 msgid "Configure Plymouth theme"
-msgstr "Наладзіць тэму Plymouth"
+msgstr "Наладжванне тэмы Plymouth"
 
 #: src/modules/packages/main.py:54 src/modules/packages/main.py:65
 #: src/modules/packages/main.py:75
@@ -306,10 +308,10 @@ msgstr "Апрацоўка пакункаў (%(count)d / %(total)d)"
 #, python-format
 msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
-msgstr[0] "Усталёўка аднаго пакунка."
-msgstr[1] "Усталёўка %(num)d пакункаў."
-msgstr[2] "Усталёўка %(num)d пакункаў."
-msgstr[3] "Усталёўка%(num)d пакункаў."
+msgstr[0] "Усталяванне аднаго пакунка."
+msgstr[1] "Усталяванне %(num)d пакункаў."
+msgstr[2] "Усталяванне %(num)d пакункаў."
+msgstr[3] "Усталяванне %(num)d пакункаў."
 
 #: src/modules/packages/main.py:71
 #, python-format
@@ -323,25 +325,31 @@ msgstr[3] "Выдаленне %(num)d пакункаў."
 #: src/modules/packages/main.py:725 src/modules/packages/main.py:737
 #: src/modules/packages/main.py:765
 msgid "Package Manager error"
-msgstr ""
+msgstr "Памылка кіраўніка пакункаў"
 
 #: src/modules/packages/main.py:726
 msgid ""
 "The package manager could not prepare updates. The command <pre>{!s}</pre> "
 "returned error code {!s}."
 msgstr ""
+"Кіраўніку пакункаў не ўдалося падрыхтаваць абнаўленні. Загад <pre>{!s}</pre>"
+" вярнуў код памылкі {!s}."
 
 #: src/modules/packages/main.py:738
 msgid ""
 "The package manager could not update the system. The command <pre>{!s}</pre>"
 " returned error code {!s}."
 msgstr ""
+"Кіраўніку пакункаў не ўдалося абнавіць сістэму. Загад <pre>{!s}</pre> вярнуў"
+" код памылкі {!s}."
 
 #: src/modules/packages/main.py:766
 msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."
 msgstr ""
+"Кіраўніку пакункаў не ўдалося ўнесці змены ва ўсталяваную сістэму. Загад "
+"<pre>{!s}</pre> вярнуў код памылкі {!s}."
 
 #: src/modules/bootloader/main.py:43
 msgid "Install bootloader."
@@ -350,20 +358,23 @@ msgstr "Усталяваць загрузчык."
 #: src/modules/bootloader/main.py:614
 msgid "Failed to install grub, no partitions defined in global storage"
 msgstr ""
+"Не ўдалося ўсталяваць grub, у глабальным сховішчы не вызначаны раздзелы"
 
 #: src/modules/bootloader/main.py:782
 msgid "Bootloader installation error"
-msgstr ""
+msgstr "Не ўдалося ўсталяваць загрузчык"
 
 #: src/modules/bootloader/main.py:783
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
 msgstr ""
+"Не ўдалося ўсталяваць загрузчык. Загад усталявання <pre>{!s}</pre> вярнуў "
+"код памылкі {!s}."
 
 #: src/modules/hwclock/main.py:26
 msgid "Setting hardware clock."
-msgstr "Наладка апаратнага гадзінніка."
+msgstr "Наладжванне апаратнага гадзінніка."
 
 #: src/modules/mkinitfs/main.py:27
 msgid "Creating initramfs with mkinitfs."
@@ -371,7 +382,7 @@ msgstr "Стварэнне initramfs праз mkinitfs."
 
 #: src/modules/mkinitfs/main.py:49
 msgid "Failed to run mkinitfs on the target"
-msgstr "Не атрымалася запусціць mkinitfs у пункце прызначэння"
+msgstr "Не ўдалося запусціць mkinitfs у пункце прызначэння"
 
 #: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
 msgid "The exit code was {}"
@@ -383,15 +394,15 @@ msgstr "Стварэнне initramfs з dracut."
 
 #: src/modules/dracut/main.py:49
 msgid "Failed to run dracut on the target"
-msgstr "Не атрымалася запусціць dracut у пункце прызначэння"
+msgstr "Не ўдалося запусціць dracut у пункце прызначэння"
 
 #: src/modules/initramfscfg/main.py:32
 msgid "Configuring initramfs."
-msgstr "Наладка initramfs."
+msgstr "Наладжванне initramfs."
 
 #: src/modules/openrcdmcryptcfg/main.py:26
 msgid "Configuring OpenRC dmcrypt service."
-msgstr "Наладка OpenRC dmcrypt."
+msgstr "Наладжванне OpenRC dmcrypt."
 
 #: src/modules/fstab/main.py:28
 msgid "Writing fstab."
@@ -400,6 +411,7 @@ msgstr "Запіс fstab."
 #: src/modules/fstab/main.py:429
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr ""
+"Не пададзена канфігурацыі <pre>{!s}</pre> для выкарыстання <pre>{!s}</pre>."
 
 #: src/modules/dummypython/main.py:35
 msgid "Dummy python job."
@@ -412,7 +424,7 @@ msgstr "Крок Dummy python {}"
 
 #: src/modules/localecfg/main.py:31
 msgid "Configuring locales."
-msgstr "Наладка лакаляў."
+msgstr "Наладжванне лакаляў."
 
 #: src/modules/networkcfg/main.py:29
 msgid "Saving network configuration."

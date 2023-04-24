@@ -14,7 +14,7 @@ msgstr ""
 "POT-Creation-Date: 2022-05-29 16:17+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Xəyyam Qocayev <xxmn77@gmail.com>, 2022\n"
-"Language-Team: Azerbaijani (https://www.transifex.com/calamares/teams/20061/az/)\n"
+"Language-Team: Azerbaijani (https://app.transifex.com/calamares/teams/20061/az/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -121,12 +121,11 @@ msgstr "rsync uğursuz oldu, xəta kodu: {}."
 #: src/modules/unpackfs/main.py:299
 msgid "Unpacking image {}/{}, file {}/{}"
 msgstr ""
-"Tərkibi çıxarılan quraşdırma faylı - image {}/{}, çıxarılan faylların sayı "
-"{}/{}"
+"{}/{} quraşdırma faylı paketdən çıxarılır, çıxarılan faylların sayı {}/{}"
 
 #: src/modules/unpackfs/main.py:314
 msgid "Starting to unpack {}"
-msgstr "Tərkiblərini açmağa başladılır {}"
+msgstr "Quraşdırma faylı paketdən çıxarılır {}"
 
 #: src/modules/unpackfs/main.py:323 src/modules/unpackfs/main.py:467
 msgid "Failed to unpack image \"{}\""

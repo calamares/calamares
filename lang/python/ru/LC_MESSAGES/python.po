@@ -6,6 +6,7 @@
 # Translators:
 # Aleksey Kabanov <ak099@mail.ru>, 2018
 # ZIzA, 2020
+# Виктор, 2023
 # 
 #, fuzzy
 msgid ""
@@ -14,8 +15,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-29 16:17+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: ZIzA, 2020\n"
-"Language-Team: Russian (https://www.transifex.com/calamares/teams/20061/ru/)\n"
+"Last-Translator: Виктор, 2023\n"
+"Language-Team: Russian (https://app.transifex.com/calamares/teams/20061/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -32,19 +33,19 @@ msgstr "Монтирование разделов."
 
 #: src/modules/mount/main.py:88 src/modules/mount/main.py:124
 msgid "Internal error mounting zfs datasets"
-msgstr ""
+msgstr "Внутренняя ошибка при монтировании наборов данных zfs"
 
 #: src/modules/mount/main.py:100
 msgid "Failed to import zpool"
-msgstr ""
+msgstr "Не удалось импортировать zpool"
 
 #: src/modules/mount/main.py:116
 msgid "Failed to unlock zpool"
-msgstr ""
+msgstr "Не удалось разблокировать zpool"
 
 #: src/modules/mount/main.py:133 src/modules/mount/main.py:138
 msgid "Failed to set zfs mountpoint"
-msgstr ""
+msgstr "Не удалось задать точку монтирования zfs"
 
 #: src/modules/mount/main.py:229 src/modules/initcpiocfg/main.py:235
 #: src/modules/initcpiocfg/main.py:239 src/modules/rawfs/main.py:164
@@ -60,11 +61,11 @@ msgstr "Ошибка конфигурации"
 #: src/modules/rawfs/main.py:165 src/modules/initramfscfg/main.py:86
 #: src/modules/openrcdmcryptcfg/main.py:73 src/modules/fstab/main.py:395
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr "Не определены разделы для использования <pre>{!S}</pre>."
+msgstr "Не определены разделы для использования <pre>{!s}</pre>."
 
 #: src/modules/mount/main.py:253
 msgid "zfs mounting error"
-msgstr ""
+msgstr "Ошибка монтирования zfs"
 
 #: src/modules/services-systemd/main.py:26
 msgid "Configure systemd services"
@@ -73,7 +74,7 @@ msgstr "Настройка systemd сервисов"
 #: src/modules/services-systemd/main.py:59
 #: src/modules/services-openrc/main.py:93
 msgid "Cannot modify service"
-msgstr "Не могу изменить сервис"
+msgstr "Не удается изменить сервис"
 
 #: src/modules/services-systemd/main.py:60
 msgid ""
@@ -84,29 +85,31 @@ msgstr ""
 #: src/modules/services-systemd/main.py:63
 #: src/modules/services-systemd/main.py:69
 msgid "Cannot enable systemd service <code>{name!s}</code>."
-msgstr ""
+msgstr "Не удается включить службу systemd <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:65
 msgid "Cannot enable systemd target <code>{name!s}</code>."
-msgstr ""
+msgstr "Не удается включить таргет systemd <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:67
 msgid "Cannot enable systemd timer <code>{name!s}</code>."
-msgstr ""
+msgstr "Не удается включить таймер systemd <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:71
 msgid "Cannot disable systemd target <code>{name!s}</code>."
-msgstr ""
+msgstr "Не удается отключить таргет systemd <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:73
 msgid "Cannot mask systemd unit <code>{name!s}</code>."
-msgstr ""
+msgstr "Не удается замаскировать юнит systemd <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:75
 msgid ""
 "Unknown systemd commands <code>{command!s}</code> and "
 "<code>{suffix!s}</code> for unit {name!s}."
 msgstr ""
+"Неизвестные команды systemd <code>{command!s}</code> и "
+"<code>{suffix!s}</code> для юнита {name!s}."
 
 #: src/modules/unpackfs/main.py:34
 msgid "Filling up filesystems."
@@ -114,127 +117,132 @@ msgstr "Наполнение файловой системы."
 
 #: src/modules/unpackfs/main.py:254
 msgid "rsync failed with error code {}."
-msgstr ""
+msgstr "Ошибка выполнения rsync с кодом {}."
 
 #: src/modules/unpackfs/main.py:299
 msgid "Unpacking image {}/{}, file {}/{}"
-msgstr ""
+msgstr "Распаковка образа {}/{}, файл {}/{}"
 
 #: src/modules/unpackfs/main.py:314
 msgid "Starting to unpack {}"
-msgstr ""
+msgstr "Начало распаковки {}"
 
 #: src/modules/unpackfs/main.py:323 src/modules/unpackfs/main.py:467
 msgid "Failed to unpack image \"{}\""
-msgstr ""
+msgstr "Не удалось распаковать образ \"{}\""
 
 #: src/modules/unpackfs/main.py:430
 msgid "No mount point for root partition"
-msgstr ""
+msgstr "Нет точки монтирования для раздела root"
 
 #: src/modules/unpackfs/main.py:431
 msgid "globalstorage does not contain a \"rootMountPoint\" key."
-msgstr ""
+msgstr "globalstorage не содержит ключа \"rootMountPoint\"."
 
 #: src/modules/unpackfs/main.py:434
 msgid "Bad mount point for root partition"
-msgstr ""
+msgstr "Неверная точка монтирования для раздела root"
 
 #: src/modules/unpackfs/main.py:435
 msgid "rootMountPoint is \"{}\", which does not exist."
-msgstr ""
+msgstr "rootMountPoint — это \"{}\", которого не существует."
 
 #: src/modules/unpackfs/main.py:439 src/modules/unpackfs/main.py:455
 #: src/modules/unpackfs/main.py:459 src/modules/unpackfs/main.py:465
 #: src/modules/unpackfs/main.py:480
 msgid "Bad unpackfs configuration"
-msgstr ""
+msgstr "Неверная конфигурация unpackfs"
 
 #: src/modules/unpackfs/main.py:440
 msgid "There is no configuration information."
-msgstr ""
+msgstr "Нет информации о конфигурации."
 
 #: src/modules/unpackfs/main.py:456
 msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
-msgstr ""
+msgstr "Файловая система для \"{}\" ({}) не поддерживается вашим текущим ядром"
 
 #: src/modules/unpackfs/main.py:460
 msgid "The source filesystem \"{}\" does not exist"
-msgstr ""
+msgstr "Исходная файловая система \"{}\" не существует"
 
 #: src/modules/unpackfs/main.py:466
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed."
 msgstr ""
+"Не удалось найти unsquashfs, убедитесь, что у вас установлен пакет squashfs-"
+"tools."
 
 #: src/modules/unpackfs/main.py:481
 msgid "The destination \"{}\" in the target system is not a directory"
-msgstr ""
+msgstr "Назначение \"{}\" в целевой системе не является каталогом"
 
 #: src/modules/displaymanager/main.py:524
 msgid "Cannot write KDM configuration file"
-msgstr ""
+msgstr "Не удается записать файл конфигурации KDM"
 
 #: src/modules/displaymanager/main.py:525
 msgid "KDM config file {!s} does not exist"
-msgstr ""
+msgstr "Файл конфигурации KDM {!s} не существует"
 
 #: src/modules/displaymanager/main.py:586
 msgid "Cannot write LXDM configuration file"
-msgstr ""
+msgstr "Не удается записать файл конфигурации LXDM"
 
 #: src/modules/displaymanager/main.py:587
 msgid "LXDM config file {!s} does not exist"
-msgstr ""
+msgstr "Файл конфигурации LXDM {!s} не существует"
 
 #: src/modules/displaymanager/main.py:670
 msgid "Cannot write LightDM configuration file"
-msgstr ""
+msgstr "Не удается записать файл конфигурации LightDM"
 
 #: src/modules/displaymanager/main.py:671
 msgid "LightDM config file {!s} does not exist"
-msgstr ""
+msgstr "Файл конфигурации LightDM {!s} не существует"
 
 #: src/modules/displaymanager/main.py:745
 msgid "Cannot configure LightDM"
-msgstr ""
+msgstr "Не удалось настроить LightDM"
 
 #: src/modules/displaymanager/main.py:746
 msgid "No LightDM greeter installed."
-msgstr ""
+msgstr "LightDM Greeter не установлен."
 
 #: src/modules/displaymanager/main.py:777
 msgid "Cannot write SLIM configuration file"
-msgstr ""
+msgstr "Не удается записать файл конфигурации SLIM"
 
 #: src/modules/displaymanager/main.py:778
 msgid "SLIM config file {!s} does not exist"
-msgstr ""
+msgstr "Файл конфигурации SLIM {!s} не существует"
 
 #: src/modules/displaymanager/main.py:992
 msgid "No display managers selected for the displaymanager module."
-msgstr ""
+msgstr "Для модуля displaymanager не выбраны менеджеры дисплеев."
 
 #: src/modules/displaymanager/main.py:993
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
 msgstr ""
+"Список дисплейных менеджеров пуст или не определен в globalstorage и в "
+"displaymanager.conf."
 
 #: src/modules/displaymanager/main.py:1075
 msgid "Display manager configuration was incomplete"
-msgstr ""
+msgstr "Конфигурация дисплейного менеджера не завершена."
 
 #: src/modules/initcpiocfg/main.py:28
 msgid "Configuring mkinitcpio."
-msgstr ""
+msgstr "Настройка mkinitcpio."
 
 #: src/modules/initcpiocfg/main.py:240 src/modules/initramfscfg/main.py:90
 #: src/modules/openrcdmcryptcfg/main.py:77 src/modules/fstab/main.py:401
 #: src/modules/localecfg/main.py:141 src/modules/networkcfg/main.py:106
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
 msgstr ""
+"Не указана корневая точка монтирования для использования <pre>{!s}</pre>."
 
 #: src/modules/rawfs/main.py:26
 msgid "Installing data."
@@ -246,42 +254,48 @@ msgstr "Настройка служб OpenRC"
 
 #: src/modules/services-openrc/main.py:57
 msgid "Cannot add service {name!s} to run-level {level!s}."
-msgstr ""
+msgstr "Невозможно добавить службу {name!s} на уровень выполнения {level!s}."
 
 #: src/modules/services-openrc/main.py:59
 msgid "Cannot remove service {name!s} from run-level {level!s}."
-msgstr ""
+msgstr "Невозможно удалить службу {name!s} с уровня выполнения {level!s}."
 
 #: src/modules/services-openrc/main.py:61
 msgid ""
 "Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
 "level {level!s}."
 msgstr ""
+"Неизвестное действие службы <code>{arg!s}</code> для службы {name!s} на "
+"уровне выполнения {level!s}."
 
 #: src/modules/services-openrc/main.py:94
 msgid ""
 "<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
 msgstr ""
+"Вызов <code>rc-update {arg!s}</code> в chroot вернул код ошибки {num!s}."
 
 #: src/modules/services-openrc/main.py:101
 msgid "Target runlevel does not exist"
-msgstr ""
+msgstr "Целевой уровень выполнения не существует"
 
 #: src/modules/services-openrc/main.py:102
 msgid ""
 "The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
 "exist."
 msgstr ""
+"Путь уровня выполнения {level!s} — <code>{path!s}</code>, которого не "
+"существует."
 
 #: src/modules/services-openrc/main.py:110
 msgid "Target service does not exist"
-msgstr "Целевой сервис не существует."
+msgstr "Целевой сервис не существует"
 
 #: src/modules/services-openrc/main.py:111
 msgid ""
 "The path for service {name!s} is <code>{path!s}</code>, which does not "
 "exist."
 msgstr ""
+"Путь к сервису {name!s} — <code>{path!s}</code>, который не существует."
 
 #: src/modules/plymouthcfg/main.py:27
 msgid "Configure Plymouth theme"
@@ -318,25 +332,31 @@ msgstr[3] "Удаление %(num)d пакетов."
 #: src/modules/packages/main.py:725 src/modules/packages/main.py:737
 #: src/modules/packages/main.py:765
 msgid "Package Manager error"
-msgstr ""
+msgstr "Ошибка менеджера пакетов"
 
 #: src/modules/packages/main.py:726
 msgid ""
 "The package manager could not prepare updates. The command <pre>{!s}</pre> "
 "returned error code {!s}."
 msgstr ""
+"Менеджер пакетов не смог подготовить обновления. Команда <pre>{!s}</pre> "
+"вернула код ошибки {!s}."
 
 #: src/modules/packages/main.py:738
 msgid ""
 "The package manager could not update the system. The command <pre>{!s}</pre>"
 " returned error code {!s}."
 msgstr ""
+"Менеджер пакетов не смог обновить систему. Команда <pre>{!s}</pre> вернула "
+"код ошибки {!s}."
 
 #: src/modules/packages/main.py:766
 msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."
 msgstr ""
+"Менеджер пакетов не смог внести изменения в установленную систему. Команда "
+"<pre>{!s}</pre> вернула код ошибки {!s}."
 
 #: src/modules/bootloader/main.py:43
 msgid "Install bootloader."
@@ -345,16 +365,19 @@ msgstr "Установить загрузчик."
 #: src/modules/bootloader/main.py:614
 msgid "Failed to install grub, no partitions defined in global storage"
 msgstr ""
+"Не удалось установить grub, разделы не определены в глобальном хранилище"
 
 #: src/modules/bootloader/main.py:782
 msgid "Bootloader installation error"
-msgstr ""
+msgstr "Ошибка установки загрузчика"
 
 #: src/modules/bootloader/main.py:783
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
 msgstr ""
+"Загрузчик установить не удалось. Команда установки <pre>{!s}</pre> вернула "
+"код ошибки {!s}."
 
 #: src/modules/hwclock/main.py:26
 msgid "Setting hardware clock."
@@ -362,11 +385,11 @@ msgstr "Установка аппаратных часов."
 
 #: src/modules/mkinitfs/main.py:27
 msgid "Creating initramfs with mkinitfs."
-msgstr ""
+msgstr "Создание initramfs с помощью mkinitfs."
 
 #: src/modules/mkinitfs/main.py:49
 msgid "Failed to run mkinitfs on the target"
-msgstr ""
+msgstr "Не удалось запустить mkinitfs на таргет"
 
 #: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
 msgid "The exit code was {}"
@@ -395,15 +418,16 @@ msgstr "Запись fstab."
 #: src/modules/fstab/main.py:429
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr ""
+"Конфигурация <pre>{!s}</pre> для использования <pre>{!s}</pre> не указана."
 
 #: src/modules/dummypython/main.py:35
 msgid "Dummy python job."
-msgstr ""
+msgstr "Фиктивная работа python."
 
 #: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
 #: src/modules/dummypython/main.py:94
 msgid "Dummy python step {}"
-msgstr ""
+msgstr "Фиктивный шаг python {}"
 
 #: src/modules/localecfg/main.py:31
 msgid "Configuring locales."
@@ -411,4 +435,4 @@ msgstr "Настройка языка."
 
 #: src/modules/networkcfg/main.py:29
 msgid "Saving network configuration."
-msgstr "Сохранение настроек сети."
+msgstr "Сохранение сетевых настроек."

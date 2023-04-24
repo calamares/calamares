@@ -9,6 +9,7 @@
 # Saverio <saverio.brancaccio@gmail.com>, 2020
 # Giuseppe Pignataro <rogepix@gmail.com>, 2021
 # Vincenzo Reale <vinx.reale@gmail.com>, 2022
+# vincenzo sammarco, 2022
 # 
 #, fuzzy
 msgid ""
@@ -17,8 +18,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-29 16:17+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Vincenzo Reale <vinx.reale@gmail.com>, 2022\n"
-"Language-Team: Italian (Italy) (https://www.transifex.com/calamares/teams/20061/it_IT/)\n"
+"Last-Translator: vincenzo sammarco, 2022\n"
+"Language-Team: Italian (Italy) (https://app.transifex.com/calamares/teams/20061/it_IT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -35,7 +36,7 @@ msgstr "Montaggio partizioni."
 
 #: src/modules/mount/main.py:88 src/modules/mount/main.py:124
 msgid "Internal error mounting zfs datasets"
-msgstr ""
+msgstr "Errore interno durante il montaggio dei dataset zfs"
 
 #: src/modules/mount/main.py:100
 msgid "Failed to import zpool"
@@ -47,7 +48,7 @@ msgstr "Sblocco zpool non riuscito"
 
 #: src/modules/mount/main.py:133 src/modules/mount/main.py:138
 msgid "Failed to set zfs mountpoint"
-msgstr ""
+msgstr "Impossibile impostare il punto di montaggio zfs"
 
 #: src/modules/mount/main.py:229 src/modules/initcpiocfg/main.py:235
 #: src/modules/initcpiocfg/main.py:239 src/modules/rawfs/main.py:164
@@ -96,7 +97,7 @@ msgstr "Impossibile abilitare la destinazione systemd <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:67
 msgid "Cannot enable systemd timer <code>{name!s}</code>."
-msgstr ""
+msgstr "Impossibile abilitare il timer di systemd <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:71
 msgid "Cannot disable systemd target <code>{name!s}</code>."
@@ -149,7 +150,7 @@ msgstr "Punto di montaggio per la partizione di root errato"
 
 #: src/modules/unpackfs/main.py:435
 msgid "rootMountPoint is \"{}\", which does not exist."
-msgstr ""
+msgstr "rootMountPoint è \"{}\",  non esiste."
 
 #: src/modules/unpackfs/main.py:439 src/modules/unpackfs/main.py:455
 #: src/modules/unpackfs/main.py:459 src/modules/unpackfs/main.py:465
@@ -174,6 +175,8 @@ msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed."
 msgstr ""
+"Impossibile trovare unsquashfs, assicurati di avere installato il pacchetto "
+"squashfs-tools."
 
 #: src/modules/unpackfs/main.py:481
 msgid "The destination \"{}\" in the target system is not a directory"
@@ -229,7 +232,7 @@ msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
 msgstr ""
-"L'elenco dei display manager è vuota o non definita sia in globalstorage che"
+"La lista dei display manager è vuota o non definita sia in globalstorage che"
 " in displaymanager.conf."
 
 #: src/modules/displaymanager/main.py:1075
@@ -339,18 +342,25 @@ msgid ""
 "The package manager could not prepare updates. The command <pre>{!s}</pre> "
 "returned error code {!s}."
 msgstr ""
+"Il gestore pacchetti non ha potuto preparare gli aggiornamenti. Il comando "
+"<pre>{!s}</pre> ha restituito il codice di errore {!s}."
 
 #: src/modules/packages/main.py:738
 msgid ""
 "The package manager could not update the system. The command <pre>{!s}</pre>"
 " returned error code {!s}."
 msgstr ""
+"Il gestore pacchetti non ha potuto aggiornare il sistema. Il "
+"comando<pre>{!s}</pre> ha restituito il codice di errore {!s}."
 
 #: src/modules/packages/main.py:766
 msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."
 msgstr ""
+"Il gestore pacchetti non ha potuto apportare modifiche al sistema "
+"installato. Il comando <pre>{!s}</pre> ha restituito il codice di errore "
+"{!s}."
 
 #: src/modules/bootloader/main.py:43
 msgid "Install bootloader."
@@ -371,6 +381,8 @@ msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
 msgstr ""
+"Impossibile installare il bootloader. Il comando di installazione "
+"<pre>{!s}</pre> ha restituito il codice di errore {!s}."
 
 #: src/modules/hwclock/main.py:26
 msgid "Setting hardware clock."
@@ -411,6 +423,8 @@ msgstr "Scrittura di fstab."
 #: src/modules/fstab/main.py:429
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr ""
+"Non viene fornita alcuna configurazione <pre>{!s}</pre> per <pre>{!s}</pre> "
+"da utilizzare."
 
 #: src/modules/dummypython/main.py:35
 msgid "Dummy python job."
