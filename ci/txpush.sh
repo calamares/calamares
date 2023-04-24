@@ -86,6 +86,15 @@ do
 done
 # XMLLINT is optional
 
+if sed --version 2>&1 | grep -q GNU ; then
+	reinplace() {
+		sed -i'' "$@"
+	}
+else
+	reinplace() {
+		sed -i '' "$@"
+	}
+fi
 
 ### CREATE TRANSLATIONS
 #
@@ -136,7 +145,7 @@ for MODULE_DIR in $(find src/modules -maxdepth 1 -mindepth 1 -type d | sort) ; d
 			${PYGETTEXT} -p ${MODULE_DIR}/lang -d ${MODULE_NAME} -o ${MODULE_NAME}.pot ${MODULE_DIR}/*.py
 			POTFILE="${MODULE_DIR}/lang/${MODULE_NAME}.pot"
 			if [ -f "$POTFILE" ]; then
-				sed -i'' '/^"Content-Type/s/CHARSET/UTF-8/' "$POTFILE"
+				reinplace '/^"Content-Type/s/CHARSET/UTF-8/' "$POTFILE"
 				tx push --source -r calamares.${MODULE_NAME}
 			fi
 		else
@@ -148,7 +157,7 @@ done
 if test -n "$SHARED_PYTHON" ; then
 	${PYGETTEXT} -p lang -d python -o python.pot $SHARED_PYTHON
 	POTFILE="lang/python.pot"
-	sed -i'' '/^"Content-Type/s/CHARSET/UTF-8/' "$POTFILE"
+	reinplace '/^"Content-Type/s/CHARSET/UTF-8/' "$POTFILE"
 	tx push --source -r calamares.python
 fi
 
