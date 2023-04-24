@@ -55,7 +55,7 @@ done
 # .tx/config file to locate files, and overwrites them in the
 # filesystem with new (merged) translations.
 export QT_SELECT=5
-tx pull --force --source --all || exit 1
+transifex-client pull --force --all || exit 1
 
 
 ### CLEANUP TRANSLATIONS
