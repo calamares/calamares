@@ -53,6 +53,10 @@ if test "x$1" = "x--no-tx" ; then
 	}
 else
 	# tx is the regular transifex command
+	tx() {
+		transifex-client "$@"
+	}
+
 	# txtag is used to tag in git to measure changes
 	txtag() {
 		git tag -f translation
@@ -108,8 +112,8 @@ if test -n "$XMLLINT" ; then
 	$XMLLINT --c14n11 "$TS_FILE" | { echo "<!DOCTYPE TS>" ; cat - ; } | $XMLLINT --format --encode utf-8 -o "$TS_FILE".new - && mv "$TS_FILE".new "$TS_FILE"
 fi
 
-tx push --source --no-interactive -r calamares.calamares || exit 1
-tx push --source --no-interactive -r calamares.fdo || exit 1
+tx push --source -r calamares.calamares || exit 1
+tx push --source -r calamares.fdo || exit 1
 
 
 ### PYTHON MODULES
@@ -133,8 +137,7 @@ for MODULE_DIR in $(find src/modules -maxdepth 1 -mindepth 1 -type d | sort) ; d
 			POTFILE="${MODULE_DIR}/lang/${MODULE_NAME}.pot"
 			if [ -f "$POTFILE" ]; then
 				sed -i'' '/^"Content-Type/s/CHARSET/UTF-8/' "$POTFILE"
-				tx set -r calamares.${MODULE_NAME} --source -l en "$POTFILE"
-				tx push --source --no-interactive -r calamares.${MODULE_NAME}
+				tx push --source -r calamares.${MODULE_NAME}
 			fi
 		else
 			SHARED_PYTHON="$SHARED_PYTHON $FILES"
@@ -146,8 +149,7 @@ if test -n "$SHARED_PYTHON" ; then
 	${PYGETTEXT} -p lang -d python -o python.pot $SHARED_PYTHON
 	POTFILE="lang/python.pot"
 	sed -i'' '/^"Content-Type/s/CHARSET/UTF-8/' "$POTFILE"
-	tx set -r calamares.python --source -l en "$POTFILE"
-	tx push --source --no-interactive -r calamares.python
+	tx push --source -r calamares.python
 fi
 
 txtag
