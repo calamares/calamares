@@ -544,7 +544,11 @@ ViewManager::data( const QModelIndex& index, int role ) const
         if ( Calamares::Settings::instance()->debugMode() )
         {
             auto key = step->moduleInstanceKey();
-            QString toolTip( "<b>Debug information</b>" );
+            // The tooltip is intentionally not translated:
+            // we must be in debug-mode (-d) so presumably it
+            // is a distro-developer or Calamares-developer
+            // running it, and we don't need translation for them.
+            QString toolTip( "<b>Debug information</b>" ); // Intentionally no translation here
             toolTip.append( "<br/>Type:\tViewStep" );
             toolTip.append( QString( "<br/>Pretty:\t%1" ).arg( step->prettyName() ) );
             toolTip.append( QString( "<br/>Status:\t%1" ).arg( step->prettyStatus() ) );
