@@ -15,7 +15,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string notr="true">Form</string>
   </property>
   <layout class="QVBoxLayout" name="m_mainLayout" stretch="0,1">
    <property name="bottomMargin">
