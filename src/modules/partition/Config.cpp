@@ -415,6 +415,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     m_requiredPartitionTableType = CalamaresUtils::getStringList( configurationMap, "requiredPartitionTableType" );
 
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+    gs->insert( "armInstall", CalamaresUtils::getBool( configurationMap, "armInstall", false ) );
     fillGSConfigurationEFI( gs, configurationMap );
     fillConfigurationFSTypes( configurationMap );
 }
