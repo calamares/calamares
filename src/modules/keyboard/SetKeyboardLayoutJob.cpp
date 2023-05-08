@@ -324,9 +324,36 @@ SetKeyboardLayoutJob::writeDefaultKeyboardData( const QString& defaultKeyboardPa
               "# Consult the keyboard(5) manual page.\n\n";
 
     stream << "XKBMODEL=\"" << m_model << "\"\n";
-    stream << "XKBLAYOUT=\"" << m_layout << "\"\n";
-    stream << "XKBVARIANT=\"" << m_variant << "\"\n";
-    stream << "XKBOPTIONS=\"\"\n\n";
+    if ( m_additionalLayoutInfo.additionalLayout.isEmpty() )
+    {
+        if ( !m_layout.isEmpty() )
+        {
+            stream << "XKBLAYOUT=\"" << m_layout << "\"\n";
+        }
+
+        if ( !m_variant.isEmpty() )
+        {
+            stream << "XKBVARIANT=\"" << m_variant << "\"\n";
+        }
+
+        stream << "XKBOPTIONS=\"\"\n\n";
+    }
+    else
+    {
+        if ( !m_layout.isEmpty() )
+        {
+            stream << "XKBLAYOUT=\"" << m_additionalLayoutInfo.additionalLayout << "," << m_layout
+                   << "\"\n";
+        }
+
+        if ( !m_variant.isEmpty() )
+        {
+            stream << "XKBVARIANT=\"" << m_additionalLayoutInfo.additionalVariant << "," << m_variant
+                   << "\"\n";
+        }
+
+        stream << "XKBOPTIONS=\"" << m_additionalLayoutInfo.groupSwitcher << "\"\n";
+    }
     stream << "BACKSPACE=\"guess\"\n";
     stream.flush();
 
