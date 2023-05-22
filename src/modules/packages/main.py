@@ -282,12 +282,12 @@ class PMDnf(PackageManager):
     backend = "dnf"
 
     def install(self, pkgs, from_local=False):
-        check_target_env_call(["dnf", "-y", "install"] + pkgs)
+        check_target_env_call(["dnf-3", "-y", "install"] + pkgs)
 
     def remove(self, pkgs):
         # ignore the error code for now because dnf thinks removing a
         # nonexistent package is an error
-        target_env_call(["dnf", "--disablerepo=*", "-C", "-y",
+        target_env_call(["dnf-3", "--disablerepo=*", "-C", "-y",
                          "remove"] + pkgs)
 
     def update_db(self):
@@ -295,7 +295,7 @@ class PMDnf(PackageManager):
         pass
 
     def update_system(self):
-        check_target_env_call(["dnf", "-y", "upgrade"])
+        check_target_env_call(["dnf-3", "-y", "upgrade"])
 
 
 class PMDummy(PackageManager):
