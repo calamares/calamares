@@ -164,26 +164,20 @@ setupLuks( const LuksDevice& d )
         cDebug() << "Setup LUKS1 for " << d.device;
     }
 
+    // Check the number of slots used
     // Output of LUKS1 and LUKS2 differ
     auto search_pattern = luks2_hash.isEmpty() ? QStringLiteral( R"(\d+:\s*enabled)" ) : QStringLiteral( R"(\d+:\s*luks2)" );
     QRegularExpression slots_re( search_pattern, QRegularExpression::CaseInsensitiveOption );
     slots_count = luks_dump.getOutput().count( slots_re );
 
-    // This should be a clean install: remove all existing keys, except the first slot
-    // Remove slots but leave the first
-    for ( int i = 1; i < slots_count; i++ )
+    if ( ( luks2_hash.isEmpty() && slots_count == 8 ) ||
+         ( !luks2_hash.isEmpty() && slots_count == 32 ))
     {
-        cDebug() << Logger::SubEntry << "Remove surplus key slot: " << QString::number( i ) << " from " << d.device;
-        CalamaresUtils::System::instance()->targetEnvCommand(
-            { QStringLiteral( "cryptsetup" ), QStringLiteral( "luksKillSlot" ), d.device, QString::number( i ) },
-            QString(),
-            d.passphrase,
-            std::chrono::seconds( 5 ) );
+        // No key slots left: return gracefully
+        return true;
     }
 
-    // For LUKS1 you cannot change the key in slot 1, or you'll end up in Grub command.
-    // This doesn't seem the case for LUKS2.
-    // It has not been tested with a LUKS2 encrypted boot because Grub2 does not yet support this.
+    // Add the key to the keyfile
     QStringList args = { QStringLiteral( "cryptsetup" ), QStringLiteral( "luksAddKey" ) };
     if ( !luks2_hash.isEmpty() )
     {
