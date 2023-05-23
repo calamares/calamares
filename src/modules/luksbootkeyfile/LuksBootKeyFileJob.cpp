@@ -321,6 +321,12 @@ LuksBootKeyFileJob::exec()
 
     for ( const auto& d : s.devices )
     {
+        // Skip setupLuks for root partition if system has an unencrypted /boot
+        if ( d.isRoot && hasUnencryptedSeparateBoot() )
+        {
+            continue;
+        }
+
         if ( !setupLuks( d ) )
             return Calamares::JobResult::error(
                 tr( "Encryption setup error" ),
