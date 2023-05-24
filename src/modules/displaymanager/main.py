@@ -197,6 +197,8 @@ desktop_environments = [
     DesktopEnvironment('/usr/bin/sway', 'sway'),
     DesktopEnvironment('/usr/bin/ukui-session', 'ukui'),
     DesktopEnvironment('/usr/bin/cutefish-session', 'cutefish-xsession'),
+    DesktopEnvironment('/usr/bin/river', 'river'),
+    DesktopEnvironment('/usr/bin/Hyprland', 'hyprland'),
 ]
 
 
