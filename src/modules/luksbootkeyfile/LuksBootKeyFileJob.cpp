@@ -135,7 +135,7 @@ generateTargetKeyfile()
 }
 
 static bool
-setupLuks( const LuksDevice& d )
+setupLuks( const LuksDevice& d, const QString& luks2Hash )
 {
     // Get luksDump for this device
     int slots_count = 0;
@@ -151,39 +151,33 @@ setupLuks( const LuksDevice& d )
         return false;
     }
 
-    // Check for LUKS2
-    QString luks2_hash = QString();
-    QRegularExpression pbkdf_re( QStringLiteral( R"(pbkdf:\s*(.*))" ), QRegularExpression::CaseInsensitiveOption );
-    QRegularExpressionMatch match = pbkdf_re.match( luks_dump.getOutput() );
-    if ( match.hasMatch() ) {
-        luks2_hash = match.captured(1);
-        cDebug() << "Setup LUKS2 " << luks2_hash << " for " << d.device;
-    }
-    else
+    // Check LUKS version
+    int luks_version = 0;
+    QRegularExpression version_re( QStringLiteral( R"(version:\s*([0-9]))" ), QRegularExpression::CaseInsensitiveOption );
+    QRegularExpressionMatch match = version_re.match( luks_dump.getOutput() );
+    if ( ! match.hasMatch() )
     {
-        cDebug() << "Setup LUKS1 for " << d.device;
+        cWarning() << "Could not get LUKS version on device: " << d.device;
+        return false;
     }
+    luks_version = match.captured(1).toInt();
+    cDebug() << "LUKS" << luks_version << " found on device: " << d.device;
 
     // Check the number of slots used
     // Output of LUKS1 and LUKS2 differ
-    auto search_pattern = luks2_hash.isEmpty() ? QStringLiteral( R"(\d+:\s*enabled)" ) : QStringLiteral( R"(\d+:\s*luks2)" );
+    auto search_pattern = luks_version == 1 ? QStringLiteral( R"(\d+:\s*enabled)" ) : QStringLiteral( R"(\d+:\s*luks2)" );
     QRegularExpression slots_re( search_pattern, QRegularExpression::CaseInsensitiveOption );
     slots_count = luks_dump.getOutput().count( slots_re );
-
-    if ( ( luks2_hash.isEmpty() && slots_count == 8 ) ||
-         ( !luks2_hash.isEmpty() && slots_count == 32 ))
+    if ( luks_version == 1 && slots_count == 8 )
     {
-        // No key slots left: return gracefully
-        return true;
+        cWarning() << "No key slots left on LUKS1 device: " << d.device;
+        return false;
     }
 
     // Add the key to the keyfile
-    QStringList args = { QStringLiteral( "cryptsetup" ), QStringLiteral( "luksAddKey" ) };
-    if ( !luks2_hash.isEmpty() )
-    {
-        args << "--pbkdf" << luks2_hash;
-    }
-    args << d.device << keyfile;
+    QStringList args_luks1 = { QStringLiteral( "cryptsetup" ), QStringLiteral( "luksAddKey" ), d.device, keyfile };
+    QStringList args_luks2 = { QStringLiteral( "cryptsetup" ), QStringLiteral( "luksAddKey" ), "--pbkdf", luks2Hash, d.device, keyfile };
+    QStringList args = luks_version == 1 ? args_luks1 : args_luks2;
     auto r = CalamaresUtils::System::instance()->targetEnvCommand(
         args,
         QString(),
@@ -269,6 +263,12 @@ LuksBootKeyFileJob::exec()
             "LuksBootKeyFile", tr( "No partitions are defined." ), Calamares::JobResult::InvalidConfiguration );
     }
 
+    if ( m_luks2Hash.isEmpty() )
+    {
+        return Calamares::JobResult::internalError(
+            "LuksBootKeyFile", tr( "No luks2Hash is set." ), Calamares::JobResult::InvalidConfiguration );
+    }
+
     cDebug() << "There are" << s.devices.count() << "LUKS partitions";
     if ( s.devices.count() < 1 )
     {
@@ -321,13 +321,22 @@ LuksBootKeyFileJob::exec()
             continue;
         }
 
-        if ( !setupLuks( d ) )
-            return Calamares::JobResult::error(
-                tr( "Encryption setup error" ),
-                tr( "Could not configure LUKS on partition %1." ).arg( d.device ) );
+        if ( !setupLuks( d, m_luks2Hash ) )
+        {
+            // Could not configure the LUKS partition
+            // This should not stop the installation: do not return Calamares::JobResult::error.
+            cError() << "Encrypted rootfs setup error: could not configure LUKS key file on partition " << d.device;
+        }
     }
 
     return Calamares::JobResult::ok();
+}
+
+void
+LuksBootKeyFileJob::setConfigurationMap( const QVariantMap& configurationMap )
+{
+    m_luks2Hash = CalamaresUtils::getString(
+        configurationMap, QStringLiteral( "luks2Hash" ), QStringLiteral( "pbkdf2" ) );
 }
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( LuksBootKeyFileJobFactory, registerPlugin< LuksBootKeyFileJob >(); )
