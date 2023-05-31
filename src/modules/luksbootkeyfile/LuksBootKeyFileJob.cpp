@@ -138,7 +138,6 @@ static bool
 setupLuks( const LuksDevice& d, const QString& luks2Hash )
 {
     // Get luksDump for this device
-    int slots_count = 0;
     auto luks_dump = CalamaresUtils::System::instance()->targetEnvCommand(
         { QStringLiteral( "cryptsetup" ), QStringLiteral( "luksDump" ), d.device },
         QString(),
@@ -153,31 +152,42 @@ setupLuks( const LuksDevice& d, const QString& luks2Hash )
 
     // Check LUKS version
     int luks_version = 0;
-    QRegularExpression version_re( QStringLiteral( R"(version:\s*([0-9]))" ), QRegularExpression::CaseInsensitiveOption );
+    QRegularExpression version_re( QStringLiteral( R"(version:\s*([0-9]))" ),
+                                   QRegularExpression::CaseInsensitiveOption );
     QRegularExpressionMatch match = version_re.match( luks_dump.getOutput() );
     if ( ! match.hasMatch() )
     {
         cWarning() << "Could not get LUKS version on device: " << d.device;
         return false;
     }
-    luks_version = match.captured(1).toInt();
+    bool ok;
+    luks_version = match.captured(1).toInt(&ok);
+    if( ! ok )
+    {
+        cWarning() << "Could not get LUKS version on device: " << d.device;
+        return false;
+    }
     cDebug() << "LUKS" << luks_version << " found on device: " << d.device;
 
-    // Check the number of slots used
-    // Output of LUKS1 and LUKS2 differ
-    auto search_pattern = luks_version == 1 ? QStringLiteral( R"(\d+:\s*enabled)" ) : QStringLiteral( R"(\d+:\s*luks2)" );
-    QRegularExpression slots_re( search_pattern, QRegularExpression::CaseInsensitiveOption );
-    slots_count = luks_dump.getOutput().count( slots_re );
-    if ( luks_version == 1 && slots_count == 8 )
+    // Check the number of slots used for LUKS1 devices
+    if ( luks_version == 1 )
     {
-        cWarning() << "No key slots left on LUKS1 device: " << d.device;
-        return false;
+        QRegularExpression slots_re( QStringLiteral( R"(\d+:\s*enabled)" ),
+                                     QRegularExpression::CaseInsensitiveOption );
+        if ( luks_dump.getOutput().count( slots_re ) == 8 )
+        {
+            cWarning() << "No key slots left on LUKS1 device: " << d.device;
+            return false;
+        }
     }
 
     // Add the key to the keyfile
-    QStringList args_luks1 = { QStringLiteral( "cryptsetup" ), QStringLiteral( "luksAddKey" ), d.device, keyfile };
-    QStringList args_luks2 = { QStringLiteral( "cryptsetup" ), QStringLiteral( "luksAddKey" ), "--pbkdf", luks2Hash, d.device, keyfile };
-    QStringList args = luks_version == 1 ? args_luks1 : args_luks2;
+    QStringList args = { QStringLiteral( "cryptsetup" ), QStringLiteral( "luksAddKey" ), d.device, keyfile };
+    if ( luks_version == 2 && luks2Hash != QString() )
+    {
+        args.insert(2, "--pbkdf");
+        args.insert(3, luks2Hash);
+    }
     auto r = CalamaresUtils::System::instance()->targetEnvCommand(
         args,
         QString(),
@@ -263,12 +273,6 @@ LuksBootKeyFileJob::exec()
             "LuksBootKeyFile", tr( "No partitions are defined." ), Calamares::JobResult::InvalidConfiguration );
     }
 
-    if ( m_luks2Hash.isEmpty() )
-    {
-        return Calamares::JobResult::internalError(
-            "LuksBootKeyFile", tr( "No luks2Hash is set." ), Calamares::JobResult::InvalidConfiguration );
-    }
-
     cDebug() << "There are" << s.devices.count() << "LUKS partitions";
     if ( s.devices.count() < 1 )
     {
@@ -336,7 +340,7 @@ void
 LuksBootKeyFileJob::setConfigurationMap( const QVariantMap& configurationMap )
 {
     m_luks2Hash = CalamaresUtils::getString(
-        configurationMap, QStringLiteral( "luks2Hash" ), QStringLiteral( "pbkdf2" ) );
+        configurationMap, QStringLiteral( "luks2Hash" ), QString() );
 }
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( LuksBootKeyFileJobFactory, registerPlugin< LuksBootKeyFileJob >(); )
