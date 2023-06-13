@@ -1,0 +1,9 @@
+# SPDX-FileCopyrightText: 2023 Arjen Balfoort <arjenbalfoort@hotmail.com>
+# SPDX-License-Identifier: GPL-3.0-or-later
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/luksbootkeyfile
+additionalProperties: false
+type: object
+properties:
+    luks2Hash: { type: string, enum: [ pbkdf2, argon2i, argon2id ] }
