@@ -114,16 +114,6 @@ class PackageManager(metaclass=abc.ABCMeta):
             list of package names
         """
         pass
-    
-    @abc.abstractmethod
-    def remove_deps(self, pkgs):
-        """
-        Removes packages and their dependencies.
-
-        @param pkgs: list[str]
-            list of package names
-        """
-        pass
 
     @abc.abstractmethod
     def update_db(self):
@@ -167,7 +157,7 @@ class PackageManager(metaclass=abc.ABCMeta):
             self.remove([packagedata["package"]])
             self.run(packagedata["post-script"])
             
-    def remove_deps_package(self, packagedata):
+    def remove_with_deps_package(self, packagedata):
         """
         Remove a package and its dependencies from a single entry in the remove list.
         This can be either a single package name, or an object
@@ -177,10 +167,10 @@ class PackageManager(metaclass=abc.ABCMeta):
         @param packagedata: str|dict
         """
         if isinstance(packagedata, str):
-            self.remove_deps([packagedata])
+            self.remove_with_deps([packagedata])
         else:
             self.run(packagedata["pre-script"])
-            self.remove_deps([packagedata["package"]])
+            self.remove_with_deps([packagedata["package"]])
             self.run(packagedata["post-script"])
 
     def operation_install(self, package_list, from_local=False):
@@ -246,7 +236,7 @@ class PackageManager(metaclass=abc.ABCMeta):
             for package in package_list:
                 self.remove_package(package)
     
-    def operation_remove_deps(self, package_list):
+    def operation_remove_with_deps(self, package_list):
         """
         Removes the list of packages named in @p package_list and their dependencies .
         These can be strings -- plain package names -- or
@@ -261,10 +251,10 @@ class PackageManager(metaclass=abc.ABCMeta):
         NOTE: exceptions should be raised to indicate failure
         """
         if all([isinstance(x, str) for x in package_list]):
-            self.remove_deps(package_list)
+            self.remove_with_deps(package_list)
         else:
             for package in package_list:
-                self.remove_deps_package(package)
+                self.remove_with_deps_package(package)
     
     def operation_try_remove(self, package_list):
         """
@@ -280,7 +270,7 @@ class PackageManager(metaclass=abc.ABCMeta):
             except subprocess.CalledProcessError:
                 libcalamares.utils.warning("Could not remove package %s" % package)
                 
-    def operation_try_remove_deps(self, package_list):
+    def operation_try_remove_with_deps(self, package_list):
         """
         Same relation as try_install has to install, except it removes
         packages and their dependencies instead. Packages are removed one-by-one.
@@ -290,7 +280,7 @@ class PackageManager(metaclass=abc.ABCMeta):
         """
         for package in package_list:
             try:
-                self.remove_deps_package(package)
+                self.remove_with_deps_package(package)
             except subprocess.CalledProcessError:
                 libcalamares.utils.warning("Could not remove package %s" % package)
 
@@ -525,9 +515,9 @@ class PMPacman(PackageManager):
         self.reset_progress()
         self.run_pacman(["pacman", "-Rs", "--noconfirm"] + pkgs, True)
         
-    def remove_deps(self, pkgs):
+    def remove_with_deps(self, pkgs):
         self.reset_progress()
-        self.run_pacman(["pacman", "-Rcns", "--noconfirm"] + pkgs, True)
+        self.run_pacman(["pacman", "-Rc", "--noconfirm"] + pkgs, True)
 
     def update_db(self):
         self.run_pacman(["pacman", "-Sy"])
@@ -737,15 +727,15 @@ def run_operations(pkgman, entry):
         elif key == "remove":
             _change_mode(REMOVE)
             pkgman.operation_remove(package_list)
-        elif key == "remove_deps":
+        elif key == "remove_with_deps":
             _change_mode(REMOVE)
-            pkgman.operation_remove_deps(package_list)
+            pkgman.operation_remove_with_deps(package_list)
         elif key == "try_remove":
             _change_mode(REMOVE)
             pkgman.operation_try_remove(package_list)
-        elif key == "try_remove_deps":
+        elif key == "try_remove_with_deps":
             _change_mode(REMOVE)
-            pkgman.operation_try_remove_deps(package_list)
+            pkgman.operation_try_remove_with_deps(package_list)
         elif key == "localInstall":
             _change_mode(INSTALL)
             pkgman.operation_install(package_list, from_local=True)
