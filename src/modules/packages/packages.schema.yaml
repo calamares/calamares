@@ -44,10 +44,10 @@ properties:
                 #       need their own little schema.
                 install: { type: array }
                 remove: { type: array }
-                remove_deps: { type: array }
+                remove_with_deps: { type: array }
                 try_install: { type: array }
                 try_remove: { type: array }
-                try_remove_deps: { type: array }
+                try_remove_with_deps: { type: array }
                 localInstall: { type: array }
                 source: { type: string }
 
