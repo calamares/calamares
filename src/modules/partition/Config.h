@@ -36,6 +36,8 @@ class Config : public QObject
 
     Q_PROPERTY( bool allowManualPartitioning READ allowManualPartitioning CONSTANT FINAL )
 
+    Q_PROPERTY( bool showNotEncryptedBootMessage READ showNotEncryptedBootMessage CONSTANT FINAL )
+
 public:
     Config( QObject* parent );
     ~Config() override = default;
@@ -146,6 +148,9 @@ public:
     /// @brief Is manual partitioning allowed (not explicitly disabled in the config file)?
     bool allowManualPartitioning() const { return m_allowManualPartitioning; }
 
+    /// @brief Show "Boot partition not encrypted" warning (not explicitly disabled in the config file)?
+    bool showNotEncryptedBootMessage() const { return m_showNotEncryptedBootMessage; }
+
     /** @brief Will @p tableType be ok?
      *
      * If no required types are specified, it's ok, otherwise the
@@ -194,6 +199,7 @@ private:
     QStringList m_requiredPartitionTableType;
     bool m_allowZfsEncryption = true;
     bool m_allowManualPartitioning = true;
+    bool m_showNotEncryptedBootMessage = true;
 };
 
 /** @brief Given a set of swap choices, return a sensible value from it.
