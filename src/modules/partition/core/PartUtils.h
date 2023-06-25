@@ -78,6 +78,11 @@ bool canBeResized( DeviceModel* dm, const QString& partitionPath, const Logger::
 OsproberEntryList runOsprober( DeviceModel* dm );
 
 /**
+ * @brief Is this an ARM-based system? Set in the configuration file
+ */
+bool isArmSystem();
+
+/**
  * @brief Is this system EFI-enabled? Decides based on /sys/firmware/efi
  */
 bool isEfiSystem();
