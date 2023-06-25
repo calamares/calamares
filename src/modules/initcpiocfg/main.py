@@ -54,8 +54,9 @@ class cpuinfo(object):
         self.number_of_cores = 0
 
         cpu = self._cpuinfo()
-        self.is_intel = cpu['proc0']['vendor_id'].lower() == "genuineintel"
-        self.is_amd = cpu['proc0']['vendor_id'].lower() == "authenticamd"
+        if 'vendor_id' in cpu['proc0']:
+            self.is_intel = cpu['proc0']['vendor_id'].lower() == "genuineintel"
+            self.is_amd = cpu['proc0']['vendor_id'].lower() == "authenticamd"
         self.number_of_cores = len(cpu)
 
     @staticmethod

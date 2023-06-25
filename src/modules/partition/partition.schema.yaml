@@ -14,6 +14,7 @@ properties:
     userSwapChoices: { type: array, items: { type: string, enum: [ none, reuse, small, suspend, file ] } }
     # ensureSuspendToDisk: { type: boolean, default: true }  # Legacy
     # neverCreateSwap: { type: boolean, default: false }  # Legacy
+    armInstall: { type: boolean, default: false }
 
     allowZfsEncryption: { type: boolean, default: true }
     drawNestedPartitions: { type: boolean, default: false }

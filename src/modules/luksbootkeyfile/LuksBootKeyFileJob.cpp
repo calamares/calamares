@@ -135,34 +135,64 @@ generateTargetKeyfile()
 }
 
 static bool
-setupLuks( const LuksDevice& d )
+setupLuks( const LuksDevice& d, const QString& luks2Hash )
 {
-    // Sometimes this error is thrown: "All key slots full"
-    // luksAddKey will fail. So, remove the first slot to make room
+    // Get luksDump for this device
     auto luks_dump = CalamaresUtils::System::instance()->targetEnvCommand(
-        { "cryptsetup", "luksDump", d.device }, QString(), QString(), std::chrono::seconds( 5 ) );
-    if ( luks_dump.getExitCode() == 0 )
+        { QStringLiteral( "cryptsetup" ), QStringLiteral( "luksDump" ), d.device },
+        QString(),
+        QString(),
+        std::chrono::seconds( 5 ) );
+    if ( luks_dump.getExitCode() != 0 )
     {
-        QRegularExpression re( QStringLiteral( R"(\d+:\s*enabled)" ), QRegularExpression::CaseInsensitiveOption );
-        int count = luks_dump.getOutput().count( re );
-        cDebug() << "Luks Dump slot count: " << count;
-        if ( count >= 7 )
+        cWarning() << "Could not get LUKS information on " << d.device << ':' << luks_dump.getOutput() << "(exit code"
+                   << luks_dump.getExitCode() << ')';
+        return false;
+    }
+
+    // Check LUKS version
+    int luks_version = 0;
+    QRegularExpression version_re( QStringLiteral( R"(version:\s*([0-9]))" ),
+                                   QRegularExpression::CaseInsensitiveOption );
+    QRegularExpressionMatch match = version_re.match( luks_dump.getOutput() );
+    if ( ! match.hasMatch() )
+    {
+        cWarning() << "Could not get LUKS version on device: " << d.device;
+        return false;
+    }
+    bool ok;
+    luks_version = match.captured(1).toInt(&ok);
+    if( ! ok )
+    {
+        cWarning() << "Could not get LUKS version on device: " << d.device;
+        return false;
+    }
+    cDebug() << "LUKS" << luks_version << " found on device: " << d.device;
+
+    // Check the number of slots used for LUKS1 devices
+    if ( luks_version == 1 )
+    {
+        QRegularExpression slots_re( QStringLiteral( R"(\d+:\s*enabled)" ),
+                                     QRegularExpression::CaseInsensitiveOption );
+        if ( luks_dump.getOutput().count( slots_re ) == 8 )
         {
-            auto r = CalamaresUtils::System::instance()->targetEnvCommand(
-                { "cryptsetup", "luksKillSlot", d.device, "1" }, QString(), d.passphrase, std::chrono::seconds( 60 ) );
-            if ( r.getExitCode() != 0 )
-            {
-                cWarning() << "Could not kill a slot to make room on" << d.device << ':' << r.getOutput()
-                           << "(exit code" << r.getExitCode() << ')';
-                return false;
-            }
+            cWarning() << "No key slots left on LUKS1 device: " << d.device;
+            return false;
         }
     }
 
-    // Adding the key can take some times, measured around 15 seconds with
-    // a HDD (spinning rust) and a slow-ish computer. Give it a minute.
+    // Add the key to the keyfile
+    QStringList args = { QStringLiteral( "cryptsetup" ), QStringLiteral( "luksAddKey" ), d.device, keyfile };
+    if ( luks_version == 2 && luks2Hash != QString() )
+    {
+        args.insert(2, "--pbkdf");
+        args.insert(3, luks2Hash);
+    }
     auto r = CalamaresUtils::System::instance()->targetEnvCommand(
-        { "cryptsetup", "luksAddKey", d.device, keyfile }, QString(), d.passphrase, std::chrono::seconds( 60 ) );
+        args,
+        QString(),
+        d.passphrase,
+        std::chrono::seconds( 60 ) );
     if ( r.getExitCode() != 0 )
     {
         cWarning() << "Could not configure LUKS keyfile on" << d.device << ':' << r.getOutput() << "(exit code"
@@ -259,15 +289,15 @@ LuksBootKeyFileJob::exec()
 
     if ( it == s.devices.begin() )
     {
-        // Then there was no root partition
-        cDebug() << Logger::SubEntry << "No root partition.";
+        // User has configured non-root partition for encryption
+        cDebug() << Logger::SubEntry << "No root partition, skipping keyfile creation.";
         return Calamares::JobResult::ok();
     }
 
-    // /boot partition is not encrypted, keyfile must not be used
-    // But only if root partition is not encrypted
     if ( hasUnencryptedSeparateBoot() && !hasEncryptedRoot() )
     {
+        // /boot partition is not encrypted, keyfile must not be used
+        // But only if root partition is not encrypted
         cDebug() << Logger::SubEntry << "/boot partition is not encrypted, skipping keyfile creation.";
         return Calamares::JobResult::ok();
     }
@@ -295,13 +325,22 @@ LuksBootKeyFileJob::exec()
             continue;
         }
 
-        if ( !setupLuks( d ) )
-            return Calamares::JobResult::error(
-                tr( "Encrypted rootfs setup error" ),
-                tr( "Could not configure LUKS key file on partition %1." ).arg( d.device ) );
+        if ( !setupLuks( d, m_luks2Hash ) )
+        {
+            // Could not configure the LUKS partition
+            // This should not stop the installation: do not return Calamares::JobResult::error.
+            cError() << "Encrypted rootfs setup error: could not configure LUKS key file on partition " << d.device;
+        }
     }
 
     return Calamares::JobResult::ok();
+}
+
+void
+LuksBootKeyFileJob::setConfigurationMap( const QVariantMap& configurationMap )
+{
+    m_luks2Hash = CalamaresUtils::getString(
+        configurationMap, QStringLiteral( "luks2Hash" ), QString() );
 }
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( LuksBootKeyFileJobFactory, registerPlugin< LuksBootKeyFileJob >(); )
