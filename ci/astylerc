@@ -9,7 +9,7 @@ indent=spaces=4
 
 # Brackets
 style=break
-add-brackets
+add-braces
 
 # Spaces
 pad-paren-in
