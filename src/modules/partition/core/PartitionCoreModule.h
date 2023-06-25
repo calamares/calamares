@@ -167,7 +167,11 @@ public:
      */
     PartitionLayout& partitionLayout() { return m_partLayout; }
 
-    void layoutApply( Device* dev, qint64 firstSector, qint64 lastSector, Config::LuksGeneration luksFsType, QString luksPassphrase );
+    void layoutApply( Device* dev,
+                      qint64 firstSector,
+                      qint64 lastSector,
+                      Config::LuksGeneration luksFsType,
+                      QString luksPassphrase );
     void layoutApply( Device* dev,
                       qint64 firstSector,
                       qint64 lastSector,
