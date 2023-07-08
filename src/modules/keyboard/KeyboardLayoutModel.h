@@ -154,6 +154,20 @@ public:
     void setVariants( QMap< QString, QString > variants );
 };
 
+/** @brief A list of variants (xkb id and human-readable)
+ *
+ * The variants that are available depend on the Layout that is used,
+ * so the `setVariants()` function can be used to update the variants
+ * when the two models are related.
+ */
+class KeyboardGroupsModel : public XKBListModel
+{
+    Q_OBJECT
+
+public:
+    explicit KeyboardGroupsModel( QObject* parent = nullptr );
+};
+
 /** @brief Adjust to changes in application language.
  */
 void retranslateKeyboardModels();

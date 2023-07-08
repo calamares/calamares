@@ -160,6 +160,7 @@ Config::Config( QObject* parent )
     , m_keyboardModelsModel( new KeyboardModelsModel( this ) )
     , m_keyboardLayoutsModel( new KeyboardLayoutModel( this ) )
     , m_keyboardVariantsModel( new KeyboardVariantsModel( this ) )
+    , m_keyboardGroupsModel( new KeyboardGroupsModel( this ) )
 {
     m_setxkbmapTimer.setSingleShot( true );
 
@@ -190,25 +191,40 @@ Config::Config( QObject* parent )
                  emit prettyStatusChanged();
              } );
 
-    connect( m_keyboardVariantsModel, &KeyboardVariantsModel::currentIndexChanged, this, &Config::xkbChanged );
+    connect( m_keyboardVariantsModel,
+             &KeyboardVariantsModel::currentIndexChanged,
+             [ & ]( int index )
+             {
+                 m_selectedVariant = m_keyboardVariantsModel->key( index );
+                 Config::xkbChanged();
+                 emit prettyStatusChanged();
+             } );
+    connect( m_keyboardGroupsModel,
+             &KeyboardGroupsModel::currentIndexChanged,
+             [ & ]( int index )
+             {
+                 m_selectedGroup = m_keyboardGroupsModel->key( index );
+                 Config::xkbChanged();
+                 emit prettyStatusChanged();
+             } );
 
     // If the user picks something explicitly -- not a consequence of
     // a guess -- then move to UserSelected state and stay there.
     connect( m_keyboardModelsModel, &KeyboardModelsModel::currentIndexChanged, this, &Config::selectionChange );
     connect( m_keyboardLayoutsModel, &KeyboardLayoutModel::currentIndexChanged, this, &Config::selectionChange );
     connect( m_keyboardVariantsModel, &KeyboardVariantsModel::currentIndexChanged, this, &Config::selectionChange );
+    connect( m_keyboardGroupsModel, &KeyboardGroupsModel::currentIndexChanged, this, &Config::selectionChange );
 
     m_selectedModel = m_keyboardModelsModel->key( m_keyboardModelsModel->currentIndex() );
     m_selectedLayout = m_keyboardLayoutsModel->item( m_keyboardLayoutsModel->currentIndex() ).first;
     m_selectedVariant = m_keyboardVariantsModel->key( m_keyboardVariantsModel->currentIndex() );
+    m_selectedGroup = m_keyboardGroupsModel->key( m_keyboardGroupsModel->currentIndex() );
 }
 
 void
-Config::xkbChanged( int index )
+Config::xkbChanged()
 {
     // Set Xorg keyboard layout + variant
-    m_selectedVariant = m_keyboardVariantsModel->key( index );
-
     if ( m_setxkbmapTimer.isActive() )
     {
         m_setxkbmapTimer.stop();
@@ -271,8 +287,15 @@ Config::xkbApply()
 
     if ( !m_additionalLayoutInfo.additionalLayout.isEmpty() )
     {
-        m_additionalLayoutInfo.groupSwitcher = xkbmap_query_grp_option();
+        if ( !m_selectedGroup.isEmpty() )
+        {
+            m_additionalLayoutInfo.groupSwitcher = "grp:" + m_selectedGroup;
+        }
 
+        if ( m_additionalLayoutInfo.groupSwitcher.isEmpty() )
+        {
+            m_additionalLayoutInfo.groupSwitcher = xkbmap_query_grp_option();
+        }
         if ( m_additionalLayoutInfo.groupSwitcher.isEmpty() )
         {
             m_additionalLayoutInfo.groupSwitcher = "grp:alt_shift_toggle";
@@ -313,6 +336,12 @@ KeyboardVariantsModel*
 Config::keyboardVariants() const
 {
     return m_keyboardVariantsModel;
+}
+
+KeyboardGroupsModel*
+Config::keyboardGroups() const
+{
+    return m_keyboardGroupsModel;
 }
 
 static QPersistentModelIndex
@@ -647,7 +676,8 @@ Config::finalize()
         if ( !m_additionalLayoutInfo.additionalLayout.isEmpty() )
         {
             gs->insert( "keyboardAdditionalLayout", m_additionalLayoutInfo.additionalLayout );
-            gs->insert( "keyboardAdditionalLayout", m_additionalLayoutInfo.additionalVariant );
+            gs->insert( "keyboardAdditionalVariant", m_additionalLayoutInfo.additionalVariant );
+            gs->insert( "keyboardGroupSwitcher", m_additionalLayoutInfo.groupSwitcher );
             gs->insert( "keyboardVConsoleKeymap", m_additionalLayoutInfo.vconsoleKeymap );
         }
     }

@@ -15,14 +15,15 @@ Prints out a few tables of keyboard model, layout, variant names for
 use in translations.
 """
 
-def scrape_file(file, modelsset, layoutsset, variantsset):
+def scrape_file(file, modelsset, layoutsset, variantsset, groupsset):
     import re
     # These RE's match what is in keyboardglobal.cpp
     model_re = re.compile("^\\s+(\\S+)\\s+(\\w.*)\n$")
     layout_re = re.compile("^\\s+(\\S+)\\s+(\\w.*)\n$")
     variant_re = re.compile("^\\s+(\\S+)\\s+(\\S+): (\\w.*)\n$")
+    group_re = re.compile("^\\s+grp:(\\S+)\\s+(\\w.*)\n$")
 
-    MODEL, LAYOUT, VARIANT = range(3)
+    MODEL, LAYOUT, VARIANT, GROUP = range(4)
     state = None
     for line in file.readlines():
         # Handle changes in section
@@ -34,6 +35,9 @@ def scrape_file(file, modelsset, layoutsset, variantsset):
             continue
         elif line.startswith("! variant"):
             state = VARIANT
+            continue
+        elif line.startswith("! option"):
+            state = GROUP
             continue
         elif not line.strip():
             state = None
@@ -53,6 +57,12 @@ def scrape_file(file, modelsset, layoutsset, variantsset):
             v = variant_re.match(line)
             name = v.groups()[2]
             variantsset.add(name)
+        if state == GROUP:
+            v = group_re.match(line)
+            if v is None:
+                continue
+            name = v.groups()[1]
+            groupsset.add(name)
 
 
 def write_set(file, label, set):
@@ -85,12 +95,15 @@ if __name__ == "__main__":
     models=set()
     layouts=set()
     variants=set()
+    groups=set()
     variants.add( "Default" )
+    groups.add( "None" )
     with open("/usr/local/share/X11/xkb/rules/base.lst", "r") as f:
-        scrape_file(f, models, layouts, variants)
+        scrape_file(f, models, layouts, variants, groups)
     with open("KeyboardData_p.cxxtr", "w") as f:
         f.write(cpp_header_comment)
         write_set(f, "kb_models", models)
         write_set(f, "kb_layouts", layouts)
         write_set(f, "kb_variants", variants)
+        write_set(f, "kb_groups", groups)
 

@@ -199,6 +199,48 @@ parseKeyboardLayouts( const char* filepath )
     return layouts;
 }
 
+static KeyboardGlobal::GroupsMap
+parseKeyboardGroups( const char* filepath )
+{
+    KeyboardGlobal::GroupsMap models;
+
+    QFile fh( filepath );
+    fh.open( QIODevice::ReadOnly );
+
+    if ( !fh.isOpen() )
+    {
+        cDebug() << "X11 Keyboard model definitions not found!";
+        return models;
+    }
+
+    bool modelsFound = findSection( fh, "! option" );
+    // read the file until the end or until we break the loop
+    while ( modelsFound && !fh.atEnd() )
+    {
+        QByteArray line = fh.readLine();
+
+        // check if we start a new section
+        if ( line.startsWith( '!' ) )
+        {
+            break;
+        }
+
+        // here we are in the model section, otherwise we would continue or break
+        QRegExp rx;
+        rx.setPattern( "^\\s+grp:(\\S+)\\s+(\\w.*)\n$" );
+
+        // insert into the model map
+        if ( rx.indexIn( line ) != -1 )
+        {
+            QString modelDesc = rx.cap( 2 );
+            QString model = rx.cap( 1 );
+            models.insert( modelDesc, model );
+        }
+    }
+
+    return models;
+}
+
 
 KeyboardGlobal::LayoutsMap
 KeyboardGlobal::getKeyboardLayouts()
@@ -211,4 +253,10 @@ KeyboardGlobal::ModelsMap
 KeyboardGlobal::getKeyboardModels()
 {
     return parseKeyboardModels( XKB_FILE );
+}
+
+KeyboardGlobal::GroupsMap
+KeyboardGlobal::getKeyboardGroups()
+{
+    return parseKeyboardGroups( XKB_FILE );
 }

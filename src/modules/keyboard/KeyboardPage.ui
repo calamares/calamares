@@ -118,6 +118,30 @@ SPDX-License-Identifier: GPL-3.0-or-later
     </layout>
    </item>
    <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Keyboard Switch:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="groupSelector">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
     <widget class="QLineEdit" name="LE_TestKeyboard">
      <property name="font">
       <font>
@@ -142,6 +166,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
   <tabstop>physicalModelSelector</tabstop>
   <tabstop>layoutSelector</tabstop>
   <tabstop>variantSelector</tabstop>
+  <tabstop>groupSelector</tabstop>
   <tabstop>LE_TestKeyboard</tabstop>
   <tabstop>buttonRestore</tabstop>
  </tabstops>
