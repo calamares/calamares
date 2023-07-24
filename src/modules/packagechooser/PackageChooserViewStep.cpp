@@ -121,7 +121,10 @@ PackageChooserViewStep::onActivate()
 void
 PackageChooserViewStep::onLeave()
 {
-    m_config->updateGlobalStorage( m_widget->selectedPackageIds() );
+    QString flatpak("flatpak");
+    QString empty;
+    m_config->updateGlobalStorage( empty, m_widget->selectedPackageIds(empty) );
+    m_config->updateGlobalStorage( flatpak, m_widget->selectedPackageIds(flatpak) );
 }
 
 Calamares::JobList

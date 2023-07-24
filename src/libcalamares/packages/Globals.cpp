@@ -6,7 +6,7 @@
  *   Calamares is Free Software: see the License-Identifier above.
  *
  */
-
+#include "string.h"
 #include "Globals.h"
 
 #include "GlobalStorage.h"
@@ -16,14 +16,29 @@ static bool
 additions( Calamares::GlobalStorage* gs,
            const QString& key,
            const QVariantList& installPackages,
-           const QVariantList& tryInstallPackages )
+           const QVariantList& tryInstallPackages,
+           const char *backend = nullptr )
 {
-    static const char PACKAGEOP[] = "packageOperations";
+    static const char PACKAGEOP_[] = "packageOperations";
+    int backendreplength = backend == nullptr ? 0 : strlen(backend);
+    char PACKAGEOP[sizeof("packageOperations") + backendreplength ];
 
     // Check if there's already a PACAKGEOP entry in GS, and if so we'll
     // extend that one (overwriting the value in GS at the end of this method)
     QVariantList packageOperations = gs->contains( PACKAGEOP ) ? gs->value( PACKAGEOP ).toList() : QVariantList();
     cDebug() << "Existing package operations length" << packageOperations.length();
+
+    PACKAGEOP[0] = '\0';
+    if (backend)
+    {
+      strcat(PACKAGEOP, backend);
+      PACKAGEOP[backendreplength] = 'P';
+      strcat(PACKAGEOP, &PACKAGEOP_[1]);
+    }
+    else
+    {
+       strcat(PACKAGEOP, PACKAGEOP_);
+    }
 
     // Clear out existing operations for this module, going backwards:
     // Sometimes we remove an item, and we don't want the index to
@@ -69,20 +84,22 @@ bool
 CalamaresUtils::Packages::setGSPackageAdditions( Calamares::GlobalStorage* gs,
                                                  const Calamares::ModuleSystem::InstanceKey& module,
                                                  const QVariantList& installPackages,
-                                                 const QVariantList& tryInstallPackages )
+                                                 const QVariantList& tryInstallPackages,
+                                                 const char *backend )
 {
-    return additions( gs, module.toString(), installPackages, tryInstallPackages );
+    return additions( gs, module.toString(), installPackages, tryInstallPackages, backend );
 }
 
 bool
 CalamaresUtils::Packages::setGSPackageAdditions( Calamares::GlobalStorage* gs,
                                                  const Calamares::ModuleSystem::InstanceKey& module,
-                                                 const QStringList& installPackages )
+                                                 const QStringList& installPackages,
+                                                 const char *backend )
 {
     QVariantList l;
     for ( const auto& s : installPackages )
     {
         l << s;
     }
-    return additions( gs, module.toString(), l, QVariantList() );
+    return additions( gs, module.toString(), l, QVariantList(), backend );
 }

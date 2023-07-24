@@ -43,20 +43,23 @@ loadScreenshot( const QString& path )
 
 PackageItem::PackageItem() {}
 
-PackageItem::PackageItem( const QString& a_id, const QString& a_name, const QString& a_description )
+PackageItem::PackageItem( const QString& a_id, const QString& a_name, const QString& a_description, const QString& backend )
     : id( a_id )
     , name( a_name )
     , description( a_description )
+    , backend(backend)
 {
 }
 
 PackageItem::PackageItem( const QString& a_id,
                           const QString& a_name,
                           const QString& a_description,
+                          const QString& backend,
                           const QString& screenshotPath )
     : id( a_id )
     , name( a_name )
     , description( a_description )
+    , backend(backend)
     , screenshot( screenshotPath )
 {
 }
@@ -67,6 +70,7 @@ PackageItem::PackageItem( const QVariantMap& item_map )
     , description( CalamaresUtils::Locale::TranslatedString( item_map, "description" ) )
     , screenshot( loadScreenshot( CalamaresUtils::getString( item_map, "screenshot" ) ) )
     , packageNames( CalamaresUtils::getStringList( item_map, "packages" ) )
+    , backend("")
     , netinstallData( getSubMap( item_map, "netinstall" ) )
 {
     if ( name.isEmpty() && id.isEmpty() )
@@ -190,6 +194,10 @@ PackageListModel::data( const QModelIndex& index, int role ) const
     else if ( role == IdRole )
     {
         return m_packages[ row ].id;
+    }
+    else if ( role == Backend)
+    {
+        return m_packages[ row ].backend;
     }
 
     return QVariant();

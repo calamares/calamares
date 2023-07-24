@@ -691,7 +691,7 @@ def run_operations(pkgman, entry):
     _change_mode(None)
 
 
-def run():
+def real_run(backend,operations):
     """
     Calls routine with detected package manager to install locale packages
     or remove drivers not needed on the installed system.
@@ -699,8 +699,6 @@ def run():
     :return:
     """
     global mode_packages, total_packages, completed_packages, group_packages
-
-    backend = libcalamares.job.configuration.get("backend")
 
     for identifier, impl in backend_managers:
         if identifier == backend:
@@ -738,10 +736,6 @@ def run():
                     _("The package manager could not update the system. The command <pre>{!s}</pre> returned error code {!s}.")
                     .format(e.cmd, e.returncode))
 
-    operations = libcalamares.job.configuration.get("operations", [])
-    if libcalamares.globalstorage.contains("packageOperations"):
-        operations += libcalamares.globalstorage.value("packageOperations")
-
     mode_packages = None
     total_packages = 0
     completed_packages = 0
@@ -771,3 +765,14 @@ def run():
     libcalamares.job.setprogress(1.0)
 
     return None
+
+def run():
+    backend = libcalamares.job.configuration.get("backend")
+    operations = libcalamares.job.configuration.get("operations", [])
+    if libcalamares.globalstorage.contains("packageOperations"):
+        operations += libcalamares.globalstorage.value("packageOperations")
+    real_run(operations)
+    flatpakOperations = libcalamares.job.configuration.get("flatpakOperations", [])
+    if libcalamares.globalstorage.contains("flatpakPackageOperations"):
+        flatpakOperations += libcalamares.globalstorage.value("flatpakPackageOperations")
+    real_run(flatpakOperations)

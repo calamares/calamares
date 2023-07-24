@@ -86,14 +86,14 @@ public:
      * Updates the GS keys for this packagechooser, marking all
      * (and only) the packages in @p selected as selected.
      */
-    void updateGlobalStorage( const QStringList& selected ) const;
+    void updateGlobalStorage(const QString&, const QStringList& selected ) const;
     /** @brief Write selection to global storage
      *
      * Updates the GS keys for this packagechooser, marking **only**
      * the package choice as selected. This assumes that the single-
      * selection QML code is in use.
      */
-    void updateGlobalStorage() const;
+    void updateGlobalStorage(const QString&) const;
 
     QString packageChoice() const { return m_packageChoice.value_or( QString() ); }
     void setPackageChoice( const QString& packageChoice );

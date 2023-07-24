@@ -35,7 +35,7 @@ struct PackageItem
      * This constructor sets all the text members,
      * but leaves the screenshot blank. Set that separately.
      */
-    PackageItem( const QString& id, const QString& name, const QString& description );
+    PackageItem( const QString& id, const QString& name, const QString& description, const QString& backend );
 
     /** @brief Creates a PackageItem from given strings.
      *
@@ -43,7 +43,7 @@ struct PackageItem
      * @p screenshotPath, which may be a QRC path (:/path/in/qrc) or
      * a filesystem path, whatever QPixmap understands.
      */
-    PackageItem( const QString& id, const QString& name, const QString& description, const QString& screenshotPath );
+    PackageItem( const QString& id, const QString& name, const QString& description, const QString& backend, const QString& screenshotPath );
 
     /** @brief Creates a PackageItem from a QVariantMap
      *
@@ -66,6 +66,7 @@ struct PackageItem
      * A valid item has an untranslated name available.
      */
     bool isValid() const { return !name.isEmpty(); }
+    QString backend;
 
     /** @brief Is this a (the) No-Package package?
      *
@@ -125,7 +126,8 @@ public:
         NameRole = Qt::DisplayRole,
         DescriptionRole = Qt::UserRole,
         ScreenshotRole,
-        IdRole
+        IdRole,
+        Backend
     };
 
 private:

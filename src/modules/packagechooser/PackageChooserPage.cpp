@@ -116,7 +116,7 @@ PackageChooserPage::hasSelection() const
 }
 
 QStringList
-PackageChooserPage::selectedPackageIds() const
+PackageChooserPage::selectedPackageIds(QString& backend) const
 {
     if ( !( ui && ui->products && ui->products->selectionModel() ) )
     {
@@ -128,7 +128,11 @@ PackageChooserPage::selectedPackageIds() const
     for ( const auto& index : ui->products->selectionModel()->selectedIndexes() )
     {
         QString pid = model->data( index, PackageListModel::IdRole ).toString();
-        if ( !pid.isEmpty() )
+        if ( (!pid.isEmpty()) && (backend == "") )
+        {
+            ids.append( pid );
+        }
+        else if ( (!pid.isEmpty()) && (backend == model->data( index, PackageListModel::Backend ).toString()) )
         {
             ids.append( pid );
         }

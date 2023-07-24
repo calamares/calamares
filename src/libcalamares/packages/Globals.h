@@ -27,7 +27,8 @@ namespace Packages
 bool setGSPackageAdditions( Calamares::GlobalStorage* gs,
                             const Calamares::ModuleSystem::InstanceKey& module,
                             const QVariantList& installPackages,
-                            const QVariantList& tryInstallPackages );
+                            const QVariantList& tryInstallPackages,
+                            const char *backend = nullptr );
 /** @brief Sets the install-packages GS keys for the given module
  *
  * This replaces previously-set install-packages lists. Use this with
@@ -35,7 +36,8 @@ bool setGSPackageAdditions( Calamares::GlobalStorage* gs,
  */
 bool setGSPackageAdditions( Calamares::GlobalStorage* gs,
                             const Calamares::ModuleSystem::InstanceKey& module,
-                            const QStringList& installPackages );
+                            const QStringList& installPackages,
+                            const char *backend = nullptr );
 // void setGSPackageRemovals( const Calamares::ModuleSystem::InstanceKey& key, const QVariantList& removePackages );
 }  // namespace Packages
 }  // namespace CalamaresUtils

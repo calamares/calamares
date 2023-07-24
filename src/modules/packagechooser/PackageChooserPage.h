@@ -40,7 +40,7 @@ public:
      *
      * This list may be empty (if none is selected).
      */
-    QStringList selectedPackageIds() const;
+    QStringList selectedPackageIds(QString& selectedPackageIds) const;
 
 public slots:
     void currentChanged( const QModelIndex& index );

@@ -74,7 +74,10 @@ PackageChooserQmlViewStep::jobs() const
 void
 PackageChooserQmlViewStep::onLeave()
 {
-    m_config->updateGlobalStorage();
+    QString flatpak("flatpak");
+    QString empty;
+    m_config->updateGlobalStorage( empty );
+    m_config->updateGlobalStorage( flatpak );
 }
 
 void

@@ -111,7 +111,7 @@ Config::introductionPackage() const
         const auto name = QT_TR_NOOP( "Package Selection" );
         const auto description
             = QT_TR_NOOP( "Please pick a product from the list. The selected product will be installed." );
-        defaultIntroduction = new PackageItem( QString(), name, description );
+        defaultIntroduction = new PackageItem( QString(), name, description, QString() );
         defaultIntroduction->screenshot = QPixmap( QStringLiteral( ":/images/no-selection.png" ) );
         defaultIntroduction->name = CalamaresUtils::Locale::TranslatedString( name, metaObject()->className() );
         defaultIntroduction->description
@@ -121,13 +121,20 @@ Config::introductionPackage() const
 }
 
 static inline QString
-make_gs_key( const Calamares::ModuleSystem::InstanceKey& key )
+make_gs_key( const Calamares::ModuleSystem::InstanceKey& key, const QString& backend )
 {
-    return QStringLiteral( "packagechooser_" ) + key.id();
+    if (backend == "")
+    {
+       return QStringLiteral( "packagechooser_" ) + key.id();
+    }
+    else
+    {
+       return backend + QStringLiteral( "Packagechooser_" ) + key.id();
+    }
 }
 
 void
-Config::updateGlobalStorage( const QStringList& selected ) const
+Config::updateGlobalStorage( const QString& backend, const QStringList& selected ) const
 {
     if ( m_packageChoice.has_value() )
     {
@@ -136,7 +143,7 @@ Config::updateGlobalStorage( const QStringList& selected ) const
     if ( m_method == PackageChooserMethod::Legacy )
     {
         QString value = selected.join( ',' );
-        Calamares::JobQueue::instance()->globalStorage()->insert( make_gs_key( m_defaultId ), value );
+        Calamares::JobQueue::instance()->globalStorage()->insert( make_gs_key( m_defaultId, backend ), value );
         cDebug() << m_defaultId << "selected" << value;
     }
     else if ( m_method == PackageChooserMethod::Packages )
@@ -194,7 +201,7 @@ Config::updateGlobalStorage( const QStringList& selected ) const
 }
 
 void
-Config::updateGlobalStorage() const
+Config::updateGlobalStorage(const QString& backend) const
 {
     if ( m_model->packageCount() > 0 )
     {
@@ -205,11 +212,11 @@ Config::updateGlobalStorage() const
         auto* gs = Calamares::JobQueue::instance()->globalStorage();
         if ( m_packageChoice.has_value() )
         {
-            gs->insert( make_gs_key( m_defaultId ), m_packageChoice.value() );
+            gs->insert( make_gs_key( m_defaultId, backend ), m_packageChoice.value() );
         }
         else
         {
-            gs->remove( make_gs_key( m_defaultId ) );
+            gs->remove( make_gs_key( m_defaultId, backend ) );
         }
     }
     else if ( m_method == PackageChooserMethod::Packages )
