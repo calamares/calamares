@@ -50,6 +50,7 @@ calamares_add_plugin(packagechooser
         PackageChooserPage.cpp
         PackageChooserViewStep.cpp
         PackageModel.cpp
+        ItemFlatpak.cpp
         ${_extra_src}
     RESOURCES
         packagechooser.qrc

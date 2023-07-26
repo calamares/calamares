@@ -12,6 +12,7 @@
 #include "Config.h"
 #include "PackageChooserPage.h"
 #include "PackageModel.h"
+#include "ItemFlatpak.h"
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
@@ -19,6 +20,20 @@
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
+
+#include <ext/stdio_filebuf.h>
+#include <fstream>
+#include <iostream>
+
+#include <stdio.h>
+#include <sys/wait.h>
+#include <unistd.h>
+
+#ifdef HAVE_APPSTREAM
+#include "ItemAppStream.h"
+#include <AppStreamQt/pool.h>
+#include <memory>
+#endif
 
 #include <QDesktopServices>
 #include <QVariantMap>
@@ -140,6 +155,43 @@ PackageChooserViewStep::setConfigurationMap( const QVariantMap& configurationMap
     m_config->setDefaultId( moduleInstanceKey() );
     m_config->setConfigurationMap( configurationMap );
 
+#ifdef HAVE_APPSTREAM
+    int pid;
+    int pipefd[2];
+    std::unique_ptr< AppStream::Pool > pool;
+    bool poolOk = false;
+    pipe(pipefd);
+
+    pid = fork();
+    if (0 == pid)
+    {
+        close(pipefd[0]);
+        dup2(pipefd[1], 1);
+        execlp("flatpak", "flatpak", "search", "--columns=application", "", NULL);
+    }
+    close(pipefd[1]);
+
+    pool = std::make_unique< AppStream::Pool >();
+    pool->setLocale( QStringLiteral( "ALL" ) );
+    poolOk = pool->load();
+
+    std::string line;
+    __gnu_cxx::stdio_filebuf<char> filebuf(pipefd[0], std::ios::in);
+    std::istream stream(&filebuf);
+
+    while (!stream.eof())
+    {
+      getline(stream, line);
+      QVariantMap item_map;
+
+      item_map.insert("appstream", QVariant(QString::fromStdString(line)));
+      item_map.insert("id", QVariant(QString::fromStdString(line)));
+
+      m_config->model()->addPackage( fromFlatpak( *pool, item_map) );
+    }
+
+    waitpid(pid, nullptr, 0);
+#endif
     if ( m_widget )
     {
         hookupModel();
