@@ -444,7 +444,7 @@ bool
 isArmSystem()
 {
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-    return gs->contains( "armInstall" ) && gs->value( "armInstall" ).toBool();
+    return gs->contains( "armInstall" ) && gs->value( "armInstall" ).toBool() );
 }
 
 bool
