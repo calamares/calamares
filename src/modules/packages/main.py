@@ -341,11 +341,11 @@ class PMFlatpak(PackageManager):
     backend = "flatpak"
 
     def install(self, pkgs, from_local=False):
-        check_target_env_call(["flatpak", "install"] + pkgs)
+        check_target_env_call(["flatpak", "install", "--assumeyes"] + pkgs)
 
     def remove(self, pkgs):
-        check_target_env_call(["flatpak", "uninstall"] + pkgs)
-        check_target_env_call(["flatpak", "uninstall", "--unneeded"])
+        check_target_env_call(["flatpak", "uninstall", "--noninteractive"] + pkgs)
+        check_target_env_call(["flatpak", "uninstall", "--noninteractive", "--unneeded"])
 
     def update_db(self):
         pass
