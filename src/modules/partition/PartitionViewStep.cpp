@@ -491,6 +491,28 @@ shouldWarnForGPTOnBIOS( const PartitionCoreModule* core )
     return true;
 }
 
+static bool
+shouldWarnForNotEncryptedBoot( const Config* config, const PartitionCoreModule* core)
+{
+    if ( config->showNotEncryptedBootMessage() )
+    {
+        Partition* root_p = core->findPartitionByMountPoint( "/" );
+        Partition* boot_p = core->findPartitionByMountPoint( "/boot" );
+
+        if ( root_p and boot_p )
+        {
+            if ( ( root_p->fileSystem().type() == FileSystem::Luks
+                   && boot_p->fileSystem().type() != FileSystem::Luks )
+                 || ( root_p->fileSystem().type() == FileSystem::Luks2
+                      && boot_p->fileSystem().type() != FileSystem::Luks2 ) )
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 void
 PartitionViewStep::onLeave()
 {
@@ -605,42 +627,29 @@ PartitionViewStep::onLeave()
             }
         }
 
-        Partition* root_p = m_core->findPartitionByMountPoint( "/" );
-        Partition* boot_p = m_core->findPartitionByMountPoint( "/boot" );
-
-        if ( root_p and boot_p )
+        if ( shouldWarnForNotEncryptedBoot( m_config, m_core ) )
         {
-            QString message;
-            QString description;
+            QString message = tr( "Boot partition not encrypted" );
+            QString description = tr( "A separate boot partition was set up together with "
+                                         "an encrypted root partition, but the boot partition "
+                                         "is not encrypted."
+                                         "<br/><br/>"
+                                         "There are security concerns with this kind of "
+                                         "setup, because important system files are kept "
+                                         "on an unencrypted partition.<br/>"
+                                         "You may continue if you wish, but filesystem "
+                                         "unlocking will happen later during system startup."
+                                         "<br/>To encrypt the boot partition, go back and "
+                                         "recreate it, selecting <strong>Encrypt</strong> "
+                                         "in the partition creation window." );
 
-            // If the root partition is encrypted, and there's a separate boot
-            // partition which is not encrypted
-            if ( ( root_p->fileSystem().type() == FileSystem::Luks && boot_p->fileSystem().type() != FileSystem::Luks )
-                 || ( root_p->fileSystem().type() == FileSystem::Luks2
-                      && boot_p->fileSystem().type() != FileSystem::Luks2 ) )
-            {
-                message = tr( "Boot partition not encrypted" );
-                description = tr( "A separate boot partition was set up together with "
-                                  "an encrypted root partition, but the boot partition "
-                                  "is not encrypted."
-                                  "<br/><br/>"
-                                  "There are security concerns with this kind of "
-                                  "setup, because important system files are kept "
-                                  "on an unencrypted partition.<br/>"
-                                  "You may continue if you wish, but filesystem "
-                                  "unlocking will happen later during system startup."
-                                  "<br/>To encrypt the boot partition, go back and "
-                                  "recreate it, selecting <strong>Encrypt</strong> "
-                                  "in the partition creation window." );
-
-                QMessageBox mb( QMessageBox::Warning, message, description, QMessageBox::Ok, m_manualPartitionPage );
-                Calamares::fixButtonLabels( &mb );
-                mb.exec();
-            }
+            QMessageBox mb(
+                QMessageBox::Warning, message, description, QMessageBox::Ok, m_manualPartitionPage );
+            Calamares::fixButtonLabels( &mb );
+            mb.exec();
         }
     }
 }
-
 
 void
 PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
