@@ -345,7 +345,6 @@ class PMFlatpak(PackageManager):
 
     def remove(self, pkgs):
         check_target_env_call(["flatpak", "uninstall", "--noninteractive"] + pkgs)
-        check_target_env_call(["flatpak", "uninstall", "--noninteractive", "--unused"])
 
     def update_db(self):
         pass
