@@ -321,7 +321,7 @@ Config::hostnameStatus() const
 static QString
 cleanupForHostname( const QString& s )
 {
-    QRegExp dmirx( "[^a-zA-Z0-9]", Qt::CaseInsensitive );
+    QRegExp dmirx( "(^Apple|\\(.*\\)|[^a-zA-Z0-9])", Qt::CaseInsensitive );
     return s.toLower().replace( dmirx, " " ).remove( ' ' );
 }
 
