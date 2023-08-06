@@ -6,18 +6,18 @@
     <message>
       <location filename="../src/libcalamares/CalamaresAbout.cpp" line="17"/>
       <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt; for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt; fyrir %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/CalamaresAbout.cpp" line="20"/>
-      <source>Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
+      <source>Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://app.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
       <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/libcalamares/CalamaresAbout.cpp" line="38"/>
       <source>Copyright %1-%2 %3 &amp;lt;%4&amp;gt;&lt;br/&gt;</source>
       <extracomment>Copyright year-year Name &lt;email-address&gt;</extracomment>
-      <translation type="unfinished"/>
+      <translation>Höfundarréttur %1-%2 %3 &amp;lt;%4&amp;gt;&lt;br/&gt;</translation>
     </message>
   </context>
   <context>
@@ -25,7 +25,7 @@
     <message>
       <location filename="../src/modules/partition/jobs/AutoMountManagementJob.cpp" line="22"/>
       <source>Manage auto-mount settings</source>
-      <translation type="unfinished"/>
+      <translation>Sýsla með sjálfvirkar tengistillingar</translation>
     </message>
   </context>
   <context>
@@ -33,43 +33,43 @@
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="62"/>
       <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;Ræsiumhverfi&lt;/strong&gt; þessa kerfis.&lt;br&gt;&lt;br&gt;Eldri x86-kerfi styðja einungis &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Nútímaleg kerfi styðja venjulega &lt;strong&gt;EFI&lt;/strong&gt;, en geta einnig birst undir BIOS ef þau eru ræst í samhæfnisham (compatibility mode).</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="72"/>
       <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-      <translation type="unfinished"/>
+      <translation>Þetta kerfi var ræst með &lt;strong&gt;EFI&lt;/strong&gt; ræsiumhverfi.&lt;br&gt;&lt;br&gt;Til að stilla ræsingu úr EFI-umhverfi, þarf þetta uppsetningarforrit að nýta sér ræsistýringarhugbúnað á borð við &lt;strong&gt;GRUB&lt;/strong&gt; eða &lt;strong&gt;systemd-boot&lt;/strong&gt; á &lt;strong&gt;EFI-kerfisdisksneið&lt;/strong&gt; (System Partition). Þetta gerist sjálfvirkt nema ef þú velur handvirka disksneiðingu, í því tilfelli þarftu að velja disksneið eða útbúa hana upp á eigin spýtur.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="84"/>
       <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-      <translation type="unfinished"/>
+      <translation>Þetta kerfi var ræst með &lt;strong&gt;BIOS&lt;/strong&gt; ræsiumhverfi.&lt;br&gt;&lt;br&gt;Til að stilla ræsingu úr BIOS-umhverfi, þarf þetta uppsetningarforrit að setja upp ræsistýring á borð við &lt;strong&gt;GRUB&lt;/strong&gt;, annað hvort á upphafi disksneiðar eða í &lt;strong&gt;aðalræsifærslu (Master Boot Record - MBR)&lt;/strong&gt; nálægt upphafi disksneiðatöflunnar (mælt með þessu). Þetta gerist sjálfvirkt nema ef þú velur handvirka disksneiðingu, í því tilfelli þarftu að velja disksneið eða útbúa hana upp á eigin spýtur.</translation>
     </message>
   </context>
   <context>
     <name>BootLoaderModel</name>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="59"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="60"/>
       <source>Master Boot Record of %1</source>
       <translation>Aðalræsifærsla (MBR) %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="92"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="93"/>
       <source>Boot Partition</source>
       <translation>Ræsidisksneið</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="99"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="100"/>
       <source>System Partition</source>
       <translation>Kerfisdisksneið</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="129"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="131"/>
       <source>Do not install a boot loader</source>
       <translation>Ekki setja upp ræsistjóra</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="147"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="148"/>
       <source>%1 (%2)</source>
       <translation>%1 (%2)</translation>
     </message>
@@ -87,7 +87,7 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="18"/>
       <source>Form</source>
-      <translation>Eyðublað</translation>
+      <translation>Innfyllingarform</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="28"/>
@@ -107,7 +107,7 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="61"/>
       <source>Type:</source>
-      <translation>Tegund:</translation>
+      <translation>Gerð:</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="68"/>
@@ -123,22 +123,22 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="102"/>
       <source>Crashes Calamares, so that Dr. Konqui can look at it.</source>
-      <translation type="unfinished"/>
+      <translation>Lætur Calamares hrynja svo Dr. Konqui geti skoðað þetta.</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="115"/>
       <source>Reloads the stylesheet from the branding directory.</source>
-      <translation type="unfinished"/>
+      <translation>Endurhleður stílblaðið úr vörumerkingarmöppunni.</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="141"/>
       <source>Uploads the session log to the configured pastebin.</source>
-      <translation type="unfinished"/>
+      <translation>Sendir atvikaskrá setu í uppsett límklippusafn (pastebin).</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="144"/>
       <source>Send Session Log</source>
-      <translation type="unfinished"/>
+      <translation>Senda atvikaskrá setu</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="118"/>
@@ -148,7 +148,7 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="128"/>
       <source>Displays the tree of widget names in the log (for stylesheet debugging).</source>
-      <translation type="unfinished"/>
+      <translation>Birtir kvíslar græjuheita í atvikaskráningu (til að villuleita stílblöð).</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="131"/>
@@ -156,7 +156,7 @@
       <translation>Greinar viðmótshluta</translation>
     </message>
     <message>
-      <location filename="../src/calamares/DebugWindow.cpp" line="244"/>
+      <location filename="../src/calamares/DebugWindow.cpp" line="164"/>
       <source>Debug information</source>
       <translation>Villuleitarupplýsingar</translation>
     </message>
@@ -164,12 +164,18 @@
   <context>
     <name>Calamares::ExecutionViewStep</name>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="118"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="76"/>
+      <source>%p%</source>
+      <comment>Progress percentage indicator: %p is where the number 0..100 is placed</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="119"/>
       <source>Set up</source>
       <translation>Setja upp</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="118"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="119"/>
       <source>Install</source>
       <translation>Setja upp</translation>
     </message>
@@ -184,7 +190,7 @@
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="30"/>
       <source>Programmed job failure was explicitly requested.</source>
-      <translation type="unfinished"/>
+      <translation>Beðið var sérstaklega um að forritað verk myndi mistakast.</translation>
     </message>
   </context>
   <context>
@@ -200,7 +206,7 @@
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="17"/>
       <source>Example job (%1)</source>
-      <translation type="unfinished"/>
+      <translation>Sýniverk (%1)</translation>
     </message>
   </context>
   <context>
@@ -208,12 +214,12 @@
     <message>
       <location filename="../src/libcalamares/ProcessJob.cpp" line="42"/>
       <source>Run command '%1' in target system.</source>
-      <translation type="unfinished"/>
+      <translation>Keyra skipunina '%1' í markkerfi.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/ProcessJob.cpp" line="42"/>
       <source> Run command '%1'.</source>
-      <translation type="unfinished"/>
+      <translation> Keyrðu skipun '%1'.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/ProcessJob.cpp" line="49"/>
@@ -259,24 +265,24 @@
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="67"/>
       <source>Loading ...</source>
-      <translation type="unfinished"/>
+      <translation>Hleð inn ...</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="88"/>
       <source>QML Step &lt;i&gt;%1&lt;/i&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>QML-skref &lt;i&gt;%1&lt;/i&gt;.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="268"/>
       <source>Loading failed.</source>
-      <translation type="unfinished"/>
+      <translation>Hleðsla mistókst.</translation>
     </message>
   </context>
   <context>
     <name>Calamares::RequirementsChecker</name>
     <message>
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="94"/>
-      <source>Requirements checking for module &lt;i&gt;%1&lt;/i&gt; is complete.</source>
+      <source>Requirements checking for module '%1' is complete.</source>
       <translation type="unfinished"/>
     </message>
     <message numerus="yes">
@@ -298,7 +304,7 @@
     <message>
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="124"/>
       <source>System-requirements checking is complete.</source>
-      <translation type="unfinished"/>
+      <translation>Athugun á kerfiskröfum er lokið.</translation>
     </message>
   </context>
   <context>
@@ -336,12 +342,12 @@
     <message>
       <location filename="../src/libcalamaresui/utils/Paste.cpp" line="184"/>
       <source>Install Log Paste URL</source>
-      <translation type="unfinished"/>
+      <translation>Slóð þar sem á að líma atvikaskrá uppsetningarinnar</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/utils/Paste.cpp" line="166"/>
       <source>The upload was unsuccessful. No web-paste was done.</source>
-      <translation type="unfinished"/>
+      <translation>Innsendingin mistókst. Ekkert var límt inn á vefinn.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/utils/Paste.cpp" line="178"/>
@@ -350,22 +356,26 @@
 %1
 
 Link copied to clipboard</source>
-      <translation type="unfinished"/>
+      <translation>Atvikaskrá uppsetningarinnar send á
+
+%1
+
+Tengill afritaður á klippispjald</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="189"/>
       <source>Calamares Initialization Failed</source>
-      <translation>Calamares uppsetning mistókst</translation>
+      <translation>Frumstilling Calamares mistókst</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="190"/>
       <source>%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution.</source>
-      <translation type="unfinished"/>
+      <translation>Ekki er hægt að setja upp %1. Calamares tókst ekki að hlaða inn öllum stilltum einingum. Þetta er vandamál sem stafar af því hvernig Calamares er notað af viðkomandi dreifingu.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="196"/>
       <source>&lt;br/&gt;The following modules could not be loaded:</source>
-      <translation type="unfinished"/>
+      <translation>&lt;br/&gt;Ekki var hægt að hlaða inn eftirfarandi einingum:</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="310"/>
@@ -380,12 +390,12 @@ Link copied to clipboard</source>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="312"/>
       <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-      <translation type="unfinished"/>
+      <translation>%1 uppsetningarforritið er í þann mund að gera breytingar á disknum til að geta sett upp %2.&lt;br/&gt;&lt;strong&gt;Þú munt ekki geta afturkallað þessar breytingar.&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="315"/>
       <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-      <translation>%1 uppsetningarforritið er um það bil að gera breytingar á diskinum til að setja upp %2.&lt;br/&gt;&lt;strong&gt;Þú munt ekki geta afturkallað þessar breytingar.&lt;/strong&gt;</translation>
+      <translation>%1 uppsetningarforritið er í þann mund að gera breytingar á disknum til að geta sett upp %2.&lt;br/&gt;&lt;strong&gt;Þú munt ekki geta afturkallað þessar breytingar.&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="318"/>
@@ -415,22 +425,22 @@ Link copied to clipboard</source>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="378"/>
       <source>Setup is complete. Close the setup program.</source>
-      <translation type="unfinished"/>
+      <translation>Uppsetningu er lokið. Lokaðu uppsetningarforritinu.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="379"/>
       <source>The installation is complete. Close the installer.</source>
-      <translation>Uppsetning er lokið. Lokaðu uppsetningarforritinu.</translation>
+      <translation>Uppsetningu er lokið. Lokaðu uppsetningarforritinu.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="381"/>
       <source>Cancel setup without changing the system.</source>
-      <translation type="unfinished"/>
+      <translation>Hætta við uppsetningu án þess að breyta kerfinu.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="382"/>
       <source>Cancel installation without changing the system.</source>
-      <translation>Hætta við uppsetningu ánþess að breyta kerfinu.</translation>
+      <translation>Hætta við uppsetningu án þess að breyta kerfinu.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="392"/>
@@ -466,7 +476,8 @@ Link copied to clipboard</source>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="496"/>
       <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
-      <translation type="unfinished"/>
+      <translation>Viltu virkilega að hætta við núverandi uppsetningarferli?
+Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="498"/>
@@ -491,7 +502,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/libcalamares/PythonHelper.cpp" line="364"/>
       <source>unparseable Python traceback</source>
-      <translation>óþáttanleg Python reki</translation>
+      <translation>óþáttanleg Python afturrakning</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonHelper.cpp" line="371"/>
@@ -502,12 +513,12 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
   <context>
     <name>CalamaresWindow</name>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="392"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="396"/>
       <source>%1 Setup Program</source>
-      <translation type="unfinished"/>
+      <translation>%1 uppsetningarforrit</translation>
     </message>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="393"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="397"/>
       <source>%1 Installer</source>
       <translation>%1 uppsetningarforrit</translation>
     </message>
@@ -515,17 +526,18 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
   <context>
     <name>ChangeFilesystemLabelJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="32"/>
+      <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="34"/>
       <source>Set filesystem label on %1.</source>
-      <translation type="unfinished"/>
+      <translation>Stilltu merkingu skráakerfis á %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="39"/>
+      <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="41"/>
       <source>Set filesystem label &lt;strong&gt;%1&lt;/strong&gt; to partition &lt;strong&gt;%2&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Stilltu merkingu skráakerfis &lt;strong&gt;%1&lt;/strong&gt; á disksneiðina &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="70"/>
+      <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="71"/>
+      <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="83"/>
       <source>The installer failed to update partition table on disk '%1'.</source>
       <translation>Uppsetningarforritinu mistókst að uppfæra disksneiðatöflu á diski '%1'.</translation>
     </message>
@@ -535,7 +547,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/welcome/checker/CheckerContainer.cpp" line="38"/>
       <source>Gathering system information...</source>
-      <translation>Söfnun kerfis upplýsingar...</translation>
+      <translation>Sæki upplýsingar um kerfið...</translation>
     </message>
   </context>
   <context>
@@ -543,154 +555,154 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.ui" line="18"/>
       <source>Form</source>
-      <translation>Eyðublað</translation>
+      <translation>Innfyllingarform</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="138"/>
+      <source>Select storage de&amp;vice:</source>
+      <translation>Veldu geymslutæ&amp;ki:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="139"/>
-      <source>Select storage de&amp;vice:</source>
-      <translation>Veldu geymslu tæ&amp;ki:</translation>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1042"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1093"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1146"/>
+      <source>Current:</source>
+      <translation>Fyrirliggjandi:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="140"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1029"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1077"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1174"/>
-      <source>Current:</source>
-      <translation>Núverandi:</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="141"/>
       <source>After:</source>
-      <translation>Eftir:</translation>
+      <translation>Á eftir:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1732"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1673"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
-      <translation>&lt;strong&gt;Handvirk disksneiðing&lt;/strong&gt;&lt;br/&gt;Þú getur búið til eða breytt stærð disksneiða sjálft.</translation>
+      <translation>&lt;strong&gt;Handvirk disksneiðing&lt;/strong&gt;&lt;br/&gt;Þú getur búið til eða breytt stærð disksneiða sjálf/ur.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="894"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="907"/>
       <source>Reuse %1 as home partition for %2.</source>
-      <translation>Endurnota %1 sem heimasvæðis disksneið fyrir %2.</translation>
+      <translation>Endurnýta %1 sem home-disksneið fyrir %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1030"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1043"/>
       <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;Veldu disksneið til að minnka, dragðu síðan botnstikuna til að breyta stærðinni&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1048"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1067"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
-      <translation type="unfinished"/>
+      <translation>%1 verður minnkuð í %2MiB og ný %3MiB disksneið verður útbúin fyrir %4.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1106"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1701"/>
       <source>Boot loader location:</source>
-      <translation>Staðsetning ræsistjóra</translation>
+      <translation>Staðsetning ræsistjóra:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1165"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1137"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;Veldu disksneið til að setja upp á &lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1226"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1198"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-      <translation>EFI kerfisdisksneið er hvergi að finna á þessu kerfi. Farðu til baka og notaðu handvirka skiptingu til að setja upp %1.</translation>
+      <translation>EFI-kerfisdisksneið er hvergi að finna á þessu kerfi. Farðu til baka og notaðu handvirka disksneiðingu til að setja upp %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1234"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1206"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
-      <translation>EFI kerfisdisksneið á %1 mun verða notuð til að ræsa %2.</translation>
+      <translation>EFI-kerfisdisksneið á %1 mun verða notuð til að ræsa %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1242"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1214"/>
       <source>EFI system partition:</source>
-      <translation>EFI kerfisdisksneið:</translation>
+      <translation>EFI-kerfisdisksneið:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1402"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1343"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation>Þetta geymslu tæki hefur mörg stýrikerfi á sér. Hvað viltu gera?&lt;br/&gt;Þú verður að vera fær um að yfirfara og staðfesta val þitt áður en breytingar eru gerðar til geymslu tæki.</translation>
+      <translation>Þetta geymslutæki virðist ekki vera með neitt stýrikerfi. Hvað viltu gera?&lt;br/&gt;Þú munt geta yfirfarið og staðfest val þitt áður en nokkrar breytingar verða gerðar á geymslutækinu.</translation>
     </message>
     <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1348"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1385"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1407"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1444"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1466"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1491"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1432"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
-      <translation>&lt;strong&gt;Eyða disk&lt;/strong&gt;&lt;br/&gt;Þetta mun &lt;font color="red"&gt;eyða&lt;/font&gt; öllum gögnum á þessu valdna geymslu tæki.</translation>
+      <translation>&lt;strong&gt;Hreinsa disk&lt;/strong&gt;&lt;br/&gt;Þetta mun &lt;font color="red"&gt;eyða&lt;/font&gt; öllum gögnum á völdu geymslutæki.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1411"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1440"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1462"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1487"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1352"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1381"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1403"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1428"/>
       <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
       <translation>&lt;strong&gt;Setja upp samhliða&lt;/strong&gt;&lt;br/&gt;Uppsetningarforritið mun minnka disksneið til að búa til pláss fyrir %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1415"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1449"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1470"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1495"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1356"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1390"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1411"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1436"/>
       <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
       <translation>&lt;strong&gt;Skipta út disksneið&lt;/strong&gt;&lt;br/&gt;Skiptir disksneið út með %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1434"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1375"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation>Þetta geymslu tæki hefur %1 á sér. Hvað viltu gera?&lt;br/&gt;Þú verður að vera fær um að yfirfara og staðfesta val þitt áður en breytingar eru gerðar til geymslu tæki.</translation>
+      <translation>Þetta geymslutæki er með %1 uppsett. Hvað viltu gera?&lt;br/&gt;Þú munt geta yfirfarið og staðfest val þitt áður en nokkrar breytingar verða gerðar á geymslutækinu.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1457"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1398"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation>Þetta geymslu tæki hefur stýrikerfi á sér. Hvað viltu gera?&lt;br/&gt;Þú verður að vera fær um að yfirfara og staðfesta val þitt áður en breytingar eru gerðar til geymslu tæki.</translation>
+      <translation>Þetta geymslutæki er þegar með uppsett stýrikerfi. Hvað viltu gera?&lt;br/&gt;Þú munt geta yfirfarið og staðfest val þitt áður en nokkrar breytingar verða gerðar á geymslutækinu.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1482"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1423"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation>Þetta geymslu tæki hefur mörg stýrikerfi á sér. Hvað viltu gera?&lt;br/&gt;Þú verður að vera fær um að yfirfara og staðfesta val þitt áður en breytingar eru gerðar til geymslu tæki.</translation>
+      <translation>Þetta geymslutæki er með mörg stýrikerfi. Hvað viltu gera?&lt;br/&gt;Þú munt geta yfirfarið og staðfest val þitt áður en nokkrar breytingar verða gerðar á geymslutækinu.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1554"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1495"/>
       <source>This storage device already has an operating system on it, but the partition table &lt;strong&gt;%1&lt;/strong&gt; is different from the needed &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</source>
-      <translation type="unfinished"/>
+      <translation>Þetta geymslutæki er þegar með uppsett stýrikerfi, en disksneiðataflan &lt;strong&gt;%1&lt;/strong&gt; er frábrugðin þeirri &lt;strong&gt;%2&lt;/strong&gt; sem þyrfti.&lt;br/&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1577"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1518"/>
       <source>This storage device has one of its partitions &lt;strong&gt;mounted&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Þetta geymslutæki er með eina af disksneiðunum sínum &lt;strong&gt;tengda í skráakerfi&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1582"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1523"/>
       <source>This storage device is a part of an &lt;strong&gt;inactive RAID&lt;/strong&gt; device.</source>
-      <translation type="unfinished"/>
+      <translation>Þetta geymslutæki er hluti af &lt;strong&gt;óvirku RAID-tæki&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1701"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1642"/>
       <source>No Swap</source>
-      <translation type="unfinished"/>
+      <translation>Ekkert swap-diskminni</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1710"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1651"/>
       <source>Reuse Swap</source>
-      <translation type="unfinished"/>
+      <translation>Endurnýta diskminni</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1713"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1654"/>
       <source>Swap (no Hibernate)</source>
-      <translation type="unfinished"/>
+      <translation>Diskminni (ekki hægt að leggja í dvala)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1716"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1657"/>
       <source>Swap (with Hibernate)</source>
-      <translation type="unfinished"/>
+      <translation>Diskminni (hægt að leggja í dvala)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1719"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1660"/>
       <source>Swap to file</source>
-      <translation type="unfinished"/>
+      <translation>Diskminni í skrá</translation>
     </message>
   </context>
   <context>
@@ -698,37 +710,37 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="272"/>
       <source>Successfully unmounted %1.</source>
-      <translation type="unfinished"/>
+      <translation>Tókst að aftengja %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="279"/>
       <source>Successfully disabled swap %1.</source>
-      <translation type="unfinished"/>
+      <translation>Tókst að gera swap-diskminni óvirkt %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="305"/>
       <source>Successfully cleared swap %1.</source>
-      <translation type="unfinished"/>
+      <translation>Tókst að hreinsa %1 swap-diskminni.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="319"/>
       <source>Successfully closed mapper device %1.</source>
-      <translation type="unfinished"/>
+      <translation>Tókst að loka tækjagreininum (mapper device) %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="332"/>
       <source>Successfully disabled volume group %1.</source>
-      <translation type="unfinished"/>
+      <translation>Tókst að gera %1 sýndardisk óvirkan.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="371"/>
       <source>Clear mounts for partitioning operations on %1</source>
-      <translation type="unfinished"/>
+      <translation>Hreinsa tengipunkta fyrir disksneiðingaraðgerðir á %1</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="377"/>
       <source>Clearing mounts for partitioning operations on %1.</source>
-      <translation type="unfinished"/>
+      <translation>Hreinsa tengipunkta fyrir disksneiðingaraðgerðir á %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="396"/>
@@ -757,173 +769,167 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
   <context>
     <name>CommandList</name>
     <message>
-      <location filename="../src/libcalamares/utils/CommandList.cpp" line="142"/>
-      <location filename="../src/libcalamares/utils/CommandList.cpp" line="155"/>
+      <location filename="../src/libcalamares/utils/CommandList.cpp" line="165"/>
       <source>Could not run command.</source>
       <translation>Gat ekki keyrt skipun.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CommandList.cpp" line="143"/>
-      <source>The command runs in the host environment and needs to know the root path, but no rootMountPoint is defined.</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <location filename="../src/libcalamares/utils/CommandList.cpp" line="156"/>
-      <source>The command needs to know the user's name, but no username is defined.</source>
+      <location filename="../src/libcalamares/utils/CommandList.cpp" line="166"/>
+      <source>The commands use variables that are not defined. Missing variables are: %1.</source>
       <translation type="unfinished"/>
     </message>
   </context>
   <context>
     <name>Config</name>
     <message>
-      <location filename="../src/modules/keyboard/Config.cpp" line="360"/>
+      <location filename="../src/modules/keyboard/Config.cpp" line="361"/>
       <source>Set keyboard model to %1.&lt;br/&gt;</source>
-      <translation type="unfinished"/>
+      <translation>Setja tegund lyklaborðs sem %1.&lt;br/&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/Config.cpp" line="367"/>
+      <location filename="../src/modules/keyboard/Config.cpp" line="368"/>
       <source>Set keyboard layout to %1/%2.</source>
-      <translation type="unfinished"/>
+      <translation>Setja lyklaborðsuppsetningu sem %1/%2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="359"/>
+      <location filename="../src/modules/locale/Config.cpp" line="373"/>
       <source>Set timezone to %1/%2.</source>
-      <translation type="unfinished"/>
+      <translation>Setja tímabelti á %1/%2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="397"/>
+      <location filename="../src/modules/locale/Config.cpp" line="411"/>
       <source>The system language will be set to %1.</source>
       <translation>Tungumál kerfisins verður sett sem %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="404"/>
+      <location filename="../src/modules/locale/Config.cpp" line="418"/>
       <source>The numbers and dates locale will be set to %1.</source>
-      <translation type="unfinished"/>
+      <translation>Staðfærsla talna og dagsetninga verður stillt á %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="53"/>
       <source>Network Installation. (Disabled: Incorrect configuration)</source>
-      <translation type="unfinished"/>
+      <translation>Netuppsetning. (Óvirk: Rangar stillingar)</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="55"/>
       <source>Network Installation. (Disabled: Received invalid groups data)</source>
-      <translation type="unfinished"/>
+      <translation>Netuppsetning. (Óvirk: Tók við ógildum gögnum hóps)</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="57"/>
       <source>Network Installation. (Disabled: Internal error)</source>
-      <translation type="unfinished"/>
+      <translation>Netuppsetning. (Óvirk: Innri villa)</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="61"/>
       <source>Network Installation. (Disabled: No package list)</source>
-      <translation type="unfinished"/>
+      <translation>Netuppsetning. (Óvirk: Enginn pakkalisti)</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="77"/>
       <source>Package selection</source>
-      <translation>Valdir pakkar</translation>
+      <translation>Val pakka</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="59"/>
       <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
-      <translation type="unfinished"/>
+      <translation>Netuppsetning. (Óvirk: Tókst ekki að sækja pakkalista, athugaðu netsambandið þitt)</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="56"/>
-      <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
+      <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="60"/>
-      <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
-      <translation>Þessi tölva uppfyllir ekki lágmarkskröfur um uppsetningu %1.&lt;br/&gt;Uppsetningin getur ekki haldið áfram. &lt;a href="#details"&gt;Upplýsingar...&lt;/a&gt;</translation>
+      <location filename="../src/modules/welcome/Config.cpp" line="59"/>
+      <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue.</source>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="67"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="65"/>
       <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
-      <translation type="unfinished"/>
+      <translation>Þessi tölva uppfyllir ekki lágmarkskröfur um uppsetningu á %1.&lt;br/&gt;Uppsetningin getur haldið áfram, en sumir eiginleikar gætu verið óvirkir.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="71"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="69"/>
       <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
-      <translation>Þessi tölva uppfyllir ekki lágmarkskröfur um uppsetningu %1.&lt;br/&gt;Uppsetningin getur haldið áfram, en sumir eiginleikar gætu verið óvirk.</translation>
+      <translation>Þessi tölva uppfyllir ekki lágmarkskröfur um uppsetningu á %1.&lt;br/&gt;Uppsetningin getur haldið áfram, en sumir eiginleikar gætu verið óvirkir.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="81"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="79"/>
       <source>This program will ask you some questions and set up %2 on your computer.</source>
       <translation>Þetta forrit mun spyrja þig nokkurra spurninga og setja upp %2 á tölvunni þinni.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="269"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="266"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Velkomin í Calamares-uppsetningarforritið fyrir %1&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="270"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="267"/>
       <source>&lt;h1&gt;Welcome to %1 setup&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Velkomin í uppsetningu á %1&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="274"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="271"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Velkomin í Calamares-uppsetningarforritið fyrir %1&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="275"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="272"/>
       <source>&lt;h1&gt;Welcome to the %1 installer&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Velkomin í %1-uppsetningarforritið&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="236"/>
+      <location filename="../src/modules/users/Config.cpp" line="235"/>
       <source>Your username is too long.</source>
       <translation>Notandanafnið þitt er of langt.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="252"/>
+      <location filename="../src/modules/users/Config.cpp" line="251"/>
       <source>'%1' is not allowed as username.</source>
-      <translation type="unfinished"/>
+      <translation>'%1' er ekki leyfilegt sem notandanafn.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="242"/>
+      <location filename="../src/modules/users/Config.cpp" line="241"/>
       <source>Your username must start with a lowercase letter or underscore.</source>
-      <translation type="unfinished"/>
+      <translation>Notandanafn verður að byrja á litlum staf eða undirstriki.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="246"/>
+      <location filename="../src/modules/users/Config.cpp" line="245"/>
       <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
-      <translation type="unfinished"/>
+      <translation>Má einungis innihalda lágstafa bókstafi, tölustafi, undirstrik og bandstrik.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="301"/>
+      <location filename="../src/modules/users/Config.cpp" line="300"/>
       <source>Your hostname is too short.</source>
       <translation>Notandanafnið þitt er of stutt.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="305"/>
+      <location filename="../src/modules/users/Config.cpp" line="304"/>
       <source>Your hostname is too long.</source>
       <translation>Notandanafnið þitt er of langt.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="311"/>
+      <location filename="../src/modules/users/Config.cpp" line="310"/>
       <source>'%1' is not allowed as hostname.</source>
-      <translation type="unfinished"/>
+      <translation>'%1' er ekki leyfilegt sem nafn tölvu.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="316"/>
+      <location filename="../src/modules/users/Config.cpp" line="315"/>
       <source>Only letters, numbers, underscore and hyphen are allowed.</source>
-      <translation type="unfinished"/>
+      <translation>Má einungis innihalda bókstafi, tölustafi, undirstrik og bandstrik.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="585"/>
+      <location filename="../src/modules/users/Config.cpp" line="584"/>
       <source>Your passwords do not match!</source>
-      <translation>Lykilorð passa ekki!</translation>
+      <translation>Lykilorðin þín stemma ekki!</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="599"/>
+      <location filename="../src/modules/users/Config.cpp" line="598"/>
       <source>OK!</source>
-      <translation type="unfinished"/>
+      <translation>Í lagi!</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="145"/>
@@ -938,12 +944,12 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="147"/>
       <source>The setup of %1 did not complete successfully.</source>
-      <translation type="unfinished"/>
+      <translation>Uppsetning á %1 tókst ekki alveg.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="148"/>
       <source>The installation of %1 did not complete successfully.</source>
-      <translation type="unfinished"/>
+      <translation>Uppsetning á %1 tókst ekki alveg.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="152"/>
@@ -968,12 +974,12 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/packagechooser/Config.cpp" line="111"/>
       <source>Package Selection</source>
-      <translation>Valdir pakkar</translation>
+      <translation>Val pakka</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/Config.cpp" line="113"/>
       <source>Please pick a product from the list. The selected product will be installed.</source>
-      <translation type="unfinished"/>
+      <translation>Veldu hugbúnað úr listanum. Viðkomandi hugbúnaður verður settur inn.</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/Config.cpp" line="243"/>
@@ -983,12 +989,12 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/packagechooser/Config.cpp" line="249"/>
       <source>Install option: &lt;strong&gt;%1&lt;/strong&gt;</source>
-      <translation type="unfinished"/>
+      <translation>Setja upp valkost: &lt;strong&gt;%1&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/Config.cpp" line="249"/>
       <source>None</source>
-      <translation type="unfinished"/>
+      <translation>Ekkert</translation>
     </message>
     <message>
       <location filename="../src/modules/summary/Config.cpp" line="94"/>
@@ -998,12 +1004,12 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/summary/Config.cpp" line="98"/>
       <source>This is an overview of what will happen once you start the setup procedure.</source>
-      <translation type="unfinished"/>
+      <translation>Þetta er yfirlit yfir það sem mun gerast þegar þú byrjar uppsetningarferlið.</translation>
     </message>
     <message>
       <location filename="../src/modules/summary/Config.cpp" line="103"/>
       <source>This is an overview of what will happen once you start the install procedure.</source>
-      <translation>Þetta er yfirlit yfir það sem mun gerast þegar þú byrjar að setja upp aðferð.</translation>
+      <translation>Þetta er yfirlit yfir það sem mun gerast þegar þú byrjar uppsetningarferlið.</translation>
     </message>
   </context>
   <context>
@@ -1011,7 +1017,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/contextualprocess/ContextualProcessJob.cpp" line="119"/>
       <source>Contextual Processes Job</source>
-      <translation type="unfinished"/>
+      <translation>Verk fyrir samhengisleg ferli</translation>
     </message>
   </context>
   <context>
@@ -1034,17 +1040,17 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="59"/>
       <source>Partition &amp;Type:</source>
-      <translation>&amp;Tegund disksneiðar:</translation>
+      <translation>&amp;Gerð disksneiðar:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="71"/>
       <source>Primar&amp;y</source>
-      <translation type="unfinished"/>
+      <translation>Aða&amp;l</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="81"/>
       <source>E&amp;xtended</source>
-      <translation>Útví&amp;kkuð</translation>
+      <translation>&amp;Viðaukin</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="123"/>
@@ -1069,30 +1075,30 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="224"/>
       <source>Label for the filesystem</source>
-      <translation type="unfinished"/>
+      <translation>Merking á skráakerfinu</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="234"/>
       <source>FS Label:</source>
-      <translation type="unfinished"/>
+      <translation>Merki skráakerfis:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="66"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="67"/>
       <source>En&amp;crypt</source>
       <translation>&amp;Dulrita</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="194"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="195"/>
       <source>Logical</source>
       <translation>Rökleg</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="199"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="200"/>
       <source>Primary</source>
       <translation>Aðal</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="218"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="219"/>
       <source>GPT</source>
       <translation>GPT</translation>
     </message>
@@ -1104,49 +1110,49 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="96"/>
       <source>Mountpoint must start with a &lt;tt&gt;/&lt;/tt&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Tengipunktur verður að byrja á &lt;tt&gt;/&lt;/tt&gt;.</translation>
     </message>
   </context>
   <context>
     <name>CreatePartitionJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="187"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="183"/>
       <source>Create new %1MiB partition on %3 (%2) with entries %4.</source>
-      <translation type="unfinished"/>
+      <translation>Búa til nýja %1MiB disksneiðatöflu á %3 (%2) með færslunum %4.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="195"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="191"/>
       <source>Create new %1MiB partition on %3 (%2).</source>
-      <translation type="unfinished"/>
+      <translation>Búa til nýja %1MiB disksneiðatöflu á %3 (%2).</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="202"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="198"/>
       <source>Create new %2MiB partition on %4 (%3) with file system %1.</source>
-      <translation type="unfinished"/>
+      <translation>Búa til nýja %2MiB disksneiðatöflu á %4 (%3) með %1 skráakerfi.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="219"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="215"/>
       <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2) with entries &lt;em&gt;%4&lt;/em&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Búa til nýja &lt;strong&gt;%1MiB&lt;/strong&gt; disksneiðatöflu á &lt;strong&gt;%3&lt;/strong&gt; (%2) með færslunum &lt;em&gt;%4&lt;/em&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="228"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="224"/>
       <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2).</source>
-      <translation type="unfinished"/>
+      <translation>Búa til nýja &lt;strong&gt;%1MiB&lt;/strong&gt; disksneiðatöflu á &lt;strong&gt;%3&lt;/strong&gt; (%2).</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="235"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="231"/>
       <source>Create new &lt;strong&gt;%2MiB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Búa til nýja &lt;strong&gt;%2MiB&lt;/strong&gt; disksneiðatöflu á &lt;strong&gt;%4&lt;/strong&gt; (%3) með &lt;strong&gt;%1&lt;/strong&gt; skráakerfi.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="260"/>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="263"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="256"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="259"/>
       <source>Creating new %1 partition on %2.</source>
-      <translation>Búa til nýja %1 disksneiðatöflu á %2.</translation>
+      <translation>Bý til nýja %1 disksneiðatöflu á %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="280"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="276"/>
       <source>The installer failed to create partition on disk '%1'.</source>
       <translation>Uppsetningarforritinu mistókst að búa til disksneið á diski '%1'.</translation>
     </message>
@@ -1194,7 +1200,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="59"/>
       <source>Creating new %1 partition table on %2.</source>
-      <translation>Búa til nýja %1 disksneiðatöflu á %2.</translation>
+      <translation>Bý til nýja %1 disksneiðatöflu á %2.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="88"/>
@@ -1217,23 +1223,23 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="125"/>
       <source>Preserving home directory</source>
-      <translation type="unfinished"/>
+      <translation>Vernda heimamöppu</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="49"/>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="142"/>
       <source>Creating user %1</source>
-      <translation type="unfinished"/>
+      <translation>Bý til notandann %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="150"/>
       <source>Configuring user %1</source>
-      <translation type="unfinished"/>
+      <translation>Stilli notandann %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="158"/>
       <source>Setting file permissions</source>
-      <translation type="unfinished"/>
+      <translation>Stilli skráaheimildir</translation>
     </message>
   </context>
   <context>
@@ -1241,7 +1247,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/partition/gui/CreateVolumeGroupDialog.cpp" line="28"/>
       <source>Create Volume Group</source>
-      <translation type="unfinished"/>
+      <translation>Búa til sýndardisk (volume group)</translation>
     </message>
   </context>
   <context>
@@ -1249,22 +1255,22 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="32"/>
       <source>Create new volume group named %1.</source>
-      <translation type="unfinished"/>
+      <translation>Búa til sýndardisk (volume group) með heitinu %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="38"/>
       <source>Create new volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Búa til sýndardisk (volume group) með heitinu &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="44"/>
       <source>Creating new volume group named %1.</source>
-      <translation type="unfinished"/>
+      <translation>Bý til nýjan sýndardisk (volume group) með heitinu %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="51"/>
       <source>The installer failed to create a volume group named '%1'.</source>
-      <translation type="unfinished"/>
+      <translation>Uppsetningarforritinu mistókst að búa til sýndardisk (volume group) með heitinu '%1'.</translation>
     </message>
   </context>
   <context>
@@ -1273,17 +1279,17 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="26"/>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="38"/>
       <source>Deactivate volume group named %1.</source>
-      <translation type="unfinished"/>
+      <translation>Gera óvirkan sýndardisk (volume group) með heitinu %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="32"/>
       <source>Deactivate volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Gera óvirkan sýndardisk (volume group) með heitinu &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="46"/>
       <source>The installer failed to deactivate a volume group named %1.</source>
-      <translation type="unfinished"/>
+      <translation>Uppsetningarforritinu mistókst að gera óvirkan sýndardisk (volume group) með heitinu '%1'.</translation>
     </message>
   </context>
   <context>
@@ -1312,34 +1318,34 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
   <context>
     <name>DeviceInfoWidget</name>
     <message>
-      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="143"/>
+      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="141"/>
       <source>This device has a &lt;strong&gt;%1&lt;/strong&gt; partition table.</source>
-      <translation>Þetta tæki hefur &lt;strong&gt;%1&lt;/strong&gt; sniðtöflu.</translation>
+      <translation>Þetta tæki er með &lt;strong&gt;%1&lt;/strong&gt; disksneiðatöflu.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="97"/>
       <source>This is a &lt;strong&gt;loop&lt;/strong&gt; device.&lt;br&gt;&lt;br&gt;It is a pseudo-device with no partition table that makes a file accessible as a block device. This kind of setup usually only contains a single filesystem.</source>
-      <translation type="unfinished"/>
+      <translation>Þetta er &lt;strong&gt;lykkjutæki&lt;/strong&gt; (loop device).&lt;br&gt;&lt;br&gt;Það er gervitæki með engri disksneiðatöflu sem gerir skrá tiltæka sem blokkartæki. Slík gerð uppsetningar inniheldur venjulega bara eitt stakt skráakerfi.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="108"/>
+      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="106"/>
       <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
-      <translation type="unfinished"/>
+      <translation>Uppsetningarforritið &lt;strong&gt;nær ekki að greina neina disksneiðatöflu&lt;/strong&gt; á valda geymslutækinu.&lt;br&gt;&lt;br&gt;Tækið er annað hvort ekki með neina disksneiðatöflu, eða að disksneiðataflan sé skemmd eða af gerð sem ekki þekkist.&lt;br&gt;Þetta uppsetningarforrit getur útbúið nýja disksneiðatöflu fyrir þig, annað hvort sjálfvirkt, eða í gegnum handvirka disksneiðingu.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="91"/>
       <source>&lt;br&gt;&lt;br&gt;This is the recommended partition table type for modern systems which start from an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;br&gt;&lt;br&gt;Þetta er sú gerð disksneiðatöflu sem mælt er með fyrir nútímaleg kerfi sem ræst eru úr &lt;strong&gt;EFI&lt;/strong&gt; ræsiumhverfi.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="80"/>
       <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. GPT is recommended in most other cases.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MBR partition table is an obsolete MS-DOS era standard.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;br&gt;&lt;br&gt;Þessi gerð disksneiðatöflu er ekki ráðlögð nema á eldri kerfum sem ræsast úr &lt;strong&gt;BIOS&lt;/strong&gt; ræsiumhverfi. Mælt er með GPT í flestum öðrum tilfellum.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Aðvörun:&lt;/strong&gt; MBR-disksneiðatöflur eru úreltur staðall frá MS-DOS tímabilinu.&lt;br&gt;Aðeins er hægt að útbúa 4 &lt;em&gt;aðal-&lt;/em&gt;disksneiðar , og af þessum 4 getur ein verið &lt;em&gt;viðaukin&lt;/em&gt; disksneið, sem svo getur innihaldið margar &lt;em&gt;röklegar&lt;/em&gt; disksneiðar.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="151"/>
+      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="149"/>
       <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-      <translation type="unfinished"/>
+      <translation>Gerð &lt;strong&gt;disksneiðatöflu&lt;/strong&gt; á valda geymslutækinu.&lt;br&gt;&lt;br&gt;Eina leiðin til að skipta um gerð disksneiðatöflu er að eyða og endurgera disksneiðatöfluna frá grunni, sem eyðileggur öll gögn á geymslutækinu.&lt;br&gt;Þetta uppsetningarforrit mun halda fyrirliggjandi disksneiðatöflu nema ef þú sérstaklega tiltakir annað.&lt;br&gt;Ef þú ert ekki viss, þá er ráðlagt að nota GPT á öllum nútímalegum kerfum.</translation>
     </message>
   </context>
   <context>
@@ -1362,12 +1368,12 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="117"/>
       <source>Write LUKS configuration for Dracut to %1</source>
-      <translation>Skrifa LUKS stillingar fyrir Dracut til %1</translation>
+      <translation>Skrifa LUKS-stillingar fyrir Dracut í %1</translation>
     </message>
     <message>
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="121"/>
       <source>Skip writing LUKS configuration for Dracut: "/" partition is not encrypted</source>
-      <translation type="unfinished"/>
+      <translation>Ekki tókst að skrifa LUKS-stillingar fyrir Dracut: "/" disksneið ier ekki dulrituð</translation>
     </message>
     <message>
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="138"/>
@@ -1380,7 +1386,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/dummycpp/DummyCppJob.cpp" line="36"/>
       <source>Dummy C++ Job</source>
-      <translation>Dummy C++ Job</translation>
+      <translation>Verk fyrir Dummy C++</translation>
     </message>
   </context>
   <context>
@@ -1393,7 +1399,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="54"/>
       <source>Con&amp;tent:</source>
-      <translation type="unfinished"/>
+      <translation>Inni&amp;hald:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="64"/>
@@ -1438,22 +1444,22 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="179"/>
       <source>Label for the filesystem</source>
-      <translation type="unfinished"/>
+      <translation>Merking á skráakerfinu</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="189"/>
       <source>FS Label:</source>
-      <translation type="unfinished"/>
+      <translation>Merki skráakerfis:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="259"/>
       <source>Passphrase for existing partition</source>
-      <translation type="unfinished"/>
+      <translation>Lykilsetning fyrirliggjandi disksneiðar</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="260"/>
       <source>Partition %1 could not be decrypted with the given passphrase.&lt;br/&gt;&lt;br/&gt;Edit the partition again and give the correct passphrase or delete and create a new encrypted partition.</source>
-      <translation type="unfinished"/>
+      <translation>Disksneiðina %1 var ekki hægt að afkóða með uppgefinni lykilsetningu.&lt;br/&gt;&lt;br/&gt;Breyttu disksneiðinni aftur og gefðu upp rétta lykilsetningu eða eyddu disksneiðinni og útbúðu nýja dulritaða disksneið.</translation>
     </message>
   </context>
   <context>
@@ -1461,7 +1467,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="18"/>
       <source>Form</source>
-      <translation>Eyðublað</translation>
+      <translation>Innfyllingarform</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="36"/>
@@ -1471,7 +1477,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="43"/>
       <source>Your system does not seem to support encryption well enough to encrypt the entire system. You may enable encryption, but performance may suffer.</source>
-      <translation type="unfinished"/>
+      <translation>Kerfið þitt virðist ekki geta stutt nógu vel við dulritun svo hægt sé að dulrita allt kerfið. Þú getur virkjað dulritun, en það gæti komið niður á afköstum.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="59"/>
@@ -1484,10 +1490,15 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
       <translation>Staðfesta lykilorð</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="156"/>
-      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="166"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="159"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="174"/>
       <source>Please enter the same passphrase in both boxes.</source>
       <translation>Vinsamlegast sláðu inn sama lykilorðið í báða kassana.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="164"/>
+      <source>Password must be a minimum of %1 characters</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -1495,68 +1506,68 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="40"/>
       <source>Details:</source>
-      <translation type="unfinished"/>
+      <translation>Upplýsingar:</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/widgets/ErrorDialog.ui" line="56"/>
       <source>Would you like to paste the install log to the web?</source>
-      <translation type="unfinished"/>
+      <translation>Viltu líma atvikaskrá uppsetningarinnar á vefinn?</translation>
     </message>
   </context>
   <context>
     <name>FillGlobalStorageJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="172"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="178"/>
       <source>Set partition information</source>
       <translation>Setja upplýsingar um disksneið</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="201"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="207"/>
       <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition with features &lt;em&gt;%3&lt;/em&gt;</source>
-      <translation type="unfinished"/>
+      <translation>Setja upp %1 á &lt;strong&gt;nýja&lt;/strong&gt; %2 kerfisdisksneið með eiginleikana &lt;em&gt;%3&lt;/em&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="209"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="215"/>
       <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
-      <translation>Setja upp %1 á &lt;strong&gt;nýja&lt;/strong&gt; %2 disk sneiðingu.</translation>
+      <translation>Setja upp %1 á &lt;strong&gt;nýja&lt;/strong&gt; %2 kerfisdisksneið.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="218"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="224"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt; and features &lt;em&gt;%3&lt;/em&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Setja upp &lt;strong&gt;nýja&lt;/strong&gt; %2 disksneið með tengipunktinn &lt;strong&gt;%1&lt;/strong&gt; og eiginleika &lt;em&gt;%3&lt;/em&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="226"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="232"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;%3.</source>
-      <translation type="unfinished"/>
+      <translation>Setja upp &lt;strong&gt;nýja&lt;/strong&gt; %2 disksneið með tengipunktinn &lt;strong&gt;%1&lt;/strong&gt;%3.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="240"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="246"/>
       <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt; with features &lt;em&gt;%4&lt;/em&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Setja upp %2 á %3 kerfisdisksneið &lt;strong&gt;%1&lt;/strong&gt; með eiginleikana &lt;em&gt;%4&lt;/em&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="259"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="265"/>
       <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt; and features &lt;em&gt;%4&lt;/em&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Setja upp %3 disksneið &lt;strong&gt;%1&lt;/strong&gt; með tengipunktinn &lt;strong&gt;%2&lt;/strong&gt; og eiginleika &lt;em&gt;%4&lt;/em&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="268"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="274"/>
       <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;%4.</source>
-      <translation type="unfinished"/>
+      <translation>Setja upp %3 disksneið &lt;strong&gt;%1&lt;/strong&gt; með tengipunktinn &lt;strong&gt;%2&lt;/strong&gt;%4.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="249"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="255"/>
       <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>Setja upp %2 á %3 disk sneiðingu &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+      <translation>Setja upp %2 á %3 kerfisdisksneið &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="283"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="289"/>
       <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Setja ræsistjórann upp á &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="292"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="298"/>
       <source>Setting up mount points.</source>
       <translation>Set upp tengipunkta.</translation>
     </message>
@@ -1566,42 +1577,42 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/finished/FinishedPage.ui" line="18"/>
       <source>Form</source>
-      <translation>Eyðublað</translation>
+      <translation>Innfyllingarform</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.ui" line="102"/>
       <source>&amp;Restart now</source>
-      <translation>&amp;Endurræsa núna</translation>
+      <translation>Endu&amp;rræsa núna</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="75"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been set up on your computer.&lt;br/&gt;You may now start using your new system.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Allt klárt.&lt;/h1&gt;&lt;br/&gt;%1 hefur verið sett upp á tölvunni þinni.&lt;br/&gt;Þú getur núna farið að nota nýja kerfið þitt.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="79"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style="font-style:italic;"&gt;Done&lt;/span&gt; or close the setup program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Þegar merkt er í þennan reit mun kerfið endurræsast um leið og þú ýtir á &lt;span style="font-style:italic;"&gt;Lokið&lt;/span&gt; eða þegar uppsetningarforritinu er lokað.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="87"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
-      <translation>&lt;h1&gt;Allt klárt.&lt;/h1&gt;&lt;br/&gt;%1 hefur verið sett upp á tölvunni þinni.&lt;br/&gt;Þú getur nú endurræst í nýja kerfið, eða halda áfram að nota %2 Lifandi umhverfi.</translation>
+      <translation>&lt;h1&gt;Allt klárt.&lt;/h1&gt;&lt;br/&gt;%1 hefur verið sett upp á tölvunni þinni.&lt;br/&gt;Þú getur nú endurræst í nýja kerfið, eða halda áfram að nota %2 Live-keyrsluumhverfið.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="92"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style="font-style:italic;"&gt;Done&lt;/span&gt; or close the installer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Þegar merkt er í þennan reit mun kerfið endurræsast um leið og þú ýtir á &lt;span style="font-style:italic;"&gt;Lokið&lt;/span&gt; eða þegar uppsetningarforritinu er lokað.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="105"/>
       <source>&lt;h1&gt;Setup Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been set up on your computer.&lt;br/&gt;The error message was: %2.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Uppsetning mistókst&lt;/h1&gt;&lt;br/&gt;%1 var ekki sett upp á tölvunni þinni.&lt;br/&gt;Villumeldingin var: %2.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="113"/>
       <source>&lt;h1&gt;Installation Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been installed on your computer.&lt;br/&gt;The error message was: %2.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Uppsetning mistókst&lt;/h1&gt;&lt;br/&gt;%1 var ekki sett upp á tölvunni þinni.&lt;br/&gt;Villumeldingin var: %2.</translation>
     </message>
   </context>
   <context>
@@ -1625,12 +1636,12 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="39"/>
       <source>Format partition %1 (file system: %2, size: %3 MiB) on %4.</source>
-      <translation type="unfinished"/>
+      <translation>Forsníða disksneiðina %1 (skráakerfi: %2, stærð: %3 MiB) á %4.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="50"/>
       <source>Format &lt;strong&gt;%3MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Forsníða &lt;strong&gt;%3MiB&lt;/strong&gt; disksneiðina &lt;strong&gt;%1&lt;/strong&gt; með &lt;strong&gt;%2&lt;/strong&gt; skráakerfi.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="63"/>
@@ -1652,74 +1663,130 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
   <context>
     <name>GeneralRequirements</name>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="156"/>
-      <source>has at least %1 GiB available drive space</source>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="159"/>
+      <source>Please ensure the system has at least %1 GiB available drive space.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="158"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="161"/>
+      <source>Available drive space is all of the hard disks and SSDs connected to the system.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="164"/>
       <source>There is not enough drive space. At least %1 GiB is required.</source>
-      <translation type="unfinished"/>
+      <translation>Ekki er nóg pláss á diskum. Það þarf að minnsta kosti %1 GiB.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="166"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="172"/>
       <source>has at least %1 GiB working memory</source>
-      <translation type="unfinished"/>
+      <translation>hafi að minnsta kosti %1 GiB af vinnsluminni</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="168"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="174"/>
       <source>The system does not have enough working memory. At least %1 GiB is required.</source>
-      <translation type="unfinished"/>
+      <translation>Kerfið er ekki með nægt vinnsluminni. Það þarf að minnsta kosti %1 GiB.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="177"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="183"/>
       <source>is plugged in to a power source</source>
-      <translation>er í sambandi við aflgjafa</translation>
+      <translation>sé í sambandi við aflgjafa</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="178"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="184"/>
       <source>The system is not plugged in to a power source.</source>
       <translation>Kerfið er ekki í sambandi við aflgjafa.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="185"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="191"/>
       <source>is connected to the Internet</source>
-      <translation>er tengd við Internetið</translation>
+      <translation>sé tengt við Internetið</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="186"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="192"/>
       <source>The system is not connected to the Internet.</source>
-      <translation>Kerfið er ekki tengd við internetið.</translation>
+      <translation>Kerfið er ekki tengt við internetið.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="193"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="199"/>
       <source>is running the installer as an administrator (root)</source>
-      <translation type="unfinished"/>
+      <translation>sé að keyra uppsetningarforritið sem kerfisstjóri (root)</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="197"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="203"/>
       <source>The setup program is not running with administrator rights.</source>
-      <translation type="unfinished"/>
+      <translation>Uppsetningarforritið er ekki keyrandi með kerfisstjóraheimildum.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="198"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="204"/>
       <source>The installer is not running with administrator rights.</source>
       <translation>Uppsetningarforritið er ekki keyrandi með kerfisstjóraheimildum.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="206"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="212"/>
       <source>has a screen large enough to show the whole installer</source>
-      <translation type="unfinished"/>
+      <translation>sé með skjá sem sé nógu stór til að birta allt uppsetningarforritið</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="210"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="216"/>
       <source>The screen is too small to display the setup program.</source>
-      <translation type="unfinished"/>
+      <translation>Skjárinn er of lítill til að birta uppsetningarforritið.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="211"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="217"/>
       <source>The screen is too small to display the installer.</source>
       <translation>Skjárinn er of lítill til að birta uppsetningarforritið.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="226"/>
+      <source>is always false</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="227"/>
+      <source>The computer says no.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="235"/>
+      <source>is always false (slowly)</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="236"/>
+      <source>The computer says no (slowly).</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="243"/>
+      <source>is always true</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="244"/>
+      <source>The computer says yes.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="252"/>
+      <source>is always true (slowly)</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="253"/>
+      <source>The computer says yes (slowly).</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="261"/>
+      <source>is checked three times.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="264"/>
+      <source>The snark has not been checked three times.</source>
+      <comment>The (some mythological beast) has not been checked three times.</comment>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -1727,7 +1794,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/hostinfo/HostInfoJob.cpp" line="42"/>
       <source>Collecting information about your machine.</source>
-      <translation type="unfinished"/>
+      <translation>Safna upplýsingum um vélina þína.</translation>
     </message>
   </context>
   <context>
@@ -1738,22 +1805,22 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
       <location filename="../src/modules/oemid/IDJob.cpp" line="52"/>
       <location filename="../src/modules/oemid/IDJob.cpp" line="59"/>
       <source>OEM Batch Identifier</source>
-      <translation type="unfinished"/>
+      <translation>Magnvinnsluauðkenni OEM-framleiðanda</translation>
     </message>
     <message>
       <location filename="../src/modules/oemid/IDJob.cpp" line="40"/>
       <source>Could not create directories &lt;code&gt;%1&lt;/code&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Gat ekki útbúið möppur &lt;code&gt;%1&lt;/code&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/oemid/IDJob.cpp" line="53"/>
       <source>Could not open file &lt;code&gt;%1&lt;/code&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Gat ekki opnað skrá &lt;code&gt;%1&lt;/code&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/oemid/IDJob.cpp" line="60"/>
       <source>Could not write to file &lt;code&gt;%1&lt;/code&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Ekki tókst að skrifa í skrána &lt;code&gt;%1&lt;/code&gt;.</translation>
     </message>
   </context>
   <context>
@@ -1761,7 +1828,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/initcpio/InitcpioJob.cpp" line="32"/>
       <source>Creating initramfs with mkinitcpio.</source>
-      <translation type="unfinished"/>
+      <translation>Bý til initramfs með mkinitcpio.</translation>
     </message>
   </context>
   <context>
@@ -1769,7 +1836,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/initramfs/InitramfsJob.cpp" line="28"/>
       <source>Creating initramfs.</source>
-      <translation type="unfinished"/>
+      <translation>Bý til initramfs.</translation>
     </message>
   </context>
   <context>
@@ -1782,12 +1849,12 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="47"/>
       <source>Please install KDE Konsole and try again!</source>
-      <translation type="unfinished"/>
+      <translation>Settu upp KDE Konsole og reyndu aftur!</translation>
     </message>
     <message>
       <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="118"/>
       <source>Executing script: &amp;nbsp;&lt;code&gt;%1&lt;/code&gt;</source>
-      <translation type="unfinished"/>
+      <translation>Keyri skriftu: &amp;nbsp;&lt;code&gt;%1&lt;/code&gt;</translation>
     </message>
   </context>
   <context>
@@ -1824,7 +1891,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="30"/>
       <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Staðfærsla kerfisins hefur áhrif á tungumál og stafatöflu í sumum atriðum notandaviðmóts skipanalínu.&lt;br/&gt;Núverandi stilling er &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="54"/>
@@ -1842,22 +1909,22 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="36"/>
       <source>Configuring encrypted swap.</source>
-      <translation type="unfinished"/>
+      <translation>Stilli dulritað swap-diskminni.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="88"/>
       <source>No target system available.</source>
-      <translation type="unfinished"/>
+      <translation>Ekkert markkerfi er tiltækt.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="96"/>
       <source>No rootMountPoint is set.</source>
-      <translation type="unfinished"/>
+      <translation>Enginn rótartengipunktur (rootMountPoint) stilltur.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="101"/>
       <source>No configFilePath is set.</source>
-      <translation type="unfinished"/>
+      <translation>Engin configFilePath er stillt.</translation>
     </message>
   </context>
   <context>
@@ -1865,42 +1932,42 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/license/LicensePage.ui" line="18"/>
       <source>Form</source>
-      <translation>Eyðublað</translation>
+      <translation>Innfyllingarform</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.ui" line="26"/>
       <source>&lt;h1&gt;License Agreement&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Notkunarskilmálar&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicensePage.cpp" line="135"/>
+      <location filename="../src/modules/license/LicensePage.cpp" line="143"/>
       <source>I accept the terms and conditions above.</source>
       <translation>Ég samþykki skilyrði leyfissamningsins hér að ofan.</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicensePage.cpp" line="137"/>
-      <source>Please review the End User License Agreements (EULAs).</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <location filename="../src/modules/license/LicensePage.cpp" line="142"/>
-      <source>This setup procedure will install proprietary software that is subject to licensing terms.</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="145"/>
-      <source>If you do not agree with the terms, the setup procedure cannot continue.</source>
-      <translation type="unfinished"/>
+      <source>Please review the End User License Agreements (EULAs).</source>
+      <translation>Endilega lestu yfir notkunarskilmála fyrir endanotandur (EULA).</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="150"/>
-      <source>This setup procedure can install proprietary software that is subject to licensing terms in order to provide additional features and enhance the user experience.</source>
-      <translation type="unfinished"/>
+      <source>This setup procedure will install proprietary software that is subject to licensing terms.</source>
+      <translation>Uppsetningarferlið mun setja upp séreignarhugbúnað sem um gilda skilmálar notkunarleyfis.</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicensePage.cpp" line="155"/>
+      <location filename="../src/modules/license/LicensePage.cpp" line="153"/>
+      <source>If you do not agree with the terms, the setup procedure cannot continue.</source>
+      <translation>Ef þú samþykkir ekki skilmálana, getur uppsetningarferlið ekki haldið áfram</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/license/LicensePage.cpp" line="158"/>
+      <source>This setup procedure can install proprietary software that is subject to licensing terms in order to provide additional features and enhance the user experience.</source>
+      <translation>Uppsetningarferlið getur sett upp séreignarhugbúnað sem um gilda skilmálar notkunarleyfis, í þeim tilgangi að gefa kost á viðbótareiginleikum og bættri upplifun notenda.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/license/LicensePage.cpp" line="163"/>
       <source>If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
-      <translation type="unfinished"/>
+      <translation>Ef þú samþykkir ekki skilmálana, verður séreignarhugbúnaðurinn ekki settur inn og stuðst frekar við frjálsan hugbúnað með opnum grunnkóða.</translation>
     </message>
   </context>
   <context>
@@ -1916,7 +1983,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="88"/>
       <source>URL: %1</source>
-      <translation type="unfinished"/>
+      <translation>URL: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="109"/>
@@ -1928,17 +1995,17 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="116"/>
       <source>&lt;strong&gt;%1 graphics driver&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
       <extracomment>%1 is usually a vendor name, example: Nvidia graphics driver</extracomment>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%1 skjákortsrekill&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;frá %2&lt;/font&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="122"/>
       <source>&lt;strong&gt;%1 browser plugin&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%1 vafraviðbót&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;frá %2&lt;/font&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="128"/>
       <source>&lt;strong&gt;%1 codec&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%1 kóðunarlykill (codec)&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;frá %2&lt;/font&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="134"/>
@@ -1953,22 +2020,22 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="163"/>
       <source>File: %1</source>
-      <translation type="unfinished"/>
+      <translation>Skrá %1</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="186"/>
       <source>Hide license text</source>
-      <translation type="unfinished"/>
+      <translation>Fela texta notkunarleyfis</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="186"/>
       <source>Show the license text</source>
-      <translation type="unfinished"/>
+      <translation>Birta texta notkunarleyfis</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="190"/>
       <source>Open license agreement in browser.</source>
-      <translation type="unfinished"/>
+      <translation>Opna samkomulag vegna notkunarleyfis í vafra.</translation>
     </message>
   </context>
   <context>
@@ -2001,15 +2068,15 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
   <context>
     <name>LocaleTests</name>
     <message>
-      <location filename="../src/libcalamares/locale/Tests.cpp" line="273"/>
+      <location filename="../src/libcalamares/locale/Tests.cpp" line="272"/>
       <source>Quit</source>
-      <translation type="unfinished"/>
+      <translation>Hætta</translation>
     </message>
   </context>
   <context>
     <name>LocaleViewStep</name>
     <message>
-      <location filename="../src/modules/locale/LocaleViewStep.cpp" line="76"/>
+      <location filename="../src/modules/locale/LocaleViewStep.cpp" line="75"/>
       <source>Location</source>
       <translation>Staðsetning</translation>
     </message>
@@ -2019,35 +2086,35 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="33"/>
       <source>Configuring LUKS key file.</source>
-      <translation type="unfinished"/>
+      <translation>Stilli LUKS-lykilskrá.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="235"/>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="243"/>
       <source>No partitions are defined.</source>
-      <translation type="unfinished"/>
+      <translation>Engar disksneiðar eru skilgreindar.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="279"/>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="286"/>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="300"/>
       <source>Encrypted rootfs setup error</source>
-      <translation type="unfinished"/>
+      <translation>Villa í uppsetningu dulritunar rootfs</translation>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="280"/>
       <source>Root partition %1 is LUKS but no passphrase has been set.</source>
-      <translation type="unfinished"/>
+      <translation>Rótardisksneiðin %1 er LUKS en engin lykilsetning hefur verið stillt.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="287"/>
       <source>Could not create LUKS key file for root partition %1.</source>
-      <translation type="unfinished"/>
+      <translation>Gat ekki búið til LUKS-lykilskrá fyrir rótardisksneiðina %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="301"/>
       <source>Could not configure LUKS key file on partition %1.</source>
-      <translation type="unfinished"/>
+      <translation>Gat ekki stillt LUKS-lykilskrá á disksneiðinni %1.</translation>
     </message>
   </context>
   <context>
@@ -2055,17 +2122,17 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="37"/>
       <source>Generate machine-id.</source>
-      <translation type="unfinished"/>
+      <translation>Útbý machine-id auðkenni vélar.</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="53"/>
       <source>Configuration Error</source>
-      <translation type="unfinished"/>
+      <translation>Villa í stillingum</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="54"/>
       <source>No root mount point is set for MachineId.</source>
-      <translation type="unfinished"/>
+      <translation>Enginn rótartengipunktur er stilltur fyrir machine-id auðkenni vélar.</translation>
     </message>
   </context>
   <context>
@@ -2073,14 +2140,16 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/localeq/Map.qml" line="237"/>
       <source>Timezone: %1</source>
-      <translation type="unfinished"/>
+      <translation>Tímabelti: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Map.qml" line="258"/>
       <source>Please select your preferred location on the map so the installer can suggest the locale
             and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
             to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</source>
-      <translation type="unfinished"/>
+      <translation>Veldu kjörstaðsetningu þína á kortinu svo að uppsetningarforritið geti stungið upp á staðfærslu
+            og stillingum tímabeltis fyrir þig. Þú getur svo fínstillt tillögurnar hér fyrir neðan. Leitaðu á kortinu með því að draga
+            til að hreyfa og með +/- hnöppum eða músarhjóli til að stilla aðdrátt.</translation>
     </message>
   </context>
   <context>
@@ -2088,109 +2157,109 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="50"/>
       <source>Package selection</source>
-      <translation>Valdir pakkar</translation>
+      <translation>Val pakka</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="51"/>
       <source>Office software</source>
-      <translation type="unfinished"/>
+      <translation>Skrifstofuhugbúnaður</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="52"/>
       <source>Office package</source>
-      <translation type="unfinished"/>
+      <translation>Skrifstofupakki</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="53"/>
       <source>Browser software</source>
-      <translation type="unfinished"/>
+      <translation>Vafrahugbúnaður</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="54"/>
       <source>Browser package</source>
-      <translation type="unfinished"/>
+      <translation>Vafrapakki</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="55"/>
       <source>Web browser</source>
-      <translation type="unfinished"/>
+      <translation>Vafri</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="56"/>
       <source>Kernel</source>
       <comment>label for netinstall module, Linux kernel</comment>
-      <translation type="unfinished"/>
+      <translation>Kjarni</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="57"/>
       <source>Services</source>
       <comment>label for netinstall module, system services</comment>
-      <translation type="unfinished"/>
+      <translation>Þjónusta</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="58"/>
       <source>Login</source>
       <comment>label for netinstall module, choose login manager</comment>
-      <translation type="unfinished"/>
+      <translation>Innskráning</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="59"/>
       <source>Desktop</source>
       <comment>label for netinstall module, choose desktop environment</comment>
-      <translation type="unfinished"/>
+      <translation>Skjáborð</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="61"/>
       <source>Communication</source>
       <comment>label for netinstall module</comment>
-      <translation type="unfinished"/>
+      <translation>Skilaboð</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="62"/>
       <source>Development</source>
       <comment>label for netinstall module</comment>
-      <translation type="unfinished"/>
+      <translation>Þróun</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="63"/>
       <source>Office</source>
       <comment>label for netinstall module</comment>
-      <translation type="unfinished"/>
+      <translation>Skrifstofa</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="64"/>
       <source>Multimedia</source>
       <comment>label for netinstall module</comment>
-      <translation type="unfinished"/>
+      <translation>Margmiðlun</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="65"/>
       <source>Internet</source>
       <comment>label for netinstall module</comment>
-      <translation type="unfinished"/>
+      <translation>Internet</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="66"/>
       <source>Theming</source>
       <comment>label for netinstall module</comment>
-      <translation type="unfinished"/>
+      <translation>Þemu</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="67"/>
       <source>Gaming</source>
       <comment>label for netinstall module</comment>
-      <translation type="unfinished"/>
+      <translation>Leikir</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="68"/>
       <source>Utilities</source>
       <comment>label for netinstall module</comment>
-      <translation type="unfinished"/>
+      <translation>Nytjatól</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="60"/>
       <source>Applications</source>
-      <translation type="unfinished"/>
+      <translation>Forrit</translation>
     </message>
   </context>
   <context>
@@ -2198,7 +2267,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/notesqml/NotesQmlViewStep.cpp" line="23"/>
       <source>Notes</source>
-      <translation type="unfinished"/>
+      <translation>Minnispunktar</translation>
     </message>
   </context>
   <context>
@@ -2206,60 +2275,60 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/oemid/OEMPage.ui" line="32"/>
       <source>Ba&amp;tch:</source>
-      <translation type="unfinished"/>
+      <translation>&amp;Magnvinnsla:</translation>
     </message>
     <message>
       <location filename="../src/modules/oemid/OEMPage.ui" line="42"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter a batch-identifier here. This will be stored in the target system.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Settu magnvinnsluauðkenni hér. Þetta verður geymt í markkerfinu.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/oemid/OEMPage.ui" line="52"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;h1&gt;OEM Configuration&lt;/h1&gt;&lt;p&gt;Calamares will use OEM settings while configuring the target system.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;h1&gt;OEM stillingar&lt;/h1&gt;&lt;p&gt;Calamares mun nota OEM-stillingar við að setja upp markkerfið.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
   </context>
   <context>
     <name>OEMViewStep</name>
     <message>
-      <location filename="../src/modules/oemid/OEMViewStep.cpp" line="122"/>
+      <location filename="../src/modules/oemid/OEMViewStep.cpp" line="119"/>
       <source>OEM Configuration</source>
-      <translation type="unfinished"/>
+      <translation>Stillingar OEM-framleiðanda</translation>
     </message>
     <message>
-      <location filename="../src/modules/oemid/OEMViewStep.cpp" line="128"/>
+      <location filename="../src/modules/oemid/OEMViewStep.cpp" line="125"/>
       <source>Set the OEM Batch Identifier to &lt;code&gt;%1&lt;/code&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Settu magnvinnsluauðkenni OEM-framleiðanda sem &lt;code&gt;%1&lt;/code&gt;.</translation>
     </message>
   </context>
   <context>
     <name>Offline</name>
     <message>
-      <location filename="../src/modules/localeq/Offline.qml" line="41"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="47"/>
       <source>Select your preferred Region, or use the default settings.</source>
-      <translation type="unfinished"/>
+      <translation>Veldu aðalsvæðið þitt eða haltu sjálfgefnum stillingum.</translation>
     </message>
     <message>
-      <location filename="../src/modules/localeq/Offline.qml" line="99"/>
-      <location filename="../src/modules/localeq/Offline.qml" line="175"/>
-      <location filename="../src/modules/localeq/Offline.qml" line="219"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="103"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="180"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="224"/>
       <source>Timezone: %1</source>
-      <translation type="unfinished"/>
+      <translation>Tímabelti: %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/localeq/Offline.qml" line="116"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="120"/>
       <source>Select your preferred Zone within your Region.</source>
-      <translation type="unfinished"/>
+      <translation>Veldu aðalsvæðið þitt innan héraðsins þíns.</translation>
     </message>
     <message>
-      <location filename="../src/modules/localeq/Offline.qml" line="188"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="193"/>
       <source>Zones</source>
-      <translation type="unfinished"/>
+      <translation>Svæði</translation>
     </message>
     <message>
-      <location filename="../src/modules/localeq/Offline.qml" line="235"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="240"/>
       <source>You can fine-tune Language and Locale settings below.</source>
-      <translation type="unfinished"/>
+      <translation>Þú getur fínstillt eiginleika tungumáls og staðfærslu hér fyrir neðan.</translation>
     </message>
   </context>
   <context>
@@ -2282,75 +2351,75 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="196"/>
       <source>Memory allocation error when setting '%1'</source>
-      <translation type="unfinished"/>
+      <translation>Villa í úthlutun minnis við að stilla '%1'</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="199"/>
       <source>Memory allocation error</source>
-      <translation type="unfinished"/>
+      <translation>Minnisúthlutun mistókst</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="201"/>
       <source>The password is the same as the old one</source>
-      <translation type="unfinished"/>
+      <translation>Lykilorðið er eins og það gamla</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="203"/>
       <source>The password is a palindrome</source>
-      <translation type="unfinished"/>
+      <translation>Lykilorðið er eins afturábak og áfram</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="205"/>
       <source>The password differs with case changes only</source>
-      <translation type="unfinished"/>
+      <translation>Breytingar á lykilorðinu eru einungis varðandi stafstöðu</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="207"/>
       <source>The password is too similar to the old one</source>
-      <translation type="unfinished"/>
+      <translation>Nýja lykilorðið er of líkt því gamla</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="209"/>
       <source>The password contains the user name in some form</source>
-      <translation type="unfinished"/>
+      <translation>Lykilorðið inniheldur notandanafnið á einhverju formi</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="211"/>
       <source>The password contains words from the real name of the user in some form</source>
-      <translation type="unfinished"/>
+      <translation>Lykilorðið inniheldur raunverulegt nafn notandans á einhverju formi</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="214"/>
       <source>The password contains forbidden words in some form</source>
-      <translation type="unfinished"/>
+      <translation>Lykilorðið inniheldur bönnuð orð á einhverju formi</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="221"/>
       <source>The password contains too few digits</source>
-      <translation type="unfinished"/>
+      <translation>Lykilorðið inniheldur of fáar tölur</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="228"/>
       <source>The password contains too few uppercase letters</source>
-      <translation type="unfinished"/>
+      <translation>Lykilorðið inniheldur of fáa hástafi</translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="232"/>
       <source>The password contains fewer than %n lowercase letters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Lykilorðið inniheldur færri en %n lágstaf</numerusform>
+        <numerusform>Lykilorðið inniheldur færri en %n lágstafi</numerusform>
       </translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="235"/>
       <source>The password contains too few lowercase letters</source>
-      <translation type="unfinished"/>
+      <translation>Lykilorðið inniheldur of fáa lágstafi</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="242"/>
       <source>The password contains too few non-alphanumeric characters</source>
-      <translation type="unfinished"/>
+      <translation>Lykilorðið inniheldur of fá staftákn sem ekki eru bókstafir eða tölur</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="249"/>
@@ -2360,171 +2429,171 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="258"/>
       <source>The password does not contain enough character classes</source>
-      <translation type="unfinished"/>
+      <translation>Lykilorðið inniheldur ekki nægilega marga stafaflokka</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="265"/>
       <source>The password contains too many same characters consecutively</source>
-      <translation type="unfinished"/>
+      <translation>Lykilorðið inniheldur of marga eins stafi í röð</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="275"/>
       <source>The password contains too many characters of the same class consecutively</source>
-      <translation type="unfinished"/>
+      <translation>Lykilorðið inniheldur of marga stafi úr sama flokki í röð</translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="218"/>
       <source>The password contains fewer than %n digits</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Lykilorðið inniheldur færri en %n tölustaf</numerusform>
+        <numerusform>Lykilorðið inniheldur færri en %n tölustafi</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="225"/>
       <source>The password contains fewer than %n uppercase letters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Lykilorðið inniheldur færri en %n hástaf</numerusform>
+        <numerusform>Lykilorðið inniheldur færri en %n hástaf</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="239"/>
       <source>The password contains fewer than %n non-alphanumeric characters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Lykilorðið inniheldur færri en %n staftákn sem ekki er bókstafur eða tala</numerusform>
+        <numerusform>Lykilorðið inniheldur færri en %n staftákn sem ekki eru bókstafir eða tölur</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="246"/>
       <source>The password is shorter than %n characters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Lykilorðið er styttra en %n stafur</numerusform>
+        <numerusform>Lykilorðið er styttra en %n stafir</numerusform>
       </translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="251"/>
       <source>The password is a rotated version of the previous one</source>
-      <translation type="unfinished"/>
+      <translation>Lykilorðið er umsnúin útgáfa af því gamla</translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="255"/>
       <source>The password contains fewer than %n character classes</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Lykilorðið inniheldur færri en %n stafaflokk</numerusform>
+        <numerusform>Lykilorðið inniheldur færri en %n stafaflokka</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="262"/>
       <source>The password contains more than %n same characters consecutively</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Lykilorðið inniheldur fleiri en %n eins staftákn í röð</numerusform>
+        <numerusform>Lykilorðið inniheldur fleiri en %n eins staftákn í röð</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="269"/>
       <source>The password contains more than %n characters of the same class consecutively</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Lykilorðið inniheldur fleiri en %n stafi úr sama flokki í röð</numerusform>
+        <numerusform>Lykilorðið inniheldur fleiri en %n stafi úr sama flokki í röð</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="280"/>
       <source>The password contains monotonic sequence longer than %n characters</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Lykilorðið inniheldur fleiri en %n svipaða stafi í röð</numerusform>
+        <numerusform>Lykilorðið inniheldur fleiri en %n svipaða stafi í röð</numerusform>
       </translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="286"/>
       <source>The password contains too long of a monotonic character sequence</source>
-      <translation type="unfinished"/>
+      <translation>Lykilorðið inniheldur of marga svipaða stafi í röð</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="289"/>
       <source>No password supplied</source>
-      <translation type="unfinished"/>
+      <translation>Ekkert lykilorð gefið</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="291"/>
       <source>Cannot obtain random numbers from the RNG device</source>
-      <translation type="unfinished"/>
+      <translation>Get ekki fengið slembitölur frá RNG-tækinu</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="293"/>
       <source>Password generation failed - required entropy too low for settings</source>
-      <translation type="unfinished"/>
+      <translation>Gerð lykilorðs mistókst - nauðsynleg óreiða er of lítil fyrir stillingar</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="298"/>
       <source>The password fails the dictionary check - %1</source>
-      <translation type="unfinished"/>
+      <translation>Lykilorðið fellur á orðasafnsprófun - %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="301"/>
       <source>The password fails the dictionary check</source>
-      <translation type="unfinished"/>
+      <translation>Lykilorðið fellur á orðasafnsprófun</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="305"/>
       <source>Unknown setting - %1</source>
-      <translation type="unfinished"/>
+      <translation>Óþekkt stilling - %s1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="307"/>
       <source>Unknown setting</source>
-      <translation type="unfinished"/>
+      <translation>Óþekkt stilling - %s1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="311"/>
       <source>Bad integer value of setting - %1</source>
-      <translation type="unfinished"/>
+      <translation>Gallað heiltölugildi í stillingu - %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="313"/>
       <source>Bad integer value</source>
-      <translation type="unfinished"/>
+      <translation>Gallað heiltölugildi</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="317"/>
       <source>Setting %1 is not of integer type</source>
-      <translation type="unfinished"/>
+      <translation>Stillingin %1 er ekki af heiltölu-tegundinni</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="319"/>
       <source>Setting is not of integer type</source>
-      <translation type="unfinished"/>
+      <translation>Stillingin er ekki af heiltölu-tegundinni</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="323"/>
       <source>Setting %1 is not of string type</source>
-      <translation type="unfinished"/>
+      <translation>Stillingin %1 er ekki af strengur-tegundinni</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="325"/>
       <source>Setting is not of string type</source>
-      <translation type="unfinished"/>
+      <translation>Stillingin er ekki af strengur-tegundinni</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="327"/>
       <source>Opening the configuration file failed</source>
-      <translation type="unfinished"/>
+      <translation>Mistókst að opna stillingarskrá</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="329"/>
       <source>The configuration file is malformed</source>
-      <translation type="unfinished"/>
+      <translation>Stillingaskráin er gölluð</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="331"/>
       <source>Fatal failure</source>
-      <translation type="unfinished"/>
+      <translation>Banvæn bilun</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="333"/>
@@ -2532,9 +2601,9 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
       <translation>Óþekkt villa</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="830"/>
+      <location filename="../src/modules/users/Config.cpp" line="829"/>
       <source>Password is empty</source>
-      <translation type="unfinished"/>
+      <translation>Lykilorðið er tómt</translation>
     </message>
   </context>
   <context>
@@ -2542,32 +2611,32 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="24"/>
       <source>Form</source>
-      <translation>Eyðublað</translation>
+      <translation>Innfyllingarform</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="50"/>
       <source>Product Name</source>
-      <translation type="unfinished"/>
+      <translation>Heiti hugbúnaðar</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="63"/>
       <source>TextLabel</source>
-      <translation type="unfinished"/>
+      <translation>TextaMerking</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="79"/>
       <source>Long Product Description</source>
-      <translation type="unfinished"/>
+      <translation>Tæmandi lýsing á hugbúnaði</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="25"/>
       <source>Package Selection</source>
-      <translation>Valdir pakkar</translation>
+      <translation>Val pakka</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="26"/>
       <source>Please pick a product from the list. The selected product will be installed.</source>
-      <translation type="unfinished"/>
+      <translation>Veldu hugbúnað úr listanum. Viðkomandi hugbúnaður verður settur inn.</translation>
     </message>
   </context>
   <context>
@@ -2588,7 +2657,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/keyboard/KeyboardPage.ui" line="18"/>
       <source>Form</source>
-      <translation>Eyðublað</translation>
+      <translation>Innfyllingarform</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/KeyboardPage.ui" line="74"/>
@@ -2606,7 +2675,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="18"/>
       <source>Form</source>
-      <translation>Eyðublað</translation>
+      <translation>Innfyllingarform</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="40"/>
@@ -2616,65 +2685,65 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="55"/>
       <source>Your Full Name</source>
-      <translation type="unfinished"/>
+      <translation>Fullt nafn þitt</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="124"/>
       <source>What name do you want to use to log in?</source>
-      <translation>Hvaða nafn vilt þú vilt nota til að skrá þig inn?</translation>
+      <translation>Hvaða nafn viltu nota til að skrá þig inn?</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="148"/>
       <source>login</source>
-      <translation type="unfinished"/>
+      <translation>innskráning</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="223"/>
       <source>What is the name of this computer?</source>
-      <translation>Hvað er nafnið á þessari tölvu?</translation>
+      <translation>Hvert er heitið á þessari tölvu?</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="247"/>
       <source>&lt;small&gt;This name will be used if you make the computer visible to others on a network.&lt;/small&gt;</source>
-      <translation>&lt;small&gt;Þetta nafn verður notað ef þú gerir tölvuna sýnilega öðrum á neti.&lt;/small&gt;</translation>
+      <translation>&lt;small&gt;Þetta nafn verður notað ef þú gerir tölvuna sýnilega öðrum á netkerfum.&lt;/small&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="250"/>
       <source>Computer Name</source>
-      <translation type="unfinished"/>
+      <translation>Tölvuheiti</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="325"/>
       <source>Choose a password to keep your account safe.</source>
-      <translation>Veldu lykilorð til að halda reikningnum þínum öruggum.</translation>
+      <translation>Veldu lykilorð til að halda aðgangnum þínum öruggum.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="349"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="374"/>
       <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</source>
-      <translation>&lt;small&gt;Sláðu inn sama lykilorðið tvisvar, þannig að það geta verið athugað fyrir innsláttarvillur. Góð lykilorð mun innihalda blöndu af stöfum, númerum og greinarmerki, ætti að vera að minnsta kosti átta stafir að lengd, og ætti að vera breytt með reglulegu millibili.&lt;/small&gt;</translation>
+      <translation>&lt;small&gt;Settu inn sama lykilorðið tvisvar, þannig að hægt sé að yfirfara innsláttarvillur. Gott lykilorð inniheldur blöndu af bókstöfum, tölustöfum og greinamerkjum, ætti að vera að minnsta kosti átta stafa langt og því ætti að breyta með reglulegu millibili.&lt;/small&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="355"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="525"/>
       <source>Password</source>
-      <translation type="unfinished"/>
+      <translation>Lykilorð</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="380"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="550"/>
       <source>Repeat Password</source>
-      <translation type="unfinished"/>
+      <translation>Endurtaktu lykilorð</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="455"/>
       <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password.</source>
-      <translation type="unfinished"/>
+      <translation>Þegar merkt er í þennan reit er athugaður styrkur lykilorða og þú munt ekki geta notað veikt lykilorð.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="458"/>
       <source>Require strong passwords.</source>
-      <translation type="unfinished"/>
+      <translation>Krefjast sterkra lykilorða.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="465"/>
@@ -2684,18 +2753,18 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="472"/>
       <source>Use the same password for the administrator account.</source>
-      <translation>Nota sama lykilorð fyrir kerfisstjóra reikning.</translation>
+      <translation>Nota sama lykilorð fyrir aðgang kerfisstjóra.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="495"/>
       <source>Choose a password for the administrator account.</source>
-      <translation>Veldu lykilorð fyrir kerfisstjóra reikning.</translation>
+      <translation>Veldu lykilorð fyrir aðgang kerfisstjóra.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="519"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="544"/>
       <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</source>
-      <translation>&lt;small&gt;Sláðu sama lykilorð tvisvar, þannig að það er hægt að yfirfara innsláttarvillur.&lt;/small&gt;</translation>
+      <translation>&lt;small&gt;Settu inn sama lykilorð tvisvar, þannig að hægt sé að yfirfara innsláttarvillur.&lt;/small&gt;</translation>
     </message>
   </context>
   <context>
@@ -2708,7 +2777,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="193"/>
       <source>Home</source>
-      <translation>Heimasvæði</translation>
+      <translation>Heima</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="197"/>
@@ -2723,7 +2792,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="206"/>
       <source>Swap</source>
-      <translation>Swap diskminni</translation>
+      <translation>Swap-diskminni</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="210"/>
@@ -2769,7 +2838,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="302"/>
       <source>File System Label</source>
-      <translation type="unfinished"/>
+      <translation>Merking skráakerfis</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="304"/>
@@ -2787,12 +2856,12 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="18"/>
       <source>Form</source>
-      <translation>Eyðublað</translation>
+      <translation>Innfyllingarform</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="26"/>
       <source>Storage de&amp;vice:</source>
-      <translation>Geymslu tæ&amp;ki:</translation>
+      <translation>Geymslutæ&amp;ki:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="55"/>
@@ -2822,42 +2891,42 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="136"/>
       <source>New Volume Group</source>
-      <translation type="unfinished"/>
+      <translation>Nýr sýndardiskur (volume group)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="143"/>
       <source>Resize Volume Group</source>
-      <translation type="unfinished"/>
+      <translation>Breyta stærð sýndardisks (volume group)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="150"/>
       <source>Deactivate Volume Group</source>
-      <translation type="unfinished"/>
+      <translation>Gera sýndardisk (volume group) óvirkan</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="157"/>
       <source>Remove Volume Group</source>
-      <translation type="unfinished"/>
+      <translation>Fjarlægja sýndardisk (volume group)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="184"/>
       <source>I&amp;nstall boot loader on:</source>
-      <translation type="unfinished"/>
+      <translation>Setja ræsistjórann upp á:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="228"/>
+      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="224"/>
       <source>Are you sure you want to create a new partition table on %1?</source>
       <translation>Ertu viss um að þú viljir búa til nýja disksneið á %1?</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="263"/>
+      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="259"/>
       <source>Can not create new partition</source>
-      <translation type="unfinished"/>
+      <translation>Mistókst að búa til nýja disksneið</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="264"/>
+      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="260"/>
       <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
-      <translation type="unfinished"/>
+      <translation>Disksneiðataflan á %1 er þegar með %2 aðaldisksneiðar og er ekki hægt að bæta við fleirum. Fjarlægðu eina aðaldisksneið og bættu við einni viðaukinni disksneið í staðinn.</translation>
     </message>
   </context>
   <context>
@@ -2865,7 +2934,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="56"/>
       <source>Gathering system information...</source>
-      <translation>Söfnun kerfis upplýsingar...</translation>
+      <translation>Sæki upplýsingar um kerfið...</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="111"/>
@@ -2875,97 +2944,97 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="254"/>
       <source>Unsafe partition actions are enabled.</source>
-      <translation type="unfinished"/>
+      <translation>Óöruggar disksneiðaaðgerðir eru virkjaðar.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="257"/>
       <source>Partitioning is configured to &lt;b&gt;always&lt;/b&gt; fail.</source>
-      <translation type="unfinished"/>
+      <translation>Disksneiðing er sett upp þannig að hún mun &lt;b&gt;alltaf&lt;/b&gt; mistakast.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="260"/>
       <source>No partitions will be changed.</source>
-      <translation type="unfinished"/>
+      <translation>Engum disksneiðum verður breytt.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="300"/>
       <source>Current:</source>
-      <translation>Núverandi:</translation>
+      <translation>Fyrirliggjandi:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="318"/>
       <source>After:</source>
-      <translation>Eftir:</translation>
+      <translation>Á eftir:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="529"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="523"/>
       <source>No EFI system partition configured</source>
-      <translation>Ekkert EFI kerfisdisksneið stillt</translation>
+      <translation>Engin EFI-kerfisdisksneið stillt</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="533"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="527"/>
       <source>EFI system partition configured incorrectly</source>
-      <translation type="unfinished"/>
+      <translation>EFI-kerfisdisksneið er rangt stillt</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="538"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="532"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a suitable filesystem.</source>
-      <translation type="unfinished"/>
+      <translation>EFI-kerfisdisksneið er nauðsynleg til að ræsa %1.&lt;br/&gt;&lt;br/&gt;Til að setja upp EFI-kerfisdisksneið skaltu fara til baka og velja eða útbúa hentugt skráakerfi.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="543"/>
+      <source>The filesystem must be mounted on &lt;strong&gt;%1&lt;/strong&gt;.</source>
+      <translation>Skráakerfið verður að tengjast á &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="549"/>
-      <source>The filesystem must be mounted on &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <source>The filesystem must have type FAT32.</source>
+      <translation>Skráakerfið verður að vera af tegundinni FAT32.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="555"/>
-      <source>The filesystem must have type FAT32.</source>
-      <translation type="unfinished"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="557"/>
+      <source>The filesystem must be at least %1 MiB in size.</source>
+      <translation>Skráakerfið verður að vera að minnsta kosti%1 MiB.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="563"/>
-      <source>The filesystem must be at least %1 MiB in size.</source>
-      <translation type="unfinished"/>
+      <source>The filesystem must have flag &lt;strong&gt;%1&lt;/strong&gt; set.</source>
+      <translation>Skráakerfið verður að hafa flaggið &lt;strong&gt;%1&lt;/strong&gt; stillt.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="569"/>
-      <source>The filesystem must have flag &lt;strong&gt;%1&lt;/strong&gt; set.</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="575"/>
       <source>You can continue without setting up an EFI system partition but your system may fail to start.</source>
-      <translation type="unfinished"/>
+      <translation>Þú getur haldið áfram án þess að setja upp EFI-kerfisdisksneið, en þá er ekki víst að kerfið þitt ræsist.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="593"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="587"/>
       <source>Option to use GPT on BIOS</source>
-      <translation type="unfinished"/>
+      <translation>Valkostur um að nota GPT í BIOS</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="594"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="588"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
-      <translation type="unfinished"/>
+      <translation>GPT-disksneiðatafla er besti kosturinn fyrir öll kerfi. Þetta uppsetningarforrit styður einnig slíka uppsetningu fyrir BIOS-kerfi.&lt;br/&gt;&lt;br/&gt;Til að stilla GPT-disksneiðatöflu á BIOS, (ef það hefur ekki þegar verið gert) skaltu fara til baka og stilla disksneiðatöfluna á GPT, síðan að útbúa 8 MB óforsniðna disksneið með &lt;strong&gt;%2&lt;/strong&gt; flagginu virku.&lt;br/&gt;&lt;br/&gt;Óforsniðin 8 MB disksneið er nauðsynleg til að ræsa %1 á BIOS-kerfi með GPT.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="626"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="622"/>
       <source>Boot partition not encrypted</source>
-      <translation type="unfinished"/>
+      <translation>Ræsidisksneið er ekki dulrituð</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="627"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="623"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
-      <translation type="unfinished"/>
+      <translation>Sérstök ræsidisksneið (boot partition) var sett upp ásamt dulritaðri rótardisksneið, en ræsidisksneiðin er hinsvegar ekki dulrituð.&lt;br/&gt;&lt;br/&gt;Ákveðin öryggisáhætta felst í slíkri uppsetningu, þar sem mikilvægar kerfisskrár eru þá á ódulritaðri disksneið.&lt;br/&gt;Þú getur haldið áfram ef þér sýnist svo, en aflæsing skráakerfis mun eiga sér stað síðar í ræsingu kerfisins.&lt;br/&gt;Til að dulrita ræsidisksneiðina skaltu fara til baka og búa hana til aftur, manst þá að velja &lt;strong&gt;Dulrita&lt;/strong&gt; í glugganum þar sem disksneiðin er útbúin.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="718"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="714"/>
       <source>has at least one disk device available.</source>
-      <translation type="unfinished"/>
+      <translation>hafi að minnsta kosti eitt diskæki til taks.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="719"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="715"/>
       <source>There are no partitions to install on.</source>
-      <translation type="unfinished"/>
+      <translation>Það eru engar disksneiðar til að setja upp á.</translation>
     </message>
   </context>
   <context>
@@ -2973,13 +3042,13 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="33"/>
       <source>Plasma Look-and-Feel Job</source>
-      <translation type="unfinished"/>
+      <translation>Verk fyrir útlit og viðmót</translation>
     </message>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="57"/>
       <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="58"/>
       <source>Could not select KDE Plasma Look-and-Feel package</source>
-      <translation type="unfinished"/>
+      <translation>Gat ekki valið KDE Plasma Look-and-Feel pakka fyrir útlit og áferð</translation>
     </message>
   </context>
   <context>
@@ -2987,17 +3056,17 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/plasmalnf/page_plasmalnf.ui" line="18"/>
       <source>Form</source>
-      <translation>Eyðublað</translation>
+      <translation>Innfyllingarform</translation>
     </message>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="79"/>
       <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is set up. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
-      <translation type="unfinished"/>
+      <translation>Veldu útlit og áferð fyrir KDE Plasma skjáborðið. Þú getur líka sleppt þessu skrefi og stillt þetta eftir að kerfið hefur verið sett inn. Sé smellt á valkost útlits og áferðar geturðu séð rauntímaforskoðun á útkomuna.</translation>
     </message>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="84"/>
       <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is installed. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
-      <translation type="unfinished"/>
+      <translation>Veldu útlit og áferð fyrir KDE Plasma skjáborðið Þú getur líka sleppt þessu skrefi og stillt þetta eftir að kerfið hefur verið sett inn. Sé smellt á valkost útlits og áferðar geturðu séð rauntímaforskoðun á útkomuna.</translation>
     </message>
   </context>
   <context>
@@ -3005,25 +3074,25 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfViewStep.cpp" line="43"/>
       <source>Look-and-Feel</source>
-      <translation>Útlit og hegðun</translation>
+      <translation>Útlit og viðmót</translation>
     </message>
   </context>
   <context>
     <name>PreserveFiles</name>
     <message>
-      <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="53"/>
+      <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="55"/>
       <source>Saving files for later ...</source>
-      <translation>Vista skrár fyrir seinna ...</translation>
+      <translation>Vista skrár til síðari tíma ...</translation>
     </message>
     <message>
-      <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="61"/>
+      <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="63"/>
       <source>No files configured to save for later.</source>
-      <translation type="unfinished"/>
+      <translation>Engar skrár stilltar til að vista til síðari tíma.</translation>
     </message>
     <message>
-      <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="85"/>
+      <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="87"/>
       <source>Not all of the configured files could be preserved.</source>
-      <translation type="unfinished"/>
+      <translation>Ekki var hægt að geyma allar stilltu skrárnar.</translation>
     </message>
   </context>
   <context>
@@ -3032,70 +3101,73 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="309"/>
       <source>
 There was no output from the command.</source>
-      <translation type="unfinished"/>
+      <translation>
+Það kom ekkert frálag frá skipuninni.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="310"/>
       <source>
 Output:
 </source>
-      <translation type="unfinished"/>
+      <translation>
+Frálag:
+</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="314"/>
       <source>External command crashed.</source>
-      <translation type="unfinished"/>
+      <translation>Utanaðkomandi skipun hrundi.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="315"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; crashed.</source>
-      <translation type="unfinished"/>
+      <translation>Skipunin &lt;i&gt;%1&lt;/i&gt; hrundi.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="320"/>
       <source>External command failed to start.</source>
-      <translation type="unfinished"/>
+      <translation>Utanaðkomandi skipun fór ekki í gang.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="321"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; failed to start.</source>
-      <translation type="unfinished"/>
+      <translation>Utanaðkomandi skipunin &lt;i&gt;%1&lt;/i&gt; fór ekki í gang.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="325"/>
       <source>Internal error when starting command.</source>
-      <translation type="unfinished"/>
+      <translation>Innri villa við að ræsa skipun.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="326"/>
       <source>Bad parameters for process job call.</source>
-      <translation type="unfinished"/>
+      <translation>Gölluð viðföng fyrir kall á verkferil.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="330"/>
       <source>External command failed to finish.</source>
-      <translation type="unfinished"/>
+      <translation>Utanaðkomandi skipun tókst ekki að ljúka.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="331"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; failed to finish in %2 seconds.</source>
-      <translation type="unfinished"/>
+      <translation>Skipuninni &lt;i&gt;%1&lt;/i&gt; tókst ekki að ljúka á %2 sekúndum.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="338"/>
       <source>External command finished with errors.</source>
-      <translation type="unfinished"/>
+      <translation>Utanaðkomandi skipun lauk með villum.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="339"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; finished with exit code %2.</source>
-      <translation type="unfinished"/>
+      <translation>Utanaðkomandi skipuninni &lt;i&gt;%1&lt;/i&gt; lauk með stöðvunarkóðanum %2.</translation>
     </message>
   </context>
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../src/libcalamares/locale/Translation.cpp" line="145"/>
+      <location filename="../src/libcalamares/locale/Translation.cpp" line="151"/>
       <source>%1 (%2)</source>
       <translation>%1 (%2)</translation>
     </message>
@@ -3107,7 +3179,7 @@ Output:
     <message>
       <location filename="../src/libcalamares/partition/FileSystem.cpp" line="35"/>
       <source>extended</source>
-      <translation>útvíkkuð</translation>
+      <translation>viðaukin</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/partition/FileSystem.cpp" line="37"/>
@@ -3117,7 +3189,7 @@ Output:
     <message>
       <location filename="../src/libcalamares/partition/FileSystem.cpp" line="39"/>
       <source>swap</source>
-      <translation>swap diskminni</translation>
+      <translation>swap-diskminni</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="130"/>
@@ -3131,33 +3203,33 @@ Output:
       <location filename="../src/modules/machineid/Workers.cpp" line="76"/>
       <location filename="../src/modules/machineid/Workers.cpp" line="93"/>
       <source>File not found</source>
-      <translation type="unfinished"/>
+      <translation>Skrá fannst ekki</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/Workers.cpp" line="65"/>
       <source>Path &lt;pre&gt;%1&lt;/pre&gt; must be an absolute path.</source>
-      <translation type="unfinished"/>
+      <translation>Slóðin &lt;pre&gt;%1&lt;/pre&gt; verður að vera algild slóð.</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="83"/>
       <source>Directory not found</source>
-      <translation type="unfinished"/>
+      <translation>Mappa fannst ekki</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="84"/>
       <location filename="../src/modules/machineid/Workers.cpp" line="94"/>
       <source>Could not create new random file &lt;pre&gt;%1&lt;/pre&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Ekki var hægt að búa til nýja slembiskrá &lt;pre&gt;%1&lt;/pre&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/PackageModel.cpp" line="74"/>
       <source>No product</source>
-      <translation type="unfinished"/>
+      <translation>Enginn hugbúnaður</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/PackageModel.cpp" line="82"/>
       <source>No description provided.</source>
-      <translation type="unfinished"/>
+      <translation>Engin lýsing var gefin.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="44"/>
@@ -3167,7 +3239,7 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="40"/>
       <source>Unpartitioned space or unknown partition table</source>
-      <translation type="unfinished"/>
+      <translation>Ósneitt rými eða óþekkt disksneiðatafla</translation>
     </message>
   </context>
   <context>
@@ -3176,7 +3248,8 @@ Output:
       <location filename="../src/modules/welcomeq/Recommended.qml" line="40"/>
       <source>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
         Setup can continue, but some features might be disabled.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;Þessi tölva uppfyllir ekki lágmarkskröfur um uppsetningu á %1.&lt;br/&gt;
+        Uppsetningin getur haldið áfram, en sumir eiginleikar gætu verið óvirkir.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -3184,7 +3257,7 @@ Output:
     <message>
       <location filename="../src/modules/removeuser/RemoveUserJob.cpp" line="34"/>
       <source>Remove live user from target system</source>
-      <translation type="unfinished"/>
+      <translation>Fjarlægja notanda Live-keyrsluumhverfis úr markkerfi</translation>
     </message>
   </context>
   <context>
@@ -3193,107 +3266,34 @@ Output:
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="26"/>
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="38"/>
       <source>Remove Volume Group named %1.</source>
-      <translation type="unfinished"/>
+      <translation>Fjarlægja sýndardisk (volume group) með heitinu '%1'.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="32"/>
       <source>Remove Volume Group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Fjarlægja sýndardisk (volume group) með heitinu '&lt;strong&gt;%1'&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="46"/>
       <source>The installer failed to remove a volume group named '%1'.</source>
-      <translation type="unfinished"/>
-    </message>
-  </context>
-  <context>
-    <name>ReplaceWidget</name>
-    <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.ui" line="18"/>
-      <source>Form</source>
-      <translation>Eyðublað</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="128"/>
-      <source>Select where to install %1.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
-      <translation>Veldu hvar á að setja upp %1.&lt;br/&gt;&lt;font color="red"&gt;Aðvörun: &lt;/font&gt;þetta mun eyða öllum skrám á valinni disksneið.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="150"/>
-      <source>The selected item does not appear to be a valid partition.</source>
-      <translation>Valið atriði virðist ekki vera gild disksneið.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="158"/>
-      <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="168"/>
-      <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="178"/>
-      <source>%1 cannot be installed on this partition.</source>
-      <translation>%1 er hægt að setja upp á þessari disksneið.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="184"/>
-      <source>Data partition (%1)</source>
-      <translation>Gagnadisksneið (%1)</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="204"/>
-      <source>Unknown system partition (%1)</source>
-      <translation>Óþekkt kerfisdisksneið (%1)</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="208"/>
-      <source>%1 system partition (%2)</source>
-      <translation>%1 kerfisdisksneið (%2)</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="220"/>
-      <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
-      <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Disksneið %1 er of lítil fyrir %2. Vinsamlegast veldu disksneið með að lámark %3 GiB.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="242"/>
-      <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-      <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;EFI kerfisdisksneið er hvergi að finna á þessu kerfi. Vinsamlegast farðu til baka og notaðu handvirka skiptingu til að setja upp %1.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="253"/>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="269"/>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="294"/>
-      <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;all data on partition %2 will be lost.</source>
-      <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 mun vera sett upp á %2.&lt;br/&gt;&lt;font color="red"&gt;Aðvörun: &lt;/font&gt;öll gögn á disksneið %2 mun verða eytt.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="261"/>
-      <source>The EFI system partition at %1 will be used for starting %2.</source>
-      <translation>EFI kerfis stýring á %1 mun vera notuð til að byrja %2.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="277"/>
-      <source>EFI system partition:</source>
-      <translation>EFI kerfisdisksneið:</translation>
+      <translation>Uppsetningarforritinu mistókst að fjarlægja sýndardisk (volume group) með heitinu '%1'.</translation>
     </message>
   </context>
   <context>
     <name>Requirements</name>
     <message>
-      <location filename="../src/modules/welcomeq/Requirements.qml" line="38"/>
+      <location filename="../src/modules/welcomeq/Requirements.qml" line="37"/>
       <source>&lt;p&gt;This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;
         Installation cannot continue.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;Þessi tölva uppfyllir ekki lágmarkskröfur um uppsetningu á %1.&lt;br/&gt;
+        Uppsetningin getur ekki haldið áfram. &lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/Requirements.qml" line="40"/>
+      <location filename="../src/modules/welcomeq/Requirements.qml" line="39"/>
       <source>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
         Setup can continue, but some features might be disabled.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;Þessi tölva uppfyllir ekki lágmarkskröfur um uppsetningu á %1.&lt;br/&gt;
+        Uppsetningin getur haldið áfram, en sumir eiginleikar gætu verið óvirkir.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -3301,68 +3301,68 @@ Output:
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="45"/>
       <source>Resize Filesystem Job</source>
-      <translation type="unfinished"/>
+      <translation>Verk til að breyta stærð skráakerfis</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="168"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="164"/>
       <source>Invalid configuration</source>
-      <translation type="unfinished"/>
+      <translation>Ógild uppsetning</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="169"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="165"/>
       <source>The file-system resize job has an invalid configuration and will not run.</source>
-      <translation type="unfinished"/>
+      <translation>Stærðarbreytingarverk á skráakerfi er rangt stillt og mun ekki keyra.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="174"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="170"/>
       <source>KPMCore not Available</source>
-      <translation type="unfinished"/>
+      <translation>KPMCore ekki tiltækt</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="175"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="171"/>
       <source>Calamares cannot start KPMCore for the file-system resize job.</source>
-      <translation type="unfinished"/>
+      <translation>Calamares nær ekki að ræsa KPMCore fyfir stærðarbreytingarverk á skráakerfi.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="183"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="192"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="203"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="212"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="230"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="179"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="188"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="199"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="208"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="226"/>
       <source>Resize Failed</source>
-      <translation type="unfinished"/>
+      <translation>Mistókst að breyta stærð</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="185"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="181"/>
       <source>The filesystem %1 could not be found in this system, and cannot be resized.</source>
-      <translation type="unfinished"/>
+      <translation>Skráakerfið %1 fannst ekki á kerfinu og ekki var hægt að breyta stærð þess.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="186"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="182"/>
       <source>The device %1 could not be found in this system, and cannot be resized.</source>
-      <translation type="unfinished"/>
+      <translation>Tækið %1  fannst ekki á kerfinu og ekki var hægt að breyta stærð þess.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="194"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="205"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="190"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="201"/>
       <source>The filesystem %1 cannot be resized.</source>
-      <translation type="unfinished"/>
+      <translation>Ekki var hægt að breyta stærð %1 skráakerfisins.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="195"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="206"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="191"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="202"/>
       <source>The device %1 cannot be resized.</source>
-      <translation type="unfinished"/>
+      <translation>Ekki var hægt að breyta stærð %1 tækisins.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="213"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="209"/>
       <source>The filesystem %1 must be resized, but cannot.</source>
-      <translation type="unfinished"/>
+      <translation>Það þarf að breyta stærð %1 skráakerfisins, en er ekki hægt.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="214"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="210"/>
       <source>The device %1 must be resized, but cannot</source>
-      <translation type="unfinished"/>
+      <translation>Það þarf að breyta stærð %1 tækisins, en er ekki hægt</translation>
     </message>
   </context>
   <context>
@@ -3370,17 +3370,17 @@ Output:
     <message>
       <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="41"/>
       <source>Resize partition %1.</source>
-      <translation>Breyti stærð disksneiðar %1.</translation>
+      <translation>Breyta stærð disksneiðar %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="48"/>
       <source>Resize &lt;strong&gt;%2MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%3MiB&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Breyti stærð &lt;strong&gt;%2MiB&lt;/strong&gt; disksneiðar &lt;strong&gt;%1&lt;/strong&gt; í &lt;strong&gt;%3MiB&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="59"/>
       <source>Resizing %2MiB partition %1 to %3MiB.</source>
-      <translation type="unfinished"/>
+      <translation>Breyti stærð %2MiB disksneiðar %1 í %3MiB.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="77"/>
@@ -3393,7 +3393,7 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/ResizeVolumeGroupDialog.cpp" line="30"/>
       <source>Resize Volume Group</source>
-      <translation type="unfinished"/>
+      <translation>Breyta stærð sýndardisks (volume group)</translation>
     </message>
   </context>
   <context>
@@ -3402,30 +3402,25 @@ Output:
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="28"/>
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="46"/>
       <source>Resize volume group named %1 from %2 to %3.</source>
-      <translation type="unfinished"/>
+      <translation>Breyta stærð sýndardisks (volume group) með heitinu %1 úr %2 í %3.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="37"/>
       <source>Resize volume group named &lt;strong&gt;%1&lt;/strong&gt; from &lt;strong&gt;%2&lt;/strong&gt; to &lt;strong&gt;%3&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Breyta stærð sýndardisks (volume group) með heitinu &lt;strong&gt;%1&lt;/strong&gt; úr &lt;strong&gt;%2&lt;/strong&gt; í &lt;strong&gt;%3&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="57"/>
       <source>The installer failed to resize a volume group named '%1'.</source>
-      <translation type="unfinished"/>
+      <translation>Uppsetningarforritinu mistókst að breyta stærð sýndardisks (volume group) með heitinu '%1'.</translation>
     </message>
   </context>
   <context>
-    <name>ResultsListDialog</name>
+    <name>ResultsListWidget</name>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="138"/>
-      <source>For best results, please ensure that this computer:</source>
-      <translation>Fyrir bestu niðurstöður, skaltu tryggja að þessi tölva:</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="139"/>
-      <source>System requirements</source>
-      <translation>Kerfiskröfur</translation>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="47"/>
+      <source>Checking requirements again in a few seconds ...</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -3433,12 +3428,12 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="68"/>
       <source>Scanning storage devices...</source>
-      <translation>Skönnun geymslu tæki...</translation>
+      <translation>Skanna geymslutæki...</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="68"/>
       <source>Partitioning</source>
-      <translation>Partasneiðing</translation>
+      <translation>Disksneiðing</translation>
     </message>
   </context>
   <context>
@@ -3456,19 +3451,19 @@ Output:
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="50"/>
       <source>Setting hostname %1.</source>
-      <translation>Stilla vélarheiti %1.</translation>
+      <translation>Stilli vélarheiti %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="124"/>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="131"/>
       <source>Internal Error</source>
-      <translation>Innri Villa</translation>
+      <translation>Innri villa</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="142"/>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="159"/>
       <source>Cannot write hostname to target system</source>
-      <translation type="unfinished"/>
+      <translation>Get ekki skrifað vélarheiti í markkerfi</translation>
     </message>
   </context>
   <context>
@@ -3476,12 +3471,12 @@ Output:
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="55"/>
       <source>Set keyboard model to %1, layout to %2-%3</source>
-      <translation type="unfinished"/>
+      <translation>Setja tegund lyklaborðs sem %1, lyklaborðsuppsetningu sem /%2-%3</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="368"/>
       <source>Failed to write keyboard configuration for the virtual console.</source>
-      <translation type="unfinished"/>
+      <translation>Tókst ekki að skrifa lyklaborðsuppsetningu fyrir sýndarstjórnstöðina (virtual console).</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="369"/>
@@ -3493,12 +3488,12 @@ Output:
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="396"/>
       <source>Failed to write keyboard configuration for X11.</source>
-      <translation type="unfinished"/>
+      <translation>Tókst ekki að skrifa lyklaborðsuppsetningu fyrir X11.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="413"/>
       <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
-      <translation type="unfinished"/>
+      <translation>Tókst ekki að skrifa lyklaborðsuppsetningu í fyrirliggjandi /etc/default möppu.</translation>
     </message>
   </context>
   <context>
@@ -3506,77 +3501,77 @@ Output:
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="45"/>
       <source>Set flags on partition %1.</source>
-      <translation type="unfinished"/>
+      <translation>Setja flögg á disksneið %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="51"/>
       <source>Set flags on %1MiB %2 partition.</source>
-      <translation type="unfinished"/>
+      <translation>Setja flögg á %1MiB %2 disksneið .</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="55"/>
       <source>Set flags on new partition.</source>
-      <translation type="unfinished"/>
+      <translation>Setja flögg á nýja disksneið .</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="67"/>
       <source>Clear flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Hreinsa flögg af disksneið &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="73"/>
       <source>Clear flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-      <translation type="unfinished"/>
+      <translation>Hreinsa flögg af %1MiB &lt;strong&gt;%2&lt;/strong&gt; disksneið.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="77"/>
       <source>Clear flags on new partition.</source>
-      <translation type="unfinished"/>
+      <translation>Hreinsa flögg af nýrri disksneið .</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="82"/>
       <source>Flag partition &lt;strong&gt;%1&lt;/strong&gt; as &lt;strong&gt;%2&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Flagga disksneið &lt;strong&gt;%1&lt;/strong&gt; sem &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="91"/>
       <source>Flag %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition as &lt;strong&gt;%3&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Flagga %1MiB &lt;strong&gt;%2&lt;/strong&gt; disksneið  sem &lt;strong&gt;%3&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="98"/>
       <source>Flag new partition as &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Flagga nýja disksneið sem &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="110"/>
       <source>Clearing flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Hreinsa flögg af disksneið &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="116"/>
       <source>Clearing flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-      <translation type="unfinished"/>
+      <translation>Hreinsa flögg af %1MiB &lt;strong&gt;%2&lt;/strong&gt; disksneið .</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="121"/>
       <source>Clearing flags on new partition.</source>
-      <translation type="unfinished"/>
+      <translation>Hreinsa flögg af nýrri disksneið .</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="126"/>
       <source>Setting flags &lt;strong&gt;%2&lt;/strong&gt; on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Set flöggin &lt;strong&gt;%2&lt;/strong&gt; á disksneið &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="135"/>
       <source>Setting flags &lt;strong&gt;%3&lt;/strong&gt; on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-      <translation type="unfinished"/>
+      <translation>Set flöggin &lt;strong&gt;%3&lt;/strong&gt; á %1MiB &lt;strong&gt;%2&lt;/strong&gt; disksneið.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="142"/>
       <source>Setting flags &lt;strong&gt;%1&lt;/strong&gt; on new partition.</source>
-      <translation type="unfinished"/>
+      <translation>Set flöggin &lt;strong&gt;%1&lt;/strong&gt;  á nýja disksneið.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="156"/>
@@ -3589,32 +3584,32 @@ Output:
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="40"/>
       <source>Set password for user %1</source>
-      <translation>Gerðu lykilorð fyrir notanda %1</translation>
+      <translation>Settu lykilorð fyrir notandann %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="47"/>
       <source>Setting password for user %1.</source>
-      <translation>Geri lykilorð fyrir notanda %1.</translation>
+      <translation>Set lykilorð fyrir notandann %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="81"/>
       <source>Bad destination system path.</source>
-      <translation type="unfinished"/>
+      <translation>Gölluð úttaksslóð kerfis.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="82"/>
       <source>rootMountPoint is %1</source>
-      <translation type="unfinished"/>
+      <translation>rootMountPoint er %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="88"/>
       <source>Cannot disable root account.</source>
-      <translation>Ekki er hægt að aftengja kerfisstjóra reikning.</translation>
+      <translation>Ekki er hægt að aftengja aðgang kerfisstjóra.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="89"/>
       <source>passwd terminated with error code %1.</source>
-      <translation type="unfinished"/>
+      <translation>passwd lokað með villukóðann %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="97"/>
@@ -3632,37 +3627,37 @@ Output:
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="34"/>
       <source>Set timezone to %1/%2</source>
-      <translation>Setja tímabelti til %1/%2</translation>
+      <translation>Setja tímabelti á %1/%2</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="62"/>
       <source>Cannot access selected timezone path.</source>
-      <translation type="unfinished"/>
+      <translation>Fæ ekki aðgang að slóð á valið tímabelti.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="63"/>
       <source>Bad path: %1</source>
-      <translation type="unfinished"/>
+      <translation>Gölluð slóð: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="71"/>
       <source>Cannot set timezone.</source>
-      <translation>Get ekki sett tímasvæði.</translation>
+      <translation>Get ekki sett tímabelti.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="72"/>
       <source>Link creation failed, target: %1; link name: %2</source>
-      <translation type="unfinished"/>
+      <translation>Mistókst að útbúa tengil, áfangastaður: %1; heiti tengils: %2</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="77"/>
       <source>Cannot set timezone,</source>
-      <translation>Get ekki sett tímasvæði,</translation>
+      <translation>Get ekki sett tímabelti,</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="78"/>
       <source>Cannot open /etc/timezone for writing</source>
-      <translation>Get ekki opnað /etc/timezone til að skrifa.</translation>
+      <translation>Get ekki opnað /etc/timezone til að skrifa</translation>
     </message>
   </context>
   <context>
@@ -3670,18 +3665,18 @@ Output:
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="182"/>
       <source>Preparing groups.</source>
-      <translation type="unfinished"/>
+      <translation>Undirbý hópa.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="194"/>
       <location filename="../src/modules/users/MiscJobs.cpp" line="199"/>
       <source>Could not create groups in target system</source>
-      <translation type="unfinished"/>
+      <translation>Tókst ekki að búa til hópa í markkerfi</translation>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="200"/>
       <source>These groups are missing in the target system: %1</source>
-      <translation type="unfinished"/>
+      <translation>Þessa hópa vantar í markkerfinu: %1</translation>
     </message>
   </context>
   <context>
@@ -3689,17 +3684,17 @@ Output:
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="34"/>
       <source>Configure &lt;pre&gt;sudo&lt;/pre&gt; users.</source>
-      <translation type="unfinished"/>
+      <translation>Stilla &lt;pre&gt;sudo&lt;/pre&gt;-notendur.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="71"/>
       <source>Cannot chmod sudoers file.</source>
-      <translation>Get ekki chmod sudoers skrá.</translation>
+      <translation>Get ekki breytt ham (chmod) á sudoers-skránni.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="76"/>
       <source>Cannot create sudoers file for writing.</source>
-      <translation>Get ekki búið til sudoers skrá til að lesa.</translation>
+      <translation>Get ekki búið til sudoers-skrá til skrifunar.</translation>
     </message>
   </context>
   <context>
@@ -3707,7 +3702,7 @@ Output:
     <message>
       <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="40"/>
       <source>Shell Processes Job</source>
-      <translation type="unfinished"/>
+      <translation>Verk fyrir skeljarferli</translation>
     </message>
   </context>
   <context>
@@ -3752,22 +3747,22 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="101"/>
       <source>Installation feedback</source>
-      <translation type="unfinished"/>
+      <translation>Svörun um uppsetningu</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="107"/>
       <source>Sending installation feedback.</source>
-      <translation type="unfinished"/>
+      <translation>Sendi svörun um uppsetningu.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="125"/>
       <source>Internal error in install-tracking.</source>
-      <translation type="unfinished"/>
+      <translation>Innri villa í rakningu uppsetningar.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="126"/>
       <source>HTTP request timed out.</source>
-      <translation type="unfinished"/>
+      <translation>HTTP-beiðni rann út á tíma.</translation>
     </message>
   </context>
   <context>
@@ -3775,28 +3770,28 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="193"/>
       <source>KDE user feedback</source>
-      <translation type="unfinished"/>
+      <translation>Svörun frá notendum KDE</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="199"/>
       <source>Configuring KDE user feedback.</source>
-      <translation type="unfinished"/>
+      <translation>Stilli svörun frá notendum KDE.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="221"/>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="229"/>
       <source>Error in KDE user feedback configuration.</source>
-      <translation type="unfinished"/>
+      <translation>Villa í stillingum á svörun frá notendum KDE.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="222"/>
       <source>Could not configure KDE user feedback correctly, script error %1.</source>
-      <translation type="unfinished"/>
+      <translation>Gat ekki stillt rétt svörun frá notendum KDE, villa í skriftu %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="230"/>
       <source>Could not configure KDE user feedback correctly, Calamares error %1.</source>
-      <translation type="unfinished"/>
+      <translation>Gat ekki stillt rétt svörun frá notendum KDE, villa í Calamares %1.</translation>
     </message>
   </context>
   <context>
@@ -3804,28 +3799,28 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="136"/>
       <source>Machine feedback</source>
-      <translation type="unfinished"/>
+      <translation>Svörun tölvu</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="142"/>
       <source>Configuring machine feedback.</source>
-      <translation type="unfinished"/>
+      <translation>Stilli svörun frá tölvu.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="165"/>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="174"/>
       <source>Error in machine feedback configuration.</source>
-      <translation type="unfinished"/>
+      <translation>Villa í stillingum á svörun frá tölvu.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="167"/>
       <source>Could not configure machine feedback correctly, script error %1.</source>
-      <translation type="unfinished"/>
+      <translation>Gat ekki stillt rétt svörun frá tölvu, villa í skriftu %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="176"/>
       <source>Could not configure machine feedback correctly, Calamares error %1.</source>
-      <translation type="unfinished"/>
+      <translation>Gat ekki stillt rétt svörun frá tölvu, villa í Calamares %1.</translation>
     </message>
   </context>
   <context>
@@ -3833,7 +3828,7 @@ Output:
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="18"/>
       <source>Form</source>
-      <translation>Eyðublað</translation>
+      <translation>Innfyllingarform</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="28"/>
@@ -3843,32 +3838,32 @@ Output:
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="76"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click here to send &lt;span style=" font-weight:600;"&gt;no information at all&lt;/span&gt; about your installation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Smelltu hér til að senda &lt;span style=" font-weight:600;"&gt;alls engar upplýsingar&lt;/span&gt; um uppsetninguna þína.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="275"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href="placeholder"&gt;&lt;span style=" text-decoration: underline; color:#2980b9;"&gt;Click here for more information about user feedback&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href="placeholder"&gt;&lt;span style=" text-decoration: underline; color:#2980b9;"&gt;Smelltu hér til að fá frekari upplýsingar um svörun frá notendum&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="95"/>
       <source>Tracking helps %1 to see how often it is installed, what hardware it is installed on and which applications are used. To see what will be sent, please click the help icon next to each area.</source>
-      <translation type="unfinished"/>
+      <translation>Rakning hjálpar %1 að sjá hve oft það sé sett upp, á hvernig vélbúnað og hvaða forrit séu notuð. Til að skoða hvaða upplýsingar verða sendar, skaltu smella á hjálpartáknið næst hverjum reit.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="100"/>
       <source>By selecting this you will send information about your installation and hardware. This information will only be sent &lt;b&gt;once&lt;/b&gt; after the installation finishes.</source>
-      <translation type="unfinished"/>
+      <translation>Með því að velja þetta muntu senda upplýsingar um uppsetninguna þína og vélbúnaðinn. Þessar upplýsingar verða aðeins sendar &lt;b&gt;einu sinni&lt;/b&gt; eftir að uppsetningunni lýkur.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="103"/>
       <source>By selecting this you will periodically send information about your &lt;b&gt;machine&lt;/b&gt; installation, hardware and applications, to %1.</source>
-      <translation type="unfinished"/>
+      <translation>Með því að velja þetta muntu senda öðru hvoru upplýsingar um uppsetninguna &lt;b&gt;á tölvunni&lt;/b&gt; þinni, um vélbúnað og forrit, til %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="107"/>
       <source>By selecting this you will regularly send information about your &lt;b&gt;user&lt;/b&gt; installation, hardware, applications and application usage patterns, to %1.</source>
-      <translation type="unfinished"/>
+      <translation>Með því að velja þetta muntu senda reglulega upplýsingar um uppsetningu &lt;b&gt;notandans þíns&lt;/b&gt;, um vélbúnað og notkunarmynstur forrita, til %1.</translation>
     </message>
   </context>
   <context>
@@ -3876,7 +3871,7 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingViewStep.cpp" line="49"/>
       <source>Feedback</source>
-      <translation type="unfinished"/>
+      <translation>Svörun</translation>
     </message>
   </context>
   <context>
@@ -3889,12 +3884,12 @@ Output:
     <message>
       <location filename="../src/modules/umount/UmountJob.cpp" line="124"/>
       <source>No target system available.</source>
-      <translation type="unfinished"/>
+      <translation>Ekkert markkerfi er tiltækt.</translation>
     </message>
     <message>
       <location filename="../src/modules/umount/UmountJob.cpp" line="132"/>
       <source>No rootMountPoint is set.</source>
-      <translation type="unfinished"/>
+      <translation>Enginn rótartengipunktur (rootMountPoint) stilltur.</translation>
     </message>
   </context>
   <context>
@@ -3902,12 +3897,12 @@ Output:
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="190"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;small&gt;Ef fleiri en einn aðili notar þessa tölvu getur þú bætt við notendum eftir uppsetninguna.&lt;/small&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="196"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;small&gt;Ef fleiri en einn aðili notar þessa tölvu getur þú bætt við notendum eftir uppsetninguna.&lt;/small&gt;</translation>
     </message>
   </context>
   <context>
@@ -3932,13 +3927,13 @@ Output:
       <location filename="../src/calamares/VariantModel.cpp" line="232"/>
       <source>Key</source>
       <comment>Column header for key/value</comment>
-      <translation type="unfinished"/>
+      <translation>Lykill</translation>
     </message>
     <message>
       <location filename="../src/calamares/VariantModel.cpp" line="236"/>
       <source>Value</source>
       <comment>Column header for key/value</comment>
-      <translation type="unfinished"/>
+      <translation>Gildi</translation>
     </message>
   </context>
   <context>
@@ -3946,27 +3941,27 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="18"/>
       <source>Create Volume Group</source>
-      <translation type="unfinished"/>
+      <translation>Búa til sýndardisk (volume group)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="24"/>
       <source>List of Physical Volumes</source>
-      <translation type="unfinished"/>
+      <translation>Listi yfir raundiska (physical volumes)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="34"/>
       <source>Volume Group Name:</source>
-      <translation type="unfinished"/>
+      <translation>Heiti sýndardisks:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="47"/>
       <source>Volume Group Type:</source>
-      <translation type="unfinished"/>
+      <translation>Tegund sýndardisks:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="60"/>
       <source>Physical Extent Size:</source>
-      <translation type="unfinished"/>
+      <translation>Mesta stærð raundisks (physical extent):</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="70"/>
@@ -3976,7 +3971,7 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="86"/>
       <source>Total Size:</source>
-      <translation>Heildar stærð:</translation>
+      <translation>Heildarstærð:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="106"/>
@@ -3986,12 +3981,12 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="126"/>
       <source>Total Sectors:</source>
-      <translation type="unfinished"/>
+      <translation>Fjöldi geira:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="146"/>
       <source>Quantity of LVs:</source>
-      <translation type="unfinished"/>
+      <translation>Fjöldi LV'a:</translation>
     </message>
   </context>
   <context>
@@ -3999,7 +3994,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="18"/>
       <source>Form</source>
-      <translation>Eyðublað</translation>
+      <translation>Innfyllingarform</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="79"/>
@@ -4010,7 +4005,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="140"/>
       <source>Open donations website</source>
-      <translation type="unfinished"/>
+      <translation>Opna vefsvæði til að styrkja verkefnið</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="143"/>
@@ -4020,22 +4015,22 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="153"/>
       <source>Open help and support website</source>
-      <translation type="unfinished"/>
+      <translation>Opna hjálpar og aðstoðarvefsvæði</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="156"/>
       <source>&amp;Support</source>
-      <translation>&amp;Stuðningur</translation>
+      <translation>Að&amp;stoð</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="166"/>
       <source>Open issues and bug-tracking website</source>
-      <translation type="unfinished"/>
+      <translation>Opna vefsvæði fyrir verkbeiðnir og villurakningu</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="169"/>
       <source>&amp;Known issues</source>
-      <translation>&amp;Þekktir gallar</translation>
+      <translation>Þe&amp;kkt vandamál</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
@@ -4045,7 +4040,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="182"/>
       <source>&amp;Release notes</source>
-      <translation>&amp;Um útgáfu</translation>
+      <translation>Út&amp;gáfuupplýsingar</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="212"/>
@@ -4053,14 +4048,14 @@ Output:
       <translation>%1 stuðningur</translation>
     </message>
     <message>
-      <location filename="../src/calamares/DebugWindow.cpp" line="319"/>
+      <location filename="../src/calamares/DebugWindow.cpp" line="239"/>
       <source>About %1 setup</source>
-      <translation>Um %1 uppsetninguna</translation>
+      <translation>Um %1 uppsetningarforrritið</translation>
     </message>
     <message>
-      <location filename="../src/calamares/DebugWindow.cpp" line="320"/>
+      <location filename="../src/calamares/DebugWindow.cpp" line="240"/>
       <source>About %1 installer</source>
-      <translation>Um %1 uppsetningarforrrit</translation>
+      <translation>Um %1 uppsetningarforrritið</translation>
     </message>
   </context>
   <context>
@@ -4068,7 +4063,7 @@ Output:
     <message>
       <location filename="../src/modules/welcomeq/WelcomeQmlViewStep.cpp" line="40"/>
       <source>Welcome</source>
-      <translation>Velkomin(n)</translation>
+      <translation>Velkomin</translation>
     </message>
   </context>
   <context>
@@ -4076,7 +4071,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="46"/>
       <source>Welcome</source>
-      <translation>Velkomin(n)</translation>
+      <translation>Velkomin</translation>
     </message>
   </context>
   <context>
@@ -4084,56 +4079,68 @@ Output:
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="101"/>
       <source>Create ZFS pools and datasets</source>
-      <translation type="unfinished"/>
+      <translation>Búa til ZFS-vöndla (pools) og gagnasett</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="162"/>
       <source>Failed to create zpool on </source>
-      <translation type="unfinished"/>
+      <translation>Mistókst að búa til zpool á </translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="180"/>
       <source>Configuration Error</source>
-      <translation type="unfinished"/>
+      <translation>Villa í stillingum</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="181"/>
       <source>No partitions are available for ZFS.</source>
-      <translation type="unfinished"/>
+      <translation>Engar disksneiðar eru tiltækar fyrir ZFS.</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>
       <source>Internal data missing</source>
-      <translation type="unfinished"/>
+      <translation>Innri gögn vantar</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>
-      <location filename="../src/modules/zfs/ZfsJob.cpp" line="257"/>
+      <location filename="../src/modules/zfs/ZfsJob.cpp" line="264"/>
       <source>Failed to create zpool</source>
-      <translation type="unfinished"/>
+      <translation>Mistókst að búa til zpool</translation>
     </message>
     <message>
-      <location filename="../src/modules/zfs/ZfsJob.cpp" line="329"/>
+      <location filename="../src/modules/zfs/ZfsJob.cpp" line="336"/>
       <source>Failed to create dataset</source>
-      <translation type="unfinished"/>
+      <translation>Mistókst að búa til gagnasett</translation>
     </message>
     <message>
-      <location filename="../src/modules/zfs/ZfsJob.cpp" line="330"/>
+      <location filename="../src/modules/zfs/ZfsJob.cpp" line="337"/>
       <source>The output was: </source>
-      <translation type="unfinished"/>
+      <translation>Frálagið var:</translation>
     </message>
   </context>
   <context>
     <name>calamares-sidebar</name>
     <message>
       <location filename="../src/calamares/calamares-sidebar.qml" line="89"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="148"/>
       <source>About</source>
-      <translation type="unfinished"/>
+      <translation>Um hugbúnaðinn</translation>
     </message>
     <message>
       <location filename="../src/calamares/calamares-sidebar.qml" line="115"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="163"/>
       <source>Debug</source>
-      <translation type="unfinished"/>
+      <translation>Villukembing</translation>
+    </message>
+    <message>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="149"/>
+      <source>Show information about Calamares</source>
+      <translation>Birta upplýsingar um Calamares</translation>
+    </message>
+    <message>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="165"/>
+      <source>Show debug information</source>
+      <translation>Birta villuleitarupplýsingar</translation>
     </message>
   </context>
   <context>
@@ -4141,29 +4148,31 @@ Output:
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="36"/>
       <source>Installation Completed</source>
-      <translation type="unfinished"/>
+      <translation>Uppsetningu er lokið</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="43"/>
       <source>%1 has been installed on your computer.&lt;br/&gt;
             You may now restart into your new system, or continue using the Live environment.</source>
-      <translation type="unfinished"/>
+      <translation>%1 hefur verið sett upp á tölvunni þinni.&lt;br/&gt;
+Þú getur núna endurræst í nýja kerfið þitt, eða haldið áfram að nota virka Live-keyrsluumhverfið.</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="65"/>
       <source>Close Installer</source>
-      <translation type="unfinished"/>
+      <translation>Loka uppsetningarforriti</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="71"/>
       <source>Restart System</source>
-      <translation type="unfinished"/>
+      <translation>Endurræsa kerfið</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="89"/>
       <source>&lt;p&gt;A full log of the install is available as installation.log in the home directory of the Live user.&lt;br/&gt;
             This log is copied to /var/log/installation.log of the target system.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;Full atvikaskráning uppsetningarinnar er skráð í installation.log í heimamöppu notanda Live-keyrslukerfisins.&lt;br/&gt;
+            Þessi atvikaskrá er afrituð í /var/log/installation.log á markkerfinu.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -4171,78 +4180,72 @@ Output:
     <message>
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="36"/>
       <source>Installation Completed</source>
-      <translation type="unfinished"/>
+      <translation>Uppsetningu er lokið</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="43"/>
       <source>%1 has been installed on your computer.&lt;br/&gt;
             You may now restart your device.</source>
-      <translation type="unfinished"/>
+      <translation>%1 hefur verið sett upp á tölvunni þinni.&lt;br/&gt;
+            Þú getur nú endurræst tækið þitt.</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="65"/>
       <source>Close</source>
-      <translation type="unfinished"/>
+      <translation>Loka</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="71"/>
       <source>Restart</source>
-      <translation type="unfinished"/>
-    </message>
-  </context>
-  <context>
-    <name>i18n</name>
-    <message>
-      <location filename="../src/modules/localeq/i18n.qml" line="50"/>
-      <source>&lt;h1&gt;Languages&lt;/h1&gt; &lt;/br&gt;
-                    The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <location filename="../src/modules/localeq/i18n.qml" line="123"/>
-      <source>&lt;h1&gt;Locales&lt;/h1&gt; &lt;/br&gt;
-                    The system locale setting affects the numbers and dates format. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <location filename="../src/modules/localeq/i18n.qml" line="189"/>
-      <source>Back</source>
-      <translation type="unfinished"/>
+      <translation>Endurræsa</translation>
     </message>
   </context>
   <context>
     <name>keyboardq</name>
     <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="60"/>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="61"/>
       <source>To activate keyboard preview, select a layout.</source>
+      <translation>Til að virkja forskoðun á lyklaborði skaltu velja uppsetningu.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="144"/>
+      <source>&lt;b&gt;Keyboard Model:&amp;nbsp;&amp;nbsp;&lt;/b&gt;</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="86"/>
-      <source>Keyboard Model:</source>
-      <translation>Lyklaborðs tegund:</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="256"/>
-      <source>Layouts</source>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="185"/>
+      <source>Layout</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="265"/>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="258"/>
+      <source>Variant</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="311"/>
       <source>Type here to test your keyboard</source>
       <translation>Skrifaðu hér til að prófa lyklaborðið</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="180"/>
-      <source>Variants</source>
-      <translation type="unfinished"/>
     </message>
   </context>
   <context>
     <name>localeq</name>
     <message>
-      <location filename="../src/modules/localeq/localeq.qml" line="81"/>
+      <location filename="../src/modules/localeq/localeq.qml" line="76"/>
+      <location filename="../src/modules/localeq/localeq.qml" line="106"/>
       <source>Change</source>
+      <translation>Breyta</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/localeq/localeq.qml" line="142"/>
+      <source>&lt;h3&gt;Languages&lt;/h3&gt; &lt;/br&gt;
+                            The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/localeq/localeq.qml" line="213"/>
+      <source>&lt;h3&gt;Locales&lt;/h3&gt; &lt;/br&gt;
+                                The system locale setting affects the numbers and dates format. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation type="unfinished"/>
     </message>
   </context>
@@ -4252,7 +4255,8 @@ Output:
       <location filename="../src/modules/notesqml/notesqml.qml" line="50"/>
       <source>&lt;h3&gt;%1&lt;/h3&gt;
             &lt;p&gt;These are example release notes.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;%1&lt;/h3&gt;
+            &lt;p&gt;Þetta eru dæmigerðar útgáfuupplýsingar.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -4261,37 +4265,38 @@ Output:
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="45"/>
       <source>LibreOffice is a powerful and free office suite, used by millions of people around the world. It includes several applications that make it the most versatile Free and Open Source office suite on the market.&lt;br/&gt;
                     Default option.</source>
-      <translation type="unfinished"/>
+      <translation>LibreOffice er öflugur skrifstofuhugbúnaður og ókeypis, enda notað af milljónum manna um víða veröld. Hann samanstendur af nokkrum forritum sem gera þetta að sveigjanlegasta frjálsa hugbúnaðnum sem völ er á.&lt;br/&gt;
+                    Sjálfgefinn valkostur.</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="59"/>
       <source>LibreOffice</source>
-      <translation type="unfinished"/>
+      <translation>LibreOffice</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="108"/>
       <source>If you don't want to install an office suite, just select No Office Suite. You can always add one (or more) later on your installed system as the need arrives.</source>
-      <translation type="unfinished"/>
+      <translation>Ef þú vilt ekki setja upp skrifstofuhugbúnað, skaltu bara velja 'Enginn skrifstofuhugbúnaður'. Þú getur alltaf bætt við slíkum (jafnvel mörgum) síðar á uppsetta kerfinu þínu, verði þess þörf.</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="121"/>
       <source>No Office Suite</source>
-      <translation type="unfinished"/>
+      <translation>Enginn skrifstofuhugbúnaður</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="172"/>
       <source>Create a minimal Desktop install, remove all extra applications and decide later on what you would like to add to your system. Examples of what won't be on such an install, there will be no Office Suite, no media players, no image viewer or print support.  It will be just a desktop, file browser, package manager, text editor and simple web-browser.</source>
-      <translation type="unfinished"/>
+      <translation>Útbúðu lágmarksuppsetningu skjáborðsumhverfis, fjarlægðu öll viðbótarforrit og ákveddu síðar hverju þú vilt bæta við á kerfið þitt. Dæmi um það sem ekki verður á slíkri uppsetningu eru meðal annars að þar verður enginn skrifstofuhugbúnaður, engir margmiðlunarspilarar, engir myndaskoðarar eða stuðningur við prentun. Þarna verður bara skjáborð, skráastjóri, pakkastýring, textaritill og einfaldur vafri.</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="185"/>
       <source>Minimal Install</source>
-      <translation type="unfinished"/>
+      <translation>Lágmarksuppsetning</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="233"/>
       <source>Please select an option for your install, or use the default: LibreOffice included.</source>
-      <translation type="unfinished"/>
+      <translation>Veldu valkost fyrir uppsetninguna þína, eða veldu sjálfgefnu stillinguna: LibreOffice verður tekið með.</translation>
     </message>
   </context>
   <context>
@@ -4319,12 +4324,32 @@ Output:
             &lt;/ul&gt;
 
             &lt;p&gt;The vertical scrollbar is adjustable, current width set to 10.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;%1&lt;/h3&gt;
+            &lt;p&gt;Þetta er sýniskrá fyrir QML, sem sýnir valkosti sniðins RichText texta með Flickable-efni.&lt;/p&gt;
+
+            &lt;p&gt;QML með RichText getur notað HTML-merki, Flickable-efni nýtist fyrir snertiskjái.&lt;/p&gt;
+
+            &lt;p&gt;&lt;b&gt;Þetta er feitletraður texti&lt;/b&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;i&gt;TÞetta er skáletraður texti&lt;/i&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;u&gt;Þetta er undirstrikaður texti&lt;/u&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;center&gt;Þessi texti verjur miðjaður.&lt;/center&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;s&gt;Þetta er gegnumstrikaður texti&lt;/s&gt;&lt;/p&gt;
+
+            &lt;p&gt;Dæmi um kóða:
+            &lt;code&gt;ls -l /home&lt;/code&gt;&lt;/p&gt;
+
+            &lt;p&gt;&lt;b&gt;Listar:&lt;/b&gt;&lt;/p&gt;
+            &lt;ul&gt;
+                &lt;li&gt;Intel CPU kerfi&lt;/li&gt;
+                &lt;li&gt;AMD CPU kerfi&lt;/li&gt;
+            &lt;/ul&gt;
+
+            &lt;p&gt;Lóðrétta skrunstikan er aðlaganleg, breiddin er núna stillt á 10.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/release_notes.qml" line="76"/>
       <source>Back</source>
-      <translation type="unfinished"/>
+      <translation>Til baka</translation>
     </message>
   </context>
   <context>
@@ -4332,7 +4357,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="43"/>
       <source>Pick your user name and credentials to login and perform admin tasks</source>
-      <translation type="unfinished"/>
+      <translation>Veldu þér notandanafn og auðkenni til að skrá inn og framkvæma stjórnunaraðgerðir</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="56"/>
@@ -4342,7 +4367,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="63"/>
       <source>Your Full Name</source>
-      <translation type="unfinished"/>
+      <translation>Fullt nafn þitt</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="80"/>
@@ -4352,112 +4377,112 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="87"/>
       <source>Login Name</source>
-      <translation type="unfinished"/>
+      <translation>Notandanafn innskráningar</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="116"/>
       <source>If more than one person will use this computer, you can create multiple accounts after installation.</source>
-      <translation type="unfinished"/>
+      <translation>Ef fleiri en einn aðili notar þessa tölvu getur þú bætt við notendum eftir uppsetninguna.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="129"/>
       <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
-      <translation type="unfinished"/>
+      <translation>Má einungis innihalda lágstafa bókstafi, tölustafi, undirstrik og bandstrik.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="138"/>
       <source>root is not allowed as username.</source>
-      <translation type="unfinished"/>
+      <translation>root er ekki leyfilegt sem notandanafn.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="147"/>
       <source>What is the name of this computer?</source>
-      <translation>Hvað er nafnið á þessari tölvu?</translation>
+      <translation>Hvert er heitið á þessari tölvu?</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="153"/>
       <source>Computer Name</source>
-      <translation type="unfinished"/>
+      <translation>Tölvuheiti</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="180"/>
       <source>This name will be used if you make the computer visible to others on a network.</source>
-      <translation type="unfinished"/>
+      <translation>Þetta nafn verður notað ef þú gerir tölvuna sýnilega öðrum á netkerfum.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="202"/>
       <source>localhost is not allowed as hostname.</source>
-      <translation type="unfinished"/>
+      <translation>localhost er ekki leyfilegt sem nafn tölvu.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="211"/>
       <source>Choose a password to keep your account safe.</source>
-      <translation>Veldu lykilorð til að halda reikningnum þínum öruggum.</translation>
+      <translation>Veldu lykilorð til að halda aðgangnum þínum öruggum.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="221"/>
       <source>Password</source>
-      <translation type="unfinished"/>
+      <translation>Lykilorð</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="238"/>
       <source>Repeat Password</source>
-      <translation type="unfinished"/>
+      <translation>Endurtaka lykilorð</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="265"/>
       <source>Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.</source>
-      <translation type="unfinished"/>
+      <translation>Settu inn sama lykilorðið tvisvar, þannig að hægt sé að yfirfara innsláttarvillur. Gott lykilorð inniheldur blöndu af bókstöfum, tölustöfum og greinamerkjum, ætti að vera að minnsta kosti átta stafa langt og því ætti að breyta með reglulegu millibili.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="410"/>
       <source>Validate passwords quality</source>
-      <translation type="unfinished"/>
+      <translation>Sannreyna gæði lykilorða</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="420"/>
       <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password.</source>
-      <translation type="unfinished"/>
+      <translation>Þegar merkt er í þennan reit er athugaður styrkur lykilorða og þú munt ekki geta notað veikt lykilorð.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="402"/>
       <source>Log in automatically without asking for the password</source>
-      <translation type="unfinished"/>
+      <translation>Skrá inn sjálfkrafa án þess að biðja um lykilorð</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="193"/>
       <source>Only letters, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
-      <translation type="unfinished"/>
+      <translation>Má einungis innihalda bókstafi, tölustafi, undirstrik og bandstrik, að lágmarki tveir stafir.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="297"/>
       <source>Reuse user password as root password</source>
-      <translation type="unfinished"/>
+      <translation>Endurnýta lykilorð notandans sem lykilorð rótarnotanda</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="305"/>
       <source>Use the same password for the administrator account.</source>
-      <translation>Nota sama lykilorð fyrir kerfisstjóra reikning.</translation>
+      <translation>Nota sama lykilorð fyrir aðgang kerfisstjóra.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="318"/>
       <source>Choose a root password to keep your account safe.</source>
-      <translation type="unfinished"/>
+      <translation>Veldu rótarlykilorð til að halda aðgangnum þínum öruggum.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="328"/>
       <source>Root Password</source>
-      <translation type="unfinished"/>
+      <translation>Lykilorð rótarnotanda</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="346"/>
       <source>Repeat Root Password</source>
-      <translation type="unfinished"/>
+      <translation>Endurtaktu lykilorð rótarnotanda</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="372"/>
       <source>Enter the same password twice, so that it can be checked for typing errors.</source>
-      <translation type="unfinished"/>
+      <translation>Settu inn sama lykilorð tvisvar, þannig að hægt sé að yfirfara innsláttarvillur.</translation>
     </message>
   </context>
   <context>
@@ -4466,27 +4491,28 @@ Output:
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="35"/>
       <source>&lt;h3&gt;Welcome to the %1 &lt;quote&gt;%2&lt;/quote&gt; installer&lt;/h3&gt;
             &lt;p&gt;This program will ask you some questions and set up %1 on your computer.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;Velkomin í %1 &lt;quote&gt;%2&lt;/quote&gt; uppsetningarforritið&lt;/h3&gt;
+            &lt;p&gt;Þetta forrit mun spyrja þig nokkurra spurninga og setja upp %1 á tölvunni þinni.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="66"/>
       <source>Support</source>
-      <translation type="unfinished"/>
+      <translation>Aðstoð</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="77"/>
       <source>Known issues</source>
-      <translation type="unfinished"/>
+      <translation>Þekkt vandamál</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="88"/>
       <source>Release notes</source>
-      <translation type="unfinished"/>
+      <translation>Útgáfuupplýsingar</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="100"/>
       <source>Donate</source>
-      <translation type="unfinished"/>
+      <translation>Styrkja</translation>
     </message>
   </context>
 </TS>

@@ -10,8 +10,8 @@
     </message>
     <message>
       <location filename="../src/libcalamares/CalamaresAbout.cpp" line="20"/>
-      <source>Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-      <translation>Kiitos &lt;a href="https://calamares.io/team/"&gt;Calamares tiimille &lt;/a&gt; ja &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares kääntäjätiimille&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; kehitystä sponsoroi &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</translation>
+      <source>Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://app.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
+      <translation>Kiitos &lt;a href="https://calamares.io/team/"&gt;Calamares tiimille &lt;/a&gt; ja &lt;a href="https://app.transifex.com/calamares/calamares/"&gt;Calamares kääntäjäjille&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; kehitystä sponsoroi &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/CalamaresAbout.cpp" line="38"/>
@@ -49,27 +49,27 @@
   <context>
     <name>BootLoaderModel</name>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="59"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="60"/>
       <source>Master Boot Record of %1</source>
       <translation>%1:n pääkäynnistyslohko</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="92"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="93"/>
       <source>Boot Partition</source>
       <translation>Käynnistysosio</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="99"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="100"/>
       <source>System Partition</source>
       <translation>Järjestelmäosio</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="129"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="131"/>
       <source>Do not install a boot loader</source>
       <translation>Älä asenna käynnistyslatainta</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="147"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="148"/>
       <source>%1 (%2)</source>
       <translation>%1 (%2)</translation>
     </message>
@@ -156,7 +156,7 @@
       <translation>Widgettipuu</translation>
     </message>
     <message>
-      <location filename="../src/calamares/DebugWindow.cpp" line="244"/>
+      <location filename="../src/calamares/DebugWindow.cpp" line="164"/>
       <source>Debug information</source>
       <translation>Vianetsinnän tiedot</translation>
     </message>
@@ -164,12 +164,18 @@
   <context>
     <name>Calamares::ExecutionViewStep</name>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="118"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="76"/>
+      <source>%p%</source>
+      <comment>Progress percentage indicator: %p is where the number 0..100 is placed</comment>
+      <translation>%p%</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="119"/>
       <source>Set up</source>
       <translation>Määritä</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="118"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="119"/>
       <source>Install</source>
       <translation>Asenna</translation>
     </message>
@@ -276,8 +282,8 @@
     <name>Calamares::RequirementsChecker</name>
     <message>
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="94"/>
-      <source>Requirements checking for module &lt;i&gt;%1&lt;/i&gt; is complete.</source>
-      <translation>Moduulin vaatimusten tarkistaminen &lt;i&gt;%1&lt;/i&gt; on valmis.</translation>
+      <source>Requirements checking for module '%1' is complete.</source>
+      <translation>Moduulin "%1" vaatimusten tarkistus on valmis.</translation>
     </message>
     <message numerus="yes">
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="118"/>
@@ -291,7 +297,7 @@
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="119"/>
       <source>(%n second(s))</source>
       <translation>
-        <numerusform>(%n sekunti)</numerusform>
+        <numerusform>(%n sekuntia)</numerusform>
         <numerusform>(%n sekuntia)</numerusform>
       </translation>
     </message>
@@ -507,12 +513,12 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
   <context>
     <name>CalamaresWindow</name>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="392"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="396"/>
       <source>%1 Setup Program</source>
       <translation>%1-asennusohjelma</translation>
     </message>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="393"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="397"/>
       <source>%1 Installer</source>
       <translation>%1-asentaja</translation>
     </message>
@@ -520,17 +526,18 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
   <context>
     <name>ChangeFilesystemLabelJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="32"/>
+      <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="34"/>
       <source>Set filesystem label on %1.</source>
       <translation>Valitse tiedostojärjestelmän nimi %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="39"/>
+      <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="41"/>
       <source>Set filesystem label &lt;strong&gt;%1&lt;/strong&gt; to partition &lt;strong&gt;%2&lt;/strong&gt;.</source>
       <translation>Valitse tiedostojärjestelmän nimi  &lt;strong&gt;%1&lt;/strong&gt; osioon &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="70"/>
+      <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="71"/>
+      <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="83"/>
       <source>The installer failed to update partition table on disk '%1'.</source>
       <translation>Asennusohjelman epäonnistui päivittää osio levyllä '%1'.</translation>
     </message>
@@ -551,149 +558,149 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
       <translation>Lomake</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="139"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="138"/>
       <source>Select storage de&amp;vice:</source>
       <translation>Valitse kiintole&amp;vy:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="140"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1029"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1077"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1174"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="139"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1042"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1093"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1146"/>
       <source>Current:</source>
       <translation>Nykyinen:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="141"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="140"/>
       <source>After:</source>
       <translation>Jälkeen:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1732"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1673"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
       <translation>&lt;strong&gt;Manuaalinen osiointi &lt;/strong&gt;&lt;br/&gt;Voit luoda tai muuttaa osioita itse.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="894"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="907"/>
       <source>Reuse %1 as home partition for %2.</source>
       <translation>Käytä %1 uudelleen kotiosiona kohteelle %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1030"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1043"/>
       <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;Valitse supistettava osio ja säädä alarivillä kokoa vetämällä&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1048"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1067"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
       <translation>%1 supistetaan %2Mib:iin ja uusi %3MiB-osio luodaan kohteelle %4.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1106"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1701"/>
       <source>Boot loader location:</source>
       <translation>Käynnistyslataajan sijainti:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1165"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1137"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;Valitse asennettava osio&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1226"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1198"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation>EFI-järjestelmäosiota ei löydy tästä järjestelmästä. Siirry takaisin ja käytä manuaalista osiointia, kun haluat määrittää %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1234"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1206"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>EFI-järjestelmäosiota %1 käytetään %2 käynnistämiseen.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1242"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1214"/>
       <source>EFI system partition:</source>
       <translation>EFI-järjestelmäosio:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1402"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1343"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation>Tällä massamuistilla ei näytä olevan käyttöjärjestelmää. Mitä haluat tehdä?&lt;br/&gt;Voit tarkistaa ja vahvistaa valintasi ennen kuin massamuistille tehdään muutoksia.</translation>
+      <translation>Tällä kiintolevyllä ei näytä olevan käyttöjärjestelmää. Mitä haluat tehdä?&lt;br/&gt;Voit tarkistaa valintasi ennen kuin kiintolevylle tehdään muutoksia.</translation>
     </message>
     <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1348"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1385"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1407"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1444"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1466"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1491"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1432"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
-      <translation>&lt;strong&gt;Tyhjennä asema&lt;/strong&gt;&lt;br/&gt;Tämä &lt;font color="red"&gt;poistaa&lt;/font&gt; kaikki tiedot valitusta massamuistista.</translation>
+      <translation>&lt;strong&gt;Tyhjennä levy&lt;/strong&gt;&lt;br/&gt;Tämä tulee&lt;font color="red"&gt;poistamaan&lt;/font&gt; kaikki tiedot valitusta kiintolevystä.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1411"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1440"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1462"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1487"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1352"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1381"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1403"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1428"/>
       <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
       <translation>&lt;strong&gt;Asenna nykyisen rinnalle&lt;/strong&gt;&lt;br/&gt;Asennusohjelma supistaa osiota tehdäkseen tilaa kohteelle %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1415"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1449"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1470"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1495"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1356"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1390"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1411"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1436"/>
       <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
       <translation>&lt;strong&gt;Osion korvaaminen&lt;/strong&gt;&lt;br/&gt;korvaa osion %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1434"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1375"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation>Tässä massamuistissa on %1 dataa. Mitä haluat tehdä?&lt;br/&gt;Voit tarkistaa ja vahvistaa valintasi ennen kuin massamuistiin tehdään muutoksia.</translation>
+      <translation>Kiintolevyllä on %1 dataa. Mitä haluat tehdä?&lt;br/&gt;Voit tarkistaa valintasi ennen kuin kiintolevylle tehdään muutoksia.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1457"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1398"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation>Tämä massamuisti sisältää jo käyttöjärjestelmän. Mitä haluaisit tehdä?&lt;br/&gt;Voit tarkistaa ja vahvistaa valintasi, ennen kuin massamuistiin tehdään muutoksia.</translation>
+      <translation>Tämä kiintolevy sisältää jo käyttöjärjestelmän. Mitä haluaisit tehdä?&lt;br/&gt;Voit tarkistaa valintasi, ennen kuin kiintolevylle tehdään muutoksia.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1482"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1423"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation>Tämä massamuisti sisältää jo useita käyttöjärjestelmiä. Mitä haluaisit tehdä?&lt;br/&gt;Voit tarkistaa ja vahvistaa valintasi, ennen kuin massamuistiin tehdään muutoksia.</translation>
+      <translation>Kiintolevy sisältää jo useita käyttöjärjestelmiä. Mitä haluaisit tehdä?&lt;br/&gt;Voit tarkistaa valintasi, ennen kuin kiintolevylle tehdään muutoksia.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1554"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1495"/>
       <source>This storage device already has an operating system on it, but the partition table &lt;strong&gt;%1&lt;/strong&gt; is different from the needed &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</source>
-      <translation>Tällä massamuistilla on jo käyttöjärjestelmä, mutta osiotaulukko &lt;strong&gt;%1&lt;/strong&gt; on erilainen kuin tarvittava &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</translation>
+      <translation>Kiintolevyllä on jo käyttöjärjestelmä, mutta osiotaulukko &lt;strong&gt;%1&lt;/strong&gt; on erilainen kuin tarvitaan &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1577"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1518"/>
       <source>This storage device has one of its partitions &lt;strong&gt;mounted&lt;/strong&gt;.</source>
-      <translation>Tähän massamuistiin on &lt;strong&gt;liitetty&lt;/strong&gt; yksi osioista.</translation>
+      <translation>Tähän kiintolevyyn on kiinnitys, &lt;strong&gt;liitetty&lt;/strong&gt; yksi osioista.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1582"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1523"/>
       <source>This storage device is a part of an &lt;strong&gt;inactive RAID&lt;/strong&gt; device.</source>
-      <translation>Tämä massamuisti on osa &lt;strong&gt;passiivista RAID&lt;/strong&gt; kokoonpanoa.</translation>
+      <translation>Tämä kiintolevy on osa &lt;strong&gt;passiivista RAID&lt;/strong&gt; kokoonpanoa.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1701"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1642"/>
       <source>No Swap</source>
       <translation>Swap ei</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1710"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1651"/>
       <source>Reuse Swap</source>
       <translation>Swap käytä uudellen</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1713"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1654"/>
       <source>Swap (no Hibernate)</source>
       <translation>Swap (ei lepotilaa)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1716"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1657"/>
       <source>Swap (with Hibernate)</source>
       <translation>Swap (lepotilan kanssa)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1719"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1660"/>
       <source>Swap to file</source>
       <translation>Swap tiedostona</translation>
     </message>
@@ -762,46 +769,40 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
   <context>
     <name>CommandList</name>
     <message>
-      <location filename="../src/libcalamares/utils/CommandList.cpp" line="142"/>
-      <location filename="../src/libcalamares/utils/CommandList.cpp" line="155"/>
+      <location filename="../src/libcalamares/utils/CommandList.cpp" line="165"/>
       <source>Could not run command.</source>
       <translation>Komentoa ei voi suorittaa.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CommandList.cpp" line="143"/>
-      <source>The command runs in the host environment and needs to know the root path, but no rootMountPoint is defined.</source>
-      <translation>Komento toimii isäntäympäristössä ja sen täytyy tietää juuren polku, mutta root-liityntä kohtaa  ei ole määritetty.</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamares/utils/CommandList.cpp" line="156"/>
-      <source>The command needs to know the user's name, but no username is defined.</source>
-      <translation>Komennon on tiedettävä käyttäjän nimi, mutta käyttäjän tunnusta ei ole määritetty.</translation>
+      <location filename="../src/libcalamares/utils/CommandList.cpp" line="166"/>
+      <source>The commands use variables that are not defined. Missing variables are: %1.</source>
+      <translation>Komennot käyttää muuttujia, joita ei ole määritelty. Puuttuvat muuttujat ovat: %1.</translation>
     </message>
   </context>
   <context>
     <name>Config</name>
     <message>
-      <location filename="../src/modules/keyboard/Config.cpp" line="360"/>
+      <location filename="../src/modules/keyboard/Config.cpp" line="361"/>
       <source>Set keyboard model to %1.&lt;br/&gt;</source>
       <translation>Aseta näppäimiston malli %1.&lt;br/&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/Config.cpp" line="367"/>
+      <location filename="../src/modules/keyboard/Config.cpp" line="368"/>
       <source>Set keyboard layout to %1/%2.</source>
       <translation>Aseta näppäimiston asetteluksi %1/%2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="359"/>
+      <location filename="../src/modules/locale/Config.cpp" line="373"/>
       <source>Set timezone to %1/%2.</source>
       <translation>Aseta aikavyöhykkeeksi %1/%2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="397"/>
+      <location filename="../src/modules/locale/Config.cpp" line="411"/>
       <source>The system language will be set to %1.</source>
       <translation>Järjestelmän kielen asetuksena on %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="404"/>
+      <location filename="../src/modules/locale/Config.cpp" line="418"/>
       <source>The numbers and dates locale will be set to %1.</source>
       <translation>Numerot ja päivämäärät, paikallinen asetus on %1.</translation>
     </message>
@@ -837,97 +838,99 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="56"/>
-      <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
-      <translation>Tämä tietokone ei täytä vähimmäisvaatimuksia,  %1.&lt;br/&gt;Asennusta ei voi jatkaa. &lt;a href="#details"&gt;Yksityiskohdat...&lt;/a&gt;</translation>
+      <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue.</source>
+      <translation>Tämä tietokone ei täytä minimivaatimuksia %1 määrittämiseen.
+&lt;br/&gt;Asennusta ei voi jatkaa.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="60"/>
-      <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
-      <translation>Tämä tietokone ei täytä asennuksen vähimmäisvaatimuksia,  %1.&lt;br/&gt;Asennus ei voi jatkua. &lt;a href="#details"&gt;Yksityiskohdat...&lt;/a&gt;</translation>
+      <location filename="../src/modules/welcome/Config.cpp" line="59"/>
+      <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue.</source>
+      <translation>Tämä tietokone ei täytä minimivaatimuksia %1 asentamiseen.
+&lt;br/&gt;Asennusta ei voi jatkaa.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="67"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="65"/>
       <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
       <translation>Tämä tietokone ei täytä joitakin suositeltuja vaatimuksia %1.&lt;br/&gt;Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="71"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="69"/>
       <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
       <translation>Tämä tietokone ei täytä joitakin suositeltuja vaatimuksia %1.
 Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="81"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="79"/>
       <source>This program will ask you some questions and set up %2 on your computer.</source>
       <translation>Tämä ohjelma kysyy joitakin kysymyksiä liittyen järjestelmään %2 ja asentaa sen tietokoneeseen.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="269"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="266"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Tervetuloa Calamares-asennusohjelmaan %1&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="270"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="267"/>
       <source>&lt;h1&gt;Welcome to %1 setup&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Tervetuloa %1 asennukseen&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="274"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="271"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Tervetuloa Calamares-asentajaan %1&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="275"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="272"/>
       <source>&lt;h1&gt;Welcome to the %1 installer&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Tervetuloa %1-asentajaan&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="236"/>
+      <location filename="../src/modules/users/Config.cpp" line="235"/>
       <source>Your username is too long.</source>
       <translation>Käyttäjänimesi on liian pitkä.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="252"/>
+      <location filename="../src/modules/users/Config.cpp" line="251"/>
       <source>'%1' is not allowed as username.</source>
       <translation>Käyttäjänimessä '%1' ei ole sallittu.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="242"/>
+      <location filename="../src/modules/users/Config.cpp" line="241"/>
       <source>Your username must start with a lowercase letter or underscore.</source>
       <translation>Sinun käyttäjänimi täytyy alkaa pienellä kirjaimella tai alaviivalla.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="246"/>
+      <location filename="../src/modules/users/Config.cpp" line="245"/>
       <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
       <translation>Vain pienet kirjaimet, numerot, alaviivat ja tavuviivat ovat sallittuja.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="301"/>
+      <location filename="../src/modules/users/Config.cpp" line="300"/>
       <source>Your hostname is too short.</source>
       <translation>Koneen nimi on liian lyhyt.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="305"/>
+      <location filename="../src/modules/users/Config.cpp" line="304"/>
       <source>Your hostname is too long.</source>
       <translation>Koneen nimi on liian pitkä.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="311"/>
+      <location filename="../src/modules/users/Config.cpp" line="310"/>
       <source>'%1' is not allowed as hostname.</source>
       <translation>Koneen nimessä '%1' ei ole sallittu.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="316"/>
+      <location filename="../src/modules/users/Config.cpp" line="315"/>
       <source>Only letters, numbers, underscore and hyphen are allowed.</source>
       <translation>Vain kirjaimet, numerot, alaviivat ja tavuviivat ovat sallittuja.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="585"/>
+      <location filename="../src/modules/users/Config.cpp" line="584"/>
       <source>Your passwords do not match!</source>
       <translation>Salasanasi eivät täsmää!</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="599"/>
+      <location filename="../src/modules/users/Config.cpp" line="598"/>
       <source>OK!</source>
       <translation>OK!</translation>
     </message>
@@ -1083,22 +1086,22 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
       <translation>Tiedostojärjestelmän nimike:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="66"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="67"/>
       <source>En&amp;crypt</source>
       <translation>Sa&amp;laa</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="194"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="195"/>
       <source>Logical</source>
       <translation>Looginen</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="199"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="200"/>
       <source>Primary</source>
       <translation>Ensisijainen</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="218"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="219"/>
       <source>GPT</source>
       <translation>GPT</translation>
     </message>
@@ -1116,43 +1119,43 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
   <context>
     <name>CreatePartitionJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="187"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="183"/>
       <source>Create new %1MiB partition on %3 (%2) with entries %4.</source>
       <translation>Luo uusi %1MiB osio kohteeseen %3 (%2), jossa on %4.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="195"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="191"/>
       <source>Create new %1MiB partition on %3 (%2).</source>
       <translation>Luo uusi %1MiB osio kohteeseen %3 (%2).</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="202"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="198"/>
       <source>Create new %2MiB partition on %4 (%3) with file system %1.</source>
       <translation>Luo uusi %2Mib-osio %4 (%3) tiedostojärjestelmällä %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="219"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="215"/>
       <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2) with entries &lt;em&gt;%4&lt;/em&gt;.</source>
       <translation>Luo uusi &lt;strong&gt;%1MiB&lt;/strong&gt; osio kohteeseen &lt;strong&gt;%3&lt;/strong&gt; (%2) jossa on &lt;em&gt;%4&lt;/em&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="228"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="224"/>
       <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2).</source>
       <translation>Luo uusi &lt;strong&gt;%1MiB&lt;/strong&gt; osio kohteeseen &lt;strong&gt;%3&lt;/strong&gt; (%2).</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="235"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="231"/>
       <source>Create new &lt;strong&gt;%2MiB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Luo uusi &lt;strong&gt;%2Mib&lt;/strong&gt; osio &lt;strong&gt;%4&lt;/strong&gt; (%3) tiedostojärjestelmällä &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="260"/>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="263"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="256"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="259"/>
       <source>Creating new %1 partition on %2.</source>
       <translation>Luodaan uutta %1-osiota kohteessa %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="280"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="276"/>
       <source>The installer failed to create partition on disk '%1'.</source>
       <translation>Asennusohjelma epäonnistui osion luonnissa asemalle '%1'.</translation>
     </message>
@@ -1318,7 +1321,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
   <context>
     <name>DeviceInfoWidget</name>
     <message>
-      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="143"/>
+      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="141"/>
       <source>This device has a &lt;strong&gt;%1&lt;/strong&gt; partition table.</source>
       <translation>Tässälaitteessa on &lt;strong&gt;%1&lt;/strong&gt; osion taulukko.</translation>
     </message>
@@ -1328,9 +1331,9 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
       <translation>Tämä &lt;strong&gt;loop&lt;/strong&gt; -laite.&lt;br&gt;&lt;br&gt;Se on pseudo-laite, jossa ei ole osio-taulukkoa ja joka tekee tiedostosta lohkotun aseman. Tällainen asennus sisältää yleensä vain yhden tiedostojärjestelmän.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="108"/>
+      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="106"/>
       <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
-      <translation>Asennusohjelma &lt;strong&gt;ei tunnista osiotaulukkoa&lt;/strong&gt; valitussa massamuistissa.&lt;br&gt;&lt;br&gt;Laitteessa ei ole osiotaulukkoa, taulukko on vioittunut tai tuntematon.&lt;br&gt;Asennusohjelma voi tehdä uuden osiotaulukon, joko automaattisesti tai manuaalisesti.</translation>
+      <translation>Asentaja &lt;strong&gt;ei tunnista osiotaulukkoa&lt;/strong&gt; valitussa kiintolevyssä.&lt;br&gt;&lt;br&gt;Joko ei ole osiotaulukkoa, taulukko on vioittunut tai tuntematon.&lt;br&gt;Asentaja voi tehdä uuden osiotaulukon automaattisesti tai voit tehdä sen käsin.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="91"/>
@@ -1343,9 +1346,9 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
       <translation>&lt;br&gt;&lt;br&gt;Tämä osiotaulukon tyyppi on suositeltava vain vanhemmissa järjestelmissä, jotka käyttävät  &lt;strong&gt;BIOS&lt;/strong&gt; -käynnistysympäristöä. GPT:tä suositellaan useimmissa muissa tapauksissa.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Varoitus:&lt;/strong&gt;MBR-taulukko on vanhentunut MS-DOS-standardi.&lt;br&gt;Vain 4 &lt;em&gt;ensisijaisia&lt;/em&gt; Vain ensisijaisia osioita voidaan luoda, ja  4, niistä yksi voi olla &lt;em&gt;laajennettu&lt;/em&gt; osio, joka voi puolestaan sisältää monia  osioita &lt;em&gt;loogisia&lt;/em&gt; osioita.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="151"/>
+      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="149"/>
       <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-      <translation>Valitun massamuistin &lt;strong&gt;osiotaulukon&lt;/strong&gt; tyyppi.&lt;br&gt;&lt;br&gt;Ainoa tapa muuttaa osiotaulukon tyyppiä on poistaa ja luoda uudelleen osiot tyhjästä, mikä tuhoaa kaikki massamuistin sisältämät tiedot. &lt;br&gt;Asennusohjelma säilyttää nykyisen osiotaulukon, ellet nimenomaisesti valitse muuta.&lt;br&gt;Jos olet epävarma niin nykyaikaisissa järjestelmissä GPT on suositus.</translation>
+      <translation>Valitun kiintolevyn &lt;strong&gt;osiotaulukon&lt;/strong&gt; tyyppi.&lt;br&gt;&lt;br&gt;Ainoa tapa muuttaa osiotaulukon tyyppiä on poistaa ja luoda osiot alusta uudelleen, mikä tuhoaa kaikki kiintolevyn sisältämät tiedot. &lt;br&gt;Asentaja säilyttää nykyisen osiotaulukon, ellet nimenomaisesti valitse muuta.&lt;br&gt;Jos olet epävarma niin suositus on käyttää GPT:tä.</translation>
     </message>
   </context>
   <context>
@@ -1490,10 +1493,15 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
       <translation>Vahvista salasana</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="156"/>
-      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="166"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="159"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="174"/>
       <source>Please enter the same passphrase in both boxes.</source>
       <translation>Anna sama salasana molempiin kenttiin.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="164"/>
+      <source>Password must be a minimum of %1 characters</source>
+      <translation>Salasanan tulee olla vähintään %1 merkkiä</translation>
     </message>
   </context>
   <context>
@@ -1512,57 +1520,57 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
   <context>
     <name>FillGlobalStorageJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="172"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="178"/>
       <source>Set partition information</source>
       <translation>Aseta osion tiedot</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="201"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="207"/>
       <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition with features &lt;em&gt;%3&lt;/em&gt;</source>
       <translation>Asenna %1  &lt;strong&gt;uusi&lt;/strong&gt; %2 järjestelmäosio ominaisuuksilla &lt;em&gt;%3&lt;/em&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="209"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="215"/>
       <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
       <translation>Asenna %1 &lt;strong&gt;uusi&lt;/strong&gt; %2 järjestelmä osio.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="218"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="224"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt; and features &lt;em&gt;%3&lt;/em&gt;.</source>
       <translation>Määritä &lt;strong&gt;uusi&lt;/strong&gt; %2 osio liitospisteellä &lt;strong&gt;%1&lt;/strong&gt; ja ominaisuuksilla &lt;em&gt;%3&lt;/em&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="226"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="232"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;%3.</source>
       <translation>Määritä &lt;strong&gt;uusi&lt;/strong&gt; %2 osio liitospisteellä &lt;strong&gt;%1&lt;/strong&gt;%3.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="240"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="246"/>
       <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt; with features &lt;em&gt;%4&lt;/em&gt;.</source>
       <translation>Asenna %2 - %3 järjestelmäosio &lt;strong&gt;%1&lt;/strong&gt; ominaisuuksilla &lt;em&gt;%4&lt;/em&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="259"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="265"/>
       <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt; and features &lt;em&gt;%4&lt;/em&gt;.</source>
       <translation>Määritä %3 osio &lt;strong&gt;%1&lt;/strong&gt; liitospisteellä &lt;strong&gt;%2&lt;/strong&gt; ja ominaisuuksilla &lt;em&gt;%4&lt;/em&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="268"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="274"/>
       <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;%4.</source>
       <translation>Määritä %3 osio &lt;strong&gt;%1&lt;/strong&gt; liitospisteellä &lt;strong&gt;%2&lt;/strong&gt;%4.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="249"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="255"/>
       <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Asenna %2 - %3 -järjestelmän osioon &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="283"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="289"/>
       <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Asenna käynnistyslatain &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="292"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="298"/>
       <source>Setting up mount points.</source>
       <translation>Liitosten määrittäminen.</translation>
     </message>
@@ -1658,74 +1666,130 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
   <context>
     <name>GeneralRequirements</name>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="156"/>
-      <source>has at least %1 GiB available drive space</source>
-      <translation>vähintään %1 GiB vapaata levytilaa</translation>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="159"/>
+      <source>Please ensure the system has at least %1 GiB available drive space.</source>
+      <translation>Varmista, että järjestelmässä on vähintään %1 Gt vapaata levytilaa.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="158"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="161"/>
+      <source>Available drive space is all of the hard disks and SSDs connected to the system.</source>
+      <translation>Käytettävissä oleva levytila on kaikki järjestelmään kytketyt kiintolevyt HDD ja SSD.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="164"/>
       <source>There is not enough drive space. At least %1 GiB is required.</source>
-      <translation>Levytilaa ei ole riittävästi. Vähintään %1 GiB tarvitaan.</translation>
+      <translation>Levytilaa ei ole riittävästi. Vähintään %1 Gt tarvitaan.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="166"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="172"/>
       <source>has at least %1 GiB working memory</source>
-      <translation>vähintään %1 GiB työmuistia</translation>
+      <translation>vähintään %1 Gt työmuistia</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="168"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="174"/>
       <source>The system does not have enough working memory. At least %1 GiB is required.</source>
-      <translation>Järjestelmässä ei ole tarpeeksi työmuistia. Vähintään %1 GiB vaaditaan.</translation>
+      <translation>Järjestelmässä ei ole tarpeeksi työmuistia. Vähintään %1 Gt vaaditaan.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="177"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="183"/>
       <source>is plugged in to a power source</source>
       <translation>on yhdistetty virtalähteeseen</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="178"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="184"/>
       <source>The system is not plugged in to a power source.</source>
       <translation>Järjestelmä ei ole kytketty virtalähteeseen.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="185"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="191"/>
       <source>is connected to the Internet</source>
       <translation>on yhdistetty internetiin</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="186"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="192"/>
       <source>The system is not connected to the Internet.</source>
       <translation>Järjestelmä ei ole yhteydessä internetiin.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="193"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="199"/>
       <source>is running the installer as an administrator (root)</source>
       <translation>ajaa asennusohjelmaa järjestelmänvalvojana (root)</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="197"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="203"/>
       <source>The setup program is not running with administrator rights.</source>
       <translation>Asennusohjelma ei ole käynnissä järjestelmänvalvojan oikeuksin.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="198"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="204"/>
       <source>The installer is not running with administrator rights.</source>
       <translation>Asennusohjelma ei ole käynnissä järjestelmänvalvojan oikeuksin.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="206"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="212"/>
       <source>has a screen large enough to show the whole installer</source>
       <translation>näytöllä on riittävän suuri tarkkuus asentajalle</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="210"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="216"/>
       <source>The screen is too small to display the setup program.</source>
       <translation>Näyttö on liian pieni, jotta asennus -ohjelma voidaan näyttää.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="211"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="217"/>
       <source>The screen is too small to display the installer.</source>
       <translation>Näyttö on liian pieni asentajan näyttämiseksi.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="226"/>
+      <source>is always false</source>
+      <translation>on aina ei</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="227"/>
+      <source>The computer says no.</source>
+      <translation>Tietokone vastaa, ei.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="235"/>
+      <source>is always false (slowly)</source>
+      <translation>on aina ei (hidas)</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="236"/>
+      <source>The computer says no (slowly).</source>
+      <translation>Tietokone vastaa, ei (hitaasti).</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="243"/>
+      <source>is always true</source>
+      <translation>on aina kyllä</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="244"/>
+      <source>The computer says yes.</source>
+      <translation>Tietokone vastaa, kyllä.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="252"/>
+      <source>is always true (slowly)</source>
+      <translation>on aina kyllä (hidas)</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="253"/>
+      <source>The computer says yes (slowly).</source>
+      <translation>Tietokone vastaa, kyllä (hitaasti).</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="261"/>
+      <source>is checked three times.</source>
+      <translation>tarkistetaan kolme kertaa.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="264"/>
+      <source>The snark has not been checked three times.</source>
+      <comment>The (some mythological beast) has not been checked three times.</comment>
+      <translation>Snark ei ole tarkastettu kolmeen kertaan.</translation>
     </message>
   </context>
   <context>
@@ -1830,7 +1894,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="30"/>
       <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>Järjestelmän maa-asetus vaikuttaa komentorivin käyttöliittymän kieleen ja merkistön käyttöön.&lt;br/&gt;Nykyinen asetus on &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+      <translation>Järjestelmän maa-asetus vaikuttaa komentorivin käyttöliittymän kieleen ja merkistöön.&lt;br/&gt;Nykyinen asetus on &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="54"/>
@@ -1879,32 +1943,32 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
       <translation>&lt;h1&gt;Lisenssisopimus&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicensePage.cpp" line="135"/>
+      <location filename="../src/modules/license/LicensePage.cpp" line="143"/>
       <source>I accept the terms and conditions above.</source>
       <translation>Hyväksyn yllä olevat ehdot ja edellytykset.</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicensePage.cpp" line="137"/>
+      <location filename="../src/modules/license/LicensePage.cpp" line="145"/>
       <source>Please review the End User License Agreements (EULAs).</source>
       <translation>Ole hyvä ja tarkista loppukäyttäjän lisenssisopimus (EULA).</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicensePage.cpp" line="142"/>
+      <location filename="../src/modules/license/LicensePage.cpp" line="150"/>
       <source>This setup procedure will install proprietary software that is subject to licensing terms.</source>
       <translation>Tämä asennusohjelma asentaa patentoidun ohjelmiston, johon sovelletaan lisenssiehtoja.</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicensePage.cpp" line="145"/>
+      <location filename="../src/modules/license/LicensePage.cpp" line="153"/>
       <source>If you do not agree with the terms, the setup procedure cannot continue.</source>
       <translation>Jos et hyväksy ehtoja, asennusta ei voida jatkaa.</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicensePage.cpp" line="150"/>
+      <location filename="../src/modules/license/LicensePage.cpp" line="158"/>
       <source>This setup procedure can install proprietary software that is subject to licensing terms in order to provide additional features and enhance the user experience.</source>
       <translation>Tämä asennus voi asentaa patentoidun ohjelmiston, johon sovelletaan lisenssiehtoja lisäominaisuuksien tarjoamiseksi ja käyttökokemuksen parantamiseksi.</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicensePage.cpp" line="155"/>
+      <location filename="../src/modules/license/LicensePage.cpp" line="163"/>
       <source>If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
       <translation>Jos et hyväksy ehtoja, omaa ohjelmistoa ei asenneta, vaan sen sijaan käytetään avoimen lähdekoodin vaihtoehtoja.</translation>
     </message>
@@ -2007,7 +2071,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
   <context>
     <name>LocaleTests</name>
     <message>
-      <location filename="../src/libcalamares/locale/Tests.cpp" line="273"/>
+      <location filename="../src/libcalamares/locale/Tests.cpp" line="272"/>
       <source>Quit</source>
       <translation>Sulje</translation>
     </message>
@@ -2015,7 +2079,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
   <context>
     <name>LocaleViewStep</name>
     <message>
-      <location filename="../src/modules/locale/LocaleViewStep.cpp" line="76"/>
+      <location filename="../src/modules/locale/LocaleViewStep.cpp" line="75"/>
       <source>Location</source>
       <translation>Sijainti</translation>
     </message>
@@ -2086,9 +2150,9 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
       <source>Please select your preferred location on the map so the installer can suggest the locale
             and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
             to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</source>
-      <translation>Valitse sijainti kartalla, jotta asentaja voi ehdottaa maa- ja aikavyöhyke-asetukset.
-             Voit hienosäätää alla olevia asetuksia. Etsi kartalta vetämällä ja suurenna/pienennä +/- -painikkeella tai käytä
-hiiren vieritystä skaalaamiseen.</translation>
+      <translation>Valitse sijaintisi kartalla, jotta asentaja voi ehdottaa aikavyöhykeen asetuksia.
+            Voit hienosäätää ehdotettuja asetuksia alla. Hae kartasta vetämällä ja käyttämällä +/- -painikkeita ja
+             suurenna tai pienennä käyttäen hiirtä.</translation>
     </message>
   </context>
   <context>
@@ -2230,12 +2294,12 @@ hiiren vieritystä skaalaamiseen.</translation>
   <context>
     <name>OEMViewStep</name>
     <message>
-      <location filename="../src/modules/oemid/OEMViewStep.cpp" line="122"/>
+      <location filename="../src/modules/oemid/OEMViewStep.cpp" line="119"/>
       <source>OEM Configuration</source>
       <translation>OEM-kokoonpano</translation>
     </message>
     <message>
-      <location filename="../src/modules/oemid/OEMViewStep.cpp" line="128"/>
+      <location filename="../src/modules/oemid/OEMViewStep.cpp" line="125"/>
       <source>Set the OEM Batch Identifier to &lt;code&gt;%1&lt;/code&gt;.</source>
       <translation>Aseta OEM-valmistajan erän tunnisteeksi &lt;code&gt;%1&lt;/code&gt;.</translation>
     </message>
@@ -2243,31 +2307,31 @@ hiiren vieritystä skaalaamiseen.</translation>
   <context>
     <name>Offline</name>
     <message>
-      <location filename="../src/modules/localeq/Offline.qml" line="41"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="47"/>
       <source>Select your preferred Region, or use the default settings.</source>
       <translation>Valitse sinun asuinalue tai käytä oletusta.</translation>
     </message>
     <message>
-      <location filename="../src/modules/localeq/Offline.qml" line="99"/>
-      <location filename="../src/modules/localeq/Offline.qml" line="175"/>
-      <location filename="../src/modules/localeq/Offline.qml" line="219"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="103"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="180"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="224"/>
       <source>Timezone: %1</source>
       <translation>Aikavyöhyke: %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/localeq/Offline.qml" line="116"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="120"/>
       <source>Select your preferred Zone within your Region.</source>
       <translation>Valitse haluamasi alue alueesi sisällä.</translation>
     </message>
     <message>
-      <location filename="../src/modules/localeq/Offline.qml" line="188"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="193"/>
       <source>Zones</source>
       <translation>Vyöhykkeet</translation>
     </message>
     <message>
-      <location filename="../src/modules/localeq/Offline.qml" line="235"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="240"/>
       <source>You can fine-tune Language and Locale settings below.</source>
-      <translation>Voit hienosäätää kieli- ja alueasetuksia alla.</translation>
+      <translation>Voit hienosäätää alla kielen ja maa-asetukset.</translation>
     </message>
   </context>
   <context>
@@ -2540,7 +2604,7 @@ hiiren vieritystä skaalaamiseen.</translation>
       <translation>Tuntematon virhe</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="830"/>
+      <location filename="../src/modules/users/Config.cpp" line="829"/>
       <source>Password is empty</source>
       <translation>Salasana on tyhjä</translation>
     </message>
@@ -2606,7 +2670,7 @@ hiiren vieritystä skaalaamiseen.</translation>
     <message>
       <location filename="../src/modules/keyboard/KeyboardPage.ui" line="135"/>
       <source>Type here to test your keyboard</source>
-      <translation>Kirjoita tähän testaksesi näppäimistöäsi.</translation>
+      <translation>Testaa näppäimistöäsi, kirjoittamalla tähän</translation>
     </message>
   </context>
   <context>
@@ -2629,7 +2693,7 @@ hiiren vieritystä skaalaamiseen.</translation>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="124"/>
       <source>What name do you want to use to log in?</source>
-      <translation>Mitä nimeä haluat käyttää sisäänkirjautumisessa?</translation>
+      <translation>Mitä nimeä haluat käyttää kirjautumiseen?</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="148"/>
@@ -2853,17 +2917,17 @@ hiiren vieritystä skaalaamiseen.</translation>
       <translation>A&amp;senna käynnistyslatain:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="228"/>
+      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="224"/>
       <source>Are you sure you want to create a new partition table on %1?</source>
       <translation>Haluatko varmasti luoda uuden osiotaulukon levylle %1?</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="263"/>
+      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="259"/>
       <source>Can not create new partition</source>
       <translation>Ei voi luoda uutta osiota</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="264"/>
+      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="260"/>
       <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
       <translation>%1 osio-taulukossa on jo %2 ensisijaista osiota, eikä sitä voi lisätä. Poista yksi ensisijainen osio ja lisää laajennettu osio.</translation>
     </message>
@@ -2906,72 +2970,72 @@ hiiren vieritystä skaalaamiseen.</translation>
       <translation>Jälkeen:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="529"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="523"/>
       <source>No EFI system partition configured</source>
       <translation>EFI-järjestelmäosiota ei ole määritetty</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="533"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="527"/>
       <source>EFI system partition configured incorrectly</source>
       <translation>EFI-järjestelmäosio on määritetty väärin</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="538"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="532"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a suitable filesystem.</source>
       <translation>EFI-järjestelmäosio on vaatimus käynnistääksesi %1.&lt;br/&gt;&lt;br/&gt;Palaa jos haluat määrittää EFI-järjestelmäosion, valitse tai luo sopiva tiedostojärjestelmä.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="549"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="543"/>
       <source>The filesystem must be mounted on &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Tiedostojärjestelmä on asennettava &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="555"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="549"/>
       <source>The filesystem must have type FAT32.</source>
       <translation>Tiedostojärjestelmän on oltava tyyppiä FAT32.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="563"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="557"/>
       <source>The filesystem must be at least %1 MiB in size.</source>
       <translation>Tiedostojärjestelmän on oltava kooltaan vähintään %1 MiB.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="569"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="563"/>
       <source>The filesystem must have flag &lt;strong&gt;%1&lt;/strong&gt; set.</source>
       <translation>Tiedostojärjestelmässä on oltava &lt;strong&gt;%1&lt;/strong&gt; lippu.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="575"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="569"/>
       <source>You can continue without setting up an EFI system partition but your system may fail to start.</source>
       <translation>Voit jatkaa ilman EFI-järjestelmäosion määrittämistä, mutta järjestelmä ei ehkä käynnisty.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="593"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="587"/>
       <source>Option to use GPT on BIOS</source>
       <translation>BIOS:ssa mahdollisuus käyttää GPT:tä</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="594"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="588"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
       <translation>GPT-osiotaulukko on paras vaihtoehto kaikille järjestelmille. Kuitenkin asennusohjelma tukee myös BIOS-järjestelmää.&lt;br/&gt;&lt;br/&gt;Jos haluat määrittää GPT-osiotaulukon BIOS:ssa (jos et ole jo tehnyt) niin palaa takaisin ja aseta osiotaulukkoksi GPT. Luo seuraavaksi 8 Mt alustamaton osio &lt;strong&gt;%2&lt;/strong&gt; lipulla käyttöön.&lt;br/&gt;&lt;br/&gt;Alustamaton 8 Mt tarvitaan %1  käynnistämiseen BIOS-järjestelmässä, jossa on GPT.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="626"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="622"/>
       <source>Boot partition not encrypted</source>
       <translation>Käynnistysosiota ei ole salattu</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="627"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="623"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
       <translation>Erillinen käynnistysosio perustettiin yhdessä salatun juuriosion kanssa, mutta käynnistysosio ei ole salattu.&lt;br/&gt;&lt;br/&gt;Tällaisissa asetuksissa on tietoturvaongelmia, koska tärkeät järjestelmätiedostot pidetään salaamattomassa osiossa.&lt;br/&gt;Voit jatkaa, jos haluat, mutta tiedostojärjestelmän lukituksen avaaminen tapahtuu myöhemmin järjestelmän käynnistyksen aikana.&lt;br/&gt;Käynnistysosion salaamiseksi siirry takaisin ja luo se uudelleen valitsemalla &lt;strong&gt;Salaa&lt;/strong&gt; osion luominen -ikkunassa. </translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="718"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="714"/>
       <source>has at least one disk device available.</source>
       <translation>on vähintään yksi asema käytettävissä.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="719"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="715"/>
       <source>There are no partitions to install on.</source>
       <translation>Asennettavia osioita ei ole.</translation>
     </message>
@@ -3019,17 +3083,17 @@ hiiren vieritystä skaalaamiseen.</translation>
   <context>
     <name>PreserveFiles</name>
     <message>
-      <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="53"/>
+      <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="55"/>
       <source>Saving files for later ...</source>
       <translation>Tallennetaan tiedostoja myöhemmäksi...</translation>
     </message>
     <message>
-      <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="61"/>
+      <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="63"/>
       <source>No files configured to save for later.</source>
       <translation>Ei tiedostoja, joita olisi määritetty tallentamaan myöhemmin.</translation>
     </message>
     <message>
-      <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="85"/>
+      <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="87"/>
       <source>Not all of the configured files could be preserved.</source>
       <translation>Kaikkia määritettyjä tiedostoja ei voitu säilyttää.</translation>
     </message>
@@ -3106,7 +3170,7 @@ Ulostulo:
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../src/libcalamares/locale/Translation.cpp" line="145"/>
+      <location filename="../src/libcalamares/locale/Translation.cpp" line="151"/>
       <source>%1 (%2)</source>
       <translation>%1 (%2)</translation>
     </message>
@@ -3219,91 +3283,16 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
     </message>
   </context>
   <context>
-    <name>ReplaceWidget</name>
-    <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.ui" line="18"/>
-      <source>Form</source>
-      <translation>Lomake</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="128"/>
-      <source>Select where to install %1.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
-      <translation>Valitse minne %1 asennetaan.&lt;br/&gt;&lt;font color="red"&gt;Varoitus: &lt;/font&gt;tämä poistaa kaikki tiedostot valitulta osiolta.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="150"/>
-      <source>The selected item does not appear to be a valid partition.</source>
-      <translation>Valitsemaasi kohta ei näytä olevan kelvollinen osio.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="158"/>
-      <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
-      <translation>%1 ei voi asentaa tyhjään tilaan. Valitse olemassa oleva osio.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="168"/>
-      <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
-      <translation>%1 ei voida asentaa jatketun osion. Valitse olemassa oleva ensisijainen tai looginen osio.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="178"/>
-      <source>%1 cannot be installed on this partition.</source>
-      <translation>%1 ei voida asentaa tähän osioon.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="184"/>
-      <source>Data partition (%1)</source>
-      <translation>Dataosio (%1)</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="204"/>
-      <source>Unknown system partition (%1)</source>
-      <translation>Tuntematon järjestelmäosio (%1)</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="208"/>
-      <source>%1 system partition (%2)</source>
-      <translation>%1 järjestelmäosio (%2)</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="220"/>
-      <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
-      <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Osio %1 on liian pieni %2. Valitse osio, jonka kapasiteetti on vähintään %3 GiB.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="242"/>
-      <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-      <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;EFI-järjestelmäosiota ei löydy mistään tässä järjestelmässä. Palaa takaisin ja käytä manuaalista osiointia määrittämällä %1.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="253"/>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="269"/>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="294"/>
-      <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;all data on partition %2 will be lost.</source>
-      <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 asennetaan %2.&lt;br/&gt;&lt;font color="red"&gt;Varoitus: &lt;/font&gt;kaikki osion  %2 tiedot katoavat.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="261"/>
-      <source>The EFI system partition at %1 will be used for starting %2.</source>
-      <translation>EFI-järjestelmän osiota %1 käytetään käynnistettäessä %2.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="277"/>
-      <source>EFI system partition:</source>
-      <translation>EFI järjestelmäosio</translation>
-    </message>
-  </context>
-  <context>
     <name>Requirements</name>
     <message>
-      <location filename="../src/modules/welcomeq/Requirements.qml" line="38"/>
+      <location filename="../src/modules/welcomeq/Requirements.qml" line="37"/>
       <source>&lt;p&gt;This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;
         Installation cannot continue.&lt;/p&gt;</source>
       <translation>&lt;p&gt;Tämä tietokone ei täytä vähittäisvaatimuksia asennukseen %1.&lt;br/&gt;
         Asennusta ei voida jatkaa.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/Requirements.qml" line="40"/>
+      <location filename="../src/modules/welcomeq/Requirements.qml" line="39"/>
       <source>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
         Setup can continue, but some features might be disabled.&lt;/p&gt;</source>
       <translation>&lt;p&gt;Tämä tietokone ei täytä joitakin suositeltuja vaatimuksia %1.&lt;br/&gt;
@@ -3318,63 +3307,63 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
       <translation>Muuta tiedostojärjestelmän kokoa</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="168"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="164"/>
       <source>Invalid configuration</source>
       <translation>Virheellinen konfiguraatio</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="169"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="165"/>
       <source>The file-system resize job has an invalid configuration and will not run.</source>
       <translation>Tiedostojärjestelmän koon muutto ei kelpaa eikä sitä suoriteta.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="174"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="170"/>
       <source>KPMCore not Available</source>
       <translation>KPMCore ei saatavilla</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="175"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="171"/>
       <source>Calamares cannot start KPMCore for the file-system resize job.</source>
       <translation>Calamares ei voi käynnistää KPMCore-tiedostoa tiedostojärjestelmän koon muuttamiseksi.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="183"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="192"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="203"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="212"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="230"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="179"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="188"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="199"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="208"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="226"/>
       <source>Resize Failed</source>
       <translation>Kokomuutos epäonnistui</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="185"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="181"/>
       <source>The filesystem %1 could not be found in this system, and cannot be resized.</source>
       <translation>Tiedostojärjestelmää %1 ei löydy tästä järjestelmästä, eikä sen kokoa voi muuttaa.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="186"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="182"/>
       <source>The device %1 could not be found in this system, and cannot be resized.</source>
       <translation>Laitetta %1 ei löydy tästä järjestelmästä, eikä sen kokoa voi muuttaa.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="194"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="205"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="190"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="201"/>
       <source>The filesystem %1 cannot be resized.</source>
       <translation>Tiedostojärjestelmän %1 kokoa ei voi muuttaa.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="195"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="206"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="191"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="202"/>
       <source>The device %1 cannot be resized.</source>
       <translation>Laitteen %1 kokoa ei voi muuttaa.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="213"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="209"/>
       <source>The filesystem %1 must be resized, but cannot.</source>
       <translation>Tiedostojärjestelmän %1 kokoa on muutettava, mutta ei onnistu.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="214"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="210"/>
       <source>The device %1 must be resized, but cannot</source>
       <translation>Laitteen %1 kokoa on muutettava, mutta ei onnistu.</translation>
     </message>
@@ -3430,16 +3419,11 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
     </message>
   </context>
   <context>
-    <name>ResultsListDialog</name>
+    <name>ResultsListWidget</name>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="138"/>
-      <source>For best results, please ensure that this computer:</source>
-      <translation>Saadaksesi parhaan lopputuloksen, tarkista että tämä tietokone:</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="139"/>
-      <source>System requirements</source>
-      <translation>Järjestelmävaatimukset</translation>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="47"/>
+      <source>Checking requirements again in a few seconds ...</source>
+      <translation>Vaatimukset tarkistetaan uudelleen muutaman sekunnin kuluttua ...</translation>
     </message>
   </context>
   <context>
@@ -3447,7 +3431,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
     <message>
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="68"/>
       <source>Scanning storage devices...</source>
-      <translation>Etsitään massamuisteja...</translation>
+      <translation>Etsitään kiintolevyjä...</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="68"/>
@@ -3495,7 +3479,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="368"/>
       <source>Failed to write keyboard configuration for the virtual console.</source>
-      <translation>Virtuaalikonsolin näppäimistöasetuksen tallentaminen epäonnistui.</translation>
+      <translation>Näppäimistön asetuksen tallennus virtuaaliseen konsoliin epäonnistui.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="369"/>
@@ -3507,12 +3491,12 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="396"/>
       <source>Failed to write keyboard configuration for X11.</source>
-      <translation>X11-näppäimistöasetusten tallentaminen epäonnistui.</translation>
+      <translation>Näppäimistön asetuksen tallennus X11:lle epäonnistui.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="413"/>
       <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
-      <translation>Näppäimistöasetusten kirjoittaminen epäonnistui olemassa olevaan /etc/default-hakemistoon.</translation>
+      <translation>Näppäimistön asetusten kirjoittus epäonnistui /etc/default hakemistoon.</translation>
     </message>
   </context>
   <context>
@@ -3867,7 +3851,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="95"/>
       <source>Tracking helps %1 to see how often it is installed, what hardware it is installed on and which applications are used. To see what will be sent, please click the help icon next to each area.</source>
-      <translation>Seuranta auttaa %1 näkemään, kuinka usein se asennetaan, mihin laitteistoon se on asennettu ja mihin sovelluksiin sitä käytetään. Jos haluat nähdä, mitä lähetetään, napsauta kunkin alueen vieressä olevaa ohjekuvaketta.</translation>
+      <translation>Seuranta auttaa %1 näkemään, asennusten määrän, mikä on tyypillinen laitteisto ja sovellukset joihin sitä käytetään. Jos haluat tietää, mitä tietoja lähetetään, paina kunkin alueen vieressä olevaa ohjekuvaketta.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="100"/>
@@ -4067,12 +4051,12 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
       <translation>%1 tuki</translation>
     </message>
     <message>
-      <location filename="../src/calamares/DebugWindow.cpp" line="319"/>
+      <location filename="../src/calamares/DebugWindow.cpp" line="239"/>
       <source>About %1 setup</source>
       <translation>Tietoja %1 asetuksista</translation>
     </message>
     <message>
-      <location filename="../src/calamares/DebugWindow.cpp" line="320"/>
+      <location filename="../src/calamares/DebugWindow.cpp" line="240"/>
       <source>About %1 installer</source>
       <translation>Tietoa %1-asennusohjelmasta</translation>
     </message>
@@ -4122,17 +4106,17 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>
-      <location filename="../src/modules/zfs/ZfsJob.cpp" line="257"/>
+      <location filename="../src/modules/zfs/ZfsJob.cpp" line="264"/>
       <source>Failed to create zpool</source>
       <translation>Epäonnistui zpoolin luominen</translation>
     </message>
     <message>
-      <location filename="../src/modules/zfs/ZfsJob.cpp" line="329"/>
+      <location filename="../src/modules/zfs/ZfsJob.cpp" line="336"/>
       <source>Failed to create dataset</source>
       <translation>Tietojoukon luominen epäonnistui</translation>
     </message>
     <message>
-      <location filename="../src/modules/zfs/ZfsJob.cpp" line="330"/>
+      <location filename="../src/modules/zfs/ZfsJob.cpp" line="337"/>
       <source>The output was: </source>
       <translation>Tulos oli:</translation>
     </message>
@@ -4141,13 +4125,25 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
     <name>calamares-sidebar</name>
     <message>
       <location filename="../src/calamares/calamares-sidebar.qml" line="89"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="148"/>
       <source>About</source>
       <translation>Tietoa</translation>
     </message>
     <message>
       <location filename="../src/calamares/calamares-sidebar.qml" line="115"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="163"/>
       <source>Debug</source>
       <translation>Virheiden etsintä</translation>
+    </message>
+    <message>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="149"/>
+      <source>Show information about Calamares</source>
+      <translation>Näytä tietoa Calamaresista</translation>
+    </message>
+    <message>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="165"/>
+      <source>Show debug information</source>
+      <translation>Näytä virheenkorjaustiedot</translation>
     </message>
   </context>
   <context>
@@ -4178,8 +4174,8 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
       <location filename="../src/modules/finishedq/finishedq.qml" line="89"/>
       <source>&lt;p&gt;A full log of the install is available as installation.log in the home directory of the Live user.&lt;br/&gt;
             This log is copied to /var/log/installation.log of the target system.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Täydellinen loki asennuksesta on saatavana nimellä install.log Live-käyttäjän kotihakemistossa.&lt;br/&gt;
-            Tämä loki on kopioitu /var/log/installation.log-tiedostoon.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Täydellinen asennusloki on saatavilla nimellä install.log Live-käyttäjän kotihakemistossa.&lt;br/&gt;
+            Se on myös kopioitu /var/log/installation.log tähän tietokoneeseen.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -4208,61 +4204,54 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
     </message>
   </context>
   <context>
-    <name>i18n</name>
-    <message>
-      <location filename="../src/modules/localeq/i18n.qml" line="50"/>
-      <source>&lt;h1&gt;Languages&lt;/h1&gt; &lt;/br&gt;
-                    The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>&lt;h1&gt;Kielet&lt;/h1&gt; &lt;/br&gt;
-                    Järjestelmän maa-asetus vaikuttaa komentorivin käyttöliittymän kieleen ja merkistöön. Nykyinen asetus on &lt;strong&gt;%1&lt;/strong&gt;.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/localeq/i18n.qml" line="123"/>
-      <source>&lt;h1&gt;Locales&lt;/h1&gt; &lt;/br&gt;
-                    The system locale setting affects the numbers and dates format. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>&lt;h1&gt;Maa-asetukset&lt;/h1&gt; &lt;/br&gt;
-                    Järjestelmän maa-asetus vaikuttaa numeroiden ja päivämäärien muotoihin. Nykyinen asetus on &lt;strong&gt;%1&lt;/strong&gt;.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/localeq/i18n.qml" line="189"/>
-      <source>Back</source>
-      <translation>Takaisin</translation>
-    </message>
-  </context>
-  <context>
     <name>keyboardq</name>
     <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="60"/>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="61"/>
       <source>To activate keyboard preview, select a layout.</source>
-      <translation>Jos haluat aktivoida näppäimistön esikatselun, valitse asettelu.</translation>
+      <translation>Aktivoi näppäimistön esikatselu valitsemalla asettelu.</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="86"/>
-      <source>Keyboard Model:</source>
-      <translation>Näppäimistön malli:</translation>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="144"/>
+      <source>&lt;b&gt;Keyboard Model:&amp;nbsp;&amp;nbsp;&lt;/b&gt;</source>
+      <translation>&lt;b&gt;Näppäimistö:&amp;nbsp;&amp;nbsp;&lt;/b&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="256"/>
-      <source>Layouts</source>
-      <translation>Asettelut</translation>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="185"/>
+      <source>Layout</source>
+      <translation>Asettelu</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="265"/>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="258"/>
+      <source>Variant</source>
+      <translation>Vaihtoehto</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="311"/>
       <source>Type here to test your keyboard</source>
-      <translation>Kirjoita tähän testaksesi näppäimistöäsi.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="180"/>
-      <source>Variants</source>
-      <translation>Vaihtoehdot</translation>
+      <translation>Testaa näppäimistöäsi, kirjoittamalla tähän</translation>
     </message>
   </context>
   <context>
     <name>localeq</name>
     <message>
-      <location filename="../src/modules/localeq/localeq.qml" line="81"/>
+      <location filename="../src/modules/localeq/localeq.qml" line="76"/>
+      <location filename="../src/modules/localeq/localeq.qml" line="106"/>
       <source>Change</source>
       <translation>Vaihda</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/localeq/localeq.qml" line="142"/>
+      <source>&lt;h3&gt;Languages&lt;/h3&gt; &lt;/br&gt;
+                            The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
+      <translation>&lt;h3&gt;Kielet&lt;/h3&gt;&lt;/br&gt;
+                    Järjestelmän kieliasetukset vaikuttaa komentorivin käyttöliittymän kieleen ja merkistöön. Nykyinen asetus on &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/localeq/localeq.qml" line="213"/>
+      <source>&lt;h3&gt;Locales&lt;/h3&gt; &lt;/br&gt;
+                                The system locale setting affects the numbers and dates format. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
+      <translation>&lt;h3&gt;Kieliasetukset&lt;/h3&gt; &lt;/br&gt;
+                                Järjestelmän kieliasetukset vaikuttaa numeroiden ja päivämäärien muotoon. Nykyinen asetus on %1.</translation>
     </message>
   </context>
   <context>
@@ -4373,7 +4362,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="43"/>
       <source>Pick your user name and credentials to login and perform admin tasks</source>
-      <translation>Valitse käyttäjänimi kirjautumiseen ja järjestelmänvalvojan tehtävien suorittamiseen</translation>
+      <translation>Valitse käyttäjänimesi kirjautumiseen ja surittaksesi pääkäyttäjän tehtäviä</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="56"/>
@@ -4388,7 +4377,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="80"/>
       <source>What name do you want to use to log in?</source>
-      <translation>Mitä nimeä haluat käyttää sisäänkirjautumisessa?</translation>
+      <translation>Mitä nimeä haluat käyttää kirjautumiseen?</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="87"/>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="lo" version="2.1">
+<TS language="ka" version="2.1">
   <context>
     <name>AboutData</name>
     <message>
@@ -290,12 +290,14 @@
       <source>Waiting for %n module(s).</source>
       <translation type="unfinished">
         <numerusform/>
+        <numerusform/>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="119"/>
       <source>(%n second(s))</source>
       <translation type="unfinished">
+        <numerusform/>
         <numerusform/>
       </translation>
     </message>
@@ -2119,7 +2121,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="53"/>
       <source>Configuration Error</source>
-      <translation type="unfinished"/>
+      <translation>კონფიგურაციის შეცდომა</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="54"/>
@@ -2398,6 +2400,7 @@ The installer will quit and all changes will be lost.</source>
       <source>The password contains fewer than %n lowercase letters</source>
       <translation type="unfinished">
         <numerusform/>
+        <numerusform/>
       </translation>
     </message>
     <message>
@@ -2435,12 +2438,14 @@ The installer will quit and all changes will be lost.</source>
       <source>The password contains fewer than %n digits</source>
       <translation type="unfinished">
         <numerusform/>
+        <numerusform/>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="225"/>
       <source>The password contains fewer than %n uppercase letters</source>
       <translation type="unfinished">
+        <numerusform/>
         <numerusform/>
       </translation>
     </message>
@@ -2449,12 +2454,14 @@ The installer will quit and all changes will be lost.</source>
       <source>The password contains fewer than %n non-alphanumeric characters</source>
       <translation type="unfinished">
         <numerusform/>
+        <numerusform/>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="246"/>
       <source>The password is shorter than %n characters</source>
       <translation type="unfinished">
+        <numerusform/>
         <numerusform/>
       </translation>
     </message>
@@ -2468,12 +2475,14 @@ The installer will quit and all changes will be lost.</source>
       <source>The password contains fewer than %n character classes</source>
       <translation type="unfinished">
         <numerusform/>
+        <numerusform/>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="262"/>
       <source>The password contains more than %n same characters consecutively</source>
       <translation type="unfinished">
+        <numerusform/>
         <numerusform/>
       </translation>
     </message>
@@ -2482,12 +2491,14 @@ The installer will quit and all changes will be lost.</source>
       <source>The password contains more than %n characters of the same class consecutively</source>
       <translation type="unfinished">
         <numerusform/>
+        <numerusform/>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="280"/>
       <source>The password contains monotonic sequence longer than %n characters</source>
       <translation type="unfinished">
+        <numerusform/>
         <numerusform/>
       </translation>
     </message>
@@ -4064,7 +4075,7 @@ Output:
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="180"/>
       <source>Configuration Error</source>
-      <translation type="unfinished"/>
+      <translation>კონფიგურაციის შეცდომა</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="181"/>
