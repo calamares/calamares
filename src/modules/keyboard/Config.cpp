@@ -331,21 +331,10 @@ findLayout( const KeyboardLayoutModel* klm, const QString& currentLayout )
 }
 
 void
-Config::detectCurrentKeyboardLayout()
+Config::getCurrentKeyboardLayoutXkb( QString& currentLayout, QString& currentVariant )
 {
-    if ( m_state != State::Initial )
-    {
-        return;
-    }
-    cScopedAssignment returnToIntial( &m_state, State::Initial );
-    m_state = State::Guessing;
-
-    //### Detect current keyboard layout and variant
-    QString currentLayout;
-    QString currentVariant;
     QProcess process;
     process.start( "setxkbmap", QStringList() << "-print" );
-
     if ( process.waitForFinished() )
     {
         const QStringList list = QString( process.readAll() ).split( "\n", SplitSkipEmptyParts );
@@ -384,6 +373,47 @@ Config::detectCurrentKeyboardLayout()
                 break;
             }
         }
+    }
+}
+
+void
+Config::getCurrentKeyboardLayoutLocale1( QString& currentLayout, QString& currentVariant )
+{
+    QDBusInterface locale1( "org.freedesktop.locale1",
+                            "/org/freedesktop/locale1",
+                            "org.freedesktop.locale1",
+                            QDBusConnection::systemBus() );
+    if ( !locale1.isValid() )
+    {
+        cWarning() << "Interface" << locale1.interface() << "is not valid.";
+        return;
+    }
+
+    currentLayout = locale1.property( "X11Layout" ).toString().split( "," ).last();
+    currentVariant = locale1.property( "X11Variant" ).toString().split( "," ).last();
+}
+
+void
+Config::detectCurrentKeyboardLayout()
+{
+    if ( m_state != State::Initial )
+    {
+        return;
+    }
+    cScopedAssignment returnToIntial( &m_state, State::Initial );
+    m_state = State::Guessing;
+
+    //### Detect current keyboard layout and variant
+    QString currentLayout;
+    QString currentVariant;
+
+    if ( m_useLocale1 )
+    {
+        getCurrentKeyboardLayoutLocale1( currentLayout, currentVariant );
+    }
+    else
+    {
+        getCurrentKeyboardLayoutXkb( currentLayout, currentVariant );
     }
 
     //### Layouts and Variants
