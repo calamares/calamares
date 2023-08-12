@@ -337,6 +337,21 @@ class PMEntropy(PackageManager):
         # Doesn't need to update the system explicitly
         pass
 
+class PMFlatpak(PackageManager):
+    backend = "flatpak"
+
+    def install(self, pkgs, from_local=False):
+        check_target_env_call(["flatpak", "install", "--assumeyes"] + pkgs)
+
+    def remove(self, pkgs):
+        check_target_env_call(["flatpak", "uninstall", "--noninteractive"] + pkgs)
+
+    def update_db(self):
+        pass
+
+    def update_system(self):
+        # Doesn't need to update the system explicitly
+        pass
 
 class PMLuet(PackageManager):
     backend = "luet"
