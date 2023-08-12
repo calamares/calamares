@@ -331,7 +331,7 @@ findLayout( const KeyboardLayoutModel* klm, const QString& currentLayout )
 }
 
 void
-Config::getCurrentKeyboardLayoutXkb( QString& currentLayout, QString& currentVariant )
+Config::getCurrentKeyboardLayoutXkb( QString& currentLayout, QString& currentVariant, QString& currentModel )
 {
     QProcess process;
     process.start( "setxkbmap", QStringList() << "-print" );
@@ -343,10 +343,13 @@ Config::getCurrentKeyboardLayoutXkb( QString& currentLayout, QString& currentVar
         //      xkb_symbols   { include "pc+latin+ru:2+inet(evdev)+group(alt_shift_toggle)+ctrl(swapcaps)"       };
         for ( const auto& line : list )
         {
-            if ( !line.trimmed().startsWith( "xkb_symbols" ) )
+            bool symbols = false;
+            if ( line.trimmed().startsWith( "xkb_symbols" ) )
             {
-                continue;
+                symbols = true;
             }
+            else if ( !line.trimmed().startsWith( "xkb_geometry" ) )
+                continue;
 
             int firstQuote = line.indexOf( '"' );
             int lastQuote = line.lastIndexOf( '"' );
@@ -358,7 +361,7 @@ Config::getCurrentKeyboardLayoutXkb( QString& currentLayout, QString& currentVar
 
             QStringList split = line.mid( firstQuote + 1, lastQuote - firstQuote ).split( "+", SplitSkipEmptyParts );
             cDebug() << split;
-            if ( split.size() >= 2 )
+            if ( symbols && split.size() >= 2 )
             {
                 currentLayout = split.at( 1 );
 
@@ -372,12 +375,22 @@ Config::getCurrentKeyboardLayoutXkb( QString& currentLayout, QString& currentVar
 
                 break;
             }
+            else if ( !symbols && split.size() >= 1 )
+            {
+                currentModel = split.at( 0 );
+                if ( currentModel.contains( "(" ) )
+                {
+                    int parenthesisIndex = currentLayout.indexOf( "(" );
+                    currentModel = currentModel.mid( parenthesisIndex + 1 ).trimmed();
+                    currentModel.chop( 1 );
+                }
+            }
         }
     }
 }
 
 void
-Config::getCurrentKeyboardLayoutLocale1( QString& currentLayout, QString& currentVariant )
+Config::getCurrentKeyboardLayoutLocale1( QString& currentLayout, QString& currentVariant, QString& currentModel )
 {
     QDBusInterface locale1( "org.freedesktop.locale1",
                             "/org/freedesktop/locale1",
@@ -391,6 +404,7 @@ Config::getCurrentKeyboardLayoutLocale1( QString& currentLayout, QString& curren
 
     currentLayout = locale1.property( "X11Layout" ).toString().split( "," ).last();
     currentVariant = locale1.property( "X11Variant" ).toString().split( "," ).last();
+    currentModel = locale1.property( "X11Model" ).toString();
 }
 
 void
@@ -403,17 +417,18 @@ Config::detectCurrentKeyboardLayout()
     cScopedAssignment returnToIntial( &m_state, State::Initial );
     m_state = State::Guessing;
 
-    //### Detect current keyboard layout and variant
+    //### Detect current keyboard layout, variant, and model
     QString currentLayout;
     QString currentVariant;
+    QString currentModel;
 
     if ( m_useLocale1 )
     {
-        getCurrentKeyboardLayoutLocale1( currentLayout, currentVariant );
+        getCurrentKeyboardLayoutLocale1( currentLayout, currentVariant, currentModel );
     }
     else
     {
-        getCurrentKeyboardLayoutXkb( currentLayout, currentVariant );
+        getCurrentKeyboardLayoutXkb( currentLayout, currentVariant, currentModel );
     }
 
     //### Layouts and Variants
@@ -436,6 +451,17 @@ Config::detectCurrentKeyboardLayout()
     if ( !currentLayoutItem.isValid() && m_keyboardLayoutsModel->rowCount() > 0 )
     {
         m_keyboardLayoutsModel->setCurrentIndex( m_keyboardLayoutsModel->index( 0 ).row() );
+    }
+
+    //### Keyboard model
+    for ( int i = 0; i < m_keyboardModelsModel->rowCount(); ++i )
+    {
+        QModelIndex idx = m_keyboardModelsModel->index( i );
+        if ( idx.isValid() && idx.data( XKBListModel::KeyRole ).toString() == currentModel )
+        {
+            m_keyboardModelsModel->setCurrentIndex( idx.row() );
+            break;
+        }
     }
 }
 

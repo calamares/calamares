@@ -86,6 +86,7 @@ public:
 
     /// @brief Set the index back to PC105 (the default physical model)
     void setCurrentIndex() { XKBListModel::setCurrentIndex( m_defaultPC105 ); }
+    using XKBListModel::setCurrentIndex;
 
 private:
     int m_defaultPC105 = -1;  ///< The index of pc105, if there is one

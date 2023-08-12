@@ -91,8 +91,8 @@ private:
     void xkbApply();
     void locale1Apply();
 
-    void getCurrentKeyboardLayoutXkb( QString& currentLayout, QString& currentVariant );
-    void getCurrentKeyboardLayoutLocale1( QString& currentLayout, QString& currentVariant );
+    void getCurrentKeyboardLayoutXkb( QString& currentLayout, QString& currentVariant, QString& currentModel );
+    void getCurrentKeyboardLayoutLocale1( QString& currentLayout, QString& currentVariant, QString& currentModel );
 
     KeyboardModelsModel* m_keyboardModelsModel;
     KeyboardLayoutModel* m_keyboardLayoutsModel;
