@@ -466,7 +466,8 @@ Config::createJobs()
                                                   m_additionalLayoutInfo,
                                                   m_xOrgConfFileName,
                                                   m_convertedKeymapPath,
-                                                  m_writeEtcDefaultKeyboard );
+                                                  m_writeEtcDefaultKeyboard,
+                                                  m_useLocale1 );
     list.append( Calamares::job_ptr( j ) );
 
     return list;
