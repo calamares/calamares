@@ -112,6 +112,7 @@ private:
     QString m_convertedKeymapPath;
     bool m_writeEtcDefaultKeyboard = true;
     bool m_useLocale1;
+    bool m_guessLayout;
 
     // The state determines whether we guess settings or preserve them:
     // - Initial -> Guessing

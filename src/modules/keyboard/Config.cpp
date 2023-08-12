@@ -516,7 +516,7 @@ guessLayout( const QStringList& langParts, KeyboardLayoutModel* layouts, Keyboar
 void
 Config::guessLocaleKeyboardLayout()
 {
-    if ( m_state != State::Initial )
+    if ( m_state != State::Initial || !m_guessLayout )
     {
         return;
     }
@@ -658,6 +658,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     m_convertedKeymapPath = getString( configurationMap, "convertedKeymapPath" );
     m_writeEtcDefaultKeyboard = getBool( configurationMap, "writeEtcDefaultKeyboard", true );
     m_useLocale1 = getBool( configurationMap, "useLocale1", !isX11 );
+    m_guessLayout = getBool( configurationMap, "guessLayout", true );
 }
 
 void
