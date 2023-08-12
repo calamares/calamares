@@ -8,6 +8,8 @@ if(NOT WITH_QML)
     return()
 endif()
 
+find_package(Qt5 ${QT_VERSION} CONFIG REQUIRED Core DBus)
+
 set(_keyboard ${CMAKE_CURRENT_SOURCE_DIR}/../keyboard)
 
 include_directories(${_keyboard})
@@ -24,4 +26,6 @@ calamares_add_plugin(keyboardq
     RESOURCES
         keyboardq.qrc
     SHARED_LIB
+    LINK_LIBRARIES
+        Qt5::DBus
 )

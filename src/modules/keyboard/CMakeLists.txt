@@ -3,6 +3,9 @@
 #   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
 #   SPDX-License-Identifier: BSD-2-Clause
 #
+
+find_package(Qt5 ${QT_VERSION} CONFIG REQUIRED Core DBus)
+
 calamares_add_plugin(keyboard
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
@@ -19,6 +22,8 @@ calamares_add_plugin(keyboard
     RESOURCES
         keyboard.qrc
     SHARED_LIB
+    LINK_LIBRARIES
+        Qt5::DBus
 )
 
 calamares_add_test(keyboardtest SOURCES Tests.cpp SetKeyboardLayoutJob.cpp RESOURCES keyboard.qrc)

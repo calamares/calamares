@@ -23,8 +23,13 @@
 #include "utils/Variant.h"
 
 #include <QApplication>
+#include <QGuiApplication>
 #include <QProcess>
 #include <QTimer>
+
+#include <QtDBus/QDBusConnection>
+#include <QtDBus/QDBusInterface>
+#include <QtDBus/QDBusReply>
 
 /* Returns stringlist with suitable setxkbmap command-line arguments
  * to set the given @p model.
@@ -163,7 +168,14 @@ Config::Config( QObject* parent )
              {
                  // Set Xorg keyboard model
                  m_selectedModel = m_keyboardModelsModel->key( index );
-                 QProcess::execute( "setxkbmap", xkbmap_model_args( m_selectedModel ) );
+                 if ( m_useLocale1 )
+                 {
+                     locale1Apply();
+                 }
+                 else
+                 {
+                     QProcess::execute( "setxkbmap", xkbmap_model_args( m_selectedModel ) );
+                 }
                  emit prettyStatusChanged();
              } );
 
@@ -201,10 +213,53 @@ Config::xkbChanged( int index )
         m_setxkbmapTimer.disconnect( this );
     }
 
-    connect( &m_setxkbmapTimer, &QTimer::timeout, this, &Config::xkbApply );
+    if ( m_useLocale1 )
+    {
+        connect( &m_setxkbmapTimer, &QTimer::timeout, this, &Config::locale1Apply );
+    }
+    else
+    {
+        connect( &m_setxkbmapTimer, &QTimer::timeout, this, &Config::xkbApply );
+    }
 
     m_setxkbmapTimer.start( QApplication::keyboardInputInterval() );
     emit prettyStatusChanged();
+}
+
+void
+Config::locale1Apply()
+{
+    m_additionalLayoutInfo = getAdditionalLayoutInfo( m_selectedLayout );
+
+    QString layout = m_selectedLayout;
+    QString variant = m_selectedVariant;
+    QString option;
+
+    if ( !m_additionalLayoutInfo.additionalLayout.isEmpty() )
+    {
+        layout = m_additionalLayoutInfo.additionalLayout + "," + layout;
+        variant = m_additionalLayoutInfo.additionalVariant + "," + layout;
+        option = m_additionalLayoutInfo.groupSwitcher;
+    }
+
+    QDBusInterface locale1( "org.freedesktop.locale1",
+                            "/org/freedesktop/locale1",
+                            "org.freedesktop.locale1",
+                            QDBusConnection::systemBus() );
+    if ( !locale1.isValid() )
+    {
+        cWarning() << "Interface" << locale1.interface() << "is not valid.";
+        return;
+    }
+
+    // Using convert=true, this also updates the VConsole config
+    {
+        QDBusReply< void > r = locale1.call( "SetX11Keyboard", layout, m_selectedModel, variant, option, true, false );
+        if ( !r.isValid() )
+        {
+            cWarning() << "Could not set keyboard config through org.freedesktop.locale1.X11Keyboard." << r.error();
+        }
+    }
 }
 
 void
@@ -561,6 +616,7 @@ void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
 {
     using namespace CalamaresUtils;
+    bool isX11 = QGuiApplication::platformName() == "xcb";
 
     const auto xorgConfDefault = QStringLiteral( "00-keyboard.conf" );
     m_xOrgConfFileName = getString( configurationMap, "xOrgConfFileName", xorgConfDefault );
@@ -570,6 +626,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     }
     m_convertedKeymapPath = getString( configurationMap, "convertedKeymapPath" );
     m_writeEtcDefaultKeyboard = getBool( configurationMap, "writeEtcDefaultKeyboard", true );
+    m_useLocale1 = getBool( configurationMap, "useLocale1", !isX11 );
 }
 
 void

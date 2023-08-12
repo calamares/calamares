@@ -89,6 +89,7 @@ private:
      */
     void xkbChanged( int index );
     void xkbApply();
+    void locale1Apply();
 
     KeyboardModelsModel* m_keyboardModelsModel;
     KeyboardLayoutModel* m_keyboardLayoutsModel;
@@ -107,6 +108,7 @@ private:
     QString m_xOrgConfFileName;
     QString m_convertedKeymapPath;
     bool m_writeEtcDefaultKeyboard = true;
+    bool m_useLocale1;
 
     // The state determines whether we guess settings or preserve them:
     // - Initial -> Guessing
