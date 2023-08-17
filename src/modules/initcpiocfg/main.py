@@ -36,6 +36,13 @@ def detect_plymouth():
     # Used to only check existence of path /usr/bin/plymouth in target
     return target_env_call(["sh", "-c", "which plymouth"]) == 0
 
+def detect_systemd():
+    """
+    Checks existence (runnability) of systemd in the target system.
+    @return True if systemd exists in the target, False otherwise
+    """
+    # Used to only check existence of path /usr/bin/systemd-cat in target
+    return target_env_call(["sh", "-c", "which systemd-cat"]) == 0
 
 class cpuinfo(object):
     """
@@ -108,7 +115,7 @@ def get_host_initcpio():
     return mklins
 
 
-def write_mkinitcpio_lines(hooks, modules, files, root_mount_point):
+def write_mkinitcpio_lines(hooks, modules, files, binaries, root_mount_point):
     """
     Set up mkinitcpio.conf.
 
@@ -122,10 +129,12 @@ def write_mkinitcpio_lines(hooks, modules, files, root_mount_point):
     target_path = os.path.join(root_mount_point, "etc/mkinitcpio.conf")
     with open(target_path, "w") as mkinitcpio_file:
         for line in mklins:
-            # Replace HOOKS, MODULES and FILES lines with what we
+            # Replace HOOKS, MODULES, BINARIES and FILES lines with what we
             # have found via find_initcpio_features()
             if line.startswith("HOOKS"):
                 line = 'HOOKS="{!s}"'.format(' '.join(hooks))
+            elif line.startswith("BINARIES"):
+                line = 'BINARIES="{!s}"'.format(' '.join(binaries))
             elif line.startswith("MODULES"):
                 line = 'MODULES="{!s}"'.format(' '.join(modules))
             elif line.startswith("FILES"):
@@ -145,18 +154,29 @@ def find_initcpio_features(partitions, root_mount_point):
     :return 3-tuple of lists
     """
     hooks = [
-        "base",
-        "udev",
         "autodetect",
         "kms",
         "modconf",
         "block",
         "keyboard",
-        "keymap",
-        "consolefont",
     ]
+    uses_systemd = detect_systemd()
+
+   if uses_systemd:
+        hooks.insert(0, "systemd")
+        hooks.append("sd-vconsole")
+   else:
+        hooks.insert(0, "udev")
+        hooks.insert(0, "base")
+        hooks.append("keymap")
+        hooks.append("consolefont")
+    
     modules = []
     files = []
+    binaries = []
+
+    # Fixes "setfont: KDFONTOP: Function not implemented" error
+    binaries.append("setfont")
 
     swap_uuid = ""
     uses_btrfs = False
@@ -201,9 +221,15 @@ def find_initcpio_features(partitions, root_mount_point):
 
     if encrypt_hook:
         if detect_plymouth() and unencrypted_separate_boot:
-            hooks.append("plymouth-encrypt")
+            if uses_systemd:
+                hooks.append("sd-encrypt")
+            else:
+                hooks.append("plymouth-encrypt")
         else:
-            hooks.append("encrypt")
+            if uses_systemd:
+                hooks.append("sd-encrypt")
+            else:
+                hooks.append("encrypt")
         crypto_file = "crypto_keyfile.bin"
         if not unencrypted_separate_boot and \
            os.path.isfile(
@@ -251,6 +277,6 @@ def run():
                 _("No root mount point for <pre>initcpiocfg</pre>."))
 
     hooks, modules, files = find_initcpio_features(partitions, root_mount_point)
-    write_mkinitcpio_lines(hooks, modules, files, root_mount_point)
+    write_mkinitcpio_lines(hooks, modules, files, binaries, root_mount_point)
 
     return None
