@@ -220,12 +220,7 @@ def find_initcpio_features(partitions, root_mount_point):
             hooks.append("usr")
 
     if encrypt_hook:
-        if detect_plymouth() and unencrypted_separate_boot:
-            if uses_systemd:
-                hooks.append("sd-encrypt")
-            else:
-                hooks.append("plymouth-encrypt")
-        else:
+        if unencrypted_separate_boot:
             if uses_systemd:
                 hooks.append("sd-encrypt")
             else:
