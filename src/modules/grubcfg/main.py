@@ -141,7 +141,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     # Shell exit value 0 means success
     have_plymouth = plymouth_bin == 0
     have_dracut = dracut_bin == 0
-    have_systemd = mkinitcpio_systemd == 0 
+    uses_sd-encrypt = mkinitcpio_systemd == 0 
 
     use_splash = ""
     swap_uuid = ""
@@ -162,7 +162,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
 
     cryptdevice_params = []
 
-    if have_dracut:
+    if have_dracut or used_sd-encrypt:
         for partition in partitions:
             if partition["fs"] == "linuxswap" and not partition.get("claimed", None):
                 # Skip foreign swap
@@ -217,10 +217,6 @@ def modify_grub_default(partitions, root_mount_point, distributor):
         kernel_params.append(f"rd.luks.uuid={swap_outer_uuid}")
     if swap_outer_mappername:
         kernel_params.append(f"resume=/dev/mapper/{swap_outer_mappername}")
-        
-    # When using rd.luks.name you can omit rd.luks.uuid
-    if have_systemd:
-        kernel_params.append(f"rd.luks.name={partition['luksUuid']}={partition['luksMapperName']}")
 
     overwrite = libcalamares.job.configuration.get("overwrite", False)
 
