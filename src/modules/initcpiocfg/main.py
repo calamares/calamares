@@ -162,10 +162,10 @@ def find_initcpio_features(partitions, root_mount_point):
     ]
     uses_systemd = detect_systemd()
 
-   if uses_systemd:
+    if uses_systemd:
         hooks.insert(0, "systemd")
         hooks.append("sd-vconsole")
-   else:
+    else:
         hooks.insert(0, "udev")
         hooks.insert(0, "base")
         hooks.append("keymap")
@@ -250,7 +250,7 @@ def find_initcpio_features(partitions, root_mount_point):
     else:
         hooks.append("fsck")
 
-    return (hooks, modules, files)
+    return (hooks, modules, files, binaries)
 
 
 def run():
@@ -271,7 +271,7 @@ def run():
         return (_("Configuration Error"),
                 _("No root mount point for <pre>initcpiocfg</pre>."))
 
-    hooks, modules, files = find_initcpio_features(partitions, root_mount_point)
+    hooks, modules, files, binaries = find_initcpio_features(partitions, root_mount_point)
     write_mkinitcpio_lines(hooks, modules, files, binaries, root_mount_point)
 
     return None
