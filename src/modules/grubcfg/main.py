@@ -141,7 +141,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     # Shell exit value 0 means success
     have_plymouth = plymouth_bin == 0
     have_dracut = dracut_bin == 0
-    uses_sd-encrypt = mkinitcpio_systemd == 0 
+    uses_sd_encrypt = mkinitcpio_systemd == 0 
 
     use_splash = ""
     swap_uuid = ""
@@ -162,7 +162,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
 
     cryptdevice_params = []
 
-    if have_dracut or used_sd-encrypt:
+    if have_dracut or used_sd_encrypt:
         for partition in partitions:
             if partition["fs"] == "linuxswap" and not partition.get("claimed", None):
                 # Skip foreign swap

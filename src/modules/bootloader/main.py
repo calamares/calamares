@@ -137,7 +137,7 @@ def get_kernel_params(uuid):
     cryptdevice_params = []
 
     have_dracut = libcalamares.utils.target_env_call(["sh", "-c", "which dracut"]) == 0
-    uses_sd-encrypt = libcalamares.utils.target_env_call(["sh", "-c", "grep -q sd-encrypt /etc/mkinitcpio.conf"])
+    uses_sd_encrypt = libcalamares.utils.target_env_call(["sh", "-c", "grep -q sd-encrypt /etc/mkinitcpio.conf"])
 
     # Take over swap settings:
     #  - unencrypted swap partition sets swap_uuid
@@ -155,7 +155,7 @@ def get_kernel_params(uuid):
             swap_outer_uuid = partition["luksUuid"]
 
         if partition["mountPoint"] == "/" and has_luks:
-            if have_dracut or uses_sd-encrypt:
+            if have_dracut or uses_sd_encrypt:
                 cryptdevice_params = [f"rd.luks.uuid={partition['luksUuid']}"]
             else:
                 cryptdevice_params = [f"cryptdevice=UUID={partition['luksUuid']}:{partition['luksMapperName']}"]
