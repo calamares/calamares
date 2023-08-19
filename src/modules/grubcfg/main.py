@@ -136,7 +136,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
         ["sh", "-c", "which plymouth"]
         )
     mkinitcpio_systemd = libcalamares.utils.target_env_call(
-        ["sh", "-c", "grep -q 'sd-encrypt' /etc/mkinitcpio.conf"]
+        ["sh", "-c", "grep -q sd-encrypt /etc/mkinitcpio.conf"]
         )
     # Shell exit value 0 means success
     have_plymouth = plymouth_bin == 0
