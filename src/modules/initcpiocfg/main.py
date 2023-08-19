@@ -39,10 +39,21 @@ def detect_plymouth():
 def detect_systemd():
     """
     Checks existence (runnability) of systemd in the target system.
+    
     @return True if systemd exists in the target, False otherwise
     """
     # Used to only check existence of path /usr/bin/systemd-cat in target
     return target_env_call(["sh", "-c", "which systemd-cat"]) == 0
+
+
+def detect_setfont():
+    """
+    Checks existence (runnability) of setfont in the target system.
+    
+    @return True if setfont exists in the target, False otherwise
+    """
+    # Used to only check existence of path /usr/bin/setfont in target
+    return target_env_call(["sh", "-c", "which setfont"]) == 0
 
 class cpuinfo(object):
     """
@@ -161,6 +172,7 @@ def find_initcpio_features(partitions, root_mount_point):
         "keyboard",
     ]
     uses_systemd = detect_systemd()
+    have_setfont = detect_setfont()
 
     if uses_systemd:
         hooks.insert(0, "systemd")
@@ -175,9 +187,10 @@ def find_initcpio_features(partitions, root_mount_point):
     files = []
     binaries = []
 
-    # Fixes "setfont: KDFONTOP: Function not implemented" error
-    binaries.append("setfont")
-
+    if have_setfont:
+        # Fixes "setfont: KDFONTOP: Function not implemented" error
+        binaries.append("setfont")
+    
     swap_uuid = ""
     uses_btrfs = False
     uses_zfs = False
