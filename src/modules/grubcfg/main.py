@@ -162,7 +162,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
 
     cryptdevice_params = []
 
-    if have_dracut or used_sd_encrypt:
+    if have_dracut or uses_sd_encrypt:
         for partition in partitions:
             if partition["fs"] == "linuxswap" and not partition.get("claimed", None):
                 # Skip foreign swap
