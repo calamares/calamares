@@ -136,8 +136,11 @@ def get_kernel_params(uuid):
 
     cryptdevice_params = []
 
-    have_dracut = libcalamares.utils.target_env_call(["sh", "-c", "which dracut"]) == 0
-    uses_sd_encrypt = libcalamares.utils.target_env_call(["sh", "-c", "grep -q sd-encrypt /etc/mkinitcpio.conf"])
+    has_dracut = libcalamares.utils.target_env_call(["sh", "-c", "which dracut"]) == 0
+    uses_systemd_hook = libcalamares.utils.target_env_call(["sh", "-c",
+                                                            "grep -q \"^HOOKS.*systemd\" /etc/mkinitcpio.conf"]) == 0
+    use_systemd_naming = has_dracut or uses_systemd_hook
+
 
     # Take over swap settings:
     #  - unencrypted swap partition sets swap_uuid
@@ -155,7 +158,7 @@ def get_kernel_params(uuid):
             swap_outer_uuid = partition["luksUuid"]
 
         if partition["mountPoint"] == "/" and has_luks:
-            if have_dracut or uses_sd_encrypt:
+            if use_systemd_naming or uses_sd_encrypt:
                 cryptdevice_params = [f"rd.luks.uuid={partition['luksUuid']}"]
             else:
                 cryptdevice_params = [f"cryptdevice=UUID={partition['luksUuid']}:{partition['luksMapperName']}"]
@@ -188,7 +191,7 @@ def get_kernel_params(uuid):
     if swap_uuid:
         kernel_params.append("resume=UUID={!s}".format(swap_uuid))
 
-    if have_dracut and swap_outer_uuid:
+    if use_systemd_naming and swap_outer_uuid:
         kernel_params.append(f"rd.luks.uuid={swap_outer_uuid}")
 
     if swap_outer_mappername:
