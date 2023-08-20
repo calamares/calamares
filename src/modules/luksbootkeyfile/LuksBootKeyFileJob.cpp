@@ -302,6 +302,14 @@ LuksBootKeyFileJob::exec()
         return Calamares::JobResult::ok();
     }
 
+    if ( hasUnencryptedSeparateBoot() && hasEncryptedRoot() )
+    {
+        // /boot partition is not encrypted, keyfile must not be used
+        // But only if root partition is encrypted
+        cDebug() << Logger::SubEntry << "/boot partition is not encrypted, skipping keyfile creation.";
+        return Calamares::JobResult::ok();
+    }
+
     if ( s.devices.first().passphrase.isEmpty() )
     {
         cDebug() << Logger::SubEntry << "No root passphrase.";
