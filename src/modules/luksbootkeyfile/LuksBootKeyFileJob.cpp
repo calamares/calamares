@@ -242,13 +242,6 @@ hasUnencryptedSeparateBoot()
         { return hasMountPoint( partition, QStringLiteral( "/boot" ) ) && !isEncrypted( partition ); } );
 }
 
-STATICTEST bool
-hasEncryptedRoot()
-{
-    return anyPartition( []( const QVariantMap& partition )
-                         { return hasMountPoint( partition, QStringLiteral( "/" ) ) && isEncrypted( partition ); } );
-}
-
 Calamares::JobResult
 LuksBootKeyFileJob::exec()
 {
@@ -294,10 +287,9 @@ LuksBootKeyFileJob::exec()
         return Calamares::JobResult::ok();
     }
 
-    if ( hasUnencryptedSeparateBoot() && !hasEncryptedRoot() )
+    if ( hasUnencryptedSeparateBoot() )
     {
-        // /boot partition is not encrypted, keyfile must not be used
-        // But only if root partition is not encrypted
+        // /boot partition is not encrypted, keyfile must not be used.
         cDebug() << Logger::SubEntry << "/boot partition is not encrypted, skipping keyfile creation.";
         return Calamares::JobResult::ok();
     }
