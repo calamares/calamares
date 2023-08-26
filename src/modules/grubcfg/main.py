@@ -137,10 +137,10 @@ def modify_grub_default(partitions, root_mount_point, distributor):
         )
     uses_systemd_hook = libcalamares.utils.target_env_call(
         ["sh", "-c", "grep -q \"^HOOKS.*systemd\" /etc/mkinitcpio.conf"]
-        )
+        ) == 0
     # Shell exit value 0 means success
     have_plymouth = plymouth_bin == 0
-    use_systemd_naming = dracut_bin == 0 or uses_systemd_hook == 0
+    use_systemd_naming = dracut_bin == 0 or uses_systemd_hook
 
     use_splash = ""
     swap_uuid = ""
@@ -176,6 +176,8 @@ def modify_grub_default(partitions, root_mount_point, distributor):
 
             if partition["mountPoint"] == "/" and has_luks:
                 cryptdevice_params = [f"rd.luks.uuid={partition['luksUuid']}"]
+                if not unencrypted_separate_boot and uses_systemd_hook:
+                    cryptdevice_params.append("rd.luks.key=/crypto_keyfile.bin")
     else:
         for partition in partitions:
             if partition["fs"] == "linuxswap" and not partition.get("claimed", None):
