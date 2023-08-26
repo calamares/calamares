@@ -224,16 +224,12 @@ def find_initcpio_features(partitions, root_mount_point):
             hooks.append("usr")
 
     if encrypt_hook:
-        if unencrypted_separate_boot:
-            if uses_systemd:
-                hooks.append("sd-encrypt")
-            else:
-                hooks.append("encrypt")
+        if uses_systemd:
+            hooks.append("sd-encrypt")
+        else:
+            hooks.append("encrypt")
         crypto_file = "crypto_keyfile.bin"
-        if not unencrypted_separate_boot and \
-           os.path.isfile(
-               os.path.join(root_mount_point, crypto_file)
-               ):
+        if not unencrypted_separate_boot and os.path.isfile(os.path.join(root_mount_point, crypto_file)):
             files.append(f"/{crypto_file}")
 
     if uses_lvm2:
