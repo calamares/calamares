@@ -158,7 +158,6 @@ LuksBootKeyFileTests::testAnyPartition()
                             { return hasMountPoint( partdata, QStringLiteral( "/" ) ); } ) );
     QVERIFY( !anyPartition( []( const QVariantMap& partdata ) { return hasMountPoint( partdata, QString() ); } ) );
 
-    QVERIFY( !hasEncryptedRoot() );
     QVERIFY( hasUnencryptedSeparateBoot() );
 }
 
