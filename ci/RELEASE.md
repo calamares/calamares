@@ -76,7 +76,7 @@ Follow the instructions printed by the release script.
 * Upload tarball and signature.
 * Publish release article on `calamares.io`.
 * Close associated milestone on GitHub if it's entirely done.
-* Update topic on #calamares IRC channel.
+* Update topic on `#calamares:kde.org` Matrix channel.
 
 ## (4) Post-Release
 

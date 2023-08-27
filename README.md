@@ -11,8 +11,8 @@
 [![GitHub license](https://img.shields.io/badge/license-Multiple-green)](https://github.com/calamares/calamares/tree/calamares/LICENSES)
 
 
-| [Report a Bug](https://github.com/calamares/calamares/issues/new) | [Translate](https://app.transifex.com/calamares/calamares/) | [Contribute](CONTRIBUTING.md) | [Matrix: #calamares:kde.org](https://webchat.kde.org/#/room/%23calamares:kde.org) | [IRC: Libera.Chat #calamares](https://kiwiirc.com/client/irc.libera.chat/#calamares) | [Wiki](https://github.com/calamares/calamares/wiki) |
-|:--:|:--:|:--:|:--:|:--:|:--:|
+| [Report a Bug](https://github.com/calamares/calamares/issues/new) | [Translate](https://app.transifex.com/calamares/calamares/) | [Contribute](CONTRIBUTING.md) | [Chat on Matrix: #calamares:kde.org](https://webchat.kde.org/#/room/%23calamares:kde.org) | [Wiki](https://github.com/calamares/calamares/wiki) |
+|:--:|:--:|:--:|:--:|:--:|
 
 
 > Calamares is a distribution-independent system installer, with an advanced partitioning
@@ -55,15 +55,13 @@ There is more information in the [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
 GitHub Issues are **one** place for discussing Calamares if there are concrete
 problems or a new feature to discuss.
+Issues are not a help channel.
+Visit Matrix for help with configuration or compilation.
 
 Regular Calamares development chit-chat happens in a [Matrix](https://matrix.org/)
-room, `#calamares:kde.org`. The conversation is bridged with IRC
-on [Libera.Chat](https://libera.chat/).
-Responsiveness is best during the day
-in Europe, but feel free to idle. If you use IRC, **DO NOT** ask-and-leave. Keep
-that chat window open because it can easily take a few hours for
-someone to notice a message.
+room, `#calamares:kde.org`. Responsiveness is best during the day
+in Europe, but feel free to idle.
 Matrix is persistent, and we'll see your message eventually.
 
 * [![Join us on Matrix](https://img.shields.io/badge/Matrix-%23calamares:kde.org-blue)](https://webchat.kde.org/#/room/%23calamares:kde.org) (needs a Matrix account)
-* [![Chat on IRC](https://img.shields.io/badge/IRC-Libera.Chat%20%23calamares-green)](https://kiwiirc.com/client/irc.libera.chat/#calamares) (IRC supports guest accounts)
+

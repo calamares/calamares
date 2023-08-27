@@ -28,18 +28,15 @@ rules of decent behavior in both communities are pretty much the same).
 
 GitHub Issues are **one** place for discussing Calamares if there are concrete
 problems or a new feature to discuss.
+Issues are not a help channel.
+Visit Matrix for help with configuration or compilation.
 
 Regular Calamares development chit-chat happens in a [Matrix](https://matrix.org/)
-room, `#calamares:kde.org`. The conversation is bridged with IRC
-on [Libera.Chat](https://libera.chat/).
-Responsiveness is best during the day
-in Europe, but feel free to idle. If you use IRC, **DO NOT** ask-and-leave. Keep
-that chat window open because it can easily take a few hours for
-someone to notice a message.
+room, `#calamares:kde.org`. Responsiveness is best during the day
+in Europe, but feel free to idle.
 Matrix is persistent, and we'll see your message eventually.
 
 * [![Join us on Matrix](https://img.shields.io/badge/Matrix-%23calamares:kde.org-blue)](https://webchat.kde.org/#/room/%23calamares:kde.org)
-* [![Chat on IRC](https://img.shields.io/badge/IRC-Libera.Chat%20%23calamares-green)](https://kiwiirc.com/client/irc.libera.chat/#calamares)
 
 
 ## General Guidelines
@@ -57,7 +54,7 @@ stay that way.
 
 If you are writing documentation, use *en_US* spelling.
 
-If you are doing cool stuff, let us know (on IRC or through issues).
+If you are doing cool stuff, let us know (on Matrix or through issues).
 
 **Do** fork Calamares to try new things, **don't** keep your fork to
 yourself, **do** upstream things as much as you can. When you make cool
