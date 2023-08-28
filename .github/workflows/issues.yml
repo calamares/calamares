@@ -8,20 +8,6 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
-      - name: "notify: new"
-        if: github.event.issue.state == 'open'
-        uses: calamares/actions/matrix-notify@v4
-        with:
-          token: ${{ secrets.MATRIX_TOKEN }}
-          room: ${{ secrets.MATRIX_ROOM }}
-          message: "OPENED ${{ github.event.issue.html_url }} by ${{ github.actor }} ${{ github.event.issue.title }}"
-      - name: "notify: closed"
-        if: github.event.issue.state != 'open'
-        uses: calamares/actions/matrix-notify@v4
-        with:
-          token: ${{ secrets.MATRIX_TOKEN }}
-          room: ${{ secrets.MATRIX_ROOM }}
-          message: "CLOSED ${{ github.event.issue.html_url }} by ${{ github.actor }} ${{ github.event.issue.title }}"
       - name: "remove in-progress label"
         if: github.event.issue.state != 'open'
         run: |

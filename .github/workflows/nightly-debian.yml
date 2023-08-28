@@ -68,19 +68,3 @@ jobs:
       - name: "build"
         id: build
         uses: calamares/actions/generic-build@v4
-      - name: "notify: ok"
-        if: ${{ success() && github.repository == 'calamares/calamares' }}
-        uses: calamares/actions/matrix-notify@v4
-        with:
-          token: ${{ secrets.MATRIX_TOKEN }}
-          room: ${{ secrets.MATRIX_ROOM }}
-          message: |
-            OK ${{ github.workflow }} in ${{ github.repository }} ${{ steps.build.outputs.git-summary }}
-      - name: "notify: fail"
-        if: ${{ failure() && github.repository == 'calamares/calamares' }}
-        uses: calamares/actions/matrix-notify@v4
-        with:
-          token: ${{ secrets.MATRIX_TOKEN }}
-          room: ${{ secrets.MATRIX_ROOM }}
-          message: |
-            FAIL ${{ github.workflow }} in ${{ github.repository }} ${{ steps.build.outputs.git-summary }}
