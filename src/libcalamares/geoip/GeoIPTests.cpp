@@ -119,10 +119,10 @@ GeoIPTests::testXML()
 void
 GeoIPTests::testXML2()
 {
+#ifdef QT_XML_LIB
     static const char data[]
         = "<Response><TimeZone>America/North Dakota/Beulah</TimeZone></Response>";  // With a space!
 
-#ifdef QT_XML_LIB
     GeoIPXML handler;
     auto tz = handler.processReply( data );
 
