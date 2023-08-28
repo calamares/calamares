@@ -330,7 +330,7 @@ def run():
                 _("No partitions are defined for <pre>{!s}</pre> to use.").format("mount"))
 
     # Find existing swap partitions that are part of the installation and enable them now
-    swap_devices = [p['device'] for p in partitions if (p['fs'] == 'linuxswap' and p['claimed'])]
+    swap_devices = [p["device"] for p in partitions if (p["fs"] == "linuxswap" and p.get("claimed", False))]
 
     enable_swap_partition(swap_devices)
 
