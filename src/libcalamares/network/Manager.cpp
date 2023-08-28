@@ -87,14 +87,12 @@ Manager::Private::nam()
     QMutexLocker lock( namMutex() );
 
     auto* thread = QThread::currentThread();
-    int index = 0;
     for ( const auto& n : m_perThreadNams )
     {
         if ( n.first == thread )
         {
             return n.second;
         }
-        ++index;
     }
 
     // Need a new NAM for this thread
