@@ -9,4 +9,6 @@ properties:
     xOrgConfFileName: { type: string }
     convertedKeymapPath: { type: string }
     writeEtcDefaultKeyboard: { type: boolean, default: true }
+    useLocale1: { type: boolean, default: false }
+    guessLayout: { type: boolean, default: true }
 required: [ xOrgConfFileName, convertedKeymapPath ]
