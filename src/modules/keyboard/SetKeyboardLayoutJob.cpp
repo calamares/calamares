@@ -36,7 +36,8 @@ SetKeyboardLayoutJob::SetKeyboardLayoutJob( const QString& model,
                                             const AdditionalLayoutInfo& additionalLayoutInfo,
                                             const QString& xOrgConfFileName,
                                             const QString& convertedKeymapPath,
-                                            bool writeEtcDefaultKeyboard )
+                                            bool writeEtcDefaultKeyboard,
+                                            bool skipIfNoRoot )
     : Calamares::Job()
     , m_model( model )
     , m_layout( layout )
@@ -45,6 +46,7 @@ SetKeyboardLayoutJob::SetKeyboardLayoutJob( const QString& model,
     , m_xOrgConfFileName( xOrgConfFileName )
     , m_convertedKeymapPath( convertedKeymapPath )
     , m_writeEtcDefaultKeyboard( writeEtcDefaultKeyboard )
+    , m_skipIfNoRoot( skipIfNoRoot )
 {
 }
 
@@ -348,6 +350,9 @@ SetKeyboardLayoutJob::exec()
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
     QDir destDir( gs->value( "rootMountPoint" ).toString() );
 
+    // Skip this if we are using locale1 and we are configuring the local system,
+    // since the service will have already updated these configs for us.
+    if ( !( m_skipIfNoRoot && ( destDir.isEmpty() || destDir.isRoot() ) ) )
     {
         // Get the path to the destination's /etc/vconsole.conf
         QString vconsoleConfPath = destDir.absoluteFilePath( "etc/vconsole.conf" );
@@ -368,9 +373,7 @@ SetKeyboardLayoutJob::exec()
             return Calamares::JobResult::error( tr( "Failed to write keyboard configuration for the virtual console." ),
                                                 tr( "Failed to write to %1" ).arg( vconsoleConfPath ) );
         }
-    }
 
-    {
         // Get the path to the destination's /etc/X11/xorg.conf.d/00-keyboard.conf
         QString xorgConfDPath;
         QString keyboardConfPath;

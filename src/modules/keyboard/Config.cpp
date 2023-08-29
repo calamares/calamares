@@ -23,8 +23,13 @@
 #include "utils/Variant.h"
 
 #include <QApplication>
+#include <QGuiApplication>
 #include <QProcess>
 #include <QTimer>
+
+#include <QtDBus/QDBusConnection>
+#include <QtDBus/QDBusInterface>
+#include <QtDBus/QDBusReply>
 
 /* Returns stringlist with suitable setxkbmap command-line arguments
  * to set the given @p model.
@@ -163,7 +168,14 @@ Config::Config( QObject* parent )
              {
                  // Set Xorg keyboard model
                  m_selectedModel = m_keyboardModelsModel->key( index );
-                 QProcess::execute( "setxkbmap", xkbmap_model_args( m_selectedModel ) );
+                 if ( m_useLocale1 )
+                 {
+                     locale1Apply();
+                 }
+                 else
+                 {
+                     QProcess::execute( "setxkbmap", xkbmap_model_args( m_selectedModel ) );
+                 }
                  emit prettyStatusChanged();
              } );
 
@@ -201,10 +213,53 @@ Config::xkbChanged( int index )
         m_setxkbmapTimer.disconnect( this );
     }
 
-    connect( &m_setxkbmapTimer, &QTimer::timeout, this, &Config::xkbApply );
+    if ( m_useLocale1 )
+    {
+        connect( &m_setxkbmapTimer, &QTimer::timeout, this, &Config::locale1Apply );
+    }
+    else
+    {
+        connect( &m_setxkbmapTimer, &QTimer::timeout, this, &Config::xkbApply );
+    }
 
     m_setxkbmapTimer.start( QApplication::keyboardInputInterval() );
     emit prettyStatusChanged();
+}
+
+void
+Config::locale1Apply()
+{
+    m_additionalLayoutInfo = getAdditionalLayoutInfo( m_selectedLayout );
+
+    QString layout = m_selectedLayout;
+    QString variant = m_selectedVariant;
+    QString option;
+
+    if ( !m_additionalLayoutInfo.additionalLayout.isEmpty() )
+    {
+        layout = m_additionalLayoutInfo.additionalLayout + "," + layout;
+        variant = m_additionalLayoutInfo.additionalVariant + "," + layout;
+        option = m_additionalLayoutInfo.groupSwitcher;
+    }
+
+    QDBusInterface locale1( "org.freedesktop.locale1",
+                            "/org/freedesktop/locale1",
+                            "org.freedesktop.locale1",
+                            QDBusConnection::systemBus() );
+    if ( !locale1.isValid() )
+    {
+        cWarning() << "Interface" << locale1.interface() << "is not valid.";
+        return;
+    }
+
+    // Using convert=true, this also updates the VConsole config
+    {
+        QDBusReply< void > r = locale1.call( "SetX11Keyboard", layout, m_selectedModel, variant, option, true, false );
+        if ( !r.isValid() )
+        {
+            cWarning() << "Could not set keyboard config through org.freedesktop.locale1.X11Keyboard." << r.error();
+        }
+    }
 }
 
 void
@@ -276,21 +331,10 @@ findLayout( const KeyboardLayoutModel* klm, const QString& currentLayout )
 }
 
 void
-Config::detectCurrentKeyboardLayout()
+Config::getCurrentKeyboardLayoutXkb( QString& currentLayout, QString& currentVariant, QString& currentModel )
 {
-    if ( m_state != State::Initial )
-    {
-        return;
-    }
-    cScopedAssignment returnToIntial( &m_state, State::Initial );
-    m_state = State::Guessing;
-
-    //### Detect current keyboard layout and variant
-    QString currentLayout;
-    QString currentVariant;
     QProcess process;
     process.start( "setxkbmap", QStringList() << "-print" );
-
     if ( process.waitForFinished() )
     {
         const QStringList list = QString( process.readAll() ).split( "\n", SplitSkipEmptyParts );
@@ -299,10 +343,13 @@ Config::detectCurrentKeyboardLayout()
         //      xkb_symbols   { include "pc+latin+ru:2+inet(evdev)+group(alt_shift_toggle)+ctrl(swapcaps)"       };
         for ( const auto& line : list )
         {
-            if ( !line.trimmed().startsWith( "xkb_symbols" ) )
+            bool symbols = false;
+            if ( line.trimmed().startsWith( "xkb_symbols" ) )
             {
-                continue;
+                symbols = true;
             }
+            else if ( !line.trimmed().startsWith( "xkb_geometry" ) )
+                continue;
 
             int firstQuote = line.indexOf( '"' );
             int lastQuote = line.lastIndexOf( '"' );
@@ -314,7 +361,7 @@ Config::detectCurrentKeyboardLayout()
 
             QStringList split = line.mid( firstQuote + 1, lastQuote - firstQuote ).split( "+", SplitSkipEmptyParts );
             cDebug() << split;
-            if ( split.size() >= 2 )
+            if ( symbols && split.size() >= 2 )
             {
                 currentLayout = split.at( 1 );
 
@@ -328,7 +375,60 @@ Config::detectCurrentKeyboardLayout()
 
                 break;
             }
+            else if ( !symbols && split.size() >= 1 )
+            {
+                currentModel = split.at( 0 );
+                if ( currentModel.contains( "(" ) )
+                {
+                    int parenthesisIndex = currentLayout.indexOf( "(" );
+                    currentModel = currentModel.mid( parenthesisIndex + 1 ).trimmed();
+                    currentModel.chop( 1 );
+                }
+            }
         }
+    }
+}
+
+void
+Config::getCurrentKeyboardLayoutLocale1( QString& currentLayout, QString& currentVariant, QString& currentModel )
+{
+    QDBusInterface locale1( "org.freedesktop.locale1",
+                            "/org/freedesktop/locale1",
+                            "org.freedesktop.locale1",
+                            QDBusConnection::systemBus() );
+    if ( !locale1.isValid() )
+    {
+        cWarning() << "Interface" << locale1.interface() << "is not valid.";
+        return;
+    }
+
+    currentLayout = locale1.property( "X11Layout" ).toString().split( "," ).last();
+    currentVariant = locale1.property( "X11Variant" ).toString().split( "," ).last();
+    currentModel = locale1.property( "X11Model" ).toString();
+}
+
+void
+Config::detectCurrentKeyboardLayout()
+{
+    if ( m_state != State::Initial )
+    {
+        return;
+    }
+    cScopedAssignment returnToIntial( &m_state, State::Initial );
+    m_state = State::Guessing;
+
+    //### Detect current keyboard layout, variant, and model
+    QString currentLayout;
+    QString currentVariant;
+    QString currentModel;
+
+    if ( m_useLocale1 )
+    {
+        getCurrentKeyboardLayoutLocale1( currentLayout, currentVariant, currentModel );
+    }
+    else
+    {
+        getCurrentKeyboardLayoutXkb( currentLayout, currentVariant, currentModel );
     }
 
     //### Layouts and Variants
@@ -351,6 +451,17 @@ Config::detectCurrentKeyboardLayout()
     if ( !currentLayoutItem.isValid() && m_keyboardLayoutsModel->rowCount() > 0 )
     {
         m_keyboardLayoutsModel->setCurrentIndex( m_keyboardLayoutsModel->index( 0 ).row() );
+    }
+
+    //### Keyboard model
+    for ( int i = 0; i < m_keyboardModelsModel->rowCount(); ++i )
+    {
+        QModelIndex idx = m_keyboardModelsModel->index( i );
+        if ( idx.isValid() && idx.data( XKBListModel::KeyRole ).toString() == currentModel )
+        {
+            m_keyboardModelsModel->setCurrentIndex( idx.row() );
+            break;
+        }
     }
 }
 
@@ -381,7 +492,8 @@ Config::createJobs()
                                                   m_additionalLayoutInfo,
                                                   m_xOrgConfFileName,
                                                   m_convertedKeymapPath,
-                                                  m_writeEtcDefaultKeyboard );
+                                                  m_writeEtcDefaultKeyboard,
+                                                  m_useLocale1 );
     list.append( Calamares::job_ptr( j ) );
 
     return list;
@@ -430,7 +542,7 @@ guessLayout( const QStringList& langParts, KeyboardLayoutModel* layouts, Keyboar
 void
 Config::guessLocaleKeyboardLayout()
 {
-    if ( m_state != State::Initial )
+    if ( m_state != State::Initial || !m_guessLayout )
     {
         return;
     }
@@ -561,6 +673,7 @@ void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
 {
     using namespace CalamaresUtils;
+    bool isX11 = QGuiApplication::platformName() == "xcb";
 
     const auto xorgConfDefault = QStringLiteral( "00-keyboard.conf" );
     m_xOrgConfFileName = getString( configurationMap, "xOrgConfFileName", xorgConfDefault );
@@ -570,6 +683,8 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     }
     m_convertedKeymapPath = getString( configurationMap, "convertedKeymapPath" );
     m_writeEtcDefaultKeyboard = getBool( configurationMap, "writeEtcDefaultKeyboard", true );
+    m_useLocale1 = getBool( configurationMap, "useLocale1", !isX11 );
+    m_guessLayout = getBool( configurationMap, "guessLayout", true );
 }
 
 void
