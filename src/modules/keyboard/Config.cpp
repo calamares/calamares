@@ -27,9 +27,9 @@
 #include <QProcess>
 #include <QTimer>
 
-#include <QtDBus/QDBusConnection>
-#include <QtDBus/QDBusInterface>
-#include <QtDBus/QDBusReply>
+#include <QDBusConnection>
+#include <QDBusInterface>
+#include <QDBusReply>
 
 /* Returns stringlist with suitable setxkbmap command-line arguments
  * to set the given @p model.

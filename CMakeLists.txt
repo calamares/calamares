@@ -292,12 +292,11 @@ add_compile_definitions(QT_DISABLE_DEPRECATED_BEFORE=0x050f00)
 
 ### DEPENDENCIES
 #
-find_package(Qt5 ${QT_VERSION} CONFIG REQUIRED Concurrent Core Gui LinguistTools Network Svg Widgets)
+find_package(Qt5 ${QT_VERSION} CONFIG REQUIRED Concurrent Core DBus Gui LinguistTools Network Svg Widgets)
 if(WITH_QML)
     find_package(Qt5 ${QT_VERSION} CONFIG REQUIRED Quick QuickWidgets)
 endif()
-# Optional Qt parts
-find_package(Qt5DBus CONFIG)
+# Note that some modules need more Qt modules, optionally.
 
 find_package(YAMLCPP ${YAMLCPP_VERSION} REQUIRED)
 if(INSTALL_POLKIT)

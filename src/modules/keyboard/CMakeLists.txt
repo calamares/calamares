@@ -4,8 +4,6 @@
 #   SPDX-License-Identifier: BSD-2-Clause
 #
 
-find_package(Qt5 ${QT_VERSION} CONFIG REQUIRED Core DBus)
-
 calamares_add_plugin(keyboard
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
