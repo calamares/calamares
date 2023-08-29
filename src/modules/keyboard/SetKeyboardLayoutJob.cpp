@@ -29,6 +29,15 @@
 #include <QSettings>
 #include <QTextStream>
 
+namespace
+{
+QStringList
+removeEmpty(QStringList& list)
+{
+    list.removeAll(QString());
+    return list;
+}
+}
 
 SetKeyboardLayoutJob::SetKeyboardLayoutJob( const QString& model,
                                             const QString& layout,
@@ -176,14 +185,6 @@ SetKeyboardLayoutJob::findLegacyKeymap() const
 {
     return ::findLegacyKeymap( m_layout, m_model, m_variant );
 }
-
-QStringList
-SetKeyboardLayoutJob::removeEmpty(QStringList& list) const
-{
-    list.removeAll(QString());
-    return list;
-}
-
 
 bool
 SetKeyboardLayoutJob::writeVConsoleData( const QString& vconsoleConfPath, const QString& convertedKeymapPath ) const

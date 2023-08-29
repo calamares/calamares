@@ -37,7 +37,6 @@ private:
     bool writeVConsoleData( const QString& vconsoleConfPath, const QString& convertedKeymapPath ) const;
     bool writeX11Data( const QString& keyboardConfPath ) const;
     bool writeDefaultKeyboardData( const QString& defaultKeyboardPath ) const;
-    QStringList removeEmpty(QStringList& list) const;
 
     QString m_model;
     QString m_layout;
