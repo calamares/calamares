@@ -32,7 +32,7 @@
 namespace
 {
 QStringList
-removeEmpty(QStringList& list)
+removeEmpty(QStringList&& list)
 {
     list.removeAll(QString());
     return list;
@@ -276,10 +276,10 @@ SetKeyboardLayoutJob::writeX11Data( const QString& keyboardConfPath ) const
               "        MatchIsKeyboard \"on\"\n";
 
 
-    QStringList layouts({m_additionalLayoutInfo.additionalLayout, m_layout});
-    QStringList variants({m_additionalLayoutInfo.additionalVariant, m_variant});
-    stream << "        Option \"XkbLayout\" \"" << removeEmpty(layouts).join(",") << "\"\n";
-    stream << "        Option \"XkbVariant\" \"" << removeEmpty(variants).join(",") << "\"\n";
+    const QStringList layouts = removeEmpty({m_additionalLayoutInfo.additionalLayout, m_layout});
+    const QStringList variants = removeEmpty({m_additionalLayoutInfo.additionalVariant, m_variant});
+    stream << "        Option \"XkbLayout\" \"" << layouts.join(",") << "\"\n";
+    stream << "        Option \"XkbVariant\" \"" << variants.join(",") << "\"\n";
     if ( !m_additionalLayoutInfo.additionalLayout.isEmpty() )
     {
         stream << "        Option \"XkbOptions\" \"" << m_additionalLayoutInfo.groupSwitcher << "\"\n";
@@ -310,14 +310,14 @@ SetKeyboardLayoutJob::writeDefaultKeyboardData( const QString& defaultKeyboardPa
     }
     QTextStream stream( &file );
 
-    QStringList layouts({m_additionalLayoutInfo.additionalLayout, m_layout});
-    QStringList variants({m_additionalLayoutInfo.additionalVariant, m_variant});
+    const QStringList layouts = removeEmpty({m_additionalLayoutInfo.additionalLayout, m_layout});
+    const QStringList variants = removeEmpty({m_additionalLayoutInfo.additionalVariant, m_variant});
     stream << "# KEYBOARD CONFIGURATION FILE\n\n"
               "# Consult the keyboard(5) manual page.\n\n";
 
     stream << "XKBMODEL=\"" << m_model << "\"\n";
-    stream << "XKBLAYOUT=\"" << removeEmpty(layouts).join(",") << "\"\n";
-    stream << "XKBVARIANT=\"" << removeEmpty(variants).join(",") << "\"\n";
+    stream << "XKBLAYOUT=\"" << layouts.join(",") << "\"\n";
+    stream << "XKBVARIANT=\"" << variants.join(",") << "\"\n";
     if ( !m_additionalLayoutInfo.additionalLayout.isEmpty() )
     {
         stream << "XKBOPTIONS=\"" << m_additionalLayoutInfo.groupSwitcher << "\"\n";
