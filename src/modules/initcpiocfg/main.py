@@ -163,9 +163,12 @@ def find_initcpio_features(partitions, root_mount_point):
         "block",
         "keyboard",
     ]
-    uses_systemd = target_env_call(["sh", "-c", "which systemd-cat"]) == 0
 
-    if uses_systemd:
+    systemd_hook_allowed = libcalamares.job.configuration.get("useSystemdHook", False)
+
+    use_systemd = systemd_hook_allowed and target_env_call(["sh", "-c", "which systemd-cat"]) == 0
+
+    if use_systemd:
         hooks.insert(0, "systemd")
         hooks.append("sd-vconsole")
     else:
@@ -224,7 +227,7 @@ def find_initcpio_features(partitions, root_mount_point):
             hooks.append("usr")
 
     if encrypt_hook:
-        if uses_systemd:
+        if use_systemd:
             hooks.append("sd-encrypt")
         else:
             hooks.append("encrypt")

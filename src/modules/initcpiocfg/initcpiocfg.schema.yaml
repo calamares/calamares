@@ -1,0 +1,11 @@
+# SPDX-FileCopyrightText: 2023 Evan James <dalto@fastmail.com>
+# SPDX-License-Identifier: GPL-3.0-or-later
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/initcpiocfg
+additionalProperties: false
+type: object
+properties:
+    useSystemdHook: { type: boolean }
+
+
