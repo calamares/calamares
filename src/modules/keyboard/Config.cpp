@@ -238,7 +238,7 @@ Config::locale1Apply()
     if ( !m_additionalLayoutInfo.additionalLayout.isEmpty() )
     {
         layout = m_additionalLayoutInfo.additionalLayout + "," + layout;
-        variant = m_additionalLayoutInfo.additionalVariant + "," + layout;
+        variant = m_additionalLayoutInfo.additionalVariant + "," + variant;
         option = m_additionalLayoutInfo.groupSwitcher;
     }
 
