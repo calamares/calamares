@@ -421,6 +421,7 @@ endif()
 # when building out-of-tree.
 set(Calamares_WITH_PYTHON ${WITH_PYTHON})
 set(Calamares_WITH_QML ${WITH_QML})
+set(Calamares_WITH_QT6 ${WITH_QT6})
 
 ### Transifex Translation status
 #
