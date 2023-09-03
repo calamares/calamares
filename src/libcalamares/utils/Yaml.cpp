@@ -18,7 +18,7 @@
 #include <QByteArray>
 #include <QFile>
 #include <QFileInfo>
-#include <QRegExp>
+#include <QRegularExpression>
 
 void
 operator>>( const YAML::Node& node, QStringList& v )
@@ -31,9 +31,6 @@ operator>>( const YAML::Node& node, QStringList& v )
 
 namespace CalamaresUtils
 {
-
-const QRegExp _yamlScalarTrueValues = QRegExp( "true|True|TRUE|on|On|ON" );
-const QRegExp _yamlScalarFalseValues = QRegExp( "false|False|FALSE|off|Off|OFF" );
 
 QVariant
 yamlToVariant( const YAML::Node& node )
@@ -60,21 +57,26 @@ yamlToVariant( const YAML::Node& node )
 QVariant
 yamlScalarToVariant( const YAML::Node& scalarNode )
 {
+    static const auto yamlScalarTrueValues = QRegularExpression( "^(true|True|TRUE|on|On|ON)$" );
+    static const auto yamlScalarFalseValues = QRegularExpression( "^(false|False|FALSE|off|Off|OFF)$" );
+    static const auto yamlIntegerValues = QRegularExpression( "^[-+]?\\d+$" );
+    static const auto yamlFloatValues = QRegularExpression( "^[-+]?\\d*\\.?\\d+$" );
+
     std::string stdScalar = scalarNode.as< std::string >();
     QString scalarString = QString::fromStdString( stdScalar );
-    if ( _yamlScalarTrueValues.exactMatch( scalarString ) )
+    if ( yamlScalarTrueValues.match( scalarString ).hasMatch() )
     {
         return QVariant( true );
     }
-    if ( _yamlScalarFalseValues.exactMatch( scalarString ) )
+    if ( yamlScalarFalseValues.match( scalarString ).hasMatch() )
     {
         return QVariant( false );
     }
-    if ( QRegExp( "[-+]?\\d+" ).exactMatch( scalarString ) )
+    if ( yamlIntegerValues.match( scalarString ).hasMatch() )
     {
         return QVariant( scalarString.toLongLong() );
     }
-    if ( QRegExp( "[-+]?\\d*\\.?\\d+" ).exactMatch( scalarString ) )
+    if ( yamlFloatValues.match( scalarString ).hasMatch() )
     {
         return QVariant( scalarString.toDouble() );
     }
