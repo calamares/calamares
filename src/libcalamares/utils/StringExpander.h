@@ -13,7 +13,44 @@
 
 #include "DllMacro.h"
 
+#if QT_VERSION < QT_VERSION_CHECK( 6, 0, 0 )
 #include <KMacroExpander>
+#else
+// TODO: Qt6
+//
+// Mock up part of KF6
+#include <QHash>
+#include <QString>
+class KMacroExpanderBase
+{
+public:
+    QString expandMacrosShellQuote( const QString& c ) { return c; }
+};
+class KMacroExpander
+{
+public:
+    static QString expandMacros( const QString& source, const QHash< QString, QString > dict, char sep )
+    {
+        return source;
+    }
+};
+class KWordMacroExpander : public KMacroExpanderBase
+{
+public:
+    KWordMacroExpander( QChar c )
+        : m_escape( c )
+    {
+    }
+    virtual ~KWordMacroExpander();
+    virtual bool expandMacro( const QString& str, QStringList& ret );
+    void expandMacros( QString& s ) {}
+
+    QChar escapeChar() const { return m_escape; }
+
+private:
+    QChar m_escape;
+};
+#endif
 
 #include <QString>
 #include <QStringList>
@@ -24,6 +61,7 @@ namespace Calamares
 {
 namespace String
 {
+
 
 /** @brief Expand variables in a string against a dictionary.
  *

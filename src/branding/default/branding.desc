@@ -123,10 +123,10 @@ navigation: widget
 strings:
     productName:         "${NAME}"
     shortProductName:    Generic
-    version:             2020.2 LTS
-    shortVersion:        2020.2
-    versionedName:       Fancy GNU/Linux 2020.2 LTS "Turgid Tuba"
-    shortVersionedName:  FancyGL 2020.2
+    version:             2023.3 LTS
+    shortVersion:        2023.3
+    versionedName:       Fancy GNU/Linux 2023.3 LTS "Venomous Vole"
+    shortVersionedName:  FancyGL 2023.3
     bootloaderEntryName: FancyGL
     productUrl:          https://calamares.io/
     supportUrl:          https://github.com/calamares/calamares/wiki

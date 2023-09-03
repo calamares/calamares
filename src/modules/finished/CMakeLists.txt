@@ -3,7 +3,7 @@
 #   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
 #   SPDX-License-Identifier: BSD-2-Clause
 #
-find_package(Qt5 ${QT_VERSION} CONFIG REQUIRED DBus Network)
+find_package(${qtname} ${QT_VERSION} CONFIG REQUIRED DBus Network)
 
 include_directories(${PROJECT_BINARY_DIR}/src/libcalamaresui)
 
@@ -17,6 +17,6 @@ calamares_add_plugin(finished
     UI
         FinishedPage.ui
     LINK_PRIVATE_LIBRARIES
-        Qt5::DBus
+        ${qtname}::DBus
     SHARED_LIB
 )

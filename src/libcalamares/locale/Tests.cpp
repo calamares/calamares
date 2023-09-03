@@ -230,7 +230,8 @@ LocaleTests::testTranslatableConfig2()
             continue;
         }
         // Could be QVERIFY, but then we don't see what language code fails
-        QCOMPARE( ts1.get( language ) == QString( "description (language %1)" ).arg( language ) ? language : QString(),
+        QCOMPARE( ts1.get( QLocale( language ) ) == QString( "description (language %1)" ).arg( language ) ? language
+                                                                                                           : QString(),
                   language );
     }
     QCOMPARE( ts1.get( QLocale( QLocale::Language::Serbian, QLocale::Script::LatinScript, QLocale::Country::Serbia ) ),

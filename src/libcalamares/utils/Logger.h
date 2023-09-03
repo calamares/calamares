@@ -17,6 +17,7 @@
 
 #include <QDebug>
 #include <QSharedPointer>
+#include <QVariant>
 
 #include <memory>
 

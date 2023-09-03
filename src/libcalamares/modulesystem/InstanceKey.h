@@ -13,8 +13,9 @@
 
 #include <QDebug>
 #include <QList>
-#include <QPair>
 #include <QString>
+
+#include <utility>
 
 namespace Calamares
 {
@@ -34,12 +35,14 @@ namespace ModuleSystem
  * This is supported by the *instances* configuration entry
  * in `settings.conf`.
  */
-class InstanceKey : public QPair< QString, QString >
+class InstanceKey : public std::pair< QString, QString >
 {
 public:
+    using Base = std::pair< QString, QString >;
+
     /// @brief Create an instance key from explicit module and id.
     InstanceKey( const QString& module, const QString& id )
-        : QPair( module, id )
+        : Base( module, id )
     {
         if ( second.isEmpty() )
         {
@@ -50,7 +53,7 @@ public:
 
     /// @brief Create unusual, invalid instance key
     InstanceKey()
-        : QPair( QString(), QString() )
+        : Base( QString(), QString() )
     {
     }
 

@@ -10,6 +10,7 @@
 
 #include "RequirementsChecker.h"
 
+#include "compat/Mutex.h"
 #include "modulesystem/Module.h"
 #include "modulesystem/Requirement.h"
 #include "modulesystem/RequirementsModel.h"
@@ -48,7 +49,11 @@ RequirementsChecker::run()
     for ( const auto& module : m_modules )
     {
         Watcher* watcher = new Watcher( this );
+#if QT_VERSION < QT_VERSION_CHECK( 6, 0, 0 )
         watcher->setFuture( QtConcurrent::run( this, &RequirementsChecker::addCheckedRequirements, module ) );
+#else
+        watcher->setFuture( QtConcurrent::run( &RequirementsChecker::addCheckedRequirements, this, module ) );
+#endif
         watcher->setObjectName( module->name() );
         m_watchers.append( watcher );
         connect( watcher, &Watcher::finished, this, &RequirementsChecker::finished );
@@ -61,7 +66,7 @@ void
 RequirementsChecker::finished()
 {
     static QMutex finishedMutex;
-    QMutexLocker lock( &finishedMutex );
+    Calamares::MutexLocker lock( &finishedMutex );
 
     if ( m_progressTimer
          && std::all_of(

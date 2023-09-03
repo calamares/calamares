@@ -12,6 +12,7 @@
 #include "Branding.h"
 #include "ViewManager.h"
 
+#include "compat/Variant.h"
 #include "utils/Dirs.h"
 #include "utils/Logger.h"
 #include "utils/NamedEnum.h"
@@ -52,7 +53,8 @@ changeQMLState( QMLAction action, QQuickItem* item )
     CalamaresUtils::callQmlFunction( item, activate ? "onActivate" : "onLeave" );
 
     auto property = item->property( propertyName );
-    if ( property.isValid() && ( property.type() == QVariant::Bool ) && ( property.toBool() != activate ) )
+    if ( property.isValid() && ( Calamares::typeOf( property ) == Calamares::BoolVariantType )
+         && ( property.toBool() != activate ) )
     {
         item->setProperty( propertyName, activate );
     }

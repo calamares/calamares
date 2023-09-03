@@ -14,6 +14,7 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "Settings.h"
+#include "compat/Variant.h"
 #include "geoip/Handler.h"
 #include "locale/Global.h"
 #include "locale/Lookup.h"
@@ -301,11 +302,11 @@ jobOrBrandingSetting( Calamares::Branding::StringEntry e, const QVariantMap& map
         return QString();
     }
     auto v = map.value( key );
-    if ( v.type() == QVariant::Bool )
+    if ( Calamares::typeOf( v ) == Calamares::BoolVariantType )
     {
         return v.toBool() ? ( Calamares::Branding::instance()->string( e ) ) : QString();
     }
-    if ( v.type() == QVariant::String )
+    if ( Calamares::typeOf( v ) == Calamares::StringVariantType )
     {
         return v.toString();
     }
@@ -417,7 +418,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     ::setGeoIP( this, configurationMap );
 
     if ( configurationMap.contains( "requirements" )
-         && configurationMap.value( "requirements" ).type() == QVariant::Map )
+         && Calamares::typeOf( configurationMap.value( "requirements" ) ) == Calamares::MapVariantType )
     {
         m_requirementsChecker->setConfigurationMap( configurationMap.value( "requirements" ).toMap() );
     }

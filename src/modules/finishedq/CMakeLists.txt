@@ -8,8 +8,8 @@ if(NOT WITH_QML)
     return()
 endif()
 
-find_package(Qt5 ${QT_VERSION} CONFIG COMPONENTS DBus Network)
-if(NOT TARGET Qt5::DBus OR NOT TARGET Qt5::Network)
+find_package(${qtname} ${QT_VERSION} CONFIG COMPONENTS DBus Network)
+if(NOT TARGET ${qtname}::DBus OR NOT TARGET ${qtname}::Network)
     calamares_skip_module( "finishedq (missing DBus or Network)" )
     return()
 endif()
@@ -26,6 +26,6 @@ calamares_add_plugin(finishedq
     RESOURCES
         finishedq.qrc
     LINK_PRIVATE_LIBRARIES
-        Qt5::DBus
+        ${qtname}::DBus
     SHARED_LIB
 )

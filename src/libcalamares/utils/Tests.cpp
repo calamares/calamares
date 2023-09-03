@@ -24,6 +24,7 @@
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "compat/Variant.h"
 
 #include <QTemporaryFile>
 
@@ -151,7 +152,7 @@ LibCalamaresTests::testLoadSaveYaml()
 
     auto map = CalamaresUtils::loadYaml( f.fileName() );
     QVERIFY( map.contains( "sequence" ) );
-    QCOMPARE( map[ "sequence" ].type(), QVariant::List );
+    QCOMPARE( Calamares::typeOf( map[ "sequence" ] ), Calamares::ListVariantType );
 
     // The source-repo example `settings.conf` has a show and an exec phase
     auto sequence = map[ "sequence" ].toList();
@@ -159,7 +160,7 @@ LibCalamaresTests::testLoadSaveYaml()
     for ( const auto& v : sequence )
     {
         cDebug() << Logger::SubEntry << v;
-        QCOMPARE( v.type(), QVariant::Map );
+        QCOMPARE( Calamares::typeOf( v ), Calamares::MapVariantType );
         QVERIFY( v.toMap().contains( "show" ) || v.toMap().contains( "exec" ) );
     }
 
@@ -553,11 +554,11 @@ LibCalamaresTests::testVariantStringListYAMLDashed()
     QTemporaryFile f;
     QVERIFY( f.open() );
     f.write( R"(---
-strings:
-    - aap
-    - noot
-    - mies
-)" );
+             strings:
+             - aap
+             - noot
+             - mies
+           )" );
     f.close();
     bool ok = false;
     QVariantMap m = loadYaml( f.fileName(), &ok );
@@ -581,8 +582,8 @@ LibCalamaresTests::testVariantStringListYAMLBracketed()
     QTemporaryFile f;
     QVERIFY( f.open() );
     f.write( R"(---
-strings: [ aap, noot, mies ]
-)" );
+             strings: [ aap, noot, mies ]
+           )" );
     f.close();
     bool ok = false;
     QVariantMap m = loadYaml( f.fileName(), &ok );
@@ -604,24 +605,24 @@ LibCalamaresTests::testStringTruncation()
     using namespace Calamares::String;
 
     const QString longString( R"(---
---- src/libcalamares/utils/String.h
-+++ src/libcalamares/utils/String.h
-@@ -62,15 +62,22 @@ DLLEXPORT QString removeDiacritics( const QString& string );
-  */
- DLLEXPORT QString obscure( const QString& string );
+                              --- src/libcalamares/utils/String.h
+                              +++ src/libcalamares/utils/String.h
+                              @@ -62,15 +62,22 @@ DLLEXPORT QString removeDiacritics( const QString& string );
+                              */
+                              DLLEXPORT QString obscure( const QString& string );
 
-+/** @brief Parameter for counting lines at beginning and end of string
+                              +/** @brief Parameter for counting lines at beginning and end of string
 + *
 + * This is used by truncateMultiLine() to indicate how many lines from
 + * the beginning and how many from the end should be kept.
 + */
- struct LinesStartEnd
- {
--    int atStart;
--    int atEnd;
-+    int atStart = 0;
-+    int atEnd = 0;
-)" );
+                              struct LinesStartEnd
+                              {
+                                  -    int atStart;
+                                  -    int atEnd;
+                                  +    int atStart = 0;
+                                  +    int atEnd = 0;
+                              )" );
 
     const int sufficientLength = 812;
     // There's 18 lines in all
@@ -685,8 +686,8 @@ LibCalamaresTests::testStringTruncationShorter()
     using namespace Calamares::String;
 
     const QString longString( R"(Some strange string artifacts appeared, leading to `{1?}` being
-displayed in various user-facing messages. These have been removed
-and the translations updated.)" );
+                                  displayed in various user-facing messages. These have been removed
+                                  and the translations updated.)" );
     const char NEWLINE = '\n';
 
     const int insufficientLength = 42;

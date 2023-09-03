@@ -62,11 +62,11 @@ WelcomeTests::testOneUrl()
 
     // BUILD_AS_TEST is the source-directory path
     QString filename = QStringLiteral( "1a-checkinternet.conf" );
-    QFile fi( QString( "%1/tests/%2" ).arg( BUILD_AS_TEST, filename ) );
+    QFileInfo fi( QString( "%1/tests/%2" ).arg( BUILD_AS_TEST, filename ) );
     QVERIFY( fi.exists() );
 
     bool ok = false;
-    const auto map = CalamaresUtils::loadYaml( fi, &ok );
+    const auto map = CalamaresUtils::loadYaml( QFileInfo( fi ), &ok );
     QVERIFY( ok );
     QVERIFY( map.count() > 0 );
     QVERIFY( map.contains( "requirements" ) );
@@ -100,7 +100,7 @@ WelcomeTests::testUrls()
     Config c;
 
     // BUILD_AS_TEST is the source-directory path
-    QFile fi( QString( "%1/tests/%2" ).arg( BUILD_AS_TEST, filename ) );
+    QFileInfo fi( QString( "%1/tests/%2" ).arg( BUILD_AS_TEST, filename ) );
     QVERIFY( fi.exists() );
 
     bool ok = false;
@@ -130,7 +130,7 @@ WelcomeTests::testBadConfigDoesNotResetUrls()
         const QString filename = QStringLiteral( "1b-checkinternet.conf" );  // "none"
 
         // BUILD_AS_TEST is the source-directory path
-        QFile fi( QString( "%1/tests/%2" ).arg( BUILD_AS_TEST, filename ) );
+        QFileInfo fi( QString( "%1/tests/%2" ).arg( BUILD_AS_TEST, filename ) );
         QVERIFY( fi.exists() );
 
         bool ok = false;
@@ -147,7 +147,7 @@ WelcomeTests::testBadConfigDoesNotResetUrls()
         const QString filename = QStringLiteral( "1d-checkinternet.conf" );  // "bogus"
 
         // BUILD_AS_TEST is the source-directory path
-        QFile fi( QString( "%1/tests/%2" ).arg( BUILD_AS_TEST, filename ) );
+        QFileInfo fi( QString( "%1/tests/%2" ).arg( BUILD_AS_TEST, filename ) );
         QVERIFY( fi.exists() );
 
         bool ok = false;

@@ -12,12 +12,13 @@
  */
 #include "Yaml.h"
 
+#include "compat/Variant.h"
 #include "utils/Logger.h"
 
 #include <QByteArray>
 #include <QFile>
 #include <QFileInfo>
-#include <QRegExp>
+#include <QRegularExpression>
 
 void
 operator>>( const YAML::Node& node, QStringList& v )
@@ -30,9 +31,6 @@ operator>>( const YAML::Node& node, QStringList& v )
 
 namespace CalamaresUtils
 {
-
-const QRegExp _yamlScalarTrueValues = QRegExp( "true|True|TRUE|on|On|ON" );
-const QRegExp _yamlScalarFalseValues = QRegExp( "false|False|FALSE|off|Off|OFF" );
 
 QVariant
 yamlToVariant( const YAML::Node& node )
@@ -59,21 +57,26 @@ yamlToVariant( const YAML::Node& node )
 QVariant
 yamlScalarToVariant( const YAML::Node& scalarNode )
 {
+    static const auto yamlScalarTrueValues = QRegularExpression( "^(true|True|TRUE|on|On|ON)$" );
+    static const auto yamlScalarFalseValues = QRegularExpression( "^(false|False|FALSE|off|Off|OFF)$" );
+    static const auto yamlIntegerValues = QRegularExpression( "^[-+]?\\d+$" );
+    static const auto yamlFloatValues = QRegularExpression( "^[-+]?\\d*\\.?\\d+$" );
+
     std::string stdScalar = scalarNode.as< std::string >();
     QString scalarString = QString::fromStdString( stdScalar );
-    if ( _yamlScalarTrueValues.exactMatch( scalarString ) )
+    if ( yamlScalarTrueValues.match( scalarString ).hasMatch() )
     {
         return QVariant( true );
     }
-    if ( _yamlScalarFalseValues.exactMatch( scalarString ) )
+    if ( yamlScalarFalseValues.match( scalarString ).hasMatch() )
     {
         return QVariant( false );
     }
-    if ( QRegExp( "[-+]?\\d+" ).exactMatch( scalarString ) )
+    if ( yamlIntegerValues.match( scalarString ).hasMatch() )
     {
         return QVariant( scalarString.toLongLong() );
     }
-    if ( QRegExp( "[-+]?\\d*\\.?\\d+" ).exactMatch( scalarString ) )
+    if ( yamlFloatValues.match( scalarString ).hasMatch() )
     {
         return QVariant( scalarString.toDouble() );
     }
@@ -204,7 +207,8 @@ loadYaml( const QString& filename, bool* ok )
     }
 
 
-    if ( yamlContents.isValid() && !yamlContents.isNull() && yamlContents.type() == QVariant::Map )
+    if ( yamlContents.isValid() && !yamlContents.isNull()
+         && Calamares::typeOf( yamlContents ) == Calamares::MapVariantType )
     {
         if ( ok )
         {
@@ -237,35 +241,36 @@ static const char newline[] = "\n";
 static void
 dumpYamlElement( QFile& f, const QVariant& value, int indent )
 {
-    if ( value.type() == QVariant::Type::Bool )
+    const auto t = Calamares::typeOf( value );
+    if ( t == Calamares::BoolVariantType )
     {
         f.write( value.toBool() ? "true" : "false" );
     }
-    else if ( value.type() == QVariant::Type::String )
+    else if ( t == Calamares::StringVariantType )
     {
         f.write( quote );
         f.write( value.toString().toUtf8() );
         f.write( quote );
     }
-    else if ( value.type() == QVariant::Type::Int )
+    else if ( t == Calamares::IntVariantType )
     {
         f.write( QString::number( value.toInt() ).toUtf8() );
     }
-    else if ( value.type() == QVariant::Type::LongLong )
+    else if ( t == Calamares::LongLongVariantType )
     {
         f.write( QString::number( value.toLongLong() ).toUtf8() );
     }
-    else if ( value.type() == QVariant::Type::Double )
+    else if ( t == Calamares::DoubleVariantType )
     {
         f.write( QString::number( value.toDouble(), 'f', 2 ).toUtf8() );
     }
-    else if ( value.canConvert( QVariant::Type::ULongLong ) )
+    else if ( value.canConvert< qulonglong >() )
     {
         // This one needs to be *after* bool, int, double to avoid this branch
         // .. grabbing those convertible types un-necessarily.
         f.write( QString::number( value.toULongLong() ).toUtf8() );
     }
-    else if ( value.type() == QVariant::Type::List )
+    else if ( t == Calamares::ListVariantType )
     {
         int c = 0;
         for ( const auto& it : value.toList() )
@@ -281,7 +286,7 @@ dumpYamlElement( QFile& f, const QVariant& value, int indent )
             f.write( "[]" );
         }
     }
-    else if ( value.type() == QVariant::Type::Map )
+    else if ( t == Calamares::MapVariantType )
     {
         f.write( newline );
         dumpYaml( f, value.toMap(), indent + 1 );

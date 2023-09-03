@@ -100,14 +100,17 @@ set_target_properties(
         SOVERSION ${CALAMARES_SOVERSION}
         INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_INSTALL_FULL_INCLUDEDIR}/libcalamares
 )
-target_link_libraries(calamares LINK_PUBLIC yamlcpp::yamlcpp Qt5::Core KF5::CoreAddons)
+target_link_libraries(calamares LINK_PUBLIC yamlcpp::yamlcpp ${qtname}::Core)
+if(NOT WITH_QT6) # TODO: Qt6
+    target_link_libraries(calamares LINK_PUBLIC KF5::CoreAddons)
+endif()
 
 ### OPTIONAL Automount support (requires dbus)
 #
 #
-if(Qt5DBus_FOUND)
+if(TARGET ${qtname}::DBus)
     target_sources(calamares PRIVATE partition/AutoMount.cpp)
-    target_link_libraries(calamares PRIVATE Qt5::DBus)
+    target_link_libraries(calamares PRIVATE ${qtname}::DBus)
 endif()
 
 ### OPTIONAL Python support
@@ -121,10 +124,10 @@ endif()
 ### OPTIONAL GeoIP XML support
 #
 #
-find_package(Qt5 COMPONENTS Xml)
-if(Qt5Xml_FOUND)
+find_package(${qtname} ${QT_VERSION} COMPONENTS Xml)
+if(TARGET ${qtname}::Xml)
     target_sources(calamares PRIVATE geoip/GeoIPXML.cpp)
-    target_link_libraries(calamares PRIVATE Qt5::Network Qt5::Xml)
+    target_link_libraries(calamares PRIVATE ${qtname}::Network ${qtname}::Xml)
 endif()
 
 ### OPTIONAL KPMcore support
@@ -219,7 +222,7 @@ function(calamares_qrc_translations basename)
     endforeach()
 
     configure_file(${CMAKE_SOURCE_DIR}/lang/calamares_i18n.qrc.in ${translations_qrc_infile} @ONLY)
-    qt5_add_translation(QM_FILES ${calamares_i18n_ts_filelist})
+    qt_add_translation(QM_FILES ${calamares_i18n_ts_filelist})
 
     # Run the resource compiler (rcc_options should already be set)
     add_custom_command(
@@ -274,10 +277,10 @@ calamares_add_test(libcalamaresutilspathstest SOURCES utils/TestPaths.cpp)
 # This is not an actual test, it's a test / demo application
 # for experimenting with GeoIP.
 add_executable(test_geoip geoip/test_geoip.cpp ${geoip_src})
-target_link_libraries(test_geoip Calamares::calamares Qt5::Network yamlcpp::yamlcpp)
+target_link_libraries(test_geoip Calamares::calamares ${qtname}::Network yamlcpp::yamlcpp)
 calamares_automoc( test_geoip )
 
-if(Qt5DBus_FOUND)
+if(TARGET ${qtname}::DBus)
     add_executable(test_automount partition/calautomount.cpp)
-    target_link_libraries(test_automount Calamares::calamares Qt5::DBus)
+    target_link_libraries(test_automount Calamares::calamares ${qtname}::DBus)
 endif()

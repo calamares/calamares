@@ -17,6 +17,7 @@
 #include "Variant.h"
 
 #include "Logger.h"
+#include "compat/Variant.h"
 
 #include <QString>
 #include <QVariantMap>
@@ -29,7 +30,7 @@ getBool( const QVariantMap& map, const QString& key, bool d )
     if ( map.contains( key ) )
     {
         auto v = map.value( key );
-        if ( v.type() == QVariant::Bool )
+        if ( Calamares::typeOf( v ) == Calamares::BoolVariantType )
         {
             return v.toBool();
         }
@@ -43,7 +44,7 @@ getString( const QVariantMap& map, const QString& key, const QString& d )
     if ( map.contains( key ) )
     {
         auto v = map.value( key );
-        if ( v.type() == QVariant::String )
+        if ( Calamares::typeOf( v ) == Calamares::StringVariantType )
         {
             return v.toString();
         }
@@ -57,7 +58,7 @@ getStringList( const QVariantMap& map, const QString& key, const QStringList& d 
     if ( map.contains( key ) )
     {
         auto v = map.value( key );
-        if ( v.canConvert( QMetaType::QStringList ) )
+        if ( v.canConvert< QStringList >() )
         {
             return v.toStringList();
         }
@@ -71,7 +72,7 @@ getList( const QVariantMap& map, const QString& key, const QList< QVariant >& d 
     if ( map.contains( key ) )
     {
         auto v = map.value( key );
-        if ( v.canConvert( QVariant::List ) )
+        if ( v.canConvert< QVariantList >() )
         {
             return v.toList();
         }
@@ -107,11 +108,11 @@ getDouble( const QVariantMap& map, const QString& key, double d )
     if ( map.contains( key ) )
     {
         auto v = map.value( key );
-        if ( v.type() == QVariant::Int )
+        if ( Calamares::typeOf( v ) == Calamares::IntVariantType )
         {
             return v.toInt();
         }
-        else if ( v.type() == QVariant::Double )
+        else if ( Calamares::typeOf( v ) == Calamares::DoubleVariantType )
         {
             return v.toDouble();
         }
@@ -126,7 +127,7 @@ getSubMap( const QVariantMap& map, const QString& key, bool& success, const QVar
     if ( map.contains( key ) )
     {
         auto v = map.value( key );
-        if ( v.type() == QVariant::Map )
+        if ( Calamares::typeOf( v ) == Calamares::MapVariantType )
         {
             success = true;
             return v.toMap();

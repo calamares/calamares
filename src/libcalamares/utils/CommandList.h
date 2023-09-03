@@ -17,33 +17,35 @@
 #include <QVariant>
 
 #include <chrono>
+#include <utility>
 
 class KMacroExpanderBase;
 
 namespace CalamaresUtils
 {
+using CommandLineBase = std::pair< QString, std::chrono::seconds >;
 
 /**
  * Each command can have an associated timeout in seconds. The timeout
  * defaults to 10 seconds. Provide some convenience naming and construction.
  */
-struct CommandLine : public QPair< QString, std::chrono::seconds >
+struct CommandLine : public CommandLineBase
 {
     static inline constexpr std::chrono::seconds TimeoutNotSet() { return std::chrono::seconds( -1 ); }
 
     /// An invalid command line
     CommandLine()
-        : QPair( QString(), TimeoutNotSet() )
+        : CommandLineBase( QString(), TimeoutNotSet() )
     {
     }
 
     CommandLine( const QString& s )
-        : QPair( s, TimeoutNotSet() )
+        : CommandLineBase( s, TimeoutNotSet() )
     {
     }
 
     CommandLine( const QString& s, std::chrono::seconds t )
-        : QPair( s, t )
+        : CommandLineBase( s, t )
     {
     }
 

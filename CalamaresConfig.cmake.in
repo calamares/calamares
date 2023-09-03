@@ -46,11 +46,18 @@ macro(accumulate_deps outvar target namespace)
     endforeach()
 endmacro()
 
-# Qt5 infrastructure for translations is required
-set(qt5_required Core Widgets LinguistTools)
-accumulate_deps(qt5_required Calamares::calamares Qt5::)
-accumulate_deps(qt5_required Calamares::calamaresui Qt5::)
-find_package(Qt5 CONFIG REQUIRED ${qt5_required})
+set(Calamares_WITH_QT6 @WITH_QT6@)
+if(Calamares_WITH_QT6)
+    set(qtname "Qt6")
+else()
+    set(qtname "Qt5")
+endif()
+
+# Qt infrastructure for translations is required
+set(qt_required Core Widgets LinguistTools)
+accumulate_deps(qt_required Calamares::calamares ${qtname}::)
+accumulate_deps(qt_required Calamares::calamaresui ${qtname}::)
+find_package(${qtname} CONFIG REQUIRED ${qt_required})
 
 set(kf5_required "")
 accumulate_deps(kf5_required Calamares::calamares KF5::)

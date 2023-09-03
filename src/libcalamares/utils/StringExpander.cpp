@@ -11,6 +11,16 @@
 #include "StringExpander.h"
 #include "Logger.h"
 
+#if QT_VERSION >= QT_VERSION_CHECK( 6, 0, 0 )
+// TODO: Qt6
+KWordMacroExpander::~KWordMacroExpander() {};
+bool
+KWordMacroExpander::expandMacro( const QString& str, QStringList& ret )
+{
+    return false;
+}
+#endif
+
 namespace Calamares
 {
 namespace String

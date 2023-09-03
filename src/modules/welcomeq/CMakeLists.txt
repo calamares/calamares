@@ -17,7 +17,7 @@ set(_welcome ${CMAKE_CURRENT_SOURCE_DIR}/../welcome)
 include_directories(${_welcome})
 
 # DUPLICATED WITH WELCOME MODULE
-find_package(Qt5 ${QT_VERSION} CONFIG REQUIRED DBus Network)
+find_package(${qtname} ${QT_VERSION} CONFIG REQUIRED DBus Network)
 
 find_package(LIBPARTED)
 if(LIBPARTED_FOUND)
@@ -42,7 +42,7 @@ calamares_add_plugin(welcomeq
         welcomeq.qrc
     LINK_PRIVATE_LIBRARIES
         ${CHECKER_LINK_LIBRARIES}
-        Qt5::DBus
-        Qt5::Network
+        ${qtname}::DBus
+        ${qtname}::Network
     SHARED_LIB
 )

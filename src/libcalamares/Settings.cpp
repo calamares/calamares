@@ -14,6 +14,7 @@
 #include "Settings.h"
 
 #include "CalamaresConfig.h"
+#include "compat/Variant.h"
 #include "utils/Dirs.h"
 #include "utils/Logger.h"
 #include "utils/Yaml.h"
@@ -157,12 +158,12 @@ interpretInstances( const YAML::Node& node, Settings::InstanceDescriptionList& c
     if ( node )
     {
         QVariant instancesV = CalamaresUtils::yamlToVariant( node ).toList();
-        if ( instancesV.type() == QVariant::List )
+        if ( typeOf( instancesV ) == ListVariantType )
         {
             const auto instances = instancesV.toList();
             for ( const QVariant& instancesVListItem : instances )
             {
-                if ( instancesVListItem.type() != QVariant::Map )
+                if ( typeOf( instancesVListItem ) != MapVariantType )
                 {
                     continue;
                 }
@@ -185,7 +186,7 @@ interpretSequence( const YAML::Node& node, Settings::ModuleSequence& moduleSeque
     if ( node )
     {
         QVariant sequenceV = CalamaresUtils::yamlToVariant( node );
-        if ( !( sequenceV.type() == QVariant::List ) )
+        if ( typeOf( sequenceV ) != ListVariantType )
         {
             throw YAML::Exception( YAML::Mark(), "sequence key does not have a list-value" );
         }
@@ -193,7 +194,7 @@ interpretSequence( const YAML::Node& node, Settings::ModuleSequence& moduleSeque
         const auto sequence = sequenceV.toList();
         for ( const QVariant& sequenceVListItem : sequence )
         {
-            if ( sequenceVListItem.type() != QVariant::Map )
+            if ( typeOf( sequenceVListItem ) != MapVariantType )
             {
                 continue;
             }

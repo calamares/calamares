@@ -11,6 +11,7 @@
 #include "PythonHelper.h"
 
 #include "GlobalStorage.h"
+#include "compat/Variant.h"
 #include "utils/Dirs.h"
 #include "utils/Logger.h"
 
@@ -30,40 +31,55 @@ variantToPyObject( const QVariant& variant )
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wswitch-enum"
 #endif
+
+#if QT_VERSION < QT_VERSION_CHECK( 6, 0, 0 )
+    const auto HashVariantType = QVariant::Hash;
+    const auto IntVariantType = QVariant::Int;
+    const auto UIntVariantType = QVariant::UInt;
+#else
+    const auto HashVariantType = QMetaType::Type::QVariantHash;
+    const auto IntVariantType = QMetaType::Type::Int;
+    const auto UIntVariantType = QMetaType::Type::UInt;
+#endif
     // 49 enumeration values not handled
-    switch ( variant.type() )
+    switch ( Calamares::typeOf( variant ) )
     {
-    case QVariant::Map:
+    case Calamares::MapVariantType:
         return variantMapToPyDict( variant.toMap() );
 
-    case QVariant::Hash:
+    case HashVariantType:
         return variantHashToPyDict( variant.toHash() );
 
-    case QVariant::List:
-    case QVariant::StringList:
+    case Calamares::ListVariantType:
+    case Calamares::StringListVariantType:
         return variantListToPyList( variant.toList() );
 
-    case QVariant::Int:
+    case IntVariantType:
         return bp::object( variant.toInt() );
-    case QVariant::UInt:
+    case UIntVariantType:
         return bp::object( variant.toUInt() );
 
-    case QVariant::LongLong:
+    case Calamares::LongLongVariantType:
         return bp::object( variant.toLongLong() );
-    case QVariant::ULongLong:
+    case Calamares::ULongLongVariantType:
         return bp::object( variant.toULongLong() );
 
-    case QVariant::Double:
+    case Calamares::DoubleVariantType:
         return bp::object( variant.toDouble() );
 
-    case QVariant::Char:
-    case QVariant::String:
+    case Calamares::CharVariantType:
+#if QT_VERSION > QT_VERSION_CHECK( 6, 0, 0 )
+    case QMetaType::Type::QChar:
+#endif
+    case Calamares::StringVariantType:
         return bp::object( variant.toString().toStdString() );
 
-    case QVariant::Bool:
+    case Calamares::BoolVariantType:
         return bp::object( variant.toBool() );
 
+#if QT_VERSION < QT_VERSION_CHECK( 6, 0, 0 )
     case QVariant::Invalid:
+#endif
     default:
         return bp::object();
     }

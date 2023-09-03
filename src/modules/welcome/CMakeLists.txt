@@ -3,7 +3,7 @@
 #   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
 #   SPDX-License-Identifier: BSD-2-Clause
 #
-find_package(Qt5 ${QT_VERSION} CONFIG REQUIRED DBus Network)
+find_package(${qtname} ${QT_VERSION} CONFIG REQUIRED DBus Network)
 
 find_package(LIBPARTED)
 if(LIBPARTED_FOUND)
@@ -34,13 +34,13 @@ calamares_add_plugin(welcome
         welcome.qrc
     LINK_PRIVATE_LIBRARIES
         ${PARTMAN_LIB}
-        Qt5::DBus
-        Qt5::Network
+        ${qtname}::DBus
+        ${qtname}::Network
     SHARED_LIB
 )
 
 calamares_add_test(
     welcometest
     SOURCES checker/GeneralRequirements.cpp ${PARTMAN_SRC} Config.cpp Tests.cpp
-    LIBRARIES ${PARTMAN_LIB} Qt5::DBus Qt5::Network Qt5::Widgets Calamares::calamaresui
+    LIBRARIES ${PARTMAN_LIB} ${qtname}::DBus ${qtname}::Network ${qtname}::Widgets Calamares::calamaresui
 )

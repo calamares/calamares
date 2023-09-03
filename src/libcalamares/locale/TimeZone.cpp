@@ -15,6 +15,7 @@
 #include "utils/String.h"
 
 #include <QFile>
+#include <QRegularExpression>
 #include <QString>
 
 static const char TZ_DATA_FILE[] = "/usr/share/zoneinfo/zone.tab";
@@ -108,7 +109,7 @@ loadTZData( RegionVector& regions, ZoneVector& zones, QTextStream& in )
             continue;
         }
 
-        QStringList list = line.split( QRegExp( "[\t ]" ), SplitSkipEmptyParts );
+        QStringList list = line.split( QRegularExpression( "[\t ]" ), SplitSkipEmptyParts );
         if ( list.size() < 3 )
         {
             continue;
@@ -140,7 +141,7 @@ loadTZData( RegionVector& regions, ZoneVector& zones, QTextStream& in )
         }
 
         QString position = list.at( 1 );
-        int cooSplitPos = position.indexOf( QRegExp( "[-+]" ), 1 );
+        int cooSplitPos = position.indexOf( QRegularExpression( "[-+]" ), 1 );
         double latitude;
         double longitude;
         if ( cooSplitPos > 0 )

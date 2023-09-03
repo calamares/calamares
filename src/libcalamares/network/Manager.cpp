@@ -9,11 +9,11 @@
 
 #include "Manager.h"
 
+#include "compat/Mutex.h"
 #include "utils/Logger.h"
 
 #include <QEventLoop>
 #include <QMutex>
-#include <QMutexLocker>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>
@@ -84,7 +84,7 @@ namMutex()
 QNetworkAccessManager*
 Manager::Private::nam()
 {
-    QMutexLocker lock( namMutex() );
+    Calamares::MutexLocker lock( namMutex() );
 
     auto* thread = QThread::currentThread();
     for ( const auto& n : m_perThreadNams )
@@ -106,7 +106,7 @@ Manager::Private::nam()
 void
 Manager::Private::cleanupNam()
 {
-    QMutexLocker lock( namMutex() );
+    Calamares::MutexLocker lock( namMutex() );
 
     auto* thread = QThread::currentThread();
     bool cleanupFound = false;

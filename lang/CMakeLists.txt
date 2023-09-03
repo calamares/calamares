@@ -15,10 +15,10 @@
 
 include(CalamaresAddTranslations)
 
-find_package(Qt5 COMPONENTS Xml)
-if(Qt5Xml_FOUND)
+find_package(${qtname} COMPONENTS Xml)
+if(TARGET ${qtname}::Xml)
     add_executable(txload txload.cpp)
-    target_link_libraries(txload Qt5::Xml)
+    target_link_libraries(txload ${qtname}::Xml)
 endif()
 
 install_calamares_gettext_translations(python
@@ -50,7 +50,7 @@ set(CALAMARES_TRANSLATIONS_SOURCE ${trans_outfile})
 
 configure_file(${CMAKE_SOURCE_DIR}/lang/calamares_i18n.qrc.in ${trans_infile} @ONLY)
 
-qt5_add_translation(QM_FILES ${TS_FILES})
+qt_add_translation(QM_FILES ${TS_FILES})
 
 # Run the resource compiler (rcc_options should already be set)
 add_custom_command(

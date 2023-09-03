@@ -10,6 +10,7 @@
 
 #include "GeoIPJSON.h"
 
+#include "compat/Variant.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 #include "utils/Yaml.h"
@@ -64,7 +65,7 @@ GeoIPJSON::rawReply( const QByteArray& data )
         YAML::Node doc = YAML::Load( data );
 
         QVariant var = CalamaresUtils::yamlToVariant( doc );
-        if ( !var.isNull() && var.isValid() && var.type() == QVariant::Map )
+        if ( !var.isNull() && var.isValid() && Calamares::typeOf( var ) == Calamares::MapVariantType )
         {
             return selectMap( var.toMap(), m_element.split( '.' ), 0 );
         }
