@@ -27,7 +27,9 @@
 #include <QApplication>
 #include <QBoxLayout>
 #include <QCloseEvent>
+#if QT_VERSION < QT_VERSION_CHECK( 6, 0, 0 )
 #include <QDesktopWidget>
+#endif
 #include <QFile>
 #include <QFileInfo>
 #include <QLabel>
@@ -38,6 +40,16 @@
 #include <QQuickWidget>
 #endif
 #include <QTreeView>
+
+static QSize
+desktopSize( QWidget* w )
+{
+#if QT_VERSION < QT_VERSION_CHECK( 6, 0, 0 )
+    return qApp->desktop()->availableGeometry( w ).size();
+#else
+    return w->screen()->availableGeometry().size();
+#endif
+}
 
 static inline int
 windowDimensionToPixels( const Calamares::Branding::WindowDimension& u )
@@ -143,11 +155,9 @@ getWidgetSidebar( Calamares::DebugWindowManager* debug,
                                                              CalamaresUtils::Original,
                                                              2 * QSize( defaultFontHeight, defaultFontHeight ) ) );
         CALAMARES_RETRANSLATE_FOR(
-            aboutDialog,
-            aboutDialog->setText(
-                QCoreApplication::translate( "calamares-sidebar", "About" ) );
-            aboutDialog->setToolTip( QCoreApplication::translate( "calamares-sidebar",
-                                                                  "Show information about Calamares" ) ); );
+            aboutDialog, aboutDialog->setText( QCoreApplication::translate( "calamares-sidebar", "About" ) );
+            aboutDialog->setToolTip(
+                QCoreApplication::translate( "calamares-sidebar", "Show information about Calamares" ) ); );
         extraButtons->addWidget( aboutDialog );
         aboutDialog->setFlat( true );
         aboutDialog->setCheckable( true );
@@ -159,11 +169,10 @@ getWidgetSidebar( Calamares::DebugWindowManager* debug,
         debugWindowBtn->setObjectName( "debugButton" );
         debugWindowBtn->setIcon( CalamaresUtils::defaultPixmap(
             CalamaresUtils::Bugs, CalamaresUtils::Original, 2 * QSize( defaultFontHeight, defaultFontHeight ) ) );
-        CALAMARES_RETRANSLATE_FOR( debugWindowBtn,
-                                   debugWindowBtn->setText( QCoreApplication::translate(
-                                       "calamares-sidebar", "Debug" ) );
-                                   debugWindowBtn->setToolTip( QCoreApplication::translate(
-                                       "calamares-sidebar", "Show debug information" ) ); );
+        CALAMARES_RETRANSLATE_FOR(
+            debugWindowBtn, debugWindowBtn->setText( QCoreApplication::translate( "calamares-sidebar", "Debug" ) );
+            debugWindowBtn->setToolTip(
+                QCoreApplication::translate( "calamares-sidebar", "Show debug information" ) ); );
         extraButtons->addWidget( debugWindowBtn );
         debugWindowBtn->setFlat( true );
         debugWindowBtn->setCheckable( true );
@@ -409,7 +418,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     // Needs to match what's checked in DebugWindow
     this->setObjectName( "mainApp" );
 
-    QSize availableSize = qApp->desktop()->availableGeometry( this ).size();
+    QSize availableSize = desktopSize( this );
     QSize minimumSize( qBound( windowMinimumWidth, availableSize.width(), windowPreferredWidth ),
                        qBound( windowMinimumHeight, availableSize.height(), windowPreferredHeight ) );
     setMinimumSize( minimumSize );
@@ -507,7 +516,7 @@ void
 CalamaresWindow::ensureSize( QSize size )
 {
     auto mainGeometry = this->geometry();
-    QSize availableSize = qApp->desktop()->availableGeometry( this ).size();
+    QSize availableSize = desktopSize( this );
 
     // We only care about vertical sizes that are big enough
     int embiggenment = qMax( 0, size.height() - m_viewManager->centralWidget()->size().height() );

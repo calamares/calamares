@@ -30,7 +30,6 @@
 #include "utils/Retranslator.h"
 #include "viewpages/ViewStep.h"
 
-#include <QDesktopWidget>
 #include <QDir>
 #include <QFileInfo>
 #include <QScreen>

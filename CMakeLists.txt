@@ -169,6 +169,8 @@ if(WITH_QT6)
     set(QT_VERSION 6.5.0)
     # API that was deprecated before Qt 5.15 causes a compile error
     add_compile_definitions(QT_DISABLE_DEPRECATED_BEFORE=0x060400)
+
+    set(BUILD_KF5Crash OFF) # TODO: Qt6
 else()
     message(STATUS "Building Calamares with Qt5")
     set(qtname "Qt5")
