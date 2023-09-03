@@ -20,10 +20,8 @@ add_subdirectory(qml/calamares)
 # application
 add_subdirectory(calamares)
 
-if(NOT WITH_QT6) # TODO: Qt6
 # plugins
 add_subdirectory(modules)
 
 # branding components
 add_subdirectory(branding)
-endif()

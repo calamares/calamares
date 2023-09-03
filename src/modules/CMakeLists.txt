@@ -21,6 +21,10 @@ string(REPLACE " " ";" SKIP_LIST "${SKIP_MODULES}")
 file(GLOB SUBDIRECTORIES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*")
 list(SORT SUBDIRECTORIES)
 
+if(WITH_QT6) # TODO: Qt6
+set(SUBDIRECTORIES welcome welcomeq)
+endif()
+
 foreach(SUBDIRECTORY ${SUBDIRECTORIES})
     calamares_add_module_subdirectory( ${SUBDIRECTORY} LIST_SKIPPED_MODULES )
 endforeach()
