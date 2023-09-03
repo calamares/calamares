@@ -12,9 +12,10 @@
 
 #include "DllMacro.h"
 
-#include <QPair>
 #include <QString>
 #include <QUrl>
+
+#include <utility>
 
 class QByteArray;
 
@@ -22,6 +23,8 @@ namespace CalamaresUtils
 {
 namespace GeoIP
 {
+using RegionZonePairBase = std::pair< QString, QString >;
+
 /** @brief A Region, Zone pair of strings
  *
  * A GeoIP lookup returns a timezone, which is represented as a Region,
@@ -29,22 +32,22 @@ namespace GeoIP
  * pasting the strings back together with a "/" is the right thing to
  * do. The Zone **may** contain a "/" (e.g. "Kentucky/Monticello").
  */
-class DLLEXPORT RegionZonePair : public QPair< QString, QString >
+class DLLEXPORT RegionZonePair : public RegionZonePairBase
 {
 public:
     /** @brief Construct from an existing pair. */
-    explicit RegionZonePair( const QPair& p )
-        : QPair( p )
+    explicit RegionZonePair( const RegionZonePairBase& p )
+        : RegionZonePairBase( p )
     {
     }
     /** @brief Construct from two strings, like qMakePair(). */
     RegionZonePair( const QString& region, const QString& zone )
-        : QPair( region, zone )
+        : RegionZonePairBase( region, zone )
     {
     }
     /** @brief An invalid zone pair (empty strings). */
     RegionZonePair()
-        : QPair( QString(), QString() )
+        : RegionZonePairBase( QString(), QString() )
     {
     }
 
