@@ -12,6 +12,7 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "Settings.h"
+#include "compat/Variant.h"
 #include "modulesystem/InstanceKey.h"
 #include "utils/Logger.h"
 
@@ -55,7 +56,7 @@ TestLibCalamares::testGSModify()
     gs.insert( key, value );
     QCOMPARE( gs.count(), 1 );
     QVERIFY( gs.contains( key ) );
-    QCOMPARE( gs.value( key ).type(), QVariant::Int );
+    QCOMPARE( Calamares::typeOf( gs.value( key ) ), Calamares::IntVariantType );
     QCOMPARE( gs.value( key ).toString(), QString( "17" ) );  // It isn't a string, but does convert
     QCOMPARE( gs.value( key ).toInt(), value );
 
@@ -137,8 +138,8 @@ TestLibCalamares::testGSLoadSave2()
     QVERIFY( gs1.loadYaml( filename ) );
     QCOMPARE( gs1.count(), 3 );  // From examining the file
     QVERIFY( gs1.contains( key ) );
-    cDebug() << gs1.value( key ).type() << gs1.value( key );
-    QCOMPARE( gs1.value( key ).type(), QVariant::List );
+    cDebug() << Calamares::typeOf( gs1.value( key ) ) << gs1.value( key );
+    QCOMPARE( Calamares::typeOf( gs1.value( key ) ), Calamares::ListVariantType );
 
     const QString yamlfilename( "gs.test.yaml" );
     QVERIFY( gs1.saveYaml( yamlfilename ) );
@@ -146,7 +147,7 @@ TestLibCalamares::testGSLoadSave2()
     Calamares::GlobalStorage gs2;
     QVERIFY( gs2.loadYaml( yamlfilename ) );
     QVERIFY( gs2.contains( key ) );
-    QCOMPARE( gs2.value( key ).type(), QVariant::List );
+    QCOMPARE( Calamares::typeOf( gs2.value( key ) ), Calamares::ListVariantType );
 }
 
 void
