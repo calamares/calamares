@@ -13,6 +13,7 @@ include(CalamaresAddTranslations)
 # library
 add_subdirectory(libcalamares)
 
+if(NOT WITH_QT6) # TODO: Qt6
 add_subdirectory(libcalamaresui)
 
 # all things qml
@@ -26,3 +27,4 @@ add_subdirectory(modules)
 
 # branding components
 add_subdirectory(branding)
+endif()

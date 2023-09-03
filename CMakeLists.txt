@@ -453,7 +453,9 @@ endif()
 set(CALAMARES_TRANSLATION_LANGUAGES en ${_tx_complete} ${_tx_good} ${_tx_ok})
 list(SORT CALAMARES_TRANSLATION_LANGUAGES)
 
+if(NOT WITH_QT6) # TODO: Qt6
 add_subdirectory(lang) # i18n tools
+endif()
 
 ### Example Distro
 #
@@ -638,7 +640,9 @@ endif()
 
 ### CMAKE SUMMARY REPORT
 #
+if(NOT WITH_QT6) # TODO: Qt6
 get_directory_property(SKIPPED_MODULES DIRECTORY src/modules DEFINITION LIST_SKIPPED_MODULES)
+endif()
 calamares_explain_skipped_modules( ${SKIPPED_MODULES} )
 
 feature_summary(WHAT DISABLED_FEATURES DESCRIPTION "The following features have been disabled:" QUIET_ON_EMPTY)
