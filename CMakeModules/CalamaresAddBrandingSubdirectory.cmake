@@ -101,7 +101,7 @@ function( calamares_add_branding_translations NAME )
 
     file( GLOB BRANDING_TRANSLATION_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "${SUBDIRECTORY}/lang/calamares-${NAME}_*.ts" )
     if ( BRANDING_TRANSLATION_FILES )
-        qt5_add_translation( QM_FILES ${BRANDING_TRANSLATION_FILES} )
+        qt_add_translation( QM_FILES ${BRANDING_TRANSLATION_FILES} )
         add_custom_target( branding-translation-${NAME} ALL DEPENDS ${QM_FILES}
             COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_BINARY_DIR}/${SUBDIRECTORY}/lang/
             COMMAND ${CMAKE_COMMAND} -E copy ${QM_FILES} ${CMAKE_CURRENT_BINARY_DIR}/${SUBDIRECTORY}/lang/

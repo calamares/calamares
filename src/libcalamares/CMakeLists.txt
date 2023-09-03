@@ -222,7 +222,7 @@ function(calamares_qrc_translations basename)
     endforeach()
 
     configure_file(${CMAKE_SOURCE_DIR}/lang/calamares_i18n.qrc.in ${translations_qrc_infile} @ONLY)
-    qt5_add_translation(QM_FILES ${calamares_i18n_ts_filelist})
+    qt_add_translation(QM_FILES ${calamares_i18n_ts_filelist})
 
     # Run the resource compiler (rcc_options should already be set)
     add_custom_command(

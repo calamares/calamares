@@ -453,9 +453,7 @@ endif()
 set(CALAMARES_TRANSLATION_LANGUAGES en ${_tx_complete} ${_tx_good} ${_tx_ok})
 list(SORT CALAMARES_TRANSLATION_LANGUAGES)
 
-if(NOT WITH_QT6) # TODO: Qt6
 add_subdirectory(lang) # i18n tools
-endif()
 
 ### Example Distro
 #
