@@ -13,10 +13,10 @@
 #include "CalamaresConfig.h"
 #include "GlobalStorage.h"
 #include "Job.h"
+#include "compat/Mutex.h"
 #include "utils/Logger.h"
 
 #include <QMutex>
-#include <QMutexLocker>
 #include <QThread>
 
 #include <memory>
@@ -61,8 +61,8 @@ public:
     void finalize()
     {
         Q_ASSERT( m_runningJobs->isEmpty() );
-        QMutexLocker qlock( &m_enqueMutex );
-        QMutexLocker rlock( &m_runMutex );
+        Calamares::MutexLocker qlock( &m_enqueMutex );
+        Calamares::MutexLocker rlock( &m_runMutex );
         std::swap( m_runningJobs, m_queuedJobs );
         m_overallQueueWeight
             = m_runningJobs->isEmpty() ? 0.0 : ( m_runningJobs->last().cumulative + m_runningJobs->last().weight );
@@ -83,7 +83,7 @@ public:
 
     void enqueue( int moduleWeight, const JobList& jobs )
     {
-        QMutexLocker qlock( &m_enqueMutex );
+        Calamares::MutexLocker qlock( &m_enqueMutex );
 
         qreal cumulative
             = m_queuedJobs->isEmpty() ? 0.0 : ( m_queuedJobs->last().cumulative + m_queuedJobs->last().weight );
@@ -108,7 +108,7 @@ public:
 
     void run() override
     {
-        QMutexLocker rlock( &m_runMutex );
+        Calamares::MutexLocker rlock( &m_runMutex );
         bool failureEncountered = false;
         QString message;  ///< Filled in with errors
         QString details;
@@ -159,7 +159,7 @@ public:
      */
     QStringList queuedJobs() const
     {
-        QMutexLocker qlock( &m_enqueMutex );
+        Calamares::MutexLocker qlock( &m_enqueMutex );
         QStringList l;
         l.reserve( m_queuedJobs->count() );
         for ( const auto& j : *m_queuedJobs )

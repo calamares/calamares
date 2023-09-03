@@ -11,33 +11,34 @@
 
 #include "GlobalStorage.h"
 
+#include "compat/Mutex.h"
+
 #include "utils/Logger.h"
 #include "utils/Units.h"
 #include "utils/Yaml.h"
 
 #include <QFile>
 #include <QJsonDocument>
-#include <QMutexLocker>
 
 using namespace CalamaresUtils::Units;
 
 namespace Calamares
 {
 
-class GlobalStorage::ReadLock : public QMutexLocker
+class GlobalStorage::ReadLock : public MutexLocker
 {
 public:
     ReadLock( const GlobalStorage* gs )
-        : QMutexLocker( &gs->m_mutex )
+        : MutexLocker( &gs->m_mutex )
     {
     }
 };
 
-class GlobalStorage::WriteLock : public QMutexLocker
+class GlobalStorage::WriteLock : public MutexLocker
 {
 public:
     WriteLock( GlobalStorage* gs )
-        : QMutexLocker( &gs->m_mutex )
+        : MutexLocker( &gs->m_mutex )
         , m_gs( gs )
     {
     }

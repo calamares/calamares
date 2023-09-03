@@ -10,6 +10,7 @@
 
 #include "RequirementsModel.h"
 
+#include "compat/Mutex.h"
 #include "utils/Logger.h"
 
 namespace Calamares
@@ -18,7 +19,7 @@ namespace Calamares
 void
 RequirementsModel::clear()
 {
-    QMutexLocker l( &m_addLock );
+    Calamares::MutexLocker l( &m_addLock );
     beginResetModel();
     m_requirements.clear();
     endResetModel();
@@ -28,7 +29,7 @@ RequirementsModel::clear()
 void
 RequirementsModel::addRequirementsList( const Calamares::RequirementsList& requirements )
 {
-    QMutexLocker l( &m_addLock );
+    Calamares::MutexLocker l( &m_addLock );
 
     beginResetModel();
     for ( const auto& r : requirements )

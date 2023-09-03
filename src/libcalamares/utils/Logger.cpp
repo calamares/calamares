@@ -14,6 +14,7 @@
 #include "Logger.h"
 
 #include "CalamaresVersionX.h"
+#include "compat/Mutex.h"
 #include "utils/Dirs.h"
 
 #include <QCoreApplication>
@@ -84,7 +85,7 @@ log_enabled( unsigned int level )
 static void
 log_implementation( const char* msg, unsigned int debugLevel, const bool withTime )
 {
-    QMutexLocker lock( &s_mutex );
+    Calamares::MutexLocker lock( &s_mutex );
 
     const auto date = QDate::currentDate().toString( Qt::ISODate );
     const auto time = QTime::currentTime().toString();
@@ -173,7 +174,7 @@ setupLogfile()
 
     // Lock while (re-)opening the logfile
     {
-        QMutexLocker lock( &s_mutex );
+        Calamares::MutexLocker lock( &s_mutex );
         logfile.open( logFile().toLocal8Bit(), std::ios::app );
         if ( logfile.tellp() )
         {

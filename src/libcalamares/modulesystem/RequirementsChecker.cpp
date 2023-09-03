@@ -10,6 +10,7 @@
 
 #include "RequirementsChecker.h"
 
+#include "compat/Mutex.h"
 #include "modulesystem/Module.h"
 #include "modulesystem/Requirement.h"
 #include "modulesystem/RequirementsModel.h"
@@ -61,7 +62,7 @@ void
 RequirementsChecker::finished()
 {
     static QMutex finishedMutex;
-    QMutexLocker lock( &finishedMutex );
+    Calamares::MutexLocker lock( &finishedMutex );
 
     if ( m_progressTimer
          && std::all_of(
