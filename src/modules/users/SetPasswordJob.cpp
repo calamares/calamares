@@ -83,10 +83,10 @@ SetPasswordJob::exec()
 
     if ( m_userName == "root" && m_newPassword.isEmpty() )  //special case for disabling root account
     {
-        int ec = CalamaresUtils::System::instance()->targetEnvCall( { "passwd", "-dl", m_userName } );
+        int ec = CalamaresUtils::System::instance()->targetEnvCall( { "usermod", "-p", "!", m_userName } );
         if ( ec )
             return Calamares::JobResult::error( tr( "Cannot disable root account." ),
-                                                tr( "passwd terminated with error code %1." ).arg( ec ) );
+                                                tr( "usermod terminated with error code %1." ).arg( ec ) );
         return Calamares::JobResult::ok();
     }
 
