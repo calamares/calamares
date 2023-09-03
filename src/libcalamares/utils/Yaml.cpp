@@ -12,6 +12,7 @@
  */
 #include "Yaml.h"
 
+#include "compat/Variant.h"
 #include "utils/Logger.h"
 
 #include <QByteArray>
@@ -204,7 +205,8 @@ loadYaml( const QString& filename, bool* ok )
     }
 
 
-    if ( yamlContents.isValid() && !yamlContents.isNull() && yamlContents.type() == QVariant::Map )
+    if ( yamlContents.isValid() && !yamlContents.isNull()
+         && Calamares::typeOf( yamlContents ) == Calamares::MapVariantType )
     {
         if ( ok )
         {
@@ -237,35 +239,36 @@ static const char newline[] = "\n";
 static void
 dumpYamlElement( QFile& f, const QVariant& value, int indent )
 {
-    if ( value.type() == QVariant::Type::Bool )
+    const auto t = Calamares::typeOf( value );
+    if ( t == Calamares::BoolVariantType )
     {
         f.write( value.toBool() ? "true" : "false" );
     }
-    else if ( value.type() == QVariant::Type::String )
+    else if ( t == Calamares::StringVariantType )
     {
         f.write( quote );
         f.write( value.toString().toUtf8() );
         f.write( quote );
     }
-    else if ( value.type() == QVariant::Type::Int )
+    else if ( t == Calamares::IntVariantType )
     {
         f.write( QString::number( value.toInt() ).toUtf8() );
     }
-    else if ( value.type() == QVariant::Type::LongLong )
+    else if ( t == Calamares::LongLongVariantType )
     {
         f.write( QString::number( value.toLongLong() ).toUtf8() );
     }
-    else if ( value.type() == QVariant::Type::Double )
+    else if ( t == Calamares::DoubleVariantType )
     {
         f.write( QString::number( value.toDouble(), 'f', 2 ).toUtf8() );
     }
-    else if ( value.canConvert( QVariant::Type::ULongLong ) )
+    else if ( value.canConvert< qulonglong >() )
     {
         // This one needs to be *after* bool, int, double to avoid this branch
         // .. grabbing those convertible types un-necessarily.
         f.write( QString::number( value.toULongLong() ).toUtf8() );
     }
-    else if ( value.type() == QVariant::Type::List )
+    else if ( t == Calamares::ListVariantType )
     {
         int c = 0;
         for ( const auto& it : value.toList() )
@@ -281,7 +284,7 @@ dumpYamlElement( QFile& f, const QVariant& value, int indent )
             f.write( "[]" );
         }
     }
-    else if ( value.type() == QVariant::Type::Map )
+    else if ( t == Calamares::MapVariantType )
     {
         f.write( newline );
         dumpYaml( f, value.toMap(), indent + 1 );

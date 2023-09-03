@@ -15,6 +15,7 @@
 
 #include "CalamaresVersionX.h"
 #include "compat/Mutex.h"
+#include "compat/Variant.h"
 #include "utils/Dirs.h"
 
 #include <QCoreApplication>
@@ -228,9 +229,9 @@ const constexpr Quote_t Quote {};
 QString
 toString( const QVariant& v )
 {
-    auto t = v.type();
+    auto t = Calamares::typeOf( v );
 
-    if ( t == QVariant::List )
+    if ( t == Calamares::ListVariantType )
     {
         QStringList s;
         auto l = v.toList();

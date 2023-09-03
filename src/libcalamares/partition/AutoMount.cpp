@@ -8,6 +8,7 @@
 
 #include "AutoMount.h"
 
+#include "compat/Variant.h"
 #include "utils/Logger.h"
 
 #include <QtDBus>
@@ -114,7 +115,7 @@ querySolidAutoMount( QDBusConnection& dbus, AutoMountInfo& info )
         if ( arg.length() == 1 )
         {
             auto v = arg.at( 0 );
-            if ( v.isValid() && v.type() == QVariant::Bool )
+            if ( v.isValid() && Calamares::typeOf( v ) == Calamares::BoolVariantType )
             {
                 result = v.toBool();
             }
