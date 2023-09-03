@@ -603,26 +603,27 @@ LibCalamaresTests::testStringTruncation()
     Logger::setupLogLevel( Logger::LOGDEBUG );
 
     using namespace Calamares::String;
-
+    // *INDENT-OFF*
     const QString longString( R"(---
-                              --- src/libcalamares/utils/String.h
-                              +++ src/libcalamares/utils/String.h
-                              @@ -62,15 +62,22 @@ DLLEXPORT QString removeDiacritics( const QString& string );
-                              */
-                              DLLEXPORT QString obscure( const QString& string );
+--- src/libcalamares/utils/String.h
++++ src/libcalamares/utils/String.h
+@@ -62,15 +62,22 @@ DLLEXPORT QString removeDiacritics( const QString& string );
+*/
+DLLEXPORT QString obscure( const QString& string );
 
-                              +/** @brief Parameter for counting lines at beginning and end of string
++/** @brief Parameter for counting lines at beginning and end of string
 + *
 + * This is used by truncateMultiLine() to indicate how many lines from
 + * the beginning and how many from the end should be kept.
 + */
-                              struct LinesStartEnd
-                              {
-                                  -    int atStart;
-                                  -    int atEnd;
-                                  +    int atStart = 0;
-                                  +    int atEnd = 0;
-                              )" );
+ struct LinesStartEnd
+ {
+-    int atStart;
+-    int atEnd;
++    int atStart = 0;
++    int atEnd = 0;
+)" );
+    // *INDENT-ON*
 
     const int sufficientLength = 812;
     // There's 18 lines in all
@@ -685,9 +686,13 @@ LibCalamaresTests::testStringTruncationShorter()
 
     using namespace Calamares::String;
 
+
+    // *INDENT-OFF*
     const QString longString( R"(Some strange string artifacts appeared, leading to `{1?}` being
-                                  displayed in various user-facing messages. These have been removed
-                                  and the translations updated.)" );
+displayed in various user-facing messages. These have been removed
+and the translations updated.)" );
+    // *INDENT-ON*
+
     const char NEWLINE = '\n';
 
     const int insufficientLength = 42;
