@@ -47,7 +47,7 @@ calamares_add_library(calamaresui
     SOURCES ${calamaresui_SOURCES}
     EXPORT_MACRO UIDLLEXPORT_PRO
     LINK_LIBRARIES
-        Qt5::Svg
+        ${qtname}::Svg
     RESOURCES libcalamaresui.qrc
     EXPORT Calamares
     UI
@@ -56,12 +56,14 @@ calamares_add_library(calamaresui
     SOVERSION ${CALAMARES_SOVERSION}
 )
 target_link_libraries(calamaresui PRIVATE yamlcpp::yamlcpp)
+if(NOT WITH_QT6) # TODO: Qt6
 if(KF5CoreAddons_FOUND AND KF5CoreAddons_VERSION VERSION_GREATER_EQUAL 5.58)
     target_compile_definitions(calamaresui PRIVATE WITH_KOSRelease)
     target_link_libraries(calamaresui PRIVATE KF5::CoreAddons)
 endif()
+endif()
 if(WITH_QML)
-    target_link_libraries(calamaresui PUBLIC Qt5::QuickWidgets)
+    target_link_libraries(calamaresui PUBLIC ${qtname}::QuickWidgets)
 endif()
 
 add_library(Calamares::calamaresui ALIAS calamaresui)

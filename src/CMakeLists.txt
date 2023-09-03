@@ -12,10 +12,9 @@ include(CalamaresAddTranslations)
 
 # library
 add_subdirectory(libcalamares)
-
-if(NOT WITH_QT6) # TODO: Qt6
 add_subdirectory(libcalamaresui)
 
+if(NOT WITH_QT6) # TODO: Qt6
 # all things qml
 add_subdirectory(qml/calamares)
 
