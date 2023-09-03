@@ -19,7 +19,14 @@
 // From 3rdparty/
 #include "kdsingleapplication.h"
 
+#if QT_VERSION >= QT_VERSION_CHECK( 6, 0, 0 )
+// TODO: Qt6
+// Ignore KAboutData
+#define HAVE_KABOUTDATA 0
+#else
 #include <KCoreAddons/KAboutData>
+#define HAVE_KABOUTDATA 1
+#endif
 #ifdef BUILD_KF5Crash
 #include <KCrash/KCrash>
 #endif
@@ -107,9 +114,13 @@ handle_args( CalamaresApplication& a )
 int
 main( int argc, char* argv[] )
 {
-    QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+#if QT_VERSION < QT_VERSION_CHECK( 6, 0, 0 )
+    // Not needed in Qt6
+    QApplication::setAttribute( Qt::AA_EnableHighDpiScaling );
+#endif
     CalamaresApplication a( argc, argv );
 
+#if HAVE_KABOUTDATA
     KAboutData aboutData( "calamares",
                           "Calamares",
                           a.applicationVersion(),
@@ -120,6 +131,7 @@ main( int argc, char* argv[] )
                           "https://calamares.io",
                           "https://github.com/calamares/calamares/issues" );
     KAboutData::setApplicationData( aboutData );
+#endif
     a.setApplicationDisplayName( QString() );  // To avoid putting an extra "Calamares/" into the log-file
 
 #ifdef BUILD_KF5Crash
