@@ -19,7 +19,8 @@
 #
 #   SKIP_MODULES    : a space or semicolon-separated list of directory names
 #                     under src/modules that should not be built.
-#   USE_<foo>       : fills in SKIP_MODULES for modules called <foo>-<something>
+#   USE_<foo>       : fills in SKIP_MODULES for modules called <foo>-<something>.
+#   WITH_QT6        : use Qt6, rather than Qt5 (default to OFF).
 #   WITH_<foo>      : try to enable <foo> (these usually default to ON). For
 #                     a list of WITH_<foo> grep CMakeCache.txt after running
 #                     CMake once. These affect the ABI offered by Calamares.
@@ -32,14 +33,14 @@
 #                       - TESTING (standard CMake option)
 #                       - SCHEMA_TESTING (requires Python, see ci/configvalidator.py)
 #                       - KF5Crash (uses KCrash, rather than Calamares internal, for crash reporting)
-#   DEBUG_<foo>     : special developer flags for debugging
+#   DEBUG_<foo>     : special developer flags for debugging.
 #
 # Example usage:
 #
 #   cmake . -DSKIP_MODULES="partition luksbootkeycfg"
 #
-# One special target is "show-version", which can be built
-# to obtain the version number from here.
+# To obtain the version number of calamares, run CMake in script mode, e.g.
+#   cmake -P CMakeLists.txt
 
 cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
 
@@ -79,6 +80,7 @@ option(INSTALL_COMPLETION "Install shell completions" OFF)
 # also update libcalamares/CalamaresConfig.h.in
 option(WITH_PYTHON "Enable Python modules API (requires Boost.Python)." ON)
 option(WITH_QML "Enable QML UI options." ON)
+option(WITH_QT6 "Use Qt6 instead of Qt5" OFF)
 #
 # Additional parts to build that do not affect ABI
 option(BUILD_SCHEMA_TESTING "Enable schema-validation-tests" ON)
@@ -161,11 +163,24 @@ set( _tx_incomplete eo es_PR gu ie ja-Hira kk kn lo lv mk ne_NP
 ### Required versions
 #
 # See DEPENDENCIES section below.
-set(QT_VERSION 5.15.0)
-set(YAMLCPP_VERSION 0.5.1)
-set(ECM_VERSION 5.58)
-set(PYTHONLIBS_VERSION 3.6)
+if(WITH_QT6)
+    message(STATUS "Building Calamares with Qt6")
+    set(qtname "Qt6")
+    set(QT_VERSION 6.5.0)
+    # API that was deprecated before Qt 5.15 causes a compile error
+    add_compile_definitions(QT_DISABLE_DEPRECATED_BEFORE=0x060400)
+else()
+    message(STATUS "Building Calamares with Qt5")
+    set(qtname "Qt5")
+    set(QT_VERSION 5.15.0)
+    # API that was deprecated before Qt 5.15 causes a compile error
+    add_compile_definitions(QT_DISABLE_DEPRECATED_BEFORE=0x050f00)
+endif()
+
 set(BOOSTPYTHON_VERSION 1.72.0)
+set(ECM_VERSION 5.100)
+set(PYTHONLIBS_VERSION 3.6)
+set(YAMLCPP_VERSION 0.5.1)
 
 ### CMAKE SETUP
 #
@@ -287,30 +302,27 @@ if(CMAKE_COMPILER_IS_GNUCXX)
     endif()
 endif()
 
-# API that was deprecated before Qt 5.15 causes a compile error
-add_compile_definitions(QT_DISABLE_DEPRECATED_BEFORE=0x050f00)
-
 ### DEPENDENCIES
 #
-find_package(Qt5 ${QT_VERSION} CONFIG REQUIRED Concurrent Core DBus Gui LinguistTools Network Svg Widgets)
+find_package(${qtname} ${QT_VERSION} CONFIG REQUIRED Concurrent Core DBus Gui LinguistTools Network Svg Widgets)
 if(WITH_QML)
-    find_package(Qt5 ${QT_VERSION} CONFIG REQUIRED Quick QuickWidgets)
+    find_package(${qtname} ${QT_VERSION} CONFIG REQUIRED Quick QuickWidgets)
 endif()
 # Note that some modules need more Qt modules, optionally.
 
 find_package(YAMLCPP ${YAMLCPP_VERSION} REQUIRED)
 if(INSTALL_POLKIT)
-    find_package(PolkitQt5-1 REQUIRED)
+    find_package(Polkit${qtname}-1 REQUIRED)
 else()
     # Find it anyway, for dependencies-reporting
-    find_package(PolkitQt5-1)
+    find_package(Polkit${qtname}-1)
 endif()
 set_package_properties(
-    PolkitQt5-1
+    Polkit${qtname}-1
     PROPERTIES
-    DESCRIPTION "Qt5 support for Polkit"
+    DESCRIPTION "${qtname} support for Polkit"
     URL "https://cgit.kde.org/polkit-qt-1.git"
-    PURPOSE "PolkitQt5-1 helps with installing Polkit configuration"
+    PURPOSE "Polkit${qtname}-1 helps with installing Polkit configuration"
 )
 
 # Find ECM once, and add it to the module search path; Calamares
@@ -322,7 +334,7 @@ if(ECM_FOUND)
     set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
     if(BUILD_TESTING)
         # ECM implies that we can build the tests, too
-        find_package(Qt5 COMPONENTS Test REQUIRED)
+        find_package(${qtname} COMPONENTS Test REQUIRED)
         include(ECMAddTests)
     endif()
     include(KDEInstallDirs)
