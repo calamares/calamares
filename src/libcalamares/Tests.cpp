@@ -396,6 +396,7 @@ TestLibCalamares::testSettings()
         QVERIFY( s.brandingComponentName().isEmpty() );
         QVERIFY( !s.isValid() );
 
+        // *INDENT-OFF*
         s.setConfiguration( R"(---
 branding: default  # needed for it to be considered valid
 instances:
@@ -415,6 +416,7 @@ sequence:
         - welcome@hi
 )",
                             QStringLiteral( "<testdata>" ) );
+        // *INDENT-ON*
 
         QVERIFY( s.debugMode() );
         QCOMPARE( s.moduleInstances().count(), 4 );  // there are 4 module instances mentioned
