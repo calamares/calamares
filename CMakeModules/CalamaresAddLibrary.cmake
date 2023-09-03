@@ -86,9 +86,9 @@ function(calamares_add_library)
     # add link targets
     target_link_libraries(${target}
         LINK_PUBLIC ${Calamares_LIBRARIES}
-        Qt5::Core
-        Qt5::Gui
-        Qt5::Widgets
+        ${qtname}::Core
+        ${qtname}::Gui
+        ${qtname}::Widgets
     )
     if(LIBRARY_LINK_LIBRARIES)
         target_link_libraries(${target} LINK_PUBLIC ${LIBRARY_LINK_LIBRARIES})
