@@ -22,7 +22,7 @@ file(GLOB SUBDIRECTORIES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*")
 list(SORT SUBDIRECTORIES)
 
 if(WITH_QT6) # TODO: Qt6
-set(SUBDIRECTORIES welcome welcomeq)
+set(SUBDIRECTORIES finished finishedq welcome welcomeq)
 endif()
 
 foreach(SUBDIRECTORY ${SUBDIRECTORIES})
