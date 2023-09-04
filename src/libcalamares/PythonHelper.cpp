@@ -33,11 +33,9 @@ variantToPyObject( const QVariant& variant )
 #endif
 
 #if QT_VERSION < QT_VERSION_CHECK( 6, 0, 0 )
-    const auto HashVariantType = QVariant::Hash;
     const auto IntVariantType = QVariant::Int;
     const auto UIntVariantType = QVariant::UInt;
 #else
-    const auto HashVariantType = QMetaType::Type::QVariantHash;
     const auto IntVariantType = QMetaType::Type::Int;
     const auto UIntVariantType = QMetaType::Type::UInt;
 #endif
@@ -47,7 +45,7 @@ variantToPyObject( const QVariant& variant )
     case Calamares::MapVariantType:
         return variantMapToPyDict( variant.toMap() );
 
-    case HashVariantType:
+    case Calamares::HashVariantType:
         return variantHashToPyDict( variant.toHash() );
 
     case Calamares::ListVariantType:
