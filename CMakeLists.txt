@@ -32,7 +32,7 @@
 #   BUILD_<foo>     : choose additional things to build
 #                       - TESTING (standard CMake option)
 #                       - SCHEMA_TESTING (requires Python, see ci/configvalidator.py)
-#                       - KF5Crash (uses KCrash, rather than Calamares internal, for crash reporting)
+#                       - BUILD_CRASH_REPORTING (uses KCrash, rather than Calamares internal, for crash reporting)
 #   DEBUG_<foo>     : special developer flags for debugging.
 #
 # Example usage:
@@ -85,7 +85,7 @@ option(WITH_QT6 "Use Qt6 instead of Qt5" OFF)
 # Additional parts to build that do not affect ABI
 option(BUILD_SCHEMA_TESTING "Enable schema-validation-tests" ON)
 # Options for the calamares executable
-option(BUILD_KF5Crash "Enable crash reporting with KCrash." ON)
+option(BUILD_CRASH_REPORTING "Enable crash reporting with KCrash." ON)
 
 # Possible debugging flags are:
 #  - DEBUG_TIMEZONES draws latitude and longitude lines on the timezone
@@ -166,21 +166,24 @@ set( _tx_incomplete eo es_PR gu ie ja-Hira kk kn lo lv mk ne_NP
 if(WITH_QT6)
     message(STATUS "Building Calamares with Qt6")
     set(qtname "Qt6")
+    set(kfname "KF5")
     set(QT_VERSION 6.5.0)
+    set(ECM_VERSION 5.240)
+    set(KF_VERSION 5.103) # KDE Neon weirdness
     # API that was deprecated before Qt 5.15 causes a compile error
     add_compile_definitions(QT_DISABLE_DEPRECATED_BEFORE=0x060400)
-
-    set(BUILD_KF5Crash OFF) # TODO: Qt6
 else()
     message(STATUS "Building Calamares with Qt5")
     set(qtname "Qt5")
+    set(kfname "KF5")
     set(QT_VERSION 5.15.0)
+    set(ECM_VERSION 5.100)
+    set(KF_VERSION 5.100)
     # API that was deprecated before Qt 5.15 causes a compile error
     add_compile_definitions(QT_DISABLE_DEPRECATED_BEFORE=0x050f00)
 endif()
 
 set(BOOSTPYTHON_VERSION 1.72.0)
-set(ECM_VERSION 5.100)
 set(PYTHONLIBS_VERSION 3.6)
 set(YAMLCPP_VERSION 0.5.1)
 
@@ -333,6 +336,7 @@ set_package_properties(
 # no need to mess with the module path after.
 find_package(ECM ${ECM_VERSION} NO_MODULE)
 if(ECM_FOUND)
+    message(STATUS "Found KDE ECM ${ECM_MODULE_PATH}")
     set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
     if(BUILD_TESTING)
         # ECM implies that we can build the tests, too
@@ -342,20 +346,39 @@ if(ECM_FOUND)
     include(KDEInstallDirs)
 endif()
 
-find_package(KF5 ${ECM_VERSION} QUIET COMPONENTS CoreAddons Crash)
+find_package(${kfname} ${KF_VERSION} QUIET COMPONENTS CoreAddons)
 set_package_properties(
-    KF5::CoreAddons
+    ${kfname}
     PROPERTIES
     TYPE REQUIRED
-    DESCRIPTION "Classes built on QtCore for About Data"
+    DESCRIPTION "KDE Frameworks (CoreAddons)"
     URL "https://api.kde.org/frameworks/kcoreaddons/"
     PURPOSE "About Calamares"
 )
-if(NOT KF5Crash_FOUND)
-    if(BUILD_KF5Crash)
-        message(WARNING "BUILD_KF5Crash is set, but KF5::Crash is not available.")
+
+feature_summary(
+    WHAT REQUIRED_PACKAGES_NOT_FOUND
+    FATAL_ON_MISSING_REQUIRED_PACKAGES
+    DESCRIPTION "The following REQUIRED packages were not found:"
+    QUIET_ON_EMPTY
+)
+
+#
+# OPTIONAL DEPENDENCIES
+#
+# First, set KF back to optional so that any missing components don't trip us up.
+set_package_properties(
+    ${kfname}
+    PROPERTIES
+    TYPE OPTIONAL
+)
+find_package(${kfname} ${KF_VERSION} QUIET COMPONENTS CoreAddons Crash)
+
+if(NOT TARGET ${kfname}::Crash)
+    if(BUILD_CRASH_REPORTING)
+        message(WARNING "BUILD_CRASH_REPORTING is set, but ${kfname}::Crash is not available.")
     endif()
-    set(BUILD_KF5Crash OFF)
+    set(BUILD_CRASH_REPORTING OFF)
 endif()
 
 find_package(Python ${PYTHONLIBS_VERSION} COMPONENTS Interpreter Development)
@@ -556,7 +579,7 @@ add_subdirectory(src)
 add_feature_info(Python ${WITH_PYTHON} "Python job modules")
 add_feature_info(Qml ${WITH_QML} "QML UI support")
 add_feature_info(Polkit ${INSTALL_POLKIT} "Install Polkit files")
-add_feature_info(KCrash ${BUILD_KF5Crash} "Crash dumps via KCrash")
+add_feature_info(KCrash ${BUILD_CRASH_REPORTING} "Crash dumps via KCrash")
 
 ### CMake infrastructure installation
 #
@@ -640,9 +663,7 @@ endif()
 
 ### CMAKE SUMMARY REPORT
 #
-if(NOT WITH_QT6) # TODO: Qt6
 get_directory_property(SKIPPED_MODULES DIRECTORY src/modules DEFINITION LIST_SKIPPED_MODULES)
-endif()
 calamares_explain_skipped_modules( ${SKIPPED_MODULES} )
 
 feature_summary(WHAT DISABLED_FEATURES DESCRIPTION "The following features have been disabled:" QUIET_ON_EMPTY)

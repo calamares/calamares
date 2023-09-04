@@ -19,16 +19,9 @@
 // From 3rdparty/
 #include "kdsingleapplication.h"
 
-#if QT_VERSION >= QT_VERSION_CHECK( 6, 0, 0 )
-// TODO: Qt6
-// Ignore KAboutData
-#define HAVE_KABOUTDATA 0
-#else
-#include <KCoreAddons/KAboutData>
-#define HAVE_KABOUTDATA 1
-#endif
-#ifdef BUILD_KF5Crash
-#include <KCrash/KCrash>
+#include <KAboutData>
+#ifdef BUILD_CRASH_REPORTING
+#include <KCrash>
 #endif
 
 #include <QCommandLineParser>
@@ -120,7 +113,6 @@ main( int argc, char* argv[] )
 #endif
     CalamaresApplication a( argc, argv );
 
-#if HAVE_KABOUTDATA
     KAboutData aboutData( "calamares",
                           "Calamares",
                           a.applicationVersion(),
@@ -131,10 +123,9 @@ main( int argc, char* argv[] )
                           "https://calamares.io",
                           "https://github.com/calamares/calamares/issues" );
     KAboutData::setApplicationData( aboutData );
-#endif
     a.setApplicationDisplayName( QString() );  // To avoid putting an extra "Calamares/" into the log-file
 
-#ifdef BUILD_KF5Crash
+#ifdef BUILD_CRASH_REPORTING
     KCrash::initialize();
     // KCrash::setCrashHandler();
     KCrash::setDrKonqiEnabled( true );

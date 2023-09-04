@@ -56,12 +56,9 @@ calamares_add_library(calamaresui
     SOVERSION ${CALAMARES_SOVERSION}
 )
 target_link_libraries(calamaresui PRIVATE yamlcpp::yamlcpp)
-if(NOT WITH_QT6) # TODO: Qt6
-if(KF5CoreAddons_FOUND AND KF5CoreAddons_VERSION VERSION_GREATER_EQUAL 5.58)
-    target_compile_definitions(calamaresui PRIVATE WITH_KOSRelease)
-    target_link_libraries(calamaresui PRIVATE KF5::CoreAddons)
-endif()
-endif()
+target_compile_definitions(calamaresui PRIVATE WITH_KOSRelease)
+target_link_libraries(calamaresui PRIVATE ${kfname}::CoreAddons)
+
 if(WITH_QML)
     target_link_libraries(calamaresui PUBLIC ${qtname}::QuickWidgets)
 endif()

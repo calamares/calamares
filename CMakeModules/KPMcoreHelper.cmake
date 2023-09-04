@@ -11,15 +11,18 @@
 # library, which will add definition WITHOUT_KPMcore.
 #
 if(NOT TARGET calapmcore)
-    find_package(KPMcore 20.04.0)
-    set_package_properties(
-        KPMcore
-        PROPERTIES
-        URL "https://invent.kde.org/kde/kpmcore"
-        DESCRIPTION "KDE Partitioning library"
-        TYPE RECOMMENDED
-        PURPOSE "For disk partitioning support"
-    )
+    if(NOT WITH_QT6)
+        # TODO: Qt6 how to detect the version of Qt that KPMCore needs?
+        find_package(KPMcore 20.04.0)
+        set_package_properties(
+            KPMcore
+            PROPERTIES
+            URL "https://invent.kde.org/kde/kpmcore"
+            DESCRIPTION "KDE Partitioning library"
+            TYPE RECOMMENDED
+            PURPOSE "For disk partitioning support"
+        )
+    endif()
 
     # Create an internal Calamares interface to KPMcore
     # and give it a nice alias name. If kpmcore is not found,

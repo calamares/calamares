@@ -40,12 +40,10 @@ target_link_libraries(
     calamares_bin
     PRIVATE calamares calamaresui calamares-i18n kdsingleapplication ${qtname}::Core ${qtname}::Widgets
 )
-if(NOT WITH_QT6) # TODO: Qt6
-target_link_libraries(calamares_bin PRIVATE KF5::CoreAddons)
-endif()
-if(BUILD_KF5Crash)
-    target_link_libraries(calamares_bin PRIVATE KF5::Crash)
-    target_compile_definitions(calamares_bin PRIVATE BUILD_KF5Crash)
+target_link_libraries(calamares_bin PRIVATE ${kfname}::CoreAddons)
+if(BUILD_CRASH_REPORTING)
+    target_link_libraries(calamares_bin PRIVATE ${kfname}::Crash)
+    target_compile_definitions(calamares_bin PRIVATE BUILD_CRASH_REPORTING)
 endif()
 
 install(TARGETS calamares_bin BUNDLE DESTINATION . RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
