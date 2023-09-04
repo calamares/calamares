@@ -100,3 +100,54 @@ function( install_calamares_gettext_translations )
         endif()
     endforeach()
 endfunction()
+
+function(calamares_qrc_translations basename)
+    set(NAME ${ARGV0})
+    set(options "")
+    set(oneValueArgs SUBDIRECTORY OUTPUT_VARIABLE)
+    set(multiValueArgs LANGUAGES)
+    cmake_parse_arguments(_qrt "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+
+    if(NOT _qrt_OUTPUT_VARIABLE)
+        set(_qrt_OUTPUT_VARIABLE "qrc_translations_${basename}")
+    endif()
+
+    set(translations_qrc_infile ${CMAKE_CURRENT_BINARY_DIR}/${basename}.qrc)
+    set(translations_qrc_outfile ${CMAKE_CURRENT_BINARY_DIR}/qrc_${basename}.cxx)
+
+    # Must use this variable name because of the @ substitution
+    set(calamares_i18n_qrc_content "")
+    set(calamares_i18n_ts_filelist "")
+    foreach(lang ${_qrt_LANGUAGES})
+        string(APPEND calamares_i18n_qrc_content "<file>${basename}_${lang}.qm</file>")
+        list(
+            APPEND
+            calamares_i18n_ts_filelist
+            "${CMAKE_CURRENT_SOURCE_DIR}/${_qrt_SUBDIRECTORY}/${basename}_${lang}.ts"
+        )
+    endforeach()
+
+    configure_file(${CMAKE_SOURCE_DIR}/lang/calamares_i18n.qrc.in ${translations_qrc_infile} @ONLY)
+    qt_add_translation(QM_FILES ${calamares_i18n_ts_filelist})
+
+    if(WITH_QT6)
+        # Simplified build, knows about RCC
+        set(${_qrt_OUTPUT_VARIABLE} ${translations_qrc_infile} PARENT_SCOPE)
+    else()
+        # Run the resource compiler (rcc_options should already be set)
+        add_custom_command(
+            OUTPUT ${translations_qrc_outfile}
+            COMMAND "${Qt5Core_RCC_EXECUTABLE}"
+            ARGS
+                ${rcc_options}
+                --format-version 1
+                -name ${basename}
+                -o ${translations_qrc_outfile}
+                ${translations_qrc_infile}
+            MAIN_DEPENDENCY ${translations_qrc_infile}
+            DEPENDS ${QM_FILES}
+        )
+
+        set(${_qrt_OUTPUT_VARIABLE} ${translations_qrc_outfile} PARENT_SCOPE)
+    endif()
+endfunction()
