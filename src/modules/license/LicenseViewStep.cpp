@@ -13,6 +13,8 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "LicensePage.h"
+
+#include "compat/Variant.h"
 #include "utils/Logger.h"
 
 #include <QVariantMap>
@@ -89,12 +91,13 @@ void
 LicenseViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     QList< LicenseEntry > entriesList;
-    if ( configurationMap.contains( "entries" ) && configurationMap.value( "entries" ).type() == QVariant::List )
+    if ( configurationMap.contains( "entries" )
+         && Calamares::typeOf( configurationMap.value( "entries" ) ) == Calamares::ListVariantType )
     {
         const auto entries = configurationMap.value( "entries" ).toList();
         for ( const QVariant& entryV : entries )
         {
-            if ( entryV.type() != QVariant::Map )
+            if ( Calamares::typeOf( entryV ) != Calamares::MapVariantType )
             {
                 continue;
             }
