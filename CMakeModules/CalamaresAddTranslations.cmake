@@ -100,3 +100,58 @@ function( install_calamares_gettext_translations )
         endif()
     endforeach()
 endfunction()
+
+set(_calamares_qrc_translations_qrc_source ${CMAKE_CURRENT_LIST_DIR}/i18n.qrc.in) # Needs to be set outside of function
+function(calamares_qrc_translations basename)
+    set(options "")
+    set(oneValueArgs SUBDIRECTORY OUTPUT_VARIABLE)
+    set(multiValueArgs PREFIXES LANGUAGES)
+    cmake_parse_arguments(_qrt "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+
+    if(NOT _qrt_OUTPUT_VARIABLE)
+        message(FATAL_ERROR "No output variable")
+    endif()
+    if(NOT _qrt_PREFIXES)
+        set(_qrt_PREFIXES "${basename}")
+    endif()
+    if(NOT _qrt_LANGUAGES)
+        set(_qrt_LANGUAGES ${CALAMARES_TRANSLATION_LANGUAGES})
+    endif()
+    if(NOT _qrt_SUBDIRECTORY)
+        set(_qrt_SUBDIRECTORY "")
+    endif()
+
+    set(translations_qrc_infile ${CMAKE_CURRENT_BINARY_DIR}/${basename}.qrc)
+    set(translations_qrc_outfile ${CMAKE_CURRENT_BINARY_DIR}/qrc_${basename}.cxx)
+
+    # Must use this variable name because of the @ substitution
+    set(calamares_i18n_qrc_content "")
+    set(calamares_i18n_ts_filelist "")
+    foreach(lang ${_qrt_LANGUAGES})
+        foreach(tlsource ${_qrt_PREFIXES})
+            if(EXISTS "${CMAKE_SOURCE_DIR}/{$_qrt_SUBDIRECTORY}/${tlsource}_${lang}.ts")
+                string(APPEND calamares_i18n_qrc_content "<file>${tlsource}_${lang}.qm</file>\n")
+                list(APPEND calamares_i18n_ts_filelist "${CMAKE_SOURCE_DIR}/${_qrt_SUBDIRECTORY}/${tlsource}_${lang}.ts")
+            endif()
+        endforeach()
+    endforeach()
+
+    configure_file(${_calamares_qrc_translations_qrc_source} ${translations_qrc_infile} @ONLY)
+    qt_add_translation(QM_FILES ${calamares_i18n_ts_filelist})
+
+    # Run the resource compiler (rcc_options should already be set)
+    add_custom_command(
+        OUTPUT ${translations_qrc_outfile}
+        COMMAND ${qtname}::rcc
+        ARGS
+            ${rcc_options}
+            --format-version 1
+            -name ${basename}
+            -o ${translations_qrc_outfile}
+            ${translations_qrc_infile}
+        MAIN_DEPENDENCY ${translations_qrc_infile}
+        DEPENDS ${QM_FILES}
+    )
+
+    set(${_qrt_OUTPUT_VARIABLE} ${translations_qrc_outfile} PARENT_SCOPE)
+endfunction()

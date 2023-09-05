@@ -18,6 +18,7 @@
 #include "Settings.h"
 
 #include <QProcess>
+#include <QRegularExpression>
 
 #include <unistd.h>
 
@@ -29,7 +30,7 @@
 static QString
 alphaNumeric( QString input )
 {
-    return input.remove( QRegExp( "[^a-zA-Z\\d\\s]" ) );
+    return input.remove( QRegularExpression( "[^a-zA-Z\\d\\s]" ) );
 }
 
 /** @brief Returns the best available device for zpool creation
@@ -107,7 +108,7 @@ ZfsJob::collectMountpoints( const QVariantList& partitions )
     m_mountpoints.empty();
     for ( const QVariant& partition : partitions )
     {
-        if ( partition.canConvert( QVariant::Map ) )
+        if ( partition.canConvert< QVariantMap >() )
         {
             QString mountpoint = partition.toMap().value( "mountPoint" ).toString();
             if ( !mountpoint.isEmpty() )
@@ -170,7 +171,7 @@ ZfsJob::exec()
 {
     QVariantList partitions;
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-    if ( gs && gs->contains( "partitions" ) && gs->value( "partitions" ).canConvert( QVariant::List ) )
+    if ( gs && gs->contains( "partitions" ) && gs->value( "partitions" ).canConvert< QVariantList >() )
     {
         partitions = gs->value( "partitions" ).toList();
     }
@@ -187,7 +188,7 @@ ZfsJob::exec()
     QVariantList poolNames;
 
     // Check to ensure the list of zfs info from the partition module is available and convert it to a list
-    if ( !gs->contains( "zfsInfo" ) && gs->value( "zfsInfo" ).canConvert( QVariant::List ) )
+    if ( !gs->contains( "zfsInfo" ) && gs->value( "zfsInfo" ).canConvert< QVariantList >() )
     {
         return Calamares::JobResult::error( tr( "Internal data missing" ), tr( "Failed to create zpool" ) );
     }
@@ -196,7 +197,7 @@ ZfsJob::exec()
     for ( auto& partition : qAsConst( partitions ) )
     {
         QVariantMap pMap;
-        if ( partition.canConvert( QVariant::Map ) )
+        if ( partition.canConvert< QVariantMap >() )
         {
             pMap = partition.toMap();
         }
@@ -233,7 +234,7 @@ ZfsJob::exec()
         QString passphrase;
         for ( const QVariant& zfsInfo : qAsConst( zfsInfoList ) )
         {
-            if ( zfsInfo.canConvert( QVariant::Map ) && zfsInfo.toMap().value( "encrypted" ).toBool()
+            if ( zfsInfo.canConvert< QVariantMap >() && zfsInfo.toMap().value( "encrypted" ).toBool()
                  && mountpoint == zfsInfo.toMap().value( "mountpoint" ) )
             {
                 encrypt = true;

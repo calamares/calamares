@@ -23,8 +23,10 @@
 #include "utils/Variant.h"
 
 #include <QApplication>
+#include <QFile>
 #include <QGuiApplication>
 #include <QProcess>
+#include <QRegularExpression>
 #include <QTimer>
 
 #include <QDBusConnection>
@@ -113,7 +115,7 @@ xkbmap_query_grp_option()
     }
 
     //it's either in the end of line or before the other option so \s or ,
-    int lastIndex = outputLine.indexOf( QRegExp( "[\\s,]" ), index );
+    int lastIndex = outputLine.indexOf( QRegularExpression( "[\\s,]" ), index );
 
     return outputLine.mid( index, lastIndex - index );
 }
@@ -349,7 +351,9 @@ Config::getCurrentKeyboardLayoutXkb( QString& currentLayout, QString& currentVar
                 symbols = true;
             }
             else if ( !line.trimmed().startsWith( "xkb_geometry" ) )
+            {
                 continue;
+            }
 
             int firstQuote = line.indexOf( '"' );
             int lastQuote = line.lastIndexOf( '"' );

@@ -10,6 +10,7 @@
 
 #include "PackageModel.h"
 
+#include "compat/Variant.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 #include "utils/Yaml.h"
@@ -279,7 +280,7 @@ PackageModel::setupModelData( const QVariantList& groupList, PackageTreeItem* pa
         {
             for ( const auto& packageName : groupMap.value( "packages" ).toList() )
             {
-                if ( packageName.type() == QVariant::String )
+                if ( Calamares::typeOf( packageName ) == Calamares::StringVariantType )
                 {
                     item->appendChild( new PackageTreeItem( packageName.toString(), item ) );
                 }
@@ -301,7 +302,7 @@ PackageModel::setupModelData( const QVariantList& groupList, PackageTreeItem* pa
         {
             bool haveWarned = false;
             const auto& subgroupValue = groupMap.value( "subgroups" );
-            if ( !subgroupValue.canConvert( QVariant::List ) )
+            if ( !subgroupValue.canConvert< QVariantList >() )
             {
                 cWarning() << "*subgroups* under" << item->name() << "is not a list.";
                 haveWarned = true;

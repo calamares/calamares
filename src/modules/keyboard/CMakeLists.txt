@@ -21,7 +21,7 @@ calamares_add_plugin(keyboard
         keyboard.qrc
     SHARED_LIB
     LINK_LIBRARIES
-        Qt5::DBus
+        ${qtname}::DBus
 )
 
 calamares_add_test(keyboardtest SOURCES Tests.cpp SetKeyboardLayoutJob.cpp RESOURCES keyboard.qrc)

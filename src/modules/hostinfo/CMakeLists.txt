@@ -32,9 +32,7 @@ calamares_add_plugin(hostinfo
     NO_CONFIG
 )
 
-if(KF5CoreAddons_FOUND AND KF5CoreAddons_VERSION VERSION_GREATER_EQUAL 5.58)
-    target_compile_definitions(calamares_job_hostinfo PRIVATE WITH_KOSRelease)
-    target_link_libraries(calamares_job_hostinfo PRIVATE KF5::CoreAddons)
-endif()
+target_compile_definitions(calamares_job_hostinfo PRIVATE WITH_KOSRelease)
+target_link_libraries(calamares_job_hostinfo PRIVATE ${kfname}::CoreAddons)
 
 calamares_add_test(hostinfotest SOURCES Tests.cpp HostInfoJob.cpp LIBRARIES yamlcpp::yamlcpp)

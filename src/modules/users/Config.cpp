@@ -16,6 +16,7 @@
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "compat/Variant.h"
 #include "utils/Logger.h"
 #include "utils/String.h"
 #include "utils/StringExpander.h"
@@ -24,7 +25,7 @@
 #include <QCoreApplication>
 #include <QFile>
 #include <QMetaProperty>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QTimer>
 
 #ifdef HAVE_ICU
@@ -41,10 +42,10 @@ static const char TRANSLITERATOR_ID[] = "Russian-Latin/BGN;"
 
 #include <memory>
 
-static const QRegExp USERNAME_RX( "^[a-z_][a-z0-9_-]*[$]?$" );
+static const QRegularExpression USERNAME_RX( "^[a-z_][a-z0-9_-]*[$]?$" );  // Note anchors begin and end
 static constexpr const int USERNAME_MAX_LENGTH = 31;
 
-static const QRegExp HOSTNAME_RX( "^[a-zA-Z0-9][-a-zA-Z0-9_]*$" );
+static const QRegularExpression HOSTNAME_RX( "^[a-zA-Z0-9][-a-zA-Z0-9_]*$" );  // Note anchors begin and end
 static constexpr const int HOSTNAME_MIN_LENGTH = 2;
 static constexpr const int HOSTNAME_MAX_LENGTH = 63;
 
@@ -235,12 +236,12 @@ Config::loginNameStatus() const
         return tr( "Your username is too long." );
     }
 
-    QRegExp validateFirstLetter( "^[a-z_]" );
-    if ( validateFirstLetter.indexIn( m_loginName ) != 0 )
+    QRegularExpression validateFirstLetter( "^[a-z_]" );
+    if ( m_loginName.indexOf( validateFirstLetter ) != 0 )
     {
         return tr( "Your username must start with a lowercase letter or underscore." );
     }
-    if ( !USERNAME_RX.exactMatch( m_loginName ) )
+    if ( m_loginName.indexOf( USERNAME_RX ) != 0 )
     {
         return tr( "Only lowercase letters, numbers, underscore and hyphen are allowed." );
     }
@@ -310,7 +311,7 @@ Config::hostnameStatus() const
         return tr( "'%1' is not allowed as hostname." ).arg( m_hostname );
     }
 
-    if ( !HOSTNAME_RX.exactMatch( m_hostname ) )
+    if ( m_hostname.indexOf( HOSTNAME_RX ) != 0 )
     {
         return tr( "Only letters, numbers, underscore and hyphen are allowed." );
     }
@@ -321,7 +322,7 @@ Config::hostnameStatus() const
 static QString
 cleanupForHostname( const QString& s )
 {
-    QRegExp dmirx( "(^Apple|\\(.*\\)|[^a-zA-Z0-9])", Qt::CaseInsensitive );
+    QRegularExpression dmirx( "(^Apple|\\(.*\\)|[^a-zA-Z0-9])", QRegularExpression::CaseInsensitiveOption );
     return s.toLower().replace( dmirx, " " ).remove( ' ' );
 }
 
@@ -412,7 +413,7 @@ makeLoginNameSuggestion( const QStringList& parts )
         }
     }
 
-    return USERNAME_RX.indexIn( usernameSuggestion ) != -1 ? usernameSuggestion : QString();
+    return usernameSuggestion.indexOf( USERNAME_RX ) != -1 ? usernameSuggestion : QString();
 }
 
 /** @brief Return an invalid string for use in a hostname, if @p s is empty
@@ -445,8 +446,8 @@ makeHostnameSuggestion( const QString& templateString, const QStringList& fullNa
     QString hostnameSuggestion = d.expand( templateString );
 
     // RegExp for valid hostnames; if the suggestion produces a valid name, return it
-    static const QRegExp HOSTNAME_RX( "^[a-zA-Z0-9][-a-zA-Z0-9_]*$" );
-    return HOSTNAME_RX.indexIn( hostnameSuggestion ) != -1 ? hostnameSuggestion : QString();
+    static const QRegularExpression HOSTNAME_RX( "^[a-zA-Z0-9][-a-zA-Z0-9_]*$" );
+    return hostnameSuggestion.indexOf( HOSTNAME_RX ) != -1 ? hostnameSuggestion : QString();
 }
 
 void
@@ -483,10 +484,10 @@ Config::setFullName( const QString& name )
         emit fullNameChanged( name );
 
         // Build login and hostname, if needed
-        static QRegExp rx( "[^a-zA-Z0-9 ]", Qt::CaseInsensitive );
+        static QRegularExpression rx( "[^a-zA-Z0-9 ]" );
 
         const QString cleanName = Calamares::String::removeDiacritics( transliterate( name ) )
-                                      .replace( QRegExp( "[-']" ), "" )
+                                      .replace( QRegularExpression( "[-']" ), "" )
                                       .replace( rx, " " )
                                       .toLower()
                                       .simplified();
@@ -751,7 +752,7 @@ setConfigurationDefaultGroups( const QVariantMap& map, QList< GroupDescription >
     auto groupsFromConfig = map.value( key ).toList();
     if ( groupsFromConfig.isEmpty() )
     {
-        if ( map.contains( key ) && map.value( key ).isValid() && map.value( key ).canConvert( QVariant::List ) )
+        if ( map.contains( key ) && map.value( key ).isValid() && map.value( key ).canConvert< QVariantList >() )
         {
             // Explicitly set, but empty: this is valid, but unusual.
             cDebug() << key << "has explicit empty value.";
@@ -772,11 +773,11 @@ setConfigurationDefaultGroups( const QVariantMap& map, QList< GroupDescription >
     {
         for ( const auto& v : groupsFromConfig )
         {
-            if ( v.type() == QVariant::String )
+            if ( Calamares::typeOf( v ) == Calamares::StringVariantType )
             {
                 defaultGroups.append( GroupDescription( v.toString() ) );
             }
-            else if ( v.type() == QVariant::Map )
+            else if ( Calamares::typeOf( v ) == Calamares::MapVariantType )
             {
                 const auto innermap = v.toMap();
                 QString name = CalamaresUtils::getString( innermap, "name" );

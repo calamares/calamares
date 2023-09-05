@@ -12,6 +12,6 @@ calamares_add_plugin(oemid
     UI
         OEMPage.ui
     LINK_PRIVATE_LIBRARIES
-        Qt5::Widgets
+        ${qtname}::Widgets
     SHARED_LIB
 )

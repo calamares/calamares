@@ -20,19 +20,21 @@
 #   SKIP_MODULES    : a space or semicolon-separated list of directory names
 #                     under src/modules that should not be built.
 #   USE_<foo>       : fills in SKIP_MODULES for modules called <foo>-<something>.
-#   WITH_QT6        : use Qt6, rather than Qt5 (default to OFF).
 #   WITH_<foo>      : try to enable <foo> (these usually default to ON). For
 #                     a list of WITH_<foo> grep CMakeCache.txt after running
 #                     CMake once. These affect the ABI offered by Calamares.
 #                       - PYTHON (enable Python Job modules)
 #                       - QML (enable QML UI View modules)
+#                       - QT6 (use Qt6 rather than Qt5, default to OFF)
 #                     The WITH_* options affect the ABI of Calamares: you must
 #                     build (C++) modules for Calamares with the same WITH_*
 #                     settings, or they may not load at all.
 #   BUILD_<foo>     : choose additional things to build
-#                       - TESTING (standard CMake option)
-#                       - SCHEMA_TESTING (requires Python, see ci/configvalidator.py)
+#                       - APPDATA (use AppData in packagechooser, requires QtXml)
+#                       - APPSTREAM (use AppStream in packagechooser, requires libappstream-qt)
 #                       - BUILD_CRASH_REPORTING (uses KCrash, rather than Calamares internal, for crash reporting)
+#                       - SCHEMA_TESTING (requires Python, see ci/configvalidator.py)
+#                       - TESTING (standard CMake option)
 #   DEBUG_<foo>     : special developer flags for debugging.
 #
 # Example usage:
@@ -177,8 +179,8 @@ else()
     set(qtname "Qt5")
     set(kfname "KF5")
     set(QT_VERSION 5.15.0)
-    set(ECM_VERSION 5.100)
-    set(KF_VERSION 5.100)
+    set(ECM_VERSION 5.78)
+    set(KF_VERSION 5.78)
     # API that was deprecated before Qt 5.15 causes a compile error
     add_compile_definitions(QT_DISABLE_DEPRECATED_BEFORE=0x050f00)
 endif()

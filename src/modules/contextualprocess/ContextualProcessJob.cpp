@@ -15,6 +15,7 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 
+#include "compat/Variant.h"
 #include "utils/CommandList.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
@@ -62,7 +63,7 @@ ContextualProcessBinding::run( const QString& value ) const
 static bool
 fetch( QString& value, QStringList& selector, int index, const QVariant& v )
 {
-    if ( !v.canConvert( QMetaType::QVariantMap ) )
+    if ( !v.canConvert< QVariantMap >() )
     {
         return false;
     }
@@ -163,7 +164,7 @@ ContextualProcessJob::setConfigurationMap( const QVariantMap& configurationMap )
             continue;
         }
 
-        if ( iter.value().type() != QVariant::Map )
+        if ( Calamares::typeOf( iter.value() ) != Calamares::MapVariantType )
         {
             cWarning() << moduleInstanceKey() << "bad configuration values for" << variableName;
             continue;

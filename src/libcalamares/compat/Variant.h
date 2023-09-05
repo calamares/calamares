@@ -19,6 +19,7 @@ namespace Calamares
 const auto typeOf = []( const QVariant& v ) { return v.type(); };
 const auto ListVariantType = QVariant::List;
 const auto MapVariantType = QVariant::Map;
+const auto HashVariantType = QVariant::Hash;
 const auto StringVariantType = QVariant::String;
 const auto CharVariantType = QVariant::Char;
 const auto StringListVariantType = QVariant::StringList;
@@ -31,6 +32,7 @@ const auto DoubleVariantType = QVariant::Double;
 const auto typeOf = []( const QVariant& v ) { return v.typeId(); };
 const auto ListVariantType = QMetaType::Type::QVariantList;
 const auto MapVariantType = QMetaType::Type::QVariantMap;
+const auto HashVariantType = QMetaType::Type::QVariantHash;
 const auto StringVariantType = QMetaType::Type::QString;
 const auto CharVariantType = QMetaType::Type::Char;
 const auto StringListVariantType = QMetaType::Type::QStringList;

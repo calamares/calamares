@@ -73,7 +73,7 @@ PreserveFilesTests::testItems()
     QFETCH( bool, ok );
     QFETCH( int, type_i );
 
-    QFile fi( QString( "%1/tests/%2" ).arg( BUILD_AS_TEST, filename ) );
+    QFileInfo fi( QString( "%1/tests/%2" ).arg( BUILD_AS_TEST, filename ) );
     QVERIFY( fi.exists() );
 
     bool config_file_ok = false;

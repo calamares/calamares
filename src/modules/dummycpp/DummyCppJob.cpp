@@ -18,6 +18,7 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 
+#include "compat/Variant.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 
@@ -45,15 +46,16 @@ static QString variantHashToString( const QVariantHash& variantHash );
 static QString
 variantToString( const QVariant& variant )
 {
-    if ( variant.type() == QVariant::Map )
+    if ( Calamares::typeOf( variant ) == Calamares::MapVariantType )
     {
         return variantMapToString( variant.toMap() );
     }
-    else if ( variant.type() == QVariant::Hash )
+    else if ( Calamares::typeOf( variant ) == Calamares::HashVariantType )
     {
         return variantHashToString( variant.toHash() );
     }
-    else if ( ( variant.type() == QVariant::List ) || ( variant.type() == QVariant::StringList ) )
+    else if ( ( Calamares::typeOf( variant ) == Calamares::ListVariantType )
+              || ( Calamares::typeOf( variant ) == Calamares::StringListVariantType ) )
     {
         return variantListToString( variant.toList() );
     }

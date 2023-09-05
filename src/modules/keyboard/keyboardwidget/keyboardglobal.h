@@ -16,16 +16,8 @@
 #ifndef KEYBOARDGLOBAL_H
 #define KEYBOARDGLOBAL_H
 
-#include <QDebug>
-#include <QDir>
-#include <QFile>
-#include <QHash>
-#include <QList>
 #include <QMap>
-#include <QRegExp>
 #include <QString>
-#include <QStringList>
-#include <QTextStream>
 
 class KeyboardGlobal
 {
