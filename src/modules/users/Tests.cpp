@@ -214,7 +214,7 @@ UserTests::testDefaultGroupsYAML()
     QFETCH( QString, group );
 
     // BUILD_AS_TEST is the source-directory path
-    QFile fi( QString( "%1/%2" ).arg( BUILD_AS_TEST, filename ) );
+    QFileInfo fi( QString( "%1/%2" ).arg( BUILD_AS_TEST, filename ) );
     QVERIFY( fi.exists() );
 
     bool ok = false;
@@ -450,7 +450,7 @@ UserTests::testAutoLogin()
     QFETCH( QString, autoLoginGroupName );
 
     // BUILD_AS_TEST is the source-directory path
-    QFile fi( QString( "%1/%2" ).arg( BUILD_AS_TEST, filename ) );
+    QFileInfo fi( QString( "%1/%2" ).arg( BUILD_AS_TEST, filename ) );
     QVERIFY( fi.exists() );
 
     bool ok = false;
@@ -502,7 +502,7 @@ UserTests::testUserYAML()
     QFETCH( QString, shell );
 
     // BUILD_AS_TEST is the source-directory path
-    QFile fi( QString( "%1/%2" ).arg( BUILD_AS_TEST, filename ) );
+    QFileInfo fi( QString( "%1/%2" ).arg( BUILD_AS_TEST, filename ) );
     QVERIFY( fi.exists() );
 
     bool ok = false;

@@ -79,7 +79,7 @@ void
 GroupTests::testCreateGroup()
 {
     // BUILD_AS_TEST is the source-directory path
-    QFile fi( QString( "%1/tests/5-issue-1523.conf" ).arg( BUILD_AS_TEST ) );
+    QFileInfo fi( QString( "%1/tests/5-issue-1523.conf" ).arg( BUILD_AS_TEST ) );
     QVERIFY( fi.exists() );
 
     bool ok = false;

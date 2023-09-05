@@ -41,7 +41,7 @@ PasswordCheck::PasswordCheck( MessageFunc m, AcceptFunc a, Weight weight )
 DEFINE_CHECK_FUNC( minLength )
 {
     int minLength = -1;
-    if ( value.canConvert( QVariant::Int ) )
+    if ( value.canConvert< int >() )
     {
         minLength = value.toInt();
     }
@@ -57,7 +57,7 @@ DEFINE_CHECK_FUNC( minLength )
 DEFINE_CHECK_FUNC( maxLength )
 {
     int maxLength = -1;
-    if ( value.canConvert( QVariant::Int ) )
+    if ( value.canConvert< int >() )
     {
         maxLength = value.toInt();
     }
