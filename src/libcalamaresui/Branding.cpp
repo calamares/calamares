@@ -203,12 +203,13 @@ uploadServerFromMap( const QVariantMap& map )
  * documentation for details.
  */
 
-Branding::Branding( const QString& brandingFilePath, QObject* parent )
+Branding::Branding( const QString& brandingFilePath, QObject* parent, qreal devicePixelRatio )
     : QObject( parent )
     , m_descriptorPath( brandingFilePath )
     , m_slideshowAPI( 1 )
     , m_welcomeStyleCalamares( false )
     , m_welcomeExpandingLogo( true )
+    , m_devicePixelRatio( devicePixelRatio )
 {
     cDebug() << "Using Calamares branding file at" << brandingFilePath;
 
@@ -358,7 +359,8 @@ Branding::image( Branding::ImageEntry imageEntry, const QSize& size ) const
     const auto path = imagePath( imageEntry );
     if ( path.contains( '/' ) )
     {
-        QPixmap pixmap = ImageRegistry::instance()->pixmap( path, size );
+        QPixmap pixmap = ImageRegistry::instance()->pixmap( path, size * m_devicePixelRatio );
+        pixmap.setDevicePixelRatio( m_devicePixelRatio );
 
         Q_ASSERT( !pixmap.isNull() );
         return pixmap;

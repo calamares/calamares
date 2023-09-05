@@ -162,7 +162,7 @@ public:
 
     static Branding* instance();
 
-    explicit Branding( const QString& brandingFilePath, QObject* parent = nullptr );
+    explicit Branding( const QString& brandingFilePath, QObject* parent = nullptr, qreal devicePixelRatio = 1.0 );
 
     /** @brief Complete path of the branding descriptor file. */
     QString descriptorPath() const { return m_descriptorPath; }
@@ -317,6 +317,8 @@ private:
     PanelFlavor m_navigationFlavor = PanelFlavor::Widget;
     PanelSide m_sidebarSide = PanelSide::Left;
     PanelSide m_navigationSide = PanelSide::Bottom;
+
+    qreal m_devicePixelRatio;
 };
 
 }  // namespace Calamares
