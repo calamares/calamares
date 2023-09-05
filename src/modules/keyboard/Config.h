@@ -111,8 +111,8 @@ private:
     QString m_xOrgConfFileName;
     QString m_convertedKeymapPath;
     bool m_writeEtcDefaultKeyboard = true;
-    bool m_useLocale1;
-    bool m_guessLayout;
+    bool m_useLocale1 = false;
+    bool m_guessLayout = false;
 
     // The state determines whether we guess settings or preserve them:
     // - Initial -> Guessing
