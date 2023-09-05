@@ -23,6 +23,7 @@
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "compat/Variant.h"
 #include "packages/Globals.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
@@ -175,7 +176,7 @@ Config::updateGlobalStorage( const QStringList& selected ) const
         if ( gs->contains( "netinstallSelect" ) )
         {
             auto selectedOrig = gs->value( "netinstallSelect" );
-            if ( selectedOrig.canConvert( QVariant::StringList ) )
+            if ( selectedOrig.canConvert< QStringList >() )
             {
                 newSelected += selectedOrig.toStringList();
             }
