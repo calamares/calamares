@@ -12,6 +12,7 @@
 #include "CalamaresVersion.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "compat/Variant.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/CommandList.h"
 #include "utils/Logger.h"
@@ -97,7 +98,7 @@ PreserveFiles::setConfigurationMap( const QVariantMap& configurationMap )
         return;
     }
 
-    if ( files.type() != QVariant::List )
+    if ( Calamares::typeOf( files ) != Calamares::ListVariantType )
     {
         cDebug() << "Configuration key 'files' is not a list for preservefiles.";
         return;

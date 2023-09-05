@@ -9,6 +9,7 @@
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "compat/Variant.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 #include "utils/Units.h"
@@ -41,7 +42,7 @@ copy_file( const QString& source, const QString& dest )
     {
         b = sourcef.read( 1_MiB );
         destf.write( b );
-    } while ( b.count() > 0 );
+    } while ( b.size() > 0 );
 
     sourcef.close();
     destf.close();
@@ -52,7 +53,7 @@ copy_file( const QString& source, const QString& dest )
 Item
 Item::fromVariant( const QVariant& v, const CalamaresUtils::Permissions& defaultPermissions )
 {
-    if ( v.type() == QVariant::String )
+    if ( Calamares::typeOf( v ) == Calamares::StringVariantType )
     {
         QString filename = v.toString();
         if ( !filename.isEmpty() )
@@ -65,7 +66,7 @@ Item::fromVariant( const QVariant& v, const CalamaresUtils::Permissions& default
             return {};
         }
     }
-    else if ( v.type() == QVariant::Map )
+    else if ( Calamares::typeOf( v ) == Calamares::MapVariantType )
     {
         const auto map = v.toMap();
 
