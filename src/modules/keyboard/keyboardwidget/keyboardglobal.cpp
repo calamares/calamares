@@ -19,6 +19,10 @@
 
 #include "utils/Logger.h"
 
+#include <QByteArray>
+#include <QFile>
+#include <QRegularExpression>
+
 #ifdef Q_OS_FREEBSD
 static const char XKB_FILE[] = "/usr/local/share/X11/xkb/rules/base.lst";
 #else
@@ -75,16 +79,22 @@ parseKeyboardModels( const char* filepath )
             break;
         }
 
-        // here we are in the model section, otherwise we would continue or break
-        QRegExp rx;
-        rx.setPattern( "^\\s+(\\S+)\\s+(\\w.*)\n$" );
+        // Here we are in the model section, otherwise we would continue or break.
+        // Sample model lines:
+        //
+        // ! model
+        //   pc86            Generic 86-key PC
+        //   pc101           Generic 101-key PC
+        //
+        QRegularExpression rx( "^\\s+(\\S+)\\s+(\\w.*)\n$" );
+        QRegularExpressionMatch m;
 
         // insert into the model map
-        if ( rx.indexIn( line ) != -1 )
+        if ( QString( line ).indexOf( rx, 0, &m ) != -1 )
         {
-            QString modelDesc = rx.cap( 2 );
-            QString model = rx.cap( 1 );
-            models.insert( modelDesc, model );
+            const QString modelDescription = m.captured( 2 );
+            const QString model = m.captured( 1 );
+            models.insert( modelDescription, model );
         }
     }
 
@@ -119,16 +129,21 @@ parseKeyboardLayouts( const char* filepath )
             break;
         }
 
-        QRegExp rx;
-        rx.setPattern( "^\\s+(\\S+)\\s+(\\w.*)\n$" );
+        // Sample layout lines:
+        //
+        // ! layout
+        //   us              English (US)
+        //   af              Afghani
+        QRegularExpression rx( "^\\s+(\\S+)\\s+(\\w.*)\n$" );
+        QRegularExpressionMatch m;
 
         // insert into the layout map
-        if ( rx.indexIn( line ) != -1 )
+        if ( QString( line ).indexOf( rx, 0, &m ) != -1 )
         {
             KeyboardGlobal::KeyboardInfo info;
-            info.description = rx.cap( 2 );
+            info.description = m.captured( 2 );
             info.variants.insert( QObject::tr( "Default" ), "" );
-            layouts.insert( rx.cap( 1 ), info );
+            layouts.insert( m.captured( 1 ), info );
         }
     }
 
@@ -148,25 +163,35 @@ parseKeyboardLayouts( const char* filepath )
             break;
         }
 
-        QRegExp rx;
-        rx.setPattern( "^\\s+(\\S+)\\s+(\\S+): (\\w.*)\n$" );
+        // Sample variant lines:
+        //
+        // ! variant
+        //   chr             us: Cherokee
+        //   haw             us: Hawaiian
+        //   ps              af: Pashto
+        //   uz              af: Uzbek (Afghanistan)
+        QRegularExpression rx( "^\\s+(\\S+)\\s+(\\S+): (\\w.*)\n$" );
+        QRegularExpressionMatch m;
 
         // insert into the variants multimap, if the pattern matches
-        if ( rx.indexIn( line ) != -1 )
+        if ( QString( line ).indexOf( rx, 0, &m ) != -1 )
         {
-            if ( layouts.find( rx.cap( 2 ) ) != layouts.end() )
+            const QString variantKey = m.captured( 1 );
+            const QString baseLayout = m.captured( 2 );
+            const QString description = m.captured( 3 );
+            if ( layouts.find( baseLayout ) != layouts.end() )
             {
                 // in this case we found an entry in the multimap, and add the values to the multimap
-                layouts.find( rx.cap( 2 ) ).value().variants.insert( rx.cap( 3 ), rx.cap( 1 ) );
+                layouts.find( baseLayout ).value().variants.insert( description, variantKey );
             }
             else
             {
                 // create a new map in the multimap - the value was not found.
                 KeyboardGlobal::KeyboardInfo info;
-                info.description = rx.cap( 2 );
+                info.description = baseLayout;
                 info.variants.insert( QObject::tr( "Default" ), "" );
-                info.variants.insert( rx.cap( 3 ), rx.cap( 1 ) );
-                layouts.insert( rx.cap( 2 ), info );
+                info.variants.insert( description, variantKey );
+                layouts.insert( baseLayout, info );
             }
         }
     }
