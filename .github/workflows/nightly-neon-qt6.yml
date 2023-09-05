@@ -1,4 +1,4 @@
-name: nightly-neon
+name: nightly-neon-qt6
 
 on:
   schedule:
@@ -17,7 +17,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: docker://kdeneon/plasma:user
+      image: docker://kdeneon/plasma:unstable
       options: --tmpfs /build:rw --user 0:0
     steps:
       - name: "prepare env"
