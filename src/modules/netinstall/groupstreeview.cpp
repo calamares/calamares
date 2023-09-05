@@ -22,7 +22,12 @@ GroupsTreeView::drawBranches( QPainter* painter, const QRect& rect, const QModel
     const QString s = index.data().toString();
     if ( s.isEmpty() )
     {
+#if QT_VERSION < QT_VERSION_CHECK( 6, 0, 0 )
         QStyleOptionViewItem opt = viewOptions();
+#else
+        QStyleOptionViewItem opt;
+        initViewItemOption( &opt );
+#endif
         opt.state = QStyle::State_Sibling;
         opt.rect = QRect( !isRightToLeft() ? rect.left() : rect.right() + 1, rect.top(), indentation(), rect.height() );
         painter->eraseRect( opt.rect );

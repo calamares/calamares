@@ -16,6 +16,7 @@
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "compat/Variant.h"
 #include "network/Manager.h"
 #include "packages/Globals.h"
 #include "utils/Logger.h"
@@ -137,11 +138,11 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     const QString key = QStringLiteral( "groupsUrl" );
     const auto& groupsUrlVariant = configurationMap.value( key );
     m_queue = new LoaderQueue( this );
-    if ( groupsUrlVariant.type() == QVariant::String )
+    if ( Calamares::typeOf( groupsUrlVariant ) == Calamares::StringVariantType )
     {
         m_queue->append( SourceItem::makeSourceItem( groupsUrlVariant.toString(), configurationMap ) );
     }
-    else if ( groupsUrlVariant.type() == QVariant::List )
+    else if ( Calamares::typeOf( groupsUrlVariant ) == Calamares::ListVariantType )
     {
         for ( const auto& s : groupsUrlVariant.toStringList() )
         {
