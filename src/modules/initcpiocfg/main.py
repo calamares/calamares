@@ -164,7 +164,7 @@ def find_initcpio_features(partitions, root_mount_point):
         "keyboard",
     ]
 
-    systemd_hook_allowed = libcalamares.job.configuration.get("useSystemdHook", False)
+    systemd_hook_allowed = libcalamares.job.configuration.get("useSystemdHook", True)
 
     use_systemd = systemd_hook_allowed and target_env_call(["sh", "-c", "which systemd-cat"]) == 0
 
