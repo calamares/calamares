@@ -9,6 +9,7 @@
  */
 
 #include "core/PartitionInfo.h"
+#include "compat/Variant.h"
 
 // KPMcore
 #include <kpmcore/core/lvmdevice.h>
@@ -60,7 +61,7 @@ flags( const Partition* partition )
     // (see qflags.h) and so setting those flags can create a QVariant
     // of those types; we don't just want to check QVariant::canConvert()
     // here because that will also accept QByteArray and some other things.
-    if ( v.type() == QVariant::Int || v.type() == QVariant::UInt )
+    if ( Calamares::typeOf( v ) == Calamares::IntVariantType || Calamares::typeOf( v ) == Calamares::UIntVariantType )
     {
         return static_cast< PartitionTable::Flags >( v.toInt() );
     }
