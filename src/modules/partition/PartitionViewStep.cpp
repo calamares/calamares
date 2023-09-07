@@ -696,7 +696,11 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
                  this->m_future = nullptr;
              } );
 
+#if QT_VERSION < QT_VERSION_CHECK( 6, 0, 0 )
     QFuture< void > future = QtConcurrent::run( this, &PartitionViewStep::initPartitionCoreModule );
+#else
+    QFuture< void > future = QtConcurrent::run( &PartitionViewStep::initPartitionCoreModule, this );
+#endif
     m_future->setFuture( future );
 
     m_core->partitionLayout().init( m_config->defaultFsType(), configurationMap.value( "partitionLayout" ).toList() );

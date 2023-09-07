@@ -13,6 +13,7 @@
 
 #include "core/KPMHelpers.h"
 #include "core/PartitionInfo.h"
+#include "compat/Variant.h"
 
 #include "Branding.h"
 #include "GlobalStorage.h"
@@ -146,7 +147,7 @@ prettyFileSystemFeatures( const QVariantMap& features )
     for ( const auto& key : features.keys() )
     {
         const auto& value = features.value( key );
-        if ( value.type() == QVariant::Bool )
+        if ( Calamares::typeOf( value ) == Calamares::BoolVariantType )
         {
             if ( value.toBool() )
             {
@@ -187,7 +188,7 @@ FillGlobalStorageJob::prettyDescription() const
     const auto partitionList = createPartitionList();
     for ( const QVariant& partitionItem : partitionList )
     {
-        if ( partitionItem.type() == QVariant::Map )
+        if ( Calamares::typeOf( partitionItem ) == Calamares::MapVariantType )
         {
             QVariantMap partitionMap = partitionItem.toMap();
             QString path = partitionMap.value( "device" ).toString();

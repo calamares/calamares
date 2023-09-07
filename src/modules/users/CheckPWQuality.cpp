@@ -13,6 +13,7 @@
 
 #include "CheckPWQuality.h"
 
+#include "compat/Variant.h"
 #include "utils/Logger.h"
 
 #include <QCoreApplication>
@@ -344,7 +345,7 @@ private:
 
 DEFINE_CHECK_FUNC( libpwquality )
 {
-    if ( !value.canConvert( QVariant::List ) )
+    if ( !value.canConvert< QVariantList >() )
     {
         cWarning() << "libpwquality settings is not a list";
         return;
@@ -355,7 +356,7 @@ DEFINE_CHECK_FUNC( libpwquality )
     auto settings = std::make_shared< PWSettingsHolder >();
     for ( const auto& v : l )
     {
-        if ( v.type() == QVariant::String )
+        if ( Calamares::typeOf( v ) == Calamares::StringVariantType )
         {
             QString option = v.toString();
             int r = settings->set( option );
