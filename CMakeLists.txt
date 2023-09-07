@@ -168,10 +168,10 @@ set( _tx_incomplete eo es_PR gu ie ja-Hira kk kn lo lv mk ne_NP
 if(WITH_QT6)
     message(STATUS "Building Calamares with Qt6")
     set(qtname "Qt6")
-    set(kfname "KF5")
+    set(kfname "KF6")
     set(QT_VERSION 6.5.0)
     set(ECM_VERSION 5.240)
-    set(KF_VERSION 5.103) # KDE Neon weirdness
+    set(KF_VERSION 5.240) # KDE Neon weirdness
     # API that was deprecated before Qt 5.15 causes a compile error
     add_compile_definitions(QT_DISABLE_DEPRECATED_BEFORE=0x060400)
 else()
