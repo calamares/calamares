@@ -200,7 +200,7 @@ parseKeyboardLayouts( const char* filepath )
 }
 
 static KeyboardGlobal::GroupsMap
-parseKeyboardGroups( const char* filepath )
+parseKeyboardGroupsSwitchers( const char* filepath )
 {
     KeyboardGlobal::GroupsMap models;
 
@@ -258,5 +258,5 @@ KeyboardGlobal::getKeyboardModels()
 KeyboardGlobal::GroupsMap
 KeyboardGlobal::getKeyboardGroups()
 {
-    return parseKeyboardGroups( XKB_FILE );
+    return parseKeyboardGroupsSwitchers( XKB_FILE );
 }

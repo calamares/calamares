@@ -160,7 +160,7 @@ Config::Config( QObject* parent )
     , m_keyboardModelsModel( new KeyboardModelsModel( this ) )
     , m_keyboardLayoutsModel( new KeyboardLayoutModel( this ) )
     , m_keyboardVariantsModel( new KeyboardVariantsModel( this ) )
-    , m_keyboardGroupsModel( new KeyboardGroupsModel( this ) )
+    , m_KeyboardGroupSwitcherModel( new KeyboardGroupsSwitchersModel( this ) )
 {
     m_setxkbmapTimer.setSingleShot( true );
 
@@ -199,11 +199,11 @@ Config::Config( QObject* parent )
                  Config::xkbChanged();
                  emit prettyStatusChanged();
              } );
-    connect( m_keyboardGroupsModel,
-             &KeyboardGroupsModel::currentIndexChanged,
+    connect( m_KeyboardGroupSwitcherModel,
+             &KeyboardGroupsSwitchersModel::currentIndexChanged,
              [ & ]( int index )
              {
-                 m_selectedGroup = m_keyboardGroupsModel->key( index );
+                 m_selectedGroup = m_KeyboardGroupSwitcherModel->key( index );
                  Config::xkbChanged();
                  emit prettyStatusChanged();
              } );
@@ -213,12 +213,12 @@ Config::Config( QObject* parent )
     connect( m_keyboardModelsModel, &KeyboardModelsModel::currentIndexChanged, this, &Config::selectionChange );
     connect( m_keyboardLayoutsModel, &KeyboardLayoutModel::currentIndexChanged, this, &Config::selectionChange );
     connect( m_keyboardVariantsModel, &KeyboardVariantsModel::currentIndexChanged, this, &Config::selectionChange );
-    connect( m_keyboardGroupsModel, &KeyboardGroupsModel::currentIndexChanged, this, &Config::selectionChange );
+    connect( m_KeyboardGroupSwitcherModel, &KeyboardGroupsSwitchersModel::currentIndexChanged, this, &Config::selectionChange );
 
     m_selectedModel = m_keyboardModelsModel->key( m_keyboardModelsModel->currentIndex() );
     m_selectedLayout = m_keyboardLayoutsModel->item( m_keyboardLayoutsModel->currentIndex() ).first;
     m_selectedVariant = m_keyboardVariantsModel->key( m_keyboardVariantsModel->currentIndex() );
-    m_selectedGroup = m_keyboardGroupsModel->key( m_keyboardGroupsModel->currentIndex() );
+    m_selectedGroup = m_KeyboardGroupSwitcherModel->key( m_KeyboardGroupSwitcherModel->currentIndex() );
 }
 
 void
@@ -338,10 +338,10 @@ Config::keyboardVariants() const
     return m_keyboardVariantsModel;
 }
 
-KeyboardGroupsModel*
-Config::keyboardGroups() const
+KeyboardGroupsSwitchersModel*
+Config::keyboardGroupsSwitchers() const
 {
-    return m_keyboardGroupsModel;
+    return m_KeyboardGroupSwitcherModel;
 }
 
 static QPersistentModelIndex

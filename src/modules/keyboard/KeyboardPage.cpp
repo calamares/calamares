@@ -69,7 +69,7 @@ KeyboardPage::KeyboardPage( Config* config, QWidget* parent )
         cDebug() << "Variants now total=" << model->rowCount() << "selected=" << model->currentIndex();
     }
     {
-        auto* model = config->keyboardGroups();
+        auto* model = config->keyboardGroupsSwitchers();
         ui->groupSelector->setModel( model );
         ui->groupSelector->setCurrentIndex( model->currentIndex() );
         cDebug() << "Groups now total=" << model->rowCount() << "selected=" << model->currentIndex();
@@ -116,10 +116,10 @@ KeyboardPage::KeyboardPage( Config* config, QWidget* parent )
 
     connect( ui->groupSelector,
              QOverload< int >::of( &QComboBox::currentIndexChanged ),
-             config->keyboardGroups(),
+             config->keyboardGroupsSwitchers(),
              QOverload< int >::of( &XKBListModel::setCurrentIndex ) );
-    connect( config->keyboardGroups(),
-             &KeyboardGroupsModel::currentIndexChanged,
+    connect( config->keyboardGroupsSwitchers(),
+             &KeyboardGroupsSwitchersModel::currentIndexChanged,
              ui->groupSelector,
              &QComboBox::setCurrentIndex );
 

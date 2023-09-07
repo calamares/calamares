@@ -27,7 +27,7 @@ class Config : public QObject
     Q_PROPERTY( KeyboardModelsModel* keyboardModelsModel READ keyboardModels CONSTANT FINAL )
     Q_PROPERTY( KeyboardLayoutModel* keyboardLayoutsModel READ keyboardLayouts CONSTANT FINAL )
     Q_PROPERTY( KeyboardVariantsModel* keyboardVariantsModel READ keyboardVariants CONSTANT FINAL )
-    Q_PROPERTY( KeyboardGroupsModel* keyboardGroupsModel READ keyboardGroups CONSTANT FINAL )
+    Q_PROPERTY( KeyboardGroupsSwitchersModel* keyboardGroupsSwitchersModel READ keyboardGroupsSwitchers CONSTANT FINAL )
     Q_PROPERTY( QString prettyStatus READ prettyStatus NOTIFY prettyStatusChanged FINAL )
 
 public:
@@ -61,7 +61,7 @@ public:
     KeyboardVariantsModel* keyboardVariants() const;
     /* A group describes a toggle groups of change layouts
      */
-    KeyboardGroupsModel* keyboardGroups() const;
+    KeyboardGroupsSwitchersModel* keyboardGroupsSwitchers() const;
 
     /** @brief Call this to change application language
      *
@@ -101,7 +101,7 @@ private:
     KeyboardModelsModel* m_keyboardModelsModel;
     KeyboardLayoutModel* m_keyboardLayoutsModel;
     KeyboardVariantsModel* m_keyboardVariantsModel;
-    KeyboardGroupsModel* m_keyboardGroupsModel;
+    KeyboardGroupsSwitchersModel* m_KeyboardGroupSwitcherModel;
 
     QString m_selectedLayout;
     QString m_selectedModel;

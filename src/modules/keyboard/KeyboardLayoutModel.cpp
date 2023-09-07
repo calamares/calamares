@@ -273,7 +273,7 @@ KeyboardVariantsModel::setVariants( QMap< QString, QString > variants )
     endResetModel();
 }
 
-KeyboardGroupsModel::KeyboardGroupsModel( QObject* parent )
+KeyboardGroupsSwitchersModel::KeyboardGroupsSwitchersModel( QObject* parent )
     : XKBListModel( parent )
 {
     m_contextname = "kb_groups";

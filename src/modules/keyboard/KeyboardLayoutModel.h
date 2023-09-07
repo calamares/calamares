@@ -154,18 +154,18 @@ public:
     void setVariants( QMap< QString, QString > variants );
 };
 
-/** @brief A list of variants (xkb id and human-readable)
+/** @brief A list of groupsSwitcher (xkb id and human-readable)
  *
- * The variants that are available depend on the Layout that is used,
- * so the `setVariants()` function can be used to update the variants
- * when the two models are related.
+ * The list of group switching combinations `getKeyboardGroups()`
+ * function can be used to update the switching when the two models
+ * are related.
  */
-class KeyboardGroupsModel : public XKBListModel
+class KeyboardGroupsSwitchersModel : public XKBListModel
 {
     Q_OBJECT
 
 public:
-    explicit KeyboardGroupsModel( QObject* parent = nullptr );
+    explicit KeyboardGroupsSwitchersModel( QObject* parent = nullptr );
 };
 
 /** @brief Adjust to changes in application language.
