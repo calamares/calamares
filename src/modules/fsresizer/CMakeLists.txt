@@ -3,10 +3,6 @@
 #   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
 #   SPDX-License-Identifier: BSD-2-Clause
 #
-find_package(KF5Config CONFIG)
-find_package(KF5I18n CONFIG)
-find_package(KF5WidgetsAddons CONFIG)
-
 include(KPMcoreHelper)
 
 if(KPMcore_FOUND)

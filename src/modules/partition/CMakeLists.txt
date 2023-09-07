@@ -45,10 +45,6 @@ find_package(ECM ${ECM_VERSION} REQUIRED NO_MODULE)
 
 include(KPMcoreHelper)
 
-find_package(${kfname}Config CONFIG)
-find_package(${kfname}I18n CONFIG)
-find_package(${kfname}WidgetsAddons CONFIG)
-
 if(KPMcore_FOUND)
     include_directories(${PROJECT_BINARY_DIR}/src/libcalamaresui)
 
