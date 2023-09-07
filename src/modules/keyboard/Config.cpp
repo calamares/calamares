@@ -196,7 +196,7 @@ Config::Config( QObject* parent )
              [ & ]( int index )
              {
                  m_selectedVariant = m_keyboardVariantsModel->key( index );
-                 Config::xkbChanged();
+                 xkbChanged();
                  emit prettyStatusChanged();
              } );
     connect( m_KeyboardGroupSwitcherModel,
@@ -204,7 +204,7 @@ Config::Config( QObject* parent )
              [ & ]( int index )
              {
                  m_selectedGroup = m_KeyboardGroupSwitcherModel->key( index );
-                 Config::xkbChanged();
+                 xkbChanged();
                  emit prettyStatusChanged();
              } );
 

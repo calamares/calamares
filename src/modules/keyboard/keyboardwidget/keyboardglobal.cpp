@@ -213,9 +213,12 @@ parseKeyboardGroupsSwitchers( const char* filepath )
         return models;
     }
 
-    bool modelsFound = findSection( fh, "! option" );
+    QRegularExpression rx;
+    rx.setPattern( "^\\s+grp:(\\S+)\\s+(\\w.*)\n$" );
+
+    bool optionSectionFound = findSection( fh, "! option" );
     // read the file until the end or until we break the loop
-    while ( modelsFound && !fh.atEnd() )
+    while ( optionSectionFound && !fh.atEnd() )
     {
         QByteArray line = fh.readLine();
 
@@ -225,15 +228,14 @@ parseKeyboardGroupsSwitchers( const char* filepath )
             break;
         }
 
-        // here we are in the model section, otherwise we would continue or break
-        QRegExp rx;
-        rx.setPattern( "^\\s+grp:(\\S+)\\s+(\\w.*)\n$" );
+        // here we are in the option section - find all "grp:" options
 
         // insert into the model map
-        if ( rx.indexIn( line ) != -1 )
+        QRegularExpressionMatch match = rx.match( line );
+        if ( match.hasMatch() )
         {
-            QString modelDesc = rx.cap( 2 );
-            QString model = rx.cap( 1 );
+            QString modelDesc = match.captured( 2 );
+            QString model = match.captured( 1 );
             models.insert( modelDesc, model );
         }
     }
