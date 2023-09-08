@@ -100,7 +100,7 @@ set_target_properties(
         SOVERSION ${CALAMARES_SOVERSION}
         INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_INSTALL_FULL_INCLUDEDIR}/libcalamares
 )
-target_link_libraries(calamares LINK_PUBLIC yamlcpp::yamlcpp ${qtname}::Core)
+target_link_libraries(calamares LINK_PUBLIC yamlcpp::yamlcpp ${qtname}::Core ${qtname}::Network)
 target_link_libraries(calamares LINK_PUBLIC ${kfname}::CoreAddons)
 
 ### OPTIONAL Automount support (requires dbus)
