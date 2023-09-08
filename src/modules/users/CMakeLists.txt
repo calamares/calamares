@@ -7,7 +7,11 @@ find_package(${qtname} ${QT_VERSION} CONFIG REQUIRED Core DBus Network)
 find_package(Crypt REQUIRED)
 
 # Add optional libraries here
-set(USER_EXTRA_LIB)
+set(USER_EXTRA_LIB
+    ${kfname}::CoreAddons
+    ${qtname}::DBus
+    ${CRYPT_LIBRARIES}
+)
 
 find_package(LibPWQuality)
 set_package_properties(LibPWQuality PROPERTIES PURPOSE "Extra checks of password quality")
@@ -44,15 +48,13 @@ set(_users_src
 calamares_add_library(
     users_internal
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
-    TARGET_TYPE STATIC
+    TARGET_TYPE OBJECT
     NO_INSTALL
     NO_VERSION
     SOURCES
         ${_users_src}
     LINK_LIBRARIES
-        ${kfname}::CoreAddons
-        ${qtname}::DBus
-        ${CRYPT_LIBRARIES}
+        ${USER_EXTRA_LIB}
 )
 
 calamares_add_plugin(users
