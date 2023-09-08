@@ -823,3 +823,58 @@ public:
 }
 }
 
+/* This returns a reference to local, which is a terrible idea.
+ * Good thing it's not meant to be compiled.
+ */
+class kb_groups : public QObject {
+Q_OBJECT
+public:
+	const QStringList& table()
+	{
+	return QStringList {
+		tr("Alt+Caps Lock", "kb_group"),
+		tr("Alt+Ctrl", "kb_group"),
+		tr("Alt+Shift", "kb_group"),
+		tr("Alt+Space", "kb_group"),
+		tr("Any Win (while pressed)", "kb_group"),
+		tr("Both Alts together", "kb_group"),
+		tr("Both Alts together; AltGr alone chooses third level", "kb_group"),
+		tr("Both Ctrls together", "kb_group"),
+		tr("Both Shifts together", "kb_group"),
+		tr("Caps Lock", "kb_group"),
+		tr("Caps Lock (while pressed), Alt+Caps Lock for the original Caps Lock action", "kb_group"),
+		tr("Caps Lock to first layout; Shift+Caps Lock to second layout", "kb_group"),
+		tr("Ctrl+Left Win to first layout; Ctrl+Menu to second layout", "kb_group"),
+		tr("Ctrl+Shift", "kb_group"),
+		tr("Ctrl+Space", "kb_group"),
+		tr("Left Alt", "kb_group"),
+		tr("Left Alt (while pressed)", "kb_group"),
+		tr("Left Alt+Left Shift", "kb_group"),
+		tr("Left Ctrl", "kb_group"),
+		tr("Left Ctrl to first layout; Right Ctrl to second layout", "kb_group"),
+		tr("Left Ctrl+Left Shift", "kb_group"),
+		tr("Left Ctrl+Left Win", "kb_group"),
+		tr("Left Shift", "kb_group"),
+		tr("Left Win", "kb_group"),
+		tr("Left Win (while pressed)", "kb_group"),
+		tr("Left Win to first layout; Right Win/Menu to second layout", "kb_group"),
+		tr("Menu", "kb_group"),
+		tr("Menu (while pressed), Shift+Menu for Menu", "kb_group"),
+		tr("None", "kb_group"),
+		tr("Right Alt", "kb_group"),
+		tr("Right Alt (while pressed)", "kb_group"),
+		tr("Right Alt+Right Shift", "kb_group"),
+		tr("Right Ctrl", "kb_group"),
+		tr("Right Ctrl (while pressed)", "kb_group"),
+		tr("Right Ctrl+Right Shift", "kb_group"),
+		tr("Right Shift", "kb_group"),
+		tr("Right Win", "kb_group"),
+		tr("Right Win (while pressed)", "kb_group"),
+		tr("Scroll Lock", "kb_group"),
+		tr("Shift+Caps Lock", "kb_group"),
+		tr("Win+Space", "kb_group"),
+		QString()
+	};
+}
+}
+

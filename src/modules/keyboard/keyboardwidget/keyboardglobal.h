@@ -30,9 +30,11 @@ public:
 
     using LayoutsMap = QMap< QString, KeyboardInfo >;
     using ModelsMap = QMap< QString, QString >;
+    using GroupsMap = QMap< QString, QString >;
 
     static LayoutsMap getKeyboardLayouts();
     static ModelsMap getKeyboardModels();
+    static GroupsMap getKeyboardGroups();
 };
 
 #endif  // KEYBOARDGLOBAL_H
