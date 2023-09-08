@@ -369,12 +369,15 @@ feature_summary(
 # OPTIONAL DEPENDENCIES
 #
 # First, set KF back to optional so that any missing components don't trip us up.
+find_package(${kfname} ${KF_VERSION} QUIET COMPONENTS CoreAddons Crash)
 set_package_properties(
     ${kfname}
     PROPERTIES
     TYPE OPTIONAL
+    DESCRIPTION "KDE Frameworks"
+    URL "https://api.kde.org/frameworks/"
+    PURPOSE "KDE Integration"
 )
-find_package(${kfname} ${KF_VERSION} QUIET COMPONENTS CoreAddons Crash)
 
 if(NOT TARGET ${kfname}::Crash)
     if(BUILD_CRASH_REPORTING)
@@ -582,6 +585,11 @@ add_feature_info(Python ${WITH_PYTHON} "Python job modules")
 add_feature_info(Qml ${WITH_QML} "QML UI support")
 add_feature_info(Polkit ${INSTALL_POLKIT} "Install Polkit files")
 add_feature_info(KCrash ${BUILD_CRASH_REPORTING} "Crash dumps via KCrash")
+
+### Post-source configuration
+#
+#
+find_package(${kfname} ${KF_VERSION} QUIET COMPONENTS CoreAddons Crash)
 
 ### CMake infrastructure installation
 #
