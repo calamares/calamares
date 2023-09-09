@@ -348,36 +348,15 @@ if(ECM_FOUND)
     include(KDEInstallDirs)
 endif()
 
-find_package(${kfname} ${KF_VERSION} QUIET COMPONENTS CoreAddons)
-set_package_properties(
-    ${kfname}
-    PROPERTIES
-    TYPE REQUIRED
-    DESCRIPTION "KDE Frameworks (CoreAddons)"
-    URL "https://api.kde.org/frameworks/kcoreaddons/"
-    PURPOSE "About Calamares"
-)
-
-feature_summary(
-    WHAT REQUIRED_PACKAGES_NOT_FOUND
-    FATAL_ON_MISSING_REQUIRED_PACKAGES
-    DESCRIPTION "The following REQUIRED packages were not found:"
-    QUIET_ON_EMPTY
-)
+find_package(${kfname} ${KF_VERSION} QUIET REQUIRED COMPONENTS CoreAddons)
+# After this point, there should be no REQUIRED find_packages,
+# since we want tidy reporting of optional dependencies.
 
 #
 # OPTIONAL DEPENDENCIES
 #
 # First, set KF back to optional so that any missing components don't trip us up.
 find_package(${kfname} ${KF_VERSION} QUIET COMPONENTS CoreAddons Crash)
-set_package_properties(
-    ${kfname}
-    PROPERTIES
-    TYPE OPTIONAL
-    DESCRIPTION "KDE Frameworks"
-    URL "https://api.kde.org/frameworks/"
-    PURPOSE "KDE Integration"
-)
 
 if(NOT TARGET ${kfname}::Crash)
     if(BUILD_CRASH_REPORTING)
