@@ -158,7 +158,7 @@ def get_kernel_params(uuid):
             swap_outer_uuid = partition["luksUuid"]
 
         if partition["mountPoint"] == "/" and has_luks:
-            if use_systemd_naming or uses_sd_encrypt:
+            if use_systemd_naming:
                 cryptdevice_params = [f"rd.luks.uuid={partition['luksUuid']}"]
             else:
                 cryptdevice_params = [f"cryptdevice=UUID={partition['luksUuid']}:{partition['luksMapperName']}"]
