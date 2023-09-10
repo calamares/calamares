@@ -13,7 +13,7 @@
 
 #include "DllMacro.h"
 
-namespace CalamaresUtils
+namespace Calamares
 {
 namespace Partition
 {
@@ -35,6 +35,6 @@ struct DLLEXPORT Syncer
 };
 
 }  // namespace Partition
-}  // namespace CalamaresUtils
+}  // namespace Calamares
 
 #endif

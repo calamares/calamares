@@ -46,7 +46,7 @@ main( int argc, char** argv )
 
     Logger::setupLogfile();
     Logger::setupLogLevel( Logger::LOGDEBUG );
-    CalamaresUtils::Partition::automountDisable( argv[ 1 ][ 1 ] == 'd' );
+    Calamares::Partition::automountDisable( argv[ 1 ][ 1 ] == 'd' );
 
     return 0;
 }

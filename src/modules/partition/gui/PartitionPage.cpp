@@ -134,7 +134,7 @@ PartitionPage::updateButtons()
         Q_ASSERT( model );
         Partition* partition = model->partitionForIndex( index );
         Q_ASSERT( partition );
-        const bool isFree = CalamaresUtils::Partition::isPartitionFreeSpace( partition );
+        const bool isFree = Calamares::Partition::isPartitionFreeSpace( partition );
         const bool isExtended = partition->roles().has( PartitionRole::Extended );
 
         // An extended partition can have a "free space" child; that one does
@@ -144,7 +144,7 @@ PartitionPage::updateButtons()
         const bool hasChildren = isExtended
             && ( partition->children().length() > 1
                  || ( partition->children().length() == 1
-                      && !CalamaresUtils::Partition::isPartitionFreeSpace( partition->children().at( 0 ) ) ) );
+                      && !Calamares::Partition::isPartitionFreeSpace( partition->children().at( 0 ) ) ) );
 
         const bool isInVG = m_core->isInVG( partition );
 
@@ -419,7 +419,7 @@ PartitionPage::onEditClicked()
     Partition* partition = model->partitionForIndex( index );
     Q_ASSERT( partition );
 
-    if ( CalamaresUtils::Partition::isPartitionNew( partition ) )
+    if ( Calamares::Partition::isPartitionNew( partition ) )
     {
         updatePartitionToCreate( model->device(), partition );
     }
@@ -487,7 +487,7 @@ PartitionPage::onPartitionViewActivated()
     // but I don't expect there will be other occurences of triggering the same
     // action from multiple UI elements in this page, so it does not feel worth
     // the price.
-    if ( CalamaresUtils::Partition::isPartitionFreeSpace( partition ) )
+    if ( Calamares::Partition::isPartitionFreeSpace( partition ) )
     {
         m_ui->createButton->click();
     }

@@ -38,9 +38,9 @@ public:
         QString partMountPoint;
         FileSystem::Type partFileSystem = FileSystem::Unknown;
         QVariantMap partFeatures;
-        CalamaresUtils::Partition::PartitionSize partSize;
-        CalamaresUtils::Partition::PartitionSize partMinSize;
-        CalamaresUtils::Partition::PartitionSize partMaxSize;
+        Calamares::Partition::PartitionSize partSize;
+        Calamares::Partition::PartitionSize partMinSize;
+        Calamares::Partition::PartitionSize partMaxSize;
 
         /// @brief All-zeroes PartitionEntry
         PartitionEntry();

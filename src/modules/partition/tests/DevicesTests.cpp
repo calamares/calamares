@@ -34,12 +34,12 @@ private Q_SLOTS:
     void testPartUtilScanDevices();
 
 private:
-    std::unique_ptr< CalamaresUtils::Partition::KPMManager > m_d;
+    std::unique_ptr< Calamares::Partition::KPMManager > m_d;
     bool m_isRoot = false;
 };
 
 DevicesTests::DevicesTests()
-    : m_d( std::make_unique< CalamaresUtils::Partition::KPMManager >() )
+    : m_d( std::make_unique< Calamares::Partition::KPMManager >() )
     , m_isRoot( geteuid() == 0 )
 {
 }

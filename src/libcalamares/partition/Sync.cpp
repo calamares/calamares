@@ -14,7 +14,7 @@
 #include "utils/Logger.h"
 
 void
-CalamaresUtils::Partition::sync()
+Calamares::Partition::sync()
 {
     /* I would normally use full paths here, e.g. /sbin/udevadm and /bin/sync,
      * but there's enough variation / opinion on where these executables

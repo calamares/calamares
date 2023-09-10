@@ -26,8 +26,8 @@
 #include <kpmcore/util/report.h>
 
 using CalamaresUtils::BytesToMiB;
-using CalamaresUtils::Partition::untranslatedFS;
-using CalamaresUtils::Partition::userVisibleFS;
+using Calamares::Partition::untranslatedFS;
+using Calamares::Partition::userVisibleFS;
 
 SetPartFlagsJob::SetPartFlagsJob( Device* device, Partition* partition, PartitionTable::Flags flags )
     : PartitionJob( partition )

@@ -46,7 +46,7 @@ ClearTempMountsJob::exec()
 {
     Logger::Once o;
     // Fetch a list of current mounts to Calamares temporary directories.
-    using MtabInfo = CalamaresUtils::Partition::MtabInfo;
+    using MtabInfo = Calamares::Partition::MtabInfo;
     auto targetMounts = MtabInfo::fromMtabFilteredByPrefix( QStringLiteral( "/tmp/calamares-" ) );
 
     if ( targetMounts.isEmpty() )
@@ -59,7 +59,7 @@ ClearTempMountsJob::exec()
     for ( const auto& m : qAsConst( targetMounts ) )
     {
         cDebug() << o << "Will try to umount path" << m.mountPoint;
-        if ( CalamaresUtils::Partition::unmount( m.mountPoint, { "-lv" } ) == 0 )
+        if ( Calamares::Partition::unmount( m.mountPoint, { "-lv" } ) == 0 )
         {
             // Returns the program's exit code, so 0 is success
             goodNews.append( QString( "Successfully unmounted %1." ).arg( m.mountPoint ) );

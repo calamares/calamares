@@ -26,7 +26,7 @@ class Device;
 class Partition;
 class PartitionTable;
 
-namespace CalamaresUtils
+namespace Calamares
 {
 namespace Partition
 {
@@ -70,6 +70,6 @@ Partition* findPartitionByPath( const QList< Device* >& devices, const QString& 
 QList< Partition* > findPartitions( const QList< Device* >& devices,
                                     std::function< bool( Partition* ) > criterionFunction );
 }  // namespace Partition
-}  // namespace CalamaresUtils
+}  // namespace Calamares
 
 #endif  // PARTITION_PARTITIONQUERY_H

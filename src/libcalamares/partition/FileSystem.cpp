@@ -14,7 +14,7 @@
 
 #include <QObject>
 
-namespace CalamaresUtils
+namespace Calamares
 {
 namespace Partition
 {
@@ -92,4 +92,4 @@ untranslatedFS( FileSystem::Type t )
 }
 
 }  // namespace Partition
-}  // namespace CalamaresUtils
+}  // namespace Calamares

@@ -33,7 +33,7 @@ public:
     void undoPreview();
 
 private:
-    CalamaresUtils::Partition::KPMManager m_kpmcore;
+    Calamares::Partition::KPMManager m_kpmcore;
     QString m_vgName;
     QVector< const Partition* > m_pvList;
     qint32 m_peSize;

@@ -19,7 +19,7 @@
 #include <QDir>
 #include <QTemporaryDir>
 
-namespace CalamaresUtils
+namespace Calamares
 {
 namespace Partition
 {
@@ -38,7 +38,7 @@ mount( const QString& devicePath, const QString& mountPoint, const QString& file
             cWarning() << "Can't mount on an empty mountpoint.";
         }
 
-        return static_cast< int >( ProcessResult::Code::NoWorkingDirectory );
+        return static_cast< int >( CalamaresUtils::ProcessResult::Code::NoWorkingDirectory );
     }
 
     QDir mountPointDir( mountPoint );
@@ -48,7 +48,7 @@ mount( const QString& devicePath, const QString& mountPoint, const QString& file
         if ( !ok )
         {
             cWarning() << "Could not create mountpoint" << mountPoint;
-            return static_cast< int >( ProcessResult::Code::NoWorkingDirectory );
+            return static_cast< int >( CalamaresUtils::ProcessResult::Code::NoWorkingDirectory );
         }
     }
 
@@ -158,4 +158,4 @@ MtabInfo::fromMtabFilteredByPrefix( const QString& mountPrefix, const QString& m
 }
 
 }  // namespace Partition
-}  // namespace CalamaresUtils
+}  // namespace Calamares

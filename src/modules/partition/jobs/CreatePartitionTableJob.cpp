@@ -27,7 +27,7 @@
 // Qt
 #include <QProcess>
 
-using CalamaresUtils::Partition::PartitionIterator;
+using Calamares::Partition::PartitionIterator;
 
 CreatePartitionTableJob::CreatePartitionTableJob( Device* device, PartitionTable::TableType type )
     : m_device( device )

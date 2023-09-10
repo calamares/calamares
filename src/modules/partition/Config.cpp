@@ -283,7 +283,7 @@ fillGSConfigurationEFI( Calamares::GlobalStorage* gs, const QVariantMap& configu
     if ( configurationMap.contains( "efiSystemPartitionSize" ) )
     {
         const QString sizeString = CalamaresUtils::getString( configurationMap, "efiSystemPartitionSize" );
-        CalamaresUtils::Partition::PartitionSize part_size = CalamaresUtils::Partition::PartitionSize( sizeString );
+        Calamares::Partition::PartitionSize part_size = Calamares::Partition::PartitionSize( sizeString );
         if ( part_size.isValid() )
         {
             // Insert once as string, once as a size-in-bytes;

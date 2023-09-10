@@ -55,9 +55,9 @@
 #include <QtConcurrent/QtConcurrent>
 
 using Calamares::Widgets::PrettyRadioButton;
-using CalamaresUtils::Partition::findPartitionByPath;
-using CalamaresUtils::Partition::isPartitionFreeSpace;
-using CalamaresUtils::Partition::PartitionIterator;
+using Calamares::Partition::findPartitionByPath;
+using Calamares::Partition::isPartitionFreeSpace;
+using Calamares::Partition::PartitionIterator;
 using InstallChoice = Config::InstallChoice;
 using SwapChoice = Config::SwapChoice;
 

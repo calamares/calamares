@@ -19,7 +19,7 @@
 #include <QObject>
 
 
-namespace CalamaresUtils
+namespace Calamares
 {
 namespace Partition
 {
@@ -97,4 +97,4 @@ KPMManager::backend() const
 
 
 }  // namespace Partition
-}  // namespace CalamaresUtils
+}  // namespace Calamares

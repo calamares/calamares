@@ -89,7 +89,7 @@ KPMTests::testFSNames()
     calaFSNames.reserve( fstypes.count() );
     for ( const auto t : fstypes )
     {
-        QString s = CalamaresUtils::Partition::untranslatedFS( t );
+        QString s = Calamares::Partition::untranslatedFS( t );
         calaFSNames.append( s );
     }
 

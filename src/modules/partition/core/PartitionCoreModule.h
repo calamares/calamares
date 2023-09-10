@@ -257,7 +257,7 @@ private:
 
     DeviceInfo* infoForDevice( const Device* ) const;
 
-    CalamaresUtils::Partition::KPMManager m_kpmcore;
+    Calamares::Partition::KPMManager m_kpmcore;
 
     QList< DeviceInfo* > m_deviceInfos;
     QList< Partition* > m_efiSystemPartitions;

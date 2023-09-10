@@ -20,7 +20,7 @@
 
 class CoreBackend;
 
-namespace CalamaresUtils
+namespace Calamares
 {
 namespace Partition
 {
@@ -56,6 +56,6 @@ private:
 };
 
 }  // namespace Partition
-}  // namespace CalamaresUtils
+}  // namespace Calamares
 
 #endif  // PARTITION_KPMMANAGER_H

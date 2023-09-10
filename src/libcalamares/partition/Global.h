@@ -19,7 +19,7 @@
 #include "DllMacro.h"
 #include "JobQueue.h"
 
-namespace CalamaresUtils
+namespace Calamares
 {
 namespace Partition
 {
@@ -73,6 +73,6 @@ isFilesystemUsedGS( const QString& filesystemType )
 }
 
 }  // namespace Partition
-}  // namespace CalamaresUtils
+}  // namespace Calamares
 
 #endif

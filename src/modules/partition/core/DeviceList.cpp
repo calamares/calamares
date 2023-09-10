@@ -21,7 +21,7 @@
 
 #include <QProcess>
 
-using CalamaresUtils::Partition::PartitionIterator;
+using Calamares::Partition::PartitionIterator;
 
 namespace PartUtils
 {

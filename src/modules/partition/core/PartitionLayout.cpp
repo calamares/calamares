@@ -232,7 +232,7 @@ PartitionLayout::createPartitions( Device* dev,
         // warnings to ensure that all the cases are covered below.
         // We need to ignore the percent-defined until later
         qint64 sectors = 0;
-        if ( entry.partSize.unit() != CalamaresUtils::Partition::SizeUnit::Percent )
+        if ( entry.partSize.unit() != Calamares::Partition::SizeUnit::Percent )
         {
             sectors = entry.partSize.toSectors( totalSectors, dev->logicalSize() );
         }
@@ -264,7 +264,7 @@ PartitionLayout::createPartitions( Device* dev,
     // Assign sectors for percentage-defined partitions.
     for ( const auto& entry : qAsConst( m_partLayout ) )
     {
-        if ( entry.partSize.unit() == CalamaresUtils::Partition::SizeUnit::Percent )
+        if ( entry.partSize.unit() == Calamares::Partition::SizeUnit::Percent )
         {
             qint64 sectors
                 = entry.partSize.toSectors( availableSectors + partSectorsMap.value( &entry ), dev->logicalSize() );

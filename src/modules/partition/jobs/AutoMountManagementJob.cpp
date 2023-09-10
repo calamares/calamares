@@ -28,13 +28,13 @@ AutoMountManagementJob::exec()
     if ( m_stored )
     {
         cDebug() << "Restore automount settings";
-        CalamaresUtils::Partition::automountRestore( m_stored );
+        Calamares::Partition::automountRestore( m_stored );
         m_stored.reset();
     }
     else
     {
         cDebug() << "Set automount to" << ( m_disable ? "disable" : "enable" );
-        m_stored = CalamaresUtils::Partition::automountDisable( m_disable );
+        m_stored = Calamares::Partition::automountDisable( m_disable );
     }
     return Calamares::JobResult::ok();
 }

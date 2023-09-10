@@ -24,8 +24,8 @@
 #include <kpmcore/ops/createfilesystemoperation.h>
 #include <kpmcore/util/report.h>
 
-using CalamaresUtils::Partition::untranslatedFS;
-using CalamaresUtils::Partition::userVisibleFS;
+using Calamares::Partition::untranslatedFS;
+using Calamares::Partition::userVisibleFS;
 
 FormatPartitionJob::FormatPartitionJob( Device* device, Partition* partition )
     : PartitionJob( partition )

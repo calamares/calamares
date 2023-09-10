@@ -27,7 +27,8 @@
 
 QTEST_GUILESS_MAIN( PartitionJobTests )
 
-using namespace Calamares;
+using Calamares::job_ptr;
+using Calamares::JobList;
 using namespace CalamaresUtils::Units;
 
 class PartitionMounter
@@ -99,11 +100,11 @@ writeFile( const QString& path, const QByteArray data )
     }
 }
 
-static Partition*
+static ::Partition*
 firstFreePartition( PartitionNode* parent )
 {
     for ( auto child : parent->children() )
-        if ( CalamaresUtils::Partition::isPartitionFreeSpace( child ) )
+        if ( Calamares::Partition::isPartitionFreeSpace( child ) )
         {
             return child;
         }
@@ -111,13 +112,13 @@ firstFreePartition( PartitionNode* parent )
 }
 
 //- QueueRunner ---------------------------------------------------------------
-QueueRunner::QueueRunner( JobQueue* queue )
+QueueRunner::QueueRunner( Calamares::JobQueue* queue )
     : m_queue( queue )
     , m_finished( false )  // Same initalizations as in ::run()
     , m_success( true )
 {
-    connect( m_queue, &JobQueue::finished, this, &QueueRunner::onFinished );
-    connect( m_queue, &JobQueue::failed, this, &QueueRunner::onFailed );
+    connect( m_queue, &Calamares::JobQueue::finished, this, &QueueRunner::onFinished );
+    connect( m_queue, &Calamares::JobQueue::failed, this, &QueueRunner::onFailed );
 }
 
 QueueRunner::~QueueRunner()
@@ -153,7 +154,7 @@ QueueRunner::onFailed( const QString& message, const QString& details )
     QFAIL( qPrintable( msg ) );
 }
 
-static CalamaresUtils::Partition::KPMManager* kpmcore = nullptr;
+static Calamares::Partition::KPMManager* kpmcore = nullptr;
 
 //- PartitionJobTests ------------------------------------------------------------------
 PartitionJobTests::PartitionJobTests()
@@ -172,7 +173,7 @@ PartitionJobTests::initTestCase()
                0 );
     }
 
-    kpmcore = new CalamaresUtils::Partition::KPMManager();
+    kpmcore = new Calamares::Partition::KPMManager();
     FileSystemFactory::init();
 
     refreshDevice();

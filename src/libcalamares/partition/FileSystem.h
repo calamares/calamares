@@ -23,7 +23,7 @@
 
 #include <kpmcore/fs/filesystem.h>
 
-namespace CalamaresUtils
+namespace Calamares
 {
 namespace Partition
 {
@@ -95,6 +95,6 @@ isFilesystemUsedGS( FileSystem::Type filesystem )
 }
 
 }  // namespace Partition
-}  // namespace CalamaresUtils
+}  // namespace Calamares
 
 #endif  // PARTITION_PARTITIONQUERY_H

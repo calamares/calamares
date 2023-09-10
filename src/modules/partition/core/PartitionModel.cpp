@@ -28,8 +28,8 @@
 // Qt
 #include <QColor>
 
-using CalamaresUtils::Partition::isPartitionFreeSpace;
-using CalamaresUtils::Partition::isPartitionNew;
+using Calamares::Partition::isPartitionFreeSpace;
+using Calamares::Partition::isPartitionNew;
 
 //- ResetHelper --------------------------------------------
 PartitionModel::ResetHelper::ResetHelper( PartitionModel* model )
@@ -163,7 +163,7 @@ PartitionModel::data( const QModelIndex& index, int role ) const
         }
         if ( col == FileSystemColumn )
         {
-            return CalamaresUtils::Partition::prettyNameForFileSystemType( partition->fileSystem().type() );
+            return Calamares::Partition::prettyNameForFileSystemType( partition->fileSystem().type() );
         }
         if ( col == FileSystemLabelColumn )
         {
@@ -206,7 +206,7 @@ PartitionModel::data( const QModelIndex& index, int role ) const
             }
         }
         QString prettyFileSystem
-            = CalamaresUtils::Partition::prettyNameForFileSystemType( partition->fileSystem().type() );
+            = Calamares::Partition::prettyNameForFileSystemType( partition->fileSystem().type() );
         qint64 size = ( partition->lastSector() - partition->firstSector() + 1 ) * m_device->logicalSize();
         QString prettySize = formatByteSize( size );
         return QVariant( name + " " + prettyFileSystem + " " + prettySize );

@@ -17,7 +17,7 @@
 static const QString fsUse_key = QStringLiteral( "filesystem_use" );
 
 bool
-CalamaresUtils::Partition::isFilesystemUsedGS( const Calamares::GlobalStorage* gs, const QString& filesystemType )
+Calamares::Partition::isFilesystemUsedGS( const Calamares::GlobalStorage* gs, const QString& filesystemType )
 {
     if ( !gs )
     {
@@ -34,7 +34,7 @@ CalamaresUtils::Partition::isFilesystemUsedGS( const Calamares::GlobalStorage* g
 }
 
 void
-CalamaresUtils::Partition::useFilesystemGS( Calamares::GlobalStorage* gs, const QString& filesystemType, bool used )
+Calamares::Partition::useFilesystemGS( Calamares::GlobalStorage* gs, const QString& filesystemType, bool used )
 {
     if ( gs )
     {
@@ -46,7 +46,7 @@ CalamaresUtils::Partition::useFilesystemGS( Calamares::GlobalStorage* gs, const 
 }
 
 void
-CalamaresUtils::Partition::clearFilesystemGS( Calamares::GlobalStorage* gs )
+Calamares::Partition::clearFilesystemGS( Calamares::GlobalStorage* gs )
 {
     if ( gs )
     {

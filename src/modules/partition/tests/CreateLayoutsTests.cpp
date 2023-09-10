@@ -26,7 +26,7 @@ class SmartStatus;
 
 QTEST_GUILESS_MAIN( CreateLayoutsTests )
 
-static CalamaresUtils::Partition::KPMManager* kpmcore = nullptr;
+static Calamares::Partition::KPMManager* kpmcore = nullptr;
 static Calamares::JobQueue* jobqueue = nullptr;
 
 #define LOGICAL_SIZE 512
@@ -40,7 +40,7 @@ void
 CreateLayoutsTests::init()
 {
     jobqueue = new Calamares::JobQueue( nullptr );
-    kpmcore = new CalamaresUtils::Partition::KPMManager();
+    kpmcore = new Calamares::Partition::KPMManager();
 }
 
 void

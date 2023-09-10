@@ -17,7 +17,7 @@
 /**
  * This job sets automounting to a specific value, and when run a
  * second time, **re**sets to the original value. See the documentation
- * for CalamaresUtils::Partition::automountDisable() for details.
+ * for Calamares::Partition::automountDisable() for details.
  * Use @c true to **disable** automounting.
  *
  * Effectively: queue the **same** job twice; the first time it runs
@@ -36,7 +36,7 @@ public:
 
 private:
     bool m_disable;
-    decltype( CalamaresUtils::Partition::automountDisable( true ) ) m_stored;
+    decltype( Calamares::Partition::automountDisable( true ) ) m_stored;
 };
 
 #endif /* PARTITION_AUTOMOUNTMANAGEMENTJOB_H */

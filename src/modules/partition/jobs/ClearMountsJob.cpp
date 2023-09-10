@@ -28,7 +28,7 @@
 #include <QProcess>
 #include <QStringList>
 
-using CalamaresUtils::Partition::PartitionIterator;
+using Calamares::Partition::PartitionIterator;
 
 
 /** @brief Returns list of partitions on a given @p deviceName
@@ -381,7 +381,7 @@ Calamares::JobResult
 ClearMountsJob::exec()
 {
     const QString deviceName = m_deviceNode.split( '/' ).last();
-    CalamaresUtils::Partition::Syncer s;
+    Calamares::Partition::Syncer s;
     QList< MessageAndPath > goodNews;
 
     apply( getCryptoDevices( m_mapperExceptions ), tryCryptoClose, goodNews );

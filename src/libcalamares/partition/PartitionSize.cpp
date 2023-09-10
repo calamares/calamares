@@ -14,7 +14,7 @@
 #include "utils/Logger.h"
 #include "utils/Units.h"
 
-namespace CalamaresUtils
+namespace Calamares
 {
 namespace Partition
 {
@@ -289,4 +289,4 @@ PartitionSize::operator==( const PartitionSize& other ) const
 }
 
 }  // namespace Partition
-}  // namespace CalamaresUtils
+}  // namespace Calamares

@@ -43,8 +43,8 @@
 #include <QRegularExpressionValidator>
 #include <QSet>
 
-using CalamaresUtils::Partition::untranslatedFS;
-using CalamaresUtils::Partition::userVisibleFS;
+using Calamares::Partition::untranslatedFS;
+using Calamares::Partition::userVisibleFS;
 
 static QSet< FileSystem::Type > s_unmountableFS( { FileSystem::Unformatted,
                                                    FileSystem::LinuxSwap,
@@ -352,7 +352,7 @@ CreatePartitionDialog::checkMountPointSelection()
 void
 CreatePartitionDialog::initPartResizerWidget( Partition* partition )
 {
-    QColor color = CalamaresUtils::Partition::isPartitionFreeSpace( partition )
+    QColor color = Calamares::Partition::isPartitionFreeSpace( partition )
         ? ColorUtils::colorForPartitionInFreeSpace( partition )
         : ColorUtils::colorForPartition( partition );
     m_partitionSizeController->init( m_device, partition, color );

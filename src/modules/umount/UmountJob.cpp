@@ -58,7 +58,7 @@ unmountTargetMounts( const QString& rootMountPoint )
         targetMountPath.append( '/' );
     }
 
-    using MtabInfo = CalamaresUtils::Partition::MtabInfo;
+    using MtabInfo = Calamares::Partition::MtabInfo;
     auto targetMounts = MtabInfo::fromMtabFilteredByPrefix( targetMountPath );
     std::sort( targetMounts.begin(), targetMounts.end(), MtabInfo::mountPointOrder );
 
@@ -67,7 +67,7 @@ unmountTargetMounts( const QString& rootMountPoint )
     {
         // Returns the program's exit code, so 0 is success and non-0
         // (truthy) is a failure.
-        if ( CalamaresUtils::Partition::unmount( m.mountPoint, { "-lv" } ) )
+        if ( Calamares::Partition::unmount( m.mountPoint, { "-lv" } ) )
         {
             return Calamares::JobResult::error(
                 QCoreApplication::translate( UmountJob::staticMetaObject.className(),

@@ -27,7 +27,7 @@
 #include <kpmcore/ops/resizeoperation.h>
 #include <kpmcore/util/report.h>
 
-using CalamaresUtils::Partition::PartitionIterator;
+using Calamares::Partition::PartitionIterator;
 
 ResizeFSJob::ResizeFSJob( QObject* parent )
     : Calamares::CppJob( parent )

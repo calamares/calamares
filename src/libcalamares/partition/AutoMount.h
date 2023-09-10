@@ -15,7 +15,7 @@
 
 #include <memory>
 
-namespace CalamaresUtils
+namespace Calamares
 {
 namespace Partition
 {
@@ -46,6 +46,6 @@ DLLEXPORT std::shared_ptr< AutoMountInfo > automountDisable( bool disable = true
 DLLEXPORT void automountRestore( const std::shared_ptr< AutoMountInfo >& t );
 
 }  // namespace Partition
-}  // namespace CalamaresUtils
+}  // namespace Calamares
 
 #endif

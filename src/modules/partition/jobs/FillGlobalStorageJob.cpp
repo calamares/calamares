@@ -34,9 +34,9 @@
 #include <QFileInfo>
 #include <QProcess>
 
-using CalamaresUtils::Partition::PartitionIterator;
-using CalamaresUtils::Partition::untranslatedFS;
-using CalamaresUtils::Partition::userVisibleFS;
+using Calamares::Partition::PartitionIterator;
+using Calamares::Partition::untranslatedFS;
+using Calamares::Partition::userVisibleFS;
 
 typedef QHash< QString, QString > UuidForPartitionHash;
 
@@ -306,14 +306,14 @@ FillGlobalStorageJob::prettyStatusMessage() const
  * .. mark as "2" if it's one of the claimed / in-use FSses
  *
  * Stores a GS key called "filesystem_use" with this mapping.
- * @see CalamaresUtils::Partition::useFilesystemGS()
+ * @see Calamares::Partition::useFilesystemGS()
  */
 static void
 storeFSUse( Calamares::GlobalStorage* storage, const QVariantList& partitions )
 {
     if ( storage )
     {
-        CalamaresUtils::Partition::clearFilesystemGS( storage );
+        Calamares::Partition::clearFilesystemGS( storage );
         for ( const auto& p : partitions )
         {
             const auto pmap = p.toMap();
@@ -325,7 +325,7 @@ storeFSUse( Calamares::GlobalStorage* storage, const QVariantList& partitions )
                 continue;
             }
 
-            CalamaresUtils::Partition::useFilesystemGS( storage, fs, true );
+            Calamares::Partition::useFilesystemGS( storage, fs, true );
         }
     }
 }

@@ -27,7 +27,7 @@
 #include <QPainterPath>
 #include <QStyleOption>
 
-using CalamaresUtils::Partition::PartitionIterator;
+using Calamares::Partition::PartitionIterator;
 
 static const int VIEW_HEIGHT
     = qMax( CalamaresUtils::defaultFontHeight() + 8,  // wins out with big fonts
@@ -103,7 +103,7 @@ PartitionSplitterWidget::init( Device* dev, bool drawNestedPartitions )
     {
         PartitionSplitterItem newItem = { ( *it )->partitionPath(),
                                           ColorUtils::colorForPartition( *it ),
-                                          CalamaresUtils::Partition::isPartitionFreeSpace( *it ),
+                                          Calamares::Partition::isPartitionFreeSpace( *it ),
                                           ( *it )->capacity(),
                                           PartitionSplitterItem::Normal,
                                           {} };

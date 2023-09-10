@@ -23,7 +23,7 @@
 #include <QFileInfo>
 #include <QStringList>
 
-using SizeUnit = CalamaresUtils::Partition::SizeUnit;
+using SizeUnit = Calamares::Partition::SizeUnit;
 
 QTEST_GUILESS_MAIN( FSResizerTests )
 

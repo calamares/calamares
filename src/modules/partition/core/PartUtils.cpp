@@ -32,8 +32,8 @@
 #include <QProcess>
 #include <QTemporaryDir>
 
-using CalamaresUtils::Partition::isPartitionFreeSpace;
-using CalamaresUtils::Partition::isPartitionNew;
+using Calamares::Partition::isPartitionFreeSpace;
+using Calamares::Partition::isPartitionNew;
 
 namespace PartUtils
 {
@@ -205,7 +205,7 @@ canBeResized( DeviceModel* dm, const QString& partitionPath, const Logger::Once&
         for ( int i = 0; i < dm->rowCount(); ++i )
         {
             Device* dev = dm->deviceForIndex( dm->index( i ) );
-            Partition* candidate = CalamaresUtils::Partition::findPartitionByPath( { dev }, partitionPath );
+            Partition* candidate = Calamares::Partition::findPartitionByPath( { dev }, partitionPath );
             if ( candidate )
             {
                 return canBeResized( candidate, o );
@@ -246,7 +246,7 @@ lookForFstabEntries( const QString& partitionPath )
 
     FstabEntryList fstabEntries;
 
-    CalamaresUtils::Partition::TemporaryMount mount( partitionPath, QString(), mountOptions.join( ',' ) );
+    Calamares::Partition::TemporaryMount mount( partitionPath, QString(), mountOptions.join( ',' ) );
     if ( mount.isValid() )
     {
         QFile fstabFile( mount.path() + "/etc/fstab" );

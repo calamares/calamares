@@ -27,7 +27,7 @@
 
 #include <qregularexpression.h>
 
-using CalamaresUtils::Partition::PartitionIterator;
+using Calamares::Partition::PartitionIterator;
 
 namespace KPMHelpers
 {

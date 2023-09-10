@@ -79,7 +79,7 @@ mount( const std::string& device_path,
        const std::string& filesystem_name,
        const std::string& options )
 {
-    return CalamaresUtils::Partition::mount( QString::fromStdString( device_path ),
+    return Calamares::Partition::mount( QString::fromStdString( device_path ),
                                              QString::fromStdString( mount_point ),
                                              QString::fromStdString( filesystem_name ),
                                              QString::fromStdString( options ) );

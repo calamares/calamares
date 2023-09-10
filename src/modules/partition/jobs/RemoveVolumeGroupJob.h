@@ -28,7 +28,7 @@ public:
     Calamares::JobResult exec() override;
 
 private:
-    CalamaresUtils::Partition::KPMManager m_kpmcore;
+    Calamares::Partition::KPMManager m_kpmcore;
     LvmDevice* m_device;
 };
 

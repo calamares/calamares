@@ -15,7 +15,7 @@
 
 #include <optional>
 
-namespace CalamaresUtils
+namespace Calamares
 {
 namespace Partition
 {
@@ -168,4 +168,4 @@ automountRestore( const std::shared_ptr< AutoMountInfo >& info )
 }
 
 }  // namespace Partition
-}  // namespace CalamaresUtils
+}  // namespace Calamares

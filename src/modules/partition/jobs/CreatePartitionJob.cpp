@@ -31,8 +31,8 @@
 #include <qcoreapplication.h>
 #include <qregularexpression.h>
 
-using CalamaresUtils::Partition::untranslatedFS;
-using CalamaresUtils::Partition::userVisibleFS;
+using Calamares::Partition::untranslatedFS;
+using Calamares::Partition::userVisibleFS;
 
 /** @brief Create
  *
@@ -174,7 +174,7 @@ prettyGptEntries( const Partition* partition )
 QString
 CreatePartitionJob::prettyName() const
 {
-    const PartitionTable* table = CalamaresUtils::Partition::getPartitionTable( m_partition );
+    const PartitionTable* table = Calamares::Partition::getPartitionTable( m_partition );
     if ( table && table->type() == PartitionTable::TableType::gpt )
     {
         QString entries = prettyGptEntries( m_partition );
@@ -206,7 +206,7 @@ CreatePartitionJob::prettyName() const
 QString
 CreatePartitionJob::prettyDescription() const
 {
-    const PartitionTable* table = CalamaresUtils::Partition::getPartitionTable( m_partition );
+    const PartitionTable* table = Calamares::Partition::getPartitionTable( m_partition );
     if ( table && table->type() == PartitionTable::TableType::gpt )
     {
         QString entries = prettyGptEntries( m_partition );
@@ -240,7 +240,7 @@ CreatePartitionJob::prettyDescription() const
 QString
 CreatePartitionJob::prettyStatusMessage() const
 {
-    const PartitionTable* table = CalamaresUtils::Partition::getPartitionTable( m_partition );
+    const PartitionTable* table = Calamares::Partition::getPartitionTable( m_partition );
     if ( table && table->type() == PartitionTable::TableType::gpt )
     {
         QString type = prettyGptType( m_partition );

@@ -63,9 +63,9 @@
 #include <QStandardItemModel>
 #include <QtConcurrent/QtConcurrent>
 
-using CalamaresUtils::Partition::isPartitionFreeSpace;
-using CalamaresUtils::Partition::isPartitionNew;
-using CalamaresUtils::Partition::PartitionIterator;
+using Calamares::Partition::isPartitionFreeSpace;
+using Calamares::Partition::isPartitionNew;
+using Calamares::Partition::PartitionIterator;
 
 PartitionCoreModule::RefreshHelper::RefreshHelper( PartitionCoreModule* module )
     : m_module( module )
@@ -807,7 +807,7 @@ PartitionCoreModule::scanForEfiSystemPartitions()
     }
 
     QList< Partition* > efiSystemPartitions
-        = CalamaresUtils::Partition::findPartitions( devices, PartUtils::isEfiBootable );
+        = Calamares::Partition::findPartitions( devices, PartUtils::isEfiBootable );
 
     if ( efiSystemPartitions.isEmpty() )
     {

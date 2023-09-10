@@ -39,7 +39,7 @@ public:
     Device* device() const { return m_device; }
 
 private:
-    CalamaresUtils::Partition::KPMManager m_kpmcore;
+    Calamares::Partition::KPMManager m_kpmcore;
     Device* m_device;
     PartitionTable::TableType m_type;
     PartitionTable* createTable();
