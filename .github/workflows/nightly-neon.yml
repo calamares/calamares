@@ -19,29 +19,15 @@ jobs:
       image: docker://kdeneon/plasma:user
       options: --tmpfs /build:rw --user 0:0
     steps:
-      - name: "prepare env"
-        uses: calamares/actions/prepare-neon@v4
       - name: "prepare source"
         uses: calamares/actions/generic-checkout@v4
+      - name: "install dependencies"
+        shell: bash
+        run: |
+          ./github/workflows/nightly-neon.sh
       - name: "build"
         id: build
         uses: calamares/actions/generic-build@v4
-      - name: "notify: ok"
-        if: ${{ success() && github.repository == 'calamares/calamares' }}
-        uses: calamares/actions/matrix-notify@v4
-        with:
-          token: ${{ secrets.MATRIX_TOKEN }}
-          room: ${{ secrets.MATRIX_ROOM }}
-          message: |
-            OK ${{ github.workflow }} in ${{ github.repository }} ${{ steps.build.outputs.git-summary }}
-      - name: "notify: fail"
-        if: ${{ failure() && github.repository == 'calamares/calamares' }}
-        uses: calamares/actions/matrix-notify@v4
-        with:
-          token: ${{ secrets.MATRIX_TOKEN }}
-          room: ${{ secrets.MATRIX_ROOM }}
-          message: |
-            FAIL ${{ github.workflow }} in ${{ github.repository }} ${{ steps.build.outputs.git-summary }}
       - name: "Calamares: archive"
         working-directory: ${{ env.BUILDDIR }}
         run: |
