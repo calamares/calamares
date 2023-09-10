@@ -85,7 +85,7 @@ ShellProcessJob::setConfigurationMap( const QVariantMap& configurationMap )
     {
         if ( labels.contains( "name" ) )
         {
-            m_name = std::make_unique< CalamaresUtils::Locale::TranslatedString >( labels, "name" );
+            m_name = std::make_unique< Calamares::Locale::TranslatedString >( labels, "name" );
         }
     }
 }

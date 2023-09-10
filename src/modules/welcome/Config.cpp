@@ -204,7 +204,7 @@ Config::setLocaleIndex( int index )
                                        branding ? branding->translationsDirectory() : QString() );
     if ( Calamares::JobQueue::instance() && Calamares::JobQueue::instance()->globalStorage() )
     {
-        CalamaresUtils::Locale::insertGS( *Calamares::JobQueue::instance()->globalStorage(),
+        Calamares::Locale::insertGS( *Calamares::JobQueue::instance()->globalStorage(),
                                           QStringLiteral( "LANG" ),
                                           CalamaresUtils::translatorLocaleName().name );
     }

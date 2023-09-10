@@ -64,7 +64,6 @@ public:
      */
     Translation( const Id& localeId, LabelFormat format = LabelFormat::IfNeededWithCountry, QObject* parent = nullptr );
 
-
     /** @brief Define a sorting order.
      *
      * Locales are sorted by their id, which means the ISO 2-letter code + country.

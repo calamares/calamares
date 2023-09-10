@@ -12,7 +12,7 @@
 
 #include <QString>
 
-namespace CalamaresUtils
+namespace Calamares
 {
 namespace Locale
 {
@@ -53,6 +53,6 @@ protected:
 };
 
 }  // namespace Locale
-}  // namespace CalamaresUtils
+}  // namespace Calamares
 
 #endif

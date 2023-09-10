@@ -44,7 +44,7 @@ private:
 
     void regionChanged( int currentIndex );
     void zoneChanged( int currentIndex );
-    void locationChanged( const CalamaresUtils::Locale::TimeZoneData* location );
+    void locationChanged( const Calamares::Locale::TimeZoneData* location );
     void changeLocale();
     void changeFormats();
 

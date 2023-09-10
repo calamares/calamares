@@ -109,7 +109,7 @@ LocalePage::LocalePage( Config* config, QWidget* parent )
     connect( m_tzWidget,
              &TimeZoneWidget::locationChanged,
              config,
-             QOverload< const CalamaresUtils::Locale::TimeZoneData* >::of( &Config::setCurrentLocation ) );
+             QOverload< const Calamares::Locale::TimeZoneData* >::of( &Config::setCurrentLocation ) );
 
     connect( m_regionCombo, QOverload< int >::of( &QComboBox::currentIndexChanged ), this, &LocalePage::regionChanged );
     connect( m_zoneCombo, QOverload< int >::of( &QComboBox::currentIndexChanged ), this, &LocalePage::zoneChanged );
@@ -147,7 +147,7 @@ LocalePage::onActivate()
 void
 LocalePage::regionChanged( int currentIndex )
 {
-    using namespace CalamaresUtils::Locale;
+    using namespace Calamares::Locale;
 
     QString selectedRegion = m_regionCombo->itemData( currentIndex ).toString();
     {
@@ -168,7 +168,7 @@ LocalePage::zoneChanged( int currentIndex )
 }
 
 void
-LocalePage::locationChanged( const CalamaresUtils::Locale::TimeZoneData* location )
+LocalePage::locationChanged( const Calamares::Locale::TimeZoneData* location )
 {
     if ( !location )
     {

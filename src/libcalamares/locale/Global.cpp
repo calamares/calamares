@@ -12,7 +12,7 @@
 #include "GlobalStorage.h"
 #include "utils/Logger.h"
 
-namespace CalamaresUtils
+namespace Calamares
 {
 namespace Locale
 {
@@ -88,4 +88,4 @@ readGS( Calamares::GlobalStorage& gs, const QString& key )
 }
 
 }  // namespace Locale
-}  // namespace CalamaresUtils
+}  // namespace Calamares

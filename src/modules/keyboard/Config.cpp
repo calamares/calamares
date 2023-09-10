@@ -629,7 +629,7 @@ Config::guessLocaleKeyboardLayout()
 
     // Try to preselect a layout, depending on language and locale
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-    QString lang = CalamaresUtils::Locale::readGS( *gs, QStringLiteral( "LANG" ) );
+    QString lang = Calamares::Locale::readGS( *gs, QStringLiteral( "LANG" ) );
 
     cDebug() << "Got locale language" << lang;
     if ( !lang.isEmpty() )

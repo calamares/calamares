@@ -39,7 +39,6 @@
 // *INDENT-OFF*
 // clang-format off
 
-
 struct CountryData
 {
     QLocale::Language l;
@@ -252,6 +251,5 @@ static const CountryData country_data_table[] = {
 };
 
 static_assert( (sizeof(country_data_table) / sizeof(CountryData)) == country_data_size, "Table size mismatch for CountryData" );
-
 
 // END Generated from CLDR data

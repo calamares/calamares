@@ -27,13 +27,13 @@
 #endif
 
 static QPoint
-getLocationPosition( const CalamaresUtils::Locale::TimeZoneData* l )
+getLocationPosition( const Calamares::Locale::TimeZoneData* l )
 {
     return TimeZoneImageList::getLocationPosition( l->longitude(), l->latitude() );
 }
 
 
-TimeZoneWidget::TimeZoneWidget( const CalamaresUtils::Locale::ZonesModel* zones, QWidget* parent )
+TimeZoneWidget::TimeZoneWidget( const Calamares::Locale::ZonesModel* zones, QWidget* parent )
     : QWidget( parent )
     , timeZoneImages( TimeZoneImageList::fromQRC() )
     , m_zonesData( zones )
@@ -185,7 +185,7 @@ TimeZoneWidget::mousePressEvent( QMouseEvent* event )
 
     int mX = event->pos().x();
     int mY = event->pos().y();
-    auto distance = [ & ]( const CalamaresUtils::Locale::TimeZoneData* zone )
+    auto distance = [ & ]( const Calamares::Locale::TimeZoneData* zone )
     {
         QPoint locPos = TimeZoneImageList::getLocationPosition( zone->longitude(), zone->latitude() );
         return double( abs( mX - locPos.x() ) + abs( mY - locPos.y() ) );

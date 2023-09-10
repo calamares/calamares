@@ -121,7 +121,7 @@ private:
      * Reading the property will return an empty QString.
      */
     std::optional< QString > m_packageChoice;
-    CalamaresUtils::Locale::TranslatedString* m_stepName;  // As it appears in the sidebar
+    Calamares::Locale::TranslatedString* m_stepName;  // As it appears in the sidebar
 };
 
 

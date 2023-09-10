@@ -22,8 +22,8 @@
 struct PackageItem
 {
     QString id;
-    CalamaresUtils::Locale::TranslatedString name;
-    CalamaresUtils::Locale::TranslatedString description;
+    Calamares::Locale::TranslatedString name;
+    Calamares::Locale::TranslatedString description;
     QPixmap screenshot;
     QStringList packageNames;
     QVariantMap netinstallData;

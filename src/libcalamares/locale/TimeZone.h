@@ -31,7 +31,7 @@
 #include <QSortFilterProxyModel>
 #include <QVariant>
 
-namespace CalamaresUtils
+namespace Calamares
 {
 namespace Locale
 {
@@ -75,7 +75,6 @@ private:
     double m_latitude;
     double m_longitude;
 };
-
 
 /** @brief The list of timezone regions
  *
@@ -229,8 +228,7 @@ private:
     QString m_region;
 };
 
-
 }  // namespace Locale
-}  // namespace CalamaresUtils
+}  // namespace Calamares
 
 #endif  // LOCALE_TIMEZONE_H

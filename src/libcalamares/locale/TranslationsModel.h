@@ -18,7 +18,6 @@
 #include <QAbstractListModel>
 #include <QVector>
 
-
 namespace Calamares
 {
 namespace Locale

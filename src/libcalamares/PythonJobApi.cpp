@@ -281,7 +281,7 @@ _gettext_languages()
     Calamares::GlobalStorage* gs
         = jq ? jq->globalStorage() : CalamaresPython::GlobalStoragePythonWrapper::globalStorageInstance();
 
-    QString lang = CalamaresUtils::Locale::readGS( *gs, QStringLiteral( "LANG" ) );
+    QString lang = Calamares::Locale::readGS( *gs, QStringLiteral( "LANG" ) );
     if ( !lang.isEmpty() )
     {
         languages.append( lang );

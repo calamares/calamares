@@ -127,11 +127,11 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
 
     if ( label.contains( "sidebar" ) )
     {
-        m_sidebarLabel = new CalamaresUtils::Locale::TranslatedString( label, "sidebar", className );
+        m_sidebarLabel = new Calamares::Locale::TranslatedString( label, "sidebar", className );
     }
     if ( label.contains( "title" ) )
     {
-        m_titleLabel = new CalamaresUtils::Locale::TranslatedString( label, "title", className );
+        m_titleLabel = new Calamares::Locale::TranslatedString( label, "title", className );
     }
 
     // Lastly, load the groups data

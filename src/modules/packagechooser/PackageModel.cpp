@@ -63,8 +63,8 @@ PackageItem::PackageItem( const QString& a_id,
 
 PackageItem::PackageItem( const QVariantMap& item_map )
     : id( CalamaresUtils::getString( item_map, "id" ) )
-    , name( CalamaresUtils::Locale::TranslatedString( item_map, "name" ) )
-    , description( CalamaresUtils::Locale::TranslatedString( item_map, "description" ) )
+    , name( Calamares::Locale::TranslatedString( item_map, "name" ) )
+    , description( Calamares::Locale::TranslatedString( item_map, "description" ) )
     , screenshot( loadScreenshot( CalamaresUtils::getString( item_map, "screenshot" ) ) )
     , packageNames( CalamaresUtils::getStringList( item_map, "packages" ) )
     , netinstallData( getSubMap( item_map, "netinstall" ) )

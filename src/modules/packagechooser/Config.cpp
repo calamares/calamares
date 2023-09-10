@@ -114,9 +114,9 @@ Config::introductionPackage() const
             = QT_TR_NOOP( "Please pick a product from the list. The selected product will be installed." );
         defaultIntroduction = new PackageItem( QString(), name, description );
         defaultIntroduction->screenshot = QPixmap( QStringLiteral( ":/images/no-selection.png" ) );
-        defaultIntroduction->name = CalamaresUtils::Locale::TranslatedString( name, metaObject()->className() );
+        defaultIntroduction->name = Calamares::Locale::TranslatedString( name, metaObject()->className() );
         defaultIntroduction->description
-            = CalamaresUtils::Locale::TranslatedString( description, metaObject()->className() );
+            = Calamares::Locale::TranslatedString( description, metaObject()->className() );
     }
     return *defaultIntroduction;
 }
@@ -357,7 +357,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     {
         if ( labels.contains( "step" ) )
         {
-            m_stepName = new CalamaresUtils::Locale::TranslatedString( labels, "step" );
+            m_stepName = new Calamares::Locale::TranslatedString( labels, "step" );
         }
     }
 }

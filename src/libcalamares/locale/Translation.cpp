@@ -13,6 +13,9 @@
 
 #include <memory>
 
+namespace
+{
+
 struct TranslationSpecialCase
 {
     const char* id;  // The Calamares ID for the translation
@@ -127,6 +130,7 @@ specialCaseSystemLanguage()
                         { return ( s.language == language ) && lookup_region( region, s.regions ); } );
     return ( it != std::cend( special_cases ) ) ? QString::fromLatin1( it->id ) : QString();
 }
+}  // namespace
 
 namespace Calamares
 {

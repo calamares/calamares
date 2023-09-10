@@ -9,7 +9,6 @@
  */
 #include "TranslatableString.h"
 
-
 /** @brief Massage an identifier into a human-readable form
  *
  * Makes a copy of @p s, caller must free() it.
@@ -37,7 +36,7 @@ munge( const char* s )
     return t;
 }
 
-namespace CalamaresUtils
+namespace Calamares
 {
 namespace Locale
 {
@@ -69,11 +68,10 @@ TranslatableString::TranslatableString( const QString& s )
 {
 }
 
-
 TranslatableString::~TranslatableString()
 {
     free( m_human );
 }
 
 }  // namespace Locale
-}  // namespace CalamaresUtils
+}  // namespace Calamares

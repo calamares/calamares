@@ -19,7 +19,7 @@
 #include <QRegularExpression>
 #include <QRegularExpressionMatch>
 
-namespace CalamaresUtils
+namespace Calamares
 {
 namespace Locale
 {
@@ -114,6 +114,5 @@ TranslatedString::get( const QLocale& locale ) const
     }
 }
 
-
 }  // namespace Locale
-}  // namespace CalamaresUtils
+}  // namespace Calamares

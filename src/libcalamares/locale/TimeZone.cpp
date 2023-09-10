@@ -20,7 +20,7 @@
 
 static const char TZ_DATA_FILE[] = "/usr/share/zoneinfo/zone.tab";
 
-namespace CalamaresUtils
+namespace Calamares
 {
 namespace Locale
 {
@@ -61,7 +61,6 @@ getRightGeoLocation( QString str )
     return sign * num;
 }
 
-
 TimeZoneData::TimeZoneData( const QString& region,
                             const QString& zone,
                             const QString& country,
@@ -82,7 +81,6 @@ TimeZoneData::tr() const
     // NOTE: context name must match what's used in zone-extractor.py
     return QObject::tr( m_human, "tz_names" );
 }
-
 
 class RegionData : public TranslatableString
 {
@@ -384,9 +382,8 @@ find( double startingDistance,
 const TimeZoneData*
 ZonesModel::find( const std::function< double( const TimeZoneData* ) >& distanceFunc ) const
 {
-    const auto* officialZone = CalamaresUtils::Locale::find( 1000000.0, m_private->m_zones, distanceFunc );
-    const auto* altZone
-        = CalamaresUtils::Locale::find( distanceFunc( officialZone ), m_private->m_altZones, distanceFunc );
+    const auto* officialZone = Calamares::Locale::find( 1000000.0, m_private->m_zones, distanceFunc );
+    const auto* altZone = Calamares::Locale::find( distanceFunc( officialZone ), m_private->m_altZones, distanceFunc );
 
     // If nothing was closer than the official zone already was, altZone is
     // nullptr; but if there is a spot-patch, then we need to re-find
@@ -444,7 +441,6 @@ ZonesModel::lookup( double latitude, double longitude ) const
     return const_cast< QObject* >( reinterpret_cast< const QObject* >( p ) );
 }
 
-
 ZonesModel::Iterator::operator bool() const
 {
     return 0 <= m_index && m_index < m_p->m_zones.count();
@@ -460,7 +456,7 @@ ZonesModel::Iterator::operator*() const
     return nullptr;
 }
 
-RegionalZonesModel::RegionalZonesModel( CalamaresUtils::Locale::ZonesModel* source, QObject* parent )
+RegionalZonesModel::RegionalZonesModel( Calamares::Locale::ZonesModel* source, QObject* parent )
     : QSortFilterProxyModel( parent )
     , m_private( privateInstance() )
 {
@@ -497,9 +493,8 @@ RegionalZonesModel::filterAcceptsRow( int sourceRow, const QModelIndex& ) const
     return ( zone->m_region == m_region );
 }
 
-
 }  // namespace Locale
-}  // namespace CalamaresUtils
+}  // namespace Calamares
 
 #include "utils/moc-warnings.h"
 

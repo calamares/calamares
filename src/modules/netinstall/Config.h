@@ -90,8 +90,8 @@ private Q_SLOTS:
     void loadingDone();
 
 private:
-    CalamaresUtils::Locale::TranslatedString* m_sidebarLabel = nullptr;  // As it appears in the sidebar
-    CalamaresUtils::Locale::TranslatedString* m_titleLabel = nullptr;
+    Calamares::Locale::TranslatedString* m_sidebarLabel = nullptr;  // As it appears in the sidebar
+    Calamares::Locale::TranslatedString* m_titleLabel = nullptr;
     PackageModel* m_model = nullptr;
     LoaderQueue* m_queue = nullptr;
     Status m_status = Status::Ok;

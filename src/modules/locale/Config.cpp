@@ -147,7 +147,7 @@ loadLocales( const QString& localeGenPath )
 }
 
 static bool
-updateGSLocation( Calamares::GlobalStorage* gs, const CalamaresUtils::Locale::TimeZoneData* location )
+updateGSLocation( Calamares::GlobalStorage* gs, const Calamares::Locale::TimeZoneData* location )
 {
     const QString regionKey = QStringLiteral( "locationRegion" );
     const QString zoneKey = QStringLiteral( "locationZone" );
@@ -176,14 +176,14 @@ updateGSLocation( Calamares::GlobalStorage* gs, const CalamaresUtils::Locale::Ti
 static void
 updateGSLocale( Calamares::GlobalStorage* gs, const LocaleConfiguration& locale )
 {
-    CalamaresUtils::Locale::insertGS( *gs, locale.toMap(), CalamaresUtils::Locale::InsertMode::Overwrite );
+    Calamares::Locale::insertGS( *gs, locale.toMap(), Calamares::Locale::InsertMode::Overwrite );
 }
 
 Config::Config( QObject* parent )
     : QObject( parent )
-    , m_regionModel( std::make_unique< CalamaresUtils::Locale::RegionsModel >() )
-    , m_zonesModel( std::make_unique< CalamaresUtils::Locale::ZonesModel >() )
-    , m_regionalZonesModel( std::make_unique< CalamaresUtils::Locale::RegionalZonesModel >( m_zonesModel.get() ) )
+    , m_regionModel( std::make_unique< Calamares::Locale::RegionsModel >() )
+    , m_zonesModel( std::make_unique< Calamares::Locale::ZonesModel >() )
+    , m_regionalZonesModel( std::make_unique< Calamares::Locale::RegionalZonesModel >( m_zonesModel.get() ) )
 {
     // Slightly unusual: connect to our *own* signals. Wherever the language
     // or the location is changed, these signals are emitted, so hook up to
@@ -255,7 +255,7 @@ Config::setCurrentLocation( const QString& regionzone )
 void
 Config::setCurrentLocation( const QString& regionName, const QString& zoneName )
 {
-    using namespace CalamaresUtils::Locale;
+    using namespace Calamares::Locale;
     auto* zone = m_zonesModel->find( regionName, zoneName );
     if ( zone )
     {
@@ -269,7 +269,7 @@ Config::setCurrentLocation( const QString& regionName, const QString& zoneName )
 }
 
 void
-Config::setCurrentLocation( const CalamaresUtils::Locale::TimeZoneData* location )
+Config::setCurrentLocation( const Calamares::Locale::TimeZoneData* location )
 {
     const bool updateLocation = ( location != m_currentLocation );
     if ( updateLocation )
@@ -315,7 +315,7 @@ Config::automaticLocaleConfiguration() const
     }
 
     auto* gs = Calamares::JobQueue::instance()->globalStorage();
-    QString lang = CalamaresUtils::Locale::readGS( *gs, QStringLiteral( "LANG" ) );
+    QString lang = Calamares::Locale::readGS( *gs, QStringLiteral( "LANG" ) );
     if ( lang.isEmpty() )
     {
         lang = QLocale().name();
