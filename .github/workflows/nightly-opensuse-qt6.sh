@@ -14,4 +14,5 @@ zypper --non-interactive in libicu-devel libatasmart-devel
 # Qt6/KF6 dependencies
 zypper --non-interactive in qt6-concurrent-devel qt6-gui-devel qt6-linguist-devel qt6-network-devel qt6-svg-devel qt6-declarative-devel
 zypper --non-interactive in kf6-kcoreaddons-devel kf6-kdbusaddons-devel kf6-kcrash-devel
+zypper --non-interactive in kf6-kparts-devel # Also installs KF5 things
 zypper --non-interactive in libpolkit-qt6-1-devel
