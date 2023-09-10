@@ -240,12 +240,12 @@ registerQmlModels()
             0,
             "Global",
             []( QQmlEngine*, QJSEngine* ) -> QObject* { return Calamares::JobQueue::instance()->globalStorage(); } );
-        qmlRegisterSingletonType< CalamaresUtils::Network::Manager >(
+        qmlRegisterSingletonType< Calamares::Network::Manager >(
             "io.calamares.core",
             1,
             0,
             "Network",
-            []( QQmlEngine*, QJSEngine* ) -> QObject* { return &CalamaresUtils::Network::Manager::instance(); } );
+            []( QQmlEngine*, QJSEngine* ) -> QObject* { return &Calamares::Network::Manager::instance(); } );
     }
 }
 

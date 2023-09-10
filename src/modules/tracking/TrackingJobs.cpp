@@ -110,9 +110,9 @@ TrackingInstallJob::prettyStatusMessage() const
 Calamares::JobResult
 TrackingInstallJob::exec()
 {
-    using CalamaresUtils::Network::Manager;
-    using CalamaresUtils::Network::RequestOptions;
-    using CalamaresUtils::Network::RequestStatus;
+    using Calamares::Network::Manager;
+    using Calamares::Network::RequestOptions;
+    using Calamares::Network::RequestStatus;
 
     auto result = Manager::instance().synchronousPing(
         QUrl( m_url ),

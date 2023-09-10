@@ -28,7 +28,7 @@ NetworkTests::initTestCase()
 void
 NetworkTests::testInstance()
 {
-    auto& nam = CalamaresUtils::Network::Manager::instance();
+    auto& nam = Calamares::Network::Manager::instance();
     QVERIFY( !nam.hasInternet() );
     QCOMPARE( nam.getCheckInternetUrls().count(), 0 );
 }
@@ -36,7 +36,7 @@ NetworkTests::testInstance()
 void
 NetworkTests::testPing()
 {
-    using namespace CalamaresUtils::Network;
+    using namespace Calamares::Network;
     Logger::setupLogLevel( Logger::LOGVERBOSE );
     auto& nam = Manager::instance();
 
@@ -65,7 +65,7 @@ NetworkTests::testPing()
 void
 NetworkTests::testCheckUrl()
 {
-    using namespace CalamaresUtils::Network;
+    using namespace Calamares::Network;
     Logger::setupLogLevel( Logger::LOGVERBOSE );
     auto& nam = Manager::instance();
 
@@ -95,7 +95,7 @@ NetworkTests::testCheckUrl()
 void
 NetworkTests::testCheckMultiUrl()
 {
-    using namespace CalamaresUtils::Network;
+    using namespace Calamares::Network;
     Logger::setupLogLevel( Logger::LOGVERBOSE );
     auto& nam = Manager::instance();
 

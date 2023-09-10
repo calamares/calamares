@@ -549,7 +549,7 @@ Config::startGeoIP()
 {
     if ( m_geoip && m_geoip->isValid() )
     {
-        auto& network = CalamaresUtils::Network::Manager::instance();
+        auto& network = Calamares::Network::Manager::instance();
         if ( network.hasInternet() || network.synchronousPing( m_geoip->url() ) )
         {
             using Watcher = QFutureWatcher< Calamares::GeoIP::RegionZonePair >;

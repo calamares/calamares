@@ -22,7 +22,7 @@
 
 #include <algorithm>
 
-namespace CalamaresUtils
+namespace Calamares
 {
 namespace Network
 {
@@ -127,7 +127,6 @@ Manager::Private::cleanupNam()
     }
 }
 
-
 Manager::Manager()
     : d( std::make_unique< Private >() )
 {
@@ -186,7 +185,6 @@ Manager::checkHasInternet()
         // going around more than once.
         attempts++;
     } while ( !d->m_hasInternet && ( attempts < d->m_hasInternetUrls.size() ) );
-
 
 // For earlier Qt versions (< 5.15.0), set the accessibility flag to
 // NotAccessible if synchronous ping has failed, so that any module
@@ -348,13 +346,13 @@ Manager::synchronousGet( const QUrl& url, const RequestOptions& options )
 }
 
 QNetworkReply*
-Manager::asynchronousGet( const QUrl& url, const CalamaresUtils::Network::RequestOptions& options )
+Manager::asynchronousGet( const QUrl& url, const Calamares::Network::RequestOptions& options )
 {
     return asynchronousRun( d->nam(), url, options );
 }
 
 QDebug&
-operator<<( QDebug& s, const CalamaresUtils::Network::RequestStatus& e )
+operator<<( QDebug& s, const Calamares::Network::RequestStatus& e )
 {
     s << int( e.status ) << bool( e );
     switch ( e.status )
@@ -377,9 +375,8 @@ operator<<( QDebug& s, const CalamaresUtils::Network::RequestStatus& e )
     return s;
 }
 
-
 }  // namespace Network
-}  // namespace CalamaresUtils
+}  // namespace Calamares
 
 #include "utils/moc-warnings.h"
 

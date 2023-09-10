@@ -72,7 +72,7 @@ WelcomeTests::testOneUrl()
     QVERIFY( map.contains( "requirements" ) );
 
     c.setConfigurationMap( map );
-    QCOMPARE( CalamaresUtils::Network::Manager::instance().getCheckInternetUrls().count(), 1 );
+    QCOMPARE( Calamares::Network::Manager::instance().getCheckInternetUrls().count(), 1 );
 }
 
 void
@@ -107,17 +107,17 @@ WelcomeTests::testUrls()
     const auto map = CalamaresUtils::loadYaml( fi, &ok );
     QVERIFY( ok );
 
-    CalamaresUtils::Network::Manager::instance().setCheckHasInternetUrl( QVector< QUrl > {} );
-    QCOMPARE( CalamaresUtils::Network::Manager::instance().getCheckInternetUrls().count(), 0 );
+    Calamares::Network::Manager::instance().setCheckHasInternetUrl( QVector< QUrl > {} );
+    QCOMPARE( Calamares::Network::Manager::instance().getCheckInternetUrls().count(), 0 );
     c.setConfigurationMap( map );
-    QCOMPARE( CalamaresUtils::Network::Manager::instance().getCheckInternetUrls().count(), result );
+    QCOMPARE( Calamares::Network::Manager::instance().getCheckInternetUrls().count(), result );
 }
 
 void
 WelcomeTests::testBadConfigDoesNotResetUrls()
 {
-    auto& nam = CalamaresUtils::Network::Manager::instance();
-    CalamaresUtils::Network::Manager::instance().setCheckHasInternetUrl( QVector< QUrl > {} );
+    auto& nam = Calamares::Network::Manager::instance();
+    Calamares::Network::Manager::instance().setCheckHasInternetUrl( QVector< QUrl > {} );
     QCOMPARE( nam.getCheckInternetUrls().count(), 0 );
     nam.setCheckHasInternetUrl( QVector< QUrl > { QUrl( "http://example.com" ), QUrl( "https://www.kde.org" ) } );
     QCOMPARE( nam.getCheckInternetUrls().count(), 2 );

@@ -24,7 +24,7 @@
 class QNetworkReply;
 class QNetworkRequest;
 
-namespace CalamaresUtils
+namespace Calamares
 {
 namespace Network
 {
@@ -170,5 +170,5 @@ private:
     std::unique_ptr< Private > d;
 };
 }  // namespace Network
-}  // namespace CalamaresUtils
+}  // namespace Calamares
 #endif  // LIBCALAMARES_NETWORK_MANAGER_H
