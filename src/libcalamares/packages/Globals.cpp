@@ -66,18 +66,18 @@ additions( Calamares::GlobalStorage* gs,
 }
 
 bool
-CalamaresUtils::Packages::setGSPackageAdditions( Calamares::GlobalStorage* gs,
-                                                 const Calamares::ModuleSystem::InstanceKey& module,
-                                                 const QVariantList& installPackages,
-                                                 const QVariantList& tryInstallPackages )
+Calamares::Packages::setGSPackageAdditions( Calamares::GlobalStorage* gs,
+                                            const Calamares::ModuleSystem::InstanceKey& module,
+                                            const QVariantList& installPackages,
+                                            const QVariantList& tryInstallPackages )
 {
     return additions( gs, module.toString(), installPackages, tryInstallPackages );
 }
 
 bool
-CalamaresUtils::Packages::setGSPackageAdditions( Calamares::GlobalStorage* gs,
-                                                 const Calamares::ModuleSystem::InstanceKey& module,
-                                                 const QStringList& installPackages )
+Calamares::Packages::setGSPackageAdditions( Calamares::GlobalStorage* gs,
+                                            const Calamares::ModuleSystem::InstanceKey& module,
+                                            const QStringList& installPackages )
 {
     QVariantList l;
     for ( const auto& s : installPackages )

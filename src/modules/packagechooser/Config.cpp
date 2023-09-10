@@ -144,7 +144,7 @@ Config::updateGlobalStorage( const QStringList& selected ) const
     {
         QStringList packageNames = m_model->getInstallPackagesForNames( selected );
         cDebug() << m_defaultId << "packages to install" << packageNames;
-        CalamaresUtils::Packages::setGSPackageAdditions(
+        Calamares::Packages::setGSPackageAdditions(
             Calamares::JobQueue::instance()->globalStorage(), m_defaultId, packageNames );
     }
     else if ( m_method == PackageChooserMethod::NetAdd )

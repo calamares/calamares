@@ -13,7 +13,7 @@
 #include "GlobalStorage.h"
 #include "modulesystem/InstanceKey.h"
 
-namespace CalamaresUtils
+namespace Calamares
 {
 namespace Packages
 {
@@ -38,7 +38,7 @@ bool setGSPackageAdditions( Calamares::GlobalStorage* gs,
                             const QStringList& installPackages );
 // void setGSPackageRemovals( const Calamares::ModuleSystem::InstanceKey& key, const QVariantList& removePackages );
 }  // namespace Packages
-}  // namespace CalamaresUtils
+}  // namespace Calamares
 
 
 #endif

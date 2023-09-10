@@ -178,6 +178,6 @@ Config::finalizeGlobalStorage( const Calamares::ModuleSystem::InstanceKey& key )
         }
     }
 
-    CalamaresUtils::Packages::setGSPackageAdditions(
+    Calamares::Packages::setGSPackageAdditions(
         Calamares::JobQueue::instance()->globalStorage(), key, installPackages, tryInstallPackages );
 }
