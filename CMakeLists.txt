@@ -317,12 +317,22 @@ if(WITH_QML)
 endif()
 # Note that some modules need more Qt modules, optionally.
 
-find_package(YAMLCPP ${YAMLCPP_VERSION} REQUIRED)
+find_package(YAMLCPP ${YAMLCPP_VERSION})
+set_package_properties(
+    YAMLCPP
+    PROPERTIES
+    TYPE REQUIRED
+    DESCRIPTION "YAML parser for C++"
+    PURPOSE "Parsing of configuration files"
+)
+
+find_package(Polkit${qtname}-1)
 if(INSTALL_POLKIT)
-    find_package(Polkit${qtname}-1 REQUIRED)
-else()
-    # Find it anyway, for dependencies-reporting
-    find_package(Polkit${qtname}-1)
+    set_package_properties(
+        Polkit${qtname}-1
+        PROPERTIES
+        TYPE REQUIRED
+    )
 endif()
 set_package_properties(
     Polkit${qtname}-1
@@ -348,15 +358,38 @@ if(ECM_FOUND)
     include(KDEInstallDirs)
 endif()
 
-find_package(${kfname}CoreAddons ${KF_VERSION} QUIET REQUIRED)
+find_package(${kfname}CoreAddons ${KF_VERSION} QUIET)
+set_package_properties(
+    ${kfname}CoreAddons
+    PROPERTIES
+    TYPE REQUIRED
+    DESCRIPTION "KDE Framework CoreAddons"
+    URL "https://api.kde.org/frameworks/"
+    PURPOSE "Essential Framework for AboutData and Macros"
+)
+
 # After this point, there should be no REQUIRED find_packages,
 # since we want tidy reporting of optional dependencies.
+feature_summary(
+    WHAT REQUIRED_PACKAGES_NOT_FOUND
+    FATAL_ON_MISSING_REQUIRED_PACKAGES
+    DESCRIPTION "The following REQUIRED packages were not found:"
+    QUIET_ON_EMPTY
+)
 
 #
 # OPTIONAL DEPENDENCIES
 #
 # First, set KF back to optional so that any missing components don't trip us up.
 find_package(${kfname}Crash ${KF_VERSION} QUIET)
+set_package_properties(
+    ${kfname}Crash
+    PROPERTIES
+    TYPE OPTIONAL
+    DESCRIPTION "KDE Framework Crash"
+    URL "https://api.kde.org/frameworks/"
+    PURPOSE "Framework for sending Crash Dumps"
+)
 
 if(NOT TARGET ${kfname}::Crash)
     if(BUILD_CRASH_REPORTING)
