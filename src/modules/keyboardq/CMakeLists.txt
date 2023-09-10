@@ -8,8 +8,6 @@ if(NOT WITH_QML)
     return()
 endif()
 
-find_package(${qtname} ${QT_VERSION} CONFIG REQUIRED Core DBus)
-
 set(_keyboard ${CMAKE_CURRENT_SOURCE_DIR}/../keyboard)
 
 include_directories(${_keyboard})
