@@ -19,7 +19,7 @@
 
 class QByteArray;
 
-namespace CalamaresUtils
+namespace Calamares
 {
 namespace GeoIP
 {
@@ -98,5 +98,5 @@ protected:
 };
 
 }  // namespace GeoIP
-}  // namespace CalamaresUtils
+}  // namespace Calamares
 #endif

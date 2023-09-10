@@ -12,7 +12,7 @@
 
 #include "Interface.h"
 
-namespace CalamaresUtils
+namespace Calamares
 {
 namespace GeoIP
 {
@@ -40,5 +40,5 @@ public:
 };
 
 }  // namespace GeoIP
-}  // namespace CalamaresUtils
+}  // namespace Calamares
 #endif

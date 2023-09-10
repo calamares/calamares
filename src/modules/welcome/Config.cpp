@@ -329,7 +329,7 @@ setLanguageIcon( Config* c, const QVariantMap& configurationMap )
 }
 
 static inline void
-logGeoIPHandler( CalamaresUtils::GeoIP::Handler* handler )
+logGeoIPHandler( Calamares::GeoIP::Handler* handler )
 {
     if ( handler )
     {
@@ -339,7 +339,7 @@ logGeoIPHandler( CalamaresUtils::GeoIP::Handler* handler )
 }
 
 static void
-setCountry( Config* config, const QString& countryCode, CalamaresUtils::GeoIP::Handler* handler )
+setCountry( Config* config, const QString& countryCode, Calamares::GeoIP::Handler* handler )
 {
     if ( countryCode.length() != 2 )
     {
@@ -378,10 +378,10 @@ setGeoIP( Config* config, const QVariantMap& configurationMap )
     {
         using FWString = QFutureWatcher< QString >;
 
-        auto* handler = new CalamaresUtils::GeoIP::Handler( CalamaresUtils::getString( geoip, "style" ),
+        auto* handler = new Calamares::GeoIP::Handler( CalamaresUtils::getString( geoip, "style" ),
                                                             CalamaresUtils::getString( geoip, "url" ),
                                                             CalamaresUtils::getString( geoip, "selector" ) );
-        if ( handler->type() != CalamaresUtils::GeoIP::Handler::Type::None )
+        if ( handler->type() != Calamares::GeoIP::Handler::Type::None )
         {
             auto* future = new FWString();
             QObject::connect( future,

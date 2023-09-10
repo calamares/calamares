@@ -17,7 +17,7 @@
 
 #include <QByteArray>
 
-namespace CalamaresUtils
+namespace Calamares
 {
 namespace GeoIP
 {
@@ -89,4 +89,4 @@ GeoIPJSON::processReply( const QByteArray& data )
 }
 
 }  // namespace GeoIP
-}  // namespace CalamaresUtils
+}  // namespace Calamares

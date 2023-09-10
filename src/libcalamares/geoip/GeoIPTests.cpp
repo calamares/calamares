@@ -22,7 +22,7 @@
 
 QTEST_GUILESS_MAIN( GeoIPTests )
 
-using namespace CalamaresUtils::GeoIP;
+using namespace Calamares::GeoIP;
 
 GeoIPTests::GeoIPTests() {}
 
@@ -86,7 +86,6 @@ GeoIPTests::testJSONbad()
     QCOMPARE( tz.first, QString() );
 }
 
-
 static const char xml_data_ubiquity[] =
     R"(<Response>
   <Ip>85.150.1.1</Ip>
@@ -131,7 +130,6 @@ GeoIPTests::testXML2()
 #endif
 }
 
-
 void
 GeoIPTests::testXMLalt()
 {
@@ -163,7 +161,7 @@ GeoIPTests::testXMLbad()
 void
 GeoIPTests::testSplitTZ()
 {
-    using namespace CalamaresUtils::GeoIP;
+    using namespace Calamares::GeoIP;
     auto tz = splitTZString( QStringLiteral( "Moon/Dark_side" ) );
     QCOMPARE( tz.first, QStringLiteral( "Moon" ) );
     QCOMPARE( tz.second, QStringLiteral( "Dark_side" ) );
@@ -186,14 +184,13 @@ GeoIPTests::testSplitTZ()
     QCOMPARE( tz.second, QStringLiteral( "North_Dakota/Beulah" ) );
 }
 
-
 #define CHECK_GET( t, selector, url ) \
     { \
         auto tz = GeoIP##t( selector ) \
                       .processReply( CalamaresUtils::Network::Manager::instance().synchronousGet( QUrl( url ) ) ); \
         qDebug() << tz; \
         QCOMPARE( default_tz, tz ); \
-        auto tz2 = CalamaresUtils::GeoIP::Handler( "" #t, url, selector ).get(); \
+        auto tz2 = Calamares::GeoIP::Handler( "" #t, url, selector ).get(); \
         qDebug() << tz2; \
         QCOMPARE( default_tz, tz2 ); \
     }

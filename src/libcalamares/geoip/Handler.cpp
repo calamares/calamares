@@ -23,10 +23,10 @@
 
 #include <memory>
 
-static const NamedEnumTable< CalamaresUtils::GeoIP::Handler::Type >&
+static const NamedEnumTable< Calamares::GeoIP::Handler::Type >&
 handlerTypes()
 {
-    using Type = CalamaresUtils::GeoIP::Handler::Type;
+    using Type = Calamares::GeoIP::Handler::Type;
 
     // *INDENT-OFF*
     // clang-format off
@@ -42,7 +42,7 @@ handlerTypes()
     return names;
 }
 
-namespace CalamaresUtils
+namespace Calamares
 {
 namespace GeoIP
 {
@@ -142,7 +142,6 @@ Handler::get() const
     return do_query( m_type, m_url, m_selector );
 }
 
-
 QFuture< RegionZonePair >
 Handler::query() const
 {
@@ -163,7 +162,6 @@ Handler::getRaw() const
     return do_raw_query( m_type, m_url, m_selector );
 }
 
-
 QFuture< QString >
 Handler::queryRaw() const
 {
@@ -175,4 +173,4 @@ Handler::queryRaw() const
 }
 
 }  // namespace GeoIP
-}  // namespace CalamaresUtils
+}  // namespace Calamares

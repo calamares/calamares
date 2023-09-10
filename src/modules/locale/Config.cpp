@@ -245,7 +245,7 @@ Config::setCurrentLocation()
 void
 Config::setCurrentLocation( const QString& regionzone )
 {
-    auto r = CalamaresUtils::GeoIP::splitTZString( regionzone );
+    auto r = Calamares::GeoIP::splitTZString( regionzone );
     if ( r.isValid() )
     {
         setCurrentLocation( r.first, r.second );
@@ -459,23 +459,23 @@ getAdjustLiveTimezone( const QVariantMap& configurationMap, bool& adjustLiveTime
 }
 
 static inline void
-getStartingTimezone( const QVariantMap& configurationMap, CalamaresUtils::GeoIP::RegionZonePair& startingTimezone )
+getStartingTimezone( const QVariantMap& configurationMap, Calamares::GeoIP::RegionZonePair& startingTimezone )
 {
     QString region = CalamaresUtils::getString( configurationMap, "region" );
     QString zone = CalamaresUtils::getString( configurationMap, "zone" );
     if ( !region.isEmpty() && !zone.isEmpty() )
     {
-        startingTimezone = CalamaresUtils::GeoIP::RegionZonePair( region, zone );
+        startingTimezone = Calamares::GeoIP::RegionZonePair( region, zone );
     }
     else
     {
         startingTimezone
-            = CalamaresUtils::GeoIP::RegionZonePair( QStringLiteral( "America" ), QStringLiteral( "New_York" ) );
+            = Calamares::GeoIP::RegionZonePair( QStringLiteral( "America" ), QStringLiteral( "New_York" ) );
     }
 
     if ( CalamaresUtils::getBool( configurationMap, "useSystemTimezone", false ) )
     {
-        auto systemtz = CalamaresUtils::GeoIP::splitTZString( QTimeZone::systemTimeZoneId() );
+        auto systemtz = Calamares::GeoIP::splitTZString( QTimeZone::systemTimeZoneId() );
         if ( systemtz.isValid() )
         {
             cDebug() << "Overriding configured timezone" << startingTimezone << "with system timezone" << systemtz;
@@ -485,7 +485,7 @@ getStartingTimezone( const QVariantMap& configurationMap, CalamaresUtils::GeoIP:
 }
 
 static inline void
-getGeoIP( const QVariantMap& configurationMap, std::unique_ptr< CalamaresUtils::GeoIP::Handler >& geoip )
+getGeoIP( const QVariantMap& configurationMap, std::unique_ptr< Calamares::GeoIP::Handler >& geoip )
 {
     bool ok = false;
     QVariantMap map = CalamaresUtils::getSubMap( configurationMap, "geoip", ok );
@@ -495,7 +495,7 @@ getGeoIP( const QVariantMap& configurationMap, std::unique_ptr< CalamaresUtils::
         QString style = CalamaresUtils::getString( map, "style" );
         QString selector = CalamaresUtils::getString( map, "selector" );
 
-        geoip = std::make_unique< CalamaresUtils::GeoIP::Handler >( style, url, selector );
+        geoip = std::make_unique< Calamares::GeoIP::Handler >( style, url, selector );
         if ( !geoip->isValid() )
         {
             cWarning() << "GeoIP Style" << style << "is not recognized.";
@@ -552,7 +552,7 @@ Config::startGeoIP()
         auto& network = CalamaresUtils::Network::Manager::instance();
         if ( network.hasInternet() || network.synchronousPing( m_geoip->url() ) )
         {
-            using Watcher = QFutureWatcher< CalamaresUtils::GeoIP::RegionZonePair >;
+            using Watcher = QFutureWatcher< Calamares::GeoIP::RegionZonePair >;
             m_geoipWatcher = std::make_unique< Watcher >();
             m_geoipWatcher->setFuture( m_geoip->query() );
             connect( m_geoipWatcher.get(), &Watcher::finished, this, &Config::completeGeoIP );

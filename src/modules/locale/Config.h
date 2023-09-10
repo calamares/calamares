@@ -171,19 +171,19 @@ private:
      * This may be overridden by setting *useSystemTimezone* or by
      * GeoIP settings.
      */
-    CalamaresUtils::GeoIP::RegionZonePair m_startingTimezone;
+    Calamares::GeoIP::RegionZonePair m_startingTimezone;
 
     /** @brief Handler for GeoIP lookup (if configured)
      *
      * The GeoIP lookup needs to be started at some suitable time,
      * by explicitly calling *TODO*
      */
-    std::unique_ptr< CalamaresUtils::GeoIP::Handler > m_geoip;
+    std::unique_ptr< Calamares::GeoIP::Handler > m_geoip;
 
     // Implementation details for doing GeoIP lookup
     void startGeoIP();
     void completeGeoIP();
-    std::unique_ptr< QFutureWatcher< CalamaresUtils::GeoIP::RegionZonePair > > m_geoipWatcher;
+    std::unique_ptr< QFutureWatcher< Calamares::GeoIP::RegionZonePair > > m_geoipWatcher;
 };
 
 

@@ -16,7 +16,7 @@
 #include <QVariantMap>
 #include <QtConcurrent/QtConcurrentRun>
 
-namespace CalamaresUtils
+namespace Calamares
 {
 namespace GeoIP
 {
@@ -82,5 +82,5 @@ private:
 };
 
 }  // namespace GeoIP
-}  // namespace CalamaresUtils
+}  // namespace Calamares
 #endif
