@@ -41,8 +41,6 @@ if(DEBUG_PARTITION_SKIP)
     list(APPEND _partition_defs DEBUG_PARTITION_SKIP)
 endif()
 
-find_package(ECM ${ECM_VERSION} REQUIRED NO_MODULE)
-
 include(KPMcoreHelper)
 
 if(KPMcore_FOUND)

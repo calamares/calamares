@@ -8,8 +8,6 @@ if(WITH_QT6)
     return()
 endif()
 
-find_package(ECM ${ECM_VERSION} REQUIRED NO_MODULE)
-
 set(kf5_ver 5.41)
 
 find_package(KF5Service ${kf5_ver})

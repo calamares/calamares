@@ -8,8 +8,6 @@ if(WITH_QT6)
     return()
 endif()
 
-find_package(ECM ${ECM_VERSION} REQUIRED NO_MODULE)
-
 # Requires a sufficiently recent Plasma framework, but also
 # needs a runtime support component (which we don't test for).
 

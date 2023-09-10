@@ -334,7 +334,7 @@ set_package_properties(
 
 # Find ECM once, and add it to the module search path; Calamares
 # modules that need ECM can do
-#   find_package(ECM ${ECM_VERSION} REQUIRED NO_MODULE),
+#   if(ECM_FOUND)
 # no need to mess with the module path after.
 find_package(ECM ${ECM_VERSION} NO_MODULE)
 if(ECM_FOUND)
@@ -348,7 +348,7 @@ if(ECM_FOUND)
     include(KDEInstallDirs)
 endif()
 
-find_package(${kfname} ${KF_VERSION} QUIET REQUIRED COMPONENTS CoreAddons)
+find_package(${kfname}CoreAddons ${KF_VERSION} QUIET REQUIRED)
 # After this point, there should be no REQUIRED find_packages,
 # since we want tidy reporting of optional dependencies.
 
@@ -356,7 +356,7 @@ find_package(${kfname} ${KF_VERSION} QUIET REQUIRED COMPONENTS CoreAddons)
 # OPTIONAL DEPENDENCIES
 #
 # First, set KF back to optional so that any missing components don't trip us up.
-find_package(${kfname} ${KF_VERSION} QUIET COMPONENTS CoreAddons Crash)
+find_package(${kfname}Crash ${KF_VERSION} QUIET)
 
 if(NOT TARGET ${kfname}::Crash)
     if(BUILD_CRASH_REPORTING)
@@ -568,7 +568,7 @@ add_feature_info(KCrash ${BUILD_CRASH_REPORTING} "Crash dumps via KCrash")
 ### Post-source configuration
 #
 #
-find_package(${kfname} ${KF_VERSION} QUIET COMPONENTS CoreAddons Crash)
+find_package(${kfname} ${KF_VERSION} QUIET COMPONENTS CoreAddons)
 
 ### CMake infrastructure installation
 #
