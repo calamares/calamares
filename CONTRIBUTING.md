@@ -103,11 +103,11 @@ Main:
 * CMake >= 3.16
 * Qt >= 5.15
 * yaml-cpp >= 0.5.1
+* KDE Frameworks KCoreAddons >= 5.78
 * Python >= 3.6 (required for some modules)
-* Boost.Python >= 1.67.0 (required for some modules)
-* KDE extra-cmake-modules >= 5.18 (recommended; required for some modules;
+* Boost.Python >= 1.72.0 (required for some modules)
+* KDE extra-cmake-modules >= 5.78 (recommended; required for some modules;
   required for some tests)
-* KDE Frameworks KCoreAddons (>= 5.58 recommended)
 
 Individual modules may have their own requirements;
 these are listed in CMake output.
