@@ -16,7 +16,11 @@
 #include "widgets/TranslationFix.h"
 
 #include <KParts/ReadOnlyPart>
+#if QT_VERSION < QT_VERSION_CHECK( 6, 0, 0 )
 #include <KParts/kde_terminal_interface.h>
+#else
+#include <kde_terminal_interface.h>
+#endif
 #include <KService>
 #include <kcoreaddons_version.h>
 
@@ -25,7 +29,6 @@
 #include <QLabel>
 #include <QMessageBox>
 #include <QVBoxLayout>
-
 
 InteractiveTerminalPage::InteractiveTerminalPage( QWidget* parent )
     : QWidget( parent )
@@ -58,10 +61,12 @@ InteractiveTerminalPage::onActivate()
         return;
     }
 
-#if KCOREADDONS_VERSION_MAJOR != 5
-#error Incompatible with not-KF5
-#endif
-#if KCOREADDONS_VERSION_MINOR >= 86
+#if KCOREADDONS_VERSION_MAJOR > 5 || KCOREADDONS_VERSION_MINOR > 200
+#warning Using KF6
+    errorKonsoleNotInstalled();
+    return;
+    KParts::ReadOnlyPart* p = nullptr;
+#elif KCOREADDONS_VERSION_MINOR >= 86
     // 5.86 deprecated a bunch of KService and PluginFactory and related methods
     auto md = KPluginMetaData::findPluginById( QString(), "konsolepart" );
     if ( !md.isValid() )
@@ -108,7 +113,6 @@ InteractiveTerminalPage::onActivate()
     t->showShellInDir( QDir::home().path() );
     t->sendInput( QString( "%1\n" ).arg( m_command ) );
 }
-
 
 void
 InteractiveTerminalPage::setCommand( const QString& command )
