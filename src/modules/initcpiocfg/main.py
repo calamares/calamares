@@ -37,16 +37,6 @@ def detect_plymouth():
     return target_env_call(["sh", "-c", "which plymouth"]) == 0
 
 
-def detect_setfont():
-    """
-    Checks existence (runnability) of setfont in the target system.
-
-    @return True if setfont exists in the target, False otherwise
-    """
-    # Used to only check existence of path /usr/bin/setfont in target
-    return target_env_call(["sh", "-c", "which setfont"]) == 0
-
-
 class cpuinfo(object):
     """
     Object describing the current CPU's characteristics. It may be
@@ -181,10 +171,6 @@ def find_initcpio_features(partitions, root_mount_point):
     files = []
     binaries = []
 
-    if detect_setfont():
-        # Fixes "setfont: KDFONTOP: Function not implemented" error
-        binaries.append("setfont")
-
     swap_uuid = ""
     uses_btrfs = False
     uses_zfs = False
@@ -253,7 +239,7 @@ def find_initcpio_features(partitions, root_mount_point):
     else:
         hooks.append("fsck")
 
-    return (hooks, modules, files, binaries)
+    return hooks, modules, files, binaries
 
 
 def run():
