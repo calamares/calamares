@@ -71,6 +71,31 @@ Up to date
 [building-Calamares](https://github.com/calamares/calamares/wiki/Develop-Guide)
 instructions are on the wiki.
 
+### Simple Build in Docker
+
+You may have success with the Docker images that the CI system uses.
+Pick one (or both):
+- `docker pull docker://opensuse/tumbleweed`
+- `docker pull kdeneon/plasma:user`
+
+Then start a container with the right image, from the root of Calamares
+source checkout:
+- `docker run  -ti --tmpfs /build:rw --user 0:0 -v .:/src opensuse/tumbleweed `
+- `docker run  -ti --tmpfs /build:rw --user 0:0 -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=:0 -v .:/src kdeneon/plasma:user bash`
+This starts a container with the chosen image (openSUSE Tumbleweed or KDE neon,
+here) with a temporary build directory in `/build` and the Calamares
+sources mounted as `/src`. KDE neon needs some extra settings to avoid
+starting a complete desktop.
+
+Run the script to install dependencies: you could use `deploycala.py`
+or one of the shell scripts in `.github/workflows` to install the right
+dependencies for the image.
+- `./.github/workflows/nightly-opensuse-qt6.sh`
+
+Then run CMake (add any CMake options you like at the end) and ninja:
+- `cmake -S /src -B /build -G Ninja`
+- `ninja -C /build`
+
 ### Dependencies
 
 Main:
