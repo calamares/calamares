@@ -9,7 +9,7 @@
 #include "ThemeInfo.h"
 
 #include "Branding.h"
-#include "utils/CalamaresUtilsGui.h"
+#include "utils/Gui.h"
 #include "utils/Logger.h"
 
 #include <KPackage/Package>

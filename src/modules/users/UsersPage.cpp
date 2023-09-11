@@ -22,7 +22,7 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "Settings.h"
-#include "utils/CalamaresUtilsGui.h"
+#include "utils/Gui.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 #include "utils/String.h"

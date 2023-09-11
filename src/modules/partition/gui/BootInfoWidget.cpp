@@ -10,7 +10,7 @@
 #include "BootInfoWidget.h"
 #include "core/PartUtils.h"
 
-#include "utils/CalamaresUtilsGui.h"
+#include "utils/Gui.h"
 #include "utils/QtCompat.h"
 #include "utils/Retranslator.h"
 

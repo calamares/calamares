@@ -13,7 +13,7 @@
 
 #include "core/KPMHelpers.h"
 
-#include "utils/CalamaresUtilsSystem.h"
+#include "utils/System.h"
 
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>

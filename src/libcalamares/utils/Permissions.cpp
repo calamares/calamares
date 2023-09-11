@@ -7,7 +7,7 @@
 
 #include "Permissions.h"
 
-#include "CalamaresUtilsSystem.h"
+#include "System.h"
 #include "Logger.h"
 
 #include <QString>

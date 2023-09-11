@@ -13,7 +13,7 @@
 #include "Branding.h"
 #include "Settings.h"
 #include "ViewManager.h"
-#include "utils/CalamaresUtilsGui.h"
+#include "utils/Gui.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 #include "viewpages/ExecutionViewStep.h"

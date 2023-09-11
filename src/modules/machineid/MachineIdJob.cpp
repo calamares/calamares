@@ -13,7 +13,7 @@
 #include "MachineIdJob.h"
 #include "Workers.h"
 
-#include "utils/CalamaresUtilsSystem.h"
+#include "utils/System.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 

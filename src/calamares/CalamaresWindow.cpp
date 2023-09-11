@@ -19,7 +19,7 @@
 #include "Settings.h"
 #include "ViewManager.h"
 #include "progresstree/ProgressTreeView.h"
-#include "utils/CalamaresUtilsGui.h"
+#include "utils/Gui.h"
 #include "utils/Logger.h"
 #include "utils/Qml.h"
 #include "utils/Retranslator.h"

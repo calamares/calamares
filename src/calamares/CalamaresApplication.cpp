@@ -20,8 +20,8 @@
 #include "ViewManager.h"
 #include "locale/TranslationsModel.h"
 #include "modulesystem/ModuleManager.h"
-#include "utils/CalamaresUtilsGui.h"
-#include "utils/CalamaresUtilsSystem.h"
+#include "utils/Gui.h"
+#include "utils/System.h"
 #include "utils/Dirs.h"
 #include "utils/Logger.h"
 #ifdef WITH_QML

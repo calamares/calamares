@@ -11,7 +11,7 @@
 #ifndef UTILS_RUNNER_H
 #define UTILS_RUNNER_H
 
-#include "CalamaresUtilsSystem.h"
+#include "System.h"
 
 #include <QDir>
 #include <QObject>

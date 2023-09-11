@@ -10,7 +10,7 @@
 
 #include "WaitingWidget.h"
 
-#include "utils/CalamaresUtilsGui.h"
+#include "utils/Gui.h"
 
 #include <QBoxLayout>
 #include <QLabel>

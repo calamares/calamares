@@ -11,7 +11,7 @@
 
 #include "ui_page_package.h"
 
-#include "utils/CalamaresUtilsGui.h"
+#include "utils/Gui.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 

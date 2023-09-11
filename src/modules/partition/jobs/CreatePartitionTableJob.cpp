@@ -12,7 +12,7 @@
 #include "CreatePartitionTableJob.h"
 
 #include "partition/PartitionIterator.h"
-#include "utils/CalamaresUtilsSystem.h"
+#include "utils/System.h"
 #include "utils/Logger.h"
 
 #include "core/KPMHelpers.h"

@@ -25,7 +25,7 @@
 #include "Branding.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
-#include "utils/CalamaresUtilsGui.h"
+#include "utils/Gui.h"
 #include "utils/Logger.h"
 #include "utils/QtCompat.h"
 #include "utils/Retranslator.h"

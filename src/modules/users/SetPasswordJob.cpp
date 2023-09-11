@@ -12,7 +12,7 @@
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
-#include "utils/CalamaresUtilsSystem.h"
+#include "utils/System.h"
 #include "utils/Entropy.h"
 #include "utils/Logger.h"
 

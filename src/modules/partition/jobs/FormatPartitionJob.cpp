@@ -14,7 +14,7 @@
 #include "core/KPMHelpers.h"
 
 #include "partition/FileSystem.h"
-#include "utils/CalamaresUtilsSystem.h"
+#include "utils/System.h"
 #include "utils/Logger.h"
 
 #include <kpmcore/core/device.h>

@@ -17,7 +17,7 @@
 
 #include "geoip/Handler.h"
 #include "network/Manager.h"
-#include "utils/CalamaresUtilsGui.h"
+#include "utils/Gui.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 #include "utils/Yaml.h"

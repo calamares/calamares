@@ -10,7 +10,7 @@
 #include "Item.h"
 
 #include "Settings.h"
-#include "utils/CalamaresUtilsSystem.h"
+#include "utils/System.h"
 #include "utils/Logger.h"
 #include "utils/NamedEnum.h"
 #include "utils/Yaml.h"

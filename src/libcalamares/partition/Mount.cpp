@@ -12,7 +12,7 @@
 #include "Mount.h"
 
 #include "partition/Sync.h"
-#include "utils/CalamaresUtilsSystem.h"
+#include "utils/System.h"
 #include "utils/Logger.h"
 #include "utils/String.h"
 

@@ -36,7 +36,7 @@
 #include "JobQueue.h"
 #include "partition/PartitionIterator.h"
 #include "partition/PartitionQuery.h"
-#include "utils/CalamaresUtilsGui.h"
+#include "utils/Gui.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 #include "utils/Units.h"

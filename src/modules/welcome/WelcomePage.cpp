@@ -23,7 +23,7 @@
 
 #include "modulesystem/ModuleManager.h"
 #include "modulesystem/RequirementsModel.h"
-#include "utils/CalamaresUtilsGui.h"
+#include "utils/Gui.h"
 #include "utils/Logger.h"
 #include "utils/NamedEnum.h"
 #include "utils/Retranslator.h"

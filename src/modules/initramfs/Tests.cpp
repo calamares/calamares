@@ -13,7 +13,7 @@
 #include "JobQueue.h"
 #include "Settings.h"
 
-#include "utils/CalamaresUtilsSystem.h"
+#include "utils/System.h"
 #include "utils/Logger.h"
 #include "utils/Yaml.h"
 

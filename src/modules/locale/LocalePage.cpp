@@ -14,7 +14,7 @@
 #include "LCLocaleDialog.h"
 #include "timezonewidget/timezonewidget.h"
 
-#include "utils/CalamaresUtilsGui.h"
+#include "utils/Gui.h"
 #include "utils/Logger.h"
 #include "utils/RAII.h"
 #include "utils/Retranslator.h"

@@ -12,7 +12,7 @@
 #include "core/ColorUtils.h"
 #include "core/PartitionModel.h"
 
-#include "utils/CalamaresUtilsGui.h"
+#include "utils/Gui.h"
 #include "utils/Logger.h"
 
 #include <kpmcore/core/device.h>

@@ -20,7 +20,7 @@
 #include "partition/Mount.h"
 #include "partition/PartitionIterator.h"
 #include "partition/PartitionQuery.h"
-#include "utils/CalamaresUtilsSystem.h"
+#include "utils/System.h"
 #include "utils/Logger.h"
 #include "utils/RAII.h"
 

@@ -9,7 +9,7 @@
 
 #include "PrettyRadioButton.h"
 
-#include "utils/CalamaresUtilsGui.h"
+#include "utils/Gui.h"
 #include "widgets/ClickableLabel.h"
 
 #include <QButtonGroup>

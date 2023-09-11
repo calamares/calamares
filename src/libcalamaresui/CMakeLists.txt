@@ -16,7 +16,7 @@ set(calamaresui_SOURCES
     modulesystem/ModuleManager.cpp
     modulesystem/ProcessJobModule.cpp
     modulesystem/ViewModule.cpp
-    utils/CalamaresUtilsGui.cpp
+    utils/Gui.cpp
     utils/ImageRegistry.cpp
     utils/Paste.cpp
     viewpages/BlankViewStep.cpp

@@ -14,7 +14,7 @@
 #include "core/PartitionModel.h"
 #include "core/SizeUtils.h"
 
-#include "utils/CalamaresUtilsGui.h"
+#include "utils/Gui.h"
 #include "utils/Logger.h"
 #include "utils/Units.h"
 

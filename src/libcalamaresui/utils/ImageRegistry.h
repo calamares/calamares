@@ -12,7 +12,7 @@
 #include <QPixmap>
 
 #include "DllMacro.h"
-#include "utils/CalamaresUtilsGui.h"
+#include "utils/Gui.h"
 
 class UIDLLEXPORT ImageRegistry
 {

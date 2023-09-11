@@ -15,7 +15,7 @@
 
 #include "ResultsListWidget.h"
 
-#include "utils/CalamaresUtilsGui.h"
+#include "utils/Gui.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 #include "widgets/WaitingWidget.h"

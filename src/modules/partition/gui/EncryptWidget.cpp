@@ -14,7 +14,7 @@
 #include "ui_EncryptWidget.h"
 
 #include "Branding.h"
-#include "utils/CalamaresUtilsGui.h"
+#include "utils/Gui.h"
 #include "utils/Retranslator.h"
 
 constexpr int ZFS_MIN_LENGTH = 8;

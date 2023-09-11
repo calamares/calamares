@@ -9,7 +9,7 @@
  *
  */
 
-#include "CalamaresUtilsSystem.h"
+#include "System.h"
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"

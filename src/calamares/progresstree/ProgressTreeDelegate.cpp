@@ -14,7 +14,7 @@
 #include "CalamaresApplication.h"
 #include "CalamaresWindow.h"
 #include "ViewManager.h"
-#include "utils/CalamaresUtilsGui.h"
+#include "utils/Gui.h"
 
 #include <QPainter>
 

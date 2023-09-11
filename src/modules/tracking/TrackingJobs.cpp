@@ -14,7 +14,7 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "network/Manager.h"
-#include "utils/CalamaresUtilsSystem.h"
+#include "utils/System.h"
 #include "utils/Logger.h"
 
 #include <KMacroExpander>

@@ -8,7 +8,7 @@
  *
  */
 
-#include "CalamaresUtilsGui.h"
+#include "Gui.h"
 
 #include "ImageRegistry.h"
 

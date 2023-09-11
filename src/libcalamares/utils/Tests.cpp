@@ -9,7 +9,7 @@
  *
  */
 
-#include "CalamaresUtilsSystem.h"
+#include "System.h"
 #include "CommandList.h"
 #include "Entropy.h"
 #include "Logger.h"

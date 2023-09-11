@@ -21,7 +21,7 @@
 #include "VariantModel.h"
 #include "modulesystem/Module.h"
 #include "modulesystem/ModuleManager.h"
-#include "utils/CalamaresUtilsGui.h"
+#include "utils/Gui.h"
 #include "utils/Logger.h"
 #include "utils/Paste.h"
 #include "utils/Retranslator.h"

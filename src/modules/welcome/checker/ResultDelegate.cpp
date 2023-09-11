@@ -10,7 +10,7 @@
 #include "ResultDelegate.h"
 
 #include "modulesystem/RequirementsModel.h"
-#include "utils/CalamaresUtilsGui.h"
+#include "utils/Gui.h"
 
 #include <QApplication>
 #include <QPainter>

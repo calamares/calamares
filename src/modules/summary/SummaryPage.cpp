@@ -17,7 +17,7 @@
 #include "Settings.h"
 #include "ViewManager.h"
 
-#include "utils/CalamaresUtilsGui.h"
+#include "utils/Gui.h"
 #include "utils/Logger.h"
 #include "utils/QtCompat.h"
 #include "utils/Retranslator.h"

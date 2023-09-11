@@ -10,7 +10,7 @@
 
 #include "InitcpioJob.h"
 
-#include "utils/CalamaresUtilsSystem.h"
+#include "utils/System.h"
 #include "utils/Logger.h"
 #include "utils/UMask.h"
 #include "utils/Variant.h"

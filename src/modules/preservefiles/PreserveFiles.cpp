@@ -13,7 +13,7 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "compat/Variant.h"
-#include "utils/CalamaresUtilsSystem.h"
+#include "utils/System.h"
 #include "utils/CommandList.h"
 #include "utils/Logger.h"
 #include "utils/StringExpander.h"

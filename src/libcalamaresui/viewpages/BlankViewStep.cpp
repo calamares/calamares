@@ -8,7 +8,7 @@
  */
 #include "BlankViewStep.h"
 
-#include "utils/CalamaresUtilsGui.h"
+#include "utils/Gui.h"
 
 #include <QLabel>
 #include <QVBoxLayout>

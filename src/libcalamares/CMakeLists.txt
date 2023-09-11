@@ -77,7 +77,6 @@ add_library(
     partition/PartitionSize.cpp
     partition/Sync.cpp
     # Utility service
-    utils/CalamaresUtilsSystem.cpp
     utils/CommandList.cpp
     utils/Dirs.cpp
     utils/Entropy.cpp
@@ -88,6 +87,7 @@ add_library(
     utils/Runner.cpp
     utils/String.cpp
     utils/StringExpander.cpp
+    utils/System.cpp
     utils/UMask.cpp
     utils/Variant.cpp
     utils/Yaml.cpp

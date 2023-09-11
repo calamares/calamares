@@ -15,7 +15,7 @@
 #include "PythonHelper.h"
 #include "locale/Global.h"
 #include "partition/Mount.h"
-#include "utils/CalamaresUtilsSystem.h"
+#include "utils/System.h"
 #include "utils/Logger.h"
 #include "utils/RAII.h"
 #include "utils/Runner.h"
