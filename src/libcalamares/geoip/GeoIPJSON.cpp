@@ -44,14 +44,14 @@ selectMap( const QVariantMap& m, const QStringList& l, int index )
     QString attributeName = l[ index ];
     if ( index == l.count() - 1 )
     {
-        return CalamaresUtils::getString( m, attributeName );
+        return Calamares::getString( m, attributeName );
     }
     else
     {
         bool success = false;  // bogus
         if ( m.contains( attributeName ) )
         {
-            return selectMap( CalamaresUtils::getSubMap( m, attributeName, success ), l, index + 1 );
+            return selectMap( Calamares::getSubMap( m, attributeName, success ), l, index + 1 );
         }
         return QString();
     }
@@ -62,9 +62,9 @@ GeoIPJSON::rawReply( const QByteArray& data )
 {
     try
     {
-        YAML::Node doc = YAML::Load( data );
+        auto doc = ::YAML::Load( data );
 
-        QVariant var = CalamaresUtils::yamlToVariant( doc );
+        QVariant var = Calamares::YAML::toVariant( doc );
         if ( !var.isNull() && var.isValid() && Calamares::typeOf( var ) == Calamares::MapVariantType )
         {
             return selectMap( var.toMap(), m_element.split( '.' ), 0 );
@@ -74,9 +74,9 @@ GeoIPJSON::rawReply( const QByteArray& data )
             cWarning() << "Invalid YAML data for GeoIPJSON";
         }
     }
-    catch ( YAML::Exception& e )
+    catch ( ::YAML::Exception& e )
     {
-        CalamaresUtils::explainYamlException( e, data, "GeoIP data" );
+        Calamares::YAML::explainException( e, data, "GeoIP data" );
     }
 
     return QString();

@@ -23,7 +23,7 @@ class QEvent;
 class QLocale;
 class QTranslator;
 
-namespace CalamaresUtils
+namespace Calamares
 {
 /** @brief changes the application language.
  * @param locale the new locale (names as defined by Calamares).
@@ -69,7 +69,6 @@ loadTranslator( const Calamares::Locale::Translation::Id& locale, const QString&
  */
 DLLEXPORT void setAllowLocalTranslation( bool allow );
 
-
 /** @brief Handles change-of-language events
  *
  * There is one single Retranslator object. Use `instance()` to get it.
@@ -102,8 +101,7 @@ private:
     explicit Retranslator( QObject* parent );
 };
 
-
-}  // namespace CalamaresUtils
+}  // namespace Calamares
 
 /** @brief Call code for this object when language changes
  *
@@ -116,7 +114,7 @@ private:
  *       immediately after setting up the connection. This allows
  *       setup and translation code to be mixed together.
  */
-#define CALAMARES_RETRANSLATE( body ) CalamaresUtils::Retranslator::attach( this, [ = ] { body } )
+#define CALAMARES_RETRANSLATE( body ) Calamares::Retranslator::attach( this, [ = ] { body } )
 /** @brief Call code for the given object (widget) when language changes
  *
  * This is identical to CALAMARES_RETRANSLATE, except the @p body is called
@@ -126,7 +124,7 @@ private:
  *       immediately after setting up the connection. This allows
  *       setup and translation code to be mixed together.
  */
-#define CALAMARES_RETRANSLATE_FOR( object, body ) CalamaresUtils::Retranslator::attach( object, [ = ] { body } )
+#define CALAMARES_RETRANSLATE_FOR( object, body ) Calamares::Retranslator::attach( object, [ = ] { body } )
 /** @brief Call a slot in this object when language changes
  *
  * Given a slot (in method-function-pointer notation), call that slot when the
@@ -140,10 +138,7 @@ private:
 #define CALAMARES_RETRANSLATE_SLOT( slotfunc ) \
     do \
     { \
-        connect( CalamaresUtils::Retranslator::instance(), \
-                 &CalamaresUtils::Retranslator::languageChanged, \
-                 this, \
-                 slotfunc ); \
+        connect( Calamares::Retranslator::instance(), &Calamares::Retranslator::languageChanged, this, slotfunc ); \
         ( this->*slotfunc )(); \
     } while ( false )
 

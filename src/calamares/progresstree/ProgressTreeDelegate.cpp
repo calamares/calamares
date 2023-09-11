@@ -22,7 +22,7 @@ static constexpr int const item_margin = 8;
 static inline int
 item_fontsize()
 {
-    return CalamaresUtils::defaultFontSize() + 4;
+    return Calamares::defaultFontSize() + 4;
 }
 
 static void
@@ -48,7 +48,6 @@ paintViewStep( QPainter* painter, const QStyleOptionViewItem& option, const QMod
             painter->setBrush( QColor( textHighlight ) );
         }
     }
-
 
     // Draw the text at least once. If it doesn't fit, then shrink the font
     // being used by 1 pt on each iteration, up to a maximum of maximumShrink
@@ -99,7 +98,6 @@ ProgressTreeDelegate::sizeHint( const QStyleOptionViewItem& option, const QModel
 
     return QSize( option.rect.width(), height );
 }
-
 
 void
 ProgressTreeDelegate::paint( QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index ) const

@@ -27,7 +27,7 @@ void
 NotesQmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     bool qmlLabel_ok = false;
-    auto qmlLabel = CalamaresUtils::getSubMap( configurationMap, "qmlLabel", qmlLabel_ok );
+    auto qmlLabel = Calamares::getSubMap( configurationMap, "qmlLabel", qmlLabel_ok );
 
     if ( qmlLabel.contains( "notes" ) )
     {

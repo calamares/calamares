@@ -27,9 +27,7 @@ MachineIdJob::MachineIdJob( QObject* parent )
 {
 }
 
-
 MachineIdJob::~MachineIdJob() {}
-
 
 QString
 MachineIdJob::prettyName() const
@@ -58,7 +56,7 @@ MachineIdJob::exec()
     QString target_systemd_machineid_file = QStringLiteral( "/etc/machine-id" );
     QString target_dbus_machineid_file = QStringLiteral( "/var/lib/dbus/machine-id" );
 
-    const CalamaresUtils::System* system = CalamaresUtils::System::instance();
+    const Calamares::System* system = Calamares::System::instance();
 
     // Clear existing files
     for ( const auto& entropy_file : m_entropy_files )
@@ -77,7 +75,7 @@ MachineIdJob::exec()
     //Create new files
     for ( const auto& entropy_file : m_entropy_files )
     {
-        if ( !CalamaresUtils::System::instance()->createTargetParentDirs( entropy_file ) )
+        if ( !Calamares::System::instance()->createTargetParentDirs( entropy_file ) )
         {
             return Calamares::JobResult::error(
                 QObject::tr( "Directory not found" ),
@@ -131,20 +129,19 @@ MachineIdJob::exec()
     return Calamares::JobResult::ok();
 }
 
-
 void
 MachineIdJob::setConfigurationMap( const QVariantMap& map )
 {
-    m_systemd = CalamaresUtils::getBool( map, "systemd", false );
+    m_systemd = Calamares::getBool( map, "systemd", false );
 
-    m_dbus = CalamaresUtils::getBool( map, "dbus", false );
+    m_dbus = Calamares::getBool( map, "dbus", false );
     if ( map.contains( "dbus-symlink" ) )
     {
-        m_dbus_symlink = CalamaresUtils::getBool( map, "dbus-symlink", false );
+        m_dbus_symlink = Calamares::getBool( map, "dbus-symlink", false );
     }
     else if ( map.contains( "symlink" ) )
     {
-        m_dbus_symlink = CalamaresUtils::getBool( map, "symlink", false );
+        m_dbus_symlink = Calamares::getBool( map, "symlink", false );
         cWarning() << "MachineId: configuration setting *symlink* is deprecated, use *dbus-symlink*.";
     }
     // else it's still false from the constructor
@@ -152,9 +149,9 @@ MachineIdJob::setConfigurationMap( const QVariantMap& map )
     // ignore it, though, if dbus is false
     m_dbus_symlink = m_dbus && m_dbus_symlink;
 
-    m_entropy_copy = CalamaresUtils::getBool( map, "entropy-copy", false );
-    m_entropy_files = CalamaresUtils::getStringList( map, "entropy-files" );
-    if ( CalamaresUtils::getBool( map, "entropy", false ) )
+    m_entropy_copy = Calamares::getBool( map, "entropy-copy", false );
+    m_entropy_files = Calamares::getStringList( map, "entropy-files" );
+    if ( Calamares::getBool( map, "entropy", false ) )
     {
         cWarning() << "MachineId:: configuration setting *entropy* is deprecated, use *entropy-files* instead.";
         m_entropy_files.append( QStringLiteral( "/var/lib/urandom/random-seed" ) );

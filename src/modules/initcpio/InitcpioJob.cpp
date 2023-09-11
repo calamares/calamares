@@ -25,7 +25,6 @@ InitcpioJob::InitcpioJob( QObject* parent )
 
 InitcpioJob::~InitcpioJob() {}
 
-
 QString
 InitcpioJob::prettyName() const
 {
@@ -56,7 +55,7 @@ fixPermissions( const QDir& d )
 Calamares::JobResult
 InitcpioJob::exec()
 {
-    CalamaresUtils::UMask m( CalamaresUtils::UMask::Safe );
+    Calamares::UMask m( Calamares::UMask::Safe );
 
     if ( m_unsafe )
     {
@@ -64,7 +63,7 @@ InitcpioJob::exec()
     }
     else
     {
-        QDir d( CalamaresUtils::System::instance()->targetPath( "/boot" ) );
+        QDir d( Calamares::System::instance()->targetPath( "/boot" ) );
         if ( d.exists() )
         {
             fixPermissions( d );
@@ -83,16 +82,16 @@ InitcpioJob::exec()
     }
 
     cDebug() << "Updating initramfs with kernel" << m_kernel;
-    auto r = CalamaresUtils::System::instance()->targetEnvCommand( command, QString(), QString() /* no timeout , 0 */ );
+    auto r = Calamares::System::instance()->targetEnvCommand( command, QString(), QString() /* no timeout , 0 */ );
     return r.explainProcess( "mkinitcpio", std::chrono::seconds( 10 ) /* fake timeout */ );
 }
 
 void
 InitcpioJob::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    m_kernel = CalamaresUtils::getString( configurationMap, "kernel" );
+    m_kernel = Calamares::getString( configurationMap, "kernel" );
 
-    m_unsafe = CalamaresUtils::getBool( configurationMap, "be_unsafe", false );
+    m_unsafe = Calamares::getBool( configurationMap, "be_unsafe", false );
 }
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( InitcpioJobFactory, registerPlugin< InitcpioJob >(); )

@@ -88,7 +88,6 @@ BrandingLoader::tryLoad( QTranslator* translator )
     QString filenameBase( m_prefix );
     filenameBase.remove( 0, lastDirSeparator + 1 );
 
-
     if ( QDir( brandingTranslationsDirPath ).exists() )
     {
         const QString fileName = QStringLiteral( "%1_%2" ).arg( filenameBase, m_localeName );
@@ -119,7 +118,7 @@ tryLoad( QTranslator* translator, const QString& prefix, const QString& localeNa
     }
 
     // Or load from appDataDir -- often /usr/share/calamares -- subdirectory land/
-    QDir localeData( CalamaresUtils::appDataDir() );
+    QDir localeData( Calamares::appDataDir() );
     if ( localeData.exists()
          && translator->load( localeData.absolutePath() + QStringLiteral( "/lang/" ) + prefix + localeName ) )
     {
@@ -170,7 +169,7 @@ loadSingletonTranslator( TranslationLoader&& loader, QTranslator*& translator_p 
 
 }  // namespace
 
-namespace CalamaresUtils
+namespace Calamares
 {
 static QTranslator* s_brandingTranslator = nullptr;
 static QTranslator* s_translator = nullptr;
@@ -241,5 +240,4 @@ setAllowLocalTranslation( bool allow )
     s_allowLocalTranslations = allow;
 }
 
-
-}  // namespace CalamaresUtils
+}  // namespace Calamares

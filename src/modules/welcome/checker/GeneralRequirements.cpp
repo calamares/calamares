@@ -104,16 +104,16 @@ GeneralRequirements::checkRequirements()
     MaybeChecked hasPower;
     MaybeChecked hasInternet;
     MaybeChecked isRoot;
-    bool enoughScreen = availableSize.isValid() && ( availableSize.width() >= CalamaresUtils::windowMinimumWidth )
-        && ( availableSize.height() >= CalamaresUtils::windowMinimumHeight );
+    bool enoughScreen = availableSize.isValid() && ( availableSize.width() >= Calamares::windowMinimumWidth )
+        && ( availableSize.height() >= Calamares::windowMinimumHeight );
 
-    qint64 requiredStorageB = CalamaresUtils::GiBtoBytes( m_requiredStorageGiB );
+    qint64 requiredStorageB = Calamares::GiBtoBytes( m_requiredStorageGiB );
     if ( m_entriesToCheck.contains( "storage" ) )
     {
         enoughStorage = checkEnoughStorage( requiredStorageB );
     }
 
-    qint64 requiredRamB = CalamaresUtils::GiBtoBytes( m_requiredRamGiB );
+    qint64 requiredRamB = Calamares::GiBtoBytes( m_requiredRamGiB );
     if ( m_entriesToCheck.contains( "ram" ) )
     {
         enoughRam = checkEnoughRam( requiredRamB );
@@ -284,7 +284,7 @@ getCheckInternetUrls( const QVariantMap& configurationMap )
     const QString exampleUrl = QStringLiteral( "http://example.com" );
 
     bool incomplete = false;
-    QStringList checkInternetSetting = CalamaresUtils::getStringList( configurationMap, "internetCheckUrl" );
+    QStringList checkInternetSetting = Calamares::getStringList( configurationMap, "internetCheckUrl" );
     if ( !checkInternetSetting.isEmpty() )
     {
         QVector< QUrl > urls;
@@ -324,7 +324,6 @@ getCheckInternetUrls( const QVariantMap& configurationMap )
     }
     return incomplete;
 }
-
 
 void
 GeneralRequirements::setConfigurationMap( const QVariantMap& configurationMap )
@@ -422,7 +421,6 @@ GeneralRequirements::setConfigurationMap( const QVariantMap& configurationMap )
     }
 }
 
-
 bool
 GeneralRequirements::checkEnoughStorage( qint64 requiredSpace )
 {
@@ -435,16 +433,14 @@ GeneralRequirements::checkEnoughStorage( qint64 requiredSpace )
 #endif
 }
 
-
 bool
 GeneralRequirements::checkEnoughRam( qint64 requiredRam )
 {
     // Ignore the guesstimate-factor; we get an under-estimate
     // which is probably the usable RAM for programs.
-    quint64 availableRam = CalamaresUtils::System::instance()->getTotalMemoryB().first;
+    quint64 availableRam = Calamares::System::instance()->getTotalMemoryB().first;
     return double( availableRam ) >= double( requiredRam ) * 0.95;  // cast to silence 64-bit-int conversion to double
 }
-
 
 bool
 GeneralRequirements::checkBatteryExists()
@@ -473,7 +469,6 @@ GeneralRequirements::checkBatteryExists()
 
     return false;
 }
-
 
 bool
 GeneralRequirements::checkHasPower()
@@ -504,7 +499,6 @@ GeneralRequirements::checkHasPower()
     return !onBattery;
 }
 
-
 bool
 GeneralRequirements::checkHasInternet()
 {
@@ -513,7 +507,6 @@ GeneralRequirements::checkHasInternet()
     Calamares::JobQueue::instance()->globalStorage()->insert( "hasInternet", hasInternet );
     return hasInternet;
 }
-
 
 bool
 GeneralRequirements::checkIsRoot()

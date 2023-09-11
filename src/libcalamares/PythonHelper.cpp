@@ -23,7 +23,6 @@ namespace bp = boost::python;
 namespace CalamaresPython
 {
 
-
 boost::python::object
 variantToPyObject( const QVariant& variant )
 {
@@ -86,7 +85,6 @@ variantToPyObject( const QVariant& variant )
 #endif
 }
 
-
 QVariant
 variantFromPyObject( const boost::python::object& pyObject )
 {
@@ -127,7 +125,6 @@ variantFromPyObject( const boost::python::object& pyObject )
     }
 }
 
-
 boost::python::list
 variantListToPyList( const QVariantList& variantList )
 {
@@ -138,7 +135,6 @@ variantListToPyList( const QVariantList& variantList )
     }
     return pyList;
 }
-
 
 QVariantList
 variantListFromPyList( const boost::python::list& pyList )
@@ -151,7 +147,6 @@ variantListFromPyList( const boost::python::list& pyList )
     return list;
 }
 
-
 boost::python::dict
 variantMapToPyDict( const QVariantMap& variantMap )
 {
@@ -162,7 +157,6 @@ variantMapToPyDict( const QVariantMap& variantMap )
     }
     return pyDict;
 }
-
 
 QVariantMap
 variantMapFromPyDict( const boost::python::dict& pyDict )
@@ -198,7 +192,6 @@ variantHashToPyDict( const QVariantHash& variantHash )
     return pyDict;
 }
 
-
 QVariantHash
 variantHashFromPyDict( const boost::python::dict& pyDict )
 {
@@ -221,7 +214,6 @@ variantHashFromPyDict( const boost::python::dict& pyDict )
     }
     return hash;
 }
-
 
 static inline void
 add_if_lib_exists( const QDir& dir, const char* name, QStringList& list )
@@ -253,7 +245,7 @@ Helper::Helper()
     // If we're running from the build dir
     add_if_lib_exists( QDir::current(), "libcalamares.so", m_pythonPaths );
 
-    QDir calaPythonPath( CalamaresUtils::systemLibDir().absolutePath() + QDir::separator() + "calamares" );
+    QDir calaPythonPath( Calamares::systemLibDir().absolutePath() + QDir::separator() + "calamares" );
     add_if_lib_exists( calaPythonPath, "libcalamares.so", m_pythonPaths );
 
     bp::object sys = bp::import( "sys" );
@@ -289,7 +281,6 @@ Helper::createCleanNamespace()
 
     return scriptNamespace;
 }
-
 
 QString
 Helper::handleLastError()
@@ -385,7 +376,6 @@ Helper::handleLastError()
         return tr( "Unfetchable Python error." );
     }
 
-
     QStringList msgList;
     if ( !typeMsg.isEmpty() )
     {
@@ -429,13 +419,11 @@ GlobalStoragePythonWrapper::contains( const std::string& key ) const
     return m_gs->contains( QString::fromStdString( key ) );
 }
 
-
 int
 GlobalStoragePythonWrapper::count() const
 {
     return m_gs->count();
 }
-
 
 void
 GlobalStoragePythonWrapper::insert( const std::string& key, const bp::object& value )
@@ -455,7 +443,6 @@ GlobalStoragePythonWrapper::keys() const
     return pyList;
 }
 
-
 int
 GlobalStoragePythonWrapper::remove( const std::string& key )
 {
@@ -466,7 +453,6 @@ GlobalStoragePythonWrapper::remove( const std::string& key )
     }
     return m_gs->remove( gsKey );
 }
-
 
 bp::object
 GlobalStoragePythonWrapper::value( const std::string& key ) const

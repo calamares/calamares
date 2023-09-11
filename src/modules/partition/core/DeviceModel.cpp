@@ -94,15 +94,14 @@ DeviceModel::data( const QModelIndex& index, int role ) const
             }
         }
     case Qt::DecorationRole:
-        return CalamaresUtils::defaultPixmap(
-            CalamaresUtils::PartitionDisk,
-            CalamaresUtils::Original,
-            QSize( CalamaresUtils::defaultIconSize().width() * 2, CalamaresUtils::defaultIconSize().height() * 2 ) );
+        return Calamares::defaultPixmap(
+            Calamares::PartitionDisk,
+            Calamares::Original,
+            QSize( Calamares::defaultIconSize().width() * 2, Calamares::defaultIconSize().height() * 2 ) );
     default:
         return QVariant();
     }
 }
-
 
 Device*
 DeviceModel::deviceForIndex( const QModelIndex& index ) const
@@ -114,7 +113,6 @@ DeviceModel::deviceForIndex( const QModelIndex& index ) const
     }
     return m_devices.at( row );
 }
-
 
 void
 DeviceModel::swapDevice( Device* oldDevice, Device* newDevice )

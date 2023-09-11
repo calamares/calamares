@@ -25,7 +25,6 @@ namespace Calamares
 namespace String
 {
 
-
 /** @brief Expand variables in a string against a dictionary.
  *
  * This class provides a convenience API for building up a dictionary

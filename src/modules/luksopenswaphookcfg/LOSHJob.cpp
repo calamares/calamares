@@ -29,7 +29,6 @@ LOSHJob::LOSHJob( QObject* parent )
 
 LOSHJob::~LOSHJob() {}
 
-
 QString
 LOSHJob::prettyName() const
 {
@@ -69,8 +68,8 @@ write_openswap_conf( const QString& path, QStringList& contents, const LOSHInfo&
         }
         cDebug() << "Writing" << contents.length() << "line configuration to" << path;
         // \n between each two lines, and a \n at the end
-        CalamaresUtils::System::instance()->createTargetFile(
-            path, contents.join( '\n' ).append( '\n' ).toUtf8(), CalamaresUtils::System::WriteMode::Overwrite );
+        Calamares::System::instance()->createTargetFile(
+            path, contents.join( '\n' ).append( '\n' ).toUtf8(), Calamares::System::WriteMode::Overwrite );
     }
     else
     {
@@ -81,7 +80,7 @@ write_openswap_conf( const QString& path, QStringList& contents, const LOSHInfo&
 Calamares::JobResult
 LOSHJob::exec()
 {
-    const auto* sys = CalamaresUtils::System::instance();
+    const auto* sys = Calamares::System::instance();
     if ( !sys )
     {
         return Calamares::JobResult::internalError(
@@ -116,7 +115,7 @@ LOSHJob::exec()
 void
 LOSHJob::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    m_configFilePath = CalamaresUtils::getString(
+    m_configFilePath = Calamares::getString(
         configurationMap, QStringLiteral( "configFilePath" ), QStringLiteral( "/etc/openswap.conf" ) );
 }
 
@@ -164,8 +163,7 @@ globalStoragePartitionInfo( Calamares::GlobalStorage* gs, LOSHInfo& info )
     if ( !btrfsRootSubvolume.isEmpty() )
     {
         Calamares::String::removeLeading( btrfsRootSubvolume, '/' );
-        info.keyfile_device_mount_options
-            = QStringLiteral( "--options=subvol=" ) + btrfsRootSubvolume;
+        info.keyfile_device_mount_options = QStringLiteral( "--options=subvol=" ) + btrfsRootSubvolume;
     }
 }
 

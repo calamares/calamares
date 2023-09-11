@@ -43,7 +43,6 @@ FormatPartitionJob::prettyName() const
         .arg( m_device->name() );
 }
 
-
 QString
 FormatPartitionJob::prettyDescription() const
 {
@@ -53,7 +52,6 @@ FormatPartitionJob::prettyDescription() const
         .arg( userVisibleFS( m_partition->fileSystem() ) )
         .arg( m_partition->capacity() / 1024 / 1024 );
 }
-
 
 QString
 FormatPartitionJob::prettyStatusMessage() const
@@ -66,7 +64,6 @@ FormatPartitionJob::prettyStatusMessage() const
                "file system %2." )
         .arg( partitionLabel, userVisibleFS( m_partition->fileSystem() ) );
 }
-
 
 Calamares::JobResult
 FormatPartitionJob::exec()
@@ -81,8 +78,8 @@ FormatPartitionJob::exec()
         // (ignoring whether this succeeds). Requires a sufficiently-new
         // xfs_admin and xfs_repair and might be made obsolete by newer
         // kpmcore releases.
-        CalamaresUtils::System::runCommand( { "xfs_admin", "-O", "bigtime=1", m_partition->partitionPath() },
-                                            std::chrono::seconds( 60 ) );
+        Calamares::System::runCommand( { "xfs_admin", "-O", "bigtime=1", m_partition->partitionPath() },
+                                       std::chrono::seconds( 60 ) );
     }
     return r;
 }

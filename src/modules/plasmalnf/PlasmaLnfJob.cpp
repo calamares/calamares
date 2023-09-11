@@ -36,7 +36,7 @@ PlasmaLnfJob::prettyName() const
 Calamares::JobResult
 PlasmaLnfJob::exec()
 {
-    auto* system = CalamaresUtils::System::instance();
+    auto* system = Calamares::System::instance();
     auto* gs = Calamares::JobQueue::instance()->globalStorage();
 
     QStringList command( { "sudo",

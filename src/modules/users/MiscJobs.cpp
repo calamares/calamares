@@ -59,14 +59,13 @@ SetupSudoJob::exec()
     // One % for the sudo format, keep it outside of the string to avoid accidental replacement
     QString sudoersLine
         = QChar( '%' ) + QString( "%1 ALL=%2 ALL\n" ).arg( m_sudoGroup, designatorForStyle( m_sudoStyle ) );
-    auto fileResult
-        = CalamaresUtils::System::instance()->createTargetFile( QStringLiteral( "/etc/sudoers.d/10-installer" ),
-                                                                sudoersLine.toUtf8().constData(),
-                                                                CalamaresUtils::System::WriteMode::Overwrite );
+    auto fileResult = Calamares::System::instance()->createTargetFile( QStringLiteral( "/etc/sudoers.d/10-installer" ),
+                                                                       sudoersLine.toUtf8().constData(),
+                                                                       Calamares::System::WriteMode::Overwrite );
 
     if ( fileResult )
     {
-        if ( !CalamaresUtils::Permissions::apply( fileResult.path(), 0440 ) )
+        if ( !Calamares::Permissions::apply( fileResult.path(), 0440 ) )
         {
             return Calamares::JobResult::error( tr( "Cannot chmod sudoers file." ) );
         }
@@ -157,7 +156,7 @@ ensureGroupsExistInTarget( const QList< GroupDescription >& wantedGroups,
             }
             cmd << group.name();
 #endif
-            if ( CalamaresUtils::System::instance()->targetEnvCall( cmd ) )
+            if ( Calamares::System::instance()->targetEnvCall( cmd ) )
             {
                 failureCount++;
                 missingGroups.append( group.name() + QChar( '*' ) );

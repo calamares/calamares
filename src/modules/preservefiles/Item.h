@@ -34,12 +34,12 @@ class Item
 {
     QString source;
     QString dest;
-    CalamaresUtils::Permissions perm;
+    Calamares::Permissions perm;
     ItemType m_type = ItemType::None;
     bool m_optional = false;
 
 public:
-    Item( const QString& src, const QString& d, CalamaresUtils::Permissions p, ItemType t, bool optional )
+    Item( const QString& src, const QString& d, Calamares::Permissions p, ItemType t, bool optional )
         : source( src )
         , dest( d )
         , perm( std::move( p ) )
@@ -59,7 +59,6 @@ public:
 
     bool exec( const std::function< QString( QString ) >& replacements ) const;
 
-
     /** @brief Create an Item -- or one of its subclasses -- from @p v
      *
      * Depending on the structure and contents of @p v, a pointer
@@ -69,8 +68,7 @@ public:
      * When the entry contains a *perm* key, use that permission, otherwise
      * apply @p defaultPermissions to the item.
      */
-    static Item fromVariant( const QVariant& v, const CalamaresUtils::Permissions& defaultPermissions );
+    static Item fromVariant( const QVariant& v, const Calamares::Permissions& defaultPermissions );
 };
-
 
 #endif

@@ -22,7 +22,7 @@
 #include <QDir>
 #include <QFile>
 
-using WriteMode = CalamaresUtils::System::WriteMode;
+using WriteMode = Calamares::System::WriteMode;
 
 SetHostNameJob::SetHostNameJob( const Config* c )
     : Calamares::Job()
@@ -36,13 +36,11 @@ SetHostNameJob::prettyName() const
     return tr( "Set hostname %1" ).arg( m_config->hostname() );
 }
 
-
 QString
 SetHostNameJob::prettyDescription() const
 {
     return tr( "Set hostname <strong>%1</strong>." ).arg( m_config->hostname() );
 }
-
 
 QString
 SetHostNameJob::prettyStatusMessage() const
@@ -53,7 +51,7 @@ SetHostNameJob::prettyStatusMessage() const
 STATICTEST bool
 setFileHostname( const QString& hostname )
 {
-    return CalamaresUtils::System::instance()->createTargetFile(
+    return Calamares::System::instance()->createTargetFile(
         QStringLiteral( "/etc/hostname" ), ( hostname + '\n' ).toUtf8(), WriteMode::Overwrite );
 }
 
@@ -62,17 +60,17 @@ writeFileEtcHosts( const QString& hostname )
 {
     // The actual hostname gets substituted in at %1
     const QString standard_hosts = QStringLiteral( R"(# Standard host addresses
-127.0.0.1  localhost
-::1        localhost ip6-localhost ip6-loopback
-ff02::1    ip6-allnodes
-ff02::2    ip6-allrouters
-)" );
+                                   127.0.0.1  localhost
+                                   ::1        localhost ip6-localhost ip6-loopback
+                                   ff02::1    ip6-allnodes
+                                   ff02::2    ip6-allrouters
+                                                 )" );
     const QString this_host = QStringLiteral( R"(# This host address
-127.0.1.1  %1
-)" );
+                                           127.0.1.1  %1
+                                                                           )" );
 
     const QString etc_hosts = standard_hosts + ( hostname.isEmpty() ? QString() : this_host.arg( hostname ) );
-    return CalamaresUtils::System::instance()->createTargetFile(
+    return Calamares::System::instance()->createTargetFile(
         QStringLiteral( "/etc/hosts" ), etc_hosts.toUtf8(), WriteMode::Overwrite );
 }
 
@@ -112,7 +110,6 @@ setSystemdHostname( const QString& hostname )
     return success;
 }
 
-
 Calamares::JobResult
 SetHostNameJob::exec()
 {
@@ -147,7 +144,7 @@ SetHostNameJob::exec()
         setSystemdHostname( m_config->hostname() );
         break;
     case HostNameAction::Transient:
-        CalamaresUtils::System::instance()->removeTargetFile( QStringLiteral( "/etc/hostname" ) );
+        Calamares::System::instance()->removeTargetFile( QStringLiteral( "/etc/hostname" ) );
         break;
     }
 
@@ -159,7 +156,6 @@ SetHostNameJob::exec()
             return Calamares::JobResult::error( tr( "Cannot write hostname to target system" ) );
         }
     }
-
 
     return Calamares::JobResult::ok();
 }

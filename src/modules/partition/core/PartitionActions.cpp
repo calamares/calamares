@@ -28,7 +28,7 @@
 
 #include <QDir>
 
-using namespace CalamaresUtils::Units;
+using namespace Calamares::Units;
 
 static quint64
 swapSuggestion( const quint64 availableSpaceB, Config::SwapChoice swap )
@@ -40,7 +40,7 @@ swapSuggestion( const quint64 availableSpaceB, Config::SwapChoice swap )
 
     // See partition.conf for explanation
     quint64 suggestedSwapSizeB = 0;
-    auto [ availableRamB, overestimationFactor ] = CalamaresUtils::System::instance()->getTotalMemoryB();
+    auto [ availableRamB, overestimationFactor ] = Calamares::System::instance()->getTotalMemoryB();
 
     bool ensureSuspendToDisk = swap == Config::SwapChoice::FullSwap;
 
@@ -65,7 +65,6 @@ swapSuggestion( const quint64 availableSpaceB, Config::SwapChoice swap )
         suggestedSwapSizeB = qMin( quint64( 8_GiB ), suggestedSwapSizeB );
     }
 
-
     // Allow for a fudge factor
     suggestedSwapSizeB = quint64( qRound64( qreal( suggestedSwapSizeB ) * overestimationFactor ) );
 
@@ -76,7 +75,7 @@ swapSuggestion( const quint64 availableSpaceB, Config::SwapChoice swap )
     }
 
     // TODO: make Units functions work on unsigned
-    cDebug() << "Suggested swap size:" << CalamaresUtils::BytesToGiB( suggestedSwapSizeB ) << "GiB";
+    cDebug() << "Suggested swap size:" << Calamares::BytesToGiB( suggestedSwapSizeB ) << "GiB";
 
     return suggestedSwapSizeB;
 }
@@ -101,7 +100,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
     // Since sectors count from 0, if the space is 2048 sectors in size,
     // the first free sector has number 2048 (and there are 2048 sectors
     // before that one, numbered 0..2047).
-    qint64 firstFreeSector = CalamaresUtils::bytesToSectors( empty_space_sizeB, dev->logicalSize() );
+    qint64 firstFreeSector = Calamares::bytesToSectors( empty_space_sizeB, dev->logicalSize() );
 
     PartitionTable::TableType partType = PartitionTable::nameToTableType( o.defaultPartitionTableType );
     if ( partType == PartitionTable::unknownTableType )
@@ -120,7 +119,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
     if ( isEfi )
     {
         qint64 uefisys_part_sizeB = PartUtils::efiFilesystemMinimumSize();
-        qint64 efiSectorCount = CalamaresUtils::bytesToSectors( uefisys_part_sizeB, dev->logicalSize() );
+        qint64 efiSectorCount = Calamares::bytesToSectors( uefisys_part_sizeB, dev->logicalSize() );
         Q_ASSERT( efiSectorCount > 0 );
 
         // Since sectors count from 0, and this partition is created starting
@@ -209,7 +208,6 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
 
     core->dumpQueue();
 }
-
 
 void
 doReplacePartition( PartitionCoreModule* core, Device* dev, Partition* partition, Choices::ReplacePartitionOptions o )

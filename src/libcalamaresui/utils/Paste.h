@@ -15,7 +15,7 @@
 class QObject;
 class QWidget;
 
-namespace CalamaresUtils
+namespace Calamares
 {
 namespace Paste
 {
@@ -39,6 +39,6 @@ QString doLogUploadUI( QWidget* parent );
 bool isEnabled();
 }  // namespace Paste
 
-}  // namespace CalamaresUtils
+}  // namespace Calamares
 
 #endif

@@ -31,7 +31,7 @@ CheckerContainer::CheckerContainer( Config* config, QWidget* parent )
 {
     QBoxLayout* mainLayout = new QHBoxLayout;
     setLayout( mainLayout );
-    CalamaresUtils::unmarginLayout( mainLayout );
+    Calamares::unmarginLayout( mainLayout );
 
     mainLayout->addWidget( m_waitingWidget );
     CALAMARES_RETRANSLATE( if ( m_waitingWidget )

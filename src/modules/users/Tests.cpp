@@ -130,7 +130,6 @@ UserTests::testGetSet()
     }
 }
 
-
 void
 UserTests::testDefaultGroups()
 {
@@ -218,7 +217,7 @@ UserTests::testDefaultGroupsYAML()
     QVERIFY( fi.exists() );
 
     bool ok = false;
-    const auto map = CalamaresUtils::loadYaml( fi, &ok );
+    const auto map = Calamares::YAML::load( fi, &ok );
     QVERIFY( ok );
     QVERIFY( map.count() > 0 );
 
@@ -228,7 +227,6 @@ UserTests::testDefaultGroupsYAML()
     QCOMPARE( c.defaultGroups().count(), count );
     QVERIFY( c.defaultGroups().contains( group ) );
 }
-
 
 void
 UserTests::testHostActions_data()
@@ -293,7 +291,6 @@ UserTests::testHostActions2()
     QCOMPARE( c.writeEtcHosts(), false );
 }
 
-
 void
 UserTests::testHostSuggestions_data()
 {
@@ -334,7 +331,6 @@ UserTests::testHostSuggestions()
     }
     QCOMPARE( makeHostnameSuggestion( templateString, fullName, login ), result );
 }
-
 
 void
 UserTests::testPasswordChecks()
@@ -454,7 +450,7 @@ UserTests::testAutoLogin()
     QVERIFY( fi.exists() );
 
     bool ok = false;
-    const auto map = CalamaresUtils::loadYaml( fi, &ok );
+    const auto map = Calamares::YAML::load( fi, &ok );
     QVERIFY( ok );
     QVERIFY( map.count() > 0 );
 
@@ -506,7 +502,7 @@ UserTests::testUserYAML()
     QVERIFY( fi.exists() );
 
     bool ok = false;
-    const auto map = CalamaresUtils::loadYaml( fi, &ok );
+    const auto map = Calamares::YAML::load( fi, &ok );
     QVERIFY( ok );
     QVERIFY( map.count() > 0 );
 
@@ -514,7 +510,6 @@ UserTests::testUserYAML()
     c.setConfigurationMap( map );
     QCOMPARE( c.userShell(), shell );
 }
-
 
 QTEST_GUILESS_MAIN( UserTests )
 

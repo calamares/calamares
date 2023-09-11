@@ -83,7 +83,7 @@ GroupTests::testCreateGroup()
     QVERIFY( fi.exists() );
 
     bool ok = false;
-    const auto map = CalamaresUtils::loadYaml( fi, &ok );
+    const auto map = Calamares::YAML::load( fi, &ok );
     QVERIFY( ok );
     QVERIFY( map.count() > 0 );  // Just that it loaded, one key *defaultGroups*
 
@@ -119,7 +119,6 @@ GroupTests::testSudoGroup()
         QCOMPARE( c.sudoersGroup(), QStringLiteral( "roue" ) );
         QCOMPARE( spy.count(), 2 );
     }
-
 
     // Test config loading
     {
@@ -170,7 +169,6 @@ GroupTests::testJobCreation()
     QCOMPARE( c.sudoersGroup(), QString( "wheel" ) );
     QCOMPARE( c.createJobs().count(), expectedJobs + 1 );
 }
-
 
 QTEST_GUILESS_MAIN( GroupTests )
 

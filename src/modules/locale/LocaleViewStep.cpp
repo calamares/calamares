@@ -25,7 +25,6 @@
 #include <QBoxLayout>
 #include <QLabel>
 
-
 CALAMARES_PLUGIN_FACTORY_DEFINITION( LocaleViewStepFactory, registerPlugin< LocaleViewStep >(); )
 
 LocaleViewStep::LocaleViewStep( QObject* parent )
@@ -37,11 +36,10 @@ LocaleViewStep::LocaleViewStep( QObject* parent )
 {
     QBoxLayout* mainLayout = new QHBoxLayout;
     m_widget->setLayout( mainLayout );
-    CalamaresUtils::unmarginLayout( mainLayout );
+    Calamares::unmarginLayout( mainLayout );
 
     emit nextStatusChanged( m_nextEnabled );
 }
-
 
 LocaleViewStep::~LocaleViewStep()
 {
@@ -50,7 +48,6 @@ LocaleViewStep::~LocaleViewStep()
         m_widget->deleteLater();
     }
 }
-
 
 void
 LocaleViewStep::setUpPage()
@@ -68,13 +65,11 @@ LocaleViewStep::setUpPage()
     emit nextStatusChanged( m_nextEnabled );
 }
 
-
 QString
 LocaleViewStep::prettyName() const
 {
     return tr( "Location" );
 }
-
 
 QString
 LocaleViewStep::prettyStatus() const
@@ -82,13 +77,11 @@ LocaleViewStep::prettyStatus() const
     return m_config->prettyStatus();
 }
 
-
 QWidget*
 LocaleViewStep::widget()
 {
     return m_widget;
 }
-
 
 bool
 LocaleViewStep::isNextEnabled() const
@@ -96,13 +89,11 @@ LocaleViewStep::isNextEnabled() const
     return m_nextEnabled;
 }
 
-
 bool
 LocaleViewStep::isBackEnabled() const
 {
     return true;
 }
-
 
 bool
 LocaleViewStep::isAtBeginning() const
@@ -110,20 +101,17 @@ LocaleViewStep::isAtBeginning() const
     return true;
 }
 
-
 bool
 LocaleViewStep::isAtEnd() const
 {
     return true;
 }
 
-
 Calamares::JobList
 LocaleViewStep::jobs() const
 {
     return m_config->createJobs();
 }
-
 
 void
 LocaleViewStep::onActivate()
@@ -136,13 +124,11 @@ LocaleViewStep::onActivate()
     m_actualWidget->onActivate();
 }
 
-
 void
 LocaleViewStep::onLeave()
 {
     m_config->finalizeGlobalStorage();
 }
-
 
 void
 LocaleViewStep::setConfigurationMap( const QVariantMap& configurationMap )

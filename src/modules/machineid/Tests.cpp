@@ -104,7 +104,6 @@ MachineIdTests::testConfigEntropyFiles()
     }
 }
 
-
 void
 MachineIdTests::testCopyFile()
 {
@@ -165,7 +164,7 @@ MachineIdTests::testJob()
     cDebug() << "Temporary files as" << QDir::tempPath();
 
     // Ensure we have a system object, expect it to be a "bogus" one
-    CalamaresUtils::System* system = CalamaresUtils::System::instance();
+    Calamares::System* system = Calamares::System::instance();
     QVERIFY( system );
     QVERIFY( system->doChroot() );
 

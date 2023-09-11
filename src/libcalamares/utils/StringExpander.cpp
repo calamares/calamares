@@ -34,9 +34,7 @@ DictionaryExpander::DictionaryExpander( Calamares::String::DictionaryExpander&& 
 {
 }
 
-
 DictionaryExpander::~DictionaryExpander() {}
-
 
 void
 DictionaryExpander::insert( const QString& key, const QString& value )

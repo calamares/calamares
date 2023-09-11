@@ -9,7 +9,6 @@
  *
  */
 
-
 #include "EncryptWidget.h"
 
 #include "ui_EncryptWidget.h"
@@ -71,7 +70,6 @@ EncryptWidget::EncryptWidget( QWidget* parent )
     CALAMARES_RETRANSLATE_SLOT( &EncryptWidget::retranslate );
 }
 
-
 void
 EncryptWidget::reset( bool checkVisible )
 {
@@ -110,13 +108,11 @@ EncryptWidget::state() const
     return newState;
 }
 
-
 void
 EncryptWidget::setText( const QString& text )
 {
     m_ui->m_encryptCheckBox->setText( text );
 }
-
 
 QString
 EncryptWidget::passphrase() const
@@ -128,7 +124,6 @@ EncryptWidget::passphrase() const
     return QString();
 }
 
-
 void
 EncryptWidget::retranslate()
 {
@@ -136,13 +131,12 @@ EncryptWidget::retranslate()
     onPassphraseEdited();  // For the tooltip
 }
 
-
 ///@brief Give @p label the @p pixmap from the standard-pixmaps
 static void
-applyPixmap( QLabel* label, CalamaresUtils::ImageType pixmap )
+applyPixmap( QLabel* label, Calamares::ImageType pixmap )
 {
     label->setFixedWidth( label->height() );
-    label->setPixmap( CalamaresUtils::defaultPixmap( pixmap, CalamaresUtils::Original, label->size() ) );
+    label->setPixmap( Calamares::defaultPixmap( pixmap, Calamares::Original, label->size() ) );
 }
 
 void
@@ -155,22 +149,22 @@ EncryptWidget::updateState( const bool notify )
 
         if ( p1.isEmpty() && p2.isEmpty() )
         {
-            applyPixmap( m_ui->m_iconLabel, CalamaresUtils::StatusWarning );
+            applyPixmap( m_ui->m_iconLabel, Calamares::StatusWarning );
             m_ui->m_iconLabel->setToolTip( tr( "Please enter the same passphrase in both boxes." ) );
         }
         else if ( m_filesystem == FileSystem::Zfs && p1.length() < ZFS_MIN_LENGTH )
         {
-            applyPixmap( m_ui->m_iconLabel, CalamaresUtils::StatusError );
+            applyPixmap( m_ui->m_iconLabel, Calamares::StatusError );
             m_ui->m_iconLabel->setToolTip( tr( "Password must be a minimum of %1 characters" ).arg( ZFS_MIN_LENGTH ) );
         }
         else if ( p1 == p2 )
         {
-            applyPixmap( m_ui->m_iconLabel, CalamaresUtils::StatusOk );
+            applyPixmap( m_ui->m_iconLabel, Calamares::StatusOk );
             m_ui->m_iconLabel->setToolTip( QString() );
         }
         else
         {
-            applyPixmap( m_ui->m_iconLabel, CalamaresUtils::StatusError );
+            applyPixmap( m_ui->m_iconLabel, Calamares::StatusError );
             m_ui->m_iconLabel->setToolTip( tr( "Please enter the same passphrase in both boxes." ) );
         }
     }
@@ -197,7 +191,6 @@ EncryptWidget::onPassphraseEdited()
 
     updateState();
 }
-
 
 void
 EncryptWidget::onCheckBoxStateChanged( int checked )

@@ -25,7 +25,6 @@
 #endif
 #include <unistd.h>
 
-
 SetPasswordJob::SetPasswordJob( const QString& userName, const QString& newPassword )
     : Calamares::Job()
     , m_userName( userName )
@@ -33,20 +32,17 @@ SetPasswordJob::SetPasswordJob( const QString& userName, const QString& newPassw
 {
 }
 
-
 QString
 SetPasswordJob::prettyName() const
 {
     return tr( "Set password for user %1" ).arg( m_userName );
 }
 
-
 QString
 SetPasswordJob::prettyStatusMessage() const
 {
     return tr( "Setting password for user %1." ).arg( m_userName );
 }
-
 
 /// Returns a modular hashing salt for method 6 (SHA512) with a 16 character random salt.
 QString
@@ -56,13 +52,13 @@ SetPasswordJob::make_salt( int length )
     Q_ASSERT( length <= 128 );
 
     QString salt_string;
-    CalamaresUtils::EntropySource source = CalamaresUtils::getPrintableEntropy( length, salt_string );
+    Calamares::EntropySource source = Calamares::getPrintableEntropy( length, salt_string );
     if ( salt_string.length() != length )
     {
         cWarning() << "getPrintableEntropy returned string of length" << salt_string.length() << "expected" << length;
         salt_string.truncate( length );
     }
-    if ( source != CalamaresUtils::EntropySource::URandom )
+    if ( source != Calamares::EntropySource::URandom )
     {
         cWarning() << "Entropy data for salt is low-quality.";
     }
@@ -83,7 +79,7 @@ SetPasswordJob::exec()
 
     if ( m_userName == "root" && m_newPassword.isEmpty() )  //special case for disabling root account
     {
-        int ec = CalamaresUtils::System::instance()->targetEnvCall( { "usermod", "-p", "!", m_userName } );
+        int ec = Calamares::System::instance()->targetEnvCall( { "usermod", "-p", "!", m_userName } );
         if ( ec )
             return Calamares::JobResult::error( tr( "Cannot disable root account." ),
                                                 tr( "usermod terminated with error code %1." ).arg( ec ) );
@@ -92,7 +88,7 @@ SetPasswordJob::exec()
 
     QString encrypted = QString::fromLatin1( crypt( m_newPassword.toUtf8(), make_salt( 16 ).toUtf8() ) );
 
-    int ec = CalamaresUtils::System::instance()->targetEnvCall( { "usermod", "-p", encrypted, m_userName } );
+    int ec = Calamares::System::instance()->targetEnvCall( { "usermod", "-p", encrypted, m_userName } );
     if ( ec )
         return Calamares::JobResult::error( tr( "Cannot set password for user %1." ).arg( m_userName ),
                                             tr( "usermod terminated with error code %1." ).arg( ec ) );

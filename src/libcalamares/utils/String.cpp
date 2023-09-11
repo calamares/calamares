@@ -86,8 +86,7 @@ removeDiacritics( const QString& string )
     return output;
 }
 
-
-// Function CalamaresUtils::obscure based on KStringHandler::obscure,
+// Function Calamares::obscure based on KStringHandler::obscure,
 // part of KDElibs by KDE, file kstringhandler.cpp.
 // Original copyright statement follows.
 /* This file is part of the KDE libraries
@@ -123,7 +122,6 @@ obscure( const QString& string )
     }
     return result;
 }
-
 
 QString
 truncateMultiLine( const QString& string, LinesStartEnd lines, CharCount chars )

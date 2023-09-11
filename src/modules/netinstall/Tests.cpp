@@ -131,8 +131,8 @@ static const char doc_with_expanded[] =
 void
 ItemTests::testExtendedPackage()
 {
-    YAML::Node yamldoc = YAML::Load( doc );
-    QVariantList yamlContents = CalamaresUtils::yamlSequenceToVariant( yamldoc );
+    auto yamldoc = ::YAML::Load( doc );
+    QVariantList yamlContents = Calamares::YAML::sequenceToVariant( yamldoc );
 
     QCOMPARE( yamlContents.length(), 1 );
 
@@ -154,12 +154,11 @@ ItemTests::testExtendedPackage()
     QVERIFY( p == p );
 }
 
-
 void
 ItemTests::testGroup()
 {
-    YAML::Node yamldoc = YAML::Load( doc );
-    QVariantList yamlContents = CalamaresUtils::yamlSequenceToVariant( yamldoc );
+    auto yamldoc = ::YAML::Load( doc );
+    QVariantList yamlContents = Calamares::YAML::sequenceToVariant( yamldoc );
 
     QCOMPARE( yamlContents.length(), 1 );
 
@@ -209,8 +208,8 @@ ItemTests::testCompare()
     PackageTreeItem r3( "<root>", nullptr );
     QVERIFY( r3 == r2 );
 
-    YAML::Node yamldoc = YAML::Load( doc );  // See testGroup()
-    QVariantList yamlContents = CalamaresUtils::yamlSequenceToVariant( yamldoc );
+    auto yamldoc = ::YAML::Load( doc );  // See testGroup()
+    QVariantList yamlContents = Calamares::YAML::sequenceToVariant( yamldoc );
     QCOMPARE( yamlContents.length(), 1 );
 
     PackageTreeItem p3( yamlContents[ 0 ].toMap(), PackageTreeItem::GroupTag { nullptr } );
@@ -219,10 +218,10 @@ ItemTests::testCompare()
     QVERIFY( p1 != p3 );
     QCOMPARE( p3.childCount(), 0 );  // Doesn't load the packages: list
 
-    PackageTreeItem p4( CalamaresUtils::yamlSequenceToVariant( YAML::Load( doc ) )[ 0 ].toMap(),
+    PackageTreeItem p4( Calamares::YAML::sequenceToVariant( YAML::Load( doc ) )[ 0 ].toMap(),
                         PackageTreeItem::GroupTag { nullptr } );
     QVERIFY( p3 == p4 );
-    PackageTreeItem p5( CalamaresUtils::yamlSequenceToVariant( YAML::Load( doc_no_packages ) )[ 0 ].toMap(),
+    PackageTreeItem p5( Calamares::YAML::sequenceToVariant( YAML::Load( doc_no_packages ) )[ 0 ].toMap(),
                         PackageTreeItem::GroupTag { nullptr } );
     QVERIFY( p3 == p5 );
 }
@@ -257,12 +256,11 @@ ItemTests::recursiveCompare( PackageModel& l, PackageModel& r )
     return recursiveCompare( l.m_rootItem, r.m_rootItem );
 }
 
-
 void
 ItemTests::testModel()
 {
-    YAML::Node yamldoc = YAML::Load( doc );  // See testGroup()
-    QVariantList yamlContents = CalamaresUtils::yamlSequenceToVariant( yamldoc );
+    auto yamldoc = ::YAML::Load( doc );  // See testGroup()
+    QVariantList yamlContents = Calamares::YAML::sequenceToVariant( yamldoc );
     QCOMPARE( yamlContents.length(), 1 );
 
     PackageModel m0( nullptr );
@@ -275,7 +273,7 @@ ItemTests::testModel()
     checkAllSelected( m0.m_rootItem );
 
     PackageModel m2( nullptr );
-    m2.setupModelData( CalamaresUtils::yamlSequenceToVariant( YAML::Load( doc_with_expanded ) ) );
+    m2.setupModelData( Calamares::YAML::sequenceToVariant( YAML::Load( doc_with_expanded ) ) );
     QCOMPARE( m2.m_hiddenItems.count(), 0 );
     QCOMPARE( m2.rowCount(), 1 );  // Group, now the packages expanded but not counted
     QCOMPARE( m2.rowCount( m2.index( 0, 0 ) ), 3 );  // The packages
@@ -324,7 +322,7 @@ ItemTests::testExampleFiles()
         QVERIFY( !contents.isEmpty() );
 
         YAML::Node yamldoc = YAML::Load( contents.constData() );
-        QVariantList yamlContents = CalamaresUtils::yamlSequenceToVariant( yamldoc );
+        QVariantList yamlContents = Calamares::YAML::sequenceToVariant( yamldoc );
 
         PackageModel m1( nullptr );
         m1.setupModelData( yamlContents );
@@ -388,7 +386,7 @@ ItemTests::testUrlFallback()
         try
         {
             YAML::Node yamldoc = YAML::Load( correctedDocument.toUtf8() );
-            auto map = CalamaresUtils::yamlToVariant( yamldoc ).toMap();
+            auto map = Calamares::YAML::toVariant( yamldoc ).toMap();
             QVERIFY( map.count() > 0 );
             c.setConfigurationMap( map );
         }
@@ -419,7 +417,6 @@ ItemTests::testUrlFallback()
     QCOMPARE( smash( c.statusCode() ), status );
     QCOMPARE( c.model()->rowCount(), count );
 }
-
 
 QTEST_GUILESS_MAIN( ItemTests )
 

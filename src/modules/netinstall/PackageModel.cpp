@@ -274,7 +274,7 @@ PackageModel::setupModelData( const QVariantList& groupList, PackageTreeItem* pa
         PackageTreeItem* item = new PackageTreeItem( groupMap, PackageTreeItem::GroupTag { parent } );
         if ( groupMap.contains( "selected" ) )
         {
-            item->setSelected( CalamaresUtils::getBool( groupMap, "selected", false ) ? Qt::Checked : Qt::Unchecked );
+            item->setSelected( Calamares::getBool( groupMap, "selected", false ) ? Qt::Checked : Qt::Unchecked );
         }
         if ( groupMap.contains( "packages" ) )
         {

@@ -49,7 +49,7 @@ ResultsListWidget::ResultsListWidget( Config* config, QWidget* parent )
     explanationLayout->addWidget( m_countdown );
 
     mainLayout->addLayout( explanationLayout );
-    mainLayout->addSpacing( CalamaresUtils::defaultFontHeight() / 2 );
+    mainLayout->addSpacing( Calamares::defaultFontHeight() / 2 );
 
     auto* listview = new QListView( this );
     listview->setSelectionMode( QAbstractItemView::NoSelection );
@@ -108,7 +108,7 @@ ResultsListWidget::requirementsComplete()
                     imageLabel->setPixmap( theImage );
                 }
 
-                imageLabel->setContentsMargins( 4, CalamaresUtils::defaultFontHeight() * 3 / 4, 4, 4 );
+                imageLabel->setContentsMargins( 4, Calamares::defaultFontHeight() * 3 / 4, 4, 4 );
                 imageLabel->setAlignment( Qt::AlignCenter );
                 imageLabel->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
                 imageLabel->setObjectName( "welcomeLogo" );

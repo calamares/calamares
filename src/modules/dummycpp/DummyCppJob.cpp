@@ -27,9 +27,7 @@ DummyCppJob::DummyCppJob( QObject* parent )
 {
 }
 
-
 DummyCppJob::~DummyCppJob() {}
-
 
 QString
 DummyCppJob::prettyName() const
@@ -37,11 +35,9 @@ DummyCppJob::prettyName() const
     return tr( "Dummy C++ Job" );
 }
 
-
 static QString variantListToString( const QVariantList& variantList );
 static QString variantMapToString( const QVariantMap& variantMap );
 static QString variantHashToString( const QVariantHash& variantHash );
-
 
 static QString
 variantToString( const QVariant& variant )
@@ -65,7 +61,6 @@ variantToString( const QVariant& variant )
     }
 }
 
-
 static QString
 variantListToString( const QVariantList& variantList )
 {
@@ -76,7 +71,6 @@ variantListToString( const QVariantList& variantList )
     }
     return '{' + result.join( ',' ) + '}';
 }
-
 
 static QString
 variantMapToString( const QVariantMap& variantMap )
@@ -89,7 +83,6 @@ variantMapToString( const QVariantMap& variantMap )
     return '[' + result.join( ',' ) + ']';
 }
 
-
 static QString
 variantHashToString( const QVariantHash& variantHash )
 {
@@ -101,15 +94,14 @@ variantHashToString( const QVariantHash& variantHash )
     return '<' + result.join( ',' ) + '>';
 }
 
-
 Calamares::JobResult
 DummyCppJob::exec()
 {
     // Ported from dummypython
-    CalamaresUtils::System::runCommand( CalamaresUtils::System::RunLocation::RunInHost,
-                                        QStringList() << "/bin/sh"
-                                                      << "-c"
-                                                      << "touch ~/calamares-dummycpp" );
+    Calamares::System::runCommand( Calamares::System::RunLocation::RunInHost,
+                                   QStringList() << "/bin/sh"
+                                                 << "-c"
+                                                 << "touch ~/calamares-dummycpp" );
     QString accumulator = QDateTime::currentDateTimeUtc().toString( Qt::ISODate ) + '\n';
     accumulator += QStringLiteral( "Calamares version: " ) + CALAMARES_VERSION_SHORT + '\n';
     accumulator += QStringLiteral( "This job's name: " ) + prettyName() + '\n';
@@ -140,7 +132,6 @@ DummyCppJob::exec()
 
     return Calamares::JobResult::ok();
 }
-
 
 void
 DummyCppJob::setConfigurationMap( const QVariantMap& configurationMap )

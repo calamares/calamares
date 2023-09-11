@@ -106,19 +106,19 @@ static const char keyfile[] = "/crypto_keyfile.bin";
 static bool
 generateTargetKeyfile()
 {
-    CalamaresUtils::UMask m( CalamaresUtils::UMask::Safe );
+    Calamares::UMask m( Calamares::UMask::Safe );
 
     // Get the data
     QByteArray entropy;
-    auto entropySource = CalamaresUtils::getEntropy( 2048, entropy );
-    if ( entropySource != CalamaresUtils::EntropySource::URandom )
+    auto entropySource = Calamares::getEntropy( 2048, entropy );
+    if ( entropySource != Calamares::EntropySource::URandom )
     {
         cWarning() << "Could not get entropy from /dev/urandom for LUKS.";
         return false;
     }
 
-    auto fileResult = CalamaresUtils::System::instance()->createTargetFile(
-        keyfile, entropy, CalamaresUtils::System::WriteMode::Overwrite );
+    auto fileResult
+        = Calamares::System::instance()->createTargetFile( keyfile, entropy, Calamares::System::WriteMode::Overwrite );
     entropy.fill( 'A' );
     if ( !fileResult )
     {
@@ -128,7 +128,7 @@ generateTargetKeyfile()
 
     // Give ample time to check that the file was created correctly;
     // we actually expect ls to return pretty-much-instantly.
-    auto r = CalamaresUtils::System::instance()->targetEnvCommand(
+    auto r = Calamares::System::instance()->targetEnvCommand(
         { "ls", "-la", "/" }, QString(), QString(), std::chrono::seconds( 5 ) );
     cDebug() << "In target system after creating LUKS file" << r.getOutput();
     return true;
@@ -138,7 +138,7 @@ static bool
 setupLuks( const LuksDevice& d, const QString& luks2Hash )
 {
     // Get luksDump for this device
-    auto luks_dump = CalamaresUtils::System::instance()->targetEnvCommand(
+    auto luks_dump = Calamares::System::instance()->targetEnvCommand(
         { QStringLiteral( "cryptsetup" ), QStringLiteral( "luksDump" ), d.device },
         QString(),
         QString(),
@@ -187,8 +187,8 @@ setupLuks( const LuksDevice& d, const QString& luks2Hash )
         args.insert( 2, "--pbkdf" );
         args.insert( 3, luks2Hash );
     }
-    auto r = CalamaresUtils::System::instance()->targetEnvCommand(
-        args, QString(), d.passphrase, std::chrono::seconds( 60 ) );
+    auto r
+        = Calamares::System::instance()->targetEnvCommand( args, QString(), d.passphrase, std::chrono::seconds( 60 ) );
     if ( r.getExitCode() != 0 )
     {
         cWarning() << "Could not configure LUKS keyfile on" << d.device << ':' << r.getOutput() << "(exit code"
@@ -337,7 +337,7 @@ LuksBootKeyFileJob::setConfigurationMap( const QVariantMap& configurationMap )
             return QString();  // Empty is used internally for "default from cryptsetup"
         }
         return value.toLower();
-    }( CalamaresUtils::getString( configurationMap, QStringLiteral( "luks2Hash" ), QString() ) );
+    }( Calamares::getString( configurationMap, QStringLiteral( "luks2Hash" ), QString() ) );
 }
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( LuksBootKeyFileJobFactory, registerPlugin< LuksBootKeyFileJob >(); )

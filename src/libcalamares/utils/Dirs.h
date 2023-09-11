@@ -21,7 +21,7 @@
 
 #include <QDir>
 
-namespace CalamaresUtils
+namespace Calamares
 {
 /**
  * @brief appDataDir returns the directory with common application data.
@@ -56,6 +56,6 @@ DLLEXPORT bool haveExtraDirs();
 DLLEXPORT QStringList extraConfigDirs();
 /** @brief XDG_DATA_DIRS, each guaranteed to end with / */
 DLLEXPORT QStringList extraDataDirs();
-}  // namespace CalamaresUtils
+}  // namespace Calamares
 
 #endif

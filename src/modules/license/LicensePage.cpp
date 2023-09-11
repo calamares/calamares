@@ -67,8 +67,8 @@ LicenseEntry::LicenseEntry( const QVariantMap& conf )
     m_prettyVendor = conf.value( "vendor" ).toString();
     m_url = QUrl( conf[ "url" ].toString() );
 
-    m_required = CalamaresUtils::getBool( conf, "required", false );
-    m_expand = CalamaresUtils::getBool( conf, "expand", false );
+    m_required = Calamares::getBool( conf, "required", false );
+    m_expand = Calamares::getBool( conf, "expand", false );
 
     bool ok = false;
     QString typeString = conf.value( "type", "software" ).toString();
@@ -85,7 +85,6 @@ LicenseEntry::isLocal() const
     return m_url.isLocalFile();
 }
 
-
 LicensePage::LicensePage( QWidget* parent )
     : QWidget( parent )
     , m_isNextEnabled( false )
@@ -94,14 +93,14 @@ LicensePage::LicensePage( QWidget* parent )
 {
     ui->setupUi( this );
 
-    // ui->verticalLayout->insertSpacing( 1, CalamaresUtils::defaultFontHeight() );
-    CalamaresUtils::unmarginLayout( ui->verticalLayout );
+    // ui->verticalLayout->insertSpacing( 1, Calamares::defaultFontHeight() );
+    Calamares::unmarginLayout( ui->verticalLayout );
 
     ui->acceptFrame->setStyleSheet( mustAccept );
     {
         // The inner frame was unmargined (above), reinstate margins so all are
         // the same *x* (an x-height, approximately).
-        const auto x = CalamaresUtils::defaultFontHeight() / 2;
+        const auto x = Calamares::defaultFontHeight() / 2;
         ui->acceptFrame->layout()->setContentsMargins( x, x, x, x );
     }
 
@@ -171,7 +170,6 @@ LicensePage::retranslate()
         w->retranslateUi();
     }
 }
-
 
 bool
 LicensePage::isNextEnabled() const

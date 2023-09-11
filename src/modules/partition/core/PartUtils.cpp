@@ -97,7 +97,7 @@ canBeReplaced( Partition* candidate, const Logger::Once& o )
     }
 
     qint64 availableStorageB = candidate->capacity();
-    qint64 requiredStorageB = CalamaresUtils::GiBtoBytes( requiredStorageGiB + 0.5 );
+    qint64 requiredStorageB = Calamares::GiBtoBytes( requiredStorageGiB + 0.5 );
 
     if ( availableStorageB > requiredStorageB )
     {
@@ -111,11 +111,10 @@ canBeReplaced( Partition* candidate, const Logger::Once& o )
         deb << Logger::Continuation << "Required  storage B:" << requiredStorageB
             << QString( "(%1GiB)" ).arg( requiredStorageGiB );
         deb << Logger::Continuation << "Available storage B:" << availableStorageB
-            << QString( "(%1GiB)" ).arg( CalamaresUtils::BytesToGiB( availableStorageB ) );
+            << QString( "(%1GiB)" ).arg( Calamares::BytesToGiB( availableStorageB ) );
         return false;
     }
 }
-
 
 bool
 canBeResized( Partition* candidate, const Logger::Once& o )
@@ -174,7 +173,7 @@ canBeResized( Partition* candidate, const Logger::Once& o )
     // We require a little more for partitioning overhead and swap file
     double advisedStorageGiB = requiredStorageGiB + 0.5 + 2.0;
     qint64 availableStorageB = candidate->available();
-    qint64 advisedStorageB = CalamaresUtils::GiBtoBytes( advisedStorageGiB );
+    qint64 advisedStorageB = Calamares::GiBtoBytes( advisedStorageGiB );
 
     if ( availableStorageB > advisedStorageB )
     {
@@ -189,13 +188,12 @@ canBeResized( Partition* candidate, const Logger::Once& o )
         deb << Logger::Continuation << "Required  storage B:" << advisedStorageB
             << QString( "(%1GiB)" ).arg( advisedStorageGiB );
         deb << Logger::Continuation << "Available storage B:" << availableStorageB
-            << QString( "(%1GiB)" ).arg( CalamaresUtils::BytesToGiB( availableStorageB ) ) << "for"
+            << QString( "(%1GiB)" ).arg( Calamares::BytesToGiB( availableStorageB ) ) << "for"
             << convenienceName( candidate ) << "length:" << candidate->length()
             << "sectorsUsed:" << candidate->sectorsUsed() << "fsType:" << candidate->fileSystem().name();
         return false;
     }
 }
-
 
 bool
 canBeResized( DeviceModel* dm, const QString& partitionPath, const Logger::Once& o )
@@ -221,14 +219,13 @@ canBeResized( DeviceModel* dm, const QString& partitionPath, const Logger::Once&
     }
 }
 
-
 static FstabEntryList
 lookForFstabEntries( const QString& partitionPath )
 {
     QStringList mountOptions { "ro" };
 
-    auto r = CalamaresUtils::System::runCommand( CalamaresUtils::System::RunLocation::RunInHost,
-                                                 { "blkid", "-s", "TYPE", "-o", "value", partitionPath } );
+    auto r = Calamares::System::runCommand( Calamares::System::RunLocation::RunInHost,
+                                            { "blkid", "-s", "TYPE", "-o", "value", partitionPath } );
     if ( r.getExitCode() )
     {
         cWarning() << "blkid on" << partitionPath << "failed.";
@@ -278,7 +275,6 @@ lookForFstabEntries( const QString& partitionPath )
 
     return fstabEntries;
 }
-
 
 static QString
 findPartitionPathForMountPoint( const FstabEntryList& fstab, const QString& mountPoint )
@@ -354,7 +350,6 @@ findPartitionPathForMountPoint( const FstabEntryList& fstab, const QString& moun
 
     return QString();
 }
-
 
 OsproberEntryList
 runOsprober( DeviceModel* dm )
@@ -495,7 +490,6 @@ isEfiFilesystemSuitableSize( const Partition* candidate )
     }
 }
 
-
 bool
 isEfiBootable( const Partition* candidate )
 {
@@ -510,7 +504,7 @@ isEfiBootable( const Partition* candidate )
 qint64
 efiFilesystemMinimumSize()
 {
-    using CalamaresUtils::Units::operator""_MiB;
+    using Calamares::Units::operator""_MiB;
 
     qint64 uefisys_part_sizeB = 300_MiB;
 
@@ -529,7 +523,6 @@ efiFilesystemMinimumSize()
     }
     return uefisys_part_sizeB;
 }
-
 
 QString
 canonicalFilesystemName( const QString& fsName, FileSystem::Type* fsType )

@@ -15,14 +15,14 @@
 
 #include <QFileInfo>
 
-/** @brief A wrapper for CalamaresUtils::getSubMap that excludes the success param
+/** @brief A wrapper for Calamares::getSubMap that excludes the success param
  */
 static QVariantMap
 getSubMap( const QVariantMap& map, const QString& key )
 {
     bool success;
 
-    return CalamaresUtils::getSubMap( map, key, success );
+    return Calamares::getSubMap( map, key, success );
 }
 
 static QPixmap
@@ -62,11 +62,11 @@ PackageItem::PackageItem( const QString& a_id,
 }
 
 PackageItem::PackageItem( const QVariantMap& item_map )
-    : id( CalamaresUtils::getString( item_map, "id" ) )
+    : id( Calamares::getString( item_map, "id" ) )
     , name( Calamares::Locale::TranslatedString( item_map, "name" ) )
     , description( Calamares::Locale::TranslatedString( item_map, "description" ) )
-    , screenshot( loadScreenshot( CalamaresUtils::getString( item_map, "screenshot" ) ) )
-    , packageNames( CalamaresUtils::getStringList( item_map, "packages" ) )
+    , screenshot( loadScreenshot( Calamares::getString( item_map, "screenshot" ) ) )
+    , packageNames( Calamares::getStringList( item_map, "packages" ) )
     , netinstallData( getSubMap( item_map, "netinstall" ) )
 {
     if ( name.isEmpty() && id.isEmpty() )

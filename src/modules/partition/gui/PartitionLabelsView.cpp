@@ -26,13 +26,12 @@
 #include <QMouseEvent>
 #include <QPainter>
 
-using namespace CalamaresUtils::Units;
+using namespace Calamares::Units;
 
 static const int LAYOUT_MARGIN = 4;
-static const int LABEL_PARTITION_SQUARE_MARGIN = qMax( CalamaresUtils::defaultFontHeight() - 2, 18 );
+static const int LABEL_PARTITION_SQUARE_MARGIN = qMax( Calamares::defaultFontHeight() - 2, 18 );
 static const int LABELS_MARGIN = LABEL_PARTITION_SQUARE_MARGIN;
 static const int CORNER_RADIUS = 2;
-
 
 static QStringList
 buildUnknownDisklabelTexts( Device* dev )
@@ -41,7 +40,6 @@ buildUnknownDisklabelTexts( Device* dev )
                           formatByteSize( dev->totalLogical() * dev->logicalSize() ) };
     return texts;
 }
-
 
 PartitionLabelsView::PartitionLabelsView( QWidget* parent )
     : QAbstractItemView( parent )
@@ -56,16 +54,13 @@ PartitionLabelsView::PartitionLabelsView( QWidget* parent )
     setMouseTracking( true );
 }
 
-
 PartitionLabelsView::~PartitionLabelsView() {}
-
 
 QSize
 PartitionLabelsView::minimumSizeHint() const
 {
     return sizeHint();
 }
-
 
 QSize
 PartitionLabelsView::sizeHint() const
@@ -77,7 +72,6 @@ PartitionLabelsView::sizeHint() const
     }
     return QSize();
 }
-
 
 void
 PartitionLabelsView::paintEvent( QPaintEvent* event )
@@ -93,13 +87,11 @@ PartitionLabelsView::paintEvent( QPaintEvent* event )
     drawLabels( &painter, lRect, QModelIndex() );
 }
 
-
 QRect
 PartitionLabelsView::labelsRect() const
 {
     return rect().adjusted( 0, LAYOUT_MARGIN, 0, 0 );
 }
-
 
 static void
 drawPartitionSquare( QPainter* painter, const QRect& rect, const QBrush& brush )
@@ -111,7 +103,6 @@ drawPartitionSquare( QPainter* painter, const QRect& rect, const QBrush& brush )
     painter->drawRoundedRect( rect.adjusted( 0, 0, -1, -1 ), CORNER_RADIUS, CORNER_RADIUS );
     painter->translate( -.5, -.5 );
 }
-
 
 static void
 drawSelectionSquare( QPainter* painter, const QRect& rect, const QBrush& brush )
@@ -127,7 +118,6 @@ drawSelectionSquare( QPainter* painter, const QRect& rect, const QBrush& brush )
     painter->translate( -.5, -.5 );
     painter->restore();
 }
-
 
 QModelIndexList
 PartitionLabelsView::getIndexesToDraw( const QModelIndex& parent ) const
@@ -166,7 +156,6 @@ PartitionLabelsView::getIndexesToDraw( const QModelIndex& parent ) const
     }
     return list;
 }
-
 
 QStringList
 PartitionLabelsView::buildTexts( const QModelIndex& index ) const
@@ -242,7 +231,6 @@ PartitionLabelsView::buildTexts( const QModelIndex& index ) const
     return { firstLine, secondLine };
 }
 
-
 void
 PartitionLabelsView::drawLabels( QPainter* painter, const QRect& rect, const QModelIndex& parent )
 {
@@ -304,7 +292,6 @@ PartitionLabelsView::drawLabels( QPainter* painter, const QRect& rect, const QMo
     }
 }
 
-
 QSize
 PartitionLabelsView::sizeForAllLabels( int maxLineWidth ) const
 {
@@ -348,7 +335,6 @@ PartitionLabelsView::sizeForAllLabels( int maxLineWidth ) const
     return QSize( maxLineWidth, totalHeight );
 }
 
-
 QSize
 PartitionLabelsView::sizeForLabel( const QStringList& text ) const
 {
@@ -364,7 +350,6 @@ PartitionLabelsView::sizeForLabel( const QStringList& text ) const
     width += LABEL_PARTITION_SQUARE_MARGIN;  //for the color square
     return QSize( width, vertOffset );
 }
-
 
 void
 PartitionLabelsView::drawLabel( QPainter* painter,
@@ -397,7 +382,6 @@ PartitionLabelsView::drawLabel( QPainter* painter,
 
     painter->setPen( Qt::black );
 }
-
 
 QModelIndex
 PartitionLabelsView::indexAt( const QPoint& point ) const
@@ -437,7 +421,6 @@ PartitionLabelsView::indexAt( const QPoint& point ) const
     return QModelIndex();
 }
 
-
 QRect
 PartitionLabelsView::visualRect( const QModelIndex& idx ) const
 {
@@ -475,7 +458,6 @@ PartitionLabelsView::visualRect( const QModelIndex& idx ) const
     return QRect();
 }
 
-
 QRegion
 PartitionLabelsView::visualRegionForSelection( const QItemSelection& selection ) const
 {
@@ -484,20 +466,17 @@ PartitionLabelsView::visualRegionForSelection( const QItemSelection& selection )
     return QRegion();
 }
 
-
 int
 PartitionLabelsView::horizontalOffset() const
 {
     return 0;
 }
 
-
 int
 PartitionLabelsView::verticalOffset() const
 {
     return 0;
 }
-
 
 void
 PartitionLabelsView::scrollTo( const QModelIndex& index, ScrollHint hint )
@@ -506,14 +485,12 @@ PartitionLabelsView::scrollTo( const QModelIndex& index, ScrollHint hint )
     Q_UNUSED( hint )
 }
 
-
 void
 PartitionLabelsView::setCustomNewRootLabel( const QString& text )
 {
     m_customNewRootLabel = text;
     viewport()->repaint();
 }
-
 
 void
 PartitionLabelsView::setSelectionModel( QItemSelectionModel* selectionModel )
@@ -522,20 +499,17 @@ PartitionLabelsView::setSelectionModel( QItemSelectionModel* selectionModel )
     connect( selectionModel, &QItemSelectionModel::selectionChanged, this, [ = ] { viewport()->repaint(); } );
 }
 
-
 void
 PartitionLabelsView::setSelectionFilter( SelectionFilter canBeSelected )
 {
     m_canBeSelected = canBeSelected;
 }
 
-
 void
 PartitionLabelsView::setExtendedPartitionHidden( bool hidden )
 {
     m_extendedPartitionHidden = hidden;
 }
-
 
 QModelIndex
 PartitionLabelsView::moveCursor( CursorAction cursorAction, Qt::KeyboardModifiers modifiers )
@@ -546,7 +520,6 @@ PartitionLabelsView::moveCursor( CursorAction cursorAction, Qt::KeyboardModifier
     return QModelIndex();
 }
 
-
 bool
 PartitionLabelsView::isIndexHidden( const QModelIndex& index ) const
 {
@@ -554,7 +527,6 @@ PartitionLabelsView::isIndexHidden( const QModelIndex& index ) const
 
     return false;
 }
-
 
 void
 PartitionLabelsView::setSelection( const QRect& rect, QItemSelectionModel::SelectionFlags flags )
@@ -565,7 +537,6 @@ PartitionLabelsView::setSelection( const QRect& rect, QItemSelectionModel::Selec
         selectionModel()->select( eventIndex, flags );
     }
 }
-
 
 void
 PartitionLabelsView::mouseMoveEvent( QMouseEvent* event )
@@ -597,7 +568,6 @@ PartitionLabelsView::mouseMoveEvent( QMouseEvent* event )
     }
 }
 
-
 void
 PartitionLabelsView::leaveEvent( QEvent* event )
 {
@@ -610,7 +580,6 @@ PartitionLabelsView::leaveEvent( QEvent* event )
         viewport()->repaint();
     }
 }
-
 
 void
 PartitionLabelsView::mousePressEvent( QMouseEvent* event )
@@ -625,7 +594,6 @@ PartitionLabelsView::mousePressEvent( QMouseEvent* event )
         event->accept();
     }
 }
-
 
 void
 PartitionLabelsView::updateGeometries()

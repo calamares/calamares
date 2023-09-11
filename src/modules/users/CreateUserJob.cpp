@@ -21,13 +21,11 @@
 #include <QFileInfo>
 #include <QTextStream>
 
-
 CreateUserJob::CreateUserJob( const Config* config )
     : Calamares::Job()
     , m_config( config )
 {
 }
-
 
 QString
 CreateUserJob::prettyName() const
@@ -35,13 +33,11 @@ CreateUserJob::prettyName() const
     return tr( "Create user %1" ).arg( m_config->loginName() );
 }
 
-
 QString
 CreateUserJob::prettyDescription() const
 {
     return tr( "Create user <strong>%1</strong>." ).arg( m_config->loginName() );
 }
-
 
 QString
 CreateUserJob::prettyStatusMessage() const
@@ -74,7 +70,7 @@ createUser( const QString& loginName, const QString& fullName, const QString& sh
     useraddCommand << loginName;
 #endif
 
-    auto commandResult = CalamaresUtils::System::instance()->targetEnvCommand( useraddCommand );
+    auto commandResult = Calamares::System::instance()->targetEnvCommand( useraddCommand );
     if ( commandResult.getExitCode() )
     {
         cError() << "useradd failed" << commandResult.getExitCode();
@@ -96,7 +92,7 @@ setUserGroups( const QString& loginName, const QStringList& groups )
                      << "-aG" << groups.join( ',' ) << loginName;
 #endif
 
-    auto commandResult = CalamaresUtils::System::instance()->targetEnvCommand( setgroupsCommand );
+    auto commandResult = Calamares::System::instance()->targetEnvCommand( setgroupsCommand );
     if ( commandResult.getExitCode() )
     {
         cError() << "usermod failed" << commandResult.getExitCode();
@@ -104,7 +100,6 @@ setUserGroups( const QString& loginName, const QStringList& groups )
     }
     return Calamares::JobResult::ok();
 }
-
 
 Calamares::JobResult
 CreateUserJob::exec()
@@ -132,7 +127,7 @@ CreateUserJob::exec()
             existingHome.mkdir( backupDirName );
 
             // We need the extra `sh -c` here to ensure that we can expand the shell globs
-            CalamaresUtils::System::instance()->targetEnvCall(
+            Calamares::System::instance()->targetEnvCall(
                 { "sh", "-c", "mv -f " + shellFriendlyHome + "/.* " + shellFriendlyHome + "/" + backupDirName } );
         }
     }
@@ -159,7 +154,7 @@ CreateUserJob::exec()
     emit progress( 0.9 );
     QString userGroup = QString( "%1:%2" ).arg( m_config->loginName() ).arg( m_config->loginName() );
     QString homeDir = QString( "/home/%1" ).arg( m_config->loginName() );
-    auto commandResult = CalamaresUtils::System::instance()->targetEnvCommand( { "chown", "-R", userGroup, homeDir } );
+    auto commandResult = Calamares::System::instance()->targetEnvCommand( { "chown", "-R", userGroup, homeDir } );
     if ( commandResult.getExitCode() )
     {
         cError() << "chown failed" << commandResult.getExitCode();

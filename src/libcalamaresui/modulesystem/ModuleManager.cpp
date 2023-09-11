@@ -34,7 +34,6 @@ ModuleManager::instance()
     return s_instance;
 }
 
-
 ModuleManager::ModuleManager( const QStringList& paths, QObject* parent )
     : QObject( parent )
     , m_paths( paths )
@@ -44,7 +43,6 @@ ModuleManager::ModuleManager( const QStringList& paths, QObject* parent )
     s_instance = this;
 }
 
-
 ModuleManager::~ModuleManager()
 {
     // The map is populated with Module::fromDescriptor(), which allocates on the heap.
@@ -53,7 +51,6 @@ ModuleManager::~ModuleManager()
         delete moduleptr;
     }
 }
-
 
 void
 ModuleManager::init()
@@ -98,7 +95,7 @@ ModuleManager::doInit()
                     }
 
                     bool ok = false;
-                    QVariantMap moduleDescriptorMap = CalamaresUtils::loadYaml( descriptorFileInfo, &ok );
+                    QVariantMap moduleDescriptorMap = Calamares::YAML::load( descriptorFileInfo, &ok );
                     QString moduleName = ok ? moduleDescriptorMap.value( "name" ).toString() : QString();
 
                     if ( ok && !moduleName.isEmpty() && ( moduleName == currentDir.dirName() )
@@ -136,13 +133,11 @@ ModuleManager::doInit()
     QTimer::singleShot( 10, this, &ModuleManager::initDone );
 }
 
-
 QList< ModuleSystem::InstanceKey >
 ModuleManager::loadedInstanceKeys()
 {
     return m_loadedModulesByInstanceKey.keys();
 }
-
 
 Calamares::ModuleSystem::Descriptor
 ModuleManager::moduleDescriptor( const QString& name )
@@ -155,7 +150,6 @@ ModuleManager::moduleInstance( const ModuleSystem::InstanceKey& instanceKey )
 {
     return m_loadedModulesByInstanceKey.value( instanceKey );
 }
-
 
 /** @brief Returns the config file name for the given @p instanceKey
  *
@@ -184,7 +178,6 @@ getConfigFileName( const Settings::InstanceDescriptionList& descriptorList,
             return descriptor.configFileName();
         }
     }
-
 
     // This should already have been checked and failed the module already
     return QString();

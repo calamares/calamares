@@ -41,7 +41,6 @@ relativeChangeDirectory( QDir& directory, const QString& subdir )
     return directory.cd( relPath );
 }
 
-
 STATICTEST std::pair< bool, QDir >
 calculateWorkingDirectory( Calamares::Utils::RunLocation location, const QString& directory )
 {
@@ -98,10 +97,8 @@ namespace Utils
 
 Runner::Runner() {}
 
-
 }  // namespace Utils
 }  // namespace Calamares
-
 
 Calamares::Utils::Runner::Runner( const QStringList& command )
 {

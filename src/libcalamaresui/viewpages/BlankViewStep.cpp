@@ -31,7 +31,7 @@ BlankViewStep::BlankViewStep( const QString& title,
 
     auto* label = new QLabel( title );
     label->setAlignment( Qt::AlignHCenter );
-    label->setFont( CalamaresUtils::largeFont() );
+    label->setFont( Calamares::largeFont() );
     layout->addWidget( label );
 
     label = new QLabel( description );

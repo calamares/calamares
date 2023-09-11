@@ -59,14 +59,12 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
     // We're not done loading, but we need the configuration map first.
 }
 
-
 void
 PartitionViewStep::initPartitionCoreModule()
 {
     Q_ASSERT( m_core );
     m_core->init();
 }
-
 
 void
 PartitionViewStep::continueLoading()
@@ -90,7 +88,6 @@ PartitionViewStep::continueLoading()
     connect( m_choicePage, &ChoicePage::nextStatusChanged, this, &PartitionViewStep::nextPossiblyChanged );
 }
 
-
 PartitionViewStep::~PartitionViewStep()
 {
     if ( m_choicePage && m_choicePage->parent() == nullptr )
@@ -103,7 +100,6 @@ PartitionViewStep::~PartitionViewStep()
     }
     delete m_core;
 }
-
 
 QString
 PartitionViewStep::prettyName() const
@@ -233,31 +229,31 @@ PartitionViewStep::createSummaryWidget() const
     QWidget* widget = new QWidget;
     QVBoxLayout* mainLayout = new QVBoxLayout;
     widget->setLayout( mainLayout );
-    CalamaresUtils::unmarginLayout( mainLayout );
+    Calamares::unmarginLayout( mainLayout );
 
     Config::InstallChoice choice = m_config->installChoice();
 
     QFormLayout* formLayout = new QFormLayout( widget );
-    const int MARGIN = CalamaresUtils::defaultFontHeight() / 2;
+    const int MARGIN = Calamares::defaultFontHeight() / 2;
     formLayout->setContentsMargins( MARGIN, 0, MARGIN, MARGIN );
     mainLayout->addLayout( formLayout );
 
 #if defined( DEBUG_PARTITION_UNSAFE ) || defined( DEBUG_PARTITION_BAIL_OUT ) || defined( DEBUG_PARTITION_SKIP )
-    auto specialRow = [ = ]( CalamaresUtils::ImageType t, const QString& s )
+    auto specialRow = [ = ]( Calamares::ImageType t, const QString& s )
     {
         QLabel* icon = new QLabel;
-        icon->setPixmap( CalamaresUtils::defaultPixmap( t ) );
+        icon->setPixmap( Calamares::defaultPixmap( t ) );
         formLayout->addRow( icon, new QLabel( s ) );
     };
 #endif
 #if defined( DEBUG_PARTITION_UNSAFE )
-    specialRow( CalamaresUtils::ImageType::StatusWarning, tr( "Unsafe partition actions are enabled." ) );
+    specialRow( Calamares::ImageType::StatusWarning, tr( "Unsafe partition actions are enabled." ) );
 #endif
 #if defined( DEBUG_PARTITION_BAIL_OUT )
-    specialRow( CalamaresUtils::ImageType::Information, tr( "Partitioning is configured to <b>always</b> fail." ) );
+    specialRow( Calamares::ImageType::Information, tr( "Partitioning is configured to <b>always</b> fail." ) );
 #endif
 #if defined( DEBUG_PARTITION_SKIP )
-    specialRow( CalamaresUtils::ImageType::Information, tr( "No partitions will be changed." ) );
+    specialRow( Calamares::ImageType::Information, tr( "No partitions will be changed." ) );
 #endif
 
     const QList< PartitionCoreModule::SummaryInfo > list = m_core->createSummaryInfo();
@@ -293,7 +289,7 @@ PartitionViewStep::createSummaryWidget() const
         previewLabels->setSelectionMode( QAbstractItemView::NoSelection );
         info.partitionModelBefore->setParent( widget );
         field = new QVBoxLayout;
-        CalamaresUtils::unmarginLayout( field );
+        Calamares::unmarginLayout( field );
         field->setSpacing( 6 );
         field->addWidget( preview );
         field->addWidget( previewLabels );
@@ -311,7 +307,7 @@ PartitionViewStep::createSummaryWidget() const
             Calamares::Branding::instance()->string( Calamares::Branding::BootloaderEntryName ) );
         info.partitionModelAfter->setParent( widget );
         field = new QVBoxLayout;
-        CalamaresUtils::unmarginLayout( field );
+        Calamares::unmarginLayout( field );
         field->setSpacing( 6 );
         field->addWidget( preview );
         field->addWidget( previewLabels );
@@ -323,7 +319,7 @@ PartitionViewStep::createSummaryWidget() const
         QLabel* jobsLabel = new QLabel( widget );
         mainLayout->addWidget( jobsLabel );
         jobsLabel->setText( jobsLines.join( "<br/>" ) );
-        jobsLabel->setMargin( CalamaresUtils::defaultFontHeight() / 2 );
+        jobsLabel->setMargin( Calamares::defaultFontHeight() / 2 );
         QPalette pal;
         pal.setColor( WindowBackground, pal.window().color().lighter( 108 ) );
         jobsLabel->setAutoFillBackground( true );
@@ -362,7 +358,6 @@ PartitionViewStep::next()
     }
 }
 
-
 void
 PartitionViewStep::back()
 {
@@ -378,7 +373,6 @@ PartitionViewStep::back()
         }
     }
 }
-
 
 bool
 PartitionViewStep::isNextEnabled() const
@@ -408,7 +402,6 @@ PartitionViewStep::isBackEnabled() const
     return true;
 }
 
-
 bool
 PartitionViewStep::isAtBeginning() const
 {
@@ -418,7 +411,6 @@ PartitionViewStep::isAtBeginning() const
     }
     return true;
 }
-
 
 bool
 PartitionViewStep::isAtEnd() const
@@ -435,7 +427,6 @@ PartitionViewStep::isAtEnd() const
     }
     return true;
 }
-
 
 void
 PartitionViewStep::onActivate()
@@ -471,7 +462,7 @@ shouldWarnForGPTOnBIOS( const PartitionCoreModule* core )
             // So this is a BIOS system, and the bootloader will be installed on a GPT system
             for ( const auto& partition : qAsConst( table->children() ) )
             {
-                using CalamaresUtils::Units::operator""_MiB;
+                using Calamares::Units::operator""_MiB;
                 if ( ( partition->activeFlags() & KPM_PARTITION_FLAG( BiosGrub ) )
                      && ( partition->fileSystem().type() == FileSystem::Unformatted )
                      && ( partition->capacity() >= 8_MiB ) )
@@ -492,7 +483,7 @@ shouldWarnForGPTOnBIOS( const PartitionCoreModule* core )
 }
 
 static bool
-shouldWarnForNotEncryptedBoot( const Config* config, const PartitionCoreModule* core)
+shouldWarnForNotEncryptedBoot( const Config* config, const PartitionCoreModule* core )
 {
     if ( config->showNotEncryptedBootMessage() )
     {
@@ -501,8 +492,7 @@ shouldWarnForNotEncryptedBoot( const Config* config, const PartitionCoreModule* 
 
         if ( root_p and boot_p )
         {
-            if ( ( root_p->fileSystem().type() == FileSystem::Luks
-                   && boot_p->fileSystem().type() != FileSystem::Luks )
+            if ( ( root_p->fileSystem().type() == FileSystem::Luks && boot_p->fileSystem().type() != FileSystem::Luks )
                  || ( root_p->fileSystem().type() == FileSystem::Luks2
                       && boot_p->fileSystem().type() != FileSystem::Luks2 ) )
             {
@@ -574,7 +564,7 @@ PartitionViewStep::onLeave()
             {
                 cDebug() << o << "ESP too small";
                 const qint64 atLeastBytes = static_cast< qint64 >( PartUtils::efiFilesystemMinimumSize() );
-                const auto atLeastMiB = CalamaresUtils::BytesToMiB( atLeastBytes );
+                const auto atLeastMiB = Calamares::BytesToMiB( atLeastBytes );
                 description.append( ' ' );
                 description.append( tr( "The filesystem must be at least %1 MiB in size." ).arg( atLeastMiB ) );
             }
@@ -631,20 +621,19 @@ PartitionViewStep::onLeave()
         {
             QString message = tr( "Boot partition not encrypted" );
             QString description = tr( "A separate boot partition was set up together with "
-                                         "an encrypted root partition, but the boot partition "
-                                         "is not encrypted."
-                                         "<br/><br/>"
-                                         "There are security concerns with this kind of "
-                                         "setup, because important system files are kept "
-                                         "on an unencrypted partition.<br/>"
-                                         "You may continue if you wish, but filesystem "
-                                         "unlocking will happen later during system startup."
-                                         "<br/>To encrypt the boot partition, go back and "
-                                         "recreate it, selecting <strong>Encrypt</strong> "
-                                         "in the partition creation window." );
+                                      "an encrypted root partition, but the boot partition "
+                                      "is not encrypted."
+                                      "<br/><br/>"
+                                      "There are security concerns with this kind of "
+                                      "setup, because important system files are kept "
+                                      "on an unencrypted partition.<br/>"
+                                      "You may continue if you wish, but filesystem "
+                                      "unlocking will happen later during system startup."
+                                      "<br/>To encrypt the boot partition, go back and "
+                                      "recreate it, selecting <strong>Encrypt</strong> "
+                                      "in the partition creation window." );
 
-            QMessageBox mb(
-                QMessageBox::Warning, message, description, QMessageBox::Ok, m_manualPartitionPage );
+            QMessageBox mb( QMessageBox::Warning, message, description, QMessageBox::Ok, m_manualPartitionPage );
             Calamares::fixButtonLabels( &mb );
             mb.exec();
         }
@@ -663,18 +652,18 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     // Read and parse key swapPartitionName
     if ( configurationMap.contains( "swapPartitionName" ) )
     {
-        gs->insert( "swapPartitionName", CalamaresUtils::getString( configurationMap, "swapPartitionName" ) );
+        gs->insert( "swapPartitionName", Calamares::getString( configurationMap, "swapPartitionName" ) );
     }
 
     // OTHER SETTINGS
     //
-    gs->insert( "drawNestedPartitions", CalamaresUtils::getBool( configurationMap, "drawNestedPartitions", false ) );
+    gs->insert( "drawNestedPartitions", Calamares::getBool( configurationMap, "drawNestedPartitions", false ) );
     gs->insert( "alwaysShowPartitionLabels",
-                CalamaresUtils::getBool( configurationMap, "alwaysShowPartitionLabels", true ) );
+                Calamares::getBool( configurationMap, "alwaysShowPartitionLabels", true ) );
     gs->insert( "enableLuksAutomatedPartitioning",
-                CalamaresUtils::getBool( configurationMap, "enableLuksAutomatedPartitioning", true ) );
+                Calamares::getBool( configurationMap, "enableLuksAutomatedPartitioning", true ) );
 
-    QString partitionTableName = CalamaresUtils::getString( configurationMap, "defaultPartitionTableType" );
+    QString partitionTableName = Calamares::getString( configurationMap, "defaultPartitionTableType" );
     if ( partitionTableName.isEmpty() )
     {
         cWarning() << "Partition-module setting *defaultPartitionTableType* is unset, "
@@ -706,7 +695,6 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     m_core->partitionLayout().init( m_config->defaultFsType(), configurationMap.value( "partitionLayout" ).toList() );
 }
 
-
 Calamares::JobList
 PartitionViewStep::jobs() const
 {
@@ -736,6 +724,5 @@ PartitionViewStep::checkRequirements()
 
     return l;
 }
-
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( PartitionViewStepFactory, registerPlugin< PartitionViewStep >(); )

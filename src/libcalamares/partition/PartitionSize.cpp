@@ -9,7 +9,6 @@
  *
  */
 
-
 #include "partition/PartitionSize.h"
 #include "utils/Logger.h"
 #include "utils/Units.h"
@@ -99,7 +98,7 @@ PartitionSize::toSectors( qint64 totalSectors, qint64 sectorSize ) const
     case SizeUnit::MiB:
     case SizeUnit::GB:
     case SizeUnit::GiB:
-        return CalamaresUtils::bytesToSectors( toBytes(), sectorSize );
+        return Calamares::bytesToSectors( toBytes(), sectorSize );
     }
 
     return -1;
@@ -195,17 +194,17 @@ PartitionSize::toBytes() const
     case SizeUnit::Byte:
         return value();
     case SizeUnit::KB:
-        return CalamaresUtils::KBtoBytes( static_cast< unsigned long long >( value() ) );
+        return Calamares::KBtoBytes( static_cast< unsigned long long >( value() ) );
     case SizeUnit::KiB:
-        return CalamaresUtils::KiBtoBytes( static_cast< unsigned long long >( value() ) );
+        return Calamares::KiBtoBytes( static_cast< unsigned long long >( value() ) );
     case SizeUnit::MB:
-        return CalamaresUtils::MBtoBytes( static_cast< unsigned long long >( value() ) );
+        return Calamares::MBtoBytes( static_cast< unsigned long long >( value() ) );
     case SizeUnit::MiB:
-        return CalamaresUtils::MiBtoBytes( static_cast< unsigned long long >( value() ) );
+        return Calamares::MiBtoBytes( static_cast< unsigned long long >( value() ) );
     case SizeUnit::GB:
-        return CalamaresUtils::GBtoBytes( static_cast< unsigned long long >( value() ) );
+        return Calamares::GBtoBytes( static_cast< unsigned long long >( value() ) );
     case SizeUnit::GiB:
-        return CalamaresUtils::GiBtoBytes( static_cast< unsigned long long >( value() ) );
+        return Calamares::GiBtoBytes( static_cast< unsigned long long >( value() ) );
     }
     __builtin_unreachable();
 }

@@ -59,7 +59,7 @@ UsersTests::initTestCase()
     cDebug() << "Test dir" << m_dir.path();
 
     // Ensure we have a system object, expect it to be a "bogus" one
-    CalamaresUtils::System* system = CalamaresUtils::System::instance();
+    Calamares::System* system = Calamares::System::instance();
     QVERIFY( system );
     QVERIFY( system->doChroot() );
 
@@ -96,7 +96,7 @@ UsersTests::testEtcHostname()
     // Doesn't create intermediate directories
     QVERIFY( !setFileHostname( testHostname ) );
 
-    QVERIFY( CalamaresUtils::System::instance()->createTargetDirs( "/etc" ) );
+    QVERIFY( Calamares::System::instance()->createTargetDirs( "/etc" ) );
     QVERIFY( QFile::exists( m_dir.filePath( "etc" ) ) );
 
     // Does write the file
@@ -147,7 +147,6 @@ UsersTests::testHostnamed()
     }
 }
 
-
 void
 UsersTests::cleanup()
 {
@@ -156,7 +155,6 @@ UsersTests::cleanup()
         m_dir.setAutoRemove( false );
     }
 }
-
 
 QTEST_GUILESS_MAIN( UsersTests )
 

@@ -29,7 +29,7 @@
 namespace bp = boost::python;
 
 static int
-handle_check_target_env_call_error( const CalamaresUtils::ProcessResult& ec, const QString& cmd )
+handle_check_target_env_call_error( const Calamares::ProcessResult& ec, const QString& cmd )
 {
     if ( !ec.first )
     {
@@ -61,12 +61,12 @@ bp_list_to_qstringlist( const bp::list& args )
     return list;
 }
 
-static inline CalamaresUtils::ProcessResult
+static inline Calamares::ProcessResult
 target_env_command( const QStringList& args, const std::string& input, int timeout )
 {
     // Since Python doesn't give us the type system for distinguishing
     // seconds from other integral types, massage to seconds here.
-    return CalamaresUtils::System::instance()->targetEnvCommand(
+    return Calamares::System::instance()->targetEnvCommand(
         args, QString(), QString::fromStdString( input ), std::chrono::seconds( timeout ) );
 }
 
@@ -80,9 +80,9 @@ mount( const std::string& device_path,
        const std::string& options )
 {
     return Calamares::Partition::mount( QString::fromStdString( device_path ),
-                                             QString::fromStdString( mount_point ),
-                                             QString::fromStdString( filesystem_name ),
-                                             QString::fromStdString( options ) );
+                                        QString::fromStdString( mount_point ),
+                                        QString::fromStdString( filesystem_name ),
+                                        QString::fromStdString( options ) );
 }
 
 int
@@ -91,13 +91,11 @@ target_env_call( const std::string& command, const std::string& input, int timeo
     return target_env_command( QStringList { QString::fromStdString( command ) }, input, timeout ).first;
 }
 
-
 int
 target_env_call( const bp::list& args, const std::string& input, int timeout )
 {
     return target_env_command( bp_list_to_qstringlist( args ), input, timeout ).first;
 }
-
 
 int
 check_target_env_call( const std::string& command, const std::string& input, int timeout )
@@ -105,7 +103,6 @@ check_target_env_call( const std::string& command, const std::string& input, int
     auto ec = target_env_command( QStringList { QString::fromStdString( command ) }, input, timeout );
     return handle_check_target_env_call_error( ec, QString::fromStdString( command ) );
 }
-
 
 int
 check_target_env_call( const bp::list& args, const std::string& input, int timeout )
@@ -120,7 +117,6 @@ check_target_env_call( const bp::list& args, const std::string& input, int timeo
     return handle_check_target_env_call_error( ec, failedCmdList.join( ' ' ) );
 }
 
-
 std::string
 check_target_env_output( const std::string& command, const std::string& input, int timeout )
 {
@@ -128,7 +124,6 @@ check_target_env_output( const std::string& command, const std::string& input, i
     handle_check_target_env_call_error( ec, QString::fromStdString( command ) );
     return ec.second.toStdString();
 }
-
 
 std::string
 check_target_env_output( const bp::list& args, const std::string& input, int timeout )
@@ -169,14 +164,13 @@ load_yaml( const std::string& path )
 {
     const QString filePath = QString::fromStdString( path );
     bool ok = false;
-    auto map = CalamaresUtils::loadYaml( filePath, &ok );
+    auto map = Calamares::YAML::load( filePath, &ok );
     if ( !ok )
     {
         cWarning() << "Loading YAML from" << filePath << "failed.";
     }
     return variantMapToPyDict( map );
 }
-
 
 PythonJobInterface::PythonJobInterface( Calamares::PythonJob* parent )
     : m_parent( parent )
@@ -187,7 +181,6 @@ PythonJobInterface::PythonJobInterface( Calamares::PythonJob* parent )
     workingPath = m_parent->m_workingPath.toStdString();
     configuration = CalamaresPython::variantMapToPyDict( m_parent->m_configurationMap );
 }
-
 
 void
 PythonJobInterface::setprogress( qreal progress )
@@ -258,7 +251,6 @@ host_env_process_output( const boost::python::list& args,
 {
     return _process_output( Calamares::Utils::RunLocation::RunInHost, args, callback, input, timeout );
 }
-
 
 std::string
 obscure( const std::string& string )
@@ -368,6 +360,5 @@ gettext_path()
     cWarning() << "No translation found for languages" << candidateLanguages;
     return bp::object();  // None
 }
-
 
 }  // namespace CalamaresPython

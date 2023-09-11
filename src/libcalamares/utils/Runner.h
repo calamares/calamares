@@ -26,8 +26,8 @@ namespace Calamares
 namespace Utils
 {
 
-using RunLocation = CalamaresUtils::System::RunLocation;
-using ProcessResult = CalamaresUtils::ProcessResult;
+using RunLocation = Calamares::System::RunLocation;
+using ProcessResult = Calamares::ProcessResult;
 
 /** @brief A Runner wraps a process and handles running it and processing output
  *

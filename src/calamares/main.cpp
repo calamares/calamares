@@ -8,7 +8,6 @@
  *
  */
 
-
 #include "CalamaresApplication.h"
 
 #include "Settings.h"
@@ -93,13 +92,13 @@ handle_args( CalamaresApplication& a )
     Logger::setupLogLevel( parser.isSet( debugOption ) ? Logger::LOGVERBOSE : debug_level( parser, debugLevelOption ) );
     if ( parser.isSet( configOption ) )
     {
-        CalamaresUtils::setAppDataDir( QDir( parser.value( configOption ) ) );
+        Calamares::setAppDataDir( QDir( parser.value( configOption ) ) );
     }
     if ( parser.isSet( xdgOption ) )
     {
-        CalamaresUtils::setXdgDirs();
+        Calamares::setXdgDirs();
     }
-    CalamaresUtils::setAllowLocalTranslation( parser.isSet( debugOption ) || parser.isSet( debugTxOption ) );
+    Calamares::setAllowLocalTranslation( parser.isSet( debugOption ) || parser.isSet( debugTxOption ) );
 
     return parser.isSet( debugOption );
 }

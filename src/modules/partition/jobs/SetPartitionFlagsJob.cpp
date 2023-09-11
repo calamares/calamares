@@ -25,7 +25,7 @@
 #include <kpmcore/ops/setpartflagsoperation.h>
 #include <kpmcore/util/report.h>
 
-using CalamaresUtils::BytesToMiB;
+using Calamares::BytesToMiB;
 using Calamares::Partition::untranslatedFS;
 using Calamares::Partition::userVisibleFS;
 
@@ -35,7 +35,6 @@ SetPartFlagsJob::SetPartFlagsJob( Device* device, Partition* partition, Partitio
     , m_flags( flags )
 {
 }
-
 
 QString
 SetPartFlagsJob::prettyName() const
@@ -54,7 +53,6 @@ SetPartFlagsJob::prettyName() const
     }
     return tr( "Set flags on new partition." );
 }
-
 
 QString
 SetPartFlagsJob::prettyDescription() const
@@ -98,7 +96,6 @@ SetPartFlagsJob::prettyDescription() const
     return tr( "Flag new partition as <strong>%1</strong>." ).arg( flagsList.join( ", " ) );
 }
 
-
 QString
 SetPartFlagsJob::prettyStatusMessage() const
 {
@@ -141,7 +138,6 @@ SetPartFlagsJob::prettyStatusMessage() const
 
     return tr( "Setting flags <strong>%1</strong> on new partition." ).arg( flagsList.join( ", " ) );
 }
-
 
 Calamares::JobResult
 SetPartFlagsJob::exec()

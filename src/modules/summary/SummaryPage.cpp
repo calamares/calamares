@@ -55,7 +55,6 @@ SummaryPage::SummaryPage( Config* config, QWidget* parent )
     m_scrollArea->setContentsMargins( 0, 0, 0, 0 );
 }
 
-
 static QLabel*
 createTitleLabel( const QString& text, const QFont& titleFont )
 {
@@ -72,7 +71,7 @@ createBodyLabel( const QString& text, const QPalette& bodyPalette )
 {
     QLabel* label = new QLabel;
     label->setObjectName( "summaryItemBody" );
-    label->setMargin( CalamaresUtils::defaultFontHeight() / 2 );
+    label->setMargin( Calamares::defaultFontHeight() / 2 );
     label->setAutoFillBackground( true );
     label->setPalette( bodyPalette );
     label->setText( text );
@@ -87,12 +86,12 @@ createStepWidget( const QString& description, QWidget* innerWidget, const QPalet
     w->setLayout( itemBodyLayout );
 
     // Indent the inner box by a bit
-    itemBodyLayout->addSpacing( CalamaresUtils::defaultFontHeight() * 2 );
+    itemBodyLayout->addSpacing( Calamares::defaultFontHeight() * 2 );
     QVBoxLayout* itemBodyCoreLayout = new QVBoxLayout;
     itemBodyLayout->addLayout( itemBodyCoreLayout );
-    CalamaresUtils::unmarginLayout( itemBodyLayout );
+    Calamares::unmarginLayout( itemBodyLayout );
 
-    itemBodyCoreLayout->addSpacing( CalamaresUtils::defaultFontHeight() / 2 );
+    itemBodyCoreLayout->addSpacing( Calamares::defaultFontHeight() / 2 );
     if ( innerWidget )
     {
         itemBodyCoreLayout->addWidget( innerWidget );
@@ -131,11 +130,11 @@ SummaryPage::buildWidgets( Config* config, SummaryViewStep* viewstep )
     delete m_contentWidget;  // It might have been created previously
     m_contentWidget = new QWidget;
     m_layout = new QVBoxLayout( m_contentWidget );
-    CalamaresUtils::unmarginLayout( m_layout );
+    Calamares::unmarginLayout( m_layout );
 
     QFont titleFont = font();
     titleFont.setWeight( QFont::Light );
-    titleFont.setPointSize( CalamaresUtils::defaultFontSize() * 2 );
+    titleFont.setPointSize( Calamares::defaultFontSize() * 2 );
 
     QPalette bodyPalette( palette() );
     bodyPalette.setColor( WindowBackground, palette().window().color().lighter( 108 ) );

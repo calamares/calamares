@@ -43,7 +43,6 @@ xkbmap_model_args( const QString& model )
     return r;
 }
 
-
 /* Returns stringlist with suitable setxkbmap command-line arguments
  * to set the given @p layout and @p variant.
  */
@@ -213,7 +212,10 @@ Config::Config( QObject* parent )
     connect( m_keyboardModelsModel, &KeyboardModelsModel::currentIndexChanged, this, &Config::selectionChange );
     connect( m_keyboardLayoutsModel, &KeyboardLayoutModel::currentIndexChanged, this, &Config::selectionChange );
     connect( m_keyboardVariantsModel, &KeyboardVariantsModel::currentIndexChanged, this, &Config::selectionChange );
-    connect( m_KeyboardGroupSwitcherModel, &KeyboardGroupsSwitchersModel::currentIndexChanged, this, &Config::selectionChange );
+    connect( m_KeyboardGroupSwitcherModel,
+             &KeyboardGroupsSwitchersModel::currentIndexChanged,
+             this,
+             &Config::selectionChange );
 
     m_selectedModel = m_keyboardModelsModel->key( m_keyboardModelsModel->currentIndex() );
     m_selectedLayout = m_keyboardLayoutsModel->item( m_keyboardLayoutsModel->currentIndex() ).first;
@@ -306,7 +308,6 @@ Config::xkbApply()
                                                { m_additionalLayoutInfo.additionalVariant, m_selectedVariant },
                                                m_additionalLayoutInfo.groupSwitcher ) );
 
-
         cDebug() << "xkbmap selection changed to: " << m_selectedLayout << '-' << m_selectedVariant << "(added "
                  << m_additionalLayoutInfo.additionalLayout << "-" << m_additionalLayoutInfo.additionalVariant
                  << " since current layout is not ASCII-capable)";
@@ -318,7 +319,6 @@ Config::xkbApply()
     }
     m_setxkbmapTimer.disconnect( this );
 }
-
 
 KeyboardModelsModel*
 Config::keyboardModels() const
@@ -706,7 +706,7 @@ Config::updateVariants( const QPersistentModelIndex& currentItem, QString curren
 void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    using namespace CalamaresUtils;
+    using namespace Calamares;
     bool isX11 = QGuiApplication::platformName() == "xcb";
 
     const auto xorgConfDefault = QStringLiteral( "00-keyboard.conf" );

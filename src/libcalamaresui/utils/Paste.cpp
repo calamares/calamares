@@ -24,7 +24,7 @@
 #include <QUrl>
 #include <QWidget>
 
-using namespace CalamaresUtils::Units;
+using namespace Calamares::Units;
 
 /** @brief Reads the logfile, returns its contents.
  *
@@ -63,7 +63,6 @@ logFileContents( const qint64 sizeLimitBytes )
     }
     return pasteSourceFile.read( sizeLimitBytes );
 }
-
 
 STATICTEST QString
 ficheLogUpload( const QByteArray& pasteData, const QUrl& serverUrl, QObject* parent )
@@ -117,7 +116,7 @@ ficheLogUpload( const QByteArray& pasteData, const QUrl& serverUrl, QObject* par
 }
 
 QString
-CalamaresUtils::Paste::doLogUpload( QObject* parent )
+Calamares::Paste::doLogUpload( QObject* parent )
 {
     auto [ type, serverUrl, sizeLimitBytes ] = Calamares::Branding::instance()->uploadServer();
     if ( !serverUrl.isValid() )
@@ -156,10 +155,10 @@ CalamaresUtils::Paste::doLogUpload( QObject* parent )
 }
 
 QString
-CalamaresUtils::Paste::doLogUploadUI( QWidget* parent )
+Calamares::Paste::doLogUploadUI( QWidget* parent )
 {
     // These strings originated in the ViewManager class
-    QString pasteUrl = CalamaresUtils::Paste::doLogUpload( parent );
+    QString pasteUrl = Calamares::Paste::doLogUpload( parent );
     QString pasteUrlMessage;
     if ( pasteUrl.isEmpty() )
     {
@@ -189,9 +188,8 @@ CalamaresUtils::Paste::doLogUploadUI( QWidget* parent )
     return pasteUrl;
 }
 
-
 bool
-CalamaresUtils::Paste::isEnabled()
+Calamares::Paste::isEnabled()
 {
     auto [ type, serverUrl, sizeLimitBytes ] = Calamares::Branding::instance()->uploadServer();
     return type != Calamares::Branding::UploadServerType::None && sizeLimitBytes != 0;

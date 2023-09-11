@@ -19,7 +19,6 @@
 #include <QDir>
 #include <QFileInfo>
 
-
 SetTimezoneJob::SetTimezoneJob( const QString& region, const QString& zone )
     : Calamares::Job()
     , m_region( region )
@@ -27,13 +26,11 @@ SetTimezoneJob::SetTimezoneJob( const QString& region, const QString& zone )
 {
 }
 
-
 QString
 SetTimezoneJob::prettyName() const
 {
     return tr( "Set timezone to %1/%2" ).arg( m_region ).arg( m_zone );
 }
-
 
 Calamares::JobResult
 SetTimezoneJob::exec()
@@ -42,7 +39,7 @@ SetTimezoneJob::exec()
     // to a running timedated over D-Bus), and we have code that works
     if ( !Calamares::Settings::instance()->doChroot() )
     {
-        int ec = CalamaresUtils::System::instance()->targetEnvCall(
+        int ec = Calamares::System::instance()->targetEnvCall(
             { "timedatectl", "set-timezone", m_region + '/' + m_zone } );
 
         if ( !ec )
@@ -63,9 +60,9 @@ SetTimezoneJob::exec()
                                             tr( "Bad path: %1" ).arg( zoneFile.absolutePath() ) );
 
     // Make sure /etc/localtime doesn't exist, otherwise symlinking will fail
-    CalamaresUtils::System::instance()->targetEnvCall( { "rm", "-f", localtimeSlink } );
+    Calamares::System::instance()->targetEnvCall( { "rm", "-f", localtimeSlink } );
 
-    int ec = CalamaresUtils::System::instance()->targetEnvCall( { "ln", "-s", zoneinfoPath, localtimeSlink } );
+    int ec = Calamares::System::instance()->targetEnvCall( { "ln", "-s", zoneinfoPath, localtimeSlink } );
     if ( ec )
         return Calamares::JobResult::error(
             tr( "Cannot set timezone." ),

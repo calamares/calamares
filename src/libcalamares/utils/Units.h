@@ -15,7 +15,7 @@
 
 #include <QtCore/QIntegerForSize>
 
-namespace CalamaresUtils
+namespace Calamares
 {
 /// @brief Type for expressing units
 using intunit_t = quint64;
@@ -170,6 +170,6 @@ bytesToSectors( qint64 bytes, qint64 blocksize )
     return alignBytesToBlockSize( alignBytesToBlockSize( bytes, blocksize ), MiBtoBytes( 1ULL ) ) / blocksize;
 }
 
-}  // namespace CalamaresUtils
+}  // namespace Calamares
 
 #endif

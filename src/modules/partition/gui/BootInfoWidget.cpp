@@ -7,7 +7,6 @@
  *
  */
 
-
 #include "BootInfoWidget.h"
 #include "core/PartUtils.h"
 
@@ -29,20 +28,19 @@ BootInfoWidget::BootInfoWidget( QWidget* parent )
     QHBoxLayout* mainLayout = new QHBoxLayout;
     setLayout( mainLayout );
 
-    CalamaresUtils::unmarginLayout( mainLayout );
+    Calamares::unmarginLayout( mainLayout );
 
     mainLayout->addWidget( m_bootIcon );
     mainLayout->addWidget( m_bootLabel );
 
-    QSize iconSize = CalamaresUtils::defaultIconSize();
+    QSize iconSize = Calamares::defaultIconSize();
 
     m_bootIcon->setMargin( 0 );
     m_bootIcon->setFixedSize( iconSize );
-    m_bootIcon->setPixmap(
-        CalamaresUtils::defaultPixmap( CalamaresUtils::BootEnvironment, CalamaresUtils::Original, iconSize ) );
+    m_bootIcon->setPixmap( Calamares::defaultPixmap( Calamares::BootEnvironment, Calamares::Original, iconSize ) );
 
     QFontMetrics fm = QFontMetrics( QFont() );
-    m_bootLabel->setMinimumWidth( fm.boundingRect( "BIOS" ).width() + CalamaresUtils::defaultFontHeight() / 2 );
+    m_bootLabel->setMinimumWidth( fm.boundingRect( "BIOS" ).width() + Calamares::defaultFontHeight() / 2 );
     m_bootLabel->setAlignment( Qt::AlignCenter );
 
     QPalette palette;

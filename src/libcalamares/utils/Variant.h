@@ -19,7 +19,7 @@
 #include <QString>
 #include <QVariantMap>
 
-namespace CalamaresUtils
+namespace Calamares
 {
 /**
  * Get a bool value from a mapping with a given key; returns @p d if no value.
@@ -73,6 +73,6 @@ DLLEXPORT QVariantMap getSubMap( const QVariantMap& map,
                                  const QString& key,
                                  bool& success,
                                  const QVariantMap& d = QVariantMap() );
-}  // namespace CalamaresUtils
+}  // namespace Calamares
 
 #endif

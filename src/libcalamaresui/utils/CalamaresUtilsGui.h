@@ -19,7 +19,7 @@
 
 class QLayout;
 
-namespace CalamaresUtils
+namespace Calamares
 {
 
 /**
@@ -74,7 +74,7 @@ enum ImageMode
  * @return the new pixmap.
  */
 UIDLLEXPORT QPixmap defaultPixmap( ImageType type,
-                                   ImageMode mode = CalamaresUtils::Original,
+                                   ImageMode mode = Calamares::Original,
                                    const QSize& size = QSize( 0, 0 ) );
 
 /**
@@ -97,6 +97,6 @@ constexpr int windowMinimumHeight = 520;
 constexpr int windowPreferredWidth = 1024;
 constexpr int windowPreferredHeight = 520;
 
-}  // namespace CalamaresUtils
+}  // namespace Calamares
 
 #endif  // CALAMARESUTILSGUI_H

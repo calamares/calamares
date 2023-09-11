@@ -102,7 +102,7 @@ private:
     void showFailedQml();
 
     /// @brief Controls where m_name is searched
-    CalamaresUtils::QmlSearch m_searchMethod;
+    Calamares::QmlSearch m_searchMethod;
 
     QString m_name;
     QString m_qmlFileName;

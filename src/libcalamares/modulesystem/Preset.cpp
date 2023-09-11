@@ -23,8 +23,8 @@ loadPresets( Calamares::ModuleSystem::Presets& preset,
         if ( !it.key().isEmpty() && pred( it.key() ) )
         {
             QVariantMap m = it.value().toMap();
-            QString value = CalamaresUtils::getString( m, "value" );
-            bool editable = CalamaresUtils::getBool( m, "editable", true );
+            QString value = Calamares::getString( m, "value" );
+            bool editable = Calamares::getBool( m, "editable", true );
 
             preset.append( Calamares::ModuleSystem::PresetField { it.key(), value, editable } );
 

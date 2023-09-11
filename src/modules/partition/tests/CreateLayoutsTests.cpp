@@ -19,7 +19,7 @@
 
 #include <QtTest/QtTest>
 
-using namespace CalamaresUtils::Units;
+using namespace Calamares::Units;
 
 class PartitionTable;
 class SmartStatus;

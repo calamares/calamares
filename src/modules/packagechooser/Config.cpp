@@ -20,7 +20,6 @@
 #include <memory>
 #endif
 
-
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "compat/Variant.h"
@@ -223,7 +222,6 @@ Config::updateGlobalStorage() const
     }
 }
 
-
 void
 Config::setPackageChoice( const QString& packageChoice )
 {
@@ -312,9 +310,9 @@ fillModel( PackageListModel* model, const QVariantList& items )
 void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    m_mode = packageChooserModeNames().find( CalamaresUtils::getString( configurationMap, "mode" ),
+    m_mode = packageChooserModeNames().find( Calamares::getString( configurationMap, "mode" ),
                                              PackageChooserMode::Required );
-    m_method = PackageChooserMethodNames().find( CalamaresUtils::getString( configurationMap, "method" ),
+    m_method = PackageChooserMethodNames().find( Calamares::getString( configurationMap, "method" ),
                                                  PackageChooserMethod::Legacy );
 
     if ( m_method == PackageChooserMethod::Legacy )
@@ -326,7 +324,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     {
         fillModel( m_model, configurationMap.value( "items" ).toList() );
 
-        QString default_item_id = CalamaresUtils::getString( configurationMap, "default" );
+        QString default_item_id = Calamares::getString( configurationMap, "default" );
         if ( !default_item_id.isEmpty() )
         {
             for ( int item_n = 0; item_n < m_model->packageCount(); ++item_n )
@@ -344,7 +342,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     }
     else
     {
-        setPackageChoice( CalamaresUtils::getString( configurationMap, "packageChoice" ) );
+        setPackageChoice( Calamares::getString( configurationMap, "packageChoice" ) );
         if ( m_method != PackageChooserMethod::Legacy )
         {
             cWarning() << "Single-selection QML module must use 'Legacy' method.";
@@ -352,7 +350,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     }
 
     bool labels_ok = false;
-    auto labels = CalamaresUtils::getSubMap( configurationMap, "labels", labels_ok );
+    auto labels = Calamares::getSubMap( configurationMap, "labels", labels_ok );
     if ( labels_ok )
     {
         if ( labels.contains( "step" ) )

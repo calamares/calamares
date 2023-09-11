@@ -19,7 +19,7 @@
 WaitingWidget::WaitingWidget( const QString& text, QWidget* parent )
     : WaitingSpinnerWidget( parent, false, false )
 {
-    int spnrSize = CalamaresUtils::defaultFontHeight() * 4;
+    int spnrSize = Calamares::defaultFontHeight() * 4;
     setFixedSize( spnrSize, spnrSize );
     setInnerRadius( spnrSize / 2 );
     setLineLength( spnrSize / 2 );
@@ -51,7 +51,7 @@ CountdownWaitingWidget::CountdownWaitingWidget( std::chrono::seconds duration, Q
     , d( std::make_unique< Private >( duration, this ) )
 {
     // Set up the label first for sizing
-    const int labelHeight = qBound( 16, CalamaresUtils::defaultFontHeight() * 3 / 2, 64 );
+    const int labelHeight = qBound( 16, Calamares::defaultFontHeight() * 3 / 2, 64 );
 
     // Set up the spinner
     setFixedSize( labelHeight, labelHeight );

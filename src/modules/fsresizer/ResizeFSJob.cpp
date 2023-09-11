@@ -35,9 +35,7 @@ ResizeFSJob::ResizeFSJob( QObject* parent )
 {
 }
 
-
 ResizeFSJob::~ResizeFSJob() {}
-
 
 QString
 ResizeFSJob::prettyName() const
@@ -155,7 +153,6 @@ ResizeFSJob::findGrownEnd( ResizeFSJob::PartitionMatch m )
     return last_available;
 }
 
-
 Calamares::JobResult
 ResizeFSJob::exec()
 {
@@ -230,7 +227,6 @@ ResizeFSJob::exec()
     return Calamares::JobResult::ok();
 }
 
-
 void
 ResizeFSJob::setConfigurationMap( const QVariantMap& configurationMap )
 {
@@ -246,7 +242,7 @@ ResizeFSJob::setConfigurationMap( const QVariantMap& configurationMap )
     m_size = PartitionSize( configurationMap[ "size" ].toString() );
     m_atleast = PartitionSize( configurationMap[ "atleast" ].toString() );
 
-    m_required = CalamaresUtils::getBool( configurationMap, "required", false );
+    m_required = Calamares::getBool( configurationMap, "required", false );
 }
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( ResizeFSJobFactory, registerPlugin< ResizeFSJob >(); )

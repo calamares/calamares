@@ -19,7 +19,7 @@ static constexpr int const item_margin = 8;
 static inline int
 item_fontsize()
 {
-    return CalamaresUtils::defaultFontSize() + 4;
+    return Calamares::defaultFontSize() + 4;
 }
 
 static void
@@ -33,7 +33,7 @@ paintRequirement( QPainter* painter, const QStyleOptionViewItem& option, const Q
     font.setBold( false );
     painter->setFont( font );
 
-    CalamaresUtils::ImageType statusImage = CalamaresUtils::StatusOk;
+    Calamares::ImageType statusImage = Calamares::StatusOk;
 
     painter->setPen( QColorConstants::Black );
     if ( index.data( Calamares::RequirementsModel::Satisfied ).toBool() )
@@ -47,20 +47,19 @@ paintRequirement( QPainter* painter, const QStyleOptionViewItem& option, const Q
             QColor bgColor = option.palette.window().color();
             bgColor.setHsv( 0, 64, bgColor.value() );
             painter->fillRect( option.rect, bgColor );
-            statusImage = CalamaresUtils::StatusError;
+            statusImage = Calamares::StatusError;
         }
         else
         {
             QColor bgColor = option.palette.window().color();
             bgColor.setHsv( 60, 64, bgColor.value() );
             painter->fillRect( option.rect, bgColor );
-            statusImage = CalamaresUtils::StatusWarning;
+            statusImage = Calamares::StatusWarning;
         }
     }
 
     auto image
-        = CalamaresUtils::defaultPixmap( statusImage, CalamaresUtils::Original, QSize( 2 * fontsize, 2 * fontsize ) )
-              .toImage();
+        = Calamares::defaultPixmap( statusImage, Calamares::Original, QSize( 2 * fontsize, 2 * fontsize ) ).toImage();
     painter->drawImage( textRect.topLeft(), image );
 
     // Leave space for that image (already drawn)
@@ -86,7 +85,6 @@ ResultDelegate::sizeHint( const QStyleOptionViewItem& option, const QModelIndex&
 
     return QSize( qMax( option.rect.width(), textwidth ), height );
 }
-
 
 void
 ResultDelegate::paint( QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index ) const

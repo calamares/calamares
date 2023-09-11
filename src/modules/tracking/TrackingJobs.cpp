@@ -23,7 +23,6 @@
 
 #include <chrono>
 
-
 // Namespace keeps all the actual jobs anonymous, the
 // public API is the addJob() functions below the namespace.
 namespace
@@ -148,11 +147,11 @@ TrackingMachineUpdateManagerJob::exec()
     static const auto script = QStringLiteral(
         "sed -i '/^URI/s,${MACHINE_ID},'`cat /etc/machine-id`',' /etc/update-manager/meta-release || true" );
 
-    auto res = CalamaresUtils::System::instance()->runCommand( CalamaresUtils::System::RunLocation::RunInTarget,
-                                                               QStringList { QStringLiteral( "/bin/sh" ) },
-                                                               QString(),  // Working dir
-                                                               script,  // standard input
-                                                               std::chrono::seconds( 1 ) );
+    auto res = Calamares::System::instance()->runCommand( Calamares::System::RunLocation::RunInTarget,
+                                                          QStringList { QStringLiteral( "/bin/sh" ) },
+                                                          QString(),  // Working dir
+                                                          script,  // standard input
+                                                          std::chrono::seconds( 1 ) );
     int r = res.first;
 
     if ( r == 0 )
@@ -214,7 +213,7 @@ FeedbackLevel=16
         QString path = QStringLiteral( "/home/%1/.config/%2" ).arg( m_username, area );
         cDebug() << "Configuring KUserFeedback" << path;
 
-        int r = CalamaresUtils::System::instance()->createTargetFile( path, config );
+        int r = Calamares::System::instance()->createTargetFile( path, config );
         if ( r > 0 )
         {
             return Calamares::JobResult::error(
@@ -243,7 +242,7 @@ addJob( Calamares::JobList& list, InstallTrackingConfig* config )
 {
     if ( config->isEnabled() )
     {
-        const auto* s = CalamaresUtils::System::instance();
+        const auto* s = Calamares::System::instance();
         QHash< QString, QString > map { std::initializer_list< std::pair< QString, QString > > {
             { QStringLiteral( "CPU" ), s->getCpuDescription() },
             { QStringLiteral( "MEMORY" ), QString::number( s->getTotalMemoryB().first ) },

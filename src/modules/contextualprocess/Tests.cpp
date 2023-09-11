@@ -26,7 +26,7 @@
 
 QTEST_GUILESS_MAIN( ContextualProcessTests )
 
-using CommandList = CalamaresUtils::CommandList;
+using CommandList = Calamares::CommandList;
 
 ContextualProcessTests::ContextualProcessTests() {}
 
@@ -38,7 +38,7 @@ ContextualProcessTests::initTestCase()
     Logger::setupLogLevel( Logger::LOGDEBUG );
 
     // Ensure we have a system object, expect it to be a "bogus" one
-    CalamaresUtils::System* system = CalamaresUtils::System::instance();
+    Calamares::System* system = Calamares::System::instance();
     QVERIFY( system );
     QVERIFY( system->doChroot() );
 
@@ -70,7 +70,7 @@ ContextualProcessTests::testProcessListSampleConfig()
     }
 
     ContextualProcessJob job;
-    job.setConfigurationMap( CalamaresUtils::yamlMapToVariant( doc ) );
+    job.setConfigurationMap( Calamares::YAML::mapToVariant( doc ) );
 
     QCOMPARE( job.count(), 2 );  // Only "firmwareType" and "branding.shortVersion"
     QCOMPARE( job.count( "firmwareType" ), 4 );

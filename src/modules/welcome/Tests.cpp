@@ -44,7 +44,7 @@ WelcomeTests::initTestCase()
     cDebug() << "Welcome test started.";
 
     // Ensure we have a system object, expect it to be a "bogus" one
-    CalamaresUtils::System* system = CalamaresUtils::System::instance();
+    Calamares::System* system = Calamares::System::instance();
     QVERIFY( system );
     cDebug() << Logger::SubEntry << "System @" << Logger::Pointer( system );
 
@@ -66,7 +66,7 @@ WelcomeTests::testOneUrl()
     QVERIFY( fi.exists() );
 
     bool ok = false;
-    const auto map = CalamaresUtils::loadYaml( QFileInfo( fi ), &ok );
+    const auto map = Calamares::YAML::load( QFileInfo( fi ), &ok );
     QVERIFY( ok );
     QVERIFY( map.count() > 0 );
     QVERIFY( map.contains( "requirements" ) );
@@ -104,7 +104,7 @@ WelcomeTests::testUrls()
     QVERIFY( fi.exists() );
 
     bool ok = false;
-    const auto map = CalamaresUtils::loadYaml( fi, &ok );
+    const auto map = Calamares::YAML::load( fi, &ok );
     QVERIFY( ok );
 
     Calamares::Network::Manager::instance().setCheckHasInternetUrl( QVector< QUrl > {} );
@@ -134,7 +134,7 @@ WelcomeTests::testBadConfigDoesNotResetUrls()
         QVERIFY( fi.exists() );
 
         bool ok = false;
-        const auto map = CalamaresUtils::loadYaml( fi, &ok );
+        const auto map = Calamares::YAML::load( fi, &ok );
         QVERIFY( ok );
 
         c.setConfigurationMap( map );
@@ -151,14 +151,13 @@ WelcomeTests::testBadConfigDoesNotResetUrls()
         QVERIFY( fi.exists() );
 
         bool ok = false;
-        const auto map = CalamaresUtils::loadYaml( fi, &ok );
+        const auto map = Calamares::YAML::load( fi, &ok );
         QVERIFY( ok );
 
         c.setConfigurationMap( map );
     }
     QCOMPARE( nam.getCheckInternetUrls().count(), 1 );
 }
-
 
 QTEST_GUILESS_MAIN( WelcomeTests )
 

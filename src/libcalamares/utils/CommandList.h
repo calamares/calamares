@@ -21,7 +21,7 @@
 
 class KMacroExpanderBase;
 
-namespace CalamaresUtils
+namespace Calamares
 {
 using CommandLineBase = std::pair< QString, std::chrono::seconds >;
 
@@ -119,5 +119,5 @@ private:
     std::chrono::seconds m_timeout;
 };
 
-}  // namespace CalamaresUtils
+}  // namespace Calamares
 #endif

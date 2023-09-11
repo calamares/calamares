@@ -73,7 +73,6 @@ public:
             }
     }
 
-
     /** @brief Construct value from string.
      *
      * This is not defined in the template, because it should probably

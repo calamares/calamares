@@ -28,7 +28,6 @@
 #include <QVBoxLayout>
 #include <QWidget>
 
-
 /// @brief State-change of the QML, for changeQMLState()
 enum class QMLAction
 {
@@ -50,7 +49,7 @@ changeQMLState( QMLAction action, QQuickItem* item )
     static const char propertyName[] = "activatedInCalamares";
 
     bool activate = action == QMLAction::Start;
-    CalamaresUtils::callQmlFunction( item, activate ? "onActivate" : "onLeave" );
+    Calamares::callQmlFunction( item, activate ? "onActivate" : "onLeave" );
 
     auto property = item->property( propertyName );
     if ( property.isValid() && ( Calamares::typeOf( property ) == Calamares::BoolVariantType )
@@ -69,14 +68,14 @@ QmlViewStep::QmlViewStep( QObject* parent )
     , m_spinner( new WaitingWidget( tr( "Loading ..." ) ) )
     , m_qmlWidget( new QQuickWidget )
 {
-    CalamaresUtils::registerQmlModels();
+    Calamares::registerQmlModels();
 
     QVBoxLayout* layout = new QVBoxLayout( m_widget );
     layout->addWidget( m_spinner );
 
     m_qmlWidget->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
     m_qmlWidget->setResizeMode( QQuickWidget::SizeRootObjectToView );
-    m_qmlWidget->engine()->addImportPath( CalamaresUtils::qmlModulesDir().absolutePath() );
+    m_qmlWidget->engine()->addImportPath( Calamares::qmlModulesDir().absolutePath() );
 
     // QML Loading starts when the configuration for the module is set.
 }
@@ -89,7 +88,6 @@ QmlViewStep::prettyName() const
     // TODO: query the QML itself
     return tr( "QML Step <i>%1</i>." ).arg( moduleInstanceKey().module() );
 }
-
 
 bool
 QmlViewStep::isAtBeginning() const
@@ -221,19 +219,17 @@ QmlViewStep::showQml()
     }
 }
 
-
 void
 QmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     bool ok = false;
-    m_searchMethod
-        = CalamaresUtils::qmlSearchNames().find( CalamaresUtils::getString( configurationMap, "qmlSearch" ), ok );
+    m_searchMethod = Calamares::qmlSearchNames().find( Calamares::getString( configurationMap, "qmlSearch" ), ok );
     if ( !ok )
     {
         cWarning() << "Bad QML search mode set for" << moduleInstanceKey();
     }
 
-    QString qmlFile = CalamaresUtils::getString( configurationMap, "qmlFilename" );
+    QString qmlFile = Calamares::getString( configurationMap, "qmlFilename" );
     if ( !m_qmlComponent )
     {
         m_qmlFileName = searchQmlFile( m_searchMethod, qmlFile, moduleInstanceKey() );

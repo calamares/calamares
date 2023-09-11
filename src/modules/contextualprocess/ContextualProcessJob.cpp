@@ -20,7 +20,6 @@
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
-
 ContextualProcessBinding::~ContextualProcessBinding()
 {
     m_wildcard = nullptr;
@@ -31,7 +30,7 @@ ContextualProcessBinding::~ContextualProcessBinding()
 }
 
 void
-ContextualProcessBinding::append( const QString& value, CalamaresUtils::CommandList* commands )
+ContextualProcessBinding::append( const QString& value, Calamares::CommandList* commands )
 {
     m_checks.append( ValueCheck( value, commands ) );
     if ( value == QString( "*" ) )
@@ -80,7 +79,6 @@ fetch( QString& value, QStringList& selector, int index, const QVariant& v )
     }
 }
 
-
 bool
 ContextualProcessBinding::fetch( Calamares::GlobalStorage* storage, QString& value ) const
 {
@@ -101,25 +99,21 @@ ContextualProcessBinding::fetch( Calamares::GlobalStorage* storage, QString& val
     }
 }
 
-
 ContextualProcessJob::ContextualProcessJob( QObject* parent )
     : Calamares::CppJob( parent )
 {
 }
-
 
 ContextualProcessJob::~ContextualProcessJob()
 {
     qDeleteAll( m_commands );
 }
 
-
 QString
 ContextualProcessJob::prettyName() const
 {
     return tr( "Contextual Processes Job" );
 }
-
 
 Calamares::JobResult
 ContextualProcessJob::exec()
@@ -145,12 +139,11 @@ ContextualProcessJob::exec()
     return Calamares::JobResult::ok();
 }
 
-
 void
 ContextualProcessJob::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    bool dontChroot = CalamaresUtils::getBool( configurationMap, "dontChroot", false );
-    qint64 timeout = CalamaresUtils::getInteger( configurationMap, "timeout", 10 );
+    bool dontChroot = Calamares::getBool( configurationMap, "dontChroot", false );
+    qint64 timeout = Calamares::getInteger( configurationMap, "timeout", 10 );
     if ( timeout < 1 )
     {
         timeout = 10;
@@ -183,8 +176,8 @@ ContextualProcessJob::setConfigurationMap( const QVariantMap& configurationMap )
                 continue;
             }
 
-            CalamaresUtils::CommandList* commands
-                = new CalamaresUtils::CommandList( valueiter.value(), !dontChroot, std::chrono::seconds( timeout ) );
+            Calamares::CommandList* commands
+                = new Calamares::CommandList( valueiter.value(), !dontChroot, std::chrono::seconds( timeout ) );
 
             binding->append( valueString, commands );
         }

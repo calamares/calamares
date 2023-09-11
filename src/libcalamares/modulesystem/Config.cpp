@@ -18,13 +18,11 @@ namespace Calamares
 namespace ModuleSystem
 {
 
-
 class Config::Private
 {
 public:
     std::unique_ptr< Presets > m_presets;
 };
-
 
 Config::Config( QObject* parent )
     : QObject( parent )
@@ -55,7 +53,7 @@ Config::isEditable( const QString& fieldName ) const
 Config::ApplyPresets::ApplyPresets( Calamares::ModuleSystem::Config& c, const QVariantMap& configurationMap )
     : m_c( c )
     , m_bogus( true )
-    , m_map( CalamaresUtils::getSubMap( configurationMap, "presets", m_bogus ) )
+    , m_map( Calamares::getSubMap( configurationMap, "presets", m_bogus ) )
 {
     c.m_unlocked = true;
     if ( !c.d->m_presets )
@@ -113,9 +111,9 @@ Config::ApplyPresets::apply( const char* fieldName )
     if ( m_map.contains( key ) )
     {
         // Key has an explicit setting
-        QVariantMap m = CalamaresUtils::getSubMap( m_map, key, m_bogus );
+        QVariantMap m = Calamares::getSubMap( m_map, key, m_bogus );
         QVariant value = m[ "value" ];
-        bool editable = CalamaresUtils::getBool( m, "editable", true );
+        bool editable = Calamares::getBool( m, "editable", true );
 
         if ( value.isValid() )
         {

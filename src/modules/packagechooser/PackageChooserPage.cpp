@@ -43,7 +43,7 @@ PackageChooserPage::PackageChooserPage( PackageChooserMode mode, QWidget* parent
         ui->products->setSelectionMode( QAbstractItemView::ExtendedSelection );
     }
 
-    ui->products->setMinimumWidth( 10 * CalamaresUtils::defaultFontHeight() );
+    ui->products->setMinimumWidth( 10 * Calamares::defaultFontHeight() );
 }
 
 void

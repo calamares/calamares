@@ -78,7 +78,6 @@ PartitionLayout::PartitionEntry::PartitionEntry( const QString& label,
     PartUtils::canonicalFilesystemName( fs, &partFileSystem );
 }
 
-
 bool
 PartitionLayout::addEntry( const PartitionEntry& entry )
 {
@@ -111,16 +110,16 @@ PartitionLayout::init( FileSystem::Type defaultFsType, const QVariantList& confi
             break;
         }
 
-        if ( !addEntry( { CalamaresUtils::getString( pentry, "name" ),
-                          CalamaresUtils::getString( pentry, "uuid" ),
-                          CalamaresUtils::getString( pentry, "type" ),
-                          CalamaresUtils::getUnsignedInteger( pentry, "attributes", 0 ),
-                          CalamaresUtils::getString( pentry, "mountPoint" ),
-                          CalamaresUtils::getString( pentry, "filesystem", "unformatted" ),
-                          CalamaresUtils::getSubMap( pentry, "features", ok ),
-                          CalamaresUtils::getString( pentry, "size", QStringLiteral( "0" ) ),
-                          CalamaresUtils::getString( pentry, "minSize", QStringLiteral( "0" ) ),
-                          CalamaresUtils::getString( pentry, "maxSize", QStringLiteral( "0" ) ) } ) )
+        if ( !addEntry( { Calamares::getString( pentry, "name" ),
+                          Calamares::getString( pentry, "uuid" ),
+                          Calamares::getString( pentry, "type" ),
+                          Calamares::getUnsignedInteger( pentry, "attributes", 0 ),
+                          Calamares::getString( pentry, "mountPoint" ),
+                          Calamares::getString( pentry, "filesystem", "unformatted" ),
+                          Calamares::getSubMap( pentry, "features", ok ),
+                          Calamares::getString( pentry, "size", QStringLiteral( "0" ) ),
+                          Calamares::getString( pentry, "minSize", QStringLiteral( "0" ) ),
+                          Calamares::getString( pentry, "maxSize", QStringLiteral( "0" ) ) } ) )
         {
             cError() << "Partition layout entry #" << config.indexOf( r ) << "is invalid, switching to default layout.";
             m_partLayout.clear();
@@ -198,7 +197,6 @@ PartitionLayout::setDefaultFsType( FileSystem::Type defaultFsType )
 
     m_defaultFsType = defaultFsType;
 }
-
 
 QList< Partition* >
 PartitionLayout::createPartitions( Device* dev,

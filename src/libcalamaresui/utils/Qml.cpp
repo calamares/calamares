@@ -26,7 +26,7 @@
 
 static QDir s_qmlModulesDir( QString( CMAKE_INSTALL_FULL_DATADIR ) + "/qml" );
 
-namespace CalamaresUtils
+namespace Calamares
 {
 QDir
 qmlModulesDir()
@@ -46,9 +46,9 @@ qmlDirCandidates( bool assumeBuilddir )
     static const char QML[] = "qml";
 
     QStringList qmlDirs;
-    if ( CalamaresUtils::isAppDataDirOverridden() )
+    if ( Calamares::isAppDataDirOverridden() )
     {
-        qmlDirs << CalamaresUtils::appDataDir().absoluteFilePath( QML );
+        qmlDirs << Calamares::appDataDir().absoluteFilePath( QML );
     }
     else
     {
@@ -56,12 +56,12 @@ qmlDirCandidates( bool assumeBuilddir )
         {
             qmlDirs << QDir::current().absoluteFilePath( "src/qml" );  // In build-dir
         }
-        if ( CalamaresUtils::haveExtraDirs() )
-            for ( auto s : CalamaresUtils::extraDataDirs() )
+        if ( Calamares::haveExtraDirs() )
+            for ( auto s : Calamares::extraDataDirs() )
             {
                 qmlDirs << ( s + QML );
             }
-        qmlDirs << CalamaresUtils::appDataDir().absoluteFilePath( QML );
+        qmlDirs << Calamares::appDataDir().absoluteFilePath( QML );
     }
 
     return qmlDirs;
@@ -79,14 +79,14 @@ initQmlModulesDir()
         if ( dir.exists() && dir.isReadable() )
         {
             cDebug() << "Using Calamares QML directory" << dir.absolutePath();
-            CalamaresUtils::setQmlModulesDir( dir );
+            Calamares::setQmlModulesDir( dir );
             return true;
         }
     }
 
     cError() << "Cowardly refusing to continue startup without a QML directory."
              << Logger::DebugList( qmlDirCandidatesByPriority );
-    if ( CalamaresUtils::isAppDataDirOverridden() )
+    if ( Calamares::isAppDataDirOverridden() )
     {
         cError() << "FATAL: explicitly configured application data directory is missing qml/";
     }
@@ -240,13 +240,13 @@ registerQmlModels()
             0,
             "Global",
             []( QQmlEngine*, QJSEngine* ) -> QObject* { return Calamares::JobQueue::instance()->globalStorage(); } );
-        qmlRegisterSingletonType< Calamares::Network::Manager >(
-            "io.calamares.core",
-            1,
-            0,
-            "Network",
-            []( QQmlEngine*, QJSEngine* ) -> QObject* { return &Calamares::Network::Manager::instance(); } );
+        qmlRegisterSingletonType< Calamares::Network::Manager >( "io.calamares.core",
+                                                                 1,
+                                                                 0,
+                                                                 "Network",
+                                                                 []( QQmlEngine*, QJSEngine* ) -> QObject*
+                                                                 { return &Calamares::Network::Manager::instance(); } );
     }
 }
 
-}  // namespace CalamaresUtils
+}  // namespace Calamares

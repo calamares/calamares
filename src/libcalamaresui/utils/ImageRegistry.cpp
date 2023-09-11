@@ -15,7 +15,6 @@
 
 static QHash< QString, QHash< int, QHash< qint64, QPixmap > > > s_cache;
 
-
 ImageRegistry*
 ImageRegistry::instance()
 {
@@ -23,16 +22,13 @@ ImageRegistry::instance()
     return s_instance;
 }
 
-
 ImageRegistry::ImageRegistry() {}
 
-
 QIcon
-ImageRegistry::icon( const QString& image, CalamaresUtils::ImageMode mode )
+ImageRegistry::icon( const QString& image, Calamares::ImageMode mode )
 {
-    return pixmap( image, CalamaresUtils::defaultIconSize(), mode );
+    return pixmap( image, Calamares::defaultIconSize(), mode );
 }
-
 
 qint64
 ImageRegistry::cacheKey( const QSize& size )
@@ -40,9 +36,8 @@ ImageRegistry::cacheKey( const QSize& size )
     return size.width() * 100 + size.height() * 10;
 }
 
-
 QPixmap
-ImageRegistry::pixmap( const QString& image, const QSize& size, CalamaresUtils::ImageMode mode )
+ImageRegistry::pixmap( const QString& image, const QSize& size, Calamares::ImageMode mode )
 {
     Q_ASSERT( !( size.width() < 0 || size.height() < 0 ) );
     if ( size.width() < 0 || size.height() < 0 )
@@ -112,12 +107,8 @@ ImageRegistry::pixmap( const QString& image, const QSize& size, CalamaresUtils::
     return pixmap;
 }
 
-
 void
-ImageRegistry::putInCache( const QString& image,
-                           const QSize& size,
-                           CalamaresUtils::ImageMode mode,
-                           const QPixmap& pixmap )
+ImageRegistry::putInCache( const QString& image, const QSize& size, Calamares::ImageMode mode, const QPixmap& pixmap )
 {
     QHash< qint64, QPixmap > subsubcache;
     QHash< int, QHash< qint64, QPixmap > > subcache;

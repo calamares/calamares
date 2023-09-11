@@ -95,7 +95,7 @@ createNewEntropy( int poolSize, const QString& rootMountPoint, const QString& fi
     }
 
     QByteArray data;
-    CalamaresUtils::EntropySource source = CalamaresUtils::getEntropy( poolSize, data );
+    Calamares::EntropySource source = Calamares::getEntropy( poolSize, data );
     entropyFile.write( data );
     entropyFile.close();
     if ( entropyFile.size() < data.length() )
@@ -106,13 +106,12 @@ createNewEntropy( int poolSize, const QString& rootMountPoint, const QString& fi
     {
         cWarning() << "Entropy data is" << data.length() << "bytes, rather than poolSize" << poolSize;
     }
-    if ( source != CalamaresUtils::EntropySource::URandom )
+    if ( source != Calamares::EntropySource::URandom )
     {
         cWarning() << "Entropy data for pool is low-quality.";
     }
     return Calamares::JobResult::ok();
 }
-
 
 Calamares::JobResult
 createEntropy( const EntropyGeneration kind, const QString& rootMountPoint, const QString& fileName )
@@ -144,7 +143,7 @@ createEntropy( const EntropyGeneration kind, const QString& rootMountPoint, cons
 static Calamares::JobResult
 runCmd( const QStringList& cmd )
 {
-    auto r = CalamaresUtils::System::instance()->targetEnvCommand( cmd );
+    auto r = Calamares::System::instance()->targetEnvCommand( cmd );
     if ( r.getExitCode() )
     {
         return r.explainProcess( cmd, std::chrono::seconds( 0 ) );

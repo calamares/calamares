@@ -40,7 +40,6 @@ public:
 
 OEMPage::~OEMPage() {}
 
-
 OEMViewStep::OEMViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( nullptr )
@@ -125,7 +124,6 @@ OEMViewStep::prettyStatus() const
     return tr( "Set the OEM Batch Identifier to <code>%1</code>." ).arg( m_user_batchIdentifier );
 }
 
-
 QWidget*
 OEMViewStep::widget()
 {
@@ -145,7 +143,7 @@ OEMViewStep::jobs() const
 void
 OEMViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    m_conf_batchIdentifier = CalamaresUtils::getString( configurationMap, "batch-identifier" );
+    m_conf_batchIdentifier = Calamares::getString( configurationMap, "batch-identifier" );
     m_user_batchIdentifier = substitute( m_conf_batchIdentifier );
 }
 

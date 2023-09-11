@@ -20,7 +20,7 @@
 #include <QFile>
 #include <QJsonDocument>
 
-using namespace CalamaresUtils::Units;
+using namespace Calamares::Units;
 
 namespace Calamares
 {
@@ -52,14 +52,12 @@ GlobalStorage::GlobalStorage( QObject* parent )
 {
 }
 
-
 bool
 GlobalStorage::contains( const QString& key ) const
 {
     ReadLock l( this );
     return m.contains( key );
 }
-
 
 int
 GlobalStorage::count() const
@@ -68,14 +66,12 @@ GlobalStorage::count() const
     return m.count();
 }
 
-
 void
 GlobalStorage::insert( const QString& key, const QVariant& value )
 {
     WriteLock l( this );
     m.insert( key, value );
 }
-
 
 QStringList
 GlobalStorage::keys() const
@@ -84,7 +80,6 @@ GlobalStorage::keys() const
     return m.keys();
 }
 
-
 int
 GlobalStorage::remove( const QString& key )
 {
@@ -92,7 +87,6 @@ GlobalStorage::remove( const QString& key )
     int nItems = m.remove( key );
     return nItems;
 }
-
 
 QVariant
 GlobalStorage::value( const QString& key ) const
@@ -166,14 +160,14 @@ bool
 GlobalStorage::saveYaml( const QString& filename ) const
 {
     ReadLock l( this );
-    return CalamaresUtils::saveYaml( filename, m );
+    return Calamares::YAML::save( filename, m );
 }
 
 bool
 GlobalStorage::loadYaml( const QString& filename )
 {
     bool ok = false;
-    auto map = CalamaresUtils::loadYaml( filename, &ok );
+    auto map = Calamares::YAML::load( filename, &ok );
     if ( ok )
     {
         WriteLock l( this );
@@ -188,6 +182,5 @@ GlobalStorage::loadYaml( const QString& filename )
     }
     return false;
 }
-
 
 }  // namespace Calamares

@@ -158,12 +158,11 @@ DebugWindow::DebugWindow()
              } );
 
     // Send Log button only if it would be useful
-    m_ui->sendLogButton->setVisible( CalamaresUtils::Paste::isEnabled() );
-    connect( m_ui->sendLogButton, &QPushButton::clicked, [ this ]() { CalamaresUtils::Paste::doLogUploadUI( this ); } );
+    m_ui->sendLogButton->setVisible( Calamares::Paste::isEnabled() );
+    connect( m_ui->sendLogButton, &QPushButton::clicked, [ this ]() { Calamares::Paste::doLogUploadUI( this ); } );
 
     CALAMARES_RETRANSLATE( m_ui->retranslateUi( this ); setWindowTitle( tr( "Debug information" ) ); );
 }
-
 
 void
 DebugWindow::closeEvent( QCloseEvent* e )
@@ -172,12 +171,10 @@ DebugWindow::closeEvent( QCloseEvent* e )
     emit closed();
 }
 
-
 DebugWindowManager::DebugWindowManager( QObject* parent )
     : QObject( parent )
 {
 }
-
 
 bool
 DebugWindowManager::enabled() const
@@ -185,7 +182,6 @@ DebugWindowManager::enabled() const
     const auto* s = Settings::instance();
     return ( Logger::logLevel() >= Logger::LOGVERBOSE ) || ( s ? s->debugMode() : false );
 }
-
 
 void
 DebugWindowManager::show( bool visible )
@@ -244,14 +240,14 @@ DebugWindowManager::about()
                     QMessageBox::Ok,
                     nullptr );
     Calamares::fixButtonLabels( &mb );
-    mb.setIconPixmap( CalamaresUtils::defaultPixmap(
-        CalamaresUtils::Squid,
-        CalamaresUtils::Original,
-        QSize( CalamaresUtils::defaultFontHeight() * 6, CalamaresUtils::defaultFontHeight() * 6 ) ) );
+    mb.setIconPixmap(
+        Calamares::defaultPixmap( Calamares::Squid,
+                                  Calamares::Original,
+                                  QSize( Calamares::defaultFontHeight() * 6, Calamares::defaultFontHeight() * 6 ) ) );
     QGridLayout* layout = reinterpret_cast< QGridLayout* >( mb.layout() );
     if ( layout )
     {
-        layout->setColumnMinimumWidth( 2, CalamaresUtils::defaultFontHeight() * 24 );
+        layout->setColumnMinimumWidth( 2, Calamares::defaultFontHeight() * 24 );
     }
     mb.exec();
 }

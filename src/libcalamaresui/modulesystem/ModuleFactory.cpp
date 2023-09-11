@@ -29,7 +29,6 @@
 #include <QFileInfo>
 #include <QString>
 
-
 namespace Calamares
 {
 
@@ -126,7 +125,7 @@ moduleFromDescriptor( const Calamares::ModuleSystem::Descriptor& moduleDescripto
         {
             m->loadConfigurationFile( configFileName );
         }
-        catch ( YAML::Exception& e )
+        catch ( ::YAML::Exception& e )
         {
             cError() << "YAML parser error " << e.what();
             return nullptr;
@@ -134,6 +133,5 @@ moduleFromDescriptor( const Calamares::ModuleSystem::Descriptor& moduleDescripto
     }
     return m.release();
 }
-
 
 }  // namespace Calamares

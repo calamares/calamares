@@ -19,7 +19,7 @@
 #include <kpmcore/ops/resizeoperation.h>
 #include <kpmcore/util/report.h>
 
-using CalamaresUtils::BytesToMiB;
+using Calamares::BytesToMiB;
 
 //- ResizePartitionJob ---------------------------------------------------------
 ResizePartitionJob::ResizePartitionJob( Device* device, Partition* partition, qint64 firstSector, qint64 lastSector )
@@ -41,7 +41,6 @@ ResizePartitionJob::prettyName() const
     return tr( "Resize partition %1." ).arg( partition()->partitionPath() );
 }
 
-
 QString
 ResizePartitionJob::prettyDescription() const
 {
@@ -52,7 +51,6 @@ ResizePartitionJob::prettyDescription() const
         .arg( ( BytesToMiB( m_newLastSector - m_newFirstSector + 1 ) * partition()->sectorSize() ) );
 }
 
-
 QString
 ResizePartitionJob::prettyStatusMessage() const
 {
@@ -62,7 +60,6 @@ ResizePartitionJob::prettyStatusMessage() const
         .arg( ( BytesToMiB( m_oldLastSector - m_oldFirstSector + 1 ) * partition()->sectorSize() ) )
         .arg( ( BytesToMiB( m_newLastSector - m_newFirstSector + 1 ) * partition()->sectorSize() ) );
 }
-
 
 Calamares::JobResult
 ResizePartitionJob::exec()
@@ -89,7 +86,6 @@ ResizePartitionJob::updatePreview()
     m_partition->parent()->insert( m_partition );
     m_device->partitionTable()->updateUnallocated( *m_device );
 }
-
 
 Device*
 ResizePartitionJob::device() const

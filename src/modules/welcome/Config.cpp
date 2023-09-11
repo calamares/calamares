@@ -110,7 +110,6 @@ Config::unsatisfiedRequirements() const
     return m_filtermodel.get();
 }
 
-
 QString
 Config::languageIcon() const
 {
@@ -200,13 +199,12 @@ Config::setLocaleIndex( int index )
 
     QLocale::setDefault( selectedTranslation.locale() );
     const auto* branding = Calamares::Branding::instance();
-    CalamaresUtils::installTranslator( selectedTranslation.id(),
-                                       branding ? branding->translationsDirectory() : QString() );
+    Calamares::installTranslator( selectedTranslation.id(), branding ? branding->translationsDirectory() : QString() );
     if ( Calamares::JobQueue::instance() && Calamares::JobQueue::instance()->globalStorage() )
     {
         Calamares::Locale::insertGS( *Calamares::JobQueue::instance()->globalStorage(),
-                                          QStringLiteral( "LANG" ),
-                                          CalamaresUtils::translatorLocaleName().name );
+                                     QStringLiteral( "LANG" ),
+                                     Calamares::translatorLocaleName().name );
     }
     emit localeIndexChanged( m_localeIndex );
 }
@@ -251,7 +249,6 @@ Config::aboutMessage() const
 {
     return Calamares::aboutString();
 }
-
 
 QString
 Config::genericWelcomeMessage() const
@@ -317,7 +314,7 @@ jobOrBrandingSetting( Calamares::Branding::StringEntry e, const QVariantMap& map
 static inline void
 setLanguageIcon( Config* c, const QVariantMap& configurationMap )
 {
-    QString language = CalamaresUtils::getString( configurationMap, "languageIcon" );
+    QString language = Calamares::getString( configurationMap, "languageIcon" );
     if ( !language.isEmpty() )
     {
         auto icon = Calamares::Branding::instance()->image( language, QSize( 48, 48 ) );
@@ -373,14 +370,14 @@ static inline void
 setGeoIP( Config* config, const QVariantMap& configurationMap )
 {
     bool ok = false;
-    QVariantMap geoip = CalamaresUtils::getSubMap( configurationMap, "geoip", ok );
+    QVariantMap geoip = Calamares::getSubMap( configurationMap, "geoip", ok );
     if ( ok )
     {
         using FWString = QFutureWatcher< QString >;
 
-        auto* handler = new Calamares::GeoIP::Handler( CalamaresUtils::getString( geoip, "style" ),
-                                                            CalamaresUtils::getString( geoip, "url" ),
-                                                            CalamaresUtils::getString( geoip, "selector" ) );
+        auto* handler = new Calamares::GeoIP::Handler( Calamares::getString( geoip, "style" ),
+                                                       Calamares::getString( geoip, "url" ),
+                                                       Calamares::getString( geoip, "selector" ) );
         if ( handler->type() != Calamares::GeoIP::Handler::Type::None )
         {
             auto* future = new FWString();

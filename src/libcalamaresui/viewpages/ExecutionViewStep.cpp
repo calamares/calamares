@@ -73,7 +73,7 @@ ExecutionViewStep::ExecutionViewStep( QObject* parent )
 {
     m_widget->setObjectName( "slideshow" );
     m_progressBar->setObjectName( "exec-progress" );
-    m_progressBar->setFormat(tr("%p%", "Progress percentage indicator: %p is where the number 0..100 is placed"));
+    m_progressBar->setFormat( tr( "%p%", "Progress percentage indicator: %p is where the number 0..100 is placed" ) );
     m_label->setObjectName( "exec-message" );
 
     QVBoxLayout* layout = new QVBoxLayout( m_widget );
@@ -87,10 +87,10 @@ ExecutionViewStep::ExecutionViewStep( QObject* parent )
     m_tab_widget->tabBar()->hide();
 
     layout->addWidget( m_tab_widget );
-    CalamaresUtils::unmarginLayout( layout );
+    Calamares::unmarginLayout( layout );
     layout->addLayout( bottomLayout );
 
-    bottomLayout->addSpacing( CalamaresUtils::defaultFontHeight() / 2 );
+    bottomLayout->addSpacing( Calamares::defaultFontHeight() / 2 );
     bottomLayout->addLayout( barLayout );
     bottomLayout->addWidget( m_label );
 
@@ -104,14 +104,11 @@ ExecutionViewStep::ExecutionViewStep( QObject* parent )
     auto toggleLogButton = dynamic_cast< QToolButton* >( toolBar->widgetForAction( toggleLogAction ) );
     connect( toggleLogButton, &QToolButton::clicked, this, &ExecutionViewStep::toggleLog );
 
-
     barLayout->addWidget( m_progressBar );
     barLayout->addWidget( toolBar );
 
-
     connect( JobQueue::instance(), &JobQueue::progress, this, &ExecutionViewStep::updateFromJobQueue );
 }
-
 
 QString
 ExecutionViewStep::prettyName() const
@@ -119,25 +116,21 @@ ExecutionViewStep::prettyName() const
     return Calamares::Settings::instance()->isSetupMode() ? tr( "Set up" ) : tr( "Install" );
 }
 
-
 QWidget*
 ExecutionViewStep::widget()
 {
     return m_widget;
 }
 
-
 void
 ExecutionViewStep::next()
 {
 }
 
-
 void
 ExecutionViewStep::back()
 {
 }
-
 
 bool
 ExecutionViewStep::isNextEnabled() const
@@ -145,20 +138,17 @@ ExecutionViewStep::isNextEnabled() const
     return false;
 }
 
-
 bool
 ExecutionViewStep::isBackEnabled() const
 {
     return false;
 }
 
-
 bool
 ExecutionViewStep::isAtBeginning() const
 {
     return true;
 }
-
 
 bool
 ExecutionViewStep::isAtEnd() const
@@ -206,20 +196,17 @@ ExecutionViewStep::onActivate()
     queue->start();
 }
 
-
 JobList
 ExecutionViewStep::jobs() const
 {
     return JobList();
 }
 
-
 void
 ExecutionViewStep::appendJobModuleInstanceKey( const ModuleSystem::InstanceKey& instanceKey )
 {
     m_jobInstanceKeys.append( instanceKey );
 }
-
 
 void
 ExecutionViewStep::updateFromJobQueue( qreal percent, const QString& message )
@@ -252,6 +239,5 @@ ExecutionViewStep::onLeave()
     m_log_widget->stop();
     m_slideshow->changeSlideShowState( Slideshow::Stop );
 }
-
 
 }  // namespace Calamares

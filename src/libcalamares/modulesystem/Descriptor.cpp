@@ -92,21 +92,21 @@ Descriptor::fromDescriptorData( const QVariantMap& moduleDesc, const QString& de
         return d;
     }
 
-    d.m_isEmergeny = CalamaresUtils::getBool( moduleDesc, "emergency", false );
-    d.m_hasConfig = !CalamaresUtils::getBool( moduleDesc, "noconfig", false );  // Inverted logic during load
-    d.m_requiredModules = CalamaresUtils::getStringList( moduleDesc, "requiredModules" );
-    d.m_weight = int( CalamaresUtils::getInteger( moduleDesc, "weight", -1 ) );
+    d.m_isEmergeny = Calamares::getBool( moduleDesc, "emergency", false );
+    d.m_hasConfig = !Calamares::getBool( moduleDesc, "noconfig", false );  // Inverted logic during load
+    d.m_requiredModules = Calamares::getStringList( moduleDesc, "requiredModules" );
+    d.m_weight = int( Calamares::getInteger( moduleDesc, "weight", -1 ) );
 
     QStringList consumedKeys { "type", "interface", "name", "emergency", "noconfig", "requiredModules", "weight" };
 
     switch ( d.interface() )
     {
     case Interface::QtPlugin:
-        d.m_script = CalamaresUtils::getString( moduleDesc, "load" );
+        d.m_script = Calamares::getString( moduleDesc, "load" );
         consumedKeys << "load";
         break;
     case Interface::Python:
-        d.m_script = CalamaresUtils::getString( moduleDesc, "script" );
+        d.m_script = Calamares::getString( moduleDesc, "script" );
         if ( d.m_script.isEmpty() )
         {
             if ( o )
@@ -119,9 +119,9 @@ Descriptor::fromDescriptorData( const QVariantMap& moduleDesc, const QString& de
         consumedKeys << "script";
         break;
     case Interface::Process:
-        d.m_script = CalamaresUtils::getString( moduleDesc, "command" );
-        d.m_processTimeout = int( CalamaresUtils::getInteger( moduleDesc, "timeout", 30 ) );
-        d.m_processChroot = CalamaresUtils::getBool( moduleDesc, "chroot", false );
+        d.m_script = Calamares::getString( moduleDesc, "command" );
+        d.m_processTimeout = int( Calamares::getInteger( moduleDesc, "timeout", 30 ) );
+        d.m_processChroot = Calamares::getBool( moduleDesc, "chroot", false );
         if ( d.m_processTimeout < 0 )
         {
             d.m_processTimeout = 0;

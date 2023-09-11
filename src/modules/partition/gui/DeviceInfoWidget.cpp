@@ -29,21 +29,20 @@ DeviceInfoWidget::DeviceInfoWidget( QWidget* parent )
     QHBoxLayout* mainLayout = new QHBoxLayout;
     setLayout( mainLayout );
 
-    CalamaresUtils::unmarginLayout( mainLayout );
+    Calamares::unmarginLayout( mainLayout );
     m_ptLabel->setObjectName( "deviceInfoLabel" );
     m_ptIcon->setObjectName( "deviceInfoIcon" );
     mainLayout->addWidget( m_ptIcon );
     mainLayout->addWidget( m_ptLabel );
 
-    QSize iconSize = CalamaresUtils::defaultIconSize();
+    QSize iconSize = Calamares::defaultIconSize();
 
     m_ptIcon->setMargin( 0 );
     m_ptIcon->setFixedSize( iconSize );
-    m_ptIcon->setPixmap(
-        CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionTable, CalamaresUtils::Original, iconSize ) );
+    m_ptIcon->setPixmap( Calamares::defaultPixmap( Calamares::PartitionTable, Calamares::Original, iconSize ) );
 
     QFontMetrics fm = QFontMetrics( QFont() );
-    m_ptLabel->setMinimumWidth( fm.boundingRect( "Amiga" ).width() + CalamaresUtils::defaultFontHeight() / 2 );
+    m_ptLabel->setMinimumWidth( fm.boundingRect( "Amiga" ).width() + Calamares::defaultFontHeight() / 2 );
     m_ptLabel->setAlignment( Qt::AlignCenter );
 
     QPalette palette;
@@ -56,7 +55,6 @@ DeviceInfoWidget::DeviceInfoWidget( QWidget* parent )
 
     CALAMARES_RETRANSLATE_SLOT( &DeviceInfoWidget::retranslateUi );
 }
-
 
 void
 DeviceInfoWidget::setPartitionTableType( PartitionTable::TableType type )

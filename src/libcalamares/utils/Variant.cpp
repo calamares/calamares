@@ -22,7 +22,7 @@
 #include <QString>
 #include <QVariantMap>
 
-namespace CalamaresUtils
+namespace Calamares
 {
 bool
 getBool( const QVariantMap& map, const QString& key, bool d )
@@ -136,4 +136,4 @@ getSubMap( const QVariantMap& map, const QString& key, bool& success, const QVar
     return d;
 }
 
-}  // namespace CalamaresUtils
+}  // namespace Calamares

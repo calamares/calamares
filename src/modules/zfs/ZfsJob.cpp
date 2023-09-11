@@ -132,7 +132,6 @@ ZfsJob::isMountpointOverlapping( const QString& targetMountpoint ) const
     return false;
 }
 
-
 ZfsResult
 ZfsJob::createZpool( QString deviceName, QString poolName, QString poolOptions, bool encrypt, QString passphrase ) const
 {
@@ -154,8 +153,8 @@ ZfsJob::createZpool( QString deviceName, QString poolName, QString poolOptions, 
                                 << "create" << poolOptions.split( ' ' ) << poolName << deviceName;
     }
 
-    auto r = CalamaresUtils::System::instance()->runCommand(
-        CalamaresUtils::System::RunLocation::RunInHost, command, QString(), passphrase, std::chrono::seconds( 10 ) );
+    auto r = Calamares::System::instance()->runCommand(
+        Calamares::System::RunLocation::RunInHost, command, QString(), passphrase, std::chrono::seconds( 10 ) );
 
     if ( r.getExitCode() != 0 )
     {
@@ -183,7 +182,7 @@ ZfsJob::exec()
                                                     Calamares::JobResult::InvalidConfiguration );
     }
 
-    const CalamaresUtils::System* system = CalamaresUtils::System::instance();
+    const Calamares::System* system = Calamares::System::instance();
 
     QVariantList poolNames;
 
@@ -359,15 +358,14 @@ ZfsJob::exec()
     return Calamares::JobResult::ok();
 }
 
-
 void
 ZfsJob::setConfigurationMap( const QVariantMap& map )
 {
-    m_poolName = CalamaresUtils::getString( map, "poolName" );
-    m_poolOptions = CalamaresUtils::getString( map, "poolOptions" );
-    m_datasetOptions = CalamaresUtils::getString( map, "datasetOptions" );
+    m_poolName = Calamares::getString( map, "poolName" );
+    m_poolOptions = Calamares::getString( map, "poolOptions" );
+    m_datasetOptions = Calamares::getString( map, "datasetOptions" );
 
-    m_datasets = CalamaresUtils::getList( map, "datasets" );
+    m_datasets = Calamares::getList( map, "datasets" );
 }
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( ZfsJobFactory, registerPlugin< ZfsJob >(); )

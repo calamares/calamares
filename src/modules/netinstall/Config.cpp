@@ -42,7 +42,6 @@ Config::retranslate()
     emit titleLabelChanged( titleLabel() );
 }
 
-
 QString
 Config::status() const
 {
@@ -64,7 +63,6 @@ Config::status() const
     __builtin_unreachable();
 }
 
-
 void
 Config::setStatus( Status s )
 {
@@ -83,7 +81,6 @@ Config::titleLabel() const
 {
     return m_titleLabel ? m_titleLabel->get() : QString();
 }
-
 
 void
 Config::loadGroupList( const QVariantList& groupData )
@@ -111,15 +108,14 @@ Config::loadingDone()
     emit statusReady();
 }
 
-
 void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    setRequired( CalamaresUtils::getBool( configurationMap, "required", false ) );
+    setRequired( Calamares::getBool( configurationMap, "required", false ) );
 
     // Get the translations, if any
     bool bogus = false;
-    auto label = CalamaresUtils::getSubMap( configurationMap, "label", bogus );
+    auto label = Calamares::getSubMap( configurationMap, "label", bogus );
     // Use a different class name for translation lookup because the
     // .. table of strings lives in NetInstallViewStep.cpp and moving them
     // .. around is annoying for translators.

@@ -44,7 +44,6 @@ static QMutex s_mutex;
 static const char s_Continuation[] = "\n    ";
 static const char s_SubEntry[] = "    .. ";
 
-
 namespace Logger
 {
 
@@ -109,7 +108,6 @@ log_implementation( const char* msg, unsigned int debugLevel, const bool withTim
     }
 }
 
-
 static void
 CalamaresLogHandler( QtMsgType type, const QMessageLogContext&, const QString& msg )
 {
@@ -139,13 +137,11 @@ CalamaresLogHandler( QtMsgType type, const QMessageLogContext&, const QString& m
     log_implementation( msg.toUtf8().constData(), level, true );
 }
 
-
 QString
 logFile()
 {
-    return CalamaresUtils::appLogDir().filePath( "session.log" );
+    return Calamares::appLogDir().filePath( "session.log" );
 }
-
 
 void
 setupLogfile()
@@ -201,7 +197,6 @@ CDebug::CDebug( unsigned int debugLevel, const char* func )
         m_msg = QStringLiteral( "WARNING: " );
     }
 }
-
 
 CDebug::~CDebug()
 {

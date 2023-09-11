@@ -41,7 +41,7 @@ private Q_SLOTS:
     void testCreateTargetBasedirs();
 
 private:
-    CalamaresUtils::System* m_system = nullptr;  // Points to singleton instance, not owned
+    Calamares::System* m_system = nullptr;  // Points to singleton instance, not owned
     Calamares::GlobalStorage* m_gs = nullptr;
 };
 
@@ -54,7 +54,7 @@ TestPaths::initTestCase()
     Logger::setupLogLevel( Logger::LOGDEBUG );
 
     // Ensure we have a system object, expect it to be a "bogus" one
-    CalamaresUtils::System* system = CalamaresUtils::System::instance();
+    Calamares::System* system = Calamares::System::instance();
     QVERIFY( system );
     QVERIFY( system->doChroot() );
 
@@ -88,11 +88,11 @@ TestPaths::init()
 void
 TestPaths::testCreationResult()
 {
-    using Code = CalamaresUtils::CreationResult::Code;
+    using Code = Calamares::CreationResult::Code;
 
     for ( auto c : { Code::OK, Code::AlreadyExists, Code::Failed, Code::Invalid } )
     {
-        auto r = CalamaresUtils::CreationResult( c );
+        auto r = Calamares::CreationResult( c );
         QVERIFY( r.path().isEmpty() );
         QCOMPARE( r.path(), QString() );
         // Get a warning from Clang if we're not covering everything
@@ -115,13 +115,12 @@ TestPaths::testCreationResult()
     }
 
     QString path( "/etc/os-release" );
-    auto r = CalamaresUtils::CreationResult( path );
+    auto r = Calamares::CreationResult( path );
     QVERIFY( !r.failed() );
     QVERIFY( r );
     QCOMPARE( r.code(), Code::OK );
     QCOMPARE( r.path(), path );
 }
-
 
 void
 TestPaths::testTargetPath()
@@ -139,7 +138,6 @@ TestPaths::testTargetPath()
     m_gs->remove( "rootMountPoint" );
     QCOMPARE( m_system->targetPath( QString() ), QString() );  // Without root, no path
 }
-
 
 void
 TestPaths::testCreateTarget()
@@ -169,7 +167,6 @@ struct GSRollback
     QString m_key;
     QVariant m_value;
 };
-
 
 void
 TestPaths::testCreateTargetExists()
@@ -211,21 +208,20 @@ TestPaths::testCreateTargetOverwrite()
     QVERIFY( r.path().endsWith( QString( ltestFile ) ) );
     QCOMPARE( QFileInfo( d.filePath( QString( ltestFile ) ) ).size(), 5 );
 
-    r = m_system->createTargetFile( ltestFile, "Goodbye", CalamaresUtils::System::WriteMode::KeepExisting );
+    r = m_system->createTargetFile( ltestFile, "Goodbye", Calamares::System::WriteMode::KeepExisting );
     QVERIFY( !r.failed() );  // It didn't fail!
     QVERIFY( !r );  // But not unqualified success, either
 
     QVERIFY( r.path().isEmpty() );
     QCOMPARE( QFileInfo( d.filePath( QString( ltestFile ) ) ).size(), 5 );  // Unchanged!
 
-    r = m_system->createTargetFile( ltestFile, "Goodbye", CalamaresUtils::System::WriteMode::Overwrite );
+    r = m_system->createTargetFile( ltestFile, "Goodbye", Calamares::System::WriteMode::Overwrite );
     QVERIFY( !r.failed() );  // It didn't fail!
     QVERIFY( r );  // Total success
 
     QVERIFY( r.path().endsWith( QString( ltestFile ) ) );
     QCOMPARE( QFileInfo( d.filePath( QString( ltestFile ) ) ).size(), 7 );
 }
-
 
 struct DirRemover
 {

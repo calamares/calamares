@@ -21,7 +21,7 @@
 
 #include <chrono>
 
-namespace CalamaresUtils
+namespace Calamares
 {
 class ProcessResult : public QPair< int, QString >
 {
@@ -234,7 +234,6 @@ public:
         return targetEnvOutput( QStringList { command }, output, workingPath, stdInput, timeoutSec );
     }
 
-
     /** @brief Gets a path to a file in the target system, from the host.
      *
      * @param path Path to the file; this is interpreted
@@ -361,6 +360,6 @@ private:
     bool m_doChroot;
 };
 
-}  // namespace CalamaresUtils
+}  // namespace Calamares
 
 #endif

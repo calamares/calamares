@@ -29,7 +29,7 @@ QTEST_GUILESS_MAIN( PartitionJobTests )
 
 using Calamares::job_ptr;
 using Calamares::JobList;
-using namespace CalamaresUtils::Units;
+using namespace Calamares::Units;
 
 class PartitionMounter
 {
@@ -365,7 +365,7 @@ PartitionJobTests::testResizePartition()
     // Make the test data file smaller than the full size of the partition to
     // accomodate for the file system overhead
     const unsigned long long minSizeMiB = qMin( oldSizeMiB, newSizeMiB );
-    const QByteArray testData = generateTestData( CalamaresUtils::MiBtoBytes( minSizeMiB ) * 3 / 4 );
+    const QByteArray testData = generateTestData( Calamares::MiBtoBytes( minSizeMiB ) * 3 / 4 );
     const QString testName = "test.data";
 
     // Setup: create the test partition
@@ -426,7 +426,6 @@ PartitionJobTests::testResizePartition()
         QCOMPARE( partition->lastSector(), newLast );
         QCOMPARE( partition->fileSystem().firstSector(), newFirst );
         QCOMPARE( partition->fileSystem().lastSector(), newLast );
-
 
         PartitionMounter mounter( partition->partitionPath() );
         QString mountPoint = mounter.mountPoint();

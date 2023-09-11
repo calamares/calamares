@@ -93,20 +93,17 @@ ViewManager::ViewManager( QObject* parent )
 #endif
 }
 
-
 ViewManager::~ViewManager()
 {
     m_widget->deleteLater();
     s_instance = nullptr;
 }
 
-
 QWidget*
 ViewManager::centralWidget()
 {
     return m_widget;
 }
-
 
 void
 ViewManager::addViewStep( ViewStep* step )
@@ -119,7 +116,6 @@ ViewManager::addViewStep( ViewStep* step )
         emit nextEnabledChanged( m_nextEnabled );
     }
 }
-
 
 void
 ViewManager::insertViewStep( int before, ViewStep* step )
@@ -174,12 +170,11 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
              {
                  if ( result == QDialog::Accepted && errorDialog->shouldOfferWebPaste() )
                  {
-                     CalamaresUtils::Paste::doLogUploadUI( errorDialog );
+                     Calamares::Paste::doLogUploadUI( errorDialog );
                  }
                  QApplication::quit();
              } );
 }
-
 
 void
 ViewManager::onInitFailed( const QStringList& modules )
@@ -237,20 +232,17 @@ ViewManager::updateNextStatus( bool status )
     }
 }
 
-
 ViewStepList
 ViewManager::viewSteps() const
 {
     return m_steps;
 }
 
-
 ViewStep*
 ViewManager::currentStep() const
 {
     return currentStepValid() ? m_steps.value( m_currentStep ) : nullptr;
 }
-
 
 int
 ViewManager::currentStepIndex() const
@@ -487,7 +479,6 @@ ViewManager::back()
     updateButtonLabels();
 }
 
-
 void
 ViewManager::quit()
 {
@@ -593,7 +584,6 @@ ViewManager::data( const QModelIndex& index, int role ) const
         return QVariant();
     }
 }
-
 
 int
 ViewManager::rowCount( const QModelIndex& parent ) const

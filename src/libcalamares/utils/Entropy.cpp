@@ -15,8 +15,10 @@
 
 #include <random>
 
-CalamaresUtils::EntropySource
-CalamaresUtils::getEntropy( int size, QByteArray& b )
+namespace Calamares
+{
+EntropySource
+getEntropy( int size, QByteArray& b )
 {
     constexpr const char filler = char( 0xcb );
 
@@ -73,8 +75,8 @@ CalamaresUtils::getEntropy( int size, QByteArray& b )
     return EntropySource::Twister;
 }
 
-CalamaresUtils::EntropySource
-CalamaresUtils::getPrintableEntropy( int size, QString& s )
+EntropySource
+getPrintableEntropy( int size, QString& s )
 {
     s.clear();
     if ( size < 1 )
@@ -117,3 +119,4 @@ CalamaresUtils::getPrintableEntropy( int size, QString& s )
 
     return r;
 }
+}  // namespace Calamares

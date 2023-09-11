@@ -38,7 +38,6 @@
 #include "utils/Qml.h"
 #endif
 
-
 #include <QApplication>
 #include <QCommandLineOption>
 #include <QCommandLineParser>
@@ -241,7 +240,6 @@ ExecViewModule::type() const
     return Module::Type::View;
 }
 
-
 Calamares::Module::Interface
 ExecViewModule::interface() const
 {
@@ -304,7 +302,7 @@ load_module( const ModuleConfig& moduleConfig )
         fi = QFileInfo( prefix + moduleName );
         if ( fi.exists() && fi.isFile() )
         {
-            descriptor = CalamaresUtils::loadYaml( fi, &ok );
+            descriptor = Calamares::YAML::load( fi, &ok );
         }
         if ( ok )
         {
@@ -318,7 +316,7 @@ load_module( const ModuleConfig& moduleConfig )
             fi = QFileInfo( prefix + moduleName + "/module.desc" );
             if ( fi.exists() && fi.isFile() )
             {
-                descriptor = CalamaresUtils::loadYaml( fi, &ok );
+                descriptor = Calamares::YAML::load( fi, &ok );
             }
             if ( ok )
             {
@@ -478,7 +476,7 @@ main( int argc, char* argv[] )
     }
 #endif
 #ifdef WITH_QML
-    CalamaresUtils::initQmlModulesDir();  // don't care if failed
+    Calamares::initQmlModulesDir();  // don't care if failed
 #endif
 
     cDebug() << "Calamares module-loader testing" << module.moduleName();
@@ -505,7 +503,7 @@ main( int argc, char* argv[] )
         mw = module.m_ui ? new QMainWindow() : nullptr;
         if ( mw )
         {
-            mw->installEventFilter( CalamaresUtils::Retranslator::instance() );
+            mw->installEventFilter( Calamares::Retranslator::instance() );
         }
 
         (void)new Calamares::Branding( module.m_branding );

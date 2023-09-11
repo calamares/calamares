@@ -18,7 +18,6 @@
 namespace Calamares
 {
 
-
 ProcessJob::ProcessJob( const QString& command,
                         const QString& workingPath,
                         bool runInChroot,
@@ -32,9 +31,7 @@ ProcessJob::ProcessJob( const QString& command,
 {
 }
 
-
 ProcessJob::~ProcessJob() {}
-
 
 QString
 ProcessJob::prettyName() const
@@ -42,21 +39,19 @@ ProcessJob::prettyName() const
     return ( m_runInChroot ? tr( "Run command '%1' in target system." ) : tr( " Run command '%1'." ) ).arg( m_command );
 }
 
-
 QString
 ProcessJob::prettyStatusMessage() const
 {
     return tr( "Running command %1 %2" ).arg( m_command ).arg( m_runInChroot ? "in chroot." : " ." );
 }
 
-
 JobResult
 ProcessJob::exec()
 {
-    using CalamaresUtils::System;
+    using Calamares::System;
 
     if ( m_runInChroot )
-        return CalamaresUtils::System::instance()
+        return Calamares::System::instance()
             ->targetEnvCommand( { m_command }, m_workingPath, QString(), m_timeoutSec )
             .explainProcess( m_command, m_timeoutSec );
     else

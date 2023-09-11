@@ -32,11 +32,10 @@
 // clang-format on
 #endif
 
-namespace CalamaresUtils
+namespace Calamares
 {
 
 System* System::s_instance = nullptr;
-
 
 System::System( bool doChroot, QObject* parent )
     : QObject( parent )
@@ -50,9 +49,7 @@ System::System( bool doChroot, QObject* parent )
     }
 }
 
-
 System::~System() {}
-
 
 System*
 System::instance()
@@ -65,7 +62,6 @@ System::instance()
     }
     return s_instance;
 }
-
 
 ProcessResult
 System::runCommand( System::RunLocation location,
@@ -229,7 +225,6 @@ System::createTargetParentDirs( const QString& filePath ) const
     return createTargetDirs( QFileInfo( filePath ).dir().path() );
 }
 
-
 QPair< quint64, qreal >
 System::getTotalMemoryB() const
 {
@@ -258,7 +253,6 @@ System::getTotalMemoryB() const
     return qMakePair( 0, 0.0 );  // Unsupported
 #endif
 }
-
 
 QString
 System::getCpuDescription() const
@@ -342,4 +336,4 @@ ProcessResult::explainProcess( int ec, const QString& command, const QString& ou
             + outputMessage );
 }
 
-}  // namespace CalamaresUtils
+}  // namespace Calamares

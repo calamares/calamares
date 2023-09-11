@@ -201,7 +201,6 @@ Config::setSudoersGroup( const QString& group )
     }
 }
 
-
 void
 Config::setLoginName( const QString& login )
 {
@@ -492,7 +491,6 @@ Config::setFullName( const QString& name )
                                       .toLower()
                                       .simplified();
 
-
         QStringList cleanParts = cleanName.split( ' ' );
 
         if ( !m_customLoginName )
@@ -614,7 +612,6 @@ Config::passwordStatus( const QString& pw1, const QString& pw2 ) const
     return qMakePair( PasswordValidity::Valid, tr( "OK!" ) );
 }
 
-
 Config::PasswordStatus
 Config::userPasswordStatus() const
 {
@@ -634,7 +631,6 @@ Config::userPasswordMessage() const
     auto p = userPasswordStatus();
     return p.second;
 }
-
 
 void
 Config::setRootPassword( const QString& s )
@@ -742,7 +738,6 @@ Config::checkReady()
     }
 }
 
-
 STATICTEST void
 setConfigurationDefaultGroups( const QVariantMap& map, QList< GroupDescription >& defaultGroups )
 {
@@ -780,12 +775,12 @@ setConfigurationDefaultGroups( const QVariantMap& map, QList< GroupDescription >
             else if ( Calamares::typeOf( v ) == Calamares::MapVariantType )
             {
                 const auto innermap = v.toMap();
-                QString name = CalamaresUtils::getString( innermap, "name" );
+                QString name = Calamares::getString( innermap, "name" );
                 if ( !name.isEmpty() )
                 {
                     defaultGroups.append( GroupDescription( name,
-                                                            CalamaresUtils::getBool( innermap, "must_exist", false ),
-                                                            CalamaresUtils::getBool( innermap, "system", false ) ) );
+                                                            Calamares::getBool( innermap, "must_exist", false ),
+                                                            Calamares::getBool( innermap, "system", false ) ) );
                 }
                 else
                 {
@@ -804,7 +799,7 @@ STATICTEST HostNameAction
 getHostNameAction( const QVariantMap& configurationMap )
 {
     HostNameAction setHostName = HostNameAction::EtcHostname;
-    QString hostnameActionString = CalamaresUtils::getString( configurationMap, "location" );
+    QString hostnameActionString = Calamares::getString( configurationMap, "location" );
     if ( !hostnameActionString.isEmpty() )
     {
         bool ok = false;
@@ -907,39 +902,38 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     // Handle *user* key and subkeys and legacy settings
     {
         bool ok = false;  // Ignored
-        QVariantMap userSettings = CalamaresUtils::getSubMap( configurationMap, "user", ok );
+        QVariantMap userSettings = Calamares::getSubMap( configurationMap, "user", ok );
 
         QString shell( QLatin1String( "/bin/bash" ) );  // as if it's not set at all
         if ( userSettings.contains( "shell" ) )
         {
-            shell = CalamaresUtils::getString( userSettings, "shell" );
+            shell = Calamares::getString( userSettings, "shell" );
         }
         // Now it might be explicitly set to empty, which is ok
         setUserShell( shell );
 
-        m_forbiddenLoginNames = CalamaresUtils::getStringList( userSettings, "forbidden_names" );
+        m_forbiddenLoginNames = Calamares::getStringList( userSettings, "forbidden_names" );
         m_forbiddenLoginNames << alwaysForbiddenLoginNames();
         tidy( m_forbiddenLoginNames );
     }
 
     setAutoLoginGroup( either< QString, const QString& >(
-        CalamaresUtils::getString, configurationMap, "autologinGroup", "autoLoginGroup", QString() ) );
-    setSudoersGroup( CalamaresUtils::getString( configurationMap, "sudoersGroup" ) );
-    m_sudoStyle = CalamaresUtils::getBool( configurationMap, "sudoersConfigureWithGroup", false )
-        ? SudoStyle::UserAndGroup
-        : SudoStyle::UserOnly;
+        Calamares::getString, configurationMap, "autologinGroup", "autoLoginGroup", QString() ) );
+    setSudoersGroup( Calamares::getString( configurationMap, "sudoersGroup" ) );
+    m_sudoStyle = Calamares::getBool( configurationMap, "sudoersConfigureWithGroup", false ) ? SudoStyle::UserAndGroup
+                                                                                             : SudoStyle::UserOnly;
 
     // Handle *hostname* key and subkeys and legacy settings
     {
         bool ok = false;  // Ignored
-        QVariantMap hostnameSettings = CalamaresUtils::getSubMap( configurationMap, "hostname", ok );
+        QVariantMap hostnameSettings = Calamares::getSubMap( configurationMap, "hostname", ok );
 
         m_hostnameAction = getHostNameAction( hostnameSettings );
-        m_writeEtcHosts = CalamaresUtils::getBool( hostnameSettings, "writeHostsFile", true );
+        m_writeEtcHosts = Calamares::getBool( hostnameSettings, "writeHostsFile", true );
         m_hostnameTemplate
-            = CalamaresUtils::getString( hostnameSettings, "template", QStringLiteral( "${first}-${product}" ) );
+            = Calamares::getString( hostnameSettings, "template", QStringLiteral( "${first}-${product}" ) );
 
-        m_forbiddenHostNames = CalamaresUtils::getStringList( hostnameSettings, "forbidden_names" );
+        m_forbiddenHostNames = Calamares::getStringList( hostnameSettings, "forbidden_names" );
         m_forbiddenHostNames << alwaysForbiddenHostNames();
         tidy( m_forbiddenHostNames );
     }
@@ -948,20 +942,17 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
 
     // Renaming of Autologin -> AutoLogin in 4ffa79d4cf also affected
     // configuration keys, which was not intended. Accept both.
-    m_doAutoLogin = either( CalamaresUtils::getBool,
-                            configurationMap,
-                            QStringLiteral( "doAutologin" ),
-                            QStringLiteral( "doAutoLogin" ),
-                            false );
+    m_doAutoLogin = either(
+        Calamares::getBool, configurationMap, QStringLiteral( "doAutologin" ), QStringLiteral( "doAutoLogin" ), false );
 
-    m_writeRootPassword = CalamaresUtils::getBool( configurationMap, "setRootPassword", true );
+    m_writeRootPassword = Calamares::getBool( configurationMap, "setRootPassword", true );
     Calamares::JobQueue::instance()->globalStorage()->insert( "setRootPassword", m_writeRootPassword );
 
-    m_reuseUserPasswordForRoot = CalamaresUtils::getBool( configurationMap, "doReusePassword", false );
+    m_reuseUserPasswordForRoot = Calamares::getBool( configurationMap, "doReusePassword", false );
 
-    m_permitWeakPasswords = CalamaresUtils::getBool( configurationMap, "allowWeakPasswords", false );
+    m_permitWeakPasswords = Calamares::getBool( configurationMap, "allowWeakPasswords", false );
     m_requireStrongPasswords
-        = !m_permitWeakPasswords || !CalamaresUtils::getBool( configurationMap, "allowWeakPasswordsDefault", false );
+        = !m_permitWeakPasswords || !Calamares::getBool( configurationMap, "allowWeakPasswordsDefault", false );
 
     // If the value doesn't exist, or isn't a map, this gives an empty map -- no problem
     auto pr_checks( configurationMap.value( "passwordRequirements" ).toMap() );

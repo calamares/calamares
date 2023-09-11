@@ -395,7 +395,6 @@ Config::currentTimezoneName() const
     return QString();
 }
 
-
 static inline QString
 localeLabel( const QString& s )
 {
@@ -429,7 +428,7 @@ Config::prettyStatus() const
 static inline void
 getLocaleGenLines( const QVariantMap& configurationMap, QStringList& localeGenLines )
 {
-    QString localeGenPath = CalamaresUtils::getString( configurationMap, "localeGenPath" );
+    QString localeGenPath = Calamares::getString( configurationMap, "localeGenPath" );
     if ( localeGenPath.isEmpty() )
     {
         localeGenPath = QStringLiteral( "/etc/locale.gen" );
@@ -440,8 +439,8 @@ getLocaleGenLines( const QVariantMap& configurationMap, QStringList& localeGenLi
 static inline void
 getAdjustLiveTimezone( const QVariantMap& configurationMap, bool& adjustLiveTimezone )
 {
-    adjustLiveTimezone = CalamaresUtils::getBool(
-        configurationMap, "adjustLiveTimezone", Calamares::Settings::instance()->doChroot() );
+    adjustLiveTimezone
+        = Calamares::getBool( configurationMap, "adjustLiveTimezone", Calamares::Settings::instance()->doChroot() );
 #ifdef DEBUG_TIMEZONES
     if ( adjustLiveTimezone )
     {
@@ -461,8 +460,8 @@ getAdjustLiveTimezone( const QVariantMap& configurationMap, bool& adjustLiveTime
 static inline void
 getStartingTimezone( const QVariantMap& configurationMap, Calamares::GeoIP::RegionZonePair& startingTimezone )
 {
-    QString region = CalamaresUtils::getString( configurationMap, "region" );
-    QString zone = CalamaresUtils::getString( configurationMap, "zone" );
+    QString region = Calamares::getString( configurationMap, "region" );
+    QString zone = Calamares::getString( configurationMap, "zone" );
     if ( !region.isEmpty() && !zone.isEmpty() )
     {
         startingTimezone = Calamares::GeoIP::RegionZonePair( region, zone );
@@ -473,7 +472,7 @@ getStartingTimezone( const QVariantMap& configurationMap, Calamares::GeoIP::Regi
             = Calamares::GeoIP::RegionZonePair( QStringLiteral( "America" ), QStringLiteral( "New_York" ) );
     }
 
-    if ( CalamaresUtils::getBool( configurationMap, "useSystemTimezone", false ) )
+    if ( Calamares::getBool( configurationMap, "useSystemTimezone", false ) )
     {
         auto systemtz = Calamares::GeoIP::splitTZString( QTimeZone::systemTimeZoneId() );
         if ( systemtz.isValid() )
@@ -488,12 +487,12 @@ static inline void
 getGeoIP( const QVariantMap& configurationMap, std::unique_ptr< Calamares::GeoIP::Handler >& geoip )
 {
     bool ok = false;
-    QVariantMap map = CalamaresUtils::getSubMap( configurationMap, "geoip", ok );
+    QVariantMap map = Calamares::getSubMap( configurationMap, "geoip", ok );
     if ( ok )
     {
-        QString url = CalamaresUtils::getString( map, "url" );
-        QString style = CalamaresUtils::getString( map, "style" );
-        QString selector = CalamaresUtils::getString( map, "selector" );
+        QString url = Calamares::getString( map, "url" );
+        QString style = Calamares::getString( map, "style" );
+        QString selector = Calamares::getString( map, "selector" );
 
         geoip = std::make_unique< Calamares::GeoIP::Handler >( style, url, selector );
         if ( !geoip->isValid() )
@@ -542,7 +541,6 @@ Config::finalizeGlobalStorage() const
     updateGSLocale( gs, localeConfiguration() );
     updateGSLocation( gs, currentLocation() );
 }
-
 
 void
 Config::startGeoIP()

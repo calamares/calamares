@@ -112,7 +112,7 @@ fromComponent( AppStream::Component& component )
 PackageItem
 fromAppStream( AppStream::Pool& pool, const QVariantMap& item_map )
 {
-    QString appstreamId = CalamaresUtils::getString( item_map, "appstream" );
+    QString appstreamId = Calamares::getString( item_map, "appstream" );
     if ( appstreamId.isEmpty() )
     {
         cWarning() << "Can't load AppStream without a suitable appstreamId.";
@@ -134,8 +134,8 @@ fromAppStream( AppStream::Pool& pool, const QVariantMap& item_map )
     auto r = fromComponent( itemList.first() );
     if ( r.isValid() )
     {
-        QString id = CalamaresUtils::getString( item_map, "id" );
-        QString screenshotPath = CalamaresUtils::getString( item_map, "screenshot" );
+        QString id = Calamares::getString( item_map, "id" );
+        QString screenshotPath = Calamares::getString( item_map, "screenshot" );
         if ( !id.isEmpty() )
         {
             r.id = id;

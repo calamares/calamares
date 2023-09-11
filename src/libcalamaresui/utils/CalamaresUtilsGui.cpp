@@ -22,12 +22,11 @@
 
 #define RESPATH ":/data/"
 
-namespace CalamaresUtils
+namespace Calamares
 {
 
 static int s_defaultFontSize = 0;
 static int s_defaultFontHeight = 0;
-
 
 QPixmap
 defaultPixmap( ImageType type, ImageMode mode, const QSize& size )
@@ -127,7 +126,6 @@ defaultPixmap( ImageType type, ImageMode mode, const QSize& size )
     return pixmap;
 }
 
-
 void
 unmarginLayout( QLayout* layout )
 {
@@ -148,7 +146,6 @@ unmarginLayout( QLayout* layout )
     }
 }
 
-
 int
 defaultFontSize()
 {
@@ -158,7 +155,6 @@ defaultFontSize()
     }
     return s_defaultFontSize;
 }
-
 
 int
 defaultFontHeight()
@@ -173,7 +169,6 @@ defaultFontHeight()
     return s_defaultFontHeight;
 }
 
-
 QFont
 largeFont()
 {
@@ -182,14 +177,12 @@ largeFont()
     return f;
 }
 
-
 void
 setDefaultFontSize( int points )
 {
     s_defaultFontSize = points;
     s_defaultFontHeight = 0;  // Recalculate on next call to defaultFontHeight()
 }
-
 
 QSize
 defaultIconSize()
@@ -198,4 +191,4 @@ defaultIconSize()
     return QSize( w, w );
 }
 
-}  // namespace CalamaresUtils
+}  // namespace Calamares

@@ -27,10 +27,8 @@ retranslateKeyboardModels()
     {
         s_kbtranslator = new QTranslator;
     }
-    (void)CalamaresUtils::loadTranslator(
-        CalamaresUtils::translatorLocaleName(), QStringLiteral( "kb_" ), s_kbtranslator );
+    (void)Calamares::loadTranslator( Calamares::translatorLocaleName(), QStringLiteral( "kb_" ), s_kbtranslator );
 }
-
 
 XKBListModel::XKBListModel( QObject* parent )
     : QAbstractListModel( parent )
@@ -141,7 +139,6 @@ KeyboardModelsModel::KeyboardModelsModel( QObject* parent )
     setCurrentIndex();  // If pc105 was seen, select it now
 }
 
-
 KeyboardLayoutModel::KeyboardLayoutModel( QObject* parent )
     : QAbstractListModel( parent )
 {
@@ -154,7 +151,6 @@ KeyboardLayoutModel::rowCount( const QModelIndex& parent ) const
     Q_UNUSED( parent )
     return m_layouts.count();
 }
-
 
 QVariant
 KeyboardLayoutModel::data( const QModelIndex& index, int role ) const
@@ -251,7 +247,6 @@ KeyboardLayoutModel::currentIndex() const
 {
     return m_currentIndex;
 }
-
 
 KeyboardVariantsModel::KeyboardVariantsModel( QObject* parent )
     : XKBListModel( parent )

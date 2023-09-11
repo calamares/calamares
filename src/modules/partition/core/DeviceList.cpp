@@ -49,7 +49,7 @@ static bool
 blkIdCheckIso9660( const QString& path )
 {
     // If blkid fails, there's no output, but we don't care
-    auto r = CalamaresUtils::System::runCommand( { "blkid", path }, std::chrono::seconds( 30 ) );
+    auto r = Calamares::System::runCommand( { "blkid", path }, std::chrono::seconds( 30 ) );
     return r.getOutput().contains( "iso9660" );
 }
 

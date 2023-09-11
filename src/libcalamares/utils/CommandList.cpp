@@ -22,14 +22,14 @@
 #include <QCoreApplication>
 #include <QVariantList>
 
-namespace CalamaresUtils
+namespace Calamares
 {
 
 static CommandLine
 get_variant_object( const QVariantMap& m )
 {
-    QString command = CalamaresUtils::getString( m, "command" );
-    qint64 timeout = CalamaresUtils::getInteger( m, "timeout", -1 );
+    QString command = Calamares::getString( m, "command" );
+    qint64 timeout = Calamares::getInteger( m, "timeout", -1 );
 
     if ( !command.isEmpty() )
     {
@@ -102,13 +102,12 @@ CommandLine::expand( KMacroExpanderBase& expander ) const
     return { c, second };
 }
 
-CalamaresUtils::CommandLine
+Calamares::CommandLine
 CommandLine::expand() const
 {
     auto expander = get_gs_expander( System::RunLocation::RunInHost );
     return expand( expander );
 }
-
 
 CommandList::CommandList( bool doChroot, std::chrono::seconds timeout )
     : m_doChroot( doChroot )
@@ -220,5 +219,4 @@ CommandList::expand() const
     return expand( expander );
 }
 
-
-}  // namespace CalamaresUtils
+}  // namespace Calamares
