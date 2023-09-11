@@ -25,7 +25,7 @@ jobs:
       - name: "install dependencies"
         shell: bash
         run: |
-          ./github/workflows/nightly-opensuse-qt6.sh
+          ./.github/workflows/nightly-opensuse-qt6.sh
       - name: "build"
         id: build
         uses: calamares/actions/generic-build@v4

@@ -18,7 +18,7 @@ env:
   CMAKE_ARGS: |
     -DWEBVIEW_FORCE_WEBKIT=1
     -DKDE_INSTALL_USE_QT_SYS_PATHS=ON
-    -DWITH_PYTHONQT=OFF"
+    -DWITH_PYTHONQT=OFF
     -DCMAKE_BUILD_TYPE=Debug
 
 jobs:
@@ -28,10 +28,12 @@ jobs:
       image: docker://kdeneon/plasma:user
       options: --tmpfs /build:rw --user 0:0
     steps:
-      - name: "prepare env"
-        uses: calamares/actions/prepare-neon@v4
       - name: "prepare source"
         uses: calamares/actions/generic-checkout@330c45ae1eb6efad4ad75a6dd887c3c5d5fe1590
+      - name: "install dependencies"
+        shell: bash
+        run: |
+          ./.github/workflows/nightly-neon.sh
       - name: "build"
         id: build
         uses: calamares/actions/generic-build@v4
