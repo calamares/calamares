@@ -20,6 +20,9 @@ jobs:
       image: docker://opensuse/tumbleweed
       options: --tmpfs /build:rw --user 0:0
     steps:
+      - name: "prepare git"
+        shell: bash
+        run: zypper --non-interactive in git-core jq curl
       - name: "prepare source"
         uses: calamares/actions/generic-checkout@v4
       - name: "install dependencies"
