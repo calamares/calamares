@@ -9,6 +9,7 @@
  */
 #include "python/Api.h"
 
+#include "CalamaresVersion.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "compat/Variant.h"
@@ -325,6 +326,12 @@ PYBIND11_EMBEDDED_MODULE( utils, m )
 PYBIND11_MODULE( libcalamares, m )
 {
     m.doc() = "Calamares API for Python";
+
+    m.add_object( "ORGANIZATION_NAME", py::str( CALAMARES_ORGANIZATION_NAME ) );
+    m.add_object( "ORGANIZATION_DOMAIN", py::str( CALAMARES_ORGANIZATION_DOMAIN ) );
+    m.add_object( "APPLICATION_NAME", py::str( CALAMARES_APPLICATION_NAME ) );
+    m.add_object( "VERSION", py::str( CALAMARES_VERSION ) );
+    m.add_object( "VERSION_SHORT", py::str( CALAMARES_VERSION_SHORT ) );
 
     m.add_object( "utils", py::module::import( "utils" ) );
 }
