@@ -8,6 +8,10 @@
  */
 #include "python/PythonJob.h"
 
+#include <QDir>
+#include <QFileInfo>
+#include <QString>
+
 namespace Calamares
 {
 namespace Python
@@ -15,12 +19,22 @@ namespace Python
 
 struct Job::Private
 {
+    Private( const QString& script, const QString& path, const QVariantMap& configuration )
+        : scriptFile( script )
+        , workingPath( path )
+        , configurationMap( configuration )
+    {
+    }
+    QString scriptFile;
+    QString workingPath;
+    QVariantMap configurationMap;
 };
 
 Job::Job( const QString& scriptFile,
           const QString& workingPath,
           const QVariantMap& moduleConfiguration,
           QObject* parent )
+    : m_d( std::make_unique< Job::Private >( scriptFile, workingPath, moduleConfiguration ) )
 {
 }
 
@@ -29,7 +43,7 @@ Job::~Job() {}
 QString
 Job::prettyName() const
 {
-    return QStringLiteral( "Python Pretty" );
+    return QDir( m_d->workingPath ).dirName();
 }
 
 QString
@@ -41,6 +55,25 @@ Job::prettyStatusMessage() const
 JobResult
 Job::exec()
 {
+    // We assume m_scriptFile to be relative to m_workingPath.
+    QDir workingDir( m_d->workingPath );
+    if ( !workingDir.exists() || !workingDir.isReadable() )
+    {
+        return JobResult::error( tr( "Bad working directory path" ),
+                                 tr( "Working directory %1 for python job %2 is not readable." )
+                                     .arg( m_d->workingPath )
+                                     .arg( prettyName() ) );
+    }
+
+    QFileInfo scriptFI( workingDir.absoluteFilePath( m_d->scriptFile ) );
+    if ( !scriptFI.exists() || !scriptFI.isFile() || !scriptFI.isReadable() )
+    {
+        return JobResult::error( tr( "Bad main script file" ),
+                                 tr( "Main script file %1 for python job %2 is not readable." )
+                                     .arg( scriptFI.absoluteFilePath() )
+                                     .arg( prettyName() ) );
+    }
+
     return JobResult::ok();
 }
 
