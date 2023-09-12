@@ -334,7 +334,8 @@ description if something went wrong.
 The interface from a Python module to Calamares internals is
 found in the *libcalamares* module. This is not a standard Python
 module, and is only available inside the Calamares "runtime" for
-Python modules (it is implemented through Boost::Python in C++).
+Python modules (it is implemented in C++ and injected into the Python
+environment by Calamares).
 
 A module should start by importing the Calamares internals:
 
