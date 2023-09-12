@@ -24,6 +24,8 @@ namespace py = pybind11;
 namespace
 {
 
+static const char* s_preScript = nullptr;
+
 QString
 asQString( const py::object& o )
 {
@@ -152,6 +154,10 @@ Job::exec()
 
     py::scoped_interpreter guard {};
     auto scope = py::module_::import( "__main__" ).attr( "__dict__" );
+    if ( s_preScript )
+    {
+        py::exec( s_preScript );
+    }
     py::eval_file( scriptFI.absoluteFilePath().toUtf8().constData(), scope );
 
     m_d->description = getPrettyNameFromScope( scope );
@@ -226,6 +232,9 @@ Job::exec()
 void
 Job::setInjectedPreScript( const char* script )
 {
+    s_preScript = script;
+    cDebug() << "Python pre-script set to string" << Logger::Pointer( script ) << "length"
+             << ( script ? strlen( script ) : 0 );
 }
 
 }  // namespace Python
