@@ -8,6 +8,9 @@
  */
 #include "python/PythonJob.h"
 
+#include "python/Logger.h"
+#include "utils/Logger.h"
+
 #include <QDir>
 #include <QFileInfo>
 #include <QString>
@@ -17,6 +20,56 @@
 #include <pybind11/eval.h>
 
 namespace py = pybind11;
+
+namespace
+{
+
+QString
+getPrettyNameFromScope( const py::dict& scope )
+{
+    static constexpr char key_name[] = "pretty_name";
+
+    if ( scope.contains( key_name ) )
+    {
+        const py::object func = scope[ key_name ];
+        try
+        {
+            const auto s = func().cast< std::string >();
+            return QString::fromUtf8( s.c_str() );
+        }
+        catch ( const py::cast_error& e )
+        {
+            // Ignore, we will try __doc__ next
+        }
+    }
+
+    static constexpr char key_doc[] = "__doc__";
+    if ( scope.contains( key_doc ) )
+    {
+        const py::object doc = scope[ key_doc ];
+        try
+        {
+            const auto s = doc.cast< std::string >();
+            auto string = QString::fromUtf8( s.c_str() ).trimmed();
+            const auto newline_index = string.indexOf( '\n' );
+            if ( newline_index >= 0 )
+            {
+                string.truncate( newline_index );
+                return string;
+            }
+            // __doc__ is apparently empty, try next fallback
+        }
+        catch ( const py::cast_error& e )
+        {
+            // Ignore, try next fallback
+        }
+    }
+
+    // No more fallbacks
+    return QString();
+}
+
+}  // namespace
 
 namespace Calamares
 {
@@ -31,9 +84,12 @@ struct Job::Private
         , configurationMap( configuration )
     {
     }
-    QString scriptFile;
+    QString scriptFile;  // From the module descriptor
     QString workingPath;
-    QVariantMap configurationMap;
+
+    QVariantMap configurationMap;  // The module configuration
+
+    QString description;  // Obtained from the Python code
 };
 
 Job::Job( const QString& scriptFile,
@@ -55,7 +111,15 @@ Job::prettyName() const
 QString
 Job::prettyStatusMessage() const
 {
-    return QStringLiteral( "Python Status" );
+    // The description is updated when progress is reported, see emitProgress()
+    if ( m_d->description.isEmpty() )
+    {
+        return tr( "Running %1 operation." ).arg( prettyName() );
+    }
+    else
+    {
+        return m_d->description;
+    }
 }
 
 JobResult
@@ -83,6 +147,8 @@ Job::exec()
     py::scoped_interpreter guard {};
     auto scope = py::module_::import( "__main__" ).attr( "__dict__" );
     py::eval_file( scriptFI.absoluteFilePath().toUtf8().constData(), scope );
+
+    m_d->description = getPrettyNameFromScope( scope );
 
     return JobResult::ok();
 }

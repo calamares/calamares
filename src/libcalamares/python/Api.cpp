@@ -191,9 +191,10 @@ load_yaml( const std::string& path )
     return variantMapToPyDict( map );
 }
 
-static Calamares::GlobalStorage * _global_storage()
+static Calamares::GlobalStorage*
+_global_storage()
 {
-    static Calamares::GlobalStorage * p = new Calamares::GlobalStorage;
+    static Calamares::GlobalStorage* p = new Calamares::GlobalStorage;
     return p;
 }
 
@@ -209,8 +210,7 @@ _gettext_languages()
     //    own GlobalStoragePythonWrapper, which then holds a
     //    GlobalStorage object for all of Python.
     Calamares::JobQueue* jq = Calamares::JobQueue::instance();
-    Calamares::GlobalStorage* gs
-        = jq ? jq->globalStorage() : _global_storage();
+    Calamares::GlobalStorage* gs = jq ? jq->globalStorage() : _global_storage();
 
     QString lang = Calamares::Locale::readGS( *gs, QStringLiteral( "LANG" ) );
     if ( !lang.isEmpty() )
