@@ -24,9 +24,13 @@
 #include <string>
 
 inline QDebug&
-operator<<( QDebug& s, const pybind11::handle & h )
+operator<<( QDebug& s, const pybind11::handle& h )
 {
-    return s << pybind11::str(h).cast<std::string>();
+#if QT_VERSION < QT_VERSION_CHECK( 6, 0, 0 )
+    return s << QString::fromUtf8( pybind11::str( h ).cast< std::string >().c_str() );
+#else
+    return s << pybind11::str( h ).cast< std::string >();
+#endif
 }
 
 #endif
