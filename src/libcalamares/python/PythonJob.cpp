@@ -12,6 +12,12 @@
 #include <QFileInfo>
 #include <QString>
 
+#undef slots
+#include <pybind11/embed.h>
+#include <pybind11/eval.h>
+
+namespace py = pybind11;
+
 namespace Calamares
 {
 namespace Python
@@ -73,6 +79,10 @@ Job::exec()
                                      .arg( scriptFI.absoluteFilePath() )
                                      .arg( prettyName() ) );
     }
+
+    py::scoped_interpreter guard {};
+    auto scope = py::module_::import( "__main__" ).attr( "__dict__" );
+    py::eval_file( scriptFI.absoluteFilePath().toUtf8().constData(), scope );
 
     return JobResult::ok();
 }

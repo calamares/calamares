@@ -19,17 +19,8 @@
 
 #include <string>
 
-namespace Calamares
-{
-namespace Python
-{
-std::string obscure( const std::string& string );
-
-void debug( const std::string& s );
-void warning( const std::string& s );
-void error( const std::string& s );
-
-}  // namespace Python
-}  // namespace Calamares
-
+/** @note There is no point in making this API "visible" in the C++
+ *        code, so there are no declarations here. See Api.cpp for
+ *        the Python declarations that do the work.
+ */
 #endif
