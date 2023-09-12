@@ -97,25 +97,29 @@ Then run CMake (add any CMake options you like at the end) and ninja:
 - `cmake -S /src -B /build -G Ninja`
 - `ninja -C /build`
 
-### Dependencies
+### Dependencies for Calamares 3.3
+
+> The dependencies for Calamares 3.3 reflect "resonably current"
+> software as of September 2023. For Calamares 3.2 dependencies,
+> which are 2017-era, see the `CONTRIBUTING` file in that branch.
 
 Main:
 * Compiler with C++17 support
 * CMake >= 3.16
-* Qt >= 5.15
 * yaml-cpp >= 0.5.1
+* Qt >= 5.15 or Qt >= 6.5
 * KDE Frameworks KCoreAddons >= 5.78
-* Python >= 3.6 (required for some modules)
-* Boost.Python >= 1.72.0 (required for some modules)
 * KDE extra-cmake-modules >= 5.78 (recommended; required for some modules;
   required for some tests)
+* Python >= 3.6 (required for some modules)
+* Boost.Python >= 1.72.0 (required for some modules)
 
 Individual modules may have their own requirements;
 these are listed in CMake output.
 Particular requirements (not complete):
 
-* *fsresizer* KPMCore >= 3.3 (>= 4.2 recommended)
-* *partition* KPMCore >= 3.3 (>= 4.2 recommended)
+* *fsresizer* KPMCore >= 20.04
+* *partition* KPMCore >= 20.04
 * *users* LibPWQuality (optional)
 
 
