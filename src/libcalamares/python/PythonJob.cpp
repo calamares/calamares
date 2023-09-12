@@ -25,6 +25,12 @@ namespace
 {
 
 QString
+asQString( const py::object& o )
+{
+    return QString::fromUtf8( py::str( o ).cast< std::string >().c_str() );
+}
+
+QString
 getPrettyNameFromScope( const py::dict& scope )
 {
     static constexpr char key_name[] = "pretty_name";
@@ -150,7 +156,60 @@ Job::exec()
 
     m_d->description = getPrettyNameFromScope( scope );
 
-    return JobResult::ok();
+    Q_EMIT progress( 0 );
+    static constexpr char key_run[] = "run";
+    if ( scope.contains( key_run ) )
+    {
+        const py::object run = scope[ key_run ];
+        try
+        {
+            py::object r;
+            try
+            {
+                r = run();
+            }
+            catch ( const py::error_already_set& e )
+            {
+                // This is an error in the Python code itself
+                cError() << e.what();
+                return JobResult::internalError( tr( "Bad main script file" ),
+                                                 tr( "Main script file %1 for python job %2 raised an exception." )
+                                                     .arg( scriptFI.absoluteFilePath() )
+                                                     .arg( prettyName() ),
+                                                 JobResult::PythonUncaughtException );
+            }
+
+            if ( r.is( py::none() ) )
+            {
+                return JobResult::ok();
+            }
+            const py::tuple items = r;
+            return JobResult::error( asQString( items[ 0 ] ), asQString( items[ 1 ] ) );
+        }
+        catch ( const py::cast_error& e )
+        {
+            cError() << e.what();
+            return JobResult::error( tr( "Bad main script file" ),
+                                     tr( "Main script file %1 for python job %2 returned invalid results." )
+                                         .arg( scriptFI.absoluteFilePath() )
+                                         .arg( prettyName() ) );
+        }
+        catch ( const py::error_already_set& e )
+        {
+            cError() << e.what();
+            return JobResult::error( tr( "Bad main script file" ),
+                                     tr( "Main script file %1 for python job %2 returned invalid results." )
+                                         .arg( scriptFI.absoluteFilePath() )
+                                         .arg( prettyName() ) );
+        }
+    }
+    else
+    {
+        return JobResult::error( tr( "Bad main script file" ),
+                                 tr( "Main script file %1 for python job %2 does not contain a run() function." )
+                                     .arg( scriptFI.absoluteFilePath() )
+                                     .arg( prettyName() ) );
+    }
 }
 
 /** @brief Sets the pre-run Python code for all PythonJobs
