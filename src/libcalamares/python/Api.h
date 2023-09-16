@@ -17,10 +17,78 @@
  * imported by the Python code as `import libcalamares`.
  */
 
+#include "python/Pybind11Helpers.h"
+
 #include <string>
 
-/** @note There is no point in making this API "visible" in the C++
- *        code, so there are no declarations here. See Api.cpp for
- *        the Python declarations that do the work.
- */
+namespace Calamares
+{
+
+class GlobalStorage;
+class PythonJob;
+
+namespace Python __attribute__( ( visibility( "hidden" ) ) )
+
+{
+    std::string obscure( const std::string& string );
+
+    void debug( const std::string& s );
+    void warning( const std::string& s );
+    // void warn( const std::string& s) is an alias of warning()
+    void error( const std::string& s );
+
+    Dictionary load_yaml( const std::string& path );
+
+    List gettext_languages();
+    Object gettext_path();
+
+
+    class Job;
+    /** @brief Proxy class in Python for the Calamares Job class
+*
+* This is available as libcalamares.job in Python code.
+*/
+    class JobProxy
+    {
+    public:
+        explicit JobProxy( Calamares::Python::Job* parent );
+
+        std::string prettyName;
+        std::string workingPath;
+        std::string moduleName;
+
+        Dictionary configuration;
+
+        void setprogress( qreal progress );
+
+    private:
+        Calamares::Python::Job* m_parent;
+    };
+
+    class GlobalStorageProxy
+    {
+    public:
+        explicit GlobalStorageProxy( Calamares::GlobalStorage* gs );
+
+        bool contains( const std::string& key ) const;
+        int count() const;
+        void insert( const std::string& key, const Object& value );
+        List keys() const;
+        int remove( const std::string& key );
+        Object value( const std::string& key ) const;
+
+        // This is a helper for scripts that do not go through
+        // the JobQueue (i.e. the module testpython script),
+        // which allocate their own (singleton) GlobalStorage.
+        static Calamares::GlobalStorage* globalStorageInstance() { return s_gs_instance; }
+
+    private:
+        Calamares::GlobalStorage* m_gs;
+        static Calamares::GlobalStorage* s_gs_instance;  // See globalStorageInstance()
+    };
+
+
+}  // namespace )
+}  // namespace Calamares
+
 #endif

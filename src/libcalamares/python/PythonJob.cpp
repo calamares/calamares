@@ -8,6 +8,9 @@
  */
 #include "python/PythonJob.h"
 
+#include "GlobalStorage.h"
+#include "JobQueue.h"
+#include "python/Api.h"
 #include "python/Logger.h"
 #include "utils/Logger.h"
 
@@ -25,12 +28,6 @@ namespace
 {
 
 static const char* s_preScript = nullptr;
-
-QString
-asQString( const py::object& o )
-{
-    return QString::fromUtf8( py::str( o ).cast< std::string >().c_str() );
-}
 
 QString
 getPrettyNameFromScope( const py::dict& scope )
@@ -154,6 +151,11 @@ Job::exec()
 
     py::scoped_interpreter guard {};
     auto scope = py::module_::import( "__main__" ).attr( "__dict__" );
+    auto calamaresModule = py::module::import( "libcalamares" );
+    calamaresModule.attr( "job" ) = Calamares::Python::JobProxy( this );
+    calamaresModule.attr( "globalstorage" )
+        = Calamares::Python::GlobalStorageProxy( JobQueue::instance()->globalStorage() );
+
     if ( s_preScript )
     {
         py::exec( s_preScript );
@@ -216,6 +218,24 @@ Job::exec()
                                      .arg( scriptFI.absoluteFilePath() )
                                      .arg( prettyName() ) );
     }
+}
+
+QString
+Job::workingPath() const
+{
+    return m_d->workingPath;
+}
+QVariantMap
+Job::configuration() const
+{
+    return m_d->configurationMap;
+}
+
+void
+Job::emitProgress( double progressValue )
+{
+    // TODO: update prettyname
+    emit progress( progressValue );
 }
 
 /** @brief Sets the pre-run Python code for all PythonJobs

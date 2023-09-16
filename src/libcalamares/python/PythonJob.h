@@ -23,7 +23,6 @@ namespace Calamares
 {
 namespace Python
 {
-
 class Job : public ::Calamares::Job
 {
     Q_OBJECT
@@ -50,6 +49,12 @@ public:
      * job. Pass in @c nullptr to switch off pre-run code.
      */
     static void setInjectedPreScript( const char* script );
+
+    /** @brief Accessors for JobProxy */
+    QString workingPath() const;
+    QVariantMap configuration() const;
+    /** @brief Proxy functions */
+    void emitProgress( double progressValue );
 
 private:
     struct Private;

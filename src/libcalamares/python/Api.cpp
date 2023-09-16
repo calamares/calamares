@@ -14,6 +14,7 @@
 #include "JobQueue.h"
 #include "compat/Variant.h"
 #include "locale/Global.h"
+#include "python/PythonJob.h"
 #include "utils/Logger.h"
 #include "utils/RAII.h"
 #include "utils/String.h"
@@ -36,9 +37,9 @@ namespace py = pybind11;
 namespace
 {
 // Forward declarations, since most of these are mutually recursive
-py::list variantListToPyList( const QVariantList& variantList );
-py::dict variantMapToPyDict( const QVariantMap& variantMap );
-py::dict variantHashToPyDict( const QVariantHash& variantHash );
+Calamares::Python::List variantListToPyList( const QVariantList& variantList );
+Calamares::Python::Dictionary variantMapToPyDict( const QVariantMap& variantMap );
+Calamares::Python::Dictionary variantHashToPyDict( const QVariantHash& variantHash );
 
 py::object
 variantToPyObject( const QVariant& variant )
@@ -86,7 +87,7 @@ variantToPyObject( const QVariant& variant )
     case QMetaType::Type::QChar:
 #endif
     case Calamares::StringVariantType:
-        return py::str( variant.toString().toStdString() );
+        return Calamares::Python::String( variant.toString().toStdString() );
 
     case Calamares::BoolVariantType:
         return py::bool_( variant.toBool() );
@@ -102,10 +103,10 @@ variantToPyObject( const QVariant& variant )
 #endif
 }
 
-py::list
+Calamares::Python::List
 variantListToPyList( const QVariantList& variantList )
 {
-    py::list pyList;
+    Calamares::Python::List pyList;
     for ( const QVariant& variant : variantList )
     {
         pyList.append( variantToPyObject( variant ) );
@@ -113,26 +114,142 @@ variantListToPyList( const QVariantList& variantList )
     return pyList;
 }
 
-py::dict
+Calamares::Python::Dictionary
 variantMapToPyDict( const QVariantMap& variantMap )
 {
-    py::dict pyDict;
+    Calamares::Python::Dictionary pyDict;
     for ( auto it = variantMap.constBegin(); it != variantMap.constEnd(); ++it )
     {
-        pyDict[ py::str( it.key().toStdString() ) ] = variantToPyObject( it.value() );
+        pyDict[ Calamares::Python::String( it.key().toStdString() ) ] = variantToPyObject( it.value() );
     }
     return pyDict;
 }
 
-py::dict
+Calamares::Python::Dictionary
 variantHashToPyDict( const QVariantHash& variantHash )
 {
-    py::dict pyDict;
+    Calamares::Python::Dictionary pyDict;
     for ( auto it = variantHash.constBegin(); it != variantHash.constEnd(); ++it )
     {
-        pyDict[ py::str( it.key().toStdString() ) ] = variantToPyObject( it.value() );
+        pyDict[ Calamares::Python::String( it.key().toStdString() ) ] = variantToPyObject( it.value() );
     }
     return pyDict;
+}
+
+QVariantList variantListFromPyList( const Calamares::Python::List& list );
+QVariantMap variantMapFromPyDict( const Calamares::Python::Dictionary& dict );
+
+QVariant
+variantFromPyObject( const py::handle& o )
+{
+    if ( py::isinstance< Calamares::Python::Dictionary >( o ) )
+    {
+        return variantMapFromPyDict( py::cast< Calamares::Python::Dictionary >( o ) );
+    }
+    else if ( py::isinstance< Calamares::Python::List >( o ) )
+    {
+        return variantListFromPyList( py::cast< Calamares::Python::List >( o ) );
+    }
+    else if ( py::isinstance< py::int_ >( o ) )
+    {
+        return QVariant( qlonglong( py::cast< py::int_ >( o ) ) );
+    }
+    else if ( py::isinstance< py::float_ >( o ) )
+    {
+        return QVariant( double( py::cast< py::float_ >( o ) ) );
+    }
+    else if ( py::isinstance< py::str >( o ) )
+    {
+        return QVariant( QString::fromStdString( std::string( py::str( o ) ) ) );
+    }
+    else if ( py::isinstance< py::bool_ >( o ) )
+    {
+        return QVariant( bool( py::cast< py::bool_ >( o ) ) );
+    }
+
+    return QVariant();
+}
+
+QVariantList
+variantListFromPyList( const Calamares::Python::List& list )
+{
+    QVariantList l;
+    for ( const auto& h : list )
+    {
+        l.append( variantFromPyObject( h ) );
+    }
+    return l;
+}
+
+QVariantMap
+variantMapFromPyDict( const Calamares::Python::Dictionary& dict )
+{
+    QVariantMap m;
+    for ( const auto& item : dict )
+    {
+        m.insert( Calamares::Python::asQString( item.first ), variantFromPyObject( ( item.second ) ) );
+    }
+    return m;
+}
+
+
+const char output_prefix[] = "[PYTHON JOB]:";
+inline void
+log_action( unsigned int level, const std::string& s )
+{
+    Logger::CDebug( level ) << output_prefix << QString::fromStdString( s );
+}
+
+static Calamares::GlobalStorage*
+_global_storage()
+{
+    static Calamares::GlobalStorage* p = new Calamares::GlobalStorage;
+    return p;
+}
+
+static QStringList
+_gettext_languages()
+{
+    QStringList languages;
+
+    // There are two ways that Python jobs can be initialised:
+    //  - through JobQueue, in which case that has an instance which holds
+    //    a GlobalStorage object, or
+    //  - through the Python test-script, which initialises its
+    //    own GlobalStorageProxy, which then holds a
+    //    GlobalStorage object for all of Python.
+    Calamares::JobQueue* jq = Calamares::JobQueue::instance();
+    Calamares::GlobalStorage* gs = jq ? jq->globalStorage() : _global_storage();
+
+    QString lang = Calamares::Locale::readGS( *gs, QStringLiteral( "LANG" ) );
+    if ( !lang.isEmpty() )
+    {
+        languages.append( lang );
+        if ( lang.indexOf( '.' ) > 0 )
+        {
+            lang.truncate( lang.indexOf( '.' ) );
+            languages.append( lang );
+        }
+        if ( lang.indexOf( '_' ) > 0 )
+        {
+            lang.truncate( lang.indexOf( '_' ) );
+            languages.append( lang );
+        }
+    }
+    return languages;
+}
+
+static void
+_add_localedirs( QStringList& pathList, const QString& candidate )
+{
+    if ( !candidate.isEmpty() && !pathList.contains( candidate ) )
+    {
+        pathList.prepend( candidate );
+        if ( QDir( candidate ).cd( "lang" ) )
+        {
+            pathList.prepend( candidate + "/lang" );
+        }
+    }
 }
 
 }  // namespace
@@ -147,12 +264,6 @@ namespace Calamares
 {
 namespace Python
 {
-const char output_prefix[] = "[PYTHON JOB]:";
-inline void
-log_action( unsigned int level, const std::string& s )
-{
-    Logger::CDebug( level ) << output_prefix << QString::fromStdString( s );
-}
 
 std::string
 obscure( const std::string& string )
@@ -178,7 +289,7 @@ error( const std::string& s )
     log_action( Logger::LOGERROR, s );
 }
 
-py::dict
+Dictionary
 load_yaml( const std::string& path )
 {
     const QString filePath = QString::fromUtf8( path.c_str() );
@@ -192,45 +303,6 @@ load_yaml( const std::string& path )
     return variantMapToPyDict( map );
 }
 
-static Calamares::GlobalStorage*
-_global_storage()
-{
-    static Calamares::GlobalStorage* p = new Calamares::GlobalStorage;
-    return p;
-}
-
-static QStringList
-_gettext_languages()
-{
-    QStringList languages;
-
-    // There are two ways that Python jobs can be initialised:
-    //  - through JobQueue, in which case that has an instance which holds
-    //    a GlobalStorage object, or
-    //  - through the Python test-script, which initialises its
-    //    own GlobalStoragePythonWrapper, which then holds a
-    //    GlobalStorage object for all of Python.
-    Calamares::JobQueue* jq = Calamares::JobQueue::instance();
-    Calamares::GlobalStorage* gs = jq ? jq->globalStorage() : _global_storage();
-
-    QString lang = Calamares::Locale::readGS( *gs, QStringLiteral( "LANG" ) );
-    if ( !lang.isEmpty() )
-    {
-        languages.append( lang );
-        if ( lang.indexOf( '.' ) > 0 )
-        {
-            lang.truncate( lang.indexOf( '.' ) );
-            languages.append( lang );
-        }
-        if ( lang.indexOf( '_' ) > 0 )
-        {
-            lang.truncate( lang.indexOf( '_' ) );
-            languages.append( lang );
-        }
-    }
-    return languages;
-}
-
 py::list
 gettext_languages()
 {
@@ -240,19 +312,6 @@ gettext_languages()
         pyList.append( lang.toStdString() );
     }
     return pyList;
-}
-
-static void
-_add_localedirs( QStringList& pathList, const QString& candidate )
-{
-    if ( !candidate.isEmpty() && !pathList.contains( candidate ) )
-    {
-        pathList.prepend( candidate );
-        if ( QDir( candidate ).cd( "lang" ) )
-        {
-            pathList.prepend( candidate + "/lang" );
-        }
-    }
 }
 
 py::object
@@ -293,12 +352,101 @@ gettext_path()
             {
                 Logger::CDebug( Logger::LOGDEBUG )
                     << output_prefix << "Found gettext" << lang << "in" << ldir.canonicalPath();
-                return py::str( localedir.toStdString() );
+                return String( localedir.toStdString() );
             }
         }
     }
     cWarning() << "No translation found for languages" << candidateLanguages;
     return py::none();  // None
+}
+
+JobProxy::JobProxy( Calamares::Python::Job* parent )
+    : prettyName( parent->prettyName().toStdString() )
+    , workingPath( parent->workingPath().toStdString() )
+    , moduleName( QDir( parent->workingPath() ).dirName().toStdString() )
+    , configuration( variantMapToPyDict( parent->configuration() ) )
+    , m_parent( parent )
+{
+}
+
+void
+JobProxy::setprogress( qreal progress )
+{
+    if ( progress >= 0.0 && progress <= 1.0 )
+    {
+        m_parent->emitProgress( progress );
+    }
+}
+
+
+Calamares::GlobalStorage* GlobalStorageProxy::s_gs_instance = nullptr;
+
+// The special handling for nullptr is only for the testing
+// script for the python bindings, which passes in None;
+// normal use will have a GlobalStorage from JobQueue::instance()
+// passed in. Testing use will leak the allocated GlobalStorage
+// object, but that's OK for testing.
+GlobalStorageProxy::GlobalStorageProxy( Calamares::GlobalStorage* gs )
+    : m_gs( gs ? gs : s_gs_instance )
+{
+    if ( !m_gs )
+    {
+        s_gs_instance = new Calamares::GlobalStorage;
+        m_gs = s_gs_instance;
+    }
+}
+
+bool
+GlobalStorageProxy::contains( const std::string& key ) const
+{
+    return m_gs->contains( QString::fromStdString( key ) );
+}
+
+int
+GlobalStorageProxy::count() const
+{
+    return m_gs->count();
+}
+
+void
+GlobalStorageProxy::insert( const std::string& key, const Object& value )
+{
+    m_gs->insert( QString::fromStdString( key ), variantFromPyObject( value ) );
+}
+
+List
+GlobalStorageProxy::keys() const
+{
+    List pyList;
+    const auto keys = m_gs->keys();
+    for ( const QString& key : keys )
+    {
+        pyList.append( key.toStdString() );
+    }
+    return pyList;
+}
+
+int
+GlobalStorageProxy::remove( const std::string& key )
+{
+    const QString gsKey( QString::fromStdString( key ) );
+    if ( !m_gs->contains( gsKey ) )
+    {
+        cWarning() << "Unknown GS key" << key.c_str();
+    }
+    return m_gs->remove( gsKey );
+}
+
+Object
+GlobalStorageProxy::value( const std::string& key ) const
+{
+    const QString gsKey( QString::fromStdString( key ) );
+    if ( !m_gs->contains( gsKey ) )
+    {
+        cWarning() << "Unknown GS key" << key.c_str();
+        return py::none();
+    }
+    return variantToPyObject( m_gs->value( gsKey ) );
 }
 
 }  // namespace Python
@@ -327,11 +475,26 @@ PYBIND11_MODULE( libcalamares, m )
 {
     m.doc() = "Calamares API for Python";
 
-    m.add_object( "ORGANIZATION_NAME", py::str( CALAMARES_ORGANIZATION_NAME ) );
-    m.add_object( "ORGANIZATION_DOMAIN", py::str( CALAMARES_ORGANIZATION_DOMAIN ) );
-    m.add_object( "APPLICATION_NAME", py::str( CALAMARES_APPLICATION_NAME ) );
-    m.add_object( "VERSION", py::str( CALAMARES_VERSION ) );
-    m.add_object( "VERSION_SHORT", py::str( CALAMARES_VERSION_SHORT ) );
+    m.add_object( "ORGANIZATION_NAME", Calamares::Python::String( CALAMARES_ORGANIZATION_NAME ) );
+    m.add_object( "ORGANIZATION_DOMAIN", Calamares::Python::String( CALAMARES_ORGANIZATION_DOMAIN ) );
+    m.add_object( "APPLICATION_NAME", Calamares::Python::String( CALAMARES_APPLICATION_NAME ) );
+    m.add_object( "VERSION", Calamares::Python::String( CALAMARES_VERSION ) );
+    m.add_object( "VERSION_SHORT", Calamares::Python::String( CALAMARES_VERSION_SHORT ) );
 
     m.add_object( "utils", py::module::import( "utils" ) );
+
+    py::class_< Calamares::Python::JobProxy >( m, "Job" )
+        .def_readonly( "module_name", &Calamares::Python::JobProxy::moduleName )
+        .def_readonly( "pretty_name", &Calamares::Python::JobProxy::prettyName )
+        .def_readonly( "working_path", &Calamares::Python::JobProxy::workingPath )
+        .def_readonly( "configuration", &Calamares::Python::JobProxy::configuration )
+        .def( "setprogress", &Calamares::Python::JobProxy::setprogress );
+
+    py::class_< Calamares::Python::GlobalStorageProxy >( m, "GlobalStorage" )
+        .def( "contains", &Calamares::Python::GlobalStorageProxy::contains )
+        .def( "count", &Calamares::Python::GlobalStorageProxy::count )
+        .def( "insert", &Calamares::Python::GlobalStorageProxy::insert )
+        .def( "keys", &Calamares::Python::GlobalStorageProxy::keys )
+        .def( "remove", &Calamares::Python::GlobalStorageProxy::remove )
+        .def( "value", &Calamares::Python::GlobalStorageProxy::value );
 }
