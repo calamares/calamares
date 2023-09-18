@@ -28,7 +28,6 @@ class GlobalStorage;
 class PythonJob;
 
 namespace Python __attribute__( ( visibility( "hidden" ) ) )
-
 {
     std::string obscure( const std::string& string );
 
@@ -41,6 +40,9 @@ namespace Python __attribute__( ( visibility( "hidden" ) ) )
 
     List gettext_languages();
     Object gettext_path();
+
+    int target_env_call( const List& args, const std::string& input = std::string(), int timeout = 0 );
+    int check_target_env_call( const List& args, const std::string& input = std::string(), int timeout = 0 );
 
 
     class Job;

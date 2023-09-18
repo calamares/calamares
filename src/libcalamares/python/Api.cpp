@@ -18,6 +18,7 @@
 #include "utils/Logger.h"
 #include "utils/RAII.h"
 #include "utils/String.h"
+#include "utils/System.h"
 #include "utils/Yaml.h"
 
 #include <QCoreApplication>
@@ -192,6 +193,16 @@ variantMapFromPyDict( const Calamares::Python::Dictionary& dict )
     return m;
 }
 
+QStringList
+stringListFromPyList( const Calamares::Python::List& list )
+{
+    QStringList l;
+    for ( const auto& h : list )
+    {
+        l.append( Calamares::Python::asQString( h ) );
+    }
+    return l;
+}
 
 const char output_prefix[] = "[PYTHON JOB]:";
 inline void
@@ -360,6 +371,41 @@ gettext_path()
     return py::none();  // None
 }
 
+int
+target_env_call( const List& args, const std::string& input, int timeout )
+{
+    return Calamares::System::instance()
+        ->targetEnvCommand(
+            stringListFromPyList( args ), QString(), QString::fromStdString( input ), std::chrono::seconds( timeout ) )
+        .first;
+}
+
+int
+check_target_env_call( const List& args, const std::string& input, int timeout )
+{
+    const auto commandList = stringListFromPyList( args );
+    auto ec = Calamares::System::instance()->targetEnvCommand(
+        commandList, QString(), QString::fromStdString( input ), std::chrono::seconds( timeout ) );
+
+    if ( ec.first == 0 )
+    {
+        return 0;
+    }
+
+    QString raise = QString( "import subprocess\n"
+                             "e = subprocess.CalledProcessError(%1,\"%2\")\n" )
+                        .arg( ec.first )
+                        .arg( commandList.join( ' ' ) );
+    if ( !ec.second.isEmpty() )
+    {
+        raise.append( QStringLiteral( "e.output = \"\"\"%1\"\"\"\n" ).arg( ec.second ) );
+    }
+    raise.append( "raise e" );
+    py::exec( raise.toStdString() );
+    py::error_already_set();
+    return ec.first;
+}
+
 JobProxy::JobProxy( Calamares::Python::Job* parent )
     : prettyName( parent->prettyName().toStdString() )
     , workingPath( parent->workingPath().toStdString() )
@@ -464,6 +510,19 @@ PYBIND11_EMBEDDED_MODULE( utils, m )
     m.def( "error", &Calamares::Python::error, "Log an error-message" );
 
     m.def( "load_yaml", &Calamares::Python::load_yaml, "Loads YAML from a file." );
+
+    m.def( "target_env_call",
+           &Calamares::Python::target_env_call,
+           "Runs command in target, returns exit code.",
+           py::arg( "command_list" ),
+           py::arg( "input" ) = std::string(),
+           py::arg( "timeout" ) = 0 );
+    m.def( "check_target_env_call",
+           &Calamares::Python::check_target_env_call,
+           "Runs command in target, raises on error exit.",
+           py::arg( "command_list" ),
+           py::arg( "input" ) = std::string(),
+           py::arg( "timeout" ) = 0 );
 
     m.def( "gettext_languages",
            &Calamares::Python::gettext_languages,
