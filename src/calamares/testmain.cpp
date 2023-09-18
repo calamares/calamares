@@ -25,6 +25,7 @@
 #include "modulesystem/ViewModule.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
+#include "utils/System.h"
 #include "utils/Yaml.h"
 #include "viewpages/ExecutionViewStep.h"
 
@@ -64,6 +65,7 @@ struct ModuleConfig
     QString m_module;
     QString m_jobConfig;
     QString m_globalConfig;
+    QString m_settingsConfig;
     QString m_language;
     QString m_branding;
     bool m_ui;
@@ -75,8 +77,11 @@ handle_args( QCoreApplication& a )
 {
     QCommandLineOption debugLevelOption(
         QStringLiteral( "D" ), "Verbose output for debugging purposes (0-8), ignored.", "level" );
+    QCommandLineOption settingsOption( { QStringLiteral( "S" ), QStringLiteral( "settings" ) },
+                                       QStringLiteral( "Settings.conf document" ),
+                                       QString( "settings.conf" ) );
     QCommandLineOption globalOption( { QStringLiteral( "g" ), QStringLiteral( "global" ) },
-                                     QStringLiteral( "Global settings document" ),
+                                     QStringLiteral( "Global storage settings document" ),
                                      "global.yaml" );
     QCommandLineOption jobOption(
         { QStringLiteral( "j" ), QStringLiteral( "job" ) }, QStringLiteral( "Job settings document" ), "job.yaml" );
@@ -96,6 +101,7 @@ handle_args( QCoreApplication& a )
     parser.addVersionOption();
 
     parser.addOption( debugLevelOption );
+    parser.addOption( settingsOption );
     parser.addOption( globalOption );
     parser.addOption( jobOption );
     parser.addOption( langOption );
@@ -142,6 +148,7 @@ handle_args( QCoreApplication& a )
         return ModuleConfig { parser.isSet( slideshowOption ) ? QStringLiteral( "-" ) : args.first(),
                               jobSettings,
                               parser.value( globalOption ),
+                              parser.value( settingsOption ),
                               parser.value( langOption ),
                               parser.value( brandOption ),
                               parser.isSet( slideshowOption ) || parser.isSet( uiOption ),
@@ -458,8 +465,10 @@ main( int argc, char* argv[] )
         return 1;
     }
 
-    std::unique_ptr< Calamares::Settings > settings_p( Calamares::Settings::init( QString() ) );
+    std::unique_ptr< Calamares::Settings > settings_p( Calamares::Settings::init( module.m_settingsConfig ) );
     std::unique_ptr< Calamares::JobQueue > jobqueue_p( new Calamares::JobQueue( nullptr ) );
+    std::unique_ptr< Calamares::System > system_p( new Calamares::System( settings_p->doChroot() ) );
+
     QMainWindow* mw = nullptr;
 
     auto* gs = jobqueue_p->globalStorage();
