@@ -263,6 +263,28 @@ _add_localedirs( QStringList& pathList, const QString& candidate )
     }
 }
 
+int
+raise_on_error( const Calamares::ProcessResult& ec, const QStringList& commandList )
+{
+    if ( ec.first == 0 )
+    {
+        return 0;
+    }
+
+    QString raise = QString( "import subprocess\n"
+                             "e = subprocess.CalledProcessError(%1,\"%2\")\n" )
+                        .arg( ec.first )
+                        .arg( commandList.join( ' ' ) );
+    if ( !ec.second.isEmpty() )
+    {
+        raise.append( QStringLiteral( "e.output = \"\"\"%1\"\"\"\n" ).arg( ec.second ) );
+    }
+    raise.append( "raise e" );
+    py::exec( raise.toStdString() );
+    py::error_already_set();
+    return ec.first;
+}
+
 }  // namespace
 
 /** @namespace
@@ -386,25 +408,19 @@ check_target_env_call( const List& args, const std::string& input, int timeout )
     const auto commandList = stringListFromPyList( args );
     auto ec = Calamares::System::instance()->targetEnvCommand(
         commandList, QString(), QString::fromStdString( input ), std::chrono::seconds( timeout ) );
-
-    if ( ec.first == 0 )
-    {
-        return 0;
-    }
-
-    QString raise = QString( "import subprocess\n"
-                             "e = subprocess.CalledProcessError(%1,\"%2\")\n" )
-                        .arg( ec.first )
-                        .arg( commandList.join( ' ' ) );
-    if ( !ec.second.isEmpty() )
-    {
-        raise.append( QStringLiteral( "e.output = \"\"\"%1\"\"\"\n" ).arg( ec.second ) );
-    }
-    raise.append( "raise e" );
-    py::exec( raise.toStdString() );
-    py::error_already_set();
-    return ec.first;
+    return raise_on_error( ec, commandList );
 }
+
+std::string
+check_target_env_output( const List& args, const std::string& input, int timeout )
+{
+    const auto commandList = stringListFromPyList( args );
+    auto ec = Calamares::System::instance()->targetEnvCommand(
+        commandList, QString(), QString::fromStdString( input ), std::chrono::seconds( timeout ) );
+    raise_on_error( ec, commandList );
+    return ec.second.toStdString();
+}
+
 
 JobProxy::JobProxy( Calamares::Python::Job* parent )
     : prettyName( parent->prettyName().toStdString() )
@@ -520,6 +536,12 @@ PYBIND11_EMBEDDED_MODULE( utils, m )
     m.def( "check_target_env_call",
            &Calamares::Python::check_target_env_call,
            "Runs command in target, raises on error exit.",
+           py::arg( "command_list" ),
+           py::arg( "input" ) = std::string(),
+           py::arg( "timeout" ) = 0 );
+    m.def( "check_target_env_output",
+           &Calamares::Python::check_target_env_output,
+           "Runs command in target, returns standard output or raises on error.",
            py::arg( "command_list" ),
            py::arg( "input" ) = std::string(),
            py::arg( "timeout" ) = 0 );

@@ -43,6 +43,7 @@ namespace Python __attribute__( ( visibility( "hidden" ) ) )
 
     int target_env_call( const List& args, const std::string& input = std::string(), int timeout = 0 );
     int check_target_env_call( const List& args, const std::string& input = std::string(), int timeout = 0 );
+    std::string check_target_env_output( const List& args, const std::string& input = std::string(), int timeout = 0 );
 
 
     class Job;
