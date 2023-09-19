@@ -17,6 +17,7 @@
 #include "python/PythonJob.h"
 #include "utils/Logger.h"
 #include "utils/RAII.h"
+#include "utils/Runner.h"
 #include "utils/String.h"
 #include "utils/System.h"
 #include "utils/Yaml.h"
@@ -285,6 +286,44 @@ raise_on_error( const Calamares::ProcessResult& ec, const QStringList& commandLi
     return ec.first;
 }
 
+int
+process_output( Calamares::Utils::RunLocation location,
+                const QStringList& args,
+                const Calamares::Python::Object& callback,
+                const std::string& input,
+                int timeout )
+{
+    Calamares::Utils::Runner r( args );
+    r.setLocation( location );
+    if ( !callback.is_none() )
+    {
+        if ( py::isinstance< Calamares::Python::List >( callback ) )
+        {
+            QObject::connect( &r,
+                              &decltype( r )::output,
+                              [ list_append = callback.attr( "append" ) ]( const QString& s )
+                              { list_append( s.toStdString() ); } );
+        }
+        else
+        {
+            QObject::connect(
+                &r, &decltype( r )::output, [ &callback ]( const QString& s ) { callback( s.toStdString() ); } );
+        }
+        r.enableOutputProcessing();
+    }
+    if ( !input.empty() )
+    {
+        r.setInput( QString::fromStdString( input ) );
+    }
+    if ( timeout > 0 )
+    {
+        r.setTimeout( std::chrono::seconds( timeout ) );
+    }
+
+    auto result = r.run();
+    return raise_on_error( result, args );
+}
+
 }  // namespace
 
 /** @namespace
@@ -421,6 +460,19 @@ check_target_env_output( const List& args, const std::string& input, int timeout
     return ec.second.toStdString();
 }
 
+int
+target_env_process_output( const List& args, const Object& callback, const std::string& input, int timeout )
+{
+    return process_output(
+        Calamares::System::RunLocation::RunInTarget, stringListFromPyList( args ), callback, input, timeout );
+}
+int
+host_env_process_output( const List& args, const Object& callback, const std::string& input, int timeout )
+{
+    return process_output(
+        Calamares::System::RunLocation::RunInHost, stringListFromPyList( args ), callback, input, timeout );
+}
+
 
 JobProxy::JobProxy( Calamares::Python::Job* parent )
     : prettyName( parent->prettyName().toStdString() )
@@ -543,6 +595,20 @@ PYBIND11_EMBEDDED_MODULE( utils, m )
            &Calamares::Python::check_target_env_output,
            "Runs command in target, returns standard output or raises on error.",
            py::arg( "command_list" ),
+           py::arg( "input" ) = std::string(),
+           py::arg( "timeout" ) = 0 );
+    m.def( "target_env_process_output",
+           &Calamares::Python::target_env_process_output,
+           "Runs command in target, updating callback and returns standard output or raises on error.",
+           py::arg( "command_list" ),
+           py::arg( "callback" ) = pybind11::none(),
+           py::arg( "input" ) = std::string(),
+           py::arg( "timeout" ) = 0 );
+    m.def( "host_env_process_output",
+           &Calamares::Python::host_env_process_output,
+           "Runs command in target, updating callback and returns standard output or raises on error.",
+           py::arg( "command_list" ),
+           py::arg( "callback" ) = pybind11::none(),
            py::arg( "input" ) = std::string(),
            py::arg( "timeout" ) = 0 );
 
