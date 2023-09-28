@@ -33,7 +33,7 @@ jobs:
       - name: "install dependencies"
         shell: bash
         run: |
-          ./.github/workflows/nightly-neon.sh
+          ./ci/deps-neon.sh
       - name: "build"
         id: build
         uses: calamares/actions/generic-build@v4
