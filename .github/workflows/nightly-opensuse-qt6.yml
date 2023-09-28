@@ -29,5 +29,5 @@ jobs:
         shell: bash
         run: ./ci/deps-opensuse-qt6.sh
       - name: "build"
-        id: build
-        uses: calamares/actions/generic-build@v4
+        shell: bash
+        run: ./ci/build.sh
