@@ -34,7 +34,7 @@ jobs:
           make install DESTDIR=${{ env.BUILDDIR }}/stage
           tar czf calamares.tar.gz stage
       - name: "Calamares: upload"
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: calamares-tarball
           path: ${{ env.BUILDDIR }}/calamares.tar.gz
