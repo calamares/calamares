@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - calamares
-      - 3.2.x-stable
   pull_request:
     types:
       - opened
@@ -20,6 +19,7 @@ env:
     -DKDE_INSTALL_USE_QT_SYS_PATHS=ON
     -DWITH_PYTHONQT=OFF
     -DCMAKE_BUILD_TYPE=Debug
+  GIT_HASH: ${{ github.event.head_commit.id }}
 
 jobs:
   build:
@@ -34,5 +34,5 @@ jobs:
         shell: bash
         run: ./ci/deps-neon.sh
       - name: "build"
-        id: build
-        uses: calamares/actions/generic-build@v4
+        shell: bash
+        run: ./ci/build.sh
