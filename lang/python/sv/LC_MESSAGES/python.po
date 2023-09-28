@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-24 23:38+0200\n"
+"POT-Creation-Date: 2023-08-28 23:53+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>, 2023\n"
 "Language-Team: Swedish (https://app.transifex.com/calamares/teams/20061/sv/)\n"
@@ -27,17 +27,17 @@ msgstr ""
 msgid "Install bootloader."
 msgstr "Installera starthanterare."
 
-#: src/modules/bootloader/main.py:640
+#: src/modules/bootloader/main.py:644
 msgid "Failed to install grub, no partitions defined in global storage"
 msgstr ""
 "Det gick inte att installera grub, inga partitioner definierade i global "
 "lagring"
 
-#: src/modules/bootloader/main.py:895
+#: src/modules/bootloader/main.py:899
 msgid "Bootloader installation error"
 msgstr "Starthanterare installationsfel"
 
-#: src/modules/bootloader/main.py:896
+#: src/modules/bootloader/main.py:900
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
@@ -45,43 +45,43 @@ msgstr ""
 "Starthanterare kunde inte installeras. Installationskommandot "
 "<pre>{!s}</pre>returnerade felkod {!s}."
 
-#: src/modules/displaymanager/main.py:507
+#: src/modules/displaymanager/main.py:509
 msgid "Cannot write LXDM configuration file"
 msgstr "Misslyckades med att skriva LXDM konfigurationsfil"
 
-#: src/modules/displaymanager/main.py:508
+#: src/modules/displaymanager/main.py:510
 msgid "LXDM config file {!s} does not exist"
 msgstr "LXDM konfigurationsfil {!s} existerar inte"
 
-#: src/modules/displaymanager/main.py:596
+#: src/modules/displaymanager/main.py:598
 msgid "Cannot write LightDM configuration file"
 msgstr "Misslyckades med att skriva LightDM konfigurationsfil"
 
-#: src/modules/displaymanager/main.py:597
+#: src/modules/displaymanager/main.py:599
 msgid "LightDM config file {!s} does not exist"
 msgstr "LightDM konfigurationsfil {!s} existerar inte"
 
-#: src/modules/displaymanager/main.py:682
+#: src/modules/displaymanager/main.py:684
 msgid "Cannot configure LightDM"
 msgstr "Kunde inte konfigurera LightDM"
 
-#: src/modules/displaymanager/main.py:683
+#: src/modules/displaymanager/main.py:685
 msgid "No LightDM greeter installed."
 msgstr "Ingen LightDM greeter installerad."
 
-#: src/modules/displaymanager/main.py:714
+#: src/modules/displaymanager/main.py:716
 msgid "Cannot write SLIM configuration file"
 msgstr "Misslyckades med att SLIM konfigurationsfil"
 
-#: src/modules/displaymanager/main.py:715
+#: src/modules/displaymanager/main.py:717
 msgid "SLIM config file {!s} does not exist"
 msgstr "SLIM konfigurationsfil {!s} existerar inte"
 
-#: src/modules/displaymanager/main.py:933
+#: src/modules/displaymanager/main.py:935
 msgid "No display managers selected for the displaymanager module."
 msgstr "Ingen skärmhanterare vald för displaymanager modulen."
 
-#: src/modules/displaymanager/main.py:934
+#: src/modules/displaymanager/main.py:936
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
@@ -89,7 +89,7 @@ msgstr ""
 "Skärmhanterar listan är tom eller odefinierad i både globalstorage och "
 "displaymanager.conf."
 
-#: src/modules/displaymanager/main.py:1021
+#: src/modules/displaymanager/main.py:1023
 msgid "Display manager configuration was incomplete"
 msgstr "Konfiguration för displayhanteraren var inkomplett"
 
@@ -120,8 +120,8 @@ msgid "Writing fstab."
 msgstr "Skriver fstab."
 
 #: src/modules/fstab/main.py:377 src/modules/fstab/main.py:383
-#: src/modules/fstab/main.py:411 src/modules/initcpiocfg/main.py:245
-#: src/modules/initcpiocfg/main.py:249 src/modules/initramfscfg/main.py:85
+#: src/modules/fstab/main.py:411 src/modules/initcpiocfg/main.py:267
+#: src/modules/initcpiocfg/main.py:271 src/modules/initramfscfg/main.py:85
 #: src/modules/initramfscfg/main.py:89 src/modules/localecfg/main.py:140
 #: src/modules/mount/main.py:329 src/modules/networkcfg/main.py:105
 #: src/modules/openrcdmcryptcfg/main.py:72
@@ -160,11 +160,11 @@ msgstr "Ställer hårdvaruklockan."
 msgid "Configuring mkinitcpio."
 msgstr "Konfigurerar mkinitcpio."
 
-#: src/modules/initcpiocfg/main.py:246
+#: src/modules/initcpiocfg/main.py:268
 msgid "No partitions are defined for <pre>initcpiocfg</pre>."
 msgstr "Inga partitioner är definerade för <pre>initcpiocfg</pre>"
 
-#: src/modules/initcpiocfg/main.py:250
+#: src/modules/initcpiocfg/main.py:272
 msgid "No root mount point for <pre>initcpiocfg</pre>."
 msgstr "Ingen root monteringspunkt för <pre>initcpiocfg</pre>"
 
@@ -244,12 +244,12 @@ msgid_plural "Removing %(num)d packages."
 msgstr[0] "Tar bort ett paket."
 msgstr[1] "Tar bort %(num)d paket."
 
-#: src/modules/packages/main.py:725 src/modules/packages/main.py:737
-#: src/modules/packages/main.py:765
+#: src/modules/packages/main.py:740 src/modules/packages/main.py:752
+#: src/modules/packages/main.py:780
 msgid "Package Manager error"
 msgstr "Pakethanterare fel"
 
-#: src/modules/packages/main.py:726
+#: src/modules/packages/main.py:741
 msgid ""
 "The package manager could not prepare updates. The command <pre>{!s}</pre> "
 "returned error code {!s}."
@@ -257,7 +257,7 @@ msgstr ""
 "Pakethanteraren kunde inte förbereda uppdateringar kommandot <pre>{!s}</pre>"
 " returnerade felkod {!s}."
 
-#: src/modules/packages/main.py:738
+#: src/modules/packages/main.py:753
 msgid ""
 "The package manager could not update the system. The command <pre>{!s}</pre>"
 " returned error code {!s}."
@@ -265,7 +265,7 @@ msgstr ""
 "Pakethanteraren kunde inte uppdatera systemet. kommandot <pre>{!s}</pre> "
 "returnerade felkod {!s}."
 
-#: src/modules/packages/main.py:766
+#: src/modules/packages/main.py:781
 msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."

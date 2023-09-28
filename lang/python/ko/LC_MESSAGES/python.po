@@ -5,16 +5,16 @@
 # 
 # Translators:
 # Ji-Hyeon Gim <potatogim@potatogim.net>, 2018
-# Junghee Lee <daemul72@gmail.com>, 2023
+# JungHee Lee <daemul72@gmail.com>, 2023
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-24 23:38+0200\n"
+"POT-Creation-Date: 2023-08-28 23:53+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2023\n"
+"Last-Translator: JungHee Lee <daemul72@gmail.com>, 2023\n"
 "Language-Team: Korean (https://app.transifex.com/calamares/teams/20061/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,57 +26,57 @@ msgstr ""
 msgid "Install bootloader."
 msgstr "부트로더 설치."
 
-#: src/modules/bootloader/main.py:640
+#: src/modules/bootloader/main.py:644
 msgid "Failed to install grub, no partitions defined in global storage"
 msgstr "grub을 설치하지 못했습니다. 파티션 없음이 전역 저장소에 정의되었습니다"
 
-#: src/modules/bootloader/main.py:895
+#: src/modules/bootloader/main.py:899
 msgid "Bootloader installation error"
 msgstr "부트로더 설치 오류"
 
-#: src/modules/bootloader/main.py:896
+#: src/modules/bootloader/main.py:900
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
 msgstr "부트로더를 설치할 수 없습니다. <pre>{!s}</pre> 설치 명령에서  {!s} 오류 코드를 반환했습니다."
 
-#: src/modules/displaymanager/main.py:507
+#: src/modules/displaymanager/main.py:509
 msgid "Cannot write LXDM configuration file"
 msgstr "LMLDM 구성 파일을 쓸 수 없습니다."
 
-#: src/modules/displaymanager/main.py:508
+#: src/modules/displaymanager/main.py:510
 msgid "LXDM config file {!s} does not exist"
 msgstr "LXDM 구성 파일 {!s}이 없습니다."
 
-#: src/modules/displaymanager/main.py:596
+#: src/modules/displaymanager/main.py:598
 msgid "Cannot write LightDM configuration file"
 msgstr "LightDM 구성 파일을 쓸 수 없습니다."
 
-#: src/modules/displaymanager/main.py:597
+#: src/modules/displaymanager/main.py:599
 msgid "LightDM config file {!s} does not exist"
 msgstr "LightDM 구성 파일 {!s}가 없습니다."
 
-#: src/modules/displaymanager/main.py:682
+#: src/modules/displaymanager/main.py:684
 msgid "Cannot configure LightDM"
 msgstr "LightDM을 구성할 수 없습니다."
 
-#: src/modules/displaymanager/main.py:683
+#: src/modules/displaymanager/main.py:685
 msgid "No LightDM greeter installed."
 msgstr "LightDM greeter가 설치되지 않았습니다."
 
-#: src/modules/displaymanager/main.py:714
+#: src/modules/displaymanager/main.py:716
 msgid "Cannot write SLIM configuration file"
 msgstr "SLIM 구성 파일을 쓸 수 없음"
 
-#: src/modules/displaymanager/main.py:715
+#: src/modules/displaymanager/main.py:717
 msgid "SLIM config file {!s} does not exist"
 msgstr "SLIM 구성 파일 {!s}가 없음"
 
-#: src/modules/displaymanager/main.py:933
+#: src/modules/displaymanager/main.py:935
 msgid "No display managers selected for the displaymanager module."
 msgstr "displaymanager 모듈에 대해 선택된 디스플레이 관리자가 없습니다."
 
-#: src/modules/displaymanager/main.py:934
+#: src/modules/displaymanager/main.py:936
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
@@ -84,7 +84,7 @@ msgstr ""
 "displaymanagers 목록이 비어 있거나 globalstorage 및 displaymanager.conf 모두에서 정의되지 "
 "않았습니다."
 
-#: src/modules/displaymanager/main.py:1021
+#: src/modules/displaymanager/main.py:1023
 msgid "Display manager configuration was incomplete"
 msgstr "디스플레이 관리자 구성이 완료되지 않았습니다."
 
@@ -115,8 +115,8 @@ msgid "Writing fstab."
 msgstr "fstab 쓰기."
 
 #: src/modules/fstab/main.py:377 src/modules/fstab/main.py:383
-#: src/modules/fstab/main.py:411 src/modules/initcpiocfg/main.py:245
-#: src/modules/initcpiocfg/main.py:249 src/modules/initramfscfg/main.py:85
+#: src/modules/fstab/main.py:411 src/modules/initcpiocfg/main.py:267
+#: src/modules/initcpiocfg/main.py:271 src/modules/initramfscfg/main.py:85
 #: src/modules/initramfscfg/main.py:89 src/modules/localecfg/main.py:140
 #: src/modules/mount/main.py:329 src/modules/networkcfg/main.py:105
 #: src/modules/openrcdmcryptcfg/main.py:72
@@ -152,11 +152,11 @@ msgstr "하드웨어 클럭 설정 중."
 msgid "Configuring mkinitcpio."
 msgstr "mkinitcpio 구성 중."
 
-#: src/modules/initcpiocfg/main.py:246
+#: src/modules/initcpiocfg/main.py:268
 msgid "No partitions are defined for <pre>initcpiocfg</pre>."
 msgstr "<pre>initcpiocfg</pre>에 대해 정의된 파티션이 없습니다."
 
-#: src/modules/initcpiocfg/main.py:250
+#: src/modules/initcpiocfg/main.py:272
 msgid "No root mount point for <pre>initcpiocfg</pre>."
 msgstr "<pre>initcpiocfg</pre>에 대한 루트 마운트 지점이 없습니다."
 
@@ -234,24 +234,24 @@ msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
 msgstr[0] "%(num)d개의 패키지들을 제거하는 중입니다."
 
-#: src/modules/packages/main.py:725 src/modules/packages/main.py:737
-#: src/modules/packages/main.py:765
+#: src/modules/packages/main.py:740 src/modules/packages/main.py:752
+#: src/modules/packages/main.py:780
 msgid "Package Manager error"
 msgstr "패키지 관리자 오류"
 
-#: src/modules/packages/main.py:726
+#: src/modules/packages/main.py:741
 msgid ""
 "The package manager could not prepare updates. The command <pre>{!s}</pre> "
 "returned error code {!s}."
 msgstr "패키지 관리자가 업데이트를 준비할 수 없습니다. <pre>{!s}</pre> 명령에서  {!s} 오류 코드를 반환했습니다."
 
-#: src/modules/packages/main.py:738
+#: src/modules/packages/main.py:753
 msgid ""
 "The package manager could not update the system. The command <pre>{!s}</pre>"
 " returned error code {!s}."
 msgstr "패키지 관리자가 시스템을 업데이트할 수 없습니다. <pre>{!s}</pre> 명령에서  {!s} 오류 코드를 반환했습니다."
 
-#: src/modules/packages/main.py:766
+#: src/modules/packages/main.py:781
 msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."

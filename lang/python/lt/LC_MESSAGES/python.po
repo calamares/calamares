@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-24 23:38+0200\n"
+"POT-Creation-Date: 2023-08-28 23:53+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Moo, 2023\n"
 "Language-Team: Lithuanian (https://app.transifex.com/calamares/teams/20061/lt/)\n"
@@ -26,17 +26,17 @@ msgstr ""
 msgid "Install bootloader."
 msgstr "Įdiegti operacinės sistemos paleidyklę."
 
-#: src/modules/bootloader/main.py:640
+#: src/modules/bootloader/main.py:644
 msgid "Failed to install grub, no partitions defined in global storage"
 msgstr ""
 "Nepavyko įdiegti grub paleidyklės, visuotinėje saugykloje nėra apibrėžta "
 "jokių skaidinių"
 
-#: src/modules/bootloader/main.py:895
+#: src/modules/bootloader/main.py:899
 msgid "Bootloader installation error"
 msgstr "Operacinės sistemos paleidyklės diegimo klaida"
 
-#: src/modules/bootloader/main.py:896
+#: src/modules/bootloader/main.py:900
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
@@ -44,43 +44,43 @@ msgstr ""
 "Nepavyko įdiegti operacinės sistemos paleidyklės. Diegimo komanda "
 "<pre>{!s}</pre> grąžino klaidos kodą {!s}."
 
-#: src/modules/displaymanager/main.py:507
+#: src/modules/displaymanager/main.py:509
 msgid "Cannot write LXDM configuration file"
 msgstr "Nepavyksta įrašyti LXDM konfigūracijos failą"
 
-#: src/modules/displaymanager/main.py:508
+#: src/modules/displaymanager/main.py:510
 msgid "LXDM config file {!s} does not exist"
 msgstr "LXDM konfigūracijos failo {!s} nėra"
 
-#: src/modules/displaymanager/main.py:596
+#: src/modules/displaymanager/main.py:598
 msgid "Cannot write LightDM configuration file"
 msgstr "Nepavyksta įrašyti LightDM konfigūracijos failą"
 
-#: src/modules/displaymanager/main.py:597
+#: src/modules/displaymanager/main.py:599
 msgid "LightDM config file {!s} does not exist"
 msgstr "LightDM konfigūracijos failo {!s} nėra"
 
-#: src/modules/displaymanager/main.py:682
+#: src/modules/displaymanager/main.py:684
 msgid "Cannot configure LightDM"
 msgstr "Nepavyksta konfigūruoti LightDM"
 
-#: src/modules/displaymanager/main.py:683
+#: src/modules/displaymanager/main.py:685
 msgid "No LightDM greeter installed."
 msgstr "Neįdiegtas joks LightDM pasisveikinimas."
 
-#: src/modules/displaymanager/main.py:714
+#: src/modules/displaymanager/main.py:716
 msgid "Cannot write SLIM configuration file"
 msgstr "Nepavyksta įrašyti SLIM konfigūracijos failą"
 
-#: src/modules/displaymanager/main.py:715
+#: src/modules/displaymanager/main.py:717
 msgid "SLIM config file {!s} does not exist"
 msgstr "SLIM konfigūracijos failo {!s} nėra"
 
-#: src/modules/displaymanager/main.py:933
+#: src/modules/displaymanager/main.py:935
 msgid "No display managers selected for the displaymanager module."
 msgstr "Displaymanagers moduliui nėra pasirinkta jokių ekranų tvarkytuvių."
 
-#: src/modules/displaymanager/main.py:934
+#: src/modules/displaymanager/main.py:936
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
@@ -88,7 +88,7 @@ msgstr ""
 "Displaymanagers sąrašas yra tuščias arba neapibrėžtas tiek globalstorage, "
 "tiek ir displaymanager.conf faile."
 
-#: src/modules/displaymanager/main.py:1021
+#: src/modules/displaymanager/main.py:1023
 msgid "Display manager configuration was incomplete"
 msgstr "Ekranų tvarkytuvės konfigūracija yra nepilna"
 
@@ -121,8 +121,8 @@ msgid "Writing fstab."
 msgstr "Rašoma fstab."
 
 #: src/modules/fstab/main.py:377 src/modules/fstab/main.py:383
-#: src/modules/fstab/main.py:411 src/modules/initcpiocfg/main.py:245
-#: src/modules/initcpiocfg/main.py:249 src/modules/initramfscfg/main.py:85
+#: src/modules/fstab/main.py:411 src/modules/initcpiocfg/main.py:267
+#: src/modules/initcpiocfg/main.py:271 src/modules/initramfscfg/main.py:85
 #: src/modules/initramfscfg/main.py:89 src/modules/localecfg/main.py:140
 #: src/modules/mount/main.py:329 src/modules/networkcfg/main.py:105
 #: src/modules/openrcdmcryptcfg/main.py:72
@@ -162,11 +162,11 @@ msgstr "Nustatomas aparatinės įrangos laikrodis."
 msgid "Configuring mkinitcpio."
 msgstr "Konfigūruojama mkinitcpio."
 
-#: src/modules/initcpiocfg/main.py:246
+#: src/modules/initcpiocfg/main.py:268
 msgid "No partitions are defined for <pre>initcpiocfg</pre>."
 msgstr "Nėra apibrėžta jokių skaidinių, skirtų <pre>initcpiocfg</pre>."
 
-#: src/modules/initcpiocfg/main.py:250
+#: src/modules/initcpiocfg/main.py:272
 msgid "No root mount point for <pre>initcpiocfg</pre>."
 msgstr "Nėra šaknies prijungimo taško, skirto <pre>initcpiocfg</pre>."
 
@@ -250,12 +250,12 @@ msgstr[1] "Šalinami %(num)d paketai."
 msgstr[2] "Šalinama %(num)d paketų."
 msgstr[3] "Šalinama %(num)d paketų."
 
-#: src/modules/packages/main.py:725 src/modules/packages/main.py:737
-#: src/modules/packages/main.py:765
+#: src/modules/packages/main.py:740 src/modules/packages/main.py:752
+#: src/modules/packages/main.py:780
 msgid "Package Manager error"
 msgstr "Paketų tvarkytuvės klaida"
 
-#: src/modules/packages/main.py:726
+#: src/modules/packages/main.py:741
 msgid ""
 "The package manager could not prepare updates. The command <pre>{!s}</pre> "
 "returned error code {!s}."
@@ -263,7 +263,7 @@ msgstr ""
 "Paketų tvarkytuvei nepavyko paruošti atnaujinimų. Komanda <pre>{!s}</pre> "
 "grąžino klaidos kodą {!s}."
 
-#: src/modules/packages/main.py:738
+#: src/modules/packages/main.py:753
 msgid ""
 "The package manager could not update the system. The command <pre>{!s}</pre>"
 " returned error code {!s}."
@@ -271,7 +271,7 @@ msgstr ""
 "Paketų tvarkytuvei nepavyko atnaujinti sistemos. Komanda <pre>{!s}</pre> "
 "grąžino klaidos kodą {!s}."
 
-#: src/modules/packages/main.py:766
+#: src/modules/packages/main.py:781
 msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."

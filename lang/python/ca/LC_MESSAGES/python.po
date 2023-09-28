@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-24 23:38+0200\n"
+"POT-Creation-Date: 2023-08-28 23:53+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Davidmp <medipas@gmail.com>, 2023\n"
 "Language-Team: Catalan (https://app.transifex.com/calamares/teams/20061/ca/)\n"
@@ -25,17 +25,17 @@ msgstr ""
 msgid "Install bootloader."
 msgstr "S'instal·la el carregador d'arrencada."
 
-#: src/modules/bootloader/main.py:640
+#: src/modules/bootloader/main.py:644
 msgid "Failed to install grub, no partitions defined in global storage"
 msgstr ""
 "No s'ha pogut instal·lar el grub. No s'han definit particions a "
 "l'emmagatzematge global."
 
-#: src/modules/bootloader/main.py:895
+#: src/modules/bootloader/main.py:899
 msgid "Bootloader installation error"
 msgstr "Error d'instal·lació del carregador d'arrencada"
 
-#: src/modules/bootloader/main.py:896
+#: src/modules/bootloader/main.py:900
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
@@ -43,44 +43,44 @@ msgstr ""
 "No s'ha pogut instal·lar el carregador d'arrencada. L'ordre d'instal·lació "
 "<pre>{!s}</pre>ha retornat el codi d'error {!s}."
 
-#: src/modules/displaymanager/main.py:507
+#: src/modules/displaymanager/main.py:509
 msgid "Cannot write LXDM configuration file"
 msgstr "No es pot escriure el fitxer de configuració de l'LXDM."
 
-#: src/modules/displaymanager/main.py:508
+#: src/modules/displaymanager/main.py:510
 msgid "LXDM config file {!s} does not exist"
 msgstr "El fitxer de configuració de l'LXDM {!s} no existeix."
 
-#: src/modules/displaymanager/main.py:596
+#: src/modules/displaymanager/main.py:598
 msgid "Cannot write LightDM configuration file"
 msgstr "No es pot escriure el fitxer de configuració del LightDM."
 
-#: src/modules/displaymanager/main.py:597
+#: src/modules/displaymanager/main.py:599
 msgid "LightDM config file {!s} does not exist"
 msgstr "El fitxer de configuració del LightDM {!s} no existeix."
 
-#: src/modules/displaymanager/main.py:682
+#: src/modules/displaymanager/main.py:684
 msgid "Cannot configure LightDM"
 msgstr "No es pot configurar el LightDM."
 
-#: src/modules/displaymanager/main.py:683
+#: src/modules/displaymanager/main.py:685
 msgid "No LightDM greeter installed."
 msgstr "No hi ha benvinguda instal·lada per al LightDM."
 
-#: src/modules/displaymanager/main.py:714
+#: src/modules/displaymanager/main.py:716
 msgid "Cannot write SLIM configuration file"
 msgstr "No es pot escriure el fitxer de configuració de l'SLIM."
 
-#: src/modules/displaymanager/main.py:715
+#: src/modules/displaymanager/main.py:717
 msgid "SLIM config file {!s} does not exist"
 msgstr "El fitxer de configuració de l'SLIM {!s} no existeix."
 
-#: src/modules/displaymanager/main.py:933
+#: src/modules/displaymanager/main.py:935
 msgid "No display managers selected for the displaymanager module."
 msgstr ""
 "No hi ha cap gestor de pantalla seleccionat per al mòdul displaymanager."
 
-#: src/modules/displaymanager/main.py:934
+#: src/modules/displaymanager/main.py:936
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
@@ -88,7 +88,7 @@ msgstr ""
 "La llista de gestors de pantalla és buida o no definida ni a globalstorage "
 "ni a displaymanager.conf."
 
-#: src/modules/displaymanager/main.py:1021
+#: src/modules/displaymanager/main.py:1023
 msgid "Display manager configuration was incomplete"
 msgstr "La configuració del gestor de pantalla no era completa."
 
@@ -121,8 +121,8 @@ msgid "Writing fstab."
 msgstr "S'escriu fstab."
 
 #: src/modules/fstab/main.py:377 src/modules/fstab/main.py:383
-#: src/modules/fstab/main.py:411 src/modules/initcpiocfg/main.py:245
-#: src/modules/initcpiocfg/main.py:249 src/modules/initramfscfg/main.py:85
+#: src/modules/fstab/main.py:411 src/modules/initcpiocfg/main.py:267
+#: src/modules/initcpiocfg/main.py:271 src/modules/initramfscfg/main.py:85
 #: src/modules/initramfscfg/main.py:89 src/modules/localecfg/main.py:140
 #: src/modules/mount/main.py:329 src/modules/networkcfg/main.py:105
 #: src/modules/openrcdmcryptcfg/main.py:72
@@ -160,11 +160,11 @@ msgstr "S'estableix el rellotge del maquinari."
 msgid "Configuring mkinitcpio."
 msgstr "Es configura mkinitcpio."
 
-#: src/modules/initcpiocfg/main.py:246
+#: src/modules/initcpiocfg/main.py:268
 msgid "No partitions are defined for <pre>initcpiocfg</pre>."
 msgstr "No s'han definit particions per a <pre>initcpiocfg</pre>."
 
-#: src/modules/initcpiocfg/main.py:250
+#: src/modules/initcpiocfg/main.py:272
 msgid "No root mount point for <pre>initcpiocfg</pre>."
 msgstr "No hi ha punt de muntatge per a <pre>initcpiocfg</pre>."
 
@@ -244,12 +244,12 @@ msgid_plural "Removing %(num)d packages."
 msgstr[0] "Se suprimeix un paquet."
 msgstr[1] "Se suprimeixen %(num)d paquets."
 
-#: src/modules/packages/main.py:725 src/modules/packages/main.py:737
-#: src/modules/packages/main.py:765
+#: src/modules/packages/main.py:740 src/modules/packages/main.py:752
+#: src/modules/packages/main.py:780
 msgid "Package Manager error"
 msgstr "Error del gestor de paquets"
 
-#: src/modules/packages/main.py:726
+#: src/modules/packages/main.py:741
 msgid ""
 "The package manager could not prepare updates. The command <pre>{!s}</pre> "
 "returned error code {!s}."
@@ -257,7 +257,7 @@ msgstr ""
 "El gestor de paquets no ha pogut preparar les actualitzacions. "
 "L'ordre<pre>{!s}</pre> ha retornat el codi d'error {!s}."
 
-#: src/modules/packages/main.py:738
+#: src/modules/packages/main.py:753
 msgid ""
 "The package manager could not update the system. The command <pre>{!s}</pre>"
 " returned error code {!s}."
@@ -265,7 +265,7 @@ msgstr ""
 "El gestor de paquets no ha pogut actualitzar el sistema. L'ordre "
 "<pre>{!s}</pre> ha retornat el codi d'error {!s}."
 
-#: src/modules/packages/main.py:766
+#: src/modules/packages/main.py:781
 msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."

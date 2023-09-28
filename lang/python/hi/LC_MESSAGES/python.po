@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-24 23:38+0200\n"
+"POT-Creation-Date: 2023-08-28 23:53+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Panwar108 <caspian7pena@gmail.com>, 2022\n"
 "Language-Team: Hindi (https://app.transifex.com/calamares/teams/20061/hi/)\n"
@@ -25,15 +25,15 @@ msgstr ""
 msgid "Install bootloader."
 msgstr "बूट लोडर इंस्टॉल करना।"
 
-#: src/modules/bootloader/main.py:640
+#: src/modules/bootloader/main.py:644
 msgid "Failed to install grub, no partitions defined in global storage"
 msgstr "grub इंस्टॉल करना विफल, सर्वत्र संचयन में कोई विभाजन परिभाषित नहीं है"
 
-#: src/modules/bootloader/main.py:895
+#: src/modules/bootloader/main.py:899
 msgid "Bootloader installation error"
 msgstr "बूट लोडर इंस्टॉल त्रुटि"
 
-#: src/modules/bootloader/main.py:896
+#: src/modules/bootloader/main.py:900
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
@@ -41,43 +41,43 @@ msgstr ""
 "बूट लोडर इंस्टॉल करना विफल। इंस्टॉल कमांड <pre>{!s}</pre> हेतु त्रुटि कोड "
 "{!s} प्राप्त।"
 
-#: src/modules/displaymanager/main.py:507
+#: src/modules/displaymanager/main.py:509
 msgid "Cannot write LXDM configuration file"
 msgstr "LXDM विन्यास फ़ाइल राइट नहीं की जा सकती"
 
-#: src/modules/displaymanager/main.py:508
+#: src/modules/displaymanager/main.py:510
 msgid "LXDM config file {!s} does not exist"
 msgstr "LXDM विन्यास फ़ाइल {!s} मौजूद नहीं है"
 
-#: src/modules/displaymanager/main.py:596
+#: src/modules/displaymanager/main.py:598
 msgid "Cannot write LightDM configuration file"
 msgstr "LightDM विन्यास फ़ाइल राइट नहीं की जा सकती"
 
-#: src/modules/displaymanager/main.py:597
+#: src/modules/displaymanager/main.py:599
 msgid "LightDM config file {!s} does not exist"
 msgstr "LightDM विन्यास फ़ाइल {!s} मौजूद नहीं है"
 
-#: src/modules/displaymanager/main.py:682
+#: src/modules/displaymanager/main.py:684
 msgid "Cannot configure LightDM"
 msgstr "LightDM को विन्यस्त नहीं किया जा सकता"
 
-#: src/modules/displaymanager/main.py:683
+#: src/modules/displaymanager/main.py:685
 msgid "No LightDM greeter installed."
 msgstr "कोई LightDM लॉगिन स्क्रीन इंस्टॉल नहीं है।"
 
-#: src/modules/displaymanager/main.py:714
+#: src/modules/displaymanager/main.py:716
 msgid "Cannot write SLIM configuration file"
 msgstr "SLIM विन्यास फ़ाइल राइट नहीं की जा सकती"
 
-#: src/modules/displaymanager/main.py:715
+#: src/modules/displaymanager/main.py:717
 msgid "SLIM config file {!s} does not exist"
 msgstr "SLIM विन्यास फ़ाइल {!s} मौजूद नहीं है"
 
-#: src/modules/displaymanager/main.py:933
+#: src/modules/displaymanager/main.py:935
 msgid "No display managers selected for the displaymanager module."
 msgstr "चयनित डिस्प्ले प्रबंधक मॉड्यूल हेतु कोई डिस्प्ले प्रबंधक नहीं मिला।"
 
-#: src/modules/displaymanager/main.py:934
+#: src/modules/displaymanager/main.py:936
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
@@ -85,7 +85,7 @@ msgstr ""
 "globalstorage व displaymanager.conf में डिस्प्ले प्रबंधक सूची रिक्त या "
 "अपरिभाषित है।"
 
-#: src/modules/displaymanager/main.py:1021
+#: src/modules/displaymanager/main.py:1023
 msgid "Display manager configuration was incomplete"
 msgstr "डिस्प्ले प्रबंधक विन्यास अधूरा था"
 
@@ -116,8 +116,8 @@ msgid "Writing fstab."
 msgstr "fstab पर राइट करना।"
 
 #: src/modules/fstab/main.py:377 src/modules/fstab/main.py:383
-#: src/modules/fstab/main.py:411 src/modules/initcpiocfg/main.py:245
-#: src/modules/initcpiocfg/main.py:249 src/modules/initramfscfg/main.py:85
+#: src/modules/fstab/main.py:411 src/modules/initcpiocfg/main.py:267
+#: src/modules/initcpiocfg/main.py:271 src/modules/initramfscfg/main.py:85
 #: src/modules/initramfscfg/main.py:89 src/modules/localecfg/main.py:140
 #: src/modules/mount/main.py:329 src/modules/networkcfg/main.py:105
 #: src/modules/openrcdmcryptcfg/main.py:72
@@ -156,11 +156,11 @@ msgstr "हार्डवेयर घड़ी सेट करना।"
 msgid "Configuring mkinitcpio."
 msgstr "mkinitcpio को विन्यस्त करना।"
 
-#: src/modules/initcpiocfg/main.py:246
+#: src/modules/initcpiocfg/main.py:268
 msgid "No partitions are defined for <pre>initcpiocfg</pre>."
 msgstr ""
 
-#: src/modules/initcpiocfg/main.py:250
+#: src/modules/initcpiocfg/main.py:272
 msgid "No root mount point for <pre>initcpiocfg</pre>."
 msgstr ""
 
@@ -240,12 +240,12 @@ msgid_plural "Removing %(num)d packages."
 msgstr[0] "एक पैकेज हटाया जा रहा है।"
 msgstr[1] "%(num)d पैकेज हटाए जा रहे हैं।"
 
-#: src/modules/packages/main.py:725 src/modules/packages/main.py:737
-#: src/modules/packages/main.py:765
+#: src/modules/packages/main.py:740 src/modules/packages/main.py:752
+#: src/modules/packages/main.py:780
 msgid "Package Manager error"
 msgstr "पैकेज प्रबंधक त्रुटि"
 
-#: src/modules/packages/main.py:726
+#: src/modules/packages/main.py:741
 msgid ""
 "The package manager could not prepare updates. The command <pre>{!s}</pre> "
 "returned error code {!s}."
@@ -253,7 +253,7 @@ msgstr ""
 "पैकेज प्रबंधक द्वारा अपडेट तैयार करना विफल। कमांड <pre>{!s}</pre> हेतु "
 "त्रुटि कोड {!s} प्राप्त।"
 
-#: src/modules/packages/main.py:738
+#: src/modules/packages/main.py:753
 msgid ""
 "The package manager could not update the system. The command <pre>{!s}</pre>"
 " returned error code {!s}."
@@ -261,7 +261,7 @@ msgstr ""
 "पैकेज प्रबंधक द्वारा सिस्टम अपडेट करना विफल। कमांड <pre>{!s}</pre> हेतु "
 "त्रुटि कोड {!s} प्राप्त।"
 
-#: src/modules/packages/main.py:766
+#: src/modules/packages/main.py:781
 msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."

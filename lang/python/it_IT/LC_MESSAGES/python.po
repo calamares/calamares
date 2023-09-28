@@ -10,15 +10,16 @@
 # Giuseppe Pignataro <rogepix@gmail.com>, 2021
 # Vincenzo Reale <vinx.reale@gmail.com>, 2022
 # vincenzo sammarco, 2022
+# Paolo Zamponi <feus73@gmail.com>, 2023
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-24 23:38+0200\n"
+"POT-Creation-Date: 2023-08-28 23:53+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: vincenzo sammarco, 2022\n"
+"Last-Translator: Paolo Zamponi <feus73@gmail.com>, 2023\n"
 "Language-Team: Italian (Italy) (https://app.transifex.com/calamares/teams/20061/it_IT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,17 +31,17 @@ msgstr ""
 msgid "Install bootloader."
 msgstr "Installa il bootloader."
 
-#: src/modules/bootloader/main.py:640
+#: src/modules/bootloader/main.py:644
 msgid "Failed to install grub, no partitions defined in global storage"
 msgstr ""
 "Installazione di grub non riuscita, nessuna partizione definita "
 "nell'archiviazione globale"
 
-#: src/modules/bootloader/main.py:895
+#: src/modules/bootloader/main.py:899
 msgid "Bootloader installation error"
 msgstr "Errore di installazione del boot loader"
 
-#: src/modules/bootloader/main.py:896
+#: src/modules/bootloader/main.py:900
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
@@ -48,44 +49,44 @@ msgstr ""
 "Impossibile installare il bootloader. Il comando di installazione "
 "<pre>{!s}</pre> ha restituito il codice di errore {!s}."
 
-#: src/modules/displaymanager/main.py:507
+#: src/modules/displaymanager/main.py:509
 msgid "Cannot write LXDM configuration file"
 msgstr "Impossibile scrivere il file di configurazione di LXDM"
 
-#: src/modules/displaymanager/main.py:508
+#: src/modules/displaymanager/main.py:510
 msgid "LXDM config file {!s} does not exist"
 msgstr "Il file di configurazione di LXDM {!s} non esiste"
 
-#: src/modules/displaymanager/main.py:596
+#: src/modules/displaymanager/main.py:598
 msgid "Cannot write LightDM configuration file"
 msgstr "Impossibile scrivere il file di configurazione di LightDM"
 
-#: src/modules/displaymanager/main.py:597
+#: src/modules/displaymanager/main.py:599
 msgid "LightDM config file {!s} does not exist"
 msgstr "Il file di configurazione di LightDM {!s} non esiste"
 
-#: src/modules/displaymanager/main.py:682
+#: src/modules/displaymanager/main.py:684
 msgid "Cannot configure LightDM"
 msgstr "Impossibile configurare LightDM"
 
-#: src/modules/displaymanager/main.py:683
+#: src/modules/displaymanager/main.py:685
 msgid "No LightDM greeter installed."
 msgstr "Nessun LightDM greeter installato."
 
-#: src/modules/displaymanager/main.py:714
+#: src/modules/displaymanager/main.py:716
 msgid "Cannot write SLIM configuration file"
 msgstr "Impossibile scrivere il file di configurazione di SLIM"
 
-#: src/modules/displaymanager/main.py:715
+#: src/modules/displaymanager/main.py:717
 msgid "SLIM config file {!s} does not exist"
 msgstr "Il file di configurazione di SLIM {!s} non esiste"
 
-#: src/modules/displaymanager/main.py:933
+#: src/modules/displaymanager/main.py:935
 msgid "No display managers selected for the displaymanager module."
 msgstr ""
 "Non è stato selezionato alcun display manager per il modulo displaymanager"
 
-#: src/modules/displaymanager/main.py:934
+#: src/modules/displaymanager/main.py:936
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
@@ -93,7 +94,7 @@ msgstr ""
 "La lista dei display manager è vuota o non definita sia in globalstorage che"
 " in displaymanager.conf."
 
-#: src/modules/displaymanager/main.py:1021
+#: src/modules/displaymanager/main.py:1023
 msgid "Display manager configuration was incomplete"
 msgstr "La configurazione del display manager è incompleta"
 
@@ -103,12 +104,14 @@ msgstr "Creazione di initramfs con dracut."
 
 #: src/modules/dracut/main.py:63
 msgid "Failed to run dracut"
-msgstr ""
+msgstr "Impossibile eseguire dracut"
 
 #: src/modules/dracut/main.py:64
 #, python-brace-format
 msgid "Dracut failed to run on the target with return code: {return_code}"
 msgstr ""
+"Esecuzione di dracut nella destinazione non riuscita con codice restituito: "
+"{return_code}"
 
 #: src/modules/dummypython/main.py:35
 msgid "Dummy python job."
@@ -124,8 +127,8 @@ msgid "Writing fstab."
 msgstr "Scrittura di fstab."
 
 #: src/modules/fstab/main.py:377 src/modules/fstab/main.py:383
-#: src/modules/fstab/main.py:411 src/modules/initcpiocfg/main.py:245
-#: src/modules/initcpiocfg/main.py:249 src/modules/initramfscfg/main.py:85
+#: src/modules/fstab/main.py:411 src/modules/initcpiocfg/main.py:267
+#: src/modules/initcpiocfg/main.py:271 src/modules/initramfscfg/main.py:85
 #: src/modules/initramfscfg/main.py:89 src/modules/localecfg/main.py:140
 #: src/modules/mount/main.py:329 src/modules/networkcfg/main.py:105
 #: src/modules/openrcdmcryptcfg/main.py:72
@@ -163,11 +166,11 @@ msgstr "Impostazione del clock hardware."
 msgid "Configuring mkinitcpio."
 msgstr "Configurazione di mkinitcpio."
 
-#: src/modules/initcpiocfg/main.py:246
+#: src/modules/initcpiocfg/main.py:268
 msgid "No partitions are defined for <pre>initcpiocfg</pre>."
-msgstr ""
+msgstr "Nessuna partizione definita per <pre>initcpiocfg</pre>."
 
-#: src/modules/initcpiocfg/main.py:250
+#: src/modules/initcpiocfg/main.py:272
 msgid "No root mount point for <pre>initcpiocfg</pre>."
 msgstr ""
 
@@ -181,7 +184,7 @@ msgstr "Configurazione della localizzazione."
 
 #: src/modules/mkinitfs/main.py:27
 msgid "Creating initramfs with mkinitfs."
-msgstr "Sto creando initramfs con mkinitfs."
+msgstr "Creazione di initramfs con mkinitfs."
 
 #: src/modules/mkinitfs/main.py:49
 msgid "Failed to run mkinitfs on the target"
@@ -213,7 +216,7 @@ msgstr "Impossibile impostare il punto di montaggio zfs"
 
 #: src/modules/mount/main.py:365
 msgid "zfs mounting error"
-msgstr "errore di mount zfs"
+msgstr "errore di montaggio di zfs"
 
 #: src/modules/networkcfg/main.py:29
 msgid "Saving network configuration."
@@ -249,12 +252,12 @@ msgstr[0] "Rimuovendo un pacchetto."
 msgstr[1] "Rimozione di %(num)d pacchetti."
 msgstr[2] "Rimozione di %(num)d pacchetti."
 
-#: src/modules/packages/main.py:725 src/modules/packages/main.py:737
-#: src/modules/packages/main.py:765
+#: src/modules/packages/main.py:740 src/modules/packages/main.py:752
+#: src/modules/packages/main.py:780
 msgid "Package Manager error"
 msgstr "Errore del gestore dei pacchetti"
 
-#: src/modules/packages/main.py:726
+#: src/modules/packages/main.py:741
 msgid ""
 "The package manager could not prepare updates. The command <pre>{!s}</pre> "
 "returned error code {!s}."
@@ -262,7 +265,7 @@ msgstr ""
 "Il gestore pacchetti non ha potuto preparare gli aggiornamenti. Il comando "
 "<pre>{!s}</pre> ha restituito il codice di errore {!s}."
 
-#: src/modules/packages/main.py:738
+#: src/modules/packages/main.py:753
 msgid ""
 "The package manager could not update the system. The command <pre>{!s}</pre>"
 " returned error code {!s}."
@@ -270,7 +273,7 @@ msgstr ""
 "Il gestore pacchetti non ha potuto aggiornare il sistema. Il "
 "comando<pre>{!s}</pre> ha restituito il codice di errore {!s}."
 
-#: src/modules/packages/main.py:766
+#: src/modules/packages/main.py:781
 msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."
@@ -320,7 +323,7 @@ msgstr ""
 
 #: src/modules/services-openrc/main.py:101
 msgid "Target runlevel does not exist"
-msgstr "Il runlevel target non esiste"
+msgstr "Il runlevel di destinazione non esiste"
 
 #: src/modules/services-openrc/main.py:102
 msgid ""
@@ -346,13 +349,15 @@ msgstr ""
 
 #: src/modules/services-systemd/main.py:64
 msgid "Cannot modify unit"
-msgstr ""
+msgstr "Impossibile modificare l'unità"
 
 #: src/modules/services-systemd/main.py:65
 msgid ""
 "<code>systemctl {_action!s}</code> call in chroot returned error code "
 "{_exit_code!s}."
 msgstr ""
+"La chiamata <code>systemctl {_action!s}</code> in chroot ha restituito il "
+"codice di errore {_exit_code!s}."
 
 #: src/modules/services-systemd/main.py:66
 msgid "Cannot {_action!s} systemd unit <code>{_name!s}</code>."
@@ -364,7 +369,7 @@ msgstr "Copia dei file system."
 
 #: src/modules/unpackfs/main.py:254
 msgid "rsync failed with error code {}."
-msgstr "rsync fallita con codice d'errore {}."
+msgstr "rsync non riuscito con codice d'errore {}."
 
 #: src/modules/unpackfs/main.py:299
 msgid "Unpacking image {}/{}, file {}/{}"
@@ -376,7 +381,7 @@ msgstr "Avvio dell'estrazione {}"
 
 #: src/modules/unpackfs/main.py:323 src/modules/unpackfs/main.py:467
 msgid "Failed to unpack image \"{}\""
-msgstr "Estrazione dell'immagine \"{}\" fallita"
+msgstr "Estrazione dell'immagine \"{}\" non riuscita"
 
 #: src/modules/unpackfs/main.py:430
 msgid "No mount point for root partition"

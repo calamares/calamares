@@ -6,17 +6,17 @@
 # Translators:
 # Aleksey Kabanov <ak099@mail.ru>, 2018
 # ZIzA, 2020
-# Victor, 2023
 # Темак, 2023
+# Victor, 2023
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-24 23:38+0200\n"
+"POT-Creation-Date: 2023-08-28 23:53+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Темак, 2023\n"
+"Last-Translator: Victor, 2023\n"
 "Language-Team: Russian (https://app.transifex.com/calamares/teams/20061/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,15 +28,15 @@ msgstr ""
 msgid "Install bootloader."
 msgstr "Установить загрузчик."
 
-#: src/modules/bootloader/main.py:640
+#: src/modules/bootloader/main.py:644
 msgid "Failed to install grub, no partitions defined in global storage"
 msgstr "Не удалось установить grub, разделы не определены в общем хранилище"
 
-#: src/modules/bootloader/main.py:895
+#: src/modules/bootloader/main.py:899
 msgid "Bootloader installation error"
 msgstr "Ошибка установки загрузчика"
 
-#: src/modules/bootloader/main.py:896
+#: src/modules/bootloader/main.py:900
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
@@ -44,43 +44,43 @@ msgstr ""
 "Загрузчик установить не удалось. Команда установки <pre>{!s}</pre> вернула "
 "код ошибки {!s}."
 
-#: src/modules/displaymanager/main.py:507
+#: src/modules/displaymanager/main.py:509
 msgid "Cannot write LXDM configuration file"
 msgstr "Не удаётся записать файл конфигурации LXDM"
 
-#: src/modules/displaymanager/main.py:508
+#: src/modules/displaymanager/main.py:510
 msgid "LXDM config file {!s} does not exist"
 msgstr "Файл конфигурации LXDM {!s} не существует"
 
-#: src/modules/displaymanager/main.py:596
+#: src/modules/displaymanager/main.py:598
 msgid "Cannot write LightDM configuration file"
 msgstr "Не удается записать файл конфигурации LightDM"
 
-#: src/modules/displaymanager/main.py:597
+#: src/modules/displaymanager/main.py:599
 msgid "LightDM config file {!s} does not exist"
 msgstr "Файл конфигурации LightDM {!s} не существует"
 
-#: src/modules/displaymanager/main.py:682
+#: src/modules/displaymanager/main.py:684
 msgid "Cannot configure LightDM"
 msgstr "Не удалось настроить LightDM"
 
-#: src/modules/displaymanager/main.py:683
+#: src/modules/displaymanager/main.py:685
 msgid "No LightDM greeter installed."
 msgstr "LightDM Greeter не установлен."
 
-#: src/modules/displaymanager/main.py:714
+#: src/modules/displaymanager/main.py:716
 msgid "Cannot write SLIM configuration file"
 msgstr "Не удается записать файл конфигурации SLIM"
 
-#: src/modules/displaymanager/main.py:715
+#: src/modules/displaymanager/main.py:717
 msgid "SLIM config file {!s} does not exist"
 msgstr "Файл конфигурации SLIM {!s} не существует"
 
-#: src/modules/displaymanager/main.py:933
+#: src/modules/displaymanager/main.py:935
 msgid "No display managers selected for the displaymanager module."
 msgstr "Для модуля displaymanager не выбраны менеджеры дисплеев."
 
-#: src/modules/displaymanager/main.py:934
+#: src/modules/displaymanager/main.py:936
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
@@ -88,7 +88,7 @@ msgstr ""
 "Список дисплейных менеджеров пуст или не определен в globalstorage и в "
 "displaymanager.conf."
 
-#: src/modules/displaymanager/main.py:1021
+#: src/modules/displaymanager/main.py:1023
 msgid "Display manager configuration was incomplete"
 msgstr "Конфигурация дисплейного менеджера не завершена."
 
@@ -98,12 +98,14 @@ msgstr "Создание initramfs с помощью dracut."
 
 #: src/modules/dracut/main.py:63
 msgid "Failed to run dracut"
-msgstr ""
+msgstr "Не удалось запустить dracut"
 
 #: src/modules/dracut/main.py:64
 #, python-brace-format
 msgid "Dracut failed to run on the target with return code: {return_code}"
 msgstr ""
+"Dracut не удалось запустить на целевом объекте с кодом возврата: "
+"{return_code}."
 
 #: src/modules/dummypython/main.py:35
 msgid "Dummy python job."
@@ -119,8 +121,8 @@ msgid "Writing fstab."
 msgstr "Запись fstab."
 
 #: src/modules/fstab/main.py:377 src/modules/fstab/main.py:383
-#: src/modules/fstab/main.py:411 src/modules/initcpiocfg/main.py:245
-#: src/modules/initcpiocfg/main.py:249 src/modules/initramfscfg/main.py:85
+#: src/modules/fstab/main.py:411 src/modules/initcpiocfg/main.py:267
+#: src/modules/initcpiocfg/main.py:271 src/modules/initramfscfg/main.py:85
 #: src/modules/initramfscfg/main.py:89 src/modules/localecfg/main.py:140
 #: src/modules/mount/main.py:329 src/modules/networkcfg/main.py:105
 #: src/modules/openrcdmcryptcfg/main.py:72
@@ -158,11 +160,11 @@ msgstr "Установка аппаратных часов."
 msgid "Configuring mkinitcpio."
 msgstr "Настройка mkinitcpio."
 
-#: src/modules/initcpiocfg/main.py:246
+#: src/modules/initcpiocfg/main.py:268
 msgid "No partitions are defined for <pre>initcpiocfg</pre>."
-msgstr ""
+msgstr "Не определены разделы для <pre>initcpiocfg</pre>."
 
-#: src/modules/initcpiocfg/main.py:250
+#: src/modules/initcpiocfg/main.py:272
 msgid "No root mount point for <pre>initcpiocfg</pre>."
 msgstr ""
 
@@ -180,7 +182,7 @@ msgstr "Создание initramfs с помощью mkinitfs."
 
 #: src/modules/mkinitfs/main.py:49
 msgid "Failed to run mkinitfs on the target"
-msgstr "Не удалось запустить mkinitfs на таргет"
+msgstr "Не удалось запустить mkinitfs на целевой объект"
 
 #: src/modules/mkinitfs/main.py:50
 msgid "The exit code was {}"
@@ -246,12 +248,12 @@ msgstr[1] "Удаление %(num)d пакетов."
 msgstr[2] "Удаление %(num)d пакетов."
 msgstr[3] "Удаление %(num)d пакетов."
 
-#: src/modules/packages/main.py:725 src/modules/packages/main.py:737
-#: src/modules/packages/main.py:765
+#: src/modules/packages/main.py:740 src/modules/packages/main.py:752
+#: src/modules/packages/main.py:780
 msgid "Package Manager error"
 msgstr "Ошибка менеджера пакетов"
 
-#: src/modules/packages/main.py:726
+#: src/modules/packages/main.py:741
 msgid ""
 "The package manager could not prepare updates. The command <pre>{!s}</pre> "
 "returned error code {!s}."
@@ -259,7 +261,7 @@ msgstr ""
 "Менеджер пакетов не смог подготовить обновления. Команда <pre>{!s}</pre> "
 "вернула код ошибки {!s}."
 
-#: src/modules/packages/main.py:738
+#: src/modules/packages/main.py:753
 msgid ""
 "The package manager could not update the system. The command <pre>{!s}</pre>"
 " returned error code {!s}."
@@ -267,7 +269,7 @@ msgstr ""
 "Менеджер пакетов не смог обновить систему. Команда <pre>{!s}</pre> вернула "
 "код ошибки {!s}."
 
-#: src/modules/packages/main.py:766
+#: src/modules/packages/main.py:781
 msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."
@@ -338,11 +340,11 @@ msgstr ""
 
 #: src/modules/services-systemd/main.py:26
 msgid "Configure systemd units"
-msgstr ""
+msgstr "Настройка юнитов systemd"
 
 #: src/modules/services-systemd/main.py:64
 msgid "Cannot modify unit"
-msgstr ""
+msgstr "Не удается изменить юнит"
 
 #: src/modules/services-systemd/main.py:65
 msgid ""
@@ -352,7 +354,7 @@ msgstr ""
 
 #: src/modules/services-systemd/main.py:66
 msgid "Cannot {_action!s} systemd unit <code>{_name!s}</code>."
-msgstr ""
+msgstr "Не удается {_action!s} юнит systemd <code>{name!s}</code>."
 
 #: src/modules/unpackfs/main.py:34
 msgid "Filling up filesystems."
@@ -422,4 +424,4 @@ msgstr "Назначение \"{}\" в целевой системе не явл
 
 #: src/modules/zfshostid/main.py:27
 msgid "Copying zfs generated hostid."
-msgstr ""
+msgstr "Копирование сгенерированного zfs id хоста."
