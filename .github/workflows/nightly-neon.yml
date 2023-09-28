@@ -23,11 +23,10 @@ jobs:
         uses: calamares/actions/generic-checkout@v5
       - name: "install dependencies"
         shell: bash
-        run: |
-          ./ci/deps-neon.sh
+        run: ./ci/deps-neon.sh
       - name: "build"
-        id: build
-        uses: calamares/actions/generic-build@v4
+        shell: bash
+        run: ./ci/build.sh
       - name: "Calamares: archive"
         working-directory: ${{ env.BUILDDIR }}
         run: |
