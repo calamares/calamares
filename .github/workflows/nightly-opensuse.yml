@@ -65,7 +65,7 @@ jobs:
             libAppStreamQt-devel \
             libatasmart-devel
       - name: "prepare source"
-        uses: calamares/actions/generic-checkout@v4
+        uses: calamares/actions/generic-checkout@v5
       - name: "build"
         id: build
         uses: calamares/actions/generic-build@v4

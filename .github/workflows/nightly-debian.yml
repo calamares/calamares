@@ -64,7 +64,7 @@ jobs:
             libqt5webenginewidgets5 \
             qtwebengine5-dev
       - name: "prepare source"
-        uses: calamares/actions/generic-checkout@v4
+        uses: calamares/actions/generic-checkout@v5
       - name: "build"
         id: build
         uses: calamares/actions/generic-build@v4

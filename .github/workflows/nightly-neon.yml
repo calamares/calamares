@@ -20,7 +20,7 @@ jobs:
       options: --tmpfs /build:rw --user 0:0
     steps:
       - name: "prepare source"
-        uses: calamares/actions/generic-checkout@v4
+        uses: calamares/actions/generic-checkout@v5
       - name: "install dependencies"
         shell: bash
         run: |

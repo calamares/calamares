@@ -24,7 +24,7 @@ jobs:
         shell: bash
         run: zypper --non-interactive in git-core jq curl
       - name: "prepare source"
-        uses: calamares/actions/generic-checkout@v4
+        uses: calamares/actions/generic-checkout@v5
       - name: "install dependencies"
         shell: bash
         run: |
