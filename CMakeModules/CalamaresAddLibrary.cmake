@@ -62,8 +62,10 @@ function(calamares_add_library)
         add_library(${target} STATIC ${LIBRARY_SOURCES})
     elseif(LIBRARY_TARGET_TYPE STREQUAL "MODULE")
         add_library(${target} MODULE ${LIBRARY_SOURCES})
-    else() # default
+    elseif(LIBRARY_TARGET_TYPE STREQUAL "SHARED")
         add_library(${target} SHARED ${LIBRARY_SOURCES})
+    else() # default
+        message(FATAL_ERROR "Invalid library type '${LIBRARY_TARGET_TYPE}'")
     endif()
 
     calamares_automoc(${target})

@@ -45,6 +45,7 @@ endif()
 
 calamares_add_library(calamaresui
     SOURCES ${calamaresui_SOURCES}
+    TARGET_TYPE SHARED
     EXPORT_MACRO UIDLLEXPORT_PRO
     LINK_LIBRARIES
         ${qtname}::Svg
