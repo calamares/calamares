@@ -11,7 +11,7 @@
     <message>
       <location filename="../src/libcalamares/CalamaresAbout.cpp" line="20"/>
       <source>Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://app.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-      <translation type="unfinished"/>
+      <translation>感谢 &lt;a href="https://calamares.io/team/"&gt;Calamares 团队&lt;/a&gt; 和 &lt;a href="https://app.transifex.com/calamares/calamares/"&gt;Calamares 翻译团队&lt;/a&gt;。&lt;br/&gt; &lt;br/&gt; &lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; 项目由 &lt;br/&gt; &lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt;  - Liberating Software 赞助开发。</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/CalamaresAbout.cpp" line="38"/>
@@ -85,11 +85,6 @@
   </context>
   <context>
     <name>Calamares::DebugWindow</name>
-    <message>
-      <location filename="../src/calamares/DebugWindow.ui" line="18"/>
-      <source>Form</source>
-      <translation>表单</translation>
-    </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="28"/>
       <source>GlobalStorage</source>
@@ -168,7 +163,7 @@
       <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="76"/>
       <source>%p%</source>
       <comment>Progress percentage indicator: %p is where the number 0..100 is placed</comment>
-      <translation type="unfinished"/>
+      <translation>%p%</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="119"/>
@@ -284,7 +279,7 @@
     <message>
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="94"/>
       <source>Requirements checking for module '%1' is complete.</source>
-      <translation type="unfinished"/>
+      <translation>“%1”模块的需求检查完成。</translation>
     </message>
     <message numerus="yes">
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="118"/>
@@ -311,7 +306,7 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="160"/>
       <source>Setup Failed</source>
-      <translation>安装失败</translation>
+      <translation>初始化失败</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="160"/>
@@ -551,11 +546,6 @@ The installer will quit and all changes will be lost.</source>
   </context>
   <context>
     <name>ChoicePage</name>
-    <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.ui" line="18"/>
-      <source>Form</source>
-      <translation>表单</translation>
-    </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="138"/>
       <source>Select storage de&amp;vice:</source>
@@ -838,17 +828,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="56"/>
       <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue.</source>
-      <translation type="unfinished"/>
+      <translation>此计算机不满足安装 %1 的最低需求。&lt;br/&gt; 初始化无法继续。</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="59"/>
       <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue.</source>
-      <translation type="unfinished"/>
+      <translation>此计算机木不满足安装 %1 的最低需求。&lt;br/&gt; 安装无法继续。</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="65"/>
       <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
-      <translation>此计算机不满足安装 %1 的部分推荐配置。&lt;br/&gt;安装可以继续，但是一些功能可能会被禁用。</translation>
+      <translation>此计算机不满足安装 %1 的部分推荐配置。&lt;br/&gt;初始化可以继续，但是一些功能可能会被禁用。</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="69"/>
@@ -921,12 +911,12 @@ The installer will quit and all changes will be lost.</source>
       <translation>只允许字母、数组、下划线"_" 和 连字符"-"</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="584"/>
+      <location filename="../src/modules/users/Config.cpp" line="599"/>
       <source>Your passwords do not match!</source>
       <translation>密码不匹配！</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="598"/>
+      <location filename="../src/modules/users/Config.cpp" line="613"/>
       <source>OK!</source>
       <translation>确定</translation>
     </message>
@@ -1465,11 +1455,6 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>EncryptWidget</name>
     <message>
-      <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="18"/>
-      <source>Form</source>
-      <translation>表单</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="36"/>
       <source>En&amp;crypt system</source>
       <translation>加密系统</translation>
@@ -1574,11 +1559,6 @@ The installer will quit and all changes will be lost.</source>
   </context>
   <context>
     <name>FinishedPage</name>
-    <message>
-      <location filename="../src/modules/finished/FinishedPage.ui" line="18"/>
-      <source>Form</source>
-      <translation>表单</translation>
-    </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.ui" line="102"/>
       <source>&amp;Restart now</source>
@@ -1930,11 +1910,6 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>LicensePage</name>
     <message>
-      <location filename="../src/modules/license/LicensePage.ui" line="18"/>
-      <source>Form</source>
-      <translation>表单</translation>
-    </message>
-    <message>
       <location filename="../src/modules/license/LicensePage.ui" line="26"/>
       <source>&lt;h1&gt;License Agreement&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;许可证&lt;/h1&gt;</translation>
@@ -2089,32 +2064,26 @@ The installer will quit and all changes will be lost.</source>
       <translation>配置 LUKS key 文件。</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="235"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="243"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="254"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="262"/>
       <source>No partitions are defined.</source>
       <translation>未定义分区。</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="279"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="286"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="300"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="297"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="304"/>
       <source>Encrypted rootfs setup error</source>
       <translation>加密根文件系时配置错误</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="280"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="298"/>
       <source>Root partition %1 is LUKS but no passphrase has been set.</source>
       <translation>根分区%1为LUKS但没有设置密钥。</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="287"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="305"/>
       <source>Could not create LUKS key file for root partition %1.</source>
       <translation>无法创建根分区%1的LUKS密钥文件。</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="301"/>
-      <source>Could not configure LUKS key file on partition %1.</source>
-      <translation>无法配置根分区%1的LUKS密钥文件。</translation>
     </message>
   </context>
   <context>
@@ -2592,18 +2561,13 @@ The installer will quit and all changes will be lost.</source>
       <translation>未知错误</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="829"/>
+      <location filename="../src/modules/users/Config.cpp" line="844"/>
       <source>Password is empty</source>
       <translation>密码是空</translation>
     </message>
   </context>
   <context>
     <name>PackageChooserPage</name>
-    <message>
-      <location filename="../src/modules/packagechooser/page_package.ui" line="24"/>
-      <source>Form</source>
-      <translation>表单</translation>
-    </message>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="50"/>
       <source>Product Name</source>
@@ -2646,11 +2610,6 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>Page_Keyboard</name>
     <message>
-      <location filename="../src/modules/keyboard/KeyboardPage.ui" line="18"/>
-      <source>Form</source>
-      <translation>窗体</translation>
-    </message>
-    <message>
       <location filename="../src/modules/keyboard/KeyboardPage.ui" line="74"/>
       <source>Keyboard Model:</source>
       <translation>键盘型号：</translation>
@@ -2663,11 +2622,6 @@ The installer will quit and all changes will be lost.</source>
   </context>
   <context>
     <name>Page_UserSetup</name>
-    <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="18"/>
-      <source>Form</source>
-      <translation>窗体</translation>
-    </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="40"/>
       <source>What is your name?</source>
@@ -2845,11 +2799,6 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>PartitionPage</name>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.ui" line="18"/>
-      <source>Form</source>
-      <translation>窗体</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="26"/>
       <source>Storage de&amp;vice:</source>
       <translation>存储器(&amp;V)：</translation>
@@ -2958,72 +2907,72 @@ The installer will quit and all changes will be lost.</source>
       <translation>之后：</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="523"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="545"/>
       <source>No EFI system partition configured</source>
       <translation>未配置 EFI 系统分区</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="527"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="549"/>
       <source>EFI system partition configured incorrectly</source>
       <translation>EFI系统分区配置错误</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="532"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="554"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a suitable filesystem.</source>
       <translation>启动 %1 必须需要 EFI 系統分区。&lt;br/&gt;&lt;br/&gt;要設定 EFI 系统分区，返回并选择或者建立符合要求的分区。</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="543"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="565"/>
       <source>The filesystem must be mounted on &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>文件系统必须挂载于 &lt;strong&gt;%1&lt;/strong&gt;。</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="549"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="571"/>
       <source>The filesystem must have type FAT32.</source>
       <translation>此文件系统必须为FAT32</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="557"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="579"/>
       <source>The filesystem must be at least %1 MiB in size.</source>
       <translation>文件系统必须要有%1 MiB 的大小。</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="563"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="585"/>
       <source>The filesystem must have flag &lt;strong&gt;%1&lt;/strong&gt; set.</source>
       <translation>文件系统必须设置 &lt;strong&gt;%1&lt;/strong&gt; 标记。</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="569"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="591"/>
       <source>You can continue without setting up an EFI system partition but your system may fail to start.</source>
       <translation>您可以在不设置EFI系统分区的情况下继续，但您的系統可能无法启动。</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="587"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="609"/>
       <source>Option to use GPT on BIOS</source>
       <translation>在 BIOS 上使用 GPT</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="588"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="610"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
       <translation>GPT 分区表对所有系统都是最佳选项。此安装程序同时支持 BIOS 系统。&lt;br/&gt;&lt;br/&gt;要在 BIOS 上配置 GPT 分区表（如果还没有完成的话），请回到上一步并将分区表设置为 GPT，然后创建 8 MB 的未格式化分区，并启用 &lt;strong&gt;%2&lt;/strong&gt; 标记。&lt;br/&gt;&lt;br/&gt;要在 BIOS 系统上使用 GPT 分区表启动 %1，必须要有该 8 MB 的未格式化分区。</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="622"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="632"/>
       <source>Boot partition not encrypted</source>
       <translation>引导分区未加密</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="623"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="633"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
       <translation>您尝试用单独的引导分区配合已加密的根分区使用，但引导分区未加密。&lt;br/&gt;&lt;br/&gt;这种配置方式可能存在安全隐患，因为重要的系统文件存储在了未加密的分区上。&lt;br/&gt;您可以继续保持此配置，但是系统解密将在系统启动时而不是引导时进行。&lt;br/&gt;要加密引导分区，请返回上一步并重新创建此分区，并在分区创建窗口选中 &lt;strong&gt;加密&lt;/strong&gt; 选项。</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="714"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="723"/>
       <source>has at least one disk device available.</source>
       <translation>有至少一个可用的磁盘设备。</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="715"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="724"/>
       <source>There are no partitions to install on.</source>
       <translation>无可用于安装的分区。</translation>
     </message>
@@ -3044,11 +2993,6 @@ The installer will quit and all changes will be lost.</source>
   </context>
   <context>
     <name>PlasmaLnfPage</name>
-    <message>
-      <location filename="../src/modules/plasmalnf/page_plasmalnf.ui" line="18"/>
-      <source>Form</source>
-      <translation>表单</translation>
-    </message>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="79"/>
       <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is set up. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
@@ -3284,7 +3228,7 @@ Output:
       <source>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
         Setup can continue, but some features might be disabled.&lt;/p&gt;</source>
       <translation>&lt;p&gt;此计算机不满足安装 %1 的某些推荐配置。&lt;br/&gt;
-        安装可以继续，但是一些特性可能被禁用。&lt;/p&gt;</translation>
+        初始化可以继续，但是一些特性可能被禁用。&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -3817,11 +3761,6 @@ Output:
   <context>
     <name>TrackingPage</name>
     <message>
-      <location filename="../src/modules/tracking/page_trackingstep.ui" line="18"/>
-      <source>Form</source>
-      <translation>表单</translation>
-    </message>
-    <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="28"/>
       <source>Placeholder</source>
       <translation>占位符</translation>
@@ -3982,11 +3921,6 @@ Output:
   </context>
   <context>
     <name>WelcomePage</name>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="18"/>
-      <source>Form</source>
-      <translation>表单</translation>
-    </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="79"/>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="98"/>

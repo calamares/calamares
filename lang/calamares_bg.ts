@@ -85,11 +85,6 @@
   <context>
     <name>Calamares::DebugWindow</name>
     <message>
-      <location filename="../src/calamares/DebugWindow.ui" line="18"/>
-      <source>Form</source>
-      <translation>Форма</translation>
-    </message>
-    <message>
       <location filename="../src/calamares/DebugWindow.ui" line="28"/>
       <source>GlobalStorage</source>
       <translation>Глобално съхранение</translation>
@@ -553,11 +548,6 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>ChoicePage</name>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.ui" line="18"/>
-      <source>Form</source>
-      <translation>Форма</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="138"/>
       <source>Select storage de&amp;vice:</source>
       <translation>Изберете ус&amp;тройство за съхранение:</translation>
@@ -922,12 +912,12 @@ The installer will quit and all changes will be lost.</source>
       <translation>Разрешени са само букви, цифри, долна черта и тире.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="584"/>
+      <location filename="../src/modules/users/Config.cpp" line="599"/>
       <source>Your passwords do not match!</source>
       <translation>Паролите Ви не съвпадат!</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="598"/>
+      <location filename="../src/modules/users/Config.cpp" line="613"/>
       <source>OK!</source>
       <translation>OK!</translation>
     </message>
@@ -1465,11 +1455,6 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>EncryptWidget</name>
     <message>
-      <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="18"/>
-      <source>Form</source>
-      <translation>Форма</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="36"/>
       <source>En&amp;crypt system</source>
       <translation>Крип&amp;тиране на системата</translation>
@@ -1574,11 +1559,6 @@ The installer will quit and all changes will be lost.</source>
   </context>
   <context>
     <name>FinishedPage</name>
-    <message>
-      <location filename="../src/modules/finished/FinishedPage.ui" line="18"/>
-      <source>Form</source>
-      <translation>Форма</translation>
-    </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.ui" line="102"/>
       <source>&amp;Restart now</source>
@@ -1930,11 +1910,6 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>LicensePage</name>
     <message>
-      <location filename="../src/modules/license/LicensePage.ui" line="18"/>
-      <source>Form</source>
-      <translation>Форма</translation>
-    </message>
-    <message>
       <location filename="../src/modules/license/LicensePage.ui" line="26"/>
       <source>&lt;h1&gt;License Agreement&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Лицензно споразумение&lt;/h1&gt;</translation>
@@ -2089,32 +2064,26 @@ The installer will quit and all changes will be lost.</source>
       <translation>Конфигуриране на ключов файл LUKS.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="235"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="243"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="254"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="262"/>
       <source>No partitions are defined.</source>
       <translation>Няма зададени дялове.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="279"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="286"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="300"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="297"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="304"/>
       <source>Encrypted rootfs setup error</source>
       <translation>Грешка при настройване на криптирана rootfs</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="280"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="298"/>
       <source>Root partition %1 is LUKS but no passphrase has been set.</source>
       <translation>Root дял %1 е LUKS, но не е зададена парола.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="287"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="305"/>
       <source>Could not create LUKS key file for root partition %1.</source>
       <translation>Не можа да се създаде ключов файл LUKS за root дял %1.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="301"/>
-      <source>Could not configure LUKS key file on partition %1.</source>
-      <translation>Неуспешно конфигуриране на ключов файл на LUKS на дял %1.</translation>
     </message>
   </context>
   <context>
@@ -2601,18 +2570,13 @@ The installer will quit and all changes will be lost.</source>
       <translation>Неизвестна грешка</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="829"/>
+      <location filename="../src/modules/users/Config.cpp" line="844"/>
       <source>Password is empty</source>
       <translation>Паролата е празна</translation>
     </message>
   </context>
   <context>
     <name>PackageChooserPage</name>
-    <message>
-      <location filename="../src/modules/packagechooser/page_package.ui" line="24"/>
-      <source>Form</source>
-      <translation>Форма</translation>
-    </message>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="50"/>
       <source>Product Name</source>
@@ -2655,11 +2619,6 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>Page_Keyboard</name>
     <message>
-      <location filename="../src/modules/keyboard/KeyboardPage.ui" line="18"/>
-      <source>Form</source>
-      <translation>Форма</translation>
-    </message>
-    <message>
       <location filename="../src/modules/keyboard/KeyboardPage.ui" line="74"/>
       <source>Keyboard Model:</source>
       <translation>Модел на клавиатура:</translation>
@@ -2672,11 +2631,6 @@ The installer will quit and all changes will be lost.</source>
   </context>
   <context>
     <name>Page_UserSetup</name>
-    <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="18"/>
-      <source>Form</source>
-      <translation>Форма</translation>
-    </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="40"/>
       <source>What is your name?</source>
@@ -2854,11 +2808,6 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>PartitionPage</name>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.ui" line="18"/>
-      <source>Form</source>
-      <translation>Форма</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="26"/>
       <source>Storage de&amp;vice:</source>
       <translation>Ус&amp;тройство за съхранение"</translation>
@@ -2967,72 +2916,72 @@ The installer will quit and all changes will be lost.</source>
       <translation>След:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="523"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="545"/>
       <source>No EFI system partition configured</source>
       <translation>Няма конфигуриран EFI системен дял</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="527"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="549"/>
       <source>EFI system partition configured incorrectly</source>
       <translation>Системният дял EFI е конфигуриран неправилно</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="532"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="554"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a suitable filesystem.</source>
       <translation>За стартирането на %1 е необходим системен дял EFI.&lt;br/&gt;&lt;br/&gt;За да конфигурирате EFI системен дял, върнете се назад и изберете или създайте подходяща файлова система.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="543"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="565"/>
       <source>The filesystem must be mounted on &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Файловата система трябва да бъде монтирана на &lt;strong&gt;%1 &lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="549"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="571"/>
       <source>The filesystem must have type FAT32.</source>
       <translation>Файловата система трябва да бъде от тип FAT32.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="557"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="579"/>
       <source>The filesystem must be at least %1 MiB in size.</source>
       <translation>Файловата система трябва да е с размер поне %1 MiB.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="563"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="585"/>
       <source>The filesystem must have flag &lt;strong&gt;%1&lt;/strong&gt; set.</source>
       <translation>Файловата система трябва да има флаг &lt;strong&gt;%1 &lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="569"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="591"/>
       <source>You can continue without setting up an EFI system partition but your system may fail to start.</source>
       <translation>Можете да продължите, без да настроите EFI системен дял, но вашата системаможе да не успее да се стартира.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="587"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="609"/>
       <source>Option to use GPT on BIOS</source>
       <translation>Опция за използване на GPT на BIOS</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="588"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="610"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
       <translation>Таблица с дялове на GPT е най -добрият вариант за всички системи. Този инсталаторподдържа такава настройка и за BIOS системи. &lt;br/&gt;&lt;br/&gt; За конфигуриране на GPT таблица с дяловете в BIOS (ако вече не сте го направили), върнете се назад и задайте таблица на дяловете на GPT, след което създайте 8 MB неформатиран дял сактивиран &lt;strong&gt;%2 &lt;/strong&gt; флаг. &lt;br/&gt;&lt;br/&gt; Необходим е 8 MB дял за стартиране на %1 на BIOS система с GPT.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="622"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="632"/>
       <source>Boot partition not encrypted</source>
       <translation>Липсва криптиране на дял за начално зареждане</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="623"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="633"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
       <translation>Отделен дял за начално зареждане беше създаден заедно с криптиран root дял, но не беше криптиран. &lt;br/&gt;&lt;br/&gt;При този вид настройка има проблеми със сигурността, тъй като важни системни файлове се съхраняват на некриптиран дял.&lt;br/&gt; Можете да продължите,  ако желаете, но отключването на файловата система ще се случи по -късно по време на стартиране на системата. &lt;br/&gt; За да криптирате дялът заначално зареждане, върнете се назад и го създайте отново, избирайки&lt;strong&gt; Криптиране &lt;/strong&gt; в прозореца за създаване на дяла.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="714"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="723"/>
       <source>has at least one disk device available.</source>
       <translation>има поне едно дисково устройство.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="715"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="724"/>
       <source>There are no partitions to install on.</source>
       <translation>Няма дялове, върху които да се извърши инсталирането.</translation>
     </message>
@@ -3053,11 +3002,6 @@ The installer will quit and all changes will be lost.</source>
   </context>
   <context>
     <name>PlasmaLnfPage</name>
-    <message>
-      <location filename="../src/modules/plasmalnf/page_plasmalnf.ui" line="18"/>
-      <source>Form</source>
-      <translation>Форма</translation>
-    </message>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="79"/>
       <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is set up. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
@@ -3826,11 +3770,6 @@ Output:
   <context>
     <name>TrackingPage</name>
     <message>
-      <location filename="../src/modules/tracking/page_trackingstep.ui" line="18"/>
-      <source>Form</source>
-      <translation>Форма</translation>
-    </message>
-    <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="28"/>
       <source>Placeholder</source>
       <translation>Заместител</translation>
@@ -3991,11 +3930,6 @@ Output:
   </context>
   <context>
     <name>WelcomePage</name>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="18"/>
-      <source>Form</source>
-      <translation>Форма</translation>
-    </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="79"/>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="98"/>

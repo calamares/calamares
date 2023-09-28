@@ -85,11 +85,6 @@
   <context>
     <name>Calamares::DebugWindow</name>
     <message>
-      <location filename="../src/calamares/DebugWindow.ui" line="18"/>
-      <source>Form</source>
-      <translation>Formularz</translation>
-    </message>
-    <message>
       <location filename="../src/calamares/DebugWindow.ui" line="28"/>
       <source>GlobalStorage</source>
       <translation>Ogólne przechowywanie</translation>
@@ -557,11 +552,6 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
   <context>
     <name>ChoicePage</name>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.ui" line="18"/>
-      <source>Form</source>
-      <translation>Formularz</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="138"/>
       <source>Select storage de&amp;vice:</source>
       <translation>&amp;Wybierz urządzenie przechowywania:</translation>
@@ -926,12 +916,12 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
       <translation>Dozwolone są tylko litery, cyfry, podkreślenia i łączniki.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="584"/>
+      <location filename="../src/modules/users/Config.cpp" line="599"/>
       <source>Your passwords do not match!</source>
       <translation>Twoje hasła nie są zgodne!</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="598"/>
+      <location filename="../src/modules/users/Config.cpp" line="613"/>
       <source>OK!</source>
       <translation>OK!</translation>
     </message>
@@ -1469,11 +1459,6 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
   <context>
     <name>EncryptWidget</name>
     <message>
-      <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="18"/>
-      <source>Form</source>
-      <translation>Formularz</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="36"/>
       <source>En&amp;crypt system</source>
       <translation>Zaszy&amp;fruj system</translation>
@@ -1578,11 +1563,6 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
   </context>
   <context>
     <name>FinishedPage</name>
-    <message>
-      <location filename="../src/modules/finished/FinishedPage.ui" line="18"/>
-      <source>Form</source>
-      <translation>Form</translation>
-    </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.ui" line="102"/>
       <source>&amp;Restart now</source>
@@ -1934,11 +1914,6 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
   <context>
     <name>LicensePage</name>
     <message>
-      <location filename="../src/modules/license/LicensePage.ui" line="18"/>
-      <source>Form</source>
-      <translation>Formularz</translation>
-    </message>
-    <message>
       <location filename="../src/modules/license/LicensePage.ui" line="26"/>
       <source>&lt;h1&gt;License Agreement&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Umowa licencyjna&lt;/h1&gt;</translation>
@@ -2093,32 +2068,26 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
       <translation>Konfigurowanie pliku klucza LUKS.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="235"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="243"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="254"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="262"/>
       <source>No partitions are defined.</source>
       <translation>Nie zdefiniowano żadnych partycji.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="279"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="286"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="300"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="297"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="304"/>
       <source>Encrypted rootfs setup error</source>
       <translation>Błąd konfiguracji zaszyfrowanych rootfs</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="280"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="298"/>
       <source>Root partition %1 is LUKS but no passphrase has been set.</source>
       <translation>Partycja główna %1 to LUKS, ale nie ustawiono hasła.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="287"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="305"/>
       <source>Could not create LUKS key file for root partition %1.</source>
       <translation>Nie można utworzyć pliku klucza LUKS dla partycji głównej %1.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="301"/>
-      <source>Could not configure LUKS key file on partition %1.</source>
-      <translation>Nie można skonfigurować pliku klucza LUKS na partycji %1.</translation>
     </message>
   </context>
   <context>
@@ -2623,18 +2592,13 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
       <translation>Nieznany błąd</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="829"/>
+      <location filename="../src/modules/users/Config.cpp" line="844"/>
       <source>Password is empty</source>
       <translation>Hasło jest puste</translation>
     </message>
   </context>
   <context>
     <name>PackageChooserPage</name>
-    <message>
-      <location filename="../src/modules/packagechooser/page_package.ui" line="24"/>
-      <source>Form</source>
-      <translation>Formularz</translation>
-    </message>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="50"/>
       <source>Product Name</source>
@@ -2677,11 +2641,6 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
   <context>
     <name>Page_Keyboard</name>
     <message>
-      <location filename="../src/modules/keyboard/KeyboardPage.ui" line="18"/>
-      <source>Form</source>
-      <translation>Form</translation>
-    </message>
-    <message>
       <location filename="../src/modules/keyboard/KeyboardPage.ui" line="74"/>
       <source>Keyboard Model:</source>
       <translation>Model klawiatury:</translation>
@@ -2694,11 +2653,6 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
   </context>
   <context>
     <name>Page_UserSetup</name>
-    <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="18"/>
-      <source>Form</source>
-      <translation>Form</translation>
-    </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="40"/>
       <source>What is your name?</source>
@@ -2876,11 +2830,6 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
   <context>
     <name>PartitionPage</name>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.ui" line="18"/>
-      <source>Form</source>
-      <translation>Form</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="26"/>
       <source>Storage de&amp;vice:</source>
       <translation>Urządzenie przecho&amp;wywania:</translation>
@@ -2989,72 +2938,72 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
       <translation>Po:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="523"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="545"/>
       <source>No EFI system partition configured</source>
       <translation>Nie skonfigurowano partycji systemowej EFI</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="527"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="549"/>
       <source>EFI system partition configured incorrectly</source>
       <translation>Partycja systemowa EFI skonfigurowana niepoprawnie</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="532"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="554"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a suitable filesystem.</source>
       <translation>Partycja systemowa EFI jest niezbędna do uruchomienia %1.&lt;br/&gt;&lt;br/&gt;Do skonfigurowania partycji systemowej EFI, cofnij się i wybierz lub utwórz odpowiedni system plików.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="543"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="565"/>
       <source>The filesystem must be mounted on &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>System plików musi zostać zamontowany w &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="549"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="571"/>
       <source>The filesystem must have type FAT32.</source>
       <translation>System plików musi być typu FAT32.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="557"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="579"/>
       <source>The filesystem must be at least %1 MiB in size.</source>
       <translation>Rozmiar systemu plików musi wynosić co najmniej %1 MiB.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="563"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="585"/>
       <source>The filesystem must have flag &lt;strong&gt;%1&lt;/strong&gt; set.</source>
       <translation>System plików musi mieć ustawioną flagę &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="569"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="591"/>
       <source>You can continue without setting up an EFI system partition but your system may fail to start.</source>
       <translation>Możesz kontynuować bez konfigurowania partycji systemowej EFI, ale uruchomienie systemu może się nie powieść.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="587"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="609"/>
       <source>Option to use GPT on BIOS</source>
       <translation>Opcja korzystania z GPT w BIOS-ie</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="588"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="610"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
       <translation>Tabela partycji GPT jest najlepszą opcją dla wszystkich systemów. Ten instalator obsługuje taką konfigurację również dla systemów BIOS. &lt;br/&gt;&lt;br/&gt;Aby skonfigurować tabelę partycji GPT w systemie BIOS, (jeśli jeszcze tego nie zrobiono) cofnij się i ustaw tabelę partycji na GPT, a następnie utwórz niesformatowaną partycję o rozmiarze 8 MB z włączoną flagą &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt; Niesformatowana partycja 8 MB jest niezbędna do uruchomienia %1 w systemie BIOS z GPT.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="622"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="632"/>
       <source>Boot partition not encrypted</source>
       <translation>Niezaszyfrowana partycja rozruchowa</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="623"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="633"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
       <translation>Oddzielna partycja rozruchowa została skonfigurowana razem z zaszyfrowaną partycją roota, ale partycja rozruchowa nie jest szyfrowana.&lt;br/&gt;&lt;br/&gt;Nie jest to najbezpieczniejsze rozwiązanie, ponieważ ważne pliki systemowe znajdują się na niezaszyfrowanej partycji.&lt;br/&gt;Możesz kontynuować, ale odblokowywanie systemu nastąpi później, w trakcie uruchamiania.&lt;br/&gt;Aby zaszyfrować partycję rozruchową, wróć i utwórz ją ponownie zaznaczając opcję &lt;strong&gt;Szyfruj&lt;/strong&gt; w oknie tworzenia partycji.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="714"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="723"/>
       <source>has at least one disk device available.</source>
       <translation>jest dostępne co najmniej jedno urządzenie dyskowe.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="715"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="724"/>
       <source>There are no partitions to install on.</source>
       <translation>Brak partycji na których można dokonać instalacji.</translation>
     </message>
@@ -3075,11 +3024,6 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
   </context>
   <context>
     <name>PlasmaLnfPage</name>
-    <message>
-      <location filename="../src/modules/plasmalnf/page_plasmalnf.ui" line="18"/>
-      <source>Form</source>
-      <translation>Formularz</translation>
-    </message>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="79"/>
       <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is set up. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
@@ -3849,11 +3793,6 @@ i nie uruchomi się</translation>
   <context>
     <name>TrackingPage</name>
     <message>
-      <location filename="../src/modules/tracking/page_trackingstep.ui" line="18"/>
-      <source>Form</source>
-      <translation>Formularz</translation>
-    </message>
-    <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="28"/>
       <source>Placeholder</source>
       <translation>Symbol zastępczy</translation>
@@ -4014,11 +3953,6 @@ i nie uruchomi się</translation>
   </context>
   <context>
     <name>WelcomePage</name>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="18"/>
-      <source>Form</source>
-      <translation>Formularz</translation>
-    </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="79"/>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="98"/>

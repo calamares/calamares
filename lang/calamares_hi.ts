@@ -85,11 +85,6 @@
   <context>
     <name>Calamares::DebugWindow</name>
     <message>
-      <location filename="../src/calamares/DebugWindow.ui" line="18"/>
-      <source>Form</source>
-      <translation>रूप</translation>
-    </message>
-    <message>
       <location filename="../src/calamares/DebugWindow.ui" line="28"/>
       <source>GlobalStorage</source>
       <translation>ग्लोबल स्टोरेज</translation>
@@ -553,11 +548,6 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>ChoicePage</name>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.ui" line="18"/>
-      <source>Form</source>
-      <translation>रूप</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="138"/>
       <source>Select storage de&amp;vice:</source>
       <translation>डिवाइस चुनें (&amp;v):</translation>
@@ -922,12 +912,12 @@ The installer will quit and all changes will be lost.</source>
       <translation>केवल अक्षर, अंक, अंडरस्कोर(_) व हाइफ़न(-) ही स्वीकार्य हैं।</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="584"/>
+      <location filename="../src/modules/users/Config.cpp" line="599"/>
       <source>Your passwords do not match!</source>
       <translation>आपके कूटशब्द मेल नहीं खाते!</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="598"/>
+      <location filename="../src/modules/users/Config.cpp" line="613"/>
       <source>OK!</source>
       <translation>ठीक है!</translation>
     </message>
@@ -1465,11 +1455,6 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>EncryptWidget</name>
     <message>
-      <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="18"/>
-      <source>Form</source>
-      <translation>रूप</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="36"/>
       <source>En&amp;crypt system</source>
       <translation>सिस्टम एन्क्रिप्ट करें (&amp;E)</translation>
@@ -1574,11 +1559,6 @@ The installer will quit and all changes will be lost.</source>
   </context>
   <context>
     <name>FinishedPage</name>
-    <message>
-      <location filename="../src/modules/finished/FinishedPage.ui" line="18"/>
-      <source>Form</source>
-      <translation>रूप</translation>
-    </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.ui" line="102"/>
       <source>&amp;Restart now</source>
@@ -1930,11 +1910,6 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>LicensePage</name>
     <message>
-      <location filename="../src/modules/license/LicensePage.ui" line="18"/>
-      <source>Form</source>
-      <translation>रूप</translation>
-    </message>
-    <message>
       <location filename="../src/modules/license/LicensePage.ui" line="26"/>
       <source>&lt;h1&gt;License Agreement&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;लाइसेंस अनुबंध&lt;/h1&gt;</translation>
@@ -2089,32 +2064,26 @@ The installer will quit and all changes will be lost.</source>
       <translation>LUKS कुंजी फ़ाइल विन्यस्त करना।</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="235"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="243"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="254"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="262"/>
       <source>No partitions are defined.</source>
       <translation>कोई विभाजन परिभाषित नहीं है।</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="279"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="286"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="300"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="297"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="304"/>
       <source>Encrypted rootfs setup error</source>
       <translation>एन्क्रिप्टेड रुट फ़ाइल सिस्टम सेटअप करने में त्रुटि</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="280"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="298"/>
       <source>Root partition %1 is LUKS but no passphrase has been set.</source>
       <translation>रुट विभाजन %1, LUKS है परंतु कोई कूटशब्द सेट नहीं है।</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="287"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="305"/>
       <source>Could not create LUKS key file for root partition %1.</source>
       <translation>रुट विभाजन %1 हेतु LUKS कुंजी फ़ाइल बनाई नहीं जा सकी।</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="301"/>
-      <source>Could not configure LUKS key file on partition %1.</source>
-      <translation>विभाजन %1 हेतु LUKS कुंजी फ़ाइल विन्यस्त नहीं हो सकी।</translation>
     </message>
   </context>
   <context>
@@ -2601,18 +2570,13 @@ The installer will quit and all changes will be lost.</source>
       <translation>अज्ञात त्रुटि</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="829"/>
+      <location filename="../src/modules/users/Config.cpp" line="844"/>
       <source>Password is empty</source>
       <translation>कूटशब्द रिक्त है</translation>
     </message>
   </context>
   <context>
     <name>PackageChooserPage</name>
-    <message>
-      <location filename="../src/modules/packagechooser/page_package.ui" line="24"/>
-      <source>Form</source>
-      <translation>रूप</translation>
-    </message>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="50"/>
       <source>Product Name</source>
@@ -2655,11 +2619,6 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>Page_Keyboard</name>
     <message>
-      <location filename="../src/modules/keyboard/KeyboardPage.ui" line="18"/>
-      <source>Form</source>
-      <translation>रूप</translation>
-    </message>
-    <message>
       <location filename="../src/modules/keyboard/KeyboardPage.ui" line="74"/>
       <source>Keyboard Model:</source>
       <translation>कुंजीपटल का मॉडल</translation>
@@ -2672,11 +2631,6 @@ The installer will quit and all changes will be lost.</source>
   </context>
   <context>
     <name>Page_UserSetup</name>
-    <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="18"/>
-      <source>Form</source>
-      <translation>रूप</translation>
-    </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="40"/>
       <source>What is your name?</source>
@@ -2854,11 +2808,6 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>PartitionPage</name>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.ui" line="18"/>
-      <source>Form</source>
-      <translation>रूप</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="26"/>
       <source>Storage de&amp;vice:</source>
       <translation>डिवाइस (&amp;v):</translation>
@@ -2967,72 +2916,72 @@ The installer will quit and all changes will be lost.</source>
       <translation>बाद में:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="523"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="545"/>
       <source>No EFI system partition configured</source>
       <translation>कोई EFI सिस्टम विभाजन विन्यस्त नहीं है</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="527"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="549"/>
       <source>EFI system partition configured incorrectly</source>
       <translation>EFI सिस्टम विभाजन उचित रूप से विन्यस्त नहीं है</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="532"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="554"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a suitable filesystem.</source>
       <translation>%1 आरंभ करने हेतु EFI सिस्टम विभाजन आवश्यक है। &lt;br/&gt;&lt;br/&gt; EFI सिस्टम विभाजन विन्यस्त करने हेतु, वापस जाएँ व एक उपयुक्त फाइल सिस्टम चुनें या बनाएँ।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="543"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="565"/>
       <source>The filesystem must be mounted on &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>फाइल सिस्टम का &lt;strong&gt;%1&lt;/strong&gt; पर माउंट होना आवश्यक है।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="549"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="571"/>
       <source>The filesystem must have type FAT32.</source>
       <translation>फाइल सिस्टम का प्रकार FAT32 होना आवश्यक है।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="557"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="579"/>
       <source>The filesystem must be at least %1 MiB in size.</source>
       <translation>फाइल सिस्टम का आकार कम-से-कम %1 एमबी होना आवश्यक है।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="563"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="585"/>
       <source>The filesystem must have flag &lt;strong&gt;%1&lt;/strong&gt; set.</source>
       <translation>फाइल सिस्टम पर &lt;strong&gt;%1&lt;/strong&gt; फ्लैग सेट होना आवश्यक है।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="569"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="591"/>
       <source>You can continue without setting up an EFI system partition but your system may fail to start.</source>
       <translation>आप बिना EFI सिस्टम विभाजन सेट करें भी प्रक्रिया जारी रख सकते हैं परन्तु सम्भवतः ऐसा करने से आपका सिस्टम आरंभ नहीं होगा।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="587"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="609"/>
       <source>Option to use GPT on BIOS</source>
       <translation>BIOS पर GPT उपयोग करने के लिए विकल्प</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="588"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="610"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
       <translation>GPT विभाजन तालिका सभी सिस्टम हेतु सबसे उत्तम विकल्प है। यह इंस्टॉलर BIOS सिस्टम के सेटअप को भी समर्थन करता है। &lt;br/&gt;&lt;br/&gt;BIOS पर GPT विभाजन तालिका को विन्यस्त करने हेतु, (यदि अब तक नहीं करा है) वापस जाकर विभाजन तालिका GPT पर सेट करें, फिर एक 8 MB का बिना फॉर्मेट हुआ विभाजन बनाएँ जिस पर &lt;strong&gt;%2&lt;/strong&gt; का फ्लैग हो।&lt;br/&gt;&lt;br/&gt;यह बिना फॉर्मेट हुआ 8 MB का विभाजन %1 को BIOS सिस्टम पर GPT के साथ आरंभ करने हेतु आवश्यक है।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="622"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="632"/>
       <source>Boot partition not encrypted</source>
       <translation>बूट विभाजन एन्क्रिप्टेड नहीं है</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="623"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="633"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
       <translation>एन्क्रिप्टेड रुट विभाजन के साथ एक अलग बूट विभाजन भी सेट किया गया था, पर बूट विभाजन एन्क्रिप्टेड नहीं था।&lt;br/&gt;&lt;br/&gt; इस तरह का सेटअप सुरक्षित नहीं होता क्योंकि सिस्टम फ़ाइल एन्क्रिप्टेड विभाजन पर होती हैं।&lt;br/&gt;आप चाहे तो जारी रख सकते है, पर फिर फ़ाइल सिस्टम बाद में सिस्टम स्टार्टअप के दौरान अनलॉक होगा।&lt;br/&gt; विभाजन को एन्क्रिप्ट करने के लिए वापस जाकर उसे दोबारा बनाएँ व विभाजन निर्माण विंडो में&lt;strong&gt;एन्क्रिप्ट&lt;/strong&gt; चुनें।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="714"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="723"/>
       <source>has at least one disk device available.</source>
       <translation>कम-से-कम एक डिस्क डिवाइस उपलब्ध हो।</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="715"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="724"/>
       <source>There are no partitions to install on.</source>
       <translation>इंस्टॉल हेतु कोई विभाजन नहीं हैं।</translation>
     </message>
@@ -3053,11 +3002,6 @@ The installer will quit and all changes will be lost.</source>
   </context>
   <context>
     <name>PlasmaLnfPage</name>
-    <message>
-      <location filename="../src/modules/plasmalnf/page_plasmalnf.ui" line="18"/>
-      <source>Form</source>
-      <translation>रूप</translation>
-    </message>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="79"/>
       <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is set up. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
@@ -3826,11 +3770,6 @@ Output:
   <context>
     <name>TrackingPage</name>
     <message>
-      <location filename="../src/modules/tracking/page_trackingstep.ui" line="18"/>
-      <source>Form</source>
-      <translation>रूप</translation>
-    </message>
-    <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="28"/>
       <source>Placeholder</source>
       <translation>प्लेसहोल्डर</translation>
@@ -3991,11 +3930,6 @@ Output:
   </context>
   <context>
     <name>WelcomePage</name>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="18"/>
-      <source>Form</source>
-      <translation>रूप</translation>
-    </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="79"/>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="98"/>
