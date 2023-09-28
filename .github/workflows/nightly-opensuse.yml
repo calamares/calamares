@@ -21,67 +21,12 @@ jobs:
     steps:
       - name: "prepare env"
         shell: bash
-        run: |
-          zypper --non-interactive up
-          zypper --non-interactive in git-core jq curl
-          # From deploycala.py
-          zypper --non-interactive in \
-            "autoconf" \
-            "automake" \
-            "bison" \
-            "flex" \
-            "git" \
-            "libtool" \
-            "m4" \
-            "make" \
-            "cmake" \
-            "extra-cmake-modules" \
-            "gcc-c++"
-          zypper --non-interactive in \
-            "libqt5-qtbase-devel" \
-            "libqt5-linguist-devel" \
-            "libqt5-qtsvg-devel" \
-            "libqt5-qtdeclarative-devel" \
-            "libqt5-qtwebengine-devel" \
-            "yaml-cpp-devel" \
-            "libpolkit-qt5-1-devel" \
-            "libpwquality-devel" \
-            "parted-devel" \
-            "python-devel" \
-            "libboost_headers-devel" \
-            "libboost_python3-devel"
-          zypper --non-interactive in \
-            "kdbusaddons-devel" \
-            "kservice-devel" \
-            "kpackage-devel" \
-            "kparts-devel" \
-            "kcrash-devel" \
-            "kpmcore-devel" \
-            "plasma5-workspace-devel" \
-            "plasma-framework-devel" \
-          # Additional dependencies
-          zypper --non-interactive in \
-            libicu-devel \
-            libAppStreamQt-devel \
-            libatasmart-devel
+        run: zypper --non-interactive in git-core jq curl
       - name: "prepare source"
         uses: calamares/actions/generic-checkout@v5
+      - name: "install dependencies"
+        shell: bash
+        run: ./ci/deps-opensuse.sh
       - name: "build"
         id: build
         uses: calamares/actions/generic-build@v4
-      - name: "notify: ok"
-        if: ${{ success() && github.repository == 'calamares/calamares' }}
-        uses: calamares/actions/matrix-notify@v4
-        with:
-          token: ${{ secrets.MATRIX_TOKEN }}
-          room: ${{ secrets.MATRIX_ROOM }}
-          message: |
-            OK ${{ github.workflow }} in ${{ github.repository }} ${{ steps.build.outputs.git-summary }}
-      - name: "notify: fail"
-        if: ${{ failure() && github.repository == 'calamares/calamares' }}
-        uses: calamares/actions/matrix-notify@v4
-        with:
-          token: ${{ secrets.MATRIX_TOKEN }}
-          room: ${{ secrets.MATRIX_ROOM }}
-          message: |
-            FAIL ${{ github.workflow }} in ${{ github.repository }} ${{ steps.build.outputs.git-summary }}
