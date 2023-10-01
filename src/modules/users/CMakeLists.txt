@@ -57,7 +57,8 @@ target_link_libraries(users_internal
         ${qtname}::Gui
         ${qtname}::Widgets
 )
-set_target_properties(users_internal PROPERTIES COMPILE_DEFINITIONS PLUGINDLLEXPORT_PRO)
+target_compile_definitions(users_internal PUBLIC PLUGINDLLEXPORT_PRO)
+target_compile_options(users_internal PUBLIC -fPIC)
 calamares_automoc(users_internal)
 
 calamares_add_plugin(users
