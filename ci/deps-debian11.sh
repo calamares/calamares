@@ -3,7 +3,6 @@
 # Install dependencies for the nightly-debian (11) build
 #
 apt-get update
-# Make sure we can send notices later
 apt-get -y install git-core jq curl
 apt-get -y install \
 	build-essential \

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-28 23:53+0200\n"
+"POT-Creation-Date: 2023-09-28 22:49+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -109,8 +109,8 @@ msgid "Writing fstab."
 msgstr ""
 
 #: src/modules/fstab/main.py:377 src/modules/fstab/main.py:383
-#: src/modules/fstab/main.py:411 src/modules/initcpiocfg/main.py:267
-#: src/modules/initcpiocfg/main.py:271 src/modules/initramfscfg/main.py:85
+#: src/modules/fstab/main.py:411 src/modules/initcpiocfg/main.py:256
+#: src/modules/initcpiocfg/main.py:260 src/modules/initramfscfg/main.py:85
 #: src/modules/initramfscfg/main.py:89 src/modules/localecfg/main.py:140
 #: src/modules/mount/main.py:329 src/modules/networkcfg/main.py:105
 #: src/modules/openrcdmcryptcfg/main.py:72
@@ -146,11 +146,11 @@ msgstr ""
 msgid "Configuring mkinitcpio."
 msgstr ""
 
-#: src/modules/initcpiocfg/main.py:268
+#: src/modules/initcpiocfg/main.py:257
 msgid "No partitions are defined for <pre>initcpiocfg</pre>."
 msgstr ""
 
-#: src/modules/initcpiocfg/main.py:272
+#: src/modules/initcpiocfg/main.py:261
 msgid "No root mount point for <pre>initcpiocfg</pre>."
 msgstr ""
 
