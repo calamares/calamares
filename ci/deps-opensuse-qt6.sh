@@ -4,6 +4,8 @@
 #
 # Add a Qt6/KF6 repo
 zypper --non-interactive addrepo -G https://download.opensuse.org/repositories/home:krop:kf6/openSUSE_Tumbleweed/home:krop:kf6.repo
+zypper --non-interactive addrepo -G https://download.opensuse.org/repositories/home:/krop:/Qt6:/Release/openSUSE_Tumbleweed/home:krop:Qt6:Release.repo
+
 zypper --non-interactive refresh
 zypper --non-interactive up
 zypper --non-interactive in git-core jq curl
