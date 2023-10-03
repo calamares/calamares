@@ -1,0 +1,29 @@
+name: nightly-neon-unstable
+
+on:
+  schedule:
+    - cron: "59 23 * * *"
+  workflow_dispatch:
+
+env:
+  BUILDDIR: /build
+  SRCDIR: ${{ github.workspace }}
+  CMAKE_ARGS: |
+    -DKDE_INSTALL_USE_QT_SYS_PATHS=ON
+    -DCMAKE_BUILD_TYPE=Debug
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: docker://kdeneon/plasma:unstable
+      options: --tmpfs /build:rw --user 0:0
+    steps:
+      - name: "prepare source"
+        uses: calamares/actions/generic-checkout@v5
+      - name: "install dependencies"
+        shell: bash
+        run: ./ci/deps-neon.sh
+      - name: "build"
+        shell: bash
+        run: ./ci/build.sh
