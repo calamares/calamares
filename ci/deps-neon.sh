@@ -3,7 +3,7 @@
 # Install dependencies for the nightly-neon build
 #
 apt-get update
-apt-get -y install git-core jq
+apt-get -y install git-core jq ninja
 apt-get -y install \
 	build-essential \
 	cmake \

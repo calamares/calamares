@@ -13,8 +13,8 @@ test -n "$GIT_HASH" && BUILD_MESSAGE=$( git log -1 --abbrev-commit --pretty=onel
 
 echo "::" ; echo ":: $BUILD_MESSAGE" ; echo "::"
 
-cmake -S "$SRCDIR" -B "$BUILDDIR" $CMAKE_ARGS || exit 1
-make -C "$BUILDDIR" -j2 VERBOSE=1 || exit 1
-make -C "$BUILDDIR" install VERBOSE=1 || exit 1
+cmake -S "$SRCDIR" -B "$BUILDDIR" -G Ninja $CMAKE_ARGS || exit 1
+ninja -C "$BUILDDIR" || exit 1
+ninja -C "$BUILDDIR" install || exit 1
 
 echo "::" ; echo ":: $BUILD_MESSAGE" ; echo "::"

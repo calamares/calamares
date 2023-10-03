@@ -3,7 +3,7 @@
 # Install dependencies for the nightly-debian (11) build
 #
 apt-get update
-apt-get -y install git-core jq curl
+apt-get -y install git-core jq curl ninja
 apt-get -y install \
 	build-essential \
 	cmake \
