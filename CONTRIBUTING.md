@@ -79,19 +79,28 @@ Pick one (or both):
 - `docker pull kdeneon/plasma:user`
 
 Then start a container with the right image, from the root of Calamares
-source checkout. Pick one:
-- `docker run  -ti --tmpfs /build:rw --user 0:0 -v .:/src opensuse/tumbleweed `
-- `docker run  -ti --tmpfs /build:rw --user 0:0 -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=:0 -v .:/src kdeneon/plasma:user bash`
-This starts a container with the chosen image (openSUSE Tumbleweed or KDE neon,
-here) with a temporary build directory in `/build` and the Calamares
-sources mounted as `/src`. KDE neon needs some extra settings to avoid
-starting a complete desktop.
+source checkout. Start with this command and substitute `opensuse/tumbleweed`
+or `kdeneon/plasma:user` for the `$IMAGE` part.
+
+```
+docker run -ti \
+    --tmpfs /build:rw
+    --user 0:0
+    -e DISPLAY=:0
+    -v /tmp/.X11-unix:/tmp/.X11-unix
+    -v .:/src
+    $IMAGE
+    bash
+```
+
+This starts a container with the chosen image with a temporary build
+directory in `/build` and the Calamaressources mounted as `/src`.
 
 Run the script to install dependencies: you could use `deploycala.py`
-or one of the shell scripts in `.github/workflows` to install the right
-dependencies for the image.
+or one of the shell scripts in `ci/` to install the right
+dependencies for the image (in this example, for openSUSE and Qt6).
 - `cd /src`
-- `./.github/workflows/nightly-opensuse-qt6.sh`
+- `./ci/deps-opensuse-qt6.sh`
 
 Then run CMake (add any CMake options you like at the end) and ninja:
 - `cmake -S /src -B /build -G Ninja`
