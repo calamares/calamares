@@ -74,9 +74,10 @@ instructions are on the wiki.
 ### Simple Build in Docker
 
 You may have success with the Docker images that the CI system uses.
-Pick one (or both):
+Pick one (or more) of these images which are also used in CI:
 - `docker pull docker://opensuse/tumbleweed`
 - `docker pull kdeneon/plasma:user`
+- `docker pull kdeneon/plasma:unstable`
 
 Then start a container with the right image, from the root of Calamares
 source checkout. Start with this command and substitute `opensuse/tumbleweed`
@@ -84,12 +85,12 @@ or `kdeneon/plasma:user` for the `$IMAGE` part.
 
 ```
 docker run -ti \
-    --tmpfs /build:rw
-    --user 0:0
-    -e DISPLAY=:0
-    -v /tmp/.X11-unix:/tmp/.X11-unix
-    -v .:/src
-    $IMAGE
+    --tmpfs /build:rw,exec \
+    --user 0:0 \
+    -e DISPLAY=:0 \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v .:/src \
+    $IMAGE \
     bash
 ```
 
@@ -102,9 +103,15 @@ dependencies for the image (in this example, for openSUSE and Qt6).
 - `cd /src`
 - `./ci/deps-opensuse-qt6.sh`
 
-Then run CMake (add any CMake options you like at the end) and ninja:
+Then run CMake (add any CMake options you like at the end) and ninja.
+There is a script `ci/build.sh` that does this, too (without options).
 - `cmake -S /src -B /build -G Ninja`
 - `ninja -C /build`
+
+To run Calamares inside the container, or e.g. `loadmodule` to test
+individual modules, you may need to configure X authentication; a
+simple and insecure way of doing that is to run `xhost +` in the host
+environment of the Docker containers.
 
 ### Dependencies for Calamares 3.3
 
