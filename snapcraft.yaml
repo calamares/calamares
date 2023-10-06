@@ -1,0 +1,40 @@
+name: calamares-snap
+version: '3.2.43'  # Replace with the desired version
+summary: Calamares installer in a Snap
+description: |
+  Calamares is an installer framework that aims to be easy, customizable,
+  and visually appealing for both users and developers.
+
+grade: stable
+confinement: strict
+
+base: core18  # Use the core18 base for compatibility
+
+parts:
+  calamares:
+    source: https://github.com/calamares/calamares.git
+    source-tag: v3.2.43  # Replace with the desired version
+    plugin: cmake
+    build-packages:
+      - cmake
+      - qtbase5-dev
+      - libkf5coreaddons-dev
+      - libkf5i18n-dev
+      - libkf5kio-dev
+      - libkf5configwidgets-dev
+      - libkf5widgetsaddons-dev
+      - libkf5declarative-dev
+      # Add any additional build dependencies here
+    stage-packages:
+      # Add any runtime dependencies here
+    after:
+      - desktop-qt5
+
+apps:
+  calamares:
+    command: calamares
+    plugs:
+      - x11
+      - unity7
+      # Add any other required plugs here
+
