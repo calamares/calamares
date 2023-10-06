@@ -99,7 +99,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
      <item>
       <widget class="QPushButton" name="crashButton">
        <property name="toolTip">
-        <string>Crashes Calamares, so that Dr. Konqui can look at it.</string>
+        <string>Crashes Calamares, so that Dr. Konqi can look at it.</string>
        </property>
        <property name="text">
         <string notr="true">Crash now</string>
