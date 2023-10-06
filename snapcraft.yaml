@@ -1,4 +1,4 @@
-name: calamares-snap
+name: calamares4snap
 version: '3.2.43'  # Replace with the desired version
 summary: Calamares installer in a Snap
 description: |
