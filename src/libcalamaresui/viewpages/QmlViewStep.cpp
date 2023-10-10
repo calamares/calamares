@@ -24,7 +24,12 @@
 #include <QQmlContext>
 #include <QQmlEngine>
 #include <QQuickItem>
+#if QT_VERSION >= QT_VERSION_CHECK( 6, 0, 0 )
+#include <QQuickWindow>
+#else
 #include <QQuickWidget>
+#endif
+
 #include <QVBoxLayout>
 #include <QWidget>
 
@@ -66,16 +71,22 @@ QmlViewStep::QmlViewStep( QObject* parent )
     : ViewStep( parent )
     , m_widget( new QWidget )
     , m_spinner( new WaitingWidget( tr( "Loading ..." ) ) )
-    , m_qmlWidget( new QQuickWidget )
 {
     Calamares::registerQmlModels();
+
+#if QT_VERSION >= QT_VERSION_CHECK( 6, 0, 0 )
+    m_qmlEngine = new QQmlEngine( this );
+#else
+    m_qmlWidget = new QQuickWidget;
+    m_qmlWidget->setResizeMode( QQuickWidget::SizeRootObjectToView );
+    m_qmlWidget->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
+    m_qmlEngine = m_qmlWidget->engine();
+#endif
 
     QVBoxLayout* layout = new QVBoxLayout( m_widget );
     layout->addWidget( m_spinner );
 
-    m_qmlWidget->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
-    m_qmlWidget->setResizeMode( QQuickWidget::SizeRootObjectToView );
-    m_qmlWidget->engine()->addImportPath( Calamares::qmlModulesDir().absolutePath() );
+    m_qmlEngine->addImportPath( Calamares::qmlModulesDir().absolutePath() );
 
     // QML Loading starts when the configuration for the module is set.
 }
@@ -181,11 +192,20 @@ QmlViewStep::loadComplete()
         }
         else
         {
+#if QT_VERSION >= QT_VERSION_CHECK( 6, 0, 0 )
+            auto* quick = new QQuickWindow;
+            auto* root = quick->contentItem();
+            m_qmlObject->setParentItem( root );
+            m_qmlObject->bindableWidth().setBinding( [ = ]() { return root->width(); } );
+            m_qmlObject->bindableHeight().setBinding( [ = ]() { return root->height(); } );
+            m_qmlWidget = QWidget::createWindowContainer( quick, m_widget );
+#else
             // setContent() is public API, but not documented publicly.
             // It is marked \internal in the Qt sources, but does exactly
             // what is needed: sets up visual parent by replacing the root
             // item, and handling resizes.
             m_qmlWidget->setContent( QUrl( m_qmlFileName ), m_qmlComponent, m_qmlObject );
+#endif
             showQml();
         }
     }
@@ -241,8 +261,8 @@ QmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         }
 
         cDebug() << "QmlViewStep" << moduleInstanceKey() << "loading" << m_qmlFileName;
-        m_qmlComponent = new QQmlComponent(
-            m_qmlWidget->engine(), QUrl( m_qmlFileName ), QQmlComponent::CompilationMode::Asynchronous );
+        m_qmlComponent
+            = new QQmlComponent( m_qmlEngine, QUrl( m_qmlFileName ), QQmlComponent::CompilationMode::Asynchronous );
         connect( m_qmlComponent, &QQmlComponent::statusChanged, this, &QmlViewStep::loadComplete );
         if ( m_qmlComponent->status() == QQmlComponent::Error )
         {
@@ -275,7 +295,7 @@ QmlViewStep::getConfig()
 void
 QmlViewStep::setContextProperty( const char* name, QObject* property )
 {
-    m_qmlWidget->engine()->rootContext()->setContextProperty( name, property );
+    m_qmlEngine->rootContext()->setContextProperty( name, property );
 }
 
 }  // namespace Calamares

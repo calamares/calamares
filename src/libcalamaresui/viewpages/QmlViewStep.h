@@ -14,6 +14,7 @@
 #include "viewpages/ViewStep.h"
 
 class QQmlComponent;
+class QQmlEngine;
 class QQuickItem;
 class QQuickWidget;
 class WaitingWidget;
@@ -109,7 +110,14 @@ private:
 
     QWidget* m_widget = nullptr;
     WaitingWidget* m_spinner = nullptr;
-    QQuickWidget* m_qmlWidget = nullptr;
+
+#if QT_VERSION >= QT_VERSION_CHECK( 6, 0, 0 )
+    QWidget* m_qmlWidget = nullptr;  // Qt6: container for QQuickWindow
+#else
+    QQuickWidget * m_qmlWidget = nullptr;
+#endif
+
+    QQmlEngine* m_qmlEngine = nullptr;  // Qt5: points to QuickWidget engine, Qt6: separate engine
     QQmlComponent* m_qmlComponent = nullptr;
     QQuickItem* m_qmlObject = nullptr;
 };
