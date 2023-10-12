@@ -15,10 +15,10 @@ import QtQuick.Controls 2.10
 import QtQuick.Layouts 1.3
 import QtQuick.Window 2.3
 
-// Qt5 requires versioned imports
-//
-import org.kde.kirigami 2.7 as Kirigami
-import QtGraphicalEffects 1.0
+// Qt6 requires unversioned imports and other names
+import org.kde.kirigami as Kirigami
+import Qt5Compat.GraphicalEffects
+
 
 Page
 {

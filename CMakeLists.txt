@@ -174,6 +174,8 @@ if(WITH_QT6)
     set(KF_VERSION 5.240) # KDE Neon weirdness
     # API that was deprecated before Qt 5.15 causes a compile error
     add_compile_definitions(QT_DISABLE_DEPRECATED_BEFORE=0x060400)
+    # Something to add to filenames for this specific Qt version
+    set(QT_VERSION_SUFFIX "-qt6")
 else()
     message(STATUS "Building Calamares with Qt5")
     set(qtname "Qt5")
@@ -183,6 +185,8 @@ else()
     set(KF_VERSION 5.78)
     # API that was deprecated before Qt 5.15 causes a compile error
     add_compile_definitions(QT_DISABLE_DEPRECATED_BEFORE=0x050f00)
+    # Something to add to filenames for this specific Qt version
+    set(QT_VERSION_SUFFIX "")
 endif()
 
 set(BOOSTPYTHON_VERSION 1.72.0)
