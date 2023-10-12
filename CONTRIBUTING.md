@@ -36,6 +36,9 @@ room, `#calamares:kde.org`. Responsiveness is best during the day
 in Europe, but feel free to idle.
 Matrix is persistent, and we'll see your message eventually.
 
+**Note:** You need an account to access Matrix. It doesn't have to be a KDE account,
+it can be on any Matrix homeserver.
+
 * [![Join us on Matrix](https://img.shields.io/badge/Matrix-%23calamares:kde.org-blue)](https://webchat.kde.org/#/room/%23calamares:kde.org)
 
 
@@ -77,7 +80,7 @@ You may have success with the Docker images that the CI system uses.
 Pick one (or more) of these images which are also used in CI:
 - `docker pull docker://opensuse/tumbleweed`
 - `docker pull kdeneon/plasma:user`
-- `docker pull kdeneon/plasma:unstable`
+- `docker pull fedora:38`
 
 Then start a container with the right image, from the root of Calamares
 source checkout. Start with this command and substitute `opensuse/tumbleweed`
