@@ -28,6 +28,11 @@ This release contains contributions from (alphabetically by first name):
    distribution can use Calamares without needing an extra version of Qt.
    Note that some KDE Frameworks are required as well, and those need to be
    Qt6-based also (and are not released as of September 2023).
+ - QML-based modules are also supported in Qt6, but the QML is likely to
+   be source-incompatible. The *welcomeq* module shipped with Calamares
+   now has two `.qrc` files and uses the `${QT_VERSION_SUFFIX}` variable
+   to pick one of the two depending on the Qt version being used.
+   Other modules are likely to follow the same pattern.
  - C++ namespaces have been shuffled around and `CalamaresUtils` has been
    retired. This has an effect on all C++ plugins, since this is neither
    a binary- nor source-compatible change.
