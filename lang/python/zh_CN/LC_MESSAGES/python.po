@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-28 23:53+0200\n"
+"POT-Creation-Date: 2023-09-28 22:49+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: OkayPJ <1535253694@qq.com>, 2023\n"
 "Language-Team: Chinese (China) (https://app.transifex.com/calamares/teams/20061/zh_CN/)\n"
@@ -118,8 +118,8 @@ msgid "Writing fstab."
 msgstr "正在写入 fstab。"
 
 #: src/modules/fstab/main.py:377 src/modules/fstab/main.py:383
-#: src/modules/fstab/main.py:411 src/modules/initcpiocfg/main.py:267
-#: src/modules/initcpiocfg/main.py:271 src/modules/initramfscfg/main.py:85
+#: src/modules/fstab/main.py:411 src/modules/initcpiocfg/main.py:256
+#: src/modules/initcpiocfg/main.py:260 src/modules/initramfscfg/main.py:85
 #: src/modules/initramfscfg/main.py:89 src/modules/localecfg/main.py:140
 #: src/modules/mount/main.py:329 src/modules/networkcfg/main.py:105
 #: src/modules/openrcdmcryptcfg/main.py:72
@@ -155,11 +155,11 @@ msgstr "设置硬件时钟。"
 msgid "Configuring mkinitcpio."
 msgstr "配置 mkinitcpio."
 
-#: src/modules/initcpiocfg/main.py:268
+#: src/modules/initcpiocfg/main.py:257
 msgid "No partitions are defined for <pre>initcpiocfg</pre>."
 msgstr ""
 
-#: src/modules/initcpiocfg/main.py:272
+#: src/modules/initcpiocfg/main.py:261
 msgid "No root mount point for <pre>initcpiocfg</pre>."
 msgstr ""
 

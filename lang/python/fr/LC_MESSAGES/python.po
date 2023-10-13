@@ -13,15 +13,16 @@
 # Florian B <florianb3522@gmail.com>, 2019
 # Arnaud Ferraris <arnaud.ferraris@gmail.com>, 2019
 # roxfr <roxfr@outlook.fr>, 2022
+# David D, 2023
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-28 23:53+0200\n"
+"POT-Creation-Date: 2023-09-28 22:49+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: roxfr <roxfr@outlook.fr>, 2022\n"
+"Last-Translator: David D, 2023\n"
 "Language-Team: French (https://app.transifex.com/calamares/teams/20061/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -107,12 +108,14 @@ msgstr "Configuration du initramfs avec dracut."
 
 #: src/modules/dracut/main.py:63
 msgid "Failed to run dracut"
-msgstr ""
+msgstr "Échec de l'exécution de dracut"
 
 #: src/modules/dracut/main.py:64
 #, python-brace-format
 msgid "Dracut failed to run on the target with return code: {return_code}"
 msgstr ""
+"Dract a échoué à l'exécution sur la cible et a retourné le code:  "
+"{return_code}"
 
 #: src/modules/dummypython/main.py:35
 msgid "Dummy python job."
@@ -128,8 +131,8 @@ msgid "Writing fstab."
 msgstr "Écriture du fstab."
 
 #: src/modules/fstab/main.py:377 src/modules/fstab/main.py:383
-#: src/modules/fstab/main.py:411 src/modules/initcpiocfg/main.py:267
-#: src/modules/initcpiocfg/main.py:271 src/modules/initramfscfg/main.py:85
+#: src/modules/fstab/main.py:411 src/modules/initcpiocfg/main.py:256
+#: src/modules/initcpiocfg/main.py:260 src/modules/initramfscfg/main.py:85
 #: src/modules/initramfscfg/main.py:89 src/modules/localecfg/main.py:140
 #: src/modules/mount/main.py:329 src/modules/networkcfg/main.py:105
 #: src/modules/openrcdmcryptcfg/main.py:72
@@ -170,13 +173,15 @@ msgstr "Configuration de l'horloge matériel."
 msgid "Configuring mkinitcpio."
 msgstr "Configuration de mkinitcpio."
 
-#: src/modules/initcpiocfg/main.py:268
+#: src/modules/initcpiocfg/main.py:257
 msgid "No partitions are defined for <pre>initcpiocfg</pre>."
 msgstr ""
+"Aucune partition n'est définie pour être utilisée pour "
+"<pre>initcpiocfg</pre>."
 
-#: src/modules/initcpiocfg/main.py:272
+#: src/modules/initcpiocfg/main.py:261
 msgid "No root mount point for <pre>initcpiocfg</pre>."
-msgstr ""
+msgstr "Aucun point de montage racine pour <pre>initcpiocfg</pre>."
 
 #: src/modules/initramfscfg/main.py:32
 msgid "Configuring initramfs."
@@ -350,21 +355,23 @@ msgstr ""
 
 #: src/modules/services-systemd/main.py:26
 msgid "Configure systemd units"
-msgstr ""
+msgstr "Configurer les units de systemd"
 
 #: src/modules/services-systemd/main.py:64
 msgid "Cannot modify unit"
-msgstr ""
+msgstr "Impossible de modifier l'unit"
 
 #: src/modules/services-systemd/main.py:65
 msgid ""
 "<code>systemctl {_action!s}</code> call in chroot returned error code "
 "{_exit_code!s}."
 msgstr ""
+"L'appel <code>systemctl {_action!s}</code> en chroot a renvoyé le code "
+"d'erreur {_exit_code!s}"
 
 #: src/modules/services-systemd/main.py:66
 msgid "Cannot {_action!s} systemd unit <code>{_name!s}</code>."
-msgstr ""
+msgstr "Ne peut pas {_action!s} l'unit systemd <code>{_name!s}</code>."
 
 #: src/modules/unpackfs/main.py:34
 msgid "Filling up filesystems."
@@ -436,4 +443,4 @@ msgstr "La destination \"{}\" dans le système cible n'est pas un répertoire"
 
 #: src/modules/zfshostid/main.py:27
 msgid "Copying zfs generated hostid."
-msgstr ""
+msgstr "Copie en cours du hostid généré par zfs. "
