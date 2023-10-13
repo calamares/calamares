@@ -10,11 +10,16 @@
     </message>
     <message>
       <location filename="../src/libcalamares/CalamaresAbout.cpp" line="20"/>
-      <source>Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://app.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-      <translation>&lt;a href="https://calamares.io/team/"&gt;Calamares 팀&lt;/a&gt;과 &lt;a href="https://app.transifex.com/calamares/calamares/"&gt;Calamares 번역자 팀&lt;/a&gt;에게 감사드립니다.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; 개발은 &lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt;&lt;br/&gt; - Liberating Software에서 후원합니다.</translation>
+      <source>Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://app.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.</source>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamares/CalamaresAbout.cpp" line="38"/>
+      <location filename="../src/libcalamares/CalamaresAbout.cpp" line="25"/>
+      <source>&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/libcalamares/CalamaresAbout.cpp" line="40"/>
       <source>Copyright %1-%2 %3 &amp;lt;%4&amp;gt;&lt;br/&gt;</source>
       <extracomment>Copyright year-year Name &lt;email-address&gt;</extracomment>
       <translation>Copyright %1-%2 %3 &amp;lt;%4&amp;gt;&lt;br/&gt;</translation>
@@ -31,17 +36,17 @@
   <context>
     <name>BootInfoWidget</name>
     <message>
-      <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="62"/>
+      <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="60"/>
       <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
       <translation>이 시스템의 &lt;strong&gt;부트 환경&lt;/strong&gt;입니다. &lt;br&gt; &lt;br&gt; 오래된 x86 시스템은 &lt;strong&gt;BIOS&lt;/strong&gt;만을 지원합니다. &lt;br&gt; 최근 시스템은 주로 &lt;strong&gt;EFI&lt;/strong&gt;를 사용하지만, 호환 모드로 시작한 경우 BIOS로 나타날 수도 있습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="72"/>
+      <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="70"/>
       <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
       <translation>이 시스템은 &lt;strong&gt;EFI&lt;/strong&gt; 부트 환경에서 시동되었습니다. &lt;br&gt; &lt;br&gt; EFI 환경에서의 시동에 대해 설정하려면, &lt;strong&gt;EFI 시스템 파티션&lt;/strong&gt;에 &lt;strong&gt;GRUB&lt;/strong&gt;나 &lt;strong&gt;systemd-boot&lt;/strong&gt;와 같은 부트 로더 애플리케이션을 배치해야 합니다. 이 과정은 자동으로 진행됩니다. 단, 수동 파티셔닝을 선택할 경우, EFI 시스템 파티션을 직접 선택 또는 작성해야 합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="84"/>
+      <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="82"/>
       <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
       <translation>이 시스템은 &lt;strong&gt;BIOS 부트 환경&lt;/strong&gt;에서 시동되었습니다. &lt;br&gt; &lt;br&gt; BIOS 환경에서의 시동에 대해 설정하려면, 파티션의 시작 위치 또는 파티션 테이블의 시작 위치 근처(권장)에 있는 &lt;strong&gt;마스터 부트 레코드&lt;/strong&gt;에 &lt;strong&gt;GRUB&lt;/strong&gt;과 같은 부트 로더를 설치해야 합니다. 이 과정은 자동으로 진행됩니다. 단, 수동 파티셔닝을 선택할 경우, 사용자가 직접 설정을 해야 합니다.</translation>
     </message>
@@ -165,12 +170,12 @@
       <translation>%p%</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="119"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="116"/>
       <source>Set up</source>
       <translation>설정</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="119"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="116"/>
       <source>Install</source>
       <translation>설치</translation>
     </message>
@@ -207,17 +212,17 @@
   <context>
     <name>Calamares::ProcessJob</name>
     <message>
-      <location filename="../src/libcalamares/ProcessJob.cpp" line="42"/>
+      <location filename="../src/libcalamares/ProcessJob.cpp" line="39"/>
       <source>Run command '%1' in target system.</source>
       <translation>대상 시스템에서 '%1' 명령을 실행합니다.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/ProcessJob.cpp" line="42"/>
+      <location filename="../src/libcalamares/ProcessJob.cpp" line="39"/>
       <source> Run command '%1'.</source>
       <translation>'%1' 명령을 실행합니다.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/ProcessJob.cpp" line="49"/>
+      <location filename="../src/libcalamares/ProcessJob.cpp" line="45"/>
       <source>Running command %1 %2</source>
       <translation>명령 %1 %2 실행중</translation>
     </message>
@@ -258,17 +263,17 @@
   <context>
     <name>Calamares::QmlViewStep</name>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="67"/>
+      <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="68"/>
       <source>Loading ...</source>
       <translation>로딩 중 ...</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="88"/>
+      <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="89"/>
       <source>QML Step &lt;i&gt;%1&lt;/i&gt;.</source>
       <translation>QML 단계 &lt;i&gt;%1&lt;/i&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="268"/>
+      <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="266"/>
       <source>Loading failed.</source>
       <translation>로딩하지 못했습니다.</translation>
     </message>
@@ -276,26 +281,26 @@
   <context>
     <name>Calamares::RequirementsChecker</name>
     <message>
-      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="94"/>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="99"/>
       <source>Requirements checking for module '%1' is complete.</source>
       <translation>'%1' 모듈에 대한 요구 사항 확인이 완료되었습니다.</translation>
     </message>
     <message numerus="yes">
-      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="118"/>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="123"/>
       <source>Waiting for %n module(s).</source>
       <translation>
         <numerusform>%n개 모듈을 기다리는 중입니다.</numerusform>
       </translation>
     </message>
     <message numerus="yes">
-      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="119"/>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="124"/>
       <source>(%n second(s))</source>
       <translation>
         <numerusform>(%n초)</numerusform>
       </translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="124"/>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="129"/>
       <source>System-requirements checking is complete.</source>
       <translation>시스템 요구사항 검사가 완료 되었습니다.</translation>
     </message>
@@ -303,17 +308,17 @@
   <context>
     <name>Calamares::ViewManager</name>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="160"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="156"/>
       <source>Setup Failed</source>
       <translation>설치 실패</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="160"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="156"/>
       <source>Installation Failed</source>
       <translation>설치 실패</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="163"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="159"/>
       <source>Error</source>
       <translation>오류</translation>
     </message>
@@ -333,17 +338,17 @@
       <translation>닫기(&amp;C)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/utils/Paste.cpp" line="184"/>
+      <location filename="../src/libcalamaresui/utils/Paste.cpp" line="183"/>
       <source>Install Log Paste URL</source>
       <translation>로그 붙여넣기 URL 설치</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/utils/Paste.cpp" line="166"/>
+      <location filename="../src/libcalamaresui/utils/Paste.cpp" line="165"/>
       <source>The upload was unsuccessful. No web-paste was done.</source>
       <translation>업로드에 실패했습니다. 웹 붙여넣기가 수행되지 않았습니다.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/utils/Paste.cpp" line="178"/>
+      <location filename="../src/libcalamaresui/utils/Paste.cpp" line="177"/>
       <source>Install log posted to
 
 %1
@@ -356,124 +361,124 @@ Link copied to clipboard</source>
 링크가 클립보드에 복사되었습니다.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="189"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="184"/>
       <source>Calamares Initialization Failed</source>
       <translation>Calamares 초기화에 실패했습니다</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="190"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="185"/>
       <source>%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution.</source>
       <translation>%1 가 설치될 수 없습니다. Calamares가 모든 구성된 모듈을 불러올 수 없었습니다. 이것은 Calamares가 배포판에서 사용되는 방식에서 발생한 문제입니다.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="196"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="191"/>
       <source>&lt;br/&gt;The following modules could not be loaded:</source>
       <translation>다음 모듈 불러오기 실패:</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="310"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="333"/>
       <source>Continue with setup?</source>
       <translation>설치를 계속하시겠습니까?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="310"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="333"/>
       <source>Continue with installation?</source>
       <translation>설치를 계속하시겠습니까?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="312"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="335"/>
       <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
       <translation>%1 설치 프로그램이 %2을(를) 설정하기 위해 디스크를 변경하려고 하는 중입니다.&lt;br/&gt;&lt;strong&gt;이러한 변경은 취소할 수 없습니다.&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="315"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="338"/>
       <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
       <translation>%1 설치 관리자가 %2를 설치하기 위해 사용자의 디스크의 내용을 변경하려고 합니다. &lt;br/&gt; &lt;strong&gt;이 변경 작업은 되돌릴 수 없습니다.&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="318"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="341"/>
       <source>&amp;Set up now</source>
       <translation>지금 설치 (&amp;S)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="318"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="341"/>
       <source>&amp;Install now</source>
       <translation>지금 설치 (&amp;I)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="326"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="348"/>
       <source>Go &amp;back</source>
       <translation>뒤로 이동 (&amp;b)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="376"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="395"/>
       <source>&amp;Set up</source>
       <translation>설치 (&amp;S)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="376"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="395"/>
       <source>&amp;Install</source>
       <translation>설치(&amp;I)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="378"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="397"/>
       <source>Setup is complete. Close the setup program.</source>
       <translation>설치가 완료 되었습니다. 설치 프로그램을 닫습니다.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="379"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="398"/>
       <source>The installation is complete. Close the installer.</source>
       <translation>설치가 완료되었습니다. 설치 관리자를 닫습니다.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="381"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="400"/>
       <source>Cancel setup without changing the system.</source>
       <translation>시스템을 변경 하지 않고 설치를 취소합니다.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="382"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="401"/>
       <source>Cancel installation without changing the system.</source>
       <translation>시스템 변경 없이 설치를 취소합니다.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="392"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="411"/>
       <source>&amp;Next</source>
       <translation>다음 (&amp;N)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="397"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="416"/>
       <source>&amp;Back</source>
       <translation>뒤로 (&amp;B)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="403"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="422"/>
       <source>&amp;Done</source>
       <translation>완료 (&amp;D)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="422"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="441"/>
       <source>&amp;Cancel</source>
       <translation>취소 (&amp;C)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="495"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="513"/>
       <source>Cancel setup?</source>
       <translation>설치를 취소 하시겠습니까?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="495"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="513"/>
       <source>Cancel installation?</source>
       <translation>설치를 취소하시겠습니까?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="496"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="514"/>
       <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
       <translation>현재 설정 프로세스를 취소하시겠습니까?
 설치 프로그램이 종료되고 모든 변경 내용이 손실됩니다.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="498"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="516"/>
       <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
       <translation>정말로 현재 설치 프로세스를 취소하시겠습니까?
@@ -483,22 +488,22 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>CalamaresPython::Helper</name>
     <message>
-      <location filename="../src/libcalamares/PythonHelper.cpp" line="302"/>
+      <location filename="../src/libcalamares/PythonHelper.cpp" line="307"/>
       <source>Unknown exception type</source>
       <translation>알 수 없는 예외 유형</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonHelper.cpp" line="320"/>
+      <location filename="../src/libcalamares/PythonHelper.cpp" line="325"/>
       <source>unparseable Python error</source>
       <translation>구문 분석할 수 없는 파이썬 오류</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonHelper.cpp" line="364"/>
+      <location filename="../src/libcalamares/PythonHelper.cpp" line="369"/>
       <source>unparseable Python traceback</source>
       <translation>구문 분석할 수 없는 파이썬 역추적 정보</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonHelper.cpp" line="371"/>
+      <location filename="../src/libcalamares/PythonHelper.cpp" line="376"/>
       <source>Unfetchable Python error.</source>
       <translation>가져올 수 없는 파이썬 오류</translation>
     </message>
@@ -506,12 +511,12 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>CalamaresWindow</name>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="396"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="403"/>
       <source>%1 Setup Program</source>
       <translation>%1 설치 프로그램</translation>
     </message>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="397"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="404"/>
       <source>%1 Installer</source>
       <translation>%1 설치 관리자</translation>
     </message>
@@ -546,149 +551,149 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>ChoicePage</name>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="138"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="137"/>
       <source>Select storage de&amp;vice:</source>
       <translation>저장 장치 선택 (&amp;v)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="139"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1042"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1093"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1146"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="138"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1024"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1075"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1128"/>
       <source>Current:</source>
       <translation>현재:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="140"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="139"/>
       <source>After:</source>
       <translation>이후:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1673"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1649"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
       <translation>&lt;strong&gt;수동 파티션 작업&lt;/strong&gt;&lt;br/&gt;직접 파티션을 만들거나 크기를 조정할 수 있습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="907"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="891"/>
       <source>Reuse %1 as home partition for %2.</source>
       <translation>%2의 홈 파티션으로 %1을 재사용합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1043"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1025"/>
       <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;축소할 파티션을 선택한 다음 하단 막대를 끌어 크기를 조정합니다.&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1067"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1049"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
       <translation>%1이 %2MiB로 축소되고 %4에 대해 새 %3MiB 파티션이 생성됩니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1701"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1677"/>
       <source>Boot loader location:</source>
       <translation>부트 로더 위치 :</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1137"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1119"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;설치할 파티션을 선택합니다.&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1198"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1179"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation>이 시스템에서는 EFI 시스템 파티션을 찾을 수 없습니다. 돌아가서 수동 파티션 작업을 사용하여 %1을 설정하세요.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1206"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1187"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>%1의 EFI 시스템 파티션은 %2의 시작으로 사용될 것입니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1214"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1195"/>
       <source>EFI system partition:</source>
       <translation>EFI 시스템 파티션:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1343"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1324"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>이 저장 장치에는 운영 체제가없는 것 같습니다. 무엇을하고 싶으십니까?&lt;br/&gt;저장 장치를 변경하기 전에 선택 사항을 검토하고 확인할 수 있습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1348"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1385"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1407"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1432"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1329"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1366"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1387"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1412"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
       <translation>&lt;strong&gt;디스크 지우기&lt;/strong&gt;&lt;br/&gt;그러면 선택한 저장 장치에 현재 있는 모든 데이터가 &lt;font color="red"&gt;삭제&lt;/font&gt;됩니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1352"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1381"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1403"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1428"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1333"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1362"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1383"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1408"/>
       <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
       <translation>&lt;strong&gt;함께 설치&lt;/strong&gt;&lt;br/&gt;설치 관리자가 파티션을 축소하여 %1 공간을 확보합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1356"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1390"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1411"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1436"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1337"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1370"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1391"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1416"/>
       <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
       <translation>&lt;strong&gt;파티션 바꾸기&lt;/strong&gt;&lt;br/&gt;파티션을 %1로 바꿉니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1375"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1356"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>이 저장 장치에 %1이 있습니다. 무엇을하고 싶으십니까?&lt;br/&gt;저장 장치를 변경하기 전에 선택 사항을 검토하고 확인할 수 있습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1398"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1378"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>이 저장 장치에는 이미 운영 체제가 있습니다. 무엇을하고 싶으십니까?&lt;br/&gt;저장 장치를 변경하기 전에 선택 사항을 검토하고 확인할 수 있습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1423"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1403"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>이 저장 장치에는 여러 개의 운영 체제가 있습니다. 무엇을하고 싶으십니까?&lt;br/&gt;저장 장치를 변경하기 전에 선택 사항을 검토하고 확인할 수 있습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1495"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1475"/>
       <source>This storage device already has an operating system on it, but the partition table &lt;strong&gt;%1&lt;/strong&gt; is different from the needed &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</source>
       <translation>이 스토리지 장치에는 이미 운영 체제가 설치되어 있으나 &lt;strong&gt;%1&lt;/strong&gt; 파티션 테이블이 필요로 하는 &lt;strong&gt;%2&lt;/strong&gt;와 다릅니다.&lt;br/&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1518"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1498"/>
       <source>This storage device has one of its partitions &lt;strong&gt;mounted&lt;/strong&gt;.</source>
       <translation>이 스토리지 장치는 하나 이상의 &lt;strong&gt;마운트된&lt;/strong&gt; 파티션을 갖고 있습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1523"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1503"/>
       <source>This storage device is a part of an &lt;strong&gt;inactive RAID&lt;/strong&gt; device.</source>
       <translation>이 스토리지 장치는 &lt;strong&gt;비활성화된 RAID&lt;/strong&gt; 장치의 일부입니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1642"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1618"/>
       <source>No Swap</source>
       <translation>스왑 없음</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1651"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1627"/>
       <source>Reuse Swap</source>
       <translation>스왑 재사용</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1654"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1630"/>
       <source>Swap (no Hibernate)</source>
       <translation>스왑 (최대 절전모드 아님)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1657"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1633"/>
       <source>Swap (with Hibernate)</source>
       <translation>스왑 (최대 절전모드 사용)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1660"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1636"/>
       <source>Swap to file</source>
       <translation>파일로 스왑</translation>
     </message>
@@ -757,12 +762,12 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>CommandList</name>
     <message>
-      <location filename="../src/libcalamares/utils/CommandList.cpp" line="165"/>
+      <location filename="../src/libcalamares/utils/CommandList.cpp" line="164"/>
       <source>Could not run command.</source>
       <translation>명령을 실행할 수 없습니다.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CommandList.cpp" line="166"/>
+      <location filename="../src/libcalamares/utils/CommandList.cpp" line="165"/>
       <source>The commands use variables that are not defined. Missing variables are: %1.</source>
       <translation>명령은 정의되지 않은 변수를 사용합니다. 누락된 변수: %1.</translation>
     </message>
@@ -770,12 +775,12 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>Config</name>
     <message>
-      <location filename="../src/modules/keyboard/Config.cpp" line="361"/>
+      <location filename="../src/modules/keyboard/Config.cpp" line="505"/>
       <source>Set keyboard model to %1.&lt;br/&gt;</source>
       <translation>키보드 모델을 %1로 설정합니다.&lt;br/&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/Config.cpp" line="368"/>
+      <location filename="../src/modules/keyboard/Config.cpp" line="512"/>
       <source>Set keyboard layout to %1/%2.</source>
       <translation>키보드 자판을 %1/%2로 설정합니다.</translation>
     </message>
@@ -785,12 +790,12 @@ The installer will quit and all changes will be lost.</source>
       <translation>표준시간대를 %1/%2로 설정합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="411"/>
+      <location filename="../src/modules/locale/Config.cpp" line="410"/>
       <source>The system language will be set to %1.</source>
       <translation>시스템 언어가 %1로 설정됩니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="418"/>
+      <location filename="../src/modules/locale/Config.cpp" line="417"/>
       <source>The numbers and dates locale will be set to %1.</source>
       <translation>숫자와 날짜 로케일이 %1로 설정됩니다.</translation>
     </message>
@@ -815,7 +820,7 @@ The installer will quit and all changes will be lost.</source>
       <translation>네트워크 설치. (비활성화됨: 패키지 목록 없음)</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/Config.cpp" line="77"/>
+      <location filename="../src/modules/netinstall/Config.cpp" line="76"/>
       <source>Package selection</source>
       <translation>패키지 선택</translation>
     </message>
@@ -825,47 +830,47 @@ The installer will quit and all changes will be lost.</source>
       <translation>네트워크 설치. (불가: 패키지 목록을 가져올 수 없습니다. 네트워크 연결을 확인해주세요)</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="56"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="57"/>
       <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue.</source>
       <translation>이 컴퓨터는 %1 설정을 위한 최소 요구 사항을 충족하지 않습니다.&lt;br/&gt;설치를 계속할 수 없습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="59"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="60"/>
       <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue.</source>
       <translation>이 컴퓨터는 %1 설치를 위한 최소 요구 사항을 충족하지 않습니다. &lt;br/&gt;설치를 계속할 수 없습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="65"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="66"/>
       <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
       <translation>이 컴퓨터는 %1 설치를 위한 권장 요구 사항 중 일부를 충족하지 않습니다.&lt;br/&gt;설치를 계속할 수는 있지만 일부 기능을 사용하지 않도록 설정할 수도 있습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="69"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="70"/>
       <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
       <translation>이 컴퓨터는 %1 설치를 위한 권장 요구 사항 중 일부를 충족하지 않습니다.&lt;br/&gt;설치를 계속할 수 있지만 일부 기능을 사용하지 않도록 설정할 수 있습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="79"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="80"/>
       <source>This program will ask you some questions and set up %2 on your computer.</source>
       <translation>이 프로그램은 몇 가지 질문을 하고 컴퓨터에 %2을 설정합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="266"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="264"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1&lt;/h1&gt;</source>
       <translation>&lt;h1&gt; 깔라마레스 설치 프로그램 %1에 오신 것을 환영합니다&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="267"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="265"/>
       <source>&lt;h1&gt;Welcome to %1 setup&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;%1 설치에 오신 것을 환영합니다&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="271"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="269"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;깔라마레스 설치 관리자 %1에 오신 것을 환영합니다&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="272"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="270"/>
       <source>&lt;h1&gt;Welcome to the %1 installer&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;%1 설치 관리자에 오신 것을 환영합니다&lt;/h1&gt;</translation>
     </message>
@@ -910,52 +915,52 @@ The installer will quit and all changes will be lost.</source>
       <translation>문자, 숫자, 밑줄 및 하이픈만 허용됩니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="599"/>
+      <location filename="../src/modules/users/Config.cpp" line="598"/>
       <source>Your passwords do not match!</source>
       <translation>암호가 일치하지 않습니다!</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="613"/>
+      <location filename="../src/modules/users/Config.cpp" line="612"/>
       <source>OK!</source>
       <translation>확인!</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/Config.cpp" line="145"/>
+      <location filename="../src/modules/finished/Config.cpp" line="142"/>
       <source>Setup Failed</source>
       <translation>설정 실패</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/Config.cpp" line="145"/>
+      <location filename="../src/modules/finished/Config.cpp" line="142"/>
       <source>Installation Failed</source>
       <translation>설치 실패</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/Config.cpp" line="147"/>
+      <location filename="../src/modules/finished/Config.cpp" line="144"/>
       <source>The setup of %1 did not complete successfully.</source>
       <translation>%1 설정이 제대로 완료되지 않았습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/Config.cpp" line="148"/>
+      <location filename="../src/modules/finished/Config.cpp" line="145"/>
       <source>The installation of %1 did not complete successfully.</source>
       <translation>%1 설치가 제대로 완료되지 않았습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/Config.cpp" line="152"/>
+      <location filename="../src/modules/finished/Config.cpp" line="149"/>
       <source>Setup Complete</source>
       <translation>설정 완료</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/Config.cpp" line="153"/>
+      <location filename="../src/modules/finished/Config.cpp" line="150"/>
       <source>Installation Complete</source>
       <translation>설치 완료</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/Config.cpp" line="154"/>
+      <location filename="../src/modules/finished/Config.cpp" line="151"/>
       <source>The setup of %1 is complete.</source>
       <translation>%1 설정이 완료되었습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/Config.cpp" line="155"/>
+      <location filename="../src/modules/finished/Config.cpp" line="152"/>
       <source>The installation of %1 is complete.</source>
       <translation>%1 설치가 완료되었습니다.</translation>
     </message>
@@ -970,17 +975,17 @@ The installer will quit and all changes will be lost.</source>
       <translation>목록에서 제품을 선택하십시오. 선택한 제품이 설치됩니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/Config.cpp" line="243"/>
+      <location filename="../src/modules/packagechooser/Config.cpp" line="242"/>
       <source>Packages</source>
       <translation>패키지</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/Config.cpp" line="249"/>
+      <location filename="../src/modules/packagechooser/Config.cpp" line="248"/>
       <source>Install option: &lt;strong&gt;%1&lt;/strong&gt;</source>
       <translation>설치 옵션: &lt;strong&gt;%1&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/Config.cpp" line="249"/>
+      <location filename="../src/modules/packagechooser/Config.cpp" line="248"/>
       <source>None</source>
       <translation>없음</translation>
     </message>
@@ -1003,7 +1008,7 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>ContextualProcessJob</name>
     <message>
-      <location filename="../src/modules/contextualprocess/ContextualProcessJob.cpp" line="119"/>
+      <location filename="../src/modules/contextualprocess/ContextualProcessJob.cpp" line="115"/>
       <source>Contextual Processes Job</source>
       <translation>컨텍스트 프로세스 작업</translation>
     </message>
@@ -1104,43 +1109,43 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>CreatePartitionJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="183"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="181"/>
       <source>Create new %1MiB partition on %3 (%2) with entries %4.</source>
       <translation>%4 항목이 있는 %3(%2)에 %1MiB 크기의 새 파티션을 만듭니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="191"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="189"/>
       <source>Create new %1MiB partition on %3 (%2).</source>
       <translation>%3(%2)에 %1MiB 크기의 새 파티션을 만듭니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="198"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="196"/>
       <source>Create new %2MiB partition on %4 (%3) with file system %1.</source>
       <translation>%1 파일 시스템으로 %4(%3)에 새 %2MiB 파티션을 만듭니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="215"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="212"/>
       <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2) with entries &lt;em&gt;%4&lt;/em&gt;.</source>
       <translation>&lt;em&gt;%4&lt;/em&gt; 항목이 있는 &lt;strong&gt;%3&lt;/strong&gt;(%2)에 &lt;strong&gt;%1MiB&lt;/strong&gt; 크기의 새 파티션을 만듭니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="224"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="221"/>
       <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2).</source>
       <translation>&lt;strong&gt;%3&lt;/strong&gt;(%2)에 &lt;strong&gt;%1MiB&lt;/strong&gt; 크기의 새 파티션을 만듭니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="231"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="228"/>
       <source>Create new &lt;strong&gt;%2MiB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>&lt;strong&gt;%1&lt;/strong&gt; 파일 시스템으로 &lt;strong&gt;%4&lt;/strong&gt; (%3)에 새 &lt;strong&gt;%2MiB&lt;/strong&gt; 파티션을 만듭니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="256"/>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="259"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="252"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="255"/>
       <source>Creating new %1 partition on %2.</source>
       <translation>%2에 새로운 %1 파티션 테이블을 만드는 중입니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="276"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="272"/>
       <source>The installer failed to create partition on disk '%1'.</source>
       <translation>설치 관리자가 디스크 '%1'에 파티션을 생성하지 못했습니다.</translation>
     </message>
@@ -1186,12 +1191,12 @@ The installer will quit and all changes will be lost.</source>
       <translation>&lt;strong&gt;%2&lt;/strong&gt;에 새로운 &lt;strong&gt;%1&lt;/strong&gt; 파티션 테이블을 만듭니다 (%3).</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="59"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="58"/>
       <source>Creating new %1 partition table on %2.</source>
       <translation>%2에 새로운 %1 파티션 테이블을 만드는 중입니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="88"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="86"/>
       <source>The installer failed to create a partition table on %1.</source>
       <translation>설치 관리자가 %1에 파티션 테이블을 만들지 못했습니다.</translation>
     </message>
@@ -1199,33 +1204,33 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>CreateUserJob</name>
     <message>
-      <location filename="../src/modules/users/CreateUserJob.cpp" line="35"/>
+      <location filename="../src/modules/users/CreateUserJob.cpp" line="33"/>
       <source>Create user %1</source>
       <translation>%1 사용자를 만듭니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CreateUserJob.cpp" line="42"/>
+      <location filename="../src/modules/users/CreateUserJob.cpp" line="39"/>
       <source>Create user &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>&lt;strong&gt;%1&lt;/strong&gt;사용자를 만듭니다 .</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CreateUserJob.cpp" line="125"/>
+      <location filename="../src/modules/users/CreateUserJob.cpp" line="120"/>
       <source>Preserving home directory</source>
       <translation>홈 디렉터리 보존</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CreateUserJob.cpp" line="49"/>
-      <location filename="../src/modules/users/CreateUserJob.cpp" line="142"/>
+      <location filename="../src/modules/users/CreateUserJob.cpp" line="45"/>
+      <location filename="../src/modules/users/CreateUserJob.cpp" line="137"/>
       <source>Creating user %1</source>
       <translation>%1 사용자 생성 중</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CreateUserJob.cpp" line="150"/>
+      <location filename="../src/modules/users/CreateUserJob.cpp" line="145"/>
       <source>Configuring user %1</source>
       <translation>%1 사용자 설정 중</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CreateUserJob.cpp" line="158"/>
+      <location filename="../src/modules/users/CreateUserJob.cpp" line="153"/>
       <source>Setting file permissions</source>
       <translation>파일 권한 설정</translation>
     </message>
@@ -1288,17 +1293,17 @@ The installer will quit and all changes will be lost.</source>
       <translation>%1 파티션을 지웁니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="80"/>
+      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="79"/>
       <source>Delete partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>&lt;strong&gt;%1&lt;/strong&gt; 파티션을 지웁니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="87"/>
+      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="85"/>
       <source>Deleting partition %1.</source>
       <translation>%1 파티션을 지우는 중입니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="102"/>
+      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="99"/>
       <source>The installer failed to delete partition %1.</source>
       <translation>설치 관리자가 %1 파티션을 지우지 못했습니다.</translation>
     </message>
@@ -1306,32 +1311,32 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>DeviceInfoWidget</name>
     <message>
-      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="141"/>
+      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="139"/>
       <source>This device has a &lt;strong&gt;%1&lt;/strong&gt; partition table.</source>
       <translation>이 장치는 &lt;strong&gt;%1&lt;/strong&gt; 파티션 테이블을 갖고 있습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="97"/>
+      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="95"/>
       <source>This is a &lt;strong&gt;loop&lt;/strong&gt; device.&lt;br&gt;&lt;br&gt;It is a pseudo-device with no partition table that makes a file accessible as a block device. This kind of setup usually only contains a single filesystem.</source>
       <translation>이것은 &lt;strong&gt;루프&lt;/strong&gt; 장치입니다.&lt;br&gt;&lt;br&gt;파티션 테이블이 없는 사이비 장치이므로 파일을 블록 장치로 액세스할 수 있습니다. 이러한 종류의 설정은 일반적으로 단일 파일 시스템만 포함합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="106"/>
+      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="104"/>
       <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
       <translation>이 설치 관리자는 선택한 저장 장치에서 &lt;strong&gt;파티션 테이블을 검색할 수 없습니다.&lt;/strong&gt;&lt;br&gt;&lt;br&gt;장치에 파티션 테이블이 없거나 파티션 테이블이 손상되었거나 알 수 없는 유형입니다.&lt;br&gt;이 설치 관리자는 자동으로 또는 수동 파티션 페이지를 통해 새 파티션 테이블을 생성할 수 있습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="91"/>
+      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="89"/>
       <source>&lt;br&gt;&lt;br&gt;This is the recommended partition table type for modern systems which start from an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.</source>
       <translation>&lt;br&gt;&lt;br&gt;&lt;strong&gt;EFI&lt;/strong&gt; 부팅 환경에서 시작하는 최신 시스템에 권장되는 파티션 테이블 유형입니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="80"/>
+      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="78"/>
       <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. GPT is recommended in most other cases.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MBR partition table is an obsolete MS-DOS era standard.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.</source>
       <translation>&lt;br&gt;&lt;br&gt;이 파티션 테이블 유형은 &lt;strong&gt;BIOS&lt;/strong&gt; 부팅 환경에서 시작하는 이전 시스템에만 권장됩니다. GPT는 대부분의 다른 경우에 권장됩니다.&lt;br&gt;&lt;br&gt;&lt;strong&gt;경고 : &lt;/strong&gt;MBR 파티션 테이블은 구식 MS-DOS 표준입니다.&lt;br&gt;&lt;em&gt;기본&lt;/em&gt; 파티션은 4개만 생성할 수 있으며, 이 4개 중 1개는 &lt;em&gt;확장&lt;/em&gt; 파티션일 수 있으며, 이 파티션에는 여러 개의 &lt;em&gt;논리&lt;/em&gt; 파티션이 포함될 수 있습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="149"/>
+      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="147"/>
       <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
       <translation>선택한 저장 장치의 &lt;strong&gt;파티션 테이블&lt;/strong&gt; 유형입니다.&lt;br&gt;&lt;br&gt;파티션 테이블 유형을 변경하는 유일한 방법은 파티션 테이블을 처음부터 지우고 재생성하는 것입니다. 이렇게 하면 스토리지 디바이스의 모든 데이터가 삭제됩니다.&lt;br&gt;달리 선택하지 않으면 이 설치 관리자는 현재 파티션 테이블을 유지합니다.&lt;br&gt;확실하지 않은 경우 최신 시스템에서는 GPT가 선호됩니다.</translation>
     </message>
@@ -1372,7 +1377,7 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>DummyCppJob</name>
     <message>
-      <location filename="../src/modules/dummycpp/DummyCppJob.cpp" line="36"/>
+      <location filename="../src/modules/dummycpp/DummyCppJob.cpp" line="35"/>
       <source>Dummy C++ Job</source>
       <translation>C++ 더미 작업</translation>
     </message>
@@ -1473,13 +1478,13 @@ The installer will quit and all changes will be lost.</source>
       <translation>암호 확인</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="159"/>
-      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="174"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="153"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="168"/>
       <source>Please enter the same passphrase in both boxes.</source>
       <translation>암호와 암호 확인 상자에 동일한 값을 입력해주세요.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="164"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="158"/>
       <source>Password must be a minimum of %1 characters</source>
       <translation>비밀번호는 %1자 이상이어야 합니다</translation>
     </message>
@@ -1500,57 +1505,57 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>FillGlobalStorageJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="178"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="179"/>
       <source>Set partition information</source>
       <translation>파티션 정보 설정</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="207"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="208"/>
       <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition with features &lt;em&gt;%3&lt;/em&gt;</source>
       <translation>&lt;em&gt;%3&lt;/em&gt; 기능이 있는 &lt;strong&gt;새&lt;/strong&gt; %2 시스템 파티션에 %1을(를) 설치합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="215"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="216"/>
       <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
       <translation>&lt;strong&gt;새&lt;/strong&gt; %2 시스템 파티션에 %1를설치합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="224"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="225"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt; and features &lt;em&gt;%3&lt;/em&gt;.</source>
       <translation>마운트 위치 &lt;strong&gt;%1&lt;/strong&gt; 및 기능 &lt;em&gt;%3&lt;/em&gt;(으)로 &lt;strong&gt;새&lt;/strong&gt; %2 파티션을 설정합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="232"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="233"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;%3.</source>
       <translation>마운트 위치 &lt;strong&gt;%1&lt;/strong&gt;%3(으)로 &lt;strong&gt;새&lt;/strong&gt; %2 파티션을 지정합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="246"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="247"/>
       <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt; with features &lt;em&gt;%4&lt;/em&gt;.</source>
       <translation>&lt;em&gt;%4&lt;/em&gt; 기능이 있는 %3 시스템 파티션 &lt;strong&gt;%1&lt;/strong&gt;에 %2을(를) 설치합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="265"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="266"/>
       <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt; and features &lt;em&gt;%4&lt;/em&gt;.</source>
       <translation>마운트 위치 &lt;strong&gt;%2&lt;/strong&gt; 및 기능 &lt;em&gt;%4&lt;/em&gt;(으)로 %3 파티션 &lt;strong&gt;%1&lt;/strong&gt;을(를) 지정합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="274"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="275"/>
       <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;%4.</source>
       <translation>마운트 위치 &lt;strong&gt;%2&lt;/strong&gt;%4으로 %3 파티션 &lt;strong&gt;%1&lt;/strong&gt;을(를) 지정합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="255"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="256"/>
       <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>시스템 파티션 &lt;strong&gt;%1&lt;/strong&gt;의 %3에 %2를 설치합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="289"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="290"/>
       <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>&lt;strong&gt;%1&lt;/strong&gt;에 부트 로더를 설치합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="298"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="299"/>
       <source>Setting up mount points.</source>
       <translation>마운트 위치를 설정 중입니다.</translation>
     </message>
@@ -1617,23 +1622,23 @@ The installer will quit and all changes will be lost.</source>
       <translation>%4의 %1 포맷 파티션(파일 시스템: %2, 크기: %3 MiB)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="50"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="49"/>
       <source>Format &lt;strong&gt;%3MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;.</source>
       <translation>&lt;strong&gt;%3MiB&lt;/strong&gt; 파티션 &lt;strong&gt;%1&lt;/strong&gt;을 파일 시스템 &lt;strong&gt;%2&lt;/strong&gt;로 포맷합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="63"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="61"/>
       <source>%1 (%2)</source>
       <comment>partition label %1 (device path %2)</comment>
       <translation>%1 (%2)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="65"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="63"/>
       <source>Formatting partition %1 with file system %2.</source>
       <translation>%1 파티션을 %2 파일 시스템으로 포맷하는 중입니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="76"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="73"/>
       <source>The installer failed to format partition %1 on disk '%2'.</source>
       <translation>설치 관리자가 '%2' 디스크에 있는 %1 파티션을 포맷하지 못했습니다.</translation>
     </message>
@@ -1641,127 +1646,127 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>GeneralRequirements</name>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="159"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="160"/>
       <source>Please ensure the system has at least %1 GiB available drive space.</source>
       <translation>시스템에 사용 가능한 드라이브 공간이 %1기가바이트 이상 있는지 확인하세요.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="161"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="162"/>
       <source>Available drive space is all of the hard disks and SSDs connected to the system.</source>
       <translation>사용 가능한 드라이브 공간은 시스템에 연결된 모든 하드 디스크와 SSD입니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="164"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="165"/>
       <source>There is not enough drive space. At least %1 GiB is required.</source>
       <translation>드라이브 공간이 부족합니다. %1 GiB 이상이 필요합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="172"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="173"/>
       <source>has at least %1 GiB working memory</source>
       <translation>%1 GiB 이상의 작동 메모리가 있습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="174"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="175"/>
       <source>The system does not have enough working memory. At least %1 GiB is required.</source>
       <translation>시스템에 충분한 작동 메모리가 없습니다. %1 GiB 이상이 필요합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="183"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="184"/>
       <source>is plugged in to a power source</source>
       <translation>전원 공급이 연결되어 있습니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="184"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="185"/>
       <source>The system is not plugged in to a power source.</source>
       <translation>이 시스템은 전원 공급이 연결되어 있지 않습니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="191"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="192"/>
       <source>is connected to the Internet</source>
       <translation>인터넷에 연결되어 있습니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="192"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="193"/>
       <source>The system is not connected to the Internet.</source>
       <translation>이 시스템은 인터넷에 연결되어 있지 않습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="199"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="200"/>
       <source>is running the installer as an administrator (root)</source>
       <translation>설치 관리자를 관리자(루트)로 실행 중입니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="203"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="204"/>
       <source>The setup program is not running with administrator rights.</source>
       <translation>설치 프로그램이 관리자 권한으로 실행되고 있지 않습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="204"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="205"/>
       <source>The installer is not running with administrator rights.</source>
       <translation>설치 관리자가 관리자 권한으로 동작하고 있지 않습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="212"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="213"/>
       <source>has a screen large enough to show the whole installer</source>
       <translation>전체 설치 관리자를 표시할 수 있을 만큼 큰 화면이 있습니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="216"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="217"/>
       <source>The screen is too small to display the setup program.</source>
       <translation>화면이 너무 작아서 설정 프로그램을 표시할 수 없습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="217"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="218"/>
       <source>The screen is too small to display the installer.</source>
       <translation>설치 관리자를 표시하기에는 화면이 너무 작습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="226"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="227"/>
       <source>is always false</source>
       <translation>- 항상 거짓</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="227"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="228"/>
       <source>The computer says no.</source>
       <translation>컴퓨터가 '아니요'라고 응답합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="235"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="236"/>
       <source>is always false (slowly)</source>
       <translation>- 항상 거짓 (느리게)</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="236"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="237"/>
       <source>The computer says no (slowly).</source>
       <translation>컴퓨터가 '아니요'라고 응답합니다(느리게).</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="243"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="244"/>
       <source>is always true</source>
       <translation>- 항상 참</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="244"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="245"/>
       <source>The computer says yes.</source>
       <translation>컴퓨터가 '예'라고 응답합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="252"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="253"/>
       <source>is always true (slowly)</source>
       <translation>- 항상 참 (느리게)</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="253"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="254"/>
       <source>The computer says yes (slowly).</source>
       <translation>컴퓨터가 '예'라고 응답합니다(느리게).</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="261"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="262"/>
       <source>is checked three times.</source>
       <translation>- 세 번 확인함.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="264"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="265"/>
       <source>The snark has not been checked three times.</source>
       <comment>The (some mythological beast) has not been checked three times.</comment>
       <translation>snark가 세 번 확인되지 않았습니다.</translation>
@@ -1770,7 +1775,7 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>HostInfoJob</name>
     <message>
-      <location filename="../src/modules/hostinfo/HostInfoJob.cpp" line="42"/>
+      <location filename="../src/modules/hostinfo/HostInfoJob.cpp" line="41"/>
       <source>Collecting information about your machine.</source>
       <translation>컴퓨터에 대한 정보를 수집하는 중입니다.</translation>
     </message>
@@ -1804,7 +1809,7 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>InitcpioJob</name>
     <message>
-      <location filename="../src/modules/initcpio/InitcpioJob.cpp" line="32"/>
+      <location filename="../src/modules/initcpio/InitcpioJob.cpp" line="31"/>
       <source>Creating initramfs with mkinitcpio.</source>
       <translation>mkinitcpio를 사용하여 initramfs 만드는 중.</translation>
     </message>
@@ -1812,7 +1817,7 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>InitramfsJob</name>
     <message>
-      <location filename="../src/modules/initramfs/InitramfsJob.cpp" line="28"/>
+      <location filename="../src/modules/initramfs/InitramfsJob.cpp" line="27"/>
       <source>Creating initramfs.</source>
       <translation>initramfs를 만드는 중.</translation>
     </message>
@@ -1820,17 +1825,17 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>InteractiveTerminalPage</name>
     <message>
-      <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="46"/>
+      <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="49"/>
       <source>Konsole not installed</source>
       <translation>Konsole이 설치되지 않았음</translation>
     </message>
     <message>
-      <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="47"/>
+      <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="50"/>
       <source>Please install KDE Konsole and try again!</source>
       <translation>KDE Konsole을 설치한 후에 다시 시도해주세요!</translation>
     </message>
     <message>
-      <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="118"/>
+      <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="122"/>
       <source>Executing script: &amp;nbsp;&lt;code&gt;%1&lt;/code&gt;</source>
       <translation>스크립트 실행: &amp;nbsp;&lt;code&gt;%1&lt;/code&gt;</translation>
     </message>
@@ -1838,7 +1843,7 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>InteractiveTerminalViewStep</name>
     <message>
-      <location filename="../src/modules/interactiveterminal/InteractiveTerminalViewStep.cpp" line="41"/>
+      <location filename="../src/modules/interactiveterminal/InteractiveTerminalViewStep.cpp" line="40"/>
       <source>Script</source>
       <translation>스크립트</translation>
     </message>
@@ -1854,7 +1859,7 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>KeyboardViewStep</name>
     <message>
-      <location filename="../src/modules/keyboard/KeyboardViewStep.cpp" line="42"/>
+      <location filename="../src/modules/keyboard/KeyboardViewStep.cpp" line="41"/>
       <source>Keyboard</source>
       <translation>키보드</translation>
     </message>
@@ -1885,22 +1890,22 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>LOSHJob</name>
     <message>
-      <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="36"/>
+      <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="35"/>
       <source>Configuring encrypted swap.</source>
       <translation>암호화된 스왑 구성 중.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="88"/>
+      <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="87"/>
       <source>No target system available.</source>
       <translation>대상 시스템을 사용할 수 없습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="96"/>
+      <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="95"/>
       <source>No rootMountPoint is set.</source>
       <translation>루트마운트위치가 지정되지 않았습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="101"/>
+      <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="100"/>
       <source>No configFilePath is set.</source>
       <translation>구성파일경로가 지정되지 않았습니다.</translation>
     </message>
@@ -1913,32 +1918,32 @@ The installer will quit and all changes will be lost.</source>
       <translation>&lt;h1&gt;라이선스 계약&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicensePage.cpp" line="143"/>
+      <location filename="../src/modules/license/LicensePage.cpp" line="142"/>
       <source>I accept the terms and conditions above.</source>
       <translation>상기 계약 조건을 모두 동의합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicensePage.cpp" line="145"/>
+      <location filename="../src/modules/license/LicensePage.cpp" line="144"/>
       <source>Please review the End User License Agreements (EULAs).</source>
       <translation>최종 사용자 라이선스 계약(EULA)을 검토하십시오.</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicensePage.cpp" line="150"/>
+      <location filename="../src/modules/license/LicensePage.cpp" line="149"/>
       <source>This setup procedure will install proprietary software that is subject to licensing terms.</source>
       <translation>이 설정 절차에서는 라이센스 조건에 해당하는 독점 소프트웨어를 설치합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicensePage.cpp" line="153"/>
+      <location filename="../src/modules/license/LicensePage.cpp" line="152"/>
       <source>If you do not agree with the terms, the setup procedure cannot continue.</source>
       <translation>약관에 동의하지 않으면 설치 절차를 계속할 수 없습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicensePage.cpp" line="158"/>
+      <location filename="../src/modules/license/LicensePage.cpp" line="157"/>
       <source>This setup procedure can install proprietary software that is subject to licensing terms in order to provide additional features and enhance the user experience.</source>
       <translation>이 설치 절차는 추가 기능을 제공하고 사용자 환경을 향상시키기 위해 라이선스 조건에 따라 독점 소프트웨어를 설치할 수 있습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicensePage.cpp" line="163"/>
+      <location filename="../src/modules/license/LicensePage.cpp" line="162"/>
       <source>If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
       <translation>조건에 동의하지 않으면 독점 소프트웨어가 설치되지 않으며 대신 오픈 소스 대체 소프트웨어가 사용됩니다.</translation>
     </message>
@@ -1946,7 +1951,7 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>LicenseViewStep</name>
     <message>
-      <location filename="../src/modules/license/LicenseViewStep.cpp" line="43"/>
+      <location filename="../src/modules/license/LicenseViewStep.cpp" line="45"/>
       <source>License</source>
       <translation>라이선스</translation>
     </message>
@@ -2041,7 +2046,7 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>LocaleTests</name>
     <message>
-      <location filename="../src/libcalamares/locale/Tests.cpp" line="272"/>
+      <location filename="../src/libcalamares/locale/Tests.cpp" line="271"/>
       <source>Quit</source>
       <translation>종료</translation>
     </message>
@@ -2049,7 +2054,7 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>LocaleViewStep</name>
     <message>
-      <location filename="../src/modules/locale/LocaleViewStep.cpp" line="75"/>
+      <location filename="../src/modules/locale/LocaleViewStep.cpp" line="71"/>
       <source>Location</source>
       <translation>위치</translation>
     </message>
@@ -2087,17 +2092,17 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>MachineIdJob</name>
     <message>
-      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="37"/>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="35"/>
       <source>Generate machine-id.</source>
       <translation>machine-id를 생성합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="53"/>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="51"/>
       <source>Configuration Error</source>
       <translation>구성 오류</translation>
     </message>
     <message>
-      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="54"/>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="52"/>
       <source>No root mount point is set for MachineId.</source>
       <translation>MachineId에 대해 설정된 루트 마운트 지점이 없습니다.</translation>
     </message>
@@ -2258,12 +2263,12 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>OEMViewStep</name>
     <message>
-      <location filename="../src/modules/oemid/OEMViewStep.cpp" line="119"/>
+      <location filename="../src/modules/oemid/OEMViewStep.cpp" line="118"/>
       <source>OEM Configuration</source>
       <translation>OEM 구성</translation>
     </message>
     <message>
-      <location filename="../src/modules/oemid/OEMViewStep.cpp" line="125"/>
+      <location filename="../src/modules/oemid/OEMViewStep.cpp" line="124"/>
       <source>Set the OEM Batch Identifier to &lt;code&gt;%1&lt;/code&gt;.</source>
       <translation>OEM 배치 식별자를 &lt;code&gt;%1&lt;/code&gt;로 설정합니다.</translation>
     </message>
@@ -2301,265 +2306,265 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>PWQ</name>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="51"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="52"/>
       <source>Password is too short</source>
       <translation>암호가 너무 짧습니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="67"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="68"/>
       <source>Password is too long</source>
       <translation>암호가 너무 깁니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="188"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="189"/>
       <source>Password is too weak</source>
       <translation>암호가 너무 취약합니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="196"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="197"/>
       <source>Memory allocation error when setting '%1'</source>
       <translation>'%1'을 설정하는 중 메모리 할당 오류</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="199"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="200"/>
       <source>Memory allocation error</source>
       <translation>메모리 할당 오류</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="201"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="202"/>
       <source>The password is the same as the old one</source>
       <translation>암호가 이전과 같습니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="203"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="204"/>
       <source>The password is a palindrome</source>
       <translation>암호가 앞뒤로 동일해 보이는 단어입니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="205"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="206"/>
       <source>The password differs with case changes only</source>
       <translation>암호가 대소문자만 다릅니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="207"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="208"/>
       <source>The password is too similar to the old one</source>
       <translation>암호가 이전 암호와 너무 유사합니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="209"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="210"/>
       <source>The password contains the user name in some form</source>
       <translation>암호가 사용자 이름의 일부를 포함하고 있습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="211"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="212"/>
       <source>The password contains words from the real name of the user in some form</source>
       <translation>암호가 사용자 실명의 일부를 포함하고 있습니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="214"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="215"/>
       <source>The password contains forbidden words in some form</source>
       <translation>암호가 금지된 단어를 포함하고 있습니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="221"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="222"/>
       <source>The password contains too few digits</source>
       <translation>암호가 너무 적은 개수의 숫자들을 포함하고 있습니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="228"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="229"/>
       <source>The password contains too few uppercase letters</source>
       <translation>암호가 너무 적은 개수의 대문자를 포함하고 있습니다</translation>
     </message>
     <message numerus="yes">
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="232"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="233"/>
       <source>The password contains fewer than %n lowercase letters</source>
       <translation>
         <numerusform>암호에 %n자 미만의 소문자가 있습니다</numerusform>
       </translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="235"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="236"/>
       <source>The password contains too few lowercase letters</source>
       <translation>암호가 너무 적은 개수의 소문자를 포함하고 있습니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="242"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="243"/>
       <source>The password contains too few non-alphanumeric characters</source>
       <translation>암호가 너무 적은 개수의 영숫자가 아닌 문자를 포함하고 있습니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="249"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="250"/>
       <source>The password is too short</source>
       <translation>암호가 너무 짧습니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="258"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="259"/>
       <source>The password does not contain enough character classes</source>
       <translation>암호에 문자 클래스가 충분하지 않습니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="265"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="266"/>
       <source>The password contains too many same characters consecutively</source>
       <translation>암호에 너무 많은 동일 문자가 연속해 있습니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="275"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="276"/>
       <source>The password contains too many characters of the same class consecutively</source>
       <translation>암호에 동일 문자 클래스가 너무 많이 연속해 있습니다.</translation>
     </message>
     <message numerus="yes">
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="218"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="219"/>
       <source>The password contains fewer than %n digits</source>
       <translation>
         <numerusform>암호에 %n자 미만의 숫자가 포함되어 있습니다</numerusform>
       </translation>
     </message>
     <message numerus="yes">
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="225"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="226"/>
       <source>The password contains fewer than %n uppercase letters</source>
       <translation>
         <numerusform>암호에 %n자 미만의 대문자가 포함되어 있습니</numerusform>
       </translation>
     </message>
     <message numerus="yes">
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="239"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="240"/>
       <source>The password contains fewer than %n non-alphanumeric characters</source>
       <translation>
         <numerusform>암호에 %n자 미만의 영숫자가 아닌 문자가 포함되어 있습니</numerusform>
       </translation>
     </message>
     <message numerus="yes">
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="246"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="247"/>
       <source>The password is shorter than %n characters</source>
       <translation>
         <numerusform>암호가 %n자보다 짧습니다</numerusform>
       </translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="251"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="252"/>
       <source>The password is a rotated version of the previous one</source>
       <translation>암호는 이전 암호의 순환 버전입니다</translation>
     </message>
     <message numerus="yes">
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="255"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="256"/>
       <source>The password contains fewer than %n character classes</source>
       <translation>
         <numerusform>암호에 %n개 미만의 문자 클래스가 포함되어 있습니다</numerusform>
       </translation>
     </message>
     <message numerus="yes">
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="262"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="263"/>
       <source>The password contains more than %n same characters consecutively</source>
       <translation>
         <numerusform>암호에 연속적으로 %n자 이상의 동일한 문자가 있습니다</numerusform>
       </translation>
     </message>
     <message numerus="yes">
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="269"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="270"/>
       <source>The password contains more than %n characters of the same class consecutively</source>
       <translation>
         <numerusform>암호에 연속적으로 동일한 클래스의 %n자 이상이 포함되어 있습니다</numerusform>
       </translation>
     </message>
     <message numerus="yes">
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="280"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="281"/>
       <source>The password contains monotonic sequence longer than %n characters</source>
       <translation>
         <numerusform>암호에 %n자보다 긴 단조로운 시퀀스가 포함되어 있습니다</numerusform>
       </translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="286"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="287"/>
       <source>The password contains too long of a monotonic character sequence</source>
       <translation>암호에 너무 길게 단순 문자열이 포함되어 있습니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="289"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="290"/>
       <source>No password supplied</source>
       <translation>암호가 제공 되지 않음</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="291"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="292"/>
       <source>Cannot obtain random numbers from the RNG device</source>
       <translation>RNG 장치에서 임의의 번호를 가져올 수 없습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="293"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="294"/>
       <source>Password generation failed - required entropy too low for settings</source>
       <translation>암호 생성 실패 - 설정에 필요한 엔트로피가 너무 작음</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="298"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="299"/>
       <source>The password fails the dictionary check - %1</source>
       <translation>암호가 사전 검사에 실패했습니다 - %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="301"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="302"/>
       <source>The password fails the dictionary check</source>
       <translation>암호가 사전 검사에 실패했습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="305"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="306"/>
       <source>Unknown setting - %1</source>
       <translation>설정되지 않음 - %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="307"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="308"/>
       <source>Unknown setting</source>
       <translation>설정되지 않음</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="311"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="312"/>
       <source>Bad integer value of setting - %1</source>
       <translation>설정의 잘못된 정수 값 - %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="313"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="314"/>
       <source>Bad integer value</source>
       <translation>잘못된 정수 값</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="317"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="318"/>
       <source>Setting %1 is not of integer type</source>
       <translation>설정값 %1은 정수 유형이 아닙니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="319"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="320"/>
       <source>Setting is not of integer type</source>
       <translation>설정값이 정수 형식이 아닙니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="323"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="324"/>
       <source>Setting %1 is not of string type</source>
       <translation>설정값 %1은 문자열 유형이 아닙니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="325"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="326"/>
       <source>Setting is not of string type</source>
       <translation>설정값이 문자열 유형이 아닙니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="327"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="328"/>
       <source>Opening the configuration file failed</source>
       <translation>구성 파일을 열지 못했습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="329"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="330"/>
       <source>The configuration file is malformed</source>
       <translation>구성 파일의 형식이 잘못되었습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="331"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="332"/>
       <source>Fatal failure</source>
       <translation>치명적인 실패</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="333"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="334"/>
       <source>Unknown error</source>
       <translation>알 수 없는 오류</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="844"/>
+      <location filename="../src/modules/users/Config.cpp" line="840"/>
       <source>Password is empty</source>
       <translation>비밀번호가 비어 있습니다</translation>
     </message>
@@ -2595,12 +2600,12 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>PackageModel</name>
     <message>
-      <location filename="../src/modules/netinstall/PackageModel.cpp" line="205"/>
+      <location filename="../src/modules/netinstall/PackageModel.cpp" line="206"/>
       <source>Name</source>
       <translation>이름</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/PackageModel.cpp" line="205"/>
+      <location filename="../src/modules/netinstall/PackageModel.cpp" line="206"/>
       <source>Description</source>
       <translation>설명</translation>
     </message>
@@ -2613,9 +2618,14 @@ The installer will quit and all changes will be lost.</source>
       <translation>키보드 모델:</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/KeyboardPage.ui" line="135"/>
+      <location filename="../src/modules/keyboard/KeyboardPage.ui" line="146"/>
       <source>Type here to test your keyboard</source>
       <translation>키보드를 테스트하기 위해 여기에 입력하세요</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboard/KeyboardPage.ui" line="153"/>
+      <source>Keyboard Switch:</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -2713,42 +2723,42 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>PartitionLabelsView</name>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="189"/>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="178"/>
       <source>Root</source>
       <translation>루트</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="193"/>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="182"/>
       <source>Home</source>
       <translation>홈</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="197"/>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="186"/>
       <source>Boot</source>
       <translation>부트</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="202"/>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="191"/>
       <source>EFI system</source>
       <translation>EFI 시스템</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="206"/>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="195"/>
       <source>Swap</source>
       <translation>스왑</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="210"/>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="199"/>
       <source>New partition for %1</source>
       <translation>%1에 대한 새로운 파티션</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="214"/>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="203"/>
       <source>New partition</source>
       <translation>새로운 파티션</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="238"/>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="227"/>
       <source>%1  %2</source>
       <extracomment>size[number] filesystem[name]</extracomment>
       <translation>%1  %2</translation>
@@ -2875,102 +2885,102 @@ The installer will quit and all changes will be lost.</source>
       <translation>시스템 정보 수집 중...</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="111"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="107"/>
       <source>Partitions</source>
       <translation>파티션</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="254"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="250"/>
       <source>Unsafe partition actions are enabled.</source>
       <translation>안전하지 않은 파티션 작업이 활성화되었습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="257"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="253"/>
       <source>Partitioning is configured to &lt;b&gt;always&lt;/b&gt; fail.</source>
       <translation>파티셔닝이 &lt;b&gt;항상&lt;/b&gt; 실패하도록 구성되어 있습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="260"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="256"/>
       <source>No partitions will be changed.</source>
       <translation>파티션 없음은 변경될 것입니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="300"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="296"/>
       <source>Current:</source>
       <translation>현재:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="318"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="314"/>
       <source>After:</source>
       <translation>이후:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="545"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="535"/>
       <source>No EFI system partition configured</source>
       <translation>EFI 시스템 파티션이 설정되지 않았습니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="549"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="539"/>
       <source>EFI system partition configured incorrectly</source>
       <translation>EFI 시스템 파티션이 잘못 구성됨</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="554"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="544"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a suitable filesystem.</source>
       <translation>%1을(를) 시작하려면 EFI 시스템 파티션이 필요합니다.&lt;br/&gt;&lt;br/&gt;EFI 시스템 파티션을 구성하려면 돌아가서 적절한 파일 시스템을 선택하거나 생성하십시오.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="565"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="555"/>
       <source>The filesystem must be mounted on &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>파일 시스템은 &lt;strong&gt;%1&lt;/strong&gt;에 마운트되어야 합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="571"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="561"/>
       <source>The filesystem must have type FAT32.</source>
       <translation>파일 시스템에는 FAT32 유형이 있어야 합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="579"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="569"/>
       <source>The filesystem must be at least %1 MiB in size.</source>
       <translation>파일 시스템의 크기는 %1MiB 이상이어야 합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="585"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="575"/>
       <source>The filesystem must have flag &lt;strong&gt;%1&lt;/strong&gt; set.</source>
       <translation>파일 시스템에 플래그 &lt;strong&gt;%1&lt;/strong&gt; 세트가 있어야 합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="591"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="581"/>
       <source>You can continue without setting up an EFI system partition but your system may fail to start.</source>
       <translation>EFI 시스템 파티션을 설정하지 않고 계속할 수 있지만 시스템이 시작되지 않을 수 있습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="609"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="599"/>
       <source>Option to use GPT on BIOS</source>
       <translation>BIOS에서 GPT를 사용하는 옵션</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="610"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="600"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
       <translation>GPT 파티션 테이블은 모든 시스템에 가장 적합한 옵션입니다. 이 설치 관리자는 BIOS 시스템에 대한 이러한 설정도 지원합니다.&lt;br/&gt;&lt;br/&gt;BIOS에서 GPT 파티션 테이블을 구성하려면(아직 수행하지 않은 경우) 돌아가서 파티션 테이블을 GPT로 설정한 다음 &lt;strong&gt;%2&lt;/strong&gt; 플래그가 활성화된 8MB의 포맷되지 않은 파티션을 생성하십시오.&lt;br/&gt;&lt;br/&gt;GPT가 있는 BIOS 시스템에서 %1을(를) 시작하려면 포맷되지 않은 8MB 파티션이 필요합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="632"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="622"/>
       <source>Boot partition not encrypted</source>
       <translation>부트 파티션이 암호화되지 않았습니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="633"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="623"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
       <translation>암호화된 루트 파티션과 함께 별도의 부팅 파티션이 설정되었지만 부팅 파티션은 암호화되지 않았습니다.&lt;br/&gt;&lt;br/&gt;중요한 시스템 파일은 암호화되지 않은 파티션에 보관되기 때문에 이러한 설정과 관련하여 보안 문제가 있습니다.&lt;br/&gt;원하는 경우 계속할 수 있지만 나중에 시스템을 시작하는 동안 파일 시스템 잠금이 해제됩니다.&lt;br/&gt;부팅 파티션을 암호화하려면 돌아가서 다시 생성하여 파티션 생성 창에서 &lt;strong&gt;암호화&lt;/strong&gt;를 선택합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="723"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="715"/>
       <source>has at least one disk device available.</source>
       <translation>하나 이상의 디스크 장치를 사용할 수 있습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="724"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="716"/>
       <source>There are no partitions to install on.</source>
       <translation>설치를 위한 파티션이 없습니다.</translation>
     </message>
@@ -3013,17 +3023,17 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>PreserveFiles</name>
     <message>
-      <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="55"/>
+      <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="56"/>
       <source>Saving files for later ...</source>
       <translation>나중을 위해 파일들을 저장하는 중...</translation>
     </message>
     <message>
-      <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="63"/>
+      <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="64"/>
       <source>No files configured to save for later.</source>
       <translation>나중을 위해 저장될 설정된 파일들이 없습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="87"/>
+      <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="88"/>
       <source>Not all of the configured files could be preserved.</source>
       <translation>모든 설정된 파일들이 보존되는 것은 아닙니다.</translation>
     </message>
@@ -3031,14 +3041,14 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>ProcessResult</name>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="309"/>
+      <location filename="../src/libcalamares/utils/System.cpp" line="303"/>
       <source>
 There was no output from the command.</source>
       <translation>
 명령으로부터 아무런 출력이 없습니다.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="310"/>
+      <location filename="../src/libcalamares/utils/System.cpp" line="304"/>
       <source>
 Output:
 </source>
@@ -3047,52 +3057,52 @@ Output:
 </translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="314"/>
+      <location filename="../src/libcalamares/utils/System.cpp" line="308"/>
       <source>External command crashed.</source>
       <translation>외부 명령이 실패했습니다.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="315"/>
+      <location filename="../src/libcalamares/utils/System.cpp" line="309"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; crashed.</source>
       <translation>&lt;i&gt;%1&lt;/i&gt; 명령이 실패했습니다.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="320"/>
+      <location filename="../src/libcalamares/utils/System.cpp" line="314"/>
       <source>External command failed to start.</source>
       <translation>외부 명령을 시작하지 못했습니다.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="321"/>
+      <location filename="../src/libcalamares/utils/System.cpp" line="315"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; failed to start.</source>
       <translation>&lt;i&gt;%1&lt;/i&gt; 명령을 시작하지 못했습니다.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="325"/>
+      <location filename="../src/libcalamares/utils/System.cpp" line="319"/>
       <source>Internal error when starting command.</source>
       <translation>명령을 시작하는 중에 내부 오류가 발생했습니다.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="326"/>
+      <location filename="../src/libcalamares/utils/System.cpp" line="320"/>
       <source>Bad parameters for process job call.</source>
       <translation>프로세스 작업 호출에 대한 잘못된 매개 변수입니다.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="330"/>
+      <location filename="../src/libcalamares/utils/System.cpp" line="324"/>
       <source>External command failed to finish.</source>
       <translation>외부 명령을 완료하지 못했습니다.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="331"/>
+      <location filename="../src/libcalamares/utils/System.cpp" line="325"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; failed to finish in %2 seconds.</source>
       <translation>&lt;i&gt;%1&lt;/i&gt; 명령을 %2초 안에 완료하지 못했습니다.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="338"/>
+      <location filename="../src/libcalamares/utils/System.cpp" line="332"/>
       <source>External command finished with errors.</source>
       <translation>외부 명령이 오류와 함께 완료되었습니다.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="339"/>
+      <location filename="../src/libcalamares/utils/System.cpp" line="333"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; finished with exit code %2.</source>
       <translation>&lt;i&gt;%1&lt;/i&gt; 명령이 종료 코드 %2와 함께 완료되었습니다.</translation>
     </message>
@@ -3100,7 +3110,7 @@ Output:
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../src/libcalamares/locale/Translation.cpp" line="151"/>
+      <location filename="../src/libcalamares/locale/Translation.cpp" line="155"/>
       <source>%1 (%2)</source>
       <translation>%1 (%2)</translation>
     </message>
@@ -3125,8 +3135,8 @@ Output:
       <translation>스왑</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="130"/>
-      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="167"/>
+      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="145"/>
+      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="192"/>
       <source>Default</source>
       <translation>기본</translation>
     </message>
@@ -3144,12 +3154,12 @@ Output:
       <translation>&lt;pre&gt;%1&lt;/pre&gt; 경로는 절대 경로여야 합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="83"/>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="81"/>
       <source>Directory not found</source>
       <translation>디렉터리를 찾을 수 없습니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="84"/>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="82"/>
       <location filename="../src/modules/machineid/Workers.cpp" line="94"/>
       <source>Could not create new random file &lt;pre&gt;%1&lt;/pre&gt;.</source>
       <translation>새 임의 파일 &lt;pre&gt;%1&lt;/pre&gt;을(를) 만들 수 없습니다.</translation>
@@ -3170,7 +3180,7 @@ Output:
       <translation>(마운트 위치 없음)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="40"/>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="39"/>
       <source>Unpartitioned space or unknown partition table</source>
       <translation>분할되지 않은 공간 또는 알 수 없는 파티션 테이블입니다.</translation>
     </message>
@@ -3188,7 +3198,7 @@ Output:
   <context>
     <name>RemoveUserJob</name>
     <message>
-      <location filename="../src/modules/removeuser/RemoveUserJob.cpp" line="34"/>
+      <location filename="../src/modules/removeuser/RemoveUserJob.cpp" line="32"/>
       <source>Remove live user from target system</source>
       <translation>대상 시스템에서 라이브 사용자 제거</translation>
     </message>
@@ -3232,68 +3242,68 @@ Output:
   <context>
     <name>ResizeFSJob</name>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="45"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="43"/>
       <source>Resize Filesystem Job</source>
       <translation>파일시스템 작업 크기조정</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="164"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="161"/>
       <source>Invalid configuration</source>
       <translation>잘못된 설정</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="165"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="162"/>
       <source>The file-system resize job has an invalid configuration and will not run.</source>
       <translation>파일 시스템 크기 조정 작업에 잘못된 설정이 있으며 실행되지 않습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="170"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="167"/>
       <source>KPMCore not Available</source>
       <translation>KPMCore 사용할 수 없음</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="171"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="168"/>
       <source>Calamares cannot start KPMCore for the file-system resize job.</source>
       <translation>Calamares는 파일 시스템 크기 조정 작업을 위해 KPMCore를 시작할 수 없습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="179"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="188"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="199"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="208"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="226"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="176"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="185"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="196"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="205"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="223"/>
       <source>Resize Failed</source>
       <translation>크기조정 실패</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="181"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="178"/>
       <source>The filesystem %1 could not be found in this system, and cannot be resized.</source>
       <translation>이 시스템에서 파일 시스템 %1를 찾을 수 없으므로 크기를 조정할 수 없습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="182"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="179"/>
       <source>The device %1 could not be found in this system, and cannot be resized.</source>
       <translation>%1 장치를 이 시스템에서 찾을 수 없으며 크기를 조정할 수 없습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="190"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="201"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="187"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="198"/>
       <source>The filesystem %1 cannot be resized.</source>
       <translation>파일 시스템 %1의 크기를 조정할 수 없습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="191"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="202"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="188"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="199"/>
       <source>The device %1 cannot be resized.</source>
       <translation>%1 장치의 크기를 조정할 수 없습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="209"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="206"/>
       <source>The filesystem %1 must be resized, but cannot.</source>
       <translation>파일 시스템 %1의 크기를 조정해야 하지만 조정할 수 없습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="210"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="207"/>
       <source>The device %1 must be resized, but cannot</source>
       <translation>%1 장치의 크기를 조정해야 하지만 조정할 수 없습니다.</translation>
     </message>
@@ -3306,17 +3316,17 @@ Output:
       <translation>%1 파티션 크기조정</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="48"/>
+      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="47"/>
       <source>Resize &lt;strong&gt;%2MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%3MiB&lt;/strong&gt;.</source>
       <translation>&lt;strong&gt;%2MiB&lt;/strong&gt; 파티션 &lt;strong&gt;%1&lt;/strong&gt;의 크기를 &lt;strong&gt;%3MiB&lt;/strong&gt;로 조정합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="59"/>
+      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="57"/>
       <source>Resizing %2MiB partition %1 to %3MiB.</source>
       <translation>%2MiB 파티션 %1의 크기를 %3MiB로 조정합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="77"/>
+      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="74"/>
       <source>The installer failed to resize partition %1 on disk '%2'.</source>
       <translation>설치 관리자가 '%2' 디스크에 있는 %1 파티션의 크기를 조정하지 못했습니다.</translation>
     </message>
@@ -3377,24 +3387,24 @@ Output:
       <translation>호스트 이름을 %1로 설정합니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="43"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="42"/>
       <source>Set hostname &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>호스트 이름을 &lt;strong&gt;%1&lt;/strong&gt;로 설정합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="50"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="48"/>
       <source>Setting hostname %1.</source>
       <translation>호스트 이름을 %1로 설정하는 중입니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="124"/>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="131"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="121"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="128"/>
       <source>Internal Error</source>
       <translation>내부 오류</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="142"/>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="159"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="139"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="156"/>
       <source>Cannot write hostname to target system</source>
       <translation>시스템의 호스트 이름을 저장할 수 없습니다</translation>
     </message>
@@ -3402,29 +3412,29 @@ Output:
   <context>
     <name>SetKeyboardLayoutJob</name>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="55"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="66"/>
       <source>Set keyboard model to %1, layout to %2-%3</source>
       <translation>키보드 모델을 %1로 설정하고, 자판 %2-%3으로 설정합니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="368"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="366"/>
       <source>Failed to write keyboard configuration for the virtual console.</source>
       <translation>가상 콘솔을 위한 키보드 설정을 저장할 수 없습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="369"/>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="397"/>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="414"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="367"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="393"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="410"/>
       <source>Failed to write to %1</source>
       <translation>%1에 쓰기를 실패했습니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="396"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="392"/>
       <source>Failed to write keyboard configuration for X11.</source>
       <translation>X11에 대한 키보드 설정을 저장하지 못했습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="413"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="409"/>
       <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
       <translation>/etc/default 디렉터리에 키보드 설정을 저장하지 못했습니다.</translation>
     </message>
@@ -3432,82 +3442,82 @@ Output:
   <context>
     <name>SetPartFlagsJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="45"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="44"/>
       <source>Set flags on partition %1.</source>
       <translation>파티션 %1에 플래그를 설정합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="51"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="50"/>
       <source>Set flags on %1MiB %2 partition.</source>
       <translation>%1MiB %2 파티션에 플래그 설정.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="55"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="54"/>
       <source>Set flags on new partition.</source>
       <translation>새 파티션에 플래그를 설정합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="67"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="65"/>
       <source>Clear flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>파티션 &lt;strong&gt;%1&lt;/strong&gt;에서 플래그를 지웁니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="73"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="71"/>
       <source>Clear flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
       <translation>%1MiB &lt;strong&gt;%2&lt;/strong&gt; 파티션에서 플래그를 지웁니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="77"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="75"/>
       <source>Clear flags on new partition.</source>
       <translation>새 파티션에서 플래그를 지웁니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="82"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="80"/>
       <source>Flag partition &lt;strong&gt;%1&lt;/strong&gt; as &lt;strong&gt;%2&lt;/strong&gt;.</source>
       <translation>파티션 &lt;strong&gt;%1&lt;/strong&gt;을 &lt;strong&gt;%2&lt;/strong&gt;로 플래그 지정합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="91"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="89"/>
       <source>Flag %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition as &lt;strong&gt;%3&lt;/strong&gt;.</source>
       <translation>%1MiB &lt;strong&gt;%2&lt;/strong&gt; 파티션을 &lt;strong&gt;%3&lt;/strong&gt;으로 플래그합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="98"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="96"/>
       <source>Flag new partition as &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation> 파티션을 &lt;strong&gt;%1&lt;/strong&gt;로 플래그 지정합니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="110"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="107"/>
       <source>Clearing flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>파티션 &lt;strong&gt;%1&lt;/strong&gt;에서 플래그를 지우는 중입니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="116"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="113"/>
       <source>Clearing flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
       <translation>%1MiB &lt;strong&gt;%2&lt;/strong&gt; 파티션에서 플래그를 지우는 중입니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="121"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="118"/>
       <source>Clearing flags on new partition.</source>
       <translation>새 파티션에서 플래그를 지우는 중입니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="126"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="123"/>
       <source>Setting flags &lt;strong&gt;%2&lt;/strong&gt; on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>파티션 &lt;strong&gt;%1&lt;/strong&gt;에 플래그를 .&lt;strong&gt;%2&lt;/strong&gt;로 설정합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="135"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="132"/>
       <source>Setting flags &lt;strong&gt;%3&lt;/strong&gt; on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
       <translation>%1MiB &lt;strong&gt;%2&lt;/strong&gt; 파티션에서 플래그 &lt;strong&gt;%3&lt;/strong&gt;을 설정합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="142"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="139"/>
       <source>Setting flags &lt;strong&gt;%1&lt;/strong&gt; on new partition.</source>
       <translation>새 파티션에서 플래그를 &lt;strong&gt;%1&lt;/strong&gt;으로 설정합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="156"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="152"/>
       <source>The installer failed to set flags on partition %1.</source>
       <translation>설치 관리자가 %1 파티션의 플래그를 설정하지 못했습니다.</translation>
     </message>
@@ -3515,42 +3525,38 @@ Output:
   <context>
     <name>SetPasswordJob</name>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="40"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="38"/>
       <source>Set password for user %1</source>
       <translation>%1 사용자에 대한 암호를 설정합니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="47"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="44"/>
       <source>Setting password for user %1.</source>
       <translation>%1 사용자의 암호를 설정하는 중입니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="81"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="77"/>
       <source>Bad destination system path.</source>
       <translation>잘못된 대상 시스템 경로입니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="82"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="78"/>
       <source>rootMountPoint is %1</source>
       <translation>루트마운트위치는 %1입니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="88"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="84"/>
       <source>Cannot disable root account.</source>
       <translation>root 계정을 비활성화 할 수 없습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="89"/>
-      <source>passwd terminated with error code %1.</source>
-      <translation>passwd가 %1 오류 코드로 종료되었습니다.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="97"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="93"/>
       <source>Cannot set password for user %1.</source>
       <translation>%1 사용자에 대한 암호를 설정할 수 없습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="98"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="85"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="94"/>
       <source>usermod terminated with error code %1.</source>
       <translation>usermod가 %1 오류 코드로 종료되었습니다</translation>
     </message>
@@ -3558,37 +3564,37 @@ Output:
   <context>
     <name>SetTimezoneJob</name>
     <message>
-      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="34"/>
+      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="32"/>
       <source>Set timezone to %1/%2</source>
       <translation>표준시간대를 %1/%2로 설정합니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="62"/>
+      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="59"/>
       <source>Cannot access selected timezone path.</source>
       <translation>선택된 표준시간대 경로에 접근할 수 없습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="63"/>
+      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="60"/>
       <source>Bad path: %1</source>
       <translation>잘못된 경로: %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="71"/>
+      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="68"/>
       <source>Cannot set timezone.</source>
       <translation>표준 시간대를 설정할 수 없습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="72"/>
+      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="69"/>
       <source>Link creation failed, target: %1; link name: %2</source>
       <translation>링크 생성 실패, 대상: %1; 링크 이름: %2</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="77"/>
+      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="74"/>
       <source>Cannot set timezone,</source>
       <translation>표준시간대를 설정할 수 없습니다,</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="78"/>
+      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="75"/>
       <source>Cannot open /etc/timezone for writing</source>
       <translation>/etc/timezone을 쓰기를 위해 열 수 없습니다.</translation>
     </message>
@@ -3596,18 +3602,18 @@ Output:
   <context>
     <name>SetupGroupsJob</name>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="182"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="181"/>
       <source>Preparing groups.</source>
       <translation>그룹 준비 중.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="194"/>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="199"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="193"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="198"/>
       <source>Could not create groups in target system</source>
       <translation>대상 시스템에서 그룹을 만들 수 없습니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="200"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="199"/>
       <source>These groups are missing in the target system: %1</source>
       <translation>다음 그룹이 대상 시스템에 없습니다: %1</translation>
     </message>
@@ -3620,12 +3626,12 @@ Output:
       <translation>&lt;pre&gt;sudo&lt;/pre&gt; 사용자를 구성하십시오.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="71"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="70"/>
       <source>Cannot chmod sudoers file.</source>
       <translation>sudoers 파일의 권한을 변경할 수 없습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/MiscJobs.cpp" line="76"/>
+      <location filename="../src/modules/users/MiscJobs.cpp" line="75"/>
       <source>Cannot create sudoers file for writing.</source>
       <translation>sudoers 파일을 쓸 수 없습니다.</translation>
     </message>
@@ -3633,7 +3639,7 @@ Output:
   <context>
     <name>ShellProcessJob</name>
     <message>
-      <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="40"/>
+      <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="38"/>
       <source>Shell Processes Job</source>
       <translation>셸 처리 작업</translation>
     </message>
@@ -3678,22 +3684,22 @@ Output:
   <context>
     <name>TrackingInstallJob</name>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="101"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="100"/>
       <source>Installation feedback</source>
       <translation>설치 피드백</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="107"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="106"/>
       <source>Sending installation feedback.</source>
       <translation>설치 피드백을 보내는 중입니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="125"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="124"/>
       <source>Internal error in install-tracking.</source>
       <translation>설치 추적중 내부 오류</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="126"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="125"/>
       <source>HTTP request timed out.</source>
       <translation>HTTP 요청 시간이 만료되었습니다.</translation>
     </message>
@@ -3701,28 +3707,28 @@ Output:
   <context>
     <name>TrackingKUserFeedbackJob</name>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="193"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="192"/>
       <source>KDE user feedback</source>
       <translation>KDE 사용자 의견</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="199"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="198"/>
       <source>Configuring KDE user feedback.</source>
       <translation>KDE 사용자 의견을 설정하는 중입니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="221"/>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="229"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="220"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="228"/>
       <source>Error in KDE user feedback configuration.</source>
       <translation>KDE 사용자 의견 설정 중에 오류가 발생했습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="222"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="221"/>
       <source>Could not configure KDE user feedback correctly, script error %1.</source>
       <translation>KDE 사용자 피드백을 올바르게 구성할 수 없습니다, 스크립트 오류 %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="230"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="229"/>
       <source>Could not configure KDE user feedback correctly, Calamares error %1.</source>
       <translation>KDE 사용자 피드백을 올바르게 구성할 수 없습니다. Calamares 오류 %1.</translation>
     </message>
@@ -3730,28 +3736,28 @@ Output:
   <context>
     <name>TrackingMachineUpdateManagerJob</name>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="136"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="135"/>
       <source>Machine feedback</source>
       <translation>시스템 피드백</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="142"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="141"/>
       <source>Configuring machine feedback.</source>
       <translation>시스템 피드백을 설정하는 중입니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="165"/>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="174"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="164"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="173"/>
       <source>Error in machine feedback configuration.</source>
       <translation>시스템 피드백 설정 중에 오류가 발생했습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="167"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="166"/>
       <source>Could not configure machine feedback correctly, script error %1.</source>
       <translation>시스템 피드백을 정확하게 설정할 수 없습니다, %1 스크립트 오류.</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="176"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="175"/>
       <source>Could not configure machine feedback correctly, Calamares error %1.</source>
       <translation>시스템 피드백을 정확하게 설정할 수 없습니다, Calamares의 %1 오류입니다.</translation>
     </message>
@@ -3810,12 +3816,12 @@ Output:
       <translation>파일시스템을 마운트 해제합니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/umount/UmountJob.cpp" line="124"/>
+      <location filename="../src/modules/umount/UmountJob.cpp" line="123"/>
       <source>No target system available.</source>
       <translation>대상 시스템을 사용할 수 없습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/umount/UmountJob.cpp" line="132"/>
+      <location filename="../src/modules/umount/UmountJob.cpp" line="131"/>
       <source>No rootMountPoint is set.</source>
       <translation>루트 마운트 경로가 지정되지 않았습니다.</translation>
     </message>
@@ -3823,12 +3829,12 @@ Output:
   <context>
     <name>UsersPage</name>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="190"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="189"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
       <translation>&lt;small&gt;둘 이상의 사용자가 이 컴퓨터를 사용할 경우, 설정 후 계정을 여러 개 만들 수 있습니다.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="196"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="195"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
       <translation>&lt;small&gt;둘 이상의 사용자가 이 컴퓨터를 사용할 경우 설치 후 계정을 여러 개 만들 수 있습니다.&lt;/small&gt;</translation>
     </message>
@@ -3971,12 +3977,12 @@ Output:
       <translation>%1 지원</translation>
     </message>
     <message>
-      <location filename="../src/calamares/DebugWindow.cpp" line="239"/>
+      <location filename="../src/calamares/DebugWindow.cpp" line="235"/>
       <source>About %1 setup</source>
       <translation>%1 설치 정보</translation>
     </message>
     <message>
-      <location filename="../src/calamares/DebugWindow.cpp" line="240"/>
+      <location filename="../src/calamares/DebugWindow.cpp" line="236"/>
       <source>About %1 installer</source>
       <translation>%1 설치 관리자에 대하여</translation>
     </message>
@@ -4000,7 +4006,7 @@ Output:
   <context>
     <name>ZfsJob</name>
     <message>
-      <location filename="../src/modules/zfs/ZfsJob.cpp" line="101"/>
+      <location filename="../src/modules/zfs/ZfsJob.cpp" line="102"/>
       <source>Create ZFS pools and datasets</source>
       <translation>ZFS pool 및 데이터세트 만들기</translation>
     </message>
@@ -4045,23 +4051,23 @@ Output:
     <name>calamares-sidebar</name>
     <message>
       <location filename="../src/calamares/calamares-sidebar.qml" line="89"/>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="148"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="157"/>
       <source>About</source>
       <translation>Calamares에 대하여</translation>
     </message>
     <message>
       <location filename="../src/calamares/calamares-sidebar.qml" line="115"/>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="163"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="172"/>
       <source>Debug</source>
       <translation>디버그</translation>
     </message>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="149"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="159"/>
       <source>Show information about Calamares</source>
       <translation>Calamares에 대한 정보 표시하기</translation>
     </message>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="165"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="174"/>
       <source>Show debug information</source>
       <translation>디버그 정보 표시하기</translation>
     </message>
