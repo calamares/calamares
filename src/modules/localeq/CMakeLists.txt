@@ -36,7 +36,7 @@ calamares_add_plugin(localeq
         ${_locale}/LocaleNames.cpp
         ${_locale}/SetTimezoneJob.cpp
     RESOURCES
-        localeq.qrc
+        localeq${QT_VERSION_SUFFIX}.qrc
     LINK_PRIVATE_LIBRARIES
         ${qtname}::Network
     SHARED_LIB

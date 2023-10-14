@@ -61,7 +61,7 @@ calamares_add_plugin(packagechooserq
         ${_packagechooser}/PackageModel.cpp
         ${_extra_src}
     RESOURCES
-        packagechooserq.qrc
+        packagechooserq${QT_VERSION_SUFFIX}.qrc
     LINK_PRIVATE_LIBRARIES
         calamaresui
         ${_extra_libraries}

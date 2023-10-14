@@ -1,0 +1,11 @@
+<RCC>
+    <qresource>
+        <file alias="localeq.qml">localeq-qt6.qml</file>
+        <file alias="Map.qml">Map-qt6.qml</file>
+        <file alias="Offline.qml">Offline-qt6.qml</file>
+        <file>img/locale.svg</file>
+        <file>img/minus.png</file>
+        <file>img/pin.svg</file>
+        <file>img/plus.png</file>
+    </qresource>
+</RCC>
