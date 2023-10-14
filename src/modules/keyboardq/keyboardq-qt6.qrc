@@ -1,0 +1,29 @@
+<RCC>
+    <qresource>
+        <file alias="kbd-model-map">../keyboard/kbd-model-map</file>
+        <file alias="images/restore.png">../keyboard/images/restore.png</file>
+        <file alias="non-ascii-layouts">../keyboard/non-ascii-layouts</file>
+        <file alias="keyboardq.qml">keyboardq-qt6.qml</file>
+        <file alias="data/Keyboard.qml">data/Keyboard-qt6.qml</file>
+        <file alias="data/Key.qml">data/Key-qt6.qml</file>
+        <file>data/backspace.svg</file>
+        <file>data/enter.svg</file>
+        <file>data/shift.svg</file>
+        <file alias="data/afgani.xml">data/afgani-qt6.xml</file>
+        <file alias="data/ar.xml">data/ar-qt6.xml</file>
+        <file alias="data/de.xml">data/de-qt6.xml</file>
+        <file alias="data/en.xml">data/en-qt6.xml</file>
+        <file alias="data/empty.xml">data/empty-qt6.xml</file>
+        <file alias="data/es.xml">data/es-qt6.xml</file>
+        <file alias="data/fr.xml">data/fr-qt6.xml</file>
+        <file alias="data/generic_qz.xml">data/generic_qz-qt6.xml</file>
+        <file alias="data/generic.xml">data/generic-qt6.xml</file>
+        <file alias="data/pt.xml">data/pt-qt6.xml</file>
+        <file alias="data/ru.xml">data/ru-qt6.xml</file>
+        <file>data/scan.xml</file>
+        <file>data/button_bkg_center.png</file>
+        <file>data/button_bkg_left.png</file>
+        <file>data/button_bkg_right.png</file>
+        <file>data/pan-end-symbolic.svg</file>
+    </qresource>
+</RCC>

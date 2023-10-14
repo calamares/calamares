@@ -1,0 +1,5 @@
+<RCC>
+    <qresource>
+        <file alias="usersq.qml">usersq-qt6.qml</file>
+    </qresource>
+</RCC>

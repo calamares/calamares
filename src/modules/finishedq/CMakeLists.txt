@@ -24,7 +24,7 @@ calamares_add_plugin(finishedq
         FinishedQmlViewStep.cpp
         ${_finished}/Config.cpp
     RESOURCES
-        finishedq.qrc
+        finishedq${QT_VERSION_SUFFIX}.qrc
     LINK_PRIVATE_LIBRARIES
         ${qtname}::DBus
     SHARED_LIB
