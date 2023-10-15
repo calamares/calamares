@@ -36,16 +36,20 @@ ProcessJob::~ProcessJob() {}
 QString
 ProcessJob::prettyName() const
 {
-    return ( m_runInChroot ? tr( "Run command '%1' in target system" ) : tr( " Run command '%1'" ) ).arg( m_command );
+    return ( m_runInChroot ? "Run command '%1' in target system" : "Run command '%1'" ).arg( m_command );
 }
 
 QString
 ProcessJob::prettyStatusMessage() const
 {
     if ( m_runInChroot )
-        return tr( "Running command %1 in chroot…", "@status" ).arg( m_command );
+    {
+        return tr( "Running command %1 in target system…", "@status" ).arg( m_command );
+    }
     else
+    {
         return tr( "Running command %1…", "@status" ).arg( m_command );
+    }
 }
 
 JobResult
