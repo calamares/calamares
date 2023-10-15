@@ -30,13 +30,13 @@ prettyNameForFileSystemType( FileSystem::Type t )
     switch ( t )
     {
     case FileSystem::Unknown:
-        return QObject::tr( "unknown" );
+        return QObject::tr( "unknown", "@partition info" );
     case FileSystem::Extended:
-        return QObject::tr( "extended" );
+        return QObject::tr( "extended", "@partition info" );
     case FileSystem::Unformatted:
-        return QObject::tr( "unformatted" );
+        return QObject::tr( "unformatted", "@partition info" );
     case FileSystem::LinuxSwap:
-        return QObject::tr( "swap" );
+        return QObject::tr( "swap", "@partition info" );
     case FileSystem::Fat16:
     case FileSystem::Fat32:
     case FileSystem::Ntfs:
