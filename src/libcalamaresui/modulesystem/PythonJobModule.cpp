@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://calamares.io> ===
  *
  *   SPDX-FileCopyrightText: 2014 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2023 Adriaan de Groot <groot@kde.org>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -9,7 +10,14 @@
 
 #include "PythonJobModule.h"
 
+#if WITH_PYBIND11
+#include "python/PythonJob.h"
+using JobType = Calamares::Python::Job;
+#else
+// Old Boost::Python version
 #include "PythonJob.h"
+using JobType = Calamares::PythonJob;
+#endif
 
 #include <QDir>
 
@@ -40,7 +48,7 @@ PythonJobModule::loadSelf()
         return;
     }
 
-    m_job = Calamares::job_ptr( new PythonJob( m_scriptFileName, m_workingPath, m_configurationMap ) );
+    m_job = Calamares::job_ptr( new JobType( m_scriptFileName, m_workingPath, m_configurationMap ) );
     m_loaded = true;
 }
 

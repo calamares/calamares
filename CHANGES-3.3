@@ -15,7 +15,11 @@ This release contains contributions from (alphabetically by first name):
  - Anke Boersma
 
 ## Core ##
- - No changes yet
+ - Boost::Python is no longer a dependency, Calamares uses a bundled copy
+   of pybind11 instead. This speeds up compilation and reducese the
+   dependency tree a great deal. You can set `WITH_PYBIND11=OFF` in the
+   build to keep Boost::Python and all the binary-compatibility problems
+   it entails.
 
 ## Modules ##
  - All QML modules now have a Qt6-compatible set of QML files as well. (thanks Anke)
