@@ -4,8 +4,7 @@
 #   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
 #   SPDX-License-Identifier: BSD-2-Clause
 #
-# Calls astyle with settings matching Calamares coding style
-# Requires astyle >= 2.04 and clang-format-8 or later
+# Apply Calamares-style formatting to sources. Requires clang-format-15.
 #
 # You can pass in directory names, in which case the files
 # in that directory (NOT below it) are processed.
@@ -21,10 +20,8 @@ test -d "$BASEDIR" || { echo "! Could not determine base for $0" ; exit 1 ; }
 test -d "$TOPDIR" || { echo "! Cound not determine top-level source dir" ; exit 1 ; }
 test -f "$TOPDIR/.clang-format" || { echo "! No .clang-format support files in $TOPDIR" ; exit 1 ; }
 
-AS=$( which astyle )
-
 # Allow specifying CF_VERSIONS outside already
-CF_VERSIONS="$CF_VERSIONS clang-format13 clang-format-13 clang-format-13.0.1 clang-format12 clang-format-12 clang-format"
+CF_VERSIONS="$CF_VERSIONS clang-format15 clang-format-15 clang-format"
 for _cf in $CF_VERSIONS
 do
 	# Not an error if this particular clang-format isn't found
@@ -32,27 +29,28 @@ do
 	test -n "$CF" && break
 done
 
-test -n "$AS" || { echo "! No astyle found in PATH"; exit 1 ; }
 test -n "$CF" || { echo "! No clang-format ($CF_VERSIONS) found in PATH"; exit 1 ; }
-test -x "$AS" || { echo "! $AS is not executable."; exit 1 ; }
 test -x "$CF" || { echo "! $CF is not executable."; exit 1 ; }
 
 ### CLANG-FORMAT-WRANGLING
 #
-# Version 7 and earlier doesn't understand all the options we would like
-# Version 12 handles lambdas nicely, so use that.
-# Version 13 is also ok.
+# Version 7 and earlier doesn't understand all the options we would like.
+# Version 12 handled lambdas nicely and was the norm for Calamares 3.2.
+# Version 13 was also ok.
 # Version 14 behaves differently with short-functions-in-class,
 #   spreading functions out that 13 keeps on one line. To avoid
 #   ping-pong commits, forbid 14.
+# Version 15 is available on recent-ish Ubuntus and FreeBSD, pick it.
+#   It also supports inserting braces, which is the one thing we kept
+#	astyle around for.
 
 format_version=`"$CF" --version | tr -dc '[^.0-9]' | cut  -d . -f 1`
 case "$format_version" in
-	12|13 )
+	15 )
 		:
 		;;
 	* )
-		echo "! Clang-format version '$format_version' unsupported, versions 12 or 13 are ok."
+		echo "! Clang-format version '$format_version' unsupported, version 15 is ok."
 		exit 1
 		;;
 esac
@@ -72,7 +70,6 @@ done
 style_some()
 {
 	if test -n "$*" ; then
-		$AS --options=$BASEDIR/astylerc --quiet "$@"
 		$CF -i -style=file "$@"
 	fi
 }
