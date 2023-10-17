@@ -30,10 +30,8 @@
 
 #include <functional>
 
-#ifdef WITH_KOSRelease
 #include <KMacroExpander>
 #include <KOSRelease>
-#endif
 
 [[noreturn]] static void
 bail( const QString& descriptorPath, const QString& message )
@@ -238,7 +236,6 @@ Branding::Branding( const QString& brandingFilePath, QObject* parent, qreal devi
             initSimpleSettings( doc );
             initSlideshowSettings( doc );
 
-#ifdef WITH_KOSRelease
             // Copy the os-release information into a QHash for use by KMacroExpander.
             KOSRelease relInfo;
 
@@ -261,9 +258,7 @@ Branding::Branding( const QString& brandingFilePath, QObject* parent, qreal devi
                 { QStringLiteral( "LOGO" ), relInfo.logo() } } };
             auto expand = [ & ]( const QString& s ) -> QString
             { return KMacroExpander::expandMacros( s, relMap, QLatin1Char( '$' ) ); };
-#else
-            auto expand = []( const QString& s ) -> QString { return s; };
-#endif
+
             // Massage the strings, images and style sections.
             loadStrings( m_strings, doc, "strings", expand );
             loadStrings( m_images,

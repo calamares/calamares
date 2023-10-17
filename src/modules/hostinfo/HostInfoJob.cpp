@@ -18,9 +18,7 @@
 #include <QDir>
 #include <QFile>
 
-#ifdef WITH_KOSRelease
 #include <KOSRelease>
-#endif
 
 #ifdef Q_OS_FREEBSD
 #include <sys/types.h>
@@ -56,13 +54,11 @@ hostOS()
 QString
 hostOSName()
 {
-#ifdef WITH_KOSRelease
     KOSRelease r;
     if ( !r.name().isEmpty() )
     {
         return r.name();
     }
-#endif
     return hostOS();
 }
 

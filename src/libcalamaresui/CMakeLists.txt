@@ -57,7 +57,6 @@ calamares_add_library(calamaresui
     SOVERSION ${CALAMARES_SOVERSION}
 )
 target_link_libraries(calamaresui PRIVATE yamlcpp::yamlcpp)
-target_compile_definitions(calamaresui PRIVATE WITH_KOSRelease)
 target_link_libraries(calamaresui PRIVATE ${kfname}::CoreAddons)
 
 if(WITH_QML)

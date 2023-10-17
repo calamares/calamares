@@ -32,7 +32,6 @@ calamares_add_plugin(hostinfo
     NO_CONFIG
 )
 
-target_compile_definitions(calamares_job_hostinfo PRIVATE WITH_KOSRelease)
 target_link_libraries(calamares_job_hostinfo PRIVATE ${kfname}::CoreAddons)
 
 calamares_add_test(hostinfotest SOURCES Tests.cpp HostInfoJob.cpp LIBRARIES yamlcpp::yamlcpp)
