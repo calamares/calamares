@@ -315,6 +315,7 @@ PartitionCoreModule::doInit()
     DeviceList bootLoaderDevices;
 
     for ( DeviceList::Iterator it = devices.begin(); it != devices.end(); ++it )
+    {
         if ( ( *it )->type() != Device::Type::Disk_Device )
         {
             cDebug() << "Ignoring device that is not Disk_Device to bootLoaderDevices list.";
@@ -324,6 +325,7 @@ PartitionCoreModule::doInit()
         {
             bootLoaderDevices.append( *it );
         }
+    }
 
     m_bootLoaderModel->init( bootLoaderDevices );
 
@@ -482,10 +484,12 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
         // deleting them, so let's play it safe and keep our own list.
         QList< Partition* > lst;
         for ( auto childPartition : partition->children() )
+        {
             if ( !isPartitionFreeSpace( childPartition ) )
             {
                 lst << childPartition;
             }
+        }
 
         for ( auto childPartition : lst )
         {
@@ -781,11 +785,13 @@ PartitionCoreModule::updateIsDirty()
     bool oldValue = m_isDirty;
     m_isDirty = false;
     for ( auto info : m_deviceInfos )
+    {
         if ( info->isDirty() )
         {
             m_isDirty = true;
             break;
         }
+    }
     if ( oldValue != m_isDirty )
     {
         isDirtyChanged( m_isDirty );
@@ -806,8 +812,7 @@ PartitionCoreModule::scanForEfiSystemPartitions()
         devices.append( device );
     }
 
-    QList< Partition* > efiSystemPartitions
-        = Calamares::Partition::findPartitions( devices, PartUtils::isEfiBootable );
+    QList< Partition* > efiSystemPartitions = Calamares::Partition::findPartitions( devices, PartUtils::isEfiBootable );
 
     if ( efiSystemPartitions.isEmpty() )
     {
@@ -853,12 +858,14 @@ PartitionCoreModule::scanForLVMPVs()
         m_lvmPVs << p.partition().data();
 
         for ( LvmDevice* device : vgDevices )
+        {
             if ( p.vgName() == device->name() )
             {
                 // Adding scanned VG to PV list
                 device->physicalVolumes() << p.partition();
                 break;
             }
+        }
     }
 
     for ( DeviceInfo* d : m_deviceInfos )
@@ -924,10 +931,12 @@ PartitionCoreModule::findPartitionByMountPoint( const QString& mountPoint ) cons
     {
         Device* device = deviceInfo->device.data();
         for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
+        {
             if ( PartitionInfo::mountPoint( *it ) == mountPoint )
             {
                 return *it;
             }
+        }
     }
     return nullptr;
 }
@@ -1144,10 +1153,12 @@ bool
 PartitionCoreModule::isVGdeactivated( LvmDevice* device )
 {
     for ( DeviceInfo* deviceInfo : m_deviceInfos )
+    {
         if ( device == deviceInfo->device.data() && !deviceInfo->isAvailable )
         {
             return true;
         }
+    }
 
     return false;
 }

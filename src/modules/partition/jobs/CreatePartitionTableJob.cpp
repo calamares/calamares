@@ -12,8 +12,8 @@
 #include "CreatePartitionTableJob.h"
 
 #include "partition/PartitionIterator.h"
-#include "utils/System.h"
 #include "utils/Logger.h"
+#include "utils/System.h"
 
 #include "core/KPMHelpers.h"
 

@@ -229,9 +229,11 @@ Branding::Branding( const QString& brandingFilePath, QObject* parent, qreal devi
 
             m_componentName = QString::fromStdString( doc[ "componentName" ].as< std::string >() );
             if ( m_componentName != componentDir.dirName() )
+            {
                 bail( m_descriptorPath,
                       "The branding component name should match the name of the "
                       "component directory." );
+            }
 
             initSimpleSettings( doc );
             initSlideshowSettings( doc );
@@ -630,9 +632,11 @@ Branding::initSlideshowSettings( const ::YAML::Node& doc )
         QString slideshowPath = QString::fromStdString( slideshow.as< std::string >() );
         QFileInfo slideshowFi( componentDir.absoluteFilePath( slideshowPath ) );
         if ( !slideshowFi.exists() || !slideshowFi.fileName().toLower().endsWith( ".qml" ) )
+        {
             bail( m_descriptorPath,
                   QString( "Slideshow file %1 does not exist or is not a valid QML file." )
                       .arg( slideshowFi.absoluteFilePath() ) );
+        }
         m_slideshowPath = slideshowFi.absoluteFilePath();
 
         // API choice is relevant for QML slideshow

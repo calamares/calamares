@@ -169,7 +169,8 @@ getWidgetSidebar( Calamares::DebugWindowManager* debug,
         debugWindowBtn->setIcon( Calamares::defaultPixmap(
             Calamares::Bugs, Calamares::Original, 2 * QSize( defaultFontHeight, defaultFontHeight ) ) );
         CALAMARES_RETRANSLATE_FOR(
-            debugWindowBtn, debugWindowBtn->setText( QCoreApplication::translate( "calamares-sidebar", "Debug", "@button" ) );
+            debugWindowBtn,
+            debugWindowBtn->setText( QCoreApplication::translate( "calamares-sidebar", "Debug", "@button" ) );
             debugWindowBtn->setToolTip(
                 QCoreApplication::translate( "calamares-sidebar", "Show debug information", "@tooltip" ) ); );
         extraButtons->addWidget( debugWindowBtn );
@@ -197,10 +198,10 @@ getWidgetNavigation( Calamares::DebugWindowManager*,
 
     // Create buttons and sets an initial icon; the icons may change
     {
-        auto* back
-            = new QPushButton( getButtonIcon( QStringLiteral( "go-previous" ) ),
-                               QCoreApplication::translate( CalamaresWindow::staticMetaObject.className(), "&Back", "@button" ),
-                               navigation );
+        auto* back = new QPushButton(
+            getButtonIcon( QStringLiteral( "go-previous" ) ),
+            QCoreApplication::translate( CalamaresWindow::staticMetaObject.className(), "&Back", "@button" ),
+            navigation );
         back->setObjectName( "view-button-back" );
         back->setEnabled( viewManager->backEnabled() );
         QObject::connect( back, &QPushButton::clicked, viewManager, &Calamares::ViewManager::back );
@@ -213,10 +214,10 @@ getWidgetNavigation( Calamares::DebugWindowManager*,
         bottomLayout->addWidget( back );
     }
     {
-        auto* next
-            = new QPushButton( getButtonIcon( QStringLiteral( "go-next" ) ),
-                               QCoreApplication::translate( CalamaresWindow::staticMetaObject.className(), "&Next", "@button" ),
-                               navigation );
+        auto* next = new QPushButton(
+            getButtonIcon( QStringLiteral( "go-next" ) ),
+            QCoreApplication::translate( CalamaresWindow::staticMetaObject.className(), "&Next", "@button" ),
+            navigation );
         next->setObjectName( "view-button-next" );
         next->setEnabled( viewManager->nextEnabled() );
         QObject::connect( next, &QPushButton::clicked, viewManager, &Calamares::ViewManager::next );
@@ -230,10 +231,10 @@ getWidgetNavigation( Calamares::DebugWindowManager*,
     }
     bottomLayout->addSpacing( 12 );
     {
-        auto* quit
-            = new QPushButton( getButtonIcon( QStringLiteral( "dialog-cancel" ) ),
-                               QCoreApplication::translate( CalamaresWindow::staticMetaObject.className(), "&Cancel", "@button" ),
-                               navigation );
+        auto* quit = new QPushButton(
+            getButtonIcon( QStringLiteral( "dialog-cancel" ) ),
+            QCoreApplication::translate( CalamaresWindow::staticMetaObject.className(), "&Cancel", "@button" ),
+            navigation );
         quit->setObjectName( "view-button-cancel" );
         QObject::connect( quit, &QPushButton::clicked, viewManager, &Calamares::ViewManager::quit );
         QObject::connect( viewManager, &Calamares::ViewManager::quitEnabledChanged, quit, &QPushButton::setEnabled );

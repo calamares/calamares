@@ -94,7 +94,7 @@ namespace Python __attribute__( ( visibility( "hidden" ) ) )
     };
 
 
-}  // namespace )
+}  // namespace Python
 }  // namespace Calamares
 
 #endif

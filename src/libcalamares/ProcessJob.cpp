@@ -10,8 +10,8 @@
 
 #include "ProcessJob.h"
 
-#include "utils/System.h"
 #include "utils/Logger.h"
+#include "utils/System.h"
 
 #include <QDir>
 
@@ -51,16 +51,20 @@ ProcessJob::exec()
     using Calamares::System;
 
     if ( m_runInChroot )
+    {
         return Calamares::System::instance()
             ->targetEnvCommand( { m_command }, m_workingPath, QString(), m_timeoutSec )
             .explainProcess( m_command, m_timeoutSec );
+    }
     else
+    {
         return System::runCommand( System::RunLocation::RunInHost,
                                    { "/bin/sh", "-c", m_command },
                                    m_workingPath,
                                    QString(),
                                    m_timeoutSec )
             .explainProcess( m_command, m_timeoutSec );
+    }
 }
 
 }  // namespace Calamares

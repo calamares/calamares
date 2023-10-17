@@ -11,8 +11,8 @@
 #include "DeviceList.h"
 
 #include "partition/PartitionIterator.h"
-#include "utils/System.h"
 #include "utils/Logger.h"
+#include "utils/System.h"
 
 #include <kpmcore/backend/corebackend.h>
 #include <kpmcore/backend/corebackendmanager.h>
@@ -34,10 +34,12 @@ static bool
 hasRootPartition( Device* device )
 {
     for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
+    {
         if ( ( *it )->mountPoint() == "/" )
         {
             return true;
         }
+    }
     return false;
 }
 

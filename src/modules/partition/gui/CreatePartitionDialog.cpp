@@ -250,16 +250,17 @@ CreatePartitionDialog::getNewlyCreatedPartition()
     if ( m_ui->encryptWidget->state() == EncryptWidget::Encryption::Confirmed && !luksPassphrase.isEmpty()
          && fsType != FileSystem::Zfs )
     {
-        partition = KPMHelpers::createNewEncryptedPartition( m_parent,
-                                                             *m_device,
-                                                             m_role,
-                                                             fsType,
-                                                             fsLabel,
-                                                             first,
-                                                             last,
-                                                             Config::luksGenerationNames().find(luksFsType, Config::LuksGeneration::Luks1),
-                                                             luksPassphrase,
-                                                             PartitionTable::Flags() );
+        partition = KPMHelpers::createNewEncryptedPartition(
+            m_parent,
+            *m_device,
+            m_role,
+            fsType,
+            fsLabel,
+            first,
+            last,
+            Config::luksGenerationNames().find( luksFsType, Config::LuksGeneration::Luks1 ),
+            luksPassphrase,
+            PartitionTable::Flags() );
     }
     else
     {

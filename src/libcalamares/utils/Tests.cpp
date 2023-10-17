@@ -9,7 +9,6 @@
  *
  */
 
-#include "System.h"
 #include "CommandList.h"
 #include "Entropy.h"
 #include "Logger.h"
@@ -17,6 +16,7 @@
 #include "Runner.h"
 #include "String.h"
 #include "StringExpander.h"
+#include "System.h"
 #include "Traits.h"
 #include "UMask.h"
 #include "Variant.h"
@@ -183,7 +183,9 @@ findConf( const QDir& d )
         QString path = d.absolutePath();
         path.append( d.separator() );
         for ( const auto& confname : d.entryList( { "*.conf" } ) )
+        {
             mine.append( path + confname );
+        }
         for ( const auto& subdirname : d.entryList( QDir::AllDirs | QDir::NoDotAndDotDot ) )
         {
             QDir subdir( d );

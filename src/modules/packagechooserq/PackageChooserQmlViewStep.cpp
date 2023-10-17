@@ -13,8 +13,8 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "locale/TranslatableConfiguration.h"
-#include "utils/System.h"
 #include "utils/Logger.h"
+#include "utils/System.h"
 #include "utils/Variant.h"
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( PackageChooserQmlViewStepFactory, registerPlugin< PackageChooserQmlViewStep >(); )

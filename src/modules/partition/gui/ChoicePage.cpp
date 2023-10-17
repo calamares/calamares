@@ -206,10 +206,12 @@ createCombo( const QSet< SwapChoice >& s, SwapChoice dflt )
                            SwapChoice::FullSwap,
                            SwapChoice::ReuseSwap,
                            SwapChoice::SwapFile } )
+    {
         if ( s.contains( c ) )
         {
             box->addItem( QString(), c );
         }
+    }
 
     int dfltIndex = box->findData( dflt );
     if ( dfltIndex >= 0 )
@@ -851,10 +853,12 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
                         // m_reuseHomeCheckBox visible and set its text to something meaningful.
                         homePartitionPath->clear();
                         for ( const OsproberEntry& osproberEntry : m_core->osproberEntries() )
+                        {
                             if ( osproberEntry.path == partPath )
                             {
                                 *homePartitionPath = osproberEntry.homePath;
                             }
+                        }
                         if ( homePartitionPath->isEmpty() )
                         {
                             doReuseHomePartition = false;
@@ -888,17 +892,23 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
         {
             m_reuseHomeCheckBox->setVisible( !homePartitionPath->isEmpty() );
             if ( !homePartitionPath->isEmpty() )
+            {
                 m_reuseHomeCheckBox->setText( tr( "Reuse %1 as home partition for %2." )
                                                   .arg( *homePartitionPath )
                                                   .arg( Calamares::Branding::instance()->shortProductName() ) );
+            }
             delete homePartitionPath;
 
             if ( m_isEfi )
+            {
                 setupEfiSystemPartitionSelector();
+            }
 
             updateNextEnabled();
             if ( !m_bootloaderComboBox.isNull() && m_bootloaderComboBox->currentIndex() < 0 )
+            {
                 m_bootloaderComboBox->setCurrentIndex( m_lastSelectedDeviceIndex );
+            }
         },
         this );
 }

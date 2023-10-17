@@ -15,8 +15,8 @@
 #include "UmountJob.h"
 
 #include "partition/Mount.h"
-#include "utils/System.h"
 #include "utils/Logger.h"
+#include "utils/System.h"
 #include "utils/Variant.h"
 
 #include "GlobalStorage.h"

@@ -12,8 +12,8 @@
 #include "PlasmaLnfJob.h"
 #include "ThemeInfo.h"
 
-#include "utils/System.h"
 #include "utils/Logger.h"
+#include "utils/System.h"
 #include "utils/Variant.h"
 
 #ifdef WITH_KCONFIG
@@ -76,6 +76,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         // about the themes from Plasma (e.g. human-readable name and description)
         // are filled in by update_names() in PlasmaLnfPage.
         for ( const auto& i : themeList )
+        {
             if ( i.type() == QVariant::Map )
             {
                 auto iv = i.toMap();
@@ -85,6 +86,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
             {
                 listedThemes.insert( i.toString(), QString() );
             }
+        }
 
         if ( listedThemes.count() == 1 )
         {

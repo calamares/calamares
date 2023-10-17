@@ -33,6 +33,6 @@ namespace Python __attribute__( ( visibility( "hidden" ) ) )
         return QString::fromUtf8( pybind11::str( o ).cast< std::string >().c_str() );
     }
 
-}  // namespace )
+}  // namespace Python
 }  // namespace Calamares
 #endif

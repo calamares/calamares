@@ -76,15 +76,19 @@ PlasmaLnfPage::PlasmaLnfPage( Config* config, QWidget* parent )
     CALAMARES_RETRANSLATE( {
         ui->retranslateUi( this );
         if ( Calamares::Settings::instance()->isSetupMode() )
+        {
             ui->generalExplanation->setText( tr( "Please choose a look-and-feel for the KDE Plasma Desktop. "
                                                  "You can also skip this step and configure the look-and-feel "
                                                  "once the system is set up. Clicking on a look-and-feel "
                                                  "selection will give you a live preview of that look-and-feel." ) );
+        }
         else
+        {
             ui->generalExplanation->setText( tr( "Please choose a look-and-feel for the KDE Plasma Desktop. "
                                                  "You can also skip this step and configure the look-and-feel "
                                                  "once the system is installed. Clicking on a look-and-feel "
                                                  "selection will give you a live preview of that look-and-feel." ) );
+        }
     } );
 
     auto* view = new QListView( this );

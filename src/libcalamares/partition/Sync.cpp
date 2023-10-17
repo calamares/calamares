@@ -10,8 +10,8 @@
 
 #include "Sync.h"
 
-#include "utils/System.h"
 #include "utils/Logger.h"
+#include "utils/System.h"
 
 void
 Calamares::Partition::sync()

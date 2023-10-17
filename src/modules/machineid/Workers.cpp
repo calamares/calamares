@@ -12,9 +12,9 @@
 
 #include "Workers.h"
 
-#include "utils/System.h"
 #include "utils/Entropy.h"
 #include "utils/Logger.h"
+#include "utils/System.h"
 
 #include <QFile>
 

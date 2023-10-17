@@ -19,9 +19,9 @@
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
-#include "utils/System.h"
 #include "utils/Logger.h"
 #include "utils/String.h"
+#include "utils/System.h"
 
 #include <QDir>
 #include <QFile>
@@ -32,12 +32,12 @@
 namespace
 {
 QStringList
-removeEmpty(QStringList&& list)
+removeEmpty( QStringList&& list )
 {
-    list.removeAll(QString());
+    list.removeAll( QString() );
     return list;
 }
-}
+}  // namespace
 
 SetKeyboardLayoutJob::SetKeyboardLayoutJob( const QString& model,
                                             const QString& layout,
@@ -276,10 +276,10 @@ SetKeyboardLayoutJob::writeX11Data( const QString& keyboardConfPath ) const
               "        MatchIsKeyboard \"on\"\n";
 
 
-    const QStringList layouts = removeEmpty({m_additionalLayoutInfo.additionalLayout, m_layout});
-    const QStringList variants = removeEmpty({m_additionalLayoutInfo.additionalVariant, m_variant});
-    stream << "        Option \"XkbLayout\" \"" << layouts.join(",") << "\"\n";
-    stream << "        Option \"XkbVariant\" \"" << variants.join(",") << "\"\n";
+    const QStringList layouts = removeEmpty( { m_additionalLayoutInfo.additionalLayout, m_layout } );
+    const QStringList variants = removeEmpty( { m_additionalLayoutInfo.additionalVariant, m_variant } );
+    stream << "        Option \"XkbLayout\" \"" << layouts.join( "," ) << "\"\n";
+    stream << "        Option \"XkbVariant\" \"" << variants.join( "," ) << "\"\n";
     if ( !m_additionalLayoutInfo.additionalLayout.isEmpty() )
     {
         stream << "        Option \"XkbOptions\" \"" << m_additionalLayoutInfo.groupSwitcher << "\"\n";
@@ -290,8 +290,8 @@ SetKeyboardLayoutJob::writeX11Data( const QString& keyboardConfPath ) const
 
     file.close();
 
-    cDebug() << Logger::SubEntry << "Written XkbLayout" << layouts.join(",") << "; XkbModel" << m_model << "; XkbVariant"
-             << variants.join(",") << "to X.org file" << keyboardConfPath << stream.status();
+    cDebug() << Logger::SubEntry << "Written XkbLayout" << layouts.join( "," ) << "; XkbModel" << m_model
+             << "; XkbVariant" << variants.join( "," ) << "to X.org file" << keyboardConfPath << stream.status();
 
     return ( stream.status() == QTextStream::Ok );
 }
@@ -310,14 +310,14 @@ SetKeyboardLayoutJob::writeDefaultKeyboardData( const QString& defaultKeyboardPa
     }
     QTextStream stream( &file );
 
-    const QStringList layouts = removeEmpty({m_additionalLayoutInfo.additionalLayout, m_layout});
-    const QStringList variants = removeEmpty({m_additionalLayoutInfo.additionalVariant, m_variant});
+    const QStringList layouts = removeEmpty( { m_additionalLayoutInfo.additionalLayout, m_layout } );
+    const QStringList variants = removeEmpty( { m_additionalLayoutInfo.additionalVariant, m_variant } );
     stream << "# KEYBOARD CONFIGURATION FILE\n\n"
               "# Consult the keyboard(5) manual page.\n\n";
 
     stream << "XKBMODEL=\"" << m_model << "\"\n";
-    stream << "XKBLAYOUT=\"" << layouts.join(",") << "\"\n";
-    stream << "XKBVARIANT=\"" << variants.join(",") << "\"\n";
+    stream << "XKBLAYOUT=\"" << layouts.join( "," ) << "\"\n";
+    stream << "XKBVARIANT=\"" << variants.join( "," ) << "\"\n";
     if ( !m_additionalLayoutInfo.additionalLayout.isEmpty() )
     {
         stream << "XKBOPTIONS=\"" << m_additionalLayoutInfo.groupSwitcher << "\"\n";
@@ -327,8 +327,9 @@ SetKeyboardLayoutJob::writeDefaultKeyboardData( const QString& defaultKeyboardPa
 
     file.close();
 
-    cDebug() << Logger::SubEntry << "Written XKBMODEL" << m_model << "; XKBLAYOUT" << layouts.join(",") << "; XKBVARIANT"
-             << variants.join(",") << "to /etc/default/keyboard file" << defaultKeyboardPath << stream.status();
+    cDebug() << Logger::SubEntry << "Written XKBMODEL" << m_model << "; XKBLAYOUT" << layouts.join( "," )
+             << "; XKBVARIANT" << variants.join( "," ) << "to /etc/default/keyboard file" << defaultKeyboardPath
+             << stream.status();
 
     return ( stream.status() == QTextStream::Ok );
 }

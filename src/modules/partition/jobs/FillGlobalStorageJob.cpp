@@ -11,9 +11,9 @@
 
 #include "FillGlobalStorageJob.h"
 
+#include "compat/Variant.h"
 #include "core/KPMHelpers.h"
 #include "core/PartitionInfo.h"
-#include "compat/Variant.h"
 
 #include "Branding.h"
 #include "GlobalStorage.h"

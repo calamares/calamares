@@ -29,7 +29,7 @@ namespace GeoIP
 {
 class Handler;
 }  // namespace GeoIP
-}  // namespace CalamaresUtils
+}  // namespace Calamares
 
 class PLUGINDLLEXPORT WelcomeViewStep : public Calamares::ViewStep
 {

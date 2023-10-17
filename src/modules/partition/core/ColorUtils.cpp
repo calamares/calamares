@@ -156,8 +156,10 @@ colorForPartition( Partition* partition )
             }
         }
         else
+        {
             s_partitionColorsCache.insert( partition->fileSystem().uuid(),
                                            PARTITION_COLORS[ colorIdx % NUM_PARTITION_COLORS ] );
+        }
     }
     return PARTITION_COLORS[ colorIdx % NUM_PARTITION_COLORS ];
 }

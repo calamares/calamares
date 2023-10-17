@@ -7,8 +7,8 @@
 
 #include "Permissions.h"
 
-#include "System.h"
 #include "Logger.h"
+#include "System.h"
 
 #include <QString>
 #include <QStringList>

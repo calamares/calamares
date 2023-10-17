@@ -58,11 +58,15 @@ Partition*
 findPartitionByCurrentMountPoint( const QList< Device* >& devices, const QString& mountPoint )
 {
     for ( auto device : devices )
+    {
         for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
+        {
             if ( ( *it )->mountPoint() == mountPoint )
             {
                 return *it;
             }
+        }
+    }
     return nullptr;
 }
 

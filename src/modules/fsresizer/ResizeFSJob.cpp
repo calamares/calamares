@@ -157,9 +157,11 @@ Calamares::JobResult
 ResizeFSJob::exec()
 {
     if ( !isValid() )
+    {
         return Calamares::JobResult::error(
             tr( "Invalid configuration" ),
             tr( "The file-system resize job has an invalid configuration and will not run." ) );
+    }
 
     if ( !m_kpmcore )
     {
@@ -172,11 +174,13 @@ ResizeFSJob::exec()
     // Now get the partition and FS we want to work on
     PartitionMatch m = findPartition();
     if ( !m.first || !m.second )
+    {
         return Calamares::JobResult::error(
             tr( "Resize Failed" ),
             !m_fsname.isEmpty()
                 ? tr( "The filesystem %1 could not be found in this system, and cannot be resized." ).arg( m_fsname )
                 : tr( "The device %1 could not be found in this system, and cannot be resized." ).arg( m_devicename ) );
+    }
 
     m.second->fileSystem().init();  // Initialize support for specific FS
     if ( !ResizeOperation::canGrow( m.second ) )
@@ -193,18 +197,22 @@ ResizeFSJob::exec()
              << ')' << "to -" << new_end;
 
     if ( new_end < 0 )
+    {
         return Calamares::JobResult::error( tr( "Resize Failed" ),
                                             !m_fsname.isEmpty()
                                                 ? tr( "The filesystem %1 cannot be resized." ).arg( m_fsname )
                                                 : tr( "The device %1 cannot be resized." ).arg( m_devicename ) );
+    }
     if ( new_end == 0 )
     {
         cWarning() << "Resize operation on" << m_fsname << m_devicename << "skipped as not-useful.";
         if ( m_required )
+        {
             return Calamares::JobResult::error(
                 tr( "Resize Failed" ),
                 !m_fsname.isEmpty() ? tr( "The filesystem %1 must be resized, but cannot." ).arg( m_fsname )
                                     : tr( "The device %1 must be resized, but cannot" ).arg( m_fsname ) );
+        }
 
         return Calamares::JobResult::ok();
     }

@@ -223,10 +223,12 @@ PartitionLabelsView::buildTexts( const QModelIndex& index ) const
         secondLine = index.sibling( index.row(), PartitionModel::SizeColumn ).data().toString();
     }
     else
+    {
         //: size[number]  filesystem[name]
         secondLine = tr( "%1  %2" )
                          .arg( index.sibling( index.row(), PartitionModel::SizeColumn ).data().toString() )
                          .arg( index.sibling( index.row(), PartitionModel::FileSystemColumn ).data().toString() );
+    }
 
     return { firstLine, secondLine };
 }

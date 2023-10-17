@@ -10,11 +10,11 @@
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
-#include "utils/System.h"
 #include "utils/Logger.h"
 #include "utils/Permissions.h"
 #include "utils/PluginFactory.h"
 #include "utils/String.h"
+#include "utils/System.h"
 #include "utils/Variant.h"
 
 #include <QList>

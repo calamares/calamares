@@ -128,8 +128,7 @@ int cryptVersion( Partition* partition );
  *
  * @return The LUKS FS type (default @c luks )
  */
-FileSystem::Type
-luksGenerationToFSName( Config::LuksGeneration luksGeneration );
+FileSystem::Type luksGenerationToFSName( Config::LuksGeneration luksGeneration );
 
 
 /** @brief Return a result for an @p operation

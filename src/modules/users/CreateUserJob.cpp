@@ -11,9 +11,9 @@
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
-#include "utils/System.h"
 #include "utils/Logger.h"
 #include "utils/Permissions.h"
+#include "utils/System.h"
 
 #include <QDateTime>
 #include <QDir>

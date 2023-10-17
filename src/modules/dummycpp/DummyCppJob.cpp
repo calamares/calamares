@@ -19,8 +19,8 @@
 #include "JobQueue.h"
 
 #include "compat/Variant.h"
-#include "utils/System.h"
 #include "utils/Logger.h"
+#include "utils/System.h"
 
 DummyCppJob::DummyCppJob( QObject* parent )
     : Calamares::CppJob( parent )
