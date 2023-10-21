@@ -21,7 +21,7 @@ test -d "$TOPDIR" || { echo "! Cound not determine top-level source dir" ; exit 
 test -f "$TOPDIR/.clang-format" || { echo "! No .clang-format support files in $TOPDIR" ; exit 1 ; }
 
 # Allow specifying CF_VERSIONS outside already
-CF_VERSIONS="$CF_VERSIONS clang-format15 clang-format-15 clang-format"
+CF_VERSIONS="$CF_VERSIONS clang-format15 clang-format-15 clang-format-16 clang-format-16.0.6 clang-format"
 for _cf in $CF_VERSIONS
 do
 	# Not an error if this particular clang-format isn't found
@@ -42,15 +42,16 @@ test -x "$CF" || { echo "! $CF is not executable."; exit 1 ; }
 #   ping-pong commits, forbid 14.
 # Version 15 is available on recent-ish Ubuntus and FreeBSD, pick it.
 #   It also supports inserting braces, which is the one thing we kept
-#	astyle around for.
+#   astyle around for.
+# Version 16 is available on openSUSE and is ok as well.
 
 format_version=`"$CF" --version | tr -dc '[^.0-9]' | cut  -d . -f 1`
 case "$format_version" in
-	15 )
+	15|16 )
 		:
 		;;
 	* )
-		echo "! Clang-format version '$format_version' unsupported, version 15 is ok."
+		echo "! Clang-format version '$format_version' unsupported, version 15 or 16 is ok."
 		exit 1
 		;;
 esac
