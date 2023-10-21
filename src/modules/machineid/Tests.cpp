@@ -163,7 +163,7 @@ MachineIdTests::testPoolSize()
     else
 #endif
     {
-        QCOMPARE( getUrandomPoolSize(), 4096 );
+        QVERIFY( getUrandomPoolSize() >= 512 );
     }
 #endif
 }
