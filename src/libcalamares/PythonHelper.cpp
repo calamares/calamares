@@ -304,7 +304,7 @@ Helper::handleLastError()
 
         if ( typeMsg.isEmpty() )
         {
-            typeMsg = tr( "Unknown exception type" );
+            typeMsg = tr( "Unknown exception type", "@error" );
         }
         debug << typeMsg << '\n';
     }
@@ -322,7 +322,7 @@ Helper::handleLastError()
 
         if ( valMsg.isEmpty() )
         {
-            valMsg = tr( "unparseable Python error" );
+            valMsg = tr( "Unparseable Python error", "@error" );
         }
 
         // Special-case: CalledProcessError has an attribute "output" with the command output,
@@ -366,14 +366,14 @@ Helper::handleLastError()
 
         if ( tbMsg.isEmpty() )
         {
-            tbMsg = tr( "unparseable Python traceback" );
+            tbMsg = tr( "Unparseable Python traceback", "@error" );
         }
         debug << tbMsg << '\n';
     }
 
     if ( typeMsg.isEmpty() && valMsg.isEmpty() && tbMsg.isEmpty() )
     {
-        return tr( "Unfetchable Python error." );
+        return tr( "Unfetchable Python error", "@error" );
     }
 
     QStringList msgList;

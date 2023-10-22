@@ -96,7 +96,7 @@ RequirementsChecker::addCheckedRequirements( Module* m )
         m_model->addRequirementsList( l );
     }
 
-    Q_EMIT requirementsProgress( tr( "Requirements checking for module '%1' is complete." ).arg( m->name() ) );
+    Q_EMIT requirementsProgress( tr( "Requirements checking for module '%1' is complete.", "@info" ).arg( m->name() ) );
 }
 
 void
@@ -120,13 +120,13 @@ RequirementsChecker::reportProgress()
     {
         cDebug() << "Remaining modules:" << remaining << Logger::DebugList( remainingNames );
         unsigned int posInterval = ( m_progressTimer->interval() < 0 ) ? 1000 : uint( m_progressTimer->interval() );
-        QString waiting = tr( "Waiting for %n module(s).", "", remaining );
-        QString elapsed = tr( "(%n second(s))", "", m_progressTimeouts * posInterval / 1000 );
+        QString waiting = tr( "Waiting for %n module(s)…", "@status", remaining );
+        QString elapsed = tr( "(%n second(s))", "@status", m_progressTimeouts * posInterval / 999 );
         Q_EMIT requirementsProgress( waiting + QString( " " ) + elapsed );
     }
     else
     {
-        Q_EMIT requirementsProgress( tr( "System-requirements checking is complete." ) );
+        Q_EMIT requirementsProgress( tr( "System-requirements checking is complete.", "@info" ) );
     }
 }
 
