@@ -36,7 +36,9 @@ ProcessJob::~ProcessJob() {}
 QString
 ProcessJob::prettyName() const
 {
-    return ( m_runInChroot ? "Run command '%1' in target system" : "Run command '%1'" ).arg( m_command );
+    return ( m_runInChroot ? QStringLiteral( "Run command '%1' in target system" )
+                           : QStringLiteral( "Run command '%1'" ) )
+        .arg( m_command );
 }
 
 QString
