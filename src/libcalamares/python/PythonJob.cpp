@@ -158,9 +158,34 @@ Job::exec()
 
     if ( s_preScript )
     {
-        py::exec( s_preScript );
+        try
+        {
+            py::exec( s_preScript );
+        }
+        catch ( const py::error_already_set& e )
+        {
+            cError() << "Error in pre-script:" << e.what();
+            return JobResult::internalError(
+                tr( "Bad internal script" ),
+                tr( "Internal script for python job %1 raised an exception." ).arg( prettyName() ),
+                JobResult::PythonUncaughtException );
+        }
     }
-    py::eval_file( scriptFI.absoluteFilePath().toUtf8().constData(), scope );
+
+    try
+    {
+        py::eval_file( scriptFI.absoluteFilePath().toUtf8().constData(), scope );
+    }
+    catch ( const py::error_already_set& e )
+    {
+        cError() << "Error while loading:" << e.what();
+        return JobResult::internalError(
+            tr( "Bad main script file" ),
+            tr( "Main script file %1 for python job %2 could not be loaded because it raised an  exception." )
+                .arg( scriptFI.absoluteFilePath() )
+                .arg( prettyName() ),
+            JobResult::PythonUncaughtException );
+    }
 
     m_d->description = getPrettyNameFromScope( scope );
 
@@ -179,7 +204,7 @@ Job::exec()
             catch ( const py::error_already_set& e )
             {
                 // This is an error in the Python code itself
-                cError() << e.what();
+                cError() << "Error while running:" << e.what();
                 return JobResult::internalError( tr( "Bad main script file" ),
                                                  tr( "Main script file %1 for python job %2 raised an exception." )
                                                      .arg( scriptFI.absoluteFilePath() )
@@ -196,7 +221,7 @@ Job::exec()
         }
         catch ( const py::cast_error& e )
         {
-            cError() << e.what();
+            cError() << "Error in type of run() or its results:" << e.what();
             return JobResult::error( tr( "Bad main script file" ),
                                      tr( "Main script file %1 for python job %2 returned invalid results." )
                                          .arg( scriptFI.absoluteFilePath() )
@@ -204,7 +229,7 @@ Job::exec()
         }
         catch ( const py::error_already_set& e )
         {
-            cError() << e.what();
+            cError() << "Error in return type of run():" << e.what();
             return JobResult::error( tr( "Bad main script file" ),
                                      tr( "Main script file %1 for python job %2 returned invalid results." )
                                          .arg( scriptFI.absoluteFilePath() )
