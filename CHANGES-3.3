@@ -13,6 +13,7 @@ the history of the 3.2 series (2018-05 - 2022-08).
 This release contains contributions from (alphabetically by first name):
  - Adriaan de Groot
  - Anke Boersma
+ - Emir Sari
 
 ## Core ##
  - Boost::Python is no longer a dependency, Calamares uses a bundled copy
@@ -20,8 +21,9 @@ This release contains contributions from (alphabetically by first name):
    dependency tree a great deal. You can set `WITH_PYBIND11=OFF` in the
    build to keep Boost::Python and all the binary-compatibility problems
    it entails.
- - Coding style now wants clang-format 15, but not longer needs astyle.
+ - Coding style now wants clang-format 15 or 16, but no longer needs astyle.
    There is also a clang-tidy file for additional styling support.
+ - Ongoing translation improvements. (thanks Emir)
 
 ## Modules ##
  - All QML modules now have a Qt6-compatible set of QML files as well. (thanks Anke)
