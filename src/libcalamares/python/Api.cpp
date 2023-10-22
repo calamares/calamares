@@ -14,6 +14,7 @@
 #include "JobQueue.h"
 #include "compat/Variant.h"
 #include "locale/Global.h"
+#include "partition/Mount.h"
 #include "python/PythonJob.h"
 #include "utils/Logger.h"
 #include "utils/RAII.h"
@@ -473,6 +474,17 @@ host_env_process_output( const List& args, const Object& callback, const std::st
         Calamares::System::RunLocation::RunInHost, stringListFromPyList( args ), callback, input, timeout );
 }
 
+int
+mount( const std::string& device_path,
+       const std::string& mount_point,
+       const std::string& filesystem_name,
+       const std::string& options )
+{
+    return Calamares::Partition::mount( QString::fromStdString( device_path ),
+                                        QString::fromStdString( mount_point ),
+                                        QString::fromStdString( filesystem_name ),
+                                        QString::fromStdString( options ) );
+}
 
 JobProxy::JobProxy( Calamares::Python::Job* parent )
     : prettyName( parent->prettyName().toStdString() )
@@ -620,6 +632,14 @@ populate_utils( py::module_&& m )
            &Calamares::Python::gettext_languages,
            "Returns list of languages (most to least-specific) for gettext." );
     m.def( "gettext_path", &Calamares::Python::gettext_path, "Returns path for gettext search." );
+
+    m.def( "mount",
+           &Calamares::Python::mount,
+           "Runs the mount utility with the specified parameters.\n"
+           "Returns the program's exit code, or:\n"
+           "-1 = QProcess crash\n"
+           "-2 = QProcess cannot start\n"
+           "-3 = bad arguments" );
 }
 
 PYBIND11_MODULE( libcalamares, m )
