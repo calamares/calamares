@@ -92,15 +92,8 @@ class DLLEXPORT Manager : public QObject
     Q_PROPERTY( bool hasInternet READ hasInternet NOTIFY hasInternetChanged FINAL )
     Q_PROPERTY( QVector< QUrl > checkInternetUrls READ getCheckInternetUrls WRITE setCheckHasInternetUrl )
 
-    Manager();
-
 public:
-    /** @brief Gets the single Manager instance.
-     *
-     * Typical code will use `auto& nam = Manager::instance();`
-     * to keep the reference.
-     */
-    static Manager& instance();
+    Manager();
     ~Manager() override;
 
     /** @brief Checks if the given @p url returns data.
@@ -121,18 +114,6 @@ public:
      */
     QByteArray synchronousGet( const QUrl& url, const RequestOptions& options = RequestOptions() );
 
-    /// @brief Set the URL which is used for the general "is there internet" check.
-    void setCheckHasInternetUrl( const QUrl& url );
-
-    /// @brief Adds an (extra) URL to check
-    void addCheckHasInternetUrl( const QUrl& url );
-
-    /// @brief Set a collection of URLs used for the general "is there internet" check.
-    void setCheckHasInternetUrl( const QVector< QUrl >& urls );
-
-    /// @brief What URLs are used to check for internet connectivity?
-    QVector< QUrl > getCheckInternetUrls() const;
-
     /** @brief Do a network request asynchronously.
      *
      * Returns a pointer to the reply-from-the-request.
@@ -140,6 +121,18 @@ public:
      * The caller is responsible for cleaning up the reply (eventually).
      */
     QNetworkReply* asynchronousGet( const QUrl& url, const RequestOptions& options = RequestOptions() );
+
+    /// @brief Set the URL which is used for the general "is there internet" check.
+    static void setCheckHasInternetUrl( const QUrl& url );
+
+    /// @brief Adds an (extra) URL to check
+    static void addCheckHasInternetUrl( const QUrl& url );
+
+    /// @brief Set a collection of URLs used for the general "is there internet" check.
+    static void setCheckHasInternetUrl( const QVector< QUrl >& urls );
+
+    /// @brief What URLs are used to check for internet connectivity?
+    static QVector< QUrl > getCheckInternetUrls();
 
 public Q_SLOTS:
     /** @brief Do an explicit check for internet connectivity.
@@ -167,7 +160,6 @@ signals:
 
 private:
     class Private;
-    std::unique_ptr< Private > d;
 };
 }  // namespace Network
 }  // namespace Calamares
