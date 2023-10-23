@@ -110,7 +110,7 @@ ContextualProcessJob::~ContextualProcessJob()
 }
 
 QString
-CntextualProcessJob::prettyName() const
+ContextualProcessJob::prettyName() const
 {
     return tr( "Performing contextual processes' job…", "@status" );
 }
