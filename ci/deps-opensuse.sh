@@ -22,7 +22,7 @@ zypper --non-interactive in \
 	"yaml-cpp-devel" \
 	"libpwquality-devel" \
 	"parted-devel" \
-	"python-devel" \
+	"python311-devel" \
 	"libboost_headers-devel" \
 	"libboost_python3-devel"
 zypper --non-interactive in \
