@@ -247,7 +247,7 @@ registerQmlModels()
                                                                  0,
                                                                  "Network",
                                                                  []( QQmlEngine*, QJSEngine* ) -> QObject*
-                                                                 { return &Calamares::Network::Manager::instance(); } );
+                                                                 { return new Calamares::Network::Manager; } );
     }
 }
 
