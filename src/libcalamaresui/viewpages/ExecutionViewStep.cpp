@@ -113,7 +113,7 @@ ExecutionViewStep::ExecutionViewStep( QObject* parent )
 QString
 ExecutionViewStep::prettyName() const
 {
-    return Calamares::Settings::instance()->isSetupMode() ? tr( "Set up" ) : tr( "Install" );
+    return Calamares::Settings::instance()->isSetupMode() ? tr( "Set Up", "@label" ) : tr( "Install", "@label" );
 }
 
 QWidget*

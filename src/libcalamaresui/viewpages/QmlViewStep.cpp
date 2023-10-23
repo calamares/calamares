@@ -70,7 +70,7 @@ namespace Calamares
 QmlViewStep::QmlViewStep( QObject* parent )
     : ViewStep( parent )
     , m_widget( new QWidget )
-    , m_spinner( new WaitingWidget( tr( "Loading ..." ) ) )
+    , m_spinner( new WaitingWidget( tr( "Loading…", "@status" ) ) )
 {
     Calamares::registerQmlModels();
 
@@ -97,7 +97,7 @@ QString
 QmlViewStep::prettyName() const
 {
     // TODO: query the QML itself
-    return tr( "QML Step <i>%1</i>." ).arg( moduleInstanceKey().module() );
+    return tr( "QML step <i>%1</i>.", "@label" ).arg( moduleInstanceKey().module() );
 }
 
 bool
@@ -283,7 +283,7 @@ QmlViewStep::showFailedQml()
     {
         cDebug() << Logger::SubEntry << "QML error:" << m_qmlComponent->errorString();
     }
-    m_spinner->setText( prettyName() + ' ' + tr( "Loading failed." ) );
+    m_spinner->setText( prettyName() + ' ' + tr( "Loading failed.", "@info" ) );
 }
 
 QObject*

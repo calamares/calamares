@@ -114,11 +114,11 @@ DracutLuksCfgJob::prettyName() const
 {
     if ( isRootEncrypted() )
     {
-        return tr( "Write LUKS configuration for Dracut to %1" ).arg( CONFIG_FILE );
+        return tr( "Writing LUKS configuration for Dracut to %1…", "@status" ).arg( CONFIG_FILE );
     }
     else
     {
-        return tr( "Skip writing LUKS configuration for Dracut: \"/\" partition is not encrypted" );
+        return tr( "Skipping writing LUKS configuration for Dracut: \"/\" partition is not encrypted", "@info" );
     }
 }
 
@@ -135,7 +135,7 @@ DracutLuksCfgJob::exec()
         if ( !configFile.open( QIODevice::WriteOnly | QIODevice::Text ) )
         {
             cDebug() << "[DRACUTLUKSCFG]: Failed to open" << realConfigFilePath;
-            return Calamares::JobResult::error( tr( "Failed to open %1" ).arg( realConfigFilePath ) );
+            return Calamares::JobResult::error( tr( "Failed to open %1", "@error" ).arg( realConfigFilePath ) );
         }
         QTextStream outStream( &configFile );
         outStream << CONFIG_FILE_HEADER

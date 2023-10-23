@@ -32,7 +32,7 @@ DummyCppJob::~DummyCppJob() {}
 QString
 DummyCppJob::prettyName() const
 {
-    return tr( "Dummy C++ Job" );
+    return tr( "Performing dummy C++ job…", "@status" );
 }
 
 static QString variantListToString( const QVariantList& variantList );
