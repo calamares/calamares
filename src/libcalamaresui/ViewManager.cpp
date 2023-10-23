@@ -153,10 +153,10 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
     cDebug() << Logger::SubEntry << "- details:" << Logger::NoQuote << details;
 
     QString heading
-        = Calamares::Settings::instance()->isSetupMode() ? tr( "Setup Failed" ) : tr( "Installation Failed" );
+        = Calamares::Settings::instance()->isSetupMode() ? tr( "Setup Failed", "@title" ) : tr( "Installation Failed", "@title" );
 
     ErrorDialog* errorDialog = new ErrorDialog();
-    errorDialog->setWindowTitle( tr( "Error" ) );
+    errorDialog->setWindowTitle( tr( "Error", "@title" ) );
     errorDialog->setHeading( "<strong>" + heading + "</strong>" );
     errorDialog->setInformativeText( message );
     errorDialog->setShouldOfferWebPaste( Calamares::Branding::instance()->uploadServer() );
@@ -181,14 +181,14 @@ ViewManager::onInitFailed( const QStringList& modules )
 {
     // Because this means the installer / setup program is broken by the distributor,
     // don't bother being precise about installer / setup wording.
-    QString title( tr( "Calamares Initialization Failed" ) );
+    QString title( tr( "Calamares Initialization Failed", "@title" ) );
     QString description( tr( "%1 can not be installed. Calamares was unable to load all of the configured modules. "
-                             "This is a problem with the way Calamares is being used by the distribution." ) );
+                             "This is a problem with the way Calamares is being used by the distribution.", "@info" ) );
     QString detailString;
 
     if ( modules.count() > 0 )
     {
-        description.append( tr( "<br/>The following modules could not be loaded:" ) );
+        description.append( tr( "<br/>The following modules could not be loaded:", "@info" ) );
         QStringList details;
         details << QLatin1String( "<ul>" );
         for ( const auto& m : modules )
@@ -330,22 +330,22 @@ ViewManager::next()
         if ( settings->showPromptBeforeExecution() && stepIsExecute( m_steps, m_currentStep + 1 ) )
         {
             QString title
-                = settings->isSetupMode() ? tr( "Continue with setup?" ) : tr( "Continue with installation?" );
+                = settings->isSetupMode() ? tr( "Continue with Setup?", "@title" ) : tr( "Continue with Installation?", "@title" );
             QString question = settings->isSetupMode()
                 ? tr( "The %1 setup program is about to make changes to your "
                       "disk in order to set up %2.<br/><strong>You will not be able "
-                      "to undo these changes.</strong>" )
+                      "to undo these changes.</strong>", "%1 is short product name, %2 is short product name with version" )
                 : tr( "The %1 installer is about to make changes to your "
                       "disk in order to install %2.<br/><strong>You will not be able "
-                      "to undo these changes.</strong>" );
-            QString confirm = settings->isSetupMode() ? tr( "&Set up now" ) : tr( "&Install now" );
+                      "to undo these changes.</strong>", "%1 is short product name, %2 is short product name with version" );
+            QString confirm = settings->isSetupMode() ? tr( "&Set Up Now", "@button" ) : tr( "&Install Now", "@button" );
 
             const auto* branding = Calamares::Branding::instance();
             int reply = questionBox( m_widget,
                                      title,
                                      question.arg( branding->shortProductName(), branding->shortVersionedName() ),
                                      confirm,
-                                     tr( "Go &back" ) );
+                                     tr( "Go &Back", "@button" ) );
             if ( reply == 1 )
             {
                 return;
@@ -392,13 +392,13 @@ ViewManager::updateButtonLabels()
 {
     const auto* const settings = Calamares::Settings::instance();
 
-    QString nextIsInstallationStep = settings->isSetupMode() ? tr( "&Set up" ) : tr( "&Install" );
+    QString nextIsInstallationStep = settings->isSetupMode() ? tr( "&Set Up", "@button" ) : tr( "&Install", "@button" );
     QString quitOnCompleteTooltip = settings->isSetupMode()
-        ? tr( "Setup is complete. Close the setup program." )
-        : tr( "The installation is complete. Close the installer." );
+        ? tr( "Setup is complete. Close the setup program.", "@tooltip" )
+        : tr( "The installation is complete. Close the installer.", "@tooltip" );
     QString cancelBeforeInstallationTooltip = settings->isSetupMode()
-        ? tr( "Cancel setup without changing the system." )
-        : tr( "Cancel installation without changing the system." );
+        ? tr( "Cancel the setup process without changing the system.", "@tooltip" )
+        : tr( "Cancel the installation process without changing the system.", "@tooltip" );
 
     // If we're going into the execution step / install phase, other message
     if ( stepIsExecute( m_steps, m_currentStep + 1 ) )
@@ -408,18 +408,18 @@ ViewManager::updateButtonLabels()
     }
     else
     {
-        UPDATE_BUTTON_PROPERTY( nextLabel, tr( "&Next" ) );
+        UPDATE_BUTTON_PROPERTY( nextLabel, tr( "&Next", "@button" ) );
         UPDATE_BUTTON_PROPERTY( nextIcon, "go-next" );
     }
 
     // Going back is always simple
-    UPDATE_BUTTON_PROPERTY( backLabel, tr( "&Back" ) );
+    UPDATE_BUTTON_PROPERTY( backLabel, tr( "&Back", "@button" ) );
     UPDATE_BUTTON_PROPERTY( backIcon, "go-previous" );
 
     // Cancel button changes label at the end
     if ( isAtVeryEnd( m_steps, m_currentStep ) )
     {
-        UPDATE_BUTTON_PROPERTY( quitLabel, tr( "&Done" ) );
+        UPDATE_BUTTON_PROPERTY( quitLabel, tr( "&Done", "@button" ) );
         UPDATE_BUTTON_PROPERTY( quitTooltip, quitOnCompleteTooltip );
         UPDATE_BUTTON_PROPERTY( quitVisible, true );
         UPDATE_BUTTON_PROPERTY( quitIcon, "dialog-ok-apply" );
@@ -438,7 +438,7 @@ ViewManager::updateButtonLabels()
         updateCancelEnabled( !settings->disableCancel()
                              && !( stepIsExecute( m_steps, m_currentStep ) && settings->disableCancelDuringExec() ) );
 
-        UPDATE_BUTTON_PROPERTY( quitLabel, tr( "&Cancel" ) );
+        UPDATE_BUTTON_PROPERTY( quitLabel, tr( "&Cancel", "@button" ) );
         UPDATE_BUTTON_PROPERTY( quitTooltip, cancelBeforeInstallationTooltip );
         UPDATE_BUTTON_PROPERTY( quitIcon, "dialog-cancel" );
     }
@@ -510,7 +510,7 @@ ViewManager::confirmCancelInstallation()
     }
 
     // Otherwise, confirm cancel/quit.
-    QString title = settings->isSetupMode() ? tr( "Cancel setup?" ) : tr( "Cancel installation?" );
+    QString title = settings->isSetupMode() ? tr( "Cancel Setup?", "@title" ) : tr( "Cancel Installation?", "@title" );
     QString question = settings->isSetupMode() ? tr( "Do you really want to cancel the current setup process?\n"
                                                      "The setup program will quit and all changes will be lost." )
                                                : tr( "Do you really want to cancel the current install process?\n"
