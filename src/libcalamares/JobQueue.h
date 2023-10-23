@@ -92,7 +92,7 @@ signals:
      */
     void queueChanged( const QStringList& jobNames );
 
-public slots:
+public Q_SLOTS:
     /** @brief Implementation detail
      *
      * This is a private implementation detail for the job thread,
