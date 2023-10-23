@@ -420,11 +420,13 @@ ModuleManager::checkModuleDependencies( const Module& m )
     {
         bool requirementFound = false;
         for ( const Module* v : m_loadedModulesByInstanceKey )
+        {
             if ( required == v->name() )
             {
                 requirementFound = true;
                 break;
             }
+        }
         if ( !requirementFound )
         {
             cError() << "Module" << m.name() << "requires" << required << "before it in sequence.";

@@ -77,10 +77,12 @@ IDJob::exec()
 
     // Don't bother translating internal errors
     if ( rootMount.isEmpty() && Calamares::Settings::instance()->doChroot() )
+    {
         return Calamares::JobResult::internalError( "OEM Batch Identifier",
                                                     "No rootMountPoint is set, but a chroot is required. "
                                                     "Is there a module before oemid that sets up the partitions?",
                                                     Calamares::JobResult::InvalidConfiguration );
+    }
     return writeId( Calamares::Settings::instance()->doChroot() ? rootMount + targetDir : targetDir,
                     targetFile,
                     m_batchIdentifier );

@@ -18,6 +18,7 @@ apt-get -y install \
 	libqt5svg5-dev \
 	libqt5webkit5-dev \
 	libyaml-cpp-dev \
+	ninja-build \
 	os-prober \
 	pkg-config \
 	python3-dev \

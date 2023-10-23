@@ -57,10 +57,12 @@ qmlDirCandidates( bool assumeBuilddir )
             qmlDirs << QDir::current().absoluteFilePath( "src/qml" );  // In build-dir
         }
         if ( Calamares::haveExtraDirs() )
+        {
             for ( auto s : Calamares::extraDataDirs() )
             {
                 qmlDirs << ( s + QML );
             }
+        }
         qmlDirs << Calamares::appDataDir().absoluteFilePath( QML );
     }
 

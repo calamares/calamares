@@ -241,12 +241,14 @@ void
 PackageTreeItem::setChildrenSelected( Qt::CheckState isSelected )
 {
     if ( isSelected != Qt::PartiallyChecked )
+    {
         // Children are never root; don't need to use setSelected on them.
         for ( auto child : m_childItems )
         {
             child->m_selected = isSelected;
             child->setChildrenSelected( isSelected );
         }
+    }
 }
 
 void

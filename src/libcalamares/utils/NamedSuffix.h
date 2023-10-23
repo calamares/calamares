@@ -65,12 +65,14 @@ public:
         : NamedSuffix()
     {
         for ( const auto& suffix : table.table )
+        {
             if ( s.endsWith( suffix.first ) )
             {
                 m_value = s.left( s.length() - suffix.first.length() ).toLongLong();
                 m_unit = suffix.second;
                 break;
             }
+        }
     }
 
     /** @brief Construct value from string.

@@ -27,7 +27,7 @@ namespace GeoIP
 {
 class Handler;
 }  // namespace GeoIP
-}  // namespace CalamaresUtils
+}  // namespace Calamares
 
 
 // TODO: refactor and move what makes sense to base class

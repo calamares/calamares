@@ -78,10 +78,12 @@ TranslationsModel::locale( int row ) const
     if ( ( row < 0 ) || ( row >= m_locales.count() ) )
     {
         for ( const auto& l : m_locales )
+        {
             if ( l->isEnglish() )
             {
                 return *l;
             }
+        }
         return *m_locales[ 0 ];
     }
     return *m_locales[ row ];

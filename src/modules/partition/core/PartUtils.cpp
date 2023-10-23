@@ -20,9 +20,9 @@
 #include "partition/Mount.h"
 #include "partition/PartitionIterator.h"
 #include "partition/PartitionQuery.h"
-#include "utils/System.h"
 #include "utils/Logger.h"
 #include "utils/RAII.h"
+#include "utils/System.h"
 
 #include <kpmcore/backend/corebackend.h>
 #include <kpmcore/backend/corebackendmanager.h>
@@ -595,11 +595,15 @@ FstabEntry::fromEtcFstab( const QString& rawLine )
 {
     QString line = rawLine.simplified();
     if ( line.startsWith( '#' ) )
+    {
         return FstabEntry { QString(), QString(), QString(), QString(), 0, 0 };
+    }
 
     QStringList splitLine = line.split( ' ' );
     if ( splitLine.length() != 6 )
+    {
         return FstabEntry { QString(), QString(), QString(), QString(), 0, 0 };
+    }
 
     return FstabEntry {
         splitLine.at( 0 ),  // path, or UUID, or LABEL, etc.

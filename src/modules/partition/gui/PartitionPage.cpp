@@ -284,10 +284,12 @@ PartitionPage::onNewVolumeGroupClicked()
     QVector< const Partition* > availablePVs;
 
     for ( const Partition* p : m_core->lvmPVs() )
+    {
         if ( !m_core->isInVG( p ) )
         {
             availablePVs << p;
         }
+    }
 
     QPointer< CreateVolumeGroupDialog > dlg
         = new CreateVolumeGroupDialog( vgName, selectedPVs, availablePVs, peSize, this );
@@ -342,10 +344,12 @@ PartitionPage::onResizeVolumeGroupClicked()
     QVector< const Partition* > selectedPVs;
 
     for ( const Partition* p : m_core->lvmPVs() )
+    {
         if ( !m_core->isInVG( p ) )
         {
             availablePVs << p;
         }
+    }
 
     QPointer< ResizeVolumeGroupDialog > dlg = new ResizeVolumeGroupDialog( device, availablePVs, selectedPVs, this );
 

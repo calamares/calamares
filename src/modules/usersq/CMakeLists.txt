@@ -41,7 +41,7 @@ calamares_add_plugin(usersq
     SOURCES
         UsersQmlViewStep.cpp
     RESOURCES
-        usersq.qrc
+        usersq${QT_VERSION_SUFFIX}.qrc
     LINK_PRIVATE_LIBRARIES
         users_internal
         ${CRYPT_LIBRARIES}

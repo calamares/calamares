@@ -12,12 +12,14 @@
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
-#include "utils/System.h"
 #include "utils/Logger.h"
+#include "utils/System.h"
 
 #include <QDir>
 #include <QFile>
 #include <QtTest/QtTest>
+
+#include <KOSRelease>
 
 // Internals of Workers.cpp
 extern int getUrandomPoolSize();
@@ -148,8 +150,21 @@ MachineIdTests::testPoolSize()
     // It hardly makes sense, but also the /proc entry is missing
     QCOMPARE( getUrandomPoolSize(), 512 );
 #else
-    // Based on a sample size of 1, Netrunner
-    QCOMPARE( getUrandomPoolSize(), 4096 );
+    // Based on a sample size of 1, Netrunner had 4096.
+    // Physical HW KDE neon had 256, which gets reported as 512,
+    //   but regular CI builds pass, so leave that special case
+    //   #if-fed out.
+#if 0
+    KOSRelease r;
+    if ( r.id() == QStringLiteral( "neon" ) )
+    {
+        QCOMPARE( getUrandomPoolSize(), 512 );
+    }
+    else
+#endif
+    {
+        QVERIFY( getUrandomPoolSize() >= 512 );
+    }
 #endif
 }
 

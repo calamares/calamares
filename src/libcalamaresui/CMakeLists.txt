@@ -57,11 +57,14 @@ calamares_add_library(calamaresui
     SOVERSION ${CALAMARES_SOVERSION}
 )
 target_link_libraries(calamaresui PRIVATE yamlcpp::yamlcpp)
-target_compile_definitions(calamaresui PRIVATE WITH_KOSRelease)
 target_link_libraries(calamaresui PRIVATE ${kfname}::CoreAddons)
 
 if(WITH_QML)
     target_link_libraries(calamaresui PUBLIC ${qtname}::QuickWidgets)
+endif()
+
+if(WITH_PYBIND11)
+    target_compile_definitions(calamaresui PRIVATE WITH_PYBIND11=1)
 endif()
 
 add_library(Calamares::calamaresui ALIAS calamaresui)

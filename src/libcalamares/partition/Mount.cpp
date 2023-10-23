@@ -12,9 +12,9 @@
 #include "Mount.h"
 
 #include "partition/Sync.h"
-#include "utils/System.h"
 #include "utils/Logger.h"
 #include "utils/String.h"
+#include "utils/System.h"
 
 #include <QDir>
 #include <QTemporaryDir>

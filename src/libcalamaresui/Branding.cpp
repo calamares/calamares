@@ -30,10 +30,8 @@
 
 #include <functional>
 
-#ifdef WITH_KOSRelease
 #include <KMacroExpander>
 #include <KOSRelease>
-#endif
 
 [[noreturn]] static void
 bail( const QString& descriptorPath, const QString& message )
@@ -229,14 +227,15 @@ Branding::Branding( const QString& brandingFilePath, QObject* parent, qreal devi
 
             m_componentName = QString::fromStdString( doc[ "componentName" ].as< std::string >() );
             if ( m_componentName != componentDir.dirName() )
+            {
                 bail( m_descriptorPath,
                       "The branding component name should match the name of the "
                       "component directory." );
+            }
 
             initSimpleSettings( doc );
             initSlideshowSettings( doc );
 
-#ifdef WITH_KOSRelease
             // Copy the os-release information into a QHash for use by KMacroExpander.
             KOSRelease relInfo;
 
@@ -259,9 +258,7 @@ Branding::Branding( const QString& brandingFilePath, QObject* parent, qreal devi
                 { QStringLiteral( "LOGO" ), relInfo.logo() } } };
             auto expand = [ & ]( const QString& s ) -> QString
             { return KMacroExpander::expandMacros( s, relMap, QLatin1Char( '$' ) ); };
-#else
-            auto expand = []( const QString& s ) -> QString { return s; };
-#endif
+
             // Massage the strings, images and style sections.
             loadStrings( m_strings, doc, "strings", expand );
             loadStrings( m_images,
@@ -630,9 +627,11 @@ Branding::initSlideshowSettings( const ::YAML::Node& doc )
         QString slideshowPath = QString::fromStdString( slideshow.as< std::string >() );
         QFileInfo slideshowFi( componentDir.absoluteFilePath( slideshowPath ) );
         if ( !slideshowFi.exists() || !slideshowFi.fileName().toLower().endsWith( ".qml" ) )
+        {
             bail( m_descriptorPath,
                   QString( "Slideshow file %1 does not exist or is not a valid QML file." )
                       .arg( slideshowFi.absoluteFilePath() ) );
+        }
         m_slideshowPath = slideshowFi.absoluteFilePath();
 
         // API choice is relevant for QML slideshow

@@ -23,9 +23,9 @@
 #include "modulesystem/Requirement.h"
 #include "network/Manager.h"
 #include "utils/Gui.h"
-#include "utils/System.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
+#include "utils/System.h"
 #include "utils/Units.h"
 #include "utils/Variant.h"
 #include "widgets/WaitingWidget.h"
@@ -367,10 +367,12 @@ GeneralRequirements::setConfigurationMap( const QVariantMap& configurationMap )
 
     // Help out with consistency, but don't fix
     for ( const auto& r : m_entriesToRequire )
+    {
         if ( !m_entriesToCheck.contains( r ) )
         {
             cWarning() << "GeneralRequirements requires" << r << "but does not check it.";
         }
+    }
 
     if ( configurationMap.contains( "requiredStorage" )
          && ( Calamares::typeOf( configurationMap.value( "requiredStorage" ) ) == Calamares::DoubleVariantType

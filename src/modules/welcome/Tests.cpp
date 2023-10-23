@@ -12,8 +12,8 @@
 #include "Branding.h"
 #include "Settings.h"
 #include "network/Manager.h"
-#include "utils/System.h"
 #include "utils/Logger.h"
+#include "utils/System.h"
 #include "utils/Yaml.h"
 
 #include <QtTest/QtTest>

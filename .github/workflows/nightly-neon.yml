@@ -30,7 +30,7 @@ jobs:
       - name: "Calamares: archive"
         working-directory: ${{ env.BUILDDIR }}
         run: |
-          make install DESTDIR=${{ env.BUILDDIR }}/stage
+          DESTDIR=${{ env.BUILDDIR }}/stage ninja install
           tar czf calamares.tar.gz stage
       - name: "Calamares: upload"
         uses: actions/upload-artifact@v3

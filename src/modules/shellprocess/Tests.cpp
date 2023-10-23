@@ -59,22 +59,22 @@ void
 ShellProcessTests::testProcessListFromList()
 {
     ::YAML::Node doc = ::YAML::Load( R"(---
-                                     script:
-                                     - "ls /tmp"
-                                     - "ls /nonexistent"
-                                     - "/bin/false"
-                                   )" );
+script:
+    - "ls /tmp"
+    - "ls /nonexistent"
+    - "/bin/false"
+)" );
     CommandList cl( Calamares::YAML::mapToVariant( doc ).value( "script" ) );
     QVERIFY( !cl.isEmpty() );
     QCOMPARE( cl.count(), 3 );
 
     // Contains 1 bad element
     doc = ::YAML::Load( R"(---
-                        script:
-                        - "ls /tmp"
-                        - false
-                        - "ls /nonexistent"
-                      )" );
+script:
+    - "ls /tmp"
+    - false
+    - "ls /nonexistent"
+)" );
     CommandList cl1( Calamares::YAML::mapToVariant( doc ).value( "script" ) );
     QVERIFY( !cl1.isEmpty() );
     QCOMPARE( cl1.count(), 2 );  // One element ignored
@@ -84,8 +84,8 @@ void
 ShellProcessTests::testProcessListFromString()
 {
     YAML::Node doc = YAML::Load( R"(---
-                                 script: "ls /tmp"
-                               )" );
+script: "ls /tmp"
+)" );
     CommandList cl( Calamares::YAML::mapToVariant( doc ).value( "script" ) );
 
     QVERIFY( !cl.isEmpty() );
@@ -95,8 +95,8 @@ ShellProcessTests::testProcessListFromString()
 
     // Not a string
     doc = YAML::Load( R"(---
-                      script: false
-                    )" );
+script: false
+)" );
     CommandList cl1( Calamares::YAML::mapToVariant( doc ).value( "script" ) );
     QVERIFY( cl1.isEmpty() );
     QCOMPARE( cl1.count(), 0 );
@@ -106,10 +106,10 @@ void
 ShellProcessTests::testProcessFromObject()
 {
     YAML::Node doc = YAML::Load( R"(---
-                                 script:
-                                 command: "ls /tmp"
-                                 timeout: 20
-                               )" );
+script:
+    command: "ls /tmp"
+    timeout: 20
+)" );
     CommandList cl( Calamares::YAML::mapToVariant( doc ).value( "script" ) );
 
     QVERIFY( !cl.isEmpty() );
@@ -122,11 +122,11 @@ void
 ShellProcessTests::testProcessListFromObject()
 {
     YAML::Node doc = YAML::Load( R"(---
-                                 script:
-                                 - command: "ls /tmp"
-                                 timeout: 12
-                                 - "-/bin/false"
-                               )" );
+script:
+    - command: "ls /tmp"
+      timeout: 12
+    - "-/bin/false"
+)" );
     CommandList cl( Calamares::YAML::mapToVariant( doc ).value( "script" ) );
     QVERIFY( !cl.isEmpty() );
     QCOMPARE( cl.count(), 2 );
@@ -139,21 +139,21 @@ void
 ShellProcessTests::testRootSubstitution()
 {
     YAML::Node doc = YAML::Load( R"(---
-                                 script:
-                                 - "ls /tmp"
-                               )" );
+script:
+    - "ls /tmp"
+)" );
     QVariant plainScript = Calamares::YAML::mapToVariant( doc ).value( "script" );
     QVariant rootScript = Calamares::YAML::mapToVariant( YAML::Load( R"(---
-                          script:
-                          - "ls ${ROOT}"
-                                                                   )" ) )
+script:
+    - "ls ${ROOT}"
+)" ) )
                               .value( "script" );
     QVariant userScript = Calamares::YAML::mapToVariant( YAML::Load( R"(---
-                                  script:
-                                  - mktemp -d ${ROOT}/calatestXXXXXXXX
-                                  - "chown ${USER} ${ROOT}/calatest*"
-                                  - rm -rf ${ROOT}/calatest*
-                                                                                         )" ) )
+script:
+    - mktemp -d ${ROOT}/calatestXXXXXXXX
+    - "chown ${USER} ${ROOT}/calatest*"
+    - rm -rf ${ROOT}/calatest*
+)" ) )
                               .value( "script" );
 
     if ( !Calamares::JobQueue::instance() )

@@ -12,9 +12,9 @@
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
-#include "utils/System.h"
 #include "utils/Entropy.h"
 #include "utils/Logger.h"
+#include "utils/System.h"
 
 #include <QDir>
 
@@ -74,15 +74,19 @@ SetPasswordJob::exec()
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
     QDir destDir( gs->value( "rootMountPoint" ).toString() );
     if ( !destDir.exists() )
+    {
         return Calamares::JobResult::error( tr( "Bad destination system path." ),
                                             tr( "rootMountPoint is %1" ).arg( destDir.absolutePath() ) );
+    }
 
     if ( m_userName == "root" && m_newPassword.isEmpty() )  //special case for disabling root account
     {
         int ec = Calamares::System::instance()->targetEnvCall( { "usermod", "-p", "!", m_userName } );
         if ( ec )
+        {
             return Calamares::JobResult::error( tr( "Cannot disable root account." ),
                                                 tr( "usermod terminated with error code %1." ).arg( ec ) );
+        }
         return Calamares::JobResult::ok();
     }
 
@@ -90,8 +94,10 @@ SetPasswordJob::exec()
 
     int ec = Calamares::System::instance()->targetEnvCall( { "usermod", "-p", encrypted, m_userName } );
     if ( ec )
+    {
         return Calamares::JobResult::error( tr( "Cannot set password for user %1." ).arg( m_userName ),
                                             tr( "usermod terminated with error code %1." ).arg( ec ) );
+    }
 
     return Calamares::JobResult::ok();
 }

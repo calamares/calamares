@@ -104,7 +104,9 @@ protected:
     { \
         pluginRegistrations; \
     } \
-    name::~name() {}
+    name::~name() \
+    { \
+    }
 
 Q_DECLARE_INTERFACE( CalamaresPluginFactory, CalamaresPluginFactory_iid )
 

@@ -7,7 +7,29 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.3.0. See CHANGES-3.2 for
 the history of the 3.2 series (2018-05 - 2022-08).
 
-# 3.3.0-alpha4 (unreleased)
+
+# 3.3.0-alpha5 (unreleased)
+
+This release contains contributions from (alphabetically by first name):
+ - Adriaan de Groot
+ - Anke Boersma
+ - Emir Sari
+
+## Core ##
+ - Boost::Python is no longer a dependency, Calamares uses a bundled copy
+   of pybind11 instead. This speeds up compilation and reducese the
+   dependency tree a great deal. You can set `WITH_PYBIND11=OFF` in the
+   build to keep Boost::Python and all the binary-compatibility problems
+   it entails.
+ - Coding style now wants clang-format 15 or 16, but no longer needs astyle.
+   There is also a clang-tidy file for additional styling support.
+ - Ongoing translation improvements. (thanks Emir)
+
+## Modules ##
+ - All QML modules now have a Qt6-compatible set of QML files as well. (thanks Anke)
+
+
+# 3.3.0-alpha4 (2023-10-13)
 
 Another closing-in-on-3.3.0 release! One of the big changes is that
 Calamares -- the core and nearly all of the modules in this repository --
@@ -18,9 +40,11 @@ pull requests to improve the code.
 This release contains contributions from (alphabetically by first name):
  - Adriaan de Groot
  - Anke Boersma
+ - Emir Sari
  - Evan James
  - Hector Martin
  - Ivan Borzenkov
+ - Simon Quigley
 
 ## Core ##
  - Qt6 compatibility. You can choose Qt5 (with KDE Frameworks 5) as before,
@@ -28,6 +52,11 @@ This release contains contributions from (alphabetically by first name):
    distribution can use Calamares without needing an extra version of Qt.
    Note that some KDE Frameworks are required as well, and those need to be
    Qt6-based also (and are not released as of September 2023).
+ - QML-based modules are also supported in Qt6, but the QML is likely to
+   be source-incompatible. The *welcomeq* module shipped with Calamares
+   now has two `.qrc` files and uses the `${QT_VERSION_SUFFIX}` variable
+   to pick one of the two depending on the Qt version being used.
+   Other modules are likely to follow the same pattern.
  - C++ namespaces have been shuffled around and `CalamaresUtils` has been
    retired. This has an effect on all C++ plugins, since this is neither
    a binary- nor source-compatible change.

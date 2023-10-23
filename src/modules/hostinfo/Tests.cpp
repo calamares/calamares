@@ -49,7 +49,7 @@ HostInfoTests::testHostOS()
 #endif
 
     QCOMPARE( expect, hostOS() );
-    QCOMPARE( expect, hostOSName() );  // Might be the same
+    // QCOMPARE( expect, hostOSName() );  // With KOSRelease, returns what the distro calls itself
 
     // This is a lousy test, too: the implementation reads /proc/cpuinfo
     // and that's the only way we could use, too, to find what the "right"

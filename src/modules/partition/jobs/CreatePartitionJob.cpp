@@ -16,8 +16,8 @@
 
 #include "partition/FileSystem.h"
 #include "partition/PartitionQuery.h"
-#include "utils/System.h"
 #include "utils/Logger.h"
+#include "utils/System.h"
 #include "utils/Units.h"
 
 #include <kpmcore/core/device.h>

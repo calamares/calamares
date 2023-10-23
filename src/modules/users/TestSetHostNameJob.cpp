@@ -16,8 +16,8 @@ extern bool setSystemdHostname( const QString& );
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
-#include "utils/System.h"
 #include "utils/Logger.h"
+#include "utils/System.h"
 #include "utils/Yaml.h"
 
 #include <QTemporaryDir>

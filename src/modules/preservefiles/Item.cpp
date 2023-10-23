@@ -10,8 +10,8 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "compat/Variant.h"
-#include "utils/System.h"
 #include "utils/Logger.h"
+#include "utils/System.h"
 #include "utils/Units.h"
 #include "utils/Variant.h"
 

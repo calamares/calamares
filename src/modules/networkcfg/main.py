@@ -14,6 +14,7 @@
 #
 
 import os
+import glob
 import shutil
 
 import libcalamares
@@ -130,6 +131,21 @@ def run():
                     )
             except FileExistsError:
                 pass
+
+    # Also install netplan files
+    source_netplan = "/etc/netplan"
+    root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
+    target_netplan = os.path.join(root_mount_point, source_netplan.lstrip('/'))
+
+    if os.path.exists(source_netplan) and os.path.exists(target_netplan):
+        for cfg in glob.glob(os.path.join(source_netplan, "90-NM-*")):
+            source_cfg = os.path.join(source_netplan, cfg)
+            target_cfg = os.path.join(target_netplan, os.path.basename(cfg))
+
+            if os.path.exists(target_cfg):
+                continue
+
+            shutil.copy(source_cfg, target_cfg)
 
     # We need to overwrite the default resolv.conf in the chroot.
     source_resolv, target_resolv = path_pair(root_mount_point, "etc/resolv.conf")

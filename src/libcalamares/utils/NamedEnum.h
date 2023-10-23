@@ -164,11 +164,13 @@ struct NamedEnumTable
         ok = false;
 
         for ( const auto& p : table )
+        {
             if ( 0 == QString::compare( s, p.first, Qt::CaseInsensitive ) )
             {
                 ok = true;
                 return p.second;
             }
+        }
 
         // ok is still false
         return table.begin()->second;
@@ -207,11 +209,13 @@ struct NamedEnumTable
         ok = false;
 
         for ( const auto& p : table )
+        {
             if ( s == p.second )
             {
                 ok = true;
                 return p.first;
             }
+        }
 
         // ok is still false
         return string_t();

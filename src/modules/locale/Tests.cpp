@@ -310,7 +310,8 @@ LocaleTests::testLanguageDetection_data()
                                     << QStringLiteral( "en_US.UTF-8" );
     QTest::newRow( "english (GB)" ) << QStringLiteral( "en" ) << QStringLiteral( "GB" )
                                     << QStringLiteral( "en_GB.UTF-8" );
-    QTest::newRow( "english (NL)" ) << QStringLiteral( "en" ) << QStringLiteral( "NL" ) << QStringLiteral( "en_US.UTF-8" );
+    QTest::newRow( "english (NL)" ) << QStringLiteral( "en" ) << QStringLiteral( "NL" )
+                                    << QStringLiteral( "en_US.UTF-8" );
 
     QTest::newRow( "portuguese (PT)" ) << QStringLiteral( "pt" ) << QStringLiteral( "PT" )
                                        << QStringLiteral( "pt_PT.UTF-8" );

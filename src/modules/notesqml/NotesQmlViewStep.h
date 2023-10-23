@@ -11,8 +11,8 @@
 
 #include "DllMacro.h"
 #include "locale/TranslatableConfiguration.h"
-#include "utils/System.h"
 #include "utils/PluginFactory.h"
+#include "utils/System.h"
 #include "utils/Variant.h"
 #include "viewpages/QmlViewStep.h"
 

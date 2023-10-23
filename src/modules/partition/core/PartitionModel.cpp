@@ -205,8 +205,7 @@ PartitionModel::data( const QModelIndex& index, int role ) const
                 name = isPartitionNew( partition ) ? tr( "New partition" ) : partition->partitionPath();
             }
         }
-        QString prettyFileSystem
-            = Calamares::Partition::prettyNameForFileSystemType( partition->fileSystem().type() );
+        QString prettyFileSystem = Calamares::Partition::prettyNameForFileSystemType( partition->fileSystem().type() );
         qint64 size = ( partition->lastSector() - partition->firstSector() + 1 ) * m_device->logicalSize();
         QString prettySize = formatByteSize( size );
         return QVariant( name + " " + prettyFileSystem + " " + prettySize );
@@ -239,43 +238,53 @@ PartitionModel::data( const QModelIndex& index, int role ) const
     // Osprober roles:
     case OsproberNameRole:
         foreach ( const OsproberEntry& osproberEntry, m_osproberEntries )
+        {
             if ( partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone
                  && !partition->fileSystem().uuid().isEmpty() && osproberEntry.uuid == partition->fileSystem().uuid() )
             {
                 return osproberEntry.prettyName;
             }
+        }
         return QVariant();
     case OsproberPathRole:
         foreach ( const OsproberEntry& osproberEntry, m_osproberEntries )
+        {
             if ( partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone
                  && !partition->fileSystem().uuid().isEmpty() && osproberEntry.uuid == partition->fileSystem().uuid() )
             {
                 return osproberEntry.path;
             }
+        }
         return QVariant();
     case OsproberCanBeResizedRole:
         foreach ( const OsproberEntry& osproberEntry, m_osproberEntries )
+        {
             if ( partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone
                  && !partition->fileSystem().uuid().isEmpty() && osproberEntry.uuid == partition->fileSystem().uuid() )
             {
                 return osproberEntry.canBeResized;
             }
+        }
         return QVariant();
     case OsproberRawLineRole:
         foreach ( const OsproberEntry& osproberEntry, m_osproberEntries )
+        {
             if ( partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone
                  && !partition->fileSystem().uuid().isEmpty() && osproberEntry.uuid == partition->fileSystem().uuid() )
             {
                 return osproberEntry.line;
             }
+        }
         return QVariant();
     case OsproberHomePartitionPathRole:
         foreach ( const OsproberEntry& osproberEntry, m_osproberEntries )
+        {
             if ( partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone
                  && !partition->fileSystem().uuid().isEmpty() && osproberEntry.uuid == partition->fileSystem().uuid() )
             {
                 return osproberEntry.homePath;
             }
+        }
         return QVariant();
         // end Osprober roles.
 

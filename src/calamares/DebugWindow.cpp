@@ -161,7 +161,7 @@ DebugWindow::DebugWindow()
     m_ui->sendLogButton->setVisible( Calamares::Paste::isEnabled() );
     connect( m_ui->sendLogButton, &QPushButton::clicked, [ this ]() { Calamares::Paste::doLogUploadUI( this ); } );
 
-    CALAMARES_RETRANSLATE( m_ui->retranslateUi( this ); setWindowTitle( tr( "Debug information" ) ); );
+    CALAMARES_RETRANSLATE( m_ui->retranslateUi( this ); setWindowTitle( tr( "Debug Information", "@title" ) ); );
 }
 
 void
@@ -232,8 +232,8 @@ void
 DebugWindowManager::about()
 {
     QString title = Calamares::Settings::instance()->isSetupMode()
-        ? QCoreApplication::translate( "WelcomePage", "About %1 setup" )
-        : QCoreApplication::translate( "WelcomePage", "About %1 installer" );
+        ? QCoreApplication::translate( "WelcomePage", "About %1 Setup", "@title" )
+        : QCoreApplication::translate( "WelcomePage", "About %1 Installer", "@title" );
     QMessageBox mb( QMessageBox::Information,
                     title.arg( CALAMARES_APPLICATION_NAME ),
                     Calamares::aboutString().arg( Calamares::Branding::instance()->versionedName() ),

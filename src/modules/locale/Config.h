@@ -30,8 +30,7 @@ class Config : public QObject
     Q_PROPERTY( Calamares::Locale::ZonesModel* zonesModel READ zonesModel CONSTANT FINAL )
     Q_PROPERTY( QAbstractItemModel* regionalZonesModel READ regionalZonesModel CONSTANT FINAL )
 
-    Q_PROPERTY(
-        Calamares::Locale::TimeZoneData* currentLocation READ currentLocation_c NOTIFY currentLocationChanged )
+    Q_PROPERTY( Calamares::Locale::TimeZoneData* currentLocation READ currentLocation_c NOTIFY currentLocationChanged )
 
     // Status are complete, human-readable, messages
     Q_PROPERTY( QString currentLocationStatus READ currentLocationStatus NOTIFY currentLanguageStatusChanged )

@@ -19,7 +19,7 @@ calamares_add_plugin(summaryq
         ${_summary}/Config.cpp
     UI
     RESOURCES
-        summaryq.qrc
+        summaryq${QT_VERSION_SUFFIX}.qrc
     LINK_PRIVATE_LIBRARIES
         calamaresui
     SHARED_LIB

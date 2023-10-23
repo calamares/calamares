@@ -262,6 +262,7 @@ System::getCpuDescription() const
 #ifdef Q_OS_LINUX
     QFile file( "/proc/cpuinfo" );
     if ( file.open( QIODevice::ReadOnly | QIODevice::Text ) )
+    {
         while ( !file.atEnd() )
         {
             QByteArray line = file.readLine();
@@ -271,6 +272,7 @@ System::getCpuDescription() const
                 break;
             }
         }
+    }
 #elif defined( Q_OS_FREEBSD )
     // This would use sysctl "hw.model", which has a string value
 #endif
@@ -303,29 +305,37 @@ ProcessResult::explainProcess( int ec, const QString& command, const QString& ou
         ? QCoreApplication::translate( "ProcessResult", "\nThere was no output from the command." )
         : ( QCoreApplication::translate( "ProcessResult", "\nOutput:\n" ) + output );
 
-    if ( ec == static_cast< int >( ProcessResult::Code::Crashed ) )  //Crash!
+    if ( ec == static_cast< int >( ProcessResult::Code::Crashed ) )
+    {  //Crash!
         return JobResult::error(
             QCoreApplication::translate( "ProcessResult", "External command crashed." ),
             QCoreApplication::translate( "ProcessResult", "Command <i>%1</i> crashed." ).arg( command )
                 + outputMessage );
+    }
 
     if ( ec == static_cast< int >( ProcessResult::Code::FailedToStart ) )
+    {
         return JobResult::error(
             QCoreApplication::translate( "ProcessResult", "External command failed to start." ),
             QCoreApplication::translate( "ProcessResult", "Command <i>%1</i> failed to start." ).arg( command ) );
+    }
 
     if ( ec == static_cast< int >( ProcessResult::Code::NoWorkingDirectory ) )
+    {
         return JobResult::error(
             QCoreApplication::translate( "ProcessResult", "Internal error when starting command." ),
             QCoreApplication::translate( "ProcessResult", "Bad parameters for process job call." ) );
+    }
 
     if ( ec == static_cast< int >( ProcessResult::Code::TimedOut ) )
+    {
         return JobResult::error(
             QCoreApplication::translate( "ProcessResult", "External command failed to finish." ),
             QCoreApplication::translate( "ProcessResult", "Command <i>%1</i> failed to finish in %2 seconds." )
                     .arg( command )
                     .arg( timeout.count() )
                 + outputMessage );
+    }
 
     //Any other exit code
     return JobResult::error(

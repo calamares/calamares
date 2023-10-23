@@ -249,6 +249,7 @@ operator<<( QDebug& s, const RedactedCommand& l )
     if ( l.list.contains( "usermod" ) )
     {
         for ( const auto& item : l.list )
+        {
             if ( item.startsWith( "$6$" ) )
             {
                 s << "<password>";
@@ -257,6 +258,7 @@ operator<<( QDebug& s, const RedactedCommand& l )
             {
                 s << item;
             }
+        }
     }
     else
     {

@@ -115,8 +115,13 @@ endif()
 #
 #
 if(WITH_PYTHON)
-    target_sources(calamares PRIVATE PythonHelper.cpp PythonJob.cpp PythonJobApi.cpp)
-    target_link_libraries(calamares PRIVATE Python::Python Boost::python)
+    if(WITH_PYBIND11)
+        target_sources(calamares PRIVATE python/Api.cpp python/PythonJob.cpp)
+        target_link_libraries(calamares PRIVATE Python::Python pybind11::headers)
+    else()
+        target_sources(calamares PRIVATE PythonHelper.cpp PythonJob.cpp PythonJobApi.cpp)
+        target_link_libraries(calamares PRIVATE Python::Python Boost::python)
+    endif()
 endif()
 
 ### OPTIONAL GeoIP XML support

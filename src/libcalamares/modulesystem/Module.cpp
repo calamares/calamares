@@ -74,10 +74,12 @@ moduleConfigurationCandidates( bool assumeBuildDir, const QString& moduleName, c
         }
 
         if ( Calamares::haveExtraDirs() )
+        {
             for ( auto s : Calamares::extraConfigDirs() )
             {
                 paths << ( s + QString( "modules/%1" ).arg( configFileName ) );
             }
+        }
 
         paths << QString( "/etc/calamares/modules/%1" ).arg( configFileName );
         paths << Calamares::appDataDir().absoluteFilePath( QString( "modules/%1" ).arg( configFileName ) );

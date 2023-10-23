@@ -104,10 +104,12 @@ static ::Partition*
 firstFreePartition( PartitionNode* parent )
 {
     for ( auto child : parent->children() )
+    {
         if ( Calamares::Partition::isPartitionFreeSpace( child ) )
         {
             return child;
         }
+    }
     return nullptr;
 }
 
