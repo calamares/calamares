@@ -48,6 +48,11 @@ namespace Python __attribute__( ( visibility( "hidden" ) ) )
     int target_env_process_output( const List& args, const Object& callback, const std::string& input, int timeout );
     int host_env_process_output( const List& args, const Object& callback, const std::string& input, int timeout );
 
+    int mount( const std::string& device_path,
+               const std::string& mount_point,
+               const std::string& filesystem_name,
+               const std::string& options );
+
     class Job;
 
     /** @brief Proxy class in Python for the Calamares Job class
