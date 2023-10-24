@@ -192,7 +192,8 @@ Job::Job( const QString& scriptFile,
           const QString& workingPath,
           const QVariantMap& moduleConfiguration,
           QObject* parent )
-    : m_d( std::make_unique< Job::Private >( scriptFile, workingPath, moduleConfiguration ) )
+    : ::Calamares::Job( parent )
+    , m_d( std::make_unique< Job::Private >( scriptFile, workingPath, moduleConfiguration ) )
 {
 }
 
