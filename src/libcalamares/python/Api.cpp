@@ -173,9 +173,9 @@ QVariantList
 variantListFromPyList( const Calamares::Python::List& list )
 {
     QVariantList l;
-    for ( const auto& h : list )
+    for ( const auto item : list )
     {
-        l.append( variantFromPyObject( h ) );
+        l.append( variantFromPyObject( item ) );
     }
     return l;
 }
@@ -184,7 +184,7 @@ QVariantMap
 variantMapFromPyDict( const Calamares::Python::Dictionary& dict )
 {
     QVariantMap m;
-    for ( const auto& item : dict )
+    for ( const auto item : dict )
     {
         m.insert( Calamares::Python::asQString( item.first ), variantFromPyObject( ( item.second ) ) );
     }
@@ -195,9 +195,9 @@ QStringList
 stringListFromPyList( const Calamares::Python::List& list )
 {
     QStringList l;
-    for ( const auto& h : list )
+    for ( const auto item : list )
     {
-        l.append( Calamares::Python::asQString( h ) );
+        l.append( Calamares::Python::asQString( item ) );
     }
     return l;
 }
