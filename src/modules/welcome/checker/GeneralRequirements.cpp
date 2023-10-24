@@ -306,12 +306,12 @@ getCheckInternetUrls( const QVariantMap& configurationMap )
         {
             cWarning() << "GeneralRequirements entry 'internetCheckUrl' contains no valid URLs, "
                        << "reverting to default (" << exampleUrl << ").";
-            Calamares::Network::Manager::instance().setCheckHasInternetUrl( QUrl( exampleUrl ) );
+            Calamares::Network::Manager::setCheckHasInternetUrl( QUrl( exampleUrl ) );
             incomplete = true;
         }
         else
         {
-            Calamares::Network::Manager::instance().setCheckHasInternetUrl( urls );
+            Calamares::Network::Manager::setCheckHasInternetUrl( urls );
         }
     }
     else
@@ -319,7 +319,7 @@ getCheckInternetUrls( const QVariantMap& configurationMap )
         cWarning() << "GeneralRequirements entry 'internetCheckUrl' is undefined in welcome.conf, "
                       "reverting to default ("
                    << exampleUrl << ").";
-        Calamares::Network::Manager::instance().setCheckHasInternetUrl( QUrl( exampleUrl ) );
+        Calamares::Network::Manager::setCheckHasInternetUrl( QUrl( exampleUrl ) );
         incomplete = true;
     }
     return incomplete;
@@ -504,7 +504,7 @@ GeneralRequirements::checkHasPower()
 bool
 GeneralRequirements::checkHasInternet()
 {
-    auto& nam = Calamares::Network::Manager::instance();
+    Calamares::Network::Manager nam;
     bool hasInternet = nam.checkHasInternet();
     Calamares::JobQueue::instance()->globalStorage()->insert( "hasInternet", hasInternet );
     return hasInternet;
