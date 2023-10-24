@@ -6,15 +6,15 @@
 # with many useful things already installed, so the list
 # here is short.
 #
-pacman -Sy git cmake ninja # No jq available
-pacman -Sy \
+pacman -Sy --noconfirm git cmake ninja # No jq available
+pacman -S --noconfirm \
 	"gcc" \
 	"boost" \
 	"qt5-tools" \
 	"yaml-cpp" \
 	"kpmcore" \
 	"icu"
-pacman -Sy \
+pacman -S --noconfirm \
 	"extra-cmake-modules" \
 	"kiconthemes" \
 	"kservice" \
