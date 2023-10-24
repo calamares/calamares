@@ -584,7 +584,7 @@ GlobalStorageProxy::value( const std::string& key ) const
 // to crash with an error about adding modules after the interpreter
 // has been initialized.
 static void
-populate_utils( py::module_&& m )
+populate_utils( py::module_& m )
 {
     m.def( "obscure", &Calamares::Python::obscure, "A function that obscures (encodes) a string" );
 
@@ -642,7 +642,8 @@ populate_utils( py::module_&& m )
            "-3 = bad arguments" );
 }
 
-PYBIND11_MODULE( libcalamares, m )
+static void
+populate_libcalamares( py::module_& m )
 {
     m.doc() = "Calamares API for Python";
 
@@ -652,7 +653,8 @@ PYBIND11_MODULE( libcalamares, m )
     m.add_object( "VERSION", Calamares::Python::String( CALAMARES_VERSION ) );
     m.add_object( "VERSION_SHORT", Calamares::Python::String( CALAMARES_VERSION_SHORT ) );
 
-    populate_utils( m.def_submodule( "utils", "Calamares Utility API for Python" ) );
+    auto utils = m.def_submodule( "utils", "Calamares Utility API for Python" );
+    populate_utils( utils );
 
     py::class_< Calamares::Python::JobProxy >( m, "Job" )
         .def_readonly( "module_name", &Calamares::Python::JobProxy::moduleName )
@@ -669,4 +671,9 @@ PYBIND11_MODULE( libcalamares, m )
         .def( "keys", &Calamares::Python::GlobalStorageProxy::keys )
         .def( "remove", &Calamares::Python::GlobalStorageProxy::remove )
         .def( "value", &Calamares::Python::GlobalStorageProxy::value );
+}
+
+PYBIND11_MODULE( libcalamares, m )
+{
+    populate_libcalamares( m );
 }
