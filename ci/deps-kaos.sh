@@ -4,9 +4,10 @@
 #
 # There is no docker image for KaOS, and the live ISO comes
 # with many useful things already installed, so the list
-# here is short.
+# here is short. Use pacman -Syu once to update the whole
+# system to get latest libraries.
 #
-pacman -Sy --noconfirm git cmake ninja # No jq available
+pacman -Syu --noconfirm git cmake ninja # No jq available
 pacman -S --noconfirm \
 	"gcc" \
 	"boost" \
