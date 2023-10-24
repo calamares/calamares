@@ -40,7 +40,7 @@ getPrettyNameFromScope( const py::dict& scope )
             const auto s = func().cast< std::string >();
             return QString::fromUtf8( s.c_str() );
         }
-        catch ( const py::cast_error& e )
+        catch ( const py::cast_error& )
         {
             // Ignore, we will try __doc__ next
         }
@@ -62,7 +62,7 @@ getPrettyNameFromScope( const py::dict& scope )
             }
             // __doc__ is apparently empty, try next fallback
         }
-        catch ( const py::cast_error& e )
+        catch ( const py::cast_error& )
         {
             // Ignore, try next fallback
         }
