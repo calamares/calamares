@@ -75,7 +75,7 @@ TestPaste::testUploadSize()
     QVERIFY( !s.isEmpty() );
 
     QUrl url( s );
-    QByteArray returnedData = Calamares::Network::Manager::instance().synchronousGet( url );
+    QByteArray returnedData = Calamares::Network::Manager().synchronousGet( url );
 
     QCOMPARE( returnedData.size(), 100 );
 }

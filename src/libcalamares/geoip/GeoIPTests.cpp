@@ -186,8 +186,7 @@ GeoIPTests::testSplitTZ()
 
 #define CHECK_GET( t, selector, url ) \
     { \
-        auto tz = GeoIP##t( selector ) \
-                      .processReply( Calamares::Network::Manager::instance().synchronousGet( QUrl( url ) ) ); \
+        auto tz = GeoIP##t( selector ).processReply( Calamares::Network::Manager().synchronousGet( QUrl( url ) ) ); \
         qDebug() << tz; \
         QCOMPARE( default_tz, tz ); \
         auto tz2 = Calamares::GeoIP::Handler( "" #t, url, selector ).get(); \
@@ -207,7 +206,7 @@ GeoIPTests::testGet()
     GeoIPJSON default_handler;
     // Call the KDE service the definitive source.
     auto default_tz = default_handler.processReply(
-        Calamares::Network::Manager::instance().synchronousGet( QUrl( "https://geoip.kde.org/v1/calamares" ) ) );
+        Calamares::Network::Manager().synchronousGet( QUrl( "https://geoip.kde.org/v1/calamares" ) ) );
 
     // This is bogus, because the test isn't always run by me
     // QCOMPARE( default_tz.first, QStringLiteral("Europe") );

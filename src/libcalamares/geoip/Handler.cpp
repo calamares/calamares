@@ -115,7 +115,7 @@ do_query( Handler::Type type, const QString& url, const QString& selector )
 
     using namespace Calamares::Network;
     return interface->processReply(
-        Calamares::Network::Manager::instance().synchronousGet( url, { RequestOptions::FakeUserAgent } ) );
+        Calamares::Network::Manager().synchronousGet( url, { RequestOptions::FakeUserAgent } ) );
 }
 
 static QString
@@ -129,7 +129,7 @@ do_raw_query( Handler::Type type, const QString& url, const QString& selector )
 
     using namespace Calamares::Network;
     return interface->rawReply(
-        Calamares::Network::Manager::instance().synchronousGet( url, { RequestOptions::FakeUserAgent } ) );
+        Calamares::Network::Manager().synchronousGet( url, { RequestOptions::FakeUserAgent } ) );
 }
 
 RegionZonePair

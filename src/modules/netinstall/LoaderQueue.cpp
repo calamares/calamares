@@ -128,7 +128,7 @@ LoaderQueue::fetch( const QUrl& url )
     using namespace Calamares::Network;
 
     cDebug() << "NetInstall loading groups from" << url;
-    QNetworkReply* reply = Manager::instance().asynchronousGet(
+    QNetworkReply* reply = Manager().asynchronousGet(
         url,
         RequestOptions( RequestOptions::FakeUserAgent | RequestOptions::FollowRedirect, std::chrono::seconds( 30 ) ) );
 
