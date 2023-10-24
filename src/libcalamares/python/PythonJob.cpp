@@ -376,7 +376,7 @@ Job::setInjectedPreScript( const char* script )
 }  // namespace Python
 }  // namespace Calamares
 
-PYBIND11_MODULE( libcalamares, m )
+PYBIND11_EMBEDDED_MODULE( libcalamares, m )
 {
     populate_libcalamares( m );
 }
