@@ -276,13 +276,11 @@ KeyboardGroupsSwitchersModel::KeyboardGroupsSwitchersModel( QObject* parent )
     // The groups map is from human-readable names (!) to xkb identifier
     const auto groups = KeyboardGlobal::getKeyboardGroups();
     m_list.reserve( groups.count() );
-    int index = 0;
     for ( const auto& key : groups.keys() )
     {
         // So here *key* is the key in the map, which is the human-readable thing,
         //   while the struct fields are xkb-id, and human-readable
         m_list << ModelInfo { groups[ key ], key };
-        index++;
     }
 
     cDebug() << "Loaded" << m_list.count() << "keyboard groups";
