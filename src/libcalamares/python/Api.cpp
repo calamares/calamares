@@ -14,6 +14,7 @@
 #include "compat/Variant.h"
 #include "locale/Global.h"
 #include "partition/Mount.h"
+#include "python/Pybind11Helpers.h"
 #include "python/PythonJob.h"
 #include "utils/Logger.h"
 #include "utils/RAII.h"
@@ -25,10 +26,6 @@
 #include <QCoreApplication>
 #include <QDir>
 #include <QStandardPaths>
-
-#undef slots
-#include <pybind11/embed.h>
-#include <pybind11/pybind11.h>
 
 namespace py = pybind11;
 
