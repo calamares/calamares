@@ -239,11 +239,13 @@ Job::exec()
     }
 
     py::scoped_interpreter guard {};
-    auto scope = py::module_::import( "__main__" ).attr( "__dict__" );
-    auto calamaresModule = py::module::import( "libcalamares" );
-    calamaresModule.attr( "job" ) = Calamares::Python::JobProxy( this );
-    calamaresModule.attr( "globalstorage" )
-        = Calamares::Python::GlobalStorageProxy( JobQueue::instance()->globalStorage() );
+    // Import, but do not keep the handle lying around
+    {
+        auto calamaresModule = py::module_::import( "libcalamares" );
+        calamaresModule.attr( "job" ) = Calamares::Python::JobProxy( this );
+        calamaresModule.attr( "globalstorage" )
+            = Calamares::Python::GlobalStorageProxy( JobQueue::instance()->globalStorage() );
+    }
 
     if ( s_preScript )
     {
@@ -263,7 +265,7 @@ Job::exec()
 
     try
     {
-        py::eval_file( scriptFI.absoluteFilePath().toUtf8().constData(), scope );
+        py::eval_file( scriptFI.absoluteFilePath().toUtf8().constData() );
     }
     catch ( const py::error_already_set& e )
     {
@@ -276,6 +278,7 @@ Job::exec()
             JobResult::PythonUncaughtException );
     }
 
+    auto scope = py::module_::import( "__main__" ).attr( "__dict__" );
     m_d->description = getPrettyNameFromScope( scope );
 
     Q_EMIT progress( 0 );
@@ -374,7 +377,7 @@ Job::setInjectedPreScript( const char* script )
 }  // namespace Python
 }  // namespace Calamares
 
-PYBIND11_EMBEDDED_MODULE( libcalamares, m )
+PYBIND11_MODULE( libcalamares, m )
 {
     populate_libcalamares( m );
 }
