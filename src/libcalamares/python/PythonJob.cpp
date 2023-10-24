@@ -8,7 +8,7 @@
  */
 #include "python/PythonJob.h"
 
-#include "CalamaresVersion.h"
+#include "CalamaresVersionX.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "python/Api.h"
