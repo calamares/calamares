@@ -153,7 +153,7 @@ populate_libcalamares( py::module_& m )
         .def( "setprogress", &Calamares::Python::JobProxy::setprogress );
 
     py::class_< Calamares::Python::GlobalStorageProxy >( m, "GlobalStorage" )
-        .def( py::init( []( std::nullptr_t p ) { return new Calamares::Python::GlobalStorageProxy( nullptr ); } ) )
+        .def( py::init( []( std::nullptr_t ) { return new Calamares::Python::GlobalStorageProxy( nullptr ); } ) )
         .def( "contains", &Calamares::Python::GlobalStorageProxy::contains )
         .def( "count", &Calamares::Python::GlobalStorageProxy::count )
         .def( "insert", &Calamares::Python::GlobalStorageProxy::insert )
