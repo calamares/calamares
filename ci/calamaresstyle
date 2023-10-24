@@ -44,14 +44,15 @@ test -x "$CF" || { echo "! $CF is not executable."; exit 1 ; }
 #   It also supports inserting braces, which is the one thing we kept
 #   astyle around for.
 # Version 16 is available on openSUSE and is ok as well.
+# Version 17 is available on FreeBSD and KaOS and is ok as well.
 
 format_version=`"$CF" --version | tr -dc '[^.0-9]' | cut  -d . -f 1`
 case "$format_version" in
-	15|16 )
+	15|16|17 )
 		:
 		;;
 	* )
-		echo "! Clang-format version '$format_version' unsupported, version 15 or 16 is ok."
+		echo "! Clang-format version '$format_version' unsupported, versions 15-17 are ok."
 		exit 1
 		;;
 esac
