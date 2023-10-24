@@ -25,7 +25,7 @@
 static inline quint64
 sizeOrder( const QSize& size )
 {
-    return size.width() * size.height();
+    return static_cast<quint64>(size.width()) * static_cast<quint64>(size.height());
 }
 
 /// @brief Sets a screenshot in @p map from @p screenshot, if a usable one is found
