@@ -17,7 +17,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: docker://fedora:38
+      image: docker://fedora:39
       options: --tmpfs /build:rw --user 0:0
     steps:
       - name: "prepare git"
