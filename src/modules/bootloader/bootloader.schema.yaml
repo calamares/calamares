@@ -11,6 +11,7 @@ properties:
     kernelSearchPath:  { type: string }
     kernelName:  { type: string }
     kernelParams: { type: array, items: { type: string } }
+    kernelPattern: { type: string }
     loaderEntries: { type: array, items: { type: string } }
     refindKernelList: { type: array, items: { type: string } }
 
