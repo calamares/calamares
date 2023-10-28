@@ -420,6 +420,7 @@ if(Python_Interpreter_FOUND)
         # and if they are not installed, don't run. If errors out
         # with exit(1) on missing dependencies.
         if(CALAMARES_CONFIGVALIDATOR_CHECKED)
+            message(STATUS "Using cached config-validation result")
             set(_validator_deps ${CALAMARES_CONFIGVALIDATOR_RESULT})
         else()
             execute_process(
@@ -433,14 +434,20 @@ if(Python_Interpreter_FOUND)
         endif()
         # It should never succeed, but only returns 1 when the imports fail
         if(_validator_deps EQUAL 1)
+            message(STATUS "Checked for config-validation dependencies: NOT-FOUND")
             set(_schema_explanation " Missing dependencies for configvalidator.py.")
             set(BUILD_SCHEMA_TESTING OFF)
+        else()
+            message(STATUS "Checked for config-validation dependencies: found")
         endif()
+    else()
+        set(CALAMARES_CONFIGVALIDATOR_CHECKED OFF CACHE INTERNAL "Dependencies for configvalidator checked")
     endif()
 else()
     # Can't run schema tests without Python3.
     set(_schema_explanation " Missing Python3.")
     set(BUILD_SCHEMA_TESTING OFF)
+    set(CALAMARES_CONFIGVALIDATOR_CHECKED OFF CACHE INTERNAL "Dependencies for configvalidator checked")
 endif()
 add_feature_info(yaml-schema BUILD_SCHEMA_TESTING "Validate YAML (config files) with schema.${_schema_explanation}")
 
