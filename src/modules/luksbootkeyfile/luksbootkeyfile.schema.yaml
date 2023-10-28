@@ -6,4 +6,4 @@ $id: https://calamares.io/schemas/luksbootkeyfile
 additionalProperties: false
 type: object
 properties:
-    luks2Hash: { type: string, enum: [ pbkdf2, argon2i, argon2id ] }
+    luks2Hash: { type: string, enum: [ pbkdf2, argon2i, argon2id, default ] }
