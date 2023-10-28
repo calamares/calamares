@@ -8,19 +8,17 @@
  */
 #include "python/PythonJob.h"
 
+#include "CalamaresVersionX.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "python/Api.h"
 #include "python/Logger.h"
+#include "python/Pybind11Helpers.h"
 #include "utils/Logger.h"
 
 #include <QDir>
 #include <QFileInfo>
 #include <QString>
-
-#undef slots
-#include <pybind11/embed.h>
-#include <pybind11/eval.h>
 
 namespace py = pybind11;
 
@@ -42,7 +40,7 @@ getPrettyNameFromScope( const py::dict& scope )
             const auto s = func().cast< std::string >();
             return QString::fromUtf8( s.c_str() );
         }
-        catch ( const py::cast_error& e )
+        catch ( const py::cast_error& )
         {
             // Ignore, we will try __doc__ next
         }
@@ -64,7 +62,7 @@ getPrettyNameFromScope( const py::dict& scope )
             }
             // __doc__ is apparently empty, try next fallback
         }
-        catch ( const py::cast_error& e )
+        catch ( const py::cast_error& )
         {
             // Ignore, try next fallback
         }
@@ -72,6 +70,96 @@ getPrettyNameFromScope( const py::dict& scope )
 
     // No more fallbacks
     return QString();
+}
+
+void
+populate_utils( py::module_& m )
+{
+    m.def( "obscure", &Calamares::Python::obscure, "A function that obscures (encodes) a string" );
+
+    m.def( "debug", &Calamares::Python::debug, "Log a debug-message" );
+    m.def( "warn", &Calamares::Python::warning, "Log a warning-message" );
+    m.def( "warning", &Calamares::Python::warning, "Log a warning-message" );
+    m.def( "error", &Calamares::Python::error, "Log an error-message" );
+
+    m.def( "load_yaml", &Calamares::Python::load_yaml, "Loads YAML from a file." );
+
+    m.def( "target_env_call",
+           &Calamares::Python::target_env_call,
+           "Runs command in target, returns exit code.",
+           py::arg( "command_list" ),
+           py::arg( "input" ) = std::string(),
+           py::arg( "timeout" ) = 0 );
+    m.def( "check_target_env_call",
+           &Calamares::Python::check_target_env_call,
+           "Runs command in target, raises on error exit.",
+           py::arg( "command_list" ),
+           py::arg( "input" ) = std::string(),
+           py::arg( "timeout" ) = 0 );
+    m.def( "check_target_env_output",
+           &Calamares::Python::check_target_env_output,
+           "Runs command in target, returns standard output or raises on error.",
+           py::arg( "command_list" ),
+           py::arg( "input" ) = std::string(),
+           py::arg( "timeout" ) = 0 );
+    m.def( "target_env_process_output",
+           &Calamares::Python::target_env_process_output,
+           "Runs command in target, updating callback and returns standard output or raises on error.",
+           py::arg( "command_list" ),
+           py::arg( "callback" ) = pybind11::none(),
+           py::arg( "input" ) = std::string(),
+           py::arg( "timeout" ) = 0 );
+    m.def( "host_env_process_output",
+           &Calamares::Python::host_env_process_output,
+           "Runs command in target, updating callback and returns standard output or raises on error.",
+           py::arg( "command_list" ),
+           py::arg( "callback" ) = pybind11::none(),
+           py::arg( "input" ) = std::string(),
+           py::arg( "timeout" ) = 0 );
+
+    m.def( "gettext_languages",
+           &Calamares::Python::gettext_languages,
+           "Returns list of languages (most to least-specific) for gettext." );
+    m.def( "gettext_path", &Calamares::Python::gettext_path, "Returns path for gettext search." );
+
+    m.def( "mount",
+           &Calamares::Python::mount,
+           "Runs the mount utility with the specified parameters.\n"
+           "Returns the program's exit code, or:\n"
+           "-1 = QProcess crash\n"
+           "-2 = QProcess cannot start\n"
+           "-3 = bad arguments" );
+}
+
+void
+populate_libcalamares( py::module_& m )
+{
+    m.doc() = "Calamares API for Python";
+
+    m.add_object( "ORGANIZATION_NAME", Calamares::Python::String( CALAMARES_ORGANIZATION_NAME ) );
+    m.add_object( "ORGANIZATION_DOMAIN", Calamares::Python::String( CALAMARES_ORGANIZATION_DOMAIN ) );
+    m.add_object( "APPLICATION_NAME", Calamares::Python::String( CALAMARES_APPLICATION_NAME ) );
+    m.add_object( "VERSION", Calamares::Python::String( CALAMARES_VERSION ) );
+    m.add_object( "VERSION_SHORT", Calamares::Python::String( CALAMARES_VERSION_SHORT ) );
+
+    auto utils = m.def_submodule( "utils", "Calamares Utility API for Python" );
+    populate_utils( utils );
+
+    py::class_< Calamares::Python::JobProxy >( m, "Job" )
+        .def_readonly( "module_name", &Calamares::Python::JobProxy::moduleName )
+        .def_readonly( "pretty_name", &Calamares::Python::JobProxy::prettyName )
+        .def_readonly( "working_path", &Calamares::Python::JobProxy::workingPath )
+        .def_readonly( "configuration", &Calamares::Python::JobProxy::configuration )
+        .def( "setprogress", &Calamares::Python::JobProxy::setprogress );
+
+    py::class_< Calamares::Python::GlobalStorageProxy >( m, "GlobalStorage" )
+        .def( py::init( []( std::nullptr_t ) { return new Calamares::Python::GlobalStorageProxy( nullptr ); } ) )
+        .def( "contains", &Calamares::Python::GlobalStorageProxy::contains )
+        .def( "count", &Calamares::Python::GlobalStorageProxy::count )
+        .def( "insert", &Calamares::Python::GlobalStorageProxy::insert )
+        .def( "keys", &Calamares::Python::GlobalStorageProxy::keys )
+        .def( "remove", &Calamares::Python::GlobalStorageProxy::remove )
+        .def( "value", &Calamares::Python::GlobalStorageProxy::value );
 }
 
 }  // namespace
@@ -101,7 +189,8 @@ Job::Job( const QString& scriptFile,
           const QString& workingPath,
           const QVariantMap& moduleConfiguration,
           QObject* parent )
-    : m_d( std::make_unique< Job::Private >( scriptFile, workingPath, moduleConfiguration ) )
+    : ::Calamares::Job( parent )
+    , m_d( std::make_unique< Job::Private >( scriptFile, workingPath, moduleConfiguration ) )
 {
 }
 
@@ -150,11 +239,13 @@ Job::exec()
     }
 
     py::scoped_interpreter guard {};
-    auto scope = py::module_::import( "__main__" ).attr( "__dict__" );
-    auto calamaresModule = py::module::import( "libcalamares" );
-    calamaresModule.attr( "job" ) = Calamares::Python::JobProxy( this );
-    calamaresModule.attr( "globalstorage" )
-        = Calamares::Python::GlobalStorageProxy( JobQueue::instance()->globalStorage() );
+    // Import, but do not keep the handle lying around
+    {
+        auto calamaresModule = py::module_::import( "libcalamares" );
+        calamaresModule.attr( "job" ) = Calamares::Python::JobProxy( this );
+        calamaresModule.attr( "globalstorage" )
+            = Calamares::Python::GlobalStorageProxy( JobQueue::instance()->globalStorage() );
+    }
 
     if ( s_preScript )
     {
@@ -174,7 +265,7 @@ Job::exec()
 
     try
     {
-        py::eval_file( scriptFI.absoluteFilePath().toUtf8().constData(), scope );
+        py::eval_file( scriptFI.absoluteFilePath().toUtf8().constData() );
     }
     catch ( const py::error_already_set& e )
     {
@@ -187,6 +278,7 @@ Job::exec()
             JobResult::PythonUncaughtException );
     }
 
+    auto scope = py::module_::import( "__main__" ).attr( "__dict__" );
     m_d->description = getPrettyNameFromScope( scope );
 
     Q_EMIT progress( 0 );
@@ -284,3 +376,8 @@ Job::setInjectedPreScript( const char* script )
 
 }  // namespace Python
 }  // namespace Calamares
+
+PYBIND11_MODULE( libcalamares, m )
+{
+    populate_libcalamares( m );
+}

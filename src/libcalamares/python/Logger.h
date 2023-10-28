@@ -18,8 +18,7 @@
 
 #include "utils/Logger.h"
 
-#undef slots
-#include <pybind11/pybind11.h>
+#include "python/Pybind11Helpers.h"
 
 #include <string>
 

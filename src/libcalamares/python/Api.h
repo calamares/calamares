@@ -33,7 +33,7 @@ namespace Python __attribute__( ( visibility( "hidden" ) ) )
 
     void debug( const std::string& s );
     void warning( const std::string& s );
-    // void warn( const std::string& s) is an alias of warning()
+    // void warn( const std::string& s) is an alias of warning() defined at the Python level
     void error( const std::string& s );
 
     Dictionary load_yaml( const std::string& path );
@@ -48,12 +48,17 @@ namespace Python __attribute__( ( visibility( "hidden" ) ) )
     int target_env_process_output( const List& args, const Object& callback, const std::string& input, int timeout );
     int host_env_process_output( const List& args, const Object& callback, const std::string& input, int timeout );
 
+    int mount( const std::string& device_path,
+               const std::string& mount_point,
+               const std::string& filesystem_name,
+               const std::string& options );
 
     class Job;
+
     /** @brief Proxy class in Python for the Calamares Job class
-*
-* This is available as libcalamares.job in Python code.
-*/
+     *
+     * This is available as libcalamares.job in Python code.
+     */
     class JobProxy
     {
     public:

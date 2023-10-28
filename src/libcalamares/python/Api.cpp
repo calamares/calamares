@@ -9,12 +9,12 @@
  */
 #include "python/Api.h"
 
-#include "CalamaresVersion.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "compat/Variant.h"
 #include "locale/Global.h"
 #include "partition/Mount.h"
+#include "python/Pybind11Helpers.h"
 #include "python/PythonJob.h"
 #include "utils/Logger.h"
 #include "utils/RAII.h"
@@ -26,10 +26,6 @@
 #include <QCoreApplication>
 #include <QDir>
 #include <QStandardPaths>
-
-#undef slots
-#include <pybind11/embed.h>
-#include <pybind11/pybind11.h>
 
 namespace py = pybind11;
 
@@ -177,9 +173,9 @@ QVariantList
 variantListFromPyList( const Calamares::Python::List& list )
 {
     QVariantList l;
-    for ( const auto& h : list )
+    for ( const auto item : list )
     {
-        l.append( variantFromPyObject( h ) );
+        l.append( variantFromPyObject( item ) );
     }
     return l;
 }
@@ -188,7 +184,7 @@ QVariantMap
 variantMapFromPyDict( const Calamares::Python::Dictionary& dict )
 {
     QVariantMap m;
-    for ( const auto& item : dict )
+    for ( const auto item : dict )
     {
         m.insert( Calamares::Python::asQString( item.first ), variantFromPyObject( ( item.second ) ) );
     }
@@ -199,9 +195,9 @@ QStringList
 stringListFromPyList( const Calamares::Python::List& list )
 {
     QStringList l;
-    for ( const auto& h : list )
+    for ( const auto item : list )
     {
-        l.append( Calamares::Python::asQString( h ) );
+        l.append( Calamares::Python::asQString( item ) );
     }
     return l;
 }
@@ -577,96 +573,3 @@ GlobalStorageProxy::value( const std::string& key ) const
 
 }  // namespace Python
 }  // namespace Calamares
-
-// Not using EMBEDDED_MODULE because that does not let
-// use use name "libcalamares.utils" and using just "utils"
-// causes command-line use of Python3 followed by `import libcalamares`
-// to crash with an error about adding modules after the interpreter
-// has been initialized.
-static void
-populate_utils( py::module_&& m )
-{
-    m.def( "obscure", &Calamares::Python::obscure, "A function that obscures (encodes) a string" );
-
-    m.def( "debug", &Calamares::Python::debug, "Log a debug-message" );
-    m.def( "warn", &Calamares::Python::warning, "Log a warning-message" );
-    m.def( "warning", &Calamares::Python::warning, "Log a warning-message" );
-    m.def( "error", &Calamares::Python::error, "Log an error-message" );
-
-    m.def( "load_yaml", &Calamares::Python::load_yaml, "Loads YAML from a file." );
-
-    m.def( "target_env_call",
-           &Calamares::Python::target_env_call,
-           "Runs command in target, returns exit code.",
-           py::arg( "command_list" ),
-           py::arg( "input" ) = std::string(),
-           py::arg( "timeout" ) = 0 );
-    m.def( "check_target_env_call",
-           &Calamares::Python::check_target_env_call,
-           "Runs command in target, raises on error exit.",
-           py::arg( "command_list" ),
-           py::arg( "input" ) = std::string(),
-           py::arg( "timeout" ) = 0 );
-    m.def( "check_target_env_output",
-           &Calamares::Python::check_target_env_output,
-           "Runs command in target, returns standard output or raises on error.",
-           py::arg( "command_list" ),
-           py::arg( "input" ) = std::string(),
-           py::arg( "timeout" ) = 0 );
-    m.def( "target_env_process_output",
-           &Calamares::Python::target_env_process_output,
-           "Runs command in target, updating callback and returns standard output or raises on error.",
-           py::arg( "command_list" ),
-           py::arg( "callback" ) = pybind11::none(),
-           py::arg( "input" ) = std::string(),
-           py::arg( "timeout" ) = 0 );
-    m.def( "host_env_process_output",
-           &Calamares::Python::host_env_process_output,
-           "Runs command in target, updating callback and returns standard output or raises on error.",
-           py::arg( "command_list" ),
-           py::arg( "callback" ) = pybind11::none(),
-           py::arg( "input" ) = std::string(),
-           py::arg( "timeout" ) = 0 );
-
-    m.def( "gettext_languages",
-           &Calamares::Python::gettext_languages,
-           "Returns list of languages (most to least-specific) for gettext." );
-    m.def( "gettext_path", &Calamares::Python::gettext_path, "Returns path for gettext search." );
-
-    m.def( "mount",
-           &Calamares::Python::mount,
-           "Runs the mount utility with the specified parameters.\n"
-           "Returns the program's exit code, or:\n"
-           "-1 = QProcess crash\n"
-           "-2 = QProcess cannot start\n"
-           "-3 = bad arguments" );
-}
-
-PYBIND11_MODULE( libcalamares, m )
-{
-    m.doc() = "Calamares API for Python";
-
-    m.add_object( "ORGANIZATION_NAME", Calamares::Python::String( CALAMARES_ORGANIZATION_NAME ) );
-    m.add_object( "ORGANIZATION_DOMAIN", Calamares::Python::String( CALAMARES_ORGANIZATION_DOMAIN ) );
-    m.add_object( "APPLICATION_NAME", Calamares::Python::String( CALAMARES_APPLICATION_NAME ) );
-    m.add_object( "VERSION", Calamares::Python::String( CALAMARES_VERSION ) );
-    m.add_object( "VERSION_SHORT", Calamares::Python::String( CALAMARES_VERSION_SHORT ) );
-
-    populate_utils( m.def_submodule( "utils", "Calamares Utility API for Python" ) );
-
-    py::class_< Calamares::Python::JobProxy >( m, "Job" )
-        .def_readonly( "module_name", &Calamares::Python::JobProxy::moduleName )
-        .def_readonly( "pretty_name", &Calamares::Python::JobProxy::prettyName )
-        .def_readonly( "working_path", &Calamares::Python::JobProxy::workingPath )
-        .def_readonly( "configuration", &Calamares::Python::JobProxy::configuration )
-        .def( "setprogress", &Calamares::Python::JobProxy::setprogress );
-
-    py::class_< Calamares::Python::GlobalStorageProxy >( m, "GlobalStorage" )
-        .def( py::init( []( std::nullptr_t p ) { return new Calamares::Python::GlobalStorageProxy( nullptr ); } ) )
-        .def( "contains", &Calamares::Python::GlobalStorageProxy::contains )
-        .def( "count", &Calamares::Python::GlobalStorageProxy::count )
-        .def( "insert", &Calamares::Python::GlobalStorageProxy::insert )
-        .def( "keys", &Calamares::Python::GlobalStorageProxy::keys )
-        .def( "remove", &Calamares::Python::GlobalStorageProxy::remove )
-        .def( "value", &Calamares::Python::GlobalStorageProxy::value );
-}

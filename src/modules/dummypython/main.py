@@ -41,30 +41,24 @@ def pretty_status_message():
 
 def run():
     """Dummy python job."""
-    libcalamares.utils.debug("LocaleDir=" +
-                             str(libcalamares.utils.gettext_path()))
-    libcalamares.utils.debug("Languages=" +
-                             str(libcalamares.utils.gettext_languages()))
+    libcalamares.utils.debug(f"Calamares version: {libcalamares.VERSION} date: {strftime('%Y-%m-%d %H:%M:%S', gmtime())}")
+    libcalamares.utils.debug(f"Job name         : {libcalamares.job.pretty_name}")
+    libcalamares.utils.debug(f"Job path         : {libcalamares.job.working_path}")
+
+    libcalamares.utils.debug(f"LocaleDir        : {libcalamares.utils.gettext_path()}")
+    libcalamares.utils.debug(f"Languages         : {libcalamares.utils.gettext_languages()}")
 
     os.system("/bin/sh -c \"touch ~/calamares-dummypython\"")
-    accumulator = strftime("%Y-%m-%d %H:%M:%S", gmtime()) + "\n"
-    accumulator += "Calamares version: " + libcalamares.VERSION_SHORT + "\n"
-    accumulator += "This job's name: " + libcalamares.job.pretty_name + "\n"
-    accumulator += "This job's path: " + libcalamares.job.working_path
-    libcalamares.utils.debug(accumulator)
 
-    accumulator = "*** Job configuration "
-    accumulator += str(libcalamares.job.configuration)
-    libcalamares.utils.debug(accumulator)
+    libcalamares.utils.debug("*** JOB CONFIGURATION ***")
+    for k, v in libcalamares.job.configuration.items():
+        libcalamares.utils.debug(f"    {k}={v}")
 
-    accumulator = "*** globalstorage test ***"
-    accumulator += "lala: "
-    accumulator += str(libcalamares.globalstorage.contains("lala")) + "\n"
-    accumulator += "foo: "
-    accumulator += str(libcalamares.globalstorage.contains("foo")) + "\n"
-    accumulator += "count: " + str(libcalamares.globalstorage.count())
-    libcalamares.utils.debug(accumulator)
+    libcalamares.utils.debug("*** GLOBAL STORAGE ***")
+    for k in libcalamares.globalstorage.keys():
+        libcalamares.utils.debug(f"    {k}={libcalamares.globalstorage.value(k)}")
 
+    libcalamares.utils.debug("*** GLOBAL STORAGE MODIFICATION ***")
     libcalamares.globalstorage.insert("item2", "value2")
     libcalamares.globalstorage.insert("item3", 3)
     accumulator = "keys: {}\n".format(str(libcalamares.globalstorage.keys()))
@@ -78,7 +72,7 @@ def run():
         str(libcalamares.globalstorage.value("item3")))
     libcalamares.utils.debug(accumulator)
 
-    libcalamares.utils.debug("Run dummy python")
+    libcalamares.utils.debug("*** ACTIVITY ***")
 
     sleep(1)
 
