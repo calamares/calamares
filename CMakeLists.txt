@@ -422,13 +422,9 @@ if(Python_Interpreter_FOUND)
         if(CALAMARES_CONFIGVALIDATOR_CHECKED)
             set(_validator_deps ${CALAMARES_CONFIGVALIDATOR_RESULT})
         else()
-            exec_program(
-                ${Python_EXECUTABLE}
-                ARGS
-                "${CMAKE_SOURCE_DIR}/ci/configvalidator.py"
-                -x
-                RETURN_VALUE
-                _validator_deps
+            execute_process(
+                COMMAND ${Python_EXECUTABLE} "${CMAKE_SOURCE_DIR}/ci/configvalidator.py" -x
+                RESULT_VARIABLE _validator_deps
             )
             set(CALAMARES_CONFIGVALIDATOR_CHECKED TRUE CACHE INTERNAL "Dependencies for configvalidator checked")
             set(CALAMARES_CONFIGVALIDATOR_RESULT ${_validator_deps}
