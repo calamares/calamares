@@ -76,6 +76,10 @@ def run():
 
     sleep(1)
 
+    million = 1000000
+    for i in range(million):
+        libcalamares.job.setprogress(i / million)
+
     try:
         configlist = list(libcalamares.job.configuration["a_list"])
     except KeyError:
