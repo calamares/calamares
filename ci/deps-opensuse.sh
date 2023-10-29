@@ -40,3 +40,6 @@ zypper --non-interactive in \
 	libicu-devel \
 	libAppStreamQt-devel \
 	libatasmart-devel
+
+# Not actual dependencies, but good to have
+zypper --non-interactive in python311-PyYAML python311-jsonschema
