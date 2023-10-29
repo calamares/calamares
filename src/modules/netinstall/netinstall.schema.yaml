@@ -28,7 +28,7 @@ definitions:
             description: { type: string }
             packages:
                 type: array
-                items: { $ref: 'definitions/package' }
+                items: { $ref: '#/definitions/package' }
             hidden: { type: boolean, default: false }
             selected: { type: boolean }
             critical: { type: boolean, default: false }
@@ -37,7 +37,7 @@ definitions:
             expanded: { type: boolean }
             subgroups:
                 type: array
-                items: { $ref: 'definitions/group' }
+                items: { $ref: '#/definitions/group' }
             pre-install:
                 type: string
                 description: an optional command to run within the new system before the group's
@@ -59,7 +59,7 @@ definitions:
     groups:
         $id: 'definitions/groups'
         type: array
-        items: { $ref: 'definitions/group' }
+        items: { $ref: '#/definitions/group' }
 
 oneOf:
 -   # netinstall.conf
@@ -75,7 +75,7 @@ oneOf:
             properties:
                 sidebar: { type: string }
                 title: { type: string }
-        groups: { $ref: 'definitions/groups' }
+        groups: { $ref: '#/definitions/groups' }
     required: [ groupsUrl ]
 
 -   # Groups file with top level *groups* key
@@ -83,8 +83,8 @@ oneOf:
     description: Groups file with top level *groups* key
     additionalProperties: false
     properties:
-        groups: { $ref: 'definitions/groups' }
+        groups: { $ref: '#/definitions/groups' }
     required: [ groups ]
 
 -   # Groups file bare
-    { $ref: 'definitions/groups' }
+    { $ref: '#/definitions/groups' }
