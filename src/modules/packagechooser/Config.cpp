@@ -14,7 +14,7 @@
 #include "ItemAppData.h"
 #endif
 
-#ifdef HAVE_APPSTREAM
+#ifdef HAVE_APPSTREAM_VERSION
 #include "ItemAppStream.h"
 #include <AppStreamQt/pool.h>
 #include <memory>
@@ -257,7 +257,7 @@ fillModel( PackageListModel* model, const QVariantList& items )
         return;
     }
 
-#ifdef HAVE_APPSTREAM
+#ifdef HAVE_APPSTREAM_VERSION
     std::unique_ptr< AppStream::Pool > pool;
     bool poolOk = false;
 #endif
@@ -284,7 +284,7 @@ fillModel( PackageListModel* model, const QVariantList& items )
         }
         else if ( item_map.contains( "appstream" ) )
         {
-#ifdef HAVE_APPSTREAM
+#ifdef HAVE_APPSTREAM_VERSION
             if ( !pool )
             {
                 pool = std::make_unique< AppStream::Pool >();
