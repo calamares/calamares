@@ -99,6 +99,12 @@ bool isEfiFilesystemSuitableType( const Partition* candidate );
  */
 bool isEfiFilesystemSuitableSize( const Partition* candidate );
 
+/**
+ * @brief Is the @p candidate suitable as an EFI boot partition?
+ * This checks the bonkers-small minimum of 32MiB.
+ */
+bool isEfiFilesystemSuitableMinimumSize( const Partition* candidate );
+
 /** @brief Returns the minimum size of an EFI boot partition in bytes.
  *
  * This is determined as 300MiB, based on the FAT32 standard

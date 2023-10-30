@@ -485,7 +485,29 @@ isEfiFilesystemSuitableSize( const Partition* candidate )
     }
     else
     {
-        cWarning() << "Filesystem for EFI is too small (" << size << "bytes)";
+        cWarning() << "Filesystem for EFI is smaller than recommended (" << size << "bytes)";
+        return false;
+    }
+}
+
+bool
+isEfiFilesystemSuitableMinimumSize( const Partition* candidate )
+{
+    using Calamares::Units::operator""_MiB;
+
+    auto size = candidate->capacity();  // bytes
+    if ( size <= 0 )
+    {
+        return false;
+    }
+
+    if ( size >= 32_MiB )
+    {
+        return true;
+    }
+    else
+    {
+        cWarning() << "Filesystem for EFI is below minimum (" << size << "bytes)";
         return false;
     }
 }
