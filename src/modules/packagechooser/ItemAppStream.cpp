@@ -56,8 +56,20 @@ setScreenshot( QVariantMap& map, const AppStream::Screenshot& screenshot )
 
 /// @brief Interpret an AppStream Component
 static PackageItem
-fromComponent( AppStream::Component& component )
+fromComponent( AppStream::Pool& pool, AppStream::Component& component )
 {
+#if HAVE_APPSTREAM_VERSION == 0
+    auto setActiveLocale = [&component](const QString & locale)
+    {
+        component.setActiveLocale( locale );
+    };
+#else
+    auto setActiveLocale = [&pool](const QString & locale)
+    {
+        pool.setLocale( locale );
+    };
+#endif
+
     QVariantMap map;
     map.insert( "id", component.id() );
     map.insert( "package", component.packageNames().join( "," ) );
@@ -66,7 +78,7 @@ fromComponent( AppStream::Component& component )
     // to any of them; get the en_US locale as "untranslated" and then
     // loop over Calamares locales (since there is no way to query for
     // available locales in the Component) to see if there's anything else.
-    component.setActiveLocale( QStringLiteral( "en_US" ) );
+    setActiveLocale( QStringLiteral( "en_US" ) );
     QString en_name = component.name();
     QString en_description = component.description();
     map.insert( "name", en_name );
@@ -74,7 +86,7 @@ fromComponent( AppStream::Component& component )
 
     for ( const QString& locale : Calamares::Locale::availableTranslations()->localeIds() )
     {
-        component.setActiveLocale( locale );
+        setActiveLocale( locale );
         QString name = component.name();
         if ( name != en_name )
         {
@@ -87,7 +99,11 @@ fromComponent( AppStream::Component& component )
         }
     }
 
+#if HAVE_APPSTREAM_VERSION == 0
     auto screenshots = component.screenshots();
+#else
+    auto screenshots = component.screenshotsAll();
+#endif
     if ( screenshots.count() > 0 )
     {
         bool done = false;
@@ -120,7 +136,11 @@ fromAppStream( AppStream::Pool& pool, const QVariantMap& item_map )
     }
     cDebug() << "Loading AppStream data for" << appstreamId;
 
+#if HAVE_APPSTREAM_VERSION == 0
     auto itemList = pool.componentsById( appstreamId );
+#else
+    auto itemList = pool.componentsById( appstreamId ).toList();
+#endif
     if ( itemList.count() < 1 )
     {
         cWarning() << "No AppStream data for" << appstreamId;
@@ -131,7 +151,7 @@ fromAppStream( AppStream::Pool& pool, const QVariantMap& item_map )
         cDebug() << "Multiple AppStream data for" << appstreamId << "using first.";
     }
 
-    auto r = fromComponent( itemList.first() );
+    auto r = fromComponent( pool, itemList.first() );
     if ( r.isValid() )
     {
         QString id = Calamares::getString( item_map, "id" );
