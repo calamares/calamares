@@ -527,61 +527,91 @@ PartitionViewStep::onLeave()
             Logger::Once o;
 
             const bool okType = esp && PartUtils::isEfiFilesystemSuitableType( esp );
-            const bool okSize = esp && PartUtils::isEfiFilesystemSuitableSize( esp );
+            const bool okRecommendedSize = esp && PartUtils::isEfiFilesystemSuitableSize( esp );
             const bool okMinimumSize = esp && PartUtils::isEfiFilesystemSuitableMinimumSize( esp );
             const bool okFlag = esp && PartUtils::isEfiBootable( esp );
 
-            if ( !esp )
-            {
-                message = tr( "No EFI system partition configured" );
-            }
-            else if ( !( okType && okSize && okFlag ) )
-            {
-                message = tr( "EFI system partition configured incorrectly" );
-            }
+            const bool espExistsButIsWrong = esp && !( okType && okMinimumSize && okFlag );
 
-            if ( !esp || !( okType && okSize && okFlag ) )
-            {
-                description = tr( "An EFI system partition is necessary to start %1."
-                                  "<br/><br/>"
-                                  "To configure an EFI system partition, go back and "
-                                  "select or create a suitable filesystem." )
-                                  .arg( branding->shortProductName() );
-            }
+            const QString genericWrongnessMessage = tr( "An EFI system partition is necessary to start %1."
+                                                        "<br/><br/>"
+                                                        "To configure an EFI system partition, go back and "
+                                                        "select or create a suitable filesystem." )
+                                                        .arg( branding->shortProductName() );
+            const QString genericRecommendationMessage
+                = tr( "An EFI system partition is necessary to start %1."
+                      "<br/><br/>"
+                      "The EFI system partition does not meet recommendations. It is "
+                      "recommended to go back and "
+                      "select or create a suitable filesystem." )
+                      .arg( branding->shortProductName() );
+
+            const QString wrongMountPointMessage
+                = tr( "The filesystem must be mounted on <strong>%1</strong>." ).arg( espMountPoint );
+            const QString wrongTypeMessage = tr( "The filesystem must have type FAT32." );
+            const QString wrongFlagMessage = tr( "The filesystem must have flag <strong>%1</strong> set." )
+                                                 .arg( PartitionTable::flagName( PartitionTable::Flag::Boot ) );
+
+            // Three flavors of size-is-wrong
+            using Calamares::Units::operator""_MiB;
+
+            const qint64 atLeastBytes = static_cast< qint64 >( PartUtils::efiFilesystemMinimumSize() );
+            const auto atLeastMiB = Calamares::BytesToMiB( atLeastBytes );
+
+            const QString requireConfiguredSize
+                = tr( "The filesystem must be at least %1 MiB in size." ).arg( atLeastMiB );
+            const QString requiredMinimumSize
+                = tr( "The filesystem must be at least %1 MiB in size." ).arg( Calamares::BytesToMiB( 32_MiB ) );
+            const QString suggestConfiguredSize
+                = tr( "The minimum recommended size for the filesystem is %1 MiB." ).arg( atLeastMiB );
+
+
+            const QString mayFail = tr( "You can continue without setting up an EFI system "
+                                        "partition but your system may fail to start." );
+            const QString possibleFail = tr( "You can continue with this EFI system "
+                                        "partition configuration but your system may fail to start." );
+
+            const QString startList = QStringLiteral( "<br/><br/><ul>" );
+            const QString endList = QStringLiteral( "</ul><br/><br/>" );
+
+            auto listItem = []( QString s ) -> QString
+            { return s.prepend( QStringLiteral( "<li>" ) ).append( QStringLiteral( "</li>" ) ); };
+
             if ( !esp )
             {
                 cDebug() << o << "No ESP mounted";
-                description.append( ' ' );
-                description.append(
-                    tr( "The filesystem must be mounted on <strong>%1</strong>." ).arg( espMountPoint ) );
+                message = tr( "No EFI system partition configured" );
+
+                description = genericWrongnessMessage + startList + listItem( wrongMountPointMessage )
+                    + listItem( requireConfiguredSize ) + listItem( wrongTypeMessage ) + listItem( wrongFlagMessage )
+                    + endList + mayFail;
             }
-            if ( !okType )
+            else if ( espExistsButIsWrong )
             {
-                cDebug() << o << "ESP wrong type";
-                description.append( ' ' );
-                description.append( tr( "The filesystem must have type FAT32." ) );
+                message = tr( "EFI system partition configured incorrectly" );
+
+                description = genericWrongnessMessage + startList;
+                if ( !okMinimumSize )
+                {
+                    description.append( listItem( requiredMinimumSize ) );
+                }
+                if ( !okType )
+                {
+                    description.append( listItem( wrongTypeMessage ) );
+                }
+                if ( !okFlag )
+                {
+                    description.append( listItem( wrongFlagMessage ) );
+                }
+                description.append( endList );
+                description.append( mayFail );
             }
-            if ( !okSize )
+            else if ( !okRecommendedSize )
             {
-                cDebug() << o << "ESP too small";
-                const qint64 atLeastBytes = static_cast< qint64 >( PartUtils::efiFilesystemMinimumSize() );
-                const auto atLeastMiB = Calamares::BytesToMiB( atLeastBytes );
-                description.append( ' ' );
-                description.append( tr( "The filesystem must be at least %1 MiB in size." ).arg( atLeastMiB ) );
+                message = tr( "EFI system partition recommendation" );
+                description = genericRecommendationMessage + suggestConfiguredSize + possibleFail;
             }
-            if ( !okFlag )
-            {
-                cDebug() << o << "ESP missing flag";
-                description.append( ' ' );
-                description.append( tr( "The filesystem must have flag <strong>%1</strong> set." )
-                                        .arg( PartitionTable::flagName( PartitionTable::Flag::Boot ) ) );
-            }
-            if ( !description.isEmpty() )
-            {
-                description.append( "<br/><br/>" );
-                description.append( tr( "You can continue without setting up an EFI system "
-                                        "partition but your system may fail to start." ) );
-            }
+
             if ( !message.isEmpty() )
             {
                 QMessageBox mb( QMessageBox::Warning, message, description, QMessageBox::Ok, m_manualPartitionPage );
