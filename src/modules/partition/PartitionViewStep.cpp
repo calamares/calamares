@@ -528,6 +528,7 @@ PartitionViewStep::onLeave()
 
             const bool okType = esp && PartUtils::isEfiFilesystemSuitableType( esp );
             const bool okSize = esp && PartUtils::isEfiFilesystemSuitableSize( esp );
+            const bool okMinimumSize = esp && PartUtils::isEfiFilesystemSuitableMinimumSize( esp );
             const bool okFlag = esp && PartUtils::isEfiBootable( esp );
 
             if ( !esp )
