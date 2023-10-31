@@ -38,7 +38,7 @@ KeyboardViewStep::~KeyboardViewStep()
 QString
 KeyboardViewStep::prettyName() const
 {
-    return tr( "Keyboard" );
+    return tr( "Keyboard", "@label" );
 }
 
 

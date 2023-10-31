@@ -36,7 +36,7 @@ HostInfoJob::~HostInfoJob() {}
 QString
 HostInfoJob::prettyName() const
 {
-    return tr( "Collecting information about your machine." );
+    return tr( "Collecting information about your machine…", "@status" );
 }
 
 QString

@@ -139,17 +139,17 @@ Config::doNotify( bool hasFailed, bool sendAnyway )
         QString message;
         if ( hasFailed )
         {
-            title = Calamares::Settings::instance()->isSetupMode() ? tr( "Setup Failed" ) : tr( "Installation Failed" );
+            title = Calamares::Settings::instance()->isSetupMode() ? tr( "Setup Failed", "@title" ) : tr( "Installation Failed", "@title" );
             message = Calamares::Settings::instance()->isSetupMode()
-                ? tr( "The setup of %1 did not complete successfully." )
-                : tr( "The installation of %1 did not complete successfully." );
+                ? tr( "The setup of %1 did not complete successfully.", "@info" )
+                : tr( "The installation of %1 did not complete successfully.", "@info" );
         }
         else
         {
-            title = Calamares::Settings::instance()->isSetupMode() ? tr( "Setup Complete" )
-                                                                   : tr( "Installation Complete" );
-            message = Calamares::Settings::instance()->isSetupMode() ? tr( "The setup of %1 is complete." )
-                                                                     : tr( "The installation of %1 is complete." );
+            title = Calamares::Settings::instance()->isSetupMode() ? tr( "Setup Complete", "@title" )
+                                                                   : tr( "Installation Complete", "@title" );
+            message = Calamares::Settings::instance()->isSetupMode() ? tr( "The setup of %1 is complete.", "@info" )
+                                                                     : tr( "The installation of %1 is complete.", "@info" );
         }
 
         const auto* branding = Calamares::Branding::instance();

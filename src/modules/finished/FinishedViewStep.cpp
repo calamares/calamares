@@ -43,7 +43,7 @@ FinishedViewStep::~FinishedViewStep()
 QString
 FinishedViewStep::prettyName() const
 {
-    return tr( "Finish" );
+    return tr( "Finish", "@label" );
 }
 
 

@@ -68,7 +68,7 @@ LocaleViewStep::setUpPage()
 QString
 LocaleViewStep::prettyName() const
 {
-    return tr( "Location" );
+    return tr( "Location", "@label" );
 }
 
 QString

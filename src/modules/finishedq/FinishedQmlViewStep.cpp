@@ -32,7 +32,7 @@ FinishedQmlViewStep::FinishedQmlViewStep( QObject* parent )
 QString
 FinishedQmlViewStep::prettyName() const
 {
-    return tr( "Finish" );
+    return tr( "Finish", "@label" );
 }
 
 bool

@@ -63,7 +63,8 @@ SetKeyboardLayoutJob::SetKeyboardLayoutJob( const QString& model,
 QString
 SetKeyboardLayoutJob::prettyName() const
 {
-    return tr( "Set keyboard model to %1, layout to %2-%3" ).arg( m_model ).arg( m_layout ).arg( m_variant );
+    return tr( "Setting keyboard model to %1, layout as %2-%3…", "@status, %1 model, %2 layout, %3 variant" )
+        .arg( m_model ).arg( m_layout ).arg( m_variant );
 }
 
 
@@ -364,8 +365,8 @@ SetKeyboardLayoutJob::exec()
 
         if ( !writeVConsoleData( vconsoleConfPath, convertedKeymapPath ) )
         {
-            return Calamares::JobResult::error( tr( "Failed to write keyboard configuration for the virtual console." ),
-                                                tr( "Failed to write to %1" ).arg( vconsoleConfPath ) );
+            return Calamares::JobResult::error( tr( "Failed to write keyboard configuration for the virtual console.", "@error" ),
+                                                tr( "Failed to write to %1", "@error, %1 is virtual console configuration path" ).arg( vconsoleConfPath ) );
         }
 
         // Get the path to the destination's /etc/X11/xorg.conf.d/00-keyboard.conf
@@ -390,8 +391,8 @@ SetKeyboardLayoutJob::exec()
 
         if ( !writeX11Data( keyboardConfPath ) )
         {
-            return Calamares::JobResult::error( tr( "Failed to write keyboard configuration for X11." ),
-                                                tr( "Failed to write to %1" ).arg( keyboardConfPath ) );
+            return Calamares::JobResult::error( tr( "Failed to write keyboard configuration for X11.", "@error" ),
+                                                tr( "Failed to write to %1", "@error, %1 is keyboard configuration path" ).arg( keyboardConfPath ) );
         }
     }
 
@@ -407,8 +408,8 @@ SetKeyboardLayoutJob::exec()
             if ( !writeDefaultKeyboardData( defaultKeyboardPath ) )
             {
                 return Calamares::JobResult::error(
-                    tr( "Failed to write keyboard configuration to existing /etc/default directory." ),
-                    tr( "Failed to write to %1" ).arg( defaultKeyboardPath ) );
+                    tr( "Failed to write keyboard configuration to existing /etc/default directory.", "@error" ),
+                    tr( "Failed to write to %1", "@error, %1 is default keyboard path" ).arg( defaultKeyboardPath ) );
             }
         }
     }

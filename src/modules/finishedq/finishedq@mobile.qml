@@ -33,7 +33,7 @@ Page {
         horizontalAlignment: Qt.AlignHCenter
         color: Kirigami.Theme.textColor
         level: 1
-        text: qsTr("Installation Completed")
+        text: qsTr("Installation Completed", "@title")
 
         Text {
             anchors.top: header.bottom
@@ -41,7 +41,8 @@ Page {
             horizontalAlignment: Text.AlignHCenter
             font.pointSize: 12
             text: qsTr("%1 has been installed on your computer.<br/>
-            You may now restart your device.").arg(Branding.string(Branding.ProductName))
+            You may now restart your device.", "@info, %1 is the product name")
+                .arg(Branding.string(Branding.ProductName))
         }
 
         Image {
@@ -62,13 +63,13 @@ Page {
 
         Button {
             id: button
-            text: qsTr("Close")
+            text: qsTr("Close", "@button")
             icon.name: "application-exit"
             onClicked: { ViewManager.quit(); }
         }
 
         Button {
-            text: qsTr("Restart")
+            text: qsTr("Restart", "@button")
             icon.name: "system-reboot"
             onClicked: { config.doRestart(true); }
         }

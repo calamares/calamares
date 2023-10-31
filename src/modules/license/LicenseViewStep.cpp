@@ -42,7 +42,7 @@ LicenseViewStep::~LicenseViewStep()
 QString
 LicenseViewStep::prettyName() const
 {
-    return tr( "License" );
+    return tr( "License", "@label" );
 }
 
 
