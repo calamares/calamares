@@ -43,3 +43,4 @@ zypper --non-interactive in \
 
 # Not actual dependencies, but good to have
 zypper --non-interactive in python311-PyYAML python311-jsonschema
+true

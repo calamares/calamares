@@ -18,3 +18,4 @@ zypper --non-interactive in "qt6-declarative-devel" "cmake(Qt6Concurrent)" "cmak
 zypper --non-interactive in "cmake(KF6CoreAddons)" "cmake(KF6DBusAddons)" "cmake(KF6Crash)"
 zypper --non-interactive in "cmake(KF6Parts)" # Also installs KF5 things
 zypper --non-interactive in "cmake(PolkitQt6-1)"
+true

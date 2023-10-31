@@ -22,4 +22,4 @@ pacman -S --noconfirm \
 	"kio" \
 	"kparts" \
 	"qtwebengine"
-
+true

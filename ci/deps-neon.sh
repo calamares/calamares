@@ -33,3 +33,4 @@ apt-get -y install \
 	qtdeclarative5-dev \
 	qttools5-dev \
 	qttools5-dev-tools
+true

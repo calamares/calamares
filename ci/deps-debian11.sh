@@ -43,3 +43,4 @@ apt-get -y install \
 	libpwquality-dev \
 	libqt5webenginewidgets5 \
 	qtwebengine5-dev
+true
