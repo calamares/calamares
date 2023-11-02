@@ -96,7 +96,7 @@ MachineIdJob::exec()
         {
             cWarning() << "Could not create systemd data-directory.";
         }
-        auto r = MachineId::createSystemdMachineId( root, target_systemd_machineid_file );
+        auto r = MachineId::createSystemdMachineId( m_systemd_style, root, target_systemd_machineid_file );
         if ( !r )
         {
             return r;

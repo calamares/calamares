@@ -153,8 +153,9 @@ runCmd( const QStringList& cmd )
 }
 
 Calamares::JobResult
-createSystemdMachineId( const QString& rootMountPoint, const QString& fileName )
+createSystemdMachineId( SystemdMachineIdStyle style, const QString& rootMountPoint, const QString& fileName )
 {
+    Q_UNUSED( style )
     Q_UNUSED( rootMountPoint )
     Q_UNUSED( fileName )
     return runCmd( QStringList { QStringLiteral( "systemd-machine-id-setup" ) } );
