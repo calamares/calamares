@@ -83,7 +83,7 @@ log_enabled( unsigned int level )
 }
 
 static void
-log_implementation( const char* msg, unsigned int debugLevel, const bool withTime )
+log_implementation( const char* msg, unsigned int debugLevel, const char* funcinfo )
 {
     Calamares::MutexLocker lock( &s_mutex );
 
@@ -93,15 +93,20 @@ log_implementation( const char* msg, unsigned int debugLevel, const bool withTim
     // If we don't format the date as a Qt::ISODate then we get a crash when
     // logging at exit as Qt tries to use QLocale to format, but QLocale is
     // on its way out.
-    logfile << date.toUtf8().data() << " - " << time.toUtf8().data() << " [" << debugLevel << "]: " << msg << std::endl;
+    if ( funcinfo )
+    {
+        logfile << date.toUtf8().data() << " - " << time.toUtf8().data() << " [" << debugLevel << "]: " << funcinfo
+                << '\n';
+    }
+    logfile << date.toUtf8().data() << " - " << time.toUtf8().data() << " [" << debugLevel << (funcinfo ? "]:     " : "]: ") << msg << '\n';
 
     logfile.flush();
 
     if ( logLevelEnabled( debugLevel ) )
     {
-        if ( withTime )
+        if ( funcinfo )
         {
-            std::cout << time.toUtf8().data() << " [" << debugLevel << "]: ";
+            std::cout << time.toUtf8().data() << " [" << debugLevel << "]: " << funcinfo << s_Continuation;
         }
         // The endl is desired, since it also flushes (like the logfile, above)
         std::cout << msg << std::endl;
@@ -134,7 +139,7 @@ CalamaresLogHandler( QtMsgType type, const QMessageLogContext&, const QString& m
         return;
     }
 
-    log_implementation( msg.toUtf8().constData(), level, true );
+    log_implementation( msg.toUtf8().constData(), level, nullptr );
 }
 
 QString
@@ -202,12 +207,7 @@ CDebug::~CDebug()
 {
     if ( log_enabled( m_debugLevel ) )
     {
-        if ( m_funcinfo )
-        {
-            m_msg.prepend( s_Continuation );  // Prepending, so back-to-front
-            m_msg.prepend( m_funcinfo );
-        }
-        log_implementation( m_msg.toUtf8().data(), m_debugLevel, bool( m_funcinfo ) );
+        log_implementation( m_msg.toUtf8().data(), m_debugLevel, m_funcinfo );
     }
 }
 
