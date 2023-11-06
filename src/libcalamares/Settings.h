@@ -89,6 +89,9 @@ public:
     /// @brief Explicif filename, debug is always true (for testing)
     static Settings* init( const QString& filename );
 
+    /// @brief Get the path this settings was created for (may be empty)
+    QString path() const { return m_settingsPath; }
+
     QStringList modulesSearchPaths() const;
 
     using InstanceDescriptionList = QList< InstanceDescription >;
@@ -177,6 +180,7 @@ public:
 
 private:
     static Settings* s_instance;
+    QString m_settingsPath;
 
     QStringList m_modulesSearchPaths;
 

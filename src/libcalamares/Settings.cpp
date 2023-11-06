@@ -250,6 +250,7 @@ Settings::Settings( bool debugMode )
 
 Settings::Settings( const QString& settingsFilePath, bool debugMode )
     : QObject()
+    , m_settingsPath( settingsFilePath )
     , m_debug( debugMode )
     , m_doChroot( true )
     , m_promptInstall( false )
