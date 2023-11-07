@@ -32,12 +32,31 @@ class TransifexGetter(object):
             raise TXError("Could not get Transifex API token")
 
         import requests
-        r = requests.get("https://api.transifex.com/organizations/calamares/projects/calamares/resources/calamares/", auth=("api", token))
+        base_url = "https://rest.api.transifex.com/resource_language_stats"
+        project_filter = "filter[project]=o:calamares:p:calamares"
+        resource_filter = "filter[resource]=o:calamares:p:calamares:r:calamares"
+        url = base_url + "?" + project_filter.replace(":", "%3A") + "&" + resource_filter.replace(":", "%3A")
+        headers = {
+            "accept": "application/vnd.api+json",
+            "authorization": "Bearer " + token
+        }
+
+        r = requests.get(url, headers=headers)
         if r.status_code != 200:
             raise TXError("Could not get Transifex data from API")
 
         j = r.json()
-        self.languages = j["stats"]
+        data = j["data"]
+
+        self.languages = dict()
+
+        for d in data:
+            translated_count = d["attributes"]["translated_strings"]
+            total_count = d["attributes"]["total_strings"]
+            language_key = d["relationships"]["language"]["data"]["id"]
+            assert language_key.startswith("l:")
+            language_key = language_key[2:]
+            self.languages[language_key] = dict(translated=dict(stringcount=translated_count, percentage=(translated_count / total_count)))
 
 
     def get_tx_credentials(self):
