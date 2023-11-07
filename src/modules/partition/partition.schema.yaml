@@ -8,8 +8,15 @@ additionalProperties: false
 type: object
 properties:
     efiSystemPartition: { type: string }  # Mount point
-    efiSystemPartitionSize: { type: string }
+    efiSystemPartitionSize: { type: string } # Deprecated alias of efi.recommendedSize
     efiSystemPartitionName: { type: string }
+
+    efi:
+        type: object
+        properties:
+            recommendedSize: { type: string }
+            minimumSize: { type: string }
+        additionalProperties: false
 
     userSwapChoices: { type: array, items: { type: string, enum: [ none, reuse, small, suspend, file ] } }
     # ensureSuspendToDisk: { type: boolean, default: true }  # Legacy
