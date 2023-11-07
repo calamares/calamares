@@ -95,15 +95,15 @@ bool isEfiFilesystemSuitableType( const Partition* candidate );
 
 /**
  * @brief Is the @p partition suitable as an EFI boot partition?
- * Checks for filesystem size (300MiB, see efiFilesystemMinimumSize).
+ * Checks for filesystem size (300MiB, see efi.recommendedSize).
  */
-bool isEfiFilesystemSuitableSize( const Partition* candidate );
+bool isEfiFilesystemRecommendedSize( const Partition* candidate );
 
 /**
  * @brief Is the @p candidate suitable as an EFI boot partition?
- * This checks the bonkers-small minimum of 32MiB.
+ * Checks for filesystem size (32MiB at least, see efi.minimumSize).
  */
-bool isEfiFilesystemSuitableMinimumSize( const Partition* candidate );
+bool isEfiFilesystemMinimumSize( const Partition* candidate );
 
 /** @brief Returns the minimum size of an EFI boot partition in bytes.
  *
@@ -113,12 +113,12 @@ bool isEfiFilesystemSuitableMinimumSize( const Partition* candidate );
  * by the standard and how all of those are different).
  *
  * This can be configured through the `partition.conf` file,
- * key *efiSystemPartitionSize*, which will then apply to both
+ * key *efi.recommendedSize*, which will then apply to both
  * automatic partitioning **and** the warning for manual partitioning.
  *
  * A minimum of 32MiB (which is bonkers-small) is enforced.
  */
-qint64 efiFilesystemMinimumSize();
+qint64 efiFilesystemRecommendedSize();
 
 /**
  * @brief Is the given @p partition bootable in EFI? Depending on

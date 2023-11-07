@@ -471,7 +471,7 @@ isEfiFilesystemSuitableType( const Partition* candidate )
 }
 
 bool
-isEfiFilesystemSuitableSize( const Partition* candidate )
+isEfiFilesystemRecommendedSize( const Partition* candidate )
 {
     auto size = candidate->capacity();  // bytes
     if ( size <= 0 )
@@ -479,7 +479,7 @@ isEfiFilesystemSuitableSize( const Partition* candidate )
         return false;
     }
 
-    if ( size >= efiFilesystemMinimumSize() )
+    if ( size >= efiFilesystemRecommendedSize() )
     {
         return true;
     }
@@ -491,7 +491,7 @@ isEfiFilesystemSuitableSize( const Partition* candidate )
 }
 
 bool
-isEfiFilesystemSuitableMinimumSize( const Partition* candidate )
+isEfiFilesystemMinimumSize( const Partition* candidate )
 {
     using Calamares::Units::operator""_MiB;
 
@@ -522,9 +522,8 @@ isEfiBootable( const Partition* candidate )
     return flags.testFlag( KPM_PARTITION_FLAG_ESP );
 }
 
-// TODO: this is configurable via the config file **already**
 qint64
-efiFilesystemMinimumSize()
+efiFilesystemRecommendedSize()
 {
     using Calamares::Units::operator""_MiB;
 

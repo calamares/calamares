@@ -527,8 +527,8 @@ PartitionViewStep::onLeave()
             Logger::Once o;
 
             const bool okType = esp && PartUtils::isEfiFilesystemSuitableType( esp );
-            const bool okRecommendedSize = esp && PartUtils::isEfiFilesystemSuitableSize( esp );
-            const bool okMinimumSize = esp && PartUtils::isEfiFilesystemSuitableMinimumSize( esp );
+            const bool okRecommendedSize = esp && PartUtils::isEfiFilesystemRecommendedSize( esp );
+            const bool okMinimumSize = esp && PartUtils::isEfiFilesystemMinimumSize( esp );
             const bool okFlag = esp && PartUtils::isEfiBootable( esp );
 
             const bool espExistsButIsWrong = esp && !( okType && okMinimumSize && okFlag );
@@ -555,7 +555,7 @@ PartitionViewStep::onLeave()
             // Three flavors of size-is-wrong
             using Calamares::Units::operator""_MiB;
 
-            const qint64 atLeastBytes = static_cast< qint64 >( PartUtils::efiFilesystemMinimumSize() );
+            const qint64 atLeastBytes = static_cast< qint64 >( PartUtils::efiFilesystemRecommendedSize() );
             const auto atLeastMiB = Calamares::BytesToMiB( atLeastBytes );
 
             const QString requireConfiguredSize
