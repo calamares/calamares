@@ -240,11 +240,17 @@ Job::exec()
 
     py::scoped_interpreter guard {};
     // Import, but do not keep the handle lying around
+    try
     {
         auto calamaresModule = py::module_::import( "libcalamares" );
         calamaresModule.attr( "job" ) = Calamares::Python::JobProxy( this );
         calamaresModule.attr( "globalstorage" )
             = Calamares::Python::GlobalStorageProxy( JobQueue::instance()->globalStorage() );
+    }
+    catch ( const py::error_already_set& e )
+    {
+        cError() << "Error in import:" << e.what();
+        throw;  // This is non-recoverable
     }
 
     if ( s_preScript )
