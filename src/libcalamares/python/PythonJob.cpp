@@ -272,10 +272,10 @@ Job::exec()
         // Now `import libcalamares` in modules will find the already-
         // loaded module.
         auto scope = py::module_::import( "__main__" ).attr( "__dict__" );
-        scope["libcalamares"] = calamaresModule;
+        scope[ "libcalamares" ] = calamaresModule;
 
-        auto sys = scope["sys"].attr("modules");
-        sys["libcalamares"] = calamaresModule;
+        auto sys = scope[ "sys" ].attr( "modules" );
+        sys[ "libcalamares" ] = calamaresModule;
 
         calamaresModule.attr( "job" ) = Calamares::Python::JobProxy( this );
         calamaresModule.attr( "globalstorage" )

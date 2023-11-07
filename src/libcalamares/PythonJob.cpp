@@ -258,9 +258,10 @@ PythonJob::exec()
     QDir workingDir( m_workingPath );
     if ( !workingDir.exists() || !workingDir.isReadable() )
     {
-        return JobResult::error(
-            tr( "Bad working directory path", "@error" ),
-            tr( "Working directory %1 for python job %2 is not readable.", "@error" ).arg( m_workingPath ).arg( prettyName() ) );
+        return JobResult::error( tr( "Bad working directory path", "@error" ),
+                                 tr( "Working directory %1 for python job %2 is not readable.", "@error" )
+                                     .arg( m_workingPath )
+                                     .arg( prettyName() ) );
     }
 
     QFileInfo scriptFI( workingDir.absoluteFilePath( m_scriptFile ) );
@@ -339,8 +340,9 @@ PythonJob::exec()
         }
         bp::handle_exception();
         PyErr_Clear();
-        return JobResult::internalError(
-            tr( "Boost.Python error in job \"%1\"", "@error" ).arg( prettyName() ), msg, JobResult::PythonUncaughtException );
+        return JobResult::internalError( tr( "Boost.Python error in job \"%1\"", "@error" ).arg( prettyName() ),
+                                         msg,
+                                         JobResult::PythonUncaughtException );
     }
 }
 

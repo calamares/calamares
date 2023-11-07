@@ -98,8 +98,10 @@ log_implementation( const char* msg, unsigned int debugLevel, const char* funcin
         logfile << date.toUtf8().data() << " - " << time.toUtf8().data() << " [" << debugLevel << "]: " << funcinfo
                 << '\n';
     }
-    if (msg) {
-    logfile << date.toUtf8().data() << " - " << time.toUtf8().data() << " [" << debugLevel << (funcinfo ? "]:     " : "]: ") << msg << '\n';
+    if ( msg )
+    {
+        logfile << date.toUtf8().data() << " - " << time.toUtf8().data() << " [" << debugLevel
+                << ( funcinfo ? "]:     " : "]: " ) << msg << '\n';
     }
     logfile.flush();
 
@@ -107,10 +109,11 @@ log_implementation( const char* msg, unsigned int debugLevel, const char* funcin
     {
         if ( funcinfo )
         {
-            std::cout << time.toUtf8().data() << " [" << debugLevel << "]: " << funcinfo << (msg ? s_Continuation : "");
+            std::cout << time.toUtf8().data() << " [" << debugLevel << "]: " << funcinfo
+                      << ( msg ? s_Continuation : "" );
         }
         // The endl is desired, since it also flushes (like the logfile, above)
-        std::cout << (msg ? msg : "") << std::endl;
+        std::cout << ( msg ? msg : "" ) << std::endl;
     }
 }
 
@@ -118,7 +121,7 @@ static void
 CalamaresLogHandler( QtMsgType type, const QMessageLogContext&, const QString& msg )
 {
     unsigned int level = LOGVERBOSE;
-    const char * funcinfo = nullptr;
+    const char* funcinfo = nullptr;
     switch ( type )
     {
     case QtInfoMsg:
@@ -145,7 +148,8 @@ CalamaresLogHandler( QtMsgType type, const QMessageLogContext&, const QString& m
         return;
     }
 
-    log_implementation( nullptr, level, (QString(funcinfo) + QStringLiteral(" (Qt): ") + msg).toUtf8().constData() );
+    log_implementation(
+        nullptr, level, ( QString( funcinfo ) + QStringLiteral( " (Qt): " ) + msg ).toUtf8().constData() );
 }
 
 QString
