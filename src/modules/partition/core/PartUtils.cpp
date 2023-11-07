@@ -545,6 +545,13 @@ efiFilesystemRecommendedSize()
     return uefisys_part_sizeB;
 }
 
+qint64
+efiFilesystemMinimumSize()
+{
+    using Calamares::Units::operator""_MiB;
+    return 32_MiB;
+}
+
 QString
 canonicalFilesystemName( const QString& fsName, FileSystem::Type* fsType )
 {

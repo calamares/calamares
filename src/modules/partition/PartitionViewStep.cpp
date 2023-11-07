@@ -561,7 +561,8 @@ PartitionViewStep::onLeave()
             const QString requireConfiguredSize
                 = tr( "The filesystem must be at least %1 MiB in size." ).arg( atLeastMiB );
             const QString requiredMinimumSize
-                = tr( "The filesystem must be at least %1 MiB in size." ).arg( Calamares::BytesToMiB( 32_MiB ) );
+                = tr( "The filesystem must be at least %1 MiB in size." )
+                      .arg( Calamares::BytesToMiB( PartUtils::efiFilesystemMinimumSize() ) );
             const QString suggestConfiguredSize
                 = tr( "The minimum recommended size for the filesystem is %1 MiB." ).arg( atLeastMiB );
 
@@ -569,7 +570,7 @@ PartitionViewStep::onLeave()
             const QString mayFail = tr( "You can continue without setting up an EFI system "
                                         "partition but your system may fail to start." );
             const QString possibleFail = tr( "You can continue with this EFI system "
-                                        "partition configuration but your system may fail to start." );
+                                             "partition configuration but your system may fail to start." );
 
             const QString startList = QStringLiteral( "<br/><br/><ul>" );
             const QString endList = QStringLiteral( "</ul><br/><br/>" );
