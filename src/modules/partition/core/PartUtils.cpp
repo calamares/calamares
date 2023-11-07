@@ -501,7 +501,7 @@ isEfiFilesystemMinimumSize( const Partition* candidate )
         return false;
     }
 
-    if ( size >= 32_MiB )
+    if ( size >= efiFilesystemMinimumSize() )
     {
         return true;
     }
@@ -522,11 +522,13 @@ isEfiBootable( const Partition* candidate )
     return flags.testFlag( KPM_PARTITION_FLAG_ESP );
 }
 
+using Calamares::Units::operator""_MiB;
+
+static constexpr qint64 efiSpecificationHardMinimumSize = 32_MiB;
+
 qint64
 efiFilesystemRecommendedSize()
 {
-    using Calamares::Units::operator""_MiB;
-
     qint64 uefisys_part_sizeB = 300_MiB;
 
     // The default can be overridden; the key used here comes
@@ -538,9 +540,9 @@ efiFilesystemRecommendedSize()
         uefisys_part_sizeB = v > 0 ? v : 0;
     }
     // There is a lower limit of what can be configured
-    if ( uefisys_part_sizeB < 32_MiB )
+    if ( uefisys_part_sizeB < efiSpecificationHardMinimumSize )
     {
-        uefisys_part_sizeB = 32_MiB;
+        uefisys_part_sizeB = efiSpecificationHardMinimumSize;
     }
     return uefisys_part_sizeB;
 }
@@ -548,8 +550,7 @@ efiFilesystemRecommendedSize()
 qint64
 efiFilesystemMinimumSize()
 {
-    using Calamares::Units::operator""_MiB;
-    return 32_MiB;
+    return efiSpecificationHardMinimumSize;
 }
 
 QString
