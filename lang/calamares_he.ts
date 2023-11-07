@@ -92,7 +92,7 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="28"/>
       <source>GlobalStorage</source>
-      <translation>אחסון גלובלי</translation>
+      <translation>GlobalStorage</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="38"/>
@@ -252,7 +252,7 @@
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="270"/>
       <source>Main script file %1 for python job %2 is not readable.</source>
-      <translation>קובץ תסריט הרצה ראשי %1 עבור משימת python %2 לא קריא. </translation>
+      <translation>קובץ הסקריפט הראשי %1 למשימת ה־python‏ %2 אינו קריא.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="343"/>
@@ -501,12 +501,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/libcalamares/PythonHelper.cpp" line="325"/>
       <source>unparseable Python error</source>
-      <translation>שגיאת Python לא ניתנת לניתוח</translation>
+      <translation>שגיאת Python שלא ניתנת לניתוח</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonHelper.cpp" line="369"/>
       <source>unparseable Python traceback</source>
-      <translation>עקבה לאחור של Python לא ניתנת לניתוח</translation>
+      <translation>מעקב לאחור של Python לא ניתן לניתוח</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonHelper.cpp" line="376"/>
@@ -543,7 +543,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="71"/>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="83"/>
       <source>The installer failed to update partition table on disk '%1'.</source>
-      <translation>אשף ההתקנה נכשל בעת עדכון טבלת המחיצות על כונן '%1'.</translation>
+      <translation>אשף ההתקנה נכשל בעת עדכון טבלת המחיצות על כונן ‚%1’.</translation>
     </message>
   </context>
   <context>
@@ -597,7 +597,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1677"/>
       <source>Boot loader location:</source>
-      <translation>מיקום מנהל אתחול המערכת:</translation>
+      <translation>מקום מנהל אתחול המערכת:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1119"/>
@@ -757,12 +757,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="40"/>
       <source>Clearing all temporary mounts.</source>
-      <translation>מבצע מחיקה של כל נקודות העיגון הזמניות.</translation>
+      <translation>כל נקודות העיגון הזמניות נמחקות.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="70"/>
       <source>Cleared all temporary mounts.</source>
-      <translation>בוצעה מחיקה של כל נקודות העיגון הזמניות.</translation>
+      <translation>כל נקודות העיגון הזמניות נמחקו.</translation>
     </message>
   </context>
   <context>
@@ -798,12 +798,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="410"/>
       <source>The system language will be set to %1.</source>
-      <translation>שפת המערכת תוגדר להיות %1.</translation>
+      <translation>שפת המערכת תהיה %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="417"/>
       <source>The numbers and dates locale will be set to %1.</source>
-      <translation>תבנית של המספרים והתאריכים של המיקום יוגדרו להיות %1.</translation>
+      <translation>תבנית המספרים והתאריכים של המקום יוגדרו להיות %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="53"/>
@@ -1008,7 +1008,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/summary/Config.cpp" line="103"/>
       <source>This is an overview of what will happen once you start the install procedure.</source>
-      <translation>להלן סקירת המאורעות שיתרחשו עם תחילת תהליך ההתקנה.</translation>
+      <translation>זו סקירה של מה שיקרה לאחר התחלת תהליך ההתקנה.</translation>
     </message>
   </context>
   <context>
@@ -1171,7 +1171,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="69"/>
       <source>What kind of partition table do you want to create?</source>
-      <translation>איזה סוג של טבלת מחיצות ברצונך ליצור?</translation>
+      <translation>איזה סוג של טבלת מחיצות ליצור?</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="76"/>
@@ -1204,7 +1204,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="86"/>
       <source>The installer failed to create a partition table on %1.</source>
-      <translation>אשף ההתקנה נכשל בעת יצירת טבלת המחיצות על %1.</translation>
+      <translation>אשף ההתקנה נכשל ביצירת טבלת מחיצות על %1.</translation>
     </message>
   </context>
   <context>
@@ -1319,27 +1319,27 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="139"/>
       <source>This device has a &lt;strong&gt;%1&lt;/strong&gt; partition table.</source>
-      <translation>על התקן זה קיימת טבלת מחיצות &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+      <translation>בהתקן זה קיימת טבלת מחיצות מסוג &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="95"/>
       <source>This is a &lt;strong&gt;loop&lt;/strong&gt; device.&lt;br&gt;&lt;br&gt;It is a pseudo-device with no partition table that makes a file accessible as a block device. This kind of setup usually only contains a single filesystem.</source>
-      <translation>זהו התקן מסוג &lt;strong&gt;loop&lt;/strong&gt;.&lt;br&gt;&lt;br&gt; זהו התקן מדמה ללא טבלת מחיצות אשר מאפשר גישה לקובץ כהתקן בלוק. תצורה מסוג זה בדרך כלל תכיל מערכת קבצים יחידה.</translation>
+      <translation>זהו התקן מסוג &lt;strong&gt;loop&lt;/strong&gt;.&lt;br&gt;&lt;br&gt; זהו התקן מדומה ללא טבלת מחיצות שמאפשר גישה לקובץ כהתקן אחסון. תצורה מסוג זה בדרך כלל תכיל מערכת קבצים יחידה.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="104"/>
       <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
-      <translation>אשף ההתקנה &lt;strong&gt;אינו יכול לזהות את טבלת המחיצות&lt;/strong&gt; על התקן האחסון הנבחר.&lt;br&gt;&lt;br&gt; ההתקן הנבחר לא מכיל טבלת מחיצות, או שטבלת המחיצות הקיימת הושחתה או שסוג הטבלה אינו מוכר.&lt;br&gt; אשף התקנה זה יכול ליצור טבלת מחיצות חדשה עבורך אוטומטית או בדף הגדרת מחיצות באופן ידני.</translation>
+      <translation>אשף ההתקנה &lt;strong&gt;לא יכול לזהות את טבלת המחיצות&lt;/strong&gt; שבהתקן האחסון הנבחר.&lt;br&gt;&lt;br&gt; ההתקן הנבחר לא מכיל טבלת מחיצות, או שטבלת המחיצות הקיימת הושחתה או שסוג הטבלה אינו מוכר.&lt;br&gt; אשף התקנה זה יכול ליצור טבלת מחיצות חדשה עבורך אוטומטית או בדף הגדרת מחיצות באופן ידני.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="89"/>
       <source>&lt;br&gt;&lt;br&gt;This is the recommended partition table type for modern systems which start from an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.</source>
-      <translation>&lt;br&gt;&lt;br&gt; זהו סוג טבלת מחיצות מועדף במערכות מודרניות, אשר מאותחלות ממחיצת טעינת מערכת &lt;strong&gt;EFI&lt;/strong&gt;.</translation>
+      <translation>&lt;br&gt;&lt;br&gt; זהו סוג טבלת מחיצות מועדף במערכות מודרניות, אשר נטענות ממחיצת טעינת מערכת &lt;strong&gt;EFI&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="78"/>
       <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. GPT is recommended in most other cases.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MBR partition table is an obsolete MS-DOS era standard.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.</source>
-      <translation>&lt;br&gt;&lt;br&gt;סוג זה של טבלת מחיצות מומלץ לשימוש על מערכות ישנות אשר מאותחלות מסביבת טעינה &lt;strong&gt;BIOS&lt;/strong&gt;. ברוב המקרים האחרים, GPT מומלץ לשימוש.&lt;br&gt;&lt;br&gt;&lt;strong&gt;אזהרה:&lt;/strong&gt; תקן טבלת המחיצות של MBR מיושן מתקופת MS-DOS.&lt;br&gt; ניתן ליצור אך ורק 4 מחיצות &lt;em&gt;ראשיות&lt;/em&gt;, מתוכן, אחת יכולה להיות מוגדרת כמחיצה &lt;em&gt;מורחבת&lt;/em&gt;, אשר יכולה להכיל מחיצות &lt;em&gt;לוגיות&lt;/em&gt;. </translation>
+      <translation>&lt;br&gt;&lt;br&gt;סוג זה של טבלת מחיצות מומלץ לשימוש במערכות ישנות שנטענות מסביבת טעינה מסוג &lt;strong&gt;BIOS&lt;/strong&gt;. ברוב המקרים האחרים, מומלץ להשתמש ב־GPT.&lt;br&gt;&lt;br&gt;&lt;strong&gt;אזהרה:&lt;/strong&gt; תקן טבלת המחיצות MBR הוא עוד מתקופת ה־MS-DOS.&lt;br&gt; ניתן ליצור אך ורק 4 מחיצות &lt;em&gt;ראשיות&lt;/em&gt;, מתוכן, אחת יכולה להיות מוגדרת כמחיצה &lt;em&gt;מורחבת&lt;/em&gt;, ויכולה להכיל מחיצות &lt;em&gt;לוגיות&lt;/em&gt;. </translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="147"/>
@@ -1563,7 +1563,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="299"/>
       <source>Setting up mount points.</source>
-      <translation>כעת בהגדרת נקודות העיגון.</translation>
+      <translation>נקודות העיגון מוגדרות.</translation>
     </message>
   </context>
   <context>
@@ -1571,7 +1571,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/FinishedPage.ui" line="102"/>
       <source>&amp;Restart now</source>
-      <translation>ה&amp;פעלה מחדש כעת</translation>
+      <translation>לה&amp;פעיל מחדש כעת</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="75"/>
@@ -1586,7 +1586,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="87"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
-      <translation>&lt;h1&gt;תהליך ההתקנה הסתיים.&lt;/h1&gt;&lt;br/&gt;%1 הותקן על המחשב שלך.&lt;br/&gt; כעת ניתן לאתחל את המחשב אל תוך המערכת החדשה שהותקנה, או להמשיך להשתמש בסביבה הנוכחית של %2.  </translation>
+      <translation>&lt;h1&gt;תהליך ההתקנה הסתיים.&lt;/h1&gt;&lt;br/&gt;המערכת %1 הותקנה על המחשב שלך.&lt;br/&gt; כעת ניתן לאתחל את המחשב אל תוך המערכת החדשה שהותקנה, או להמשיך להשתמש בסביבה הניסיונית של %2.  </translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="92"/>
@@ -1641,7 +1641,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="63"/>
       <source>Formatting partition %1 with file system %2.</source>
-      <translation>כעת בפרמוט המחיצה %1 עם מערכת הקבצים %2.</translation>
+      <translation>המחיצה %1 עוברת פרמוט למערכת הקבצים %2 כעת.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="73"/>
@@ -1875,12 +1875,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="23"/>
       <source>System locale setting</source>
-      <translation>הגדרות מיקום המערכת</translation>
+      <translation>הגדרות מקום המערכת</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="30"/>
       <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>הגדרת מיקום המערכת משפיעה על השפה וקידוד התווים של חלק מרכיבי ממשקי שורת פקודה למשתמש. &lt;br/&gt; ההגדרה הנוכחית היא &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+      <translation>הגדרת מקום המערכת משפיעה על השפה וקידוד התווים של חלק מרכיבי ממשקי שורת פקודה למשתמש. &lt;br/&gt; ההגדרה הנוכחית היא &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="54"/>
@@ -1973,13 +1973,13 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="109"/>
       <source>&lt;strong&gt;%1 driver&lt;/strong&gt;&lt;br/&gt;by %2</source>
       <extracomment>%1 is an untranslatable product name, example: Creative Audigy driver</extracomment>
-      <translation>&lt;strong&gt;התקן %1&lt;/strong&gt;&lt;br/&gt; מאת %2</translation>
+      <translation>&lt;strong&gt;מנהל התקן %1&lt;/strong&gt;&lt;br/&gt; מאת %2</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="116"/>
       <source>&lt;strong&gt;%1 graphics driver&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
       <extracomment>%1 is usually a vendor name, example: Nvidia graphics driver</extracomment>
-      <translation>&lt;strong&gt;התקן תצוגה %1&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt; מאת %2&lt;/font&gt;</translation>
+      <translation>&lt;strong&gt;מנהל התקן תצוגה %1&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt; מאת %2&lt;/font&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="122"/>
@@ -1989,12 +1989,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="128"/>
       <source>&lt;strong&gt;%1 codec&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
-      <translation>&lt;strong&gt;קידוד %1&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt; מאת %2&lt;/font&gt;</translation>
+      <translation>&lt;strong&gt;מפענח %1&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt; מאת %2&lt;/font&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="134"/>
       <source>&lt;strong&gt;%1 package&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
-      <translation>&lt;strong&gt;חבילה %1&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt; מאת %2&lt;/font&gt;</translation>
+      <translation>&lt;strong&gt;חבילת %1&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt; מאת %2&lt;/font&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="140"/>
@@ -2032,7 +2032,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/locale/LocalePage.cpp" line="131"/>
       <source>Zone:</source>
-      <translation>מיקום:</translation>
+      <translation>אזור:</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LocalePage.cpp" line="132"/>
@@ -2046,7 +2046,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/localeq/LocaleQmlViewStep.cpp" line="32"/>
       <source>Location</source>
-      <translation>מיקום</translation>
+      <translation>מקום</translation>
     </message>
   </context>
   <context>
@@ -2062,7 +2062,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/locale/LocaleViewStep.cpp" line="71"/>
       <source>Location</source>
-      <translation>מיקום</translation>
+      <translation>מקום</translation>
     </message>
   </context>
   <context>
@@ -2125,7 +2125,7 @@ The installer will quit and all changes will be lost.</source>
       <source>Please select your preferred location on the map so the installer can suggest the locale
             and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
             to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</source>
-      <translation>נא לבחור את המיקום המועדף עליך במפה כדי שאשף ההתקנה יוכל להציע הגדרות מקומיות
+      <translation>נא לבחור את המקום המועדף עליך במפה כדי שאשף ההתקנה יוכל להציע הגדרות מקומיות
              ואזור זמן עבורך. ניתן להתאים את ההגדרות המוצעות למטה. ניתן לחפש במפה על ידי משיכה להזזתה ובכפתורים +/- כדי להתקרב/להתרחק
             או להשתמש בגלילת העכבר לטובת שליטה בתקריב.</translation>
     </message>
@@ -2306,7 +2306,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="240"/>
       <source>You can fine-tune Language and Locale settings below.</source>
-      <translation>ניתן לכוון את הגדרות השפה והמיקום להלן.</translation>
+      <translation>ניתן לכוון את הגדרות השפה והמקום להלן.</translation>
     </message>
   </context>
   <context>
@@ -2734,7 +2734,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="465"/>
       <source>Log in automatically without asking for the password.</source>
-      <translation>כניסה אוטומטית מבלי להישאל על הסיסמה.</translation>
+      <translation>להיכנס אוטומטית מבלי להידרש למלא סיסמה.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="472"/>
@@ -3117,7 +3117,7 @@ Output:
     <message>
       <location filename="../src/libcalamares/utils/System.cpp" line="320"/>
       <source>Bad parameters for process job call.</source>
-      <translation>פרמטרים לא תקינים עבור קריאת עיבוד פעולה.</translation>
+      <translation>משתנים שגויים בקריאה למשימת תהליך.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/System.cpp" line="324"/>
@@ -3427,7 +3427,7 @@ Output:
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="48"/>
       <source>Setting hostname %1.</source>
-      <translation>כעת בהגדרת שם המארח %1.</translation>
+      <translation>שם המארח %1 מוגדר כעת.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="121"/>
@@ -3447,29 +3447,29 @@ Output:
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="66"/>
       <source>Set keyboard model to %1, layout to %2-%3</source>
-      <translation>הגדר דגם מקלדת ל %1, פריסת לוח מקשים ל %2-%3</translation>
+      <translation>הגדר דגם מקלדת ל־%1, פריסת לוח מקשים ל־%2-%3</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="366"/>
       <source>Failed to write keyboard configuration for the virtual console.</source>
-      <translation>נכשלה כתיבת הגדרת מקלדת למסוף הוירטואלי.</translation>
+      <translation>כתיבת הגדרות המקלדת למסוף הווירטואלי נכשלה.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="367"/>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="393"/>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="410"/>
       <source>Failed to write to %1</source>
-      <translation>נכשלה כתיבה ל %1</translation>
+      <translation>הכתיבה אל %1 נכשלה</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="392"/>
       <source>Failed to write keyboard configuration for X11.</source>
-      <translation>נכשלה כתיבת הגדרת מקלדת עבור X11.</translation>
+      <translation>כתיבת הגדרת מקלדת עבור X11 נכשלה.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="409"/>
       <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
-      <translation>נכשלה כתיבת הגדרת מקלדת לתיקיה קיימת /etc/default.</translation>
+      <translation>כתיבת הגדרת מקלדת לתיקיה קיימת ‎/etc/default נכשלה.</translation>
     </message>
   </context>
   <context>
@@ -3477,7 +3477,7 @@ Output:
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="44"/>
       <source>Set flags on partition %1.</source>
-      <translation>הגדר סימונים על מחיצה %1.</translation>
+      <translation>הגדרת סימונים על המחיצה %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="50"/>
@@ -3502,12 +3502,12 @@ Output:
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="75"/>
       <source>Clear flags on new partition.</source>
-      <translation>מחק סימונים על המחיצה החדשה.</translation>
+      <translation>מחיקת סימונים מהמחיצה החדשה.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="80"/>
       <source>Flag partition &lt;strong&gt;%1&lt;/strong&gt; as &lt;strong&gt;%2&lt;/strong&gt;.</source>
-      <translation>סמן מחיצה &lt;strong&gt;%1&lt;/strong&gt; כ &lt;strong&gt;%2&lt;/strong&gt;.</translation>
+      <translation>סימון המחיצה &lt;strong&gt;%1&lt;/strong&gt; בתור &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="89"/>
@@ -3522,7 +3522,7 @@ Output:
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="107"/>
       <source>Clearing flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>מוחק סימונים על מחיצה &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+      <translation>הסימונים נמחקים מהמחיצה &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="113"/>
@@ -3532,12 +3532,12 @@ Output:
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="118"/>
       <source>Clearing flags on new partition.</source>
-      <translation>מוחק סימונים על מחיצה חדשה.</translation>
+      <translation>סימונים נמחקים מהמחיצה החדשה.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="123"/>
       <source>Setting flags &lt;strong&gt;%2&lt;/strong&gt; on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>מגדיר סימונים &lt;strong&gt;%2&lt;/strong&gt; על מחיצה &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+      <translation>הסימונים &lt;strong&gt;%2&lt;/strong&gt; מוגדרים על המחיצה &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="132"/>
@@ -3547,7 +3547,7 @@ Output:
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="139"/>
       <source>Setting flags &lt;strong&gt;%1&lt;/strong&gt; on new partition.</source>
-      <translation>מגדיר סימונים &lt;strong&gt;%1&lt;/strong&gt; על מחיצה חדשה.</translation>
+      <translation>הסימונים &lt;strong&gt;%1&lt;/strong&gt; מוגדרים על מחיצה חדשה.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="152"/>
@@ -3560,17 +3560,17 @@ Output:
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="38"/>
       <source>Set password for user %1</source>
-      <translation>הגדר סיסמה עבור משתמש %1</translation>
+      <translation>הגדרת סיסמת המשתמש %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="44"/>
       <source>Setting password for user %1.</source>
-      <translation>כעת בהגדרת הסיסמה למשתמש %1.</translation>
+      <translation>הסיסמה למשתמש %1 מוגדרת כעת.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="77"/>
       <source>Bad destination system path.</source>
-      <translation>יעד נתיב המערכת לא תקין.</translation>
+      <translation>נתיב מערכת היעד שגוי.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="78"/>
@@ -3580,12 +3580,12 @@ Output:
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="84"/>
       <source>Cannot disable root account.</source>
-      <translation>לא ניתן לנטרל את חשבון המנהל root.</translation>
+      <translation>לא ניתן להשבית את חשבון המנהל root.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="93"/>
       <source>Cannot set password for user %1.</source>
-      <translation>לא ניתן להגדיר סיסמה עבור משתמש %1.</translation>
+      <translation>לא ניתן להגדיר למשתמש %1 סיסמה.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="85"/>
@@ -3599,7 +3599,7 @@ Output:
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="32"/>
       <source>Set timezone to %1/%2</source>
-      <translation>הגדרת אזור זמן ל %1/%2</translation>
+      <translation>הגדרת אזור הזמן שיהיה %1/%2</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="59"/>
@@ -3619,7 +3619,7 @@ Output:
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="69"/>
       <source>Link creation failed, target: %1; link name: %2</source>
-      <translation>נכשלה יצירת קיצור דרך, מיקום: %1; שם קיצור הדרך: %2</translation>
+      <translation>יצירת קיצור דרך נכשלה, מקום: %1; שם קיצור הדרך: %2</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="74"/>
@@ -3629,7 +3629,7 @@ Output:
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="75"/>
       <source>Cannot open /etc/timezone for writing</source>
-      <translation>לא ניתן לפתוח את /etc/timezone לכתיבה</translation>
+      <translation>לא ניתן לפתוח את ‎/etc/timezone לכתיבה</translation>
     </message>
   </context>
   <context>
@@ -3661,12 +3661,12 @@ Output:
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="70"/>
       <source>Cannot chmod sudoers file.</source>
-      <translation>לא ניתן לשנות את מאפייני קובץ מנהלי המערכת.</translation>
+      <translation>לא ניתן לשנות את מאפייני קובץ מנהלי המערכת (sudoers).</translation>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="75"/>
       <source>Cannot create sudoers file for writing.</source>
-      <translation>לא ניתן ליצור את קובץ מנהלי המערכת לכתיבה.</translation>
+      <translation>לא ניתן ליצור את קובץ מנהלי המערכת (sudoers) לכתיבה.</translation>
     </message>
   </context>
   <context>
@@ -3719,12 +3719,12 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="100"/>
       <source>Installation feedback</source>
-      <translation>משוב בנושא ההתקנה</translation>
+      <translation>משוב על ההתקנה</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="106"/>
       <source>Sending installation feedback.</source>
-      <translation>שולח משוב בנושא ההתקנה.</translation>
+      <translation>שליחת משוב על ההתקנה.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="124"/>
@@ -3734,7 +3734,7 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="125"/>
       <source>HTTP request timed out.</source>
-      <translation>בקשת HTTP חרגה מזמן ההמתנה המקסימאלי.</translation>
+      <translation>בקשת HTTP חרגה מזמן ההמתנה המרבי.</translation>
     </message>
   </context>
   <context>
@@ -3771,28 +3771,28 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="135"/>
       <source>Machine feedback</source>
-      <translation>משוב בנושא עמדת המחשב</translation>
+      <translation>משוב על עמדת המחשב</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="141"/>
       <source>Configuring machine feedback.</source>
-      <translation>מגדיר משוב בנושא עמדת המחשב.</translation>
+      <translation>הגדרת משוב על עמדת המחשב.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="164"/>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="173"/>
       <source>Error in machine feedback configuration.</source>
-      <translation>שגיאה בעת הגדרת המשוב בנושא עמדת המחשב.</translation>
+      <translation>שגיאה בהגדרת המשוב על עמדת המחשב.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="166"/>
       <source>Could not configure machine feedback correctly, script error %1.</source>
-      <translation>לא ניתן להגדיר את המשוב בנושא עמדת המחשב באופן תקין. שגיאת הרצה %1.</translation>
+      <translation>לא ניתן להגדיר את המשוב על עמדת המחשב כראוי, שגיאת הרצה %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="175"/>
       <source>Could not configure machine feedback correctly, Calamares error %1.</source>
-      <translation>לא ניתן להגדיר את המשוב בנושא עמדת המחשב באופן תקין. שגיאת Calamares %1.</translation>
+      <translation>לא ניתן להגדיר את המשוב על עמדת המחשב כראוי. שגיאת Calamares‏ %1.</translation>
     </message>
   </context>
   <context>

@@ -11,12 +11,12 @@
     <message>
       <location filename="../src/libcalamares/CalamaresAbout.cpp" line="20"/>
       <source>Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://app.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Hvala &lt;a href="https://calamares.io/team/"&gt;Calamares timu&lt;/a&gt; i &lt;a href="https://app.transifex.com/calamares/calamares/"&gt;Calamares timu za prevođenje&lt;/a&gt;.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/CalamaresAbout.cpp" line="25"/>
       <source>&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-      <translation type="unfinished"/>
+      <translation>Razvoj &lt;a href="https://calamares.io/"&gt;Calamaresa&lt;/a&gt;sponzorira &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt;- Liberating Software.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/CalamaresAbout.cpp" line="40"/>
@@ -2647,7 +2647,7 @@ te korištenjem tipki +/- ili skrolanjem miša za zumiranje.</translation>
     <message>
       <location filename="../src/modules/keyboard/KeyboardPage.ui" line="153"/>
       <source>Keyboard Switch:</source>
-      <translation type="unfinished"/>
+      <translation>Prekidač tipkovnice:</translation>
     </message>
   </context>
   <context>
