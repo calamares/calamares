@@ -3,10 +3,6 @@
 # Install dependencies for the nightly-fedora-qt6 build
 #
 
-# Add the KF6 repo
-dnf install -y 'dnf-command(copr)'
-dnf copr enable -y @kdesig/kde-nightly-qt6
-
 yum install -y bison flex git make cmake gcc-c++ ninja-build
 yum install -y yaml-cpp-devel libpwquality-devel parted-devel python-devel gettext gettext-devel
 yum install -y libicu-devel libatasmart-devel
