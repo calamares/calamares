@@ -19,6 +19,7 @@ This release contains contributions from (alphabetically by first name):
  - Evan James
  - Gaël PORTAY
  - Jeremy Whiting
+ - Neal Gompa
 
 ## Core ##
  - Boost::Python is no longer a dependency, Calamares uses a bundled copy
@@ -33,9 +34,13 @@ This release contains contributions from (alphabetically by first name):
    ka (Georgian). In **non-release** builds (e.g. between releases,
    so for developers building directly from git) all translations are
    enabled, even the ones with no translations at all.
+ - The logging format in the `session.log` file and on-screen is now
+   more similar, although the file contains a lot more per-line information.
 
 ## Modules ##
  - All QML modules now have a Qt6-compatible set of QML files as well. (thanks Anke)
+ - *packagechooser* supports AppStream 1.0 API.
+ - *unpackfs* now uses the `-S` option to rsync for sparse file support. (thanks Jeremy)
 
 
 # 3.3.0-alpha4 (2023-10-13)
