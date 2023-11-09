@@ -552,20 +552,16 @@ PartitionViewStep::onLeave()
             const QString wrongFlagMessage = tr( "The filesystem must have flag <strong>%1</strong> set." )
                                                  .arg( PartitionTable::flagName( PartitionTable::Flag::Boot ) );
 
+            const auto recommendedMiB = Calamares::BytesToMiB( PartUtils::efiFilesystemRecommendedSize() );
+            const auto minimumMiB = Calamares::BytesToMiB( PartUtils::efiFilesystemMinimumSize() );
+
             // Three flavors of size-is-wrong
-            using Calamares::Units::operator""_MiB;
-
-            const qint64 atLeastBytes = static_cast< qint64 >( PartUtils::efiFilesystemRecommendedSize() );
-            const auto atLeastMiB = Calamares::BytesToMiB( atLeastBytes );
-
             const QString requireConfiguredSize
-                = tr( "The filesystem must be at least %1 MiB in size." ).arg( atLeastMiB );
+                = tr( "The filesystem must be at least %1 MiB in size." ).arg( recommendedMiB );
             const QString requiredMinimumSize
-                = tr( "The filesystem must be at least %1 MiB in size." )
-                      .arg( Calamares::BytesToMiB( PartUtils::efiFilesystemMinimumSize() ) );
+                = tr( "The filesystem must be at least %1 MiB in size." ).arg( minimumMiB );
             const QString suggestConfiguredSize
-                = tr( "The minimum recommended size for the filesystem is %1 MiB." ).arg( atLeastMiB );
-
+                = tr( "The minimum recommended size for the filesystem is %1 MiB." ).arg( recommendedMiB );
 
             const QString mayFail = tr( "You can continue without setting up an EFI system "
                                         "partition but your system may fail to start." );
