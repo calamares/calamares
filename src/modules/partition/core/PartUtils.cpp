@@ -530,10 +530,16 @@ isEfiBootable( const Partition* candidate )
     return flags.testFlag( KPM_PARTITION_FLAG_ESP );
 }
 
+QString
+efiFilesystemRecommendedSizeGSKey()
+{
+    return QStringLiteral( "efiSystemPartitionSize_i" );
+}
+
 qint64
 efiFilesystemRecommendedSize()
 {
-    const QString key = QStringLiteral( "efiSystemPartitionSize_i" );
+    const QString key = efiFilesystemRecommendedSizeGSKey();
 
     qint64 uefisys_part_sizeB = 300_MiB;
 
@@ -553,10 +559,16 @@ efiFilesystemRecommendedSize()
     return uefisys_part_sizeB;
 }
 
+QString
+efiFilesystemMinimumSizeGSKey()
+{
+    return QStringLiteral( "efiSystemPartitionMinimumSize_i" );
+}
+
 qint64
 efiFilesystemMinimumSize()
 {
-    const QString key = QStringLiteral( "efiSystemPartitionMinimumSize_i" );
+    const QString key = efiFilesystemMinimumSizeGSKey();
 
     qint64 uefisys_part_sizeB = efiFilesystemRecommendedSize();
 
