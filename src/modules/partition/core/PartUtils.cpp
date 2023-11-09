@@ -35,6 +35,10 @@
 using Calamares::Partition::isPartitionFreeSpace;
 using Calamares::Partition::isPartitionNew;
 
+using Calamares::Units::operator""_MiB;
+
+static constexpr qint64 efiSpecificationHardMinimumSize = 32_MiB;
+
 namespace PartUtils
 {
 
@@ -500,6 +504,10 @@ isEfiFilesystemMinimumSize( const Partition* candidate )
     {
         return false;
     }
+    if ( size < efiSpecificationHardMinimumSize )
+    {
+        return false;
+    }
 
     if ( size >= efiFilesystemMinimumSize() )
     {
@@ -522,21 +530,19 @@ isEfiBootable( const Partition* candidate )
     return flags.testFlag( KPM_PARTITION_FLAG_ESP );
 }
 
-using Calamares::Units::operator""_MiB;
-
-static constexpr qint64 efiSpecificationHardMinimumSize = 32_MiB;
-
 qint64
 efiFilesystemRecommendedSize()
 {
+    const QString key = QStringLiteral( "efiSystemPartitionSize_i" );
+
     qint64 uefisys_part_sizeB = 300_MiB;
 
     // The default can be overridden; the key used here comes
     // from the partition module Config.cpp
     auto* gs = Calamares::JobQueue::instance()->globalStorage();
-    if ( gs->contains( "efiSystemPartitionSize_i" ) )
+    if ( gs->contains( key ) )
     {
-        qint64 v = gs->value( "efiSystemPartitionSize_i" ).toLongLong();
+        qint64 v = gs->value( key ).toLongLong();
         uefisys_part_sizeB = v > 0 ? v : 0;
     }
     // There is a lower limit of what can be configured
@@ -550,6 +556,24 @@ efiFilesystemRecommendedSize()
 qint64
 efiFilesystemMinimumSize()
 {
+    const QString key = QStringLiteral( "efiSystemPartitionMinimumSize_i" );
+
+    qint64 uefisys_part_sizeB = efiFilesystemRecommendedSize();
+
+    // The default can be overridden; the key used here comes
+    // from the partition module Config.cpp
+    auto* gs = Calamares::JobQueue::instance()->globalStorage();
+    if ( gs->contains( key ) )
+    {
+        qint64 v = gs->value( key ).toLongLong();
+        uefisys_part_sizeB = v > 0 ? v : 0;
+    }
+    // There is a lower limit of what can be configured
+    if ( uefisys_part_sizeB < efiSpecificationHardMinimumSize )
+    {
+        uefisys_part_sizeB = efiSpecificationHardMinimumSize;
+    }
+    return uefisys_part_sizeB;
     return efiSpecificationHardMinimumSize;
 }
 
