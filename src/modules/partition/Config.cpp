@@ -274,38 +274,66 @@ fillGSConfigurationEFI( Calamares::GlobalStorage* gs, const QVariantMap& configu
     QString firmwareType( PartUtils::isEfiSystem() ? QStringLiteral( "efi" ) : QStringLiteral( "bios" ) );
     gs->insert( "firmwareType", firmwareType );
 
-    gs->insert( "efiSystemPartition",
-                Calamares::getString( configurationMap, "efiSystemPartition", QStringLiteral( "/boot/efi" ) ) );
+    bool ok = false;
+    auto efiConfiguration = Calamares::getSubMap( configurationMap, "efi", ok );
 
-    // Read and parse key efiSystemPartitionSize
-    if ( configurationMap.contains( "efiSystemPartitionSize" ) )
+    // Mount Point
     {
-        const QString sizeString = Calamares::getString( configurationMap, "efiSystemPartitionSize" );
-        Calamares::Partition::PartitionSize part_size = Calamares::Partition::PartitionSize( sizeString );
-        if ( part_size.isValid() )
-        {
-            // Insert once as string, once as a size-in-bytes;
-            // changes to these keys should be synchronized with PartUtils.cpp
-            gs->insert( PartUtils::efiFilesystemRecommendedSizeGSKey(), part_size.toBytes() );
+        const auto efiSystemPartition = Calamares::getString(
+            efiConfiguration,
+            "mountPoint",
+            Calamares::getString( configurationMap, "efiSystemPartition", QStringLiteral( "/boot/efi" ) ) );
+        // This specific GS key is also used by bootloader and grubcfg modules,
+        // as well as partition module internalls.
+        gs->insert( "efiSystemPartition", efiSystemPartition );
+    }
 
-            // Assign long long int to long unsigned int to prevent compilation warning
-            auto byte_part_size = part_size.toBytes();
-            if ( byte_part_size != PartUtils::efiFilesystemRecommendedSize() )
+    // Sizes
+    {
+        const auto efiRecommendedSize = Calamares::getString(
+            efiConfiguration, "recommendedSize", Calamares::getString( configurationMap, "efiSystemPartitionSize" ) );
+        if ( !efiRecommendedSize.isEmpty() )
+        {
+            Calamares::Partition::PartitionSize part_size = Calamares::Partition::PartitionSize( efiRecommendedSize );
+            if ( part_size.isValid() )
             {
-                cWarning() << "EFI partition size" << sizeString << "has been adjusted to"
-                           << PartUtils::efiFilesystemRecommendedSize() << "bytes";
+                gs->insert( PartUtils::efiFilesystemRecommendedSizeGSKey(), part_size.toBytes() );
+
+                // Assign long long int to long unsigned int to prevent compilation warning,
+                // checks for loss-of-precision in the conversion.
+                auto byte_part_size = part_size.toBytes();
+                if ( byte_part_size != PartUtils::efiFilesystemRecommendedSize() )
+                {
+                    cWarning() << "EFI partition size" << efiRecommendedSize << "has been adjusted to"
+                               << PartUtils::efiFilesystemRecommendedSize() << "bytes";
+                }
+            }
+            else
+            {
+                cWarning() << "EFI partition size" << efiRecommendedSize << "is invalid, ignored";
             }
         }
-        else
+
+        const auto efiMinimumSize = Calamares::getString( efiConfiguration, "minimumSize" );
+        if ( !efiMinimumSize.isEmpty() )
         {
-            cWarning() << "EFI partition size" << sizeString << "is invalid, ignored";
+            Calamares::Partition::PartitionSize part_size = Calamares::Partition::PartitionSize( efiRecommendedSize );
+            if ( part_size.isValid() )
+            {
+                gs->insert( PartUtils::efiFilesystemMinimumSizeGSKey(), part_size.toBytes() );
+            }
         }
     }
 
-    // Read and parse key efiSystemPartitionName
-    if ( configurationMap.contains( "efiSystemPartitionName" ) )
+    // Name (label) of partition
     {
-        gs->insert( "efiSystemPartitionName", Calamares::getString( configurationMap, "efiSystemPartitionName" ) );
+        const auto efiLabel = Calamares::getString(
+            efiConfiguration, "label", Calamares::getString( configurationMap, "efiSystemPartitionName" ) );
+
+        if ( !efiLabel.isEmpty() )
+        {
+            gs->insert( "efiSystemPartitionName", efiLabel );
+        }
     }
 }
 
