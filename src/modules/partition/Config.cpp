@@ -286,8 +286,7 @@ fillGSConfigurationEFI( Calamares::GlobalStorage* gs, const QVariantMap& configu
         {
             // Insert once as string, once as a size-in-bytes;
             // changes to these keys should be synchronized with PartUtils.cpp
-            gs->insert( "efiSystemPartitionSize", sizeString );
-            gs->insert( "efiSystemPartitionSize_i", part_size.toBytes() );
+            gs->insert( PartUtils::efiFilesystemRecommendedSizeGSKey(), part_size.toBytes() );
 
             // Assign long long int to long unsigned int to prevent compilation warning
             auto byte_part_size = part_size.toBytes();
