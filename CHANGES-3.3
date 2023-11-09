@@ -36,6 +36,11 @@ This release contains contributions from (alphabetically by first name):
    enabled, even the ones with no translations at all.
  - The logging format in the `session.log` file and on-screen is now
    more similar, although the file contains a lot more per-line information.
+ - The INSTALL_CONFIG option has been restored. It is still a terrible
+   idea to fork the repository to modify the config files, and you
+   probably should have a calamares-config package with those files
+   instead, there are packaging workflows that can usefully patch-and-
+   install configuration files. The option defaults to OFF.
 
 ## Modules ##
  - All QML modules now have a Qt6-compatible set of QML files as well. (thanks Anke)
