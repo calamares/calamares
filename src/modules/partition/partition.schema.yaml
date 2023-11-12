@@ -7,9 +7,18 @@ $id: https://calamares.io/schemas/partition
 additionalProperties: false
 type: object
 properties:
-    efiSystemPartition: { type: string }  # Mount point
-    efiSystemPartitionSize: { type: string }
-    efiSystemPartitionName: { type: string }
+    efiSystemPartition: { type: string }  # Deprecated alias of efi.mountPoint
+    efiSystemPartitionSize: { type: string } # Deprecated alias of efi.recommendedSize
+    efiSystemPartitionName: { type: string } # Deprecated alias of efi.label
+
+    efi:
+        type: object
+        properties:
+            recommendedSize: { type: string }
+            minimumSize: { type: string }
+            label: { type: string }
+            mountPoint: { type: string }
+        additionalProperties: false
 
     userSwapChoices: { type: array, items: { type: string, enum: [ none, reuse, small, suspend, file ] } }
     # ensureSuspendToDisk: { type: boolean, default: true }  # Legacy
@@ -34,5 +43,4 @@ properties:
 
     requiredStorage: { type: number }
 required:
-    - efiSystemPartition
     - userSwapChoices

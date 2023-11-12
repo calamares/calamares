@@ -35,6 +35,10 @@
 using Calamares::Partition::isPartitionFreeSpace;
 using Calamares::Partition::isPartitionNew;
 
+using Calamares::Units::operator""_MiB;
+
+static constexpr qint64 efiSpecificationHardMinimumSize = 32_MiB;
+
 namespace PartUtils
 {
 
@@ -471,7 +475,7 @@ isEfiFilesystemSuitableType( const Partition* candidate )
 }
 
 bool
-isEfiFilesystemSuitableSize( const Partition* candidate )
+isEfiFilesystemRecommendedSize( const Partition* candidate )
 {
     auto size = candidate->capacity();  // bytes
     if ( size <= 0 )
@@ -479,7 +483,7 @@ isEfiFilesystemSuitableSize( const Partition* candidate )
         return false;
     }
 
-    if ( size >= efiFilesystemMinimumSize() )
+    if ( size >= efiFilesystemRecommendedSize() )
     {
         return true;
     }
@@ -491,7 +495,7 @@ isEfiFilesystemSuitableSize( const Partition* candidate )
 }
 
 bool
-isEfiFilesystemSuitableMinimumSize( const Partition* candidate )
+isEfiFilesystemMinimumSize( const Partition* candidate )
 {
     using Calamares::Units::operator""_MiB;
 
@@ -500,8 +504,12 @@ isEfiFilesystemSuitableMinimumSize( const Partition* candidate )
     {
         return false;
     }
+    if ( size < efiSpecificationHardMinimumSize )
+    {
+        return false;
+    }
 
-    if ( size >= 32_MiB )
+    if ( size >= efiFilesystemMinimumSize() )
     {
         return true;
     }
@@ -522,28 +530,63 @@ isEfiBootable( const Partition* candidate )
     return flags.testFlag( KPM_PARTITION_FLAG_ESP );
 }
 
-// TODO: this is configurable via the config file **already**
-qint64
-efiFilesystemMinimumSize()
+QString
+efiFilesystemRecommendedSizeGSKey()
 {
-    using Calamares::Units::operator""_MiB;
+    return QStringLiteral( "efiSystemPartitionSize_i" );
+}
+
+qint64
+efiFilesystemRecommendedSize()
+{
+    const QString key = efiFilesystemRecommendedSizeGSKey();
 
     qint64 uefisys_part_sizeB = 300_MiB;
 
     // The default can be overridden; the key used here comes
     // from the partition module Config.cpp
     auto* gs = Calamares::JobQueue::instance()->globalStorage();
-    if ( gs->contains( "efiSystemPartitionSize_i" ) )
+    if ( gs->contains( key ) )
     {
-        qint64 v = gs->value( "efiSystemPartitionSize_i" ).toLongLong();
+        qint64 v = gs->value( key ).toLongLong();
         uefisys_part_sizeB = v > 0 ? v : 0;
     }
     // There is a lower limit of what can be configured
-    if ( uefisys_part_sizeB < 32_MiB )
+    if ( uefisys_part_sizeB < efiSpecificationHardMinimumSize )
     {
-        uefisys_part_sizeB = 32_MiB;
+        uefisys_part_sizeB = efiSpecificationHardMinimumSize;
     }
     return uefisys_part_sizeB;
+}
+
+QString
+efiFilesystemMinimumSizeGSKey()
+{
+    return QStringLiteral( "efiSystemPartitionMinimumSize_i" );
+}
+
+qint64
+efiFilesystemMinimumSize()
+{
+    const QString key = efiFilesystemMinimumSizeGSKey();
+
+    qint64 uefisys_part_sizeB = efiFilesystemRecommendedSize();
+
+    // The default can be overridden; the key used here comes
+    // from the partition module Config.cpp
+    auto* gs = Calamares::JobQueue::instance()->globalStorage();
+    if ( gs->contains( key ) )
+    {
+        qint64 v = gs->value( key ).toLongLong();
+        uefisys_part_sizeB = v > 0 ? v : 0;
+    }
+    // There is a lower limit of what can be configured
+    if ( uefisys_part_sizeB < efiSpecificationHardMinimumSize )
+    {
+        uefisys_part_sizeB = efiSpecificationHardMinimumSize;
+    }
+    return uefisys_part_sizeB;
+    return efiSpecificationHardMinimumSize;
 }
 
 QString

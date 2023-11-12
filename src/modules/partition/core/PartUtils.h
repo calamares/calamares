@@ -95,15 +95,15 @@ bool isEfiFilesystemSuitableType( const Partition* candidate );
 
 /**
  * @brief Is the @p partition suitable as an EFI boot partition?
- * Checks for filesystem size (300MiB, see efiFilesystemMinimumSize).
+ * Checks for filesystem size (300MiB, see efi.recommendedSize).
  */
-bool isEfiFilesystemSuitableSize( const Partition* candidate );
+bool isEfiFilesystemRecommendedSize( const Partition* candidate );
 
 /**
  * @brief Is the @p candidate suitable as an EFI boot partition?
- * This checks the bonkers-small minimum of 32MiB.
+ * Checks for filesystem size (32MiB at least, see efi.minimumSize).
  */
-bool isEfiFilesystemSuitableMinimumSize( const Partition* candidate );
+bool isEfiFilesystemMinimumSize( const Partition* candidate );
 
 /** @brief Returns the minimum size of an EFI boot partition in bytes.
  *
@@ -113,12 +113,24 @@ bool isEfiFilesystemSuitableMinimumSize( const Partition* candidate );
  * by the standard and how all of those are different).
  *
  * This can be configured through the `partition.conf` file,
- * key *efiSystemPartitionSize*, which will then apply to both
+ * key *efi.recommendedSize*, which will then apply to both
  * automatic partitioning **and** the warning for manual partitioning.
  *
  * A minimum of 32MiB (which is bonkers-small) is enforced.
  */
+qint64 efiFilesystemRecommendedSize();
+
+// Helper for consistency: the GS key used to share the recommended size
+QString efiFilesystemRecommendedSizeGSKey();
+
+/** @brief Returns the hard-minimum size of an EFI boot partition in bytes.
+ *
+ * This is 32MiB, based on the FAT32 standard and EFI documentation.
+ */
 qint64 efiFilesystemMinimumSize();
+
+// Helper for consistency: the GS key used to share the minimum size
+QString efiFilesystemMinimumSizeGSKey();
 
 /**
  * @brief Is the given @p partition bootable in EFI? Depending on

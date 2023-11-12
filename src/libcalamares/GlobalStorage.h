@@ -70,6 +70,9 @@ public:
      */
     int remove( const QString& key );
 
+    /// @brief Clears all keys in this GS object
+    void clear();
+
     /** @brief dump keys and values to the debug log
      *
      * All the keys and their values are written to the debug log.

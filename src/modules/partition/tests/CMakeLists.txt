@@ -61,3 +61,16 @@ calamares_add_test(
     LIBRARIES calamares::kpmcore
     DEFINITIONS ${_partition_defs}
 )
+
+calamares_add_test(
+    partitionconfigtest
+    SOURCES
+        ConfigTests.cpp
+        ${PartitionModule_SOURCE_DIR}/core/DeviceModel.cpp
+        ${PartitionModule_SOURCE_DIR}/core/PartitionInfo.cpp
+        ${PartitionModule_SOURCE_DIR}/core/PartUtils.cpp
+        ${PartitionModule_SOURCE_DIR}/Config.cpp
+    LIBRARIES calamares::kpmcore Calamares::calamaresui
+    DEFINITIONS
+        ${_partition_defs}
+)
