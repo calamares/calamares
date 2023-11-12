@@ -88,6 +88,13 @@ GlobalStorage::remove( const QString& key )
     return nItems;
 }
 
+void
+GlobalStorage::clear()
+{
+    WriteLock l( this );
+    m.clear();
+}
+
 QVariant
 GlobalStorage::value( const QString& key ) const
 {
