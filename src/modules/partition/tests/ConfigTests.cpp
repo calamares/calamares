@@ -33,6 +33,7 @@ private Q_SLOTS:
     void initTestCase();
     void testEmptyConfig();
     void testLegacySize();
+    void testAll();
 };
 
 ConfigTests::ConfigTests() = default;
@@ -84,7 +85,7 @@ ConfigTests::testLegacySize()
 {
     Config c( nullptr );
 
-    const auto* gs = Calamares::JobQueue::instanceGlobalStorage();
+    auto* gs = Calamares::JobQueue::instanceGlobalStorage();
     QVERIFY( gs );
 
 
@@ -112,6 +113,65 @@ ConfigTests::testLegacySize()
 
         QCOMPARE( PartUtils::efiFilesystemRecommendedSize(), 100000000 );  // From config, MB
         QCOMPARE( PartUtils::efiFilesystemMinimumSize(), 100000000 );  // Taken from config
+    }
+}
+
+void
+ConfigTests::testAll()
+{
+    Config c( nullptr );
+
+    auto* gs = Calamares::JobQueue::instanceGlobalStorage();
+    QVERIFY( gs );
+
+
+    // Legacy only
+    {
+        gs->clear();
+        const auto file = QStringLiteral( BUILD_AS_TEST "/2a-legacy.conf" );
+        bool ok = false;
+        c.setConfigurationMap( Calamares::YAML::load( file, &ok ) );
+
+        cDebug() << "Tried to load" << file << "success?" << ok;
+
+        QVERIFY( ok );
+
+        QVERIFY( gs->value( PartUtils::efiFilesystemRecommendedSizeGSKey() ).isValid() );  // Something was filled in
+        QCOMPARE( PartUtils::efiFilesystemRecommendedSize(), 75_MiB );  // From config
+        QCOMPARE( PartUtils::efiFilesystemMinimumSize(), 75_MiB );  // No separate setting
+
+        QCOMPARE( gs->value( "efiSystemPartition" ).toString(), QStringLiteral( "/boot/thisisatest" ) );
+        QCOMPARE( gs->value( "efiSystemPartitionName" ).toString(), QStringLiteral( "testLabel" ) );
+    }
+
+    // Modern only
+    {
+        gs->clear();
+        bool ok = false;
+        c.setConfigurationMap( Calamares::YAML::load( QStringLiteral( BUILD_AS_TEST "/2b-modern.conf" ), &ok ) );
+
+        QVERIFY( ok );
+
+        QCOMPARE( PartUtils::efiFilesystemRecommendedSize(), 80_MiB );  // From config
+        QCOMPARE( PartUtils::efiFilesystemMinimumSize(), 65_MiB );  // Taken from config
+
+        QCOMPARE( gs->value( "efiSystemPartition" ).toString(), QStringLiteral( "/boot/thisismodern" ) );
+        QCOMPARE( gs->value( "efiSystemPartitionName" ).toString(), QStringLiteral( "UEFI" ) );
+    }
+
+    // Mixed settings
+    {
+        gs->clear();
+        bool ok = false;
+        c.setConfigurationMap( Calamares::YAML::load( QStringLiteral( BUILD_AS_TEST "/2c-mixed.conf" ), &ok ) );
+
+        QVERIFY( ok );
+
+        QCOMPARE( PartUtils::efiFilesystemRecommendedSize(), 175_MiB );  // From config
+        QCOMPARE( PartUtils::efiFilesystemMinimumSize(), 80_MiB );  // Taken from config
+
+        QCOMPARE( gs->value( "efiSystemPartition" ).toString(), QStringLiteral( "/boot/thisismixed" ) );
+        QCOMPARE( gs->value( "efiSystemPartitionName" ).toString(), QStringLiteral( "legacy" ) );
     }
 }
 
