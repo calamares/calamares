@@ -152,6 +152,11 @@ ConfigTests::testAll()
 
         QVERIFY( ok );
 
+        QVERIFY( PartUtils::efiFilesystemRecommendedSizeGSKey() != PartUtils::efiFilesystemMinimumSizeGSKey() );
+        QCOMPARE( gs->value( PartUtils::efiFilesystemRecommendedSizeGSKey() ).toString(),
+                  QStringLiteral( "83886080" ) );
+        QCOMPARE( gs->value( PartUtils::efiFilesystemMinimumSizeGSKey() ).toString(), QStringLiteral( "68157440" ) );
+
         QCOMPARE( PartUtils::efiFilesystemRecommendedSize(), 80_MiB );  // From config
         QCOMPARE( PartUtils::efiFilesystemMinimumSize(), 65_MiB );  // Taken from config
 

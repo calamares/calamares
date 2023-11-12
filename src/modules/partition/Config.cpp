@@ -317,7 +317,7 @@ fillGSConfigurationEFI( Calamares::GlobalStorage* gs, const QVariantMap& configu
         const auto efiMinimumSize = Calamares::getString( efiConfiguration, "minimumSize" );
         if ( !efiMinimumSize.isEmpty() )
         {
-            Calamares::Partition::PartitionSize part_size = Calamares::Partition::PartitionSize( efiRecommendedSize );
+            Calamares::Partition::PartitionSize part_size = Calamares::Partition::PartitionSize( efiMinimumSize );
             if ( part_size.isValid() )
             {
                 gs->insert( PartUtils::efiFilesystemMinimumSizeGSKey(), part_size.toBytes() );
