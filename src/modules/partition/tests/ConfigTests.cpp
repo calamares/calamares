@@ -178,6 +178,21 @@ ConfigTests::testAll()
         QCOMPARE( gs->value( "efiSystemPartition" ).toString(), QStringLiteral( "/boot/thisismixed" ) );
         QCOMPARE( gs->value( "efiSystemPartitionName" ).toString(), QStringLiteral( "legacy" ) );
     }
+
+    // Mixed settings with overlap
+    {
+        gs->clear();
+        bool ok = false;
+        c.setConfigurationMap( Calamares::YAML::load( QStringLiteral( BUILD_AS_TEST "/2d-overlap.conf" ), &ok ) );
+
+        QVERIFY( ok );
+
+        QCOMPARE( PartUtils::efiFilesystemRecommendedSize(), 300_MiB );  // From modern config
+        QCOMPARE( PartUtils::efiFilesystemMinimumSize(), 100_MiB );  // Taken from modern config, legacy ignored
+
+        QCOMPARE( gs->value( "efiSystemPartition" ).toString(), QStringLiteral( "/boot/thisoverlaps" ) );
+        QCOMPARE( gs->value( "efiSystemPartitionName" ).toString(), QStringLiteral( "legacy" ) );
+    }
 }
 
 
