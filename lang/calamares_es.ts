@@ -16,7 +16,7 @@
     <message>
       <location filename="../src/libcalamares/CalamaresAbout.cpp" line="25"/>
       <source>&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-      <translation>El desarrollo de &lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; está patrocinado por&lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt; Blue Systems&lt;/a&gt; - Liberador de Software.</translation>
+      <translation>El desarrollo de &lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; está patrocinado por&lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt; Blue Systems&lt;/a&gt; - Liberando Software.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/CalamaresAbout.cpp" line="40"/>

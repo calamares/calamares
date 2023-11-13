@@ -11,18 +11,18 @@
     <message>
       <location filename="../src/libcalamares/CalamaresAbout.cpp" line="20"/>
       <source>Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://app.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Agradecimientos al&lt;a href="https://calamares.io/team/"&gt;equipo de Calamares&lt;/a&gt; y al &lt;a href="https://app.transifex.com/calamares/calamares/"&gt;equipo de traductores de Calamares&lt;/a&gt;.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/CalamaresAbout.cpp" line="25"/>
       <source>&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-      <translation type="unfinished"/>
+      <translation>El desarrollo de&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt;está patrocinado por &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/CalamaresAbout.cpp" line="40"/>
       <source>Copyright %1-%2 %3 &amp;lt;%4&amp;gt;&lt;br/&gt;</source>
       <extracomment>Copyright year-year Name &lt;email-address&gt;</extracomment>
-      <translation type="unfinished"/>
+      <translation>Copyright %1-%2 %3 &amp;lt;%4&amp;gt;&lt;br/&gt;</translation>
     </message>
   </context>
   <context>
@@ -214,7 +214,7 @@
     <message>
       <location filename="../src/libcalamares/ProcessJob.cpp" line="39"/>
       <source>Run command '%1' in target system.</source>
-      <translation type="unfinished"/>
+      <translation>Ejecutar comando '%1' en el sistema de destino.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/ProcessJob.cpp" line="39"/>
@@ -265,7 +265,7 @@
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="68"/>
       <source>Loading ...</source>
-      <translation type="unfinished"/>
+      <translation>Cargando ...</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="89"/>
@@ -275,7 +275,7 @@
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="266"/>
       <source>Loading failed.</source>
-      <translation type="unfinished"/>
+      <translation>Error al cargar</translation>
     </message>
   </context>
   <context>
@@ -306,7 +306,7 @@
     <message>
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="129"/>
       <source>System-requirements checking is complete.</source>
-      <translation>Chequeo de requerimientos del sistema completado.</translation>
+      <translation>Se ha completado el chequeo de requerimientos del sistema.</translation>
     </message>
   </context>
   <context>
@@ -319,7 +319,7 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="156"/>
       <source>Installation Failed</source>
-      <translation>Instalación Fallida</translation>
+      <translation>Falló la instalación</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="159"/>
@@ -793,7 +793,7 @@ El instalador terminará y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="410"/>
       <source>The system language will be set to %1.</source>
-      <translation>El lenguaje del sistema será establecido a %1.</translation>
+      <translation>El idioma del sistema será establecido a %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="417"/>
@@ -858,22 +858,22 @@ El instalador terminará y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="264"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Bienvenido al programa de instalación de Calamares para %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="265"/>
       <source>&lt;h1&gt;Welcome to %1 setup&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Bienvenido a la configuración inicial de %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="269"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Bienvenido al instalador Calamares para %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="270"/>
       <source>&lt;h1&gt;Welcome to the %1 installer&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Bienvenido al instalador de %1 &lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="235"/>
@@ -933,7 +933,7 @@ El instalador terminará y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="142"/>
       <source>Installation Failed</source>
-      <translation>Instalación Fallida</translation>
+      <translation>Falló la instalación</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="144"/>
@@ -1669,7 +1669,7 @@ El instalador terminará y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="175"/>
       <source>The system does not have enough working memory. At least %1 GiB is required.</source>
-      <translation type="unfinished"/>
+      <translation>El sistema no tiene suficiente memoria funcional. Se requiere al menos %1 GiB.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="184"/>
@@ -1709,7 +1709,7 @@ El instalador terminará y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="213"/>
       <source>has a screen large enough to show the whole installer</source>
-      <translation type="unfinished"/>
+      <translation>cuenta con una pantalla lo suficientemente grande para mostrar todo el instalador</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="217"/>
@@ -1744,7 +1744,7 @@ El instalador terminará y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="244"/>
       <source>is always true</source>
-      <translation type="unfinished"/>
+      <translation>siempre es verdad</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="245"/>
@@ -1833,7 +1833,7 @@ El instalador terminará y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="50"/>
       <source>Please install KDE Konsole and try again!</source>
-      <translation>Favor instale la Konsola KDE e intentelo de nuevo!</translation>
+      <translation>¡Por favor, instale KDE Konsole e intentelo de nuevo!</translation>
     </message>
     <message>
       <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="122"/>
@@ -2655,7 +2655,7 @@ El instalador terminará y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="55"/>
       <source>Your Full Name</source>
-      <translation type="unfinished"/>
+      <translation>Nombre completo</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="124"/>
@@ -2680,7 +2680,7 @@ El instalador terminará y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="250"/>
       <source>Computer Name</source>
-      <translation type="unfinished"/>
+      <translation>Nombre de la computadora</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="325"/>
@@ -4091,7 +4091,7 @@ Salida
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="36"/>
       <source>Installation Completed</source>
-      <translation type="unfinished"/>
+      <translation>Instalación terminada</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="43"/>
@@ -4121,7 +4121,7 @@ Salida
     <message>
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="36"/>
       <source>Installation Completed</source>
-      <translation type="unfinished"/>
+      <translation>Instalación terminada</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="43"/>
@@ -4209,7 +4209,7 @@ Salida
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="59"/>
       <source>LibreOffice</source>
-      <translation type="unfinished"/>
+      <translation>LibreOffice</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="108"/>
@@ -4229,7 +4229,7 @@ Salida
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="185"/>
       <source>Minimal Install</source>
-      <translation type="unfinished"/>
+      <translation>Instalación mínima</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="233"/>
@@ -4285,7 +4285,7 @@ Salida
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="63"/>
       <source>Your Full Name</source>
-      <translation type="unfinished"/>
+      <translation>Nombre completo</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="80"/>
@@ -4310,7 +4310,7 @@ Salida
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="138"/>
       <source>root is not allowed as username.</source>
-      <translation type="unfinished"/>
+      <translation>"root" no está permitido como nombre de usuario.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="147"/>
@@ -4320,7 +4320,7 @@ Salida
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="153"/>
       <source>Computer Name</source>
-      <translation type="unfinished"/>
+      <translation>Nombre de la computadora</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="180"/>
@@ -4409,27 +4409,28 @@ Salida
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="35"/>
       <source>&lt;h3&gt;Welcome to the %1 &lt;quote&gt;%2&lt;/quote&gt; installer&lt;/h3&gt;
             &lt;p&gt;This program will ask you some questions and set up %1 on your computer.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;Bienvenido al instalador de &lt;quote&gt;%2&lt;/quote&gt;&lt;/h3&gt;
+&lt;p&gt;Este programa te hará algunas preguntas y llevará a cabo la configuración de %1 en tu computadora.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="66"/>
       <source>Support</source>
-      <translation type="unfinished"/>
+      <translation>Soporte</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="77"/>
       <source>Known issues</source>
-      <translation type="unfinished"/>
+      <translation>Problemas conocidos</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="88"/>
       <source>Release notes</source>
-      <translation type="unfinished"/>
+      <translation>Notas de publicación</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="100"/>
       <source>Donate</source>
-      <translation type="unfinished"/>
+      <translation>Donaciones</translation>
     </message>
   </context>
 </TS>

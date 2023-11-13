@@ -2637,7 +2637,7 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
     <message>
       <location filename="../src/modules/keyboard/KeyboardPage.ui" line="153"/>
       <source>Keyboard Switch:</source>
-      <translation>Klavye Değiş:</translation>
+      <translation>Klavye değiştir:</translation>
     </message>
   </context>
   <context>
