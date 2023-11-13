@@ -140,7 +140,7 @@ Page {
                             anchors.fill: parent
                             wrapMode: Text.WordWrap
                             text: qsTr("<h3>Languages</h3> </br>
-                            The system locale setting affects the language and character set for some command line user interface elements. The current setting is <strong>%1</strong>.". "@info").arg(config.currentLanguageCode)
+                            The system locale setting affects the language and character set for some command line user interface elements. The current setting is <strong>%1</strong>.", "@info").arg(config.currentLanguageCode)
                             font.pointSize: 10
                         }
                     }
