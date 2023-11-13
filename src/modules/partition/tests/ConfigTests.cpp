@@ -34,6 +34,7 @@ private Q_SLOTS:
     void testEmptyConfig();
     void testLegacySize();
     void testAll();
+    void testWeirdConfig();
 };
 
 ConfigTests::ConfigTests() = default;
@@ -192,6 +193,31 @@ ConfigTests::testAll()
 
         QCOMPARE( gs->value( "efiSystemPartition" ).toString(), QStringLiteral( "/boot/thisoverlaps" ) );
         QCOMPARE( gs->value( "efiSystemPartitionName" ).toString(), QStringLiteral( "legacy" ) );
+    }
+}
+
+void
+ConfigTests::testWeirdConfig()
+{
+    Config c( nullptr );
+
+    auto* gs = Calamares::JobQueue::instanceGlobalStorage();
+    QVERIFY( gs );
+
+
+    // Config with an invalid minimum size
+    {
+        const auto file = QStringLiteral( BUILD_AS_TEST "/3a-min-too-large.conf" );
+        bool ok = false;
+        c.setConfigurationMap( Calamares::YAML::load( file, &ok ) );
+
+        cDebug() << "Tried to load" << file << "success?" << ok;
+        QVERIFY( ok );
+
+        QCOMPARE( PartUtils::efiFilesystemRecommendedSize(), 133_MiB );
+        QCOMPARE( PartUtils::efiFilesystemMinimumSize(), 133_MiB );  // Config setting was ignored
+
+        QCOMPARE( gs->value( "efiSystemPartitionName" ).toString(), QStringLiteral( "bigmin" ) );
     }
 }
 
