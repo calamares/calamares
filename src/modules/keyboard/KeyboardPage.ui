@@ -71,7 +71,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
      <item>
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>Keyboard Model:</string>
+        <string>Keyboard model:</string>
        </property>
       </widget>
      </item>
@@ -150,7 +150,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
      <item>
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>Keyboard Switch:</string>
+        <string>Keyboard switch:</string>
        </property>
       </widget>
      </item>

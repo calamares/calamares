@@ -37,7 +37,7 @@ InteractiveTerminalViewStep::~InteractiveTerminalViewStep()
 QString
 InteractiveTerminalViewStep::prettyName() const
 {
-    return tr( "Script" );
+    return tr( "Script", "@label" );
 }
 
 QWidget*

@@ -29,7 +29,7 @@ KeyboardQmlViewStep::KeyboardQmlViewStep( QObject* parent )
 QString
 KeyboardQmlViewStep::prettyName() const
 {
-    return tr( "Keyboard" );
+    return tr( "Keyboard", "@label" );
 }
 
 QString

@@ -370,7 +370,7 @@ Config::setLCLocaleExplicitly( const QString& locale )
 QString
 Config::currentLocationStatus() const
 {
-    return tr( "Set timezone to %1/%2." )
+    return tr( "Set timezone to %1/%2", "@action" )
         .arg( m_currentLocation ? m_currentLocation->region() : QString(),
               m_currentLocation ? m_currentLocation->zone() : QString() );
 }
@@ -407,14 +407,14 @@ localeLabel( const QString& s )
 QString
 Config::currentLanguageStatus() const
 {
-    return tr( "The system language will be set to %1." )
+    return tr( "The system language will be set to %1", "@info" )
         .arg( localeLabel( m_selectedLocaleConfiguration.language() ) );
 }
 
 QString
 Config::currentLCStatus() const
 {
-    return tr( "The numbers and dates locale will be set to %1." )
+    return tr( "The numbers and dates locale will be set to %1", "@info" )
         .arg( localeLabel( m_selectedLocaleConfiguration.lc_numeric ) );
 }
 

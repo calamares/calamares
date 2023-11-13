@@ -127,10 +127,10 @@ LocalePage::~LocalePage() {}
 void
 LocalePage::updateLocaleLabels()
 {
-    m_regionLabel->setText( tr( "Region:" ) );
-    m_zoneLabel->setText( tr( "Zone:" ) );
-    m_localeChangeButton->setText( tr( "&Change..." ) );
-    m_formatsChangeButton->setText( tr( "&Change..." ) );
+    m_regionLabel->setText( tr( "Region:", "@label" ) );
+    m_zoneLabel->setText( tr( "Zone:", "@label" ) );
+    m_localeChangeButton->setText( tr( "&Change…", "@button" ) );
+    m_formatsChangeButton->setText( tr( "&Change…", "@button" ) );
     m_localeLabel->setText( m_config->currentLanguageStatus() );
     m_formatsLabel->setText( m_config->currentLCStatus() );
 }

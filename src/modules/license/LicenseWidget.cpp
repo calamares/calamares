@@ -85,7 +85,7 @@ LicenseWidget::LicenseWidget( LicenseEntry entry, QWidget* parent )
     }
     else
     {
-        m_licenceTextLabel->setText( tr( "URL: %1" ).arg( m_entry.m_url.toDisplayString() ) );
+        m_licenceTextLabel->setText( tr( "URL: %1", "@label" ).arg( m_entry.m_url.toDisplayString() ) );
         connect( m_viewLicenseButton, &QAbstractButton::clicked, this, &LicenseWidget::viewClicked );
     }
     m_licenceTextLabel->setSizePolicy( QSizePolicy::Minimum, QSizePolicy::Minimum );
@@ -107,38 +107,38 @@ LicenseWidget::retranslateUi()
     case LicenseEntry::Type::Driver:
         //: %1 is an untranslatable product name, example: Creative Audigy driver
         productDescription = tr( "<strong>%1 driver</strong><br/>"
-                                 "by %2" )
+                                 "by %2", "@label, %1 is product name, %2 is product vendor" )
                                  .arg( m_entry.m_prettyName )
                                  .arg( m_entry.m_prettyVendor );
         break;
     case LicenseEntry::Type::GpuDriver:
         //: %1 is usually a vendor name, example: Nvidia graphics driver
         productDescription = tr( "<strong>%1 graphics driver</strong><br/>"
-                                 "<font color=\"Grey\">by %2</font>" )
+                                 "<font color=\"Grey\">by %2</font>", "@label, %1 is product name, %2 is product vendor" )
                                  .arg( m_entry.m_prettyName )
                                  .arg( m_entry.m_prettyVendor );
         break;
     case LicenseEntry::Type::BrowserPlugin:
         productDescription = tr( "<strong>%1 browser plugin</strong><br/>"
-                                 "<font color=\"Grey\">by %2</font>" )
+                                 "<font color=\"Grey\">by %2</font>", "@label, %1 is product name, %2 is product vendor" )
                                  .arg( m_entry.m_prettyName )
                                  .arg( m_entry.m_prettyVendor );
         break;
     case LicenseEntry::Type::Codec:
         productDescription = tr( "<strong>%1 codec</strong><br/>"
-                                 "<font color=\"Grey\">by %2</font>" )
+                                 "<font color=\"Grey\">by %2</font>", "@label, %1 is product name, %2 is product vendor" )
                                  .arg( m_entry.m_prettyName )
                                  .arg( m_entry.m_prettyVendor );
         break;
     case LicenseEntry::Type::Package:
         productDescription = tr( "<strong>%1 package</strong><br/>"
-                                 "<font color=\"Grey\">by %2</font>" )
+                                 "<font color=\"Grey\">by %2</font>", "@label, %1 is product name, %2 is product vendor" )
                                  .arg( m_entry.m_prettyName )
                                  .arg( m_entry.m_prettyVendor );
         break;
     case LicenseEntry::Type::Software:
         productDescription = tr( "<strong>%1</strong><br/>"
-                                 "<font color=\"Grey\">by %2</font>" )
+                                 "<font color=\"Grey\">by %2</font>", "@label, %1 is product name, %2 is product vendor" )
                                  .arg( m_entry.m_prettyName )
                                  .arg( m_entry.m_prettyVendor );
     }
@@ -160,7 +160,7 @@ LicenseWidget::showLocalLicenseText()
         {
             fileName = fileName.remove( 0, 5 );
         }
-        m_licenceTextLabel->setText( tr( "File: %1" ).arg( fileName ) );
+        m_licenceTextLabel->setText( tr( "File: %1", "@label" ).arg( fileName ) );
     }
 }
 
@@ -183,11 +183,11 @@ LicenseWidget::updateExpandToolTip()
 {
     if ( m_entry.isLocal() )
     {
-        m_viewLicenseButton->setText( m_isExpanded ? tr( "Hide license text" ) : tr( "Show the license text" ) );
+        m_viewLicenseButton->setText( m_isExpanded ? tr( "Hide the license text", "@tooltip" ) : tr( "Show the license text", "@tooltip" ) );
     }
     else
     {
-        m_viewLicenseButton->setText( tr( "Open license agreement in browser." ) );
+        m_viewLicenseButton->setText( tr( "Open the license agreement in browser", "@tooltip" ) );
     }
 }
 

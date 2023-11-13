@@ -24,7 +24,7 @@ InitramfsJob::~InitramfsJob() {}
 QString
 InitramfsJob::prettyName() const
 {
-    return tr( "Creating initramfs." );
+    return tr( "Creating initramfs…", "@status" );
 }
 
 Calamares::JobResult

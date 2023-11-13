@@ -28,7 +28,7 @@ InitcpioJob::~InitcpioJob() {}
 QString
 InitcpioJob::prettyName() const
 {
-    return tr( "Creating initramfs with mkinitcpio." );
+    return tr( "Creating initramfs with mkinitcpio…", "@status" );
 }
 
 /** @brief Sets secure permissions on each initramfs

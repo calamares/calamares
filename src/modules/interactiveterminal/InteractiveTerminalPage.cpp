@@ -46,8 +46,8 @@ void
 InteractiveTerminalPage::errorKonsoleNotInstalled()
 {
     QMessageBox mb( QMessageBox::Critical,
-                    tr( "Konsole not installed" ),
-                    tr( "Please install KDE Konsole and try again!" ),
+                    tr( "Konsole not installed.", "@error" ),
+                    tr( "Please install KDE Konsole and try again!", "@info" ),
                     QMessageBox::Ok );
     Calamares::fixButtonLabels( &mb );
     mb.exec();
@@ -119,5 +119,5 @@ InteractiveTerminalPage::setCommand( const QString& command )
 {
     m_command = command;
     CALAMARES_RETRANSLATE(
-        m_headerLabel->setText( tr( "Executing script: &nbsp;<code>%1</code>" ).arg( m_command ) ); );
+        m_headerLabel->setText( tr( "Executing script: &nbsp;<code>%1</code>", "@info" ).arg( m_command ) ); );
 }

@@ -58,7 +58,7 @@ Item {
         Label {
             id: header
             anchors.horizontalCenter: parent.horizontalCenter
-            text: qsTr("To activate keyboard preview, select a layout.")
+            text: qsTr("Select a layout to activate keyboard preview", "@label")
             color: textColor
             font.bold: true
         }
@@ -141,7 +141,7 @@ Item {
                 }
                 Text {
                     anchors.centerIn: parent
-                    text: qsTr("<b>Keyboard Model:&nbsp;&nbsp;</b>") + models.currentItem.currentModel.label
+                    text: qsTr("<b>Keyboard model:&nbsp;&nbsp;</b>", "@label") + models.currentItem.currentModel.label
                     color: textColor
                 }
                 Image {
@@ -182,7 +182,7 @@ Item {
                     z: 2
                     color:backgroundColor
                     Text {
-                        text: qsTr("Layout")
+                        text: qsTr("Layout", "@label")
                         anchors.centerIn: parent
                         color: textColor
                         font.bold: true
@@ -255,7 +255,7 @@ Item {
                     z: 2
                     color:backgroundColor
                     Text {
-                        text: qsTr("Variant")
+                        text: qsTr("Variant", "@label")
                         anchors.centerIn: parent
                         color: textColor
                         font.bold: true
@@ -308,7 +308,7 @@ Item {
 
         TextField {
             id: textInput
-            placeholderText: qsTr("Type here to test your keyboard")
+            placeholderText: qsTr("Type here to test your keyboard…", "@label")
             height: 36
             width: parent.width / 1.6
             horizontalAlignment: TextInput.AlignHCenter

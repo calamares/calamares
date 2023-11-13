@@ -32,7 +32,7 @@ Page {
         horizontalAlignment: Qt.AlignHCenter
         color: Kirigami.Theme.textColor
         level: 1
-        text: qsTr("Installation Completed")
+        text: qsTr("Installation Completed", "@title")
 
         Text {
             anchors.top: header.bottom
@@ -40,7 +40,8 @@ Page {
             horizontalAlignment: Text.AlignHCenter
             font.pointSize: 12
             text: qsTr("%1 has been installed on your computer.<br/>
-            You may now restart into your new system, or continue using the Live environment.").arg(Branding.string(Branding.ProductName))
+            You may now restart into your new system, or continue using the Live environment.", "@info, %1 is the product name")
+                .arg(Branding.string(Branding.ProductName))
         }
 
         Image {
@@ -61,13 +62,13 @@ Page {
 
         Button {
             id: button
-            text: qsTr("Close Installer")
+            text: qsTr("Close Installer", "@button")
             icon.name: "application-exit"
             onClicked: { ViewManager.quit(); }
         }
 
         Button {
-            text: qsTr("Restart System")
+            text: qsTr("Restart System", "@button")
             icon.name: "system-reboot"
             onClicked: { config.doRestart(true); }
         }
@@ -86,7 +87,7 @@ Page {
             anchors.top: parent.top
             horizontalAlignment: Text.AlignHCenter
             text: qsTr("<p>A full log of the install is available as installation.log in the home directory of the Live user.<br/>
-            This log is copied to /var/log/installation.log of the target system.</p>")
+            This log is copied to /var/log/installation.log of the target system.</p>", "@info")
         }
     }
 

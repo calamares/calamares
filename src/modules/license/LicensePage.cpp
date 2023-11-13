@@ -139,17 +139,17 @@ LicensePage::setEntries( const QList< LicenseEntry >& entriesList )
 void
 LicensePage::retranslate()
 {
-    ui->acceptCheckBox->setText( tr( "I accept the terms and conditions above." ) );
+    ui->acceptCheckBox->setText( tr( "I accept the terms and conditions above.", "@info" ) );
 
-    QString review = tr( "Please review the End User License Agreements (EULAs)." );
+    QString review = tr( "Please review the End User License Agreements (EULAs).", "@info" );
     const auto br = QStringLiteral( "<br/>" );
 
     if ( !m_allLicensesOptional )
     {
         ui->mainText->setText( tr( "This setup procedure will install proprietary "
-                                   "software that is subject to licensing terms." )
+                                   "software that is subject to licensing terms.", "@info" )
                                + br + review );
-        QString mustAcceptText( tr( "If you do not agree with the terms, the setup procedure cannot continue." ) );
+        QString mustAcceptText( tr( "If you do not agree with the terms, the setup procedure cannot continue.", "@info" ) );
         ui->acceptCheckBox->setToolTip( mustAcceptText );
     }
     else
@@ -157,10 +157,10 @@ LicensePage::retranslate()
         ui->mainText->setText( tr( "This setup procedure can install proprietary "
                                    "software that is subject to licensing terms "
                                    "in order to provide additional features and enhance the user "
-                                   "experience." )
+                                   "experience.", "@info" )
                                + br + review );
         QString okAcceptText( tr( "If you do not agree with the terms, proprietary software will not "
-                                  "be installed, and open source alternatives will be used instead." ) );
+                                  "be installed, and open source alternatives will be used instead.", "@info" ) );
         ui->acceptCheckBox->setToolTip( okAcceptText );
     }
     ui->retranslateUi( this );

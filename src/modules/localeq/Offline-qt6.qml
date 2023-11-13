@@ -44,7 +44,7 @@ Page {
                 anchors.horizontalCenter: parent.horizontalCenter
                 color: textColor
                 horizontalAlignment: Text.AlignCenter
-                text: qsTr("Select your preferred Region, or use the default settings.")
+                text: qsTr("Select your preferred region, or use the default settings", "@label")
             }
 
             ListView {
@@ -100,7 +100,7 @@ Page {
                         list.currentIndex = index
                         control.currentRegion = model.name
                         config.regionalZonesModel.region = control.currentRegion
-                        tztext.text = qsTr("Timezone: %1").arg(config.currentTimezoneName)
+                        tztext.text = qsTr("Timezone: %1", "@label").arg(config.currentTimezoneName)
                         stack.push(zoneView)
                     }
                 }
@@ -117,7 +117,7 @@ Page {
                     id: zone
                     anchors.horizontalCenter: parent.horizontalCenter
                     color: textColor
-                    text: qsTr("Select your preferred Zone within your Region.")
+                    text: qsTr("Select your preferred zone within your region", "@label")
                 }
 
                 ListView {
@@ -177,7 +177,7 @@ Page {
                             list2.positionViewAtIndex(index, ListView.Center)
                             control.currentZone = model.name
                             config.setCurrentLocation(control.currentRegion, control.currentZone)
-                            tztext.text = qsTr("Timezone: %1").arg(config.currentTimezoneName)
+                            tztext.text = qsTr("Timezone: %1", "@label").arg(config.currentTimezoneName)
                         }
                     }
                 }
@@ -190,7 +190,7 @@ Page {
                     anchors.left: parent.left
                     anchors.leftMargin: parent.width / 15
                     icon.name: "go-previous"
-                    text: qsTr("Zones")
+                    text: qsTr("Zones", "@button")
                     onClicked: stack.pop()
                 }
             }
@@ -221,7 +221,7 @@ Page {
                 Text {
 
                     id: tztext
-                    text: qsTr("Timezone: %1").arg(config.currentTimezoneName)
+                    text: qsTr("Timezone: %1", "@label").arg(config.currentTimezoneName)
                     color: Kirigami.Theme.textColor
                     anchors.centerIn: parent
                 }
@@ -237,7 +237,7 @@ Page {
             wrapMode: Text.WordWrap
             horizontalAlignment: Text.AlignHCenter
             Kirigami.Theme.backgroundColor: Kirigami.Theme.backgroundColor
-            text: qsTr("You can fine-tune Language and Locale settings below.")
+            text: qsTr("You can fine-tune language and locale settings below", "@label")
         }
     }
 }
