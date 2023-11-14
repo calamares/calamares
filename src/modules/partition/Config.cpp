@@ -320,7 +320,7 @@ fillGSConfigurationEFI( Calamares::GlobalStorage* gs, const QVariantMap& configu
             Calamares::Partition::PartitionSize part_size = Calamares::Partition::PartitionSize( efiMinimumSize );
             if ( part_size.isValid() )
             {
-                if ( part_size > PartUtils::efiFilesystemRecommendedSize() )
+                if ( part_size.toBytes() > PartUtils::efiFilesystemRecommendedSize() )
                 {
                     cWarning() << "EFI minimum size" << efiMinimumSize << "is larger than the recommended size"
                                << efiRecommendedSize << ", ignored.";
