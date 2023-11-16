@@ -58,6 +58,19 @@ def run():
     for k in libcalamares.globalstorage.keys():
         libcalamares.utils.debug(f"    {k}={libcalamares.globalstorage.value(k)}")
 
+    libcalamares.utils.debug("*** GLOBAL STORAGE BOGUS KEYS ***")
+    #
+    # This is a demonstration of issue #2237, load this module
+    # with the dummypython/tests/1.global configuration, e.g.
+    #       ./loadmodule -g ../src/modules/dummypython/tests/1.global dummypython
+    # in the build directory.
+    #
+    for k in ("nonexistent", "empty", "numeric", "boolvalue"):
+        if libcalamares.globalstorage.value(k) is None:
+            libcalamares.utils.debug(f"NONE  {k}={libcalamares.globalstorage.value(k)}")
+        else:
+            libcalamares.utils.debug(f"      {k}={libcalamares.globalstorage.value(k)}")
+
     libcalamares.utils.debug("*** GLOBAL STORAGE MODIFICATION ***")
     libcalamares.globalstorage.insert("item2", "value2")
     libcalamares.globalstorage.insert("item3", 3)
