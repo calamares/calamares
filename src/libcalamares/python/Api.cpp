@@ -95,7 +95,7 @@ variantToPyObject( const QVariant& variant )
     case QVariant::Invalid:
 #endif
     default:
-        return py::object();
+        return py::none();
     }
 #ifdef __clang__
 #pragma clang diagnostic pop
