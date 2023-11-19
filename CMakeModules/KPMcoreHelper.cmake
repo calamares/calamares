@@ -15,18 +15,19 @@ if(NOT TARGET calapmcore)
     find_package(${kfname}I18n CONFIG)
     find_package(${kfname}WidgetsAddons CONFIG)
 
-    if(NOT WITH_QT6)
-        # TODO: Qt6 how to detect the version of Qt that KPMCore needs?
+    if( WITH_QT6)
+        find_package(KPMcore 24.01.75)
+    else()
         find_package(KPMcore 20.04.0)
-        set_package_properties(
-            KPMcore
-            PROPERTIES
-            URL "https://invent.kde.org/kde/kpmcore"
-            DESCRIPTION "KDE Partitioning library"
-            TYPE RECOMMENDED
-            PURPOSE "For disk partitioning support"
-        )
     endif()
+    set_package_properties(
+        KPMcore
+        PROPERTIES
+        URL "https://invent.kde.org/kde/kpmcore"
+        DESCRIPTION "KDE Partitioning library"
+        TYPE RECOMMENDED
+        PURPOSE "For disk partitioning support"
+    )
 
     # Create an internal Calamares interface to KPMcore
     # and give it a nice alias name. If kpmcore is not found,
