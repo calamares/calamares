@@ -150,7 +150,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
      <item>
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>Keyboard switch:</string>
+        <string extracomment="shortcut for switching between keyboard layouts">Switch Keyboard:</string>
        </property>
       </widget>
      </item>
