@@ -42,8 +42,15 @@ struct AutoMountInfo
 static inline QDBusMessage
 kdedCall( const QString& method )
 {
+#if QT_VERSION < QT_VERSION_CHECK( 6, 0, 0 )
     return QDBusMessage::createMethodCall(
         QStringLiteral( "org.kde.kded5" ), QStringLiteral( "/kded" ), QStringLiteral( "org.kde.kded5" ), method );
+#else
+#warning KF6 Automount-handling is untested
+    // This is definitely wrong until Plasma6 is released, and somebody tests it
+    return QDBusMessage::createMethodCall(
+        QStringLiteral( "org.kde.kded6" ), QStringLiteral( "/kded" ), QStringLiteral( "org.kde.kded6" ), method );
+#endif
 }
 
 /** @brief Log a response from call()
