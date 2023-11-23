@@ -3,8 +3,8 @@
 # Install dependencies for the nightly-opensuse-qt6 build
 #
 # Add a Qt6/KF6 repo
-zypper --non-interactive addrepo -G https://download.opensuse.org/repositories/home:krop:kf6/openSUSE_Tumbleweed/home:krop:kf6.repo
-zypper --non-interactive addrepo -G https://download.opensuse.org/repositories/KDE:/Qt6/openSUSE_Tumbleweed/KDE:Qt6.repo
+zypper --non-interactive addrepo -f -G https://download.opensuse.org/repositories/KDE:/Unstable:/Frameworks/openSUSE_Factory/KDE:Unstable:Frameworks.repo
+zypper --non-interactive addrepo -f -G https://download.opensuse.org/repositories/KDE:/Qt6/openSUSE_Tumbleweed/KDE:Qt6.repo
 
 zypper --non-interactive refresh
 zypper --non-interactive up
