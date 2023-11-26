@@ -6,6 +6,16 @@
 find_package(${qtname} ${QT_VERSION} CONFIG REQUIRED Core DBus Network)
 find_package(Crypt REQUIRED)
 
+# Check for crypt_gensalt
+if(Crypt_FOUND)
+    list(APPEND CMAKE_REQUIRED_LIBRARIES crypt)
+    include(CheckSymbolExists)
+    check_symbol_exists(crypt_gensalt crypt.h HAS_CRYPT_GENSALT)
+    if(HAS_CRYPT_GENSALT)
+        add_definitions(-DHAVE_CRYPT_GENSALT)
+    endif()
+endif()
+
 # Add optional libraries here
 set(USER_EXTRA_LIB
     ${kfname}::CoreAddons
@@ -78,7 +88,9 @@ calamares_add_plugin(users
     SHARED_LIB
 )
 
-calamares_add_test(userspasswordtest SOURCES TestPasswordJob.cpp SetPasswordJob.cpp LIBRARIES ${CRYPT_LIBRARIES})
+if(NOT HAS_CRYPT_GENSALT)
+    calamares_add_test(userspasswordtest SOURCES TestPasswordJob.cpp SetPasswordJob.cpp LIBRARIES ${CRYPT_LIBRARIES})
+endif()
 
 calamares_add_test(
     usersgroupstest
