@@ -502,6 +502,35 @@ def get_kernels(installation_root_path):
     return kernel_list
 
 
+def install_clr_boot_manager():
+    """
+    Installs clr-boot-manager as the bootloader for EFI systems
+    """
+    libcalamares.utils.debug("Bootloader: clr-boot-manager")
+
+    installation_root_path = libcalamares.globalstorage.value("rootMountPoint")
+    kernel_dir = os.path.join(installation_root_path, "etc", "kernel", "cmdline.d")
+    kernel_resume_file = os.path.join(kernel_dir, "10_resume.conf")
+
+    partitions = libcalamares.globalstorage.value("partitions")
+    swap_uuid = ""
+
+    # Get the UUID of the swap partition, if present
+    for partition in partitions:
+        if partition["fs"] == "linuxswap" and not partition.get("claimed", None):
+            continue
+        has_luks = "luksMapperName" in partition
+        if partition["fs"] == "linuxswap" and not has_luks:
+            swap_uuid = partition["uuid"]
+
+    # Write out the resume.conf for clr-boot-manager
+    if swap_uuid != "":
+        with open(kernel_resume_file, "w") as resume_file:
+            resume_file.write("resume={}\n".format(swap_uuid))
+
+    check_target_env_call(["clr-boot-manager", "update"])
+
+
 def install_systemd_boot(efi_directory):
     """
     Installs systemd-boot as bootloader for EFI setups.
@@ -855,7 +884,12 @@ def prepare_bootloader(fw_type):
 
     efi_directory = libcalamares.globalstorage.value("efiSystemPartition")
 
-    if efi_boot_loader == "systemd-boot" and fw_type == "efi":
+    if efi_boot_loader == "clr-boot-manager":
+        if fw_type != "efi":
+            # Grub has to be installed first on non-EFI systems
+            install_grub(efi_directory, fw_type)
+        install_clr_boot_manager()
+    elif efi_boot_loader == "systemd-boot" and fw_type == "efi":
         install_systemd_boot(efi_directory)
     elif efi_boot_loader == "sb-shim" and fw_type == "efi":
         install_secureboot(efi_directory)
