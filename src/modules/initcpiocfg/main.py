@@ -125,13 +125,13 @@ def write_mkinitcpio_lines(hooks, modules, files, binaries, root_mount_point):
             # Replace HOOKS, MODULES, BINARIES and FILES lines with what we
             # have found via find_initcpio_features()
             if line.startswith("HOOKS"):
-                line = 'HOOKS="{!s}"'.format(' '.join(hooks))
+                line = f"HOOKS=({str.join(' ', hooks)})"
             elif line.startswith("BINARIES"):
-                line = 'BINARIES="{!s}"'.format(' '.join(binaries))
+                line = f"BINARIES=({str.join(' ', binaries)})"
             elif line.startswith("MODULES"):
-                line = 'MODULES="{!s}"'.format(' '.join(modules))
+                line = f"MODULES=({str.join(' ', modules)})"
             elif line.startswith("FILES"):
-                line = 'FILES="{!s}"'.format(' '.join(files))
+                line = f"FILES=({str.join(' ', files)})"
             mkinitcpio_file.write(line + "\n")
 
 
