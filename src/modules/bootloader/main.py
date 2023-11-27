@@ -509,24 +509,17 @@ def install_clr_boot_manager():
     libcalamares.utils.debug("Bootloader: clr-boot-manager")
 
     installation_root_path = libcalamares.globalstorage.value("rootMountPoint")
-    kernel_dir = os.path.join(installation_root_path, "etc", "kernel", "cmdline.d")
-    kernel_resume_file = os.path.join(kernel_dir, "10_resume.conf")
+    kernel_config_path = os.path.join(installation_root_path, "etc", "kernel")
+    os.makedirs(kernel_config_path, exist_ok=True)
+    cmdline_path = os.path.join(kernel_config_path, "cmdline")
 
-    partitions = libcalamares.globalstorage.value("partitions")
-    swap_uuid = ""
+    # Get the kernel params
+    uuid = get_uuid()
+    kernel_params = " ".join(get_kernel_params(uuid))
 
-    # Get the UUID of the swap partition, if present
-    for partition in partitions:
-        if partition["fs"] == "linuxswap" and not partition.get("claimed", None):
-            continue
-        has_luks = "luksMapperName" in partition
-        if partition["fs"] == "linuxswap" and not has_luks:
-            swap_uuid = partition["uuid"]
-
-    # Write out the resume.conf for clr-boot-manager
-    if swap_uuid != "":
-        with open(kernel_resume_file, "w") as resume_file:
-            resume_file.write("resume={}\n".format(swap_uuid))
+    # Write out the cmdline file for clr-boot-manager
+    with open(cmdline_path, "w") as cmdline_file:
+        cmdline_file.write(kernel_params)
 
     check_target_env_call(["clr-boot-manager", "update"])
 
