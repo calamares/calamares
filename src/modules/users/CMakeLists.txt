@@ -8,9 +8,11 @@ find_package(Crypt REQUIRED)
 
 # Check for crypt_gensalt
 if(Crypt_FOUND)
+    set(_old_CRL "${CMAKE_REQUIRED_LIBRARIES}")
     list(APPEND CMAKE_REQUIRED_LIBRARIES crypt)
     include(CheckSymbolExists)
     check_symbol_exists(crypt_gensalt crypt.h HAS_CRYPT_GENSALT)
+    set(CMAKE_REQUIRED_LIBRARIES "${_old_CRL}")
     if(HAS_CRYPT_GENSALT)
         add_definitions(-DHAVE_CRYPT_GENSALT)
     endif()
