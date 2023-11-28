@@ -502,6 +502,28 @@ def get_kernels(installation_root_path):
     return kernel_list
 
 
+def install_clr_boot_manager():
+    """
+    Installs clr-boot-manager as the bootloader for EFI systems
+    """
+    libcalamares.utils.debug("Bootloader: clr-boot-manager")
+
+    installation_root_path = libcalamares.globalstorage.value("rootMountPoint")
+    kernel_config_path = os.path.join(installation_root_path, "etc", "kernel")
+    os.makedirs(kernel_config_path, exist_ok=True)
+    cmdline_path = os.path.join(kernel_config_path, "cmdline")
+
+    # Get the kernel params
+    uuid = get_uuid()
+    kernel_params = " ".join(get_kernel_params(uuid))
+
+    # Write out the cmdline file for clr-boot-manager
+    with open(cmdline_path, "w") as cmdline_file:
+        cmdline_file.write(kernel_params)
+
+    check_target_env_call(["clr-boot-manager", "update"])
+
+
 def install_systemd_boot(efi_directory):
     """
     Installs systemd-boot as bootloader for EFI setups.
@@ -855,7 +877,12 @@ def prepare_bootloader(fw_type):
 
     efi_directory = libcalamares.globalstorage.value("efiSystemPartition")
 
-    if efi_boot_loader == "systemd-boot" and fw_type == "efi":
+    if efi_boot_loader == "clr-boot-manager":
+        if fw_type != "efi":
+            # Grub has to be installed first on non-EFI systems
+            install_grub(efi_directory, fw_type)
+        install_clr_boot_manager()
+    elif efi_boot_loader == "systemd-boot" and fw_type == "efi":
         install_systemd_boot(efi_directory)
     elif efi_boot_loader == "sb-shim" and fw_type == "efi":
         install_secureboot(efi_directory)
