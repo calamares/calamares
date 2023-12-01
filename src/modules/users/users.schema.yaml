@@ -41,7 +41,6 @@ properties:
         additionalProperties: false
         type: object
         properties:
-            nonempty: { type: boolean, default: true }
             minLength: { type: number }
             maxLength: { type: number }
             libpwquality: { type: array, items: { type: string } }  # Don't know what libpwquality supports

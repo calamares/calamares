@@ -12,12 +12,17 @@ the history of the 3.2 series (2018-05 - 2022-08).
 
 This release contains contributions from (alphabetically by first name):
  - Adriaan de Groot
+ - Alberto Salvia Novella
  - Christophe Marin
  - Frede Hundewadt
 
 ## Core ##
 
 ## Modules ##
+ - *users* and *usersq* no longer support the password requirement 'nonempty'.
+   Use 'minLength: 1' instead. The example configuration allows the user to
+   choose any password at all, but also contains suggestions for other
+   password-requirements schemes. (thanks Alberto)
 
 
 # 3.3.0-alpha6 (2023-11-16)

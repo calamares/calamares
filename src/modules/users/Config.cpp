@@ -834,18 +834,8 @@ addPasswordCheck( const QString& key, const QVariant& value, PasswordCheckList& 
     }
     else if ( key == "nonempty" )
     {
-        if ( value.toBool() )
-        {
-            passwordChecks.push_back(
-                PasswordCheck( []() { return QCoreApplication::translate( "PWQ", "Password is empty" ); },
-                               []( const QString& s ) { return !s.isEmpty(); },
-                               PasswordCheck::Weight( 1 ) ) );
-        }
-        else
-        {
-            cDebug() << "nonempty check is mentioned but set to false";
-            return false;
-        }
+        cWarning() << "nonempty check is ignored; use minLength: 1";
+        return false;
     }
 #ifdef CHECK_PWQUALITY
     else if ( key == "libpwquality" )
