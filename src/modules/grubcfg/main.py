@@ -17,6 +17,7 @@ import libcalamares
 import fileinput
 import os
 import re
+import shutil
 
 import gettext
 _ = gettext.translation("calamares-python",
@@ -95,19 +96,32 @@ def update_existing_config(default_grub, grub_config_items):
     :param default_grub: The absolute path to the grub config file
     :param grub_config_items: A dict holding the key value pairs representing the items
     """
-    for line in fileinput.input(default_grub, inplace=True):
-        line = line.strip()
-        if "=" in line:
-            # This may be a key, strip the leading comment if it has one
-            key = line.lstrip("#").split("=")[0].strip()
+    
+    default_grub_orig = default_grub + ".calamares"
+    shutil.move(default_grub, default_grub_orig)
 
-            # check if this is one of the keys we care about
-            if key in grub_config_items.keys():
-                print(f"{key}={grub_config_items[key]}")
-            else:
-                print(line)
-        else:
-            print(line)
+    with open(default_grub, "w") as grub_file:
+        with open(default_grub_orig, "r") as grub_orig_file:
+            for line in grub_orig_file.readlines():
+                line = line.strip()
+                if "=" in line:
+                    # This may be a key, strip the leading comment if it has one
+                    key = line.lstrip("#").split("=")[0].strip()
+
+                    # check if this is noe of the keys we care about
+                    if key in grub_config_items.keys():
+                        print(f"{key}={grub_config_items[key]}", file=grub_file)
+                        del grub_config_items[key]
+                    else:
+                        print(line, file=grub_file)
+                else:
+                    print(line, file=grub_file)
+
+            if len(grub_config_items) != 0:
+                for dict_key, dict_val in grub_config_items.items():
+                    print(f"{dict_key}={dict_val}", file=grub_file)
+
+    os.remove(default_grub_orig)
 
 
 def modify_grub_default(partitions, root_mount_point, distributor):
