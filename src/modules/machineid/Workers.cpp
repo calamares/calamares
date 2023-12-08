@@ -155,10 +155,23 @@ runCmd( const QStringList& cmd )
 Calamares::JobResult
 createSystemdMachineId( SystemdMachineIdStyle style, const QString& rootMountPoint, const QString& fileName )
 {
-    Q_UNUSED( style )
     Q_UNUSED( rootMountPoint )
     Q_UNUSED( fileName )
-    return runCmd( QStringList { QStringLiteral( "systemd-machine-id-setup" ) } );
+    const QString machineIdFile = QStringLiteral("/etc/machine-id");
+
+    switch(style)
+    {
+        case SystemdMachineIdStyle::Uuid:
+            return runCmd( QStringList { QStringLiteral( "systemd-machine-id-setup" ) } );
+        case SystemdMachineIdStyle::Blank:
+            Calamares::System::instance()->createTargetFile(machineIdFile, QByteArray(), Calamares::System::WriteMode::Overwrite);
+            return Calamares::JobResult::ok();
+        case SystemdMachineIdStyle::Uninitialized:
+            Calamares::System::instance()->createTargetFile(machineIdFile, "uninitialized\n", Calamares::System::WriteMode::Overwrite);
+            return Calamares::JobResult::ok();
+
+    }
+    return Calamares::JobResult::internalError(QStringLiteral("Invalid systemd-style"), QStringLiteral("Invalid value %1").arg(int(style)), Calamares::JobResult::InvalidConfiguration);
 }
 
 Calamares::JobResult
