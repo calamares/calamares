@@ -76,7 +76,7 @@ public:
      * Pass in a suitable error code; using 0 (which would normally mean "ok") instead
      * gives you a GenericError code.
      */
-    static JobResult internalError( const QString&, const QString& details, int errorCode );
+    static JobResult internalError( const QString& message, const QString& details, int errorCode );
 
 protected:
     explicit JobResult( const QString& message, const QString& details, int errorCode );
