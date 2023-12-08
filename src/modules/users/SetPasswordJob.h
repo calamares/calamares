@@ -22,8 +22,9 @@ public:
     QString prettyName() const override;
     QString prettyStatusMessage() const override;
     Calamares::JobResult exec() override;
-
+#ifndef HAVE_CRYPT_GENSALT
     static QString make_salt( int length );
+#endif /* HAVE_CRYPT_GENSALT */
 
 private:
     QString m_userName;

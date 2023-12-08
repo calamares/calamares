@@ -44,6 +44,7 @@ SetPasswordJob::prettyStatusMessage() const
     return tr( "Setting password for user %1." ).arg( m_userName );
 }
 
+#ifndef HAVE_CRYPT_GENSALT
 /// Returns a modular hashing salt for method 6 (SHA512) with a 16 character random salt.
 QString
 SetPasswordJob::make_salt( int length )
@@ -67,6 +68,7 @@ SetPasswordJob::make_salt( int length )
     salt_string.append( '$' );
     return salt_string;
 }
+#endif
 
 Calamares::JobResult
 SetPasswordJob::exec()
@@ -90,7 +92,14 @@ SetPasswordJob::exec()
         return Calamares::JobResult::ok();
     }
 
-    QString encrypted = QString::fromLatin1( crypt( m_newPassword.toUtf8(), make_salt( 16 ).toUtf8() ) );
+    QString salt;
+#ifdef HAVE_CRYPT_GENSALT
+    salt = crypt_gensalt( NULL, 0, NULL, 0 );
+#else
+    salt = make_salt( 16 );
+#endif
+
+    QString encrypted = QString::fromLatin1( crypt( m_newPassword.toUtf8(), salt.toUtf8() ) );
 
     int ec = Calamares::System::instance()->targetEnvCall( { "usermod", "-p", encrypted, m_userName } );
     if ( ec )
