@@ -157,21 +157,24 @@ createSystemdMachineId( SystemdMachineIdStyle style, const QString& rootMountPoi
 {
     Q_UNUSED( rootMountPoint )
     Q_UNUSED( fileName )
-    const QString machineIdFile = QStringLiteral("/etc/machine-id");
+    const QString machineIdFile = QStringLiteral( "/etc/machine-id" );
 
-    switch(style)
+    switch ( style )
     {
-        case SystemdMachineIdStyle::Uuid:
-            return runCmd( QStringList { QStringLiteral( "systemd-machine-id-setup" ) } );
-        case SystemdMachineIdStyle::Blank:
-            Calamares::System::instance()->createTargetFile(machineIdFile, QByteArray(), Calamares::System::WriteMode::Overwrite);
-            return Calamares::JobResult::ok();
-        case SystemdMachineIdStyle::Uninitialized:
-            Calamares::System::instance()->createTargetFile(machineIdFile, "uninitialized\n", Calamares::System::WriteMode::Overwrite);
-            return Calamares::JobResult::ok();
-
+    case SystemdMachineIdStyle::Uuid:
+        return runCmd( QStringList { QStringLiteral( "systemd-machine-id-setup" ) } );
+    case SystemdMachineIdStyle::Blank:
+        Calamares::System::instance()->createTargetFile(
+            machineIdFile, QByteArray(), Calamares::System::WriteMode::Overwrite );
+        return Calamares::JobResult::ok();
+    case SystemdMachineIdStyle::Uninitialized:
+        Calamares::System::instance()->createTargetFile(
+            machineIdFile, "uninitialized\n", Calamares::System::WriteMode::Overwrite );
+        return Calamares::JobResult::ok();
     }
-    return Calamares::JobResult::internalError(QStringLiteral("Invalid systemd-style"), QStringLiteral("Invalid value %1").arg(int(style)), Calamares::JobResult::InvalidConfiguration);
+    return Calamares::JobResult::internalError( QStringLiteral( "Invalid systemd-style" ),
+                                                QStringLiteral( "Invalid value %1" ).arg( int( style ) ),
+                                                Calamares::JobResult::InvalidConfiguration );
 }
 
 Calamares::JobResult
