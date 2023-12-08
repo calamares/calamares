@@ -6,6 +6,13 @@
 find_package(${qtname} ${QT_VERSION} CONFIG REQUIRED Core DBus Network)
 find_package(Crypt REQUIRED)
 
+# Provide modern alias for -lcrypt
+add_library(crypt_crypt INTERFACE)
+add_library(crypt::crypt ALIAS crypt_crypt)
+if(Crypt_FOUND)
+    target_link_libraries(crypt_crypt INTERFACE ${CRYPT_LIBRARIES})
+endif()
+
 # Check for crypt_gensalt
 if(Crypt_FOUND)
     set(_old_CRL "${CMAKE_REQUIRED_LIBRARIES}")
@@ -13,8 +20,9 @@ if(Crypt_FOUND)
     include(CheckSymbolExists)
     check_symbol_exists(crypt_gensalt crypt.h HAS_CRYPT_GENSALT)
     set(CMAKE_REQUIRED_LIBRARIES "${_old_CRL}")
+
     if(HAS_CRYPT_GENSALT)
-        add_definitions(-DHAVE_CRYPT_GENSALT)
+        target_compile_definitions(crypt_crypt INTERFACE HAVE_CRYPT_GENSALT)
     endif()
 endif()
 
@@ -22,7 +30,7 @@ endif()
 set(USER_EXTRA_LIB
     ${kfname}::CoreAddons
     ${qtname}::DBus
-    ${CRYPT_LIBRARIES}
+    crypt::crypt
 )
 
 find_package(LibPWQuality)
@@ -85,13 +93,16 @@ calamares_add_plugin(users
         users.qrc
     LINK_PRIVATE_LIBRARIES
         users_internal
-        ${CRYPT_LIBRARIES}
+        crypt::crypt
         ${USER_EXTRA_LIB}
     SHARED_LIB
 )
 
 if(NOT HAS_CRYPT_GENSALT)
-    calamares_add_test(userspasswordtest SOURCES TestPasswordJob.cpp SetPasswordJob.cpp LIBRARIES ${CRYPT_LIBRARIES})
+    # Test checks characteristics of the generated hash, but
+    # when HAVE_CRYPT_GENSALT is used, the chosen hash is the "best"
+    # one -- difficult to set expectations in the tests, so skip it.
+    calamares_add_test(userspasswordtest SOURCES TestPasswordJob.cpp SetPasswordJob.cpp LIBRARIES crypt::crypt)
 endif()
 
 calamares_add_test(
@@ -102,7 +113,7 @@ calamares_add_test(
     LIBRARIES
         ${kfname}::CoreAddons
         ${qtname}::DBus # HostName job can use DBus to systemd
-        ${CRYPT_LIBRARIES} # SetPassword job uses crypt()
+        crypt::crypt # SetPassword job uses crypt()
         ${USER_EXTRA_LIB}
 )
 
@@ -121,6 +132,6 @@ calamares_add_test(
     LIBRARIES
         ${kfname}::CoreAddons
         ${qtname}::DBus # HostName job can use DBus to systemd
-        ${CRYPT_LIBRARIES} # SetPassword job uses crypt()
+        crypt::crypt # SetPassword job uses crypt()
         ${USER_EXTRA_LIB}
 )
