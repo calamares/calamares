@@ -141,9 +141,10 @@ createEntropy( const EntropyGeneration kind, const QString& rootMountPoint, cons
 }
 
 static Calamares::JobResult
-runCmd( const QStringList& cmd )
+runCmd( const QStringList& cmd, bool inTarget )
 {
-    auto r = Calamares::System::instance()->targetEnvCommand( cmd );
+    auto r = inTarget ? Calamares::System::instance()->targetEnvCommand( cmd )
+                      : Calamares::System::instance()->runCommand( cmd, std::chrono::seconds( 0 ) );
     if ( r.getExitCode() )
     {
         return r.explainProcess( cmd, std::chrono::seconds( 0 ) );
@@ -153,16 +154,14 @@ runCmd( const QStringList& cmd )
 }
 
 Calamares::JobResult
-createSystemdMachineId( SystemdMachineIdStyle style, const QString& rootMountPoint, const QString& fileName )
+createSystemdMachineId( SystemdMachineIdStyle style, const QString& rootMountPoint, const QString& machineIdFile )
 {
-    Q_UNUSED( rootMountPoint )
-    Q_UNUSED( fileName )
-    const QString machineIdFile = QStringLiteral( "/etc/machine-id" );
-
     switch ( style )
     {
     case SystemdMachineIdStyle::Uuid:
-        return runCmd( QStringList { QStringLiteral( "systemd-machine-id-setup" ) } );
+        return runCmd(
+            QStringList { QStringLiteral( "systemd-machine-id-setup" ), QStringLiteral( "--root=" ) + rootMountPoint },
+            false );
     case SystemdMachineIdStyle::Blank:
         Calamares::System::instance()->createTargetFile(
             machineIdFile, QByteArray(), Calamares::System::WriteMode::Overwrite );
@@ -182,14 +181,14 @@ createDBusMachineId( const QString& rootMountPoint, const QString& fileName )
 {
     Q_UNUSED( rootMountPoint )
     Q_UNUSED( fileName )
-    return runCmd( QStringList { QStringLiteral( "dbus-uuidgen" ), QStringLiteral( "--ensure" ) } );
+    return runCmd( QStringList { QStringLiteral( "dbus-uuidgen" ), QStringLiteral( "--ensure" ) }, true );
 }
 
 Calamares::JobResult
 createDBusLink( const QString& rootMountPoint, const QString& fileName, const QString& systemdFileName )
 {
     Q_UNUSED( rootMountPoint )
-    return runCmd( QStringList { QStringLiteral( "ln" ), QStringLiteral( "-sf" ), systemdFileName, fileName } );
+    return runCmd( QStringList { QStringLiteral( "ln" ), QStringLiteral( "-sf" ), systemdFileName, fileName }, true );
 }
 
 }  // namespace MachineId
