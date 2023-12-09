@@ -14,15 +14,19 @@ This release contains contributions from (alphabetically by first name):
  - Adriaan de Groot
  - Alberto Salvia Novella
  - Christophe Marin
+ - Evan Maddock
  - Frede Hundewadt
 
 ## Core ##
+ - No changes of note.
 
 ## Modules ##
  - *users* and *usersq* no longer support the password requirement 'nonempty'.
    Use 'minLength: 1' instead. The example configuration allows the user to
    choose any password at all, but also contains suggestions for other
    password-requirements schemes. (thanks Alberto)
+ - *users* now can use stronger password hashes, if `crypt_gensalt()` is
+   available in the *crypt* library. (thanks Evan)
 
 
 # 3.3.0-alpha6 (2023-11-16)
