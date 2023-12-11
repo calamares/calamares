@@ -10,15 +10,15 @@
 #ifndef MACHINEIDJOB_H
 #define MACHINEIDJOB_H
 
+#include "Workers.h"
+
+#include "CppJob.h"
+#include "DllMacro.h"
+#include "utils/PluginFactory.h"
+
 #include <QObject>
 #include <QStringList>
 #include <QVariantMap>
-
-#include "CppJob.h"
-
-#include "utils/PluginFactory.h"
-
-#include "DllMacro.h"
 
 /** @brief Write 'random' data: machine id, entropy, UUIDs
  *
@@ -47,6 +47,8 @@ public:
 
 private:
     bool m_systemd = false;  ///< write systemd's files
+
+    MachineId::SystemdMachineIdStyle m_systemd_style = MachineId::SystemdMachineIdStyle::Uuid;
 
     bool m_dbus = false;  ///< write dbus files
     bool m_dbus_symlink = false;  ///< .. or just symlink to systemd

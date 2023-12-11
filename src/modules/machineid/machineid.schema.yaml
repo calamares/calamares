@@ -7,6 +7,7 @@ additionalProperties: false
 type: object
 properties:
     systemd: { type: boolean, default: false }
+    "systemd-style": { type: string, enum: [ uuid, blank, literal-uninitialized ] }
     dbus: { type: boolean, default: false }
     "dbus-symlink": { type: boolean, default: false }
     "entropy-copy": { type: boolean, default: false }

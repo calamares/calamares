@@ -14,6 +14,7 @@
 #include "Workers.h"
 
 #include "utils/Logger.h"
+#include "utils/NamedEnum.h"
 #include "utils/System.h"
 #include "utils/Variant.h"
 
@@ -21,6 +22,25 @@
 #include "JobQueue.h"
 
 #include <QFile>
+
+const NamedEnumTable< MachineId::SystemdMachineIdStyle >&
+styleNames()
+{
+    using T = MachineId::SystemdMachineIdStyle;
+    // *INDENT-OFF*
+    // clang-format off
+    static const NamedEnumTable< MachineId::SystemdMachineIdStyle > names {
+        { QStringLiteral( "none" ), T::Blank },
+        { QStringLiteral( "blank" ), T::Blank },
+        { QStringLiteral( "uuid" ), T::Uuid },
+        { QStringLiteral( "systemd" ), T::Uuid },
+        { QStringLiteral( "literal-uninitialized" ), T::Uninitialized },
+    };
+    // clang-format on
+    // *INDENT-ON*
+
+    return names;
+}
 
 MachineIdJob::MachineIdJob( QObject* parent )
     : Calamares::CppJob( parent )
@@ -96,7 +116,7 @@ MachineIdJob::exec()
         {
             cWarning() << "Could not create systemd data-directory.";
         }
-        auto r = MachineId::createSystemdMachineId( root, target_systemd_machineid_file );
+        auto r = MachineId::createSystemdMachineId( m_systemd_style, root, target_systemd_machineid_file );
         if ( !r )
         {
             return r;
@@ -133,6 +153,12 @@ void
 MachineIdJob::setConfigurationMap( const QVariantMap& map )
 {
     m_systemd = Calamares::getBool( map, "systemd", false );
+
+    const auto style = Calamares::getString( map, "systemd-style", QString() );
+    if ( !style.isEmpty() )
+    {
+        m_systemd_style = styleNames().find( style, MachineId::SystemdMachineIdStyle::Uuid );
+    }
 
     m_dbus = Calamares::getBool( map, "dbus", false );
     if ( map.contains( "dbus-symlink" ) )
