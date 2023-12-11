@@ -121,11 +121,6 @@
       <translation>インターフェース:</translation>
     </message>
     <message>
-      <location filename="../src/calamares/DebugWindow.ui" line="102"/>
-      <source>Crashes Calamares, so that Dr. Konqui can look at it.</source>
-      <translation>Calamares をクラッシュさせ、Dr. Konqui で見られるようにする。 </translation>
-    </message>
-    <message>
       <location filename="../src/calamares/DebugWindow.ui" line="115"/>
       <source>Reloads the stylesheet from the branding directory.</source>
       <translation>ブランディングディレクトリからスタイルシートをリロードする。</translation>
@@ -146,6 +141,11 @@
       <translation>スタイルシートを再読み込む</translation>
     </message>
     <message>
+      <location filename="../src/calamares/DebugWindow.ui" line="102"/>
+      <source>Crashes Calamares, so that Dr. Konqi can look at it.</source>
+      <translation>Calamares がクラッシュしたので、Dr. Konqi に見てもらう。</translation>
+    </message>
+    <message>
       <location filename="../src/calamares/DebugWindow.ui" line="128"/>
       <source>Displays the tree of widget names in the log (for stylesheet debugging).</source>
       <translation>ログにウィジェット名のツリーを表示する（スタイルシートのデバッグ用）。</translation>
@@ -157,7 +157,8 @@
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.cpp" line="164"/>
-      <source>Debug information</source>
+      <source>Debug Information</source>
+      <comment>@title</comment>
       <translation>デバッグ情報</translation>
     </message>
   </context>
@@ -171,12 +172,14 @@
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="116"/>
-      <source>Set up</source>
+      <source>Set Up</source>
+      <comment>@label</comment>
       <translation>セットアップ</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="116"/>
       <source>Install</source>
+      <comment>@label</comment>
       <translation>インストール</translation>
     </message>
   </context>
@@ -212,69 +215,139 @@
   <context>
     <name>Calamares::ProcessJob</name>
     <message>
-      <location filename="../src/libcalamares/ProcessJob.cpp" line="39"/>
-      <source>Run command '%1' in target system.</source>
-      <translation>ターゲットシステムでコマンド '%1' を実行。</translation>
+      <location filename="../src/libcalamares/ProcessJob.cpp" line="49"/>
+      <source>Running command %1 in target system…</source>
+      <comment>@status</comment>
+      <translation>ターゲットシステムでコマンド %1 を実行しています…</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/ProcessJob.cpp" line="39"/>
-      <source> Run command '%1'.</source>
-      <translation>コマンド '%1' を実行。</translation>
+      <location filename="../src/libcalamares/ProcessJob.cpp" line="53"/>
+      <source>Running command %1…</source>
+      <comment>@status</comment>
+      <translation>コマンド %1 を実行中…</translation>
+    </message>
+  </context>
+  <context>
+    <name>Calamares::Python::Job</name>
+    <message>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="214"/>
+      <source>Running %1 operation.</source>
+      <translation>%1 操作を実行しています。</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/ProcessJob.cpp" line="45"/>
-      <source>Running command %1 %2</source>
-      <translation>コマンド %1 %2 を実行しています</translation>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="229"/>
+      <source>Bad working directory path</source>
+      <translation>不正な作業ディレクトリのパス</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="230"/>
+      <source>Working directory %1 for python job %2 is not readable.</source>
+      <translation>python ジョブ %2 の作業ディレクトリ %1 が読み取れません。</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="238"/>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="314"/>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="340"/>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="357"/>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="365"/>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="373"/>
+      <source>Bad main script file</source>
+      <translation>不正なメインスクリプトファイル</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="239"/>
+      <source>Main script file %1 for python job %2 is not readable.</source>
+      <translation>python ジョブ %2 におけるメインスクリプトファイル %1 が読み込めません。</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="300"/>
+      <source>Bad internal script</source>
+      <translation>不正な内部スクリプト</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="301"/>
+      <source>Internal script for python job %1 raised an exception.</source>
+      <translation>Python ジョブ %1 の内部スクリプトで例外が発生しました。</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="315"/>
+      <source>Main script file %1 for python job %2 could not be loaded because it raised an  exception.</source>
+      <translation>例外が発生したため、Python ジョブ %2 のメインスクリプトファイル %1 をロードできませんでした。</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="341"/>
+      <source>Main script file %1 for python job %2 raised an exception.</source>
+      <translation>Python ジョブ %2 のメインスクリプトファイル %1 で例外が発生しました。</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="358"/>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="366"/>
+      <source>Main script file %1 for python job %2 returned invalid results.</source>
+      <translation>Python ジョブ %2 のメインスクリプトファイル %1 が無効な結果を返しました。</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="374"/>
+      <source>Main script file %1 for python job %2 does not contain a run() function.</source>
+      <translation>Python ジョブ %2 のメインスクリプトファイル %1 には run() 関数が含まれていません。</translation>
     </message>
   </context>
   <context>
     <name>Calamares::PythonJob</name>
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="233"/>
-      <source>Running %1 operation.</source>
-      <translation>%1 操作を実行しています。</translation>
+      <source>Running %1 operation…</source>
+      <comment>@status</comment>
+      <translation>%1 オペレーションを実行中…</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="261"/>
+      <source>Bad working directory path</source>
+      <comment>@error</comment>
+      <translation>不正な作業ディレクトリのパス</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="262"/>
-      <source>Bad working directory path</source>
-      <translation>不正なワーキングディレクトリパス</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="263"/>
       <source>Working directory %1 for python job %2 is not readable.</source>
+      <comment>@error</comment>
       <translation>python ジョブ %2 の作業ディレクトリ %1 が読み取れません。</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="269"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="270"/>
       <source>Bad main script file</source>
+      <comment>@error</comment>
       <translation>不正なメインスクリプトファイル</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="270"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="271"/>
       <source>Main script file %1 for python job %2 is not readable.</source>
+      <comment>@error</comment>
       <translation>python ジョブ %2 におけるメインスクリプトファイル %1 が読み込めません。</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="343"/>
-      <source>Boost.Python error in job "%1".</source>
-      <translation>ジョブ "%1" での Boost.Python エラー。</translation>
+      <source>Boost.Python error in job "%1"</source>
+      <comment>@error</comment>
+      <translation>ジョブ "%1" の Boost.Python エラー</translation>
     </message>
   </context>
   <context>
     <name>Calamares::QmlViewStep</name>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="68"/>
-      <source>Loading ...</source>
-      <translation>ロードしています...</translation>
+      <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="73"/>
+      <source>Loading…</source>
+      <comment>@status</comment>
+      <translation>読み込み中...</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="89"/>
-      <source>QML Step &lt;i&gt;%1&lt;/i&gt;.</source>
+      <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="100"/>
+      <source>QML step &lt;i&gt;%1&lt;/i&gt;.</source>
+      <comment>@label</comment>
       <translation>QML ステップ &lt;i&gt;%1&lt;/i&gt;。</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="266"/>
+      <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="286"/>
       <source>Loading failed.</source>
+      <comment>@info</comment>
       <translation>ロードが失敗しました。</translation>
     </message>
   </context>
@@ -283,18 +356,21 @@
     <message>
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="99"/>
       <source>Requirements checking for module '%1' is complete.</source>
+      <comment>@info</comment>
       <translation>モジュール '%1' の要件チェックが完了しました。</translation>
     </message>
     <message numerus="yes">
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="123"/>
-      <source>Waiting for %n module(s).</source>
+      <source>Waiting for %n module(s)…</source>
+      <comment>@status</comment>
       <translation>
-        <numerusform>%n モジュールを待機しています。</numerusform>
+        <numerusform>%n 個のモジュールを待機しています…</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="124"/>
       <source>(%n second(s))</source>
+      <comment>@status</comment>
       <translation>
         <numerusform>(%n 秒)</numerusform>
       </translation>
@@ -302,26 +378,12 @@
     <message>
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="129"/>
       <source>System-requirements checking is complete.</source>
+      <comment>@info</comment>
       <translation>要求されるシステムの確認を終了しました。</translation>
     </message>
   </context>
   <context>
     <name>Calamares::ViewManager</name>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="156"/>
-      <source>Setup Failed</source>
-      <translation>セットアップに失敗しました。</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="156"/>
-      <source>Installation Failed</source>
-      <translation>インストールに失敗</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="159"/>
-      <source>Error</source>
-      <translation>エラー</translation>
-    </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="90"/>
       <source>&amp;Yes</source>
@@ -336,6 +398,156 @@
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="92"/>
       <source>&amp;Close</source>
       <translation>閉じる (&amp;C)</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="156"/>
+      <source>Setup Failed</source>
+      <comment>@title</comment>
+      <translation>セットアップに失敗しました。</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="156"/>
+      <source>Installation Failed</source>
+      <comment>@title</comment>
+      <translation>インストールに失敗</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="159"/>
+      <source>Error</source>
+      <comment>@title</comment>
+      <translation>エラー</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="184"/>
+      <source>Calamares Initialization Failed</source>
+      <comment>@title</comment>
+      <translation>Calamares によるインストールに失敗しました。</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="185"/>
+      <source>%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution.</source>
+      <comment>@info</comment>
+      <translation>%1 をインストールできません。Calamares はすべてのモジュールをロードすることをできませんでした。これは、Calamares のこのディストリビューションでの使用法による問題です。</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="191"/>
+      <source>&lt;br/&gt;The following modules could not be loaded:</source>
+      <comment>@info</comment>
+      <translation>&lt;br/&gt;以下のモジュールがロードできませんでした。:</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="333"/>
+      <source>Continue with Setup?</source>
+      <comment>@title</comment>
+      <translation>セットアップを続行しますか？</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="333"/>
+      <source>Continue with Installation?</source>
+      <comment>@title</comment>
+      <translation>インストールを続行しますか？</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="335"/>
+      <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
+      <comment>%1 is short product name, %2 is short product name with version</comment>
+      <translation>%1 のセットアッププログラムは %2 のセットアップのためディスクの内容を変更します。&lt;br/&gt;&lt;strong&gt;これらの変更は取り消しできません。&lt;/strong&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="338"/>
+      <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
+      <comment>%1 is short product name, %2 is short product name with version</comment>
+      <translation>%1 インストーラーは %2 をインストールするためディスクの内容を変更しようとしています。&lt;br/&gt;&lt;strong&gt;これらの変更は取り消せません。&lt;/strong&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="341"/>
+      <source>&amp;Set Up Now</source>
+      <comment>@button</comment>
+      <translation>今すぐセットアップ(&amp;S)</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="341"/>
+      <source>&amp;Install Now</source>
+      <comment>@button</comment>
+      <translation>今すぐインストール(&amp;I)</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="348"/>
+      <source>Go &amp;Back</source>
+      <comment>@button</comment>
+      <translation>戻る(&amp;B)</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="395"/>
+      <source>&amp;Set Up</source>
+      <comment>@button</comment>
+      <translation>セットアップ(&amp;S)</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="395"/>
+      <source>&amp;Install</source>
+      <comment>@button</comment>
+      <translation>インストール (&amp;I)</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="397"/>
+      <source>Setup is complete. Close the setup program.</source>
+      <comment>@tooltip</comment>
+      <translation>セットアップが完了しました。プログラムを閉じます。</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="398"/>
+      <source>The installation is complete. Close the installer.</source>
+      <comment>@tooltip</comment>
+      <translation>インストールが完了しました。インストーラーを閉じます。</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="400"/>
+      <source>Cancel the setup process without changing the system.</source>
+      <comment>@tooltip</comment>
+      <translation>システムを変更せずにセットアッププロセスをキャンセルします。</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="401"/>
+      <source>Cancel the installation process without changing the system.</source>
+      <comment>@tooltip</comment>
+      <translation>システムを変更せずにインストールプロセスをキャンセルします。</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="411"/>
+      <source>&amp;Next</source>
+      <comment>@button</comment>
+      <translation>次へ (&amp;N)</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="416"/>
+      <source>&amp;Back</source>
+      <comment>@button</comment>
+      <translation>戻る (&amp;B)</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="422"/>
+      <source>&amp;Done</source>
+      <comment>@button</comment>
+      <translation>実行 (&amp;D)</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="441"/>
+      <source>&amp;Cancel</source>
+      <comment>@button</comment>
+      <translation>中止 (&amp;C)</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="513"/>
+      <source>Cancel Setup?</source>
+      <comment>@title</comment>
+      <translation>セットアップをキャンセルしますか？</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="513"/>
+      <source>Cancel Installation?</source>
+      <comment>@title</comment>
+      <translation>インストールをキャンセルしますか？</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/utils/Paste.cpp" line="183"/>
@@ -361,116 +573,6 @@ Link copied to clipboard</source>
 クリップボードにリンクをコピーしました</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="184"/>
-      <source>Calamares Initialization Failed</source>
-      <translation>Calamares によるインストールに失敗しました。</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="185"/>
-      <source>%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution.</source>
-      <translation>%1 をインストールできません。Calamares はすべてのモジュールをロードすることをできませんでした。これは、Calamares のこのディストリビューションでの使用法による問題です。</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="191"/>
-      <source>&lt;br/&gt;The following modules could not be loaded:</source>
-      <translation>&lt;br/&gt;以下のモジュールがロードできませんでした。:</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="333"/>
-      <source>Continue with setup?</source>
-      <translation>セットアップを続行しますか？</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="333"/>
-      <source>Continue with installation?</source>
-      <translation>インストールを続行しますか？</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="335"/>
-      <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-      <translation>%1 のセットアッププログラムは %2 のセットアップのためディスクの内容を変更します。&lt;br/&gt;&lt;strong&gt;これらの変更は取り消しできません。&lt;/strong&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="338"/>
-      <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-      <translation>%1 インストーラーは %2 をインストールするためディスクの内容を変更しようとしています。&lt;br/&gt;&lt;strong&gt;これらの変更は取り消せません。&lt;/strong&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="341"/>
-      <source>&amp;Set up now</source>
-      <translation>セットアップしています (&amp;S)</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="341"/>
-      <source>&amp;Install now</source>
-      <translation>今すぐインストール (&amp;I)</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="348"/>
-      <source>Go &amp;back</source>
-      <translation>戻る (&amp;B)</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="395"/>
-      <source>&amp;Set up</source>
-      <translation>セットアップ （&amp;S）</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="395"/>
-      <source>&amp;Install</source>
-      <translation>インストール (&amp;I)</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="397"/>
-      <source>Setup is complete. Close the setup program.</source>
-      <translation>セットアップが完了しました。プログラムを閉じます。</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="398"/>
-      <source>The installation is complete. Close the installer.</source>
-      <translation>インストールが完了しました。インストーラーを閉じます。</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="400"/>
-      <source>Cancel setup without changing the system.</source>
-      <translation>システムを変更することなくセットアップを中断します。</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="401"/>
-      <source>Cancel installation without changing the system.</source>
-      <translation>システムを変更しないでインストールを中止します。</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="411"/>
-      <source>&amp;Next</source>
-      <translation>次へ (&amp;N)</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="416"/>
-      <source>&amp;Back</source>
-      <translation>戻る (&amp;B)</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="422"/>
-      <source>&amp;Done</source>
-      <translation>実行 (&amp;D)</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="441"/>
-      <source>&amp;Cancel</source>
-      <translation>中止 (&amp;C)</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="513"/>
-      <source>Cancel setup?</source>
-      <translation>セットアップを中止しますか？</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="513"/>
-      <source>Cancel installation?</source>
-      <translation>インストールを中止しますか？</translation>
-    </message>
-    <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="514"/>
       <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
@@ -490,33 +592,37 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/libcalamares/PythonHelper.cpp" line="307"/>
       <source>Unknown exception type</source>
+      <comment>@error</comment>
       <translation>不明な例外型</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonHelper.cpp" line="325"/>
-      <source>unparseable Python error</source>
-      <translation>解析不能なPythonエラー</translation>
+      <source>Unparseable Python error</source>
+      <comment>@error</comment>
+      <translation>解析できない Python エラー</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonHelper.cpp" line="369"/>
-      <source>unparseable Python traceback</source>
-      <translation>解析不能な Python トレースバック</translation>
+      <source>Unparseable Python traceback</source>
+      <comment>@error</comment>
+      <translation>解析できない Python トレースバック</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonHelper.cpp" line="376"/>
-      <source>Unfetchable Python error.</source>
-      <translation>取得不能なPythonエラー。</translation>
+      <source>Unfetchable Python error</source>
+      <comment>@error</comment>
+      <translation>フェッチできない Python エラー</translation>
     </message>
   </context>
   <context>
     <name>CalamaresWindow</name>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="403"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="405"/>
       <source>%1 Setup Program</source>
       <translation>%1 セットアッププログラム</translation>
     </message>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="404"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="406"/>
       <source>%1 Installer</source>
       <translation>%1 インストーラー</translation>
     </message>
@@ -557,9 +663,9 @@ The installer will quit and all changes will be lost.</source>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="138"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1024"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1075"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1128"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1034"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1085"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1138"/>
       <source>Current:</source>
       <translation>現在:</translation>
     </message>
@@ -569,131 +675,131 @@ The installer will quit and all changes will be lost.</source>
       <translation>後:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1649"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1659"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
       <translation>&lt;strong&gt;手動パーティション&lt;/strong&gt;&lt;br/&gt;パーティションを自分で作成またはサイズ変更することができます。</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="891"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="896"/>
       <source>Reuse %1 as home partition for %2.</source>
       <translation>%1 を %2 のホームパーティションとして再利用する</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1025"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1035"/>
       <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;縮小するパーティションを選択し、下のバーをドラッグしてサイズを変更して下さい&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1049"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1059"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
       <translation>%1 は %2MiB に縮小され、%4 に新しい %3MiB のパーティションが作成されます。</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1677"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1687"/>
       <source>Boot loader location:</source>
       <translation>ブートローダーの場所:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1119"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1129"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;インストールするパーティションの選択&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1179"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1189"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation>システムにEFIシステムパーティションが存在しません。%1 のセットアップのため、元に戻り、手動パーティショニングを使用してください。</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1187"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1197"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>%1 の EFI システム パーティションは、%2 の起動に使用されます。</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1195"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1205"/>
       <source>EFI system partition:</source>
       <translation>EFI システムパーティション:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1324"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1334"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>このストレージデバイスにはオペレーティングシステムが存在しないようです。何を行いますか？&lt;br/&gt;ストレージデバイスに対する変更を行う前に、変更点をレビューし、確認することができます。</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1329"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1366"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1387"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1412"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1339"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1376"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1397"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1422"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
       <translation>&lt;strong&gt;ディスクの消去&lt;/strong&gt;&lt;br/&gt;選択したストレージデバイス上のデータがすべて &lt;font color="red"&gt;削除&lt;/font&gt;されます。</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1333"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1362"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1383"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1408"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1343"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1372"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1393"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1418"/>
       <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
       <translation>&lt;strong&gt;共存してインストール&lt;/strong&gt;&lt;br/&gt;インストーラは %1 用の空きスペースを確保するため、パーティションを縮小します。</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1337"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1370"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1391"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1416"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1347"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1380"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1401"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1426"/>
       <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
       <translation>&lt;strong&gt;パーティションの置換&lt;/strong&gt;&lt;br/&gt;パーティションを %1 に置き換えます。</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1356"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1366"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>このストレージデバイスには %1  が存在します。何を行いますか？&lt;br/&gt;ストレージデバイスに対する変更を行う前に、変更点をレビューし、確認することができます。</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1378"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1388"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>このストレージデバイスにはすでにオペレーティングシステムが存在します。何を行いますか？&lt;br/&gt;ストレージデバイスに対する変更を行う前に、変更点をレビューし、確認することができます。</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1403"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1413"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>このストレージデバイスには複数のオペレーティングシステムが存在します。何を行いますか？&lt;br /&gt;ストレージデバイスに対する変更を行う前に、変更点をレビューし、確認することができます。</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1475"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1485"/>
       <source>This storage device already has an operating system on it, but the partition table &lt;strong&gt;%1&lt;/strong&gt; is different from the needed &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</source>
       <translation>このストレージデバイスにはすでにオペレーティングシステムがインストールされていますが、パーティションテーブル &lt;strong&gt;%1&lt;/strong&gt; は必要な &lt;strong&gt;%2&lt;/strong&gt; とは異なります。&lt;br/&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1498"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1508"/>
       <source>This storage device has one of its partitions &lt;strong&gt;mounted&lt;/strong&gt;.</source>
       <translation>このストレージデバイスにはパーティションの1つが&lt;strong&gt;マウントされています&lt;/strong&gt;。</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1503"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1513"/>
       <source>This storage device is a part of an &lt;strong&gt;inactive RAID&lt;/strong&gt; device.</source>
       <translation>このストレージデバイスは&lt;strong&gt;非アクティブなRAID&lt;/strong&gt;デバイスの一部です。</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1618"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1628"/>
       <source>No Swap</source>
       <translation>スワップを使用しない</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1627"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1637"/>
       <source>Reuse Swap</source>
       <translation>スワップを再利用</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1630"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1640"/>
       <source>Swap (no Hibernate)</source>
       <translation>スワップ(ハイバーネートなし)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1633"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1643"/>
       <source>Swap (with Hibernate)</source>
       <translation>スワップ(ハイバーネート)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1636"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1646"/>
       <source>Swap to file</source>
       <translation>ファイルにスワップ</translation>
     </message>
@@ -774,31 +880,6 @@ The installer will quit and all changes will be lost.</source>
   </context>
   <context>
     <name>Config</name>
-    <message>
-      <location filename="../src/modules/keyboard/Config.cpp" line="505"/>
-      <source>Set keyboard model to %1.&lt;br/&gt;</source>
-      <translation>キーボードのモデルを %1 に設定する。&lt;br/&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/keyboard/Config.cpp" line="512"/>
-      <source>Set keyboard layout to %1/%2.</source>
-      <translation>キーボードのレイアウトを %1/%2 に設定する。</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/locale/Config.cpp" line="373"/>
-      <source>Set timezone to %1/%2.</source>
-      <translation>タイムゾーンを %1/%2 に設定する。</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/locale/Config.cpp" line="410"/>
-      <source>The system language will be set to %1.</source>
-      <translation>システムの言語を %1 に設定する。</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/locale/Config.cpp" line="417"/>
-      <source>The numbers and dates locale will be set to %1.</source>
-      <translation>数値と日付のロケールを %1 に設定する。</translation>
-    </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="53"/>
       <source>Network Installation. (Disabled: Incorrect configuration)</source>
@@ -925,47 +1006,6 @@ The installer will quit and all changes will be lost.</source>
       <translation>OK!</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/Config.cpp" line="142"/>
-      <source>Setup Failed</source>
-      <translation>セットアップに失敗しました。</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/finished/Config.cpp" line="142"/>
-      <source>Installation Failed</source>
-      <translation>インストールに失敗</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/finished/Config.cpp" line="144"/>
-      <source>The setup of %1 did not complete successfully.</source>
-      <translation>%1 のセットアップは正常に完了しませんでした。</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/finished/Config.cpp" line="145"/>
-      <source>The installation of %1 did not complete successfully.</source>
-      <translation>%1 のインストールは正常に完了しませんでした。</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/finished/Config.cpp" line="149"/>
-      <source>Setup Complete</source>
-      <translation>セットアップが完了しました</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/finished/Config.cpp" line="150"/>
-      <source>Installation Complete</source>
-      <translation>インストールが完了
-</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/finished/Config.cpp" line="151"/>
-      <source>The setup of %1 is complete.</source>
-      <translation>%1 のセットアップが完了しました。</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/finished/Config.cpp" line="152"/>
-      <source>The installation of %1 is complete.</source>
-      <translation>%1 のインストールは完了です。</translation>
-    </message>
-    <message>
       <location filename="../src/modules/packagechooser/Config.cpp" line="111"/>
       <source>Package Selection</source>
       <translation>パッケージの選択</translation>
@@ -1005,13 +1045,93 @@ The installer will quit and all changes will be lost.</source>
       <source>This is an overview of what will happen once you start the install procedure.</source>
       <translation>これは、インストール開始後に行うことの概要です。</translation>
     </message>
+    <message>
+      <location filename="../src/modules/finished/Config.cpp" line="142"/>
+      <source>Setup Failed</source>
+      <comment>@title</comment>
+      <translation>セットアップに失敗しました。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/finished/Config.cpp" line="142"/>
+      <source>Installation Failed</source>
+      <comment>@title</comment>
+      <translation>インストールに失敗</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/finished/Config.cpp" line="144"/>
+      <source>The setup of %1 did not complete successfully.</source>
+      <comment>@info</comment>
+      <translation>%1 のセットアップは正常に完了しませんでした。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/finished/Config.cpp" line="145"/>
+      <source>The installation of %1 did not complete successfully.</source>
+      <comment>@info</comment>
+      <translation>%1 のインストールは正常に完了しませんでした。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/finished/Config.cpp" line="149"/>
+      <source>Setup Complete</source>
+      <comment>@title</comment>
+      <translation>セットアップが完了しました</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/finished/Config.cpp" line="150"/>
+      <source>Installation Complete</source>
+      <comment>@title</comment>
+      <translation>インストールが完了
+</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/finished/Config.cpp" line="151"/>
+      <source>The setup of %1 is complete.</source>
+      <comment>@info</comment>
+      <translation>%1 のセットアップが完了しました。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/finished/Config.cpp" line="152"/>
+      <source>The installation of %1 is complete.</source>
+      <comment>@info</comment>
+      <translation>%1 のインストールは完了です。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboard/Config.cpp" line="505"/>
+      <source>Keyboard model has been set to %1&lt;br/&gt;.</source>
+      <comment>@label, %1 is keyboard model, as in Apple Magic Keyboard</comment>
+      <translation>キーボードのモデルは %1&lt;br/&gt; に設定されました。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboard/Config.cpp" line="512"/>
+      <source>Keyboard layout has been set to %1/%2.</source>
+      <comment>@label, %1 is layout, %2 is layout variant</comment>
+      <translation>キーボードレイアウトは %1/%2 に設定されました。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/locale/Config.cpp" line="373"/>
+      <source>Set timezone to %1/%2</source>
+      <comment>@action</comment>
+      <translation>タイムゾーンを %1/%2 に設定</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/locale/Config.cpp" line="410"/>
+      <source>The system language will be set to %1</source>
+      <comment>@info</comment>
+      <translation>システム言語は %1 に設定されます。{1?}</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/locale/Config.cpp" line="417"/>
+      <source>The numbers and dates locale will be set to %1</source>
+      <comment>@info</comment>
+      <translation>数値と日付のロケールは %1 に設定されます。{1?}</translation>
+    </message>
   </context>
   <context>
     <name>ContextualProcessJob</name>
     <message>
       <location filename="../src/modules/contextualprocess/ContextualProcessJob.cpp" line="115"/>
-      <source>Contextual Processes Job</source>
-      <translation>コンテキストプロセスジョブ</translation>
+      <source>Performing contextual processes' job…</source>
+      <comment>@status</comment>
+      <translation>コンテキストプロセスのジョブを実行中…</translation>
     </message>
   </context>
   <context>
@@ -1361,17 +1481,20 @@ The installer will quit and all changes will be lost.</source>
     <name>DracutLuksCfgJob</name>
     <message>
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="117"/>
-      <source>Write LUKS configuration for Dracut to %1</source>
-      <translation>Dracut のためのLUKS設定を %1 に書き込む</translation>
+      <source>Writing LUKS configuration for Dracut to %1…</source>
+      <comment>@status</comment>
+      <translation>Dracut の LUKS 設定を %1 に書き込んでいます…</translation>
     </message>
     <message>
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="121"/>
-      <source>Skip writing LUKS configuration for Dracut: "/" partition is not encrypted</source>
-      <translation>Dracut のためのLUKS設定の書き込みをスキップ:  "/" パーティションは暗号化されません。</translation>
+      <source>Skipping writing LUKS configuration for Dracut: "/" partition is not encrypted</source>
+      <comment>@info</comment>
+      <translation>Dracut の LUKS 設定の書き込みをスキップします。"/" パーティションは暗号化されていません</translation>
     </message>
     <message>
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="138"/>
       <source>Failed to open %1</source>
+      <comment>@error</comment>
       <translation>%1 を開くのに失敗しました</translation>
     </message>
   </context>
@@ -1379,8 +1502,9 @@ The installer will quit and all changes will be lost.</source>
     <name>DummyCppJob</name>
     <message>
       <location filename="../src/modules/dummycpp/DummyCppJob.cpp" line="35"/>
-      <source>Dummy C++ Job</source>
-      <translation>Dummy C++ Job</translation>
+      <source>Performing dummy C++ job…</source>
+      <comment>@status</comment>
+      <translation>ダミーの C++ ジョブを実行中…</translation>
     </message>
   </context>
   <context>
@@ -1571,31 +1695,37 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="75"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been set up on your computer.&lt;br/&gt;You may now start using your new system.</source>
+      <comment>@info</comment>
       <translation>&lt;h1&gt;すべて完了しました。&lt;/h1&gt;&lt;br/&gt;%1 はコンピューターにセットアップされました。&lt;br/&gt;今から新しいシステムを開始することができます。</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="79"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style="font-style:italic;"&gt;Done&lt;/span&gt; or close the setup program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <comment>@tooltip</comment>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;このボックスをチェックすると、 &lt;span style="font-style:italic;"&gt;実行&lt;/span&gt;をクリックするかプログラムを閉じると直ちにシステムが再起動します。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="87"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
+      <comment>@info</comment>
       <translation>&lt;h1&gt;すべて完了しました。&lt;/h1&gt;&lt;br/&gt;%1 がコンピューターにインストールされました。&lt;br/&gt;再起動して新しいシステムを使用することもできますし、%2 ライブ環境の使用を続けることもできます。</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="92"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style="font-style:italic;"&gt;Done&lt;/span&gt; or close the installer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <comment>@tooltip</comment>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;このボックスをチェックすると、 &lt;span style="font-style:italic;"&gt;実行&lt;/span&gt;をクリックするかインストーラーを閉じると直ちにシステムが再起動します。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="105"/>
       <source>&lt;h1&gt;Setup Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been set up on your computer.&lt;br/&gt;The error message was: %2.</source>
+      <comment>@info, %1 is product name with version</comment>
       <translation>&lt;h1&gt;セットアップに失敗しました。&lt;/h1&gt;&lt;br/&gt;%1 はコンピューターにセットアップされていません。&lt;br/&gt;エラーメッセージ: %2</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="113"/>
       <source>&lt;h1&gt;Installation Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been installed on your computer.&lt;br/&gt;The error message was: %2.</source>
+      <comment>@info, %1 is product name with version</comment>
       <translation>&lt;h1&gt;インストールに失敗しました&lt;/h1&gt;&lt;br/&gt;%1 はコンピューターにインストールされませんでした。&lt;br/&gt;エラーメッセージ: %2.</translation>
     </message>
   </context>
@@ -1604,6 +1734,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finishedq/FinishedQmlViewStep.cpp" line="35"/>
       <source>Finish</source>
+      <comment>@label</comment>
       <translation>終了</translation>
     </message>
   </context>
@@ -1612,6 +1743,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/FinishedViewStep.cpp" line="46"/>
       <source>Finish</source>
+      <comment>@label</comment>
       <translation>終了</translation>
     </message>
   </context>
@@ -1776,9 +1908,10 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>HostInfoJob</name>
     <message>
-      <location filename="../src/modules/hostinfo/HostInfoJob.cpp" line="41"/>
-      <source>Collecting information about your machine.</source>
-      <translation>お使いのマシンの情報を収集しています。</translation>
+      <location filename="../src/modules/hostinfo/HostInfoJob.cpp" line="39"/>
+      <source>Collecting information about your machine…</source>
+      <comment>@status</comment>
+      <translation>マシンに関する情報を収集しています…</translation>
     </message>
   </context>
   <context>
@@ -1811,33 +1944,38 @@ The installer will quit and all changes will be lost.</source>
     <name>InitcpioJob</name>
     <message>
       <location filename="../src/modules/initcpio/InitcpioJob.cpp" line="31"/>
-      <source>Creating initramfs with mkinitcpio.</source>
-      <translation>mkinitcpio と initramfs を作成しています。</translation>
+      <source>Creating initramfs with mkinitcpio…</source>
+      <comment>@status</comment>
+      <translation>mkinitcpio を使用して initramfs を作成しています…</translation>
     </message>
   </context>
   <context>
     <name>InitramfsJob</name>
     <message>
       <location filename="../src/modules/initramfs/InitramfsJob.cpp" line="27"/>
-      <source>Creating initramfs.</source>
-      <translation>initramfsを作成しています。</translation>
+      <source>Creating initramfs…</source>
+      <comment>@status</comment>
+      <translation>initramf を作成中…</translation>
     </message>
   </context>
   <context>
     <name>InteractiveTerminalPage</name>
     <message>
       <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="49"/>
-      <source>Konsole not installed</source>
-      <translation>Konsoleがインストールされていません</translation>
+      <source>Konsole not installed.</source>
+      <comment>@error</comment>
+      <translation>Konsole がインストールされていません。</translation>
     </message>
     <message>
       <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="50"/>
       <source>Please install KDE Konsole and try again!</source>
+      <comment>@info</comment>
       <translation>KDE Konsole をインストールして再度試してください！</translation>
     </message>
     <message>
       <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="122"/>
       <source>Executing script: &amp;nbsp;&lt;code&gt;%1&lt;/code&gt;</source>
+      <comment>@info</comment>
       <translation>スクリプトの実行: &amp;nbsp;&lt;code&gt;%1&lt;/code&gt;</translation>
     </message>
   </context>
@@ -1846,6 +1984,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/interactiveterminal/InteractiveTerminalViewStep.cpp" line="40"/>
       <source>Script</source>
+      <comment>@label</comment>
       <translation>スクリプト</translation>
     </message>
   </context>
@@ -1854,6 +1993,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/keyboardq/KeyboardQmlViewStep.cpp" line="32"/>
       <source>Keyboard</source>
+      <comment>@label</comment>
       <translation>キーボード</translation>
     </message>
   </context>
@@ -1862,6 +2002,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/keyboard/KeyboardViewStep.cpp" line="41"/>
       <source>Keyboard</source>
+      <comment>@label</comment>
       <translation>キーボード</translation>
     </message>
   </context>
@@ -1869,22 +2010,26 @@ The installer will quit and all changes will be lost.</source>
     <name>LCLocaleDialog</name>
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="23"/>
-      <source>System locale setting</source>
-      <translation>システムのロケールの設定</translation>
+      <source>System Locale Setting</source>
+      <comment>@title</comment>
+      <translation>システムロケール設定</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="30"/>
       <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
+      <comment>@info</comment>
       <translation>システムロケールの設定はコマンドラインやインターフェースでの言語や文字の表示に影響をおよぼします。&lt;br/&gt;現在の設定 &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="54"/>
       <source>&amp;Cancel</source>
+      <comment>@button</comment>
       <translation>中止 (&amp;C)</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="55"/>
       <source>&amp;OK</source>
+      <comment>@button</comment>
       <translation>了解 (&amp;O)</translation>
     </message>
   </context>
@@ -1921,31 +2066,37 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="142"/>
       <source>I accept the terms and conditions above.</source>
-      <translation>上記の項目及び条件に同意します。</translation>
+      <comment>@info</comment>
+      <translation>上記の利用規約に同意します。</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="144"/>
       <source>Please review the End User License Agreements (EULAs).</source>
+      <comment>@info</comment>
       <translation>エンドユーザーライセンス契約（EULA）を確認してください。</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="149"/>
       <source>This setup procedure will install proprietary software that is subject to licensing terms.</source>
+      <comment>@info</comment>
       <translation>このセットアップ手順では、ライセンス条項の対象となるプロプライエタリソフトウェアをインストールします。</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="152"/>
       <source>If you do not agree with the terms, the setup procedure cannot continue.</source>
+      <comment>@info</comment>
       <translation>条件に同意しない場合はセットアップ手順を続行できません。</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="157"/>
       <source>This setup procedure can install proprietary software that is subject to licensing terms in order to provide additional features and enhance the user experience.</source>
+      <comment>@info</comment>
       <translation>このセットアップ手順では、追加機能を提供し、ユーザーエクスペリエンスを向上させるために、ライセンス条項の対象となるプロプライエタリソフトウェアをインストールできます。</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="162"/>
       <source>If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
+      <comment>@info</comment>
       <translation>条件に同意しない場合はプロプライエタリソフトウェアがインストールされず、代わりにオープンソースの代替ソフトウェアが使用されます。</translation>
     </message>
   </context>
@@ -1954,6 +2105,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/license/LicenseViewStep.cpp" line="45"/>
       <source>License</source>
+      <comment>@label</comment>
       <translation>ライセンス</translation>
     </message>
   </context>
@@ -1962,59 +2114,70 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="88"/>
       <source>URL: %1</source>
+      <comment>@label</comment>
       <translation>URL: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="109"/>
       <source>&lt;strong&gt;%1 driver&lt;/strong&gt;&lt;br/&gt;by %2</source>
+      <comment>@label, %1 is product name, %2 is product vendor</comment>
       <extracomment>%1 is an untranslatable product name, example: Creative Audigy driver</extracomment>
       <translation>&lt;strong&gt;%1 ドライバー&lt;/strong&gt;&lt;br/&gt;by %2</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="116"/>
       <source>&lt;strong&gt;%1 graphics driver&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
+      <comment>@label, %1 is product name, %2 is product vendor</comment>
       <extracomment>%1 is usually a vendor name, example: Nvidia graphics driver</extracomment>
       <translation>&lt;strong&gt;%1 グラフィックドライバー&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="122"/>
       <source>&lt;strong&gt;%1 browser plugin&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
+      <comment>@label, %1 is product name, %2 is product vendor</comment>
       <translation>&lt;strong&gt;%1 ブラウザプラグイン&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="128"/>
       <source>&lt;strong&gt;%1 codec&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
+      <comment>@label, %1 is product name, %2 is product vendor</comment>
       <translation>&lt;strong&gt;%1 codec&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="134"/>
       <source>&lt;strong&gt;%1 package&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
+      <comment>@label, %1 is product name, %2 is product vendor</comment>
       <translation>&lt;strong&gt;%1 パッケージ&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="140"/>
       <source>&lt;strong&gt;%1&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
+      <comment>@label, %1 is product name, %2 is product vendor</comment>
       <translation>&lt;strong&gt;%1&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="163"/>
       <source>File: %1</source>
+      <comment>@label</comment>
       <translation>ファイル: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="186"/>
-      <source>Hide license text</source>
-      <translation>ライセンステキストを非表示</translation>
+      <source>Hide the license text</source>
+      <comment>@tooltip</comment>
+      <translation>ライセンステキストを非表示にする</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="186"/>
       <source>Show the license text</source>
+      <comment>@tooltip</comment>
       <translation>ライセンステキストを表示</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="190"/>
-      <source>Open license agreement in browser.</source>
-      <translation>ブラウザでライセンス契約を開く。</translation>
+      <source>Open the license agreement in browser</source>
+      <comment>@tooltip</comment>
+      <translation>使用許諾契約書をブラウザで開く</translation>
     </message>
   </context>
   <context>
@@ -2022,18 +2185,21 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/locale/LocalePage.cpp" line="130"/>
       <source>Region:</source>
+      <comment>@label</comment>
       <translation>地域:</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LocalePage.cpp" line="131"/>
       <source>Zone:</source>
+      <comment>@label</comment>
       <translation>ゾーン:</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LocalePage.cpp" line="132"/>
       <location filename="../src/modules/locale/LocalePage.cpp" line="133"/>
-      <source>&amp;Change...</source>
-      <translation>変更 (&amp;C)...</translation>
+      <source>&amp;Change…</source>
+      <comment>@button</comment>
+      <translation>変更(&amp;C)…</translation>
     </message>
   </context>
   <context>
@@ -2041,6 +2207,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/localeq/LocaleQmlViewStep.cpp" line="32"/>
       <source>Location</source>
+      <comment>@label</comment>
       <translation>ロケーション</translation>
     </message>
   </context>
@@ -2057,6 +2224,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/locale/LocaleViewStep.cpp" line="71"/>
       <source>Location</source>
+      <comment>@label</comment>
       <translation>ロケーション</translation>
     </message>
   </context>
@@ -2113,6 +2281,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/localeq/Map.qml" line="237"/>
       <source>Timezone: %1</source>
+      <comment>@label</comment>
       <translation>タイムゾーン: %1</translation>
     </message>
     <message>
@@ -2120,6 +2289,27 @@ The installer will quit and all changes will be lost.</source>
       <source>Please select your preferred location on the map so the installer can suggest the locale
             and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
             to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</source>
+      <comment>@info</comment>
+      <translation>インストーラーがロケールとタイムゾーンの設定を提案できるように、
+マップ上の適切な場所を選択してください。 以下の推奨設定を調整できます。
+ドラッグして移動し、+ /-ボタンでズームインまたはズームアウトしてマップを検索するか、
+マウスのスクロールを使用してズームします。</translation>
+    </message>
+  </context>
+  <context>
+    <name>Map-qt6</name>
+    <message>
+      <location filename="../src/modules/localeq/Map-qt6.qml" line="237"/>
+      <source>Timezone: %1</source>
+      <comment>@label</comment>
+      <translation>タイムゾーン: %1</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/localeq/Map-qt6.qml" line="258"/>
+      <source>Please select your preferred location on the map so the installer can suggest the locale
+            and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
+            to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</source>
+      <comment>@label</comment>
       <translation>インストーラーがロケールとタイムゾーンの設定を提案できるように、
 マップ上の適切な場所を選択してください。 以下の推奨設定を調整できます。
 ドラッグして移動し、+ /-ボタンでズームインまたはズームアウトしてマップを検索するか、
@@ -2279,30 +2469,70 @@ The installer will quit and all changes will be lost.</source>
     <name>Offline</name>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="47"/>
-      <source>Select your preferred Region, or use the default settings.</source>
-      <translation>希望する地域を選択するか、デフォルトの設定を使用してください。</translation>
+      <source>Select your preferred region, or use the default settings</source>
+      <comment>@label</comment>
+      <translation>希望の地域を選択するか、デフォルト設定を使用する</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="103"/>
       <location filename="../src/modules/localeq/Offline.qml" line="180"/>
       <location filename="../src/modules/localeq/Offline.qml" line="224"/>
       <source>Timezone: %1</source>
+      <comment>@label</comment>
       <translation>タイムゾーン: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="120"/>
-      <source>Select your preferred Zone within your Region.</source>
-      <translation>地域内の優先ゾーンを選択してください。</translation>
+      <source>Select your preferred zone within your region</source>
+      <comment>@label</comment>
+      <translation>お住まいの地域内で希望するゾーンを選択してください</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="193"/>
       <source>Zones</source>
+      <comment>@button</comment>
       <translation>ゾーン</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="240"/>
-      <source>You can fine-tune Language and Locale settings below.</source>
-      <translation>以下の言語とロケールの設定を微調整できます。</translation>
+      <source>You can fine-tune language and locale settings below</source>
+      <comment>@label</comment>
+      <translation>以下で言語とロケールの設定を微調整できます</translation>
+    </message>
+  </context>
+  <context>
+    <name>Offline-qt6</name>
+    <message>
+      <location filename="../src/modules/localeq/Offline-qt6.qml" line="47"/>
+      <source>Select your preferred region, or use the default settings</source>
+      <comment>@label</comment>
+      <translation>希望の地域を選択するか、デフォルト設定を使用する</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/localeq/Offline-qt6.qml" line="103"/>
+      <location filename="../src/modules/localeq/Offline-qt6.qml" line="180"/>
+      <location filename="../src/modules/localeq/Offline-qt6.qml" line="224"/>
+      <source>Timezone: %1</source>
+      <comment>@label</comment>
+      <translation>タイムゾーン: %1</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/localeq/Offline-qt6.qml" line="120"/>
+      <source>Select your preferred zone within your region</source>
+      <comment>@label</comment>
+      <translation>お住まいの地域内で希望するゾーンを選択してください</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/localeq/Offline-qt6.qml" line="193"/>
+      <source>Zones</source>
+      <comment>@button</comment>
+      <translation>ゾーン</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/localeq/Offline-qt6.qml" line="240"/>
+      <source>You can fine-tune language and locale settings below</source>
+      <comment>@label</comment>
+      <translation>以下で言語とロケールの設定を微調整できます</translation>
     </message>
   </context>
   <context>
@@ -2616,7 +2846,7 @@ The installer will quit and all changes will be lost.</source>
     <name>Page_Keyboard</name>
     <message>
       <location filename="../src/modules/keyboard/KeyboardPage.ui" line="74"/>
-      <source>Keyboard Model:</source>
+      <source>Keyboard model:</source>
       <translation>キーボードモデル:</translation>
     </message>
     <message>
@@ -2626,7 +2856,7 @@ The installer will quit and all changes will be lost.</source>
     </message>
     <message>
       <location filename="../src/modules/keyboard/KeyboardPage.ui" line="153"/>
-      <source>Keyboard Switch:</source>
+      <source>Keyboard switch:</source>
       <translation>キーボードスイッチ:</translation>
     </message>
   </context>
@@ -2760,7 +2990,7 @@ The installer will quit and all changes will be lost.</source>
       <translation>新しいパーティション</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="227"/>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="228"/>
       <source>%1  %2</source>
       <extracomment>size[number] filesystem[name]</extracomment>
       <translation>%1  %2</translation>
@@ -2781,27 +3011,27 @@ The installer will quit and all changes will be lost.</source>
       <translation>新しいパーティション</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="298"/>
+      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="307"/>
       <source>Name</source>
       <translation>名前</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="300"/>
+      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="309"/>
       <source>File System</source>
       <translation>ファイルシステム</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="302"/>
+      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="311"/>
       <source>File System Label</source>
       <translation>ファイルシステムのラベル</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="304"/>
+      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="313"/>
       <source>Mount Point</source>
       <translation>マウントポイント</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="306"/>
+      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="315"/>
       <source>Size</source>
       <translation>サイズ</translation>
     </message>
@@ -2917,72 +3147,93 @@ The installer will quit and all changes will be lost.</source>
       <translation>変更後:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="535"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="542"/>
+      <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;The EFI system partition does not meet recommendations. It is recommended to go back and select or create a suitable filesystem.</source>
+      <translation>%1 を起動するには EFI システムパーティションが必要です。&lt;br/&gt;&lt;br/&gt;EFI システムパーティションは推奨基準を満たしていません。戻って、適切なファイルシステムを選択または作成することをお勧めします。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="564"/>
+      <source>The minimum recommended size for the filesystem is %1 MiB.</source>
+      <translation>ファイルシステムの推奨最小サイズは %1 MiB です。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="568"/>
+      <source>You can continue with this EFI system partition configuration but your system may fail to start.</source>
+      <translation>この EFI システムパーティション設定で続行できますが、システムが起動に失敗する可能性があります。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="580"/>
       <source>No EFI system partition configured</source>
       <translation>EFI システムパーティションが設定されていません</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="539"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="588"/>
       <source>EFI system partition configured incorrectly</source>
       <translation>EFI システムパーティションが正しく設定されていません</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="544"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="536"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a suitable filesystem.</source>
       <translation>%1 を起動するには EFI システムパーティションが必要です。&lt;br/&gt;&lt;br/&gt;EFI システムパーティションを設定するには、戻って適切なファイルシステムを選択または作成してください。</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="555"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="550"/>
       <source>The filesystem must be mounted on &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>ファイルシステムは &lt;strong&gt;%1&lt;/strong&gt; にマウントする必要があります。</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="561"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="551"/>
       <source>The filesystem must have type FAT32.</source>
       <translation>ファイルシステムのタイプは FAT32 にする必要があります。</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="569"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="560"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="562"/>
       <source>The filesystem must be at least %1 MiB in size.</source>
       <translation>ファイルシステムのサイズは最低でも %1 MiB である必要があります。</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="575"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="552"/>
       <source>The filesystem must have flag &lt;strong&gt;%1&lt;/strong&gt; set.</source>
       <translation>ファイルシステムにはフラグ &lt;strong&gt;%1&lt;/strong&gt; を設定する必要があります。 </translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="581"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="566"/>
       <source>You can continue without setting up an EFI system partition but your system may fail to start.</source>
       <translation>EFI システムパーティションを設定しなくても続行できますが、システムが起動しない場合があります。</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="599"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="608"/>
+      <source>EFI system partition recommendation</source>
+      <translation>EFI システムパーティションの推奨基準</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="627"/>
       <source>Option to use GPT on BIOS</source>
       <translation>BIOS で GPT を使用するためのオプション</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="600"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="628"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
       <translation>GPT パーティションテーブルは、すべてのシステムに最適なオプションです。このインストーラーは、BIOS システムのそのようなセットアップもサポートします。&lt;br/&gt;&lt;br/&gt;BIOS で GPT パーティションテーブルを設定するには（まだ設定していない場合は）、戻ってパーティションテーブルを GPT に設定し、&lt;strong&gt;%2&lt;/strong&gt; フラグを有効にした 8 MB の未フォーマットパーティションを作成します。&lt;br/&gt;&lt;br/&gt;GPT を使用する BIOS システムで %1 を開始するには、未フォーマットの 8 MB のパーティションが必要です。</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="622"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="650"/>
       <source>Boot partition not encrypted</source>
       <translation>ブートパーティションが暗号化されていません</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="623"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="651"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
       <translation>ブートパーティションは暗号化されたルートパーティションとともにセットアップされましたが、ブートパーティションは暗号化されていません。&lt;br/&gt;&lt;br/&gt;重要なシステムファイルが暗号化されていないパーティションに残されているため、このようなセットアップは安全上の懸念があります。&lt;br/&gt;セットアップを続行することはできますが、後でシステムの起動中にファイルシステムが解除されます。&lt;br/&gt;ブートパーティションを暗号化させるには、前の画面に戻って、再度パーティションを作成し、パーティション作成ウィンドウ内で&lt;strong&gt;Encrypt&lt;/strong&gt; (暗号化) を選択してください。</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="715"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="743"/>
       <source>has at least one disk device available.</source>
       <translation>は少なくとも1つのディスクデバイスを利用可能です。</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="716"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="744"/>
       <source>There are no partitions to install on.</source>
       <translation>インストールするパーティションがありません。</translation>
     </message>
@@ -3004,12 +3255,12 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>PlasmaLnfPage</name>
     <message>
-      <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="79"/>
+      <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="80"/>
       <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is set up. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
       <translation>KDE Plasma デスクトップの外観を選んでください。この作業はスキップでき、インストール後に外観を設定することができます。外観を選択し、クリックすることにより外観のプレビューが表示されます。</translation>
     </message>
     <message>
-      <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="84"/>
+      <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="87"/>
       <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is installed. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
       <translation>KDE Plasma デスクトップの外観を選んでください。この作業をスキップして、インストール後に外観を設定することもできます。外観の選択をクリックすると、外観のプレビューが表示されます。</translation>
     </message>
@@ -3043,14 +3294,14 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>ProcessResult</name>
     <message>
-      <location filename="../src/libcalamares/utils/System.cpp" line="303"/>
+      <location filename="../src/libcalamares/utils/System.cpp" line="305"/>
       <source>
 There was no output from the command.</source>
       <translation>
 コマンドから出力するものがありませんでした。</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/System.cpp" line="304"/>
+      <location filename="../src/libcalamares/utils/System.cpp" line="306"/>
       <source>
 Output:
 </source>
@@ -3059,52 +3310,52 @@ Output:
 </translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/System.cpp" line="308"/>
+      <location filename="../src/libcalamares/utils/System.cpp" line="311"/>
       <source>External command crashed.</source>
       <translation>外部コマンドがクラッシュしました。</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/System.cpp" line="309"/>
+      <location filename="../src/libcalamares/utils/System.cpp" line="312"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; crashed.</source>
       <translation>コマンド &lt;i&gt;%1&lt;/i&gt; がクラッシュしました。</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/System.cpp" line="314"/>
+      <location filename="../src/libcalamares/utils/System.cpp" line="319"/>
       <source>External command failed to start.</source>
       <translation>外部コマンドの起動に失敗しました。</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/System.cpp" line="315"/>
+      <location filename="../src/libcalamares/utils/System.cpp" line="320"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; failed to start.</source>
       <translation>コマンド &lt;i&gt;%1&lt;/i&gt; の起動に失敗しました。</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/System.cpp" line="319"/>
+      <location filename="../src/libcalamares/utils/System.cpp" line="326"/>
       <source>Internal error when starting command.</source>
       <translation>コマンドが起動する際に内部エラーが発生しました。</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/System.cpp" line="320"/>
+      <location filename="../src/libcalamares/utils/System.cpp" line="327"/>
       <source>Bad parameters for process job call.</source>
       <translation>ジョブ呼び出しにおける不正なパラメータ</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/System.cpp" line="324"/>
+      <location filename="../src/libcalamares/utils/System.cpp" line="333"/>
       <source>External command failed to finish.</source>
       <translation>外部コマンドの終了に失敗しました。</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/System.cpp" line="325"/>
+      <location filename="../src/libcalamares/utils/System.cpp" line="334"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; failed to finish in %2 seconds.</source>
       <translation>コマンド&lt;i&gt;%1&lt;/i&gt;  %2 秒以内に終了することに失敗しました。</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/System.cpp" line="332"/>
+      <location filename="../src/libcalamares/utils/System.cpp" line="342"/>
       <source>External command finished with errors.</source>
       <translation>外部のコマンドがエラーで停止しました。</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/System.cpp" line="333"/>
+      <location filename="../src/libcalamares/utils/System.cpp" line="343"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; finished with exit code %2.</source>
       <translation>コマンド &lt;i&gt;%1&lt;/i&gt; が終了コード %2 で終了しました。.</translation>
     </message>
@@ -3112,29 +3363,9 @@ Output:
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../src/libcalamares/locale/Translation.cpp" line="155"/>
+      <location filename="../src/libcalamares/locale/Translation.cpp" line="170"/>
       <source>%1 (%2)</source>
       <translation>%1 (%2)</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="33"/>
-      <source>unknown</source>
-      <translation>不明</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="35"/>
-      <source>extended</source>
-      <translation>拡張</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="37"/>
-      <source>unformatted</source>
-      <translation>未フォーマット</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="39"/>
-      <source>swap</source>
-      <translation>スワップ</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="145"/>
@@ -3185,6 +3416,30 @@ Output:
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="39"/>
       <source>Unpartitioned space or unknown partition table</source>
       <translation>パーティションされていない領域または未知のパーティションテーブル</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="33"/>
+      <source>unknown</source>
+      <comment>@partition info</comment>
+      <translation>不明</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="35"/>
+      <source>extended</source>
+      <comment>@partition info</comment>
+      <translation>拡張</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="37"/>
+      <source>unformatted</source>
+      <comment>@partition info</comment>
+      <translation>未フォーマット</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="39"/>
+      <source>swap</source>
+      <comment>@partition info</comment>
+      <translation>スワップ</translation>
     </message>
   </context>
   <context>
@@ -3245,68 +3500,85 @@ Output:
     <name>ResizeFSJob</name>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="43"/>
-      <source>Resize Filesystem Job</source>
-      <translation>ファイルシステム ジョブのサイズ変更</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="161"/>
-      <source>Invalid configuration</source>
-      <translation>不当な設定</translation>
+      <source>Performing file system resize…</source>
+      <comment>@status</comment>
+      <translation>ファイルシステムのサイズ変更を実行しています…</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="162"/>
+      <source>Invalid configuration</source>
+      <comment>@error</comment>
+      <translation>不当な設定</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="163"/>
       <source>The file-system resize job has an invalid configuration and will not run.</source>
+      <comment>@error</comment>
       <translation>ファイルシステムのサイズ変更ジョブの設定が無効です。実行しません。</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="167"/>
-      <source>KPMCore not Available</source>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="169"/>
+      <source>KPMCore not available</source>
+      <comment>@error</comment>
       <translation>KPMCore は利用できません</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="168"/>
-      <source>Calamares cannot start KPMCore for the file-system resize job.</source>
-      <translation>Calamares はファイエウシステムのサイズ変更ジョブのため KPMCore を開始することができません。</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="176"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="185"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="196"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="205"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="223"/>
-      <source>Resize Failed</source>
-      <translation>サイズ変更に失敗しました</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="178"/>
-      <source>The filesystem %1 could not be found in this system, and cannot be resized.</source>
-      <translation>ファイルシステム %1 がシステム内に見つけられなかったため、サイズ変更ができません。</translation>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="170"/>
+      <source>Calamares cannot start KPMCore for the file system resize job.</source>
+      <comment>@error</comment>
+      <translation>Calamares は、ファイルシステム サイズ変更ジョブの KPMCore を開始できません。</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="179"/>
+      <source>Resize failed.</source>
+      <comment>@error</comment>
+      <translation>サイズ変更に失敗しました。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="181"/>
+      <source>The filesystem %1 could not be found in this system, and cannot be resized.</source>
+      <comment>@info</comment>
+      <translation>ファイルシステム %1 がシステム内に見つけられなかったため、サイズ変更ができません。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="182"/>
       <source>The device %1 could not be found in this system, and cannot be resized.</source>
+      <comment>@info</comment>
       <translation>デバイス %1 がシステム内に見つけられなかったため、サイズ変更ができません。</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="187"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="198"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="189"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="201"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="212"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="231"/>
+      <source>Resize Failed</source>
+      <comment>@error</comment>
+      <translation>サイズ変更に失敗しました</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="191"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="203"/>
       <source>The filesystem %1 cannot be resized.</source>
+      <comment>@error</comment>
       <translation>ファイルシステム %1 のサイズ変更ができません。</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="188"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="199"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="192"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="204"/>
       <source>The device %1 cannot be resized.</source>
+      <comment>@error</comment>
       <translation>デバイス %1 のサイズ変更ができません。</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="206"/>
-      <source>The filesystem %1 must be resized, but cannot.</source>
-      <translation>ファイルシステム %1 はサイズ変更が必要ですが、できません。</translation>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="213"/>
+      <source>The file system %1 must be resized, but cannot.</source>
+      <comment>@info</comment>
+      <translation>ファイルシステム %1 のサイズを変更する必要がありますが、変更できません。</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="207"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="214"/>
       <source>The device %1 must be resized, but cannot</source>
+      <comment>@info</comment>
       <translation>デバイス %1 はサイズ変更が必要ですが、できません。</translation>
     </message>
   </context>
@@ -3415,30 +3687,45 @@ Output:
     <name>SetKeyboardLayoutJob</name>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="66"/>
-      <source>Set keyboard model to %1, layout to %2-%3</source>
-      <translation>キーボードのモデルを %1 に、レイアウトを %2-%3に設定</translation>
+      <source>Setting keyboard model to %1, layout as %2-%3…</source>
+      <comment>@status, %1 model, %2 layout, %3 variant</comment>
+      <translation>キーボードモデルを %1、レイアウトを %2-%3 に設定します…</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="366"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="368"/>
       <source>Failed to write keyboard configuration for the virtual console.</source>
+      <comment>@error</comment>
       <translation>仮想コンソールでのキーボード設定の書き込みに失敗しました。</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="367"/>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="393"/>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="410"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="369"/>
       <source>Failed to write to %1</source>
+      <comment>@error, %1 is virtual console configuration path</comment>
       <translation>%1 への書き込みに失敗しました</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="392"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="394"/>
       <source>Failed to write keyboard configuration for X11.</source>
+      <comment>@error</comment>
       <translation>X11 のためのキーボード設定の書き込みに失敗しました。</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="409"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="395"/>
+      <source>Failed to write to %1</source>
+      <comment>@error, %1 is keyboard configuration path</comment>
+      <translation>%1 への書き込みに失敗しました</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="411"/>
       <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
+      <comment>@error</comment>
       <translation>現存する /etc/default ディレクトリへのキーボード設定の書き込みに失敗しました。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="412"/>
+      <source>Failed to write to %1</source>
+      <comment>@error, %1 is default keyboard path</comment>
+      <translation>%1 への書き込みに失敗しました</translation>
     </message>
   </context>
   <context>
@@ -3537,28 +3824,28 @@ Output:
       <translation>ユーザ %1 のパスワードを設定しています。</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="77"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="78"/>
       <source>Bad destination system path.</source>
       <translation>不正なシステムパス。</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="78"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="79"/>
       <source>rootMountPoint is %1</source>
       <translation>root のマウントポイントは %1 。</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="84"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="87"/>
       <source>Cannot disable root account.</source>
       <translation>rootアカウントを使用することができません。</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="93"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="98"/>
       <source>Cannot set password for user %1.</source>
       <translation>ユーザ %1 のパスワードは設定できませんでした。</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="85"/>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="94"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="88"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="99"/>
       <source>usermod terminated with error code %1.</source>
       <translation>エラーコード %1 によりusermodが停止しました。</translation>
     </message>
@@ -3567,37 +3854,39 @@ Output:
     <name>SetTimezoneJob</name>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="32"/>
-      <source>Set timezone to %1/%2</source>
-      <translation>タイムゾーンを %1/%2 に設定</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="59"/>
-      <source>Cannot access selected timezone path.</source>
-      <translation>選択したタイムゾーンのパスにアクセスできません。</translation>
+      <source>Setting timezone to %1/%2…</source>
+      <comment>@status</comment>
+      <translation>タイムゾーンを %1/%2 に設定しています…</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="60"/>
+      <source>Cannot access selected timezone path.</source>
+      <comment>@error</comment>
+      <translation>選択したタイムゾーンのパスにアクセスできません。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="61"/>
       <source>Bad path: %1</source>
+      <comment>@error</comment>
       <translation>不正なパス: %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="68"/>
+      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="71"/>
+      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="79"/>
       <source>Cannot set timezone.</source>
+      <comment>@error</comment>
       <translation>タイムゾーンを設定できません。</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="69"/>
+      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="72"/>
       <source>Link creation failed, target: %1; link name: %2</source>
+      <comment>@info</comment>
       <translation>リンクの作成に失敗しました、ターゲット: %1 ; リンク名: %2</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="74"/>
-      <source>Cannot set timezone,</source>
-      <translation>タイムゾーンを設定できません,</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="75"/>
+      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="80"/>
       <source>Cannot open /etc/timezone for writing</source>
+      <comment>@info</comment>
       <translation>/etc/timezone を開くことができません</translation>
     </message>
   </context>
@@ -3980,12 +4269,14 @@ Output:
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.cpp" line="235"/>
-      <source>About %1 setup</source>
+      <source>About %1 Setup</source>
+      <comment>@title</comment>
       <translation>%1 セットアップについて</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.cpp" line="236"/>
-      <source>About %1 installer</source>
+      <source>About %1 Installer</source>
+      <comment>@title</comment>
       <translation>%1 インストーラーについて</translation>
     </message>
   </context>
@@ -4053,24 +4344,36 @@ Output:
     <name>calamares-sidebar</name>
     <message>
       <location filename="../src/calamares/calamares-sidebar.qml" line="89"/>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="157"/>
       <source>About</source>
       <translation>About</translation>
     </message>
     <message>
       <location filename="../src/calamares/calamares-sidebar.qml" line="115"/>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="172"/>
       <source>Debug</source>
       <translation>デバッグ</translation>
     </message>
     <message>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="157"/>
+      <source>About</source>
+      <comment>@button</comment>
+      <translation>About</translation>
+    </message>
+    <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="159"/>
       <source>Show information about Calamares</source>
+      <comment>@tooltip</comment>
       <translation>Calamares に関する情報を表示する</translation>
     </message>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="174"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="173"/>
+      <source>Debug</source>
+      <comment>@button</comment>
+      <translation>デバッグ</translation>
+    </message>
+    <message>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="175"/>
       <source>Show debug information</source>
+      <comment>@tooltip</comment>
       <translation>デバッグ情報を表示</translation>
     </message>
   </context>
@@ -4107,27 +4410,68 @@ Output:
     </message>
   </context>
   <context>
+    <name>finishedq-qt6</name>
+    <message>
+      <location filename="../src/modules/finishedq/finishedq-qt6.qml" line="35"/>
+      <source>Installation Completed</source>
+      <comment>@title</comment>
+      <translation>インストールが完了しました</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/finishedq/finishedq-qt6.qml" line="42"/>
+      <source>%1 has been installed on your computer.&lt;br/&gt;
+            You may now restart into your new system, or continue using the Live environment.</source>
+      <comment>@info, %1 is the product name</comment>
+      <translation>%1 がコンピューターにインストールされました。&lt;br/&gt;
+            再起動して新しいシステムを使用するか、ライブ環境をこのまま使用することができます。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/finishedq/finishedq-qt6.qml" line="65"/>
+      <source>Close Installer</source>
+      <comment>@button</comment>
+      <translation>インストーラーを閉じる</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/finishedq/finishedq-qt6.qml" line="71"/>
+      <source>Restart System</source>
+      <comment>@button</comment>
+      <translation>システムを再起動</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/finishedq/finishedq-qt6.qml" line="89"/>
+      <source>&lt;p&gt;A full log of the install is available as installation.log in the home directory of the Live user.&lt;br/&gt;
+            This log is copied to /var/log/installation.log of the target system.&lt;/p&gt;</source>
+      <comment>@info</comment>
+      <translation>&lt;p&gt;インストールの完全なログは、ライブユーザーのホームディレクトリにある installation.log として入手できます。&lt;br/&gt;
+            このログは、ターゲットシステムの /var/log/installation.log にコピーされます。&lt;/p&gt;</translation>
+    </message>
+  </context>
+  <context>
     <name>finishedq@mobile</name>
     <message>
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="36"/>
       <source>Installation Completed</source>
+      <comment>@title</comment>
       <translation>インストールが完了しました</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="43"/>
       <source>%1 has been installed on your computer.&lt;br/&gt;
             You may now restart your device.</source>
+      <comment>@info, %1 is the product name</comment>
       <translation>%1 がコンピューターにインストールされました。&lt;br/&gt;
             これでデバイスを再起動できます。</translation>
     </message>
     <message>
-      <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="65"/>
+      <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="66"/>
       <source>Close</source>
+      <comment>@button</comment>
       <translation>閉じる</translation>
     </message>
     <message>
-      <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="71"/>
+      <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="72"/>
       <source>Restart</source>
+      <comment>@button</comment>
       <translation>再起動</translation>
     </message>
   </context>
@@ -4135,28 +4479,66 @@ Output:
     <name>keyboardq</name>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="61"/>
-      <source>To activate keyboard preview, select a layout.</source>
-      <translation>キーボードプレビューをアクティブにするには、レイアウトを選択してください。</translation>
+      <source>Select a layout to activate keyboard preview</source>
+      <comment>@label</comment>
+      <translation>キーボードプレビューをアクティブにするレイアウトを選択してください</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="144"/>
-      <source>&lt;b&gt;Keyboard Model:&amp;nbsp;&amp;nbsp;&lt;/b&gt;</source>
+      <source>&lt;b&gt;Keyboard model:&amp;nbsp;&amp;nbsp;&lt;/b&gt;</source>
+      <comment>@label</comment>
       <translation>&lt;b&gt;キーボードモデル:&amp;nbsp;&amp;nbsp;&lt;/b&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="185"/>
       <source>Layout</source>
+      <comment>@label</comment>
       <translation>レイアウト</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="258"/>
       <source>Variant</source>
+      <comment>@label</comment>
       <translation>バリアント</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="311"/>
-      <source>Type here to test your keyboard</source>
-      <translation>ここでタイプしてキーボードをテストしてください</translation>
+      <source>Type here to test your keyboard…</source>
+      <comment>@label</comment>
+      <translation>ここに入力してキーボードをテスト…</translation>
+    </message>
+  </context>
+  <context>
+    <name>keyboardq-qt6</name>
+    <message>
+      <location filename="../src/modules/keyboardq/keyboardq-qt6.qml" line="61"/>
+      <source>Select a layout to activate keyboard preview</source>
+      <comment>@label</comment>
+      <translation>キーボードプレビューをアクティブにするレイアウトを選択してください</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboardq/keyboardq-qt6.qml" line="144"/>
+      <source>&lt;b&gt;Keyboard model:&amp;nbsp;&amp;nbsp;&lt;/b&gt;</source>
+      <comment>@label</comment>
+      <translation>&lt;b&gt;キーボードモデル:&amp;nbsp;&amp;nbsp;&lt;/b&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboardq/keyboardq-qt6.qml" line="185"/>
+      <source>Layout</source>
+      <comment>@label</comment>
+      <translation>レイアウト</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboardq/keyboardq-qt6.qml" line="258"/>
+      <source>Variant</source>
+      <comment>@label</comment>
+      <translation>バリアント</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboardq/keyboardq-qt6.qml" line="311"/>
+      <source>Type here to test your keyboard…</source>
+      <comment>@label</comment>
+      <translation>ここに入力してキーボードをテスト…</translation>
     </message>
   </context>
   <context>
@@ -4165,12 +4547,14 @@ Output:
       <location filename="../src/modules/localeq/localeq.qml" line="76"/>
       <location filename="../src/modules/localeq/localeq.qml" line="106"/>
       <source>Change</source>
+      <comment>@button</comment>
       <translation>変更</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/localeq.qml" line="142"/>
       <source>&lt;h3&gt;Languages&lt;/h3&gt; &lt;/br&gt;
                             The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
+      <comment>@info</comment>
       <translation>&lt;h3&gt;言語&lt;/h3&gt; &lt;/br&gt;
 システムロケール設定は、一部のコマンド ラインユーザーインターフェイスエレメントの言語と文字セットに影響します。現在の設定は &lt;strong&gt;%1&lt;/strong&gt; です。</translation>
     </message>
@@ -4178,6 +4562,33 @@ Output:
       <location filename="../src/modules/localeq/localeq.qml" line="213"/>
       <source>&lt;h3&gt;Locales&lt;/h3&gt; &lt;/br&gt;
                                 The system locale setting affects the numbers and dates format. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
+      <comment>@info</comment>
+      <translation>&lt;h3&gt;ロケール&lt;/h3&gt; &lt;/br&gt;
+システムロケール設定は、数値と日付の形式に影響します。現在の設定は &lt;strong&gt;%1&lt;/strong&gt; です。</translation>
+    </message>
+  </context>
+  <context>
+    <name>localeq-qt6</name>
+    <message>
+      <location filename="../src/modules/localeq/localeq-qt6.qml" line="76"/>
+      <location filename="../src/modules/localeq/localeq-qt6.qml" line="106"/>
+      <source>Change</source>
+      <comment>@button</comment>
+      <translation>変更</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/localeq/localeq-qt6.qml" line="142"/>
+      <source>&lt;h3&gt;Languages&lt;/h3&gt; &lt;/br&gt;
+                            The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
+      <comment>@info</comment>
+      <translation>&lt;h3&gt;言語&lt;/h3&gt; &lt;/br&gt;
+システムロケール設定は、一部のコマンド ラインユーザーインターフェイスエレメントの言語と文字セットに影響します。現在の設定は &lt;strong&gt;%1&lt;/strong&gt; です。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/localeq/localeq-qt6.qml" line="213"/>
+      <source>&lt;h3&gt;Locales&lt;/h3&gt; &lt;/br&gt;
+                                The system locale setting affects the numbers and dates format. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
+      <comment>@info</comment>
       <translation>&lt;h3&gt;ロケール&lt;/h3&gt; &lt;/br&gt;
 システムロケール設定は、数値と日付の形式に影響します。現在の設定は &lt;strong&gt;%1&lt;/strong&gt; です。</translation>
     </message>
@@ -4228,6 +4639,46 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="233"/>
+      <source>Please select an option for your install, or use the default: LibreOffice included.</source>
+      <translation>インストールのオプションを選択するか、デフォルト（LibreOffice が含まれます）を使用してください。</translation>
+    </message>
+  </context>
+  <context>
+    <name>packagechooserq-qt6</name>
+    <message>
+      <location filename="../src/modules/packagechooserq/packagechooserq-qt6.qml" line="45"/>
+      <source>LibreOffice is a powerful and free office suite, used by millions of people around the world. It includes several applications that make it the most versatile Free and Open Source office suite on the market.&lt;br/&gt;
+                    Default option.</source>
+      <translation>LibreOffice は強力かつフリーなオフィススイートで、世界中の何百万人もの人々に使用されています。これには市場で最も用途が広いフリーかつオープンソースのアプリケーションが含まれています。&lt;br/&gt;
+                    デフォルトオプション。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/packagechooserq/packagechooserq-qt6.qml" line="59"/>
+      <source>LibreOffice</source>
+      <translation>LibreOffice</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/packagechooserq/packagechooserq-qt6.qml" line="108"/>
+      <source>If you don't want to install an office suite, just select No Office Suite. You can always add one (or more) later on your installed system as the need arrives.</source>
+      <translation>オフィススイートをインストールしたくない場合は、「オフィススイートなし」を選択するだけです。必要になれば、後からいつでも1つ（もしくはそれ以上を）システムに追加できます。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/packagechooserq/packagechooserq-qt6.qml" line="121"/>
+      <source>No Office Suite</source>
+      <translation>オフィススイートなし</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/packagechooserq/packagechooserq-qt6.qml" line="172"/>
+      <source>Create a minimal Desktop install, remove all extra applications and decide later on what you would like to add to your system. Examples of what won't be on such an install, there will be no Office Suite, no media players, no image viewer or print support.  It will be just a desktop, file browser, package manager, text editor and simple web-browser.</source>
+      <translation>最小限のデスクトップインストールを作成し、余分なアプリケーションをすべて削除して、システムに追加するものを後で決定します。このようなインストールで含まれないものの例は、オフィススイート、メディアプレーヤー、画像ビューア、印刷サポートです。デスクトップはファイルブラウザー、パッケージマネージャー、テキストエディター、シンプルなウェブブラウザーになります。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/packagechooserq/packagechooserq-qt6.qml" line="185"/>
+      <source>Minimal Install</source>
+      <translation>最小インストール</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/packagechooserq/packagechooserq-qt6.qml" line="233"/>
       <source>Please select an option for your install, or use the default: LibreOffice included.</source>
       <translation>インストールのオプションを選択するか、デフォルト（LibreOffice が含まれます）を使用してください。</translation>
     </message>
@@ -4419,31 +4870,194 @@ Output:
     </message>
   </context>
   <context>
+    <name>usersq-qt6</name>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="42"/>
+      <source>Pick your user name and credentials to login and perform admin tasks</source>
+      <translation>ログインして管理者タスクを実行するには、ユーザー名と資格情報を選択してください</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="55"/>
+      <source>What is your name?</source>
+      <translation>あなたの名前は何ですか？</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="62"/>
+      <source>Your Full Name</source>
+      <translation>あなたのフルネーム</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="79"/>
+      <source>What name do you want to use to log in?</source>
+      <translation>ログイン時に使用する名前は何ですか？</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="86"/>
+      <source>Login Name</source>
+      <translation>ログイン名</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="115"/>
+      <source>If more than one person will use this computer, you can create multiple accounts after installation.</source>
+      <translation>複数のユーザーがこのコンピューターを使用する場合は、インストール後に複数のアカウントを作成できます。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="128"/>
+      <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
+      <translation>使用できるのはアルファベットの小文字と数字と _ と -  だけです。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="137"/>
+      <source>root is not allowed as username.</source>
+      <translation>root はユーザー名として許可されていません。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="146"/>
+      <source>What is the name of this computer?</source>
+      <translation>このコンピューターの名前は何ですか？</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="152"/>
+      <source>Computer Name</source>
+      <translation>コンピューターの名前</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="179"/>
+      <source>This name will be used if you make the computer visible to others on a network.</source>
+      <translation>この名前は、コンピューターをネットワーク上の他のユーザーに表示する場合に使用されます。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="192"/>
+      <source>Only letters, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
+      <translation>使用できるのはアルファベットと数字と _ と - で、2文字以上必要です。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="201"/>
+      <source>localhost is not allowed as hostname.</source>
+      <translation>localhost はユーザー名として許可されていません。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="210"/>
+      <source>Choose a password to keep your account safe.</source>
+      <translation>アカウントを安全に使うため、パスワードを選択してください</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="220"/>
+      <source>Password</source>
+      <translation>パスワード</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="237"/>
+      <source>Repeat Password</source>
+      <translation>パスワードを再度入力</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="264"/>
+      <source>Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.</source>
+      <translation>同じパスワードを2回入力して、入力エラーをチェックできるようにします。適切なパスワードは文字、数字、句読点が混在する8文字以上のもので、定期的に変更する必要があります。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="296"/>
+      <source>Reuse user password as root password</source>
+      <translation>rootパスワードとしてユーザーパスワードを再利用する</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="304"/>
+      <source>Use the same password for the administrator account.</source>
+      <translation>管理者アカウントと同じパスワードを使用する。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="317"/>
+      <source>Choose a root password to keep your account safe.</source>
+      <translation>アカウントを安全に保つために、rootパスワードを選択してください。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="327"/>
+      <source>Root Password</source>
+      <translation>rootパスワード</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="345"/>
+      <source>Repeat Root Password</source>
+      <translation>rootパスワードを再入力</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="371"/>
+      <source>Enter the same password twice, so that it can be checked for typing errors.</source>
+      <translation>同じパスワードを2回入力して、入力エラーをチェックできるようにします。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="401"/>
+      <source>Log in automatically without asking for the password</source>
+      <translation>パスワードを要求せずに自動的にログインする</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="409"/>
+      <source>Validate passwords quality</source>
+      <translation>パスワードの品質を検証する</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="419"/>
+      <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password.</source>
+      <translation>このボックスをオンにするとパスワードの強度チェックが行われ、弱いパスワードを使用できなくなります。</translation>
+    </message>
+  </context>
+  <context>
     <name>welcomeq</name>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="35"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="38"/>
       <source>&lt;h3&gt;Welcome to the %1 &lt;quote&gt;%2&lt;/quote&gt; installer&lt;/h3&gt;
             &lt;p&gt;This program will ask you some questions and set up %1 on your computer.&lt;/p&gt;</source>
       <translation>&lt;h3&gt;%1 &lt;quote&gt;%2&lt;/quote&gt; インストーラーへようこそ&lt;/h3&gt;
             &lt;p&gt;このプログラムはいくつかの質問を行い、コンピューターに %1 をセットアップします。&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="66"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="69"/>
       <source>Support</source>
       <translation>サポート</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="77"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="80"/>
       <source>Known issues</source>
       <translation>既知の問題点</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="88"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="91"/>
       <source>Release notes</source>
       <translation>リリースノート</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="100"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="103"/>
+      <source>Donate</source>
+      <translation>寄付</translation>
+    </message>
+  </context>
+  <context>
+    <name>welcomeq-qt6</name>
+    <message>
+      <location filename="../src/modules/welcomeq/welcomeq-qt6.qml" line="38"/>
+      <source>&lt;h3&gt;Welcome to the %1 &lt;quote&gt;%2&lt;/quote&gt; installer&lt;/h3&gt;
+            &lt;p&gt;This program will ask you some questions and set up %1 on your computer.&lt;/p&gt;</source>
+      <translation>&lt;h3&gt;%1 &lt;quote&gt;%2&lt;/quote&gt; インストーラーへようこそ&lt;/h3&gt;
+            &lt;p&gt;このプログラムはいくつかの質問を行い、コンピューターに %1 をセットアップします。&lt;/p&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcomeq/welcomeq-qt6.qml" line="69"/>
+      <source>Support</source>
+      <translation>サポート</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcomeq/welcomeq-qt6.qml" line="80"/>
+      <source>Known issues</source>
+      <translation>既知の問題点</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcomeq/welcomeq-qt6.qml" line="91"/>
+      <source>Release notes</source>
+      <translation>リリースノート</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcomeq/welcomeq-qt6.qml" line="103"/>
       <source>Donate</source>
       <translation>寄付</translation>
     </message>
