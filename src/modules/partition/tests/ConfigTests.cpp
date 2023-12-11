@@ -203,6 +203,7 @@ ConfigTests::testWeirdConfig()
 
     auto* gs = Calamares::JobQueue::instanceGlobalStorage();
     QVERIFY( gs );
+    gs->clear();
 
 
     // Config with an invalid minimum size
