@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-28 22:49+0200\n"
+"POT-Creation-Date: 2023-11-13 20:13+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Junghee Lee <daemul72@gmail.com>, 2023\n"
 "Language-Team: Korean (https://app.transifex.com/calamares/teams/20061/ko/)\n"
@@ -105,8 +105,8 @@ msgstr "반환 코드가 있는 대상에서 Dracut을 실행하지 못했습니
 msgid "Dummy python job."
 msgstr "더미 파이썬 작업."
 
-#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
-#: src/modules/dummypython/main.py:94
+#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:91
+#: src/modules/dummypython/main.py:92
 msgid "Dummy python step {}"
 msgstr "더미 파이썬 단계 {}"
 
@@ -118,20 +118,20 @@ msgstr "fstab 쓰기."
 #: src/modules/fstab/main.py:411 src/modules/initcpiocfg/main.py:256
 #: src/modules/initcpiocfg/main.py:260 src/modules/initramfscfg/main.py:85
 #: src/modules/initramfscfg/main.py:89 src/modules/localecfg/main.py:140
-#: src/modules/mount/main.py:329 src/modules/networkcfg/main.py:105
+#: src/modules/mount/main.py:334 src/modules/networkcfg/main.py:106
 #: src/modules/openrcdmcryptcfg/main.py:72
 #: src/modules/openrcdmcryptcfg/main.py:76 src/modules/rawfs/main.py:164
 msgid "Configuration Error"
 msgstr "구성 오류"
 
 #: src/modules/fstab/main.py:378 src/modules/initramfscfg/main.py:86
-#: src/modules/mount/main.py:330 src/modules/openrcdmcryptcfg/main.py:73
+#: src/modules/mount/main.py:335 src/modules/openrcdmcryptcfg/main.py:73
 #: src/modules/rawfs/main.py:165
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "사용할 <pre>{!s}</pre>에 대해 정의된 파티션이 없음."
 
 #: src/modules/fstab/main.py:384 src/modules/initramfscfg/main.py:90
-#: src/modules/localecfg/main.py:141 src/modules/networkcfg/main.py:106
+#: src/modules/localecfg/main.py:141 src/modules/networkcfg/main.py:107
 #: src/modules/openrcdmcryptcfg/main.py:77
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
 msgstr "<pre>{!s}</pre>에서 사용할 루트 마운트 지점이 제공되지 않음."
@@ -200,11 +200,11 @@ msgstr "zpool의 잠금을 해제하지 못했습니다"
 msgid "Failed to set zfs mountpoint"
 msgstr "zfs 마운트위치를 지정하지 못했습니다"
 
-#: src/modules/mount/main.py:365
+#: src/modules/mount/main.py:370
 msgid "zfs mounting error"
 msgstr "zfs 마운트하는 중 오류"
 
-#: src/modules/networkcfg/main.py:29
+#: src/modules/networkcfg/main.py:30
 msgid "Saving network configuration."
 msgstr "네트워크 구성 저장 중."
 

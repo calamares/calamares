@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-28 22:49+0200\n"
+"POT-Creation-Date: 2023-11-13 20:13+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: 黃柏諺 <s8321414@gmail.com>, 2023\n"
 "Language-Team: Chinese (Taiwan) (https://app.transifex.com/calamares/teams/20061/zh_TW/)\n"
@@ -103,8 +103,8 @@ msgstr "Dracut 無法在目標上執行，回傳代碼：{return_code}"
 msgid "Dummy python job."
 msgstr "假的 python 工作。"
 
-#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
-#: src/modules/dummypython/main.py:94
+#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:91
+#: src/modules/dummypython/main.py:92
 msgid "Dummy python step {}"
 msgstr "假的 python step {}"
 
@@ -116,20 +116,20 @@ msgstr "正在寫入 fstab。"
 #: src/modules/fstab/main.py:411 src/modules/initcpiocfg/main.py:256
 #: src/modules/initcpiocfg/main.py:260 src/modules/initramfscfg/main.py:85
 #: src/modules/initramfscfg/main.py:89 src/modules/localecfg/main.py:140
-#: src/modules/mount/main.py:329 src/modules/networkcfg/main.py:105
+#: src/modules/mount/main.py:334 src/modules/networkcfg/main.py:106
 #: src/modules/openrcdmcryptcfg/main.py:72
 #: src/modules/openrcdmcryptcfg/main.py:76 src/modules/rawfs/main.py:164
 msgid "Configuration Error"
 msgstr "設定錯誤"
 
 #: src/modules/fstab/main.py:378 src/modules/initramfscfg/main.py:86
-#: src/modules/mount/main.py:330 src/modules/openrcdmcryptcfg/main.py:73
+#: src/modules/mount/main.py:335 src/modules/openrcdmcryptcfg/main.py:73
 #: src/modules/rawfs/main.py:165
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "沒有分割區被定義為 <pre>{!s}</pre> 以供使用。"
 
 #: src/modules/fstab/main.py:384 src/modules/initramfscfg/main.py:90
-#: src/modules/localecfg/main.py:141 src/modules/networkcfg/main.py:106
+#: src/modules/localecfg/main.py:141 src/modules/networkcfg/main.py:107
 #: src/modules/openrcdmcryptcfg/main.py:77
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
 msgstr "沒有給定的根掛載點 <pre>{!s}</pre> 以供使用。"
@@ -198,11 +198,11 @@ msgstr "解鎖 zpool 失敗"
 msgid "Failed to set zfs mountpoint"
 msgstr "設定 zfs 掛載點失敗"
 
-#: src/modules/mount/main.py:365
+#: src/modules/mount/main.py:370
 msgid "zfs mounting error"
 msgstr "zfs 掛載錯誤"
 
-#: src/modules/networkcfg/main.py:29
+#: src/modules/networkcfg/main.py:30
 msgid "Saving network configuration."
 msgstr "正在儲存網路設定。"
 

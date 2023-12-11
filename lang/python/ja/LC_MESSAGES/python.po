@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-28 22:49+0200\n"
+"POT-Creation-Date: 2023-11-13 20:13+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2023\n"
 "Language-Team: Japanese (https://app.transifex.com/calamares/teams/20061/ja/)\n"
@@ -105,8 +105,8 @@ msgstr "ターゲットで dracut を実行できませんでした。リター�
 msgid "Dummy python job."
 msgstr "Dummy python job."
 
-#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
-#: src/modules/dummypython/main.py:94
+#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:91
+#: src/modules/dummypython/main.py:92
 msgid "Dummy python step {}"
 msgstr "Dummy python step {}"
 
@@ -118,20 +118,20 @@ msgstr "fstabを書き込んでいます。"
 #: src/modules/fstab/main.py:411 src/modules/initcpiocfg/main.py:256
 #: src/modules/initcpiocfg/main.py:260 src/modules/initramfscfg/main.py:85
 #: src/modules/initramfscfg/main.py:89 src/modules/localecfg/main.py:140
-#: src/modules/mount/main.py:329 src/modules/networkcfg/main.py:105
+#: src/modules/mount/main.py:334 src/modules/networkcfg/main.py:106
 #: src/modules/openrcdmcryptcfg/main.py:72
 #: src/modules/openrcdmcryptcfg/main.py:76 src/modules/rawfs/main.py:164
 msgid "Configuration Error"
 msgstr "コンフィグレーションエラー"
 
 #: src/modules/fstab/main.py:378 src/modules/initramfscfg/main.py:86
-#: src/modules/mount/main.py:330 src/modules/openrcdmcryptcfg/main.py:73
+#: src/modules/mount/main.py:335 src/modules/openrcdmcryptcfg/main.py:73
 #: src/modules/rawfs/main.py:165
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "<pre>{!s}</pre> に使用するパーティションが定義されていません。"
 
 #: src/modules/fstab/main.py:384 src/modules/initramfscfg/main.py:90
-#: src/modules/localecfg/main.py:141 src/modules/networkcfg/main.py:106
+#: src/modules/localecfg/main.py:141 src/modules/networkcfg/main.py:107
 #: src/modules/openrcdmcryptcfg/main.py:77
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
 msgstr " <pre>{!s}</pre> を使用するのにルートマウントポイントが与えられていません。"
@@ -200,11 +200,11 @@ msgstr "zpool のロック解除に失敗しました。"
 msgid "Failed to set zfs mountpoint"
 msgstr "zfs マウントポイントの設定に失敗しました"
 
-#: src/modules/mount/main.py:365
+#: src/modules/mount/main.py:370
 msgid "zfs mounting error"
 msgstr "zfs のマウントでエラー"
 
-#: src/modules/networkcfg/main.py:29
+#: src/modules/networkcfg/main.py:30
 msgid "Saving network configuration."
 msgstr "ネットワーク設定を保存しています。"
 
