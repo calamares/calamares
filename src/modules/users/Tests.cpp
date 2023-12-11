@@ -338,10 +338,10 @@ UserTests::testPasswordChecks()
     {
         PasswordCheckList l;
         QCOMPARE( l.length(), 0 );
-        QVERIFY( !addPasswordCheck( "nonempty", QVariant( false ), l ) );  // a silly setting
+        QVERIFY( !addPasswordCheck( "nonempty", QVariant( false ), l ) );  // legacy option, now ignored
         QCOMPARE( l.length(), 0 );
-        QVERIFY( addPasswordCheck( "nonempty", QVariant( true ), l ) );
-        QCOMPARE( l.length(), 1 );
+        QVERIFY( !addPasswordCheck( "nonempty", QVariant( true ), l ) ); // still ignored
+        QCOMPARE( l.length(), 0 );
     }
 }
 
