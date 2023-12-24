@@ -43,4 +43,8 @@ zypper --non-interactive in \
 
 # Not actual dependencies, but good to have
 zypper --non-interactive in python311-PyYAML python311-jsonschema
+# vi to edit things inside the docker
+zypper --non-interactive in vim
+# noto so that running Calamares in the docker is readable
+zypper --non-interactive in noto-sans-fonts
 true
