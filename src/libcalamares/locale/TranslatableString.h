@@ -41,7 +41,7 @@ public:
     virtual ~TranslatableString();
 
     /// @brief Give the localized human-readable form
-    virtual QString tr() const = 0;
+    virtual QString translated() const = 0;
     QString key() const { return m_key; }
 
     bool operator==( const TranslatableString& other ) const { return m_key == other.m_key; }

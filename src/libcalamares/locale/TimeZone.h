@@ -48,7 +48,7 @@ class TimeZoneData : public QObject, TranslatableString
 
     Q_PROPERTY( QString region READ region CONSTANT )
     Q_PROPERTY( QString zone READ zone CONSTANT )
-    Q_PROPERTY( QString name READ tr CONSTANT )
+    Q_PROPERTY( QString name READ translated CONSTANT )
     Q_PROPERTY( QString countryCode READ country CONSTANT )
 
 public:
@@ -60,7 +60,7 @@ public:
     TimeZoneData( const TimeZoneData& ) = delete;
     TimeZoneData( TimeZoneData&& ) = delete;
 
-    QString tr() const override;
+    QString translated() const override;
 
     QString region() const { return m_region; }
     QString zone() const { return key(); }
@@ -106,7 +106,7 @@ public Q_SLOTS:
      * Returns @p region unchanged if there is no such region
      * or no translation for the region's name.
      */
-    QString tr( const QString& region ) const;
+    QString translated( const QString& region ) const;
 
 private:
     Private* m_private;

@@ -76,7 +76,7 @@ TimeZoneData::TimeZoneData( const QString& region,
 }
 
 QString
-TimeZoneData::tr() const
+TimeZoneData::translated() const
 {
     // NOTE: context name must match what's used in zone-extractor.py
     return QObject::tr( m_human, "tz_names" );
@@ -86,11 +86,11 @@ class RegionData : public TranslatableString
 {
 public:
     using TranslatableString::TranslatableString;
-    QString tr() const override;
+    QString translated() const override;
 };
 
 QString
-RegionData::tr() const
+RegionData::translated() const
 {
     // NOTE: context name must match what's used in zone-extractor.py
     return QObject::tr( m_human, "tz_regions" );
@@ -276,7 +276,7 @@ RegionsModel::data( const QModelIndex& index, int role ) const
     const auto& region = m_private->m_regions[ index.row() ];
     if ( role == NameRole )
     {
-        return region->tr();
+        return region->translated();
     }
     if ( role == KeyRole )
     {
@@ -292,13 +292,13 @@ RegionsModel::roleNames() const
 }
 
 QString
-RegionsModel::tr( const QString& region ) const
+RegionsModel::translated( const QString& region ) const
 {
     for ( const auto* p : m_private->m_regions )
     {
         if ( p->key() == region )
         {
-            return p->tr();
+            return p->translated();
         }
     }
     return region;
@@ -330,7 +330,7 @@ ZonesModel::data( const QModelIndex& index, int role ) const
     switch ( role )
     {
     case NameRole:
-        return zone->tr();
+        return zone->translated();
     case KeyRole:
         return zone->key();
     case RegionRole:

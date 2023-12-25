@@ -390,7 +390,7 @@ Config::currentTimezoneName() const
 {
     if ( m_currentLocation )
     {
-        return m_regionModel->tr( m_currentLocation->region() ) + '/' + m_currentLocation->tr();
+        return m_regionModel->translated( m_currentLocation->region() ) + '/' + m_currentLocation->translated();
     }
     return QString();
 }
