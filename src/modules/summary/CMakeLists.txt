@@ -9,6 +9,7 @@ calamares_add_plugin(summary
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
         Config.cpp
+        SummaryModel.cpp
         SummaryPage.cpp
         SummaryViewStep.cpp
     UI

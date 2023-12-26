@@ -17,6 +17,7 @@ calamares_add_plugin(summaryq
     SOURCES
         SummaryQmlViewStep.cpp
         ${_summary}/Config.cpp
+        ${_summary}/SummaryModel.cpp
     UI
     RESOURCES
         summaryq${QT_VERSION_SUFFIX}.qrc
