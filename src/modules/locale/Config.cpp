@@ -407,15 +407,13 @@ localeLabel( const QString& s )
 QString
 Config::currentLanguageStatus() const
 {
-    return tr( "The system language will be set to %1", "@info" )
-        .arg( localeLabel( m_selectedLocaleConfiguration.language() ) );
+    return tr( "The system language will be set to %1.", "@info" ).arg( localeLabel( m_selectedLocaleConfiguration.language() ) );
 }
 
 QString
 Config::currentLCStatus() const
 {
-    return tr( "The numbers and dates locale will be set to %1", "@info" )
-        .arg( localeLabel( m_selectedLocaleConfiguration.lc_numeric ) );
+    return tr( "The numbers and dates locale will be set to %1.", "@info" ).arg( localeLabel( m_selectedLocaleConfiguration.lc_numeric ) );
 }
 
 QString
