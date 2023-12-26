@@ -127,18 +127,18 @@ MachineIdTests::testCopyFile()
     QVERIFY( source.exists() );
 
     // This should fail since "example" isn't standard in our test directory
-    auto r0 = MachineId::copyFile( tempRoot.path(), "example" );
+    auto r0 = copyFile( tempRoot.path(), "example" );
     QVERIFY( !r0 );
 
     const QString sampleFile = QStringLiteral( "CMakeCache.txt" );
     if ( QFile::exists( sampleFile ) )
     {
-        auto r1 = MachineId::copyFile( tempRoot.path(), sampleFile );
+        auto r1 = copyFile( tempRoot.path(), sampleFile );
         // Also fail, because it's not an absolute path
         QVERIFY( !r1 );
 
         QVERIFY( QFile::copy( sampleFile, tempISOdir.path() + '/' + sampleFile ) );
-        auto r2 = MachineId::copyFile( tempRoot.path(), tempISOdir.path() + '/' + sampleFile );
+        auto r2 = copyFile( tempRoot.path(), tempISOdir.path() + '/' + sampleFile );
         QVERIFY( r2 );
     }
 }

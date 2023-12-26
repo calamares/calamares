@@ -7,14 +7,11 @@
  *
  */
 
-#ifndef WORKERS_H
-#define WORKERS_H
+#ifndef MACHINEID_WORKERS_H
+#define MACHINEID_WORKERS_H
 
 #include "Job.h"
 
-/// @brief Utility functions for doing the random-data stuff for MachineId
-namespace MachineId
-{
 /** @brief Utility functions
  *
  * These probably belong in libcalamares, since they're general utilities
@@ -69,8 +66,5 @@ enum class SystemdMachineIdStyle
 
 Calamares::JobResult
 createSystemdMachineId( SystemdMachineIdStyle style, const QString& rootMountPoint, const QString& fileName );
-
-
-}  // namespace MachineId
 
 #endif  // WORKERS_H

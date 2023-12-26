@@ -48,7 +48,7 @@ public:
 private:
     bool m_systemd = false;  ///< write systemd's files
 
-    MachineId::SystemdMachineIdStyle m_systemd_style = MachineId::SystemdMachineIdStyle::Uuid;
+    SystemdMachineIdStyle m_systemd_style = SystemdMachineIdStyle::Uuid;
 
     bool m_dbus = false;  ///< write dbus files
     bool m_dbus_symlink = false;  ///< .. or just symlink to systemd

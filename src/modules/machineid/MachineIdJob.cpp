@@ -23,13 +23,13 @@
 
 #include <QFile>
 
-const NamedEnumTable< MachineId::SystemdMachineIdStyle >&
+const NamedEnumTable< SystemdMachineIdStyle >&
 styleNames()
 {
-    using T = MachineId::SystemdMachineIdStyle;
+    using T = SystemdMachineIdStyle;
     // *INDENT-OFF*
     // clang-format off
-    static const NamedEnumTable< MachineId::SystemdMachineIdStyle > names {
+    static const NamedEnumTable< SystemdMachineIdStyle > names {
         { QStringLiteral( "none" ), T::Blank },
         { QStringLiteral( "blank" ), T::Blank },
         { QStringLiteral( "uuid" ), T::Uuid },
@@ -101,8 +101,8 @@ MachineIdJob::exec()
                 QObject::tr( "Directory not found" ),
                 QObject::tr( "Could not create new random file <pre>%1</pre>." ).arg( entropy_file ) );
         }
-        auto r = MachineId::createEntropy( m_entropy_copy ? MachineId::EntropyGeneration::CopyFromHost
-                                                          : MachineId::EntropyGeneration::New,
+        auto r = createEntropy( m_entropy_copy ? EntropyGeneration::CopyFromHost
+                                                          : EntropyGeneration::New,
                                            root,
                                            entropy_file );
         if ( !r )
@@ -116,7 +116,7 @@ MachineIdJob::exec()
         {
             cWarning() << "Could not create systemd data-directory.";
         }
-        auto r = MachineId::createSystemdMachineId( m_systemd_style, root, target_systemd_machineid_file );
+        auto r = createSystemdMachineId( m_systemd_style, root, target_systemd_machineid_file );
         if ( !r )
         {
             return r;
@@ -130,7 +130,7 @@ MachineIdJob::exec()
         }
         if ( m_dbus_symlink && QFile::exists( root + target_systemd_machineid_file ) )
         {
-            auto r = MachineId::createDBusLink( root, target_dbus_machineid_file, target_systemd_machineid_file );
+            auto r = createDBusLink( root, target_dbus_machineid_file, target_systemd_machineid_file );
             if ( !r )
             {
                 return r;
@@ -138,7 +138,7 @@ MachineIdJob::exec()
         }
         else
         {
-            auto r = MachineId::createDBusMachineId( root, target_dbus_machineid_file );
+            auto r = createDBusMachineId( root, target_dbus_machineid_file );
             if ( !r )
             {
                 return r;
@@ -157,7 +157,7 @@ MachineIdJob::setConfigurationMap( const QVariantMap& map )
     const auto style = Calamares::getString( map, "systemd-style", QString() );
     if ( !style.isEmpty() )
     {
-        m_systemd_style = styleNames().find( style, MachineId::SystemdMachineIdStyle::Uuid );
+        m_systemd_style = styleNames().find( style, SystemdMachineIdStyle::Uuid );
     }
 
     m_dbus = Calamares::getBool( map, "dbus", false );
@@ -179,7 +179,7 @@ MachineIdJob::setConfigurationMap( const QVariantMap& map )
     m_entropy_files = Calamares::getStringList( map, "entropy-files" );
     if ( Calamares::getBool( map, "entropy", false ) )
     {
-        cWarning() << "MachineId:: configuration setting *entropy* is deprecated, use *entropy-files* instead.";
+        cWarning() << " configuration setting *entropy* is deprecated, use *entropy-files* instead.";
         m_entropy_files.append( QStringLiteral( "/var/lib/urandom/random-seed" ) );
     }
     m_entropy_files.removeDuplicates();
