@@ -105,6 +105,7 @@ fi
 # those are done separately.
 _srcdirs="src/calamares src/libcalamares src/libcalamaresui src/modules src/qml"
 $LUPDATE -no-obsolete $_srcdirs -ts lang/calamares_en.ts
+grep '{1?}' lang/calamares_en.ts && { echo "lupdate has introduced weird markers." ; exit 1 ; }
 # Non-Transifex special-cases
 #
 # - timezone names can be translated, but that's 700+ strings I don't want
