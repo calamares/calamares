@@ -36,7 +36,7 @@ UmountJob::~UmountJob() {}
 QString
 UmountJob::prettyName() const
 {
-    return tr( "Unmount file systems." );
+    return tr( "Unmounting file systems…", "@status" );
 }
 
 static Calamares::JobResult

@@ -134,9 +134,9 @@ void
 ChoicePage::retranslate()
 {
     retranslateUi( this );
-    m_drivesLabel->setText( tr( "Select storage de&vice:" ) );
-    m_previewBeforeLabel->setText( tr( "Current:" ) );
-    m_previewAfterLabel->setText( tr( "After:" ) );
+    m_drivesLabel->setText( tr( "Select storage de&vice:", "@label" ) );
+    m_previewBeforeLabel->setText( tr( "Current:", "@label" ) );
+    m_previewAfterLabel->setText( tr( "After:", "@label" ) );
 
     updateSwapChoicesTr();
     updateChoiceButtonsTr();
@@ -893,7 +893,7 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
             m_reuseHomeCheckBox->setVisible( !homePartitionPath->isEmpty() );
             if ( !homePartitionPath->isEmpty() )
             {
-                m_reuseHomeCheckBox->setText( tr( "Reuse %1 as home partition for %2." )
+                m_reuseHomeCheckBox->setText( tr( "Reuse %1 as home partition for %2", "@label" )
                                                   .arg( *homePartitionPath )
                                                   .arg( Calamares::Branding::instance()->shortProductName() ) );
             }
@@ -1031,7 +1031,7 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
         {
             m_encryptWidget->show();
         }
-        m_previewBeforeLabel->setText( tr( "Current:" ) );
+        m_previewBeforeLabel->setText( tr( "Current:", "@label" ) );
         m_selectLabel->setText( tr( "<strong>Select a partition to shrink, "
                                     "then drag the bottom bar to resize</strong>" ) );
         m_selectLabel->show();
@@ -1057,7 +1057,7 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
                      Q_UNUSED( path )
                      sizeLabel->setText(
                          tr( "%1 will be shrunk to %2MiB and a new "
-                             "%3MiB partition will be created for %4." )
+                             "%3MiB partition will be created for %4.", "@info, %1 is partition name, %4 is product name" )
                              .arg( m_beforePartitionBarsView->selectionModel()->currentIndex().data().toString() )
                              .arg( Calamares::BytesToMiB( size ) )
                              .arg( Calamares::BytesToMiB( sizeNext ) )
@@ -1082,7 +1082,7 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
     case InstallChoice::Replace:
     {
         m_encryptWidget->setVisible( shouldShowEncryptWidget( choice ) );
-        m_previewBeforeLabel->setText( tr( "Current:" ) );
+        m_previewBeforeLabel->setText( tr( "Current:", "@label" ) );
         m_afterPartitionBarsView = new PartitionBarsView( m_previewAfterFrame );
         m_afterPartitionBarsView->setNestedPartitionsMode( mode );
         m_afterPartitionLabelsView = new PartitionLabelsView( m_previewAfterFrame );
@@ -1126,7 +1126,7 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
             m_beforePartitionLabelsView->setSelectionFilter( filter );
 
             m_selectLabel->show();
-            m_selectLabel->setText( tr( "<strong>Select a partition to install on</strong>" ) );
+            m_selectLabel->setText( tr( "<strong>Select a partition to install on</strong>", "@label" ) );
         }
 
         break;
@@ -1135,7 +1135,7 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
     case InstallChoice::Manual:
         m_selectLabel->hide();
         m_previewAfterFrame->hide();
-        m_previewBeforeLabel->setText( tr( "Current:" ) );
+        m_previewBeforeLabel->setText( tr( "Current:", "@label" ) );
         m_previewAfterLabel->hide();
         m_encryptWidget->hide();
         break;
@@ -1188,21 +1188,21 @@ ChoicePage::setupEfiSystemPartitionSelector()
     {
         m_efiLabel->setText( tr( "An EFI system partition cannot be found anywhere "
                                  "on this system. Please go back and use manual "
-                                 "partitioning to set up %1." )
+                                 "partitioning to set up %1.", "@info, %1 is product name" )
                                  .arg( Calamares::Branding::instance()->shortProductName() ) );
         updateNextEnabled();
     }
     else if ( efiSystemPartitions.count() == 1 )  //probably most usual situation
     {
         m_efiLabel->setText( tr( "The EFI system partition at %1 will be used for "
-                                 "starting %2." )
+                                 "starting %2.", "@info, %1 is partition path, %2 is product name" )
                                  .arg( efiSystemPartitions.first()->partitionPath() )
                                  .arg( Calamares::Branding::instance()->shortProductName() ) );
     }
     else
     {
         m_efiComboBox->show();
-        m_efiLabel->setText( tr( "EFI system partition:" ) );
+        m_efiLabel->setText( tr( "EFI system partition:", "@label" ) );
         for ( int i = 0; i < efiSystemPartitions.count(); ++i )
         {
             Partition* efiPartition = efiSystemPartitions.at( i );
@@ -1505,12 +1505,12 @@ ChoicePage::setupActions()
     {
         if ( atLeastOneIsMounted )
         {
-            m_messageLabel->setText( tr( "This storage device has one of its partitions <strong>mounted</strong>." ) );
+            m_messageLabel->setText( tr( "This storage device has one of its partitions <strong>mounted</strong>.", "@info" ) );
         }
         else
         {
             m_messageLabel->setText(
-                tr( "This storage device is a part of an <strong>inactive RAID</strong> device." ) );
+                tr( "This storage device is a part of an <strong>inactive RAID</strong> device.", "@info" ) );
         }
 
         m_messageLabel->show();
@@ -1625,7 +1625,7 @@ ChoicePage::updateSwapChoicesTr()
             // toInt() returns 0 on failure, so check for ok
             if ( ok )  // It was explicitly set to 0
             {
-                m_eraseSwapChoiceComboBox->setItemText( index, tr( "No Swap" ) );
+                m_eraseSwapChoiceComboBox->setItemText( index, tr( "No swap", "@label" ) );
             }
             else
             {
@@ -1634,16 +1634,16 @@ ChoicePage::updateSwapChoicesTr()
             }
             break;
         case SwapChoice::ReuseSwap:
-            m_eraseSwapChoiceComboBox->setItemText( index, tr( "Reuse Swap" ) );
+            m_eraseSwapChoiceComboBox->setItemText( index, tr( "Reuse swap", "@label" ) );
             break;
         case SwapChoice::SmallSwap:
-            m_eraseSwapChoiceComboBox->setItemText( index, tr( "Swap (no Hibernate)" ) );
+            m_eraseSwapChoiceComboBox->setItemText( index, tr( "Swap (no Hibernate)", "@label" ) );
             break;
         case SwapChoice::FullSwap:
-            m_eraseSwapChoiceComboBox->setItemText( index, tr( "Swap (with Hibernate)" ) );
+            m_eraseSwapChoiceComboBox->setItemText( index, tr( "Swap (with Hibernate)", "@label" ) );
             break;
         case SwapChoice::SwapFile:
-            m_eraseSwapChoiceComboBox->setItemText( index, tr( "Swap to file" ) );
+            m_eraseSwapChoiceComboBox->setItemText( index, tr( "Swap to file", "@label" ) );
             break;
         default:
             cWarning() << "Box item" << index << m_eraseSwapChoiceComboBox->itemText( index ) << "has role" << value;
@@ -1684,7 +1684,7 @@ ChoicePage::createBootloaderPanel()
     mainLayout->setContentsMargins( 0, 0, 0, 0 );
     QLabel* widgetLabel = new QLabel( panelWidget );
     mainLayout->addWidget( widgetLabel );
-    widgetLabel->setText( tr( "Boot loader location:" ) );
+    widgetLabel->setText( tr( "Bootloader location:", "@label" ) );
 
     QComboBox* comboForBootloader = new QComboBox( panelWidget );
     comboForBootloader->setModel( m_core->bootLoaderModel() );

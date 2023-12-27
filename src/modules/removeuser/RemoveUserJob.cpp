@@ -29,7 +29,7 @@ RemoveUserJob::~RemoveUserJob() {}
 QString
 RemoveUserJob::prettyName() const
 {
-    return tr( "Remove live user from target system" );
+    return tr( "Removing live user from the target system…", "@status" );
 }
 
 Calamares::JobResult

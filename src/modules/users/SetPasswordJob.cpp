@@ -41,7 +41,7 @@ SetPasswordJob::prettyName() const
 QString
 SetPasswordJob::prettyStatusMessage() const
 {
-    return tr( "Setting password for user %1." ).arg( m_userName );
+    return tr( "Setting password for user %1…", "@status" ).arg( m_userName );
 }
 
 #ifndef HAVE_CRYPT_GENSALT

@@ -23,19 +23,19 @@ RemoveVolumeGroupJob::RemoveVolumeGroupJob( Device*, LvmDevice* device )
 QString
 RemoveVolumeGroupJob::prettyName() const
 {
-    return tr( "Remove Volume Group named %1." ).arg( m_device->name() );
+    return tr( "Removing Volume Group named %1…", "@status" ).arg( m_device->name() );
 }
 
 QString
 RemoveVolumeGroupJob::prettyDescription() const
 {
-    return tr( "Remove Volume Group named <strong>%1</strong>." ).arg( m_device->name() );
+    return tr( "Removing Volume Group named <strong>%1</strong>…", "@status" ).arg( m_device->name() );
 }
 
 QString
 RemoveVolumeGroupJob::prettyStatusMessage() const
 {
-    return tr( "Remove Volume Group named %1." ).arg( m_device->name() );
+    return tr( "Removing Volume Group named %1…", "@status" ).arg( m_device->name() );
 }
 
 Calamares::JobResult

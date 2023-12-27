@@ -41,17 +41,17 @@ SetPartFlagsJob::prettyName() const
 {
     if ( !partition()->partitionPath().isEmpty() )
     {
-        return tr( "Set flags on partition %1." ).arg( partition()->partitionPath() );
+        return tr( "Setting flags on partition %1…", "@status" ).arg( partition()->partitionPath() );
     }
 
     QString fsNameForUser = userVisibleFS( partition()->fileSystem() );
     if ( !fsNameForUser.isEmpty() )
     {
-        return tr( "Set flags on %1MiB %2 partition." )
+        return tr( "Setting flags on %1MiB %2 partition…", "@status" )
             .arg( BytesToMiB( partition()->capacity() ) )
             .arg( fsNameForUser );
     }
-    return tr( "Set flags on new partition." );
+    return tr( "Setting flags on new partition…", "@status" );
 }
 
 QString
@@ -62,23 +62,23 @@ SetPartFlagsJob::prettyDescription() const
     {
         if ( !partition()->partitionPath().isEmpty() )
         {
-            return tr( "Clear flags on partition <strong>%1</strong>." ).arg( partition()->partitionPath() );
+            return tr( "Clearing flags on partition <strong>%1</strong>…", "@status" ).arg( partition()->partitionPath() );
         }
 
         QString fsNameForUser = userVisibleFS( partition()->fileSystem() );
         if ( !fsNameForUser.isEmpty() )
         {
-            return tr( "Clear flags on %1MiB <strong>%2</strong> partition." )
+            return tr( "Clearing flags on %1MiB <strong>%2</strong> partition…", "@status" )
                 .arg( BytesToMiB( partition()->capacity() ) )
                 .arg( fsNameForUser );
         }
-        return tr( "Clear flags on new partition." );
+        return tr( "Clearing flags on new partition…", "@status" );
     }
 
     if ( !partition()->partitionPath().isEmpty() )
     {
-        return tr( "Flag partition <strong>%1</strong> as "
-                   "<strong>%2</strong>." )
+        return tr( "Flagging partition <strong>%1</strong> as "
+                   "<strong>%2</strong>…", "@status" )
             .arg( partition()->partitionPath() )
             .arg( flagsList.join( ", " ) );
     }
@@ -86,14 +86,14 @@ SetPartFlagsJob::prettyDescription() const
     QString fsNameForUser = userVisibleFS( partition()->fileSystem() );
     if ( !fsNameForUser.isEmpty() )
     {
-        return tr( "Flag %1MiB <strong>%2</strong> partition as "
-                   "<strong>%3</strong>." )
+        return tr( "Flagging %1MiB <strong>%2</strong> partition as "
+                   "<strong>%3</strong>…", "@status" )
             .arg( BytesToMiB( partition()->capacity() ) )
             .arg( fsNameForUser )
             .arg( flagsList.join( ", " ) );
     }
 
-    return tr( "Flag new partition as <strong>%1</strong>." ).arg( flagsList.join( ", " ) );
+    return tr( "Flagging new partition as <strong>%1</strong>…", "@status" ).arg( flagsList.join( ", " ) );
 }
 
 QString
@@ -104,24 +104,24 @@ SetPartFlagsJob::prettyStatusMessage() const
     {
         if ( !partition()->partitionPath().isEmpty() )
         {
-            return tr( "Clearing flags on partition <strong>%1</strong>." ).arg( partition()->partitionPath() );
+            return tr( "Clearing flags on partition <strong>%1</strong>…", "@status" ).arg( partition()->partitionPath() );
         }
 
         QString fsNameForUser = userVisibleFS( partition()->fileSystem() );
         if ( !fsNameForUser.isEmpty() )
         {
-            return tr( "Clearing flags on %1MiB <strong>%2</strong> partition." )
+            return tr( "Clearing flags on %1MiB <strong>%2</strong> partition…", "@status" )
                 .arg( BytesToMiB( partition()->capacity() ) )
                 .arg( fsNameForUser );
         }
 
-        return tr( "Clearing flags on new partition." );
+        return tr( "Clearing flags on new partition…", "@status" );
     }
 
     if ( !partition()->partitionPath().isEmpty() )
     {
         return tr( "Setting flags <strong>%2</strong> on partition "
-                   "<strong>%1</strong>." )
+                   "<strong>%1</strong>…", "@status" )
             .arg( partition()->partitionPath() )
             .arg( flagsList.join( ", " ) );
     }
@@ -130,13 +130,13 @@ SetPartFlagsJob::prettyStatusMessage() const
     if ( !fsNameForUser.isEmpty() )
     {
         return tr( "Setting flags <strong>%3</strong> on "
-                   "%1MiB <strong>%2</strong> partition." )
+                   "%1MiB <strong>%2</strong> partition…", "@status" )
             .arg( BytesToMiB( partition()->capacity() ) )
             .arg( fsNameForUser )
             .arg( flagsList.join( ", " ) );
     }
 
-    return tr( "Setting flags <strong>%1</strong> on new partition." ).arg( flagsList.join( ", " ) );
+    return tr( "Setting flags <strong>%1</strong> on new partition…", "@status" ).arg( flagsList.join( ", " ) );
 }
 
 Calamares::JobResult

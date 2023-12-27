@@ -53,7 +53,7 @@ PreserveFiles::~PreserveFiles() {}
 QString
 PreserveFiles::prettyName() const
 {
-    return tr( "Saving files for later ..." );
+    return tr( "Saving files for later…", "@status" );
 }
 
 Calamares::JobResult

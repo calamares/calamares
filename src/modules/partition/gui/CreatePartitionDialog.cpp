@@ -64,7 +64,7 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device,
     , m_usedMountPoints( usedMountPoints )
 {
     m_ui->setupUi( this );
-    m_ui->encryptWidget->setText( tr( "En&crypt" ) );
+    m_ui->encryptWidget->setText( tr( "En&crypt", "@action" ) );
     m_ui->encryptWidget->hide();
 
     if ( m_device->type() != Device::Type::LVM_Device )
@@ -192,12 +192,12 @@ CreatePartitionDialog::initMbrPartitionTypeUi()
     if ( !parentIsPartitionTable )
     {
         m_role = PartitionRole( PartitionRole::Logical );
-        fixedPartitionString = tr( "Logical" );
+        fixedPartitionString = tr( "Logical", "@label" );
     }
     else if ( m_device->partitionTable()->hasExtended() )
     {
         m_role = PartitionRole( PartitionRole::Primary );
-        fixedPartitionString = tr( "Primary" );
+        fixedPartitionString = tr( "Primary", "@label" );
     }
 
     if ( fixedPartitionString.isEmpty() )
@@ -216,7 +216,7 @@ void
 CreatePartitionDialog::initGptPartitionTypeUi()
 {
     m_role = PartitionRole( PartitionRole::Primary );
-    m_ui->fixedPartitionLabel->setText( tr( "GPT" ) );
+    m_ui->fixedPartitionLabel->setText( tr( "GPT", "@label" ) );
     m_ui->primaryRadioButton->hide();
     m_ui->extendedRadioButton->hide();
 }

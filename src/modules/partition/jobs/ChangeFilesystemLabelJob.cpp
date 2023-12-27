@@ -31,15 +31,14 @@ ChangeFilesystemLabelJob::ChangeFilesystemLabelJob( Device* device, Partition* p
 QString
 ChangeFilesystemLabelJob::prettyName() const
 {
-    return tr( "Set filesystem label on %1." ).arg( partition()->partitionPath() );
+    return tr( "Setting filesystem label on %1…", "@status" ).arg( partition()->partitionPath() );
 }
 
 
 QString
 ChangeFilesystemLabelJob::prettyDescription() const
 {
-    return tr( "Set filesystem label <strong>%1</strong> to partition "
-               "<strong>%2</strong>." )
+    return tr( "Setting filesystem label <strong>%1</strong> to partition <strong>%2</strong>…", "@status" )
         .arg( m_label )
         .arg( partition()->partitionPath() );
 }
@@ -68,7 +67,7 @@ ChangeFilesystemLabelJob::exec()
             return Calamares::JobResult::ok();
         }
         return Calamares::JobResult::error(
-            tr( "The installer failed to update partition table on disk '%1'." ).arg( m_device->name() ) );
+            tr( "The installer failed to update partition table on disk '%1'.", "@info" ).arg( m_device->name() ) );
     }
 
     Report report( nullptr );
@@ -80,5 +79,5 @@ ChangeFilesystemLabelJob::exec()
         return Calamares::JobResult::ok();
     }
     return Calamares::JobResult::error(
-        tr( "The installer failed to update partition table on disk '%1'." ).arg( m_device->name() ), report.toText() );
+        tr( "The installer failed to update partition table on disk '%1'.", "@info" ).arg( m_device->name() ), report.toText() );
 }

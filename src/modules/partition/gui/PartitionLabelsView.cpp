@@ -36,7 +36,7 @@ static const int CORNER_RADIUS = 2;
 static QStringList
 buildUnknownDisklabelTexts( Device* dev )
 {
-    QStringList texts = { QObject::tr( "Unpartitioned space or unknown partition table" ),
+    QStringList texts = { QObject::tr( "Unpartitioned space or unknown partition table", "@info" ),
                           formatByteSize( dev->totalLogical() * dev->logicalSize() ) };
     return texts;
 }
@@ -179,28 +179,28 @@ PartitionLabelsView::buildTexts( const QModelIndex& index ) const
             }
             else if ( mountPoint == "/home" )
             {
-                firstLine = tr( "Home" );
+                firstLine = tr( "Home", "@label" );
             }
             else if ( mountPoint == "/boot" )
             {
-                firstLine = tr( "Boot" );
+                firstLine = tr( "Boot", "@label" );
             }
             else if ( mountPoint.contains( "/efi" )
                       && index.data( PartitionModel::FileSystemTypeRole ).toInt() == FileSystem::Fat32 )
             {
-                firstLine = tr( "EFI system" );
+                firstLine = tr( "EFI system", "@label" );
             }
             else if ( index.data( PartitionModel::FileSystemTypeRole ).toInt() == FileSystem::LinuxSwap )
             {
-                firstLine = tr( "Swap" );
+                firstLine = tr( "Swap", "@label" );
             }
             else if ( !mountPoint.isEmpty() )
             {
-                firstLine = tr( "New partition for %1" ).arg( mountPoint );
+                firstLine = tr( "New partition for %1", "@label" ).arg( mountPoint );
             }
             else
             {
-                firstLine = tr( "New partition" );
+                firstLine = tr( "New partition", "@label" );
             }
         }
     }

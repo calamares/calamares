@@ -35,7 +35,7 @@ ShellProcessJob::prettyName() const
     {
         return m_name->get();
     }
-    return tr( "Shell Processes Job" );
+    return tr( "Running shell processes…", "@status" );
 }
 
 Calamares::JobResult

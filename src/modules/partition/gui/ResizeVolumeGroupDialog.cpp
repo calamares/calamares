@@ -27,7 +27,7 @@ ResizeVolumeGroupDialog::ResizeVolumeGroupDialog( LvmDevice* device,
     : VolumeGroupBaseDialog( device->name(), device->physicalVolumes(), parent )
     , m_selectedPVs( selectedPVs )
 {
-    setWindowTitle( tr( "Resize Volume Group" ) );
+    setWindowTitle( tr( "Resize Volume Group", "@title" ) );
 
     for ( int i = 0; i < pvList()->count(); i++ )
     {

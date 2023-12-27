@@ -103,7 +103,7 @@ TrackingInstallJob::prettyName() const
 QString
 TrackingInstallJob::prettyStatusMessage() const
 {
-    return QCoreApplication::translate( "TrackingInstallJob", "Sending installation feedback." );
+    return QCoreApplication::translate( "TrackingInstallJob", "Sending installation feedback…", "@status" );
 }
 
 Calamares::JobResult
@@ -138,7 +138,7 @@ TrackingMachineUpdateManagerJob::prettyName() const
 QString
 TrackingMachineUpdateManagerJob::prettyStatusMessage() const
 {
-    return QCoreApplication::translate( "TrackingMachineUpdateManagerJob", "Configuring machine feedback." );
+    return QCoreApplication::translate( "TrackingMachineUpdateManagerJob", "Configuring machine feedback…", "@status" );
 }
 
 Calamares::JobResult
@@ -195,7 +195,7 @@ TrackingKUserFeedbackJob::prettyName() const
 QString
 TrackingKUserFeedbackJob::prettyStatusMessage() const
 {
-    return QCoreApplication::translate( "TrackingKUserFeedbackJob", "Configuring KDE user feedback." );
+    return QCoreApplication::translate( "TrackingKUserFeedbackJob", "Configuring KDE user feedback…", "@status" );
 }
 
 Calamares::JobResult

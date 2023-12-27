@@ -46,7 +46,7 @@ TrackingViewStep::~TrackingViewStep()
 QString
 TrackingViewStep::prettyName() const
 {
-    return tr( "Feedback" );
+    return tr( "Feedback", "@title" );
 }
 
 

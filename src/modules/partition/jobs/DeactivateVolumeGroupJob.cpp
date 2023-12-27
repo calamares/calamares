@@ -23,19 +23,19 @@ DeactivateVolumeGroupJob::DeactivateVolumeGroupJob( LvmDevice* device )
 QString
 DeactivateVolumeGroupJob::prettyName() const
 {
-    return tr( "Deactivate volume group named %1." ).arg( m_device->name() );
+    return tr( "Deactivating volume group named %1…", "@status" ).arg( m_device->name() );
 }
 
 QString
 DeactivateVolumeGroupJob::prettyDescription() const
 {
-    return tr( "Deactivate volume group named <strong>%1</strong>." ).arg( m_device->name() );
+    return tr( "Deactivating volume group named <strong>%1</strong>…", "@status" ).arg( m_device->name() );
 }
 
 QString
 DeactivateVolumeGroupJob::prettyStatusMessage() const
 {
-    return tr( "Deactivate volume group named %1." ).arg( m_device->name() );
+    return tr( "Deactivating volume group named %1…", "@status" ).arg( m_device->name() );
 }
 
 Calamares::JobResult

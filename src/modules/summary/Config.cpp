@@ -32,7 +32,7 @@ Config::Config( QObject* parent )
 void
 Config::retranslate()
 {
-    m_title = tr( "Summary" );
+    m_title = tr( "Summary", "@label" );
 
     if ( Calamares::Settings::instance()->isSetupMode() )
     {

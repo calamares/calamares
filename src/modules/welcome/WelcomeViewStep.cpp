@@ -43,7 +43,7 @@ WelcomeViewStep::~WelcomeViewStep()
 QString
 WelcomeViewStep::prettyName() const
 {
-    return tr( "Welcome" );
+    return tr( "Welcome", "@title" );
 }
 
 

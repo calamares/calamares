@@ -30,7 +30,7 @@ PlasmaLnfJob::~PlasmaLnfJob() {}
 QString
 PlasmaLnfJob::prettyName() const
 {
-    return tr( "Plasma Look-and-Feel Job" );
+    return tr( "Applying Plasma Look-and-Feel…", "@status" );
 }
 
 Calamares::JobResult

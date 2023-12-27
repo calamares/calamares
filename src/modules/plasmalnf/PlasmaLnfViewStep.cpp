@@ -40,7 +40,7 @@ PlasmaLnfViewStep::~PlasmaLnfViewStep()
 QString
 PlasmaLnfViewStep::prettyName() const
 {
-    return tr( "Look-and-Feel" );
+    return tr( "Look-and-Feel", "@label" );
 }
 
 
