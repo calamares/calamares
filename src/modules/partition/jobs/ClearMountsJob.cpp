@@ -302,7 +302,7 @@ tryClearSwap( const QString& partPath )
         return {};
     }
 
-    return { QT_TRANSLATE_NOOP( "ClearMountsJob", "Successfully cleared swap %1.", "@info" ), partPath };
+    return { QT_TRANSLATE_NOOP( "ClearMountsJob", "Successfully cleared swap %1." ), partPath };
 }
 
 ///@brief Returns a debug-string if @p mapperPath could be closed
@@ -316,7 +316,7 @@ tryCryptoClose( const QString& mapperPath )
     process.waitForFinished();
     if ( process.exitCode() == 0 )
     {
-        return { QT_TRANSLATE_NOOP( "ClearMountsJob", "Successfully closed mapper device %1.", "@info" ), mapperPath };
+        return { QT_TRANSLATE_NOOP( "ClearMountsJob", "Successfully closed mapper device %1." ), mapperPath };
     }
 
     return {};
@@ -329,8 +329,7 @@ tryVGDisable( const QString& vgName )
     vgProcess.start( "vgchange", { "-an", vgName } );
     vgProcess.waitForFinished();
     return ( vgProcess.exitCode() == 0 )
-        ? MessageAndPath { QT_TRANSLATE_NOOP( "ClearMountsJob", "Successfully disabled volume group %1.", "@info" ),
-                           vgName }
+        ? MessageAndPath { QT_TRANSLATE_NOOP( "ClearMountsJob", "Successfully disabled volume group %1." ), vgName }
         : MessageAndPath {};
 }
 
