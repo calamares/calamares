@@ -198,7 +198,7 @@ PartitionModel::data( const QModelIndex& index, int role ) const
         {
             if ( isPartitionFreeSpace( partition ) )
             {
-                name = tr( "Free Space", "@title );
+                name = tr( "Free Space", "@title" );
             }
             else
             {
