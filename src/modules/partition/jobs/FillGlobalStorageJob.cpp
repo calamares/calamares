@@ -176,7 +176,7 @@ FillGlobalStorageJob::FillGlobalStorageJob( const Config*, QList< Device* > devi
 QString
 FillGlobalStorageJob::prettyName() const
 {
-    return tr( "Setting partition information…", "@status" );
+    return tr( "Set partition information", "@title" );
 }
 
 
@@ -205,15 +205,16 @@ FillGlobalStorageJob::prettyDescription() const
                 {
                     if ( !features.isEmpty() )
                     {
-                        lines.append( tr( "Installing %1 on <strong>new</strong> %2 system partition "
-                                          "with features <em>%3</em>…", "@status" )
+                        lines.append( tr( "Install %1 on <strong>new</strong> %2 system partition "
+                                          "with features <em>%3</em>",
+                                          "@info" )
                                           .arg( Calamares::Branding::instance()->shortProductName() )
                                           .arg( fsType )
                                           .arg( features ) );
                     }
                     else
                     {
-                        lines.append( tr( "Installing %1 on <strong>new</strong> %2 system partition…", "@status" )
+                        lines.append( tr( "Install %1 on <strong>new</strong> %2 system partition", "@info" )
                                           .arg( Calamares::Branding::instance()->shortProductName() )
                                           .arg( fsType ) );
                     }
@@ -222,16 +223,18 @@ FillGlobalStorageJob::prettyDescription() const
                 {
                     if ( !features.isEmpty() )
                     {
-                        lines.append( tr( "Setting up <strong>new</strong> %2 partition with mount point "
-                                          "<strong>%1</strong> and features <em>%3</em>…", "@status" )
+                        lines.append( tr( "Set up <strong>new</strong> %2 partition with mount point "
+                                          "<strong>%1</strong> and features <em>%3</em>",
+                                          "@info" )
                                           .arg( mountPoint )
                                           .arg( fsType )
                                           .arg( features ) );
                     }
                     else
                     {
-                        lines.append( tr( "Setting up <strong>new</strong> %2 partition with mount point "
-                                          "<strong>%1</strong>%3…", "@status" )
+                        lines.append( tr( "Set up <strong>new</strong> %2 partition with mount point "
+                                          "<strong>%1</strong>%3",
+                                          "@info" )
                                           .arg( mountPoint )
                                           .arg( fsType )
                                           .arg( features ) );
@@ -244,8 +247,9 @@ FillGlobalStorageJob::prettyDescription() const
                 {
                     if ( !features.isEmpty() )
                     {
-                        lines.append( tr( "Installing %2 on %3 system partition <strong>%1</strong>"
-                                          " with features <em>%4</em>…", "@status" )
+                        lines.append( tr( "Install %2 on %3 system partition <strong>%1</strong>"
+                                          " with features <em>%4</em>",
+                                          "@info" )
                                           .arg( path )
                                           .arg( Calamares::Branding::instance()->shortProductName() )
                                           .arg( fsType )
@@ -253,7 +257,7 @@ FillGlobalStorageJob::prettyDescription() const
                     }
                     else
                     {
-                        lines.append( tr( "Installing %2 on %3 system partition <strong>%1</strong>…", "@status" )
+                        lines.append( tr( "Install %2 on %3 system partition <strong>%1</strong>", "@info" )
                                           .arg( path )
                                           .arg( Calamares::Branding::instance()->shortProductName() )
                                           .arg( fsType ) );
@@ -263,8 +267,9 @@ FillGlobalStorageJob::prettyDescription() const
                 {
                     if ( !features.isEmpty() )
                     {
-                        lines.append( tr( "Setting up %3 partition <strong>%1</strong> with mount point "
-                                          "<strong>%2</strong> and features <em>%4</em>…", "@status" )
+                        lines.append( tr( "Set up %3 partition <strong>%1</strong> with mount point "
+                                          "<strong>%2</strong> and features <em>%4</em>",
+                                          "@info" )
                                           .arg( path )
                                           .arg( mountPoint )
                                           .arg( fsType )
@@ -272,8 +277,9 @@ FillGlobalStorageJob::prettyDescription() const
                     }
                     else
                     {
-                        lines.append( tr( "Setting up %3 partition <strong>%1</strong> with mount point "
-                                          "<strong>%2</strong>%4…", "@status" )
+                        lines.append( tr( "Set up %3 partition <strong>%1</strong> with mount point "
+                                          "<strong>%2</strong>%4…",
+                                          "@info" )
                                           .arg( path )
                                           .arg( mountPoint )
                                           .arg( fsType )
@@ -287,7 +293,7 @@ FillGlobalStorageJob::prettyDescription() const
     QVariant bootloaderMap = createBootLoaderMap();
     if ( !m_bootLoaderPath.isEmpty() )
     {
-        lines.append( tr( "Installing boot loader on <strong>%1</strong>…", "@status" ).arg( m_bootLoaderPath ) );
+        lines.append( tr( "Install boot loader on <strong>%1</strong>…", "@info" ).arg( m_bootLoaderPath ) );
     }
     return lines.join( "<br/>" );
 }

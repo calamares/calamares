@@ -329,7 +329,8 @@ tryVGDisable( const QString& vgName )
     vgProcess.start( "vgchange", { "-an", vgName } );
     vgProcess.waitForFinished();
     return ( vgProcess.exitCode() == 0 )
-        ? MessageAndPath { QT_TRANSLATE_NOOP( "ClearMountsJob", "Successfully disabled volume group %1.", "@info" ), vgName }
+        ? MessageAndPath { QT_TRANSLATE_NOOP( "ClearMountsJob", "Successfully disabled volume group %1.", "@info" ),
+                           vgName }
         : MessageAndPath {};
 }
 
@@ -368,7 +369,7 @@ ClearMountsJob::ClearMountsJob( Device* device )
 QString
 ClearMountsJob::prettyName() const
 {
-    return tr( "Clearing mounts for partitioning operations on %1…", "@status" ).arg( m_deviceNode );
+    return tr( "Clear mounts for partitioning operations on %1", "@title" ).arg( m_deviceNode );
 }
 
 QString

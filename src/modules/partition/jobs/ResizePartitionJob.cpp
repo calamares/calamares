@@ -36,16 +36,13 @@ ResizePartitionJob::ResizePartitionJob( Device* device, Partition* partition, qi
 QString
 ResizePartitionJob::prettyName() const
 {
-    // FIXME: Copy PM ResizeOperation code which generates a description of the
-    // operation
-    return tr( "Resizing partition %1…", "@status" ).arg( partition()->partitionPath() );
+    return tr( "Resize partition %1", "@title" ).arg( partition()->partitionPath() );
 }
 
 QString
 ResizePartitionJob::prettyDescription() const
 {
-    return tr( "Resizing <strong>%2MiB</strong> partition <strong>%1</strong> to "
-               "<strong>%3MiB</strong>…", "@status" )
+    return tr( "Resize <strong>%2MiB</strong> partition <strong>%1</strong> to <strong>%3MiB</strong>", "@info" )
         .arg( partition()->partitionPath() )
         .arg( ( BytesToMiB( m_oldLastSector - m_oldFirstSector + 1 ) * partition()->sectorSize() ) )
         .arg( ( BytesToMiB( m_newLastSector - m_newFirstSector + 1 ) * partition()->sectorSize() ) );
@@ -54,8 +51,7 @@ ResizePartitionJob::prettyDescription() const
 QString
 ResizePartitionJob::prettyStatusMessage() const
 {
-    return tr( "Resizing %2MiB partition %1 to "
-               "%3MiB…", "@status" )
+    return tr( "Resizing %2MiB partition %1 to %3MiB…", "@status" )
         .arg( partition()->partitionPath() )
         .arg( ( BytesToMiB( m_oldLastSector - m_oldFirstSector + 1 ) * partition()->sectorSize() ) )
         .arg( ( BytesToMiB( m_newLastSector - m_newFirstSector + 1 ) * partition()->sectorSize() ) );

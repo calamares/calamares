@@ -178,7 +178,7 @@ CreatePartitionJob::prettyName() const
         QString entries = prettyGptEntries( m_partition );
         if ( !entries.isEmpty() )
         {
-            return tr( "Creating new %1MiB partition on %3 (%2) with entries %4…", "@status" )
+            return tr( "Create new %1MiB partition on %3 (%2) with entries %4", "@title" )
                 .arg( Calamares::BytesToMiB( m_partition->capacity() ) )
                 .arg( m_device->name() )
                 .arg( m_device->deviceNode() )
@@ -186,14 +186,14 @@ CreatePartitionJob::prettyName() const
         }
         else
         {
-            return tr( "Creating new %1MiB partition on %3 (%2)…", "@status" )
+            return tr( "Create new %1MiB partition on %3 (%2)", "@title" )
                 .arg( Calamares::BytesToMiB( m_partition->capacity() ) )
                 .arg( m_device->name() )
                 .arg( m_device->deviceNode() );
         }
     }
 
-    return tr( "Creating new %2MiB partition on %4 (%3) with file system %1…" "@status" )
+    return tr( "Create new %2MiB partition on %4 (%3) with file system %1", "@title" )
         .arg( userVisibleFS( m_partition->fileSystem() ) )
         .arg( Calamares::BytesToMiB( m_partition->capacity() ) )
         .arg( m_device->name() )
@@ -209,8 +209,9 @@ CreatePartitionJob::prettyDescription() const
         QString entries = prettyGptEntries( m_partition );
         if ( !entries.isEmpty() )
         {
-            return tr( "Creating new <strong>%1MiB</strong> partition on <strong>%3</strong> (%2) with entries "
-                       "<em>%4</em>…", "@status" )
+            return tr( "Create new <strong>%1MiB</strong> partition on <strong>%3</strong> (%2) with entries "
+                       "<em>%4</em>",
+                       "@info" )
                 .arg( Calamares::BytesToMiB( m_partition->capacity() ) )
                 .arg( m_device->name() )
                 .arg( m_device->deviceNode() )
@@ -218,15 +219,16 @@ CreatePartitionJob::prettyDescription() const
         }
         else
         {
-            return tr( "Creating new <strong>%1MiB</strong> partition on <strong>%3</strong> (%2)…", "@status" )
+            return tr( "Create new <strong>%1MiB</strong> partition on <strong>%3</strong> (%2)", "@info" )
                 .arg( Calamares::BytesToMiB( m_partition->capacity() ) )
                 .arg( m_device->name() )
                 .arg( m_device->deviceNode() );
         }
     }
 
-    return tr( "Creating new <strong>%2MiB</strong> partition on <strong>%4</strong> "
-               "(%3) with file system <strong>%1</strong>…", "@status" )
+    return tr( "Create new <strong>%2MiB</strong> partition on <strong>%4</strong> "
+               "(%3) with file system <strong>%1</strong>",
+               "@info" )
         .arg( userVisibleFS( m_partition->fileSystem() ) )
         .arg( Calamares::BytesToMiB( m_partition->capacity() ) )
         .arg( m_device->name() )
