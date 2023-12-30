@@ -25,7 +25,7 @@ ResizeVolumeGroupJob::ResizeVolumeGroupJob( Device*, LvmDevice* device, QVector<
 QString
 ResizeVolumeGroupJob::prettyName() const
 {
-    return tr( "Resize volume group named %1 from %2 to %3." )
+    return tr( "Resizing volume group named %1 from %2 to %3…", "@status" )
         .arg( m_device->name() )
         .arg( currentPartitions() )
         .arg( targetPartitions() );
@@ -34,7 +34,7 @@ ResizeVolumeGroupJob::prettyName() const
 QString
 ResizeVolumeGroupJob::prettyDescription() const
 {
-    return tr( "Resize volume group named <strong>%1</strong> from <strong>%2</strong> to <strong>%3</strong>." )
+    return tr( "Resizing volume group named <strong>%1</strong> from <strong>%2</strong> to <strong>%3</strong>…", "@status" )
         .arg( m_device->name() )
         .arg( currentPartitions() )
         .arg( targetPartitions() );
@@ -43,7 +43,7 @@ ResizeVolumeGroupJob::prettyDescription() const
 QString
 ResizeVolumeGroupJob::prettyStatusMessage() const
 {
-    return tr( "Resize volume group named %1 from %2 to %3." )
+    return tr( "Resizing volume group named %1 from %2 to %3…", "@status" )
         .arg( m_device->name() )
         .arg( currentPartitions() )
         .arg( targetPartitions() );

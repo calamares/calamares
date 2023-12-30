@@ -77,7 +77,7 @@ Page
 
             Button {
                 Layout.fillWidth: true
-                text: qsTr("Known issues")
+                text: qsTr("Known Issues")
                 icon.name: "tools-report-bug"
                 Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
                 Kirigami.Theme.textColor: Kirigami.Theme.textColor
@@ -88,7 +88,7 @@ Page
 
             Button {
                 Layout.fillWidth: true
-                text: qsTr("Release notes")
+                text: qsTr("Release Notes")
                 icon.name: "folder-text"
                 Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
                 Kirigami.Theme.textColor: Kirigami.Theme.textColor

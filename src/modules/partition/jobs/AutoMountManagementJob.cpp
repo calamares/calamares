@@ -19,7 +19,7 @@ AutoMountManagementJob::AutoMountManagementJob( bool disable )
 QString
 AutoMountManagementJob::prettyName() const
 {
-    return tr( "Manage auto-mount settings" );
+    return tr( "Managing auto-mount settings…", "@status" );
 }
 
 Calamares::JobResult

@@ -99,7 +99,7 @@ ZfsJob::~ZfsJob() {}
 QString
 ZfsJob::prettyName() const
 {
-    return tr( "Create ZFS pools and datasets" );
+    return tr( "Creating ZFS pools and datasets…", "@status" );
 }
 
 void

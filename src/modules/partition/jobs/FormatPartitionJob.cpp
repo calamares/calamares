@@ -36,7 +36,7 @@ FormatPartitionJob::FormatPartitionJob( Device* device, Partition* partition )
 QString
 FormatPartitionJob::prettyName() const
 {
-    return tr( "Format partition %1 (file system: %2, size: %3 MiB) on %4." )
+    return tr( "Formatting partition %1 (file system: %2, size: %3 MiB) on %4…", "@status" )
         .arg( m_partition->partitionPath() )
         .arg( userVisibleFS( m_partition->fileSystem() ) )
         .arg( m_partition->capacity() / 1024 / 1024 )
@@ -46,8 +46,8 @@ FormatPartitionJob::prettyName() const
 QString
 FormatPartitionJob::prettyDescription() const
 {
-    return tr( "Format <strong>%3MiB</strong> partition <strong>%1</strong> with "
-               "file system <strong>%2</strong>." )
+    return tr( "Formatting <strong>%3MiB</strong> partition <strong>%1</strong> with "
+               "file system <strong>%2</strong>…", "@status" )
         .arg( m_partition->partitionPath() )
         .arg( userVisibleFS( m_partition->fileSystem() ) )
         .arg( m_partition->capacity() / 1024 / 1024 );
@@ -61,7 +61,7 @@ FormatPartitionJob::prettyStatusMessage() const
         : tr( "%1 (%2)", "partition label %1 (device path %2)" )
               .arg( m_partition->label(), m_partition->partitionPath() );
     return tr( "Formatting partition %1 with "
-               "file system %2." )
+               "file system %2…", "@status" )
         .arg( partitionLabel, userVisibleFS( m_partition->fileSystem() ) );
 }
 

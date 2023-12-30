@@ -45,7 +45,7 @@ SetHostNameJob::prettyDescription() const
 QString
 SetHostNameJob::prettyStatusMessage() const
 {
-    return tr( "Setting hostname %1." ).arg( m_config->hostname() );
+    return tr( "Setting hostname %1…", "@status" ).arg( m_config->hostname() );
 }
 
 STATICTEST bool

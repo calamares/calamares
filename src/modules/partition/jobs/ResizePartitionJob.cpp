@@ -38,14 +38,14 @@ ResizePartitionJob::prettyName() const
 {
     // FIXME: Copy PM ResizeOperation code which generates a description of the
     // operation
-    return tr( "Resize partition %1." ).arg( partition()->partitionPath() );
+    return tr( "Resizing partition %1…", "@status" ).arg( partition()->partitionPath() );
 }
 
 QString
 ResizePartitionJob::prettyDescription() const
 {
-    return tr( "Resize <strong>%2MiB</strong> partition <strong>%1</strong> to "
-               "<strong>%3MiB</strong>." )
+    return tr( "Resizing <strong>%2MiB</strong> partition <strong>%1</strong> to "
+               "<strong>%3MiB</strong>…", "@status" )
         .arg( partition()->partitionPath() )
         .arg( ( BytesToMiB( m_oldLastSector - m_oldFirstSector + 1 ) * partition()->sectorSize() ) )
         .arg( ( BytesToMiB( m_newLastSector - m_newFirstSector + 1 ) * partition()->sectorSize() ) );
@@ -55,7 +55,7 @@ QString
 ResizePartitionJob::prettyStatusMessage() const
 {
     return tr( "Resizing %2MiB partition %1 to "
-               "%3MiB." )
+               "%3MiB…", "@status" )
         .arg( partition()->partitionPath() )
         .arg( ( BytesToMiB( m_oldLastSector - m_oldFirstSector + 1 ) * partition()->sectorSize() ) )
         .arg( ( BytesToMiB( m_newLastSector - m_newFirstSector + 1 ) * partition()->sectorSize() ) );

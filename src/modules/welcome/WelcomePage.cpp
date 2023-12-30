@@ -209,7 +209,7 @@ WelcomePage::retranslate()
 
     ui->mainText->setText( message.arg( Calamares::Branding::instance()->versionedName() ) );
     ui->retranslateUi( this );
-    ui->supportButton->setText( tr( "%1 support" ).arg( Calamares::Branding::instance()->shortProductName() ) );
+    ui->supportButton->setText( tr( "%1 Support", "@action" ).arg( Calamares::Branding::instance()->shortProductName() ) );
 }
 
 void

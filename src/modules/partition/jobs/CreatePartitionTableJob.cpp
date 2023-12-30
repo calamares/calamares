@@ -38,7 +38,7 @@ CreatePartitionTableJob::CreatePartitionTableJob( Device* device, PartitionTable
 QString
 CreatePartitionTableJob::prettyName() const
 {
-    return tr( "Create new %1 partition table on %2." )
+    return tr( "Creating new %1 partition table on %2…", "@status" )
         .arg( PartitionTable::tableTypeToName( m_type ) )
         .arg( m_device->deviceNode() );
 }
@@ -46,7 +46,7 @@ CreatePartitionTableJob::prettyName() const
 QString
 CreatePartitionTableJob::prettyDescription() const
 {
-    return tr( "Create new <strong>%1</strong> partition table on <strong>%2</strong> (%3)." )
+    return tr( "Creating new <strong>%1</strong> partition table on <strong>%2</strong> (%3)…", "@status" )
         .arg( PartitionTable::tableTypeToName( m_type ).toUpper() )
         .arg( m_device->deviceNode() )
         .arg( m_device->name() );
@@ -55,7 +55,7 @@ CreatePartitionTableJob::prettyDescription() const
 QString
 CreatePartitionTableJob::prettyStatusMessage() const
 {
-    return tr( "Creating new %1 partition table on %2." )
+    return tr( "Creating new %1 partition table on %2…", "@status" )
         .arg( PartitionTable::tableTypeToName( m_type ).toUpper() )
         .arg( m_device->deviceNode() );
 }

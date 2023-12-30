@@ -31,7 +31,7 @@ SetupSudoJob::SetupSudoJob( const QString& group, Config::SudoStyle style )
 QString
 SetupSudoJob::prettyName() const
 {
-    return tr( "Configure <pre>sudo</pre> users." );
+    return tr( "Configuring <pre>sudo</pre> users…", "@status" );
 }
 
 static QString
@@ -178,7 +178,7 @@ SetupGroupsJob::SetupGroupsJob( const Config* config )
 QString
 SetupGroupsJob::prettyName() const
 {
-    return tr( "Preparing groups." );
+    return tr( "Preparing groups…", "@status" );
 }
 
 Calamares::JobResult

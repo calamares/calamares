@@ -57,7 +57,7 @@ BootLoaderModel::createMbrItems()
 {
     for ( auto device : m_devices )
     {
-        QString text = tr( "Master Boot Record of %1" ).arg( device->name() );
+        QString text = tr( "Master Boot Record of %1", "@info" ).arg( device->name() );
         appendRow( createBootLoaderItem( text, device->deviceNode(), false ) );
     }
 }
@@ -90,14 +90,14 @@ BootLoaderModel::updateInternal()
     Partition* partition = KPMHelpers::findPartitionByMountPoint( m_devices, "/boot" );
     if ( partition )
     {
-        partitionText = tr( "Boot Partition" );
+        partitionText = tr( "Boot Partition", "@info" );
     }
     else
     {
         partition = KPMHelpers::findPartitionByMountPoint( m_devices, "/" );
         if ( partition )
         {
-            partitionText = tr( "System Partition" );
+            partitionText = tr( "System Partition", "@info" );
         }
     }
 
@@ -128,7 +128,7 @@ BootLoaderModel::updateInternal()
     }
     // Create "don't install bootloader" item. This is always available,
     // also if there was no /boot or / partition found.
-    appendRow( createBootLoaderItem( tr( "Do not install a boot loader" ), QString(), false ) );
+    appendRow( createBootLoaderItem( tr( "Do not install a boot loader", "@label" ), QString(), false ) );
 }
 
 

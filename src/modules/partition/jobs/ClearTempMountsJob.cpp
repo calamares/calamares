@@ -30,14 +30,14 @@ ClearTempMountsJob::ClearTempMountsJob()
 QString
 ClearTempMountsJob::prettyName() const
 {
-    return tr( "Clear all temporary mounts." );
+    return tr( "Clearing all temporary mounts…", "@status" );
 }
 
 
 QString
 ClearTempMountsJob::prettyStatusMessage() const
 {
-    return tr( "Clearing all temporary mounts." );
+    return tr( "Clearing all temporary mounts…", "@status" );
 }
 
 

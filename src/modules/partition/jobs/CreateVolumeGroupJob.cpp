@@ -29,19 +29,19 @@ CreateVolumeGroupJob::CreateVolumeGroupJob( Device*,
 QString
 CreateVolumeGroupJob::prettyName() const
 {
-    return tr( "Create new volume group named %1." ).arg( m_vgName );
+    return tr( "Creating new volume group named %1…", "@status" ).arg( m_vgName );
 }
 
 QString
 CreateVolumeGroupJob::prettyDescription() const
 {
-    return tr( "Create new volume group named <strong>%1</strong>." ).arg( m_vgName );
+    return tr( "Creating new volume group named <strong>%1</strong>…", "@status" ).arg( m_vgName );
 }
 
 QString
 CreateVolumeGroupJob::prettyStatusMessage() const
 {
-    return tr( "Creating new volume group named %1." ).arg( m_vgName );
+    return tr( "Creating new volume group named %1…", "@status" ).arg( m_vgName );
 }
 
 Calamares::JobResult

@@ -154,11 +154,11 @@ PartitionModel::data( const QModelIndex& index, int role ) const
         {
             if ( isPartitionFreeSpace( partition ) )
             {
-                return tr( "Free Space" );
+                return tr( "Free Space", "@title" );
             }
             else
             {
-                return isPartitionNew( partition ) ? tr( "New partition" ) : partition->partitionPath();
+                return isPartitionNew( partition ) ? tr( "New Partition", "@title" ) : partition->partitionPath();
             }
         }
         if ( col == FileSystemColumn )
@@ -198,11 +198,11 @@ PartitionModel::data( const QModelIndex& index, int role ) const
         {
             if ( isPartitionFreeSpace( partition ) )
             {
-                name = tr( "Free Space" );
+                name = tr( "Free Space", "@title );
             }
             else
             {
-                name = isPartitionNew( partition ) ? tr( "New partition" ) : partition->partitionPath();
+                name = isPartitionNew( partition ) ? tr( "New Partition", "@title" ) : partition->partitionPath();
             }
         }
         QString prettyFileSystem = Calamares::Partition::prettyNameForFileSystemType( partition->fileSystem().type() );
@@ -304,15 +304,15 @@ PartitionModel::headerData( int section, Qt::Orientation, int role ) const
     switch ( section )
     {
     case NameColumn:
-        return tr( "Name" );
+        return tr( "Name", "@title" );
     case FileSystemColumn:
-        return tr( "File System" );
+        return tr( "File System", "@title" );
     case FileSystemLabelColumn:
-        return tr( "File System Label" );
+        return tr( "File System Label", "@title" );
     case MountPointColumn:
-        return tr( "Mount Point" );
+        return tr( "Mount Point", "@title" );
     case SizeColumn:
-        return tr( "Size" );
+        return tr( "Size", "@title" );
     default:
         cDebug() << "Unknown column" << section;
         return QVariant();

@@ -53,7 +53,7 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
     m_waitingWidget = new WaitingWidget( QString() );
     m_widget->addWidget( m_waitingWidget );
     CALAMARES_RETRANSLATE(
-        if ( m_waitingWidget ) { m_waitingWidget->setText( tr( "Gathering system information..." ) ); } );
+        if ( m_waitingWidget ) { m_waitingWidget->setText( tr( "Gathering system information…", "@status" ) ); } );
 
     m_core = new PartitionCoreModule( this );  // Unusable before init is complete!
     // We're not done loading, but we need the configuration map first.
@@ -104,7 +104,7 @@ PartitionViewStep::~PartitionViewStep()
 QString
 PartitionViewStep::prettyName() const
 {
-    return tr( "Partitions" );
+    return tr( "Partitions", "@label" );
 }
 
 /** @brief Gather the pretty descriptions of all the partitioning jobs
@@ -140,17 +140,17 @@ modeDescription( Config::InstallChoice choice )
     switch ( choice )
     {
     case Config::InstallChoice::Alongside:
-        return QCoreApplication::translate( context, "Install %1 <strong>alongside</strong> another operating system." )
+        return QCoreApplication::translate( context, "Install %1 <strong>alongside</strong> another operating system", "@label" )
             .arg( branding->shortVersionedName() );
     case Config::InstallChoice::Erase:
-        return QCoreApplication::translate( context, "<strong>Erase</strong> disk and install %1." )
+        return QCoreApplication::translate( context, "<strong>Erase</strong> disk and install %1", "@label" )
             .arg( branding->shortVersionedName() );
     case Config::InstallChoice::Replace:
-        return QCoreApplication::translate( context, "<strong>Replace</strong> a partition with %1." )
+        return QCoreApplication::translate( context, "<strong>Replace</strong> a partition with %1", "@label" )
             .arg( branding->shortVersionedName() );
     case Config::InstallChoice::NoChoice:
     case Config::InstallChoice::Manual:
-        return QCoreApplication::translate( context, "<strong>Manual</strong> partitioning." );
+        return QCoreApplication::translate( context, "<strong>Manual</strong> partitioning", "@label" );
     }
     return QString();
 }
@@ -176,26 +176,26 @@ diskDescription( int listLength, const PartitionCoreModule::SummaryInfo& info, C
             return QCoreApplication::translate(
                        context,
                        "Install %1 <strong>alongside</strong> another operating system on disk "
-                       "<strong>%2</strong> (%3)." )
+                       "<strong>%2</strong> (%3)", "@info" )
                 .arg( branding->shortVersionedName() )
                 .arg( info.deviceNode )
                 .arg( info.deviceName );
         case Config::Erase:
             return QCoreApplication::translate( context,
-                                                "<strong>Erase</strong> disk <strong>%2</strong> (%3) and install %1." )
+                                                "<strong>Erase</strong> disk <strong>%2</strong> (%3) and install %1", "@info" )
                 .arg( branding->shortVersionedName() )
                 .arg( info.deviceNode )
                 .arg( info.deviceName );
         case Config::Replace:
             return QCoreApplication::translate(
-                       context, "<strong>Replace</strong> a partition on disk <strong>%2</strong> (%3) with %1." )
+                       context, "<strong>Replace</strong> a partition on disk <strong>%2</strong> (%3) with %1", "@info" )
                 .arg( branding->shortVersionedName() )
                 .arg( info.deviceNode )
                 .arg( info.deviceName );
         case Config::NoChoice:
         case Config::Manual:
             return QCoreApplication::translate(
-                       context, "<strong>Manual</strong> partitioning on disk <strong>%1</strong> (%2)." )
+                       context, "<strong>Manual</strong> partitioning on disk <strong>%1</strong> (%2)", "@info" )
                 .arg( info.deviceNode )
                 .arg( info.deviceName );
         }
@@ -203,7 +203,7 @@ diskDescription( int listLength, const PartitionCoreModule::SummaryInfo& info, C
     }
     else  // multiple disk previews!
     {
-        return QCoreApplication::translate( context, "Disk <strong>%1</strong> (%2)" )
+        return QCoreApplication::translate( context, "Disk <strong>%1</strong> (%2)", "@info" )
             .arg( info.deviceNode )
             .arg( info.deviceName );
     }
@@ -293,7 +293,7 @@ PartitionViewStep::createSummaryWidget() const
         field->setSpacing( 6 );
         field->addWidget( preview );
         field->addWidget( previewLabels );
-        formLayout->addRow( tr( "Current:" ), field );
+        formLayout->addRow( tr( "Current:", "@label" ), field );
 
         preview = new PartitionBarsView;
         preview->setNestedPartitionsMode( mode );
@@ -311,7 +311,7 @@ PartitionViewStep::createSummaryWidget() const
         field->setSpacing( 6 );
         field->addWidget( preview );
         field->addWidget( previewLabels );
-        formLayout->addRow( tr( "After:" ), field );
+        formLayout->addRow( tr( "After:", "@label" ), field );
     }
     const QStringList jobsLines = jobDescriptions( jobs() );
     if ( !jobsLines.isEmpty() )

@@ -178,7 +178,7 @@ CreatePartitionJob::prettyName() const
         QString entries = prettyGptEntries( m_partition );
         if ( !entries.isEmpty() )
         {
-            return tr( "Create new %1MiB partition on %3 (%2) with entries %4." )
+            return tr( "Creating new %1MiB partition on %3 (%2) with entries %4…", "@status" )
                 .arg( Calamares::BytesToMiB( m_partition->capacity() ) )
                 .arg( m_device->name() )
                 .arg( m_device->deviceNode() )
@@ -186,14 +186,14 @@ CreatePartitionJob::prettyName() const
         }
         else
         {
-            return tr( "Create new %1MiB partition on %3 (%2)." )
+            return tr( "Creating new %1MiB partition on %3 (%2)…", "@status" )
                 .arg( Calamares::BytesToMiB( m_partition->capacity() ) )
                 .arg( m_device->name() )
                 .arg( m_device->deviceNode() );
         }
     }
 
-    return tr( "Create new %2MiB partition on %4 (%3) with file system %1." )
+    return tr( "Creating new %2MiB partition on %4 (%3) with file system %1…" "@status" )
         .arg( userVisibleFS( m_partition->fileSystem() ) )
         .arg( Calamares::BytesToMiB( m_partition->capacity() ) )
         .arg( m_device->name() )
@@ -209,8 +209,8 @@ CreatePartitionJob::prettyDescription() const
         QString entries = prettyGptEntries( m_partition );
         if ( !entries.isEmpty() )
         {
-            return tr( "Create new <strong>%1MiB</strong> partition on <strong>%3</strong> (%2) with entries "
-                       "<em>%4</em>." )
+            return tr( "Creating new <strong>%1MiB</strong> partition on <strong>%3</strong> (%2) with entries "
+                       "<em>%4</em>…", "@status" )
                 .arg( Calamares::BytesToMiB( m_partition->capacity() ) )
                 .arg( m_device->name() )
                 .arg( m_device->deviceNode() )
@@ -218,15 +218,15 @@ CreatePartitionJob::prettyDescription() const
         }
         else
         {
-            return tr( "Create new <strong>%1MiB</strong> partition on <strong>%3</strong> (%2)." )
+            return tr( "Creating new <strong>%1MiB</strong> partition on <strong>%3</strong> (%2)…", "@status" )
                 .arg( Calamares::BytesToMiB( m_partition->capacity() ) )
                 .arg( m_device->name() )
                 .arg( m_device->deviceNode() );
         }
     }
 
-    return tr( "Create new <strong>%2MiB</strong> partition on <strong>%4</strong> "
-               "(%3) with file system <strong>%1</strong>." )
+    return tr( "Creating new <strong>%2MiB</strong> partition on <strong>%4</strong> "
+               "(%3) with file system <strong>%1</strong>…", "@status" )
         .arg( userVisibleFS( m_partition->fileSystem() ) )
         .arg( Calamares::BytesToMiB( m_partition->capacity() ) )
         .arg( m_device->name() )
@@ -249,10 +249,10 @@ CreatePartitionJob::prettyStatusMessage() const
             type = userVisibleFS( m_partition->fileSystem() );
         }
 
-        return tr( "Creating new %1 partition on %2." ).arg( type ).arg( m_device->deviceNode() );
+        return tr( "Creating new %1 partition on %2…", "@status" ).arg( type ).arg( m_device->deviceNode() );
     }
 
-    return tr( "Creating new %1 partition on %2." )
+    return tr( "Creating new %1 partition on %2…", "@status" )
         .arg( userVisibleFS( m_partition->fileSystem() ) )
         .arg( m_device->deviceNode() );
 }
@@ -269,7 +269,7 @@ CreatePartitionJob::exec()
 
     return KPMHelpers::execute(
         NewOperation( *m_device, m_partition ),
-        tr( "The installer failed to create partition on disk '%1'." ).arg( m_device->name() ) );
+        tr( "The installer failed to create partition on disk '%1'.", "@info" ).arg( m_device->name() ) );
 }
 
 void
