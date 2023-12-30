@@ -25,6 +25,7 @@ properties:
         properties:
             greeter_user: { type: string }
             greeter_group: { type: string }
+            greeter_css_location: { type: string }
         additionalProperties: false
     lightdm:
         type: object

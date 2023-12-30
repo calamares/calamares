@@ -779,6 +779,7 @@ class DMgreetd(DisplayManager):
     executable = "greetd"
     greeter_user = "greeter"
     greeter_group = "greetd"
+    greeter_css_location = None
     config_data = {}
 
     def os_path(self, path):
@@ -846,6 +847,8 @@ class DMgreetd(DisplayManager):
         de_command = default_desktop_environment.executable
         if os.path.exists(self.os_path("usr/bin/gtkgreet")) and os.path.exists(self.os_path("usr/bin/cage")):
             self.config_data['default_session']['command'] = "cage -d -s -- gtkgreet"
+            if self.greeter_css_location:
+                self.config_data['default_session']['command'] += f" -s {self.greeter_css_location}"
         elif os.path.exists(self.os_path("usr/bin/tuigreet")):
             tuigreet_base_cmd = "tuigreet --remember --time --issue --asterisks --cmd "
             self.config_data['default_session']['command'] = tuigreet_base_cmd + de_command
