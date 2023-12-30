@@ -10,9 +10,8 @@ if(NOT WITH_QML)
 endif()
 
 find_package(${qtname} ${QT_VERSION} CONFIG REQUIRED Core)
-
-# Add optional libraries here
-set(USER_EXTRA_LIB)
+set(_extra_libraries "")
+set(_extra_src "")
 
 # include_directories( ${CMAKE_CURRENT_SOURCE_DIR}/../packagechooser )
 set(_packagechooser ${CMAKE_CURRENT_SOURCE_DIR}/../packagechooser)
@@ -34,23 +33,7 @@ endif()
 ### OPTIONAL AppStream support in PackageModel
 #
 #
-option(BUILD_APPSTREAM "Support appstream: items in PackageChooser (requires libappstream-qt)" ON)
-if(BUILD_APPSTREAM)
-    find_package(AppStreamQt)
-    set_package_properties(
-        AppStreamQt
-        PROPERTIES
-        DESCRIPTION "Support for AppStream (cache) data"
-        URL "https://github.com/ximion/appstream"
-        PURPOSE "AppStream provides package data"
-        TYPE OPTIONAL
-    )
-    if(AppStreamQt_FOUND)
-        add_definitions(-DHAVE_APPSTREAM_VERSION=${AppStreamQt_VERSION_MAJOR})
-        list(APPEND _extra_libraries AppStreamQt)
-        list(APPEND _extra_src ${_packagechooser}/ItemAppStream.cpp)
-    endif()
-endif()
+include(AppStreamHelper)
 
 calamares_add_plugin(packagechooserq
     TYPE viewmodule
@@ -67,3 +50,8 @@ calamares_add_plugin(packagechooserq
         ${_extra_libraries}
     SHARED_LIB
 )
+
+if(AppStreamQt_FOUND)
+    target_link_libraries(calamares_viewmodule_packagechooserq PRIVATE calamares::appstreamqt)
+    target_sources(calamares_viewmodule_packagechooserq PRIVATE ${_packagechooser}/ItemAppStream.cpp)
+endif()
