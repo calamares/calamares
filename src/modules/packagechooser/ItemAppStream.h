@@ -12,10 +12,28 @@
 
 #include "PackageModel.h"
 
-namespace AppStream
-{
-class Pool;
-}  // namespace AppStream
+/*
+ * This weird include mechanism is because an #include line is allowed
+ * to consist of preprocessor-tokens, which are expanded, and then
+ * the #include is *re*processed. But if it starts with < or ", then
+ * preprocessor tokens are not expanded. So we build up a #include <>
+ * style line with a suitable path -- if we are given a value for
+ * HAVE_APPSTREAM_HEADERS, that is the directory that the AppStreamQt
+ * headers live in.
+ */
+#define CALAMARES_LT <
+#define CALAMARES_GT >
+
+#ifndef HAVE_APPSTREAM_HEADERS
+#define HAVE_APPSTREAM_HEADERS AppStreamQt
+#endif
+
+#include CALAMARES_LT HAVE_APPSTREAM_HEADERS/pool.h CALAMARES_GT
+#include CALAMARES_LT HAVE_APPSTREAM_HEADERS/image.h CALAMARES_GT
+#include CALAMARES_LT HAVE_APPSTREAM_HEADERS/screenshot.h CALAMARES_GT
+
+#undef CALAMARES_LT
+#undef CALAMARES_GT
 
 /** @brief Loads an item from AppStream data.
  *

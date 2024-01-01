@@ -16,7 +16,6 @@
 
 #ifdef HAVE_APPSTREAM_VERSION
 #include "ItemAppStream.h"
-#include <AppStreamQt/pool.h>
 #include <memory>
 #endif
 

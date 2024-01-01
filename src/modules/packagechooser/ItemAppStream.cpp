@@ -7,19 +7,15 @@
  *
  */
 
-/** @brief Loading items from AppData XML files.
+/** @brief Loading items from AppStream database.
  *
- * Only used if QtXML is found, implements PackageItem::fromAppData().
+ * Only used if AppStreamQt is found, implements PackageItem::fromAppStream().
  */
-#include "PackageModel.h"
+#include "ItemAppStream.h"
 
 #include "locale/TranslationsModel.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
-
-#include <AppStreamQt/image.h>
-#include <AppStreamQt/pool.h>
-#include <AppStreamQt/screenshot.h>
 
 /// @brief Return number of pixels in a size, for < ordering purposes
 static inline quint64
