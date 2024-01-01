@@ -46,7 +46,19 @@ else()
     endif()
 endif()
 
-if(NOT _appstream_name)
+if(HAVE_APPSTREAM)
+    # Look for the directory name containing the headers
+    find_file(_appstream_header NAMES ${_appstream_name}/pool.h AppStreamQt/pool.h)
+    if(NOT _appstream_header)
+        set(HAVE_APPSTREAM OFF)
+    else()
+        if(_appstream_header MATCHES /${_appstream_name}/)
+            set(_appstream_header_directory ${_appstream_name})
+        else()
+            set(_appstream_header_directory AppStreamQt)
+        endif()
+    endif()
+else()
     # Placeholder name
     set(_appstream_name AppStreamQt)
 endif()
@@ -67,7 +79,7 @@ set_package_properties(
 
 add_library(calaappstream INTERFACE) # Always, but might not be populated
 if(HAVE_APPSTREAM)
-    target_compile_definitions(calaappstream INTERFACE HAVE_APPSTREAM_VERSION=${${_appstream_name}_VERSION_MAJOR})
+    target_compile_definitions(calaappstream INTERFACE HAVE_APPSTREAM_VERSION=${${_appstream_name}_VERSION_MAJOR} HAVE_APPSTREAM_HEADERS=${_appstream_header_directory})
     target_link_libraries(calaappstream INTERFACE ${_appstream_name})
     add_library(calamares::appstreamqt ALIAS calaappstream)
 endif()
