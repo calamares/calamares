@@ -10,13 +10,25 @@ the history of the 3.2 series (2018-05 - 2022-08).
 
 # 3.3.1 (unreleased)
 
+This release sets `BUILD_APPDATA` and `BUILD_APSTREAM` to default to **OFF**,
+where previously they defaulted to **ON**. When enabled, the dependencies for
+both features are required -- previously they would silently switch off if
+the dependencies were not found. Distributions are strongly advised to check
+their package-building instructions.
+
 This release contains contributions from (alphabetically by first name):
  - Adriaan de Groot
  - Aleksey Samoilov
  - Emir Sari
+ - Simon Quigley
 
 ## Core ##
- - No changes of note.
+ - There has been internal code re-organization (e.g. not using functions
+   named `tr()`) to help translation tools.
+ - Strings everywhere have been given more context. (thanks Emir)
+ - In CMake, "view" is no longer accepted as an alias of the module
+   type "viewmodule" in function `calamares_add_plugin()`.
+ - Plain Ubuntu builds have been added to the CI roster. (thanks Simon)
 
 ## Modules ##
  - The *displaymanager* module configuration for `greetd` has some more
