@@ -11,7 +11,7 @@
 # variables (e.g. might be AppStreamQt6_FOUND).
 #
 
-option(BUILD_APPSTREAM "Support appstream: items in PackageChooser (requires libappstream-qt)" ON)
+option(BUILD_APPSTREAM "Support appstream: items in PackageChooser (requires libappstream-qt)" OFF)
 
 if(TARGET calaappstream)
     if(TARGET calamares::appstreamqt)

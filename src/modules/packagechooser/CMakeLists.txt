@@ -10,9 +10,9 @@ set(_extra_src "")
 ### OPTIONAL AppData XML support in PackageModel
 #
 #
-option(BUILD_APPDATA "Support appdata: items in PackageChooser (requires QtXml)" ON)
+option(BUILD_APPDATA "Support appdata: items in PackageChooser (requires QtXml)" OFF)
 if(BUILD_APPDATA)
-    find_package(${qtname} COMPONENTS Xml)
+    find_package(${qtname} REQUIRED COMPONENTS Xml)
     if(TARGET ${qtname}::Xml)
         add_definitions(-DHAVE_APPDATA)
         list(APPEND _extra_libraries ${qtname}::Xml)
