@@ -1,0 +1,34 @@
+name: nightly-ubuntu
+
+on:
+  schedule:
+    - cron: "12 23 * * *"
+  workflow_dispatch:
+
+env:
+  BUILDDIR: /build
+  SRCDIR: ${{ github.workspace }}
+  CMAKE_ARGS: |
+    -DKDE_INSTALL_USE_QT_SYS_PATHS=ON
+    -DCMAKE_BUILD_TYPE=Debug
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: docker://ubuntu:devel
+      options: --tmpfs /build:rw --user 0:0
+    steps:
+      - name: "prepare git"
+        shell: bash
+        run: |
+            apt-get update
+            apt-get -y install git-core jq curl
+      - name: "prepare source"
+        uses: calamares/actions/generic-checkout@v5
+      - name: "install dependencies"
+        shell: bash
+        run: ./ci/deps-ubuntu.sh
+      - name: "build"
+        shell: bash
+        run: ./ci/build.sh
