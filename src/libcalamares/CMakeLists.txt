@@ -190,7 +190,7 @@ install(
     DESTINATION include/libcalamares
 )
 # Install each subdir-worth of header files
-foreach(subdir geoip locale modulesystem network partition utils)
+foreach(subdir geoip locale modulesystem network partition utils compat packages)
     file(GLOB subdir_headers "${subdir}/*.h")
     install(FILES ${subdir_headers} DESTINATION include/libcalamares/${subdir})
 endforeach()
