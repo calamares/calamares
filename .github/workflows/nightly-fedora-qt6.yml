@@ -12,6 +12,8 @@ env:
     -DKDE_INSTALL_USE_QT_SYS_PATHS=ON
     -DCMAKE_BUILD_TYPE=Debug
     -DWITH_QT6=ON
+    -DBUILD_APPSTREAM=ON
+    -DBUILD_APPDATA=ON
 
 jobs:
   build:
