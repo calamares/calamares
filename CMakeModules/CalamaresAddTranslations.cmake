@@ -10,7 +10,8 @@
 #
 # This file has not yet been documented for use outside of Calamares itself.
 
-include( CMakeParseArguments )
+include(CMakeParseArguments)
+include(FeatureSummary)
 
 # The Gettext module is still old-fashioned, ALLCAPS variables
 find_package( Gettext )
