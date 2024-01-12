@@ -29,6 +29,8 @@ This release contains contributions from (alphabetically by first name):
  - In CMake, "view" is no longer accepted as an alias of the module
    type "viewmodule" in function `calamares_add_plugin()`.
  - Plain Ubuntu builds have been added to the CI roster. (thanks Simon)
+ - Commands that run in the target system (in the chroot) no longer
+   use the TMP-related environment variables from the host. #2269
 
 ## Modules ##
  - The *displaymanager* module configuration for `greetd` has some more

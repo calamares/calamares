@@ -128,6 +128,14 @@ Calamares::Utils::Runner::run()
     {
         auto env = QProcessEnvironment::systemEnvironment();
         env.insert( "LC_ALL", "C" );
+        // No guarantees that host settings for /tmp/ make sense in target
+        if ( m_location == RunLocation::RunInTarget )
+        {
+            env.remove( "TEMP" );
+            env.remove( "TEMPDIR" );
+            env.remove( "TMP" );
+            env.remove( "TMPDIR" );
+        }
         process.setProcessEnvironment( env );
     }
     process.setProcessChannelMode( QProcess::MergedChannels );
