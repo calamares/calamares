@@ -66,7 +66,7 @@ private:
     QStringList m_FreeBSDLocales;
 };
 
-QTEST_MAIN( LocaleTests )
+QTEST_GUILESS_MAIN( LocaleTests )
 
 
 LocaleTests::LocaleTests() {}

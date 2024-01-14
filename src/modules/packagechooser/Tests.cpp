@@ -21,7 +21,7 @@
 
 #include <QtTest/QtTest>
 
-QTEST_MAIN( PackageChooserTests )
+QTEST_GUILESS_MAIN( PackageChooserTests )
 
 PackageChooserTests::PackageChooserTests() {}
 
