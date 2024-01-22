@@ -2,7 +2,7 @@ name: nightly-opensuse
 
 on:
   schedule:
-    - cron: "32 11 * * tuesday"
+    - cron: "32 11 * * 3"
   workflow_dispatch:
 
 env:
