@@ -1,4 +1,4 @@
-name: nightly-opensuse
+name: weekly-opensuse
 
 on:
   schedule:
