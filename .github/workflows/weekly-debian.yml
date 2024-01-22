@@ -1,8 +1,8 @@
-name: weekly-opensuse
+name: weekly-debian-11
 
 on:
   schedule:
-    - cron: "32 11 * * 3"
+    - cron: "12 11 * * 3"
   workflow_dispatch:
 
 env:
@@ -11,8 +11,6 @@ env:
   CMAKE_ARGS: |
     -DKDE_INSTALL_USE_QT_SYS_PATHS=ON
     -DCMAKE_BUILD_TYPE=Debug
-    -DBUILD_SCHEMA_TESTING=ON
-    -DBUILD_TESTING=ON
     -DBUILD_APPSTREAM=ON
     -DBUILD_APPDATA=ON
 
@@ -20,23 +18,25 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: docker://opensuse/tumbleweed
+      image: docker://debian:11
       options: --tmpfs /build:rw --user 0:0
     steps:
       - name: "prepare git"
         shell: bash
-        run: zypper --non-interactive in git-core jq curl
-      - name: "prepare source"
+        run: |
+            apt-get update
+            apt-get -y install git-core jq curl
+      - name: "prepare source (core)"
         uses: calamares/actions/generic-checkout@v5
-      - name: "install dependencies"
-        shell: bash
-        run: ./ci/deps-opensuse.sh
-      - name: "build"
-        shell: bash
-        run: ./ci/build.sh
       - name: "prepare source (extensions)"
         shell: bash
-        run: git clone https://github.com/calamares/calamares-extensions.git
+        script: git clone https://github.com/calamares/calamares-extensions.git ${SRCDIR}/calamares-extensions
+      - name: "install dependencies"
+        shell: bash
+        run: ./ci/deps-debian11.sh
+      - name: "build (core)"
+        shell: bash
+        run: ./ci/build.sh
       - name: "build (extensions)"
         shell: bash
-        run: BUILDDIR=/build/extensions SRCDIR=${SRCDIR}/calamares-extensions ./ci/build.sh
+        run: BUILDDIR=/build/calamares-extensions SRCDIR=${SRCDIR}/calamares-extensions ./ci/build.sh
