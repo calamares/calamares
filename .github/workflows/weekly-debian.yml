@@ -30,7 +30,7 @@ jobs:
         uses: calamares/actions/generic-checkout@v5
       - name: "prepare source (extensions)"
         shell: bash
-        script: git clone https://github.com/calamares/calamares-extensions.git ${SRCDIR}/calamares-extensions
+        run: git clone https://github.com/calamares/calamares-extensions.git ${SRCDIR}/calamares-extensions
       - name: "install dependencies"
         shell: bash
         run: ./ci/deps-debian11.sh
