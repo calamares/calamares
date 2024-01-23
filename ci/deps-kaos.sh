@@ -11,15 +11,15 @@ pacman -Syu --noconfirm git cmake ninja # No jq available
 pacman -S --noconfirm \
 	"gcc" \
 	"boost" \
-	"qt5-tools" \
+	"qt6-tools" \
 	"yaml-cpp" \
 	"kpmcore" \
 	"icu"
 pacman -S --noconfirm \
 	"extra-cmake-modules" \
-	"kiconthemes" \
-	"kservice" \
-	"kio" \
-	"kparts" \
-	"qtwebengine"
+	"kiconthemes6" \
+	"kservice6" \
+	"kio6" \
+	"kparts6" \
+	"qt6-webengine"
 true
