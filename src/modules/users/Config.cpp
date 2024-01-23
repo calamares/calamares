@@ -940,7 +940,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
 
     m_reuseUserPasswordForRoot = Calamares::getBool( configurationMap, "doReusePassword", false );
 
-    m_permitWeakPasswords = Calamares::getBool( configurationMap, "allowWeakPasswords", false );
+    m_permitWeakPasswords = Calamares::getBool( configurationMap, "allowWeakPasswords", true );
     m_requireStrongPasswords
         = !m_permitWeakPasswords || !Calamares::getBool( configurationMap, "allowWeakPasswordsDefault", false );
 

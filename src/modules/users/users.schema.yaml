@@ -35,7 +35,7 @@ properties:
     setRootPassword: { type: boolean, default: true }
     doReusePassword: { type: boolean, default: true }
     # Passwords that don't pass a quality test
-    allowWeakPasswords: { type: boolean, default: false }
+    allowWeakPasswords: { type: boolean, default: true }
     allowWeakPasswordsDefault: { type: boolean, default: false }
     passwordRequirements:
         additionalProperties: false

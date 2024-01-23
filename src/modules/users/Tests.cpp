@@ -372,7 +372,7 @@ UserTests::testUserPassword()
         Config c;
 
         QVariantMap m;
-        m.insert( "allowWeakPasswords", true );
+        m.insert( "allowWeakPasswords", false );
         m.insert( "allowWeakPasswordsDefault", true );
         m.insert( "defaultGroups", QStringList { "wheel" } );
 
