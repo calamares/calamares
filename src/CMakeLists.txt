@@ -16,7 +16,7 @@ add_subdirectory(libcalamaresui)
 
 if(WITH_QT6)
   # all things qml
-  add_subdirectory(qml/calamares)
+  add_subdirectory(qml/calamares-qt6)
 else()
   # all things qml
   add_subdirectory(qml/calamares-qt5)
