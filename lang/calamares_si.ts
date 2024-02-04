@@ -29,8 +29,9 @@
     <name>AutoMountManagementJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/AutoMountManagementJob.cpp" line="22"/>
-      <source>Manage auto-mount settings</source>
-      <translation>ස්වයංක්‍රීය සවිකිරීම් සැකසීම් කළමනාකරණය කරන්න</translation>
+      <source>Managing auto-mount settings…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -56,21 +57,25 @@
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="60"/>
       <source>Master Boot Record of %1</source>
+      <comment>@info</comment>
       <translation>%1 හි ප්‍රධාන ඇරඹුම් වාර්තාව</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="93"/>
       <source>Boot Partition</source>
+      <comment>@info</comment>
       <translation>ඇරඹුම් කොටස</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="100"/>
       <source>System Partition</source>
+      <comment>@info</comment>
       <translation>පද්ධති කොටස</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="131"/>
       <source>Do not install a boot loader</source>
+      <comment>@label</comment>
       <translation>ඇරඹුම් කාරකයක් ස්ථාපනය නොකරන්න</translation>
     </message>
     <message>
@@ -165,19 +170,19 @@
   <context>
     <name>Calamares::ExecutionViewStep</name>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="76"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="77"/>
       <source>%p%</source>
       <comment>Progress percentage indicator: %p is where the number 0..100 is placed</comment>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="116"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="118"/>
       <source>Set Up</source>
       <comment>@label</comment>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="116"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="118"/>
       <source>Install</source>
       <comment>@label</comment>
       <translation>ස්ථාපනය</translation>
@@ -633,18 +638,27 @@ The installer will quit and all changes will be lost.</source>
     <name>ChangeFilesystemLabelJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="34"/>
-      <source>Set filesystem label on %1.</source>
-      <translation>ගොනු පද්ධති ලේබලය %1 මත සකසන්න.</translation>
+      <source>Set filesystem label on %1</source>
+      <comment>@title</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="41"/>
-      <source>Set filesystem label &lt;strong&gt;%1&lt;/strong&gt; to partition &lt;strong&gt;%2&lt;/strong&gt;.</source>
-      <translation>ගොනු පද්ධති ලේබලය &lt;strong&gt;%1&lt;/strong&gt; කොටස &lt;strong&gt;%2&lt;/strong&gt; ලෙස සකසන්න.</translation>
+      <source>Set filesystem label &lt;strong&gt;%1&lt;/strong&gt; to partition &lt;strong&gt;%2&lt;/strong&gt;</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="71"/>
-      <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="83"/>
+      <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="50"/>
+      <source>Setting filesystem label &lt;strong&gt;%1&lt;/strong&gt; to partition &lt;strong&gt;%2&lt;/strong&gt;…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="72"/>
+      <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="84"/>
       <source>The installer failed to update partition table on disk '%1'.</source>
+      <comment>@info</comment>
       <translation>ස්ථාපකය '%1' තැටියේ කොටස් වගුව යාවත්කාලීන කිරීමට අසමත් විය.</translation>
     </message>
   </context>
@@ -659,8 +673,19 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>ChoicePage</name>
     <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1659"/>
+      <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
+      <translation>&lt;strong&gt;අතින් කොටස් කිරීම&lt;/strong&gt;  &lt;br/&gt;ඔබට අවශ්‍ය අකාරයට කොටස් සෑදීමට හෝ ප්‍රමාණය වෙනස් කිරීමට හැකිය.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1035"/>
+      <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
+      <translation>&lt;strong&gt;ප්‍රමාණය අඩුකිරීමට කොටසක් තෝරන්න, පසුව ප්‍රමාණය වෙනස් කිරීමට පහළ තීරුව අදින්න&lt;/strong&gt;</translation>
+    </message>
+    <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="137"/>
       <source>Select storage de&amp;vice:</source>
+      <comment>@label</comment>
       <translation>ගබඩා උපාංගය තෝරන්න:</translation>
     </message>
     <message>
@@ -669,56 +694,49 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1085"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1138"/>
       <source>Current:</source>
+      <comment>@label</comment>
       <translation>වත්මන්:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="139"/>
       <source>After:</source>
+      <comment>@label</comment>
       <translation>පසු:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1659"/>
-      <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
-      <translation>&lt;strong&gt;අතින් කොටස් කිරීම&lt;/strong&gt;  &lt;br/&gt;ඔබට අවශ්‍ය අකාරයට කොටස් සෑදීමට හෝ ප්‍රමාණය වෙනස් කිරීමට හැකිය.</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="896"/>
-      <source>Reuse %1 as home partition for %2.</source>
-      <translation>%2 සඳහා නිවෙස් කොටස ලෙස %1 නැවත භාවිත කරන්න.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1035"/>
-      <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
-      <translation>&lt;strong&gt;ප්‍රමාණය අඩුකිරීමට කොටසක් තෝරන්න, පසුව ප්‍රමාණය වෙනස් කිරීමට පහළ තීරුව අදින්න&lt;/strong&gt;</translation>
+      <source>Reuse %1 as home partition for %2</source>
+      <comment>@label</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1059"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
+      <comment>@info, %1 is partition name, %4 is product name</comment>
       <translation>%1 %2MiB දක්වා ප්‍රමාණය අඩුකරනු ඇති අතර %4 සඳහා නව %3MiB කොටසක් සාදනු ඇත.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1687"/>
-      <source>Boot loader location:</source>
-      <translation>ඇරඹුම් කාරක ස්ථානය:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1129"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
+      <comment>@label</comment>
       <translation>&lt;strong&gt;ස්ථාපනය කිරීමට කොටසක් තෝරන්න&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1189"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
+      <comment>@info, %1 is product name</comment>
       <translation>EFI පද්ධති කොටසක් මෙම පද්ධතියේ කොතැනකවත් සොයාගත නොහැක. කරුණාකර ආපසු ගොස් %1 පිහිටුවීමට අතින් කොටස් කිරීම භාවිතා කරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1197"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
+      <comment>@info, %1 is partition path, %2 is product name</comment>
       <translation>%2 ආරම්භ කිරීම සඳහා %1 හි EFI පද්ධති කොටස භාවිතා කරනු ඇත.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1205"/>
       <source>EFI system partition:</source>
+      <comment>@label</comment>
       <translation>EFI පද්ධති කොටස:</translation>
     </message>
     <message>
@@ -773,37 +791,50 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1508"/>
       <source>This storage device has one of its partitions &lt;strong&gt;mounted&lt;/strong&gt;.</source>
+      <comment>@info</comment>
       <translation>මෙම ගබඩා උපාංගය, එහි එක් කොටසක් &lt;strong&gt;සවි කර ඇත&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1513"/>
       <source>This storage device is a part of an &lt;strong&gt;inactive RAID&lt;/strong&gt; device.</source>
+      <comment>@info</comment>
       <translation>මෙම ගබඩා උපාංගය &lt;strong&gt;අක්‍රිය RAID&lt;/strong&gt; උපාංගයක කොටසකි.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1628"/>
-      <source>No Swap</source>
-      <translation>Swap නොමැතිව</translation>
+      <source>No swap</source>
+      <comment>@label</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1637"/>
-      <source>Reuse Swap</source>
-      <translation>Swap නැවත භාවිතා කරන්න</translation>
+      <source>Reuse swap</source>
+      <comment>@label</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1640"/>
       <source>Swap (no Hibernate)</source>
+      <comment>@label</comment>
       <translation>Swap (හයිබර්නේට් නොමැතිව)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1643"/>
       <source>Swap (with Hibernate)</source>
+      <comment>@label</comment>
       <translation>Swap (හයිබර්නේට් සහිතව)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1646"/>
       <source>Swap to file</source>
+      <comment>@label</comment>
       <translation>Swap ගොනුව</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1687"/>
+      <source>Bootloader location:</source>
+      <comment>@label</comment>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -836,12 +867,14 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="371"/>
       <source>Clear mounts for partitioning operations on %1</source>
+      <comment>@title</comment>
       <translation>කොටස් කිරීම සදහා %1 තැටි හිස් කරනු ලැබේ</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="377"/>
-      <source>Clearing mounts for partitioning operations on %1.</source>
-      <translation>කොටස් කිරීම සදහා %1 සවි කිරීම් හිස් කරනු ලැබේ</translation>
+      <source>Clearing mounts for partitioning operations on %1…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="396"/>
@@ -853,13 +886,10 @@ The installer will quit and all changes will be lost.</source>
     <name>ClearTempMountsJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="33"/>
-      <source>Clear all temporary mounts.</source>
-      <translation>සියලුම තාවකාලික සවි කිරීම් ඉවත් කරන්න.</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="40"/>
-      <source>Clearing all temporary mounts.</source>
-      <translation>සියලුම තාවකාලික තැටි ඉවත් කරමින් පවතී.</translation>
+      <source>Clearing all temporary mounts…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="70"/>
@@ -1008,42 +1038,43 @@ The installer will quit and all changes will be lost.</source>
       <translation>හරි!</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/Config.cpp" line="111"/>
+      <location filename="../src/modules/packagechooser/Config.cpp" line="110"/>
       <source>Package Selection</source>
       <translation>පැකේජ තේරීම</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/Config.cpp" line="113"/>
+      <location filename="../src/modules/packagechooser/Config.cpp" line="112"/>
       <source>Please pick a product from the list. The selected product will be installed.</source>
       <translation>කරුණාකර ලැයිස්තුවෙන් නිෂ්පාදනයක් තෝරන්න. තෝරාගත් නිෂ්පාදනය ස්ථාපනය කෙරේ.</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/Config.cpp" line="242"/>
+      <location filename="../src/modules/packagechooser/Config.cpp" line="241"/>
       <source>Packages</source>
       <translation>පැකේජ</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/Config.cpp" line="248"/>
+      <location filename="../src/modules/packagechooser/Config.cpp" line="247"/>
       <source>Install option: &lt;strong&gt;%1&lt;/strong&gt;</source>
       <translation>ස්ථාපන විකල්පය: &lt;strong&gt;%1&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/Config.cpp" line="248"/>
+      <location filename="../src/modules/packagechooser/Config.cpp" line="247"/>
       <source>None</source>
       <translation>කිසිවක් නැත</translation>
     </message>
     <message>
-      <location filename="../src/modules/summary/Config.cpp" line="94"/>
+      <location filename="../src/modules/summary/Config.cpp" line="35"/>
       <source>Summary</source>
+      <comment>@label</comment>
       <translation>සාරාංශය</translation>
     </message>
     <message>
-      <location filename="../src/modules/summary/Config.cpp" line="98"/>
+      <location filename="../src/modules/summary/Config.cpp" line="39"/>
       <source>This is an overview of what will happen once you start the setup procedure.</source>
       <translation>මෙය ඔබ සැකසුම් ක්‍රියා පටිපාටිය ආරම්භ කළ පසු කුමක් සිදුවේද යන්න පිළිබඳ දළ විශ්ලේෂණයකි.</translation>
     </message>
     <message>
-      <location filename="../src/modules/summary/Config.cpp" line="103"/>
+      <location filename="../src/modules/summary/Config.cpp" line="44"/>
       <source>This is an overview of what will happen once you start the install procedure.</source>
       <translation>මෙය ඔබ ස්ථාපන ක්‍රියා පටිපාටිය ආරම්භ කළ පසු කුමක් සිදුවේද යන්න පිළිබඳ දළ විශ්ලේෂණයකි.</translation>
     </message>
@@ -1115,15 +1146,15 @@ The installer will quit and all changes will be lost.</source>
     </message>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="410"/>
-      <source>The system language will be set to %1</source>
+      <source>The system language will be set to %1.</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>පද්ධති භාෂාව %1 ලෙස සැකසෙනු ඇත.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="417"/>
-      <source>The numbers and dates locale will be set to %1</source>
+      <location filename="../src/modules/locale/Config.cpp" line="416"/>
+      <source>The numbers and dates locale will be set to %1.</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>අංක සහ දින පෙදෙසිය %1 ලෙස සකසනු ඇත.</translation>
     </message>
   </context>
   <context>
@@ -1200,31 +1231,37 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="67"/>
       <source>En&amp;crypt</source>
+      <comment>@action</comment>
       <translation>සංකේතනය කරන්න (&amp;C)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="195"/>
       <source>Logical</source>
+      <comment>@label</comment>
       <translation>තාර්කික</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="200"/>
       <source>Primary</source>
+      <comment>@label</comment>
       <translation>ප්‍රධාන</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="219"/>
       <source>GPT</source>
+      <comment>@label</comment>
       <translation>GPT</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="91"/>
       <source>Mountpoint already in use. Please select another one.</source>
+      <comment>@info</comment>
       <translation>සවිකිරීම දැනටමත් භාවිතයේ ඇත. කරුණාකර වෙනත් එකක් තෝරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="96"/>
       <source>Mountpoint must start with a &lt;tt&gt;/&lt;/tt&gt;.</source>
+      <comment>@info</comment>
       <translation>මවුන්ට්පොයින්ට් එක &lt;tt&gt;/ &lt;/tt&gt;සමඟ ආරම්භ විය යුතුය.</translation>
     </message>
   </context>
@@ -1232,43 +1269,51 @@ The installer will quit and all changes will be lost.</source>
     <name>CreatePartitionJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="181"/>
-      <source>Create new %1MiB partition on %3 (%2) with entries %4.</source>
-      <translation>%4 ඇතුළත් කිරීම් සමඟ %3 (%2) මත නව %1MiB කොටසක් සාදන්න.</translation>
+      <source>Create new %1MiB partition on %3 (%2) with entries %4</source>
+      <comment>@title</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="189"/>
-      <source>Create new %1MiB partition on %3 (%2).</source>
-      <translation>%3 (%2) මත නව %1MiB කොටසක් සාදන්න.</translation>
+      <source>Create new %1MiB partition on %3 (%2)</source>
+      <comment>@title</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="196"/>
-      <source>Create new %2MiB partition on %4 (%3) with file system %1.</source>
-      <translation>%1 ගොනු පද්ධතිය සමඟ %4 (%3) මත නව %2MiB කොටසක් සාදන්න.</translation>
+      <source>Create new %2MiB partition on %4 (%3) with file system %1</source>
+      <comment>@title</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="212"/>
-      <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2) with entries &lt;em&gt;%4&lt;/em&gt;.</source>
-      <translation>&lt;strong&gt;%4&lt;/strong&gt; ඇතුළත් කිරීම් සමඟ &lt;strong&gt;%3&lt;/strong&gt; (%2) මත නව &lt;strong&gt;%1MiB&lt;/strong&gt; කොටසක් සාදන්න.</translation>
+      <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2) with entries &lt;em&gt;%4&lt;/em&gt;</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="221"/>
-      <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2).</source>
-      <translation>&lt;strong&gt;%3&lt;/strong&gt; (%2) මත නව &lt;strong&gt;%1MiB&lt;/strong&gt; කොටසක් සාදන්න.</translation>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="222"/>
+      <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2)</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="228"/>
-      <source>Create new &lt;strong&gt;%2MiB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>&lt;strong&gt;%1&lt;/strong&gt; ගොනු පද්ධතිය සමඟ &lt;strong&gt;%4&lt;/strong&gt; (%3) මත නව &lt;strong&gt;%2MiB&lt;/strong&gt; කොටසක් සාදන්න.</translation>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="229"/>
+      <source>Create new &lt;strong&gt;%2MiB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="252"/>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="255"/>
-      <source>Creating new %1 partition on %2.</source>
-      <translation>%2 මත නව %1 කොටස නිර්මාණය කරමින් පවතී.</translation>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="254"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="257"/>
+      <source>Creating new %1 partition on %2…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="272"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="274"/>
       <source>The installer failed to create partition on disk '%1'.</source>
+      <comment>@info</comment>
       <translation>ස්ථාපකය '%1' තැටියේ කොටසක් සෑදීමට අසමත් විය.</translation>
     </message>
   </context>
@@ -1304,18 +1349,16 @@ The installer will quit and all changes will be lost.</source>
     <name>CreatePartitionTableJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="41"/>
-      <source>Create new %1 partition table on %2.</source>
-      <translation>%2 මත නව %1 කොටස් වගුවක් සාදන්න.</translation>
+      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="58"/>
+      <source>Creating new %1 partition table on %2…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="49"/>
-      <source>Create new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
-      <translation>%2 (%3) මත නව %1 කොටස් වගුවක් සාදන්න.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="58"/>
-      <source>Creating new %1 partition table on %2.</source>
-      <translation>%2 මත නව% 1 කොටස් වගුවක් නිර්මාණය කිරීම.</translation>
+      <source>Creating new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3)…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="86"/>
@@ -1332,29 +1375,33 @@ The installer will quit and all changes will be lost.</source>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="39"/>
-      <source>Create user &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>&lt;strong&gt;%1&lt;/strong&gt; පරිශීලක සාදන්න.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/users/CreateUserJob.cpp" line="120"/>
-      <source>Preserving home directory</source>
-      <translation>හොම් ෆෝල්ඩරය සංරක්ෂණය කිරීම</translation>
+      <source>Create user &lt;strong&gt;%1&lt;/strong&gt;</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="45"/>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="137"/>
-      <source>Creating user %1</source>
-      <translation>%1 පරිශීලක සෑදෙමින්</translation>
+      <source>Creating user %1…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/users/CreateUserJob.cpp" line="120"/>
+      <source>Preserving home directory…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="145"/>
       <source>Configuring user %1</source>
+      <comment>@status</comment>
       <translation>%1 පරිශීලක වින්‍යාසගත වෙමින්</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="153"/>
-      <source>Setting file permissions</source>
-      <translation>ගොනු අවසර සැකසීම</translation>
+      <source>Setting file permissions…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -1362,6 +1409,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/CreateVolumeGroupDialog.cpp" line="28"/>
       <source>Create Volume Group</source>
+      <comment>@title</comment>
       <translation>වෙළුම් කණ්ඩායමක් සාදන්න</translation>
     </message>
   </context>
@@ -1369,18 +1417,16 @@ The installer will quit and all changes will be lost.</source>
     <name>CreateVolumeGroupJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="32"/>
-      <source>Create new volume group named %1.</source>
-      <translation>%1 නමින් නව වෙළුම් කණ්ඩායමක් සාදන්න.</translation>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="44"/>
+      <source>Creating new volume group named %1…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="38"/>
-      <source>Create new volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>&lt;strong&gt;%1&lt;/strong&gt; නමින් නව වෙළුම් කණ්ඩායමක් සාදන්න.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="44"/>
-      <source>Creating new volume group named %1.</source>
-      <translation>%1 නමින් නව වෙළුම් කණ්ඩායමක් නිර්මාණය කිරීම.</translation>
+      <source>Creating new volume group named &lt;strong&gt;%1&lt;/strong&gt;…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="51"/>
@@ -1393,13 +1439,15 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="26"/>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="38"/>
-      <source>Deactivate volume group named %1.</source>
-      <translation>%1 නම් වෙළුම් කණ්ඩායම අක්‍රිය කරන්න.</translation>
+      <source>Deactivating volume group named %1…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="32"/>
-      <source>Deactivate volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>&lt;strong&gt;%1&lt;/strong&gt; නම් වෙළුම් කණ්ඩායම අක්‍රිය කරන්න.</translation>
+      <source>Deactivating volume group named &lt;strong&gt;%1&lt;/strong&gt;…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="46"/>
@@ -1411,18 +1459,16 @@ The installer will quit and all changes will be lost.</source>
     <name>DeletePartitionJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="73"/>
-      <source>Delete partition %1.</source>
-      <translation>%1 කොටස මකන්න.</translation>
+      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="85"/>
+      <source>Deleting partition %1…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="79"/>
-      <source>Delete partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>&lt;strong&gt;%1&lt;/strong&gt; කොටස මකන්න.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="85"/>
-      <source>Deleting partition %1.</source>
-      <translation>%1 කොටස මකා දමමින්.</translation>
+      <source>Deleting partition &lt;strong&gt;%1&lt;/strong&gt;…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="99"/>
@@ -1607,11 +1653,13 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="153"/>
       <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="168"/>
       <source>Please enter the same passphrase in both boxes.</source>
+      <comment>@tooltip</comment>
       <translation>කරුණාකර කොටු දෙකෙහිම එකම මුර-වැකිකඩ ඇතුලත් කරන්න.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="158"/>
-      <source>Password must be a minimum of %1 characters</source>
+      <source>Password must be a minimum of %1 characters.</source>
+      <comment>@tooltip</comment>
       <translation type="unfinished"/>
     </message>
   </context>
@@ -1633,57 +1681,68 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="179"/>
       <source>Set partition information</source>
+      <comment>@title</comment>
       <translation>කොටස් තොරතුරු සකසන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="208"/>
       <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition with features &lt;em&gt;%3&lt;/em&gt;</source>
+      <comment>@info</comment>
       <translation>&lt;strong&gt;%3&lt;/strong&gt; විශේෂාංග සහිත &lt;strong&gt;නව&lt;/strong&gt; %2 පද්ධති කොටසේ %1 ස්ථාපනය කරන්න</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="216"/>
-      <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
-      <translation>&lt;strong&gt;නව&lt;/strong&gt; %2 පද්ධති කොටසෙහි %1 ස්ථාපනය කරන්න.</translation>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="217"/>
+      <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="225"/>
-      <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt; and features &lt;em&gt;%3&lt;/em&gt;.</source>
-      <translation>&lt;strong&gt;නව&lt;/strong&gt; %2 කොටස සවිකිරීමේ ලක්ෂ්‍යය &lt;strong&gt;%1&lt;/strong&gt; සහ විශේෂාංග &lt;strong&gt;%3&lt;/strong&gt; සමඟ සකසන්න</translation>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="226"/>
+      <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt; and features &lt;em&gt;%3&lt;/em&gt;</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="233"/>
-      <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;%3.</source>
-      <translation>&lt;strong&gt;නව&lt;/strong&gt; %2 කොටස සවිකිරීමේ ලක්ෂ්‍යය &lt;strong&gt;%1&lt;/strong&gt;%3 සමඟ සකසන්න.</translation>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="235"/>
+      <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;%3</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="247"/>
-      <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt; with features &lt;em&gt;%4&lt;/em&gt;.</source>
-      <translation>&lt;strong&gt;%4&lt;/strong&gt; විශේෂාංග සහිත %3 පද්ධති කොටස &lt;strong&gt;%1&lt;/strong&gt; මත %2 ස්ථාපනය කරන්න.</translation>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="250"/>
+      <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt; with features &lt;em&gt;%4&lt;/em&gt;</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="266"/>
-      <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt; and features &lt;em&gt;%4&lt;/em&gt;.</source>
-      <translation>%3 කොටස සකසන්න &lt;strong&gt;%1&lt;/strong&gt; සවිකිරීමේ ලක්ෂ්‍යය &lt;strong&gt;%2&lt;/strong&gt; සහ විශේෂාංග &lt;strong&gt;%4&lt;/strong&gt; සමඟින්.</translation>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="260"/>
+      <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="275"/>
-      <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;%4.</source>
-      <translation>%3 කොටස &lt;strong&gt;%1&lt;/strong&gt; සවිකිරීමේ ලක්ෂ්‍යය &lt;strong&gt;%2&lt;/strong&gt;%4 සමඟ සකසන්න.</translation>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="270"/>
+      <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt; and features &lt;em&gt;%4&lt;/em&gt;</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="256"/>
-      <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>%3 පද්ධති කොටස &lt;strong&gt;%1&lt;/strong&gt; මත %2 ස්ථාපනය කරන්න.</translation>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="280"/>
+      <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;%4…</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="290"/>
-      <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>&lt;strong&gt;%1&lt;/strong&gt; මත ඇරඹුම් කාරකය ස්ථාපනය කරන්න.</translation>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="296"/>
+      <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;…</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="299"/>
-      <source>Setting up mount points.</source>
-      <translation>සවි කිරීම් ස්ථාන සැකසීම.</translation>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="305"/>
+      <source>Setting up mount points…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -1752,24 +1811,27 @@ The installer will quit and all changes will be lost.</source>
     <name>FormatPartitionJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="39"/>
-      <source>Format partition %1 (file system: %2, size: %3 MiB) on %4.</source>
-      <translation>%4 මත කොටස %1 (ගොනු පද්ධතිය: %2, ප්‍රමාණය: %3 MiB) ආකෘතිකරණය කරන්න.</translation>
+      <source>Format partition %1 (file system: %2, size: %3 MiB) on %4</source>
+      <comment>@title</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="49"/>
-      <source>Format &lt;strong&gt;%3MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;.</source>
-      <translation>&lt;strong&gt;%3MiB&lt;/strong&gt; කොටස &lt;strong&gt;%1&lt;/strong&gt; ගොනු පද්ධතිය &lt;strong&gt;%2&lt;/strong&gt; සමඟ ආකෘති කරන්න.</translation>
+      <source>Format &lt;strong&gt;%3MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="61"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="62"/>
       <source>%1 (%2)</source>
       <comment>partition label %1 (device path %2)</comment>
       <translation>%1 (%2)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="63"/>
-      <source>Formatting partition %1 with file system %2.</source>
-      <translation>%2 ගොනු පද්ධතිය සමඟ %1 කොටස හැඩතල ගැන්වීම.</translation>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="64"/>
+      <source>Formatting partition %1 with file system %2…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="73"/>
@@ -2262,19 +2324,37 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>MachineIdJob</name>
     <message>
-      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="35"/>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="55"/>
       <source>Generate machine-id.</source>
       <translation>යන්ත්‍ර හැඳුනුම්පත ජනනය කරන්න.</translation>
     </message>
     <message>
-      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="51"/>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="71"/>
       <source>Configuration Error</source>
       <translation>වින්‍යාස දෝෂය</translation>
     </message>
     <message>
-      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="52"/>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="72"/>
       <source>No root mount point is set for MachineId.</source>
       <translation>MachineId සඳහා root mount point එකක් සකසා නැත.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/machineid/Workers.cpp" line="63"/>
+      <location filename="../src/modules/machineid/Workers.cpp" line="71"/>
+      <location filename="../src/modules/machineid/Workers.cpp" line="75"/>
+      <location filename="../src/modules/machineid/Workers.cpp" line="92"/>
+      <source>File not found</source>
+      <translation>ගොනුව හමු නොවිණි</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/machineid/Workers.cpp" line="64"/>
+      <source>Path &lt;pre&gt;%1&lt;/pre&gt; must be an absolute path.</source>
+      <translation>මාර්ගය &lt;pre&gt;%1&lt;/pre&gt; නිරපේක්ෂ මාර්ගයක් විය යුතුය.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/machineid/Workers.cpp" line="93"/>
+      <source>Could not create new random file &lt;pre&gt;%1&lt;/pre&gt;.</source>
+      <translation>නව අහඹු &lt;pre&gt;%1&lt;/pre&gt; ගොනුවක් තැනීමට නොහැකි විය.</translation>
     </message>
   </context>
   <context>
@@ -2803,11 +2883,6 @@ The installer will quit and all changes will be lost.</source>
       <source>Unknown error</source>
       <translation>නොදන්නා දෝෂයකි</translation>
     </message>
-    <message>
-      <location filename="../src/modules/users/Config.cpp" line="840"/>
-      <source>Password is empty</source>
-      <translation>මුරපදය හිස් ය</translation>
-    </message>
   </context>
   <context>
     <name>PackageChooserPage</name>
@@ -2864,7 +2939,8 @@ The installer will quit and all changes will be lost.</source>
     </message>
     <message>
       <location filename="../src/modules/keyboard/KeyboardPage.ui" line="153"/>
-      <source>Keyboard switch:</source>
+      <source>Switch Keyboard:</source>
+      <extracomment>shortcut for switching between keyboard layouts</extracomment>
       <translation type="unfinished"/>
     </message>
   </context>
@@ -2970,31 +3046,37 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="182"/>
       <source>Home</source>
+      <comment>@label</comment>
       <translation>හෝම්</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="186"/>
       <source>Boot</source>
+      <comment>@label</comment>
       <translation>බූට්</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="191"/>
       <source>EFI system</source>
+      <comment>@label</comment>
       <translation>EFI පද්ධතිය</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="195"/>
       <source>Swap</source>
+      <comment>@label</comment>
       <translation>ස්වප්</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="199"/>
       <source>New partition for %1</source>
+      <comment>@label</comment>
       <translation>%1 සඳහා නව කොටස</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="203"/>
       <source>New partition</source>
+      <comment>@label</comment>
       <translation>නව කොටස</translation>
     </message>
     <message>
@@ -3010,37 +3092,44 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="157"/>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="201"/>
       <source>Free Space</source>
+      <comment>@title</comment>
       <translation>නිදහස් ඉඩ</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="161"/>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="205"/>
-      <source>New partition</source>
-      <translation>නව කොටස</translation>
+      <source>New Partition</source>
+      <comment>@title</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="307"/>
       <source>Name</source>
+      <comment>@title</comment>
       <translation>නම</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="309"/>
       <source>File System</source>
+      <comment>@title</comment>
       <translation>ගොනු පද්ධතිය</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="311"/>
       <source>File System Label</source>
+      <comment>@title</comment>
       <translation>ගොනු පද්ධති ලේබලය</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="313"/>
       <source>Mount Point</source>
+      <comment>@title</comment>
       <translation>මවුන්ට් පොයින්ට්</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="315"/>
       <source>Size</source>
+      <comment>@title</comment>
       <translation>ප්‍රමානය</translation>
     </message>
   </context>
@@ -3120,16 +3209,6 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>PartitionViewStep</name>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="56"/>
-      <source>Gathering system information...</source>
-      <translation>පද්ධති තොරතුරු රැස් කරමින් පවතී...</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="107"/>
-      <source>Partitions</source>
-      <translation>කොටස්</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="250"/>
       <source>Unsafe partition actions are enabled.</source>
       <translation type="unfinished"/>
@@ -3143,16 +3222,6 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="256"/>
       <source>No partitions will be changed.</source>
       <translation type="unfinished"/>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="296"/>
-      <source>Current:</source>
-      <translation>වත්මන්:</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="314"/>
-      <source>After:</source>
-      <translation>පසු:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="542"/>
@@ -3206,6 +3275,30 @@ The installer will quit and all changes will be lost.</source>
       <translation>ගොනු පද්ධතියට ධජය &lt;strong&gt;%1&lt;/strong&gt; කට්ටලයක් තිබිය යුතුය.</translation>
     </message>
     <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="56"/>
+      <source>Gathering system information…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="107"/>
+      <source>Partitions</source>
+      <comment>@label</comment>
+      <translation>කොටස්</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="296"/>
+      <source>Current:</source>
+      <comment>@label</comment>
+      <translation>වත්මන්:</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="314"/>
+      <source>After:</source>
+      <comment>@label</comment>
+      <translation>පසු:</translation>
+    </message>
+    <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="566"/>
       <source>You can continue without setting up an EFI system partition but your system may fail to start.</source>
       <translation>ඔබට EFI පද්ධති කොටසක් සැකසීමෙන් තොරව ඉදිරියට යා හැකි නමුත් ඔබේ පද්ධතිය ආරම්භ කිරීමට අසමත් විය හැක.</translation>
@@ -3250,8 +3343,9 @@ The installer will quit and all changes will be lost.</source>
     <name>PlasmaLnfJob</name>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="33"/>
-      <source>Plasma Look-and-Feel Job</source>
-      <translation>ප්ලාස්මා පෙනුම සහ හැඟීම රැකියාව</translation>
+      <source>Applying Plasma Look-and-Feel…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="57"/>
@@ -3278,6 +3372,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfViewStep.cpp" line="43"/>
       <source>Look-and-Feel</source>
+      <comment>@label</comment>
       <translation>බලන්න සහ දැනෙන්න</translation>
     </message>
   </context>
@@ -3285,8 +3380,9 @@ The installer will quit and all changes will be lost.</source>
     <name>PreserveFiles</name>
     <message>
       <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="56"/>
-      <source>Saving files for later ...</source>
-      <translation>පසු බාවිතට ගොනු සුරකමින් ...</translation>
+      <source>Saving files for later…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="64"/>
@@ -3382,26 +3478,12 @@ Output:
       <translation>පෙරනිමිය</translation>
     </message>
     <message>
-      <location filename="../src/modules/machineid/Workers.cpp" line="64"/>
-      <location filename="../src/modules/machineid/Workers.cpp" line="72"/>
-      <location filename="../src/modules/machineid/Workers.cpp" line="76"/>
-      <location filename="../src/modules/machineid/Workers.cpp" line="93"/>
-      <source>File not found</source>
-      <translation>ගොනුව හමු නොවිණි</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/machineid/Workers.cpp" line="65"/>
-      <source>Path &lt;pre&gt;%1&lt;/pre&gt; must be an absolute path.</source>
-      <translation>මාර්ගය &lt;pre&gt;%1&lt;/pre&gt; නිරපේක්ෂ මාර්ගයක් විය යුතුය.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="81"/>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="101"/>
       <source>Directory not found</source>
       <translation>නාමාවලිය හමු නොවීය</translation>
     </message>
     <message>
-      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="82"/>
-      <location filename="../src/modules/machineid/Workers.cpp" line="94"/>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="102"/>
       <source>Could not create new random file &lt;pre&gt;%1&lt;/pre&gt;.</source>
       <translation>නව අහඹු &lt;pre&gt;%1&lt;/pre&gt; ගොනුවක් තැනීමට නොහැකි විය.</translation>
     </message>
@@ -3419,11 +3501,6 @@ Output:
       <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="44"/>
       <source>(no mount point)</source>
       <translation>(සවිකිරීම් ස්ථානයක් නොමැත)</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="39"/>
-      <source>Unpartitioned space or unknown partition table</source>
-      <translation>කොටස් නොකළ ඉඩ හෝ නොදන්නා කොටස් වගුව</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/partition/FileSystem.cpp" line="33"/>
@@ -3449,6 +3526,12 @@ Output:
       <comment>@partition info</comment>
       <translation>ස්වප්</translation>
     </message>
+    <message>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="39"/>
+      <source>Unpartitioned space or unknown partition table</source>
+      <comment>@info</comment>
+      <translation>කොටස් නොකළ ඉඩ හෝ නොදන්නා කොටස් වගුව</translation>
+    </message>
   </context>
   <context>
     <name>Recommended</name>
@@ -3464,8 +3547,9 @@ Output:
     <name>RemoveUserJob</name>
     <message>
       <location filename="../src/modules/removeuser/RemoveUserJob.cpp" line="32"/>
-      <source>Remove live user from target system</source>
-      <translation>ඉලක්ක පද්ධතියෙන් සජීවී පරිශීලකයා ඉවත් කරන්න</translation>
+      <source>Removing live user from the target system…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -3473,13 +3557,15 @@ Output:
     <message>
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="26"/>
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="38"/>
-      <source>Remove Volume Group named %1.</source>
-      <translation>%1 නම් වූ වෙළුම් සමූහය ඉවත් කරන්න.</translation>
+      <source>Removing Volume Group named %1…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="32"/>
-      <source>Remove Volume Group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>&lt;strong&gt;%1&lt;/strong&gt; නම් වූ වෙළුම් සමූහය ඉවත් කරන්න.</translation>
+      <source>Removing Volume Group named &lt;strong&gt;%1&lt;/strong&gt;…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="46"/>
@@ -3593,22 +3679,25 @@ Output:
   <context>
     <name>ResizePartitionJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="41"/>
-      <source>Resize partition %1.</source>
-      <translation>%1 කොටස ප්‍රතිප්‍රමාණ කරන්න.</translation>
+      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="39"/>
+      <source>Resize partition %1</source>
+      <comment>@title</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="47"/>
-      <source>Resize &lt;strong&gt;%2MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%3MiB&lt;/strong&gt;.</source>
-      <translation>&lt;strong&gt;%2MiB&lt;/strong&gt; කොටස &lt;strong&gt;%1&lt;/strong&gt; සිට &lt;strong&gt;%3MiB&lt;/strong&gt; දක්වා ප්‍රමාණය වෙනස් කරන්න.</translation>
+      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="45"/>
+      <source>Resize &lt;strong&gt;%2MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%3MiB&lt;/strong&gt;</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="57"/>
-      <source>Resizing %2MiB partition %1 to %3MiB.</source>
-      <translation>%2MiB කොටස %1 සිට %3MiB දක්වා ප්‍රමාණය වෙනස් කිරීම.</translation>
+      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="54"/>
+      <source>Resizing %2MiB partition %1 to %3MiB…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="74"/>
+      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="70"/>
       <source>The installer failed to resize partition %1 on disk '%2'.</source>
       <translation>'%2' තැටියේ %1 කොටස ප්‍රතිප්‍රමාණ කිරීමට ස්ථාපකය අසමත් විය.</translation>
     </message>
@@ -3618,6 +3707,7 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/ResizeVolumeGroupDialog.cpp" line="30"/>
       <source>Resize Volume Group</source>
+      <comment>@title</comment>
       <translation>වෙළුම් සමූහය ප්‍රතිප්‍රමාණ කරන්න</translation>
     </message>
   </context>
@@ -3625,17 +3715,24 @@ Output:
     <name>ResizeVolumeGroupJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="28"/>
-      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="46"/>
-      <source>Resize volume group named %1 from %2 to %3.</source>
-      <translation>%2 සිට %3 දක්වා %1 ලෙස නම් කරන ලද වෙළුම් සමූහය ප්‍රතිප්‍රමාණ කරන්න.</translation>
+      <source>Resize volume group named %1 from %2 to %3</source>
+      <comment>@title</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="37"/>
-      <source>Resize volume group named &lt;strong&gt;%1&lt;/strong&gt; from &lt;strong&gt;%2&lt;/strong&gt; to &lt;strong&gt;%3&lt;/strong&gt;.</source>
-      <translation>&lt;strong&gt;%2&lt;/strong&gt; සිට &lt;strong&gt;%3&lt;/strong&gt; දක්වා &lt;strong&gt;%1&lt;/strong&gt; ලෙස නම් කරන ලද වෙළුම් සමූහය ප්‍රතිප්‍රමාණ කරන්න.</translation>
+      <source>Resize volume group named &lt;strong&gt;%1&lt;/strong&gt; from &lt;strong&gt;%2&lt;/strong&gt; to &lt;strong&gt;%3&lt;/strong&gt;</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="57"/>
+      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="47"/>
+      <source>Resizing volume group named %1 from %2 to %3…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="58"/>
       <source>The installer failed to resize a volume group named '%1'.</source>
       <translation>ස්ථාපකය '%1' නම් වූ වෙළුම් සමූහයක් ප්‍රතිප්‍රමාණ කිරීමට අසමත් විය.</translation>
     </message>
@@ -3652,13 +3749,15 @@ Output:
     <name>ScanningDialog</name>
     <message>
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="68"/>
-      <source>Scanning storage devices...</source>
-      <translation>ගබඩා උපාංග පරිලෝකනය කරමින්...</translation>
+      <source>Scanning storage devices…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="68"/>
-      <source>Partitioning</source>
-      <translation>කොටස් කරමින්</translation>
+      <source>Partitioning…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -3675,8 +3774,9 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="48"/>
-      <source>Setting hostname %1.</source>
-      <translation>සත්කාරක නාමය %1 සැකසීම.</translation>
+      <source>Setting hostname %1…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="121"/>
@@ -3740,81 +3840,96 @@ Output:
     <name>SetPartFlagsJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="44"/>
-      <source>Set flags on partition %1.</source>
-      <translation>%1 කොටසේ කොඩි සකසන්න.</translation>
+      <source>Set flags on partition %1</source>
+      <comment>@title</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="50"/>
-      <source>Set flags on %1MiB %2 partition.</source>
-      <translation>%1MiB %2 කොටස මත කොඩි සකසන්න.</translation>
+      <source>Set flags on %1MiB %2 partition</source>
+      <comment>@title</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="54"/>
-      <source>Set flags on new partition.</source>
-      <translation>නව කොටසේ කොඩි සකසන්න.</translation>
+      <source>Set flags on new partition</source>
+      <comment>@title</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="65"/>
-      <source>Clear flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>%1 කොටසේ කොඩි හිස් කරන්න.</translation>
+      <source>Clear flags on partition &lt;strong&gt;%1&lt;/strong&gt;</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="71"/>
-      <source>Clear flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-      <translation>%1MiB %2 කොටසේ කොඩි හිස් කරන්න.</translation>
+      <source>Clear flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="75"/>
-      <source>Clear flags on new partition.</source>
-      <translation>නව කොටසේ කොඩි ඉවත් කරන්න.</translation>
+      <source>Clear flags on new partition</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="80"/>
-      <source>Flag partition &lt;strong&gt;%1&lt;/strong&gt; as &lt;strong&gt;%2&lt;/strong&gt;.</source>
-      <translation>%1 කොටස %2 ලෙස සලකුණු කරන්න.</translation>
+      <source>Set flags on partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%2&lt;/strong&gt;</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="89"/>
-      <source>Flag %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition as &lt;strong&gt;%3&lt;/strong&gt;.</source>
-      <translation>%1MiB &lt;strong&gt;%2&lt;/strong&gt; කොටස &lt;strong&gt;%3&lt;/strong&gt; ලෙස සලකුණු කරන්න.</translation>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="88"/>
+      <source>Set flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition to &lt;strong&gt;%3&lt;/strong&gt;</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="96"/>
-      <source>Flag new partition as &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>නව කොටස &lt;strong&gt;%1&lt;/strong&gt; ලෙස සලකුණු කරන්න.</translation>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="94"/>
+      <source>Set flags on new partition to &lt;strong&gt;%1&lt;/strong&gt;</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="107"/>
-      <source>Clearing flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>%1 කොටසේ කොඩි ඉවත් කිරීම.</translation>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="105"/>
+      <source>Clearing flags on partition &lt;strong&gt;%1&lt;/strong&gt;…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="113"/>
-      <source>Clearing flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-      <translation>%1MiB &lt;strong&gt;%2&lt;/strong&gt; කොටසේ කොඩි ඉවත් කිරීම.</translation>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="112"/>
+      <source>Clearing flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="118"/>
-      <source>Clearing flags on new partition.</source>
-      <translation>නව කොටසේ කොඩි ඉවත් කිරීම.</translation>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="117"/>
+      <source>Clearing flags on new partition…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="123"/>
-      <source>Setting flags &lt;strong&gt;%2&lt;/strong&gt; on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>&lt;strong&gt;%1&lt;/strong&gt; කොටස මත කොඩි &lt;strong&gt;%2&lt;/strong&gt; සැකසීම.</translation>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="122"/>
+      <source>Setting flags &lt;strong&gt;%2&lt;/strong&gt; on partition &lt;strong&gt;%1&lt;/strong&gt;…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="132"/>
-      <source>Setting flags &lt;strong&gt;%3&lt;/strong&gt; on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-      <translation>%1MiB &lt;strong&gt;%2&lt;/strong&gt; කොටස මත කොඩි &lt;strong&gt;%3&lt;/strong&gt; සැකසීම.</translation>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="130"/>
+      <source>Setting flags &lt;strong&gt;%3&lt;/strong&gt; on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="139"/>
-      <source>Setting flags &lt;strong&gt;%1&lt;/strong&gt; on new partition.</source>
-      <translation>නව කොටසෙහි කොඩි &lt;strong&gt;%1&lt;/strong&gt; සැකසීම.</translation>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="136"/>
+      <source>Setting flags &lt;strong&gt;%1&lt;/strong&gt; on new partition…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="152"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="149"/>
       <source>The installer failed to set flags on partition %1.</source>
       <translation>ස්ථාපකය %1 කොටසෙහි කොඩි සැකසීමට අසමත් විය.</translation>
     </message>
@@ -3828,32 +3943,33 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="44"/>
-      <source>Setting password for user %1.</source>
-      <translation>පරිශීලක %1 සඳහා මුරපදය සැකසීම.</translation>
+      <source>Setting password for user %1…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="78"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="80"/>
       <source>Bad destination system path.</source>
       <translation>නරක ගමනාන්ත පද්ධති මාර්ගය.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="79"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="81"/>
       <source>rootMountPoint is %1</source>
       <translation>මූලමවුන්ට්පොයින්ට් % 1 වේ</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="87"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="89"/>
       <source>Cannot disable root account.</source>
       <translation>මූල ගිණුම අක්‍රිය කළ නොහැක.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="98"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="107"/>
       <source>Cannot set password for user %1.</source>
       <translation>පරිශීලක %1 සඳහා මුරපදය සැකසිය නොහැක.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="88"/>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="99"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="90"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="108"/>
       <source>usermod terminated with error code %1.</source>
       <translation>පරිශීලක මොඩ් දෝෂ කේතය % 1 සමඟ අවසන් කරන ලදී.</translation>
     </message>
@@ -3902,8 +4018,9 @@ Output:
     <name>SetupGroupsJob</name>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="181"/>
-      <source>Preparing groups.</source>
-      <translation>කණ්ඩායම් සූදානම් කිරීම.</translation>
+      <source>Preparing groups…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="193"/>
@@ -3921,8 +4038,9 @@ Output:
     <name>SetupSudoJob</name>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="34"/>
-      <source>Configure &lt;pre&gt;sudo&lt;/pre&gt; users.</source>
-      <translation>&lt;strong&gt;sudo&lt;/strong&gt; භාවිතා කරන්නන් වින්‍යාස කරන්න.</translation>
+      <source>Configuring &lt;pre&gt;sudo&lt;/pre&gt; users…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="70"/>
@@ -3939,8 +4057,9 @@ Output:
     <name>ShellProcessJob</name>
     <message>
       <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="38"/>
-      <source>Shell Processes Job</source>
-      <translation>ෂෙල් ක්රියාවලීන්</translation>
+      <source>Running shell processes…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -3989,8 +4108,9 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="106"/>
-      <source>Sending installation feedback.</source>
-      <translation>ස්ථාපන ප්‍රතිපෝෂණ යැවීම.</translation>
+      <source>Sending installation feedback…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="124"/>
@@ -4012,8 +4132,9 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="198"/>
-      <source>Configuring KDE user feedback.</source>
-      <translation>KDE පරිශීලක ප්‍රතිපෝෂණ වින්‍යාස කිරීම.</translation>
+      <source>Configuring KDE user feedback…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="220"/>
@@ -4041,8 +4162,9 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="141"/>
-      <source>Configuring machine feedback.</source>
-      <translation>යන්ත්‍ර ප්‍රතිපෝෂණ වින්‍යාස කිරීම.</translation>
+      <source>Configuring machine feedback…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="164"/>
@@ -4104,6 +4226,7 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingViewStep.cpp" line="49"/>
       <source>Feedback</source>
+      <comment>@title</comment>
       <translation>ප්‍රතිපෝෂණ</translation>
     </message>
   </context>
@@ -4111,8 +4234,9 @@ Output:
     <name>UmountJob</name>
     <message>
       <location filename="../src/modules/umount/UmountJob.cpp" line="39"/>
-      <source>Unmount file systems.</source>
-      <translation>ගොනු පද්ධති ඉවත් කරන්න.</translation>
+      <source>Unmounting file systems…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/umount/UmountJob.cpp" line="123"/>
@@ -4271,11 +4395,6 @@ Output:
       <translation>නිකුත් කිරීමේ සටහන් (&amp;R)</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="212"/>
-      <source>%1 support</source>
-      <translation>%1 සහාය</translation>
-    </message>
-    <message>
       <location filename="../src/calamares/DebugWindow.cpp" line="235"/>
       <source>About %1 Setup</source>
       <comment>@title</comment>
@@ -4287,12 +4406,19 @@ Output:
       <comment>@title</comment>
       <translation type="unfinished"/>
     </message>
+    <message>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="212"/>
+      <source>%1 Support</source>
+      <comment>@action</comment>
+      <translation type="unfinished"/>
+    </message>
   </context>
   <context>
     <name>WelcomeQmlViewStep</name>
     <message>
       <location filename="../src/modules/welcomeq/WelcomeQmlViewStep.cpp" line="40"/>
       <source>Welcome</source>
+      <comment>@title</comment>
       <translation>සාදරයෙන් පිළිගනිමු</translation>
     </message>
   </context>
@@ -4301,6 +4427,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="46"/>
       <source>Welcome</source>
+      <comment>@title</comment>
       <translation>සාදරයෙන් පිළිගනිමු</translation>
     </message>
   </context>
@@ -4308,8 +4435,9 @@ Output:
     <name>ZfsJob</name>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="102"/>
-      <source>Create ZFS pools and datasets</source>
-      <translation>ZFS සංචිත සහ දත්ත කට්ටල සාදන්න</translation>
+      <source>Creating ZFS pools and datasets…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="162"/>
@@ -4753,19 +4881,9 @@ Output:
       <translation>ඔබගේ නම කුමක් ද?</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="63"/>
-      <source>Your Full Name</source>
-      <translation>ඔබේ සම්පුර්ණ නම</translation>
-    </message>
-    <message>
       <location filename="../src/modules/usersq/usersq.qml" line="80"/>
       <source>What name do you want to use to log in?</source>
       <translation>ඔබට පුරනය වීමට භාවිතා කිරීමට අවශ්‍ය නම කුමක්ද?</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="87"/>
-      <source>Login Name</source>
-      <translation>ලොගින් නම</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="116"/>
@@ -4788,11 +4906,6 @@ Output:
       <translation>මෙම පරිගණකයේ නම කුමක්ද?</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="153"/>
-      <source>Computer Name</source>
-      <translation>පරිගණක නම</translation>
-    </message>
-    <message>
       <location filename="../src/modules/usersq/usersq.qml" line="180"/>
       <source>This name will be used if you make the computer visible to others on a network.</source>
       <translation>ඔබ පරිගණකය ජාලයක අන් අයට පෙනෙන ලෙස සලස්වන්නේ නම් මෙම නම භාවිතා වේ.</translation>
@@ -4813,14 +4926,19 @@ Output:
       <translation>රහස් පදය</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="238"/>
-      <source>Repeat Password</source>
-      <translation>මුරපදය නැවත ඇතුල් කරන්න</translation>
-    </message>
-    <message>
       <location filename="../src/modules/usersq/usersq.qml" line="265"/>
       <source>Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.</source>
       <translation>එකම මුරපදය දෙවරක් ඇතුල් කරන්න, එවිට එය ටයිප් කිරීමේ දෝෂ සඳහා පරීක්ෂා කළ හැක. හොඳ මුරපදයක අකුරු, ඉලක්කම් සහ විරාම ලකුණු මිශ්‍රණයක් අඩංගු වන අතර, අවම වශයෙන් අක්ෂර අටක්වත් දිග විය යුතු අතර නියමිත කාල පරාසයන්හිදී වෙනස් කළ යුතුය.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="328"/>
+      <source>Root password</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="346"/>
+      <source>Repeat root password</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="410"/>
@@ -4838,9 +4956,29 @@ Output:
       <translation>මුරපදය ඉල්ලන්නේ නැතිව ස්වයංක්‍රීයව ලොග් වන්න</translation>
     </message>
     <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="63"/>
+      <source>Your full name</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="87"/>
+      <source>Login name</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="153"/>
+      <source>Computer name</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <location filename="../src/modules/usersq/usersq.qml" line="193"/>
       <source>Only letters, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
       <translation>අකුරු, ඉලක්කම්, යටි ඉරි සහ යටි ඉරි පමණක් ඉඩ දෙනු ලැබේ, අවම වශයෙන් අක්ෂර දෙකක්.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="238"/>
+      <source>Repeat password</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="297"/>
@@ -4856,16 +4994,6 @@ Output:
       <location filename="../src/modules/usersq/usersq.qml" line="318"/>
       <source>Choose a root password to keep your account safe.</source>
       <translation>ඔබගේ ගිණුම ආරක්ෂිතව තබා ගැනීමට root මුරපදයක් තෝරන්න.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="328"/>
-      <source>Root Password</source>
-      <translation>Root මුරපදය</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="346"/>
-      <source>Repeat Root Password</source>
-      <translation>Root මුරපදය නැවත ඇතුල් කරන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="372"/>
@@ -4886,19 +5014,9 @@ Output:
       <translation>ඔබගේ නම කුමක් ද?</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq-qt6.qml" line="62"/>
-      <source>Your Full Name</source>
-      <translation>ඔබේ සම්පුර්ණ නම</translation>
-    </message>
-    <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="79"/>
       <source>What name do you want to use to log in?</source>
       <translation>ඔබට පුරනය වීමට භාවිතා කිරීමට අවශ්‍ය නම කුමක්ද?</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/usersq/usersq-qt6.qml" line="86"/>
-      <source>Login Name</source>
-      <translation>ලොගින් නම</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="115"/>
@@ -4921,9 +5039,19 @@ Output:
       <translation>මෙම පරිගණකයේ නම කුමක්ද?</translation>
     </message>
     <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="62"/>
+      <source>Your full name</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="86"/>
+      <source>Login name</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="152"/>
-      <source>Computer Name</source>
-      <translation>පරිගණක නම</translation>
+      <source>Computer name</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="179"/>
@@ -4952,8 +5080,18 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="237"/>
-      <source>Repeat Password</source>
-      <translation>මුරපදය නැවත ඇතුල් කරන්න</translation>
+      <source>Repeat password</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="327"/>
+      <source>Root password</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="345"/>
+      <source>Repeat root password</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="264"/>
@@ -4974,16 +5112,6 @@ Output:
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="317"/>
       <source>Choose a root password to keep your account safe.</source>
       <translation>ඔබගේ ගිණුම ආරක්ෂිතව තබා ගැනීමට root මුරපදයක් තෝරන්න.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/usersq/usersq-qt6.qml" line="327"/>
-      <source>Root Password</source>
-      <translation>Root මුරපදය</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/usersq/usersq-qt6.qml" line="345"/>
-      <source>Repeat Root Password</source>
-      <translation>Root මුරපදය නැවත ඇතුල් කරන්න</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="371"/>
@@ -5022,13 +5150,13 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="80"/>
-      <source>Known issues</source>
-      <translation>දන්නා ගැටළු</translation>
+      <source>Known Issues</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="91"/>
-      <source>Release notes</source>
-      <translation>නිකුත් කිරීමේ සටහන්</translation>
+      <source>Release Notes</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="103"/>
@@ -5052,13 +5180,13 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq-qt6.qml" line="80"/>
-      <source>Known issues</source>
-      <translation>දන්නා ගැටළු</translation>
+      <source>Known Issues</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq-qt6.qml" line="91"/>
-      <source>Release notes</source>
-      <translation>නිකුත් කිරීමේ සටහන්</translation>
+      <source>Release Notes</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq-qt6.qml" line="103"/>

@@ -29,8 +29,9 @@
     <name>AutoMountManagementJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/AutoMountManagementJob.cpp" line="22"/>
-      <source>Manage auto-mount settings</source>
-      <translation>Administroni rregullime vetëmontimi</translation>
+      <source>Managing auto-mount settings…</source>
+      <comment>@status</comment>
+      <translation>Po administrohen rregullime vetëmontimi…</translation>
     </message>
   </context>
   <context>
@@ -48,7 +49,7 @@
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="82"/>
       <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-      <translation>Ky sistem qe nisur me një mjedis nisjesh &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Që të formësojë nisjen nga një mjedis BIOS, ky instalues duhet të instalojë një ngarkues nisjesh, të tillë si &lt;strong&gt;GRUB&lt;/strong&gt;, ose në krye të një pjese, ose te &lt;strong&gt;Master Boot Record&lt;/strong&gt; pranë fillimit të tabelës së pjesëve (e parapëlqyer). Kjo bëhet vetvetiu, veç në zgjedhshi pjesëtim dorazi, rast në të cilin duhet ta rregulloni ju vetë.</translation>
+      <translation>Ky sistem qe nisur me një mjedis nisjesh &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Që të formësojë nisjen nga një mjedis BIOS, ky instalues duhet të instalojë një ngarkues nisjesh, të tillë si &lt;strong&gt;GRUB&lt;/strong&gt;, ose në krye të një pjese, ose te &lt;strong&gt;Master Boot Record&lt;/strong&gt; pranë fillimit të tabelës së pjesëve (e parapëlqyer). Kjo bëhet vetvetiu, veç në zgjedhshi pjesëtim dorazi, rast në të cilin duhet ta ujdisni ju vetë.</translation>
     </message>
   </context>
   <context>
@@ -56,21 +57,25 @@
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="60"/>
       <source>Master Boot Record of %1</source>
+      <comment>@info</comment>
       <translation>Master Boot Record për %1</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="93"/>
       <source>Boot Partition</source>
+      <comment>@info</comment>
       <translation>Pjesë Nisjesh</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="100"/>
       <source>System Partition</source>
+      <comment>@info</comment>
       <translation>Pjesë Sistemi</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="131"/>
       <source>Do not install a boot loader</source>
+      <comment>@label</comment>
       <translation>Mos instalo ngarkues nisjesh</translation>
     </message>
     <message>
@@ -165,19 +170,19 @@
   <context>
     <name>Calamares::ExecutionViewStep</name>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="76"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="77"/>
       <source>%p%</source>
       <comment>Progress percentage indicator: %p is where the number 0..100 is placed</comment>
       <translation>%p%</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="116"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="118"/>
       <source>Set Up</source>
       <comment>@label</comment>
       <translation>Ujdiseni</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="116"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="118"/>
       <source>Install</source>
       <comment>@label</comment>
       <translation>Instaloje</translation>
@@ -267,7 +272,7 @@
     <message>
       <location filename="../src/libcalamares/python/PythonJob.cpp" line="301"/>
       <source>Internal script for python job %1 raised an exception.</source>
-      <translation>Programth i brendshëm për akt python %1 nxroi një përjashtim.</translation>
+      <translation>Programth i brendshëm për akt python %1 nxori një përjashtim.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/python/PythonJob.cpp" line="315"/>
@@ -453,7 +458,7 @@
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="335"/>
       <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
       <comment>%1 is short product name, %2 is short product name with version</comment>
-      <translation>Programi i rregullimit %1 është një hap larg nga bërja e ndryshimeve në diskun tuaj, që të mund të rregullojë %2.&lt;br/&gt;&lt;strong&gt;S’do të jeni në gjendje t’i zhbëni këto ndryshime.&lt;/strong&gt;</translation>
+      <translation>Programi i ujdisjes %1 është një hap larg nga bërja e ndryshimeve në diskun tuaj, që të mund të ujdisë %2.&lt;br/&gt;&lt;strong&gt;S’do të jeni në gjendje t’i zhbëni këto ndryshime.&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="338"/>
@@ -633,19 +638,28 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <name>ChangeFilesystemLabelJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="34"/>
-      <source>Set filesystem label on %1.</source>
-      <translation>Caktoni etiketë sistemi kartelash në %1.</translation>
+      <source>Set filesystem label on %1</source>
+      <comment>@title</comment>
+      <translation>Caktoni etiketë sistemi kartelash në %1</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="41"/>
-      <source>Set filesystem label &lt;strong&gt;%1&lt;/strong&gt; to partition &lt;strong&gt;%2&lt;/strong&gt;.</source>
-      <translation>Caktoni etiketë sistemi kartelash &lt;strong&gt;%1&lt;/strong&gt; te pjesa &lt;strong&gt;%2&lt;/strong&gt;.</translation>
+      <source>Set filesystem label &lt;strong&gt;%1&lt;/strong&gt; to partition &lt;strong&gt;%2&lt;/strong&gt;</source>
+      <comment>@info</comment>
+      <translation>Ujdis etiketë sistemi kartelash &lt;strong&gt;%1&lt;/strong&gt; te pjesa &lt;strong&gt;%2&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="71"/>
-      <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="83"/>
+      <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="50"/>
+      <source>Setting filesystem label &lt;strong&gt;%1&lt;/strong&gt; to partition &lt;strong&gt;%2&lt;/strong&gt;…</source>
+      <comment>@status</comment>
+      <translation>Po vihen parametrat &lt;strong&gt;%2&lt;/strong&gt; në pjesën &lt;strong&gt;%1&lt;/strong&gt;…</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="72"/>
+      <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="84"/>
       <source>The installer failed to update partition table on disk '%1'.</source>
-      <translation>Instaluesi s’arriti të përditësojë tabelë ndarjesh në diskun '%1'.</translation>
+      <comment>@info</comment>
+      <translation>Instaluesi s’arriti të përditësojë tabelë pjesësh në diskun '%1'.</translation>
     </message>
   </context>
   <context>
@@ -659,8 +673,19 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
   <context>
     <name>ChoicePage</name>
     <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1659"/>
+      <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
+      <translation>&lt;strong&gt;Pjesëtim dorazi&lt;/strong&gt;&lt;br/&gt;Pjesët mund t’i krijoni dhe ripërmasoni ju vetë.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1035"/>
+      <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
+      <translation>&lt;strong&gt;Përzgjidhni një pjesë që të zvogëlohet, mandej tërhiqni shtyllën e poshtme që ta ripërmasoni&lt;/strong&gt;</translation>
+    </message>
+    <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="137"/>
       <source>Select storage de&amp;vice:</source>
+      <comment>@label</comment>
       <translation>Përzgjidhni &amp;pajisje depozitimi:</translation>
     </message>
     <message>
@@ -669,56 +694,49 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1085"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1138"/>
       <source>Current:</source>
-      <translation>E tanishmja:</translation>
+      <comment>@label</comment>
+      <translation>I tanishmi:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="139"/>
       <source>After:</source>
+      <comment>@label</comment>
       <translation>Më Pas:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1659"/>
-      <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
-      <translation>&lt;strong&gt;Pjesëtim dorazi&lt;/strong&gt;&lt;br/&gt;Pjesët mund t’i krijoni dhe ripërmasoni ju vetë.</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="896"/>
-      <source>Reuse %1 as home partition for %2.</source>
-      <translation>Ripërdore %1 si pjesën shtëpi për %2.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1035"/>
-      <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
-      <translation>&lt;strong&gt;Përzgjidhni një pjesë që të zvogëlohet, mandej tërhiqni shtyllën e poshtme që ta ripërmasoni&lt;/strong&gt;</translation>
+      <source>Reuse %1 as home partition for %2</source>
+      <comment>@label</comment>
+      <translation>Ripërdore %1 si pjesën shtëpi për %2. {1 ?} {2?}</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1059"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
+      <comment>@info, %1 is partition name, %4 is product name</comment>
       <translation>%1 do të tkurret në %2MiB dhe për %4 do të krijohet një pjesë e re %3MiB.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1687"/>
-      <source>Boot loader location:</source>
-      <translation>Vendndodhje ngarkuesi nisjesh:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1129"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
+      <comment>@label</comment>
       <translation>&lt;strong&gt;Përzgjidhni një pjesë ku të instalohet&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1189"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-      <translation>Në këtë sistem s’gjendet gjëkundi një pjesë EFI sistemi. Ju lutemi, kthehuni mbrapsht dhe përdorni pjesëtimin dorazi që të rregulloni %1.</translation>
+      <comment>@info, %1 is product name</comment>
+      <translation>Në këtë sistem s’gjendet gjëkundi një pjesë EFI sistemi. Ju lutemi, kthehuni mbrapsht dhe përdorni pjesëtimin dorazi që të ujdisni %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1197"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
+      <comment>@info, %1 is partition path, %2 is product name</comment>
       <translation>Për nisjen e %2 do të përdoret pjesa EFI e sistemit te %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1205"/>
       <source>EFI system partition:</source>
+      <comment>@label</comment>
       <translation>Pjesë EFI sistemi:</translation>
     </message>
     <message>
@@ -773,37 +791,50 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1508"/>
       <source>This storage device has one of its partitions &lt;strong&gt;mounted&lt;/strong&gt;.</source>
+      <comment>@info</comment>
       <translation>Kjo pajisje depozitimi ka një nga pjesët e saj &lt;strong&gt;të montuar&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1513"/>
       <source>This storage device is a part of an &lt;strong&gt;inactive RAID&lt;/strong&gt; device.</source>
+      <comment>@info</comment>
       <translation>Kjo pajisje depozitimi është pjesë e një pajisje &lt;strong&gt;RAID jo aktive&lt;/strong&gt; device.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1628"/>
-      <source>No Swap</source>
-      <translation>Pa Swap</translation>
+      <source>No swap</source>
+      <comment>@label</comment>
+      <translation>Pa “swap”</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1637"/>
-      <source>Reuse Swap</source>
-      <translation>Ripërdor Swap-in</translation>
+      <source>Reuse swap</source>
+      <comment>@label</comment>
+      <translation>Ripërdor swap-in</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1640"/>
       <source>Swap (no Hibernate)</source>
+      <comment>@label</comment>
       <translation>Swap (pa Plogështim)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1643"/>
       <source>Swap (with Hibernate)</source>
+      <comment>@label</comment>
       <translation>Swap (me Plogështim)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1646"/>
       <source>Swap to file</source>
+      <comment>@label</comment>
       <translation>Swap në kartelë</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1687"/>
+      <source>Bootloader location:</source>
+      <comment>@label</comment>
+      <translation>Vendndodhje ngarkuesi nisësi:</translation>
     </message>
   </context>
   <context>
@@ -836,12 +867,14 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="371"/>
       <source>Clear mounts for partitioning operations on %1</source>
+      <comment>@title</comment>
       <translation>Hiqi montimet për veprime pjesëtimi te %1</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="377"/>
-      <source>Clearing mounts for partitioning operations on %1.</source>
-      <translation>Po hiqen montimet për veprime pjesëtimi te %1.</translation>
+      <source>Clearing mounts for partitioning operations on %1…</source>
+      <comment>@status</comment>
+      <translation>Po hiqen montimet për veprime pjesëtimi te %1. {1…?}</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="396"/>
@@ -853,13 +886,10 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <name>ClearTempMountsJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="33"/>
-      <source>Clear all temporary mounts.</source>
-      <translation>Hiqi krejt montimet e përkohshme.</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="40"/>
-      <source>Clearing all temporary mounts.</source>
-      <translation>Po hiqen krejt montimet e përkohshme.</translation>
+      <source>Clearing all temporary mounts…</source>
+      <comment>@status</comment>
+      <translation>Po hiqen krejt montimet e përkohshme…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="70"/>
@@ -945,7 +975,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="265"/>
       <source>&lt;h1&gt;Welcome to %1 setup&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Mirë se vini te udjisja e %1&lt;/h1&gt;</translation>
+      <translation>&lt;h1&gt;Mirë se vini te ujdisja e %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="269"/>
@@ -1008,42 +1038,43 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
       <translation>OK!</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/Config.cpp" line="111"/>
+      <location filename="../src/modules/packagechooser/Config.cpp" line="110"/>
       <source>Package Selection</source>
       <translation>Përzgjedhje Paketash</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/Config.cpp" line="113"/>
+      <location filename="../src/modules/packagechooser/Config.cpp" line="112"/>
       <source>Please pick a product from the list. The selected product will be installed.</source>
       <translation>Ju lutemi, zgjidhni prej listës një produkt. Produkti i përzgjedhur do të instalohet.</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/Config.cpp" line="242"/>
+      <location filename="../src/modules/packagechooser/Config.cpp" line="241"/>
       <source>Packages</source>
       <translation>Paketa</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/Config.cpp" line="248"/>
+      <location filename="../src/modules/packagechooser/Config.cpp" line="247"/>
       <source>Install option: &lt;strong&gt;%1&lt;/strong&gt;</source>
       <translation>Mundësi instalimi: &lt;strong&gt;%1&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/Config.cpp" line="248"/>
+      <location filename="../src/modules/packagechooser/Config.cpp" line="247"/>
       <source>None</source>
       <translation>Asnjë</translation>
     </message>
     <message>
-      <location filename="../src/modules/summary/Config.cpp" line="94"/>
+      <location filename="../src/modules/summary/Config.cpp" line="35"/>
       <source>Summary</source>
+      <comment>@label</comment>
       <translation>Përmbledhje</translation>
     </message>
     <message>
-      <location filename="../src/modules/summary/Config.cpp" line="98"/>
+      <location filename="../src/modules/summary/Config.cpp" line="39"/>
       <source>This is an overview of what will happen once you start the setup procedure.</source>
       <translation>Kjo është një përmbledhje e asaj që do të ndodhë sapo të nisni procedurën e ujdisjes.</translation>
     </message>
     <message>
-      <location filename="../src/modules/summary/Config.cpp" line="103"/>
+      <location filename="../src/modules/summary/Config.cpp" line="44"/>
       <source>This is an overview of what will happen once you start the install procedure.</source>
       <translation>Kjo është një përmbledhje e asaj që do të ndodhë sapo të nisni procedurën e instalimit.</translation>
     </message>
@@ -1115,15 +1146,15 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="410"/>
-      <source>The system language will be set to %1</source>
+      <source>The system language will be set to %1.</source>
       <comment>@info</comment>
-      <translation>Si gjuhë sistemi do të caktohet %1</translation>
+      <translation>Si gjuhë sistemi do të vihet %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="417"/>
-      <source>The numbers and dates locale will be set to %1</source>
+      <location filename="../src/modules/locale/Config.cpp" line="416"/>
+      <source>The numbers and dates locale will be set to %1.</source>
       <comment>@info</comment>
-      <translation>Si vendore numrash dhe datash do të caktohet %1</translation>
+      <translation>Si vendore për numra dhe data do të vihet %1.</translation>
     </message>
   </context>
   <context>
@@ -1132,7 +1163,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
       <location filename="../src/modules/contextualprocess/ContextualProcessJob.cpp" line="115"/>
       <source>Performing contextual processes' job…</source>
       <comment>@status</comment>
-      <translation>Po kryhet akt procesesh kontekstuakë…</translation>
+      <translation>Po kryhet akt procesesh kontekstualë…</translation>
     </message>
   </context>
   <context>
@@ -1200,31 +1231,37 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="67"/>
       <source>En&amp;crypt</source>
+      <comment>@action</comment>
       <translation>&amp;Fshehtëzoje</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="195"/>
       <source>Logical</source>
+      <comment>@label</comment>
       <translation>Logjike</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="200"/>
       <source>Primary</source>
+      <comment>@label</comment>
       <translation>Parësore</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="219"/>
       <source>GPT</source>
+      <comment>@label</comment>
       <translation>GPT</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="91"/>
       <source>Mountpoint already in use. Please select another one.</source>
+      <comment>@info</comment>
       <translation>Pikë montimi tashmë e përdorur. Ju lutemi, përzgjidhni një tjetër.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="96"/>
       <source>Mountpoint must start with a &lt;tt&gt;/&lt;/tt&gt;.</source>
+      <comment>@info</comment>
       <translation>Pika e montimit duhet të fillojë me një &lt;tt&gt;/&lt;/tt&gt;.</translation>
     </message>
   </context>
@@ -1232,43 +1269,51 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <name>CreatePartitionJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="181"/>
-      <source>Create new %1MiB partition on %3 (%2) with entries %4.</source>
-      <translation>Krijo pjesë të re %1MiB te %3 (%2) me zëra %4.</translation>
+      <source>Create new %1MiB partition on %3 (%2) with entries %4</source>
+      <comment>@title</comment>
+      <translation>Krijo pjesë të re %1MiB në %3 (%2) me zëra %4. {1M?} {3 ?} {2)?} {4?}</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="189"/>
-      <source>Create new %1MiB partition on %3 (%2).</source>
-      <translation>Krijo pjesë të re %1MiB te %3 (%2).</translation>
+      <source>Create new %1MiB partition on %3 (%2)</source>
+      <comment>@title</comment>
+      <translation>Krijo pjesë të re %1MiB në %3 (%2)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="196"/>
-      <source>Create new %2MiB partition on %4 (%3) with file system %1.</source>
-      <translation>Krijo pjesë të re %2MiB te %4 (%3) me sistem kartelash %1.</translation>
+      <source>Create new %2MiB partition on %4 (%3) with file system %1</source>
+      <comment>@title</comment>
+      <translation>Krijo pjesë të re %2MiB te %4 (%3) me sistem kartelash %1</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="212"/>
-      <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2) with entries &lt;em&gt;%4&lt;/em&gt;.</source>
-      <translation>Krijo pjesë të re &lt;strong&gt;%1MiB&lt;/strong&gt; te &lt;strong&gt;%3&lt;/strong&gt; (%2) me zërat &lt;em&gt;%4&lt;/em&gt;.</translation>
+      <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2) with entries &lt;em&gt;%4&lt;/em&gt;</source>
+      <comment>@info</comment>
+      <translation>Krijo pjesë të re &lt;strong&gt;%1MiB&lt;/strong&gt; në &lt;strong&gt;%3&lt;/strong&gt; (%2) me zëra &lt;em&gt;%4&lt;/em&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="221"/>
-      <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2).</source>
-      <translation>Krijo pjesë të re &lt;strong&gt;%1MiB&lt;/strong&gt; te &lt;strong&gt;%3&lt;/strong&gt; (%2).</translation>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="222"/>
+      <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2)</source>
+      <comment>@info</comment>
+      <translation>Krijo pjesë të re &lt;strong&gt;%1MiB&lt;/strong&gt; te &lt;strong&gt;%3&lt;/strong&gt; (%2)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="228"/>
-      <source>Create new &lt;strong&gt;%2MiB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>Krijo pjesë të re &lt;strong&gt;%2MiB&lt;/strong&gt; te &lt;strong&gt;%4&lt;/strong&gt; (%3) me sistem kartelash &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="229"/>
+      <source>Create new &lt;strong&gt;%2MiB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;</source>
+      <comment>@info</comment>
+      <translation>Krijo pjesë të re &lt;strong&gt;%2MiB&lt;/strong&gt; te &lt;strong&gt;%4&lt;/strong&gt; (%3) me sistem kartelash &lt;strong&gt;%1&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="252"/>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="255"/>
-      <source>Creating new %1 partition on %2.</source>
-      <translation>Po krijohet pjesë e re %1 te %2.</translation>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="254"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="257"/>
+      <source>Creating new %1 partition on %2…</source>
+      <comment>@status</comment>
+      <translation>Po krijohet pjesë e re %1 te %2. {1 ?} {2…?}</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="272"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="274"/>
       <source>The installer failed to create partition on disk '%1'.</source>
+      <comment>@info</comment>
       <translation>Instaluesi s’arriti të krijojë pjesë në diskun '%1'.</translation>
     </message>
   </context>
@@ -1304,18 +1349,16 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <name>CreatePartitionTableJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="41"/>
-      <source>Create new %1 partition table on %2.</source>
-      <translation>Krijo tabelë të re pjesësh %1 te %2.</translation>
+      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="58"/>
+      <source>Creating new %1 partition table on %2…</source>
+      <comment>@status</comment>
+      <translation>Po krijohet tabelë e re pjesësh %1 te %2. {1 ?} {2…?}</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="49"/>
-      <source>Create new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
-      <translation>Krijo tabelë pjesësh të re &lt;strong&gt;%1&lt;/strong&gt; te &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="58"/>
-      <source>Creating new %1 partition table on %2.</source>
-      <translation>Po krijohet tabelë e re pjesësh %1 te %2.</translation>
+      <source>Creating new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3)…</source>
+      <comment>@status</comment>
+      <translation>Po krijohet tabelë e re pjesësh &lt;strong&gt;%1&lt;/strong&gt; te &lt;strong&gt;%2&lt;/strong&gt; (%3)…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="86"/>
@@ -1332,29 +1375,33 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="39"/>
-      <source>Create user &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>Krijo përdoruesin &lt;strong&gt;%1&lt;/strong&gt;.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/users/CreateUserJob.cpp" line="120"/>
-      <source>Preserving home directory</source>
-      <translation>S’po preket drejtoria shtëpi</translation>
+      <source>Create user &lt;strong&gt;%1&lt;/strong&gt;</source>
+      <translation>Krijo përdoruesin &lt;strong&gt;%1&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="45"/>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="137"/>
-      <source>Creating user %1</source>
-      <translation>Po krijohet përdoruesi %1</translation>
+      <source>Creating user %1…</source>
+      <comment>@status</comment>
+      <translation>Po krijohet përdoruesi %1…</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/users/CreateUserJob.cpp" line="120"/>
+      <source>Preserving home directory…</source>
+      <comment>@status</comment>
+      <translation>S’po preket drejtoria shtëpi…</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="145"/>
       <source>Configuring user %1</source>
+      <comment>@status</comment>
       <translation>Po formësohet përdoruesi %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="153"/>
-      <source>Setting file permissions</source>
-      <translation>Po ujdisen leje mbi kartela</translation>
+      <source>Setting file permissions…</source>
+      <comment>@status</comment>
+      <translation>Po ujdisen leje mbi kartela…</translation>
     </message>
   </context>
   <context>
@@ -1362,6 +1409,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
       <location filename="../src/modules/partition/gui/CreateVolumeGroupDialog.cpp" line="28"/>
       <source>Create Volume Group</source>
+      <comment>@title</comment>
       <translation>Krijoni Grup Volumesh</translation>
     </message>
   </context>
@@ -1369,18 +1417,16 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <name>CreateVolumeGroupJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="32"/>
-      <source>Create new volume group named %1.</source>
-      <translation>Krijo grup të ri vëllimesh të quajtur %1.</translation>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="44"/>
+      <source>Creating new volume group named %1…</source>
+      <comment>@status</comment>
+      <translation>Po krijohet grup i ri vëllimesh i quajtur %1. {1…?}</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="38"/>
-      <source>Create new volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>Krijo grup të ri vëllimesh të quajtur &lt;strong&gt;%1&lt;/strong&gt;.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="44"/>
-      <source>Creating new volume group named %1.</source>
-      <translation>Po krijohet grup i ri vëllimesh i quajtur &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+      <source>Creating new volume group named &lt;strong&gt;%1&lt;/strong&gt;…</source>
+      <comment>@status</comment>
+      <translation>Po krijohet grup i ri vëllimesh i quajtur &lt;strong&gt;%1&lt;/strong&gt;…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="51"/>
@@ -1393,13 +1439,15 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="26"/>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="38"/>
-      <source>Deactivate volume group named %1.</source>
-      <translation>Çaktivizoje grupin e vëllimeve të quajtur %1.</translation>
+      <source>Deactivating volume group named %1…</source>
+      <comment>@status</comment>
+      <translation>Po çaktivizohet grup vëllimesh i quajtur %1…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="32"/>
-      <source>Deactivate volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>Çaktivizoje grupin e vëllimeve të quajtur &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+      <source>Deactivating volume group named &lt;strong&gt;%1&lt;/strong&gt;…</source>
+      <comment>@status</comment>
+      <translation>Po çaktivizohet grup vëllimesh i quajtur &lt;strong&gt;%1&lt;/strong&gt;…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="46"/>
@@ -1411,18 +1459,16 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <name>DeletePartitionJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="73"/>
-      <source>Delete partition %1.</source>
-      <translation>Fshije pjesën %1.</translation>
+      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="85"/>
+      <source>Deleting partition %1…</source>
+      <comment>@status</comment>
+      <translation>Po fshihet pjesa %1. {1…?}</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="79"/>
-      <source>Delete partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>Fshije pjesën &lt;strong&gt;%1&lt;/strong&gt;.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="85"/>
-      <source>Deleting partition %1.</source>
-      <translation>Po fshihet pjesa %1.</translation>
+      <source>Deleting partition &lt;strong&gt;%1&lt;/strong&gt;…</source>
+      <comment>@status</comment>
+      <translation>Po fshihet pjesa &lt;strong&gt;%1&lt;/strong&gt;…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="99"/>
@@ -1607,12 +1653,14 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
       <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="153"/>
       <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="168"/>
       <source>Please enter the same passphrase in both boxes.</source>
+      <comment>@tooltip</comment>
       <translation>Ju lutemi, jepni të njëjtin frazëkalim në të dy kutizat.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="158"/>
-      <source>Password must be a minimum of %1 characters</source>
-      <translation>Fjalëkalimi duhet të jetë një minimum %1 shenjash</translation>
+      <source>Password must be a minimum of %1 characters.</source>
+      <comment>@tooltip</comment>
+      <translation>Fjalëkalimi duhet të ketë të paktën %1 shenja.</translation>
     </message>
   </context>
   <context>
@@ -1633,57 +1681,68 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="179"/>
       <source>Set partition information</source>
+      <comment>@title</comment>
       <translation>Ujdisni hollësi pjese</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="208"/>
       <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition with features &lt;em&gt;%3&lt;/em&gt;</source>
+      <comment>@info</comment>
       <translation>Instalo %1 te pjesë e &lt;strong&gt;re&lt;/strong&gt; %2 sistemi, me veçoritë &lt;em&gt;%3&lt;/em&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="216"/>
-      <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
-      <translation>Instaloje %1 në pjesë sistemi &lt;strong&gt;të re&lt;/strong&gt; %2.</translation>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="217"/>
+      <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition</source>
+      <comment>@info</comment>
+      <translation>Instaloje %1 në pjesë sistemi &lt;strong&gt;të re&lt;/strong&gt; %2</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="225"/>
-      <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt; and features &lt;em&gt;%3&lt;/em&gt;.</source>
-      <translation>Ujdisni pjesë të &lt;strong&gt;re&lt;/strong&gt; %2, me pikë montimi &lt;strong&gt;%1&lt;/strong&gt; dhe veçori &lt;em&gt;%3&lt;/em&gt;.</translation>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="226"/>
+      <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt; and features &lt;em&gt;%3&lt;/em&gt;</source>
+      <comment>@info</comment>
+      <translation>Ujdis pjesë &lt;strong&gt;të re&lt;/strong&gt; %2 me pikë montimi &lt;strong&gt;%1&lt;/strong&gt; dhe veçori &lt;em&gt;%3&lt;/em&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="233"/>
-      <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;%3.</source>
-      <translation>Ujdisni pjesë të &lt;strong&gt;re&lt;/strong&gt; %2, me pikë montimi &lt;strong&gt;%1&lt;/strong&gt;%3.</translation>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="235"/>
+      <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;%3</source>
+      <comment>@info</comment>
+      <translation>Ujdis pjesë %3 &lt;strong&gt;%1&lt;/strong&gt; me pikë montimi &lt;strong&gt;%2&lt;/strong&gt;%3. {2 ?} {1&lt;?} {3?}</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="247"/>
-      <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt; with features &lt;em&gt;%4&lt;/em&gt;.</source>
-      <translation>Instalo %2 në pjesë sistemi %3 &lt;strong&gt;%1&lt;/strong&gt;, me veçoritë &lt;em&gt;%4&lt;/em&gt;.</translation>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="250"/>
+      <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt; with features &lt;em&gt;%4&lt;/em&gt;</source>
+      <comment>@info</comment>
+      <translation>Instalo %2 në pjesë sistemit %3 &lt;strong&gt;%1&lt;/strong&gt; me veçori &lt;em&gt;%4&lt;/em&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="266"/>
-      <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt; and features &lt;em&gt;%4&lt;/em&gt;.</source>
-      <translation>Ujdisni pjesë %3 &lt;strong&gt;%1&lt;/strong&gt;, me pikë montimi &lt;strong&gt;%2&lt;/strong&gt; dhe veçori &lt;em&gt;%4&lt;/em&gt;.</translation>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="260"/>
+      <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;</source>
+      <comment>@info</comment>
+      <translation>Instaloje %2 te pjesa e sistemit %3 &lt;strong&gt;%1&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="275"/>
-      <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;%4.</source>
-      <translation>Ujdisni pjesë %3 &lt;strong&gt;%1&lt;/strong&gt; me pikë montimi &lt;strong&gt;%2&lt;/strong&gt;%4.</translation>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="270"/>
+      <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt; and features &lt;em&gt;%4&lt;/em&gt;</source>
+      <comment>@info</comment>
+      <translation>Ujdis pjesë %3 &lt;strong&gt;%1&lt;/strong&gt;, me pikë montimi &lt;strong&gt;%2&lt;/strong&gt; dhe veçori &lt;em&gt;%4&lt;/em&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="256"/>
-      <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>Instaloje %2 te pjesa e sistemit %3 &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="280"/>
+      <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;%4…</source>
+      <comment>@info</comment>
+      <translation>Ujdisni pjesë %3 1%11 me pikë montimi &lt;strong&gt;%2&lt;/strong&gt;%4. {3 ?} {1&lt;?} {2&lt;?} {4…?}</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="290"/>
-      <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>Instalo ngarkues nisjesh në &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="296"/>
+      <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;…</source>
+      <comment>@info</comment>
+      <translation>Instalo ngarkues nisjesh në &lt;strong&gt;%1&lt;/strong&gt;…</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="299"/>
-      <source>Setting up mount points.</source>
-      <translation>Po ujdisen pika montimesh.</translation>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="305"/>
+      <source>Setting up mount points…</source>
+      <comment>@status</comment>
+      <translation>Po ujdisen pika montimesh…</translation>
     </message>
   </context>
   <context>
@@ -1752,24 +1811,27 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <name>FormatPartitionJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="39"/>
-      <source>Format partition %1 (file system: %2, size: %3 MiB) on %4.</source>
-      <translation>Formatoje pjesën %1 (sistem kartelash: %2, madhësi: %3 MiB) në %4.</translation>
+      <source>Format partition %1 (file system: %2, size: %3 MiB) on %4</source>
+      <comment>@title</comment>
+      <translation>Formatoje pjesën %1 (sistem kartelash: %2, madhësi: %3 MiB) te %4. {1 ?} {2,?} {3 ?} {4?}</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="49"/>
-      <source>Format &lt;strong&gt;%3MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;.</source>
-      <translation>Formato pjesën &lt;strong&gt;%3MiB&lt;/strong&gt; &lt;strong&gt;%1&lt;/strong&gt; me sistem kartelash &lt;strong&gt;%2&lt;/strong&gt;.</translation>
+      <source>Format &lt;strong&gt;%3MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;</source>
+      <comment>@info</comment>
+      <translation>Formato pjesën &lt;strong&gt;%3MiB&lt;/strong&gt; &lt;strong&gt;%1&lt;/strong&gt; me sistem kartelash &lt;strong&gt;%2&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="61"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="62"/>
       <source>%1 (%2)</source>
       <comment>partition label %1 (device path %2)</comment>
       <translation>%1 (%2)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="63"/>
-      <source>Formatting partition %1 with file system %2.</source>
-      <translation>Po formatohet pjesa %1 me sistem kartelash %2.</translation>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="64"/>
+      <source>Formatting partition %1 with file system %2…</source>
+      <comment>@status</comment>
+      <translation>Po formatohet pjesa %1 me sistem kartelash %2. {1 ?} {2…?}</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="73"/>
@@ -2256,25 +2318,43 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="305"/>
       <source>Could not create LUKS key file for root partition %1.</source>
-      <translation>S’u krijua dot kartelë kyçi LUKS për ndarjen rrënjë %1.</translation>
+      <translation>S’u krijua dot kartelë kyçi LUKS për pjesën rrënjë %1.</translation>
     </message>
   </context>
   <context>
     <name>MachineIdJob</name>
     <message>
-      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="35"/>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="55"/>
       <source>Generate machine-id.</source>
       <translation>Prodho machine-id.</translation>
     </message>
     <message>
-      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="51"/>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="71"/>
       <source>Configuration Error</source>
       <translation>Gabim Formësimi</translation>
     </message>
     <message>
-      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="52"/>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="72"/>
       <source>No root mount point is set for MachineId.</source>
       <translation>S’është caktuar pikë montimi rrënjë për MachineId.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/machineid/Workers.cpp" line="63"/>
+      <location filename="../src/modules/machineid/Workers.cpp" line="71"/>
+      <location filename="../src/modules/machineid/Workers.cpp" line="75"/>
+      <location filename="../src/modules/machineid/Workers.cpp" line="92"/>
+      <source>File not found</source>
+      <translation>S’u gjet kartelë</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/machineid/Workers.cpp" line="64"/>
+      <source>Path &lt;pre&gt;%1&lt;/pre&gt; must be an absolute path.</source>
+      <translation>Shtegu &lt;pre&gt;%1&lt;/pre&gt; duhet të jetë shteg absolut.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/machineid/Workers.cpp" line="93"/>
+      <source>Could not create new random file &lt;pre&gt;%1&lt;/pre&gt;.</source>
+      <translation>S’u krijua dot kartelë e re kuturu &lt;pre&gt;%1&lt;/pre&gt;.</translation>
     </message>
   </context>
   <context>
@@ -2556,7 +2636,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="197"/>
       <source>Memory allocation error when setting '%1'</source>
-      <translation>Gabim caktimi kujtese kur rregullohej '%1'</translation>
+      <translation>Gabim caktimi kujtese, kur ujdisej '%1'</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="200"/>
@@ -2805,11 +2885,6 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
       <source>Unknown error</source>
       <translation>Gabim i panjohur</translation>
     </message>
-    <message>
-      <location filename="../src/modules/users/Config.cpp" line="840"/>
-      <source>Password is empty</source>
-      <translation>Fjalëkalimi është i zbrazët</translation>
-    </message>
   </context>
   <context>
     <name>PackageChooserPage</name>
@@ -2857,7 +2932,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
       <location filename="../src/modules/keyboard/KeyboardPage.ui" line="74"/>
       <source>Keyboard model:</source>
-      <translation>Model tastiere</translation>
+      <translation>Model tastiere:</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/KeyboardPage.ui" line="146"/>
@@ -2866,8 +2941,9 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/KeyboardPage.ui" line="153"/>
-      <source>Keyboard switch:</source>
-      <translation>Ndërrim tastiere:</translation>
+      <source>Switch Keyboard:</source>
+      <extracomment>shortcut for switching between keyboard layouts</extracomment>
+      <translation>Ndërroni Tastierë:</translation>
     </message>
   </context>
   <context>
@@ -2972,31 +3048,37 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="182"/>
       <source>Home</source>
+      <comment>@label</comment>
       <translation>Shtëpi</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="186"/>
       <source>Boot</source>
+      <comment>@label</comment>
       <translation>Nisje</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="191"/>
       <source>EFI system</source>
+      <comment>@label</comment>
       <translation>Sistem EFI</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="195"/>
       <source>Swap</source>
+      <comment>@label</comment>
       <translation>Swap</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="199"/>
       <source>New partition for %1</source>
+      <comment>@label</comment>
       <translation>Pjesë e re për %1</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="203"/>
       <source>New partition</source>
+      <comment>@label</comment>
       <translation>Pjesë e re</translation>
     </message>
     <message>
@@ -3012,37 +3094,44 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="157"/>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="201"/>
       <source>Free Space</source>
+      <comment>@title</comment>
       <translation>Hapësirë e Lirë</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="161"/>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="205"/>
-      <source>New partition</source>
-      <translation>Pjesë e re</translation>
+      <source>New Partition</source>
+      <comment>@title</comment>
+      <translation>Pjesë e Re</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="307"/>
       <source>Name</source>
+      <comment>@title</comment>
       <translation>Emër</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="309"/>
       <source>File System</source>
+      <comment>@title</comment>
       <translation>Sistem Kartelash</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="311"/>
       <source>File System Label</source>
+      <comment>@title</comment>
       <translation>Etiketë Sistemi Kartelash</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="313"/>
       <source>Mount Point</source>
+      <comment>@title</comment>
       <translation>Pikë Montimi</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="315"/>
       <source>Size</source>
+      <comment>@title</comment>
       <translation>Madhësi</translation>
     </message>
   </context>
@@ -3122,16 +3211,6 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
   <context>
     <name>PartitionViewStep</name>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="56"/>
-      <source>Gathering system information...</source>
-      <translation>Po grumbullohen hollësi sistemi…</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="107"/>
-      <source>Partitions</source>
-      <translation>Pjesë</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="250"/>
       <source>Unsafe partition actions are enabled.</source>
       <translation>Janë aktivizuar veprime jo të parrezik pjesësh.</translation>
@@ -3147,19 +3226,9 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
       <translation>S’do të ndryshohet ndonjë pjesë.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="296"/>
-      <source>Current:</source>
-      <translation>I tanishmi:</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="314"/>
-      <source>After:</source>
-      <translation>Më Pas:</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="542"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;The EFI system partition does not meet recommendations. It is recommended to go back and select or create a suitable filesystem.</source>
-      <translation>Që të niset %1, është e nevojshme një pjesë EFI sistemi.&lt;br/&gt;&lt;br/&gt;Pjesa EFI e sistemit nuk plotësosn rekomandimet. Rekomandohet të ktheheni nbrapsht dhe përzgjidhni ose krijoni një sistem të përshtatshëm kartelash.</translation>
+      <translation>Që të niset %1, është e nevojshme një pjesë EFI sistemi.&lt;br/&gt;&lt;br/&gt;Pjesa EFI e sistemit nuk plotëson rekomandimet. Rekomandohet të ktheheni mbrapsht dhe përzgjidhni ose krijoni një sistem të përshtatshëm kartelash.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="564"/>
@@ -3179,12 +3248,12 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="588"/>
       <source>EFI system partition configured incorrectly</source>
-      <translation>Pjesë EFI sistemi e formësuar pasaktësisht</translation>
+      <translation>Pjesë EFI sistemi e formësuar jo saktë</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="536"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a suitable filesystem.</source>
-      <translation>Që të niset %1, është e nevojshme një pjesë EFI sistemi.&lt;br/&gt;&lt;br/&gt;Që të formësoni një pjesë sistemi EFI, kthehuni nbrapsht dhe përzgjidhni ose krijoni një sistem të përshtatshëm kartelash.</translation>
+      <translation>Që të niset %1, është e nevojshme një pjesë EFI sistemi.&lt;br/&gt;&lt;br/&gt;Që të formësoni një pjesë sistemi EFI, kthehuni mbrapsht dhe përzgjidhni ose krijoni një sistem të përshtatshëm kartelash.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="550"/>
@@ -3206,6 +3275,30 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="552"/>
       <source>The filesystem must have flag &lt;strong&gt;%1&lt;/strong&gt; set.</source>
       <translation>Sistemi i kartelave duhet të ketë të përzgjedhur parametrin &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="56"/>
+      <source>Gathering system information…</source>
+      <comment>@status</comment>
+      <translation>Po grumbullohen hollësi mbi sistemin…</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="107"/>
+      <source>Partitions</source>
+      <comment>@label</comment>
+      <translation>Pjesë</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="296"/>
+      <source>Current:</source>
+      <comment>@label</comment>
+      <translation>I tanishmi:</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="314"/>
+      <source>After:</source>
+      <comment>@label</comment>
+      <translation>Më Pas:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="566"/>
@@ -3235,7 +3328,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="651"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
-      <translation>Tok me pjesën e fshehtëzuar &lt;em&gt;root&lt;/em&gt; qe rregulluar edhe një pjesë &lt;em&gt;boot&lt;/em&gt; veçmas, por pjesa &lt;em&gt;boot&lt;/em&gt; s’është e fshehtëzuar.&lt;br/&gt;&lt;br/&gt;Ka preokupime mbi sigurinë e këtij lloj rregullimi, ngaqë kartela të rëndësishme sistemi mbahen në një pjesë të pafshehtëzuar.&lt;br/&gt;Mund të vazhdoni, nëse doni, por shkyçja e sistemit të kartelave do të ndodhë më vonë, gjatë nisjes së sistemit.&lt;br/&gt;Që të fshehtëzoni pjesën &lt;em&gt;boot&lt;/em&gt;, kthehuni mbrapsht dhe rikrijojeni, duke përzgjedhur te skena e krijimit të pjesës &lt;strong&gt;Fshehtëzoje&lt;/strong&gt;.</translation>
+      <translation>Tok me pjesën e fshehtëzuar rrënjë qe ujdisur edhe një pjesë nisjeje veçmas, por pjesa nisje s’është e fshehtëzuar.&lt;br/&gt;&lt;br/&gt;Ka preokupime mbi sigurinë e kësaj lloj ujdisjeje, ngaqë kartela të rëndësishme sistemi mbahen në një pjesë të pafshehtëzuar.&lt;br/&gt;Mund të vazhdoni, nëse doni, por shkyçja e sistemit të kartelave do të ndodhë më vonë, gjatë nisjes së sistemit.&lt;br/&gt;Që të fshehtëzoni pjesën nisje, kthehuni mbrapsht dhe rikrijojeni, duke përzgjedhur &lt;strong&gt;Fshehtëzoje&lt;/strong&gt;, te skena e krijimit të pjesës.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="743"/>
@@ -3252,8 +3345,9 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <name>PlasmaLnfJob</name>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="33"/>
-      <source>Plasma Look-and-Feel Job</source>
-      <translation>Akt Plasma Pamje-dhe-Ndjesi</translation>
+      <source>Applying Plasma Look-and-Feel…</source>
+      <comment>@status</comment>
+      <translation>Po aplikohen Pamje-dhe-Ndjesi Plasma…</translation>
     </message>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="57"/>
@@ -3267,7 +3361,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="80"/>
       <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is set up. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
-      <translation>Ju lutemi, zgjidhni një grup parametrash pamje-dhe-ndjesi për KDE Plasma Desktop. Mundeni edhe ta anashkaloni këtë hap dhe të formësoni pamje-dhe-ndjesi pasi të jetë rregulluar sistemi. Klikimi mbi një përzgjedhje pamje-dhe-ndjesi do t’ju japë një paraparje të atypëratyshme të saj.</translation>
+      <translation>Ju lutemi, zgjidhni një grup parametrash pamje-dhe-ndjesi për KDE Plasma Desktop. Mundeni edhe ta anashkaloni këtë hap dhe të formësoni pamje-dhe-ndjesi pasi të jetë ujdisur sistemi. Klikimi mbi një përzgjedhje pamje-dhe-ndjesi do t’ju japë një paraparje të atypëratyshme të saj.</translation>
     </message>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="87"/>
@@ -3280,6 +3374,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfViewStep.cpp" line="43"/>
       <source>Look-and-Feel</source>
+      <comment>@label</comment>
       <translation>Pamje-dhe-Ndjesi</translation>
     </message>
   </context>
@@ -3287,8 +3382,9 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <name>PreserveFiles</name>
     <message>
       <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="56"/>
-      <source>Saving files for later ...</source>
-      <translation>Po ruhen kartela për më vonë ...</translation>
+      <source>Saving files for later…</source>
+      <comment>@status</comment>
+      <translation>Po ruhen kartela për më vonë…</translation>
     </message>
     <message>
       <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="64"/>
@@ -3384,26 +3480,12 @@ Përfundim:
       <translation>Parazgjedhje</translation>
     </message>
     <message>
-      <location filename="../src/modules/machineid/Workers.cpp" line="64"/>
-      <location filename="../src/modules/machineid/Workers.cpp" line="72"/>
-      <location filename="../src/modules/machineid/Workers.cpp" line="76"/>
-      <location filename="../src/modules/machineid/Workers.cpp" line="93"/>
-      <source>File not found</source>
-      <translation>S’u gjet kartelë</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/machineid/Workers.cpp" line="65"/>
-      <source>Path &lt;pre&gt;%1&lt;/pre&gt; must be an absolute path.</source>
-      <translation>Shtegu &lt;pre&gt;%1&lt;/pre&gt; duhet të jetë shteg absolut.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="81"/>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="101"/>
       <source>Directory not found</source>
       <translation>Drejtoria s’u gjet</translation>
     </message>
     <message>
-      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="82"/>
-      <location filename="../src/modules/machineid/Workers.cpp" line="94"/>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="102"/>
       <source>Could not create new random file &lt;pre&gt;%1&lt;/pre&gt;.</source>
       <translation>S’u krijua dot kartelë e re kuturu &lt;pre&gt;%1&lt;/pre&gt;.</translation>
     </message>
@@ -3421,11 +3503,6 @@ Përfundim:
       <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="44"/>
       <source>(no mount point)</source>
       <translation>(s’ka pikë montimi)</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="39"/>
-      <source>Unpartitioned space or unknown partition table</source>
-      <translation>Hapësirë e papjesëtuar, ose tabelë e panjohur pjesësh</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/partition/FileSystem.cpp" line="33"/>
@@ -3451,6 +3528,12 @@ Përfundim:
       <comment>@partition info</comment>
       <translation>swap</translation>
     </message>
+    <message>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="39"/>
+      <source>Unpartitioned space or unknown partition table</source>
+      <comment>@info</comment>
+      <translation>Hapësirë e papjesëtuar, ose tabelë e panjohur pjesësh</translation>
+    </message>
   </context>
   <context>
     <name>Recommended</name>
@@ -3466,8 +3549,9 @@ Përfundim:
     <name>RemoveUserJob</name>
     <message>
       <location filename="../src/modules/removeuser/RemoveUserJob.cpp" line="32"/>
-      <source>Remove live user from target system</source>
-      <translation>Hiq përdoruesin live nga sistemi i synuar</translation>
+      <source>Removing live user from the target system…</source>
+      <comment>@status</comment>
+      <translation>Po hiqet përdoruesi “live” nga sistemi i synuar…</translation>
     </message>
   </context>
   <context>
@@ -3475,13 +3559,15 @@ Përfundim:
     <message>
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="26"/>
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="38"/>
-      <source>Remove Volume Group named %1.</source>
-      <translation>Hiqe Grupin e Vëllimeve të quajtur %1.</translation>
+      <source>Removing Volume Group named %1…</source>
+      <comment>@status</comment>
+      <translation>Po hiqet Grupi i Vëllimeve i quajtur %1…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="32"/>
-      <source>Remove Volume Group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>Hiqe Grupin e Vëllimeve të quajtur &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+      <source>Removing Volume Group named &lt;strong&gt;%1&lt;/strong&gt;…</source>
+      <comment>@status</comment>
+      <translation>Po hiqet Grupi i Vëllimeve i quajtur &lt;strong&gt;%1&lt;/strong&gt;…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="46"/>
@@ -3595,22 +3681,25 @@ Përfundim:
   <context>
     <name>ResizePartitionJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="41"/>
-      <source>Resize partition %1.</source>
-      <translation>Ripërmaso pjesën %1.</translation>
+      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="39"/>
+      <source>Resize partition %1</source>
+      <comment>@title</comment>
+      <translation>Ripërmaso pjesën %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="47"/>
-      <source>Resize &lt;strong&gt;%2MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%3MiB&lt;/strong&gt;.</source>
-      <translation>Ripërmasoje pjesën &lt;strong&gt;%2MiB&lt;/strong&gt; &lt;strong&gt;%1&lt;/strong&gt; në &lt;strong&gt;%3MiB&lt;/strong&gt;.</translation>
+      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="45"/>
+      <source>Resize &lt;strong&gt;%2MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%3MiB&lt;/strong&gt;</source>
+      <comment>@info</comment>
+      <translation>Ripërmasoje pjesën &lt;strong&gt;%2MiB&lt;/strong&gt; &lt;strong&gt;%1&lt;/strong&gt; në &lt;strong&gt;%3MiB&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="57"/>
-      <source>Resizing %2MiB partition %1 to %3MiB.</source>
-      <translation>Po ripërmasohet pjesa %2MiB %1 në %3MiB.</translation>
+      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="54"/>
+      <source>Resizing %2MiB partition %1 to %3MiB…</source>
+      <comment>@status</comment>
+      <translation>Po ripërmasohet pjesa %2MiB %1 në %3MiB…</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="74"/>
+      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="70"/>
       <source>The installer failed to resize partition %1 on disk '%2'.</source>
       <translation>Instaluesi s’arriti të ripërmasojë pjesën %1 në diskun '%2'.</translation>
     </message>
@@ -3620,6 +3709,7 @@ Përfundim:
     <message>
       <location filename="../src/modules/partition/gui/ResizeVolumeGroupDialog.cpp" line="30"/>
       <source>Resize Volume Group</source>
+      <comment>@title</comment>
       <translation>Ripërmaso Grup Vëllimesh</translation>
     </message>
   </context>
@@ -3627,17 +3717,24 @@ Përfundim:
     <name>ResizeVolumeGroupJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="28"/>
-      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="46"/>
-      <source>Resize volume group named %1 from %2 to %3.</source>
-      <translation>Ripërmasoje grupin e vëllimeve të quajtur %1 nga %2 në %3.</translation>
+      <source>Resize volume group named %1 from %2 to %3</source>
+      <comment>@title</comment>
+      <translation>Ripërmasoje grupin e vëllimeve të quajtur %1 nga %2 në %3. {1 ?} {2 ?} {3?}</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="37"/>
-      <source>Resize volume group named &lt;strong&gt;%1&lt;/strong&gt; from &lt;strong&gt;%2&lt;/strong&gt; to &lt;strong&gt;%3&lt;/strong&gt;.</source>
-      <translation>Ripërmasoje grupin e vëllimeve të quajtur &lt;strong&gt;%1&lt;/strong&gt; nga &lt;strong&gt;%2&lt;/strong&gt; në &lt;strong&gt;%3&lt;/strong&gt;.</translation>
+      <source>Resize volume group named &lt;strong&gt;%1&lt;/strong&gt; from &lt;strong&gt;%2&lt;/strong&gt; to &lt;strong&gt;%3&lt;/strong&gt;</source>
+      <comment>@info</comment>
+      <translation>Ripërmasoje grupin e vëllimeve të quajtur &lt;strong&gt;%1&lt;/strong&gt; nga &lt;strong&gt;%2&lt;/strong&gt; në &lt;strong&gt;%3&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="57"/>
+      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="47"/>
+      <source>Resizing volume group named %1 from %2 to %3…</source>
+      <comment>@status</comment>
+      <translation>Po ripërmasohet grupin e vëllimeve të quajtur %1 nga %2 në %3…</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="58"/>
       <source>The installer failed to resize a volume group named '%1'.</source>
       <translation>Instaluesi s’arriti të ripërmasojë një grup vëllimesh të quajtur '%1'.</translation>
     </message>
@@ -3654,13 +3751,15 @@ Përfundim:
     <name>ScanningDialog</name>
     <message>
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="68"/>
-      <source>Scanning storage devices...</source>
+      <source>Scanning storage devices…</source>
+      <comment>@status</comment>
       <translation>Po kontrollohen pajisje depozitimi…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="68"/>
-      <source>Partitioning</source>
-      <translation>Pjesëtim</translation>
+      <source>Partitioning…</source>
+      <comment>@status</comment>
+      <translation>Po pjesëtohet…</translation>
     </message>
   </context>
   <context>
@@ -3677,8 +3776,9 @@ Përfundim:
     </message>
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="48"/>
-      <source>Setting hostname %1.</source>
-      <translation>Po caktohet strehëemri %1.</translation>
+      <source>Setting hostname %1…</source>
+      <comment>@status</comment>
+      <translation>Po caktohet strehëemri %1… {1…?}</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="121"/>
@@ -3742,81 +3842,96 @@ Përfundim:
     <name>SetPartFlagsJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="44"/>
-      <source>Set flags on partition %1.</source>
-      <translation>Caktoni parametra në pjesën %1.</translation>
+      <source>Set flags on partition %1</source>
+      <comment>@title</comment>
+      <translation>Ujdis parametra në pjesën %1</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="50"/>
-      <source>Set flags on %1MiB %2 partition.</source>
-      <translation>Caktoni parametra në pjesën %1MiB %2.</translation>
+      <source>Set flags on %1MiB %2 partition</source>
+      <comment>@title</comment>
+      <translation>Ujdis parametra në pjesën %1MiB %2</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="54"/>
-      <source>Set flags on new partition.</source>
-      <translation>Caktoni parametra në pjesë të re.</translation>
+      <source>Set flags on new partition</source>
+      <comment>@title</comment>
+      <translation>Ujdis parametra në pjesë të re</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="65"/>
-      <source>Clear flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>Hiqi parametrat te pjesa &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+      <source>Clear flags on partition &lt;strong&gt;%1&lt;/strong&gt;</source>
+      <comment>@info</comment>
+      <translation>Hiqi parametrat te pjesa &lt;strong&gt;%1&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="71"/>
-      <source>Clear flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-      <translation>Hiqi parametrat te pjesa %1MiB &lt;strong&gt;%2&lt;/strong&gt;.</translation>
+      <source>Clear flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition</source>
+      <comment>@info</comment>
+      <translation>Hiqi parametrat te pjesa %1MiB &lt;strong&gt;%2&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="75"/>
-      <source>Clear flags on new partition.</source>
-      <translation>Hiqi parametrat te ndarja e re.</translation>
+      <source>Clear flags on new partition</source>
+      <comment>@info</comment>
+      <translation>Hiqi parametrat te pjesa e re</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="80"/>
-      <source>Flag partition &lt;strong&gt;%1&lt;/strong&gt; as &lt;strong&gt;%2&lt;/strong&gt;.</source>
-      <translation>Vëri pjesës &lt;strong&gt;%1&lt;/strong&gt; parametrin &lt;strong&gt;%2&lt;/strong&gt;.</translation>
+      <source>Set flags on partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%2&lt;/strong&gt;</source>
+      <comment>@info</comment>
+      <translation>Parametrat në pjesën &lt;strong&gt;%1&lt;/strong&gt; vëri si &lt;strong&gt;%2&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="89"/>
-      <source>Flag %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition as &lt;strong&gt;%3&lt;/strong&gt;.</source>
-      <translation>Vëri pjesës %1MiB &lt;strong&gt;%2&lt;/strong&gt; parametrin &lt;strong&gt;%3&lt;/strong&gt;.</translation>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="88"/>
+      <source>Set flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition to &lt;strong&gt;%3&lt;/strong&gt;</source>
+      <comment>@info</comment>
+      <translation>Parametrat në pjesën %1MiB &lt;strong&gt;%2&lt;/strong&gt;vëri si &lt;strong&gt;%3&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="96"/>
-      <source>Flag new partition as &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>Vëri pjesës së re parametrin &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="94"/>
+      <source>Set flags on new partition to &lt;strong&gt;%1&lt;/strong&gt;</source>
+      <comment>@info</comment>
+      <translation>Parametrat në pjesën e re vëri si &lt;strong&gt;%1&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="107"/>
-      <source>Clearing flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>Po hiqen parametrat në pjesën &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="105"/>
+      <source>Clearing flags on partition &lt;strong&gt;%1&lt;/strong&gt;…</source>
+      <comment>@status</comment>
+      <translation>Po hiqen parametrat në pjesën &lt;strong&gt;%1&lt;/strong&gt;…</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="113"/>
-      <source>Clearing flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-      <translation>Po hiqen parametrat në pjesën %1MiB &lt;strong&gt;%2&lt;/strong&gt;.</translation>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="112"/>
+      <source>Clearing flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition…</source>
+      <comment>@status</comment>
+      <translation>Po hiqen parametrat në pjesën %1MiB &lt;strong&gt;%2&lt;/strong&gt;…</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="118"/>
-      <source>Clearing flags on new partition.</source>
-      <translation>Po hiqen parametrat në pjesën e re.</translation>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="117"/>
+      <source>Clearing flags on new partition…</source>
+      <comment>@status</comment>
+      <translation>Po hiqen parametrat në pjesën e re…</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="123"/>
-      <source>Setting flags &lt;strong&gt;%2&lt;/strong&gt; on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>Po vihen parametrat &lt;strong&gt;%2&lt;/strong&gt; në pjesën &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="122"/>
+      <source>Setting flags &lt;strong&gt;%2&lt;/strong&gt; on partition &lt;strong&gt;%1&lt;/strong&gt;…</source>
+      <comment>@status</comment>
+      <translation>Po ujdisen parametrat &lt;strong&gt;%2&lt;/strong&gt; në pjesën &lt;strong&gt;%1&lt;/strong&gt;…</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="132"/>
-      <source>Setting flags &lt;strong&gt;%3&lt;/strong&gt; on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-      <translation>Po vihen parametrat &lt;strong&gt;%3&lt;/strong&gt; në pjesën %1MiB &lt;strong&gt;%2&lt;/strong&gt;.</translation>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="130"/>
+      <source>Setting flags &lt;strong&gt;%3&lt;/strong&gt; on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition…</source>
+      <comment>@status</comment>
+      <translation>Po ujdisen parametrat &lt;strong&gt;%3&lt;/strong&gt; në pjesën %1MiB &lt;strong&gt;%2&lt;/strong&gt;…</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="139"/>
-      <source>Setting flags &lt;strong&gt;%1&lt;/strong&gt; on new partition.</source>
-      <translation>Po vihen parametrat &lt;strong&gt;%1&lt;/strong&gt; në pjesën e re.</translation>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="136"/>
+      <source>Setting flags &lt;strong&gt;%1&lt;/strong&gt; on new partition…</source>
+      <comment>@status</comment>
+      <translation>Po ujdisen parametrat &lt;strong&gt;%1&lt;/strong&gt; në pjesën e re…</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="152"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="149"/>
       <source>The installer failed to set flags on partition %1.</source>
       <translation>Instaluesi s’arriti të vërë parametra në pjesën %1.</translation>
     </message>
@@ -3830,32 +3945,33 @@ Përfundim:
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="44"/>
-      <source>Setting password for user %1.</source>
-      <translation>Po caktohet fjalëkalim për përdoruesin %1.</translation>
+      <source>Setting password for user %1…</source>
+      <comment>@status</comment>
+      <translation>Po ujdiset fjalëkalim për përdoruesin %1. {1…?}</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="78"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="80"/>
       <source>Bad destination system path.</source>
       <translation>Shteg i gabuar destinacioni sistemi.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="79"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="81"/>
       <source>rootMountPoint is %1</source>
       <translation>rootMountPoint është %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="87"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="89"/>
       <source>Cannot disable root account.</source>
       <translation>S’mund të çaktivizohet llogaria rrënjë.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="98"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="107"/>
       <source>Cannot set password for user %1.</source>
       <translation>S’caktohet dot fjalëkalim për përdoruesin %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="88"/>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="99"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="90"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="108"/>
       <source>usermod terminated with error code %1.</source>
       <translation>usermod përfundoi me kod gabimi %1.</translation>
     </message>
@@ -3904,8 +4020,9 @@ Përfundim:
     <name>SetupGroupsJob</name>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="181"/>
-      <source>Preparing groups.</source>
-      <translation>Po përgatiten grupe.</translation>
+      <source>Preparing groups…</source>
+      <comment>@status</comment>
+      <translation>Po përgatiten grupe…</translation>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="193"/>
@@ -3923,8 +4040,9 @@ Përfundim:
     <name>SetupSudoJob</name>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="34"/>
-      <source>Configure &lt;pre&gt;sudo&lt;/pre&gt; users.</source>
-      <translation>Formësoni përdorues &lt;pre&gt;sudo&lt;/pre&gt;.</translation>
+      <source>Configuring &lt;pre&gt;sudo&lt;/pre&gt; users…</source>
+      <comment>@status</comment>
+      <translation>Po formësohen përdorues &lt;pre&gt;sudo&lt;/pre&gt;…</translation>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="70"/>
@@ -3941,8 +4059,9 @@ Përfundim:
     <name>ShellProcessJob</name>
     <message>
       <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="38"/>
-      <source>Shell Processes Job</source>
-      <translation>Akt Procesesh Shelli</translation>
+      <source>Running shell processes…</source>
+      <comment>@status</comment>
+      <translation>Po xhirohen procese shelli…</translation>
     </message>
   </context>
   <context>
@@ -3991,8 +4110,9 @@ Përfundim:
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="106"/>
-      <source>Sending installation feedback.</source>
-      <translation>Po dërgohen përshtypjet mbi instalimin.</translation>
+      <source>Sending installation feedback…</source>
+      <comment>@status</comment>
+      <translation>Po dërgohen përshtypjet mbi instalimin…</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="124"/>
@@ -4014,8 +4134,9 @@ Përfundim:
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="198"/>
-      <source>Configuring KDE user feedback.</source>
-      <translation>Formësim përshtypjesh nga përdorues të KDE-së.</translation>
+      <source>Configuring KDE user feedback…</source>
+      <comment>@status</comment>
+      <translation>Po formësohen përshtypje përdoruesi KDE…</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="220"/>
@@ -4039,12 +4160,13 @@ Përfundim:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="135"/>
       <source>Machine feedback</source>
-      <translation>Hollësi nga makina</translation>
+      <translation>Hollësi dhënë nga makina</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="141"/>
-      <source>Configuring machine feedback.</source>
-      <translation>Po formësohet moduli i hollësive nga makina.</translation>
+      <source>Configuring machine feedback…</source>
+      <comment>@status</comment>
+      <translation>Po formësohet hollësi dhënë nga makina…</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="164"/>
@@ -4106,6 +4228,7 @@ Përfundim:
     <message>
       <location filename="../src/modules/tracking/TrackingViewStep.cpp" line="49"/>
       <source>Feedback</source>
+      <comment>@title</comment>
       <translation>Përshtypje</translation>
     </message>
   </context>
@@ -4113,8 +4236,9 @@ Përfundim:
     <name>UmountJob</name>
     <message>
       <location filename="../src/modules/umount/UmountJob.cpp" line="39"/>
-      <source>Unmount file systems.</source>
-      <translation>Çmontoni sisteme kartelash.</translation>
+      <source>Unmounting file systems…</source>
+      <comment>@status</comment>
+      <translation>Po çmontohen sisteme kartelash…</translation>
     </message>
     <message>
       <location filename="../src/modules/umount/UmountJob.cpp" line="123"/>
@@ -4273,11 +4397,6 @@ Përfundim:
       <translation>Shënime hedhjesh në &amp;qarkullim</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="212"/>
-      <source>%1 support</source>
-      <translation>Asistencë %1</translation>
-    </message>
-    <message>
       <location filename="../src/calamares/DebugWindow.cpp" line="235"/>
       <source>About %1 Setup</source>
       <comment>@title</comment>
@@ -4289,12 +4408,19 @@ Përfundim:
       <comment>@title</comment>
       <translation>Mbi Instaluesin %1</translation>
     </message>
+    <message>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="212"/>
+      <source>%1 Support</source>
+      <comment>@action</comment>
+      <translation>Asistencë %1</translation>
+    </message>
   </context>
   <context>
     <name>WelcomeQmlViewStep</name>
     <message>
       <location filename="../src/modules/welcomeq/WelcomeQmlViewStep.cpp" line="40"/>
       <source>Welcome</source>
+      <comment>@title</comment>
       <translation>Mirë se vini</translation>
     </message>
   </context>
@@ -4303,6 +4429,7 @@ Përfundim:
     <message>
       <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="46"/>
       <source>Welcome</source>
+      <comment>@title</comment>
       <translation>Mirë se vini</translation>
     </message>
   </context>
@@ -4310,13 +4437,14 @@ Përfundim:
     <name>ZfsJob</name>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="102"/>
-      <source>Create ZFS pools and datasets</source>
-      <translation>Krijoni pool-e dhe grupe të dhënash ZFS</translation>
+      <source>Creating ZFS pools and datasets…</source>
+      <comment>@status</comment>
+      <translation>Po krijohen pool-e dhe grupe të dhënash ZFS…</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="162"/>
       <source>Failed to create zpool on </source>
-      <translation>S’u arrit të krijohej zpool në</translation>
+      <translation>S’u arrit të krijohej zpool në </translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="180"/>
@@ -4326,7 +4454,7 @@ Përfundim:
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="181"/>
       <source>No partitions are available for ZFS.</source>
-      <translation>S’ka pjesë të passhme për ZFS</translation>
+      <translation>S’ka pjesë të passhme për ZFS.</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>
@@ -4759,19 +4887,9 @@ Përfundim:
       <translation>Si quheni?</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="63"/>
-      <source>Your Full Name</source>
-      <translation>Emri Juaj i Plotë</translation>
-    </message>
-    <message>
       <location filename="../src/modules/usersq/usersq.qml" line="80"/>
       <source>What name do you want to use to log in?</source>
       <translation>Ç’emër doni të përdorni për t’u futur?</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="87"/>
-      <source>Login Name</source>
-      <translation>Emër Hyrjeje</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="116"/>
@@ -4794,11 +4912,6 @@ Përfundim:
       <translation>Cili është emri i këtij kompjuteri?</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="153"/>
-      <source>Computer Name</source>
-      <translation>Emër Kompjuteri</translation>
-    </message>
-    <message>
       <location filename="../src/modules/usersq/usersq.qml" line="180"/>
       <source>This name will be used if you make the computer visible to others on a network.</source>
       <translation>Ky emër do të përdoret nëse e bëni kompjuterin të dukshëm për të tjerët në një rrjet.</translation>
@@ -4819,14 +4932,19 @@ Përfundim:
       <translation>Fjalëkalim</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="238"/>
-      <source>Repeat Password</source>
-      <translation>Rijepeni Fjalëkalimin</translation>
-    </message>
-    <message>
       <location filename="../src/modules/usersq/usersq.qml" line="265"/>
       <source>Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.</source>
       <translation>Jepeni të njëjtin fjalëkalim dy herë, që të kontrollohet për gabime shkrimi. Një fjalëkalim i mirë do të përmbante një përzierje shkronjash, numrash dhe shenjash pikësimi, do të duhej të ishte të paktën tetë shenja i gjatë dhe do të duhej të ndryshohej periodikisht.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="328"/>
+      <source>Root password</source>
+      <translation>Fjalëkalim rrënje</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="346"/>
+      <source>Repeat root password</source>
+      <translation>Rijepni fjalëkalim rrënje</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="410"/>
@@ -4841,12 +4959,32 @@ Përfundim:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="402"/>
       <source>Log in automatically without asking for the password</source>
-      <translation>Kryej hyrje vetvetiu, pa kërkuar fjalëkalimin.</translation>
+      <translation>Kryej hyrje vetvetiu, pa kërkuar fjalëkalimin</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="63"/>
+      <source>Your full name</source>
+      <translation>Emri juaj i plotë</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="87"/>
+      <source>Login name</source>
+      <translation>Emër hyrjeje</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="153"/>
+      <source>Computer name</source>
+      <translation>Emër kompjuteri</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="193"/>
       <source>Only letters, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
       <translation>Lejohen vetëm shkronja, numra, nënvijë dhe vijë ndarëse. minimumi dy shenja.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="238"/>
+      <source>Repeat password</source>
+      <translation>Rijepeni fjalëkalimin</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="297"/>
@@ -4861,17 +4999,7 @@ Përfundim:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="318"/>
       <source>Choose a root password to keep your account safe.</source>
-      <translation>Që ta mbani llogarinë tuaj të parrezik, zgjidhni një fjalëkalim rrënje </translation>
-    </message>
-    <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="328"/>
-      <source>Root Password</source>
-      <translation>Fjalëkalim Rrënje</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="346"/>
-      <source>Repeat Root Password</source>
-      <translation>Përsëritni Fjalëkalim Rrënje</translation>
+      <translation>Që ta mbani llogarinë tuaj të parrezik, zgjidhni një fjalëkalim rrënje.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="372"/>
@@ -4892,19 +5020,9 @@ Përfundim:
       <translation>Si quheni?</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq-qt6.qml" line="62"/>
-      <source>Your Full Name</source>
-      <translation>Emri Juaj i Plotë</translation>
-    </message>
-    <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="79"/>
       <source>What name do you want to use to log in?</source>
       <translation>Ç’emër doni të përdorni për t’u futur?</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/usersq/usersq-qt6.qml" line="86"/>
-      <source>Login Name</source>
-      <translation>Emër Hyrjeje</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="115"/>
@@ -4927,9 +5045,19 @@ Përfundim:
       <translation>Cili është emri i këtij kompjuteri?</translation>
     </message>
     <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="62"/>
+      <source>Your full name</source>
+      <translation>Emri juaj i plotë</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="86"/>
+      <source>Login name</source>
+      <translation>Emër hyrjeje</translation>
+    </message>
+    <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="152"/>
-      <source>Computer Name</source>
-      <translation>Emër Kompjuteri</translation>
+      <source>Computer name</source>
+      <translation>Emër kompjuteri</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="179"/>
@@ -4958,8 +5086,18 @@ Përfundim:
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="237"/>
-      <source>Repeat Password</source>
-      <translation>Rijepeni Fjalëkalimin</translation>
+      <source>Repeat password</source>
+      <translation>Rijepeni fjalëkalimin</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="327"/>
+      <source>Root password</source>
+      <translation>Fjalëkalim rrënje</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="345"/>
+      <source>Repeat root password</source>
+      <translation>Rijepni fjalëkalim rrënje</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="264"/>
@@ -4979,17 +5117,7 @@ Përfundim:
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="317"/>
       <source>Choose a root password to keep your account safe.</source>
-      <translation>Që ta mbani llogarinë tuaj të parrezik, zgjidhni një fjalëkalim rrënje </translation>
-    </message>
-    <message>
-      <location filename="../src/modules/usersq/usersq-qt6.qml" line="327"/>
-      <source>Root Password</source>
-      <translation>Fjalëkalim Rrënje</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/usersq/usersq-qt6.qml" line="345"/>
-      <source>Repeat Root Password</source>
-      <translation>Përsëritni Fjalëkalim Rrënje</translation>
+      <translation>Që ta mbani llogarinë tuaj të parrezik, zgjidhni një fjalëkalim rrënje.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="371"/>
@@ -4999,7 +5127,7 @@ Përfundim:
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="401"/>
       <source>Log in automatically without asking for the password</source>
-      <translation>Kryej hyrje vetvetiu, pa kërkuar fjalëkalimin.</translation>
+      <translation>Kryej hyrje vetvetiu, pa kërkuar fjalëkalimin</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="409"/>
@@ -5028,13 +5156,13 @@ Përfundim:
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="80"/>
-      <source>Known issues</source>
-      <translation>Probleme të ditura</translation>
+      <source>Known Issues</source>
+      <translation>Probleme të Ditura</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="91"/>
-      <source>Release notes</source>
-      <translation>Shënime hedhjeje në qarkullim</translation>
+      <source>Release Notes</source>
+      <translation>Shënime Hedhjeje Në Qarkullim</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="103"/>
@@ -5058,13 +5186,13 @@ Përfundim:
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq-qt6.qml" line="80"/>
-      <source>Known issues</source>
-      <translation>Probleme të ditura</translation>
+      <source>Known Issues</source>
+      <translation>Probleme të Ditura</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq-qt6.qml" line="91"/>
-      <source>Release notes</source>
-      <translation>Shënime hedhjeje në qarkullim</translation>
+      <source>Release Notes</source>
+      <translation>Shënime Hedhjeje Në Qarkullim</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq-qt6.qml" line="103"/>

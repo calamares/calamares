@@ -29,8 +29,9 @@
     <name>AutoMountManagementJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/AutoMountManagementJob.cpp" line="22"/>
-      <source>Manage auto-mount settings</source>
-      <translation>Управление на настройките за автоматично монтиране</translation>
+      <source>Managing auto-mount settings…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -56,21 +57,25 @@
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="60"/>
       <source>Master Boot Record of %1</source>
+      <comment>@info</comment>
       <translation>Сектор за начално зареждане на %1</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="93"/>
       <source>Boot Partition</source>
+      <comment>@info</comment>
       <translation>Дял за начално зареждане</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="100"/>
       <source>System Partition</source>
+      <comment>@info</comment>
       <translation>Системен дял</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="131"/>
       <source>Do not install a boot loader</source>
+      <comment>@label</comment>
       <translation>Не инсталирай програма за начално зареждане</translation>
     </message>
     <message>
@@ -165,19 +170,19 @@
   <context>
     <name>Calamares::ExecutionViewStep</name>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="76"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="77"/>
       <source>%p%</source>
       <comment>Progress percentage indicator: %p is where the number 0..100 is placed</comment>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="116"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="118"/>
       <source>Set Up</source>
       <comment>@label</comment>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="116"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="118"/>
       <source>Install</source>
       <comment>@label</comment>
       <translation>Инсталирай</translation>
@@ -633,18 +638,27 @@ The installer will quit and all changes will be lost.</source>
     <name>ChangeFilesystemLabelJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="34"/>
-      <source>Set filesystem label on %1.</source>
-      <translation>Задаване на етикета на файловата система на %1.</translation>
+      <source>Set filesystem label on %1</source>
+      <comment>@title</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="41"/>
-      <source>Set filesystem label &lt;strong&gt;%1&lt;/strong&gt; to partition &lt;strong&gt;%2&lt;/strong&gt;.</source>
-      <translation>Задаване на етикет на файлова система &lt;strong&gt;%1 &lt;/strong&gt; в дял &lt;strong&gt;%2 &lt;/strong&gt;.</translation>
+      <source>Set filesystem label &lt;strong&gt;%1&lt;/strong&gt; to partition &lt;strong&gt;%2&lt;/strong&gt;</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="71"/>
-      <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="83"/>
+      <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="50"/>
+      <source>Setting filesystem label &lt;strong&gt;%1&lt;/strong&gt; to partition &lt;strong&gt;%2&lt;/strong&gt;…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="72"/>
+      <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="84"/>
       <source>The installer failed to update partition table on disk '%1'.</source>
+      <comment>@info</comment>
       <translation>Инсталатора не успя да актуализира таблица на дяловете на диск '%1'.</translation>
     </message>
   </context>
@@ -659,8 +673,19 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>ChoicePage</name>
     <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1659"/>
+      <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
+      <translation>&lt;strong&gt;Самостоятелно поделяне&lt;/strong&gt;&lt;br/&gt;Можете да създадете или преоразмерите дяловете сами.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1035"/>
+      <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
+      <translation>&lt;strong&gt;Изберете дял за смаляване, после влачете долната лента за преоразмеряване&lt;/strong&gt;</translation>
+    </message>
+    <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="137"/>
       <source>Select storage de&amp;vice:</source>
+      <comment>@label</comment>
       <translation>Изберете ус&amp;тройство за съхранение:</translation>
     </message>
     <message>
@@ -669,56 +694,49 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1085"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1138"/>
       <source>Current:</source>
+      <comment>@label</comment>
       <translation>Сегашен:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="139"/>
       <source>After:</source>
+      <comment>@label</comment>
       <translation>След:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1659"/>
-      <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
-      <translation>&lt;strong&gt;Самостоятелно поделяне&lt;/strong&gt;&lt;br/&gt;Можете да създадете или преоразмерите дяловете сами.</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="896"/>
-      <source>Reuse %1 as home partition for %2.</source>
-      <translation>Използване на %1 като домашен дял за %2</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1035"/>
-      <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
-      <translation>&lt;strong&gt;Изберете дял за смаляване, после влачете долната лента за преоразмеряване&lt;/strong&gt;</translation>
+      <source>Reuse %1 as home partition for %2</source>
+      <comment>@label</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1059"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
+      <comment>@info, %1 is partition name, %4 is product name</comment>
       <translation> %1 ще бъде намален до %2MiB и ще бъде създаден нов %3MiB дял за %4.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1687"/>
-      <source>Boot loader location:</source>
-      <translation>Локация на програмата за начално зареждане:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1129"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
+      <comment>@label</comment>
       <translation>&lt;strong&gt;Изберете дял за инсталацията&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1189"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
+      <comment>@info, %1 is product name</comment>
       <translation>EFI системен дял не е намерен. Моля, опитайте пак като използвате ръчно поделяне за %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1197"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
+      <comment>@info, %1 is partition path, %2 is product name</comment>
       <translation>EFI системен дял в %1 ще бъде използван за стартиране на %2.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1205"/>
       <source>EFI system partition:</source>
+      <comment>@label</comment>
       <translation>EFI системен дял:</translation>
     </message>
     <message>
@@ -773,37 +791,50 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1508"/>
       <source>This storage device has one of its partitions &lt;strong&gt;mounted&lt;/strong&gt;.</source>
+      <comment>@info</comment>
       <translation>Това устройство за съхранение има &lt;strong&gt; монтиран &lt;/strong&gt; дял.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1513"/>
       <source>This storage device is a part of an &lt;strong&gt;inactive RAID&lt;/strong&gt; device.</source>
+      <comment>@info</comment>
       <translation>Това устройство за съхранение е част от &lt;strong&gt; неактивно RAID &lt;/strong&gt; устройство.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1628"/>
-      <source>No Swap</source>
-      <translation>Без swap</translation>
+      <source>No swap</source>
+      <comment>@label</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1637"/>
-      <source>Reuse Swap</source>
-      <translation>Повторно използване на swap</translation>
+      <source>Reuse swap</source>
+      <comment>@label</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1640"/>
       <source>Swap (no Hibernate)</source>
+      <comment>@label</comment>
       <translation>Swap (без Хибернация)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1643"/>
       <source>Swap (with Hibernate)</source>
+      <comment>@label</comment>
       <translation>Swap (с Хибернация)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1646"/>
       <source>Swap to file</source>
+      <comment>@label</comment>
       <translation>Swap във файл</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1687"/>
+      <source>Bootloader location:</source>
+      <comment>@label</comment>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -836,12 +867,14 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="371"/>
       <source>Clear mounts for partitioning operations on %1</source>
+      <comment>@title</comment>
       <translation>Разчисти монтиранията за операциите на подялбата на %1</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="377"/>
-      <source>Clearing mounts for partitioning operations on %1.</source>
-      <translation>Разчистване на монтиранията за операциите на подялбата на %1</translation>
+      <source>Clearing mounts for partitioning operations on %1…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="396"/>
@@ -853,13 +886,10 @@ The installer will quit and all changes will be lost.</source>
     <name>ClearTempMountsJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="33"/>
-      <source>Clear all temporary mounts.</source>
-      <translation>Разчисти всички временни монтирания.</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="40"/>
-      <source>Clearing all temporary mounts.</source>
-      <translation>Разчистване на всички временни монтирания.</translation>
+      <source>Clearing all temporary mounts…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="70"/>
@@ -1008,42 +1038,43 @@ The installer will quit and all changes will be lost.</source>
       <translation>OK!</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/Config.cpp" line="111"/>
+      <location filename="../src/modules/packagechooser/Config.cpp" line="110"/>
       <source>Package Selection</source>
       <translation>Избор на пакети</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/Config.cpp" line="113"/>
+      <location filename="../src/modules/packagechooser/Config.cpp" line="112"/>
       <source>Please pick a product from the list. The selected product will be installed.</source>
       <translation>Моля, изберете продукт от списъка. Избраният продукт ще бъде инсталиран.</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/Config.cpp" line="242"/>
+      <location filename="../src/modules/packagechooser/Config.cpp" line="241"/>
       <source>Packages</source>
       <translation>Пакети</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/Config.cpp" line="248"/>
+      <location filename="../src/modules/packagechooser/Config.cpp" line="247"/>
       <source>Install option: &lt;strong&gt;%1&lt;/strong&gt;</source>
       <translation>Опция за инсталиране: &lt;strong&gt;%1&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/Config.cpp" line="248"/>
+      <location filename="../src/modules/packagechooser/Config.cpp" line="247"/>
       <source>None</source>
       <translation>Без</translation>
     </message>
     <message>
-      <location filename="../src/modules/summary/Config.cpp" line="94"/>
+      <location filename="../src/modules/summary/Config.cpp" line="35"/>
       <source>Summary</source>
+      <comment>@label</comment>
       <translation>Обобщение</translation>
     </message>
     <message>
-      <location filename="../src/modules/summary/Config.cpp" line="98"/>
+      <location filename="../src/modules/summary/Config.cpp" line="39"/>
       <source>This is an overview of what will happen once you start the setup procedure.</source>
       <translation>Това е преглед на това, което ще се случи, след като започнете процедурата за настройване.</translation>
     </message>
     <message>
-      <location filename="../src/modules/summary/Config.cpp" line="103"/>
+      <location filename="../src/modules/summary/Config.cpp" line="44"/>
       <source>This is an overview of what will happen once you start the install procedure.</source>
       <translation>Това е преглед на промените, които ще се извършат, след като започнете процедурата по инсталиране.</translation>
     </message>
@@ -1115,15 +1146,15 @@ The installer will quit and all changes will be lost.</source>
     </message>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="410"/>
-      <source>The system language will be set to %1</source>
+      <source>The system language will be set to %1.</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>Системният език ще бъде %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="417"/>
-      <source>The numbers and dates locale will be set to %1</source>
+      <location filename="../src/modules/locale/Config.cpp" line="416"/>
+      <source>The numbers and dates locale will be set to %1.</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>Форматът на цифрите и датата ще бъде %1.</translation>
     </message>
   </context>
   <context>
@@ -1200,31 +1231,37 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="67"/>
       <source>En&amp;crypt</source>
+      <comment>@action</comment>
       <translation>Ши&amp;фриране</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="195"/>
       <source>Logical</source>
+      <comment>@label</comment>
       <translation>Логическа</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="200"/>
       <source>Primary</source>
+      <comment>@label</comment>
       <translation>Главна</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="219"/>
       <source>GPT</source>
+      <comment>@label</comment>
       <translation>GPT</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="91"/>
       <source>Mountpoint already in use. Please select another one.</source>
+      <comment>@info</comment>
       <translation>Точката за монтиране вече се използва. Моля изберете друга.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="96"/>
       <source>Mountpoint must start with a &lt;tt&gt;/&lt;/tt&gt;.</source>
+      <comment>@info</comment>
       <translation>Точката на монтиране трябва да започва с &lt;tt&gt;/&lt;/tt&gt;.</translation>
     </message>
   </context>
@@ -1232,43 +1269,51 @@ The installer will quit and all changes will be lost.</source>
     <name>CreatePartitionJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="181"/>
-      <source>Create new %1MiB partition on %3 (%2) with entries %4.</source>
-      <translation>Създаване на нов %1МiB дял на %3 ( %2) с записи %4.</translation>
+      <source>Create new %1MiB partition on %3 (%2) with entries %4</source>
+      <comment>@title</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="189"/>
-      <source>Create new %1MiB partition on %3 (%2).</source>
-      <translation>Създаване на нов %1mib дял на %3 ( %2).</translation>
+      <source>Create new %1MiB partition on %3 (%2)</source>
+      <comment>@title</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="196"/>
-      <source>Create new %2MiB partition on %4 (%3) with file system %1.</source>
-      <translation>Създаване на нов %2mib дял на %4 ( %3) с файлова система %1.</translation>
+      <source>Create new %2MiB partition on %4 (%3) with file system %1</source>
+      <comment>@title</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="212"/>
-      <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2) with entries &lt;em&gt;%4&lt;/em&gt;.</source>
-      <translation>Създаване на нов &lt;strong&gt;%1MiB &lt;/strong&gt; дял на &lt;strong&gt;%3 &lt;/strong&gt; (%2) сзаписи &lt;em&gt;%4 &lt;/em&gt;.</translation>
+      <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2) with entries &lt;em&gt;%4&lt;/em&gt;</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="221"/>
-      <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2).</source>
-      <translation>Създаване на нов &lt;strong&gt;%1MiB &lt;/strong&gt; дял на &lt;strong&gt;%3 &lt;/strong&gt; (%2).</translation>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="222"/>
+      <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2)</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="228"/>
-      <source>Create new &lt;strong&gt;%2MiB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>Създаване на нов &lt;strong&gt;%2Mib &lt;/strong&gt; дял на &lt;strong&gt;%4 &lt;/strong&gt; (%3) сфайлова система &lt;strong&gt;%1 &lt;/strong&gt;.</translation>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="229"/>
+      <source>Create new &lt;strong&gt;%2MiB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="252"/>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="255"/>
-      <source>Creating new %1 partition on %2.</source>
-      <translation>Създаване на нов %1  дял върху %2.</translation>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="254"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="257"/>
+      <source>Creating new %1 partition on %2…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="272"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="274"/>
       <source>The installer failed to create partition on disk '%1'.</source>
+      <comment>@info</comment>
       <translation>Инсталатора не успя да създаде дял върху диск '%1'.</translation>
     </message>
   </context>
@@ -1304,18 +1349,16 @@ The installer will quit and all changes will be lost.</source>
     <name>CreatePartitionTableJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="41"/>
-      <source>Create new %1 partition table on %2.</source>
-      <translation>Създай нова %1 таблица на дяловете върху %2.</translation>
+      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="58"/>
+      <source>Creating new %1 partition table on %2…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="49"/>
-      <source>Create new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
-      <translation>Създай нова &lt;strong&gt;%1&lt;/strong&gt; таблица на дяловете върху &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="58"/>
-      <source>Creating new %1 partition table on %2.</source>
-      <translation>Създаване на нова %1 таблица на дяловете върху %2.</translation>
+      <source>Creating new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3)…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="86"/>
@@ -1332,29 +1375,33 @@ The installer will quit and all changes will be lost.</source>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="39"/>
-      <source>Create user &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>Създай потребител &lt;strong&gt;%1&lt;/strong&gt;.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/users/CreateUserJob.cpp" line="120"/>
-      <source>Preserving home directory</source>
-      <translation>Запазване на домашната директория</translation>
+      <source>Create user &lt;strong&gt;%1&lt;/strong&gt;</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="45"/>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="137"/>
-      <source>Creating user %1</source>
-      <translation>Създаване на потребител %1</translation>
+      <source>Creating user %1…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/users/CreateUserJob.cpp" line="120"/>
+      <source>Preserving home directory…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="145"/>
       <source>Configuring user %1</source>
+      <comment>@status</comment>
       <translation>Конфигуриране на потребител %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="153"/>
-      <source>Setting file permissions</source>
-      <translation>Задаване на разрешения за файлове</translation>
+      <source>Setting file permissions…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -1362,6 +1409,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/CreateVolumeGroupDialog.cpp" line="28"/>
       <source>Create Volume Group</source>
+      <comment>@title</comment>
       <translation>Създаване на група дялове</translation>
     </message>
   </context>
@@ -1369,18 +1417,16 @@ The installer will quit and all changes will be lost.</source>
     <name>CreateVolumeGroupJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="32"/>
-      <source>Create new volume group named %1.</source>
-      <translation>Създаване на нова група дялове с име %1.</translation>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="44"/>
+      <source>Creating new volume group named %1…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="38"/>
-      <source>Create new volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>Създаване на нова група дялове с име  &lt;strong&gt;%1 &lt;/strong&gt;.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="44"/>
-      <source>Creating new volume group named %1.</source>
-      <translation>Създаване на нова група дялове с име %1.</translation>
+      <source>Creating new volume group named &lt;strong&gt;%1&lt;/strong&gt;…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="51"/>
@@ -1393,13 +1439,15 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="26"/>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="38"/>
-      <source>Deactivate volume group named %1.</source>
-      <translation>Деактивиране на група дялове с име  %1.</translation>
+      <source>Deactivating volume group named %1…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="32"/>
-      <source>Deactivate volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>Деактивиране на група дялове с име  &lt;strong&gt;%1 &lt;/strong&gt;.</translation>
+      <source>Deactivating volume group named &lt;strong&gt;%1&lt;/strong&gt;…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="46"/>
@@ -1411,18 +1459,16 @@ The installer will quit and all changes will be lost.</source>
     <name>DeletePartitionJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="73"/>
-      <source>Delete partition %1.</source>
-      <translation>Изтрий дял %1.</translation>
+      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="85"/>
+      <source>Deleting partition %1…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="79"/>
-      <source>Delete partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>Изтриване на дял &lt;strong&gt;%1&lt;/strong&gt;.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="85"/>
-      <source>Deleting partition %1.</source>
-      <translation>Изтриване на дял %1.</translation>
+      <source>Deleting partition &lt;strong&gt;%1&lt;/strong&gt;…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="99"/>
@@ -1607,11 +1653,13 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="153"/>
       <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="168"/>
       <source>Please enter the same passphrase in both boxes.</source>
+      <comment>@tooltip</comment>
       <translation>Моля, въведете еднаква парола в двете полета.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="158"/>
-      <source>Password must be a minimum of %1 characters</source>
+      <source>Password must be a minimum of %1 characters.</source>
+      <comment>@tooltip</comment>
       <translation type="unfinished"/>
     </message>
   </context>
@@ -1633,57 +1681,68 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="179"/>
       <source>Set partition information</source>
+      <comment>@title</comment>
       <translation>Постави информация за дял</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="208"/>
       <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition with features &lt;em&gt;%3&lt;/em&gt;</source>
+      <comment>@info</comment>
       <translation>Инсталиране на %1 на &lt;strong&gt; нов &lt;/strong&gt; %2 системен дял с функции &lt;em&gt; %3 &lt;/em&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="216"/>
-      <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
-      <translation>Инсталирай %1 на &lt;strong&gt;нов&lt;/strong&gt; %2 системен дял.</translation>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="217"/>
+      <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="225"/>
-      <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt; and features &lt;em&gt;%3&lt;/em&gt;.</source>
-      <translation>Настройване на  &lt;strong&gt; нов &lt;/strong&gt; %2 дял с монтиране на точка &lt;strong&gt; %1 &lt;/strong&gt; и характеристики &lt;em&gt;%3 &lt;/em&gt;.</translation>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="226"/>
+      <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt; and features &lt;em&gt;%3&lt;/em&gt;</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="233"/>
-      <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;%3.</source>
-      <translation>Настройване на  &lt;strong&gt; нов &lt;/strong&gt; %2 дял с монтиране на точка &lt;strong&gt; %1 &lt;/strong&gt;%3.</translation>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="235"/>
+      <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;%3</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="247"/>
-      <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt; with features &lt;em&gt;%4&lt;/em&gt;.</source>
-      <translation>Инсталиране на %2 на %3 системен дял &lt;strong&gt; %1 &lt;/strong&gt; с функции &lt;em&gt; %4 &lt;/em&gt;.</translation>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="250"/>
+      <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt; with features &lt;em&gt;%4&lt;/em&gt;</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="266"/>
-      <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt; and features &lt;em&gt;%4&lt;/em&gt;.</source>
-      <translation>Настройване на %3 дял &lt;strong&gt;%1 &lt;/strong&gt; с точка на монтиране &lt;strong&gt;%2 &lt;/strong&gt;и функции &lt;em&gt;%4 &lt;/em&gt;.</translation>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="260"/>
+      <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="275"/>
-      <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;%4.</source>
-      <translation>Настройване на %3 дял &lt;strong&gt;%1 &lt;/strong&gt; с точка на монтиране &lt;strong&gt;%2 &lt;/strong&gt;%4.</translation>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="270"/>
+      <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt; and features &lt;em&gt;%4&lt;/em&gt;</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="256"/>
-      <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>Инсталирай %2 на %3 системен дял &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="280"/>
+      <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;%4…</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="290"/>
-      <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>Инсталиране на зареждач върху &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="296"/>
+      <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;…</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="299"/>
-      <source>Setting up mount points.</source>
-      <translation>Настройка на точките за монтиране.</translation>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="305"/>
+      <source>Setting up mount points…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -1752,24 +1811,27 @@ The installer will quit and all changes will be lost.</source>
     <name>FormatPartitionJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="39"/>
-      <source>Format partition %1 (file system: %2, size: %3 MiB) on %4.</source>
-      <translation>Форматиране на дял %1 (файлова система: %2, размер: %3 MiB) на %4.</translation>
+      <source>Format partition %1 (file system: %2, size: %3 MiB) on %4</source>
+      <comment>@title</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="49"/>
-      <source>Format &lt;strong&gt;%3MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;.</source>
-      <translation>Форматиране на &lt;strong&gt;%3MiB &lt;/strong&gt; дял &lt;strong&gt;%1 &lt;/strong&gt; с файлова система&lt;strong&gt;%2 &lt;/strong&gt;.</translation>
+      <source>Format &lt;strong&gt;%3MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="61"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="62"/>
       <source>%1 (%2)</source>
       <comment>partition label %1 (device path %2)</comment>
       <translation>%1 (%2)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="63"/>
-      <source>Formatting partition %1 with file system %2.</source>
-      <translation>Форматирай дял %1 с файлова система %2.</translation>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="64"/>
+      <source>Formatting partition %1 with file system %2…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="73"/>
@@ -2262,19 +2324,37 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>MachineIdJob</name>
     <message>
-      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="35"/>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="55"/>
       <source>Generate machine-id.</source>
       <translation>Генериране на machine-id.</translation>
     </message>
     <message>
-      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="51"/>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="71"/>
       <source>Configuration Error</source>
       <translation>Грешка в конфигурацията</translation>
     </message>
     <message>
-      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="52"/>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="72"/>
       <source>No root mount point is set for MachineId.</source>
       <translation>Не е зададена точка за монтиране на root за MachineID.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/machineid/Workers.cpp" line="63"/>
+      <location filename="../src/modules/machineid/Workers.cpp" line="71"/>
+      <location filename="../src/modules/machineid/Workers.cpp" line="75"/>
+      <location filename="../src/modules/machineid/Workers.cpp" line="92"/>
+      <source>File not found</source>
+      <translation>Файлът не е намерен</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/machineid/Workers.cpp" line="64"/>
+      <source>Path &lt;pre&gt;%1&lt;/pre&gt; must be an absolute path.</source>
+      <translation>Пътят &lt;pre&gt;%1 &lt;/pre&gt; трябва да бъде абсолютен път.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/machineid/Workers.cpp" line="93"/>
+      <source>Could not create new random file &lt;pre&gt;%1&lt;/pre&gt;.</source>
+      <translation>Неуспех при създаването на нов случаен файл &lt;pre&gt;%1 &lt;/pre&gt;.</translation>
     </message>
   </context>
   <context>
@@ -2803,11 +2883,6 @@ The installer will quit and all changes will be lost.</source>
       <source>Unknown error</source>
       <translation>Неизвестна грешка</translation>
     </message>
-    <message>
-      <location filename="../src/modules/users/Config.cpp" line="840"/>
-      <source>Password is empty</source>
-      <translation>Паролата е празна</translation>
-    </message>
   </context>
   <context>
     <name>PackageChooserPage</name>
@@ -2864,7 +2939,8 @@ The installer will quit and all changes will be lost.</source>
     </message>
     <message>
       <location filename="../src/modules/keyboard/KeyboardPage.ui" line="153"/>
-      <source>Keyboard switch:</source>
+      <source>Switch Keyboard:</source>
+      <extracomment>shortcut for switching between keyboard layouts</extracomment>
       <translation type="unfinished"/>
     </message>
   </context>
@@ -2970,31 +3046,37 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="182"/>
       <source>Home</source>
+      <comment>@label</comment>
       <translation>Домашен</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="186"/>
       <source>Boot</source>
+      <comment>@label</comment>
       <translation>Зареждане</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="191"/>
       <source>EFI system</source>
+      <comment>@label</comment>
       <translation>EFI система</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="195"/>
       <source>Swap</source>
+      <comment>@label</comment>
       <translation>Swap</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="199"/>
       <source>New partition for %1</source>
+      <comment>@label</comment>
       <translation>Нов дял за %1</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="203"/>
       <source>New partition</source>
+      <comment>@label</comment>
       <translation>Нов дял</translation>
     </message>
     <message>
@@ -3010,37 +3092,44 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="157"/>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="201"/>
       <source>Free Space</source>
+      <comment>@title</comment>
       <translation>Свободно пространство</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="161"/>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="205"/>
-      <source>New partition</source>
-      <translation>Нов дял</translation>
+      <source>New Partition</source>
+      <comment>@title</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="307"/>
       <source>Name</source>
+      <comment>@title</comment>
       <translation>Име</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="309"/>
       <source>File System</source>
+      <comment>@title</comment>
       <translation>Файлова система</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="311"/>
       <source>File System Label</source>
+      <comment>@title</comment>
       <translation>Етикет на файловата система</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="313"/>
       <source>Mount Point</source>
+      <comment>@title</comment>
       <translation>Точка на монтиране</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="315"/>
       <source>Size</source>
+      <comment>@title</comment>
       <translation>Размер</translation>
     </message>
   </context>
@@ -3120,16 +3209,6 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>PartitionViewStep</name>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="56"/>
-      <source>Gathering system information...</source>
-      <translation>Събиране на системна информация...</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="107"/>
-      <source>Partitions</source>
-      <translation>Дялове</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="250"/>
       <source>Unsafe partition actions are enabled.</source>
       <translation>Активирани са опасни действия с дялове.</translation>
@@ -3143,16 +3222,6 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="256"/>
       <source>No partitions will be changed.</source>
       <translation>Дяловете няма да бъдат променени.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="296"/>
-      <source>Current:</source>
-      <translation>Сегашен:</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="314"/>
-      <source>After:</source>
-      <translation>След:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="542"/>
@@ -3206,6 +3275,30 @@ The installer will quit and all changes will be lost.</source>
       <translation>Файловата система трябва да има флаг &lt;strong&gt;%1 &lt;/strong&gt;.</translation>
     </message>
     <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="56"/>
+      <source>Gathering system information…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="107"/>
+      <source>Partitions</source>
+      <comment>@label</comment>
+      <translation>Дялове</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="296"/>
+      <source>Current:</source>
+      <comment>@label</comment>
+      <translation>Сегашен:</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="314"/>
+      <source>After:</source>
+      <comment>@label</comment>
+      <translation>След:</translation>
+    </message>
+    <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="566"/>
       <source>You can continue without setting up an EFI system partition but your system may fail to start.</source>
       <translation>Можете да продължите, без да настроите EFI системен дял, но вашата системаможе да не успее да се стартира.</translation>
@@ -3250,8 +3343,9 @@ The installer will quit and all changes will be lost.</source>
     <name>PlasmaLnfJob</name>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="33"/>
-      <source>Plasma Look-and-Feel Job</source>
-      <translation>Оформление и външен вид в стил Plasma</translation>
+      <source>Applying Plasma Look-and-Feel…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="57"/>
@@ -3278,6 +3372,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfViewStep.cpp" line="43"/>
       <source>Look-and-Feel</source>
+      <comment>@label</comment>
       <translation>Външен вид</translation>
     </message>
   </context>
@@ -3285,8 +3380,9 @@ The installer will quit and all changes will be lost.</source>
     <name>PreserveFiles</name>
     <message>
       <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="56"/>
-      <source>Saving files for later ...</source>
-      <translation>Запазване на файловете за по -късно...</translation>
+      <source>Saving files for later…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="64"/>
@@ -3382,26 +3478,12 @@ Output:
       <translation>По подразбиране</translation>
     </message>
     <message>
-      <location filename="../src/modules/machineid/Workers.cpp" line="64"/>
-      <location filename="../src/modules/machineid/Workers.cpp" line="72"/>
-      <location filename="../src/modules/machineid/Workers.cpp" line="76"/>
-      <location filename="../src/modules/machineid/Workers.cpp" line="93"/>
-      <source>File not found</source>
-      <translation>Файлът не е намерен</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/machineid/Workers.cpp" line="65"/>
-      <source>Path &lt;pre&gt;%1&lt;/pre&gt; must be an absolute path.</source>
-      <translation>Пътят &lt;pre&gt;%1 &lt;/pre&gt; трябва да бъде абсолютен път.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="81"/>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="101"/>
       <source>Directory not found</source>
       <translation>Директорията не е намерена</translation>
     </message>
     <message>
-      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="82"/>
-      <location filename="../src/modules/machineid/Workers.cpp" line="94"/>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="102"/>
       <source>Could not create new random file &lt;pre&gt;%1&lt;/pre&gt;.</source>
       <translation>Неуспех при създаването на нов случаен файл &lt;pre&gt;%1 &lt;/pre&gt;.</translation>
     </message>
@@ -3419,11 +3501,6 @@ Output:
       <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="44"/>
       <source>(no mount point)</source>
       <translation>(без точка на монтиране)</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="39"/>
-      <source>Unpartitioned space or unknown partition table</source>
-      <translation>Неразделено пространство или неизвестна таблица на дяловете</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/partition/FileSystem.cpp" line="33"/>
@@ -3449,6 +3526,12 @@ Output:
       <comment>@partition info</comment>
       <translation>swap</translation>
     </message>
+    <message>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="39"/>
+      <source>Unpartitioned space or unknown partition table</source>
+      <comment>@info</comment>
+      <translation>Неразделено пространство или неизвестна таблица на дяловете</translation>
+    </message>
   </context>
   <context>
     <name>Recommended</name>
@@ -3464,8 +3547,9 @@ Output:
     <name>RemoveUserJob</name>
     <message>
       <location filename="../src/modules/removeuser/RemoveUserJob.cpp" line="32"/>
-      <source>Remove live user from target system</source>
-      <translation>Премахване на потребители на Live средата от целевата система</translation>
+      <source>Removing live user from the target system…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -3473,13 +3557,15 @@ Output:
     <message>
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="26"/>
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="38"/>
-      <source>Remove Volume Group named %1.</source>
-      <translation>Премахване на група дялове %1.</translation>
+      <source>Removing Volume Group named %1…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="32"/>
-      <source>Remove Volume Group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>Премахване на група дялове &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+      <source>Removing Volume Group named &lt;strong&gt;%1&lt;/strong&gt;…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="46"/>
@@ -3593,22 +3679,25 @@ Output:
   <context>
     <name>ResizePartitionJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="41"/>
-      <source>Resize partition %1.</source>
-      <translation>Преоразмери дял %1.</translation>
+      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="39"/>
+      <source>Resize partition %1</source>
+      <comment>@title</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="47"/>
-      <source>Resize &lt;strong&gt;%2MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%3MiB&lt;/strong&gt;.</source>
-      <translation>Преоразмеряване на &lt;strong&gt;%2MiB &lt;/strong&gt; дял &lt;strong&gt;%1 &lt;/strong&gt; до&lt;strong&gt;%3MiB &lt;/strong&gt;.</translation>
+      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="45"/>
+      <source>Resize &lt;strong&gt;%2MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%3MiB&lt;/strong&gt;</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="57"/>
-      <source>Resizing %2MiB partition %1 to %3MiB.</source>
-      <translation>Преоразмеряване на %2MiB дял %1 до %3MiB.</translation>
+      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="54"/>
+      <source>Resizing %2MiB partition %1 to %3MiB…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="74"/>
+      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="70"/>
       <source>The installer failed to resize partition %1 on disk '%2'.</source>
       <translation>Инсталатора не успя да преоразмери дял %1 върху диск '%2'.</translation>
     </message>
@@ -3618,6 +3707,7 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/ResizeVolumeGroupDialog.cpp" line="30"/>
       <source>Resize Volume Group</source>
+      <comment>@title</comment>
       <translation>Преоразмеряване на група дялове</translation>
     </message>
   </context>
@@ -3625,17 +3715,24 @@ Output:
     <name>ResizeVolumeGroupJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="28"/>
-      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="46"/>
-      <source>Resize volume group named %1 from %2 to %3.</source>
-      <translation>Преоразмеряване на група дялове %1 от %2 на %3.</translation>
+      <source>Resize volume group named %1 from %2 to %3</source>
+      <comment>@title</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="37"/>
-      <source>Resize volume group named &lt;strong&gt;%1&lt;/strong&gt; from &lt;strong&gt;%2&lt;/strong&gt; to &lt;strong&gt;%3&lt;/strong&gt;.</source>
-      <translation>Преоразмеряване на група дялове &lt;strong&gt;%1&lt;/strong&gt; от&lt;strong&gt;%2&lt;/strong&gt; на&lt;strong&gt;%3&lt;/strong&gt;.</translation>
+      <source>Resize volume group named &lt;strong&gt;%1&lt;/strong&gt; from &lt;strong&gt;%2&lt;/strong&gt; to &lt;strong&gt;%3&lt;/strong&gt;</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="57"/>
+      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="47"/>
+      <source>Resizing volume group named %1 from %2 to %3…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="58"/>
       <source>The installer failed to resize a volume group named '%1'.</source>
       <translation>Инсталаторът не успя да преоразмери група дялове "%1".</translation>
     </message>
@@ -3652,13 +3749,15 @@ Output:
     <name>ScanningDialog</name>
     <message>
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="68"/>
-      <source>Scanning storage devices...</source>
-      <translation>Сканиране на устройствата за съхранение</translation>
+      <source>Scanning storage devices…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="68"/>
-      <source>Partitioning</source>
-      <translation>Разделяне</translation>
+      <source>Partitioning…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -3675,8 +3774,9 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="48"/>
-      <source>Setting hostname %1.</source>
-      <translation>Задаване името на хоста %1</translation>
+      <source>Setting hostname %1…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="121"/>
@@ -3740,81 +3840,96 @@ Output:
     <name>SetPartFlagsJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="44"/>
-      <source>Set flags on partition %1.</source>
-      <translation>Задай флагове на дял %1.</translation>
+      <source>Set flags on partition %1</source>
+      <comment>@title</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="50"/>
-      <source>Set flags on %1MiB %2 partition.</source>
-      <translation>Задаване на флагове на %1MiB %2 дял.</translation>
+      <source>Set flags on %1MiB %2 partition</source>
+      <comment>@title</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="54"/>
-      <source>Set flags on new partition.</source>
-      <translation>Задай флагове на нов дял.</translation>
+      <source>Set flags on new partition</source>
+      <comment>@title</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="65"/>
-      <source>Clear flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>Изчисти флаговете на дял &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+      <source>Clear flags on partition &lt;strong&gt;%1&lt;/strong&gt;</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="71"/>
-      <source>Clear flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-      <translation>Изчистване на флагове на %1MiB &lt;strong&gt; %2 &lt;/strong&gt; дял.</translation>
+      <source>Clear flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="75"/>
-      <source>Clear flags on new partition.</source>
-      <translation>Изчисти флагове на нов дял.</translation>
+      <source>Clear flags on new partition</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="80"/>
-      <source>Flag partition &lt;strong&gt;%1&lt;/strong&gt; as &lt;strong&gt;%2&lt;/strong&gt;.</source>
-      <translation>Сложи флаг на дял &lt;strong&gt;%1&lt;/strong&gt; като &lt;strong&gt;%2&lt;/strong&gt;.</translation>
+      <source>Set flags on partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%2&lt;/strong&gt;</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="89"/>
-      <source>Flag %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition as &lt;strong&gt;%3&lt;/strong&gt;.</source>
-      <translation>Задаване на флаг на %1MiB &lt;strong&gt;%2&lt;/strong&gt; дял като &lt;strong&gt;%3&lt;/strong&gt;.</translation>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="88"/>
+      <source>Set flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition to &lt;strong&gt;%3&lt;/strong&gt;</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="96"/>
-      <source>Flag new partition as &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>Сложи флаг на новия дял като &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="94"/>
+      <source>Set flags on new partition to &lt;strong&gt;%1&lt;/strong&gt;</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="107"/>
-      <source>Clearing flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>Изчистване на флаговете на дял &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="105"/>
+      <source>Clearing flags on partition &lt;strong&gt;%1&lt;/strong&gt;…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="113"/>
-      <source>Clearing flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-      <translation>Изчистване на флагове на %1MiB &lt;strong&gt; %2 &lt;/strong&gt; дял.</translation>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="112"/>
+      <source>Clearing flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="118"/>
-      <source>Clearing flags on new partition.</source>
-      <translation>Изчистване на флаговете на новия дял.</translation>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="117"/>
+      <source>Clearing flags on new partition…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="123"/>
-      <source>Setting flags &lt;strong&gt;%2&lt;/strong&gt; on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>Задаване на флагове &lt;strong&gt;%2&lt;/strong&gt; на дял &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="122"/>
+      <source>Setting flags &lt;strong&gt;%2&lt;/strong&gt; on partition &lt;strong&gt;%1&lt;/strong&gt;…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="132"/>
-      <source>Setting flags &lt;strong&gt;%3&lt;/strong&gt; on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-      <translation>Задаване на флагове &lt;strong&gt;%3 &lt;/strong&gt;  на %1MiB &lt;strong&gt;%2 &lt;/strong&gt; дял.</translation>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="130"/>
+      <source>Setting flags &lt;strong&gt;%3&lt;/strong&gt; on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="139"/>
-      <source>Setting flags &lt;strong&gt;%1&lt;/strong&gt; on new partition.</source>
-      <translation>Задаване на флагове &lt;strong&gt;%1&lt;/strong&gt; на новия дял.</translation>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="136"/>
+      <source>Setting flags &lt;strong&gt;%1&lt;/strong&gt; on new partition…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="152"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="149"/>
       <source>The installer failed to set flags on partition %1.</source>
       <translation>Инсталатора не успя да зададе флагове на дял %1.</translation>
     </message>
@@ -3828,32 +3943,33 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="44"/>
-      <source>Setting password for user %1.</source>
-      <translation>Задаване на парола за потребител %1</translation>
+      <source>Setting password for user %1…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="78"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="80"/>
       <source>Bad destination system path.</source>
       <translation>Лоша дестинация за системен път.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="79"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="81"/>
       <source>rootMountPoint is %1</source>
       <translation>rootMountPoint е %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="87"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="89"/>
       <source>Cannot disable root account.</source>
       <translation>Не може да деактивира root акаунтът.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="98"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="107"/>
       <source>Cannot set password for user %1.</source>
       <translation>Не може да се постави парола за потребител %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="88"/>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="99"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="90"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="108"/>
       <source>usermod terminated with error code %1.</source>
       <translation>usermod е прекратен с грешка %1.</translation>
     </message>
@@ -3902,8 +4018,9 @@ Output:
     <name>SetupGroupsJob</name>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="181"/>
-      <source>Preparing groups.</source>
-      <translation>Подготовка на групите.</translation>
+      <source>Preparing groups…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="193"/>
@@ -3921,8 +4038,9 @@ Output:
     <name>SetupSudoJob</name>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="34"/>
-      <source>Configure &lt;pre&gt;sudo&lt;/pre&gt; users.</source>
-      <translation>Конфигуриране на &lt;pre&gt; sudo &lt;/pre&gt; потребители.</translation>
+      <source>Configuring &lt;pre&gt;sudo&lt;/pre&gt; users…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="70"/>
@@ -3939,8 +4057,9 @@ Output:
     <name>ShellProcessJob</name>
     <message>
       <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="38"/>
-      <source>Shell Processes Job</source>
-      <translation>Процесна обработка от обвивката</translation>
+      <source>Running shell processes…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -3989,8 +4108,9 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="106"/>
-      <source>Sending installation feedback.</source>
-      <translation>Изпращане на обратна връзка за инсталирането.</translation>
+      <source>Sending installation feedback…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="124"/>
@@ -4012,8 +4132,9 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="198"/>
-      <source>Configuring KDE user feedback.</source>
-      <translation>Конфигуриране на потребителска обратна връзка.</translation>
+      <source>Configuring KDE user feedback…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="220"/>
@@ -4041,8 +4162,9 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="141"/>
-      <source>Configuring machine feedback.</source>
-      <translation>Конфигуриране на машинна обратна връзка.</translation>
+      <source>Configuring machine feedback…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="164"/>
@@ -4104,6 +4226,7 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingViewStep.cpp" line="49"/>
       <source>Feedback</source>
+      <comment>@title</comment>
       <translation>Обратна връзка</translation>
     </message>
   </context>
@@ -4111,8 +4234,9 @@ Output:
     <name>UmountJob</name>
     <message>
       <location filename="../src/modules/umount/UmountJob.cpp" line="39"/>
-      <source>Unmount file systems.</source>
-      <translation>Демонтиране на файловите системи.</translation>
+      <source>Unmounting file systems…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/umount/UmountJob.cpp" line="123"/>
@@ -4271,11 +4395,6 @@ Output:
       <translation>&amp;Бележки по изданието</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="212"/>
-      <source>%1 support</source>
-      <translation>%1 поддръжка</translation>
-    </message>
-    <message>
       <location filename="../src/calamares/DebugWindow.cpp" line="235"/>
       <source>About %1 Setup</source>
       <comment>@title</comment>
@@ -4287,12 +4406,19 @@ Output:
       <comment>@title</comment>
       <translation type="unfinished"/>
     </message>
+    <message>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="212"/>
+      <source>%1 Support</source>
+      <comment>@action</comment>
+      <translation type="unfinished"/>
+    </message>
   </context>
   <context>
     <name>WelcomeQmlViewStep</name>
     <message>
       <location filename="../src/modules/welcomeq/WelcomeQmlViewStep.cpp" line="40"/>
       <source>Welcome</source>
+      <comment>@title</comment>
       <translation>Добре дошли</translation>
     </message>
   </context>
@@ -4301,6 +4427,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="46"/>
       <source>Welcome</source>
+      <comment>@title</comment>
       <translation>Добре дошли</translation>
     </message>
   </context>
@@ -4308,8 +4435,9 @@ Output:
     <name>ZfsJob</name>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="102"/>
-      <source>Create ZFS pools and datasets</source>
-      <translation>Създаване на ZFS пулове и набори от данни</translation>
+      <source>Creating ZFS pools and datasets…</source>
+      <comment>@status</comment>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="162"/>
@@ -4753,19 +4881,9 @@ Output:
       <translation>Какво е вашето име?</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="63"/>
-      <source>Your Full Name</source>
-      <translation>Вашето пълно име</translation>
-    </message>
-    <message>
       <location filename="../src/modules/usersq/usersq.qml" line="80"/>
       <source>What name do you want to use to log in?</source>
       <translation>Какво име искате да използвате за влизане?</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="87"/>
-      <source>Login Name</source>
-      <translation>Име за вход</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="116"/>
@@ -4788,11 +4906,6 @@ Output:
       <translation>Какво е името на този компютър?</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="153"/>
-      <source>Computer Name</source>
-      <translation>Име на компютър:</translation>
-    </message>
-    <message>
       <location filename="../src/modules/usersq/usersq.qml" line="180"/>
       <source>This name will be used if you make the computer visible to others on a network.</source>
       <translation>Това име ще бъде използвано, ако направите компютъра видим за другите в мрежата.</translation>
@@ -4813,14 +4926,19 @@ Output:
       <translation>Парола</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="238"/>
-      <source>Repeat Password</source>
-      <translation>Повтаряне на паролата</translation>
-    </message>
-    <message>
       <location filename="../src/modules/usersq/usersq.qml" line="265"/>
       <source>Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.</source>
       <translation>Въведете една и съща парола два пъти, така че да може да бъде проверена за грешки във въвеждането.Добрата парола съдържа комбинация от букви, цифри и пунктуации. Трябва да е дълга поне осем знака и трябва да се променя периодично.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="328"/>
+      <source>Root password</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="346"/>
+      <source>Repeat root password</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="410"/>
@@ -4838,9 +4956,29 @@ Output:
       <translation>Автоматично влизане без изискване за парола</translation>
     </message>
     <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="63"/>
+      <source>Your full name</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="87"/>
+      <source>Login name</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="153"/>
+      <source>Computer name</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <location filename="../src/modules/usersq/usersq.qml" line="193"/>
       <source>Only letters, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
       <translation>Само букви, цифри, долна черта и тире са разрешени, минимуми от двазнака.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="238"/>
+      <source>Repeat password</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="297"/>
@@ -4856,16 +4994,6 @@ Output:
       <location filename="../src/modules/usersq/usersq.qml" line="318"/>
       <source>Choose a root password to keep your account safe.</source>
       <translation>Изберете парола за root, за да запазите акаунта си сигурен.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="328"/>
-      <source>Root Password</source>
-      <translation>Парола за root</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/usersq/usersq.qml" line="346"/>
-      <source>Repeat Root Password</source>
-      <translation>Повторете паролата за root</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="372"/>
@@ -4886,19 +5014,9 @@ Output:
       <translation>Какво е вашето име?</translation>
     </message>
     <message>
-      <location filename="../src/modules/usersq/usersq-qt6.qml" line="62"/>
-      <source>Your Full Name</source>
-      <translation>Вашето пълно име</translation>
-    </message>
-    <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="79"/>
       <source>What name do you want to use to log in?</source>
       <translation>Какво име искате да използвате за влизане?</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/usersq/usersq-qt6.qml" line="86"/>
-      <source>Login Name</source>
-      <translation>Име за вход</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="115"/>
@@ -4921,9 +5039,19 @@ Output:
       <translation>Какво е името на този компютър?</translation>
     </message>
     <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="62"/>
+      <source>Your full name</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="86"/>
+      <source>Login name</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="152"/>
-      <source>Computer Name</source>
-      <translation>Име на компютър:</translation>
+      <source>Computer name</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="179"/>
@@ -4952,8 +5080,18 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="237"/>
-      <source>Repeat Password</source>
-      <translation>Повтаряне на паролата</translation>
+      <source>Repeat password</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="327"/>
+      <source>Root password</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq-qt6.qml" line="345"/>
+      <source>Repeat root password</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="264"/>
@@ -4974,16 +5112,6 @@ Output:
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="317"/>
       <source>Choose a root password to keep your account safe.</source>
       <translation>Изберете парола за root, за да запазите акаунта си сигурен.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/usersq/usersq-qt6.qml" line="327"/>
-      <source>Root Password</source>
-      <translation>Парола за root</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/usersq/usersq-qt6.qml" line="345"/>
-      <source>Repeat Root Password</source>
-      <translation>Повторете паролата за root</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="371"/>
@@ -5022,13 +5150,13 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="80"/>
-      <source>Known issues</source>
-      <translation>Известни проблеми</translation>
+      <source>Known Issues</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="91"/>
-      <source>Release notes</source>
-      <translation>Бележки към изданието</translation>
+      <source>Release Notes</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="103"/>
@@ -5052,13 +5180,13 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq-qt6.qml" line="80"/>
-      <source>Known issues</source>
-      <translation>Известни проблеми</translation>
+      <source>Known Issues</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq-qt6.qml" line="91"/>
-      <source>Release notes</source>
-      <translation>Бележки към изданието</translation>
+      <source>Release Notes</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq-qt6.qml" line="103"/>
