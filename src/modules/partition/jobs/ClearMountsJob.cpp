@@ -196,12 +196,7 @@ getPVGroups( const QString& deviceName )
 
                 vgSet.insert( vgName );
             }
-// toList() was deprecated, but old-old versions don't support QStringList construction like this
-#if QT_VERSION < QT_VERSION_CHECK( 5, 15, 0 )
-            return vgSet.toList();
-#else
             return QStringList { vgSet.cbegin(), vgSet.cend() };
-#endif
         }
     }
     else

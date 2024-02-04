@@ -26,21 +26,9 @@
  * To avoid overly-many warnings related to the API change, introduce
  * Calamares-specific constants that pull from the correct enum.
  */
-constexpr static const auto SplitSkipEmptyParts =
-#if QT_VERSION < QT_VERSION_CHECK( 5, 14, 0 )
-    QString::SkipEmptyParts
-#else
-    Qt::SkipEmptyParts
-#endif
-    ;
+constexpr static const auto SplitSkipEmptyParts = Qt::SkipEmptyParts;
 
-constexpr static const auto SplitKeepEmptyParts =
-#if QT_VERSION < QT_VERSION_CHECK( 5, 14, 0 )
-    QString::KeepEmptyParts
-#else
-    Qt::KeepEmptyParts
-#endif
-    ;
+constexpr static const auto SplitKeepEmptyParts = Qt::KeepEmptyParts;
 
 namespace Calamares
 {

@@ -216,12 +216,6 @@ Manager::Private::checkHasInternet()
     // It's possible that access was switched off (see below, if the check
     // fails) so we want to turn it back on first. Otherwise all the
     // checks will fail **anyway**, defeating the point of the checks.
-#if ( QT_VERSION < QT_VERSION_CHECK( 5, 15, 0 ) )
-    if ( !m_hasInternet )
-    {
-        threadNAM->setNetworkAccessible( QNetworkAccessManager::Accessible );
-    }
-#endif
     if ( m_lastCheckedUrlIndex < 0 )
     {
         m_lastCheckedUrlIndex = 0;
@@ -244,17 +238,6 @@ Manager::Private::checkHasInternet()
         // going around more than once.
         attempts++;
     } while ( !m_hasInternet && ( attempts < m_hasInternetUrls.size() ) );
-
-// For earlier Qt versions (< 5.15.0), set the accessibility flag to
-// NotAccessible if synchronous ping has failed, so that any module
-// using Qt's networkAccessible method to determine whether or not
-// internet connection is actually available won't get confused.
-#if ( QT_VERSION < QT_VERSION_CHECK( 5, 15, 0 ) )
-    if ( !m_hasInternet )
-    {
-        threadNAM->setNetworkAccessible( QNetworkAccessManager::NotAccessible );
-    }
-#endif
 
     return m_hasInternet;
 }

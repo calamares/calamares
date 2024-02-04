@@ -54,9 +54,7 @@ SlideshowQML::SlideshowQML( QWidget* parent )
     m_qmlShow->engine()->addImportPath( Calamares::qmlModulesDir().absolutePath() );
 
     cDebug() << "QML import paths:" << Logger::DebugList( m_qmlShow->engine()->importPathList() );
-#if QT_VERSION >= QT_VERSION_CHECK( 5, 10, 0 )
     CALAMARES_RETRANSLATE( if ( m_qmlShow ) { m_qmlShow->engine()->retranslate(); } );
-#endif
 
     if ( Branding::instance()->slideshowAPI() == 2 )
     {

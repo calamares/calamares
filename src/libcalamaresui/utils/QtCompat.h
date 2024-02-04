@@ -8,10 +8,10 @@
 
 /**@file Handle compatibility and deprecations across Qt versions
  *
- * Since Calamares is supposed to work with Qt 5.9 or later, it covers a
- * lot of changes in the Qt API. Especially the later Qt 5.15 (last LTS)
- * versions deprecate a number of enum values and parts of the QWidgets
- * API. This file adjusts for that by introducing suitable aliases
+ * Since Calamares is supposed to work with Qt 5.15 or Qt 6 or later, it
+ * covers a lot of changes in the Qt API.
+ *
+ * This file adjusts for that by introducing suitable aliases
  * and workaround-functions.
  *
  * For a similar approach for QtCore, see libcalamares/utils/String.h
@@ -23,20 +23,8 @@
 #include <QPalette>
 
 /* Avoid warnings about QPalette changes */
-constexpr static const auto WindowBackground =
-#if QT_VERSION < QT_VERSION_CHECK( 5, 15, 0 )
-    QPalette::Background
-#else
-    QPalette::Window
-#endif
-    ;
+constexpr static const auto WindowBackground = QPalette::Window;
 
-constexpr static const auto WindowText =
-#if QT_VERSION < QT_VERSION_CHECK( 5, 15, 0 )
-    QPalette::Foreground
-#else
-    QPalette::WindowText
-#endif
-    ;
+constexpr static const auto WindowText = QPalette::WindowText;
 
 #endif

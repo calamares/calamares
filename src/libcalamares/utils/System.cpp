@@ -122,12 +122,8 @@ System::createTargetFile( const QString& path, const QByteArray& contents, Write
         return CreationResult( CreationResult::Code::AlreadyExists );
     }
 
-    QIODevice::OpenMode m =
-#if QT_VERSION >= QT_VERSION_CHECK( 5, 11, 0 )
-        // New flag from Qt 5.11, implies WriteOnly
-        ( mode == WriteMode::KeepExisting ? QIODevice::NewOnly : QIODevice::WriteOnly ) |
-#endif
-        QIODevice::WriteOnly | QIODevice::Truncate;
+    QIODevice::OpenMode m
+        = ( mode == WriteMode::KeepExisting ? QIODevice::NewOnly : QIODevice::WriteOnly ) | QIODevice::Truncate;
 
     if ( !f.open( m ) )
     {
