@@ -152,8 +152,8 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
     cDebug() << Logger::SubEntry << "- message:" << message;
     cDebug() << Logger::SubEntry << "- details:" << Logger::NoQuote << details;
 
-    QString heading
-        = Calamares::Settings::instance()->isSetupMode() ? tr( "Setup Failed", "@title" ) : tr( "Installation Failed", "@title" );
+    QString heading = Calamares::Settings::instance()->isSetupMode() ? tr( "Setup Failed", "@title" )
+                                                                     : tr( "Installation Failed", "@title" );
 
     ErrorDialog* errorDialog = new ErrorDialog();
     errorDialog->setWindowTitle( tr( "Error", "@title" ) );
@@ -183,7 +183,8 @@ ViewManager::onInitFailed( const QStringList& modules )
     // don't bother being precise about installer / setup wording.
     QString title( tr( "Calamares Initialization Failed", "@title" ) );
     QString description( tr( "%1 can not be installed. Calamares was unable to load all of the configured modules. "
-                             "This is a problem with the way Calamares is being used by the distribution.", "@info" ) );
+                             "This is a problem with the way Calamares is being used by the distribution.",
+                             "@info" ) );
     QString detailString;
 
     if ( modules.count() > 0 )
@@ -287,7 +288,16 @@ questionBox( QWidget* parent,
              const QString& button1 )
 {
 
-#if QT_VERSION >= QT_VERSION_CHECK( 6, 0, 0 )
+#if QT_VERSION < QT_VERSION_CHECK( 6, 0, 0 )
+    return QMessageBox::question( parent,
+                                  title,
+                                  question,
+                                  button0,
+                                  button1,
+                                  QString(),
+                                  0 /* default first button, i.e. confirm */,
+                                  1 /* escape is second button, i.e. cancel */ );
+#else
     QMessageBox mb( QMessageBox::Question, title, question, QMessageBox::StandardButton::NoButton, parent );
     const auto* const okButton = mb.addButton( button0, QMessageBox::AcceptRole );
     mb.addButton( button1, QMessageBox::RejectRole );
@@ -297,16 +307,6 @@ questionBox( QWidget* parent,
         return 0;
     }
     return 1;  // Cancel
-#else
-    return QMessageBox::question( parent,
-                                  title,
-                                  question,
-                                  button0,
-                                  button1,
-                                  QString(),
-                                  0 /* default first button, i.e. confirm */,
-                                  1 /* escape is second button, i.e. cancel */ );
-
 #endif
 }
 
@@ -329,16 +329,19 @@ ViewManager::next()
         // Depending on Calamares::Settings, we show an "are you sure" prompt or not.
         if ( settings->showPromptBeforeExecution() && stepIsExecute( m_steps, m_currentStep + 1 ) )
         {
-            QString title
-                = settings->isSetupMode() ? tr( "Continue with Setup?", "@title" ) : tr( "Continue with Installation?", "@title" );
+            QString title = settings->isSetupMode() ? tr( "Continue with Setup?", "@title" )
+                                                    : tr( "Continue with Installation?", "@title" );
             QString question = settings->isSetupMode()
                 ? tr( "The %1 setup program is about to make changes to your "
                       "disk in order to set up %2.<br/><strong>You will not be able "
-                      "to undo these changes.</strong>", "%1 is short product name, %2 is short product name with version" )
+                      "to undo these changes.</strong>",
+                      "%1 is short product name, %2 is short product name with version" )
                 : tr( "The %1 installer is about to make changes to your "
                       "disk in order to install %2.<br/><strong>You will not be able "
-                      "to undo these changes.</strong>", "%1 is short product name, %2 is short product name with version" );
-            QString confirm = settings->isSetupMode() ? tr( "&Set Up Now", "@button" ) : tr( "&Install Now", "@button" );
+                      "to undo these changes.</strong>",
+                      "%1 is short product name, %2 is short product name with version" );
+            QString confirm
+                = settings->isSetupMode() ? tr( "&Set Up Now", "@button" ) : tr( "&Install Now", "@button" );
 
             const auto* branding = Calamares::Branding::instance();
             int reply = questionBox( m_widget,

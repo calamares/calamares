@@ -65,7 +65,9 @@ variantToPyObject( const QVariant& variant )
         return bp::object( variant.toDouble() );
 
     case Calamares::CharVariantType:
-#if QT_VERSION > QT_VERSION_CHECK( 6, 0, 0 )
+#if QT_VERSION < QT_VERSION_CHECK( 6, 0, 0 )
+#else
+    // In Qt6, QChar is also available and different from CharVariantType
     case QMetaType::Type::QChar:
 #endif
     case Calamares::StringVariantType:
