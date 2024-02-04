@@ -111,10 +111,10 @@ private:
     QWidget* m_widget = nullptr;
     WaitingWidget* m_spinner = nullptr;
 
-#if QT_VERSION >= QT_VERSION_CHECK( 6, 0, 0 )
-    QWidget* m_qmlWidget = nullptr;  // Qt6: container for QQuickWindow
-#else
+#if QT_VERSION < QT_VERSION_CHECK( 6, 0, 0 )
     QQuickWidget* m_qmlWidget = nullptr;
+#else
+    QWidget* m_qmlWidget = nullptr;  // Qt6: container for QQuickWindow
 #endif
 
     QQmlEngine* m_qmlEngine = nullptr;  // Qt5: points to QuickWidget engine, Qt6: separate engine
