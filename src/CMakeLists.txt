@@ -14,8 +14,13 @@ include(CalamaresAddTranslations)
 add_subdirectory(libcalamares)
 add_subdirectory(libcalamaresui)
 
-# all things qml
-add_subdirectory(qml/calamares)
+if(WITH_QT6)
+  # all things qml
+  add_subdirectory(qml/calamares-qt6)
+else()
+  # all things qml
+  add_subdirectory(qml/calamares-qt5)
+endif()
 
 # application
 add_subdirectory(calamares)
