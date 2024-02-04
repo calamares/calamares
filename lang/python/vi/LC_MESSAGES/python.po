@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-13 20:13+0100\n"
+"POT-Creation-Date: 2024-01-14 21:40+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: th1nhhdk <th1nhhdk@tutanota.com>, 2021\n"
 "Language-Team: Vietnamese (https://app.transifex.com/calamares/teams/20061/vi/)\n"
@@ -26,15 +26,15 @@ msgstr ""
 msgid "Install bootloader."
 msgstr "Đang cài đặt bộ khởi động."
 
-#: src/modules/bootloader/main.py:644
+#: src/modules/bootloader/main.py:666
 msgid "Failed to install grub, no partitions defined in global storage"
 msgstr ""
 
-#: src/modules/bootloader/main.py:899
+#: src/modules/bootloader/main.py:926
 msgid "Bootloader installation error"
 msgstr "Lỗi cài đặt trình khởi động(bootloader)"
 
-#: src/modules/bootloader/main.py:900
+#: src/modules/bootloader/main.py:927
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
@@ -74,12 +74,12 @@ msgstr "Không thể ghi vào tập tin cấu hình SLIM"
 msgid "SLIM config file {!s} does not exist"
 msgstr "Tập tin cấu hình SLIM {!s} không tồn tại"
 
-#: src/modules/displaymanager/main.py:935
+#: src/modules/displaymanager/main.py:938
 msgid "No display managers selected for the displaymanager module."
 msgstr ""
 "Không có trình quản lý hiển thị nào được chọn cho mô-đun quản lý hiển thị"
 
-#: src/modules/displaymanager/main.py:936
+#: src/modules/displaymanager/main.py:939
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
@@ -87,7 +87,7 @@ msgstr ""
 "Danh sách quản lý hiện thị trống hoặc không được định nghĩa cả trong "
 "globalstorage và displaymanager.conf."
 
-#: src/modules/displaymanager/main.py:1023
+#: src/modules/displaymanager/main.py:1026
 msgid "Display manager configuration was incomplete"
 msgstr "Cầu hình quản lý hiện thị không hoàn tất"
 
@@ -108,8 +108,8 @@ msgstr ""
 msgid "Dummy python job."
 msgstr "Ví dụ công việc python."
 
-#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:91
-#: src/modules/dummypython/main.py:92
+#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:104
+#: src/modules/dummypython/main.py:105
 msgid "Dummy python step {}"
 msgstr "Ví dụ python bước {}"
 
@@ -143,7 +143,7 @@ msgstr "Không có điểm kết nối gốc cho <pre>{!s}</pre> để dùng."
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr ""
 
-#: src/modules/grubcfg/main.py:29
+#: src/modules/grubcfg/main.py:30
 msgid "Configure GRUB."
 msgstr "Cấu hình GRUB"
 

@@ -6,20 +6,20 @@
 # Translators:
 # Mingcong Bai <jeffbai@aosc.xyz>, 2017
 # plantman <weihanlin@live.com>, 2017
-# Feng Chao <chaofeng111@qq.com>, 2020
 # Bobby Rong <admin@bobby285271.top>, 2020
 # Giovanni Schiano-Moriello, 2022
 # 玉堂白鹤 <yjwork@qq.com>, 2022
 # OkayPJ <1535253694@qq.com>, 2023
+# Feng Chao <chaofeng111@qq.com>, 2024
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-13 20:13+0100\n"
+"POT-Creation-Date: 2024-01-14 21:40+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: OkayPJ <1535253694@qq.com>, 2023\n"
+"Last-Translator: Feng Chao <chaofeng111@qq.com>, 2024\n"
 "Language-Team: Chinese (China) (https://app.transifex.com/calamares/teams/20061/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,15 +31,15 @@ msgstr ""
 msgid "Install bootloader."
 msgstr "安装启动加载器。"
 
-#: src/modules/bootloader/main.py:644
+#: src/modules/bootloader/main.py:666
 msgid "Failed to install grub, no partitions defined in global storage"
 msgstr "无法安装 grub，全局存储中未定义分区"
 
-#: src/modules/bootloader/main.py:899
+#: src/modules/bootloader/main.py:926
 msgid "Bootloader installation error"
 msgstr "启动加载器安装出错"
 
-#: src/modules/bootloader/main.py:900
+#: src/modules/bootloader/main.py:927
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
@@ -77,17 +77,17 @@ msgstr "无法写入 SLIM 配置文件"
 msgid "SLIM config file {!s} does not exist"
 msgstr "SLIM 配置文件 {!s} 不存在"
 
-#: src/modules/displaymanager/main.py:935
+#: src/modules/displaymanager/main.py:938
 msgid "No display managers selected for the displaymanager module."
 msgstr "显示管理器模块中未选择显示管理器。"
 
-#: src/modules/displaymanager/main.py:936
+#: src/modules/displaymanager/main.py:939
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
 msgstr "globalstorage 和 displaymanager.conf 配置文件中都没有配置显示管理器。"
 
-#: src/modules/displaymanager/main.py:1023
+#: src/modules/displaymanager/main.py:1026
 msgid "Display manager configuration was incomplete"
 msgstr "显示管理器配置不完全"
 
@@ -102,14 +102,14 @@ msgstr ""
 #: src/modules/dracut/main.py:64
 #, python-brace-format
 msgid "Dracut failed to run on the target with return code: {return_code}"
-msgstr ""
+msgstr "Dracut 运行失败，返回值：{return_code}"
 
 #: src/modules/dummypython/main.py:35
 msgid "Dummy python job."
 msgstr "占位 Python 任务。"
 
-#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:91
-#: src/modules/dummypython/main.py:92
+#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:104
+#: src/modules/dummypython/main.py:105
 msgid "Dummy python step {}"
 msgstr "占位 Python 步骤 {}"
 
@@ -143,7 +143,7 @@ msgstr " 未设置 <pre>{!s}</pre> 要使用的根挂载点。"
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr "无 <pre>{!s}</pre> 配置可供 <pre>{!s}</pre> 使用。"
 
-#: src/modules/grubcfg/main.py:29
+#: src/modules/grubcfg/main.py:30
 msgid "Configure GRUB."
 msgstr "配置 GRUB."
 

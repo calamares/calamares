@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-13 20:13+0100\n"
+"POT-Creation-Date: 2024-01-14 21:40+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>, 2023\n"
 "Language-Team: Georgian (https://app.transifex.com/calamares/teams/20061/ka/)\n"
@@ -25,19 +25,21 @@ msgstr ""
 msgid "Install bootloader."
 msgstr "ჩამტვირთავის დაყენება."
 
-#: src/modules/bootloader/main.py:644
+#: src/modules/bootloader/main.py:666
 msgid "Failed to install grub, no partitions defined in global storage"
 msgstr "GRUB-ის დაყენების შეცდომა. გლობალურ საცავში დანაყოფები აღწერილი არაა"
 
-#: src/modules/bootloader/main.py:899
+#: src/modules/bootloader/main.py:926
 msgid "Bootloader installation error"
 msgstr "ჩამტვირთავის დაყენების შეცდომა"
 
-#: src/modules/bootloader/main.py:900
+#: src/modules/bootloader/main.py:927
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
 msgstr ""
+"ჩამტვირთავი კოდის დაყენება შეუძლებელია. დაყენების ბრძანებამ <pre>{!s}</pre> "
+"დააბრუნა შეცდომის კოდი {!s}."
 
 #: src/modules/displaymanager/main.py:509
 msgid "Cannot write LXDM configuration file"
@@ -71,41 +73,43 @@ msgstr "SLIM-ის კონფიგურაციის ფაილის �
 msgid "SLIM config file {!s} does not exist"
 msgstr "SLIM-ის კონფიგურაციის ფაილი არ არსებობს"
 
-#: src/modules/displaymanager/main.py:935
+#: src/modules/displaymanager/main.py:938
 msgid "No display managers selected for the displaymanager module."
-msgstr ""
+msgstr "მოდულისთვის 'displaymanager' ეკრანის მმართველი არჩეული არაა."
 
-#: src/modules/displaymanager/main.py:936
+#: src/modules/displaymanager/main.py:939
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
 msgstr ""
+"ეკრანის მმართველების სია ცარიელია ან აღუწერელია, ორივე, globalstorage და "
+"displaymanager.conf-ში."
 
-#: src/modules/displaymanager/main.py:1023
+#: src/modules/displaymanager/main.py:1026
 msgid "Display manager configuration was incomplete"
 msgstr "ეკრანის მმართველის მორგება დასრულებული არაა"
 
 #: src/modules/dracut/main.py:29
 msgid "Creating initramfs with dracut."
-msgstr ""
+msgstr "მიმდინარეობს dracut-ით Initramfs-ის შექმნა."
 
 #: src/modules/dracut/main.py:63
 msgid "Failed to run dracut"
-msgstr ""
+msgstr "Dracut-ის გაშვება ჩავარდა"
 
 #: src/modules/dracut/main.py:64
 #, python-brace-format
 msgid "Dracut failed to run on the target with return code: {return_code}"
-msgstr ""
+msgstr "ჩავარდა სამიზნეზე Dracut-ის გაშვება შეცდომის კოდით: {return_code}"
 
 #: src/modules/dummypython/main.py:35
 msgid "Dummy python job."
-msgstr ""
+msgstr "შტერი Python დავალება."
 
-#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:91
-#: src/modules/dummypython/main.py:92
+#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:104
+#: src/modules/dummypython/main.py:105
 msgid "Dummy python step {}"
-msgstr ""
+msgstr "შტერი Python ნაბჯი {}"
 
 #: src/modules/fstab/main.py:28
 msgid "Writing fstab."
@@ -132,12 +136,14 @@ msgstr "<pre>{!s}</pre>-სთვის გამოსაყენებელ�
 #: src/modules/openrcdmcryptcfg/main.py:77
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
 msgstr ""
+"<pre>{!s}</pre>-სთვის ძირითადი საქაღალდის მიმაგრების წერტილი მითითებული "
+"არაა."
 
 #: src/modules/fstab/main.py:412
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
-msgstr ""
+msgstr "<pre>{!s}</pre> კონფიგურაცია <pre>{!s}</pre>-სთვის მითითებული არაა."
 
-#: src/modules/grubcfg/main.py:29
+#: src/modules/grubcfg/main.py:30
 msgid "Configure GRUB."
 msgstr "GRUB-ის მორგება."
 
@@ -151,11 +157,12 @@ msgstr "Mkinitcpio-ის მორგება."
 
 #: src/modules/initcpiocfg/main.py:257
 msgid "No partitions are defined for <pre>initcpiocfg</pre>."
-msgstr ""
+msgstr "<pre>initcpiocfg</pre>-სთვის დანაყოფები აღწერილი არაა."
 
 #: src/modules/initcpiocfg/main.py:261
 msgid "No root mount point for <pre>initcpiocfg</pre>."
 msgstr ""
+"<pre>initcpiocfg</pre>-სთვის ძირითადი მიმაგრების წერტილი მითითებული არაა."
 
 #: src/modules/initramfscfg/main.py:32
 msgid "Configuring initramfs."
@@ -167,11 +174,11 @@ msgstr "ენების მორგება."
 
 #: src/modules/mkinitfs/main.py:27
 msgid "Creating initramfs with mkinitfs."
-msgstr ""
+msgstr "მიმდინარეობს mkinitfs-ით Initramfs-ის შექმნა."
 
 #: src/modules/mkinitfs/main.py:49
 msgid "Failed to run mkinitfs on the target"
-msgstr ""
+msgstr "სამიზნეზე mkinitfs-ის გაშვება ჩავარდა"
 
 #: src/modules/mkinitfs/main.py:50
 msgid "The exit code was {}"
@@ -217,7 +224,7 @@ msgstr "პაკეტების დაყენება."
 #: src/modules/packages/main.py:63
 #, python-format
 msgid "Processing packages (%(count)d / %(total)d)"
-msgstr ""
+msgstr "მუშავდება პაკეტი (%(count)d / %(total)d)"
 
 #: src/modules/packages/main.py:68
 #, python-format
@@ -243,18 +250,24 @@ msgid ""
 "The package manager could not prepare updates. The command <pre>{!s}</pre> "
 "returned error code {!s}."
 msgstr ""
+"პაკეტების მმართველმა განახლებები ვერ მოამზადა. ბრძანებამ <pre>{!s}</pre> "
+"დააბრუნა შეცდომა კოდით {!s}."
 
 #: src/modules/packages/main.py:753
 msgid ""
 "The package manager could not update the system. The command <pre>{!s}</pre>"
 " returned error code {!s}."
 msgstr ""
+"პაკეტების მმართველმა სისტემა ვერ განაახლა. ბრძანებამ <pre>{!s}</pre> "
+"დააბრუნა შეცდომა კოდით {!s}."
 
 #: src/modules/packages/main.py:781
 msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."
 msgstr ""
+"პაკეტების მმართველმა სისტემაშ ცვლილებები ვერ შეიტანა. ბრძანება "
+"<pre>{!s}</pre> ჩავარდა შეცდომის კოდით {!s}."
 
 #: src/modules/plymouthcfg/main.py:27
 msgid "Configure Plymouth theme"
@@ -270,17 +283,19 @@ msgstr "OpenRC-ის სერვისების მორგება"
 
 #: src/modules/services-openrc/main.py:57
 msgid "Cannot add service {name!s} to run-level {level!s}."
-msgstr ""
+msgstr "ვერ დავამატე სერვისი {name!s} გაშვების დონეს {level!s}."
 
 #: src/modules/services-openrc/main.py:59
 msgid "Cannot remove service {name!s} from run-level {level!s}."
-msgstr ""
+msgstr "ვერ წავშალე სერვისი {name!s} გაშვების დონიდან {level!s}."
 
 #: src/modules/services-openrc/main.py:61
 msgid ""
 "Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
 "level {level!s}."
 msgstr ""
+"უცნობი სერვისი ქმედება <code>{arg!s}</code> სერვისისთვის {name!s} გაშვების "
+"დონეზე {level!s}."
 
 #: src/modules/services-openrc/main.py:93
 msgid "Cannot modify service"
@@ -290,6 +305,8 @@ msgstr "სერვისის შეცვლის შეცდომა"
 msgid ""
 "<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
 msgstr ""
+"<code>rc-update {arg!s}</code>-ის გამოძახებამ chroot-ში დააბრუნა შეცდომა "
+"კოდით {num!s}."
 
 #: src/modules/services-openrc/main.py:101
 msgid "Target runlevel does not exist"
@@ -300,6 +317,8 @@ msgid ""
 "The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
 "exist."
 msgstr ""
+"ბილიკი გაშვების დონისთვის არის {level!s} is <code>{path!s}</code>, მაგრამ ის"
+" არ არსებობს."
 
 #: src/modules/services-openrc/main.py:110
 msgid "Target service does not exist"
@@ -310,24 +329,28 @@ msgid ""
 "The path for service {name!s} is <code>{path!s}</code>, which does not "
 "exist."
 msgstr ""
+"ბილიკი სერვისისთვის {name!s} არის <code>{path!s}</code>, მაგრამ ის არ "
+"არებობს."
 
 #: src/modules/services-systemd/main.py:26
 msgid "Configure systemd units"
-msgstr ""
+msgstr "Systemd-ის სერვისების მორგება"
 
 #: src/modules/services-systemd/main.py:64
 msgid "Cannot modify unit"
-msgstr ""
+msgstr "სერვისის შეცვლა შეუძლებელია"
 
 #: src/modules/services-systemd/main.py:65
 msgid ""
 "<code>systemctl {_action!s}</code> call in chroot returned error code "
 "{_exit_code!s}."
 msgstr ""
+"<code>systemctl {_action!s}</code> გამოძახებამ chroot-ში დააბრუნა შეცდომა "
+"კოდით {_exit_code!s}."
 
 #: src/modules/services-systemd/main.py:66
 msgid "Cannot {_action!s} systemd unit <code>{_name!s}</code>."
-msgstr ""
+msgstr "ვერ შესრულდა ქმედება {_action!s} systemd unit <code>{_name!s}</code>."
 
 #: src/modules/unpackfs/main.py:34
 msgid "Filling up filesystems."
@@ -378,6 +401,7 @@ msgstr "კონფიგურაციის ინფორმაცია �
 #: src/modules/unpackfs/main.py:456
 msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
 msgstr ""
+"ფაილური სისტემა \"{}\" ({}) თქვენ გაშვებული ბირთვის მიერ მხარდაჭერილი არაა"
 
 #: src/modules/unpackfs/main.py:460
 msgid "The source filesystem \"{}\" does not exist"
@@ -388,11 +412,13 @@ msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed."
 msgstr ""
+"ბრძანება unsquashfs ვერ ვიპოვე. დარწმუნდით, რომ პაკეტი squashfs-tools "
+"დაყენებულია."
 
 #: src/modules/unpackfs/main.py:481
 msgid "The destination \"{}\" in the target system is not a directory"
-msgstr ""
+msgstr "სამიზნე \"{}\" სამუშაო სისტემაზე საქაღალდე არაა"
 
 #: src/modules/zfshostid/main.py:27
 msgid "Copying zfs generated hostid."
-msgstr ""
+msgstr "ZFS-ით გენერირებული hostid-ის კოპირება."

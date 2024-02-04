@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-13 20:13+0100\n"
+"POT-Creation-Date: 2024-01-14 21:40+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Moo, 2023\n"
 "Language-Team: Lithuanian (https://app.transifex.com/calamares/teams/20061/lt/)\n"
@@ -26,17 +26,17 @@ msgstr ""
 msgid "Install bootloader."
 msgstr "Įdiegti operacinės sistemos paleidyklę."
 
-#: src/modules/bootloader/main.py:644
+#: src/modules/bootloader/main.py:666
 msgid "Failed to install grub, no partitions defined in global storage"
 msgstr ""
 "Nepavyko įdiegti grub paleidyklės, visuotinėje saugykloje nėra apibrėžta "
 "jokių skaidinių"
 
-#: src/modules/bootloader/main.py:899
+#: src/modules/bootloader/main.py:926
 msgid "Bootloader installation error"
 msgstr "Operacinės sistemos paleidyklės diegimo klaida"
 
-#: src/modules/bootloader/main.py:900
+#: src/modules/bootloader/main.py:927
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
@@ -76,11 +76,11 @@ msgstr "Nepavyksta įrašyti SLIM konfigūracijos failą"
 msgid "SLIM config file {!s} does not exist"
 msgstr "SLIM konfigūracijos failo {!s} nėra"
 
-#: src/modules/displaymanager/main.py:935
+#: src/modules/displaymanager/main.py:938
 msgid "No display managers selected for the displaymanager module."
 msgstr "Displaymanagers moduliui nėra pasirinkta jokių ekranų tvarkytuvių."
 
-#: src/modules/displaymanager/main.py:936
+#: src/modules/displaymanager/main.py:939
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
@@ -88,7 +88,7 @@ msgstr ""
 "Displaymanagers sąrašas yra tuščias arba neapibrėžtas tiek globalstorage, "
 "tiek ir displaymanager.conf faile."
 
-#: src/modules/displaymanager/main.py:1023
+#: src/modules/displaymanager/main.py:1026
 msgid "Display manager configuration was incomplete"
 msgstr "Ekranų tvarkytuvės konfigūracija yra nepilna"
 
@@ -111,8 +111,8 @@ msgstr ""
 msgid "Dummy python job."
 msgstr "Fiktyvi python užduotis."
 
-#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:91
-#: src/modules/dummypython/main.py:92
+#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:104
+#: src/modules/dummypython/main.py:105
 msgid "Dummy python step {}"
 msgstr "Fiktyvus python žingsnis {}"
 
@@ -150,7 +150,7 @@ msgstr ""
 "Nenurodyta jokia <pre>{!s}</pre> konfigūracija, kurią <pre>{!s}</pre> galėtų"
 " naudoti."
 
-#: src/modules/grubcfg/main.py:29
+#: src/modules/grubcfg/main.py:30
 msgid "Configure GRUB."
 msgstr "Konfigūruoti GRUB."
 
