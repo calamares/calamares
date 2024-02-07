@@ -7,16 +7,16 @@
 # Aleksey Kabanov <ak099@mail.ru>, 2018
 # ZIzA, 2020
 # Темак, 2023
-# Victor, 2023
+# Victor, 2024
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-13 20:13+0100\n"
+"POT-Creation-Date: 2024-01-14 21:40+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Victor, 2023\n"
+"Last-Translator: Victor, 2024\n"
 "Language-Team: Russian (https://app.transifex.com/calamares/teams/20061/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,15 +28,15 @@ msgstr ""
 msgid "Install bootloader."
 msgstr "Установить загрузчик."
 
-#: src/modules/bootloader/main.py:644
+#: src/modules/bootloader/main.py:666
 msgid "Failed to install grub, no partitions defined in global storage"
 msgstr "Не удалось установить grub, разделы не определены в общем хранилище"
 
-#: src/modules/bootloader/main.py:899
+#: src/modules/bootloader/main.py:926
 msgid "Bootloader installation error"
 msgstr "Ошибка установки загрузчика"
 
-#: src/modules/bootloader/main.py:900
+#: src/modules/bootloader/main.py:927
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
@@ -76,11 +76,11 @@ msgstr "Не удается записать файл конфигурации S
 msgid "SLIM config file {!s} does not exist"
 msgstr "Файл конфигурации SLIM {!s} не существует"
 
-#: src/modules/displaymanager/main.py:935
+#: src/modules/displaymanager/main.py:938
 msgid "No display managers selected for the displaymanager module."
 msgstr "Для модуля displaymanager не выбраны менеджеры дисплеев."
 
-#: src/modules/displaymanager/main.py:936
+#: src/modules/displaymanager/main.py:939
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
@@ -88,7 +88,7 @@ msgstr ""
 "Список дисплейных менеджеров пуст или не определен в globalstorage и в "
 "displaymanager.conf."
 
-#: src/modules/displaymanager/main.py:1023
+#: src/modules/displaymanager/main.py:1026
 msgid "Display manager configuration was incomplete"
 msgstr "Конфигурация дисплейного менеджера не завершена."
 
@@ -111,8 +111,8 @@ msgstr ""
 msgid "Dummy python job."
 msgstr "Фиктивная работа python."
 
-#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:91
-#: src/modules/dummypython/main.py:92
+#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:104
+#: src/modules/dummypython/main.py:105
 msgid "Dummy python step {}"
 msgstr "Фиктивный шаг python {}"
 
@@ -148,7 +148,7 @@ msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr ""
 "Конфигурация <pre>{!s}</pre> для использования <pre>{!s}</pre> не указана."
 
-#: src/modules/grubcfg/main.py:29
+#: src/modules/grubcfg/main.py:30
 msgid "Configure GRUB."
 msgstr "Настройте GRUB."
 
@@ -166,7 +166,7 @@ msgstr "Не определены разделы для <pre>initcpiocfg</pre>."
 
 #: src/modules/initcpiocfg/main.py:261
 msgid "No root mount point for <pre>initcpiocfg</pre>."
-msgstr ""
+msgstr "Нет корневой точки монтирования для <pre>initcpiocfg</pre>."
 
 #: src/modules/initramfscfg/main.py:32
 msgid "Configuring initramfs."
@@ -279,7 +279,7 @@ msgstr ""
 
 #: src/modules/plymouthcfg/main.py:27
 msgid "Configure Plymouth theme"
-msgstr "Настроить тему Plymouth"
+msgstr "Настройка темы Plymouth"
 
 #: src/modules/rawfs/main.py:26
 msgid "Installing data."
@@ -351,6 +351,8 @@ msgid ""
 "<code>systemctl {_action!s}</code> call in chroot returned error code "
 "{_exit_code!s}."
 msgstr ""
+"Вызов <code>systemctl {_action!s}</code> в chroot вернул код ошибки "
+"{_exit_code!s}."
 
 #: src/modules/services-systemd/main.py:66
 msgid "Cannot {_action!s} systemd unit <code>{_name!s}</code>."

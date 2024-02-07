@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-13 20:13+0100\n"
+"POT-Creation-Date: 2024-01-14 21:40+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: David D, 2023\n"
 "Language-Team: French (https://app.transifex.com/calamares/teams/20061/fr/)\n"
@@ -34,17 +34,17 @@ msgstr ""
 msgid "Install bootloader."
 msgstr "Installation du bootloader."
 
-#: src/modules/bootloader/main.py:644
+#: src/modules/bootloader/main.py:666
 msgid "Failed to install grub, no partitions defined in global storage"
 msgstr ""
 "Échec de l'installation de grub, aucune partition définie dans le stockage "
 "global"
 
-#: src/modules/bootloader/main.py:899
+#: src/modules/bootloader/main.py:926
 msgid "Bootloader installation error"
 msgstr "Erreur d'installation du chargeur de démarrage"
 
-#: src/modules/bootloader/main.py:900
+#: src/modules/bootloader/main.py:927
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
@@ -84,13 +84,13 @@ msgstr "Impossible d'écrire le fichier de configuration SLIM"
 msgid "SLIM config file {!s} does not exist"
 msgstr "Le fichier de configuration SLIM {!S} n'existe pas"
 
-#: src/modules/displaymanager/main.py:935
+#: src/modules/displaymanager/main.py:938
 msgid "No display managers selected for the displaymanager module."
 msgstr ""
 "Aucun gestionnaire d'affichage n'a été sélectionné pour le module de "
 "gestionnaire d'affichage"
 
-#: src/modules/displaymanager/main.py:936
+#: src/modules/displaymanager/main.py:939
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
@@ -98,7 +98,7 @@ msgstr ""
 "La liste des gestionnaires d'affichage est vide ou indéfinie à la fois dans "
 "globalstorage et displaymanager.conf."
 
-#: src/modules/displaymanager/main.py:1023
+#: src/modules/displaymanager/main.py:1026
 msgid "Display manager configuration was incomplete"
 msgstr "La configuration du gestionnaire d'affichage était incomplète"
 
@@ -121,8 +121,8 @@ msgstr ""
 msgid "Dummy python job."
 msgstr "Tâche factice de python"
 
-#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:91
-#: src/modules/dummypython/main.py:92
+#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:104
+#: src/modules/dummypython/main.py:105
 msgid "Dummy python step {}"
 msgstr "Étape factice de python {}"
 
@@ -161,7 +161,7 @@ msgstr ""
 "Aucune configuration <pre>{!s}</pre>n'est donnée pour <pre>{!s}</pre> à "
 "utiliser."
 
-#: src/modules/grubcfg/main.py:29
+#: src/modules/grubcfg/main.py:30
 msgid "Configure GRUB."
 msgstr "Configuration du GRUB."
 

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-13 20:13+0100\n"
+"POT-Creation-Date: 2024-01-14 21:40+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Guilherme MS, 2023\n"
 "Language-Team: Portuguese (Brazil) (https://app.transifex.com/calamares/teams/20061/pt_BR/)\n"
@@ -26,16 +26,16 @@ msgstr ""
 msgid "Install bootloader."
 msgstr "Instalar carregador de inicialização."
 
-#: src/modules/bootloader/main.py:644
+#: src/modules/bootloader/main.py:666
 msgid "Failed to install grub, no partitions defined in global storage"
 msgstr ""
 "Falha ao instalar o grub, não há partições definidas no armazenamento global"
 
-#: src/modules/bootloader/main.py:899
+#: src/modules/bootloader/main.py:926
 msgid "Bootloader installation error"
 msgstr "Erro de instalação do carregador de inicialização"
 
-#: src/modules/bootloader/main.py:900
+#: src/modules/bootloader/main.py:927
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
@@ -75,12 +75,12 @@ msgstr "Não foi possível gravar o arquivo de configuração do SLIM"
 msgid "SLIM config file {!s} does not exist"
 msgstr "O arquivo de configuração {!s} do SLIM não existe"
 
-#: src/modules/displaymanager/main.py:935
+#: src/modules/displaymanager/main.py:938
 msgid "No display managers selected for the displaymanager module."
 msgstr ""
 "Nenhum gerenciador de exibição selecionado para o módulo do displaymanager."
 
-#: src/modules/displaymanager/main.py:936
+#: src/modules/displaymanager/main.py:939
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
@@ -88,7 +88,7 @@ msgstr ""
 "A lista de displaymanagers está vazia ou indefinida em ambos globalstorage e"
 " displaymanager.conf."
 
-#: src/modules/displaymanager/main.py:1023
+#: src/modules/displaymanager/main.py:1026
 msgid "Display manager configuration was incomplete"
 msgstr "A configuração do gerenciador de exibição está incompleta"
 
@@ -111,8 +111,8 @@ msgstr ""
 msgid "Dummy python job."
 msgstr "Tarefa modelo python."
 
-#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:91
-#: src/modules/dummypython/main.py:92
+#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:104
+#: src/modules/dummypython/main.py:105
 msgid "Dummy python step {}"
 msgstr "Etapa modelo python {}"
 
@@ -149,7 +149,7 @@ msgstr ""
 "Nenhuma configuração <pre>{!s}</pre> é dada para que <pre>{!s}</pre> possa "
 "utilizar."
 
-#: src/modules/grubcfg/main.py:29
+#: src/modules/grubcfg/main.py:30
 msgid "Configure GRUB."
 msgstr "Configurar GRUB."
 

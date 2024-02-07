@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-13 20:13+0100\n"
+"POT-Creation-Date: 2024-01-14 21:40+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Swyter <Swyterzone@gmail.com>, 2023\n"
 "Language-Team: Spanish (https://app.transifex.com/calamares/teams/20061/es/)\n"
@@ -31,17 +31,17 @@ msgstr ""
 msgid "Install bootloader."
 msgstr "Instalar gestor de arranque."
 
-#: src/modules/bootloader/main.py:644
+#: src/modules/bootloader/main.py:666
 msgid "Failed to install grub, no partitions defined in global storage"
 msgstr ""
 "Hubo un error al instalar «grub»; no hay particiones definidas en el "
 "almacenamiento global"
 
-#: src/modules/bootloader/main.py:899
+#: src/modules/bootloader/main.py:926
 msgid "Bootloader installation error"
 msgstr "Hubo un error al instalar el cargador de arranque"
 
-#: src/modules/bootloader/main.py:900
+#: src/modules/bootloader/main.py:927
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
@@ -81,12 +81,12 @@ msgstr "No se puede escribir el archivo de configuración de SLIM"
 msgid "SLIM config file {!s} does not exist"
 msgstr "El archivo de configuración {!s} de SLIM no existe"
 
-#: src/modules/displaymanager/main.py:935
+#: src/modules/displaymanager/main.py:938
 msgid "No display managers selected for the displaymanager module."
 msgstr ""
 "No se ha elegido ningún gestor de pantalla para el módulo «displaymanager»."
 
-#: src/modules/displaymanager/main.py:936
+#: src/modules/displaymanager/main.py:939
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
@@ -94,7 +94,7 @@ msgstr ""
 "La lista de gestores de pantalla está vacía o sin definir tanto en "
 "«globalstorage» como en «displaymanager.conf»."
 
-#: src/modules/displaymanager/main.py:1023
+#: src/modules/displaymanager/main.py:1026
 msgid "Display manager configuration was incomplete"
 msgstr ""
 "La configuración del gestor de pantalla («display manager») estaba "
@@ -119,8 +119,8 @@ msgstr ""
 msgid "Dummy python job."
 msgstr "Tarea de python ficticia."
 
-#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:91
-#: src/modules/dummypython/main.py:92
+#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:104
+#: src/modules/dummypython/main.py:105
 msgid "Dummy python step {}"
 msgstr "Paso ficticio de python {}"
 
@@ -156,7 +156,7 @@ msgstr ""
 "No se proporciona ninguna configuración de <pre>{!s}</pre> que "
 "<pre>{!s}</pre> pueda usar."
 
-#: src/modules/grubcfg/main.py:29
+#: src/modules/grubcfg/main.py:30
 msgid "Configure GRUB."
 msgstr "Configurar GRUB."
 
