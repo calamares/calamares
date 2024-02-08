@@ -37,6 +37,7 @@ public:
         quint64 partAttributes = 0;
         QString partMountPoint;
         FileSystem::Type partFileSystem = FileSystem::Unknown;
+        bool partNoEncrypt;
         QVariantMap partFeatures;
         Calamares::Partition::PartitionSize partSize;
         Calamares::Partition::PartitionSize partMinSize;
@@ -61,6 +62,7 @@ public:
                         quint64 attributes,
                         const QString& mountPoint,
                         const QString& fs,
+                        const bool& noEncrypt,
                         const QVariantMap& features,
                         const QString& size,
                         const QString& minSize = QString(),

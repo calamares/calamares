@@ -61,6 +61,7 @@ PartitionLayout::PartitionEntry::PartitionEntry( const QString& label,
                                                  quint64 attributes,
                                                  const QString& mountPoint,
                                                  const QString& fs,
+                                                 const bool& noEncrypt,
                                                  const QVariantMap& features,
                                                  const QString& size,
                                                  const QString& minSize,
@@ -76,6 +77,7 @@ PartitionLayout::PartitionEntry::PartitionEntry( const QString& label,
     , partMaxSize( maxSize )
 {
     PartUtils::canonicalFilesystemName( fs, &partFileSystem );
+    partNoEncrypt = noEncrypt;
 }
 
 bool
@@ -116,6 +118,7 @@ PartitionLayout::init( FileSystem::Type defaultFsType, const QVariantList& confi
                           Calamares::getUnsignedInteger( pentry, "attributes", 0 ),
                           Calamares::getString( pentry, "mountPoint" ),
                           Calamares::getString( pentry, "filesystem", "unformatted" ),
+                          Calamares::getBool( pentry, "noEncrypt", false ),
                           Calamares::getSubMap( pentry, "features", ok ),
                           Calamares::getString( pentry, "size", QStringLiteral( "0" ) ),
                           Calamares::getString( pentry, "minSize", QStringLiteral( "0" ) ),
@@ -295,8 +298,8 @@ PartitionLayout::createPartitions( Device* dev,
 
         Partition* part = nullptr;
 
-        // Encryption for zfs is handled in the zfs module
-        if ( luksPassphrase.isEmpty() || correctFS( entry.partFileSystem ) == FileSystem::Zfs )
+        // Encryption for zfs is handled in the zfs module, skip encryption on noEncrypt partitions
+        if ( luksPassphrase.isEmpty() || correctFS( entry.partFileSystem ) == FileSystem::Zfs || entry.partNoEncrypt )
         {
             part = KPMHelpers::createNewPartition( parent,
                                                    *dev,
@@ -329,7 +332,7 @@ PartitionLayout::createPartitions( Device* dev,
             QVariantMap zfsInfo;
 
             // Save the information subsequent modules will need
-            zfsInfo[ "encrypted" ] = !luksPassphrase.isEmpty();
+            zfsInfo[ "encrypted" ] = !luksPassphrase.isEmpty() && !entry.partNoEncrypt;
             zfsInfo[ "passphrase" ] = luksPassphrase;
             zfsInfo[ "mountpoint" ] = entry.partMountPoint;
 
