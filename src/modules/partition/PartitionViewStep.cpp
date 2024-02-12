@@ -136,22 +136,24 @@ static QString
 modeDescription( Config::InstallChoice choice )
 {
     const auto* branding = Calamares::Branding::instance();
-    static const char context[] = "PartitionViewStep";
 
     switch ( choice )
     {
     case Config::InstallChoice::Alongside:
-        return QCoreApplication::translate( context, "Install %1 <strong>alongside</strong> another operating system", "@label" )
+        return QCoreApplication::translate(
+                   "PartitionViewStep", "Install %1 <strong>alongside</strong> another operating system", "@label" )
             .arg( branding->shortVersionedName() );
     case Config::InstallChoice::Erase:
-        return QCoreApplication::translate( context, "<strong>Erase</strong> disk and install %1", "@label" )
+        return QCoreApplication::translate(
+                   "PartitionViewStep", "<strong>Erase</strong> disk and install %1", "@label" )
             .arg( branding->shortVersionedName() );
     case Config::InstallChoice::Replace:
-        return QCoreApplication::translate( context, "<strong>Replace</strong> a partition with %1", "@label" )
+        return QCoreApplication::translate(
+                   "PartitionViewStep", "<strong>Replace</strong> a partition with %1", "@label" )
             .arg( branding->shortVersionedName() );
     case Config::InstallChoice::NoChoice:
     case Config::InstallChoice::Manual:
-        return QCoreApplication::translate( context, "<strong>Manual</strong> partitioning", "@label" );
+        return QCoreApplication::translate( "PartitionViewStep", "<strong>Manual</strong> partitioning", "@label" );
     }
     return QString();
 }
@@ -167,7 +169,6 @@ static QString
 diskDescription( int listLength, const PartitionCoreModule::SummaryInfo& info, Config::InstallChoice choice )
 {
     const auto* branding = Calamares::Branding::instance();
-    static const char context[] = "PartitionViewStep";
 
     if ( listLength == 1 )  // this is the only disk preview
     {
@@ -175,28 +176,33 @@ diskDescription( int listLength, const PartitionCoreModule::SummaryInfo& info, C
         {
         case Config::Alongside:
             return QCoreApplication::translate(
-                       context,
+                       "PartitionViewStep",
                        "Install %1 <strong>alongside</strong> another operating system on disk "
-                       "<strong>%2</strong> (%3)", "@info" )
+                       "<strong>%2</strong> (%3)",
+                       "@info" )
                 .arg( branding->shortVersionedName() )
                 .arg( info.deviceNode )
                 .arg( info.deviceName );
         case Config::Erase:
-            return QCoreApplication::translate( context,
-                                                "<strong>Erase</strong> disk <strong>%2</strong> (%3) and install %1", "@info" )
+            return QCoreApplication::translate( "PartitionViewStep",
+                                                "<strong>Erase</strong> disk <strong>%2</strong> (%3) and install %1",
+                                                "@info" )
                 .arg( branding->shortVersionedName() )
                 .arg( info.deviceNode )
                 .arg( info.deviceName );
         case Config::Replace:
             return QCoreApplication::translate(
-                       context, "<strong>Replace</strong> a partition on disk <strong>%2</strong> (%3) with %1", "@info" )
+                       "PartitionViewStep",
+                       "<strong>Replace</strong> a partition on disk <strong>%2</strong> (%3) with %1",
+                       "@info" )
                 .arg( branding->shortVersionedName() )
                 .arg( info.deviceNode )
                 .arg( info.deviceName );
         case Config::NoChoice:
         case Config::Manual:
-            return QCoreApplication::translate(
-                       context, "<strong>Manual</strong> partitioning on disk <strong>%1</strong> (%2)", "@info" )
+            return QCoreApplication::translate( "PartitionViewStep",
+                                                "<strong>Manual</strong> partitioning on disk <strong>%1</strong> (%2)",
+                                                "@info" )
                 .arg( info.deviceNode )
                 .arg( info.deviceName );
         }
@@ -204,7 +210,7 @@ diskDescription( int listLength, const PartitionCoreModule::SummaryInfo& info, C
     }
     else  // multiple disk previews!
     {
-        return QCoreApplication::translate( context, "Disk <strong>%1</strong> (%2)", "@info" )
+        return QCoreApplication::translate( "PartitionViewStep", "Disk <strong>%1</strong> (%2)", "@info" )
             .arg( info.deviceNode )
             .arg( info.deviceName );
     }
