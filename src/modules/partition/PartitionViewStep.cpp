@@ -129,7 +129,8 @@ jobDescriptions( const Calamares::JobList& jobs )
 
 /** @brief A top-level description of what @p choice does
  *
- * Returns a (branded) string describing what @p choice will do.
+ * Returns a translated string describing what @p choice will do.
+ * Includes branding information.
  */
 static QString
 modeDescription( Config::InstallChoice choice )
@@ -157,7 +158,7 @@ modeDescription( Config::InstallChoice choice )
 
 /** @brief A top-level description of what @p choice does to disk @p info
  *
- * Returns a (branded, and device-specific) string describing what
+ * Returns a translated string, with branding and device information, describing what
  * will be done to device @p info when @p choice is made. The @p listLength
  * is used to provide context; when more than one disk is in use, the description
  * works differently.
