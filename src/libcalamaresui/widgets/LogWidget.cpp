@@ -83,8 +83,7 @@ LogWidget::LogWidget( QWidget* parent )
 
     connect( &m_log_thread, &LogThread::onLogChunk, this, &LogWidget::handleLogChunk );
 
-    m_log_thread.setPriority( QThread::LowestPriority );
-    m_log_thread.start();
+    m_log_thread.start( QThread::LowestPriority );
 }
 
 void
