@@ -67,6 +67,49 @@ distributions than your own. So keep other folk in mind. There is
 also the [extensions](https://github.com/calamares/calamares-extensions)
 repository for somewhat-more-specialized modules and examples.
 
+### Commit Messages
+
+Please try to use `[module] description` as the first line of a commit
+message. Follow regular git commit-message recommendations: write what
+and why -- especially the **why** for a change. When modifying a module
+under `src/modules/`, write the name of the module, e.g. this made-up example:
+
+```
+[packages] Enable dnf5 as package-manager
+
+DNF version 5 prefers the name 'dnf5' to avoid confusion with
+older DNF, even when a compatibility name 'dnf' is available.
+```
+
+It's OK to list multiple modules; don't bother listing a module
+and its QML variant separately.
+
+Use `[libcalamares]`, `[libcalamaresui]` and `[calamares]` for changes
+in those directories as appropriate.
+
+There are various exceptions, and metadata files follow other conventions.
+When in doubt, use `git log` to see what kind of **previous** commit messages
+have been used for a given file.
+
+### Attribution
+
+Remember that your git commit contains your git username. This becomes part
+of the public information in the Calamares repository. There is no way
+to change this later.
+
+When you contribute a PR, feel free to add a few lines in the `CHANGES`
+file, which describes each release. Just add them to the section
+for the next release, and it can be sorted out when the PR is merged.
+Remember to add your preferred name in the list of contributors for
+the release -- names are sorted alphabetically and case-insensitive.
+
+If you don't add anything to `CHANGES`, don't worry, something will
+probably be added later in a `Changes: credits` commit.
+
+> Please do **not** update the `AUTHORS` file. This is done automatically,
+> but irregularly, based on the git usernames in commits (and some social
+> knowledge about Calamares contributors).
+
 
 ## Building Calamares
 
@@ -78,9 +121,13 @@ instructions are on the wiki.
 
 You may have success with the Docker images that the CI system uses.
 Pick one (or more) of these images which are also used in CI:
+
 - `docker pull docker://opensuse/tumbleweed`
 - `docker pull kdeneon/plasma:user`
-- `docker pull fedora:38`
+- `docker pull fedora:40`
+
+See the `nightly-*.yml` files in directory `.github/workflows/` for
+the full list of Docker images that are used in CI.
 
 Then start a container with the right image, from the root of Calamares
 source checkout. Start with this command and substitute `opensuse/tumbleweed`
