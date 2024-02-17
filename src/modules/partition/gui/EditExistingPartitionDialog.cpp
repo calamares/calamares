@@ -45,6 +45,19 @@
 using Calamares::Partition::untranslatedFS;
 using Calamares::Partition::userVisibleFS;
 
+static void
+updateLabel( PartitionCoreModule* core, Device* device, Partition* partition, const QString& fsLabel )
+{
+    // In this case, we are not formatting the partition, but we are setting the
+    // label on the current filesystem, if any. We only create the job if the
+    // label actually changed.
+    if ( partition->fileSystem().type() != FileSystem::Type::Unformatted && fsLabel != partition->fileSystem().label() )
+    {
+        core->setFilesystemLabel( device, partition, fsLabel );
+        PartitionInfo::setLabel(partition, fsLabel);
+    }
+}
+
 EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device,
                                                           Partition* partition,
                                                           const QStringList& usedMountPoints,
@@ -71,8 +84,8 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device,
 
     // The filesystem label field is always enabled, because we may want to change
     // the label on the current filesystem without formatting.
-    m_ui->fileSystemLabelEdit->setText( m_partition->fileSystem().label() );
-    m_ui->fileSystemLabel->setEnabled(true);
+    m_ui->fileSystemLabelEdit->setText( PartitionInfo::label(m_partition));
+    m_ui->fileSystemLabel->setEnabled( true );
 
     replacePartResizerWidget();
 
@@ -197,6 +210,7 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
             {
                 core->setPartitionFlags( m_device, m_partition, resultFlags );
             }
+            updateLabel( core, m_device, m_partition, fsLabel );
             PartitionInfo::setFormat( m_partition, false );
         }
     }
@@ -240,14 +254,7 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
             {
                 core->setPartitionFlags( m_device, m_partition, resultFlags );
             }
-            // In this case, we are not formatting the partition, but we are setting the
-            // label on the current filesystem, if any. We only create the job if the
-            // label actually changed.
-            if ( m_partition->fileSystem().type() != FileSystem::Type::Unformatted
-                 && fsLabel != m_partition->fileSystem().label() )
-            {
-                core->setFilesystemLabel( m_device, m_partition, fsLabel );
-            }
+            updateLabel( core, m_device, m_partition, fsLabel );
             PartitionInfo::setFormat( m_partition, false );
 
             core->refreshPartition( m_device, m_partition );
