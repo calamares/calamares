@@ -82,7 +82,7 @@ option(INSTALL_COMPLETION "Install shell completions" OFF)
 option(INSTALL_CONFIG "Install configuration files" OFF)
 # When adding WITH_* that affects the ABI offered by libcalamares,
 # also update libcalamares/CalamaresConfig.h.in
-option(WITH_PYBIND11 "Use bundled pybind11 instead o Boost::Python" ON)
+option(WITH_PYBIND11 "Use bundled pybind11 instead of Boost::Python" ON)
 option(WITH_PYTHON "Enable Python modules API." ON)
 option(WITH_QML "Enable QML UI options." ON)
 option(WITH_QT6 "Use Qt6 instead of Qt5" OFF)
