@@ -128,14 +128,7 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device,
 
     // Force a format if the existing device is a zfs device since reusing a zpool isn't currently supported
     const bool partitionIsZFS = m_partition->fileSystem().type() == FileSystem::Type::Zfs;
-    if ( partitionIsZFS )
-    {
-        m_ui->formatRadioButton->setChecked( true );
-    }
-    else
-    {
-        m_ui->formatRadioButton->setChecked( false );
-    }
+    m_ui->formatRadioButton->setChecked( partitionIsZFS || PartitionInfo::format( m_partition ) );
     m_ui->formatRadioButton->setEnabled( !partitionIsZFS );
     m_ui->keepRadioButton->setChecked( !partitionIsZFS );
     m_ui->keepRadioButton->setEnabled( !partitionIsZFS );
@@ -205,6 +198,7 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
             {
                 core->setPartitionFlags( m_device, m_partition, resultFlags );
             }
+            PartitionInfo::setFormat( m_partition, false );
         }
     }
     else
@@ -221,6 +215,7 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
                     core->setPartitionFlags( m_device, m_partition, resultFlags );
                 }
                 core->setFilesystemLabel( m_device, m_partition, fsLabel );
+                PartitionInfo::setFormat( m_partition, true );
             }
             else  // otherwise, we delete and recreate the partition with new fs type
             {
@@ -254,6 +249,7 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
             {
                 core->setFilesystemLabel( m_device, m_partition, fsLabel );
             }
+            PartitionInfo::setFormat( m_partition, false );
 
             core->refreshPartition( m_device, m_partition );
         }
