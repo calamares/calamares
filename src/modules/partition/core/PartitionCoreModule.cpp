@@ -557,15 +557,17 @@ PartitionCoreModule::formatPartition( Device* device, Partition* partition )
 void
 PartitionCoreModule::setFilesystemLabel( Device* device, Partition* partition, const QString& newLabel )
 {
-    if ( newLabel.isEmpty() )
+    if ( newLabel == PartitionInfo::label( partition ) )
     {
-        // Don't bother
         return;
     }
+
     auto deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
 
     OperationHelper helper( partitionModelForDevice( device ), this );
+    PartitionInfo::setLabel( partition, newLabel );
+    deviceInfo->takeJob< ChangeFilesystemLabelJob >( partition );
     deviceInfo->makeJob< ChangeFilesystemLabelJob >( partition, newLabel );
 }
 

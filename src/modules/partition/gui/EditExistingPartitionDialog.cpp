@@ -54,7 +54,6 @@ updateLabel( PartitionCoreModule* core, Device* device, Partition* partition, co
     if ( partition->fileSystem().type() != FileSystem::Type::Unformatted && fsLabel != partition->fileSystem().label() )
     {
         core->setFilesystemLabel( device, partition, fsLabel );
-        PartitionInfo::setLabel(partition, fsLabel);
     }
 }
 
@@ -84,7 +83,7 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device,
 
     // The filesystem label field is always enabled, because we may want to change
     // the label on the current filesystem without formatting.
-    m_ui->fileSystemLabelEdit->setText( PartitionInfo::label(m_partition));
+    m_ui->fileSystemLabelEdit->setText( PartitionInfo::label( m_partition ) );
     m_ui->fileSystemLabel->setEnabled( true );
 
     replacePartResizerWidget();
