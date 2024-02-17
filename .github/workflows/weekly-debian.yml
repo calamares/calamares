@@ -13,6 +13,7 @@ env:
     -DCMAKE_BUILD_TYPE=Debug
     -DBUILD_APPSTREAM=ON
     -DBUILD_APPDATA=ON
+    -DBUILD_TESTING=ON
 
 jobs:
   build:
@@ -26,6 +27,7 @@ jobs:
         run: |
             apt-get update
             apt-get -y install git-core jq curl
+            apt-get -y install pylint python3-pylint-common
       - name: "prepare source (core)"
         uses: calamares/actions/generic-checkout@v5
       - name: "prepare source (extensions)"
