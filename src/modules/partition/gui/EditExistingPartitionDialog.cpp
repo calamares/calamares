@@ -138,12 +138,15 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device,
         m_ui->fileSystemComboBox->setCurrentText( FileSystem::nameForType( defaultFSType ) );
     }
 
-    // Force a format if the existing device is a zfs device since reusing a zpool isn't currently supported
+    // Force a format if the existing device is a zfs device since reusing a
+    // zpool isn't currently supported; disable the radio buttons then.
     const bool partitionIsZFS = m_partition->fileSystem().type() == FileSystem::Type::Zfs;
-    m_ui->formatRadioButton->setChecked( partitionIsZFS || PartitionInfo::format( m_partition ) );
     m_ui->formatRadioButton->setEnabled( !partitionIsZFS );
-    m_ui->keepRadioButton->setChecked( !partitionIsZFS );
     m_ui->keepRadioButton->setEnabled( !partitionIsZFS );
+
+    const bool formatChecked = partitionIsZFS || PartitionInfo::format( m_partition );
+    m_ui->formatRadioButton->setChecked( formatChecked );
+    m_ui->keepRadioButton->setChecked( !formatChecked );
 
     m_ui->fileSystemComboBox->setEnabled( m_ui->formatRadioButton->isChecked() );
 
