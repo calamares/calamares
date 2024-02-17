@@ -190,6 +190,7 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
     {
         if ( m_ui->formatRadioButton->isChecked() )
         {
+            core->clearJobs( m_device, m_partition );
             Partition* newPartition = KPMHelpers::createNewPartition( m_partition->parent(),
                                                                       *m_device,
                                                                       m_partition->roles(),
@@ -224,6 +225,7 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
             // if the FS type is unchanged, we just format
             if ( m_partition->fileSystem().type() == fsType )
             {
+                core->clearJobs( m_device, m_partition );
                 core->formatPartition( m_device, m_partition );
                 if ( currentFlags != resultFlags )
                 {
@@ -234,6 +236,7 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
             }
             else  // otherwise, we delete and recreate the partition with new fs type
             {
+                core->clearJobs( m_device, m_partition );
                 Partition* newPartition = KPMHelpers::createNewPartition( m_partition->parent(),
                                                                           *m_device,
                                                                           m_partition->roles(),

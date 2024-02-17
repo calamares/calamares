@@ -218,6 +218,7 @@ public:
     void asyncRevertDevice( Device* dev, std::function< void() > callback );  //like revertDevice, but asynchronous
 
     void clearJobs();  // only clear jobs, the Device* states are preserved
+    void clearJobs( Device* device, Partition* partition );  // clears all jobs changing @p partition
 
     bool isDirty();  // true if there are pending changes, otherwise false
 
