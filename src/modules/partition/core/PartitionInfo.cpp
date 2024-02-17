@@ -14,6 +14,7 @@
 // KPMcore
 #include <kpmcore/core/lvmdevice.h>
 #include <kpmcore/core/partition.h>
+#include <kpmcore/fs/filesystemfactory.h>
 
 // Qt
 #include <QVariant>
@@ -24,6 +25,7 @@ namespace PartitionInfo
 static const char MOUNT_POINT_PROPERTY[] = "_calamares_mountPoint";
 static const char FORMAT_PROPERTY[] = "_calamares_format";
 static const char FLAGS_PROPERTY[] = "_calamares_flags";
+static const char LABEL_PROPERTY[] = "_calamares_label";
 
 QString
 mountPoint( const Partition* partition )
@@ -74,12 +76,32 @@ setFlags( Partition* partition, PartitionTable::Flags f )
     partition->setProperty( FLAGS_PROPERTY, PartitionTable::Flags::Int( f ) );
 }
 
+QString
+label( const Partition* partition )
+{
+    auto v = partition->property( LABEL_PROPERTY );
+    if ( !v.isValid() )
+    {
+        return partition->fileSystem().label();
+    }
+    return v.toString();
+}
+
+void
+setLabel( Partition* partition, const QString& value )
+{
+    partition->setProperty( LABEL_PROPERTY, value );
+}
+
+
 void
 reset( Partition* partition )
 {
+    // Setting a property to an invalid QVariant is equal to removing it
     partition->setProperty( MOUNT_POINT_PROPERTY, QVariant() );
     partition->setProperty( FORMAT_PROPERTY, QVariant() );
     partition->setProperty( FLAGS_PROPERTY, QVariant() );
+    partition->setProperty( LABEL_PROPERTY, QVariant() );
 }
 
 bool
