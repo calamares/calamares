@@ -4,17 +4,22 @@
 
 # MAINTAINER
 
-Calamares development is sponsored by Blue Systems GmbH - Liberating Software.
-
 Calamares maintainers through the years:
  * Teo Mrnjavac <teo@kde.org> (maintainer -2017)
- * Adriaan de Groot <groot@kde.org> (maintainer 2017-)
+ * Adriaan de Groot <groot@kde.org> (maintainer 2017-2022)
+ * Community (2022-)
+
+Community maintainers are Adriaan de Groot, Anke Boersma, Evan James.
+
 
 # CONTRIBUTORS
 
 Calamares has received contributions of code, documentation, artwork
 and moral support from (alphabetically by first name or nickname):
 
+ - Aaron Rainbolt
+ - Adriaan de Groot
+ - Aleksey Samoilov
  - Alf Gaida
  - aliveafter1000
  - Allen Welkie
@@ -25,53 +30,83 @@ and moral support from (alphabetically by first name or nickname):
  - Arjen Balfoort
  - Arnaud Ferraris
  - Artem Grinev
- - artoo@cromnix.org
+ - artoo
  - benne-dee
  - Bernhard Landauer
  - Bezzy1999
  - Bill Auger
  - Bob van der Linden
+ - Boria138
+ - Brian Morison
  - Caio Jordão Carvalho
  - Camilo Higuita
+ - Christophe Marin
  - Collabora LTD
  - Corey Lang
  - crispg72
+ - dalto8
  - Dan Simmons
  - demmm
+ - DemonKiller
+ - Dominic Hayes
+ - El-Wumbus
+ - Emir SARI
  - Emmanuel Arias
  - Enrique Medina Gremaldos
  - Erik Dubois
- - Dominic Hayes
- - El-Wumbus
+ - Evan Goode
  - Evan James
- - Frede H
+ - Evan Maddock
+ - Ficelloo
+ - Frede Hundewadt
  - Gabriel Craciunescu
+ - Gaël PORTAY
+ - GeckoLinux
  - Harald Sitter
+ - Hector Martin
  - Huang Jia Wen
+ - huxingyi
+ - Ivan Borzenkov
+ - Jeremy Attali
+ - Jeremy Whiting
  - Jerrod Frost
  - Jia Chao
- - Joe Kamprad
+ - Johannes Kamprad
  - Jonas Strassel
+ - Jonathan Esk-Riddell
  - Kai Dohmen
+ - Kasra Hashemi
  - Kevin Kofler
  - Kyle Robertze
  - Lisa Vitolo
+ - Lukas Märdian
+ - Mario Haustein
+ - Masato TOYOSHIMA
  - Matti Hyttinen
  - n3rdopolis
  - Neal Gompa
  - Nico 'dr460nf1r3'
  - Omer I.S.
+ - Panda
+ - Paolo Dongilli
+ - Peter Jung
  - Philip Müller
  - Ramon Buldó
  - Raul Rodrigo Segura
  - Rohan Garg
  - Santosh Mahto
  - Scott Harvey
+ - shivanandvp
  - Simon Quigley
+ - Sunderland93
+ - Sławomir Lach
  - Taejun Park
+ - Tj
  - Victor Fuentes
+ - Vitor Lopes
  - vtriolet
  - Walter Lapchynski
  - Waneon Kim
+ - wiz64
 
- > This list was updated to revision 6e8d820737dea0f3e08f12b10768facef19be684 on May 28th 2022.
+> This list was updated to revision 283668cb0155c1c14739bb3b51db3d5d0b39c8e2 on February 17th 2024.
