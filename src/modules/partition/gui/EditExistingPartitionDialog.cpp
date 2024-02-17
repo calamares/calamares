@@ -69,9 +69,10 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device,
              this,
              &EditExistingPartitionDialog::checkMountPointSelection );
 
-    // The filesystem label dialog is always enabled, because we may want to change
+    // The filesystem label field is always enabled, because we may want to change
     // the label on the current filesystem without formatting.
     m_ui->fileSystemLabelEdit->setText( m_partition->fileSystem().label() );
+    m_ui->fileSystemLabel->setEnabled(true);
 
     replacePartResizerWidget();
 
@@ -81,7 +82,6 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device,
              {
                  replacePartResizerWidget();
 
-                 m_ui->fileSystemLabel->setEnabled( doFormat );
                  m_ui->fileSystemComboBox->setEnabled( doFormat );
 
                  if ( !doFormat )
@@ -133,7 +133,6 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device,
     m_ui->keepRadioButton->setChecked( !partitionIsZFS );
     m_ui->keepRadioButton->setEnabled( !partitionIsZFS );
 
-    m_ui->fileSystemLabel->setEnabled( m_ui->formatRadioButton->isChecked() );
     m_ui->fileSystemComboBox->setEnabled( m_ui->formatRadioButton->isChecked() );
 
     setFlagList( *( m_ui->m_listFlags ), m_partition->availableFlags(), PartitionInfo::flags( m_partition ) );
