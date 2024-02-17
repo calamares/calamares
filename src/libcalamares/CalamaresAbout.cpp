@@ -22,11 +22,14 @@ static const char s_footer[]
                          "and the <a href=\"https://app.transifex.com/calamares/calamares/\">Calamares "
                          "translators team</a>." );
 
+#if 0
+// Blue Systems sponsored until June 2022
 static const char s_sponsor[] = QT_TRANSLATE_NOOP( "AboutData",
                                                    "<a href=\"https://calamares.io/\">Calamares</a> "
                                                    "development is sponsored by <br/>"
                                                    "<a href=\"http://www.blue-systems.com/\">Blue Systems</a> - "
                                                    "Liberating Software." );
+#endif
 
 struct Maintainer
 {
@@ -47,7 +50,8 @@ struct Maintainer
 
 static constexpr const Maintainer maintainers[] = {
     { 2014, 2017, "Teo Mrnjavac", "teo@kde.org" },
-    { 2017, 2023, "Adriaan de Groot", "groot@kde.org" },
+    { 2017, 2022, "Adriaan de Groot", "groot@kde.org" },
+    { 2022, 2024, "Adriaan de Groot (community)", "groot@kde.org" },
 };
 
 static QString
@@ -72,7 +76,6 @@ substituteVersions( const QString& s )
 const QString
 Calamares::aboutString()
 {
-    Q_UNUSED( s_sponsor )
     return substituteVersions( QCoreApplication::translate( "AboutData", s_header ) ) + aboutMaintainers()
         + QCoreApplication::translate( "AboutData", s_footer );
 }
