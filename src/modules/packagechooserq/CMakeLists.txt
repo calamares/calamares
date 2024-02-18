@@ -10,12 +10,9 @@ if(NOT WITH_QML)
 endif()
 
 find_package(${qtname} ${QT_VERSION} CONFIG REQUIRED Core)
-set(_extra_libraries "")
-set(_extra_src "")
 
 # include_directories( ${CMAKE_CURRENT_SOURCE_DIR}/../packagechooser )
 set(_packagechooser ${CMAKE_CURRENT_SOURCE_DIR}/../packagechooser)
-include_directories(${_packagechooser})
 
 ### OPTIONAL AppData XML support in PackageModel
 #
@@ -23,11 +20,6 @@ include_directories(${_packagechooser})
 option(BUILD_APPDATA "Support appdata: items in PackageChooser (requires QtXml)" OFF)
 if(BUILD_APPDATA)
     find_package(${qtname} REQUIRED COMPONENTS Xml)
-    if(TARGET ${qtname}::Xml)
-        add_definitions(-DHAVE_APPDATA)
-        list(APPEND _extra_libraries ${qtname}::Xml)
-        list(APPEND _extra_src ${_packagechooser}/ItemAppData.cpp)
-    endif()
 endif()
 
 ### OPTIONAL AppStream support in PackageModel
@@ -50,8 +42,15 @@ calamares_add_plugin(packagechooserq
         ${_extra_libraries}
     SHARED_LIB
 )
+target_include_directories(${packagechooserq_TARGET} PRIVATE ${_packagechooser})
 
 if(AppStreamQt_FOUND)
-    target_link_libraries(calamares_viewmodule_packagechooserq PRIVATE calamares::appstreamqt)
-    target_sources(calamares_viewmodule_packagechooserq PRIVATE ${_packagechooser}/ItemAppStream.cpp)
+    target_link_libraries(${packagechooserq_TARGET} PRIVATE calamares::appstreamqt)
+    target_sources(${packagechooserq_TARGET} PRIVATE ${_packagechooser}/ItemAppStream.cpp)
+endif()
+
+if(BUILD_APPDATA AND TARGET ${qtname}::Xml)
+    target_compile_definitions(${packagechooserq_TARGET} PRIVATE HAVE_APPDATA)
+    target_link_libraries(${packagechooserq_TARGET} PRIVATE ${qtname}::Xml)
+    target_sources(${packagechooserq_TARGET} PRIVATE ${_packagechooser}/ItemAppData.cpp)
 endif()
