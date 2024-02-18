@@ -10,9 +10,6 @@
 # (non-GUI) jobs.
 #
 
-add_definitions(-DDLLEXPORT_PRO)
-include_directories(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
-
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/CalamaresConfig.h.in ${CMAKE_CURRENT_BINARY_DIR}/CalamaresConfig.h)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/CalamaresVersion.h.in ${CMAKE_CURRENT_BINARY_DIR}/CalamaresVersion.h)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/CalamaresVersionX.h.in ${CMAKE_CURRENT_BINARY_DIR}/CalamaresVersionX.h)
@@ -98,10 +95,17 @@ set_target_properties(
     PROPERTIES
         VERSION ${CALAMARES_VERSION_SHORT}
         SOVERSION ${CALAMARES_SOVERSION}
-        INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_INSTALL_FULL_INCLUDEDIR}/libcalamares
 )
 target_link_libraries(calamares LINK_PUBLIC yamlcpp::yamlcpp ${qtname}::Core ${qtname}::Network)
 target_link_libraries(calamares LINK_PUBLIC ${kfname}::CoreAddons)
+
+target_compile_definitions(calamares PRIVATE DLLEXPORT_PRO)
+target_include_directories(calamares PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+target_include_directories(calamares PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+    $<INSTALL_INTERFACE:include/libcalamares>
+)
+target_include_directories(calamares PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>)
 
 ### OPTIONAL Automount support (requires dbus)
 #
