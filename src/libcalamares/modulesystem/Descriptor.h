@@ -46,9 +46,12 @@ enum class Interface
 const NamedEnumTable< Interface >& interfaceNames();
 
 
-/* While this isn't a useful *using* right now, the intention is
- * to create a more strongly-typed Module Descriptor that carries
- * only the necessary information and no variants.
+/**
+ * @brief Description of a module (obtained from module.desc)
+ *
+ * Provides access to the fields of a descriptor, use type() to
+ * determine which specialized fields make sense for a given
+ * descriptor (e.g. a Python module has no shared-library path).
  */
 class Descriptor
 {
