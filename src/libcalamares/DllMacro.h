@@ -11,7 +11,9 @@
 #ifndef DLLMACRO_H
 #define DLLMACRO_H
 
-#include <qglobal.h>
+#ifndef CALAMARES_EXPORT
+#define CALAMARES_EXPORT __attribute__((visibility("default")))
+#endif
 
 /*
  * Mark symbols exported from Calamares non-GUI library with DLLEXPORT.
@@ -19,9 +21,9 @@
  */
 #ifndef DLLEXPORT
 #if defined( DLLEXPORT_PRO )
-#define DLLEXPORT Q_DECL_EXPORT
+#define DLLEXPORT CALAMARES_EXPORT
 #else
-#define DLLEXPORT Q_DECL_IMPORT
+#define DLLEXPORT
 #endif
 #endif
 
@@ -31,9 +33,9 @@
  */
 #ifndef UIDLLEXPORT
 #if defined( UIDLLEXPORT_PRO )
-#define UIDLLEXPORT Q_DECL_EXPORT
+#define UIDLLEXPORT CALAMARES_EXPORT
 #else
-#define UIDLLEXPORT Q_DECL_IMPORT
+#define UIDLLEXPORT
 #endif
 #endif
 
@@ -44,9 +46,9 @@
  */
 #ifndef PLUGINDLLEXPORT
 #if defined( PLUGINDLLEXPORT_PRO )
-#define PLUGINDLLEXPORT Q_DECL_EXPORT
+#define PLUGINDLLEXPORT CALAMARES_EXPORT
 #else
-#define PLUGINDLLEXPORT Q_DECL_IMPORT
+#define PLUGINDLLEXPORT
 #endif
 #endif
 
