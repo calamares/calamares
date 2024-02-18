@@ -67,7 +67,9 @@
 # already handles skip-reasons and collects them for reporting.
 #
 # The target defined this way is called "calamares_<TYPE>_<module-name>",
-# e.g. "calamares_viewmodule_packagechooserq".
+# e.g. "calamares_viewmodule_packagechooserq". The function sets a variable
+# in its **calling** scope, `<module-name>_TARGET` with the full name
+# of the target.
 
 include( CMakeParseArguments )
 
@@ -226,4 +228,6 @@ function( calamares_add_plugin )
             message( "" )
         endif()
     endif()
+
+    set(${NAME}_TARGET ${target} PARENT_SCOPE)
 endfunction()
