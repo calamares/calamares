@@ -164,15 +164,17 @@ EditExistingPartitionDialog::newFlags() const
 void
 EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
 {
-    PartitionInfo::setMountPoint( m_partition, selectedMountPoint( m_ui->mountPointComboBox ) );
+    // Remove jobs that we might have created for this partition already,
+    // and also clear intentions so that we set the current ones unconditionally.
+    core->clearJobs( m_device, m_partition );
+    PartitionInfo::reset( m_partition );
+
+    const QString mountPoint = selectedMountPoint( m_ui->mountPointComboBox );
+    PartitionInfo::setMountPoint( m_partition, mountPoint );
 
     qint64 newFirstSector = m_partitionSizeController->firstSector();
     qint64 newLastSector = m_partitionSizeController->lastSector();
     bool partResizedMoved = newFirstSector != m_partition->firstSector() || newLastSector != m_partition->lastSector();
-
-    cDebug() << "old boundaries:" << m_partition->firstSector() << m_partition->lastSector() << m_partition->length();
-    cDebug() << Logger::SubEntry << "new boundaries:" << newFirstSector << newLastSector;
-    cDebug() << Logger::SubEntry << "dirty status:" << m_partitionSizeController->isDirty();
 
     FileSystem::Type fsType = FileSystem::Unknown;
     if ( m_ui->formatRadioButton->isChecked() )
@@ -186,11 +188,17 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
     const auto resultFlags = newFlags();
     const auto currentFlags = PartitionInfo::flags( m_partition );
 
+    cDebug() << m_partition->partitionPath() << "format?" << m_ui->formatRadioButton->isChecked() << "label=" << fsLabel
+             << "mount=" << mountPoint;
+
     if ( partResizedMoved )
     {
+        cDebug() << "old boundaries:" << m_partition->firstSector() << m_partition->lastSector()
+                 << m_partition->length();
+        cDebug() << Logger::SubEntry << "new boundaries:" << newFirstSector << newLastSector;
+
         if ( m_ui->formatRadioButton->isChecked() )
         {
-            core->clearJobs( m_device, m_partition );
             Partition* newPartition = KPMHelpers::createNewPartition( m_partition->parent(),
                                                                       *m_device,
                                                                       m_partition->roles(),
@@ -225,7 +233,6 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
             // if the FS type is unchanged, we just format
             if ( m_partition->fileSystem().type() == fsType )
             {
-                core->clearJobs( m_device, m_partition );
                 core->formatPartition( m_device, m_partition );
                 if ( currentFlags != resultFlags )
                 {
@@ -236,7 +243,6 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
             }
             else  // otherwise, we delete and recreate the partition with new fs type
             {
-                core->clearJobs( m_device, m_partition );
                 Partition* newPartition = KPMHelpers::createNewPartition( m_partition->parent(),
                                                                           *m_device,
                                                                           m_partition->roles(),
