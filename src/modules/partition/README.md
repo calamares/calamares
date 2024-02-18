@@ -1,4 +1,4 @@
-# Architecture
+#Architecture
 
 <!-- SPDX-FileCopyrightText: 2014 Aurélien Gâteau <agateau@kde.org>
      SPDX-FileCopyrightText: 2016 Teo Mrnjavac <teo@kde.org>
@@ -47,7 +47,7 @@ Calamares-specific properties to the Partition instances: setting the install
 mount point is done with `PartitionInfo::setMountPoint(partition, "/")`,
 retrieving it is done with `mountPoint = PartitionInfo::mountPoint(partition)`.
 
-The rational behind this unusual design is simplicity: the alternative would
+The rationale behind this unusual design is simplicity: the alternative would
 have been to keep a separate PartitionInfo object and a map linking each
 Partition to its PartitionInfo instance. Such a design makes things more
 complicated. It complicates memory management: if a Partition goes away, its
@@ -60,7 +60,7 @@ the real Partition object. This would have worked and would have made for a less
 surprising API, but it would mean more Calamares-specific patches on KPMcore.
 
 
-# Tests
+#Tests
 
 The module comes with unit tests for the partition jobs. Those tests need to
 run on storage device which does not contain any data you care about.
@@ -78,7 +78,7 @@ this:
     sudo CALAMARES_TEST_DISK=/dev/sdb $top_build_dir/partitionjobtests
 
 
-# TODO
+#TODO
 
 - Support resizing extended partitions. ResizePartitionJob should already
   support this but the UI prevents editing of extended partitions for now.

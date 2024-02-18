@@ -21,7 +21,9 @@ class Partition;
  * Functions to store Calamares-specific information in the Qt properties of a
  * Partition object.
  *
- * See README.md for the rational behind this design.
+ * See README.md for the rationale behind this design. Roughly, these
+ * functions access **intent** while the existing Partition methods
+ * access current state.
  *
  * Properties:
  * - mountPoint: which directory will a partition be mounted on the installed
@@ -29,6 +31,7 @@ class Partition;
  *   directory on which a partition is *currently* mounted while the installer
  *   is running.
  * - format: whether this partition should be formatted at install time.
+ * - label: label to apply to the filesystem in the partition
  */
 namespace PartitionInfo
 {
@@ -41,6 +44,9 @@ void setFormat( Partition* partition, bool value );
 
 PartitionTable::Flags flags( const Partition* partition );
 void setFlags( Partition* partition, PartitionTable::Flags f );
+
+QString label( const Partition* partition );
+void setLabel( Partition* partition, const QString& value );
 
 void reset( Partition* partition );
 

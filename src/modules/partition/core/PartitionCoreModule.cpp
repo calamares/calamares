@@ -166,6 +166,23 @@ struct PartitionCoreModule::DeviceInfo
         return Calamares::job_ptr( nullptr );
     }
 
+    /** @brief Take the jobs of any type that apply to @p partition */
+    void takeJobs( Partition* partition )
+    {
+        for ( auto it = m_jobs.begin(); it != m_jobs.end(); )
+        {
+            PartitionJob* job = qobject_cast< PartitionJob* >( it->data() );
+            if ( job && job->partition() == partition )
+            {
+                it = m_jobs.erase( it );
+            }
+            else
+            {
+                ++it;
+            }
+        }
+    }
+
     /** @brief Add a job of given type to the job list
      */
     template < typename Job, typename... Args >
@@ -557,15 +574,17 @@ PartitionCoreModule::formatPartition( Device* device, Partition* partition )
 void
 PartitionCoreModule::setFilesystemLabel( Device* device, Partition* partition, const QString& newLabel )
 {
-    if ( newLabel.isEmpty() )
+    if ( newLabel == PartitionInfo::label( partition ) )
     {
-        // Don't bother
         return;
     }
+
     auto deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
 
     OperationHelper helper( partitionModelForDevice( device ), this );
+    PartitionInfo::setLabel( partition, newLabel );
+    deviceInfo->takeJob< ChangeFilesystemLabelJob >( partition );
     deviceInfo->makeJob< ChangeFilesystemLabelJob >( partition, newLabel );
 }
 
@@ -1140,6 +1159,17 @@ PartitionCoreModule::clearJobs()
         deviceInfo->forgetChanges();
     }
     updateIsDirty();
+}
+
+void
+PartitionCoreModule::clearJobs( Device* device, Partition* partition )
+{
+    DeviceInfo* devInfo = infoForDevice( device );
+
+    if ( devInfo )
+    {
+        devInfo->takeJobs( partition );
+    }
 }
 
 
