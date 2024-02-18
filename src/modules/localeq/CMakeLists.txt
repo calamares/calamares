@@ -12,9 +12,6 @@ endif()
 # to have a debugging-friendly timezone widget, debug logging,
 # and no intrusive timezone-setting while clicking around.
 option(DEBUG_TIMEZONES "Debug-friendly timezone widget." OFF)
-if(DEBUG_TIMEZONES)
-    add_definitions(-DDEBUG_TIMEZONES)
-endif()
 
 find_package(${qtname}Location CONFIG)
 set_package_properties(${qtname}Location PROPERTIES DESCRIPTION "Used for rendering the map" TYPE RUNTIME)
@@ -23,8 +20,6 @@ set_package_properties(${qtname}Positioning PROPERTIES DESCRIPTION "Used for Geo
 
 # Because we're sharing sources with the regular locale module
 set(_locale ${CMAKE_CURRENT_SOURCE_DIR}/../locale)
-
-include_directories(${_locale})
 
 calamares_add_plugin(localeq
     TYPE viewmodule
@@ -41,3 +36,7 @@ calamares_add_plugin(localeq
         ${qtname}::Network
     SHARED_LIB
 )
+target_include_directories(${localeq_TARGET} PRIVATE ${_locale})
+if(DEBUG_TIMEZONES)
+    target_compile_definitions(${localeq_TARGET} PRIVATE DEBUG_TIMEZONES)
+endif()
