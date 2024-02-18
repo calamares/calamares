@@ -102,6 +102,7 @@ set_target_properties(
     PROPERTIES
         VERSION ${CALAMARES_VERSION_SHORT}
         SOVERSION ${CALAMARES_SOVERSION}
+        CXX_VISIBILITY_PRESET hidden
 )
 target_link_libraries(calamares LINK_PUBLIC yamlcpp::yamlcpp ${qtname}::Core ${qtname}::Network)
 target_link_libraries(calamares LINK_PUBLIC ${kfname}::CoreAddons)
