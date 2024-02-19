@@ -12,6 +12,8 @@
 #ifndef CALAMARES_GLOBALSTORAGE_H
 #define CALAMARES_GLOBALSTORAGE_H
 
+#include "DllMacro.h"
+
 #include <QMutex>
 #include <QObject>
 #include <QString>
@@ -42,7 +44,7 @@ namespace Calamares
  * has locking. All methods are thread-safe, use data() to make a snapshot
  * copy for use outside of the thread-safe API.
  */
-class GlobalStorage : public QObject
+class DLLEXPORT GlobalStorage : public QObject
 {
     Q_OBJECT
 public:

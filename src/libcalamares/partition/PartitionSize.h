@@ -12,6 +12,7 @@
 #ifndef PARTITION_PARTITIONSIZE_H
 #define PARTITION_PARTITIONSIZE_H
 
+#include "DllMacro.h"
 #include "utils/NamedSuffix.h"
 #include "utils/Units.h"
 
@@ -42,7 +43,7 @@ enum class SizeUnit
  * the available drive space are on). This class handles parsing
  * of such strings from the config file.
  */
-class PartitionSize : public NamedSuffix< SizeUnit, SizeUnit::None >
+class DLLEXPORT PartitionSize : public NamedSuffix< SizeUnit, SizeUnit::None >
 {
 public:
     PartitionSize()

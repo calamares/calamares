@@ -11,6 +11,8 @@
 #ifndef MODULESYSTEM_INSTANCEKEY_H
 #define MODULESYSTEM_INSTANCEKEY_H
 
+#include "DllMacro.h"
+
 #include <QDebug>
 #include <QList>
 #include <QString>
@@ -36,7 +38,7 @@ namespace ModuleSystem
  * This is supported by the *instances* configuration entry
  * in `settings.conf`.
  */
-class InstanceKey
+class DLLEXPORT InstanceKey
 {
 public:
     /// @brief Create an instance key from explicit module and id.
@@ -102,7 +104,7 @@ private:
 
 using InstanceKeyList = QList< InstanceKey >;
 
-QDebug& operator<<( QDebug& s, const Calamares::ModuleSystem::InstanceKey& i );
+DLLEXPORT QDebug& operator<<( QDebug& s, const Calamares::ModuleSystem::InstanceKey& i );
 inline QDebug&
 operator<<( QDebug&& s, const Calamares::ModuleSystem::InstanceKey& i )
 {

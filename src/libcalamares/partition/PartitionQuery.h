@@ -18,6 +18,8 @@
 #ifndef PARTITION_PARTITIONQUERY_H
 #define PARTITION_PARTITIONQUERY_H
 
+#include "DllMacro.h"
+
 #include <QList>
 
 #include <functional>
@@ -36,23 +38,23 @@ using ::Partition;
 using ::PartitionTable;
 
 /** @brief Get partition table */
-const PartitionTable* getPartitionTable( const Partition* partition );
+DLLEXPORT const PartitionTable* getPartitionTable( const Partition* partition );
 
 /** @brief Is this a free-space area? */
-bool isPartitionFreeSpace( const Partition* );
+DLLEXPORT bool isPartitionFreeSpace( const Partition* );
 
 /** @brief Is this partition newly-to-be-created?
  *
  * Returns true if the partition is planned to be created by the installer as
  * opposed to already existing on the disk.
  */
-bool isPartitionNew( const Partition* );
+DLLEXPORT bool isPartitionNew( const Partition* );
 
 /**
  * Iterates on all devices and return the first partition which is (already)
  * mounted on @p mountPoint.
  */
-Partition* findPartitionByCurrentMountPoint( const QList< Device* >& devices, const QString& mountPoint );
+DLLEXPORT Partition* findPartitionByCurrentMountPoint( const QList< Device* >& devices, const QString& mountPoint );
 
 // TODO: add this distinction
 // Partition* findPartitionByIntendedMountPoint( const QList< Device* >& devices, const QString& mountPoint );
@@ -61,14 +63,14 @@ Partition* findPartitionByCurrentMountPoint( const QList< Device* >& devices, co
  * Iterates on all devices and partitions and returns a pointer to the Partition object
  * for the given path, or nullptr if a Partition for the given path cannot be found.
  */
-Partition* findPartitionByPath( const QList< Device* >& devices, const QString& path );
+DLLEXPORT Partition* findPartitionByPath( const QList< Device* >& devices, const QString& path );
 
 /**
  * Iterates on all devices and partitions and returns a list of pointers to the Partition
  * objects that satisfy the conditions defined in the criterion function.
  */
-QList< Partition* > findPartitions( const QList< Device* >& devices,
-                                    std::function< bool( Partition* ) > criterionFunction );
+DLLEXPORT QList< Partition* > findPartitions( const QList< Device* >& devices,
+                                              std::function< bool( Partition* ) > criterionFunction );
 }  // namespace Partition
 }  // namespace Calamares
 

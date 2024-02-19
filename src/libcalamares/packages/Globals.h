@@ -10,6 +10,7 @@
 #ifndef LIBCALAMARES_PACKAGES_GLOBALS_H
 #define LIBCALAMARES_PACKAGES_GLOBALS_H
 
+#include "DllMacro.h"
 #include "GlobalStorage.h"
 #include "modulesystem/InstanceKey.h"
 
@@ -24,7 +25,7 @@ namespace Packages
  *
  * Returns @c true if anything was changed, @c false otherwise.
  */
-bool setGSPackageAdditions( Calamares::GlobalStorage* gs,
+DLLEXPORT bool setGSPackageAdditions( Calamares::GlobalStorage* gs,
                             const Calamares::ModuleSystem::InstanceKey& module,
                             const QVariantList& installPackages,
                             const QVariantList& tryInstallPackages );
@@ -33,7 +34,7 @@ bool setGSPackageAdditions( Calamares::GlobalStorage* gs,
  * This replaces previously-set install-packages lists. Use this with
  * plain lists of package names. It does not support try-install.
  */
-bool setGSPackageAdditions( Calamares::GlobalStorage* gs,
+DLLEXPORT bool setGSPackageAdditions( Calamares::GlobalStorage* gs,
                             const Calamares::ModuleSystem::InstanceKey& module,
                             const QStringList& installPackages );
 // void setGSPackageRemovals( const Calamares::ModuleSystem::InstanceKey& key, const QVariantList& removePackages );

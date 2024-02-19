@@ -21,6 +21,8 @@
 #ifndef UTILS_YAML_H
 #define UTILS_YAML_H
 
+#include "DllMacro.h"
+
 #include <QStringList>
 #include <QVariant>
 #include <QVariantList>
@@ -48,7 +50,7 @@ class QFileInfo;
 #endif
 
 /// @brief Appends all the elements of @p node to the string list @p v
-void operator>>( const ::YAML::Node& node, QStringList& v );
+DLLEXPORT void operator>>( const ::YAML::Node& node, QStringList& v );
 
 namespace Calamares
 {
@@ -60,29 +62,29 @@ namespace YAML
  * malformed in some way, returns an empty map and sets
  * @p *ok to false. Otherwise sets @p *ok to true.
  */
-QVariantMap load( const QString& filename, bool* ok = nullptr );
+DLLEXPORT QVariantMap load( const QString& filename, bool* ok = nullptr );
 /** Convenience overload. */
-QVariantMap load( const QFileInfo&, bool* ok = nullptr );
+DLLEXPORT QVariantMap load( const QFileInfo&, bool* ok = nullptr );
 
-QVariant toVariant( const ::YAML::Node& node );
-QVariant scalarToVariant( const ::YAML::Node& scalarNode );
-QVariantList sequenceToVariant( const ::YAML::Node& sequenceNode );
-QVariantMap mapToVariant( const ::YAML::Node& mapNode );
+DLLEXPORT QVariant toVariant( const ::YAML::Node& node );
+DLLEXPORT QVariant scalarToVariant( const ::YAML::Node& scalarNode );
+DLLEXPORT QVariantList sequenceToVariant( const ::YAML::Node& sequenceNode );
+DLLEXPORT QVariantMap mapToVariant( const ::YAML::Node& mapNode );
 
 /// @brief Returns all the elements of @p listNode in a StringList
-QStringList toStringList( const ::YAML::Node& listNode );
+DLLEXPORT QStringList toStringList( const ::YAML::Node& listNode );
 
 /// @brief Save a @p map to @p filename as YAML
-bool save( const QString& filename, const QVariantMap& map );
+DLLEXPORT bool save( const QString& filename, const QVariantMap& map );
 
 /**
  * Given an exception from the YAML parser library, explain
  * what is going on in terms of the data passed to the parser.
  * Uses @p label when labeling the data source (e.g. "netinstall data")
  */
-void explainException( const ::YAML::Exception& e, const QByteArray& data, const char* label );
-void explainException( const ::YAML::Exception& e, const QByteArray& data, const QString& label );
-void explainException( const ::YAML::Exception& e, const QByteArray& data );
+DLLEXPORT void explainException( const ::YAML::Exception& e, const QByteArray& data, const char* label );
+DLLEXPORT void explainException( const ::YAML::Exception& e, const QByteArray& data, const QString& label );
+DLLEXPORT void explainException( const ::YAML::Exception& e, const QByteArray& data );
 
 }  // namespace YAML
 }  // namespace Calamares

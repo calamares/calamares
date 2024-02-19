@@ -11,6 +11,7 @@
 #ifndef CALAMARES_PROCESSJOB_H
 #define CALAMARES_PROCESSJOB_H
 
+#include "DllMacro.h"
 #include "Job.h"
 
 #include <chrono>
@@ -22,11 +23,11 @@ class ProcessJob : public Job
 {
     Q_OBJECT
 public:
-    explicit ProcessJob( const QString& command,
-                         const QString& workingPath,
-                         bool runInChroot = false,
-                         std::chrono::seconds secondsTimeout = std::chrono::seconds( 30 ),
-                         QObject* parent = nullptr );
+    explicit DLLEXPORT ProcessJob( const QString& command,
+                                   const QString& workingPath,
+                                   bool runInChroot = false,
+                                   std::chrono::seconds secondsTimeout = std::chrono::seconds( 30 ),
+                                   QObject* parent = nullptr );
     ~ProcessJob() override;
 
     QString prettyName() const override;

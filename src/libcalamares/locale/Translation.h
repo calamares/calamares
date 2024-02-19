@@ -36,7 +36,7 @@ namespace Locale
  * - `ca@valencia` is the Catalan dialect spoken in Valencia.
  *   There is no Qt code for it.
  */
-class Translation : public QObject
+class DLLEXPORT Translation : public QObject
 {
     Q_OBJECT
 

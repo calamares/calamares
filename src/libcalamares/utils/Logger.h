@@ -228,7 +228,7 @@ struct RedactedCommand
     const QStringList& list;
 };
 
-QDebug& operator<<( QDebug& s, const RedactedCommand& l );
+DLLEXPORT QDebug& operator<<( QDebug& s, const RedactedCommand& l );
 
 /** @brief When logging "private" identifiers, keep them consistent but private
  *
@@ -236,7 +236,7 @@ QDebug& operator<<( QDebug& s, const RedactedCommand& l );
  * it logs the same way, but without revealing the actual contents.
  * This can be applied to user names, UUIDs, etc.
  */
-struct RedactedName
+struct DLLEXPORT RedactedName
 {
     RedactedName( const char* context, const QString& s );
     RedactedName( const QString& context, const QString& s );
@@ -312,7 +312,7 @@ operator<<( QDebug& s, const DebugListT< T >& c )
 }
 
 /** @brief supporting method for outputting a DebugMap */
-QString toString( const QVariant& v );
+DLLEXPORT QString toString( const QVariant& v );
 
 /** @brief output operator for DebugMap */
 inline QDebug&

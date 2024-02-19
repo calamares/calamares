@@ -11,6 +11,7 @@
 #ifndef MODULESYSTEM_DESCRIPTOR_H
 #define MODULESYSTEM_DESCRIPTOR_H
 
+#include "DllMacro.h"
 #include "utils/NamedEnum.h"
 
 #include <QVariantMap>
@@ -30,7 +31,7 @@ enum class Type
     Job,
     View
 };
-const NamedEnumTable< Type >& typeNames();
+DLLEXPORT const NamedEnumTable< Type >& typeNames();
 
 /**
  * @brief The Interface enum represents the interface through which the module
@@ -43,8 +44,7 @@ enum class Interface
     Python,  // Jobs only
     Process,  // Deprecated interface
 };
-const NamedEnumTable< Interface >& interfaceNames();
-
+DLLEXPORT const NamedEnumTable< Interface >& interfaceNames();
 
 /**
  * @brief Description of a module (obtained from module.desc)
@@ -53,7 +53,7 @@ const NamedEnumTable< Interface >& interfaceNames();
  * determine which specialized fields make sense for a given
  * descriptor (e.g. a Python module has no shared-library path).
  */
-class Descriptor
+class DLLEXPORT Descriptor
 {
 public:
     ///@brief an invalid, and empty, descriptor

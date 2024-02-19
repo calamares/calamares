@@ -10,6 +10,7 @@
 #ifndef CALAMARES_REQUIREMENTSCHECKER_H
 #define CALAMARES_REQUIREMENTSCHECKER_H
 
+#include "DllMacro.h"
 #include "modulesystem/Requirement.h"
 
 #include <QFutureWatcher>
@@ -28,7 +29,7 @@ class RequirementsModel;
  * Asynchronously checks the requirements for each module, and
  * emits progress signals as appropriate.
  */
-class RequirementsChecker : public QObject
+class DLLEXPORT RequirementsChecker : public QObject
 {
     Q_OBJECT
 

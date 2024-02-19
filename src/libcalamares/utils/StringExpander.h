@@ -40,7 +40,7 @@ namespace String
  * `expand()` implicitly clears the errors before starting
  * a new expansion, as well.
  */
-class DictionaryExpander : public KWordMacroExpander
+class DLLEXPORT DictionaryExpander : public KWordMacroExpander
 {
 public:
     DictionaryExpander();

@@ -19,6 +19,8 @@
 #ifndef PARTITION_PARTITIONITERATOR_H
 #define PARTITION_PARTITIONITERATOR_H
 
+#include "DllMacro.h"
+
 class Device;
 class Partition;
 class PartitionTable;
@@ -39,7 +41,7 @@ namespace Partition
  *
  * A nullptr is valid, for an empty iterator.
  */
-class PartitionIterator
+class DLLEXPORT PartitionIterator
 {
 public:
     ::Partition* operator*() const;

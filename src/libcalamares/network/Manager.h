@@ -84,7 +84,7 @@ struct RequestStatus
     State status;
 };
 
-QDebug& operator<<( QDebug& s, const RequestStatus& e );
+DLLEXPORT QDebug& operator<<( QDebug& s, const RequestStatus& e );
 
 class DLLEXPORT Manager : public QObject
 {

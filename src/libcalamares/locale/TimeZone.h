@@ -39,7 +39,7 @@ class Private;
 class RegionalZonesModel;
 class ZonesModel;
 
-class TimeZoneData : public QObject, TranslatableString
+class DLLEXPORT TimeZoneData : public QObject, TranslatableString
 {
     friend class RegionalZonesModel;
     friend class ZonesModel;

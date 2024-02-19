@@ -16,6 +16,8 @@
 #ifndef PARTITION_KPMMANAGER_H
 #define PARTITION_KPMMANAGER_H
 
+#include "DllMacro.h"
+
 #include <memory>
 
 class CoreBackend;
@@ -39,7 +41,7 @@ class InternalManager;
  * environment variable KPMCORE_BACKEND. Setting it to
  * "dummy" will load the dummy plugin instead.
  */
-class KPMManager
+class DLLEXPORT KPMManager
 {
 public:
     KPMManager();

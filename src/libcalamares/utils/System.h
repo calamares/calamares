@@ -60,7 +60,7 @@ public:
      * @param timeout   Timeout passed to the process runner, for explaining
      *                  error code -4 (timeout).
      */
-    static Calamares::JobResult
+    static DLLEXPORT Calamares::JobResult
     explainProcess( int errorCode, const QString& command, const QString& output, std::chrono::seconds timeout );
 
     /// @brief Convenience wrapper for explainProcess()

@@ -81,7 +81,7 @@ DLLEXPORT void setAllowLocalTranslation( bool allow );
  * but use the macros `CALAMARES_RETRANSLATE*` to set things up
  * in code -- the macros will connect to the Retranslator's signals.
  */
-class Retranslator : public QObject
+class DLLEXPORT Retranslator : public QObject
 {
     Q_OBJECT
 public:
