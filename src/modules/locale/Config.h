@@ -108,12 +108,16 @@ public Q_SLOTS:
      * change the actual location.
      */
     void setCurrentLocation( const QString& regionzone );
+
     /** @brief Sets a location by split name
      *
      * @p region should be "America" or the like, while @p zone
      * names a zone within that region.
      */
     void setCurrentLocation( const QString& region, const QString& zone );
+
+    /** @brief Sets a location by strongly-typed region+zone name */
+    void setCurrentLocation( const Calamares::GeoIP::RegionZonePair& tz );
 
     /** @brief Sets a location by pointer to zone data.
      *
