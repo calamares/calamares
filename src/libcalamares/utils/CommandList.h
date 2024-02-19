@@ -23,29 +23,26 @@ class KMacroExpanderBase;
 
 namespace Calamares
 {
-using CommandLineBase = std::pair< QString, std::chrono::seconds >;
-
 /**
  * Each command can have an associated timeout in seconds. The timeout
  * defaults to 10 seconds. Provide some convenience naming and construction.
  */
-struct CommandLine : public CommandLineBase
+struct CommandLine
 {
     static inline constexpr std::chrono::seconds TimeoutNotSet() { return std::chrono::seconds( -1 ); }
 
     /// An invalid command line
-    CommandLine()
-        : CommandLineBase( QString(), TimeoutNotSet() )
-    {
-    }
+    CommandLine() = default;
 
     CommandLine( const QString& s )
-        : CommandLineBase( s, TimeoutNotSet() )
+        : first( s )
+        , second( TimeoutNotSet() )
     {
     }
 
     CommandLine( const QString& s, std::chrono::seconds t )
-        : CommandLineBase( s, t )
+        : first( s )
+        , second( t )
     {
     }
 
@@ -68,6 +65,10 @@ struct CommandLine : public CommandLineBase
      * expand to the RootMountPoint set in Global Storage).
      */
     CommandLine expand() const;
+
+private:
+    QString first;
+    std::chrono::seconds second = std::chrono::seconds( -1 );
 };
 
 /** @brief Abbreviation, used internally. */
