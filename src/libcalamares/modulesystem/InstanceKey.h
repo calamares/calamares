@@ -15,6 +15,7 @@
 #include <QList>
 #include <QString>
 
+#include <tuple>
 #include <utility>
 
 namespace Calamares
@@ -35,14 +36,13 @@ namespace ModuleSystem
  * This is supported by the *instances* configuration entry
  * in `settings.conf`.
  */
-class InstanceKey : public std::pair< QString, QString >
+class InstanceKey
 {
 public:
-    using Base = std::pair< QString, QString >;
-
     /// @brief Create an instance key from explicit module and id.
     InstanceKey( const QString& module, const QString& id )
-        : Base( module, id )
+        : first( module )
+        , second( id )
     {
         if ( second.isEmpty() )
         {
@@ -52,10 +52,7 @@ public:
     }
 
     /// @brief Create unusual, invalid instance key
-    InstanceKey()
-        : Base( QString(), QString() )
-    {
-    }
+    InstanceKey() = default;
 
     /// @brief A valid module has both name and id
     bool isValid() const { return !first.isEmpty() && !second.isEmpty(); }
@@ -78,6 +75,16 @@ public:
         return QString();
     }
 
+    friend bool operator==( const InstanceKey& lhs, const InstanceKey& rhs ) noexcept
+    {
+        return std::tie( lhs.first, lhs.second ) == std::tie( rhs.first, rhs.second );
+    }
+
+    friend bool operator<( const InstanceKey& lhs, const InstanceKey& rhs ) noexcept
+    {
+        return std::tie( lhs.first, lhs.second ) < std::tie( rhs.first, rhs.second );
+    }
+
 private:
     /** @brief Check validity and reset module and id if needed. */
     void validate()
@@ -88,11 +95,19 @@ private:
             second = QString();
         }
     }
+
+    QString first;
+    QString second;
 };
 
 using InstanceKeyList = QList< InstanceKey >;
 
 QDebug& operator<<( QDebug& s, const Calamares::ModuleSystem::InstanceKey& i );
+inline QDebug&
+operator<<( QDebug&& s, const Calamares::ModuleSystem::InstanceKey& i )
+{
+    return s << i;
+}
 
 }  // namespace ModuleSystem
 }  // namespace Calamares
