@@ -41,15 +41,15 @@ GeoIPTests::testJSON()
     GeoIPJSON handler;
     auto tz = handler.processReply( json_data_attribute );
 
-    QCOMPARE( tz.first, QStringLiteral( "Europe" ) );
-    QCOMPARE( tz.second, QStringLiteral( "Amsterdam" ) );
+    QCOMPARE( tz.region(), QStringLiteral( "Europe" ) );
+    QCOMPARE( tz.zone(), QStringLiteral( "Amsterdam" ) );
 
     // JSON is quite tolerant
     tz = handler.processReply( "time_zone: \"Europe/Brussels\"" );
-    QCOMPARE( tz.second, QStringLiteral( "Brussels" ) );
+    QCOMPARE( tz.zone(), QStringLiteral( "Brussels" ) );
 
     tz = handler.processReply( "time_zone: America/New_York\n" );
-    QCOMPARE( tz.first, QStringLiteral( "America" ) );
+    QCOMPARE( tz.region(), QStringLiteral( "America" ) );
 }
 
 void
@@ -58,11 +58,11 @@ GeoIPTests::testJSONalt()
     GeoIPJSON handler( "zona_de_hora" );
 
     auto tz = handler.processReply( json_data_attribute );
-    QCOMPARE( tz.first, QString() );  // Not found
+    QCOMPARE( tz.region(), QString() );  // Not found
 
     tz = handler.processReply( "tarifa: 12\nzona_de_hora: Europe/Madrid" );
-    QCOMPARE( tz.first, QStringLiteral( "Europe" ) );
-    QCOMPARE( tz.second, QStringLiteral( "Madrid" ) );
+    QCOMPARE( tz.region(), QStringLiteral( "Europe" ) );
+    QCOMPARE( tz.zone(), QStringLiteral( "Madrid" ) );
 }
 
 void
@@ -74,16 +74,16 @@ GeoIPTests::testJSONbad()
     auto tz = handler.processReply( data );
 
     tz = handler.processReply( data );
-    QCOMPARE( tz.first, QString() );
+    QCOMPARE( tz.region(), QString() );
 
     tz = handler.processReply( "" );
-    QCOMPARE( tz.first, QString() );
+    QCOMPARE( tz.region(), QString() );
 
     tz = handler.processReply( "<html><body>404 Forbidden</body></html>" );
-    QCOMPARE( tz.first, QString() );
+    QCOMPARE( tz.region(), QString() );
 
     tz = handler.processReply( "{ time zone = 'America/LosAngeles'}" );
-    QCOMPARE( tz.first, QString() );
+    QCOMPARE( tz.region(), QString() );
 }
 
 static const char xml_data_ubiquity[] =
@@ -110,8 +110,8 @@ GeoIPTests::testXML()
     GeoIPXML handler;
     auto tz = handler.processReply( xml_data_ubiquity );
 
-    QCOMPARE( tz.first, QStringLiteral( "Europe" ) );
-    QCOMPARE( tz.second, QStringLiteral( "Amsterdam" ) );
+    QCOMPARE( tz.region(), QStringLiteral( "Europe" ) );
+    QCOMPARE( tz.zone(), QStringLiteral( "Amsterdam" ) );
 #endif
 }
 
@@ -125,8 +125,8 @@ GeoIPTests::testXML2()
     GeoIPXML handler;
     auto tz = handler.processReply( data );
 
-    QCOMPARE( tz.first, QStringLiteral( "America" ) );
-    QCOMPARE( tz.second, QStringLiteral( "North_Dakota/Beulah" ) );  // Without space
+    QCOMPARE( tz.region(), QStringLiteral( "America" ) );
+    QCOMPARE( tz.zone(), QStringLiteral( "North_Dakota/Beulah" ) );  // Without space
 #endif
 }
 
@@ -137,8 +137,8 @@ GeoIPTests::testXMLalt()
     GeoIPXML handler( "ZT" );
 
     auto tz = handler.processReply( "<A><B/><C><ZT>Moon/Dark_side</ZT></C></A>" );
-    QCOMPARE( tz.first, QStringLiteral( "Moon" ) );
-    QCOMPARE( tz.second, QStringLiteral( "Dark_side" ) );
+    QCOMPARE( tz.region(), QStringLiteral( "Moon" ) );
+    QCOMPARE( tz.zone(), QStringLiteral( "Dark_side" ) );
 #endif
 }
 
@@ -148,13 +148,13 @@ GeoIPTests::testXMLbad()
 #ifdef QT_XML_LIB
     GeoIPXML handler;
     auto tz = handler.processReply( "{time_zone: \"Europe/Paris\"}" );
-    QCOMPARE( tz.first, QString() );
+    QCOMPARE( tz.region(), QString() );
 
     tz = handler.processReply( "<Response></Response>" );
-    QCOMPARE( tz.first, QString() );
+    QCOMPARE( tz.region(), QString() );
 
     tz = handler.processReply( "fnord<html/>" );
-    QCOMPARE( tz.first, QString() );
+    QCOMPARE( tz.region(), QString() );
 #endif
 }
 
@@ -163,25 +163,25 @@ GeoIPTests::testSplitTZ()
 {
     using namespace Calamares::GeoIP;
     auto tz = splitTZString( QStringLiteral( "Moon/Dark_side" ) );
-    QCOMPARE( tz.first, QStringLiteral( "Moon" ) );
-    QCOMPARE( tz.second, QStringLiteral( "Dark_side" ) );
+    QCOMPARE( tz.region(), QStringLiteral( "Moon" ) );
+    QCOMPARE( tz.zone(), QStringLiteral( "Dark_side" ) );
 
     // Some providers return weirdly escaped data
     tz = splitTZString( QStringLiteral( "America\\/NewYork" ) );
-    QCOMPARE( tz.first, QStringLiteral( "America" ) );
-    QCOMPARE( tz.second, QStringLiteral( "NewYork" ) );  // That's not actually the zone name
+    QCOMPARE( tz.region(), QStringLiteral( "America" ) );
+    QCOMPARE( tz.zone(), QStringLiteral( "NewYork" ) );  // That's not actually the zone name
 
     // Check that bogus data fails
     tz = splitTZString( QString() );
-    QCOMPARE( tz.first, QString() );
+    QCOMPARE( tz.region(), QString() );
 
     tz = splitTZString( QStringLiteral( "America.NewYork" ) );
-    QCOMPARE( tz.first, QString() );
+    QCOMPARE( tz.region(), QString() );
 
     // Check that three-level is split properly and space is replaced
     tz = splitTZString( QStringLiteral( "America/North Dakota/Beulah" ) );
-    QCOMPARE( tz.first, QStringLiteral( "America" ) );
-    QCOMPARE( tz.second, QStringLiteral( "North_Dakota/Beulah" ) );
+    QCOMPARE( tz.region(), QStringLiteral( "America" ) );
+    QCOMPARE( tz.zone(), QStringLiteral( "North_Dakota/Beulah" ) );
 }
 
 #define CHECK_GET( t, selector, url ) \
@@ -209,10 +209,10 @@ GeoIPTests::testGet()
         Calamares::Network::Manager().synchronousGet( QUrl( "https://geoip.kde.org/v1/calamares" ) ) );
 
     // This is bogus, because the test isn't always run by me
-    // QCOMPARE( default_tz.first, QStringLiteral("Europe") );
-    // QCOMPARE( default_tz.second, QStringLiteral("Amsterdam") );
-    QVERIFY( !default_tz.first.isEmpty() );
-    QVERIFY( !default_tz.second.isEmpty() );
+    // QCOMPARE( default_tz.region(), QStringLiteral("Europe") );
+    // QCOMPARE( default_tz.zone(), QStringLiteral("Amsterdam") );
+    QVERIFY( !default_tz.region().isEmpty() );
+    QVERIFY( !default_tz.zone().isEmpty() );
 
     // Each expansion of CHECK_GET does a synchronous GET, then checks that
     // the TZ data is the same as the default_tz; this is fragile if the
@@ -235,8 +235,8 @@ GeoIPTests::testFixed()
     {
         GeoIPFixed f;
         auto tz = f.processReply( QByteArray() );
-        QCOMPARE( tz.first, QStringLiteral( "Europe" ) );
-        QCOMPARE( tz.second, QStringLiteral( "Amsterdam" ) );
+        QCOMPARE( tz.region(), QStringLiteral( "Europe" ) );
+        QCOMPARE( tz.zone(), QStringLiteral( "Amsterdam" ) );
 
         QCOMPARE( f.processReply( xml_data_ubiquity ), tz );
         QCOMPARE( f.processReply( QByteArray( "derp" ) ), tz );
@@ -244,8 +244,8 @@ GeoIPTests::testFixed()
     {
         GeoIPFixed f( QStringLiteral( "America/Vancouver" ) );
         auto tz = f.processReply( QByteArray() );
-        QCOMPARE( tz.first, QStringLiteral( "America" ) );
-        QCOMPARE( tz.second, QStringLiteral( "Vancouver" ) );
+        QCOMPARE( tz.region(), QStringLiteral( "America" ) );
+        QCOMPARE( tz.zone(), QStringLiteral( "Vancouver" ) );
 
         QCOMPARE( f.processReply( xml_data_ubiquity ), tz );
         QCOMPARE( f.processReply( QByteArray( "derp" ) ), tz );
@@ -253,8 +253,8 @@ GeoIPTests::testFixed()
     {
         GeoIPFixed f( QStringLiteral( "America/North Dakota/Beulah" ) );
         auto tz = f.processReply( QByteArray() );
-        QCOMPARE( tz.first, QStringLiteral( "America" ) );
-        QCOMPARE( tz.second, QStringLiteral( "North_Dakota/Beulah" ) );
+        QCOMPARE( tz.region(), QStringLiteral( "America" ) );
+        QCOMPARE( tz.zone(), QStringLiteral( "North_Dakota/Beulah" ) );
 
         QCOMPARE( f.processReply( xml_data_ubiquity ), tz );
         QCOMPARE( f.processReply( QByteArray( "derp" ) ), tz );
