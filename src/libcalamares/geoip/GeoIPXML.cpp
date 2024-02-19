@@ -79,9 +79,9 @@ GeoIPXML::processReply( const QByteArray& data )
     for ( const auto& e : getElementTexts( data, m_element ) )
     {
         auto tz = splitTZString( e );
-        if ( !tz.first.isEmpty() )
+        if ( tz.isValid() )
         {
-            return tz;
+            return RegionZonePair( tz );
         }
     }
 

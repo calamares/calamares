@@ -12,10 +12,11 @@
 
 #include "DllMacro.h"
 
+#include <QDebug>
 #include <QString>
 #include <QUrl>
 
-#include <utility>
+#include <tuple>
 
 class QByteArray;
 
@@ -23,8 +24,6 @@ namespace Calamares
 {
 namespace GeoIP
 {
-using RegionZonePairBase = std::pair< QString, QString >;
-
 /** @brief A Region, Zone pair of strings
  *
  * A GeoIP lookup returns a timezone, which is represented as a Region,
@@ -32,27 +31,51 @@ using RegionZonePairBase = std::pair< QString, QString >;
  * pasting the strings back together with a "/" is the right thing to
  * do. The Zone **may** contain a "/" (e.g. "Kentucky/Monticello").
  */
-class DLLEXPORT RegionZonePair : public RegionZonePairBase
+class DLLEXPORT RegionZonePair
 {
 public:
-    /** @brief Construct from an existing pair. */
-    explicit RegionZonePair( const RegionZonePairBase& p )
-        : RegionZonePairBase( p )
-    {
-    }
     /** @brief Construct from two strings, like qMakePair(). */
     RegionZonePair( const QString& region, const QString& zone )
-        : RegionZonePairBase( region, zone )
-    {
-    }
-    /** @brief An invalid zone pair (empty strings). */
-    RegionZonePair()
-        : RegionZonePairBase( QString(), QString() )
+        : m_region( region )
+        , m_zone( zone )
     {
     }
 
-    bool isValid() const { return !first.isEmpty(); }
+    /** @brief Construct from an existing pair. */
+    RegionZonePair( const RegionZonePair& p )
+        : RegionZonePair( p.m_region, p.m_zone )
+    {
+    }
+
+    /** @brief An invalid zone pair (empty strings). */
+    RegionZonePair() = default;
+
+    bool isValid() const { return !m_region.isEmpty(); }
+
+    QString region() const { return m_region; }
+    QString zone() const { return m_zone; }
+
+    friend bool operator==( const RegionZonePair& lhs, const RegionZonePair& rhs ) noexcept
+    {
+        return std::tie( lhs.m_region, lhs.m_zone ) == std::tie( rhs.m_region, rhs.m_zone );
+    }
+
+private:
+    QString m_region;
+    QString m_zone;
 };
+
+inline QDebug&
+operator<<( QDebug&& s, const RegionZonePair& tz )
+{
+    return s << tz.region() << '/' << tz.zone();
+}
+
+inline QDebug&
+operator<<( QDebug& s, const RegionZonePair& tz )
+{
+    return s << tz.region() << '/' << tz.zone();
+}
 
 /** @brief Splits a region/zone string into a pair.
  *
