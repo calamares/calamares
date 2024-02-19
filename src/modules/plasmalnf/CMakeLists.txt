@@ -1,23 +1,30 @@
 # === This file is part of Calamares - <https://calamares.io> ===
 #
 #   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+#   SPDX-FileCopyrightText: 2024 Anke Boersma <demm@kaosx.us>
 #   SPDX-License-Identifier: BSD-2-Clause
 #
-if(WITH_QT6)
-    calamares_skip_module( "plasmalnf (KDE Frameworks 5 only)" )
-    return()
-endif()
 
 # Requires a sufficiently recent Plasma framework, but also
 # needs a runtime support component (which we don't test for).
 
-find_package(${kfname} ${KF_VERSION} QUIET COMPONENTS Config Plasma Package)
+if(WITH_QT6)
+    set(PLASMA_VERSION "5.93.0")
+    set(_plasma_libraries "Plasma::Plasma")
+    set(_plasma_name "Plasma")
+    find_package(${kfname} ${KF_VERSION} QUIET COMPONENTS Config Package)
+    find_package(Plasma ${PLASMA_VERSION} REQUIRED)
+else()
+    set(_plasma_libraries "${kfname}::Plasma")
+    set(_plasma_name "KF5Plasma")
+    find_package(${kfname} ${KF_VERSION} QUIET COMPONENTS Config Plasma Package)
+endif()
 
-set_package_properties(KF5Config PROPERTIES PURPOSE "For finding default Plasma Look-and-Feel")
-set_package_properties(KF5Plasma PROPERTIES PURPOSE "For Plasma Look-and-Feel selection")
-set_package_properties(KF5Package PROPERTIES PURPOSE "For Plasma Look-and-Feel selection")
+set_package_properties(${kfname}Config PROPERTIES PURPOSE "For finding default Plasma Look-and-Feel")
+set_package_properties(${_plasma_name} PROPERTIES PURPOSE "For Plasma Look-and-Feel selection")
+set_package_properties(${kfname}Package PROPERTIES PURPOSE "For Plasma Look-and-Feel selection")
 
-if(KF5Plasma_FOUND AND KF5Package_FOUND)
+if(${_plasma_name}_FOUND AND ${kfname}Package_FOUND)
     calamares_add_plugin(plasmalnf
         TYPE viewmodule
         EXPORT_MACRO PLUGINDLLEXPORT_PRO
@@ -35,10 +42,10 @@ if(KF5Plasma_FOUND AND KF5Package_FOUND)
             page_plasmalnf.ui
         LINK_PRIVATE_LIBRARIES
             ${kfname}::Package
-            ${kfname}::Plasma
+            ${_plasma_libraries}
         SHARED_LIB
     )
-    if(KF5Config_FOUND)
+    if(${kfname}Config_FOUND)
         target_compile_definitions(calamares_viewmodule_plasmalnf PRIVATE WITH_KCONFIG)
     endif()
 else()
