@@ -32,6 +32,14 @@ endforeach()
 string(APPEND _names_tu "};\n} // namespace\n#endif\n\n")
 file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/CalamaresTranslations.cc "${_names_tu}")
 
+# Some implementation details are compiled twice, because
+# we want them in the library with visibility("hidden")
+# but also need them in tests.
+set(_geoip_src
+    geoip/GeoIPFixed.cpp
+    geoip/GeoIPJSON.cpp
+)
+
 add_library(
     calamares
     SHARED
@@ -45,8 +53,7 @@ add_library(
     Settings.cpp
     # GeoIP services
     geoip/Interface.cpp
-    geoip/GeoIPFixed.cpp
-    geoip/GeoIPJSON.cpp
+    ${_geoip_src}
     geoip/Handler.cpp
     # Locale-data service
     locale/Global.cpp
@@ -209,7 +216,7 @@ calamares_qrc_translations( localetest OUTPUT_VARIABLE localetest_qrc SUBDIRECTO
 #
 calamares_add_test(libcalamarestest SOURCES Tests.cpp)
 
-calamares_add_test(libcalamaresgeoiptest SOURCES geoip/GeoIPTests.cpp ${geoip_src})
+calamares_add_test(libcalamaresgeoiptest SOURCES geoip/GeoIPTests.cpp ${_geoip_src})
 
 calamares_add_test(libcalamareslocaletest SOURCES locale/Tests.cpp ${localetest_qrc})
 
@@ -234,7 +241,7 @@ calamares_add_test(libcalamaresutilspathstest SOURCES utils/TestPaths.cpp)
 
 # This is not an actual test, it's a test / demo application
 # for experimenting with GeoIP.
-add_executable(test_geoip geoip/test_geoip.cpp ${geoip_src})
+add_executable(test_geoip geoip/test_geoip.cpp ${_geoip_src})
 target_link_libraries(test_geoip Calamares::calamares ${qtname}::Network yamlcpp::yamlcpp)
 calamares_automoc( test_geoip )
 
