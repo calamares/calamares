@@ -508,7 +508,10 @@ while the module type must be *job* or *jobmodule*.
 The module-descriptor key *command* should have a string as value, which is
 passed to the shell -- remember to quote it properly. It is generally
 recommended to use a *shellprocess* job module instead (less configuration,
-easier to have multiple instances).
+easier to have multiple instances). There is no configuration outside
+of the module-descriptor.
+
+Optional keys are *timeout* and *chroot*.
 
 `CMakeLists.txt` is *not* used for process jobmodules.
 
