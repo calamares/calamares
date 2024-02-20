@@ -94,12 +94,29 @@ get_gs_expander( System::RunLocation location )
     return expander;
 }
 
+CommandLine::CommandLine( const QVariantMap& m )
+{
+    const QString command = Calamares::getString( m, "command" );
+    const qint64 timeout = Calamares::getInteger( m, "timeout", -1 );
+    if ( !command.isEmpty() )
+    {
+        m_command = command;
+        m_timeout = timeout >= 0 ? std::chrono::seconds( timeout ) : CommandLine::TimeoutNotSet();
+        m_environment = Calamares::getStringList( m, "environment" );
+    }
+    else
+    {
+        cWarning() << "Bad CommandLine element" << m;
+        // this CommandLine is invalid
+    }
+}
+
 CommandLine
 CommandLine::expand( KMacroExpanderBase& expander ) const
 {
-    QString c = first;
+    QString c = m_command;
     expander.expandMacrosShellQuote( c );
-    return { c, second };
+    return { c, m_environment, m_timeout };
 }
 
 Calamares::CommandLine
