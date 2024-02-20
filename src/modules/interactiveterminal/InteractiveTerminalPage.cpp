@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://calamares.io> ===
  *
  *   SPDX-FileCopyrightText: 2014-2015 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2024 Anke Boersma <demm@kaosx.us>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -18,10 +19,11 @@
 #include <KParts/ReadOnlyPart>
 #if QT_VERSION < QT_VERSION_CHECK( 6, 0, 0 )
 #include <KParts/kde_terminal_interface.h>
+#include <KService>
 #else
+#include <KParts/PartLoader>
 #include <kde_terminal_interface.h>
 #endif
-#include <KService>
 #include <kcoreaddons_version.h>
 
 #include <QApplication>
@@ -62,10 +64,13 @@ InteractiveTerminalPage::onActivate()
     }
 
 #if KCOREADDONS_VERSION_MAJOR > 5 || KCOREADDONS_VERSION_MINOR > 200
-#warning Using KF6
-    errorKonsoleNotInstalled();
-    return;
-    KParts::ReadOnlyPart* p = nullptr;
+    auto md = KPluginMetaData::findPluginById( QString(), "kf6/parts/konsolepart" );
+    if ( !md.isValid() )
+    {
+        errorKonsoleNotInstalled();
+        return;
+    }
+    auto* p = KPluginFactory::instantiatePlugin< KParts::ReadOnlyPart >( md, this ).plugin;
 #elif KCOREADDONS_VERSION_MINOR >= 86
     // 5.86 deprecated a bunch of KService and PluginFactory and related methods
     auto md = KPluginMetaData::findPluginById( QString(), "konsolepart" );
