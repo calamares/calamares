@@ -25,20 +25,6 @@
 namespace Calamares
 {
 
-static CommandLine
-get_variant_object( const QVariantMap& m )
-{
-    QString command = Calamares::getString( m, "command" );
-    qint64 timeout = Calamares::getInteger( m, "timeout", -1 );
-
-    if ( !command.isEmpty() )
-    {
-        return CommandLine( command, timeout >= 0 ? std::chrono::seconds( timeout ) : CommandLine::TimeoutNotSet() );
-    }
-    cWarning() << "Bad CommandLine element" << m;
-    return CommandLine();
-}
-
 static CommandList_t
 get_variant_stringlist( const QVariantList& l )
 {
@@ -52,7 +38,7 @@ get_variant_stringlist( const QVariantList& l )
         }
         else if ( Calamares::typeOf( v ) == Calamares::MapVariantType )
         {
-            auto command( get_variant_object( v.toMap() ) );
+            CommandLine command( v.toMap() );
             if ( command.isValid() )
             {
                 retl.append( command );
@@ -153,7 +139,7 @@ CommandList::CommandList::CommandList( const QVariant& v, bool doChroot, std::ch
     }
     else if ( Calamares::typeOf( v ) == Calamares::MapVariantType )
     {
-        auto c( get_variant_object( v.toMap() ) );
+        CommandLine c( v.toMap() );
         if ( c.isValid() )
         {
             append( c );
