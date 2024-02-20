@@ -12,6 +12,7 @@
 #include "PlasmaLnfJob.h"
 #include "ThemeInfo.h"
 
+#include "compat/Variant.h"
 #include "utils/Logger.h"
 #include "utils/System.h"
 #include "utils/Variant.h"
@@ -68,7 +69,8 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     }
     m_preselectThemeId = preselect;
 
-    if ( configurationMap.contains( "themes" ) && configurationMap.value( "themes" ).type() == QVariant::List )
+    if ( configurationMap.contains( "themes" )
+         && Calamares::typeOf( configurationMap.value( "themes" ) ) == Calamares::StringVariantType )
     {
         QMap< QString, QString > listedThemes;
         auto themeList = configurationMap.value( "themes" ).toList();
@@ -77,12 +79,12 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         // are filled in by update_names() in PlasmaLnfPage.
         for ( const auto& i : themeList )
         {
-            if ( i.type() == QVariant::Map )
+            if ( Calamares::typeOf( i ) == Calamares::MapVariantType )
             {
                 auto iv = i.toMap();
                 listedThemes.insert( iv.value( "theme" ).toString(), iv.value( "image" ).toString() );
             }
-            else if ( i.type() == QVariant::String )
+            else if ( Calamares::typeOf( i ) == Calamares::StringVariantType )
             {
                 listedThemes.insert( i.toString(), QString() );
             }
