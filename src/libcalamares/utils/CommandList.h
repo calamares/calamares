@@ -106,6 +106,7 @@ public:
     CommandList( const QVariant& v, bool doChroot = true, std::chrono::seconds timeout = std::chrono::seconds( 10 ) );
 
     bool doChroot() const { return m_doChroot; }
+    std::chrono::seconds defaultTimeout() const { return m_timeout; }
 
     Calamares::JobResult run();
 
