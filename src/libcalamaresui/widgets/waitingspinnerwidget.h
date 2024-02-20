@@ -30,12 +30,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #pragma once
 
-// Qt includes
+#include "DllMacro.h"
+
 #include <QColor>
 #include <QTimer>
 #include <QWidget>
 
-class WaitingSpinnerWidget : public QWidget
+class UIDLLEXPORT WaitingSpinnerWidget : public QWidget
 {
     Q_OBJECT
 public:

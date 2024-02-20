@@ -10,6 +10,7 @@
 #ifndef QMLVIEWSTEP_H
 #define QMLVIEWSTEP_H
 
+#include "DllMacro.h"
 #include "utils/Qml.h"
 #include "viewpages/ViewStep.h"
 
@@ -37,7 +38,7 @@ namespace Calamares
  * the QML in the module, see the module documentation:
  *      src/modules/README.md
  */
-class QmlViewStep : public Calamares::ViewStep
+class UIDLLEXPORT QmlViewStep : public Calamares::ViewStep
 {
     Q_OBJECT
 public:

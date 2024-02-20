@@ -11,10 +11,12 @@
 #ifndef FIXEDASPECTRATIOLABEL_H
 #define FIXEDASPECTRATIOLABEL_H
 
+#include "DllMacro.h"
+
 #include <QLabel>
 #include <QPixmap>
 
-class FixedAspectRatioLabel : public QLabel
+class UIDLLEXPORT FixedAspectRatioLabel : public QLabel
 {
     Q_OBJECT
 public:

@@ -27,7 +27,14 @@ namespace Calamares
 
 class Slideshow;
 
-class ExecutionViewStep : public ViewStep
+/**
+ * @class
+ *
+ * This is the implementation of the special ViewStep "Install"
+ * which takes care of an *exec* phase in the sequence. It runs
+ * jobs, shows the slideshow, etc.
+ */
+class UIDLLEXPORT ExecutionViewStep : public ViewStep
 {
     Q_OBJECT
 public:

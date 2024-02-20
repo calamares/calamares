@@ -11,6 +11,8 @@
 #ifndef MODULELOADER_H
 #define MODULELOADER_H
 
+#include "DllMacro.h"
+
 #include "modulesystem/Descriptor.h"
 #include "modulesystem/InstanceKey.h"
 #include "modulesystem/Requirement.h"
@@ -32,7 +34,7 @@ class RequirementsModel;
  * constructs objects of type Module, loads them and makes them accessible by their
  * instance key.
  */
-class ModuleManager : public QObject
+class UIDLLEXPORT ModuleManager : public QObject
 {
     Q_OBJECT
 public:
