@@ -66,6 +66,11 @@ endif()
 if(WITH_PYBIND11)
     target_compile_definitions(calamaresui PRIVATE WITH_PYBIND11=1)
 endif()
+set_target_properties(
+    calamaresui
+    PROPERTIES
+        CXX_VISIBILITY_PRESET hidden
+)
 
 add_library(Calamares::calamaresui ALIAS calamaresui)
 
