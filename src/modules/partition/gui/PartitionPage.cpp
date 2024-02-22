@@ -563,6 +563,14 @@ PartitionPage::restoreSelectedBootLoader()
     Calamares::restoreSelectedBootLoader( *( m_ui->bootLoaderComboBox ), m_core->bootLoaderInstallPath() );
 }
 
+void
+PartitionPage::reconcileSelections()
+{
+    QModelIndex selectedIndex = m_ui->partitionBarsView->selectionModel()->currentIndex();
+    selectedIndex = selectedIndex.sibling( selectedIndex.row(), 0 );
+    m_ui->partitionBarsView->setCurrentIndex( selectedIndex );
+    m_ui->partitionLabelsView->setCurrentIndex( selectedIndex );
+}
 
 void
 PartitionPage::updateFromCurrentDevice()
@@ -605,18 +613,11 @@ PartitionPage::updateFromCurrentDevice()
     // This is necessary because even with the same selection model it might happen that
     // a !=0 column is selected in the tree view, which for some reason doesn't trigger a
     // timely repaint in the bars view.
-    connect(
-        m_ui->partitionBarsView->selectionModel(),
-        &QItemSelectionModel::currentChanged,
-        this,
-        [ = ]
-        {
-            QModelIndex selectedIndex = m_ui->partitionBarsView->selectionModel()->currentIndex();
-            selectedIndex = selectedIndex.sibling( selectedIndex.row(), 0 );
-            m_ui->partitionBarsView->setCurrentIndex( selectedIndex );
-            m_ui->partitionLabelsView->setCurrentIndex( selectedIndex );
-        },
-        Qt::UniqueConnection );
+    connect( m_ui->partitionBarsView->selectionModel(),
+             &QItemSelectionModel::currentChanged,
+             this,
+             &PartitionPage::reconcileSelections,
+             Qt::UniqueConnection );
 
     // Must be done here because we need to have a model set to define
     // individual column resize mode

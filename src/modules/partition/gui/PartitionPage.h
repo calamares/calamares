@@ -40,7 +40,7 @@ public:
     int selectedDeviceIndex();
     void selectDeviceByIndex( int index );
 
-private slots:
+private Q_SLOTS:
     /// @brief Update everything when the base device changes
     void updateFromCurrentDevice();
     /// @brief Update when the selected device for boot loader changes
@@ -49,6 +49,8 @@ private slots:
     void updateSelectedBootLoaderIndex();
     /// @brief After boot loader model changes, try to preserve previously set value
     void restoreSelectedBootLoader();
+    /// @brief Make the selections in each widget match
+    void reconcileSelections();
 
 private:
     QScopedPointer< Ui_PartitionPage > m_ui;
