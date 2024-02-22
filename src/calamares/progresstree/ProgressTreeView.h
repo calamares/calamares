@@ -31,6 +31,9 @@ public:
      * @brief setModel assigns a model to this view.
      */
     void setModel( QAbstractItemModel* model ) override;
+
+public Q_SLOTS:
+    void update();
 };
 
 #endif  // PROGRESSTREEVIEW_H

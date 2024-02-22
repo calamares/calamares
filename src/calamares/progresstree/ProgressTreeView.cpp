@@ -47,10 +47,15 @@ ProgressTreeView::setModel( QAbstractItemModel* model )
 
     QListView::setModel( model );
 
-    connect(
-        Calamares::ViewManager::instance(),
-        &Calamares::ViewManager::currentStepChanged,
-        this,
-        [ this ]() { viewport()->update(); },
-        Qt::UniqueConnection );
+    connect( Calamares::ViewManager::instance(),
+             &Calamares::ViewManager::currentStepChanged,
+             this,
+             &ProgressTreeView::update,
+             Qt::UniqueConnection );
+}
+
+void
+ProgressTreeView::update()
+{
+    viewport()->update();
 }
