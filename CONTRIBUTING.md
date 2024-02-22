@@ -158,10 +158,22 @@ There is a script `ci/build.sh` that does this, too (without options).
 - `cmake -S /src -B /build -G Ninja`
 - `ninja -C /build`
 
+### Running in Docker
+
 To run Calamares inside the container, or e.g. `loadmodule` to test
 individual modules, you may need to configure X authentication; a
 simple and insecure way of doing that is to run `xhost +` in the host
 environment of the Docker containers.
+
+To re-use a container (e.g. after exiting it and putting Calamares
+development away for the night), (re)start the container and connect
+a shell to it, to continue where you left off. Here, (re)starting
+a container called *opensuse-qt6*:
+
+```
+docker container start opensuse-qt6
+docker container exec -ti opensuse-qt6 bash
+```
 
 ### Dependencies for Calamares 3.3
 
