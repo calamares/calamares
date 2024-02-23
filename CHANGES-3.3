@@ -7,19 +7,24 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.3.0. See CHANGES-3.2 for
 the history of the 3.2 series (2018-05 - 2022-08).
 
-# 3.3.3 (unreleased)
+# 3.3.3 (2024-02-24)
 
 This release contains contributions from (alphabetically by first name):
  - Adriaan de Groot
  - Anke Boersma
 
+Translations have been updated (3.3.2 skipped that step).
+
 ## Core ##
  - Core libraries *libcalamares* and *libcalamaresui* now build with
    hidden visibility by default, as a step towards ABI stability.
+ - A runtime crash caused by (mis?)use of Qt UniqueConnection which
+   shows up in Debug builds was resolved.
 
 ## Modules ##
- - *interactiveterminal* can use konsole in Qt6 too
- - *plasmalnf* module ported to Plasma 6
+ - *interactiveterminal* can use konsole in Qt6 too. (thanks Anke)
+ - *plasmalnf* module ported to Plasma 6. (thanks Anke)
+ - *welcomeq* example extended to include Markdown syntax. (thanks Anke)
 
 
 # 3.3.2 (2024-02-19)
