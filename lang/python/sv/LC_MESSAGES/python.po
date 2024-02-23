@@ -6,16 +6,16 @@
 # Translators:
 # Jan-Olof Svensson, 2019
 # Tobias Olausson <tobsan@tobsan.se>, 2020
-# Luna Jernberg <bittin@cafe8bitar.se>, 2023
+# Luna Jernberg <droidbittin@gmail.com>, 2024
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-14 21:40+0100\n"
+"POT-Creation-Date: 2024-02-12 21:37+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>, 2023\n"
+"Last-Translator: Luna Jernberg <droidbittin@gmail.com>, 2024\n"
 "Language-Team: Swedish (https://app.transifex.com/calamares/teams/20061/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +25,7 @@ msgstr ""
 
 #: src/modules/bootloader/main.py:46
 msgid "Install bootloader."
-msgstr "Installera starthanterare."
+msgstr "Installerar starthanterare."
 
 #: src/modules/bootloader/main.py:666
 msgid "Failed to install grub, no partitions defined in global storage"
@@ -115,12 +115,12 @@ msgstr "Exempel python jobb"
 msgid "Dummy python step {}"
 msgstr "Exempel python steg {}"
 
-#: src/modules/fstab/main.py:28
+#: src/modules/fstab/main.py:29
 msgid "Writing fstab."
 msgstr "Skriver fstab."
 
-#: src/modules/fstab/main.py:377 src/modules/fstab/main.py:383
-#: src/modules/fstab/main.py:411 src/modules/initcpiocfg/main.py:256
+#: src/modules/fstab/main.py:378 src/modules/fstab/main.py:384
+#: src/modules/fstab/main.py:412 src/modules/initcpiocfg/main.py:256
 #: src/modules/initcpiocfg/main.py:260 src/modules/initramfscfg/main.py:85
 #: src/modules/initramfscfg/main.py:89 src/modules/localecfg/main.py:140
 #: src/modules/mount/main.py:334 src/modules/networkcfg/main.py:106
@@ -129,20 +129,20 @@ msgstr "Skriver fstab."
 msgid "Configuration Error"
 msgstr "Konfigurationsfel"
 
-#: src/modules/fstab/main.py:378 src/modules/initramfscfg/main.py:86
+#: src/modules/fstab/main.py:379 src/modules/initramfscfg/main.py:86
 #: src/modules/mount/main.py:335 src/modules/openrcdmcryptcfg/main.py:73
 #: src/modules/rawfs/main.py:165
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "Inga partitioner är definerade för <pre>{!s}</pre> att använda."
 
-#: src/modules/fstab/main.py:384 src/modules/initramfscfg/main.py:90
+#: src/modules/fstab/main.py:385 src/modules/initramfscfg/main.py:90
 #: src/modules/localecfg/main.py:141 src/modules/networkcfg/main.py:107
 #: src/modules/openrcdmcryptcfg/main.py:77
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
 msgstr ""
 "Ingen root monteringspunkt är angiven för <pre>{!s}</pre> att använda."
 
-#: src/modules/fstab/main.py:412
+#: src/modules/fstab/main.py:413
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr ""
 "Ingen <pre>{!s}</pre> konfiguration är angiven för <pre>{!s}</pre> att "
@@ -223,7 +223,7 @@ msgstr "Konfigurerar OpenRC dmcrypt tjänst."
 #: src/modules/packages/main.py:54 src/modules/packages/main.py:65
 #: src/modules/packages/main.py:75
 msgid "Install packages."
-msgstr "Installera paket."
+msgstr "Installerar paket."
 
 #: src/modules/packages/main.py:63
 #, python-format

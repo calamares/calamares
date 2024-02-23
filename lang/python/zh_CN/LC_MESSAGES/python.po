@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-14 21:40+0100\n"
+"POT-Creation-Date: 2024-02-12 21:37+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Feng Chao <chaofeng111@qq.com>, 2024\n"
 "Language-Team: Chinese (China) (https://app.transifex.com/calamares/teams/20061/zh_CN/)\n"
@@ -113,12 +113,12 @@ msgstr "占位 Python 任务。"
 msgid "Dummy python step {}"
 msgstr "占位 Python 步骤 {}"
 
-#: src/modules/fstab/main.py:28
+#: src/modules/fstab/main.py:29
 msgid "Writing fstab."
 msgstr "正在写入 fstab。"
 
-#: src/modules/fstab/main.py:377 src/modules/fstab/main.py:383
-#: src/modules/fstab/main.py:411 src/modules/initcpiocfg/main.py:256
+#: src/modules/fstab/main.py:378 src/modules/fstab/main.py:384
+#: src/modules/fstab/main.py:412 src/modules/initcpiocfg/main.py:256
 #: src/modules/initcpiocfg/main.py:260 src/modules/initramfscfg/main.py:85
 #: src/modules/initramfscfg/main.py:89 src/modules/localecfg/main.py:140
 #: src/modules/mount/main.py:334 src/modules/networkcfg/main.py:106
@@ -127,19 +127,19 @@ msgstr "正在写入 fstab。"
 msgid "Configuration Error"
 msgstr "配置错误"
 
-#: src/modules/fstab/main.py:378 src/modules/initramfscfg/main.py:86
+#: src/modules/fstab/main.py:379 src/modules/initramfscfg/main.py:86
 #: src/modules/mount/main.py:335 src/modules/openrcdmcryptcfg/main.py:73
 #: src/modules/rawfs/main.py:165
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "没有分配分区给 <pre>{!s}</pre>。"
 
-#: src/modules/fstab/main.py:384 src/modules/initramfscfg/main.py:90
+#: src/modules/fstab/main.py:385 src/modules/initramfscfg/main.py:90
 #: src/modules/localecfg/main.py:141 src/modules/networkcfg/main.py:107
 #: src/modules/openrcdmcryptcfg/main.py:77
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
 msgstr " 未设置 <pre>{!s}</pre> 要使用的根挂载点。"
 
-#: src/modules/fstab/main.py:412
+#: src/modules/fstab/main.py:413
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr "无 <pre>{!s}</pre> 配置可供 <pre>{!s}</pre> 使用。"
 
