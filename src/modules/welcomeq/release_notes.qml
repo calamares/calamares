@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   SPDX-FileCopyrightText: 2020 Anke Boersma <demm@kaosx.us>
+ *   SPDX-FileCopyrightText: 2020 - 2024 Anke Boersma <demm@kaosx.us>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -37,32 +37,36 @@ Rectangle {
             y: 8
             width: 640
             font.pointSize: 14
-            textFormat: Text.RichText
+            textFormat: Text.MarkdownText
             antialiasing: true
             activeFocusOnPress: false
             wrapMode: Text.WordWrap
 
-            text: qsTr("<h3>%1</h3>
-            <p>This an example QML file, showing options in RichText with Flickable content.</p>
+            text: qsTr("### %1
+This an example QML file, showing options in Markdown with Flickable content.
 
-            <p>QML with RichText can use HTML tags, Flickable content is useful for touchscreens.</p>
+QML with RichText can use HTML tags, with Markdown it uses the simple Markdown syntax, Flickable content is useful for touchscreens.
 
-            <p><b>This is bold text</b></p>
-            <p><i>This is italic text</i></p>
-            <p><u>This is underlined text</u></p>
-            <p><center>This text will be center-aligned.</center></p>
-            <p><s>This is strikethrough</s></p>
+**This is bold text**
 
-            <p>Code example:
-            <code>ls -l /home</code></p>
+*This is italic text*
 
-            <p><b>Lists:</b></p>
-            <ul>
-                <li>Intel CPU systems</li>
-                <li>AMD CPU systems</li>
-            </ul>
+_This is underlined text_
 
-            <p>The vertical scrollbar is adjustable, current width set to 10.</p>").arg(Branding.string(Branding.VersionedName))
+> blockquote
+
+~~This is strikethrough~~
+
+Code example:
+```
+ls -l /home
+```
+
+**Lists:**
+ * Intel CPU systems
+ * AMD CPU systems
+
+The vertical scrollbar is adjustable, current width set to 10.").arg(Branding.string(Branding.VersionedName))
 
         }
     }
@@ -87,5 +91,4 @@ Rectangle {
             fillMode: Image.PreserveAspectFit
         }
     }
-
 }
