@@ -3242,120 +3242,174 @@ The installer will quit and all changes will be lost.</source>
       <translation>Раздзелы</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="250"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="143"/>
+      <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system</source>
+      <comment>@label</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="147"/>
+      <source>&lt;strong&gt;Erase&lt;/strong&gt; disk and install %1</source>
+      <comment>@label</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="151"/>
+      <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition with %1</source>
+      <comment>@label</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="156"/>
+      <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning</source>
+      <comment>@label</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="178"/>
+      <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system on disk &lt;strong&gt;%2&lt;/strong&gt; (%3)</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="187"/>
+      <source>&lt;strong&gt;Erase&lt;/strong&gt; disk &lt;strong&gt;%2&lt;/strong&gt; (%3) and install %1</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="194"/>
+      <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition on disk &lt;strong&gt;%2&lt;/strong&gt; (%3) with %1</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="203"/>
+      <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning on disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="213"/>
+      <source>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
+      <comment>@info</comment>
+      <translation>Дыск &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="257"/>
       <source>Unsafe partition actions are enabled.</source>
       <translation>Уключаны небяспечныя дзеянні з раздзелам.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="253"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="260"/>
       <source>Partitioning is configured to &lt;b&gt;always&lt;/b&gt; fail.</source>
       <translation>Разметка наладжаная на &lt;b&gt;збой&lt;/b&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="256"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="263"/>
       <source>No partitions will be changed.</source>
       <translation>Раздзелы не зменяцца.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="296"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="303"/>
       <source>Current:</source>
       <comment>@label</comment>
       <translation>Зараз:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="314"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="321"/>
       <source>After:</source>
       <comment>@label</comment>
       <translation>Пасля:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="536"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="543"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a suitable filesystem.</source>
       <translation>Для таго, каб пачаць %1, патрабуецца сістэмны раздзел EFI.&lt;br/&gt;&lt;br/&gt; Каб наладзіць сістэмны раздзел EFI, вярніцеся назад, абярыце альбо стварыце файлавую сістэму.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="542"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="549"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;The EFI system partition does not meet recommendations. It is recommended to go back and select or create a suitable filesystem.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="550"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="557"/>
       <source>The filesystem must be mounted on &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Файлавая сістэма павінна быць прымантаваная на &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="551"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="558"/>
       <source>The filesystem must have type FAT32.</source>
       <translation>Файлавая сістэма павінна быць тыпу FAT32.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="552"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="559"/>
       <source>The filesystem must have flag &lt;strong&gt;%1&lt;/strong&gt; set.</source>
       <translation>Файлавая сістэма павінна мець сцяг &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="560"/>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="562"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="567"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="569"/>
       <source>The filesystem must be at least %1 MiB in size.</source>
       <translation>Файлавая сістэма павмнна мець памер прынамсі %1 МіБ.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="564"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="571"/>
       <source>The minimum recommended size for the filesystem is %1 MiB.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="566"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="573"/>
       <source>You can continue without setting up an EFI system partition but your system may fail to start.</source>
       <translation>Вы можаце працягнуць без наладжвання сістэмнага раздзела EFI, але ваша сістэма можа не запусціцца.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="568"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="575"/>
       <source>You can continue with this EFI system partition configuration but your system may fail to start.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="580"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="587"/>
       <source>No EFI system partition configured</source>
       <translation>Няма наладжанага сістэмнага раздзела EFI</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="588"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="595"/>
       <source>EFI system partition configured incorrectly</source>
       <translation>Сістэмны раздзел EFI наладжаны некарэктна</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="608"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="615"/>
       <source>EFI system partition recommendation</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="627"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="634"/>
       <source>Option to use GPT on BIOS</source>
       <translation>Параметр для выкарыстання GPT у BIOS</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="628"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="635"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
       <translation>Табліца раздзелаў GPT - найлепшы варыянт для ўсіх сістэм. Гэтая праграма ўсталявання таксама падтрымлівае гэты варыянт і для BIOS.&lt;br/&gt;&lt;br/&gt;Каб наладзіць GPT для BIOS (калі гэта яшчэ не зроблена), вярніцеся назад і абярыце табліцу раздзелаў GPT, пасля стварыце нефарматаваны раздзел памерам 8 МБ са сцягам &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;Гэты раздзел патрэбны для запуску %1 у BIOS з GPT.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="650"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="657"/>
       <source>Boot partition not encrypted</source>
       <translation>Загрузачны раздзел не зашыфраваны</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="651"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="658"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
       <translation>Уключана шыфраванне каранёвага раздзела, але выкарыстаны асобны загрузачны раздзел без шыфравання.&lt;br/&gt;&lt;br/&gt;Пры такой канфігурацыі могуць узнікнуць праблемы з бяспекай, бо важныя сістэмныя даныя будуць захоўвацца на раздзеле без шыфравання.&lt;br/&gt;Вы можаце працягнуць, але файлавая сістэма разблакуецца падчас запуску сістэмы.&lt;br/&gt;Каб уключыць шыфраванне загрузачнага раздзела, вярніцеся назад і стварыце яго нанова, адзначыўшы &lt;strong&gt;Шыфраваць&lt;/strong&gt; у акне стварэння раздзела.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="743"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="750"/>
       <source>has at least one disk device available.</source>
       <translation>ёсць прынамсі адна даступная дыскавая прылада.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="744"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="751"/>
       <source>There are no partitions to install on.</source>
       <translation>Няма раздзелаў для ўсталявання.</translation>
     </message>

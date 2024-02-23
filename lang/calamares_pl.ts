@@ -31,7 +31,7 @@
       <location filename="../src/modules/partition/jobs/AutoMountManagementJob.cpp" line="22"/>
       <source>Managing auto-mount settings…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Zarządzaj ustawieniami automatycznego montowania</translation>
     </message>
   </context>
   <context>
@@ -3243,120 +3243,174 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
       <translation>Partycje</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="250"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="143"/>
+      <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system</source>
+      <comment>@label</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="147"/>
+      <source>&lt;strong&gt;Erase&lt;/strong&gt; disk and install %1</source>
+      <comment>@label</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="151"/>
+      <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition with %1</source>
+      <comment>@label</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="156"/>
+      <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning</source>
+      <comment>@label</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="178"/>
+      <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system on disk &lt;strong&gt;%2&lt;/strong&gt; (%3)</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="187"/>
+      <source>&lt;strong&gt;Erase&lt;/strong&gt; disk &lt;strong&gt;%2&lt;/strong&gt; (%3) and install %1</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="194"/>
+      <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition on disk &lt;strong&gt;%2&lt;/strong&gt; (%3) with %1</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="203"/>
+      <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning on disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="213"/>
+      <source>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
+      <comment>@info</comment>
+      <translation>Dysk &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="257"/>
       <source>Unsafe partition actions are enabled.</source>
       <translation>Niebezpieczne akcje partycji są włączone.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="253"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="260"/>
       <source>Partitioning is configured to &lt;b&gt;always&lt;/b&gt; fail.</source>
       <translation>Partycjonowanie jest skonfigurowane tak, aby &lt;b&gt;zawsze&lt;/b&gt; kończyło się niepowodzeniem.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="256"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="263"/>
       <source>No partitions will be changed.</source>
       <translation>Żadne partycje nie zostaną zmienione.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="296"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="303"/>
       <source>Current:</source>
       <comment>@label</comment>
       <translation>Bieżący:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="314"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="321"/>
       <source>After:</source>
       <comment>@label</comment>
       <translation>Po:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="536"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="543"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a suitable filesystem.</source>
       <translation>Partycja systemowa EFI jest niezbędna do uruchomienia %1.&lt;br/&gt;&lt;br/&gt;Do skonfigurowania partycji systemowej EFI, cofnij się i wybierz lub utwórz odpowiedni system plików.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="542"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="549"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;The EFI system partition does not meet recommendations. It is recommended to go back and select or create a suitable filesystem.</source>
       <translation>Partycja systemowa EFI jest niezbędna do uruchomienia %1.&lt;br/&gt;&lt;br/&gt;Partycja systemowa EFI nie spełnia wymagań. Zalecane jest cofnięcie się i wybranie lub utworzenie odpowiedniego systemu plików.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="550"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="557"/>
       <source>The filesystem must be mounted on &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>System plików musi zostać zamontowany w &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="551"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="558"/>
       <source>The filesystem must have type FAT32.</source>
       <translation>System plików musi być typu FAT32.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="552"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="559"/>
       <source>The filesystem must have flag &lt;strong&gt;%1&lt;/strong&gt; set.</source>
       <translation>System plików musi mieć ustawioną flagę &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="560"/>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="562"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="567"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="569"/>
       <source>The filesystem must be at least %1 MiB in size.</source>
       <translation>Rozmiar systemu plików musi wynosić co najmniej %1 MiB.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="564"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="571"/>
       <source>The minimum recommended size for the filesystem is %1 MiB.</source>
       <translation>Minimalny zalecany rozmiar systemu plików to %1 MiB.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="566"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="573"/>
       <source>You can continue without setting up an EFI system partition but your system may fail to start.</source>
       <translation>Możesz kontynuować bez konfigurowania partycji systemowej EFI, ale uruchomienie systemu może się nie powieść.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="568"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="575"/>
       <source>You can continue with this EFI system partition configuration but your system may fail to start.</source>
       <translation>Możesz kontynuować konfigurację tej partycji systemowej EFI, ale system może się nie uruchomić.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="580"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="587"/>
       <source>No EFI system partition configured</source>
       <translation>Nie skonfigurowano partycji systemowej EFI</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="588"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="595"/>
       <source>EFI system partition configured incorrectly</source>
       <translation>Partycja systemowa EFI skonfigurowana niepoprawnie</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="608"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="615"/>
       <source>EFI system partition recommendation</source>
       <translation>Zalecenie dotyczące partycji systemowej EFI</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="627"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="634"/>
       <source>Option to use GPT on BIOS</source>
       <translation>Opcja korzystania z GPT w BIOS-ie</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="628"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="635"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
       <translation>Tabela partycji GPT jest najlepszą opcją dla wszystkich systemów. Ten instalator obsługuje taką konfigurację również dla systemów BIOS. &lt;br/&gt;&lt;br/&gt;Aby skonfigurować tabelę partycji GPT w systemie BIOS, (jeśli jeszcze tego nie zrobiono) cofnij się i ustaw tabelę partycji na GPT, a następnie utwórz niesformatowaną partycję o rozmiarze 8 MB z włączoną flagą &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt; Niesformatowana partycja 8 MB jest niezbędna do uruchomienia %1 w systemie BIOS z GPT.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="650"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="657"/>
       <source>Boot partition not encrypted</source>
       <translation>Niezaszyfrowana partycja rozruchowa</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="651"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="658"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
       <translation>Oddzielna partycja rozruchowa została skonfigurowana razem z zaszyfrowaną partycją roota, ale partycja rozruchowa nie jest szyfrowana.&lt;br/&gt;&lt;br/&gt;Nie jest to najbezpieczniejsze rozwiązanie, ponieważ ważne pliki systemowe znajdują się na niezaszyfrowanej partycji.&lt;br/&gt;Możesz kontynuować, ale odblokowywanie systemu nastąpi później, w trakcie uruchamiania.&lt;br/&gt;Aby zaszyfrować partycję rozruchową, wróć i utwórz ją ponownie zaznaczając opcję &lt;strong&gt;Szyfruj&lt;/strong&gt; w oknie tworzenia partycji.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="743"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="750"/>
       <source>has at least one disk device available.</source>
       <translation>jest dostępne co najmniej jedno urządzenie dyskowe.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="744"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="751"/>
       <source>There are no partitions to install on.</source>
       <translation>Brak partycji na których można dokonać instalacji.</translation>
     </message>

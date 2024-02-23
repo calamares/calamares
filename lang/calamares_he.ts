@@ -372,7 +372,6 @@
         <numerusform>בהמתנה למודול…</numerusform>
         <numerusform>בהמתנה לשני מודולים…</numerusform>
         <numerusform>בהמתנה ל־%n מודולים…</numerusform>
-        <numerusform>בהמתנה ל־%n מודולים…</numerusform>
       </translation>
     </message>
     <message numerus="yes">
@@ -382,7 +381,6 @@
       <translation>
         <numerusform>((שנייה אחת)</numerusform>
         <numerusform>(שתי שניות)</numerusform>
-        <numerusform>(%n שניות)</numerusform>
         <numerusform>(%n שניות)</numerusform>
       </translation>
     </message>
@@ -656,7 +654,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="50"/>
       <source>Setting filesystem label &lt;strong&gt;%1&lt;/strong&gt; to partition &lt;strong&gt;%2&lt;/strong&gt;…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>תווית מערכת הקבצים &lt;strong&gt;%1&lt;/strong&gt; מוגדרת על המחיצה &lt;strong&gt;%2&lt;/strong&gt;…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="72"/>
@@ -1281,31 +1279,31 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="189"/>
       <source>Create new %1MiB partition on %3 (%2)</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>יצירת מחיצה חדשה בגודל %1MiB על גבי %3 (%2)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="196"/>
       <source>Create new %2MiB partition on %4 (%3) with file system %1</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>יצירת מחיצה חדשה בגודל %2MiB על גבי %4 (%3) עם מערכת הקבצים %1</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="212"/>
       <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2) with entries &lt;em&gt;%4&lt;/em&gt;</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>יצירת מחיצה חדשה בגודל &lt;strong&gt;%1MiB&lt;/strong&gt; על גבי &lt;strong&gt;%3&lt;/strong&gt; (%2) עם הרשומות &lt;em&gt;%4&lt;/em&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="222"/>
       <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2)</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>יצירת מחיצה חדשה בגודל &lt;strong&gt;%1MiB&lt;/strong&gt; על גבי &lt;strong&gt;%3&lt;/strong&gt; ‏(%2)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="229"/>
       <source>Create new &lt;strong&gt;%2MiB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>יצירת מחיצה חדשה בגודל &lt;strong&gt;%2MiB&lt;/strong&gt; על גבי &lt;strong&gt;%4&lt;/strong&gt; (%3) עם מערכת הקבצים &lt;strong&gt;%1&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="254"/>
@@ -1362,7 +1360,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="49"/>
       <source>Creating new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3)…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>נוצרת טבלת מחיצות חדשה מסוג &lt;strong&gt;%1&lt;/strong&gt; על &lt;strong&gt;%2&lt;/strong&gt; (%3)…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="86"/>
@@ -1445,13 +1443,13 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="38"/>
       <source>Deactivating volume group named %1…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>קבוצת כרכים בשם %1 מושבתת…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="32"/>
       <source>Deactivating volume group named &lt;strong&gt;%1&lt;/strong&gt;…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>קבוצת כרכים בשם &lt;strong&gt;%1&lt;/strong&gt; מושבתת…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="46"/>
@@ -1722,7 +1720,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="260"/>
       <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>התקנת %2 על מחיצת המערכת %3 &lt;strong&gt;%1&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="270"/>
@@ -1740,7 +1738,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="296"/>
       <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;…</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>להתקין מנהל טעינה על גבי &lt;strong&gt;%1&lt;/strong&gt;…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="305"/>
@@ -2687,7 +2685,6 @@ The installer will quit and all changes will be lost.</source>
         <numerusform>הסיסמה מכילה פחות מספרה</numerusform>
         <numerusform>הסיסמה מכילה פחות מ־%n ספרות</numerusform>
         <numerusform>הסיסמה מכילה פחות מ־%n ספרות</numerusform>
-        <numerusform>הסיסמה מכילה פחות מ־%n ספרות</numerusform>
       </translation>
     </message>
     <message>
@@ -2702,7 +2699,6 @@ The installer will quit and all changes will be lost.</source>
         <numerusform>הסיסמה מכילה פחות מאות גדולה אחת</numerusform>
         <numerusform>הסיסמה מכילה פחות מ־%n אותיות גדולות</numerusform>
         <numerusform>הסיסמה מכילה פחות מ־%n אותיות גדולות</numerusform>
-        <numerusform>הסיסמה מכילה פחות מ־%n אותיות גדולות</numerusform>
       </translation>
     </message>
     <message>
@@ -2715,7 +2711,6 @@ The installer will quit and all changes will be lost.</source>
       <source>The password contains fewer than %n lowercase letters</source>
       <translation>
         <numerusform>הסיסמה מכילה פחות מאות אחת קטנה</numerusform>
-        <numerusform>הסיסמה מכילה פחות מ־%n אותיות קטנות</numerusform>
         <numerusform>הסיסמה מכילה פחות מ־%n אותיות קטנות</numerusform>
         <numerusform>הססמה מכילה פחות מ־%n אותיות קטנות</numerusform>
       </translation>
@@ -2732,7 +2727,6 @@ The installer will quit and all changes will be lost.</source>
         <numerusform>הסיסמה מכילה פחות מתו אחד שאינו אלפאנומרי</numerusform>
         <numerusform>הסיסמה מכילה פחות מ־%n תווים שאינם אלפאנומריים</numerusform>
         <numerusform>הסיסמה מכילה פחות מ־%n תווים שאינם אלפאנומריים</numerusform>
-        <numerusform>הסיסמה מכילה פחות מ־%n תווים שאינם אלפאנומריים</numerusform>
       </translation>
     </message>
     <message>
@@ -2745,7 +2739,6 @@ The installer will quit and all changes will be lost.</source>
       <source>The password is shorter than %n characters</source>
       <translation>
         <numerusform>הסיסמה קצרה מתו אחד</numerusform>
-        <numerusform>הסיסמה קצרה מ־%n תווים</numerusform>
         <numerusform>הסיסמה קצרה מ־%n תווים</numerusform>
         <numerusform>הסיסמה קצרה מ־%n תווים</numerusform>
       </translation>
@@ -2767,7 +2760,6 @@ The installer will quit and all changes will be lost.</source>
         <numerusform>הסיסמה מכילה פחות ממחלקת תווים אחת</numerusform>
         <numerusform>הסיסמה מכילה פחות מ־%n מחלקות תווים</numerusform>
         <numerusform>הסיסמה מכילה פחות מ־%n מחלקות תווים</numerusform>
-        <numerusform>הסיסמה מכילה פחות מ־%n מחלקות תווים</numerusform>
       </translation>
     </message>
     <message>
@@ -2780,7 +2772,6 @@ The installer will quit and all changes will be lost.</source>
       <source>The password contains more than %n same characters consecutively</source>
       <translation>
         <numerusform>הסיסמה מכילה למעלה מתו זהה ברצף</numerusform>
-        <numerusform>הסיסמה מכילה למעלה מ־%n תווים זהים ברצף</numerusform>
         <numerusform>הסיסמה מכילה למעלה מ־%n תווים זהים ברצף</numerusform>
         <numerusform>הסיסמה מכילה למעלה מ־%n תווים זהים ברצף</numerusform>
       </translation>
@@ -2797,7 +2788,6 @@ The installer will quit and all changes will be lost.</source>
         <numerusform>הסיסמה מכילה למעלה מתו אחד זהה ברצף</numerusform>
         <numerusform>הסיסמה מכילה למעלה מ־%n תווים זהים ברצף</numerusform>
         <numerusform>הסיסמה מכילה למעלה מ־%n תווים זהים ברצף</numerusform>
-        <numerusform>הסיסמה מכילה למעלה מ־%n תווים זהים ברצף</numerusform>
       </translation>
     </message>
     <message>
@@ -2810,7 +2800,6 @@ The installer will quit and all changes will be lost.</source>
       <source>The password contains monotonic sequence longer than %n characters</source>
       <translation>
         <numerusform>הסיסמה מכילה רצף מונוטוני ארוך מתו אחד</numerusform>
-        <numerusform>הסיסמה מכילה רצף מונוטוני ארוך מ־%n תווים</numerusform>
         <numerusform>הסיסמה מכילה רצף מונוטוני ארוך מ־%n תווים</numerusform>
         <numerusform>הסיסמה מכילה רצף מונוטוני ארוך מ־%n תווים</numerusform>
       </translation>
@@ -3243,120 +3232,174 @@ The installer will quit and all changes will be lost.</source>
       <translation>מחיצות</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="250"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="143"/>
+      <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system</source>
+      <comment>@label</comment>
+      <translation>התקנת %1 &lt;strong&gt;לצד&lt;/strong&gt; מערכת הפעלה אחרת</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="147"/>
+      <source>&lt;strong&gt;Erase&lt;/strong&gt; disk and install %1</source>
+      <comment>@label</comment>
+      <translation>&lt;strong&gt;מחיקת&lt;/strong&gt; הכונן והתקנת %1</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="151"/>
+      <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition with %1</source>
+      <comment>@label</comment>
+      <translation>&lt;strong&gt;החלפת&lt;/strong&gt; מחיצה ב־%1</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="156"/>
+      <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning</source>
+      <comment>@label</comment>
+      <translation>חלוקה &lt;strong&gt;ידנית&lt;/strong&gt; למחיצות</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="178"/>
+      <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system on disk &lt;strong&gt;%2&lt;/strong&gt; (%3)</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="187"/>
+      <source>&lt;strong&gt;Erase&lt;/strong&gt; disk &lt;strong&gt;%2&lt;/strong&gt; (%3) and install %1</source>
+      <comment>@info</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="194"/>
+      <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition on disk &lt;strong&gt;%2&lt;/strong&gt; (%3) with %1</source>
+      <comment>@info</comment>
+      <translation>&lt;strong&gt;החלפת&lt;/strong&gt; מחיצה בכונן &lt;strong&gt;%2&lt;/strong&gt; (%3) ב־%1</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="203"/>
+      <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning on disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
+      <comment>@info</comment>
+      <translation>חלוקה &lt;strong&gt;ידנית&lt;/strong&gt; למחיצות בכונן &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="213"/>
+      <source>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
+      <comment>@info</comment>
+      <translation>כונן &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="257"/>
       <source>Unsafe partition actions are enabled.</source>
       <translation>פעולות מחיצה מסוכנות פעילות.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="253"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="260"/>
       <source>Partitioning is configured to &lt;b&gt;always&lt;/b&gt; fail.</source>
       <translation>החלוקה למחיצות מוגדר כך ש&lt;b&gt;תמיד&lt;/b&gt; תיכשל.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="256"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="263"/>
       <source>No partitions will be changed.</source>
       <translation>לא נערכו מחיצות.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="296"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="303"/>
       <source>Current:</source>
       <comment>@label</comment>
       <translation>נוכחי:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="314"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="321"/>
       <source>After:</source>
       <comment>@label</comment>
       <translation>לאחר:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="536"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="543"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a suitable filesystem.</source>
       <translation>מחיצת מערכת EFI נחוצה להפעלת %1. &lt;br/&gt;&lt;br/&gt;כדי להפעיל מחיצת מערכת EFI, יש לחזור ולבחור או ליצור מערכת קבצים מתאימה.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="542"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="549"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;The EFI system partition does not meet recommendations. It is recommended to go back and select or create a suitable filesystem.</source>
       <translation>צריך מחיצת EFI של המערכת כדי להפעיל את %1.&lt;br/&gt;&lt;br/&gt;מחיצת המערכת EFI לא עומדת בדרישות המומלצות. כדאי לחזור וליצור מערכת קבצים מתאימה.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="550"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="557"/>
       <source>The filesystem must be mounted on &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>יש לעגן את מערכת הקבצים ב־&lt;strong&gt;%1&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="551"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="558"/>
       <source>The filesystem must have type FAT32.</source>
       <translation>מערכת הקבצים חייבת להיות מסוג FAT32.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="552"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="559"/>
       <source>The filesystem must have flag &lt;strong&gt;%1&lt;/strong&gt; set.</source>
       <translation>למערכת הקבצים חייב להיות מוגדר הדגלון &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="560"/>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="562"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="567"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="569"/>
       <source>The filesystem must be at least %1 MiB in size.</source>
       <translation>גודל מערכת הקבצים חייב להיות לפחות ‎%1 MIB.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="564"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="571"/>
       <source>The minimum recommended size for the filesystem is %1 MiB.</source>
       <translation>הגודל המזערי המומלץ למערכת הקבצים הוא %1 MiB.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="566"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="573"/>
       <source>You can continue without setting up an EFI system partition but your system may fail to start.</source>
       <translation>ניתן להמשיך ללא הקמת מחיצת מערכת EFI אך המערכת שלך לא תצליח להיטען.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="568"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="575"/>
       <source>You can continue with this EFI system partition configuration but your system may fail to start.</source>
       <translation>אפשר להמשיך עם הגדרת מחיצת ה־EFI של המערכת אך יכול להיות שהמערכת שלך לא תצליח להיטען.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="580"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="587"/>
       <source>No EFI system partition configured</source>
       <translation>לא הוגדרה מחיצת מערכת EFI</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="588"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="595"/>
       <source>EFI system partition configured incorrectly</source>
       <translation>מחיצת המערכת EFI לא הוגדרה נכון</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="608"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="615"/>
       <source>EFI system partition recommendation</source>
       <translation>המלצה על מחיצת מערכת מסוג EFI</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="627"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="634"/>
       <source>Option to use GPT on BIOS</source>
       <translation>אפשרות להשתמש ב־GPT או ב־BIOS</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="628"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="635"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
       <translation>טבלת מחיצות GPT היא האפשרות הטובה ביותר לכל המערכות. תוכנית התקנה זאת תומכת בהקמה שכזאת גם עבור מערכות BIOS.&lt;br/&gt;&lt;br/&gt;כדי להגדיר טבלת מחיצות GPT על BIOS, (אם זה טרם בוצע) יש לחזור ולהגדיר את טבלת המחיצות ל־GPT, לאחר מכן ליצור מחיצה בלתי מפורמטת בגודל 8 מ״ב עם הדגלון &lt;strong&gt;%2&lt;/strong&gt; פעיל.&lt;br/&gt;&lt;br/&gt;מחיצה בלתי מפורמטת בגודל 8 מ״ב נחוצה להפעלת %1 על מערכת BIOS עם GPT.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="650"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="657"/>
       <source>Boot partition not encrypted</source>
       <translation>מחיצת האתחול (Boot) אינה מוצפנת</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="651"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="658"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
       <translation>מחיצת אתחול, boot, נפרדת הוגדרה יחד עם מחיצת מערכת ההפעלה, root, מוצפנת, אך מחיצת האתחול לא הוצפנה.&lt;br/&gt;&lt;br/&gt; ישנן השלכות בטיחותיות עם התצורה שהוגדרה, מכיוון שקובצי מערכת חשובים נשמרים על מחיצה לא מוצפנת.&lt;br/&gt;ניתן להמשיך אם זהו רצונך, אך שחרור מערכת הקבצים יתרחש מאוחר יותר כחלק מהאתחול.&lt;br/&gt;בכדי להצפין את מחיצת האתחול, יש לחזור וליצור אותה מחדש, על ידי בחירה ב &lt;strong&gt;הצפנה&lt;/strong&gt; בחלונית יצירת המחיצה.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="743"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="750"/>
       <source>has at least one disk device available.</source>
       <translation>יש לפחות התקן כונן אחד זמין.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="744"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="751"/>
       <source>There are no partitions to install on.</source>
       <translation>אין מחיצות להתקין עליהן.</translation>
     </message>
@@ -4460,7 +4503,7 @@ Output:
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="102"/>
       <source>Creating ZFS pools and datasets…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>נוצרים מאגרי ZFS וסדרות נתונים…</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="162"/>

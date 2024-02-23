@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="sr@latin" version="2.1">
+<TS language="ia" version="2.1">
   <context>
     <name>AboutData</name>
     <message>
       <location filename="../src/libcalamares/CalamaresAbout.cpp" line="17"/>
       <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt; for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt; pro %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/CalamaresAbout.cpp" line="20"/>
@@ -39,17 +39,17 @@
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="60"/>
       <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
-      <translation type="unfinished"/>
+      <translation>Le &lt;strong&gt;ambiente de initio&lt;/strong&gt; de iste systema.&lt;br&gt;&lt;br&gt;Systemas x86 plus vetule supporta solmente &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Systemas moderne usualmente usa &lt;strong&gt;EFI&lt;/strong&gt;, ma pote etiam apparer como BIOS si il initia in modo de compatibilitate.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="70"/>
       <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-      <translation type="unfinished"/>
+      <translation>Iste systema initiava con un ambiente de initio &lt;strong&gt;EFI&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Pro configurar le initio ab un ambiente EFI, iste installator debe implementar un application de cargator de initio, como &lt;strong&gt;GRUB&lt;/strong&gt; o &lt;strong&gt;systemd-boot&lt;/strong&gt; sur un &lt;strong&gt;partition de systema EFI&lt;/strong&gt;.  Isto es automatic, a minus que tu selige partitionamento manual, in le qual caso tu debe seliger lo o crear lo tu mesme.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="82"/>
       <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-      <translation type="unfinished"/>
+      <translation>Iste systema esseva initiate con un ambiente de initio &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Pro configurar le initio ab un ambiente BIOS, iste installator debe installar un cargator de initio, como &lt;strong&gt;GRUB&lt;/strong&gt;, o al comenciamento de un partition o sur le &lt;strong&gt;registro de initio principal&lt;/strong&gt; presso le comenciamento del tabula de partitiones (preferite). Isto es automatic, a minus que tu selige partitionamento manual, in le qual caso tu debe configurar lo tu mesme.</translation>
     </message>
   </context>
   <context>
@@ -58,30 +58,30 @@
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="60"/>
       <source>Master Boot Record of %1</source>
       <comment>@info</comment>
-      <translation>Master Boot Record na %1</translation>
+      <translation>Registro de initio principal de %1</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="93"/>
       <source>Boot Partition</source>
       <comment>@info</comment>
-      <translation>Particija za pokretanje sistema</translation>
+      <translation>Partition de initio</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="100"/>
       <source>System Partition</source>
       <comment>@info</comment>
-      <translation>Sistemska particija</translation>
+      <translation>Partition del systema</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="131"/>
       <source>Do not install a boot loader</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>Non installar un cargator de initio</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="148"/>
       <source>%1 (%2)</source>
-      <translation type="unfinished"/>
+      <translation>%1 (%2)</translation>
     </message>
   </context>
   <context>
@@ -89,7 +89,7 @@
     <message>
       <location filename="../src/libcalamaresui/viewpages/BlankViewStep.cpp" line="61"/>
       <source>Blank Page</source>
-      <translation type="unfinished"/>
+      <translation>Pagina vacue</translation>
     </message>
   </context>
   <context>
@@ -97,7 +97,7 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="28"/>
       <source>GlobalStorage</source>
-      <translation type="unfinished"/>
+      <translation>Immagazinage global</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="38"/>
@@ -107,23 +107,23 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="48"/>
       <source>Modules</source>
-      <translation type="unfinished"/>
+      <translation>Modulos</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="61"/>
       <source>Type:</source>
-      <translation>Vrsta:</translation>
+      <translation>Typo:</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="68"/>
       <location filename="../src/calamares/DebugWindow.ui" line="82"/>
       <source>none</source>
-      <translation type="unfinished"/>
+      <translation>nulle</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="75"/>
       <source>Interface:</source>
-      <translation type="unfinished"/>
+      <translation>Interfacie:</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="102"/>
@@ -173,7 +173,7 @@
       <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="77"/>
       <source>%p%</source>
       <comment>Progress percentage indicator: %p is where the number 0..100 is placed</comment>
-      <translation type="unfinished"/>
+      <translation>%p%</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="118"/>
@@ -185,7 +185,7 @@
       <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="118"/>
       <source>Install</source>
       <comment>@label</comment>
-      <translation>Instaliraj</translation>
+      <translation>Installar</translation>
     </message>
   </context>
   <context>
@@ -193,7 +193,7 @@
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="29"/>
       <source>Job failed (%1)</source>
-      <translation type="unfinished"/>
+      <translation>Carga fallite (%1)</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="30"/>
@@ -206,7 +206,7 @@
     <message>
       <location filename="../src/libcalamares/JobQueue.cpp" line="203"/>
       <source>Done</source>
-      <translation>Gotovo</translation>
+      <translation>Facite</translation>
     </message>
   </context>
   <context>
@@ -214,7 +214,7 @@
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="17"/>
       <source>Example job (%1)</source>
-      <translation type="unfinished"/>
+      <translation>Carga de exemplo (%1)</translation>
     </message>
   </context>
   <context>
@@ -242,12 +242,12 @@
     <message>
       <location filename="../src/libcalamares/python/PythonJob.cpp" line="229"/>
       <source>Bad working directory path</source>
-      <translation>Neispravna putanja do radne datoteke</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/libcalamares/python/PythonJob.cpp" line="230"/>
       <source>Working directory %1 for python job %2 is not readable.</source>
-      <translation>Nemoguće pročitati radnu datoteku %1 za funkciju %2 u Python-u.</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/libcalamares/python/PythonJob.cpp" line="238"/>
@@ -257,12 +257,12 @@
       <location filename="../src/libcalamares/python/PythonJob.cpp" line="365"/>
       <location filename="../src/libcalamares/python/PythonJob.cpp" line="373"/>
       <source>Bad main script file</source>
-      <translation>Neispravan glavna datoteka za skriptu</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/libcalamares/python/PythonJob.cpp" line="239"/>
       <source>Main script file %1 for python job %2 is not readable.</source>
-      <translation>Glavna datoteka za skriptu %1 za Python funkciju %2 se ne može pročitati.</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/libcalamares/python/PythonJob.cpp" line="300"/>
@@ -308,25 +308,25 @@
       <location filename="../src/libcalamares/PythonJob.cpp" line="261"/>
       <source>Bad working directory path</source>
       <comment>@error</comment>
-      <translation>Neispravna putanja do radne datoteke</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="262"/>
       <source>Working directory %1 for python job %2 is not readable.</source>
       <comment>@error</comment>
-      <translation>Nemoguće pročitati radnu datoteku %1 za funkciju %2 u Python-u.</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="270"/>
       <source>Bad main script file</source>
       <comment>@error</comment>
-      <translation>Neispravan glavna datoteka za skriptu</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="271"/>
       <source>Main script file %1 for python job %2 is not readable.</source>
       <comment>@error</comment>
-      <translation>Glavna datoteka za skriptu %1 za Python funkciju %2 se ne može pročitati.</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="343"/>
@@ -341,7 +341,7 @@
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="73"/>
       <source>Loading…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Cargante…</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="100"/>
@@ -353,7 +353,7 @@
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="286"/>
       <source>Loading failed.</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>Cargamento fallite.</translation>
     </message>
   </context>
   <context>
@@ -371,17 +371,15 @@
       <translation type="unfinished">
         <numerusform/>
         <numerusform/>
-        <numerusform/>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="124"/>
       <source>(%n second(s))</source>
       <comment>@status</comment>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>(%n secunda(s))</numerusform>
+        <numerusform>(%n secunda(s))</numerusform>
       </translation>
     </message>
     <message>
@@ -415,41 +413,41 @@ Link copied to clipboard</source>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="90"/>
       <source>&amp;Yes</source>
-      <translation type="unfinished"/>
+      <translation>&amp;Si</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="91"/>
       <source>&amp;No</source>
-      <translation type="unfinished"/>
+      <translation>&amp;No</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="92"/>
       <source>&amp;Close</source>
-      <translation type="unfinished"/>
+      <translation>&amp;Clauder</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="155"/>
       <source>Setup Failed</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>Configuration fallite</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="156"/>
       <source>Installation Failed</source>
       <comment>@title</comment>
-      <translation>Neuspješna instalacija</translation>
+      <translation>Installation fallite</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="159"/>
       <source>Error</source>
       <comment>@title</comment>
-      <translation>Greška</translation>
+      <translation>Error</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="184"/>
       <source>Calamares Initialization Failed</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>Initialisation de Calamares fallite</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="185"/>
@@ -473,7 +471,7 @@ Link copied to clipboard</source>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="333"/>
       <source>Continue with Installation?</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>An continuar con le installation?</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="335"/>
@@ -497,98 +495,99 @@ Link copied to clipboard</source>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="344"/>
       <source>&amp;Install Now</source>
       <comment>@button</comment>
-      <translation type="unfinished"/>
+      <translation>&amp;Installar ora</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="351"/>
       <source>Go &amp;Back</source>
       <comment>@button</comment>
-      <translation type="unfinished"/>
+      <translation>&amp;Retornar</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="398"/>
       <source>&amp;Set Up</source>
       <comment>@button</comment>
-      <translation type="unfinished"/>
+      <translation>&amp;Configurar</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="398"/>
       <source>&amp;Install</source>
       <comment>@button</comment>
-      <translation type="unfinished"/>
+      <translation>&amp;Installar</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="400"/>
       <source>Setup is complete. Close the setup program.</source>
       <comment>@tooltip</comment>
-      <translation type="unfinished"/>
+      <translation>Le configuration is complete. Claude le programma de installation.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="401"/>
       <source>The installation is complete. Close the installer.</source>
       <comment>@tooltip</comment>
-      <translation type="unfinished"/>
+      <translation>Le installation es complete. Claude le installator.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="403"/>
       <source>Cancel the setup process without changing the system.</source>
       <comment>@tooltip</comment>
-      <translation type="unfinished"/>
+      <translation>Cancellar le processo de configuration sin cambiar le systema.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="404"/>
       <source>Cancel the installation process without changing the system.</source>
       <comment>@tooltip</comment>
-      <translation type="unfinished"/>
+      <translation>Cancellar le processo de installation sin cambiar le systema.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="414"/>
       <source>&amp;Next</source>
       <comment>@button</comment>
-      <translation>&amp;Dalje</translation>
+      <translation>&amp;Sequente</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="419"/>
       <source>&amp;Back</source>
       <comment>@button</comment>
-      <translation>&amp;Nazad</translation>
+      <translation>&amp;Precedente</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="425"/>
       <source>&amp;Done</source>
       <comment>@button</comment>
-      <translation type="unfinished"/>
+      <translation>&amp;Facite</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="444"/>
       <source>&amp;Cancel</source>
       <comment>@button</comment>
-      <translation>&amp;Prekini</translation>
+      <translation>&amp;Cancellar</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="516"/>
       <source>Cancel Setup?</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>Cancellar le configuration?</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="516"/>
       <source>Cancel Installation?</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>Cancellar le installation?</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="517"/>
       <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
-      <translation type="unfinished"/>
+      <translation>Vole tu vermente cancellar le processo de configuration actual?
+Le programma de configuration claudera e tote le cambios essera perdite.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="519"/>
       <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
-      <translation>Da li stvarno želite prekinuti trenutni proces instalacije?
-Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
+      <translation>Vole tu vermente cancellar le processo de installation actual?
+Le installator claudera e tote le cambios essera perdite.</translation>
     </message>
   </context>
   <context>
@@ -597,7 +596,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/libcalamares/PythonHelper.cpp" line="309"/>
       <source>Unknown exception type</source>
       <comment>@error</comment>
-      <translation>Nepoznat tip izuzetka</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonHelper.cpp" line="327"/>
@@ -628,7 +627,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="406"/>
       <source>%1 Installer</source>
-      <translation>%1 Instaler</translation>
+      <translation>Installator de %1</translation>
     </message>
   </context>
   <context>
@@ -637,26 +636,26 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="34"/>
       <source>Set filesystem label on %1</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>Definir le etiquetta del systema de files sur %1</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="41"/>
       <source>Set filesystem label &lt;strong&gt;%1&lt;/strong&gt; to partition &lt;strong&gt;%2&lt;/strong&gt;</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>Definir le etiquetta del systema de files &lt;strong&gt;%1&lt;/strong&gt; al partition &lt;strong&gt;%2&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="50"/>
       <source>Setting filesystem label &lt;strong&gt;%1&lt;/strong&gt; to partition &lt;strong&gt;%2&lt;/strong&gt;…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Definiente le etiquetta del systema de files &lt;strong&gt;%1&lt;/strong&gt; al partition &lt;strong&gt;%2&lt;/strong&gt;…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="72"/>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="84"/>
       <source>The installer failed to update partition table on disk '%1'.</source>
       <comment>@info</comment>
-      <translation>Instaler ne može promjeniti tabelu particija na disku '%1'.</translation>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -673,7 +672,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="137"/>
       <source>Select storage de&amp;vice:</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>Selige le dispositi&amp;vo de immagazinage:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="138"/>
@@ -682,13 +681,13 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1138"/>
       <source>Current:</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>Actual:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="139"/>
       <source>After:</source>
       <comment>@label</comment>
-      <translation>Poslije:</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="896"/>
@@ -717,7 +716,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1189"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <comment>@info, %1 is product name</comment>
-      <translation type="unfinished"/>
+      <translation>Un partition de systema EFI non pote esser trovate ubique sur iste systema. Retorna e usa le partitionamento manual pro configurar %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1197"/>
@@ -742,7 +741,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1397"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1422"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;Rader disco&lt;/strong&gt;&lt;br/&gt;Iste &lt;font color="red"&gt;delera&lt;/font&gt; tote le datos actualmente presente sur le dispositivo de immagazinage seligite.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1343"/>
@@ -796,42 +795,42 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1628"/>
       <source>No swap</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>Nulle intercambio</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1637"/>
       <source>Reuse swap</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>Reusar intercambio</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1640"/>
       <source>Swap (no Hibernate)</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>Intercambio (nulle hibernation)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1643"/>
       <source>Swap (with Hibernate)</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>Intercambio (con hibernation)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1646"/>
       <source>Swap to file</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>Intercambio in file</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1659"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;Partitionamento manual&lt;/strong&gt;&lt;br/&gt;Tu pote crear o redimensionar partitiones per te mesme.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1687"/>
       <source>Bootloader location:</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>Localisation del cargator de initio:</translation>
     </message>
   </context>
   <context>
@@ -844,12 +843,12 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="274"/>
       <source>Successfully disabled swap %1.</source>
-      <translation type="unfinished"/>
+      <translation>Le intercambio %1 dishabilitate con successo.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="300"/>
       <source>Successfully cleared swap %1.</source>
-      <translation type="unfinished"/>
+      <translation>Le intercambio %1 radite con successo.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="314"/>
@@ -859,13 +858,13 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="327"/>
       <source>Successfully disabled volume group %1.</source>
-      <translation type="unfinished"/>
+      <translation>Gruppo de volumine %1 dishabilitate con successo.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="366"/>
       <source>Clear mounts for partitioning operations on %1</source>
       <comment>@title</comment>
-      <translation>Skini tačke montiranja za operacije nad particijama na %1</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="372"/>
@@ -876,7 +875,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="391"/>
       <source>Cleared all mounts for %1</source>
-      <translation>Sve tačke montiranja na %1 skinute</translation>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -913,13 +912,13 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/finished/Config.cpp" line="142"/>
       <source>Setup Failed</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>Configuration fallite</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="142"/>
       <source>Installation Failed</source>
       <comment>@title</comment>
-      <translation>Neuspješna instalacija</translation>
+      <translation>Installation fallite</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/Config.cpp" line="144"/>
@@ -979,13 +978,13 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/locale/Config.cpp" line="410"/>
       <source>The system language will be set to %1.</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>Le lingua del systema essera definite a %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="416"/>
       <source>The numbers and dates locale will be set to %1.</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>Le numeros e datas regional essera definite a %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="53"/>
@@ -1030,23 +1029,23 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/packagechooser/Config.cpp" line="241"/>
       <source>Packages</source>
-      <translation type="unfinished"/>
+      <translation>Pacchettos</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/Config.cpp" line="247"/>
       <source>Install option: &lt;strong&gt;%1&lt;/strong&gt;</source>
-      <translation type="unfinished"/>
+      <translation>Option de installation: &lt;strong&gt;%1&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/Config.cpp" line="247"/>
       <source>None</source>
-      <translation type="unfinished"/>
+      <translation>Nulle</translation>
     </message>
     <message>
       <location filename="../src/modules/summary/Config.cpp" line="35"/>
       <source>Summary</source>
       <comment>@label</comment>
-      <translation>Izveštaj</translation>
+      <translation>Summario</translation>
     </message>
     <message>
       <location filename="../src/modules/summary/Config.cpp" line="39"/>
@@ -1061,62 +1060,62 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="235"/>
       <source>Your username is too long.</source>
-      <translation type="unfinished"/>
+      <translation>Tu nomine de usator es troppo longe.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="241"/>
       <source>Your username must start with a lowercase letter or underscore.</source>
-      <translation type="unfinished"/>
+      <translation>Tu nomine de usator debe initiar con un littera minuscula o sublinea.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="245"/>
       <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
-      <translation type="unfinished"/>
+      <translation>Solmente litteras minusculas, numeros, sublinea e tracto de union es permittite.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="251"/>
       <source>'%1' is not allowed as username.</source>
-      <translation type="unfinished"/>
+      <translation>'%1' non es permittite como nomine de usator.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="300"/>
       <source>Your hostname is too short.</source>
-      <translation type="unfinished"/>
+      <translation>Tu nomine de hospite es troppo breve.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="304"/>
       <source>Your hostname is too long.</source>
-      <translation type="unfinished"/>
+      <translation>Tu nomine de hospite es troppo longe.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="310"/>
       <source>'%1' is not allowed as hostname.</source>
-      <translation type="unfinished"/>
+      <translation>'%1' non es permittite como nomine de hospite.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="315"/>
       <source>Only letters, numbers, underscore and hyphen are allowed.</source>
-      <translation type="unfinished"/>
+      <translation>Solmente litteras, numeros, sublinea e tracto de union es permittite.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="598"/>
       <source>Your passwords do not match!</source>
-      <translation>Vaše lozinke se ne poklapaju</translation>
+      <translation>Tu contrasignos non coincide!</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="612"/>
       <source>OK!</source>
-      <translation type="unfinished"/>
+      <translation>OK!</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="57"/>
       <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue.</source>
-      <translation type="unfinished"/>
+      <translation>Iste computator non satisface le requisitos minime pro configurar %1.&lt;br/&gt;Le configuration non pote continuar.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="60"/>
       <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue.</source>
-      <translation type="unfinished"/>
+      <translation>Iste computator non satisface le requisitos minime pro installar %1.&lt;br/&gt;Le installation non pote continuar.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="66"/>
@@ -1131,27 +1130,27 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="80"/>
       <source>This program will ask you some questions and set up %2 on your computer.</source>
-      <translation type="unfinished"/>
+      <translation>Iste programma te demandara alcun questiones e configurara %2 sur tu computator.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="264"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Benvenite al programma de configuration de Calamares pro %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="265"/>
       <source>&lt;h1&gt;Welcome to %1 setup&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Benvenite al configuration de %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="269"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Benvenite al installator de Calamares pro %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="270"/>
       <source>&lt;h1&gt;Welcome to the %1 installer&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Benvenite al installator de %1&lt;/h1&gt;</translation>
     </message>
   </context>
   <context>
@@ -1168,12 +1167,12 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="18"/>
       <source>Create a Partition</source>
-      <translation>Kreiraj particiju</translation>
+      <translation>Crear un partition</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="42"/>
       <source>Si&amp;ze:</source>
-      <translation>Veli&amp;čina</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="52"/>
@@ -1183,22 +1182,22 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="59"/>
       <source>Partition &amp;Type:</source>
-      <translation>&amp;Tip particije</translation>
+      <translation>&amp;Typo de partition:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="71"/>
       <source>Primar&amp;y</source>
-      <translation type="unfinished"/>
+      <translation>Primar&amp;i</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="81"/>
       <source>E&amp;xtended</source>
-      <translation>P&amp;roširena</translation>
+      <translation>E&amp;xtendite</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="123"/>
       <source>Fi&amp;le System:</source>
-      <translation type="unfinished"/>
+      <translation>Systema de fi&amp;les:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="155"/>
@@ -1208,46 +1207,46 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="165"/>
       <source>&amp;Mount Point:</source>
-      <translation>Tačka &amp;montiranja:</translation>
+      <translation>Puncto de &amp;montage:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="191"/>
       <source>Flags:</source>
-      <translation type="unfinished"/>
+      <translation>Marcas:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="224"/>
       <source>Label for the filesystem</source>
-      <translation type="unfinished"/>
+      <translation>Etiquetta pro le systema de files</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="234"/>
       <source>FS Label:</source>
-      <translation type="unfinished"/>
+      <translation>Etiquetta de FS:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="67"/>
       <source>En&amp;crypt</source>
       <comment>@action</comment>
-      <translation type="unfinished"/>
+      <translation>&amp;Cryptar</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="195"/>
       <source>Logical</source>
       <comment>@label</comment>
-      <translation>Logička</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="200"/>
       <source>Primary</source>
       <comment>@label</comment>
-      <translation>Primarna</translation>
+      <translation>Primari</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="219"/>
       <source>GPT</source>
       <comment>@label</comment>
-      <translation>GPT</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="91"/>
@@ -1305,13 +1304,13 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="257"/>
       <source>Creating new %1 partition on %2…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Creante nove partition %1 sur %2…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="274"/>
       <source>The installer failed to create partition on disk '%1'.</source>
       <comment>@info</comment>
-      <translation>Instaler nije uspeo napraviti particiju na disku '%1'.</translation>
+      <translation>Le installator non poteva crear le partition sur le disco '%1'.</translation>
     </message>
   </context>
   <context>
@@ -1319,27 +1318,27 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="24"/>
       <source>Create Partition Table</source>
-      <translation>Napravi novu tabelu particija</translation>
+      <translation>Crear le tabula de partitiones</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="43"/>
       <source>Creating a new partition table will delete all existing data on the disk.</source>
-      <translation>Kreiranje nove tabele particija će obrisati sve podatke na disku.</translation>
+      <translation>Crear un nove tabula de partitiones delera tote le datos existente sur le disco.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="69"/>
       <source>What kind of partition table do you want to create?</source>
-      <translation>Kakvu tabelu particija želite da napravite?</translation>
+      <translation>Qual typo de tabula de partitiones vole tu crear?</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="76"/>
       <source>Master Boot Record (MBR)</source>
-      <translation>Master Boot Record (MBR)</translation>
+      <translation>Registro de initio principal (MBR)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="86"/>
       <source>GUID Partition Table (GPT)</source>
-      <translation>GUID Partition Table (GPT)</translation>
+      <translation>Tabula de partitiones GUID (GPT)</translation>
     </message>
   </context>
   <context>
@@ -1349,18 +1348,18 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="58"/>
       <source>Creating new %1 partition table on %2…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Creante nove tabula de partitiones %1 sur %2…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="49"/>
       <source>Creating new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3)…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Creante nove tabula de partitiones &lt;strong&gt;%1&lt;/strong&gt; sur &lt;strong&gt;%2&lt;/strong&gt; (%3)…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="86"/>
       <source>The installer failed to create a partition table on %1.</source>
-      <translation>Instaler nije uspjeo da napravi tabelu particija na %1.</translation>
+      <translation>Le installator non poteva crear un tabula de partitiones sur %1.</translation>
     </message>
   </context>
   <context>
@@ -1368,7 +1367,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="33"/>
       <source>Create user %1</source>
-      <translation>Napravi korisnika %1</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="39"/>
@@ -1407,7 +1406,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/partition/gui/CreateVolumeGroupDialog.cpp" line="28"/>
       <source>Create Volume Group</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>Crear gruppo de volumine</translation>
     </message>
   </context>
   <context>
@@ -1417,18 +1416,18 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="44"/>
       <source>Creating new volume group named %1…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Creante le nove gruppo de volumine nominate %1…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="38"/>
       <source>Creating new volume group named &lt;strong&gt;%1&lt;/strong&gt;…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Creante le nove gruppo de volumine nominate &lt;strong&gt;%1&lt;/strong&gt;…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="51"/>
       <source>The installer failed to create a volume group named '%1'.</source>
-      <translation type="unfinished"/>
+      <translation>Le installator non poteva crear un gruppo de volumine nominate '%1'.</translation>
     </message>
   </context>
   <context>
@@ -1438,18 +1437,18 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="38"/>
       <source>Deactivating volume group named %1…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Disactivante le gruppo de volumine nominate %1…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="32"/>
       <source>Deactivating volume group named &lt;strong&gt;%1&lt;/strong&gt;…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Disactivante le gruppo de volumine nominate &lt;strong&gt;%1&lt;/strong&gt;…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="46"/>
       <source>The installer failed to deactivate a volume group named %1.</source>
-      <translation type="unfinished"/>
+      <translation>Le installator non poteva disactivar un gruppo de volumine nominate '%1'.</translation>
     </message>
   </context>
   <context>
@@ -1470,7 +1469,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="99"/>
       <source>The installer failed to delete partition %1.</source>
-      <translation>Instaler nije uspjeo obrisati particiju %1.</translation>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -1478,12 +1477,12 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="78"/>
       <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. GPT is recommended in most other cases.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MBR partition table is an obsolete MS-DOS era standard.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;br&gt;&lt;br&gt;Iste typo de tabula de partitiones es solmente consiliabile pro systemas plus vetule que initia ab un ambiente de initio &lt;strong&gt;BIOS&lt;/strong&gt;. GPT es recommendate in le major parte de altere casos.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Advertimento:&lt;/strong&gt; le tabula de partitiones MBR es un standard obsolete del era MS-DOS. &lt;br&gt;Solmente 4 partitiones &lt;em&gt;primari&lt;/em&gt; pote esser create, e de cellos 4, un pote esser un partition &lt;em&gt;extendite&lt;/em&gt;, que a su vice pote continer multe partitiones &lt;em&gt;logic&lt;/em&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="89"/>
       <source>&lt;br&gt;&lt;br&gt;This is the recommended partition table type for modern systems which start from an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;br&gt;&lt;br&gt;Iste es le typo de tabula de partitiones recommendate pro systemas moderne que initia ab un ambiente de initio &lt;strong&gt;EFI&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="95"/>
@@ -1493,7 +1492,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="104"/>
       <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
-      <translation type="unfinished"/>
+      <translation>Iste installator &lt;strong&gt;non pote detectar un tabula de partitiones&lt;/strong&gt; sur le dispositivos de immagazinage seligite.&lt;br&gt;&lt;br&gt;Le dispositivo o non ha un tabula de partitiones, o le tabula de partition es corrumpite o de un typo incognite.&lt;br&gt;Iste installator pote crear un nove tabula de partitiones pro te, o automaticamente o per le pagina de partitionamento manual.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="139"/>
@@ -1503,7 +1502,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="147"/>
       <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-      <translation type="unfinished"/>
+      <translation>Le typo de &lt;strong&gt;tabula de partitiones&lt;/strong&gt; sur le dispositivo de immagazinage seligite.&lt;br&gt;&lt;br&gt;Le sol methodo pro cambiar le typo de tabula de partitiones es rader e recrear le tabula de partitiones ab initio, que destrue tote le datos sur le dispositivo de immagazinage.&lt;br&gt;Iste installator mantenera le tabula de partitiones actual a minus que tu selige explicitemente lo contrari.&lt;br&gt;Si tu es insecur, sur systemas moderne es preferite GPT.</translation>
     </message>
   </context>
   <context>
@@ -1518,7 +1517,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/partition/core/DeviceModel.cpp" line="93"/>
       <source>%1 - (%2)</source>
       <extracomment>device[name] - (device-node[name])</extracomment>
-      <translation type="unfinished"/>
+      <translation>%1 - (%2)</translation>
     </message>
   </context>
   <context>
@@ -1533,7 +1532,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="121"/>
       <source>Skipping writing LUKS configuration for Dracut: "/" partition is not encrypted</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>Saltante le scriptura del configuration LUKS pro Dracut: le partition "/" non es cryptate</translation>
     </message>
     <message>
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="138"/>
@@ -1556,7 +1555,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="24"/>
       <source>Edit Existing Partition</source>
-      <translation>Promjeni postojeću particiju:</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="54"/>
@@ -1571,22 +1570,22 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="74"/>
       <source>Format</source>
-      <translation>Formatiraj</translation>
+      <translation>Formato</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="93"/>
       <source>Warning: Formatting the partition will erase all existing data.</source>
-      <translation>Upozorenje: Formatiranje particije će obrisati sve podatke.</translation>
+      <translation>Advertimento: Formatar le partition radera tote le datos existente.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="103"/>
       <source>&amp;Mount Point:</source>
-      <translation>Tačka za &amp;montiranje:</translation>
+      <translation>Puncto de &amp;montage:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="129"/>
       <source>Si&amp;ze:</source>
-      <translation>Veli&amp;čina</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="139"/>
@@ -1596,32 +1595,32 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="146"/>
       <source>Fi&amp;le System:</source>
-      <translation type="unfinished"/>
+      <translation>Systema de fi&amp;les:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="159"/>
       <source>Flags:</source>
-      <translation type="unfinished"/>
+      <translation>Marcas:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="179"/>
       <source>Label for the filesystem</source>
-      <translation type="unfinished"/>
+      <translation>Etiquetta pro le systema de files</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="189"/>
       <source>FS Label:</source>
-      <translation type="unfinished"/>
+      <translation>Etiquetta de FS:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="259"/>
       <source>Passphrase for existing partition</source>
-      <translation type="unfinished"/>
+      <translation>Phrase de contrasigno pro partition existente</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="260"/>
       <source>Partition %1 could not be decrypted with the given passphrase.&lt;br/&gt;&lt;br/&gt;Edit the partition again and give the correct passphrase or delete and create a new encrypted partition.</source>
-      <translation type="unfinished"/>
+      <translation>Le partition %1 non poteva esser decryptate con le phrase de contrasigno fornite.&lt;br/&gt;&lt;br/&gt;Edita le partition de nove e da le phrase de contrasigno correcte o dele e crea un nove partition cryptate.</translation>
     </message>
   </context>
   <context>
@@ -1629,29 +1628,29 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="36"/>
       <source>En&amp;crypt system</source>
-      <translation type="unfinished"/>
+      <translation>Cr&amp;yptar le systema</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="43"/>
       <source>Your system does not seem to support encryption well enough to encrypt the entire system. You may enable encryption, but performance may suffer.</source>
-      <translation type="unfinished"/>
+      <translation>Tu systema non pare supportar sufficientemente le cryptation pro cryptar le systema integre. Tu pote activar le cryptation, ma le prestationes pote esser affectate.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="59"/>
       <source>Passphrase</source>
-      <translation type="unfinished"/>
+      <translation>Phrase de contrasigno</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="69"/>
       <source>Confirm passphrase</source>
-      <translation type="unfinished"/>
+      <translation>Confirmar le phrase de contrasigno</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="153"/>
       <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="168"/>
       <source>Please enter the same passphrase in both boxes.</source>
       <comment>@tooltip</comment>
-      <translation type="unfinished"/>
+      <translation>Insere le mesme phrase de contrasigno in ambes quadros.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="158"/>
@@ -1733,7 +1732,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="296"/>
       <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;…</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>Installar le cargator de initio sur &lt;strong&gt;%1&lt;/strong&gt;…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="305"/>
@@ -1747,13 +1746,13 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/finished/FinishedPage.ui" line="102"/>
       <source>&amp;Restart now</source>
-      <translation type="unfinished"/>
+      <translation>&amp;Reinitiar ora</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="75"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been set up on your computer.&lt;br/&gt;You may now start using your new system.</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Tote facite.&lt;/h1&gt;&lt;br/&gt;%1 ha essite configurate in tu computator.&lt;br/&gt;Tu pote ora initiar usante tu nove systema.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="79"/>
@@ -1765,7 +1764,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="87"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Tote facite.&lt;/h1&gt;&lt;br/&gt;%1 ha essite installate in tu computator.&lt;br/&gt;Tu pote ora reinitiar in tu nove systema, o continuar usante le ambiente in vivo de %2.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="92"/>
@@ -1792,7 +1791,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/finishedq/FinishedQmlViewStep.cpp" line="35"/>
       <source>Finish</source>
       <comment>@label</comment>
-      <translation>Završi</translation>
+      <translation>Finir</translation>
     </message>
   </context>
   <context>
@@ -1801,7 +1800,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/finished/FinishedViewStep.cpp" line="46"/>
       <source>Finish</source>
       <comment>@label</comment>
-      <translation>Završi</translation>
+      <translation>Finir</translation>
     </message>
   </context>
   <context>
@@ -1810,7 +1809,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="39"/>
       <source>Format partition %1 (file system: %2, size: %3 MiB) on %4</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>Formatar le partition %1 (systema de files: %2, dimension: %3 MiB) sur %4</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="49"/>
@@ -1822,7 +1821,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="62"/>
       <source>%1 (%2)</source>
       <comment>partition label %1 (device path %2)</comment>
-      <translation type="unfinished"/>
+      <translation>%1 (%2)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="64"/>
@@ -1833,7 +1832,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="73"/>
       <source>The installer failed to format partition %1 on disk '%2'.</source>
-      <translation>Instaler nije uspeo formatirati particiju %1 na disku '%2'.</translation>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -1866,7 +1865,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="184"/>
       <source>is plugged in to a power source</source>
-      <translation>je priključen na izvor struje</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="185"/>
@@ -1876,7 +1875,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="192"/>
       <source>is connected to the Internet</source>
-      <translation>ima vezu sa internetom</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="193"/>
@@ -1886,7 +1885,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="200"/>
       <source>is running the installer as an administrator (root)</source>
-      <translation type="unfinished"/>
+      <translation>es executante le installator como un administrator (“root”)</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="204"/>
@@ -1971,7 +1970,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/hostinfo/HostInfoJob.cpp" line="39"/>
       <source>Collecting information about your machine…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Colliger information re tu machina…</translation>
     </message>
   </context>
   <context>
@@ -2054,7 +2053,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/keyboardq/KeyboardQmlViewStep.cpp" line="32"/>
       <source>Keyboard</source>
       <comment>@label</comment>
-      <translation>Tastatura</translation>
+      <translation>Claviero</translation>
     </message>
   </context>
   <context>
@@ -2063,7 +2062,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/keyboard/KeyboardViewStep.cpp" line="41"/>
       <source>Keyboard</source>
       <comment>@label</comment>
-      <translation>Tastatura</translation>
+      <translation>Claviero</translation>
     </message>
   </context>
   <context>
@@ -2078,19 +2077,19 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="30"/>
       <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>Le parametros regional del systema affecta le lingua e le collection de characteres pro alcun elementos del interfacie de usator del linea de commando.&lt;br/&gt;Le parametro actual es &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="54"/>
       <source>&amp;Cancel</source>
       <comment>@button</comment>
-      <translation>&amp;Prekini</translation>
+      <translation>&amp;Cancellar</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="55"/>
       <source>&amp;OK</source>
       <comment>@button</comment>
-      <translation type="unfinished"/>
+      <translation>&amp;OK</translation>
     </message>
   </context>
   <context>
@@ -2098,7 +2097,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="35"/>
       <source>Configuring encrypted swap.</source>
-      <translation type="unfinished"/>
+      <translation>Configuration de intercambio cryptate.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="87"/>
@@ -2108,7 +2107,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="95"/>
       <source>No rootMountPoint is set.</source>
-      <translation type="unfinished"/>
+      <translation>Nulle puncto de montage es definite.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="100"/>
@@ -2145,7 +2144,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/license/LicensePage.cpp" line="152"/>
       <source>If you do not agree with the terms, the setup procedure cannot continue.</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>Si tu non concorda con le terminos, le procedura de configuration non pote continuar.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="157"/>
@@ -2246,7 +2245,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/locale/LocalePage.cpp" line="130"/>
       <source>Region:</source>
       <comment>@label</comment>
-      <translation>Regija:</translation>
+      <translation>Region:</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LocalePage.cpp" line="131"/>
@@ -2268,7 +2267,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/localeq/LocaleQmlViewStep.cpp" line="32"/>
       <source>Location</source>
       <comment>@label</comment>
-      <translation>Lokacija</translation>
+      <translation>Localisation</translation>
     </message>
   </context>
   <context>
@@ -2285,7 +2284,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/locale/LocaleViewStep.cpp" line="71"/>
       <source>Location</source>
       <comment>@label</comment>
-      <translation>Lokacija</translation>
+      <translation>Localisation</translation>
     </message>
   </context>
   <context>
@@ -2299,18 +2298,18 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="254"/>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="262"/>
       <source>No partitions are defined.</source>
-      <translation type="unfinished"/>
+      <translation>Nulle partitiones es definite.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="297"/>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="304"/>
       <source>Encrypted rootfs setup error</source>
-      <translation type="unfinished"/>
+      <translation>Error in le configuration de “rootfs” cryptate</translation>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="298"/>
       <source>Root partition %1 is LUKS but no passphrase has been set.</source>
-      <translation type="unfinished"/>
+      <translation>Le partition radice %1 es LUKS ma nulle phrase de contrasigno esseva definite.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="305"/>
@@ -2328,7 +2327,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="71"/>
       <source>Configuration Error</source>
-      <translation type="unfinished"/>
+      <translation>Error de configuration</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="72"/>
@@ -2543,7 +2542,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/localeq/Offline.qml" line="47"/>
       <source>Select your preferred region, or use the default settings</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>Selige tu region preferite, o usa le parametros predefinite</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="103"/>
@@ -2578,7 +2577,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/localeq/Offline-qt6.qml" line="47"/>
       <source>Select your preferred region, or use the default settings</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>Selige tu region preferite, o usa le parametros predefinite</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline-qt6.qml" line="103"/>
@@ -2675,7 +2674,6 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <translation type="unfinished">
         <numerusform/>
         <numerusform/>
-        <numerusform/>
       </translation>
     </message>
     <message>
@@ -2687,7 +2685,6 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="226"/>
       <source>The password contains fewer than %n uppercase letters</source>
       <translation type="unfinished">
-        <numerusform/>
         <numerusform/>
         <numerusform/>
       </translation>
@@ -2703,7 +2700,6 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <translation type="unfinished">
         <numerusform/>
         <numerusform/>
-        <numerusform/>
       </translation>
     </message>
     <message>
@@ -2717,7 +2713,6 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <translation type="unfinished">
         <numerusform/>
         <numerusform/>
-        <numerusform/>
       </translation>
     </message>
     <message>
@@ -2729,7 +2724,6 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="247"/>
       <source>The password is shorter than %n characters</source>
       <translation type="unfinished">
-        <numerusform/>
         <numerusform/>
         <numerusform/>
       </translation>
@@ -2750,7 +2744,6 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <translation type="unfinished">
         <numerusform/>
         <numerusform/>
-        <numerusform/>
       </translation>
     </message>
     <message>
@@ -2762,7 +2755,6 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="263"/>
       <source>The password contains more than %n same characters consecutively</source>
       <translation type="unfinished">
-        <numerusform/>
         <numerusform/>
         <numerusform/>
       </translation>
@@ -2778,7 +2770,6 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <translation type="unfinished">
         <numerusform/>
         <numerusform/>
-        <numerusform/>
       </translation>
     </message>
     <message>
@@ -2790,7 +2781,6 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="281"/>
       <source>The password contains monotonic sequence longer than %n characters</source>
       <translation type="unfinished">
-        <numerusform/>
         <numerusform/>
         <numerusform/>
       </translation>
@@ -2808,7 +2798,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="292"/>
       <source>Cannot obtain random numbers from the RNG device</source>
-      <translation type="unfinished"/>
+      <translation>Non pote obtener numeros aleatori ab le dispositivo RNG</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="294"/>
@@ -2896,7 +2886,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="63"/>
       <source>TextLabel</source>
-      <translation type="unfinished"/>
+      <translation>Etiquetta de texto</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="79"/>
@@ -2919,7 +2909,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/netinstall/PackageModel.cpp" line="206"/>
       <source>Name</source>
-      <translation>Naziv</translation>
+      <translation>Nomine</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/PackageModel.cpp" line="206"/>
@@ -2932,18 +2922,18 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/keyboard/KeyboardPage.ui" line="74"/>
       <source>Keyboard model:</source>
-      <translation type="unfinished"/>
+      <translation>Modello de claviero:</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/KeyboardPage.ui" line="146"/>
       <source>Type here to test your keyboard</source>
-      <translation>Test tastature</translation>
+      <translation>Scribe hic pro probar tu claviero</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/KeyboardPage.ui" line="153"/>
       <source>Switch Keyboard:</source>
       <extracomment>shortcut for switching between keyboard layouts</extracomment>
-      <translation type="unfinished"/>
+      <translation>Cambiar de claviero:</translation>
     </message>
   </context>
   <context>
@@ -2951,7 +2941,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="40"/>
       <source>What is your name?</source>
-      <translation>Kako se zovete?</translation>
+      <translation>Qual es tu nomine?</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="55"/>
@@ -2961,7 +2951,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="124"/>
       <source>What name do you want to use to log in?</source>
-      <translation>Koje ime želite koristiti da se prijavite?</translation>
+      <translation>Que nomine vole tu usar pro aperir session?</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="148"/>
@@ -2971,12 +2961,12 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="223"/>
       <source>What is the name of this computer?</source>
-      <translation>Kako želite nazvati ovaj računar?</translation>
+      <translation>Qual es le nomine de iste computator?</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="247"/>
       <source>&lt;small&gt;This name will be used if you make the computer visible to others on a network.&lt;/small&gt;</source>
-      <translation>&lt;small&gt;Ovo ime će biti vidljivo drugim računarima na mreži&lt;/small&gt;</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="250"/>
@@ -2986,19 +2976,19 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="325"/>
       <source>Choose a password to keep your account safe.</source>
-      <translation>Odaberite lozinku da biste zaštitili Vaš korisnički nalog.</translation>
+      <translation>Elige un contrasigno pro conservar tu conto secur.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="349"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="374"/>
       <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</source>
-      <translation>&lt;small&gt;Upišite istu lozinku dvaput, da ne bi došlo do greške kod kucanja. Dobra lozinka se sastoji od mešavine slova, brojeva i interpunkcijskih znakova; trebala bi biti duga bar osam znakova, i trebalo bi da ju menjate redovno&lt;/small&gt;</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="355"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="525"/>
       <source>Password</source>
-      <translation type="unfinished"/>
+      <translation>Contrasigno</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="380"/>
@@ -3019,7 +3009,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="465"/>
       <source>Log in automatically without asking for the password.</source>
-      <translation type="unfinished"/>
+      <translation>Aperir session automaticamente sin demandar le contrasigno.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="472"/>
@@ -3029,13 +3019,13 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="495"/>
       <source>Choose a password for the administrator account.</source>
-      <translation type="unfinished"/>
+      <translation>Elige un contrasigno pro le conto de administrator.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="519"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="544"/>
       <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</source>
-      <translation>&lt;small&gt;Unesite istu lozinku dvaput, da ne bi došlp do greške kod kucanja&lt;/small&gt;</translation>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -3055,7 +3045,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="186"/>
       <source>Boot</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>Initio</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="191"/>
@@ -3067,7 +3057,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="195"/>
       <source>Swap</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>Intercambio</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="199"/>
@@ -3079,7 +3069,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="203"/>
       <source>New partition</source>
       <comment>@label</comment>
-      <translation>Nova particija</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="228"/>
@@ -3095,7 +3085,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="201"/>
       <source>Free Space</source>
       <comment>@title</comment>
-      <translation>Slobodan prostor</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="161"/>
@@ -3108,31 +3098,31 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="307"/>
       <source>Name</source>
       <comment>@title</comment>
-      <translation>Naziv</translation>
+      <translation>Nomine</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="309"/>
       <source>File System</source>
       <comment>@title</comment>
-      <translation>Fajl sistem</translation>
+      <translation>Systema de files</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="311"/>
       <source>File System Label</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>Etiquetta del systema de files</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="313"/>
       <source>Mount Point</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>Puncto de montage</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="315"/>
       <source>Size</source>
       <comment>@title</comment>
-      <translation>Veličina</translation>
+      <translation>Dimension</translation>
     </message>
   </context>
   <context>
@@ -3145,67 +3135,67 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="55"/>
       <source>&amp;Revert All Changes</source>
-      <translation>&amp;Vrati sve promjene</translation>
+      <translation>&amp;Reverter tote le cambiamentos</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="91"/>
       <source>New Partition &amp;Table</source>
-      <translation type="unfinished"/>
+      <translation>Nove &amp;tabula de partitiones</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="111"/>
       <source>Cre&amp;ate</source>
-      <translation type="unfinished"/>
+      <translation>Cre&amp;ar</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="118"/>
       <source>&amp;Edit</source>
-      <translation type="unfinished"/>
+      <translation>&amp;Editar</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="125"/>
       <source>&amp;Delete</source>
-      <translation type="unfinished"/>
+      <translation>&amp;Deler</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="136"/>
       <source>New Volume Group</source>
-      <translation type="unfinished"/>
+      <translation>Nove gruppo de volumine</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="143"/>
       <source>Resize Volume Group</source>
-      <translation type="unfinished"/>
+      <translation>Redimensionar gruppo de volumine</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="150"/>
       <source>Deactivate Volume Group</source>
-      <translation type="unfinished"/>
+      <translation>Disactivar gruppo de volumine</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="157"/>
       <source>Remove Volume Group</source>
-      <translation type="unfinished"/>
+      <translation>Remover gruppo de volumine</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="184"/>
       <source>I&amp;nstall boot loader on:</source>
-      <translation type="unfinished"/>
+      <translation>I&amp;nstallar cargator de initio sur:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="224"/>
       <source>Are you sure you want to create a new partition table on %1?</source>
-      <translation type="unfinished"/>
+      <translation>Es tu secur que tu vole crear un nove tabula de partitiones sur %1?</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="259"/>
       <source>Can not create new partition</source>
-      <translation type="unfinished"/>
+      <translation>Non pote crear nove partition</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="260"/>
       <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
-      <translation type="unfinished"/>
+      <translation>Le tabula de partitiones sur %1 jam ha %2 partitiones primari, e non pote esser addite alteres. Remove un partition primari e adde un partition extendite, in vice.</translation>
     </message>
   </context>
   <context>
@@ -3220,7 +3210,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="107"/>
       <source>Partitions</source>
       <comment>@label</comment>
-      <translation>Particije</translation>
+      <translation>Partitiones</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="143"/>
@@ -3232,7 +3222,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="147"/>
       <source>&lt;strong&gt;Erase&lt;/strong&gt; disk and install %1</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;Rader&lt;/strong&gt; disco e installar %1</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="151"/>
@@ -3244,7 +3234,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="156"/>
       <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>Partitionamento &lt;strong&gt;Manual&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="178"/>
@@ -3256,7 +3246,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="187"/>
       <source>&lt;strong&gt;Erase&lt;/strong&gt; disk &lt;strong&gt;%2&lt;/strong&gt; (%3) and install %1</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;Rader&lt;/strong&gt; disco &lt;strong&gt;%2&lt;/strong&gt; (%3) e installar %1</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="194"/>
@@ -3268,7 +3258,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="203"/>
       <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning on disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>Partitionamento &lt;strong&gt;Manual&lt;/strong&gt; sur le disco &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="213"/>
@@ -3289,19 +3279,19 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="263"/>
       <source>No partitions will be changed.</source>
-      <translation type="unfinished"/>
+      <translation>Nulle partitiones essera cambiate.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="303"/>
       <source>Current:</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>Actual:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="321"/>
       <source>After:</source>
       <comment>@label</comment>
-      <translation>Poslije:</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="543"/>
@@ -3367,7 +3357,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="634"/>
       <source>Option to use GPT on BIOS</source>
-      <translation type="unfinished"/>
+      <translation>Option pro usar GPT sur le BIOS</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="635"/>
@@ -3377,12 +3367,12 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="657"/>
       <source>Boot partition not encrypted</source>
-      <translation type="unfinished"/>
+      <translation>Partition de initio non cryptate</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="658"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
-      <translation type="unfinished"/>
+      <translation>Un partition de initio separate esseva configurate insimul con un partition de radice cryptate, ma le partition de initio non es cryptate.&lt;br/&gt;&lt;br/&gt;Il ha problemas de securitate con iste typo de configuration, perque le files importante del systema es mantenite sur un partition non cryptate.&lt;br/&gt;Tu pote continuar si tu vole, ma le disblocar del systema de files occurrera plus tarde durante le initio del systema.&lt;br/&gt;Pro cryptar le partition de initio, retorna e recrea lo, seligente &lt;strong&gt;Cryptar&lt;/strong&gt; in le fenestra de creation de partitiones.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="750"/>
@@ -3392,7 +3382,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="751"/>
       <source>There are no partitions to install on.</source>
-      <translation type="unfinished"/>
+      <translation>Il non ha partitiones pro le installation.</translation>
     </message>
   </context>
   <context>
@@ -3494,7 +3484,7 @@ Output:
     <message>
       <location filename="../src/libcalamares/utils/System.cpp" line="323"/>
       <source>Bad parameters for process job call.</source>
-      <translation>Pogrešni parametri kod poziva funkcije u procesu.</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/System.cpp" line="329"/>
@@ -3522,7 +3512,7 @@ Output:
     <message>
       <location filename="../src/libcalamares/locale/Translation.cpp" line="170"/>
       <source>%1 (%2)</source>
-      <translation type="unfinished"/>
+      <translation>%1 (%2)</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/partition/FileSystem.cpp" line="33"/>
@@ -3534,7 +3524,7 @@ Output:
       <location filename="../src/libcalamares/partition/FileSystem.cpp" line="35"/>
       <source>extended</source>
       <comment>@partition info</comment>
-      <translation type="unfinished"/>
+      <translation>extendite</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/partition/FileSystem.cpp" line="37"/>
@@ -3546,13 +3536,13 @@ Output:
       <location filename="../src/libcalamares/partition/FileSystem.cpp" line="39"/>
       <source>swap</source>
       <comment>@partition info</comment>
-      <translation type="unfinished"/>
+      <translation>intercambio</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="145"/>
       <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="192"/>
       <source>Default</source>
-      <translation type="unfinished"/>
+      <translation>Predefinite</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="101"/>
@@ -3577,13 +3567,13 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="44"/>
       <source>(no mount point)</source>
-      <translation type="unfinished"/>
+      <translation>(nulle puncto de montage)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="39"/>
       <source>Unpartitioned space or unknown partition table</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>Spatio non partitionate o tabula de partitiones incognite</translation>
     </message>
   </context>
   <context>
@@ -3611,18 +3601,18 @@ Output:
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="38"/>
       <source>Removing Volume Group named %1…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Removente le gruppo de volumine nominate %1…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="32"/>
       <source>Removing Volume Group named &lt;strong&gt;%1&lt;/strong&gt;…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Removente le gruppo de volumine nominate &lt;strong&gt;%1&lt;/strong&gt;…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="46"/>
       <source>The installer failed to remove a volume group named '%1'.</source>
-      <translation type="unfinished"/>
+      <translation>Le installator non poteva remover un gruppo de volumine nominate '%1'.</translation>
     </message>
   </context>
   <context>
@@ -3631,7 +3621,8 @@ Output:
       <location filename="../src/modules/welcomeq/Requirements.qml" line="37"/>
       <source>&lt;p&gt;This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;
         Installation cannot continue.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;Iste computator non satisface le requisitos minime pro installar %1.&lt;br/&gt;
+        Le installation non pote continuar.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/Requirements.qml" line="39"/>
@@ -3670,7 +3661,7 @@ Output:
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="170"/>
       <source>Calamares cannot start KPMCore for the file system resize job.</source>
       <comment>@error</comment>
-      <translation type="unfinished"/>
+      <translation>Calamares non pote initiar KPMCore pro le carga de redimensionamento del systema de files.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="179"/>
@@ -3682,13 +3673,13 @@ Output:
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="181"/>
       <source>The filesystem %1 could not be found in this system, and cannot be resized.</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>Le systema de files %1 non poteva esser trovate in iste systema, e non pote esser redimensionate.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="182"/>
       <source>The device %1 could not be found in this system, and cannot be resized.</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>Le dispositivo %1 non poteva esser trovate in iste systema, e non pote esser redimensionate.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="189"/>
@@ -3704,26 +3695,26 @@ Output:
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="203"/>
       <source>The filesystem %1 cannot be resized.</source>
       <comment>@error</comment>
-      <translation type="unfinished"/>
+      <translation>Le systema de files %1 non pote esser redimensionate.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="192"/>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="204"/>
       <source>The device %1 cannot be resized.</source>
       <comment>@error</comment>
-      <translation type="unfinished"/>
+      <translation>Le dispositivo %1 non pote esser redimensionate.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="213"/>
       <source>The file system %1 must be resized, but cannot.</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>Le systema de files %1 debe esser redimensionate, ma non pote.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="214"/>
       <source>The device %1 must be resized, but cannot</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>Le dispositivo %1 debe esser redimensionate, ma non pote</translation>
     </message>
   </context>
   <context>
@@ -3749,7 +3740,7 @@ Output:
     <message>
       <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="70"/>
       <source>The installer failed to resize partition %1 on disk '%2'.</source>
-      <translation type="unfinished"/>
+      <translation>Le installator non poteva redimensionar le partition %1 sur le disco '%2'.</translation>
     </message>
   </context>
   <context>
@@ -3758,7 +3749,7 @@ Output:
       <location filename="../src/modules/partition/gui/ResizeVolumeGroupDialog.cpp" line="30"/>
       <source>Resize Volume Group</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>Redimensionar gruppo de volumine</translation>
     </message>
   </context>
   <context>
@@ -3767,24 +3758,24 @@ Output:
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="28"/>
       <source>Resize volume group named %1 from %2 to %3</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>Redimensionar le gruppo de volumine nominate %1 ab %2 a %3</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="37"/>
       <source>Resize volume group named &lt;strong&gt;%1&lt;/strong&gt; from &lt;strong&gt;%2&lt;/strong&gt; to &lt;strong&gt;%3&lt;/strong&gt;</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>Redimensionar le gruppo de volumine nominate &lt;strong&gt;%1&lt;/strong&gt; ab &lt;strong&gt;%2&lt;/strong&gt; a &lt;strong&gt;%3&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="47"/>
       <source>Resizing volume group named %1 from %2 to %3…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Redimensionante le gruppo de volumine nominate %1 ab %2 a %3…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="58"/>
       <source>The installer failed to resize a volume group named '%1'.</source>
-      <translation type="unfinished"/>
+      <translation>Le installator non poteva redimensionar un gruppo de volumine nominate '%1'.</translation>
     </message>
   </context>
   <context>
@@ -3801,7 +3792,7 @@ Output:
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="68"/>
       <source>Scanning storage devices…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Scannante dispositivos de immagazinage…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="68"/>
@@ -3815,7 +3806,7 @@ Output:
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="36"/>
       <source>Set hostname %1</source>
-      <translation>Postavi ime računara %1</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="42"/>
@@ -3838,7 +3829,7 @@ Output:
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="139"/>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="156"/>
       <source>Cannot write hostname to target system</source>
-      <translation type="unfinished"/>
+      <translation>Non pote scriber le nomine del hospite al systema de scopo</translation>
     </message>
   </context>
   <context>
@@ -3877,7 +3868,7 @@ Output:
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="411"/>
       <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
       <comment>@error</comment>
-      <translation type="unfinished"/>
+      <translation>Non poteva scriber le configuration del claviero al directorio /etc/default existente.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="412"/>
@@ -3892,96 +3883,96 @@ Output:
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="44"/>
       <source>Set flags on partition %1</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>Definir marcas sur le partition %1</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="50"/>
       <source>Set flags on %1MiB %2 partition</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>Definir marcas sur le partition %2 de %1 MiB</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="54"/>
       <source>Set flags on new partition</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>Definir marcas sur le nove partition</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="65"/>
       <source>Clear flags on partition &lt;strong&gt;%1&lt;/strong&gt;</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>Rader le marcas sur le partition &lt;strong&gt;%1&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="71"/>
       <source>Clear flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>Rader le marcas sur le partition &lt;strong&gt;%2&lt;/strong&gt; de 1% MiB</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="75"/>
       <source>Clear flags on new partition</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>Rader le marcas sur le nove partition</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="80"/>
       <source>Set flags on partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%2&lt;/strong&gt;</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>Definir marcas sur le partition &lt;strong&gt;%1&lt;/strong&gt; a &lt;strong&gt;%2&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="88"/>
       <source>Set flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition to &lt;strong&gt;%3&lt;/strong&gt;</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>Definir marcas sur le partition&lt;strong&gt;%2&lt;/strong&gt; de %1 MiB a &lt;strong&gt;%3&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="94"/>
       <source>Set flags on new partition to &lt;strong&gt;%1&lt;/strong&gt;</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>Definir marcas sur le nove partition a &lt;strong&gt;%1&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="105"/>
       <source>Clearing flags on partition &lt;strong&gt;%1&lt;/strong&gt;…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Radente le marcas sur le partition &lt;strong&gt;%1&lt;/strong&gt;…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="112"/>
       <source>Clearing flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Radente le marcas sur le partition &lt;strong&gt;2%&lt;/strong&gt; de %1 MiB</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="117"/>
       <source>Clearing flags on new partition…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Radente le marcas sur le nove partition…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="122"/>
       <source>Setting flags &lt;strong&gt;%2&lt;/strong&gt; on partition &lt;strong&gt;%1&lt;/strong&gt;…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Definiente le marcas &lt;strong&gt;%2&lt;/strong&gt; sur le partition &lt;strong&gt;%1&lt;/strong&gt;…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="130"/>
       <source>Setting flags &lt;strong&gt;%3&lt;/strong&gt; on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Definiente le marcas &lt;strong&gt;%3&lt;/strong&gt; sur le partition &lt;strong&gt;%2&lt;/strong&gt; de %1 MiB…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="136"/>
       <source>Setting flags &lt;strong&gt;%1&lt;/strong&gt; on new partition…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Definiente le marcas &lt;strong&gt;%1&lt;/strong&gt; sur le nove partition…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="149"/>
       <source>The installer failed to set flags on partition %1.</source>
-      <translation type="unfinished"/>
+      <translation>Le installator no poteva definir le marcas sur le partition %1.</translation>
     </message>
   </context>
   <context>
@@ -4005,12 +3996,12 @@ Output:
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="81"/>
       <source>rootMountPoint is %1</source>
-      <translation type="unfinished"/>
+      <translation>Le puncto de montage del radice es %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="89"/>
       <source>Cannot disable root account.</source>
-      <translation type="unfinished"/>
+      <translation>Non pote dishabilitar le conto de superusator.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="90"/>
@@ -4021,7 +4012,7 @@ Output:
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="107"/>
       <source>Cannot set password for user %1.</source>
-      <translation type="unfinished"/>
+      <translation>Non pote definir le contrasigno pro le usator %1.</translation>
     </message>
   </context>
   <context>
@@ -4030,13 +4021,13 @@ Output:
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="32"/>
       <source>Setting timezone to %1/%2…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Definiente le fuso horari a %1/%2…</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="60"/>
       <source>Cannot access selected timezone path.</source>
       <comment>@error</comment>
-      <translation type="unfinished"/>
+      <translation>Non pote acceder al percurso del fuso horari seligite.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="61"/>
@@ -4049,7 +4040,7 @@ Output:
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="79"/>
       <source>Cannot set timezone.</source>
       <comment>@error</comment>
-      <translation type="unfinished"/>
+      <translation>Non pote definir le fuso horari.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="72"/>
@@ -4061,7 +4052,7 @@ Output:
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="80"/>
       <source>Cannot open /etc/timezone for writing</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>Non pote aperir /etc/timezone pro scriber.</translation>
     </message>
   </context>
   <context>
@@ -4081,7 +4072,7 @@ Output:
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="199"/>
       <source>These groups are missing in the target system: %1</source>
-      <translation type="unfinished"/>
+      <translation>Iste gruppos manca in le systema de scopo: %1</translation>
     </message>
   </context>
   <context>
@@ -4095,12 +4086,12 @@ Output:
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="70"/>
       <source>Cannot chmod sudoers file.</source>
-      <translation>Nemoguće uraditi chmod nad sudoers fajlom.</translation>
+      <translation>Non pote executar chmod sur le file sudoers.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="75"/>
       <source>Cannot create sudoers file for writing.</source>
-      <translation>Nemoguće napraviti sudoers fajl</translation>
+      <translation>Non pote crear le file sudoers pro scriber.</translation>
     </message>
   </context>
   <context>
@@ -4127,27 +4118,27 @@ Output:
     <message>
       <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="23"/>
       <source>&amp;OK</source>
-      <translation type="unfinished"/>
+      <translation>&amp;OK</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="24"/>
       <source>&amp;Yes</source>
-      <translation type="unfinished"/>
+      <translation>&amp;Si</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="25"/>
       <source>&amp;No</source>
-      <translation type="unfinished"/>
+      <translation>&amp;No</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="26"/>
       <source>&amp;Cancel</source>
-      <translation>&amp;Prekini</translation>
+      <translation>&amp;Cancellar</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/widgets/TranslationFix.cpp" line="27"/>
       <source>&amp;Close</source>
-      <translation type="unfinished"/>
+      <translation>&amp;Clauder</translation>
     </message>
   </context>
   <context>
@@ -4155,13 +4146,13 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="100"/>
       <source>Installation feedback</source>
-      <translation type="unfinished"/>
+      <translation>Evalutation del installation</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="106"/>
       <source>Sending installation feedback…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Inviante le evalutation del installation…</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="124"/>
@@ -4297,7 +4288,7 @@ Output:
     <message>
       <location filename="../src/modules/umount/UmountJob.cpp" line="131"/>
       <source>No rootMountPoint is set.</source>
-      <translation type="unfinished"/>
+      <translation>Nulle puncto de montage es definite.</translation>
     </message>
   </context>
   <context>
@@ -4310,7 +4301,7 @@ Output:
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="195"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;small&gt;Si plus que un persona usara iste computator, tu pote crear multiple contos post le installation.&lt;/small&gt;</translation>
     </message>
   </context>
   <context>
@@ -4318,7 +4309,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/UsersQmlViewStep.cpp" line="35"/>
       <source>Users</source>
-      <translation>Korisnici</translation>
+      <translation>Usatores</translation>
     </message>
   </context>
   <context>
@@ -4326,7 +4317,7 @@ Output:
     <message>
       <location filename="../src/modules/users/UsersViewStep.cpp" line="48"/>
       <source>Users</source>
-      <translation>Korisnici</translation>
+      <translation>Usatores</translation>
     </message>
   </context>
   <context>
@@ -4341,7 +4332,7 @@ Output:
       <location filename="../src/calamares/VariantModel.cpp" line="236"/>
       <source>Value</source>
       <comment>Column header for key/value</comment>
-      <translation>Vrednost</translation>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -4349,27 +4340,27 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="18"/>
       <source>Create Volume Group</source>
-      <translation type="unfinished"/>
+      <translation>Crear gruppo de volumine</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="24"/>
       <source>List of Physical Volumes</source>
-      <translation type="unfinished"/>
+      <translation>Lista de volumines physic</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="34"/>
       <source>Volume Group Name:</source>
-      <translation type="unfinished"/>
+      <translation>Nomine del gruppo de volumine:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="47"/>
       <source>Volume Group Type:</source>
-      <translation type="unfinished"/>
+      <translation>Typo del gruppo de volumine:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="60"/>
       <source>Physical Extent Size:</source>
-      <translation type="unfinished"/>
+      <translation>Dimension de extension physic:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="70"/>
@@ -4379,22 +4370,22 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="86"/>
       <source>Total Size:</source>
-      <translation type="unfinished"/>
+      <translation>Dimension total:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="106"/>
       <source>Used Size:</source>
-      <translation type="unfinished"/>
+      <translation>Dimension usate:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="126"/>
       <source>Total Sectors:</source>
-      <translation type="unfinished"/>
+      <translation>Total de sectores:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="146"/>
       <source>Quantity of LVs:</source>
-      <translation type="unfinished"/>
+      <translation>Quantitate de LVs:</translation>
     </message>
   </context>
   <context>
@@ -4449,13 +4440,13 @@ Output:
       <location filename="../src/calamares/DebugWindow.cpp" line="235"/>
       <source>About %1 Setup</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>Re le configuration de %1</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.cpp" line="236"/>
       <source>About %1 Installer</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>Re le installator de %1</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="212"/>
@@ -4470,7 +4461,7 @@ Output:
       <location filename="../src/modules/welcomeq/WelcomeQmlViewStep.cpp" line="40"/>
       <source>Welcome</source>
       <comment>@title</comment>
-      <translation>Dobrodošli</translation>
+      <translation>Benvenite</translation>
     </message>
   </context>
   <context>
@@ -4479,7 +4470,7 @@ Output:
       <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="46"/>
       <source>Welcome</source>
       <comment>@title</comment>
-      <translation>Dobrodošli</translation>
+      <translation>Benvenite</translation>
     </message>
   </context>
   <context>
@@ -4498,12 +4489,12 @@ Output:
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="180"/>
       <source>Configuration Error</source>
-      <translation type="unfinished"/>
+      <translation>Error de configuration</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="181"/>
       <source>No partitions are available for ZFS.</source>
-      <translation type="unfinished"/>
+      <translation>Nulle partitiones es disponibile pro ZFS.</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>
@@ -4532,30 +4523,30 @@ Output:
     <message>
       <location filename="../src/calamares/calamares-sidebar.qml" line="89"/>
       <source>About</source>
-      <translation type="unfinished"/>
+      <translation>Re</translation>
     </message>
     <message>
       <location filename="../src/calamares/calamares-sidebar.qml" line="115"/>
       <source>Debug</source>
-      <translation>Otklanjanje greški</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="157"/>
       <source>About</source>
       <comment>@button</comment>
-      <translation type="unfinished"/>
+      <translation>Re</translation>
     </message>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="159"/>
       <source>Show information about Calamares</source>
       <comment>@tooltip</comment>
-      <translation type="unfinished"/>
+      <translation>Monstrar information re Calamares</translation>
     </message>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="173"/>
       <source>Debug</source>
       <comment>@button</comment>
-      <translation>Otklanjanje greški</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="175"/>
@@ -4569,18 +4560,19 @@ Output:
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="36"/>
       <source>Installation Completed</source>
-      <translation type="unfinished"/>
+      <translation>Installation completate</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="43"/>
       <source>%1 has been installed on your computer.&lt;br/&gt;
             You may now restart into your new system, or continue using the Live environment.</source>
-      <translation type="unfinished"/>
+      <translation>%1 ha essite installate in tu computator.&lt;br/&gt;
+            Tu pote ora reinitiar in tu nove systema, o continuar usante le ambiente in vivo.</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="65"/>
       <source>Close Installer</source>
-      <translation type="unfinished"/>
+      <translation>Clauder installator</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="71"/>
@@ -4600,20 +4592,21 @@ Output:
       <location filename="../src/modules/finishedq/finishedq-qt6.qml" line="35"/>
       <source>Installation Completed</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>Installation completate</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq-qt6.qml" line="42"/>
       <source>%1 has been installed on your computer.&lt;br/&gt;
             You may now restart into your new system, or continue using the Live environment.</source>
       <comment>@info, %1 is the product name</comment>
-      <translation type="unfinished"/>
+      <translation>%1 ha essite installate in tu computator.&lt;br/&gt;
+            Tu pote ora reinitiar in tu nove systema, o continuar usante le ambiente in vivo.</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq-qt6.qml" line="65"/>
       <source>Close Installer</source>
       <comment>@button</comment>
-      <translation type="unfinished"/>
+      <translation>Clauder installator</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq-qt6.qml" line="71"/>
@@ -4635,20 +4628,21 @@ Output:
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="36"/>
       <source>Installation Completed</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>Installation completate</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="43"/>
       <source>%1 has been installed on your computer.&lt;br/&gt;
             You may now restart your device.</source>
       <comment>@info, %1 is the product name</comment>
-      <translation type="unfinished"/>
+      <translation>%1 ha essite installate in tu computator.&lt;br/&gt;
+            Tu pote ora reinitiar tu dispositivo.</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="66"/>
       <source>Close</source>
       <comment>@button</comment>
-      <translation type="unfinished"/>
+      <translation>Clauder</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="72"/>
@@ -4687,7 +4681,7 @@ Output:
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="311"/>
       <source>Type here to test your keyboard…</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>Scribe hic pro probar tu claviero…</translation>
     </message>
   </context>
   <context>
@@ -4720,7 +4714,7 @@ Output:
       <location filename="../src/modules/keyboardq/keyboardq-qt6.qml" line="311"/>
       <source>Type here to test your keyboard…</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>Scribe hic pro probar tu claviero…</translation>
     </message>
   </context>
   <context>
@@ -4730,14 +4724,15 @@ Output:
       <location filename="../src/modules/localeq/localeq.qml" line="106"/>
       <source>Change</source>
       <comment>@button</comment>
-      <translation type="unfinished"/>
+      <translation>Cambiar</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/localeq.qml" line="142"/>
       <source>&lt;h3&gt;Languages&lt;/h3&gt; &lt;/br&gt;
                             The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;Linguas&lt;/h3&gt; &lt;/br&gt;
+                            Le parametro regional del systema affecta le lingua e le collection de characteres pro alcun elementos del interfacie de usator del linea de commando. Le parametro actual es &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/localeq.qml" line="213"/>
@@ -4754,14 +4749,15 @@ Output:
       <location filename="../src/modules/localeq/localeq-qt6.qml" line="106"/>
       <source>Change</source>
       <comment>@button</comment>
-      <translation type="unfinished"/>
+      <translation>Cambiar</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/localeq-qt6.qml" line="142"/>
       <source>&lt;h3&gt;Languages&lt;/h3&gt; &lt;/br&gt;
                             The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;Linguas&lt;/h3&gt; &lt;/br&gt;
+                            Le parametro regional del systema affecta le lingua e le collection de characteres pro alcun elementos del interfacie de usator del linea de commando. Le parametro actual es &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/localeq-qt6.qml" line="213"/>
@@ -4791,7 +4787,7 @@ Output:
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="59"/>
       <source>LibreOffice</source>
-      <translation type="unfinished"/>
+      <translation>LibreOffice</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="108"/>
@@ -4811,7 +4807,7 @@ Output:
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="185"/>
       <source>Minimal Install</source>
-      <translation type="unfinished"/>
+      <translation>Installation minime</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="233"/>
@@ -4830,7 +4826,7 @@ Output:
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq-qt6.qml" line="59"/>
       <source>LibreOffice</source>
-      <translation type="unfinished"/>
+      <translation>LibreOffice</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq-qt6.qml" line="108"/>
@@ -4850,7 +4846,7 @@ Output:
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq-qt6.qml" line="185"/>
       <source>Minimal Install</source>
-      <translation type="unfinished"/>
+      <translation>Installation minime</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq-qt6.qml" line="233"/>
@@ -4888,7 +4884,7 @@ Output:
     <message>
       <location filename="../src/modules/welcomeq/release_notes.qml" line="76"/>
       <source>Back</source>
-      <translation type="unfinished"/>
+      <translation>Precedente</translation>
     </message>
   </context>
   <context>
@@ -4901,47 +4897,47 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="56"/>
       <source>What is your name?</source>
-      <translation>Kako se zovete?</translation>
+      <translation>Qual es tu nomine?</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="63"/>
       <source>Your full name</source>
-      <translation type="unfinished"/>
+      <translation>Tu nomine complete</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="80"/>
       <source>What name do you want to use to log in?</source>
-      <translation>Koje ime želite koristiti da se prijavite?</translation>
+      <translation>Que nomine vole tu usar pro aperir session?</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="87"/>
       <source>Login name</source>
-      <translation type="unfinished"/>
+      <translation>Nomine de accesso</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="116"/>
       <source>If more than one person will use this computer, you can create multiple accounts after installation.</source>
-      <translation type="unfinished"/>
+      <translation>Si plus que un persona usara iste computator, tu pote crear multiple contos post le installation.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="129"/>
       <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
-      <translation type="unfinished"/>
+      <translation>Solmente litteras minusculas, numeros, sublinea e tracto de union es permittite.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="138"/>
       <source>root is not allowed as username.</source>
-      <translation type="unfinished"/>
+      <translation>root non es permittite como nomine de usator.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="147"/>
       <source>What is the name of this computer?</source>
-      <translation>Kako želite nazvati ovaj računar?</translation>
+      <translation>Qual es le nomine de iste computator?</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="153"/>
       <source>Computer name</source>
-      <translation type="unfinished"/>
+      <translation>Nomine de computator</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="180"/>
@@ -4951,7 +4947,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="193"/>
       <source>Only letters, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
-      <translation type="unfinished"/>
+      <translation>Solmente litteras, numeros, sublinea e tracto de union es permittite, minimo de duo characteres.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="202"/>
@@ -4961,17 +4957,17 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="211"/>
       <source>Choose a password to keep your account safe.</source>
-      <translation>Odaberite lozinku da biste zaštitili Vaš korisnički nalog.</translation>
+      <translation>Elige un contrasigno pro conservar tu conto secur.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="221"/>
       <source>Password</source>
-      <translation type="unfinished"/>
+      <translation>Contrasigno</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="238"/>
       <source>Repeat password</source>
-      <translation type="unfinished"/>
+      <translation>Repete contrasigno</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="265"/>
@@ -4981,7 +4977,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="297"/>
       <source>Reuse user password as root password</source>
-      <translation type="unfinished"/>
+      <translation>Reutilisar le contrasigno del usator como contrasigno del superusator</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="305"/>
@@ -4991,17 +4987,17 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="318"/>
       <source>Choose a root password to keep your account safe.</source>
-      <translation type="unfinished"/>
+      <translation>Elige un contrasigno del superusator pro conservar tu conto secur.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="328"/>
       <source>Root password</source>
-      <translation type="unfinished"/>
+      <translation>Contrasigna de superusator</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="346"/>
       <source>Repeat root password</source>
-      <translation type="unfinished"/>
+      <translation>Repete contrasigno de superusator</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="372"/>
@@ -5011,7 +5007,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="402"/>
       <source>Log in automatically without asking for the password</source>
-      <translation type="unfinished"/>
+      <translation>Aperir session automaticamente sin demandar le contrasigno</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="410"/>
@@ -5034,47 +5030,47 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="55"/>
       <source>What is your name?</source>
-      <translation>Kako se zovete?</translation>
+      <translation>Qual es tu nomine?</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="62"/>
       <source>Your full name</source>
-      <translation type="unfinished"/>
+      <translation>Tu nomine complete</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="79"/>
       <source>What name do you want to use to log in?</source>
-      <translation>Koje ime želite koristiti da se prijavite?</translation>
+      <translation>Que nomine vole tu usar pro aperir session?</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="86"/>
       <source>Login name</source>
-      <translation type="unfinished"/>
+      <translation>Nomine de accesso</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="115"/>
       <source>If more than one person will use this computer, you can create multiple accounts after installation.</source>
-      <translation type="unfinished"/>
+      <translation>Si plus que un persona usara iste computator, tu pote crear multiple contos post le installation.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="128"/>
       <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
-      <translation type="unfinished"/>
+      <translation>Solmente litteras minusculas, numeros, tracto basse e tracto de union es permittite.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="137"/>
       <source>root is not allowed as username.</source>
-      <translation type="unfinished"/>
+      <translation>root non es permittite como nomine de usator.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="146"/>
       <source>What is the name of this computer?</source>
-      <translation>Kako želite nazvati ovaj računar?</translation>
+      <translation>Qual es le nomine de iste computator?</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="152"/>
       <source>Computer name</source>
-      <translation type="unfinished"/>
+      <translation>Nomine de computator</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="179"/>
@@ -5084,7 +5080,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="192"/>
       <source>Only letters, numbers, underscore and hyphen are allowed, minimal of two characters.</source>
-      <translation type="unfinished"/>
+      <translation>Solmente litteras, numeros, sublinea e tracto de union es permittite, minimo de duo characteres.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="201"/>
@@ -5094,17 +5090,17 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="210"/>
       <source>Choose a password to keep your account safe.</source>
-      <translation>Odaberite lozinku da biste zaštitili Vaš korisnički nalog.</translation>
+      <translation>Elige un contrasigno pro conservar tu conto secur.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="220"/>
       <source>Password</source>
-      <translation type="unfinished"/>
+      <translation>Contrasigno</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="237"/>
       <source>Repeat password</source>
-      <translation type="unfinished"/>
+      <translation>Repete contrasigno</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="264"/>
@@ -5114,7 +5110,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="296"/>
       <source>Reuse user password as root password</source>
-      <translation type="unfinished"/>
+      <translation>Reutilisar le contrasigno del usator como contrasigno del superusator</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="304"/>
@@ -5124,17 +5120,17 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="317"/>
       <source>Choose a root password to keep your account safe.</source>
-      <translation type="unfinished"/>
+      <translation>Elige un contrasigno del superusator pro conservar tu conto secur.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="327"/>
       <source>Root password</source>
-      <translation type="unfinished"/>
+      <translation>Contrasigna de superusator</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="345"/>
       <source>Repeat root password</source>
-      <translation type="unfinished"/>
+      <translation>Repete contrasigno de superusator</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="371"/>
@@ -5144,7 +5140,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="401"/>
       <source>Log in automatically without asking for the password</source>
-      <translation type="unfinished"/>
+      <translation>Aperir session automaticamente sin demandar le contrasigno</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="409"/>
@@ -5163,27 +5159,28 @@ Output:
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="38"/>
       <source>&lt;h3&gt;Welcome to the %1 &lt;quote&gt;%2&lt;/quote&gt; installer&lt;/h3&gt;
             &lt;p&gt;This program will ask you some questions and set up %1 on your computer.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;Benvenite al installator de &lt;quote&gt;%2&lt;/quote&gt; pro %1&lt;/h3&gt;
+            &lt;p&gt;Iste programma te demandara alcun questiones e configurara %1 sur tu computator.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="69"/>
       <source>Support</source>
-      <translation type="unfinished"/>
+      <translation>Supporto</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="80"/>
       <source>Known Issues</source>
-      <translation type="unfinished"/>
+      <translation>Problemas cognoscite</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="91"/>
       <source>Release Notes</source>
-      <translation type="unfinished"/>
+      <translation>Notas del version</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="103"/>
       <source>Donate</source>
-      <translation type="unfinished"/>
+      <translation>Donar</translation>
     </message>
   </context>
   <context>
@@ -5192,27 +5189,28 @@ Output:
       <location filename="../src/modules/welcomeq/welcomeq-qt6.qml" line="38"/>
       <source>&lt;h3&gt;Welcome to the %1 &lt;quote&gt;%2&lt;/quote&gt; installer&lt;/h3&gt;
             &lt;p&gt;This program will ask you some questions and set up %1 on your computer.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;Benvenite al installator de &lt;quote&gt;%2&lt;/quote&gt; pro %1&lt;/h3&gt;
+            &lt;p&gt;Iste programma te demandara alcun questiones e configurara %1 sur tu computator.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq-qt6.qml" line="69"/>
       <source>Support</source>
-      <translation type="unfinished"/>
+      <translation>Supporto</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq-qt6.qml" line="80"/>
       <source>Known Issues</source>
-      <translation type="unfinished"/>
+      <translation>Problemas cognoscite</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq-qt6.qml" line="91"/>
       <source>Release Notes</source>
-      <translation type="unfinished"/>
+      <translation>Notas del version</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq-qt6.qml" line="103"/>
       <source>Donate</source>
-      <translation type="unfinished"/>
+      <translation>Donar</translation>
     </message>
   </context>
 </TS>
