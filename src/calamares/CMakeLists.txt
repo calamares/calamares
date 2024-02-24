@@ -64,9 +64,4 @@ if(BUILD_TESTING)
 
     add_executable(test_conf test_conf.cpp)
     target_link_libraries(test_conf PUBLIC yamlcpp::yamlcpp ${qtname}::Core)
-
-    if(WITH_PYBIND11)
-        target_compile_definitions(loadmodule PRIVATE WITH_PYBIND11=1)
-    endif()
-
 endif()

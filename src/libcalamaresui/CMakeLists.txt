@@ -63,9 +63,6 @@ if(WITH_QML)
     target_link_libraries(calamaresui PUBLIC ${qtname}::QuickWidgets)
 endif()
 
-if(WITH_PYBIND11)
-    target_compile_definitions(calamaresui PRIVATE WITH_PYBIND11=1)
-endif()
 set_target_properties(
     calamaresui
     PROPERTIES
