@@ -12,6 +12,7 @@
 #include "CommandList.h"
 #include "Entropy.h"
 #include "Logger.h"
+#include "Permissions.h"
 #include "RAII.h"
 #include "Runner.h"
 #include "String.h"
@@ -376,16 +377,61 @@ commands:
     }
 }
 
-void LibCalamaresTests::testCommandRunning()
+void
+LibCalamaresTests::testCommandRunning()
 {
-    const QString echoCommand = QStringLiteral("echo \"$calamares_test_variable\"");
 
-    Calamares::CommandList l(false); // no chroot
-    Calamares::CommandLine c(echoCommand, {}, std::chrono::seconds(2));
-    l.push_back(c);
+    QTemporaryDir tempRoot( QDir::tempPath() + QStringLiteral( "/test-job-XXXXXX" ) );
+    tempRoot.setAutoRemove( false );
 
-    const auto r = l.run();
-    const auto output = r.readAll();
+    const QString testExecutable = tempRoot.filePath( "example.sh" );
+    const QString testFile = tempRoot.filePath( "example.txt" );
+
+    {
+        QFile f( testExecutable );
+        QVERIFY( f.open( QIODevice::WriteOnly ) );
+        f.write( "#! /bin/sh\necho \"$calamares_test_variable\"\n" );
+        f.close();
+        Calamares::Permissions::apply( testExecutable, 0755 );
+    }
+
+    const QString echoCommand = testExecutable + QStringLiteral( " > " ) + testFile;
+
+    // Without an environment, the variable echoed in the example
+    // executable is empty, and we write a single newline to stdout,
+    // which is redirected to testFile.
+    {
+        Calamares::CommandList l( false );  // no chroot
+        Calamares::CommandLine c( echoCommand, {}, std::chrono::seconds( 2 ) );
+        l.push_back( c );
+
+        const auto r = l.run();
+        QVERIFY( bool( r ) );
+
+        QCOMPARE( QFileInfo( testFile ).size(), 1 );  // single newline
+    }
+
+    // With an environment, echoes the value of the variable and a newline
+    {
+        const QString world = QStringLiteral( "Hello world" );
+        Calamares::CommandList l( false );  // no chroot
+        Calamares::CommandLine c(
+            echoCommand,
+            { QStringLiteral( "calamares_test_variable=" ) + QChar( '"' ) + world + QChar( '"' ) },
+            std::chrono::seconds( 2 ) );
+        l.push_back( c );
+
+        const auto r = l.run();
+        QVERIFY( bool( r ) );
+
+        QCOMPARE( QFileInfo( testFile ).size(), world.length() + 1 );  // plus newline
+        QFile f( testFile );
+        QVERIFY( f.open( QIODevice::ReadOnly ) );
+        QCOMPARE( f.readAll(), world + QChar( '\n' ) );
+    }
+
+
+    tempRoot.setAutoRemove( true );
 }
 
 void
