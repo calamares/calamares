@@ -34,7 +34,7 @@
 // - Python support with older Boost implementation
 // - QML support
 #ifdef WITH_PYTHON
-#if WITH_PYBIND11
+#ifdef WITH_PYBIND11
 #include "python/PythonJob.h"
 #else
 #include "PythonJob.h"
@@ -486,7 +486,7 @@ main( int argc, char* argv[] )
 #ifdef WITH_PYTHON
     if ( module.m_pythonInjection )
     {
-#if WITH_PYBIND11
+#ifdef WITH_PYBIND11
         Calamares::Python::Job::setInjectedPreScript( pythonPreScript );
 #else
         // Old Boost approach

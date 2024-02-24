@@ -10,7 +10,7 @@
 
 #include "PythonJobModule.h"
 
-#if WITH_PYBIND11
+#ifdef WITH_PYBIND11
 #include "python/PythonJob.h"
 using JobType = Calamares::Python::Job;
 #else

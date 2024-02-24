@@ -25,6 +25,8 @@
  * which is the CMake-time side of the same configuration.
  */
 #cmakedefine WITH_PYTHON
+#cmakedefine WITH_PYBIND11
 #cmakedefine WITH_QML
+#cmakedefine WITH_QT6
 
 #endif  // CALAMARESCONFIG_H

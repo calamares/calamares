@@ -19,7 +19,7 @@
 
 #include <memory>
 
-#if WITH_PYBIND11
+#ifdef WITH_PYBIND11
 #error Source only for Boost::Python
 #else
 #endif

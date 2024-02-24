@@ -11,7 +11,9 @@
 #define CALAMARES_PYTHON_PYTHONJOB_H
 
 // This file is called PythonJob.h because it would otherwise
-// clashwith the Job.h in libcalamares proper.
+// clash with the Job.h in libcalamares proper.
+
+#include "CalamaresConfig.h"
 #include "DllMacro.h"
 #include "Job.h"
 
@@ -19,7 +21,7 @@
 
 #include <memory>
 
-#if WITH_PYBIND11
+#ifdef WITH_PYBIND11
 #else
 #error Source only for pybind11
 #endif

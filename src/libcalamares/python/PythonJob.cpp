@@ -20,7 +20,7 @@
 #include <QFileInfo>
 #include <QString>
 
-#if WITH_PYBIND11
+#ifdef WITH_PYBIND11
 #else
 #error Source only for pybind11
 #endif
