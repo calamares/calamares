@@ -19,6 +19,11 @@
 
 #include <QDir>
 
+#if WITH_PYBIND11
+#error Source only for Boost::Python
+#else
+#endif
+
 static const char* s_preScript = nullptr;
 
 namespace bp = boost::python;

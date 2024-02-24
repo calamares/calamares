@@ -11,6 +11,7 @@
 #ifndef CALAMARES_PYTHONJOBHELPER_H
 #define CALAMARES_PYTHONJOBHELPER_H
 
+#include "DllMacro.h"
 #include "PythonJob.h"
 #include "utils/BoostPython.h"
 
@@ -24,20 +25,20 @@ class GlobalStorage;
 namespace CalamaresPython
 {
 
-boost::python::object variantToPyObject( const QVariant& variant );
-QVariant variantFromPyObject( const boost::python::object& pyObject );
+DLLEXPORT boost::python::object variantToPyObject( const QVariant& variant );
+DLLEXPORT QVariant variantFromPyObject( const boost::python::object& pyObject );
 
-boost::python::list variantListToPyList( const QVariantList& variantList );
-QVariantList variantListFromPyList( const boost::python::list& pyList );
+DLLEXPORT boost::python::list variantListToPyList( const QVariantList& variantList );
+DLLEXPORT QVariantList variantListFromPyList( const boost::python::list& pyList );
 
-boost::python::dict variantMapToPyDict( const QVariantMap& variantMap );
-QVariantMap variantMapFromPyDict( const boost::python::dict& pyDict );
+DLLEXPORT boost::python::dict variantMapToPyDict( const QVariantMap& variantMap );
+DLLEXPORT QVariantMap variantMapFromPyDict( const boost::python::dict& pyDict );
 
-boost::python::dict variantHashToPyDict( const QVariantHash& variantHash );
-QVariantHash variantHashFromPyDict( const boost::python::dict& pyDict );
+DLLEXPORT boost::python::dict variantHashToPyDict( const QVariantHash& variantHash );
+DLLEXPORT QVariantHash variantHashFromPyDict( const boost::python::dict& pyDict );
 
 
-class Helper : public QObject
+class DLLEXPORT Helper : public QObject
 {
     Q_OBJECT
 public:

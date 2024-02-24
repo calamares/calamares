@@ -19,6 +19,11 @@
 
 #include <memory>
 
+#if WITH_PYBIND11
+#else
+#error Source only for pybind11
+#endif
+
 namespace Calamares
 {
 namespace Python
