@@ -54,6 +54,7 @@ private Q_SLOTS:
     void testCommandExpansion();  // See also shellprocess tests
     void testCommandConstructors();
     void testCommandConstructorsYAML();
+    void testCommandRunning();
 
     /** @section Test that all the UMask objects work correctly. */
     void testUmask();
@@ -373,6 +374,18 @@ commands:
         QCOMPARE( cmds.at( 0 ).timeout(), Calamares::CommandLine::TimeoutNotSet() );
         QCOMPARE( cmds.at( 2 ).timeout(), std::chrono::seconds( 12 ) );
     }
+}
+
+void LibCalamaresTests::testCommandRunning()
+{
+    const QString echoCommand = QStringLiteral("echo \"$calamares_test_variable\"");
+
+    Calamares::CommandList l(false); // no chroot
+    Calamares::CommandLine c(echoCommand, {}, std::chrono::seconds(2));
+    l.push_back(c);
+
+    const auto r = l.run();
+    const auto output = r.readAll();
 }
 
 void
