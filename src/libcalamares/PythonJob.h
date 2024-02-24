@@ -11,6 +11,7 @@
 #ifndef CALAMARES_PYTHONJOB_H
 #define CALAMARES_PYTHONJOB_H
 
+#include "DllExport.h"
 #include "Job.h"
 #include "modulesystem/InstanceKey.h"
 
@@ -31,7 +32,7 @@ class PythonJob : public Job
 {
     Q_OBJECT
 public:
-    explicit PythonJob( const QString& scriptFile,
+    explicit DLLEXPORT PythonJob( const QString& scriptFile,
                         const QString& workingPath,
                         const QVariantMap& moduleConfiguration = QVariantMap(),
                         QObject* parent = nullptr );
