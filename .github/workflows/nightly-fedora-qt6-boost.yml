@@ -1,0 +1,36 @@
+name: nightly-fedora-qt6
+
+on:
+  schedule:
+    - cron: "52 2 * * *"
+  workflow_dispatch:
+
+env:
+  BUILDDIR: /build
+  SRCDIR: ${{ github.workspace }}
+  CMAKE_ARGS: |
+    -DKDE_INSTALL_USE_QT_SYS_PATHS=ON
+    -DCMAKE_BUILD_TYPE=Debug
+    -DWITH_QT6=ON
+    -DBUILD_APPSTREAM=ON
+    -DBUILD_APPDATA=ON
+    -DWITH_PYBIND11=OFF
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: docker://registry.fedoraproject.org/fedora:40
+      options: --tmpfs /build:rw --user 0:0
+    steps:
+      - name: "prepare git"
+        shell: bash
+        run: yum install -y git-core jq curl
+      - name: "prepare source"
+        uses: calamares/actions/generic-checkout@v5
+      - name: "install dependencies"
+        shell: bash
+        run: ./ci/deps-fedora-qt6-boost.sh
+      - name: "build"
+        shell: bash
+        run: ./ci/build.sh
