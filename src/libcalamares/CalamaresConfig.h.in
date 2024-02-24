@@ -26,6 +26,7 @@
  */
 #cmakedefine WITH_PYTHON
 #cmakedefine WITH_PYBIND11
+#cmakedefine WITH_BOOST_PYTHON
 #cmakedefine WITH_QML
 #cmakedefine WITH_QT6
 

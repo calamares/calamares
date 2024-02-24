@@ -95,5 +95,6 @@ include(CalamaresAddPlugin)
 # which is the C++-language side of the same configuration.
 set(Calamares_WITH_PYTHON @WITH_PYTHON@)
 set(Calamares_WITH_PYBIND11 @WITH_PYBIND11@)
+set(Calamares_WITH_BOOST_PYTHON @WITH_BOOST_PYTHON@)
 set(Calamares_WITH_QML @WITH_QML@)
 set(Calamares_WITH_QT6 @WITH_QT6@)
