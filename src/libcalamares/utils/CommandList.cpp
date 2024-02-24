@@ -100,8 +100,14 @@ CommandLine::CommandLine( const QVariantMap& m )
 CommandLine
 CommandLine::expand( KMacroExpanderBase& expander ) const
 {
+    // Calamares variable expansion in the command
     QString c = m_command;
     expander.expandMacrosShellQuote( c );
+
+    // .. and expand in each environment key=value string.
+    QStringList e = m_environment;
+    std::for_each(e.begin(), e.end(), [&expander](QString & s) { expander.expandMacrosShellQuote(s);});
+
     return { c, m_environment, m_timeout };
 }
 
@@ -181,8 +187,18 @@ CommandList::run()
             processed_cmd.remove( 0, 1 );  // Drop the -
         }
 
+        const QString environmentSetting = []( const QStringList& l ) -> QString
+        {
+            if ( l.isEmpty() )
+            {
+                return {};
+            }
+
+            return QStringLiteral( "export " ) + l.join( " " ) + QStringLiteral( " ; " );
+        }( i->environment() );
+
         QStringList shell_cmd { "/bin/sh", "-c" };
-        shell_cmd << processed_cmd;
+        shell_cmd << ( environmentSetting + processed_cmd );
 
         std::chrono::seconds timeout = i->timeout() >= std::chrono::seconds::zero() ? i->timeout() : m_timeout;
         ProcessResult r = System::runCommand( location, shell_cmd, QString(), QString(), timeout );
