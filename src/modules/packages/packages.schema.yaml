@@ -12,6 +12,7 @@ properties:
             - apk
             - apt
             - dnf
+            - dnf5
             - entropy
             - luet
             - packagekit
