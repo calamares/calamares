@@ -172,7 +172,11 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
                  {
                      Calamares::Paste::doLogUploadUI( errorDialog );
                  }
+#if QT_VERSION < QT_VERSION_CHECK( 6, 0, 0 )
                  QApplication::quit();
+#else
+                 QApplication::exit( EXIT_SUCCESS );
+#endif
              } );
 }
 
@@ -487,7 +491,11 @@ ViewManager::quit()
 {
     if ( confirmCancelInstallation() )
     {
-        qApp->quit();
+#if QT_VERSION < QT_VERSION_CHECK( 6, 0, 0 )
+        QApplication::quit();
+#else
+        QApplication::exit( EXIT_SUCCESS );
+#endif
     }
 }
 

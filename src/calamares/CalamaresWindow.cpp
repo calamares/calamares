@@ -537,7 +537,11 @@ CalamaresWindow::closeEvent( QCloseEvent* event )
     if ( ( !m_viewManager ) || m_viewManager->confirmCancelInstallation() )
     {
         event->accept();
-        qApp->quit();
+#if QT_VERSION < QT_VERSION_CHECK( 6, 0, 0 )
+        QApplication::quit();
+#else
+        QApplication::exit( EXIT_SUCCESS );
+#endif
     }
     else
     {
