@@ -9,13 +9,29 @@ the history of the 3.2 series (2018-05 - 2022-08).
 
 # 3.3.4 (unreleased)
 
+In this release, process jobmodules -- a particular kind of module
+recognizable by `type: job` and `interface: process` in the descriptor
+file -- undergo a large change to resemble *shellprocess* more.
+
+Users of process jobmodules are encouraged to double-check the Functionality
+of those modules in this release.
+
 This release contains contributions from (alphabetically by first name):
  - Adriaan de Groot
  - Victor Fuentes
 
 ## Core ##
+ - Process jobs (a job type provided by Calamares core) now share more
+   code with *contextualprocess* and *shellprocess* jobs. The execution
+   mechanism is the same, and always invokes the shell, whether the command
+   runs in the host or in the target system. It is no longer necessary to
+   add `/bin/sh` in the *command* key -- this is always present.
 
 ## Modules ##
+ - *contextualprocess* and *shellprocess* can now set environment variables
+   as part of the configuration. See *shellprocess* documentation for details.
+   This is optional, and does not do anything that could not already be done
+   by putting `export VAR=value ;` in front of the command before.
  - *partition* fixed a bug with an uninitialized variable. (thanks Victor)
 
 

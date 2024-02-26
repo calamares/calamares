@@ -497,7 +497,8 @@ LC_ALL and LANG to "C" for the called command.
 
 ## Process modules
 
-Use of this kind of module is **not** recommended.
+Use of this kind of module is **not** recommended. Use *shellprocess*
+instead, which is more configurable.
 
 > Type: jobmodule
 > Interface: process
@@ -506,9 +507,14 @@ A process jobmodule runs a (single) command. The interface is *process*,
 while the module type must be *job* or *jobmodule*.
 
 The module-descriptor key *command* should have a string as value, which is
-passed to the shell -- remember to quote it properly. It is generally
+passed to the shell -- remember to quote it properly in YAML. It is generally
 recommended to use a *shellprocess* job module instead (less configuration,
-easier to have multiple instances).
+easier to have multiple instances). There is no configuration outside
+of the module-descriptor. The *command* undergoes Calamares variable-
+expansion (e.g. replacing `${ROOT}` by the target of the installation).
+See *shellprocess* documentation for details.
+
+Optional keys are *timeout* and *chroot*.
 
 `CMakeLists.txt` is *not* used for process jobmodules.
 

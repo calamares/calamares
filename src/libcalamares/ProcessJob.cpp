@@ -10,8 +10,8 @@
 
 #include "ProcessJob.h"
 
+#include "utils/CommandList.h"
 #include "utils/Logger.h"
-#include "utils/System.h"
 
 #include <QDir>
 
@@ -57,23 +57,9 @@ ProcessJob::prettyStatusMessage() const
 JobResult
 ProcessJob::exec()
 {
-    using Calamares::System;
-
-    if ( m_runInChroot )
-    {
-        return Calamares::System::instance()
-            ->targetEnvCommand( { m_command }, m_workingPath, QString(), m_timeoutSec )
-            .explainProcess( m_command, m_timeoutSec );
-    }
-    else
-    {
-        return System::runCommand( System::RunLocation::RunInHost,
-                                   { "/bin/sh", "-c", m_command },
-                                   m_workingPath,
-                                   QString(),
-                                   m_timeoutSec )
-            .explainProcess( m_command, m_timeoutSec );
-    }
+    Calamares::CommandList l( m_runInChroot, m_timeoutSec );
+    l.push_back( Calamares::CommandLine { m_command } );
+    return l.run();
 }
 
 }  // namespace Calamares

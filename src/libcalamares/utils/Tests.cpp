@@ -12,6 +12,7 @@
 #include "CommandList.h"
 #include "Entropy.h"
 #include "Logger.h"
+#include "Permissions.h"
 #include "RAII.h"
 #include "Runner.h"
 #include "String.h"
@@ -52,6 +53,9 @@ private Q_SLOTS:
     void testCommands();
     void testCommandExpansion_data();
     void testCommandExpansion();  // See also shellprocess tests
+    void testCommandConstructors();
+    void testCommandConstructorsYAML();
+    void testCommandRunning();
 
     /** @section Test that all the UMask objects work correctly. */
     void testUmask();
@@ -298,6 +302,136 @@ LibCalamaresTests::testCommandExpansion()
 
     QCOMPARE( c.command(), command );
     QCOMPARE( e.command(), expected );
+}
+
+void
+LibCalamaresTests::testCommandConstructors()
+{
+    const QString command( "do this" );
+    Calamares::CommandLine c0( command );
+
+    QCOMPARE( c0.command(), command );
+    QCOMPARE( c0.timeout(), Calamares::CommandLine::TimeoutNotSet() );
+    QVERIFY( c0.environment().isEmpty() );
+
+    const QStringList env { "-la", "/tmp" };
+    Calamares::CommandLine c1( command, env, Calamares::CommandLine::TimeoutNotSet() );
+
+    QCOMPARE( c1.command(), command );
+    QCOMPARE( c1.timeout(), Calamares::CommandLine::TimeoutNotSet() );
+    QVERIFY( !c1.environment().isEmpty() );
+    QCOMPARE( c1.environment().count(), 2 );
+    QCOMPARE( c1.environment(), env );
+}
+
+void
+LibCalamaresTests::testCommandConstructorsYAML()
+{
+    QTemporaryFile f;
+    QVERIFY( f.open() );
+    f.write( R"(---
+commands:
+  - one-string-command
+  - command: only-command
+  - command: with-timeout
+    timeout: 12
+  - command: all-three
+    timeout: 20
+    environment:
+      - PATH=/USER
+      - DISPLAY=:0
+      )" );
+    f.close();
+    bool ok = false;
+    QVariantMap m = Calamares::YAML::load( f.fileName(), &ok );
+
+    QVERIFY( ok );
+    QCOMPARE( m.count(), 1 );
+    QCOMPARE( m[ "commands" ].toList().count(), 4 );
+
+    {
+        // Take care! The second parameter is a bool, so "3" here means "true"
+        Calamares::CommandList cmds( m[ "commands" ], 3 );
+        QCOMPARE( cmds.defaultTimeout(), std::chrono::seconds( 10 ) );
+        // But the 4 commands are there anyway
+        QCOMPARE( cmds.count(), 4 );
+        QCOMPARE( cmds.at( 0 ).command(), QString( "one-string-command" ) );
+        QCOMPARE( cmds.at( 0 ).environment(), QStringList() );
+        QCOMPARE( cmds.at( 0 ).timeout(), Calamares::CommandLine::TimeoutNotSet() );
+        QCOMPARE( cmds.at( 1 ).command(), QString( "only-command" ) );
+        QCOMPARE( cmds.at( 2 ).command(), QString( "with-timeout" ) );
+        QCOMPARE( cmds.at( 2 ).environment(), QStringList() );
+        QCOMPARE( cmds.at( 2 ).timeout(), std::chrono::seconds( 12 ) );
+
+        QStringList expectedEnvironment = { "PATH=/USER", "DISPLAY=:0" };
+        QCOMPARE( cmds.at( 3 ).command(), QString( "all-three" ) );
+        QCOMPARE( cmds.at( 3 ).environment(), expectedEnvironment );
+        QCOMPARE( cmds.at( 3 ).timeout(), std::chrono::seconds( 20 ) );
+    }
+
+    {
+        Calamares::CommandList cmds( m[ "commands" ], true, std::chrono::seconds( 3 ) );
+        QCOMPARE( cmds.defaultTimeout(), std::chrono::seconds( 3 ) );
+        QCOMPARE( cmds.at( 0 ).timeout(), Calamares::CommandLine::TimeoutNotSet() );
+        QCOMPARE( cmds.at( 2 ).timeout(), std::chrono::seconds( 12 ) );
+    }
+}
+
+void
+LibCalamaresTests::testCommandRunning()
+{
+
+    QTemporaryDir tempRoot( QDir::tempPath() + QStringLiteral( "/test-job-XXXXXX" ) );
+    tempRoot.setAutoRemove( false );
+
+    const QString testExecutable = tempRoot.filePath( "example.sh" );
+    const QString testFile = tempRoot.filePath( "example.txt" );
+
+    {
+        QFile f( testExecutable );
+        QVERIFY( f.open( QIODevice::WriteOnly ) );
+        f.write( "#! /bin/sh\necho \"$calamares_test_variable\"\n" );
+        f.close();
+        Calamares::Permissions::apply( testExecutable, 0755 );
+    }
+
+    const QString echoCommand = testExecutable + QStringLiteral( " > " ) + testFile;
+
+    // Without an environment, the variable echoed in the example
+    // executable is empty, and we write a single newline to stdout,
+    // which is redirected to testFile.
+    {
+        Calamares::CommandList l( false );  // no chroot
+        Calamares::CommandLine c( echoCommand, {}, std::chrono::seconds( 2 ) );
+        l.push_back( c );
+
+        const auto r = l.run();
+        QVERIFY( bool( r ) );
+
+        QCOMPARE( QFileInfo( testFile ).size(), 1 );  // single newline
+    }
+
+    // With an environment, echoes the value of the variable and a newline
+    {
+        const QString world = QStringLiteral( "Hello world" );
+        Calamares::CommandList l( false );  // no chroot
+        Calamares::CommandLine c(
+            echoCommand,
+            { QStringLiteral( "calamares_test_variable=" ) + QChar( '"' ) + world + QChar( '"' ) },
+            std::chrono::seconds( 2 ) );
+        l.push_back( c );
+
+        const auto r = l.run();
+        QVERIFY( bool( r ) );
+
+        QCOMPARE( QFileInfo( testFile ).size(), world.length() + 1 );  // plus newline
+        QFile f( testFile );
+        QVERIFY( f.open( QIODevice::ReadOnly ) );
+        QCOMPARE( f.readAll(), world + QChar( '\n' ) );
+    }
+
+
+    tempRoot.setAutoRemove( true );
 }
 
 void
