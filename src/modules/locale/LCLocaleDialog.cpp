@@ -84,5 +84,6 @@ LCLocaleDialog::LCLocaleDialog( const QString& guessedLCLocale, const QStringLis
 QString
 LCLocaleDialog::selectedLCLocale()
 {
-    return m_localesWidget->selectedItems().first()->text();
+    const auto items = m_localesWidget->selectedItems();
+    return items.isEmpty() ? QString{} : items.first()->text();
 }
