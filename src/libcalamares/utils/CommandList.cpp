@@ -14,6 +14,7 @@
 #include "JobQueue.h"
 
 #include "compat/Variant.h"
+#include "locale/Global.h"
 #include "utils/Logger.h"
 #include "utils/StringExpander.h"
 #include "utils/System.h"
@@ -77,6 +78,16 @@ get_gs_expander( System::RunLocation location )
         expander.insert( QStringLiteral( "USER" ), gs->value( "username" ).toString() );
     }
 
+    if ( gs )
+    {
+        const auto key = QStringLiteral( "LANG" );
+        const QString lang = Calamares::Locale::readGS( *gs, key );
+        if ( !lang.isEmpty() )
+        {
+            expander.insert( key, lang );
+        }
+    }
+
     return expander;
 }
 
@@ -106,7 +117,7 @@ CommandLine::expand( KMacroExpanderBase& expander ) const
 
     // .. and expand in each environment key=value string.
     QStringList e = m_environment;
-    std::for_each(e.begin(), e.end(), [&expander](QString & s) { expander.expandMacrosShellQuote(s);});
+    std::for_each( e.begin(), e.end(), [ &expander ]( QString& s ) { expander.expandMacrosShellQuote( s ); } );
 
     return { c, m_environment, m_timeout };
 }
