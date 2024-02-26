@@ -34,6 +34,7 @@
 #include <QWidget>
 
 #include <signal.h>
+#include <unistd.h>
 
 /**
  * @brief crash makes Calamares crash immediately.
