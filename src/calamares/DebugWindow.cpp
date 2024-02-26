@@ -33,14 +33,15 @@
 #include <QTreeView>
 #include <QWidget>
 
+#include <signal.h>
+
 /**
  * @brief crash makes Calamares crash immediately.
  */
 static void
 crash()
 {
-    volatile int* a = nullptr;
-    *a = 1;
+    kill(getpid(), SIGTRAP);
 }
 
 /// @brief Print out the widget tree (names) in indented form.
