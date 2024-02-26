@@ -71,13 +71,13 @@ PartitionLayout::PartitionEntry::PartitionEntry( const QString& label,
     , partType( type )
     , partAttributes( attributes )
     , partMountPoint( mountPoint )
+    , partNoEncrypt( noEncrypt )
     , partFeatures( features )
     , partSize( size )
     , partMinSize( minSize )
     , partMaxSize( maxSize )
 {
     PartUtils::canonicalFilesystemName( fs, &partFileSystem );
-    partNoEncrypt = noEncrypt;
 }
 
 bool
