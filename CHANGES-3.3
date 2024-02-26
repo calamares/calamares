@@ -7,7 +7,7 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.3.0. See CHANGES-3.2 for
 the history of the 3.2 series (2018-05 - 2022-08).
 
-# 3.3.4 (unreleased)
+# 3.3.4 (2024-02-27)
 
 In this release, process jobmodules -- a particular kind of module
 recognizable by `type: job` and `interface: process` in the descriptor
@@ -33,6 +33,9 @@ This release contains contributions from (alphabetically by first name):
    This is optional, and does not do anything that could not already be done
    by putting `export VAR=value ;` in front of the command before.
  - *partition* fixed a bug with an uninitialized variable. (thanks Victor)
+ - *shellprocess* (and therefore also *contextualprocess* and process
+   jobmodules) now substitutes `${LANG}` in commands with the language
+   selected in the user-interface of Calamares.
 
 
 # 3.3.3 (2024-02-24)
