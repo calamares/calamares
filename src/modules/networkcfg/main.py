@@ -155,7 +155,7 @@ network:
 """
             with open(renderer_file, 'w') as f:
                 f.writelines(nm_renderer)
-                os.chmod(f, 0o600)
+                os.chmod(f.fileno(), 0o600)
 
         # Copy existing Netplan configuration
         for cfg in glob.glob(os.path.join(source_netplan, "*.yaml")):
