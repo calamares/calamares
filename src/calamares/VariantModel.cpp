@@ -9,6 +9,8 @@
 
 #include "VariantModel.h"
 
+#include "compat/Variant.h"
+
 static bool
 isMapLike( const QVariant& item )
 {
@@ -18,7 +20,7 @@ isMapLike( const QVariant& item )
 static bool
 isListLike( const QVariant& item )
 {
-    return item.canConvert< QVariantList >();
+    return item.canConvert< QVariantList >() && !( Calamares::typeOf( item ) == Calamares::StringVariantType );
 }
 
 static void
