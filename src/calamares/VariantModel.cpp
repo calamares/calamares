@@ -9,6 +9,18 @@
 
 #include "VariantModel.h"
 
+static bool
+isMapLike( const QVariant& item )
+{
+    return item.canConvert< QVariantMap >();
+}
+
+static bool
+isListLike( const QVariant& item )
+{
+    return item.canConvert< QVariantList >();
+}
+
 static void
 overallLength( const QVariant& item, quintptr& c, quintptr parent, VariantModel::IndexVector* skiplist )
 {
@@ -18,16 +30,16 @@ overallLength( const QVariant& item, quintptr& c, quintptr parent, VariantModel:
     }
 
     parent = c++;
-    if ( item.canConvert< QVariantList >() )
+    if ( isMapLike( item ) )
     {
-        for ( const auto& subitem : item.toList() )
+        for ( const auto& subitem : item.toMap() )
         {
             overallLength( subitem, c, parent, skiplist );
         }
     }
-    else if ( item.canConvert< QVariantMap >() )
+    else if ( isListLike( item ) )
     {
-        for ( const auto& subitem : item.toMap() )
+        for ( const auto& subitem : item.toList() )
         {
             overallLength( subitem, c, parent, skiplist );
         }
@@ -179,7 +191,7 @@ VariantModel::data( const QModelIndex& index, int role ) const
         return QVariant();
     }
 
-    if ( thing.canConvert< QVariantMap >() )
+    if ( isMapLike( thing ) )
     {
         QVariantMap the_map = thing.toMap();
         const auto key = the_map.keys().at( index.row() );
@@ -192,7 +204,7 @@ VariantModel::data( const QModelIndex& index, int role ) const
             return the_map[ key ];
         }
     }
-    else if ( thing.canConvert< QVariantList >() )
+    else if ( isListLike( thing ) )
     {
         if ( index.column() == 0 )
         {
@@ -255,12 +267,12 @@ VariantModel::underlying( const QModelIndex& index ) const
     }
 
     const auto& thing = underlying( parent( index ) );
-    if ( thing.canConvert< QVariantMap >() )
+    if ( isMapLike( thing ) )
     {
         const auto& the_map = thing.toMap();
         return the_map[ the_map.keys()[ index.row() ] ];
     }
-    else if ( thing.canConvert< QVariantList >() )
+    else if ( isListLike( thing ) )
     {
         return thing.toList()[ index.row() ];
     }
