@@ -66,6 +66,7 @@ CalamaresApplication::init()
 {
     Logger::setupLogfile();
     cDebug() << "Calamares version:" << CALAMARES_VERSION;
+    cDebug() << Logger::SubEntry << "Using Qt version:" << qVersion();
     cDebug() << Logger::SubEntry << "Using settings:" << Calamares::Settings::instance()->path();
     cDebug() << Logger::SubEntry << "Using log file:" << Logger::logFile();
     cDebug() << Logger::SubEntry << "languages:" << Calamares::Locale::availableLanguages();
