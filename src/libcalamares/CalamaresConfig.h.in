@@ -15,6 +15,7 @@
 #define CMAKE_INSTALL_FULL_LIBDIR "${CMAKE_INSTALL_FULL_LIBDIR}"
 #define CMAKE_INSTALL_FULL_DATADIR "${CMAKE_INSTALL_FULL_DATADIR}/calamares"
 #define CMAKE_INSTALL_FULL_SYSCONFDIR "${CMAKE_INSTALL_FULL_SYSCONFDIR}"
+#define CMAKE_BUILD_TYPE "${CMAKE_BUILD_TYPE}"
 
 /*
  * These are feature-settings that affect consumers of Calamares
