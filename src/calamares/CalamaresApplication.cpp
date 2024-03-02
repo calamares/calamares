@@ -70,7 +70,8 @@ CalamaresApplication::init()
     cDebug() << Logger::SubEntry << "Build type:" << CMAKE_BUILD_TYPE;
 #ifdef WITH_PYBIND11
     cDebug() << Logger::SubEntry << "Using PyBind11";
-#elif WITH_BOOST_PYTHON
+#endif
+#ifdef WITH_BOOST_PYTHON
     cDebug() << Logger::SubEntry << "Using Boost Python";
 #endif
     cDebug() << Logger::SubEntry << "Using settings:" << Calamares::Settings::instance()->path();
