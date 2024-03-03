@@ -31,3 +31,9 @@ properties:
         type: object
         properties:
             preferred_greeters: { type: array, items: { type: string } }
+        additionalProperties: false
+    sddm:
+        type: object
+        properties:
+            configuration_file: { type: string }
+        additionalProperties: false
