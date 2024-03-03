@@ -66,9 +66,17 @@ CalamaresApplication::init()
 {
     Logger::setupLogfile();
     cDebug() << "Calamares version:" << CALAMARES_VERSION;
+    cDebug() << Logger::SubEntry << "Using Qt version:" << qVersion();
+    cDebug() << Logger::SubEntry << "Build type:" << CMAKE_BUILD_TYPE;
+#ifdef WITH_PYBIND11
+    cDebug() << Logger::SubEntry << "Using PyBind11";
+#endif
+#ifdef WITH_BOOST_PYTHON
+    cDebug() << Logger::SubEntry << "Using Boost Python";
+#endif
     cDebug() << Logger::SubEntry << "Using settings:" << Calamares::Settings::instance()->path();
     cDebug() << Logger::SubEntry << "Using log file:" << Logger::logFile();
-    cDebug() << Logger::SubEntry << "languages:" << Calamares::Locale::availableLanguages();
+    cDebug() << Logger::SubEntry << "Languages:" << Calamares::Locale::availableLanguages();
 
     if ( !Calamares::Settings::instance() )
     {
