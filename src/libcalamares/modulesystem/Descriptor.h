@@ -74,7 +74,7 @@ public:
     Interface interface() const { return m_interface; }
 
     bool isEmergency() const { return m_isEmergeny; }
-    bool hasConfig() const { return m_hasConfig; }
+    bool hasConfig() const { return m_hasConfig; } // TODO: 3.5 rename to noConfig() to match descriptor key
     int weight() const { return m_weight < 1 ? 1 : m_weight; }
     bool explicitWeight() const { return m_weight > 0; }
 
