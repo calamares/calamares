@@ -64,7 +64,7 @@
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="93"/>
       <source>Boot Partition</source>
       <comment>@info</comment>
-      <translation>Boot Partíció</translation>
+      <translation>Rendszerindító partíció</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="100"/>
@@ -179,13 +179,13 @@
       <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="118"/>
       <source>Set Up</source>
       <comment>@label</comment>
-      <translation>Beállít</translation>
+      <translation>Beállítás</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="118"/>
       <source>Install</source>
       <comment>@label</comment>
-      <translation>Telepít</translation>
+      <translation>Telepítés</translation>
     </message>
   </context>
   <context>

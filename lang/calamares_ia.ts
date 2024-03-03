@@ -39,7 +39,7 @@
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="60"/>
       <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
-      <translation>Le &lt;strong&gt;ambiente de initio&lt;/strong&gt; de iste systema.&lt;br&gt;&lt;br&gt;Systemas x86 plus vetule supporta solmente &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Systemas moderne usualmente usa &lt;strong&gt;EFI&lt;/strong&gt;, ma pote etiam apparer como BIOS si il initia in modo de compatibilitate.</translation>
+      <translation>Le &lt;strong&gt;ambiente de initio&lt;/strong&gt; de iste systema.&lt;br&gt;&lt;br&gt;Systemas x86 plus vetere supporta solmente &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Systemas moderne usualmente usa &lt;strong&gt;EFI&lt;/strong&gt;, ma pote etiam apparer como BIOS si il initia in modo de compatibilitate.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="70"/>
@@ -471,7 +471,7 @@ Link copied to clipboard</source>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="333"/>
       <source>Continue with Installation?</source>
       <comment>@title</comment>
-      <translation>An continuar con le installation?</translation>
+      <translation>Continuar con le installation?</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="335"/>
@@ -495,7 +495,7 @@ Link copied to clipboard</source>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="344"/>
       <source>&amp;Install Now</source>
       <comment>@button</comment>
-      <translation>&amp;Installar ora</translation>
+      <translation>&amp;Installar nunc</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="351"/>
@@ -519,7 +519,7 @@ Link copied to clipboard</source>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="400"/>
       <source>Setup is complete. Close the setup program.</source>
       <comment>@tooltip</comment>
-      <translation>Le configuration is complete. Claude le programma de installation.</translation>
+      <translation>Le configuration es complete. Claude le programma de installation.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="401"/>
@@ -1130,7 +1130,7 @@ Le installator claudera e tote le cambios essera perdite.</translation>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="80"/>
       <source>This program will ask you some questions and set up %2 on your computer.</source>
-      <translation>Iste programma te demandara alcun questiones e configurara %2 sur tu computator.</translation>
+      <translation>Iste programma te demandara alicun questiones e configurara %2 sur tu computator.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="264"/>
@@ -1477,7 +1477,7 @@ Le installator claudera e tote le cambios essera perdite.</translation>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="78"/>
       <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. GPT is recommended in most other cases.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MBR partition table is an obsolete MS-DOS era standard.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.</source>
-      <translation>&lt;br&gt;&lt;br&gt;Iste typo de tabula de partitiones es solmente consiliabile pro systemas plus vetule que initia ab un ambiente de initio &lt;strong&gt;BIOS&lt;/strong&gt;. GPT es recommendate in le major parte de altere casos.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Advertimento:&lt;/strong&gt; le tabula de partitiones MBR es un standard obsolete del era MS-DOS. &lt;br&gt;Solmente 4 partitiones &lt;em&gt;primari&lt;/em&gt; pote esser create, e de cellos 4, un pote esser un partition &lt;em&gt;extendite&lt;/em&gt;, que a su vice pote continer multe partitiones &lt;em&gt;logic&lt;/em&gt;.</translation>
+      <translation>&lt;br&gt;&lt;br&gt;Iste typo de tabula de partitiones es solmente consiliabile pro systemas plus vetere que initia ab un ambiente de initio &lt;strong&gt;BIOS&lt;/strong&gt;. GPT es recommendate in le major parte de altere casos.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Advertimento:&lt;/strong&gt; le tabula de partitiones MBR es un standard obsolete del era MS-DOS. &lt;br&gt;Solmente 4 partitiones &lt;em&gt;primari&lt;/em&gt; pote esser create, e de cellos 4, un pote esser un partition &lt;em&gt;extendite&lt;/em&gt;, que a su vice pote continer multe partitiones &lt;em&gt;logic&lt;/em&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="89"/>
@@ -1746,13 +1746,13 @@ Le installator claudera e tote le cambios essera perdite.</translation>
     <message>
       <location filename="../src/modules/finished/FinishedPage.ui" line="102"/>
       <source>&amp;Restart now</source>
-      <translation>&amp;Reinitiar ora</translation>
+      <translation>&amp;Reinitiar nunc</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="75"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been set up on your computer.&lt;br/&gt;You may now start using your new system.</source>
       <comment>@info</comment>
-      <translation>&lt;h1&gt;Tote facite.&lt;/h1&gt;&lt;br/&gt;%1 ha essite configurate in tu computator.&lt;br/&gt;Tu pote ora initiar usante tu nove systema.</translation>
+      <translation>&lt;h1&gt;Tote facite.&lt;/h1&gt;&lt;br/&gt;%1 ha essite configurate in tu computator.&lt;br/&gt;Tu pote nunc initiar usante tu nove systema.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="79"/>
@@ -1764,7 +1764,7 @@ Le installator claudera e tote le cambios essera perdite.</translation>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="87"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
       <comment>@info</comment>
-      <translation>&lt;h1&gt;Tote facite.&lt;/h1&gt;&lt;br/&gt;%1 ha essite installate in tu computator.&lt;br/&gt;Tu pote ora reinitiar in tu nove systema, o continuar usante le ambiente in vivo de %2.</translation>
+      <translation>&lt;h1&gt;Tote facite.&lt;/h1&gt;&lt;br/&gt;%1 ha essite installate in tu computator.&lt;br/&gt;Tu pote nunc reinitiar in tu nove systema, o continuar usante le ambiente in vivo de %2.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="92"/>
@@ -2077,7 +2077,7 @@ Le installator claudera e tote le cambios essera perdite.</translation>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="30"/>
       <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <comment>@info</comment>
-      <translation>Le parametros regional del systema affecta le lingua e le collection de characteres pro alcun elementos del interfacie de usator del linea de commando.&lt;br/&gt;Le parametro actual es &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+      <translation>Le parametros regional del systema affecta le lingua e le collection de characteres pro alicun elementos del interfacie de usator del linea de commando.&lt;br/&gt;Le parametro actual es &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="54"/>
@@ -4567,7 +4567,7 @@ Output:
       <source>%1 has been installed on your computer.&lt;br/&gt;
             You may now restart into your new system, or continue using the Live environment.</source>
       <translation>%1 ha essite installate in tu computator.&lt;br/&gt;
-            Tu pote ora reinitiar in tu nove systema, o continuar usante le ambiente in vivo.</translation>
+            Tu pote nunc reinitiar in tu nove systema, o continuar usante le ambiente in vivo.</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="65"/>
@@ -4600,7 +4600,7 @@ Output:
             You may now restart into your new system, or continue using the Live environment.</source>
       <comment>@info, %1 is the product name</comment>
       <translation>%1 ha essite installate in tu computator.&lt;br/&gt;
-            Tu pote ora reinitiar in tu nove systema, o continuar usante le ambiente in vivo.</translation>
+            Tu pote nunc reinitiar in tu nove systema, o continuar usante le ambiente in vivo.</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq-qt6.qml" line="65"/>
@@ -4636,7 +4636,7 @@ Output:
             You may now restart your device.</source>
       <comment>@info, %1 is the product name</comment>
       <translation>%1 ha essite installate in tu computator.&lt;br/&gt;
-            Tu pote ora reinitiar tu dispositivo.</translation>
+            Tu pote nunc reinitiar tu dispositivo.</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="66"/>
@@ -4732,7 +4732,7 @@ Output:
                             The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <comment>@info</comment>
       <translation>&lt;h3&gt;Linguas&lt;/h3&gt; &lt;/br&gt;
-                            Le parametro regional del systema affecta le lingua e le collection de characteres pro alcun elementos del interfacie de usator del linea de commando. Le parametro actual es &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+                            Le parametro regional del systema affecta le lingua e le collection de characteres pro alicun elementos del interfacie de usator del linea de commando. Le parametro actual es &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/localeq.qml" line="213"/>
@@ -4757,7 +4757,7 @@ Output:
                             The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <comment>@info</comment>
       <translation>&lt;h3&gt;Linguas&lt;/h3&gt; &lt;/br&gt;
-                            Le parametro regional del systema affecta le lingua e le collection de characteres pro alcun elementos del interfacie de usator del linea de commando. Le parametro actual es &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+                            Le parametro regional del systema affecta le lingua e le collection de characteres pro alicun elementos del interfacie de usator del linea de commando. Le parametro actual es &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/localeq-qt6.qml" line="213"/>
@@ -5160,7 +5160,7 @@ Output:
       <source>&lt;h3&gt;Welcome to the %1 &lt;quote&gt;%2&lt;/quote&gt; installer&lt;/h3&gt;
             &lt;p&gt;This program will ask you some questions and set up %1 on your computer.&lt;/p&gt;</source>
       <translation>&lt;h3&gt;Benvenite al installator de &lt;quote&gt;%2&lt;/quote&gt; pro %1&lt;/h3&gt;
-            &lt;p&gt;Iste programma te demandara alcun questiones e configurara %1 sur tu computator.&lt;/p&gt;</translation>
+            &lt;p&gt;Iste programma te demandara alicun questiones e configurara %1 sur tu computator.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="69"/>
@@ -5190,7 +5190,7 @@ Output:
       <source>&lt;h3&gt;Welcome to the %1 &lt;quote&gt;%2&lt;/quote&gt; installer&lt;/h3&gt;
             &lt;p&gt;This program will ask you some questions and set up %1 on your computer.&lt;/p&gt;</source>
       <translation>&lt;h3&gt;Benvenite al installator de &lt;quote&gt;%2&lt;/quote&gt; pro %1&lt;/h3&gt;
-            &lt;p&gt;Iste programma te demandara alcun questiones e configurara %1 sur tu computator.&lt;/p&gt;</translation>
+            &lt;p&gt;Iste programma te demandara alicun questiones e configurara %1 sur tu computator.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq-qt6.qml" line="69"/>

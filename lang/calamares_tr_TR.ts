@@ -1537,7 +1537,7 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="121"/>
       <source>Skipping writing LUKS configuration for Dracut: "/" partition is not encrypted</source>
       <comment>@info</comment>
-      <translation>Dracut için LUKS yapılandırmasının yazılması atlanıyor: "/" bölüntüsü şifreli değil</translation>
+      <translation>Dracut için LUKS yapılandırma yazımı atlanıyor: "/" bölüntüsü şifreli değil</translation>
     </message>
     <message>
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="138"/>
@@ -3219,7 +3219,7 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="107"/>
       <source>Partitions</source>
       <comment>@label</comment>
-      <translation>Bölüntüler</translation>
+      <translation>Disk Bölümleme</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="143"/>
@@ -3346,7 +3346,7 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="575"/>
       <source>You can continue with this EFI system partition configuration but your system may fail to start.</source>
-      <translation>Bu EFI sistem bölüntüsü yapılandırmasını sürdürebilirsiniz; ancak sisteminiz başlatılamayabilir.</translation>
+      <translation>Bu EFI sistem bölüntüsü yapılandırma işlemini sürdürebilirsiniz; ancak sisteminiz başlatılamayabilir.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="587"/>

@@ -1288,26 +1288,26 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="212"/>
       <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2) with entries &lt;em&gt;%4&lt;/em&gt;</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>在 &lt;strong&gt;%3&lt;/strong&gt; (%2) 上使用 &lt;em&gt;%4&lt;/em&gt; 建立新的 &lt;strong&gt;%1MiB&lt;/strong&gt; 分区</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="222"/>
       <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2)</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>在&lt;strong&gt;%3&lt;/strong&gt;(%2)上创建新的&lt;strong&gt;%1MiB&lt;/strong&gt;分区</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="229"/>
       <source>Create new &lt;strong&gt;%2MiB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>在&lt;strong&gt;%4&lt;/strong&gt;(%3)上使用文件系统&lt;strong&gt;%1&lt;/strong&gt;创建一个&lt;strong&gt;%2MiB&lt;/strong&gt;的%1分区</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="254"/>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="257"/>
       <source>Creating new %1 partition on %2…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>正在 %2 上创建新的 %1 分区…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="274"/>
@@ -1351,13 +1351,13 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="58"/>
       <source>Creating new %1 partition table on %2…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>正在 %2 上创建新的 %1 分区表…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="49"/>
       <source>Creating new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3)…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>正在在 &lt;strong&gt;%2&lt;/strong&gt; (%3) 上创建新的 &lt;strong&gt;%1&lt;/strong&gt; 分区表…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="86"/>
@@ -1375,20 +1375,20 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="39"/>
       <source>Create user &lt;strong&gt;%1&lt;/strong&gt;</source>
-      <translation type="unfinished"/>
+      <translation>创建用户 &lt;strong&gt;%1&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="45"/>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="137"/>
       <source>Creating user %1…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>创建用户 %1…</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="120"/>
       <source>Preserving home directory…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>保留家目录…</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="145"/>
@@ -1400,7 +1400,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="153"/>
       <source>Setting file permissions…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>设置文件权限…</translation>
     </message>
   </context>
   <context>
@@ -1419,13 +1419,13 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="44"/>
       <source>Creating new volume group named %1…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>新建名为 %1 的分卷组…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="38"/>
       <source>Creating new volume group named &lt;strong&gt;%1&lt;/strong&gt;…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>正在创建名为 &lt;strong&gt;%1&lt;/strong&gt;的分卷组…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="51"/>
@@ -1440,13 +1440,13 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="38"/>
       <source>Deactivating volume group named %1…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>正在停用分卷组 %1…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="32"/>
       <source>Deactivating volume group named &lt;strong&gt;%1&lt;/strong&gt;…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>正在停用分卷组&lt;strong&gt;%1&lt;/strong&gt;…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="46"/>
@@ -1461,13 +1461,13 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="85"/>
       <source>Deleting partition %1…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>正在删除分区 %1…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="79"/>
       <source>Deleting partition &lt;strong&gt;%1&lt;/strong&gt;…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>删除分区 &lt;strong&gt;%1&lt;/strong&gt;…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="99"/>
@@ -1530,13 +1530,13 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="117"/>
       <source>Writing LUKS configuration for Dracut to %1…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>正在将 Dracut 的 LUKS 配置写入到 %1…</translation>
     </message>
     <message>
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="121"/>
       <source>Skipping writing LUKS configuration for Dracut: "/" partition is not encrypted</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>Dracut 的 "/" 分区未加密，正在跳过写入 LUKS 配置</translation>
     </message>
     <message>
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="138"/>
@@ -1551,7 +1551,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/dummycpp/DummyCppJob.cpp" line="35"/>
       <source>Performing dummy C++ job…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>正在执行虚拟 C++ 任务…</translation>
     </message>
   </context>
   <context>
@@ -1660,7 +1660,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="158"/>
       <source>Password must be a minimum of %1 characters.</source>
       <comment>@tooltip</comment>
-      <translation type="unfinished"/>
+      <translation>密码必须至少包含 %1 个字符。</translation>
     </message>
   </context>
   <context>
@@ -1694,7 +1694,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="217"/>
       <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>在 &lt;strong&gt;新的&lt;/strong&gt;系统分区 %2 上安装 %1</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="226"/>
@@ -1706,7 +1706,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="235"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;%3</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>设置 &lt;strong&gt;新的&lt;/strong&gt; 含挂载点 &lt;strong&gt;%1&lt;/strong&gt;%3 的 %2 分区</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="250"/>
@@ -1718,7 +1718,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="260"/>
       <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>在 %3 系统分区 &lt;strong&gt;%1&lt;/strong&gt; 上安装 %2</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="270"/>
@@ -1736,13 +1736,13 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="296"/>
       <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;…</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>在 &lt;strong&gt;%1&lt;/strong&gt;上安装引导程序…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="305"/>
       <source>Setting up mount points…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>正在设置挂载点…</translation>
     </message>
   </context>
   <context>
@@ -1813,13 +1813,13 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="39"/>
       <source>Format partition %1 (file system: %2, size: %3 MiB) on %4</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>格式化在 %4 的分区 %1 (文件系统：%2，大小：%3 MB)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="49"/>
       <source>Format &lt;strong&gt;%3MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>以文件系统 &lt;strong&gt;%2&lt;/strong&gt; 格式化 &lt;strong&gt;%3MB&lt;/strong&gt; 的分区 &lt;strong&gt;%1&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="62"/>
@@ -1831,7 +1831,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="64"/>
       <source>Formatting partition %1 with file system %2…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>正在使用 %2 文件系统格式化分区 %1…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="73"/>
@@ -1844,12 +1844,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="160"/>
       <source>Please ensure the system has at least %1 GiB available drive space.</source>
-      <translation type="unfinished"/>
+      <translation>请确保系统有至少 %1 GiB 可用磁盘空间。</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="162"/>
       <source>Available drive space is all of the hard disks and SSDs connected to the system.</source>
-      <translation type="unfinished"/>
+      <translation>可用驱动器空间是连接到系统的所有硬盘和 SSD。</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="165"/>
@@ -1974,7 +1974,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/hostinfo/HostInfoJob.cpp" line="39"/>
       <source>Collecting information about your machine…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>正在收集此计算机的信息…</translation>
     </message>
   </context>
   <context>
@@ -2009,7 +2009,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/initcpio/InitcpioJob.cpp" line="31"/>
       <source>Creating initramfs with mkinitcpio…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>正在用 mkinitcpio 创建 initramfs…</translation>
     </message>
   </context>
   <context>
@@ -2018,7 +2018,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/initramfs/InitramfsJob.cpp" line="27"/>
       <source>Creating initramfs…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>正在创建 initramfs…</translation>
     </message>
   </context>
   <context>
@@ -2027,7 +2027,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="49"/>
       <source>Konsole not installed.</source>
       <comment>@error</comment>
-      <translation type="unfinished"/>
+      <translation>未安装 Konsole 。</translation>
     </message>
     <message>
       <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="50"/>
@@ -2075,7 +2075,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="23"/>
       <source>System Locale Setting</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>系统区域设置</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="30"/>
@@ -2228,7 +2228,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="186"/>
       <source>Hide the license text</source>
       <comment>@tooltip</comment>
-      <translation type="unfinished"/>
+      <translation>隐藏许可证文本</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="186"/>
@@ -2240,7 +2240,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="190"/>
       <source>Open the license agreement in browser</source>
       <comment>@tooltip</comment>
-      <translation type="unfinished"/>
+      <translation>在浏览器中打开许可协议</translation>
     </message>
   </context>
   <context>
@@ -2262,7 +2262,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/locale/LocalePage.cpp" line="133"/>
       <source>&amp;Change…</source>
       <comment>@button</comment>
-      <translation type="unfinished"/>
+      <translation>更改 (&amp;C)</translation>
     </message>
   </context>
   <context>
@@ -2550,7 +2550,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/localeq/Offline.qml" line="47"/>
       <source>Select your preferred region, or use the default settings</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>选择您的首选区域，或使用默认设置</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="103"/>
@@ -2564,7 +2564,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/localeq/Offline.qml" line="120"/>
       <source>Select your preferred zone within your region</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>在您的区域内选择您的首选时区</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="193"/>
@@ -2576,7 +2576,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/localeq/Offline.qml" line="240"/>
       <source>You can fine-tune language and locale settings below</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>您可以在下面微调语言和区域设置</translation>
     </message>
   </context>
   <context>
@@ -2585,7 +2585,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/localeq/Offline-qt6.qml" line="47"/>
       <source>Select your preferred region, or use the default settings</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>选择您的首选区域，或使用默认设置</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline-qt6.qml" line="103"/>
@@ -2599,7 +2599,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/localeq/Offline-qt6.qml" line="120"/>
       <source>Select your preferred zone within your region</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>在您的区域内选择您的首选时区</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline-qt6.qml" line="193"/>
@@ -2611,7 +2611,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/localeq/Offline-qt6.qml" line="240"/>
       <source>You can fine-tune language and locale settings below</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>您可以在下面微调语言和区域设置</translation>
     </message>
   </context>
   <context>
@@ -2921,7 +2921,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/keyboard/KeyboardPage.ui" line="74"/>
       <source>Keyboard model:</source>
-      <translation type="unfinished"/>
+      <translation>键盘型号：</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/KeyboardPage.ui" line="146"/>
@@ -2932,7 +2932,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/keyboard/KeyboardPage.ui" line="153"/>
       <source>Switch Keyboard:</source>
       <extracomment>shortcut for switching between keyboard layouts</extracomment>
-      <translation type="unfinished"/>
+      <translation>切换键盘：</translation>
     </message>
   </context>
   <context>
@@ -3091,7 +3091,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="205"/>
       <source>New Partition</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>新建分区</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="307"/>
@@ -3203,7 +3203,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="56"/>
       <source>Gathering system information…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>正在收集系统信息 ...</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="107"/>
@@ -3221,19 +3221,19 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="147"/>
       <source>&lt;strong&gt;Erase&lt;/strong&gt; disk and install %1</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;擦除&lt;/strong&gt;磁盘并安装 %1 </translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="151"/>
       <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition with %1</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>以 %1 &lt;strong&gt;替代&lt;/strong&gt;一个分区</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="156"/>
       <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;手动&lt;/strong&gt;分区</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="178"/>
@@ -3300,7 +3300,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="549"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;The EFI system partition does not meet recommendations. It is recommended to go back and select or create a suitable filesystem.</source>
-      <translation type="unfinished"/>
+      <translation>EFI系统分区是启动 %1 所必需的。&lt;br/&gt;&lt;br/&gt;此 EFI 系统磁盘分区不符合建议。建议返回并选择或创建一个合适的文件系统。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="557"/>
@@ -3326,7 +3326,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="571"/>
       <source>The minimum recommended size for the filesystem is %1 MiB.</source>
-      <translation type="unfinished"/>
+      <translation>推荐文件系统的最小尺寸为 %1 MiB。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="573"/>
@@ -3336,7 +3336,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="575"/>
       <source>You can continue with this EFI system partition configuration but your system may fail to start.</source>
-      <translation type="unfinished"/>
+      <translation>您可以继续此 EFI 系统分区配置，但您的系统可能无法启动。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="587"/>
@@ -3351,7 +3351,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="615"/>
       <source>EFI system partition recommendation</source>
-      <translation type="unfinished"/>
+      <translation>EFI 系统分区推荐</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="634"/>
@@ -3390,7 +3390,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="33"/>
       <source>Applying Plasma Look-and-Feel…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>正在应用 Plasma 观感…</translation>
     </message>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="57"/>
@@ -3427,7 +3427,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="56"/>
       <source>Saving files for later…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>保存文件以供日后使用…</translation>
     </message>
     <message>
       <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="64"/>
@@ -3594,7 +3594,7 @@ Output:
       <location filename="../src/modules/removeuser/RemoveUserJob.cpp" line="32"/>
       <source>Removing live user from the target system…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>正在从目标系统删除 live 用户…</translation>
     </message>
   </context>
   <context>
@@ -3604,13 +3604,13 @@ Output:
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="38"/>
       <source>Removing Volume Group named %1…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>正在移除分卷组 %1…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="32"/>
       <source>Removing Volume Group named &lt;strong&gt;%1&lt;/strong&gt;…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>正在移除分卷组 &lt;strong&gt;%1&lt;/strong&gt;…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="46"/>
@@ -3641,7 +3641,7 @@ Output:
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="43"/>
       <source>Performing file system resize…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>正在执行文件系统大小调整…</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="162"/>
@@ -3659,19 +3659,19 @@ Output:
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="169"/>
       <source>KPMCore not available</source>
       <comment>@error</comment>
-      <translation type="unfinished"/>
+      <translation>KPMCore 不可用</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="170"/>
       <source>Calamares cannot start KPMCore for the file system resize job.</source>
       <comment>@error</comment>
-      <translation type="unfinished"/>
+      <translation>Calamares 无法启动 KPMCore 来完成调整文件系统大小的任务。</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="179"/>
       <source>Resize failed.</source>
       <comment>@error</comment>
-      <translation type="unfinished"/>
+      <translation>调整大小失败。</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="181"/>
@@ -3712,7 +3712,7 @@ Output:
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="213"/>
       <source>The file system %1 must be resized, but cannot.</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>文件系统 %1 必须调整大小，但无法做到。</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="214"/>
@@ -3727,7 +3727,7 @@ Output:
       <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="39"/>
       <source>Resize partition %1</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>调整分区 %1 大小</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="45"/>
@@ -3787,7 +3787,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="47"/>
       <source>Checking requirements again in a few seconds ...</source>
-      <translation type="unfinished"/>
+      <translation>几秒钟后再次检查要求 ...</translation>
     </message>
   </context>
   <context>
@@ -3796,13 +3796,13 @@ Output:
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="68"/>
       <source>Scanning storage devices…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>正在扫描存储设备…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="68"/>
       <source>Partitioning…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>正在分区…</translation>
     </message>
   </context>
   <context>
@@ -3821,7 +3821,7 @@ Output:
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="48"/>
       <source>Setting hostname %1…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>正在设置主机名 %1…</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="121"/>
@@ -3842,7 +3842,7 @@ Output:
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="66"/>
       <source>Setting keyboard model to %1, layout as %2-%3…</source>
       <comment>@status, %1 model, %2 layout, %3 variant</comment>
-      <translation type="unfinished"/>
+      <translation>正在将键盘型号设置为 %1，布局设置为 %2-%3…</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="368"/>
@@ -3887,19 +3887,19 @@ Output:
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="44"/>
       <source>Set flags on partition %1</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>设置分区 %1 的标记</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="50"/>
       <source>Set flags on %1MiB %2 partition</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>设置 %1MiB %2 分区的标记</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="54"/>
       <source>Set flags on new partition</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>设置新分区标记</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="65"/>
@@ -3990,7 +3990,7 @@ Output:
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="44"/>
       <source>Setting password for user %1…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>正在为用户 %1 设置密码…</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="80"/>
@@ -4025,7 +4025,7 @@ Output:
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="32"/>
       <source>Setting timezone to %1/%2…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>正在设置时区为 %1/%2…</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="60"/>
@@ -4663,31 +4663,31 @@ Output:
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="61"/>
       <source>Select a layout to activate keyboard preview</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>选择布局以激活键盘预览</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="144"/>
       <source>&lt;b&gt;Keyboard model:&amp;nbsp;&amp;nbsp;&lt;/b&gt;</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>&lt;b&gt;键盘型号:&amp;nbsp;&amp;nbsp;&lt;/b&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="185"/>
       <source>Layout</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>布局</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="258"/>
       <source>Variant</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>变体</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="311"/>
       <source>Type here to test your keyboard…</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>在此处输入以测试键盘…</translation>
     </message>
   </context>
   <context>
@@ -4696,31 +4696,31 @@ Output:
       <location filename="../src/modules/keyboardq/keyboardq-qt6.qml" line="61"/>
       <source>Select a layout to activate keyboard preview</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>选择布局以激活键盘预览</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq-qt6.qml" line="144"/>
       <source>&lt;b&gt;Keyboard model:&amp;nbsp;&amp;nbsp;&lt;/b&gt;</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>&lt;b&gt;键盘型号:&amp;nbsp;&amp;nbsp;&lt;/b&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq-qt6.qml" line="185"/>
       <source>Layout</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>布局</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq-qt6.qml" line="258"/>
       <source>Variant</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>变体</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq-qt6.qml" line="311"/>
       <source>Type here to test your keyboard…</source>
       <comment>@label</comment>
-      <translation type="unfinished"/>
+      <translation>在此处输入以测试键盘…</translation>
     </message>
   </context>
   <context>
@@ -4930,7 +4930,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="63"/>
       <source>Your full name</source>
-      <translation type="unfinished"/>
+      <translation>您的全名</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="80"/>
@@ -4940,7 +4940,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="87"/>
       <source>Login name</source>
-      <translation type="unfinished"/>
+      <translation>登录名</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="116"/>
@@ -4965,7 +4965,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="153"/>
       <source>Computer name</source>
-      <translation type="unfinished"/>
+      <translation>计算机名称</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="180"/>
@@ -4995,7 +4995,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="238"/>
       <source>Repeat password</source>
-      <translation type="unfinished"/>
+      <translation>确认密码</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="265"/>
@@ -5020,12 +5020,12 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="328"/>
       <source>Root password</source>
-      <translation type="unfinished"/>
+      <translation>Root 密码</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="346"/>
       <source>Repeat root password</source>
-      <translation type="unfinished"/>
+      <translation>确认 Root 密码</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="372"/>
@@ -5063,7 +5063,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="62"/>
       <source>Your full name</source>
-      <translation type="unfinished"/>
+      <translation>您的全名</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="79"/>
@@ -5073,7 +5073,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="86"/>
       <source>Login name</source>
-      <translation type="unfinished"/>
+      <translation>登录名</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="115"/>
@@ -5098,7 +5098,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="152"/>
       <source>Computer name</source>
-      <translation type="unfinished"/>
+      <translation>计算机名称</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="179"/>
@@ -5128,7 +5128,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="237"/>
       <source>Repeat password</source>
-      <translation type="unfinished"/>
+      <translation>确认密码</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="264"/>
@@ -5153,12 +5153,12 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="327"/>
       <source>Root password</source>
-      <translation type="unfinished"/>
+      <translation>Root 密码</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="345"/>
       <source>Repeat root password</source>
-      <translation type="unfinished"/>
+      <translation>确认 Root 密码</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="371"/>
@@ -5198,12 +5198,12 @@ Output:
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="80"/>
       <source>Known Issues</source>
-      <translation type="unfinished"/>
+      <translation>已知问题</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="91"/>
       <source>Release Notes</source>
-      <translation type="unfinished"/>
+      <translation>发行说明</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="103"/>
@@ -5228,12 +5228,12 @@ Output:
     <message>
       <location filename="../src/modules/welcomeq/welcomeq-qt6.qml" line="80"/>
       <source>Known Issues</source>
-      <translation type="unfinished"/>
+      <translation>已知问题</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq-qt6.qml" line="91"/>
       <source>Release Notes</source>
-      <translation type="unfinished"/>
+      <translation>发行说明</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq-qt6.qml" line="103"/>

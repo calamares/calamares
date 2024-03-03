@@ -3794,7 +3794,7 @@ Información de salida:
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="47"/>
       <source>Resizing volume group named %1 from %2 to %3…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Redimensionando el grupo de volúmenes llamado %1 de %2 a %3...</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="58"/>
@@ -3816,13 +3816,13 @@ Información de salida:
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="68"/>
       <source>Scanning storage devices…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Escaneando dispositivos de almacenamiento...</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="68"/>
       <source>Partitioning…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Particionando...</translation>
     </message>
   </context>
   <context>
@@ -3841,7 +3841,7 @@ Información de salida:
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="48"/>
       <source>Setting hostname %1…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Configurando hostname %1...</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="121"/>
@@ -3907,7 +3907,7 @@ Información de salida:
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="44"/>
       <source>Set flags on partition %1</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>Establecer indicadores en la partición %1</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="50"/>
@@ -3919,13 +3919,13 @@ Información de salida:
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="54"/>
       <source>Set flags on new partition</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>Establecer indicadores en la nueva partición.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="65"/>
       <source>Clear flags on partition &lt;strong&gt;%1&lt;/strong&gt;</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>Borrar indicadores en la partición &lt;strong&gt;%1&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="71"/>
@@ -3937,13 +3937,13 @@ Información de salida:
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="75"/>
       <source>Clear flags on new partition</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>Borrar indicadores en la nueva partición.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="80"/>
       <source>Set flags on partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%2&lt;/strong&gt;</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>Establecer indicadores en la partición &lt;strong&gt;%1&lt;/strong&gt; a &lt;strong&gt;%2&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="88"/>
@@ -3973,13 +3973,13 @@ Información de salida:
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="117"/>
       <source>Clearing flags on new partition…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Borrando indicadores en una nueva partición...</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="122"/>
       <source>Setting flags &lt;strong&gt;%2&lt;/strong&gt; on partition &lt;strong&gt;%1&lt;/strong&gt;…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Configurando indicadores &lt;strong&gt;%2&lt;/strong&gt; en la partición&lt;strong&gt; %1&lt;/strong&gt;…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="130"/>
@@ -3991,7 +3991,7 @@ Información de salida:
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="136"/>
       <source>Setting flags &lt;strong&gt;%1&lt;/strong&gt; on new partition…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Configurando indicadores&lt;strong&gt; %1&lt;/strong&gt; en la nueva partición...</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="149"/>
@@ -4010,7 +4010,7 @@ Información de salida:
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="44"/>
       <source>Setting password for user %1…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Configurando contraseña para el usuario %1…</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="80"/>
@@ -4085,7 +4085,7 @@ Información de salida:
       <location filename="../src/modules/users/MiscJobs.cpp" line="181"/>
       <source>Preparing groups…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Preparando grupos...</translation>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="193"/>
@@ -4105,7 +4105,7 @@ Información de salida:
       <location filename="../src/modules/users/MiscJobs.cpp" line="34"/>
       <source>Configuring &lt;pre&gt;sudo&lt;/pre&gt; users…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Configurando usuarios &lt;pre&gt; sudo&lt;/pre&gt;…</translation>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="70"/>
@@ -4124,7 +4124,7 @@ Información de salida:
       <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="38"/>
       <source>Running shell processes…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Ejecutando procesos de shell...</translation>
     </message>
   </context>
   <context>
@@ -4176,7 +4176,7 @@ Información de salida:
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="106"/>
       <source>Sending installation feedback…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Enviando comentarios sobre la instalación...</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="124"/>
@@ -4200,7 +4200,7 @@ Información de salida:
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="198"/>
       <source>Configuring KDE user feedback…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Configurando los comentarios de los usuarios de KDE...</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="220"/>
@@ -4230,7 +4230,7 @@ Información de salida:
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="141"/>
       <source>Configuring machine feedback…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Configurando los comentarios de la máquina...</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="164"/>
@@ -4302,7 +4302,7 @@ Información de salida:
       <location filename="../src/modules/umount/UmountJob.cpp" line="39"/>
       <source>Unmounting file systems…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Desmontando sistemas de archivos...</translation>
     </message>
     <message>
       <location filename="../src/modules/umount/UmountJob.cpp" line="123"/>
@@ -4476,7 +4476,7 @@ Información de salida:
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="212"/>
       <source>%1 Support</source>
       <comment>@action</comment>
-      <translation type="unfinished"/>
+      <translation>%1 Ayuda</translation>
     </message>
   </context>
   <context>
@@ -4503,7 +4503,7 @@ Información de salida:
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="102"/>
       <source>Creating ZFS pools and datasets…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Creando grupos y conjuntos de datos ZFS...</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="162"/>
@@ -4955,7 +4955,7 @@ La configuración regional del sistema afecta al formato de números y fechas. L
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="63"/>
       <source>Your full name</source>
-      <translation type="unfinished"/>
+      <translation>Su nombre completo</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="80"/>
@@ -4965,7 +4965,7 @@ La configuración regional del sistema afecta al formato de números y fechas. L
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="87"/>
       <source>Login name</source>
-      <translation type="unfinished"/>
+      <translation>Nombre de inicio de sesión</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="116"/>
@@ -4990,7 +4990,7 @@ La configuración regional del sistema afecta al formato de números y fechas. L
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="153"/>
       <source>Computer name</source>
-      <translation type="unfinished"/>
+      <translation>Nombre del equipo</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="180"/>
@@ -5020,7 +5020,7 @@ La configuración regional del sistema afecta al formato de números y fechas. L
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="238"/>
       <source>Repeat password</source>
-      <translation type="unfinished"/>
+      <translation>Repetir la contraseña</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="265"/>
@@ -5045,12 +5045,12 @@ La configuración regional del sistema afecta al formato de números y fechas. L
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="328"/>
       <source>Root password</source>
-      <translation type="unfinished"/>
+      <translation>Contraseña de Root</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="346"/>
       <source>Repeat root password</source>
-      <translation type="unfinished"/>
+      <translation>Repetir la contraseña de Root</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="372"/>
@@ -5088,7 +5088,7 @@ La configuración regional del sistema afecta al formato de números y fechas. L
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="62"/>
       <source>Your full name</source>
-      <translation type="unfinished"/>
+      <translation>Su nombre completo</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="79"/>
@@ -5098,7 +5098,7 @@ La configuración regional del sistema afecta al formato de números y fechas. L
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="86"/>
       <source>Login name</source>
-      <translation type="unfinished"/>
+      <translation>Nombre de inicio de sesión</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="115"/>
@@ -5123,7 +5123,7 @@ La configuración regional del sistema afecta al formato de números y fechas. L
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="152"/>
       <source>Computer name</source>
-      <translation type="unfinished"/>
+      <translation>Nombre del equipo</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="179"/>
@@ -5153,7 +5153,7 @@ La configuración regional del sistema afecta al formato de números y fechas. L
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="237"/>
       <source>Repeat password</source>
-      <translation type="unfinished"/>
+      <translation>Repetir la contraseña</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="264"/>
@@ -5178,12 +5178,12 @@ La configuración regional del sistema afecta al formato de números y fechas. L
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="327"/>
       <source>Root password</source>
-      <translation type="unfinished"/>
+      <translation>Contraseña de Root</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="345"/>
       <source>Repeat root password</source>
-      <translation type="unfinished"/>
+      <translation>Repetir la contraseña de Root</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="371"/>
@@ -5223,12 +5223,12 @@ La configuración regional del sistema afecta al formato de números y fechas. L
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="80"/>
       <source>Known Issues</source>
-      <translation type="unfinished"/>
+      <translation>Problemas conocidos</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="91"/>
       <source>Release Notes</source>
-      <translation type="unfinished"/>
+      <translation>Notas de lanzamiento</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="103"/>
@@ -5253,12 +5253,12 @@ La configuración regional del sistema afecta al formato de números y fechas. L
     <message>
       <location filename="../src/modules/welcomeq/welcomeq-qt6.qml" line="80"/>
       <source>Known Issues</source>
-      <translation type="unfinished"/>
+      <translation>Problemas conocidos</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq-qt6.qml" line="91"/>
       <source>Release Notes</source>
-      <translation type="unfinished"/>
+      <translation>Notas de lanzamiento</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq-qt6.qml" line="103"/>

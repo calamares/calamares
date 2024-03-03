@@ -3743,13 +3743,13 @@ Output:
       <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="45"/>
       <source>Resize &lt;strong&gt;%2MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%3MiB&lt;/strong&gt;</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%2MB&lt;/strong&gt; &lt;strong&gt;%1&lt;/strong&gt; bölməsinin ölçüsünü &lt;strong&gt;%3MB&lt;/strong&gt;-a dəyişin.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="54"/>
       <source>Resizing %2MiB partition %1 to %3MiB…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>%1 bölməsinin ölçüsünü %2MiB-dan %3MiB-a dəyişin...</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="70"/>
@@ -3772,19 +3772,19 @@ Output:
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="28"/>
       <source>Resize volume group named %1 from %2 to %3</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>%1 adlı tutum qrupunun ölçüsünü %2-dan %3-a dəyişin</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="37"/>
       <source>Resize volume group named &lt;strong&gt;%1&lt;/strong&gt; from &lt;strong&gt;%2&lt;/strong&gt; to &lt;strong&gt;%3&lt;/strong&gt;</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%1&lt;/strong&gt; adlı tutum qrupunun ölçüsünü &lt;strong&gt;%2&lt;/strong&gt;-dan &lt;strong&gt;%3&lt;/strong&gt;-a dəyişin</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="47"/>
       <source>Resizing volume group named %1 from %2 to %3…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>%1 adlı tutum qrupunun ölçüsünü %2-dan %3-a dəyişin…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="58"/>
@@ -3806,13 +3806,13 @@ Output:
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="68"/>
       <source>Scanning storage devices…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Yaddaş qurğuları axtarılır...</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="68"/>
       <source>Partitioning…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Bölüşdürmə...</translation>
     </message>
   </context>
   <context>
@@ -3831,7 +3831,7 @@ Output:
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="48"/>
       <source>Setting hostname %1…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>%1 host adının ayarlanması...</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="121"/>
@@ -3897,91 +3897,91 @@ Output:
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="44"/>
       <source>Set flags on partition %1</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>%1 bölməsində bayraqlar qoyun</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="50"/>
       <source>Set flags on %1MiB %2 partition</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>%1MB %2 bölməsində bayraqlar qoyun</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="54"/>
       <source>Set flags on new partition</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>Yeni bölmədə bayraq qoyun</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="65"/>
       <source>Clear flags on partition &lt;strong&gt;%1&lt;/strong&gt;</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%1&lt;/strong&gt; bölməsindəki bayraqları ləğv edin</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="71"/>
       <source>Clear flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>%1MB &lt;strong&gt;%2&lt;/strong&gt; bölməsindəki bayraqları ləğv edin</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="75"/>
       <source>Clear flags on new partition</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>Yeni bölmədəki bayraqları ləğv edin</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="80"/>
       <source>Set flags on partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%2&lt;/strong&gt;</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>Bölüm &lt;strong&gt;%1&lt;/strong&gt; üçün bayraqları &lt;strong&gt;%2&lt;/strong&gt; olaraq təyin edin</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="88"/>
       <source>Set flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition to &lt;strong&gt;%3&lt;/strong&gt;</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>%1MB &lt;strong&gt;%2&lt;/strong&gt; bölməsinin bayraqlarını &lt;strong&gt;%3&lt;/strong&gt; kimi təyin edin</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="94"/>
       <source>Set flags on new partition to &lt;strong&gt;%1&lt;/strong&gt;</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>Yeni bölməsində bayraqları &lt;strong&gt;%1&lt;/strong&gt; olaraq təyin edin</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="105"/>
       <source>Clearing flags on partition &lt;strong&gt;%1&lt;/strong&gt;…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%1&lt;/strong&gt; bölməsindəki bayraqlar ləğv eilir...</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="112"/>
       <source>Clearing flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>%1MB &lt;strong&gt;%2&lt;/strong&gt; bölməsindəki bayraqların ləğv edilməsi...</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="117"/>
       <source>Clearing flags on new partition…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Yeni bölmədəki bayraqların ləğv edilməsi...</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="122"/>
       <source>Setting flags &lt;strong&gt;%2&lt;/strong&gt; on partition &lt;strong&gt;%1&lt;/strong&gt;…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%1&lt;/strong&gt; bölməsində bayraqların &lt;strong&gt;%2&lt;/strong&gt; təyin edilməsi...</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="130"/>
       <source>Setting flags &lt;strong&gt;%3&lt;/strong&gt; on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%3&lt;/strong&gt; bayraqlarının %1MB &lt;strong&gt;%2&lt;/strong&gt; bölməsində ayarlanması...</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="136"/>
       <source>Setting flags &lt;strong&gt;%1&lt;/strong&gt; on new partition…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Yeni bölmədə &lt;strong&gt;%1&lt;/strong&gt; bayraqlarının təyin edilməsi...</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="149"/>
@@ -4000,7 +4000,7 @@ Output:
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="44"/>
       <source>Setting password for user %1…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>%1 istifadəçisi üçün şifrənin təyin edilməsi...</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="80"/>
@@ -4075,7 +4075,7 @@ Output:
       <location filename="../src/modules/users/MiscJobs.cpp" line="181"/>
       <source>Preparing groups…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Qruplar hazırlanır...</translation>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="193"/>
@@ -4095,7 +4095,7 @@ Output:
       <location filename="../src/modules/users/MiscJobs.cpp" line="34"/>
       <source>Configuring &lt;pre&gt;sudo&lt;/pre&gt; users…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>&lt;pre&gt;sudo&lt;/pre&gt; istifadəçilərinin tənzimlənməsi...</translation>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="70"/>
@@ -4114,7 +4114,7 @@ Output:
       <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="38"/>
       <source>Running shell processes…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Shell prosesləri başladılır...</translation>
     </message>
   </context>
   <context>
@@ -4166,7 +4166,7 @@ Output:
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="106"/>
       <source>Sending installation feedback…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Quraşdırılma hesabatının göndərməsi...</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="124"/>
@@ -4190,7 +4190,7 @@ Output:
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="198"/>
       <source>Configuring KDE user feedback…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>KDE istifadəçi hesabatının tənzimlənməsi...</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="220"/>
@@ -4220,7 +4220,7 @@ Output:
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="141"/>
       <source>Configuring machine feedback…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Kompyuter haqqında hesabatın tənzimlənməsi...</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="164"/>
@@ -4292,7 +4292,7 @@ Output:
       <location filename="../src/modules/umount/UmountJob.cpp" line="39"/>
       <source>Unmounting file systems…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>Fayl sisteminin ayrılması...</translation>
     </message>
     <message>
       <location filename="../src/modules/umount/UmountJob.cpp" line="123"/>
@@ -4466,7 +4466,7 @@ Output:
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="212"/>
       <source>%1 Support</source>
       <comment>@action</comment>
-      <translation type="unfinished"/>
+      <translation>%1 dəstəyi</translation>
     </message>
   </context>
   <context>
@@ -4493,7 +4493,7 @@ Output:
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="102"/>
       <source>Creating ZFS pools and datasets…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>ZFS mənbələrinin və verilənlər dəsti yaradılması...</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="162"/>
@@ -4943,7 +4943,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="63"/>
       <source>Your full name</source>
-      <translation type="unfinished"/>
+      <translation>Tam adınız</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="80"/>
@@ -4953,7 +4953,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="87"/>
       <source>Login name</source>
-      <translation type="unfinished"/>
+      <translation>Giriş adı</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="116"/>
@@ -4978,7 +4978,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="153"/>
       <source>Computer name</source>
-      <translation type="unfinished"/>
+      <translation>Kompyuterin adı</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="180"/>
@@ -5008,7 +5008,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="238"/>
       <source>Repeat password</source>
-      <translation type="unfinished"/>
+      <translation>Şifrənin təkrarı</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="265"/>
@@ -5033,12 +5033,12 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="328"/>
       <source>Root password</source>
-      <translation type="unfinished"/>
+      <translation>Kök şifrəsi</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="346"/>
       <source>Repeat root password</source>
-      <translation type="unfinished"/>
+      <translation>Kök şifrəsini təkrar yazın</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="372"/>
@@ -5076,7 +5076,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="62"/>
       <source>Your full name</source>
-      <translation type="unfinished"/>
+      <translation>Tam adınız</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="79"/>
@@ -5086,7 +5086,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="86"/>
       <source>Login name</source>
-      <translation type="unfinished"/>
+      <translation>Giriş adı</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="115"/>
@@ -5111,7 +5111,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="152"/>
       <source>Computer name</source>
-      <translation type="unfinished"/>
+      <translation>Kompyuterin adı</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="179"/>
@@ -5141,7 +5141,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="237"/>
       <source>Repeat password</source>
-      <translation type="unfinished"/>
+      <translation>Şifrənin təkrarı</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="264"/>
@@ -5166,12 +5166,12 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="327"/>
       <source>Root password</source>
-      <translation type="unfinished"/>
+      <translation>Kök şifrəsi</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="345"/>
       <source>Repeat root password</source>
-      <translation type="unfinished"/>
+      <translation>Kök şifrəsini təkrar yazın</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="371"/>
@@ -5211,12 +5211,12 @@ Output:
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="80"/>
       <source>Known Issues</source>
-      <translation type="unfinished"/>
+      <translation>Məlum problemlər</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="91"/>
       <source>Release Notes</source>
-      <translation type="unfinished"/>
+      <translation>Buraxılış qeydləri</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="103"/>
@@ -5241,12 +5241,12 @@ Output:
     <message>
       <location filename="../src/modules/welcomeq/welcomeq-qt6.qml" line="80"/>
       <source>Known Issues</source>
-      <translation type="unfinished"/>
+      <translation>Məlum problemlər</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq-qt6.qml" line="91"/>
       <source>Release Notes</source>
-      <translation type="unfinished"/>
+      <translation>Buraxılış qeydləri</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq-qt6.qml" line="103"/>
