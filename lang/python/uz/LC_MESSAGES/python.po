@@ -23,93 +23,101 @@ msgstr ""
 
 #: src/modules/bootloader/main.py:46
 msgid "Install bootloader."
-msgstr ""
+msgstr "Yuklovchini o‘rnatish"
 
 #: src/modules/bootloader/main.py:666
 msgid "Failed to install grub, no partitions defined in global storage"
 msgstr ""
+"Grub-ni o‘rnatib bo‘lmadi, global saqlash uskunasida hech qanday bo‘lim "
+"aniqlanmagan"
 
 #: src/modules/bootloader/main.py:926
 msgid "Bootloader installation error"
-msgstr ""
+msgstr "Yuklovchi o‘rnatish xatosi"
 
 #: src/modules/bootloader/main.py:927
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
 msgstr ""
+"Yuklovchini o‘rnatib bo‘lmadi. O‘rnatish buyrug‘i <pre>{!s}</pre> xato "
+"kodini qaytardi {!s}."
 
 #: src/modules/displaymanager/main.py:509
 msgid "Cannot write LXDM configuration file"
-msgstr ""
+msgstr "LXDM konfiguratsiya faylini yozib bo‘lmadi"
 
 #: src/modules/displaymanager/main.py:510
 msgid "LXDM config file {!s} does not exist"
-msgstr ""
+msgstr "LXDM konfiguratsiya fayli {!s} mavjud emas"
 
 #: src/modules/displaymanager/main.py:598
 msgid "Cannot write LightDM configuration file"
-msgstr ""
+msgstr "LightDM konfiguratsiya faylini yozib bo‘lmadi"
 
 #: src/modules/displaymanager/main.py:599
 msgid "LightDM config file {!s} does not exist"
-msgstr ""
+msgstr "LightDM konfiguratsiya fayli {!s} mavjud emas"
 
 #: src/modules/displaymanager/main.py:684
 msgid "Cannot configure LightDM"
-msgstr ""
+msgstr "LightDM sozlab bo‘lmadi"
 
 #: src/modules/displaymanager/main.py:685
 msgid "No LightDM greeter installed."
-msgstr ""
+msgstr "Hech qanday LightDM salomlashuvchisi o‘rnatilmagan."
 
 #: src/modules/displaymanager/main.py:716
 msgid "Cannot write SLIM configuration file"
-msgstr ""
+msgstr "SLIM konfiguratsiya faylini yozib bo‘lmadi"
 
 #: src/modules/displaymanager/main.py:717
 msgid "SLIM config file {!s} does not exist"
-msgstr ""
+msgstr "SLIM konfiguratsiya fayli {!s} mavjud emas"
 
 #: src/modules/displaymanager/main.py:938
 msgid "No display managers selected for the displaymanager module."
 msgstr ""
+"Displey boshqaruvchisi moduli uchun hech qanday displey menejeri "
+"tanlanmagan."
 
 #: src/modules/displaymanager/main.py:939
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
 msgstr ""
+"Displey menejerlari ro‘yxati globalstorage va displaymanager.conf da bo‘sh "
+"yoki aniqlanmagan."
 
 #: src/modules/displaymanager/main.py:1026
 msgid "Display manager configuration was incomplete"
-msgstr ""
+msgstr "Displey menejeri konfiguratsiyasi tugallanmagan"
 
 #: src/modules/dracut/main.py:29
 msgid "Creating initramfs with dracut."
-msgstr ""
+msgstr "Dracut bilan initramf yaratilmoqda."
 
 #: src/modules/dracut/main.py:63
 msgid "Failed to run dracut"
-msgstr ""
+msgstr "Dracut ishga tushmadi"
 
 #: src/modules/dracut/main.py:64
 #, python-brace-format
 msgid "Dracut failed to run on the target with return code: {return_code}"
-msgstr ""
+msgstr "Dracut qaytish kodi bilan maqsadda ishlay olmadi: {return_code}"
 
 #: src/modules/dummypython/main.py:35
 msgid "Dummy python job."
-msgstr ""
+msgstr "Soxta python vazifasi."
 
 #: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:104
 #: src/modules/dummypython/main.py:105
 msgid "Dummy python step {}"
-msgstr ""
+msgstr "Soxta python qadami {}"
 
 #: src/modules/fstab/main.py:29
 msgid "Writing fstab."
-msgstr ""
+msgstr "Fstab yozilmoqda."
 
 #: src/modules/fstab/main.py:378 src/modules/fstab/main.py:384
 #: src/modules/fstab/main.py:412 src/modules/initcpiocfg/main.py:256
@@ -125,272 +133,293 @@ msgstr "Konfiguratsiya xatosi"
 #: src/modules/mount/main.py:335 src/modules/openrcdmcryptcfg/main.py:73
 #: src/modules/rawfs/main.py:165
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr ""
+msgstr " <pre>{!s}</pre> uchun hech qanday bo‘lim aniqlanmagan."
 
 #: src/modules/fstab/main.py:385 src/modules/initramfscfg/main.py:90
 #: src/modules/localecfg/main.py:141 src/modules/networkcfg/main.py:107
 #: src/modules/openrcdmcryptcfg/main.py:77
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr ""
+msgstr "<pre>{!s}</pre> uchun ildiz ulash nuqtasi berilmagan."
 
 #: src/modules/fstab/main.py:413
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr ""
+"Hech qanday <pre>{!s}</pre> konfiguratsiyasi <pre>{!s}</pre> uchun "
+"berilmagan."
 
 #: src/modules/grubcfg/main.py:30
 msgid "Configure GRUB."
-msgstr ""
+msgstr "GRUB-ni sozlash."
 
 #: src/modules/hwclock/main.py:26
 msgid "Setting hardware clock."
-msgstr ""
+msgstr "Uskuna soati sozlanmoqda."
 
 #: src/modules/initcpiocfg/main.py:27
 msgid "Configuring mkinitcpio."
-msgstr ""
+msgstr "Mkinitcpio sozlanmoqda."
 
 #: src/modules/initcpiocfg/main.py:257
 msgid "No partitions are defined for <pre>initcpiocfg</pre>."
-msgstr ""
+msgstr " <pre>initcpiocfg</pre> uchun bo‘limlar aniqlanmagan."
 
 #: src/modules/initcpiocfg/main.py:261
 msgid "No root mount point for <pre>initcpiocfg</pre>."
-msgstr ""
+msgstr " <pre>initcpiocfg</pre> uchun ildiz ulash nuqtasi yo‘q."
 
 #: src/modules/initramfscfg/main.py:32
 msgid "Configuring initramfs."
-msgstr ""
+msgstr "Initramfs sozlanmoqda"
 
 #: src/modules/localecfg/main.py:31
 msgid "Configuring locales."
-msgstr ""
+msgstr "Mahalliy parametrlar sozlanmoqda."
 
 #: src/modules/mkinitfs/main.py:27
 msgid "Creating initramfs with mkinitfs."
-msgstr ""
+msgstr "Mkinitfs bilan initramfs yaratilmoqda."
 
 #: src/modules/mkinitfs/main.py:49
 msgid "Failed to run mkinitfs on the target"
-msgstr ""
+msgstr "Maqsadda mkinitfs ishga tushirilmadi"
 
 #: src/modules/mkinitfs/main.py:50
 msgid "The exit code was {}"
-msgstr ""
+msgstr "Chiqish kodi {}"
 
 #: src/modules/mount/main.py:43
 msgid "Mounting partitions."
-msgstr ""
+msgstr "Bo‘limlar ulanmoqda."
 
 #: src/modules/mount/main.py:164 src/modules/mount/main.py:200
 msgid "Internal error mounting zfs datasets"
-msgstr ""
+msgstr "Zfs ma'lumotlar to‘plami ulanishida ichki xatolik"
 
 #: src/modules/mount/main.py:176
 msgid "Failed to import zpool"
-msgstr ""
+msgstr "Zpool import qilinmadi"
 
 #: src/modules/mount/main.py:192
 msgid "Failed to unlock zpool"
-msgstr ""
+msgstr "Zpool ochib bo‘lmadi"
 
 #: src/modules/mount/main.py:209 src/modules/mount/main.py:214
 msgid "Failed to set zfs mountpoint"
-msgstr ""
+msgstr "Zfs ulanish nuqtasini sozlab bo‘lmadi"
 
 #: src/modules/mount/main.py:370
 msgid "zfs mounting error"
-msgstr ""
+msgstr "Zfs ulanish xatosi"
 
 #: src/modules/networkcfg/main.py:30
 msgid "Saving network configuration."
-msgstr ""
+msgstr "Tarmoq konfiguratsiyasi saqlanmoqda."
 
 #: src/modules/openrcdmcryptcfg/main.py:26
 msgid "Configuring OpenRC dmcrypt service."
-msgstr ""
+msgstr "OpenRC dmcrypt xizmati sozlanmoqda."
 
 #: src/modules/packages/main.py:54 src/modules/packages/main.py:65
 #: src/modules/packages/main.py:75
 msgid "Install packages."
-msgstr ""
+msgstr "Paketlarni o‘rnatish"
 
 #: src/modules/packages/main.py:63
 #, python-format
 msgid "Processing packages (%(count)d / %(total)d)"
-msgstr ""
+msgstr "Paketlarga ishlov berilmoqda (%(count)d / %(total)d)"
 
 #: src/modules/packages/main.py:68
 #, python-format
 msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
-msgstr[0] ""
+msgstr[0] " %(num)d paketlar o‘rnatilmoqda."
 
 #: src/modules/packages/main.py:71
 #, python-format
 msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
-msgstr[0] ""
+msgstr[0] " %(num)d paketlar olib tashlanmoqda."
 
 #: src/modules/packages/main.py:740 src/modules/packages/main.py:752
 #: src/modules/packages/main.py:780
 msgid "Package Manager error"
-msgstr ""
+msgstr "Paket menejeri xatosi"
 
 #: src/modules/packages/main.py:741
 msgid ""
 "The package manager could not prepare updates. The command <pre>{!s}</pre> "
 "returned error code {!s}."
 msgstr ""
+"Paket menejeri yangilanishlarni tayyorlay olmadi. <pre>{!s}</pre> buyrug‘i "
+"{!s} xato kodini qaytardi."
 
 #: src/modules/packages/main.py:753
 msgid ""
 "The package manager could not update the system. The command <pre>{!s}</pre>"
 " returned error code {!s}."
 msgstr ""
+"Paket menejeri tizimni yangilay olmadi. <pre>{!s}</pre> buyrug‘i {!s} xato "
+"kodini qaytardi."
 
 #: src/modules/packages/main.py:781
 msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."
 msgstr ""
+"Paket menejeri o‘rnatilgan tizimga o‘zgartirish kirita olmadi. "
+"<pre>{!s}</pre> buyrug‘i {!s} xato kodini qaytardi."
 
 #: src/modules/plymouthcfg/main.py:27
 msgid "Configure Plymouth theme"
-msgstr ""
+msgstr "Plymouth mavzusini sozlash"
 
 #: src/modules/rawfs/main.py:26
 msgid "Installing data."
-msgstr ""
+msgstr "Ma'lumotlar o‘rnatilmoqda."
 
 #: src/modules/services-openrc/main.py:29
 msgid "Configure OpenRC services"
-msgstr ""
+msgstr "OpenRC xizmatlarini sozlash"
 
 #: src/modules/services-openrc/main.py:57
 msgid "Cannot add service {name!s} to run-level {level!s}."
 msgstr ""
+"{name!s} xizmatini {level!s} ishga tushirish darajasiga qo‘shib bo‘lmadi."
 
 #: src/modules/services-openrc/main.py:59
 msgid "Cannot remove service {name!s} from run-level {level!s}."
 msgstr ""
+"{name!s} xizmatini {level!s} ishga tushirish darajasidan olib tashlab "
+"bo‘lmadi."
 
 #: src/modules/services-openrc/main.py:61
 msgid ""
 "Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
 "level {level!s}."
 msgstr ""
+"{level!s} ishga tushirish darajasidagi {name!s} xizmati uchun noma'lum "
+"xizmat harakati {arg!s}."
 
 #: src/modules/services-openrc/main.py:93
 msgid "Cannot modify service"
-msgstr ""
+msgstr "Xizmatni o‘zgartirib bo‘lmadi"
 
 #: src/modules/services-openrc/main.py:94
 msgid ""
 "<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
 msgstr ""
+"chroot-dagi <code>rc-update {arg!s}</code> chaqiruvi {num!s} xato kodini "
+"qaytardi."
 
 #: src/modules/services-openrc/main.py:101
 msgid "Target runlevel does not exist"
-msgstr ""
+msgstr "Maqsadli ishga tushirish darajasi mavjud emas"
 
 #: src/modules/services-openrc/main.py:102
 msgid ""
 "The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
 "exist."
 msgstr ""
+"Ishga tushirish darajasi {level!s} uchun yo‘l <code>{path!s}</code>, u "
+"mavjud emas."
 
 #: src/modules/services-openrc/main.py:110
 msgid "Target service does not exist"
-msgstr ""
+msgstr "Maqsadli xizmat mavjud emas"
 
 #: src/modules/services-openrc/main.py:111
 msgid ""
 "The path for service {name!s} is <code>{path!s}</code>, which does not "
 "exist."
-msgstr ""
+msgstr "{name!s} xizmati uchun yo‘l <code>{path!s}</code>, u mavjud emas."
 
 #: src/modules/services-systemd/main.py:26
 msgid "Configure systemd units"
-msgstr ""
+msgstr "Systemd birliklarini sozlash"
 
 #: src/modules/services-systemd/main.py:64
 msgid "Cannot modify unit"
-msgstr ""
+msgstr "Birlikni o‘zgartirib bo‘lmadi"
 
 #: src/modules/services-systemd/main.py:65
 msgid ""
 "<code>systemctl {_action!s}</code> call in chroot returned error code "
 "{_exit_code!s}."
 msgstr ""
+"<code>systemctl {_action!s}</code> chroot-dagi chaqiruv {_exit_code!s} xato "
+"kodini qaytardi."
 
 #: src/modules/services-systemd/main.py:66
 msgid "Cannot {_action!s} systemd unit <code>{_name!s}</code>."
-msgstr ""
+msgstr "{_action!s} tizim birligi <code>{_name!s}</code> bo‘lmadi."
 
 #: src/modules/unpackfs/main.py:34
 msgid "Filling up filesystems."
-msgstr ""
+msgstr "Fayl tizimlari to‘ldirilmoqda"
 
 #: src/modules/unpackfs/main.py:254
 msgid "rsync failed with error code {}."
-msgstr ""
+msgstr "rsync {} xato kodi bilan muvaffaqiyatsiz tugadi."
 
 #: src/modules/unpackfs/main.py:299
 msgid "Unpacking image {}/{}, file {}/{}"
-msgstr ""
+msgstr "{}/{} tasviri, {}/{} fayli ochilmoqda"
 
 #: src/modules/unpackfs/main.py:314
 msgid "Starting to unpack {}"
-msgstr ""
+msgstr "Ochila boshlanmoqda {}"
 
 #: src/modules/unpackfs/main.py:323 src/modules/unpackfs/main.py:467
 msgid "Failed to unpack image \"{}\""
-msgstr ""
+msgstr "\"{}\" tasvirini ochib bo‘lmadi"
 
 #: src/modules/unpackfs/main.py:430
 msgid "No mount point for root partition"
-msgstr ""
+msgstr "Ildiz bo‘limi uchun ulash nuqtasi yo‘q"
 
 #: src/modules/unpackfs/main.py:431
 msgid "globalstorage does not contain a \"rootMountPoint\" key."
-msgstr ""
+msgstr "globalstorage-da \"rootMountPoint\" kaliti mavjud emas."
 
 #: src/modules/unpackfs/main.py:434
 msgid "Bad mount point for root partition"
-msgstr ""
+msgstr "Ildiz bo‘limi uchun noto‘g‘ri ulash nuqtasi"
 
 #: src/modules/unpackfs/main.py:435
 msgid "rootMountPoint is \"{}\", which does not exist."
-msgstr ""
+msgstr "rootMountPoint bu \"{}\", u mavjud emas."
 
 #: src/modules/unpackfs/main.py:439 src/modules/unpackfs/main.py:455
 #: src/modules/unpackfs/main.py:459 src/modules/unpackfs/main.py:465
 #: src/modules/unpackfs/main.py:480
 msgid "Bad unpackfs configuration"
-msgstr ""
+msgstr "Noto‘g‘ri unpackfs konfiguratsiyasi"
 
 #: src/modules/unpackfs/main.py:440
 msgid "There is no configuration information."
-msgstr ""
+msgstr "Konfiguratsiya haqida ma'lumot yo‘q."
 
 #: src/modules/unpackfs/main.py:456
 msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
-msgstr ""
+msgstr "\"{}\" ({}) fayl tizimi joriy yadro tomonidan qo‘llab-quvvatlanmaydi"
 
 #: src/modules/unpackfs/main.py:460
 msgid "The source filesystem \"{}\" does not exist"
-msgstr ""
+msgstr "\"{}\" manba fayl tizimi mavjud emas"
 
 #: src/modules/unpackfs/main.py:466
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed."
 msgstr ""
+"Unsquashfs topilmadi, squashfs-tools to‘plami o‘rnatilganligiga ishonch "
+"hosil qiling."
 
 #: src/modules/unpackfs/main.py:481
 msgid "The destination \"{}\" in the target system is not a directory"
-msgstr ""
+msgstr "Maqsadli tizimdagi \"{}\" manzili katalog emas"
 
 #: src/modules/zfshostid/main.py:27
 msgid "Copying zfs generated hostid."
-msgstr ""
+msgstr "Zfs yaratilgan hostiddan nusxa olinmoqda."
