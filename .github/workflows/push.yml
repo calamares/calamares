@@ -30,6 +30,9 @@ jobs:
       image: docker://registry.fedoraproject.org/fedora:40
       options: --tmpfs /build:rw --user 0:0
     steps:
+      - name: "prepare git"
+        shell: bash
+        run: yum install -y git-core jq curl
       - name: "prepare source"
         uses: calamares/actions/generic-checkout@v5
       - name: "install dependencies"
