@@ -732,7 +732,7 @@ class DMsddm(DisplayManager):
     name = "sddm"
     executable = "sddm"
 
-    configuration_file = "/etc/sddm.conf"
+    configuration_file = "etc/sddm.conf"
 
     def set_autologin(self, username, do_autologin, default_desktop_environment):
         import configparser
