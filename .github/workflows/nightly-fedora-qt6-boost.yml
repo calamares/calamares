@@ -1,4 +1,4 @@
-name: nightly-fedora-qt6
+name: nightly-fedora-qt6-boost
 
 on:
   schedule:
