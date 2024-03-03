@@ -15,24 +15,26 @@ env:
   BUILDDIR: /build
   SRCDIR: ${{ github.workspace }}
   CMAKE_ARGS: |
-    -DWEBVIEW_FORCE_WEBKIT=1
     -DKDE_INSTALL_USE_QT_SYS_PATHS=ON
-    -DWITH_PYTHONQT=OFF
     -DCMAKE_BUILD_TYPE=Debug
+    -DWITH_QT6=ON
+    -DBUILD_APPSTREAM=ON
+    -DBUILD_APPDATA=ON
+
   GIT_HASH: ${{ github.event.head_commit.id }}
 
 jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: docker://kdeneon/plasma:user
+      image: docker://registry.fedoraproject.org/fedora:40
       options: --tmpfs /build:rw --user 0:0
     steps:
       - name: "prepare source"
         uses: calamares/actions/generic-checkout@v5
       - name: "install dependencies"
         shell: bash
-        run: ./ci/deps-neon.sh
+        run: ./ci/deps-fedora-qt6.sh
       - name: "build"
         shell: bash
         run: ./ci/build.sh
