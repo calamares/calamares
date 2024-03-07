@@ -52,6 +52,7 @@ properties:
             writeHostsFile: { type: boolean, default: true }
             template: { type: string, default: "${first}-${product}" }
             forbidden_names: { type: array, items: { type: string } }
+    allowActiveDirectory: { type: boolean, default: false }
 
     # Presets
     #
