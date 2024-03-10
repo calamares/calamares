@@ -36,3 +36,4 @@ calamares_qrc_translations(calamares-i18n
 )
 
 add_library(calamares-i18n OBJECT ${translation_outfile})
+set_property(TARGET calamares-i18n PROPERTY POSITION_INDEPENDENT_CODE ON)
