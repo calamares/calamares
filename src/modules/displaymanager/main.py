@@ -732,13 +732,13 @@ class DMsddm(DisplayManager):
     name = "sddm"
     executable = "sddm"
 
-    configuration_file = "etc/sddm.conf"
+    configuration_file = "/etc/sddm.conf"
 
     def set_autologin(self, username, do_autologin, default_desktop_environment):
         import configparser
 
         # Systems with Sddm as Desktop Manager
-        sddm_conf_path = os.path.join(self.root_mount_point, self.configuration_file)
+        sddm_conf_path = os.path.join(self.root_mount_point, self.configuration_file.lstrip('/'))
 
         sddm_config = configparser.ConfigParser(strict=False)
         # Make everything case sensitive
