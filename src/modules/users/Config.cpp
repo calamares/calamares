@@ -9,6 +9,7 @@
 
 #include "Config.h"
 
+#include "ActiveDirectoryJob.h"
 #include "CreateUserJob.h"
 #include "MiscJobs.h"
 #include "SetHostNameJob.h"
@@ -656,6 +657,59 @@ Config::setRootPasswordSecondary( const QString& s )
     }
 }
 
+void
+Config::setActiveDirectoryUsed( bool used )
+{
+    m_activeDirectoryUsed = used;
+}
+
+bool
+Config::getActiveDirectoryEnabled() const
+{
+    return m_activeDirectory;
+}
+
+bool
+Config::getActiveDirectoryUsed() const
+{
+    return m_activeDirectoryUsed && m_activeDirectory;
+}
+
+void
+Config::setActiveDirectoryAdminUsername( const QString & s )
+{
+    m_activeDirectoryUsername = s;
+}
+
+void
+Config::setActiveDirectoryAdminPassword( const QString & s )
+{
+    m_activeDirectoryPassword = s;
+}
+
+void
+Config::setActiveDirectoryDomain( const QString & s )
+{
+    m_activeDirectoryDomain = s;
+}
+
+void
+Config::setActiveDirectoryIP( const QString & s )
+{
+    m_activeDirectoryIP = s;
+}
+
+QStringList&
+Config::getActiveDirectory() const
+{
+    m_activeDirectorySettings.clear();
+    m_activeDirectorySettings << m_activeDirectoryUsername
+                              << m_activeDirectoryPassword
+                              << m_activeDirectoryDomain
+                              << m_activeDirectoryIP;
+    return m_activeDirectorySettings;
+}
+
 QString
 Config::rootPassword() const
 {
@@ -913,6 +967,9 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     m_sudoStyle = Calamares::getBool( configurationMap, "sudoersConfigureWithGroup", false ) ? SudoStyle::UserAndGroup
                                                                                              : SudoStyle::UserOnly;
 
+    // Handle Active Directory enablement
+    m_activeDirectory = Calamares::getBool( configurationMap, "allowActiveDirectory", false );
+
     // Handle *hostname* key and subkeys and legacy settings
     {
         bool ok = false;  // Ignored
@@ -989,6 +1046,9 @@ Config::createJobs() const
         j = new SetupSudoJob( m_sudoersGroup, m_sudoStyle );
         jobs.append( Calamares::job_ptr( j ) );
     }
+
+    j = new ActiveDirectoryJob( getActiveDirectory() );
+    jobs.append( Calamares::job_ptr( j ) );
 
     j = new SetupGroupsJob( this );
     jobs.append( Calamares::job_ptr( j ) );
