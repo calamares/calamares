@@ -15,6 +15,7 @@ env:
     -DBUILD_TESTING=ON
     -DBUILD_APPSTREAM=ON
     -DBUILD_APPDATA=ON
+    -DWITH_QT6=ON
 
 jobs:
   build:
