@@ -33,7 +33,7 @@ calamares_add_plugin(locale
     SHARED_LIB
 )
 if(DEBUG_TIMEZONES)
-    target_compile_definitions(${localeq_TARGET} PRIVATE DEBUG_TIMEZONES)
+    target_compile_definitions(${locale_TARGET} PRIVATE DEBUG_TIMEZONES)
 endif()
 
 calamares_add_test(
