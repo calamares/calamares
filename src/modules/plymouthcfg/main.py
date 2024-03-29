@@ -48,9 +48,7 @@ class PlymouthController:
 
     def setTheme(self):
         plymouth_theme = libcalamares.job.configuration["plymouth_theme"]
-        target_env_call(["sed", "-e", 's|^.*Theme=.*|Theme=' +
-                         plymouth_theme + '|', "-i",
-                         "/etc/plymouth/plymouthd.conf"])
+        target_env_call(["plymouth-set-default-theme",  plymouth_theme])
 
     def run(self):
         if detect_plymouth():
