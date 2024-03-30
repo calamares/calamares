@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   SPDX-FileCopyrightText: 2020 - 2022 Anke Boersma <demm@kaosx.us>
+ *   SPDX-FileCopyrightText: 2020 - 2024 Anke Boersma <demm@kaosx.us>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -89,7 +89,7 @@ Column {
 
         console.log("Online lookup", latC, lonC)
         // Needs to move to localeq.conf, each distribution will need their own account
-        xhr.open("GET", "http://api.geonames.org/timezoneJSON?lat=" + latC + "&lng=" + lonC + "&username=SOME_USERNAME")
+        xhr.open("GET", "https://api.geonames.org/timezoneJSON?lat=" + latC + "&lng=" + lonC + "&username=SOME_USERNAME")
         xhr.send()
     }
 
@@ -112,7 +112,7 @@ Column {
 
         Plugin {
             id: mapPlugin
-            preferred: ["osm", "esri"] // "esri", "here", "itemsoverlay", "mapbox", "mapboxgl",  "osm"
+            name: ["osm"]
         }
 
         Map {
@@ -176,6 +176,30 @@ Column {
                     // Pick a TZ lookup method here (quick:offline, accurate:online)
                     getTzOffline();
                 }
+            }
+
+            WheelHandler {
+            id: wheel
+            acceptedDevices: Qt.platform.pluginName === "cocoa" || Qt.platform.pluginName === "wayland"
+                             ? PointerDevice.Mouse | PointerDevice.TouchPad
+                             : PointerDevice.Mouse
+            rotationScale: 1/120
+            property: "zoomLevel"
+            }
+            DragHandler {
+                id: drag
+                target: null
+                onTranslationChanged: (delta) => map.pan(-delta.x, -delta.y)
+            }
+            Shortcut {
+                enabled: map.zoomLevel < map.maximumZoomLevel
+                sequence: StandardKey.ZoomIn
+                onActivated: map.zoomLevel = Math.round(map.zoomLevel + 1)
+            }
+            Shortcut {
+                enabled: map.zoomLevel > map.minimumZoomLevel
+                sequence: StandardKey.ZoomOut
+                onActivated: map.zoomLevel = Math.round(map.zoomLevel - 1)
             }
         }
 
