@@ -444,8 +444,6 @@ makeHostnameSuggestion( const QString& templateString, const QStringList& fullNa
 
     QString hostnameSuggestion = d.expand( templateString );
 
-    // RegExp for valid hostnames; if the suggestion produces a valid name, return it
-    static const QRegularExpression HOSTNAME_RX( "^[a-zA-Z0-9][-a-zA-Z0-9_]*$" );
     return hostnameSuggestion.indexOf( HOSTNAME_RX ) != -1 ? hostnameSuggestion : QString();
 }
 
