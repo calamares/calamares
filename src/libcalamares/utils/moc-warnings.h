@@ -25,4 +25,8 @@
 #pragma clang diagnostic ignored "-Wextra-semi-stmt"
 #pragma clang diagnostic ignored "-Wredundant-parens"
 #pragma clang diagnostic ignored "-Wreserved-identifier"
+
+#if __clang_major__ >= 17
+#pragma clang diagnostic ignored "-Wunsafe-buffer-usage"
+#endif
 #endif
