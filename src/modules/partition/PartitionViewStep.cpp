@@ -497,11 +497,12 @@ shouldWarnForNotEncryptedBoot( const Config* config, const PartitionCoreModule* 
         Partition* root_p = core->findPartitionByMountPoint( "/" );
         Partition* boot_p = core->findPartitionByMountPoint( "/boot" );
 
-        if ( root_p and boot_p )
+        if ( root_p && boot_p )
         {
-            if ( ( root_p->fileSystem().type() == FileSystem::Luks && boot_p->fileSystem().type() != FileSystem::Luks )
-                 || ( root_p->fileSystem().type() == FileSystem::Luks2
-                      && boot_p->fileSystem().type() != FileSystem::Luks2 ) )
+            const auto encryptionMismatch
+                = [ root_t = root_p->fileSystem().type(), boot_t = boot_p->fileSystem().type() ]( FileSystem::Type t )
+            { return root_t == t && boot_t != t; };
+            if ( encryptionMismatch( FileSystem::Luks ) || encryptionMismatch( FileSystem::Luks2 ) )
             {
                 return true;
             }
