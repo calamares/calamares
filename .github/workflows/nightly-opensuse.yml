@@ -31,7 +31,7 @@ jobs:
         uses: calamares/actions/generic-checkout@v5
       - name: "install dependencies"
         shell: bash
-        run: ./ci/deps-opensuse.sh
+        run: ./ci/deps-opensuse-qt6.sh
       - name: "build"
         shell: bash
         run: ./ci/build.sh
