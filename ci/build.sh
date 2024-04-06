@@ -29,11 +29,16 @@ if test -z "$BUILDDIR" ; then
 	test -d "/build" && BUILDDIR=/build
 fi
 if test -z "$CMAKE_ARGS" -a -n "$1" ; then
-	test -x "$(which yq)" || { echo "! No yq command for finding CMAKE_ARGS for workflow $1" ; exit 1 ; }
 	_d="$SRCDIR/.github/workflows/$1"
 	test -f "$_d" || _d="$SRCDIR/.github/workflows/$1.yml"
 	test -f "$_d" || { echo "! No workflow $1" ; exit 1 ; }
-	CMAKE_ARGS=$(yq ".env.CMAKE_ARGS" "$_d")
+
+	if test -x "$(which yq)" ; then
+		CMAKE_ARGS=$(yq ".env.CMAKE_ARGS" "$_d")
+	else
+		CMAKE_ARGS=$(python3 -c 'import yaml ; f=open("'$_d'","r"); print(yaml.safe_load(f)["env"]["CMAKE_ARGS"]);')
+	fi
+
 fi
 
 # Sanity check

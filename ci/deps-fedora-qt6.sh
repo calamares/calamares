@@ -4,7 +4,7 @@
 #
 
 yum install -y bison flex git make cmake gcc-c++ ninja-build
-yum install -y yaml-cpp-devel libpwquality-devel parted-devel python-devel gettext gettext-devel
+yum install -y yaml-cpp-devel libpwquality-devel parted-devel python-devel gettext gettext-devel python3-pyyaml
 yum install -y libicu-devel libatasmart-devel
 # Qt6/KF6 dependencies
 yum install -y qt6-qtbase-devel qt6-linguist qt6-qtbase-private-devel qt6-qtdeclarative-devel qt6-qtsvg-devel qt6-qttools-devel
