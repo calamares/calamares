@@ -154,9 +154,14 @@ dependencies for the image (in this example, for openSUSE and Qt6).
 - `./ci/deps-opensuse-qt6.sh`
 
 Then run CMake (add any CMake options you like at the end) and ninja.
-There is a script `ci/build.sh` that does this, too (without options).
 - `cmake -S /src -B /build -G Ninja`
 - `ninja -C /build`
+
+There is a script `ci/build.sh` that does the CMake an ninja steps.
+- If you set `CMAKE_ARGS` in the environment those extra CMake options are used.
+- If you add an argument to the script command which names a workflow
+  (e.g. "nightly-opensuse-qt6") then `CMAKE_ARGS` are extracted from that
+  workflow and used for the build.
 
 ### Running in Docker
 
