@@ -131,7 +131,12 @@ def have_program_in_target(program : str):
 
 
 def get_kernel_params(uuid):
+    # Configured kernel parameters (default "quiet"), if plymouth installed, add splash
+    # screen parameter and then "rw".
     kernel_params = libcalamares.job.configuration.get("kernelParams", ["quiet"])
+    if have_program_in_target("plymouth"):
+        kernel_params.append("splash")
+    kernel_params.append("rw")
 
     partitions = libcalamares.globalstorage.value("partitions")
     swap_uuid = ""
@@ -140,16 +145,9 @@ def get_kernel_params(uuid):
 
     cryptdevice_params = []
 
-    has_plymouth = have_program_in_target("plymouth")
     has_dracut = have_program_in_target("dracut")
     uses_systemd_hook = libcalamares.utils.target_env_call(["/usr/bin/grep", "-q", "^HOOKS.*systemd", "/etc/mkinitcpio.conf"]) == 0
     use_systemd_naming = has_dracut or uses_systemd_hook
-
-    # If plymouth installed, add splash screen parameter early
-    if has_plymouth:
-        kernel_params.append("splash")
-
-    kernel_params.append("rw")
 
     # Take over swap settings:
     #  - unencrypted swap partition sets swap_uuid
