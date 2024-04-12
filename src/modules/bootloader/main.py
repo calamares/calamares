@@ -138,16 +138,14 @@ def get_kernel_params(uuid):
         kernel_params.append("splash")
     kernel_params.append("rw")
 
+    use_systemd_naming = have_program_in_target("dracut") or (libcalamares.utils.target_env_call(["/usr/bin/grep", "-q", "^HOOKS.*systemd", "/etc/mkinitcpio.conf"]) == 0)
+
     partitions = libcalamares.globalstorage.value("partitions")
+
+    cryptdevice_params = []
     swap_uuid = ""
     swap_outer_mappername = None
     swap_outer_uuid = None
-
-    cryptdevice_params = []
-
-    has_dracut = have_program_in_target("dracut")
-    uses_systemd_hook = libcalamares.utils.target_env_call(["/usr/bin/grep", "-q", "^HOOKS.*systemd", "/etc/mkinitcpio.conf"]) == 0
-    use_systemd_naming = has_dracut or uses_systemd_hook
 
     # Take over swap settings:
     #  - unencrypted swap partition sets swap_uuid
