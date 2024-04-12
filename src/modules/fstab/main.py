@@ -169,6 +169,11 @@ class FstabGenerator(object):
                 password = "none"
                 crypttab_options = ""
 
+        # Make sure we do not add missing crypto_keyfile and options for it
+        if not os.path.isfile(os.path.join(self.root_mount_point, "crypto_keyfile.bin")):
+            password = "none"
+            crypttab_options = ""
+
         return dict(
             name=mapper_name,
             device="UUID=" + luks_uuid,
