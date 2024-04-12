@@ -125,6 +125,11 @@ def is_zfs_root(partition):
     return partition["mountPoint"] == "/" and partition["fs"] == "zfs"
 
 
+def have_program_in_target(program : str):
+    """Returns @c True if @p program is in path in the target"""
+    return libcalamares.utils.target_env_call(["/usr/bin/which", program]) == 0
+
+
 def get_kernel_params(uuid):
     kernel_params = libcalamares.job.configuration.get("kernelParams", ["quiet"])
 
@@ -135,8 +140,8 @@ def get_kernel_params(uuid):
 
     cryptdevice_params = []
 
-    has_plymouth = libcalamares.utils.target_env_call(["sh", "-c", "which plymouth"]) == 0
-    has_dracut = libcalamares.utils.target_env_call(["sh", "-c", "which dracut"]) == 0
+    has_plymouth = have_program_in_target("plymouth")
+    has_dracut = have_program_in_target("dracut")
     uses_systemd_hook = libcalamares.utils.target_env_call(["sh", "-c",
                                                             "grep -q \"^HOOKS.*systemd\" /etc/mkinitcpio.conf"]) == 0
     use_systemd_naming = has_dracut or uses_systemd_hook
