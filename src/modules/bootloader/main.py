@@ -142,8 +142,7 @@ def get_kernel_params(uuid):
 
     has_plymouth = have_program_in_target("plymouth")
     has_dracut = have_program_in_target("dracut")
-    uses_systemd_hook = libcalamares.utils.target_env_call(["sh", "-c",
-                                                            "grep -q \"^HOOKS.*systemd\" /etc/mkinitcpio.conf"]) == 0
+    uses_systemd_hook = libcalamares.utils.target_env_call(["/usr/bin/grep", "-q", "^HOOKS.*systemd", "/etc/mkinitcpio.conf"]) == 0
     use_systemd_naming = has_dracut or uses_systemd_hook
 
     # If plymouth installed, add splash screen parameter early
