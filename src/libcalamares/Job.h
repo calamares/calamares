@@ -109,12 +109,23 @@ public:
      * which of the jobs is "heavy" and which is not.
      */
     virtual int getJobWeight() const;
+
     /** @brief The human-readable name of this job
      *
      * This should be a very short statement of what the job does.
      * For status and state information, see prettyStatusMessage().
+     *
+     * The job's name may be similar to the status message, but this is
+     * a name, and should not be an active verb phrase. The translation
+     * should use context @c @label .
+     *
+     * The name of the job is used as a **fallback** when the status
+     * or descriptions are empty. If a job has no implementation of
+     * those methods, it is OK to use other contexts, but it may look
+     * strange in some places in the UI.
      */
     virtual QString prettyName() const = 0;
+
     /** @brief a longer human-readable description of what the job will do
      *
      * This **may** be used by view steps to fill in the summary
@@ -122,15 +133,23 @@ public:
      * module does so.
      *
      * The default implementation returns an empty string.
+     *
+     * The translation should use context @c @title .
      */
     virtual QString prettyDescription() const;
+
     /** @brief A human-readable status for progress reporting
      *
      * This is called from the JobQueue when progress is made, and should
      * return a not-too-long description of the job's status. This
      * is made visible in the progress bar of the execution view step.
+     *
+     * The job's status should say **what** the job is doing. It should be in
+     * present active tense. Typically the translation uses tr() context
+     * @c @status . See prettyName() for examples.
      */
     virtual QString prettyStatusMessage() const;
+
     virtual JobResult exec() = 0;
 
     bool isEmergency() const { return m_emergency; }
