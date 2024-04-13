@@ -30,19 +30,13 @@ ActiveDirectoryJob::ActiveDirectoryJob(QStringList& activeDirectoryInfo)
 QString
 ActiveDirectoryJob::prettyName() const
 {
-    return tr( "Enroll system in Active Directory" );
-}
-
-QString
-ActiveDirectoryJob::prettyDescription() const
-{
-    return tr( "Enroll system in Active Directory" );
+    return tr( "Enroll system in Active Directory", "@label" );
 }
 
 QString
 ActiveDirectoryJob::prettyStatusMessage() const
 {
-    return tr( "Enrolling system in Active Directory" );
+    return tr( "Enrolling system in Active Directory…", "@status" );
 }
 
 Calamares::JobResult

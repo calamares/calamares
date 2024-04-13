@@ -18,7 +18,6 @@ class ActiveDirectoryJob : public Calamares::Job
 public:
     ActiveDirectoryJob( QStringList& activeDirectoryInfo );
     QString prettyName() const override;
-    QString prettyDescription() const override;
     QString prettyStatusMessage() const override;
     Calamares::JobResult exec() override;
 
