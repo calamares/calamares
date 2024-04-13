@@ -188,6 +188,13 @@ private:
             // starts the job, or if the job itself reports 0.0) be more
             // accepting in what gets reported: jobs with no status fall
             // back to description and name, whichever is non-empty.
+            //
+            // Later calls (e.g. when percentage > 0) use the status unchanged.
+            // It may be empty, but the ExecutionViewStep knows about empty
+            // status messages and does not update the text in that case.
+            //
+            // This means that a Job can implement just prettyName() and get
+            // a reasonable "status" message which will update only once.
             if ( percentage == 0.0 && message.isEmpty() )
             {
                 message = jobitem.job->prettyDescription();
