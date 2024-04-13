@@ -34,6 +34,7 @@ properties:
 
     luksGeneration: { type: string, enum: [luks1, luks2] }  # Also allows "luks" as alias of "luks1"
     enableLuksAutomatedPartitioning: { type: boolean, default: false }
+    preCheckEncryption: { type: boolean, default: false }
 
     allowManualPartitioning: { type: boolean, default: true }
     showNotEncryptedBootMessage: { type: boolean, default: true }

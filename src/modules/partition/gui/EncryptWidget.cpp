@@ -70,6 +70,11 @@ EncryptWidget::EncryptWidget( QWidget* parent )
     CALAMARES_RETRANSLATE_SLOT( &EncryptWidget::retranslate );
 }
 
+void EncryptWidget::setEncryptionCheckbox( bool preCheckEncrypt)
+{
+    m_ui->m_encryptCheckBox->setChecked( preCheckEncrypt );
+}
+
 void
 EncryptWidget::reset( bool checkVisible )
 {
