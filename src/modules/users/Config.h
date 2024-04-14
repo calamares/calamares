@@ -230,8 +230,6 @@ public:
     bool getActiveDirectoryEnabled() const;
     /// Is it both enabled and activated?
     bool getActiveDirectoryUsed() const;
-    /// Config for Active Directory
-    QStringList& getActiveDirectory() const;
 
     const QList< GroupDescription >& defaultGroups() const { return m_defaultGroups; }
     /** @brief the names of all the groups for the current user
@@ -355,7 +353,6 @@ private:
 
     bool m_isReady = false;  ///< Used to reduce readyChanged signals
 
-    mutable QStringList m_activeDirectorySettings;
     bool m_activeDirectory = false;
     bool m_activeDirectoryUsed = false;
     QString m_activeDirectoryUsername;

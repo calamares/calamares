@@ -16,13 +16,19 @@ class ActiveDirectoryJob : public Calamares::Job
 {
     Q_OBJECT
 public:
-    ActiveDirectoryJob( QStringList& activeDirectoryInfo );
+    ActiveDirectoryJob( const QString& adminLogin,
+                        const QString& adminPassword,
+                        const QString& domain,
+                        const QString& ip );
     QString prettyName() const override;
     QString prettyStatusMessage() const override;
     Calamares::JobResult exec() override;
 
 private:
-    QStringList m_activeDirectoryInfo;
+    QString m_adminLogin;  // Admin credentials to do the enrollment
+    QString m_adminPassword;
+    QString m_domain;
+    QString m_ip;
 };
 
 #endif /* ACTIVEDIRECTORYJOB_H */

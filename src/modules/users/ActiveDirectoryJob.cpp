@@ -18,12 +18,18 @@
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
-#include <QTextStream>
 #include <QProcess>
+#include <QTextStream>
 
-ActiveDirectoryJob::ActiveDirectoryJob(QStringList& activeDirectoryInfo)
+ActiveDirectoryJob::ActiveDirectoryJob( const QString& adminLogin,
+                                        const QString& adminPassword,
+                                        const QString& domain,
+                                        const QString& ip )
     : Calamares::Job()
-    , m_activeDirectoryInfo(activeDirectoryInfo)
+    , m_adminLogin( adminLogin )
+    , m_adminPassword( adminPassword )
+    , m_domain( domain )
+    , m_ip( ip )
 {
 }
 
@@ -42,41 +48,45 @@ ActiveDirectoryJob::prettyStatusMessage() const
 Calamares::JobResult
 ActiveDirectoryJob::exec()
 {
-    QString username = m_activeDirectoryInfo.value(0);
-    QString password = m_activeDirectoryInfo.value(1);
-    QString domain = m_activeDirectoryInfo.value(2);
-    QString ip = m_activeDirectoryInfo.value(3);
-
-    if (!ip.isEmpty()) {
-        const QString hostsFilePath = Calamares::System::instance()->targetPath(QStringLiteral("/etc/hosts"));;
-        QFile hostsFile(hostsFilePath);
-        if (hostsFile.open(QIODevice::Append | QIODevice::Text)) {
-            QTextStream out(&hostsFile);
-            out << ip << " " << domain << "\n";
+    if ( !m_ip.isEmpty() )
+    {
+        const QString hostsFilePath = Calamares::System::instance()->targetPath( QStringLiteral( "/etc/hosts" ) );
+        ;
+        QFile hostsFile( hostsFilePath );
+        if ( hostsFile.open( QIODevice::Append | QIODevice::Text ) )
+        {
+            QTextStream out( &hostsFile );
+            out << m_ip << " " << m_domain << "\n";
             hostsFile.close();
-        } else {
-            return Calamares::JobResult::error("Failed to open /etc/hosts for writing.");
+        }
+        else
+        {
+            return Calamares::JobResult::error( "Failed to open /etc/hosts for writing." );
         }
     }
 
-    const QString installPath = Calamares::System::instance()->targetPath(QStringLiteral("/"));
-    QStringList args = {"join", domain, "-U", username, "--install=" + installPath, "--verbose"};
+    const QString installPath = Calamares::System::instance()->targetPath( QStringLiteral( "/" ) );
+    QStringList args = { "join", m_domain, "-U", m_adminLogin, "--install=" + installPath, "--verbose" };
 
     QProcess process;
-    process.start("realm", args);
+    process.start( "realm", args );
     process.waitForStarted();
 
-    if (!password.isEmpty()) {
-        process.write((password + "\n").toUtf8());
+    if ( !m_adminPassword.isEmpty() )
+    {
+        process.write( ( m_adminPassword + "\n" ).toUtf8() );
         process.closeWriteChannel();
     }
 
-    process.waitForFinished(-1);
+    process.waitForFinished( -1 );
 
-    if (process.exitCode() == 0) {
+    if ( process.exitCode() == 0 )
+    {
         return Calamares::JobResult::ok();
-    } else {
+    }
+    else
+    {
         QString errorOutput = process.readAllStandardError();
-        return Calamares::JobResult::error(QString("Failed to join realm: %1").arg(errorOutput));
+        return Calamares::JobResult::error( QString( "Failed to join realm: %1" ).arg( errorOutput ) );
     }
 }
