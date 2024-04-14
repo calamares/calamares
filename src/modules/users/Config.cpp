@@ -1034,9 +1034,14 @@ Config::createJobs() const
         jobs.append( Calamares::job_ptr( j ) );
     }
 
-    j = new ActiveDirectoryJob(
-        m_activeDirectoryAdminUsername, m_activeDirectoryAdminPassword, m_activeDirectoryDomain, m_activeDirectoryIP );
-    jobs.append( Calamares::job_ptr( j ) );
+    if ( getActiveDirectoryUsed() )
+    {
+        j = new ActiveDirectoryJob( m_activeDirectoryAdminUsername,
+                                    m_activeDirectoryAdminPassword,
+                                    m_activeDirectoryDomain,
+                                    m_activeDirectoryIP );
+        jobs.append( Calamares::job_ptr( j ) );
+    }
 
     j = new SetupGroupsJob( this );
     jobs.append( Calamares::job_ptr( j ) );
