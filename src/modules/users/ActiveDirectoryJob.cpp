@@ -47,11 +47,8 @@ ActiveDirectoryJob::exec()
     QString domain = m_activeDirectoryInfo.value(2);
     QString ip = m_activeDirectoryInfo.value(3);
 
-    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-    QString rootMountPoint = gs ? gs->value("rootMountPoint").toString() : QString();
-
     if (!ip.isEmpty()) {
-        QString hostsFilePath = !rootMountPoint.isEmpty() ? rootMountPoint + "/etc/hosts" : "/etc/hosts";
+        const QString hostsFilePath = Calamares::System::instance()->targetPath(QStringLiteral("/etc/hosts"));;
         QFile hostsFile(hostsFilePath);
         if (hostsFile.open(QIODevice::Append | QIODevice::Text)) {
             QTextStream out(&hostsFile);
@@ -62,7 +59,7 @@ ActiveDirectoryJob::exec()
         }
     }
 
-    QString installPath = !rootMountPoint.isEmpty() ? rootMountPoint : "/";
+    const QString installPath = Calamares::System::instance()->targetPath(QStringLiteral("/"));
     QStringList args = {"join", domain, "-U", username, "--install=" + installPath, "--verbose"};
 
     QProcess process;
