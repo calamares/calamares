@@ -340,7 +340,7 @@ UserTests::testPasswordChecks()
         QCOMPARE( l.length(), 0 );
         QVERIFY( !addPasswordCheck( "nonempty", QVariant( false ), l ) );  // legacy option, now ignored
         QCOMPARE( l.length(), 0 );
-        QVERIFY( !addPasswordCheck( "nonempty", QVariant( true ), l ) ); // still ignored
+        QVERIFY( !addPasswordCheck( "nonempty", QVariant( true ), l ) );  // still ignored
         QCOMPARE( l.length(), 0 );
     }
 }
