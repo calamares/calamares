@@ -676,13 +676,13 @@ Config::getActiveDirectoryUsed() const
 void
 Config::setActiveDirectoryAdminUsername( const QString& s )
 {
-    m_activeDirectoryUsername = s;
+    m_activeDirectoryAdminUsername = s;
 }
 
 void
 Config::setActiveDirectoryAdminPassword( const QString& s )
 {
-    m_activeDirectoryPassword = s;
+    m_activeDirectoryAdminPassword = s;
 }
 
 void
@@ -1035,7 +1035,7 @@ Config::createJobs() const
     }
 
     j = new ActiveDirectoryJob(
-        m_activeDirectoryUsername, m_activeDirectoryPassword, m_activeDirectoryDomain, m_activeDirectoryIP );
+        m_activeDirectoryAdminUsername, m_activeDirectoryAdminPassword, m_activeDirectoryDomain, m_activeDirectoryIP );
     jobs.append( Calamares::job_ptr( j ) );
 
     j = new SetupGroupsJob( this );

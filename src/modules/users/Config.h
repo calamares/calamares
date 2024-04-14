@@ -355,8 +355,8 @@ private:
 
     bool m_activeDirectory = false;
     bool m_activeDirectoryUsed = false;
-    QString m_activeDirectoryUsername;
-    QString m_activeDirectoryPassword;
+    QString m_activeDirectoryAdminUsername;
+    QString m_activeDirectoryAdminPassword;
     QString m_activeDirectoryDomain;
     QString m_activeDirectoryIP;
 
