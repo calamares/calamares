@@ -66,27 +66,20 @@ ActiveDirectoryJob::exec()
     }
 
     const QString installPath = Calamares::System::instance()->targetPath( QStringLiteral( "/" ) );
-    QStringList args = { "join", m_domain, "-U", m_adminLogin, "--install=" + installPath, "--verbose" };
+    auto r = Calamares::System::instance()->runCommand(
+        Calamares::System::RunLocation::RunInHost,
+        { "realm", "join", m_domain, "-U", m_adminLogin, "--install=" + installPath, "--verbose" },
+        QString(),
+        m_adminPassword,
+        std::chrono::seconds( 30 ) );
 
-    QProcess process;
-    process.start( "realm", args );
-    process.waitForStarted();
 
-    if ( !m_adminPassword.isEmpty() )
-    {
-        process.write( ( m_adminPassword + "\n" ).toUtf8() );
-        process.closeWriteChannel();
-    }
-
-    process.waitForFinished( -1 );
-
-    if ( process.exitCode() == 0 )
+    if ( r.getExitCode() == 0 )
     {
         return Calamares::JobResult::ok();
     }
     else
     {
-        QString errorOutput = process.readAllStandardError();
-        return Calamares::JobResult::error( QString( "Failed to join realm: %1" ).arg( errorOutput ) );
+        return Calamares::JobResult::error( QString( "Failed to join realm: %1" ).arg( r.getOutput() ) );
     }
 }
