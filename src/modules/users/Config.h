@@ -226,9 +226,9 @@ public:
     bool permitWeakPasswords() const { return m_permitWeakPasswords; }
     /// Current setting for "require strong password"?
     bool requireStrongPasswords() const { return m_requireStrongPasswords; }
-    /// Is Active Directory enabled?
+    /// Is Active Directory enabled in the config file?
     bool getActiveDirectoryEnabled() const;
-    /// Is it both enabled and activated?
+    /// Is it both enabled and activated by user choice (checkbox)?
     bool getActiveDirectoryUsed() const;
 
     const QList< GroupDescription >& defaultGroups() const { return m_defaultGroups; }

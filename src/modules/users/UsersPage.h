@@ -44,6 +44,8 @@ protected slots:
     void reportUserPasswordStatus( int, const QString& );
     void reportRootPasswordStatus( int, const QString& );
 
+    void onActiveDirectoryToggled( bool checked );
+
 private:
     void retranslate();
 
