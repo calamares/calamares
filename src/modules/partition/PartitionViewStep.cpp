@@ -698,8 +698,6 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
                 Calamares::getBool( configurationMap, "alwaysShowPartitionLabels", true ) );
     gs->insert( "enableLuksAutomatedPartitioning",
                 Calamares::getBool( configurationMap, "enableLuksAutomatedPartitioning", true ) );
-    gs->insert( "preCheckEncryption",
-                Calamares::getBool( configurationMap, "preCheckEncryption", false ) );
 
     QString partitionTableName = Calamares::getString( configurationMap, "defaultPartitionTableType" );
     if ( partitionTableName.isEmpty() )

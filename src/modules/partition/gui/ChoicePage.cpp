@@ -90,7 +90,7 @@ ChoicePage::ChoicePage( Config* config, QWidget* parent )
     auto gs = Calamares::JobQueue::instance()->globalStorage();
 
     m_enableEncryptionWidget = gs->value( "enableLuksAutomatedPartitioning" ).toBool();
-    m_preCheckEncryption = gs->value( "preCheckEncryption" ).toBool();
+    m_preCheckEncryption = m_config->preCheckEncryption();
 
     // Set up drives combo
     m_mainLayout->setDirection( QBoxLayout::TopToBottom );
