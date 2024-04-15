@@ -170,7 +170,6 @@ private:
     int m_lastSelectedDeviceIndex = -1;
 
     bool m_enableEncryptionWidget = false;
-    bool m_preCheckEncryption = false;
 
     QMutex m_coreMutex;
 };

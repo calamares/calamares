@@ -83,14 +83,12 @@ ChoicePage::ChoicePage( Config* config, QWidget* parent )
     , m_beforePartitionLabelsView( nullptr )
     , m_bootloaderComboBox( nullptr )
     , m_enableEncryptionWidget( true )
-    , m_preCheckEncryption( false )
 {
     setupUi( this );
 
     auto gs = Calamares::JobQueue::instance()->globalStorage();
 
     m_enableEncryptionWidget = gs->value( "enableLuksAutomatedPartitioning" ).toBool();
-    m_preCheckEncryption = m_config->preCheckEncryption();
 
     // Set up drives combo
     m_mainLayout->setDirection( QBoxLayout::TopToBottom );
@@ -471,9 +469,9 @@ ChoicePage::onActionChanged()
             m_encryptWidget->setFilesystem( FileSystem::typeForName( m_replaceFsTypesChoiceComboBox->currentText() ) );
         }
         
-        if ( m_preCheckEncryption )
+        if ( m_config->preCheckEncryption() )
         {
-            m_encryptWidget->setEncryptionCheckbox( m_preCheckEncryption );
+            m_encryptWidget->setEncryptionCheckbox( m_config->preCheckEncryption() );
         }
     }
 
