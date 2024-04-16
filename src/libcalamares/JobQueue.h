@@ -20,6 +20,15 @@ namespace Calamares
 class GlobalStorage;
 class JobThread;
 
+///@brief RAII class to suppress sleep / suspend during its lifetime
+class DLLEXPORT SleepInhibitor : public QObject
+{
+    Q_OBJECT
+public:
+    SleepInhibitor();
+    ~SleepInhibitor() override;
+};
+
 class DLLEXPORT JobQueue : public QObject
 {
     Q_OBJECT

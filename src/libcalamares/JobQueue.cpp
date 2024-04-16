@@ -16,13 +16,174 @@
 #include "compat/Mutex.h"
 #include "utils/Logger.h"
 
+#include <QApplication>
+#include <QDBusConnection>
+#include <QDBusMessage>
+#include <QDBusPendingCall>
+#include <QDBusPendingReply>
 #include <QMutex>
 #include <QThread>
 
 #include <memory>
 
+namespace
+{
+// This power-management code is largely cribbed from KDE Discover,
+// https://invent.kde.org/plasma/discover/-/blob/master/discover/PowerManagementInterface.cpp
+//
+// Upstream license text says:
+//
+//   SPDX-FileCopyrightText: 2019 (c) Matthieu Gallien <matthieu_gallien@yahoo.fr>
+//   SPDX-License-Identifier: LGPL-3.0-or-later
+
+
+/** @brief Class to manage sleep / suspend on inactivity
+ *
+ * Create an object of this class on the heap. Call inhibitSleep()
+ * to (try to) stop system sleep / suspend. Call uninhibitSleep()
+ * when the object is no longer needed. The object self-deletes
+ * after uninhibitSleep() completes.
+ */
+class PowerManagementInterface : public QObject
+{
+    Q_OBJECT
+public:
+    PowerManagementInterface( QObject* parent = nullptr );
+    ~PowerManagementInterface() override;
+
+public Q_SLOTS:
+    void inhibitSleep();
+    void uninhibitSleep();
+
+private Q_SLOTS:
+    void hostSleepInhibitChanged();
+    void inhibitDBusCallFinished( QDBusPendingCallWatcher* aWatcher );
+    void uninhibitDBusCallFinished( QDBusPendingCallWatcher* aWatcher );
+
+private:
+    uint m_inhibitSleepCookie = 0;
+    bool m_inhibitedSleep = false;
+};
+
+PowerManagementInterface::PowerManagementInterface( QObject* parent )
+    : QObject( parent )
+{
+    auto sessionBus = QDBusConnection::sessionBus();
+
+    sessionBus.connect( QStringLiteral( "org.freedesktop.PowerManagement.Inhibit" ),
+                        QStringLiteral( "/org/freedesktop/PowerManagement/Inhibit" ),
+                        QStringLiteral( "org.freedesktop.PowerManagement.Inhibit" ),
+                        QStringLiteral( "HasInhibitChanged" ),
+                        this,
+                        SLOT( hostSleepInhibitChanged() ) );
+}
+
+PowerManagementInterface::~PowerManagementInterface() = default;
+
+void
+PowerManagementInterface::hostSleepInhibitChanged()
+{
+    // We don't actually care
+}
+
+void
+PowerManagementInterface::inhibitDBusCallFinished( QDBusPendingCallWatcher* aWatcher )
+{
+    QDBusPendingReply< uint > reply = *aWatcher;
+    if ( reply.isError() )
+    {
+        cError() << "Could not inhibit sleep:" << reply.error();
+        // m_inhibitedSleep = false; // unchanged
+    }
+    else
+    {
+        m_inhibitSleepCookie = reply.argumentAt< 0 >();
+        m_inhibitedSleep = true;
+        cDebug() << "Sleep inhibited, cookie" << m_inhibitSleepCookie;
+    }
+    aWatcher->deleteLater();
+}
+
+void
+PowerManagementInterface::uninhibitDBusCallFinished( QDBusPendingCallWatcher* aWatcher )
+{
+    QDBusPendingReply<> reply = *aWatcher;
+    if ( reply.isError() )
+    {
+        cError() << "Could not uninhibit sleep:" << reply.error();
+    }
+    else
+    {
+        m_inhibitedSleep = false;
+        m_inhibitSleepCookie = 0;
+        cDebug() << "Sleep uninhibited.";
+    }
+    aWatcher->deleteLater();
+    this->deleteLater();
+}
+
+void
+PowerManagementInterface::inhibitSleep()
+{
+    if ( m_inhibitedSleep )
+    {
+        cDebug() << "Sleep is already inhibited.";
+        return;
+    }
+
+    auto sessionBus = QDBusConnection::sessionBus();
+    auto inhibitCall = QDBusMessage::createMethodCall( QStringLiteral( "org.freedesktop.PowerManagement.Inhibit" ),
+                                                       QStringLiteral( "/org/freedesktop/PowerManagement/Inhibit" ),
+                                                       QStringLiteral( "org.freedesktop.PowerManagement.Inhibit" ),
+                                                       QStringLiteral( "Inhibit" ) );
+    inhibitCall.setArguments(
+        { { tr( "Calamares" ) }, { tr( "Installation in progress", "@status" ) } } );
+
+    auto asyncReply = sessionBus.asyncCall( inhibitCall );
+    auto* replyWatcher = new QDBusPendingCallWatcher( asyncReply, this );
+    QObject::connect(
+        replyWatcher, &QDBusPendingCallWatcher::finished, this, &PowerManagementInterface::inhibitDBusCallFinished );
+}
+
+void
+PowerManagementInterface::uninhibitSleep()
+{
+    if ( !m_inhibitedSleep )
+    {
+        cDebug() << "Sleep was never inhibited.";
+        this->deleteLater();
+        return;
+    }
+
+    auto sessionBus = QDBusConnection::sessionBus();
+    auto uninhibitCall = QDBusMessage::createMethodCall( QStringLiteral( "org.freedesktop.PowerManagement.Inhibit" ),
+                                                         QStringLiteral( "/org/freedesktop/PowerManagement/Inhibit" ),
+                                                         QStringLiteral( "org.freedesktop.PowerManagement.Inhibit" ),
+                                                         QStringLiteral( "UnInhibit" ) );
+    uninhibitCall.setArguments( { { m_inhibitSleepCookie } } );
+
+    auto asyncReply = sessionBus.asyncCall( uninhibitCall );
+    auto replyWatcher = new QDBusPendingCallWatcher( asyncReply, this );
+    QObject::connect(
+        replyWatcher, &QDBusPendingCallWatcher::finished, this, &PowerManagementInterface::uninhibitDBusCallFinished );
+}
+
+}  // namespace
+
 namespace Calamares
 {
+SleepInhibitor::SleepInhibitor()
+{
+    // Create a PowerManagementInterface object with intentionally no parent
+    // so it is not destroyed along with this. Instead, when this
+    // is destroyed, **start** the uninhibit-sleep call which will (later)
+    // destroy the PowerManagementInterface object.
+    auto* p = new PowerManagementInterface( nullptr );
+    p->inhibitSleep();
+    connect( this, &QObject::destroyed, p, &PowerManagementInterface::uninhibitSleep );
+}
+
+SleepInhibitor::~SleepInhibitor() = default;
 
 struct WeightedJob
 {
@@ -274,6 +435,10 @@ JobQueue::start()
     m_thread->finalize();
     m_finished = false;
     m_thread->start();
+
+    auto* inhibitor = new PowerManagementInterface( this );
+    inhibitor->inhibitSleep();
+    connect( this, &JobQueue::finished, inhibitor, &PowerManagementInterface::uninhibitSleep );
 }
 
 
