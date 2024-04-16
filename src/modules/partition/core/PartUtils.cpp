@@ -581,12 +581,7 @@ efiFilesystemMinimumSize()
         uefisys_part_sizeB = v > 0 ? v : 0;
     }
     // There is a lower limit of what can be configured
-    if ( uefisys_part_sizeB < efiSpecificationHardMinimumSize )
-    {
-        uefisys_part_sizeB = efiSpecificationHardMinimumSize;
-    }
-    return uefisys_part_sizeB;
-    return efiSpecificationHardMinimumSize;
+    return std::max( uefisys_part_sizeB, efiSpecificationHardMinimumSize );
 }
 
 QString
