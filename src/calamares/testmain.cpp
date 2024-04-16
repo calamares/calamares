@@ -52,6 +52,7 @@
 #include <QLabel>
 #include <QMainWindow>
 #include <QThread>
+#include <QTimer>
 
 #include <memory>
 
@@ -455,11 +456,11 @@ libcalamares.utils.debug('pre-script for testing purposes injected')
 int
 main( int argc, char* argv[] )
 {
-    QCoreApplication* aw = createApplication( argc, argv );
+    QCoreApplication* application = createApplication( argc, argv );
 
     Logger::setupLogLevel( Logger::LOGVERBOSE );
 
-    ModuleConfig module = handle_args( *aw );
+    ModuleConfig module = handle_args( *application );
     if ( module.moduleName().isEmpty() )
     {
         return 1;
@@ -469,7 +470,7 @@ main( int argc, char* argv[] )
     std::unique_ptr< Calamares::JobQueue > jobqueue_p( new Calamares::JobQueue( nullptr ) );
     std::unique_ptr< Calamares::System > system_p( new Calamares::System( settings_p->doChroot() ) );
 
-    QMainWindow* mw = nullptr;
+    QMainWindow* mainWindow = nullptr;
 
     auto* gs = jobqueue_p->globalStorage();
     if ( !module.globalConfigFile().isEmpty() )
@@ -513,21 +514,21 @@ main( int argc, char* argv[] )
         // tries to create the widget **which won't be used anyway**.
         //
         // To avoid that crash, re-create the QApplication, now with GUI
-        if ( !qobject_cast< QApplication* >( aw ) )
+        if ( !qobject_cast< QApplication* >( application ) )
         {
             auto* replace_app = new QApplication( argc, argv );
             replace_app->setQuitOnLastWindowClosed( true );
-            aw = replace_app;
+            application = replace_app;
         }
-        mw = module.m_ui ? new QMainWindow() : nullptr;
-        if ( mw )
+        mainWindow = module.m_ui ? new QMainWindow() : nullptr;
+        if ( mainWindow )
         {
-            mw->installEventFilter( Calamares::Retranslator::instance() );
+            mainWindow->installEventFilter( Calamares::Retranslator::instance() );
         }
 
         (void)new Calamares::Branding( module.m_branding );
         auto* modulemanager = new Calamares::ModuleManager( QStringList(), nullptr );
-        (void)Calamares::ViewManager::instance( mw );
+        (void)Calamares::ViewManager::instance( mainWindow );
         modulemanager->addModule( m );
     }
 
@@ -542,16 +543,16 @@ main( int argc, char* argv[] )
         return 1;
     }
 
-    if ( mw )
+    if ( mainWindow )
     {
         auto* vm = Calamares::ViewManager::instance();
         vm->onInitComplete();
         QWidget* w = vm->currentStep()->widget();
-        w->setParent( mw );
-        mw->setCentralWidget( w );
+        w->setParent( mainWindow );
+        mainWindow->setCentralWidget( w );
         w->show();
-        mw->show();
-        return aw->exec();
+        mainWindow->show();
+        return application->exec();
     }
 
     using TR = Logger::DebugRow< const char*, const QString >;
@@ -559,30 +560,10 @@ main( int argc, char* argv[] )
     cDebug() << Logger::SubEntry << "Module metadata" << TR( "name", m->name() ) << TR( "type", m->typeString() )
              << TR( "interface", m->interfaceString() );
 
-    Calamares::JobList jobList = m->jobs();
-    unsigned int failure_count = 0;
-    unsigned int count = 1;
-    for ( const auto& p : jobList )
-    {
-        // This doesn't get a SubEntry because the jobs may log a bunch of
-        // things; print the function-header to make clear that we're back in main.
-        cDebug() << "Job #" << count << "name" << p->prettyName();
-        Calamares::JobResult r = p->exec();
-        if ( !r )
-        {
-            cError() << "Job #" << count << "failed" << TR( "summary", r.message() ) << TR( "details", r.details() );
-            if ( r.errorCode() > 0 )
-            {
-                ++failure_count;
-            }
-        }
-        ++count;
-    }
+    Calamares::JobQueue::instance()->enqueue(100, m->jobs());
 
-    if ( aw )
-    {
-        delete aw;
-    }
+    QObject::connect(Calamares::JobQueue::instance(), &Calamares::JobQueue::finished, [application]() { QTimer::singleShot(std::chrono::seconds(3), application, &QApplication::quit); });
+    QTimer::singleShot(0, []() { Calamares::JobQueue::instance()->start(); });
 
-    return failure_count ? 1 : 0;
+    return application->exec();
 }
