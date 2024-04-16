@@ -100,7 +100,7 @@ hostCPU_FreeBSD()
 
 #if defined( Q_OS_LINUX )
 static QString
-hostCPUmatchARM( const QString& s )
+hostCPUmatchARM( const QString& )
 {
     /* The "CPU implementer" line is for ARM CPUs in general.
      *
