@@ -185,7 +185,6 @@ ChoicePage::init( PartitionCoreModule* core )
     setModelToComboBox( m_drivesCombo, core->deviceModel() );
 
     connect( m_drivesCombo, qOverload< int >( &QComboBox::currentIndexChanged ), this, &ChoicePage::applyDeviceChoice );
-
     connect( m_encryptWidget, &EncryptWidget::stateChanged, this, &ChoicePage::onEncryptWidgetStateChanged );
     connect( m_reuseHomeCheckBox, &QCheckBox::stateChanged, this, &ChoicePage::onHomeCheckBoxStateChanged );
 
@@ -468,11 +467,8 @@ ChoicePage::onActionChanged()
         {
             m_encryptWidget->setFilesystem( FileSystem::typeForName( m_replaceFsTypesChoiceComboBox->currentText() ) );
         }
-        
-        if ( m_config->preCheckEncryption() )
-        {
-            m_encryptWidget->setEncryptionCheckbox( m_config->preCheckEncryption() );
-        }
+
+        m_encryptWidget->setEncryptionCheckbox( m_config->preCheckEncryption() );
     }
 
     Device* currd = selectedDevice();
@@ -1580,7 +1576,9 @@ ChoicePage::calculateNextEnabled() const
         }
     }
 
-    if ( m_config->installChoice() != InstallChoice::Manual && m_encryptWidget->isVisible() )
+    if ( m_config->installChoice() != InstallChoice::Manual 
+         && (m_encryptWidget->isVisible() ||
+                    m_encryptWidget->isEncryptionCheckboxChecked()))
     {
         switch ( m_encryptWidget->state() )
         {
