@@ -117,7 +117,7 @@ public:
      *
      * The job's name may be similar to the status message, but this is
      * a name, and should not be an active verb phrase. The translation
-     * should use context @c @label .
+     * should use context @c \@label .
      *
      * The name of the job is used as a **fallback** when the status
      * or descriptions are empty. If a job has no implementation of
@@ -134,7 +134,7 @@ public:
      *
      * The default implementation returns an empty string.
      *
-     * The translation should use context @c @title .
+     * The translation should use context @c \@title .
      */
     virtual QString prettyDescription() const;
 
@@ -146,7 +146,7 @@ public:
      *
      * The job's status should say **what** the job is doing. It should be in
      * present active tense. Typically the translation uses tr() context
-     * @c @status . See prettyName() for examples.
+     * @c \@status . See prettyName() for examples.
      */
     virtual QString prettyStatusMessage() const;
 
