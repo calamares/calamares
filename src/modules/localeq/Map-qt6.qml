@@ -89,7 +89,7 @@ Column {
 
         console.log("Online lookup", latC, lonC)
         // Needs to move to localeq.conf, each distribution will need their own account
-        xhr.open("GET", "https://api.geonames.org/timezoneJSON?lat=" + latC + "&lng=" + lonC + "&username=SOME_USERNAME")
+        xhr.open("GET", "http://api.geonames.org/timezoneJSON?lat=" + latC + "&lng=" + lonC + "&username=SOME_USERNAME")
         xhr.send()
     }
 
