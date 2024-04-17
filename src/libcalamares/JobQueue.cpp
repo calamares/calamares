@@ -16,7 +16,6 @@
 #include "compat/Mutex.h"
 #include "utils/Logger.h"
 
-#include <QApplication>
 #include <QDBusConnection>
 #include <QDBusMessage>
 #include <QDBusPendingCall>
