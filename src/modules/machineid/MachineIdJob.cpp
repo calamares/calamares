@@ -101,10 +101,8 @@ MachineIdJob::exec()
                 QObject::tr( "Directory not found" ),
                 QObject::tr( "Could not create new random file <pre>%1</pre>." ).arg( entropy_file ) );
         }
-        auto r = createEntropy( m_entropy_copy ? EntropyGeneration::CopyFromHost
-                                                          : EntropyGeneration::New,
-                                           root,
-                                           entropy_file );
+        auto r = createEntropy(
+            m_entropy_copy ? EntropyGeneration::CopyFromHost : EntropyGeneration::New, root, entropy_file );
         if ( !r )
         {
             return r;
