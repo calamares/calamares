@@ -9,6 +9,9 @@
 # You can pass in directory names, in which case the files
 # in that directory (NOT below it) are processed.
 #
+# If the environment variable CLANG_FORMAT is set to a (full path) and
+# that path is executable, it will be used if possible.
+#
 LANG=C
 LC_ALL=C
 LC_NUMERIC=C
@@ -20,8 +23,17 @@ test -d "$BASEDIR" || { echo "! Could not determine base for $0" ; exit 1 ; }
 test -d "$TOPDIR" || { echo "! Cound not determine top-level source dir" ; exit 1 ; }
 test -f "$TOPDIR/.clang-format" || { echo "! No .clang-format support files in $TOPDIR" ; exit 1 ; }
 
-# Allow specifying CF_VERSIONS outside already
-CF_VERSIONS="$CF_VERSIONS clang-format15 clang-format-15 clang-format-16 clang-format-16.0.6 clang-format"
+# Start with CLANG_FORMAT, if it is specified
+CF_VERSIONS=""
+if test -n "$CLANG_FORMAT" && test -x "$CLANG_FORMAT" ; then
+	CF_VERSIONS="$CLANG_FORMAT"
+fi
+# And a bunch of other potential known versions of clang-format, newest first
+CF_VERSIONS="$CF_VERSIONS clang-format-17"
+CF_VERSIONS="$CF_VERSIONS clang-format-16 clang-format-16.0.6 "
+CF_VERSIONS="$CF_VERSIONS clang-format15 clang-format-15 "
+# Generic name of clang-format
+CF_VERSIONS="$CF_VERSIONS clang-format"
 for _cf in $CF_VERSIONS
 do
 	# Not an error if this particular clang-format isn't found
