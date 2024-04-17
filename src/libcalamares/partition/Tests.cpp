@@ -110,7 +110,8 @@ PartitionServiceTests::testUnitComparison()
 }
 
 /* Operator to make the table in testUnitNormalisation_data easier to write */
-constexpr qint64 operator""_qi( unsigned long long m )
+constexpr qint64
+operator""_qi( unsigned long long m )
 {
     return qint64( m );
 }

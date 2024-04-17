@@ -12,7 +12,7 @@
 #define DLLMACRO_H
 
 #ifndef CALAMARES_EXPORT
-#define CALAMARES_EXPORT __attribute__((visibility("default")))
+#define CALAMARES_EXPORT __attribute__( ( visibility( "default" ) ) )
 #endif
 
 /*

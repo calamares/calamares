@@ -24,39 +24,45 @@ namespace Units
 {
 
 /** User defined literals, 1_KB is 1 KiloByte (= 10^3 bytes) */
-constexpr qint64 operator""_KB( unsigned long long m )
+constexpr qint64
+operator""_KB( unsigned long long m )
 {
     return qint64( m ) * 1000;
 }
 
 /** User defined literals, 1_KiB is 1 KibiByte (= 2^10 bytes) */
-constexpr qint64 operator""_KiB( unsigned long long m )
+constexpr qint64
+operator""_KiB( unsigned long long m )
 {
     return qint64( m ) * 1024;
 }
 
 /** User defined literals, 1_MB is 1 MegaByte (= 10^6 bytes) */
-constexpr qint64 operator""_MB( unsigned long long m )
+constexpr qint64
+operator""_MB( unsigned long long m )
 {
-    return operator""_KB(m)*1000;
+    return operator""_KB( m ) * 1000;
 }
 
 /** User defined literals, 1_MiB is 1 MibiByte (= 2^20 bytes) */
-constexpr qint64 operator""_MiB( unsigned long long m )
+constexpr qint64
+operator""_MiB( unsigned long long m )
 {
-    return operator""_KiB(m)*1024;
+    return operator""_KiB( m ) * 1024;
 }
 
 /** User defined literals, 1_GB is 1 GigaByte (= 10^9 bytes) */
-constexpr qint64 operator""_GB( unsigned long long m )
+constexpr qint64
+operator""_GB( unsigned long long m )
 {
-    return operator""_MB(m)*1000;
+    return operator""_MB( m ) * 1000;
 }
 
 /** User defined literals, 1_GiB is 1 GibiByte (= 2^30 bytes) */
-constexpr qint64 operator""_GiB( unsigned long long m )
+constexpr qint64
+operator""_GiB( unsigned long long m )
 {
-    return operator""_MiB(m)*1024;
+    return operator""_MiB( m ) * 1024;
 }
 
 }  // namespace Units

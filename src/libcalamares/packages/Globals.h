@@ -26,17 +26,17 @@ namespace Packages
  * Returns @c true if anything was changed, @c false otherwise.
  */
 DLLEXPORT bool setGSPackageAdditions( Calamares::GlobalStorage* gs,
-                            const Calamares::ModuleSystem::InstanceKey& module,
-                            const QVariantList& installPackages,
-                            const QVariantList& tryInstallPackages );
+                                      const Calamares::ModuleSystem::InstanceKey& module,
+                                      const QVariantList& installPackages,
+                                      const QVariantList& tryInstallPackages );
 /** @brief Sets the install-packages GS keys for the given module
  *
  * This replaces previously-set install-packages lists. Use this with
  * plain lists of package names. It does not support try-install.
  */
 DLLEXPORT bool setGSPackageAdditions( Calamares::GlobalStorage* gs,
-                            const Calamares::ModuleSystem::InstanceKey& module,
-                            const QStringList& installPackages );
+                                      const Calamares::ModuleSystem::InstanceKey& module,
+                                      const QStringList& installPackages );
 // void setGSPackageRemovals( const Calamares::ModuleSystem::InstanceKey& key, const QVariantList& removePackages );
 }  // namespace Packages
 }  // namespace Calamares
