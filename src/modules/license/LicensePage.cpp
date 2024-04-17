@@ -147,9 +147,11 @@ LicensePage::retranslate()
     if ( !m_allLicensesOptional )
     {
         ui->mainText->setText( tr( "This setup procedure will install proprietary "
-                                   "software that is subject to licensing terms.", "@info" )
+                                   "software that is subject to licensing terms.",
+                                   "@info" )
                                + br + review );
-        QString mustAcceptText( tr( "If you do not agree with the terms, the setup procedure cannot continue.", "@info" ) );
+        QString mustAcceptText(
+            tr( "If you do not agree with the terms, the setup procedure cannot continue.", "@info" ) );
         ui->acceptCheckBox->setToolTip( mustAcceptText );
     }
     else
@@ -157,10 +159,12 @@ LicensePage::retranslate()
         ui->mainText->setText( tr( "This setup procedure can install proprietary "
                                    "software that is subject to licensing terms "
                                    "in order to provide additional features and enhance the user "
-                                   "experience.", "@info" )
+                                   "experience.",
+                                   "@info" )
                                + br + review );
         QString okAcceptText( tr( "If you do not agree with the terms, proprietary software will not "
-                                  "be installed, and open source alternatives will be used instead.", "@info" ) );
+                                  "be installed, and open source alternatives will be used instead.",
+                                  "@info" ) );
         ui->acceptCheckBox->setToolTip( okAcceptText );
     }
     ui->retranslateUi( this );

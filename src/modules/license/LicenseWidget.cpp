@@ -107,38 +107,44 @@ LicenseWidget::retranslateUi()
     case LicenseEntry::Type::Driver:
         //: %1 is an untranslatable product name, example: Creative Audigy driver
         productDescription = tr( "<strong>%1 driver</strong><br/>"
-                                 "by %2", "@label, %1 is product name, %2 is product vendor" )
+                                 "by %2",
+                                 "@label, %1 is product name, %2 is product vendor" )
                                  .arg( m_entry.m_prettyName )
                                  .arg( m_entry.m_prettyVendor );
         break;
     case LicenseEntry::Type::GpuDriver:
         //: %1 is usually a vendor name, example: Nvidia graphics driver
         productDescription = tr( "<strong>%1 graphics driver</strong><br/>"
-                                 "<font color=\"Grey\">by %2</font>", "@label, %1 is product name, %2 is product vendor" )
+                                 "<font color=\"Grey\">by %2</font>",
+                                 "@label, %1 is product name, %2 is product vendor" )
                                  .arg( m_entry.m_prettyName )
                                  .arg( m_entry.m_prettyVendor );
         break;
     case LicenseEntry::Type::BrowserPlugin:
         productDescription = tr( "<strong>%1 browser plugin</strong><br/>"
-                                 "<font color=\"Grey\">by %2</font>", "@label, %1 is product name, %2 is product vendor" )
+                                 "<font color=\"Grey\">by %2</font>",
+                                 "@label, %1 is product name, %2 is product vendor" )
                                  .arg( m_entry.m_prettyName )
                                  .arg( m_entry.m_prettyVendor );
         break;
     case LicenseEntry::Type::Codec:
         productDescription = tr( "<strong>%1 codec</strong><br/>"
-                                 "<font color=\"Grey\">by %2</font>", "@label, %1 is product name, %2 is product vendor" )
+                                 "<font color=\"Grey\">by %2</font>",
+                                 "@label, %1 is product name, %2 is product vendor" )
                                  .arg( m_entry.m_prettyName )
                                  .arg( m_entry.m_prettyVendor );
         break;
     case LicenseEntry::Type::Package:
         productDescription = tr( "<strong>%1 package</strong><br/>"
-                                 "<font color=\"Grey\">by %2</font>", "@label, %1 is product name, %2 is product vendor" )
+                                 "<font color=\"Grey\">by %2</font>",
+                                 "@label, %1 is product name, %2 is product vendor" )
                                  .arg( m_entry.m_prettyName )
                                  .arg( m_entry.m_prettyVendor );
         break;
     case LicenseEntry::Type::Software:
         productDescription = tr( "<strong>%1</strong><br/>"
-                                 "<font color=\"Grey\">by %2</font>", "@label, %1 is product name, %2 is product vendor" )
+                                 "<font color=\"Grey\">by %2</font>",
+                                 "@label, %1 is product name, %2 is product vendor" )
                                  .arg( m_entry.m_prettyName )
                                  .arg( m_entry.m_prettyVendor );
     }
@@ -183,7 +189,8 @@ LicenseWidget::updateExpandToolTip()
 {
     if ( m_entry.isLocal() )
     {
-        m_viewLicenseButton->setText( m_isExpanded ? tr( "Hide the license text", "@tooltip" ) : tr( "Show the license text", "@tooltip" ) );
+        m_viewLicenseButton->setText( m_isExpanded ? tr( "Hide the license text", "@tooltip" )
+                                                   : tr( "Show the license text", "@tooltip" ) );
     }
     else
     {
