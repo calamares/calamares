@@ -74,26 +74,30 @@ FinishedPage::retranslate()
         {
             ui->mainText->setText( tr( "<h1>All done.</h1><br/>"
                                        "%1 has been set up on your computer.<br/>"
-                                       "You may now start using your new system.", "@info" )
+                                       "You may now start using your new system.",
+                                       "@info" )
                                        .arg( branding->versionedName() ) );
             ui->restartCheckBox->setToolTip( tr( "<html><head/><body>"
                                                  "<p>When this box is checked, your system will "
                                                  "restart immediately when you click on "
                                                  "<span style=\"font-style:italic;\">Done</span> "
-                                                 "or close the setup program.</p></body></html>", "@tooltip" ) );
+                                                 "or close the setup program.</p></body></html>",
+                                                 "@tooltip" ) );
         }
         else
         {
             ui->mainText->setText( tr( "<h1>All done.</h1><br/>"
                                        "%1 has been installed on your computer.<br/>"
                                        "You may now restart into your new system, or continue "
-                                       "using the %2 Live environment.", "@info" )
+                                       "using the %2 Live environment.",
+                                       "@info" )
                                        .arg( branding->versionedName(), branding->productName() ) );
             ui->restartCheckBox->setToolTip( tr( "<html><head/><body>"
                                                  "<p>When this box is checked, your system will "
                                                  "restart immediately when you click on "
                                                  "<span style=\"font-style:italic;\">Done</span> "
-                                                 "or close the installer.</p></body></html>", "@tooltip" ) );
+                                                 "or close the installer.</p></body></html>",
+                                                 "@tooltip" ) );
         }
     }
     else
@@ -104,7 +108,8 @@ FinishedPage::retranslate()
         {
             ui->mainText->setText( tr( "<h1>Setup Failed</h1><br/>"
                                        "%1 has not been set up on your computer.<br/>"
-                                       "The error message was: %2.", "@info, %1 is product name with version" )
+                                       "The error message was: %2.",
+                                       "@info, %1 is product name with version" )
                                        .arg( branding->versionedName() )
                                        .arg( message ) );
         }
@@ -112,7 +117,8 @@ FinishedPage::retranslate()
         {
             ui->mainText->setText( tr( "<h1>Installation Failed</h1><br/>"
                                        "%1 has not been installed on your computer.<br/>"
-                                       "The error message was: %2.", "@info, %1 is product name with version" )
+                                       "The error message was: %2.",
+                                       "@info, %1 is product name with version" )
                                        .arg( branding->versionedName() )
                                        .arg( message ) );
         }
