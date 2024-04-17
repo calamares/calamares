@@ -166,8 +166,9 @@ ResizeFSJob::exec()
     if ( !m_kpmcore )
     {
         cWarning() << "Could not load KPMCore backend (2).";
-        return Calamares::JobResult::error( tr( "KPMCore not available", "@error" ),
-                                            tr( "Calamares cannot start KPMCore for the file system resize job.", "@error" ) );
+        return Calamares::JobResult::error(
+            tr( "KPMCore not available", "@error" ),
+            tr( "Calamares cannot start KPMCore for the file system resize job.", "@error" ) );
     }
     m_kpmcore.backend()->initFSSupport();  // Might not be enough, see below
 
@@ -178,18 +179,20 @@ ResizeFSJob::exec()
         return Calamares::JobResult::error(
             tr( "Resize failed.", "@error" ),
             !m_fsname.isEmpty()
-                ? tr( "The filesystem %1 could not be found in this system, and cannot be resized.", "@info" ).arg( m_fsname )
-                : tr( "The device %1 could not be found in this system, and cannot be resized.", "@info" ).arg( m_devicename ) );
+                ? tr( "The filesystem %1 could not be found in this system, and cannot be resized.", "@info" )
+                      .arg( m_fsname )
+                : tr( "The device %1 could not be found in this system, and cannot be resized.", "@info" )
+                      .arg( m_devicename ) );
     }
 
     m.second->fileSystem().init();  // Initialize support for specific FS
     if ( !ResizeOperation::canGrow( m.second ) )
     {
         cDebug() << "canGrow() returned false.";
-        return Calamares::JobResult::error( tr( "Resize Failed", "@error" ),
-                                            !m_fsname.isEmpty()
-                                                ? tr( "The filesystem %1 cannot be resized.", "@error" ).arg( m_fsname )
-                                                : tr( "The device %1 cannot be resized.", "@error" ).arg( m_devicename ) );
+        return Calamares::JobResult::error(
+            tr( "Resize Failed", "@error" ),
+            !m_fsname.isEmpty() ? tr( "The filesystem %1 cannot be resized.", "@error" ).arg( m_fsname )
+                                : tr( "The device %1 cannot be resized.", "@error" ).arg( m_devicename ) );
     }
 
     qint64 new_end = findGrownEnd( m );
@@ -198,10 +201,10 @@ ResizeFSJob::exec()
 
     if ( new_end < 0 )
     {
-        return Calamares::JobResult::error( tr( "Resize Failed", "@error" ),
-                                            !m_fsname.isEmpty()
-                                                ? tr( "The filesystem %1 cannot be resized.", "@error" ).arg( m_fsname )
-                                                : tr( "The device %1 cannot be resized.", "@error" ).arg( m_devicename ) );
+        return Calamares::JobResult::error(
+            tr( "Resize Failed", "@error" ),
+            !m_fsname.isEmpty() ? tr( "The filesystem %1 cannot be resized.", "@error" ).arg( m_fsname )
+                                : tr( "The device %1 cannot be resized.", "@error" ).arg( m_devicename ) );
     }
     if ( new_end == 0 )
     {
