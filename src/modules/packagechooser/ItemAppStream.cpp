@@ -21,7 +21,7 @@
 static inline quint64
 sizeOrder( const QSize& size )
 {
-    return static_cast<quint64>(size.width()) * static_cast<quint64>(size.height());
+    return static_cast< quint64 >( size.width() ) * static_cast< quint64 >( size.height() );
 }
 
 /// @brief Sets a screenshot in @p map from @p screenshot, if a usable one is found
@@ -55,15 +55,9 @@ static PackageItem
 fromComponent( AppStream::Pool& pool, AppStream::Component& component )
 {
 #if HAVE_APPSTREAM_VERSION == 0
-    auto setActiveLocale = [&component](const QString & locale)
-    {
-        component.setActiveLocale( locale );
-    };
+    auto setActiveLocale = [ &component ]( const QString& locale ) { component.setActiveLocale( locale ); };
 #else
-    auto setActiveLocale = [&pool](const QString & locale)
-    {
-        pool.setLocale( locale );
-    };
+    auto setActiveLocale = [ &pool ]( const QString& locale ) { pool.setLocale( locale ); };
 #endif
 
     QVariantMap map;
