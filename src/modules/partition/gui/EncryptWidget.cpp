@@ -155,7 +155,8 @@ EncryptWidget::updateState( const bool notify )
         else if ( m_filesystem == FileSystem::Zfs && p1.length() < ZFS_MIN_LENGTH )
         {
             applyPixmap( m_ui->m_iconLabel, Calamares::StatusError );
-            m_ui->m_iconLabel->setToolTip( tr( "Password must be a minimum of %1 characters.", "@tooltip" ).arg( ZFS_MIN_LENGTH ) );
+            m_ui->m_iconLabel->setToolTip(
+                tr( "Password must be a minimum of %1 characters.", "@tooltip" ).arg( ZFS_MIN_LENGTH ) );
         }
         else if ( p1 == p2 )
         {
