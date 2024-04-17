@@ -64,7 +64,9 @@ QString
 SetKeyboardLayoutJob::prettyName() const
 {
     return tr( "Setting keyboard model to %1, layout as %2-%3…", "@status, %1 model, %2 layout, %3 variant" )
-        .arg( m_model ).arg( m_layout ).arg( m_variant );
+        .arg( m_model )
+        .arg( m_layout )
+        .arg( m_variant );
 }
 
 
@@ -365,8 +367,10 @@ SetKeyboardLayoutJob::exec()
 
         if ( !writeVConsoleData( vconsoleConfPath, convertedKeymapPath ) )
         {
-            return Calamares::JobResult::error( tr( "Failed to write keyboard configuration for the virtual console.", "@error" ),
-                                                tr( "Failed to write to %1", "@error, %1 is virtual console configuration path" ).arg( vconsoleConfPath ) );
+            return Calamares::JobResult::error(
+                tr( "Failed to write keyboard configuration for the virtual console.", "@error" ),
+                tr( "Failed to write to %1", "@error, %1 is virtual console configuration path" )
+                    .arg( vconsoleConfPath ) );
         }
 
         // Get the path to the destination's /etc/X11/xorg.conf.d/00-keyboard.conf
@@ -391,8 +395,9 @@ SetKeyboardLayoutJob::exec()
 
         if ( !writeX11Data( keyboardConfPath ) )
         {
-            return Calamares::JobResult::error( tr( "Failed to write keyboard configuration for X11.", "@error" ),
-                                                tr( "Failed to write to %1", "@error, %1 is keyboard configuration path" ).arg( keyboardConfPath ) );
+            return Calamares::JobResult::error(
+                tr( "Failed to write keyboard configuration for X11.", "@error" ),
+                tr( "Failed to write to %1", "@error, %1 is keyboard configuration path" ).arg( keyboardConfPath ) );
         }
     }
 
