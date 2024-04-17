@@ -67,9 +67,10 @@ SetTimezoneJob::exec()
     int ec = Calamares::System::instance()->targetEnvCall( { "ln", "-s", zoneinfoPath, localtimeSlink } );
     if ( ec )
     {
-        return Calamares::JobResult::error(
-            tr( "Cannot set timezone.", "@error" ),
-            tr( "Link creation failed, target: %1; link name: %2", "@info" ).arg( zoneinfoPath ).arg( "/etc/localtime" ) );
+        return Calamares::JobResult::error( tr( "Cannot set timezone.", "@error" ),
+                                            tr( "Link creation failed, target: %1; link name: %2", "@info" )
+                                                .arg( zoneinfoPath )
+                                                .arg( "/etc/localtime" ) );
     }
 
     QFile timezoneFile( gs->value( "rootMountPoint" ).toString() + "/etc/timezone" );

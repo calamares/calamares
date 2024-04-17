@@ -29,7 +29,8 @@ LCLocaleDialog::LCLocaleDialog( const QString& guessedLCLocale, const QStringLis
     upperText->setWordWrap( true );
     upperText->setText( tr( "The system locale setting affects the language and character "
                             "set for some command line user interface elements.<br/>"
-                            "The current setting is <strong>%1</strong>.", "@info" )
+                            "The current setting is <strong>%1</strong>.",
+                            "@info" )
                             .arg( guessedLCLocale ) );
     mainLayout->addWidget( upperText );
     setMinimumWidth( upperText->fontMetrics().height() * 24 );
@@ -85,5 +86,5 @@ QString
 LCLocaleDialog::selectedLCLocale()
 {
     const auto items = m_localesWidget->selectedItems();
-    return items.isEmpty() ? QString{} : items.first()->text();
+    return items.isEmpty() ? QString {} : items.first()->text();
 }
