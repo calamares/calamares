@@ -560,10 +560,13 @@ main( int argc, char* argv[] )
     cDebug() << Logger::SubEntry << "Module metadata" << TR( "name", m->name() ) << TR( "type", m->typeString() )
              << TR( "interface", m->interfaceString() );
 
-    Calamares::JobQueue::instance()->enqueue(100, m->jobs());
+    Calamares::JobQueue::instance()->enqueue( 100, m->jobs() );
 
-    QObject::connect(Calamares::JobQueue::instance(), &Calamares::JobQueue::finished, [application]() { QTimer::singleShot(std::chrono::seconds(3), application, &QApplication::quit); });
-    QTimer::singleShot(0, []() { Calamares::JobQueue::instance()->start(); });
+    QObject::connect( Calamares::JobQueue::instance(),
+                      &Calamares::JobQueue::finished,
+                      [ application ]()
+                      { QTimer::singleShot( std::chrono::seconds( 3 ), application, &QApplication::quit ); } );
+    QTimer::singleShot( 0, []() { Calamares::JobQueue::instance()->start(); } );
 
     return application->exec();
 }

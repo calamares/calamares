@@ -42,7 +42,7 @@
 static void
 crash()
 {
-    kill(getpid(), SIGTRAP);
+    kill( getpid(), SIGTRAP );
 }
 
 /// @brief Print out the widget tree (names) in indented form.
