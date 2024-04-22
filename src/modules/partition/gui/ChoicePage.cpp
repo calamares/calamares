@@ -679,7 +679,11 @@ ChoicePage::onLeave()
 {
     if ( m_config->installChoice() == InstallChoice::Alongside )
     {
-        doAlongsideApply();
+        if ( m_afterPartitionSplitterWidget->splitPartitionSize() >= 0
+             && m_afterPartitionSplitterWidget->newPartitionSize() >= 0 )
+        {
+            doAlongsideApply();
+        }
     }
 
     if ( m_isEfi
