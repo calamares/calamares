@@ -14,6 +14,12 @@ include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
 )
 
+set(PartitionModule_basic_SRC
+    ${PartitionModule_SOURCE_DIR}/core/OsproberEntry.cpp
+    ${PartitionModule_SOURCE_DIR}/core/PartitionInfo.cpp
+    ${PartitionModule_SOURCE_DIR}/core/PartUtils.cpp
+ )
+
 calamares_add_test(
     partitionjobtest
     SOURCES
@@ -40,10 +46,9 @@ calamares_add_test(
     partitioncreatelayoutstest
     SOURCES
         CreateLayoutsTests.cpp
+        ${PartitionModule_basic_SRC}
         ${PartitionModule_SOURCE_DIR}/core/KPMHelpers.cpp
-        ${PartitionModule_SOURCE_DIR}/core/PartitionInfo.cpp
         ${PartitionModule_SOURCE_DIR}/core/PartitionLayout.cpp
-        ${PartitionModule_SOURCE_DIR}/core/PartUtils.cpp
         ${PartitionModule_SOURCE_DIR}/core/DeviceModel.cpp
     LIBRARIES calamares::kpmcore Calamares::calamaresui
     DEFINITIONS ${_partition_defs}
@@ -66,9 +71,8 @@ calamares_add_test(
     partitionconfigtest
     SOURCES
         ConfigTests.cpp
+        ${PartitionModule_basic_SRC}
         ${PartitionModule_SOURCE_DIR}/core/DeviceModel.cpp
-        ${PartitionModule_SOURCE_DIR}/core/PartitionInfo.cpp
-        ${PartitionModule_SOURCE_DIR}/core/PartUtils.cpp
         ${PartitionModule_SOURCE_DIR}/Config.cpp
     LIBRARIES calamares::kpmcore Calamares::calamaresui
     DEFINITIONS

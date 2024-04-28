@@ -51,7 +51,6 @@ ActiveDirectoryJob::exec()
     if ( !m_ip.isEmpty() )
     {
         const QString hostsFilePath = Calamares::System::instance()->targetPath( QStringLiteral( "/etc/hosts" ) );
-        ;
         QFile hostsFile( hostsFilePath );
         if ( hostsFile.open( QIODevice::Append | QIODevice::Text ) )
         {

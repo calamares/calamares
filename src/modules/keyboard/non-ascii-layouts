@@ -11,6 +11,8 @@ he        us                  -                    he
 ar        us                  -                    ar
 ir        us                  -                    fa
 
+# This list is from /usr/share/X11/xkb/rules/base, all the non-latin
+# layouts are collected in $nonlatin . Add us (English) to all of them.
 af        us                  -                    af
 am        us                  -                    am
 ara       us                  -                    ara

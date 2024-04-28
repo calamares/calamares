@@ -61,8 +61,8 @@ public:
 
 
     QVariant data( const QModelIndex& index, int role ) const override;
-    int rowCount( const QModelIndex& ) const override;
-    int count() const { return m_requirements.count(); }
+    int rowCount( const QModelIndex& ) const override;  // TODO 3.4 use qsizetype
+    int count() const { return static_cast< int >( m_requirements.count() ); }  // TODO 3.4 use qsizetype
 
     ///@brief Debugging tool, describe the checking-state
     void describe() const;

@@ -9,6 +9,7 @@
 
 #include "Config.h"
 
+#include "core/OsproberEntry.h"
 #include "core/PartUtils.h"
 
 #include "GlobalStorage.h"
@@ -17,6 +18,7 @@
 #include "utils/System.h"
 #include "utils/Yaml.h"
 
+#include <QByteArray>
 #include <QObject>
 #include <QtTest/QtTest>
 
@@ -35,6 +37,9 @@ private Q_SLOTS:
     void testLegacySize();
     void testAll();
     void testWeirdConfig();
+
+    void testNormalFstab();
+    void testWeirdFstab();
 };
 
 ConfigTests::ConfigTests() = default;
@@ -220,6 +225,48 @@ ConfigTests::testWeirdConfig()
 
         QCOMPARE( gs->value( "efiSystemPartitionName" ).toString(), QStringLiteral( "bigmin" ) );
     }
+}
+
+void
+ConfigTests::testNormalFstab()
+{
+    const auto contents
+        = QByteArrayLiteral( "# A FreeBSD fstab\n"
+                             "/dev/nvd0p3                     none            swap    sw              0       0\n" );
+    const auto entries = Calamares::fromEtcFstabContents( contents );
+    for ( const auto& e : entries )
+    {
+        QVERIFY( e.isValid() );
+    }
+    QCOMPARE( entries.count(), 1 );
+}
+
+void
+ConfigTests::testWeirdFstab()
+{
+    const auto contents
+        = QByteArrayLiteral( "# <file system>             <mount point>  <type>  <options>  <dump>  <pass>\n"
+                             "UUID=dae80d0a-f6c7-46f4-a04a-6761f2cfd9b6 /              ext4    defaults,noatime 0 1\n"
+                             "UUID=423892d5-a929-41a9-a846-f410cf3fe25b swap           swap    defaults,noatime 0 2\n"
+                             "# another comment\n"
+                             "borked 2\n"
+                             "ok /dev1 ext4 none 0 0\n"
+                             "bogus /dev2 ext4 none no later\n"
+                             "# comment\n" );
+    const auto entries = Calamares::fromEtcFstabContents( contents );
+    QCOMPARE( entries.count(), 4 );
+
+    QStringList mountPoints;
+    for ( const auto& e : entries )
+    {
+        mountPoints.append( e.mountPoint );
+    }
+    mountPoints.sort();
+    QCOMPARE( mountPoints,
+              QStringList() << "/"
+                            << "/dev1"
+                            << "/dev2"
+                            << "swap" );
 }
 
 

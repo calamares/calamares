@@ -11,6 +11,7 @@
 #include "RequirementsChecker.h"
 
 #include "compat/Mutex.h"
+#include "compat/Size.h"
 #include "modulesystem/Module.h"
 #include "modulesystem/Requirement.h"
 #include "modulesystem/RequirementsModel.h"
@@ -120,7 +121,7 @@ RequirementsChecker::reportProgress()
     {
         cDebug() << "Remaining modules:" << remaining << Logger::DebugList( remainingNames );
         unsigned int posInterval = ( m_progressTimer->interval() < 0 ) ? 1000 : uint( m_progressTimer->interval() );
-        QString waiting = tr( "Waiting for %n module(s)…", "@status", remaining );
+        QString waiting = tr( "Waiting for %n module(s)…", "@status", static_cast<Calamares::NumberForTr>(remaining) );
         QString elapsed = tr( "(%n second(s))", "@status", m_progressTimeouts * posInterval / 999 );
         Q_EMIT requirementsProgress( waiting + QString( " " ) + elapsed );
     }

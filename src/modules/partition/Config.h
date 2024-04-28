@@ -35,7 +35,7 @@ class Config : public QObject
                     replaceModeFilesystemChanged )
 
     Q_PROPERTY( bool allowManualPartitioning READ allowManualPartitioning CONSTANT FINAL )
-
+    Q_PROPERTY( bool preCheckEncryption READ preCheckEncryption CONSTANT FINAL )
     Q_PROPERTY( bool showNotEncryptedBootMessage READ showNotEncryptedBootMessage CONSTANT FINAL )
 
 public:
@@ -148,6 +148,13 @@ public:
     /// @brief Is manual partitioning allowed (not explicitly disabled in the config file)?
     bool allowManualPartitioning() const { return m_allowManualPartitioning; }
 
+    /** @brief Pre-check encryption checkbox.
+     *
+     * This is meaningful only if enableLuksAutomatedPartitioning is @c true.
+     * Default value is @c false
+     */
+    bool preCheckEncryption() const { return m_preCheckEncryption; }
+
     /// @brief Show "Boot partition not encrypted" warning (not explicitly disabled in the config file)?
     bool showNotEncryptedBootMessage() const { return m_showNotEncryptedBootMessage; }
 
@@ -199,6 +206,7 @@ private:
     QStringList m_requiredPartitionTableType;
     bool m_allowZfsEncryption = true;
     bool m_allowManualPartitioning = true;
+    bool m_preCheckEncryption = false;
     bool m_showNotEncryptedBootMessage = true;
 };
 

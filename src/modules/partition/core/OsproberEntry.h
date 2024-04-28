@@ -32,10 +32,23 @@ struct FstabEntry
      * If the string isn't valid (e.g. comment-line, or broken
      * fstab entry) then the entry that is returned is invalid.
      */
-    static FstabEntry fromEtcFstab( const QString& );  // implemented in Partutils.cpp
+    static FstabEntry fromEtcFstab( const QString& );
 };
 
 typedef QList< FstabEntry > FstabEntryList;
+
+namespace Calamares
+{
+/** @brief Returns valid entries from the lines of a fstab file */
+FstabEntryList fromEtcFstabContents( const QStringList& fstabLines );
+
+/** @brief Returns valid entries from the byte-contents of a fstab file */
+inline FstabEntryList
+fromEtcFstabContents( const QByteArray& contents )
+{
+    return fromEtcFstabContents( QString::fromLocal8Bit( contents ).split( '\n' ) );
+}
+}  // namespace Calamares
 
 struct OsproberEntry
 {

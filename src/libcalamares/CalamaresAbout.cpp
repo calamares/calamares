@@ -22,15 +22,6 @@ static const char s_footer[]
                          "and the <a href=\"https://app.transifex.com/calamares/calamares/\">Calamares "
                          "translators team</a>." );
 
-#if 0
-// Blue Systems sponsored until June 2022
-static const char s_sponsor[] = QT_TRANSLATE_NOOP( "AboutData",
-                                                   "<a href=\"https://calamares.io/\">Calamares</a> "
-                                                   "development is sponsored by <br/>"
-                                                   "<a href=\"http://www.blue-systems.com/\">Blue Systems</a> - "
-                                                   "Liberating Software." );
-#endif
-
 struct Maintainer
 {
     unsigned int start;
@@ -57,14 +48,12 @@ static constexpr const Maintainer maintainers[] = {
 static QString
 aboutMaintainers()
 {
-    return std::accumulate( std::cbegin( maintainers ),
-                            std::cend( maintainers ),
-                            QString(),
-                            []( QString& s, const Maintainer& m )
-                            {
-                                s += m.text();
-                                return s;
-                            } );
+    QStringList s;
+    for ( const auto& m : maintainers )
+    {
+        s.append( m.text() );
+    }
+    return s.join( QString() );
 }
 
 static QString

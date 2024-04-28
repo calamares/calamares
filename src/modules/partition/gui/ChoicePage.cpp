@@ -185,7 +185,6 @@ ChoicePage::init( PartitionCoreModule* core )
     setModelToComboBox( m_drivesCombo, core->deviceModel() );
 
     connect( m_drivesCombo, qOverload< int >( &QComboBox::currentIndexChanged ), this, &ChoicePage::applyDeviceChoice );
-
     connect( m_encryptWidget, &EncryptWidget::stateChanged, this, &ChoicePage::onEncryptWidgetStateChanged );
     connect( m_reuseHomeCheckBox, &QCheckBox::stateChanged, this, &ChoicePage::onHomeCheckBoxStateChanged );
 
@@ -468,6 +467,8 @@ ChoicePage::onActionChanged()
         {
             m_encryptWidget->setFilesystem( FileSystem::typeForName( m_replaceFsTypesChoiceComboBox->currentText() ) );
         }
+
+        m_encryptWidget->setEncryptionCheckbox( m_config->preCheckEncryption() );
     }
 
     Device* currd = selectedDevice();
@@ -679,7 +680,11 @@ ChoicePage::onLeave()
 {
     if ( m_config->installChoice() == InstallChoice::Alongside )
     {
-        doAlongsideApply();
+        if ( m_afterPartitionSplitterWidget->splitPartitionSize() >= 0
+             && m_afterPartitionSplitterWidget->newPartitionSize() >= 0 )
+        {
+            doAlongsideApply();
+        }
     }
 
     if ( m_isEfi
@@ -1579,7 +1584,10 @@ ChoicePage::calculateNextEnabled() const
         }
     }
 
-    if ( m_config->installChoice() != InstallChoice::Manual && m_encryptWidget->isVisible() )
+    // You can have an invisible encryption checkbox, which is
+    // still checked -- then do the encryption.
+    if ( m_config->installChoice() != InstallChoice::Manual
+         && ( m_encryptWidget->isVisible() || m_encryptWidget->isEncryptionCheckboxChecked() ) )
     {
         switch ( m_encryptWidget->state() )
         {

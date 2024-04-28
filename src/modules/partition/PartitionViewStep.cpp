@@ -223,9 +223,15 @@ PartitionViewStep::prettyStatus() const
     const QList< PartitionCoreModule::SummaryInfo > list = m_core->createSummaryInfo();
 
     cDebug() << "Summary for Partition" << list.length() << choice;
-    auto joinDiskInfo = [ choice ]( QString& s, const PartitionCoreModule::SummaryInfo& i )
-    { return s + diskDescription( 1, i, choice ); };
-    const QString diskInfoLabel = std::accumulate( list.begin(), list.end(), QString(), joinDiskInfo );
+    const QString diskInfoLabel = [ &choice, &list ]()
+    {
+        QStringList s;
+        for ( const auto& i : list )
+        {
+            s.append( diskDescription( 1, i, choice ) );
+        }
+        return s.join( QString() );
+    }();
     const QString jobsLabel = jobDescriptions( jobs() ).join( QStringLiteral( "<br/>" ) );
     return diskInfoLabel + "<br/>" + jobsLabel;
 }
