@@ -66,7 +66,7 @@ RequirementsModel::reCheckList()
 int
 RequirementsModel::rowCount( const QModelIndex& ) const
 {
-    return m_requirements.count();
+    return static_cast< int >( m_requirements.count() );  // TODO 3.4 use qsizetype
 }
 
 QVariant
