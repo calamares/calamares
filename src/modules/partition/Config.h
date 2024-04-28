@@ -148,10 +148,10 @@ public:
     /// @brief Is manual partitioning allowed (not explicitly disabled in the config file)?
     bool allowManualPartitioning() const { return m_allowManualPartitioning; }
 
-    /** @brief pre check encryption checkbox. 
-     * 
-     * parameter is used if enableLuksAutomatedPartitioning is true. 
-     * Default value is false
+    /** @brief Pre-check encryption checkbox.
+     *
+     * This is meaningful only if enableLuksAutomatedPartitioning is @c true.
+     * Default value is @c false
      */
     bool preCheckEncryption() const { return m_preCheckEncryption; }
 
