@@ -48,14 +48,12 @@ static constexpr const Maintainer maintainers[] = {
 static QString
 aboutMaintainers()
 {
-    return std::accumulate( std::cbegin( maintainers ),
-                            std::cend( maintainers ),
-                            QString(),
-                            []( QString& s, const Maintainer& m )
-                            {
-                                s += m.text();
-                                return s;
-                            } );
+    QStringList s;
+    for ( const auto& m : maintainers )
+    {
+        s.append( m.text() );
+    }
+    return s.join( QString() );
 }
 
 static QString
