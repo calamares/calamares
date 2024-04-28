@@ -22,15 +22,6 @@ static const char s_footer[]
                          "and the <a href=\"https://app.transifex.com/calamares/calamares/\">Calamares "
                          "translators team</a>." );
 
-#if 0
-// Blue Systems sponsored until June 2022
-static const char s_sponsor[] = QT_TRANSLATE_NOOP( "AboutData",
-                                                   "<a href=\"https://calamares.io/\">Calamares</a> "
-                                                   "development is sponsored by <br/>"
-                                                   "<a href=\"http://www.blue-systems.com/\">Blue Systems</a> - "
-                                                   "Liberating Software." );
-#endif
-
 struct Maintainer
 {
     unsigned int start;
