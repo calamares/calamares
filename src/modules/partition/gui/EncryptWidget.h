@@ -36,8 +36,10 @@ public:
 
     explicit EncryptWidget( QWidget* parent = nullptr );
 
+    void setEncryptionCheckbox( bool preCheckEncrypt = false);
     void reset( bool checkVisible = true );
 
+    bool isEncryptionCheckboxChecked();
     Encryption state() const;
     void setText( const QString& text );
 

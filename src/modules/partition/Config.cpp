@@ -444,6 +444,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     m_allowZfsEncryption = Calamares::getBool( configurationMap, "allowZfsEncryption", true );
 
     m_allowManualPartitioning = Calamares::getBool( configurationMap, "allowManualPartitioning", true );
+    m_preCheckEncryption = Calamares::getBool( configurationMap, "preCheckEncryption", false );
     m_showNotEncryptedBootMessage = Calamares::getBool( configurationMap, "showNotEncryptedBootMessage", true );
     m_requiredPartitionTableType = Calamares::getStringList( configurationMap, "requiredPartitionTableType" );
 
