@@ -262,8 +262,9 @@ lookForFstabEntries( const QString& partitionPath )
             }
             fstabFile.close();
             const int lineCount = fstabEntries.count();
-            std::remove_if(
+            const auto invalidEntries = std::remove_if(
                 fstabEntries.begin(), fstabEntries.end(), []( const FstabEntry& x ) { return !x.isValid(); } );
+            fstabEntries.erase(invalidEntries);
             cDebug() << Logger::SubEntry << "got" << fstabEntries.count() << "fstab entries from" << lineCount
                      << "lines in" << fstabFile.fileName();
         }
