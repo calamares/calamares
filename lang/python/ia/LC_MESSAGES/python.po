@@ -28,7 +28,7 @@ msgstr "Installar cargator de initio."
 #: src/modules/bootloader/main.py:666
 msgid "Failed to install grub, no partitions defined in global storage"
 msgstr ""
-"Non poteva installar le “grub”, nulle partitiones definite in le "
+"Impossibile installar le “grub”, necun partitiones definite in le "
 "immagazinage global."
 
 #: src/modules/bootloader/main.py:926
@@ -65,7 +65,7 @@ msgstr "Non pote configurar LightDM"
 
 #: src/modules/displaymanager/main.py:685
 msgid "No LightDM greeter installed."
-msgstr "Nulle systema de benvenita de LightDM installate."
+msgstr "Necun systema de benvenita de LightDM installate."
 
 #: src/modules/displaymanager/main.py:716
 msgid "Cannot write SLIM configuration file"
@@ -78,7 +78,7 @@ msgstr "Le file de configuration de SLIM {!s} non existe"
 #: src/modules/displaymanager/main.py:938
 msgid "No display managers selected for the displaymanager module."
 msgstr ""
-"Nulle gestor de visualisation seligite pro le modulo de «displaymanager»."
+"Necun gestor de visualisation seligite pro le modulo de «displaymanager»."
 
 #: src/modules/displaymanager/main.py:939
 msgid ""
@@ -98,7 +98,7 @@ msgstr "Creation de initramfs con dracut."
 
 #: src/modules/dracut/main.py:63
 msgid "Failed to run dracut"
-msgstr "Non poteva executar dracut"
+msgstr "Impossibile executar dracut"
 
 #: src/modules/dracut/main.py:64
 #, python-brace-format
@@ -109,7 +109,7 @@ msgstr ""
 
 #: src/modules/dummypython/main.py:35
 msgid "Dummy python job."
-msgstr "Carga ficticie de python."
+msgstr "Labor ficticie de python."
 
 #: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:104
 #: src/modules/dummypython/main.py:105
@@ -134,20 +134,20 @@ msgstr "Error de configuration"
 #: src/modules/mount/main.py:335 src/modules/openrcdmcryptcfg/main.py:73
 #: src/modules/rawfs/main.py:165
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr "Nulle partitiones es definite pro esser usate per <pre>{!s}</pre>."
+msgstr "Necun partitiones es definite pro esser usate per <pre>{!s}</pre>."
 
 #: src/modules/fstab/main.py:385 src/modules/initramfscfg/main.py:90
 #: src/modules/localecfg/main.py:141 src/modules/networkcfg/main.py:107
 #: src/modules/openrcdmcryptcfg/main.py:77
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
 msgstr ""
-"Nulle puncto de montage de radice es date pro esser usate per "
+"Necun puncto de montage de radice es date pro esser usate per "
 "<pre>{!s}</pre>."
 
 #: src/modules/fstab/main.py:413
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr ""
-"Nulle configuration <pre>{!s}</pre> es date pro esser usate per "
+"Necun configuration <pre>{!s}</pre> es date pro esser usate per "
 "<pre>{!s}</pre>."
 
 #: src/modules/grubcfg/main.py:30
@@ -164,11 +164,11 @@ msgstr " Configurante “mkinitcpio”."
 
 #: src/modules/initcpiocfg/main.py:257
 msgid "No partitions are defined for <pre>initcpiocfg</pre>."
-msgstr "Nulle partitiones es definite pro <pre>initcpiocfg</pre>."
+msgstr "Necun partitiones es definite pro <pre>initcpiocfg</pre>."
 
 #: src/modules/initcpiocfg/main.py:261
 msgid "No root mount point for <pre>initcpiocfg</pre>."
-msgstr "Nulle partitiones es definite pro <pre>initcpiocfg</pre>."
+msgstr "Necun partitiones es definite pro <pre>initcpiocfg</pre>."
 
 #: src/modules/initramfscfg/main.py:32
 msgid "Configuring initramfs."
@@ -184,7 +184,7 @@ msgstr "Creante “initramfs” con “mkinitfs”."
 
 #: src/modules/mkinitfs/main.py:49
 msgid "Failed to run mkinitfs on the target"
-msgstr "Non poteva executar “mkinitfs” sur le scopo"
+msgstr "Impossibile executar “mkinitfs” sur le scopo"
 
 #: src/modules/mkinitfs/main.py:50
 msgid "The exit code was {}"
@@ -200,15 +200,15 @@ msgstr "Error interne durante le montage de collection de datos de zfs"
 
 #: src/modules/mount/main.py:176
 msgid "Failed to import zpool"
-msgstr "Non poteva importar “zpool”"
+msgstr "Impossibile importar “zpool”"
 
 #: src/modules/mount/main.py:192
 msgid "Failed to unlock zpool"
-msgstr "Non poteva disblocar “zpool”"
+msgstr "Impossibile disblocar “zpool”"
 
 #: src/modules/mount/main.py:209 src/modules/mount/main.py:214
 msgid "Failed to set zfs mountpoint"
-msgstr "Non poteva definir le puncto de montage de zfs"
+msgstr "Impossibile definir le puncto de montage de zfs"
 
 #: src/modules/mount/main.py:370
 msgid "zfs mounting error"
@@ -272,7 +272,7 @@ msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."
 msgstr ""
-"Le gestor de pacchettos non poteva facer le cambiamentos al systema "
+"Le gestor de pacchettos non poteva facer le modificationes al systema "
 "installate. Le commando <pre>{!s}</pre> retornava le codice de error {!s}."
 
 #: src/modules/plymouthcfg/main.py:27
@@ -378,11 +378,11 @@ msgstr "Initiante a dispacchettar {}"
 
 #: src/modules/unpackfs/main.py:323 src/modules/unpackfs/main.py:467
 msgid "Failed to unpack image \"{}\""
-msgstr "Non poteva dispacchettar le imagina “{}”"
+msgstr "Impossibile dispacchettar le imagina “{}”"
 
 #: src/modules/unpackfs/main.py:430
 msgid "No mount point for root partition"
-msgstr "Nulle puncto de montage pro le partition radice"
+msgstr "Necun puncto de montage pro le partition radice"
 
 #: src/modules/unpackfs/main.py:431
 msgid "globalstorage does not contain a \"rootMountPoint\" key."
@@ -409,7 +409,7 @@ msgstr "Il non ha information de configuration."
 #: src/modules/unpackfs/main.py:456
 msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
 msgstr ""
-"Le systema de files para “{}” ({}) non es supportate per tu kernel actual"
+"Le systema de files para “{}” ({}) non es supportate per tu nucleo actual"
 
 #: src/modules/unpackfs/main.py:460
 msgid "The source filesystem \"{}\" does not exist"
@@ -420,7 +420,7 @@ msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed."
 msgstr ""
-"Non poteva trovar “unsquashfs”, assecura te que tu ha le pacchetto "
+"Impossibile trovar “unsquashfs”, assecura te que tu ha le pacchetto "
 "“squashfs-tools” installate."
 
 #: src/modules/unpackfs/main.py:481
