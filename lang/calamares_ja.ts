@@ -963,19 +963,19 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/keyboard/Config.cpp" line="505"/>
       <source>Keyboard model has been set to %1&lt;br/&gt;.</source>
       <comment>@label, %1 is keyboard model, as in Apple Magic Keyboard</comment>
-      <translation>キーボードのモデルは %1&lt;br/&gt; に設定されました。</translation>
+      <translation>キーボードのモデルを %1 に設定する。&lt;br/&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/Config.cpp" line="512"/>
       <source>Keyboard layout has been set to %1/%2.</source>
       <comment>@label, %1 is layout, %2 is layout variant</comment>
-      <translation>キーボードレイアウトは %1/%2 に設定されました。</translation>
+      <translation>キーボードのレイアウトを %1/%2 に設定する。</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="373"/>
       <source>Set timezone to %1/%2</source>
       <comment>@action</comment>
-      <translation>タイムゾーンを %1/%2 に設定</translation>
+      <translation>タイムゾーンを %1/%2 に設定する</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="410"/>
@@ -3014,7 +3014,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="472"/>
       <source>Use the same password for the administrator account.</source>
-      <translation>管理者アカウントと同じパスワードを使用する。</translation>
+      <translation>管理者アカウントにも同じパスワードを使用する。</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="495"/>
@@ -5014,7 +5014,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="305"/>
       <source>Use the same password for the administrator account.</source>
-      <translation>管理者アカウントと同じパスワードを使用する。</translation>
+      <translation>管理者アカウントにも同じパスワードを使用する。</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="318"/>
@@ -5147,7 +5147,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="304"/>
       <source>Use the same password for the administrator account.</source>
-      <translation>管理者アカウントと同じパスワードを使用する。</translation>
+      <translation>管理者アカウントにも同じパスワードを使用する。</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="317"/>

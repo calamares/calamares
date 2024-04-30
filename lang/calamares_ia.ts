@@ -39,7 +39,7 @@
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="60"/>
       <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
-      <translation>Le &lt;strong&gt;ambiente de initio&lt;/strong&gt; de iste systema.&lt;br&gt;&lt;br&gt;Systemas x86 plus vetere supporta solmente &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Systemas moderne usualmente usa &lt;strong&gt;EFI&lt;/strong&gt;, ma pote etiam apparer como BIOS si il initia in modo de compatibilitate.</translation>
+      <translation>Le &lt;strong&gt;ambiente de initio&lt;/strong&gt; de iste systema.&lt;br&gt;&lt;br&gt;Systemas x86 plus vetere supporta solmente &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Systemas moderne usualmente usa &lt;strong&gt;EFI&lt;/strong&gt;, ma pote anque apparer como BIOS si il initia in modo de compatibilitate.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="70"/>
@@ -49,7 +49,7 @@
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="82"/>
       <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-      <translation>Iste systema esseva initiate con un ambiente de initio &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Pro configurar le initio ab un ambiente BIOS, iste installator debe installar un cargator de initio, como &lt;strong&gt;GRUB&lt;/strong&gt;, o al comenciamento de un partition o sur le &lt;strong&gt;registro de initio principal&lt;/strong&gt; presso le comenciamento del tabula de partitiones (preferite). Isto es automatic, a minus que tu selige partitionamento manual, in le qual caso tu debe configurar lo tu mesme.</translation>
+      <translation>Iste systema era initiate con un ambiente de initio &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Pro configurar le initio ab un ambiente BIOS, iste installator debe installar un cargator de initio, como &lt;strong&gt;GRUB&lt;/strong&gt;, o al comenciamento de un partition o sur le &lt;strong&gt;registro de initio principal&lt;/strong&gt; presso le comenciamento del tabula de partitiones (preferite). Isto es automatic, a minus que tu selige partitionamento manual, in le qual caso tu debe configurar lo tu mesme.</translation>
     </message>
   </context>
   <context>
@@ -118,7 +118,7 @@
       <location filename="../src/calamares/DebugWindow.ui" line="68"/>
       <location filename="../src/calamares/DebugWindow.ui" line="82"/>
       <source>none</source>
-      <translation>nulle</translation>
+      <translation>necuno</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="75"/>
@@ -193,7 +193,7 @@
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="29"/>
       <source>Job failed (%1)</source>
-      <translation>Carga fallite (%1)</translation>
+      <translation>Labor fallite (%1)</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="30"/>
@@ -214,7 +214,7 @@
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="17"/>
       <source>Example job (%1)</source>
-      <translation>Carga de exemplo (%1)</translation>
+      <translation>Labor de exemplo (%1)</translation>
     </message>
   </context>
   <context>
@@ -495,7 +495,7 @@ Link copied to clipboard</source>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="344"/>
       <source>&amp;Install Now</source>
       <comment>@button</comment>
-      <translation>&amp;Installar nunc</translation>
+      <translation>&amp;Installar ora</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="351"/>
@@ -580,14 +580,14 @@ Link copied to clipboard</source>
       <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
       <translation>Vole tu vermente cancellar le processo de configuration actual?
-Le programma de configuration claudera e tote le cambios essera perdite.</translation>
+Le programma de configuration claudera e tote le cambiamentos sera perdite.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="519"/>
       <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
       <translation>Vole tu vermente cancellar le processo de installation actual?
-Le installator claudera e tote le cambios essera perdite.</translation>
+Le installator claudera e tote le cambiamentos sera perdite.</translation>
     </message>
   </context>
   <context>
@@ -795,7 +795,7 @@ Le installator claudera e tote le cambios essera perdite.</translation>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1628"/>
       <source>No swap</source>
       <comment>@label</comment>
-      <translation>Nulle intercambio</translation>
+      <translation>Necun intercambio</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1637"/>
@@ -807,7 +807,7 @@ Le installator claudera e tote le cambios essera perdite.</translation>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1640"/>
       <source>Swap (no Hibernate)</source>
       <comment>@label</comment>
-      <translation>Intercambio (nulle hibernation)</translation>
+      <translation>Intercambio (necun hibernation)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1643"/>
@@ -978,13 +978,13 @@ Le installator claudera e tote le cambios essera perdite.</translation>
       <location filename="../src/modules/locale/Config.cpp" line="410"/>
       <source>The system language will be set to %1.</source>
       <comment>@info</comment>
-      <translation>Le lingua del systema essera definite a %1.</translation>
+      <translation>Le lingua del systema sera definite a %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="416"/>
       <source>The numbers and dates locale will be set to %1.</source>
       <comment>@info</comment>
-      <translation>Le numeros e datas regional essera definite a %1.</translation>
+      <translation>Le numeros e datas regional sera definite a %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="53"/>
@@ -1039,7 +1039,7 @@ Le installator claudera e tote le cambios essera perdite.</translation>
     <message>
       <location filename="../src/modules/packagechooser/Config.cpp" line="247"/>
       <source>None</source>
-      <translation>Nulle</translation>
+      <translation>Necuno</translation>
     </message>
     <message>
       <location filename="../src/modules/summary/Config.cpp" line="35"/>
@@ -1080,7 +1080,7 @@ Le installator claudera e tote le cambios essera perdite.</translation>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="300"/>
       <source>Your hostname is too short.</source>
-      <translation>Tu nomine de hospite es troppo breve.</translation>
+      <translation>Tu nomine de hospite es troppo curte.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="304"/>
@@ -1130,7 +1130,7 @@ Le installator claudera e tote le cambios essera perdite.</translation>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="80"/>
       <source>This program will ask you some questions and set up %2 on your computer.</source>
-      <translation>Iste programma te demandara alicun questiones e configurara %2 sur tu computator.</translation>
+      <translation>Iste programma te demandara alcun questiones e configurara %2 sur tu computator.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="264"/>
@@ -1477,7 +1477,7 @@ Le installator claudera e tote le cambios essera perdite.</translation>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="78"/>
       <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. GPT is recommended in most other cases.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MBR partition table is an obsolete MS-DOS era standard.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.</source>
-      <translation>&lt;br&gt;&lt;br&gt;Iste typo de tabula de partitiones es solmente consiliabile pro systemas plus vetere que initia ab un ambiente de initio &lt;strong&gt;BIOS&lt;/strong&gt;. GPT es recommendate in le major parte de altere casos.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Advertimento:&lt;/strong&gt; le tabula de partitiones MBR es un standard obsolete del era MS-DOS. &lt;br&gt;Solmente 4 partitiones &lt;em&gt;primari&lt;/em&gt; pote esser create, e de cellos 4, un pote esser un partition &lt;em&gt;extendite&lt;/em&gt;, que a su vice pote continer multe partitiones &lt;em&gt;logic&lt;/em&gt;.</translation>
+      <translation>&lt;br&gt;&lt;br&gt;Iste typo de tabula de partitiones es solmente consiliabile pro systemas plus vetere que initia ab un ambiente de initio &lt;strong&gt;BIOS&lt;/strong&gt;. GPT es recommendate in le major parte de altere casos.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Aviso:&lt;/strong&gt; le tabula de partitiones MBR es un standard obsolete del era MS-DOS. &lt;br&gt;Solmente 4 partitiones &lt;em&gt;primari&lt;/em&gt; pote esser create, e de issos 4, un pote esser un partition &lt;em&gt;extendite&lt;/em&gt;, que a su vice pote continer multe partitiones &lt;em&gt;logic&lt;/em&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="89"/>
@@ -1538,7 +1538,7 @@ Le installator claudera e tote le cambios essera perdite.</translation>
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="138"/>
       <source>Failed to open %1</source>
       <comment>@error</comment>
-      <translation type="unfinished"/>
+      <translation>Impossibile aperir %1</translation>
     </message>
   </context>
   <context>
@@ -1575,7 +1575,7 @@ Le installator claudera e tote le cambios essera perdite.</translation>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="93"/>
       <source>Warning: Formatting the partition will erase all existing data.</source>
-      <translation>Advertimento: Formatar le partition radera tote le datos existente.</translation>
+      <translation>Aviso: Formatar le partition radera tote le datos existente.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="103"/>
@@ -1746,13 +1746,13 @@ Le installator claudera e tote le cambios essera perdite.</translation>
     <message>
       <location filename="../src/modules/finished/FinishedPage.ui" line="102"/>
       <source>&amp;Restart now</source>
-      <translation>&amp;Reinitiar nunc</translation>
+      <translation>&amp;Reinitiar ora</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="75"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been set up on your computer.&lt;br/&gt;You may now start using your new system.</source>
       <comment>@info</comment>
-      <translation>&lt;h1&gt;Tote facite.&lt;/h1&gt;&lt;br/&gt;%1 ha essite configurate in tu computator.&lt;br/&gt;Tu pote nunc initiar usante tu nove systema.</translation>
+      <translation>&lt;h1&gt;Tote facite.&lt;/h1&gt;&lt;br/&gt;%1 ha essite configurate in tu computator.&lt;br/&gt;Tu pote ora initiar usante tu nove systema.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="79"/>
@@ -1764,7 +1764,7 @@ Le installator claudera e tote le cambios essera perdite.</translation>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="87"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
       <comment>@info</comment>
-      <translation>&lt;h1&gt;Tote facite.&lt;/h1&gt;&lt;br/&gt;%1 ha essite installate in tu computator.&lt;br/&gt;Tu pote nunc reinitiar in tu nove systema, o continuar usante le ambiente in vivo de %2.</translation>
+      <translation>&lt;h1&gt;Tote facite.&lt;/h1&gt;&lt;br/&gt;%1 ha essite installate in tu computator.&lt;br/&gt;Tu pote ora reinitiar in tu nove systema, o continuar usante le ambiente in vivo de %2.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="92"/>
@@ -2077,7 +2077,7 @@ Le installator claudera e tote le cambios essera perdite.</translation>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="30"/>
       <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <comment>@info</comment>
-      <translation>Le parametros regional del systema affecta le lingua e le collection de characteres pro alicun elementos del interfacie de usator del linea de commando.&lt;br/&gt;Le parametro actual es &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+      <translation>Le parametros regional del systema affecta le lingua e le collection de characteres pro alcun elementos del interfacie de usator del linea de commando.&lt;br/&gt;Le parametro actual es &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="54"/>
@@ -2107,7 +2107,7 @@ Le installator claudera e tote le cambios essera perdite.</translation>
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="95"/>
       <source>No rootMountPoint is set.</source>
-      <translation>Nulle puncto de montage es definite.</translation>
+      <translation>Necun puncto de montage es definite.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksopenswaphookcfg/LOSHJob.cpp" line="100"/>
@@ -2298,7 +2298,7 @@ Le installator claudera e tote le cambios essera perdite.</translation>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="254"/>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="262"/>
       <source>No partitions are defined.</source>
-      <translation>Nulle partitiones es definite.</translation>
+      <translation>Necun partitiones es definite.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="297"/>
@@ -2309,7 +2309,7 @@ Le installator claudera e tote le cambios essera perdite.</translation>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="298"/>
       <source>Root partition %1 is LUKS but no passphrase has been set.</source>
-      <translation>Le partition radice %1 es LUKS ma nulle phrase de contrasigno esseva definite.</translation>
+      <translation>Le partition radice %1 es LUKS ma necun phrase de contrasigno era definite.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="305"/>
@@ -2423,7 +2423,7 @@ Le installator claudera e tote le cambios essera perdite.</translation>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="56"/>
       <source>Kernel</source>
       <comment>label for netinstall module, Linux kernel</comment>
-      <translation type="unfinished"/>
+      <translation>Nucleo</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="57"/>
@@ -3135,7 +3135,7 @@ Le installator claudera e tote le cambios essera perdite.</translation>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="55"/>
       <source>&amp;Revert All Changes</source>
-      <translation>&amp;Reverter tote le cambiamentos</translation>
+      <translation>&amp;Reverter tote le modificationes</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="91"/>
@@ -3195,7 +3195,7 @@ Le installator claudera e tote le cambios essera perdite.</translation>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="260"/>
       <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
-      <translation>Le tabula de partitiones sur %1 jam ha %2 partitiones primari, e non pote esser addite alteres. Remove un partition primari e adde un partition extendite, in vice.</translation>
+      <translation>Le tabula de partitiones sur %1 ja ha %2 partitiones primari, e non pote esser addite alteres. Remove un partition primari e adde un partition extendite, in vice.</translation>
     </message>
   </context>
   <context>
@@ -3279,7 +3279,7 @@ Le installator claudera e tote le cambios essera perdite.</translation>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="263"/>
       <source>No partitions will be changed.</source>
-      <translation>Nulle partitiones essera cambiate.</translation>
+      <translation>Necun partitiones sera modificate.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="303"/>
@@ -3372,7 +3372,7 @@ Le installator claudera e tote le cambios essera perdite.</translation>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="658"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
-      <translation>Un partition de initio separate esseva configurate insimul con un partition de radice cryptate, ma le partition de initio non es cryptate.&lt;br/&gt;&lt;br/&gt;Il ha problemas de securitate con iste typo de configuration, perque le files importante del systema es mantenite sur un partition non cryptate.&lt;br/&gt;Tu pote continuar si tu vole, ma le disblocar del systema de files occurrera plus tarde durante le initio del systema.&lt;br/&gt;Pro cryptar le partition de initio, retorna e recrea lo, seligente &lt;strong&gt;Cryptar&lt;/strong&gt; in le fenestra de creation de partitiones.</translation>
+      <translation>Un partition de initio separate era configurate insimul con un partition de radice cryptate, ma le partition de initio non es cryptate.&lt;br/&gt;&lt;br/&gt;Il ha problemas de securitate con iste typo de configuration, perque le files importante del systema es mantenite sur un partition non cryptate.&lt;br/&gt;Tu pote continuar si tu vole, ma le disblocar del systema de files occurrera plus tarde durante le initio del systema.&lt;br/&gt;Pro cryptar le partition de initio, retorna e recrea lo, seligente &lt;strong&gt;Cryptar&lt;/strong&gt; in le fenestra de creation de partitiones.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="750"/>
@@ -3567,7 +3567,7 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="44"/>
       <source>(no mount point)</source>
-      <translation>(nulle puncto de montage)</translation>
+      <translation>(necun puncto de montage)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="39"/>
@@ -3661,7 +3661,7 @@ Output:
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="170"/>
       <source>Calamares cannot start KPMCore for the file system resize job.</source>
       <comment>@error</comment>
-      <translation>Calamares non pote initiar KPMCore pro le carga de redimensionamento del systema de files.</translation>
+      <translation>Calamares non pote initiar KPMCore pro le labor de redimensionamento del systema de files.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="179"/>
@@ -3844,37 +3844,37 @@ Output:
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="368"/>
       <source>Failed to write keyboard configuration for the virtual console.</source>
       <comment>@error</comment>
-      <translation type="unfinished"/>
+      <translation>Impossibile scriber le configuration del claviero pro le consola virtual.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="369"/>
       <source>Failed to write to %1</source>
       <comment>@error, %1 is virtual console configuration path</comment>
-      <translation type="unfinished"/>
+      <translation>Impossibile scriber a %1</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="394"/>
       <source>Failed to write keyboard configuration for X11.</source>
       <comment>@error</comment>
-      <translation type="unfinished"/>
+      <translation>Impossibile scriber le configuration del claviero pro X11.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="395"/>
       <source>Failed to write to %1</source>
       <comment>@error, %1 is keyboard configuration path</comment>
-      <translation type="unfinished"/>
+      <translation>Impossibile scriber a %1</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="411"/>
       <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
       <comment>@error</comment>
-      <translation>Non poteva scriber le configuration del claviero al directorio /etc/default existente.</translation>
+      <translation>Impossibile scriber le configuration del claviero al directorio /etc/default existente.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="412"/>
       <source>Failed to write to %1</source>
       <comment>@error, %1 is default keyboard path</comment>
-      <translation type="unfinished"/>
+      <translation>Impossibile scriber a %1</translation>
     </message>
   </context>
   <context>
@@ -4288,7 +4288,7 @@ Output:
     <message>
       <location filename="../src/modules/umount/UmountJob.cpp" line="131"/>
       <source>No rootMountPoint is set.</source>
-      <translation>Nulle puncto de montage es definite.</translation>
+      <translation>Necun puncto de montage es definite.</translation>
     </message>
   </context>
   <context>
@@ -4484,7 +4484,7 @@ Output:
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="162"/>
       <source>Failed to create zpool on </source>
-      <translation type="unfinished"/>
+      <translation>Impossibile crear “zpool” sur</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="180"/>
@@ -4494,7 +4494,7 @@ Output:
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="181"/>
       <source>No partitions are available for ZFS.</source>
-      <translation>Nulle partitiones es disponibile pro ZFS.</translation>
+      <translation>Necun partitiones es disponibile pro ZFS.</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>
@@ -4505,12 +4505,12 @@ Output:
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="264"/>
       <source>Failed to create zpool</source>
-      <translation type="unfinished"/>
+      <translation>Impossibile crear “zpool”</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="336"/>
       <source>Failed to create dataset</source>
-      <translation type="unfinished"/>
+      <translation>Impossibile crear “dataset”</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="337"/>
@@ -4567,7 +4567,7 @@ Output:
       <source>%1 has been installed on your computer.&lt;br/&gt;
             You may now restart into your new system, or continue using the Live environment.</source>
       <translation>%1 ha essite installate in tu computator.&lt;br/&gt;
-            Tu pote nunc reinitiar in tu nove systema, o continuar usante le ambiente in vivo.</translation>
+            Tu pote ora reinitiar in tu nove systema, o continuar usante le ambiente in vivo.</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq.qml" line="65"/>
@@ -4600,7 +4600,7 @@ Output:
             You may now restart into your new system, or continue using the Live environment.</source>
       <comment>@info, %1 is the product name</comment>
       <translation>%1 ha essite installate in tu computator.&lt;br/&gt;
-            Tu pote nunc reinitiar in tu nove systema, o continuar usante le ambiente in vivo.</translation>
+            Tu pote ora reinitiar in tu nove systema, o continuar usante le ambiente in vivo.</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq-qt6.qml" line="65"/>
@@ -4636,7 +4636,7 @@ Output:
             You may now restart your device.</source>
       <comment>@info, %1 is the product name</comment>
       <translation>%1 ha essite installate in tu computator.&lt;br/&gt;
-            Tu pote nunc reinitiar tu dispositivo.</translation>
+            Tu pote ora reinitiar tu dispositivo.</translation>
     </message>
     <message>
       <location filename="../src/modules/finishedq/finishedq@mobile.qml" line="66"/>
@@ -4732,7 +4732,7 @@ Output:
                             The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <comment>@info</comment>
       <translation>&lt;h3&gt;Linguas&lt;/h3&gt; &lt;/br&gt;
-                            Le parametro regional del systema affecta le lingua e le collection de characteres pro alicun elementos del interfacie de usator del linea de commando. Le parametro actual es &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+                            Le parametro regional del systema affecta le lingua e le collection de characteres pro alcun elementos del interfacie de usator del linea de commando. Le parametro actual es &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/localeq.qml" line="213"/>
@@ -4757,7 +4757,7 @@ Output:
                             The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <comment>@info</comment>
       <translation>&lt;h3&gt;Linguas&lt;/h3&gt; &lt;/br&gt;
-                            Le parametro regional del systema affecta le lingua e le collection de characteres pro alicun elementos del interfacie de usator del linea de commando. Le parametro actual es &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+                            Le parametro regional del systema affecta le lingua e le collection de characteres pro alcun elementos del interfacie de usator del linea de commando. Le parametro actual es &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/localeq-qt6.qml" line="213"/>
@@ -5160,7 +5160,7 @@ Output:
       <source>&lt;h3&gt;Welcome to the %1 &lt;quote&gt;%2&lt;/quote&gt; installer&lt;/h3&gt;
             &lt;p&gt;This program will ask you some questions and set up %1 on your computer.&lt;/p&gt;</source>
       <translation>&lt;h3&gt;Benvenite al installator de &lt;quote&gt;%2&lt;/quote&gt; pro %1&lt;/h3&gt;
-            &lt;p&gt;Iste programma te demandara alicun questiones e configurara %1 sur tu computator.&lt;/p&gt;</translation>
+            &lt;p&gt;Iste programma te demandara alcun questiones e configurara %1 sur tu computator.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="69"/>
@@ -5190,7 +5190,7 @@ Output:
       <source>&lt;h3&gt;Welcome to the %1 &lt;quote&gt;%2&lt;/quote&gt; installer&lt;/h3&gt;
             &lt;p&gt;This program will ask you some questions and set up %1 on your computer.&lt;/p&gt;</source>
       <translation>&lt;h3&gt;Benvenite al installator de &lt;quote&gt;%2&lt;/quote&gt; pro %1&lt;/h3&gt;
-            &lt;p&gt;Iste programma te demandara alicun questiones e configurara %1 sur tu computator.&lt;/p&gt;</translation>
+            &lt;p&gt;Iste programma te demandara alcun questiones e configurara %1 sur tu computator.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq-qt6.qml" line="69"/>

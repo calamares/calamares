@@ -31,7 +31,7 @@
       <location filename="../src/modules/partition/jobs/AutoMountManagementJob.cpp" line="22"/>
       <source>Managing auto-mount settings…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>অটো-মাউন্ট ছেটিংছ ব্যৱস্থাপনা কৰা হৈছে...</translation>
     </message>
   </context>
   <context>
@@ -158,13 +158,13 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="144"/>
       <source>Send Session Log</source>
-      <translation type="unfinished"/>
+      <translation>চেচন লগ পঠাওক</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.cpp" line="164"/>
       <source>Debug Information</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>ডিবাগ তথ্য</translation>
     </message>
   </context>
   <context>

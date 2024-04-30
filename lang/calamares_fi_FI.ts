@@ -1166,7 +1166,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
       <location filename="../src/modules/contextualprocess/ContextualProcessJob.cpp" line="115"/>
       <source>Performing contextual processes' job…</source>
       <comment>@status</comment>
-      <translation>Suoritetaan kontekstuaaliset prosessit…</translation>
+      <translation>Suoritetaan prosessit…</translation>
     </message>
   </context>
   <context>
@@ -3627,7 +3627,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
     <message>
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="46"/>
       <source>The installer failed to remove a volume group named '%1'.</source>
-      <translation>Asennusoihjelma ei onnistunut poistamaan taltioryhmää '%1'.</translation>
+      <translation>Asennusoihjelma ei voinut poistaa taltioryhmää "%1".</translation>
     </message>
   </context>
   <context>
@@ -3665,7 +3665,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="163"/>
       <source>The file-system resize job has an invalid configuration and will not run.</source>
       <comment>@error</comment>
-      <translation>Tiedostojärjestelmän koon muutto ei kelpaa eikä sitä suoriteta.</translation>
+      <translation>Tiedostojärjestelmän koonmuutostyön määritys on virheellinen, eikä sitä suoriteta.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="169"/>
@@ -3677,25 +3677,25 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="170"/>
       <source>Calamares cannot start KPMCore for the file system resize job.</source>
       <comment>@error</comment>
-      <translation>Calamares ei voi käynnistää KPMCorea tiedostojärjestelmän koon muuttamiseksi.</translation>
+      <translation>Calamares ei voi käynnistää KPMCorea tiedostojärjestelmän koonmuutostyölle.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="179"/>
       <source>Resize failed.</source>
       <comment>@error</comment>
-      <translation>Koon muuttaminen epäonnistui.</translation>
+      <translation>Kokoa ei voitu muuttaa.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="181"/>
       <source>The filesystem %1 could not be found in this system, and cannot be resized.</source>
       <comment>@info</comment>
-      <translation>Tiedostojärjestelmää %1 ei löydy tästä järjestelmästä, eikä sen kokoa voi muuttaa.</translation>
+      <translation>Tiedostojärjestelmää %1 ei löydy, eikä sen kokoa voi muuttaa.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="182"/>
       <source>The device %1 could not be found in this system, and cannot be resized.</source>
       <comment>@info</comment>
-      <translation>Laitetta %1 ei löydy tästä järjestelmästä, eikä sen kokoa voi muuttaa.</translation>
+      <translation>Laitetta %1 ei löydy, eikä sen kokoa voi muuttaa.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="189"/>
@@ -3704,7 +3704,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="231"/>
       <source>Resize Failed</source>
       <comment>@error</comment>
-      <translation>Kokomuutos epäonnistui</translation>
+      <translation>Kokoa ei voitu muuttaa</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="191"/>
@@ -3774,7 +3774,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="28"/>
       <source>Resize volume group named %1 from %2 to %3</source>
       <comment>@title</comment>
-      <translation>Muuta tilavuusryhmän %1 kokoa %2:sta %3:ksi</translation>
+      <translation>Muuta taltioryhmän %1 kokoa %2:sta %3:ksi</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="37"/>
@@ -3791,7 +3791,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
     <message>
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="58"/>
       <source>The installer failed to resize a volume group named '%1'.</source>
-      <translation>Asennusohjelma ei onnistunut muuttamaan taltioryhmän "%1" kokoa.</translation>
+      <translation>Asennusohjelma ei voinut muuttaa taltioryhmän "%1" kokoa.</translation>
     </message>
   </context>
   <context>
@@ -4116,7 +4116,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
       <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="38"/>
       <source>Running shell processes…</source>
       <comment>@status</comment>
-      <translation>Suoritetaan shell prosesseja…</translation>
+      <translation>Suoritetaan shell prosessit…</translation>
     </message>
   </context>
   <context>
@@ -4410,12 +4410,12 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
       <location filename="../src/modules/welcome/WelcomePage.ui" line="79"/>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="98"/>
       <source>Select application and system language</source>
-      <translation>Valitse sovelluksen ja järjestelmän kieli</translation>
+      <translation>Valitse sovellusten ja järjestelmän kieli</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="140"/>
       <source>Open donations website</source>
-      <translation>Avaa lahjoitussivusto</translation>
+      <translation>Avaa lahjoitukset verkkosivu</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="143"/>
@@ -4425,7 +4425,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="153"/>
       <source>Open help and support website</source>
-      <translation>Avaa ohje- ja tukisivusto</translation>
+      <translation>Avaa ohje- ja tukisivu</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="156"/>
@@ -4435,7 +4435,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="166"/>
       <source>Open issues and bug-tracking website</source>
-      <translation>Avaa ongelmia käsittelevä verkkosivusto</translation>
+      <translation>Avoimet ongelmat ja virheenseuranta verkkosivu</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="169"/>
@@ -4445,7 +4445,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
       <source>Open release notes website</source>
-      <translation>Avaa julkaisutietojen verkkosivusto</translation>
+      <translation>Avaa julkaisutiedot verkkosivu</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="182"/>
@@ -4526,7 +4526,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="336"/>
       <source>Failed to create dataset</source>
-      <translation>Tietojoukon luominen epäonnistui</translation>
+      <translation>Epäonnistui dataset luominen</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="337"/>
@@ -4556,7 +4556,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.&lt;/
       <location filename="../src/calamares/CalamaresWindow.cpp" line="159"/>
       <source>Show information about Calamares</source>
       <comment>@tooltip</comment>
-      <translation>Näytä tietoa Calamaresista</translation>
+      <translation>Calamares tietoja</translation>
     </message>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="173"/>

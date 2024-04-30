@@ -1959,13 +1959,13 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="262"/>
       <source>is checked three times.</source>
-      <translation type="unfinished"/>
+      <translation>已检测了 3 次。</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="265"/>
       <source>The snark has not been checked three times.</source>
       <comment>The (some mythological beast) has not been checked three times.</comment>
-      <translation type="unfinished"/>
+      <translation>snark 没有检查三次。</translation>
     </message>
   </context>
   <context>
@@ -4065,7 +4065,7 @@ Output:
       <location filename="../src/modules/users/MiscJobs.cpp" line="181"/>
       <source>Preparing groups…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>正在准备群组…</translation>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="193"/>
@@ -4085,7 +4085,7 @@ Output:
       <location filename="../src/modules/users/MiscJobs.cpp" line="34"/>
       <source>Configuring &lt;pre&gt;sudo&lt;/pre&gt; users…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>配置 &lt;pre&gt;sudo&lt;/pre&gt; 用户…</translation>
     </message>
     <message>
       <location filename="../src/modules/users/MiscJobs.cpp" line="70"/>
@@ -4104,7 +4104,7 @@ Output:
       <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="38"/>
       <source>Running shell processes…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>正在运行 shell 进程…</translation>
     </message>
   </context>
   <context>
@@ -4156,7 +4156,7 @@ Output:
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="106"/>
       <source>Sending installation feedback…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>正在发送安装反馈…</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="124"/>
@@ -4180,7 +4180,7 @@ Output:
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="198"/>
       <source>Configuring KDE user feedback…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>配置 KDE 用户反馈…</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="220"/>
@@ -4210,7 +4210,7 @@ Output:
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="141"/>
       <source>Configuring machine feedback…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>正在配置机器反馈…</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="164"/>
@@ -4282,7 +4282,7 @@ Output:
       <location filename="../src/modules/umount/UmountJob.cpp" line="39"/>
       <source>Unmounting file systems…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>正在卸载文件系统…</translation>
     </message>
     <message>
       <location filename="../src/modules/umount/UmountJob.cpp" line="123"/>
@@ -4444,19 +4444,19 @@ Output:
       <location filename="../src/calamares/DebugWindow.cpp" line="235"/>
       <source>About %1 Setup</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>关于 %1 安装程序</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.cpp" line="236"/>
       <source>About %1 Installer</source>
       <comment>@title</comment>
-      <translation type="unfinished"/>
+      <translation>关于 %1 安装程序</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="212"/>
       <source>%1 Support</source>
       <comment>@action</comment>
-      <translation type="unfinished"/>
+      <translation>%1 的支持信息</translation>
     </message>
   </context>
   <context>
@@ -4483,7 +4483,7 @@ Output:
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="102"/>
       <source>Creating ZFS pools and datasets…</source>
       <comment>@status</comment>
-      <translation type="unfinished"/>
+      <translation>正在创建 ZFS 池和数据集…</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="162"/>
@@ -4737,14 +4737,16 @@ Output:
       <source>&lt;h3&gt;Languages&lt;/h3&gt; &lt;/br&gt;
                             The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;语言&lt;/h3&gt;&lt;/br&gt;
+                   系统语言区域设置会影响部份命令行用户界面的语言及字符集。 当前设置是 &lt;strong&gt;%1&lt;/strong&gt;。</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/localeq.qml" line="213"/>
       <source>&lt;h3&gt;Locales&lt;/h3&gt; &lt;/br&gt;
                                 The system locale setting affects the numbers and dates format. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;区域&lt;/h3&gt;&lt;/br&gt;
+                    系统区域设置会影响数字和日期格式。 当前设置是 &lt;strong&gt;%1&lt;/strong&gt;。</translation>
     </message>
   </context>
   <context>
@@ -4761,14 +4763,16 @@ Output:
       <source>&lt;h3&gt;Languages&lt;/h3&gt; &lt;/br&gt;
                             The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;语言&lt;/h3&gt;&lt;/br&gt;
+                   系统语言区域设置会影响部份命令行用户界面的语言及字符集。 当前设置是 &lt;strong&gt;%1&lt;/strong&gt;。</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/localeq-qt6.qml" line="213"/>
       <source>&lt;h3&gt;Locales&lt;/h3&gt; &lt;/br&gt;
                                 The system locale setting affects the numbers and dates format. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <comment>@info</comment>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;区域&lt;/h3&gt;&lt;/br&gt;
+                    系统区域设置会影响数字和日期格式。 当前设置是 &lt;strong&gt;%1&lt;/strong&gt;。</translation>
     </message>
   </context>
   <context>
