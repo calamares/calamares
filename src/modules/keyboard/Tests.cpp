@@ -45,6 +45,7 @@ KeyboardLayoutTests::testSimpleLayoutLookup_data()
     QTest::newRow( "turkish default" ) << QString( "tr" ) << QString() << QString() << QString( "trq" );
     QTest::newRow( "turkish alt-q" ) << QString( "tr" ) << QString() << QString( "alt" ) << QString( "trq" );
     QTest::newRow( "turkish f" ) << QString( "tr" ) << QString() << QString( "f" ) << QString( "trf" );
+    QTest::newRow( "italian" ) << QString( "it" ) << QString( "pc105" ) << QString() << QString( "it" );
 }
 
 
