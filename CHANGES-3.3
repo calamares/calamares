@@ -21,8 +21,11 @@ This release contains contributions from (alphabetically by first name):
 ## Core ##
  - Updated clang-formatting
  - Some C++20 future-proofing (thanks Vladislav)
+ - CommandList (used by *contextualprocess* and *shellprocess*) now supports
+   globalstorage keys as substitutable variables.
 
 ## Modules ##
+ - *contextualprocess* see *shellprocess*.
  - *fstab* module does not add an encryption keyfile if it does
    not exist. (thanks Eugene)
  - *keyboard* module handles Persian (fa) layout better. (thanks Sohrab)
@@ -31,6 +34,10 @@ This release contains contributions from (alphabetically by first name):
    they were not written, either, so no net change.
  - *partition* module now has a configurable default check-state
    for the encryption checkbox. (thanks Vincent)
+ - *shellprocess* commands now support globalstorage variables, which
+   are written as `${gs[key]}`, where `key` is a dotted string that
+   selects the globalstorage key to use (like in *contextualprocess*
+   variable-selectors) and `${gs[` and `]}` are literal characters.
 
 
 # 3.3.6 (2024-04-16)
