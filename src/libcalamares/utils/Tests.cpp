@@ -282,9 +282,17 @@ LibCalamaresTests::testCommandExpansion_data()
     QTest::addColumn< QString >( "command" );
     QTest::addColumn< QString >( "expected" );
 
-    QTest::newRow( "empty" ) << QString() << QString();
-    QTest::newRow( "ls   " ) << QStringLiteral( "ls" ) << QStringLiteral( "ls" );
-    QTest::newRow( "user " ) << QStringLiteral( "chmod $USER" ) << QStringLiteral( "chmod alice" );
+    QTest::newRow( "empty  " ) << QString() << QString();
+    QTest::newRow( "ls     " ) << QStringLiteral( "ls" ) << QStringLiteral( "ls" );
+    QTest::newRow( "$USER  " ) << QStringLiteral( "chmod $USER" ) << QStringLiteral( "chmod alice" );
+    QTest::newRow( "${USER}" ) << QStringLiteral( "chmod ${USER}" ) << QStringLiteral( "chmod alice" );
+    QTest::newRow( "gs-user" ) << QStringLiteral( "chmod ${gs[username]}" ) << QStringLiteral( "chmod alice" );
+    QTest::newRow( "gs-*   " ) << QStringLiteral(
+        "${gs[username]} has ${gs[branding.bootloader]} ${gs[branding.ducks]} ducks" )
+                               << QStringLiteral( "alice has found 3 ducks" );
+    // QStringList does not expand
+    QTest::newRow( "gs-list" ) << QStringLiteral( "colors ${gs[branding.color]}" )
+                               << QStringLiteral( "colors ${gs[branding.color]}" );
 }
 
 void
@@ -294,6 +302,12 @@ LibCalamaresTests::testCommandExpansion()
         = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
     QVERIFY( gs );
     gs->insert( QStringLiteral( "username" ), QStringLiteral( "alice" ) );
+
+    QVariantMap m;
+    m.insert( QStringLiteral( "bootloader" ), QStringLiteral( "found" ) );
+    m.insert( QStringLiteral( "ducks" ), 3 );
+    m.insert( QStringLiteral( "color" ), QStringList { "green", "red" } );
+    gs->insert( QStringLiteral( "branding" ), m );
 
     QFETCH( QString, command );
     QFETCH( QString, expected );

@@ -55,6 +55,41 @@ get_variant_stringlist( const QVariantList& l )
     return retl;
 }
 
+/** @brief Inserts the keys from @p map into @p expander as "gs"-keys
+ *
+ * For each key k in @p map, a key with literal `gs[` + prefix + '.' + key +
+ * literal `]` is inserted into the exapander.
+ */
+static void
+expand_tree( Calamares::String::DictionaryExpander& expander, const QString& prefix, const QVariantMap& map )
+{
+    // With the current prefix, turn a key into gs[prefix.key]
+    auto gs_key = [ &prefix ]( const QString& k ) -> QString
+    { return QStringLiteral( "gs[" ) + ( prefix.isEmpty() ? QString() : prefix + '.' ) + k + ']'; };
+
+    for ( QVariantMap::const_iterator valueiter = map.cbegin(); valueiter != map.cend(); ++valueiter )
+    {
+        const QString key = valueiter.key();
+        const QVariant value = valueiter.value();
+
+        switch ( Calamares::typeOf( value ) )
+        {
+        case Calamares::MapVariantType:
+            expand_tree( expander, prefix.isEmpty() ? key : ( prefix + '.' + key ), value.toMap() );
+            break;
+        case Calamares::StringVariantType:
+            expander.add( gs_key( key ), value.toString() );
+            break;
+        case Calamares::IntVariantType:
+            expander.add( gs_key( key ), QString::number( value.toInt() ) );
+            break;
+        default:
+            // Silently ignore
+            break;
+        }
+    }
+}
+
 static Calamares::String::DictionaryExpander
 get_gs_expander( System::RunLocation location )
 {
@@ -86,6 +121,11 @@ get_gs_expander( System::RunLocation location )
         {
             expander.insert( key, lang );
         }
+    }
+
+    if ( gs )
+    {
+        expand_tree( expander, QString(), gs->data() );
     }
 
     return expander;
