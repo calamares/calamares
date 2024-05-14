@@ -364,8 +364,14 @@ commands:
     QCOMPARE( m[ "commands" ].toList().count(), 4 );
 
     {
-        // Take care! The second parameter is a bool, so "3" here means "true"
+#ifdef THIS_DOES_NOT_COMPILE_AND_THATS_THE_POINT
+        // Take care! The second parameter is a bool, so "3" here would
+        // mean "true", except the int overload is deleted to prevent just that.
         Calamares::CommandList cmds( m[ "commands" ], 3 );
+        // .. and there's no conversion from std::chrono::duration to bool either.
+        Calamares::CommandList cmds( m[ "commands" ], std::chrono::seconds( 3 ) );
+#endif
+        Calamares::CommandList cmds( m[ "commands" ], true );
         QCOMPARE( cmds.defaultTimeout(), std::chrono::seconds( 10 ) );
         // But the 4 commands are there anyway
         QCOMPARE( cmds.count(), 4 );
