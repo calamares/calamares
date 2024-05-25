@@ -140,6 +140,11 @@ CommandLine::CommandLine( const QVariantMap& m )
         m_command = command;
         m_timeout = timeout >= 0 ? std::chrono::seconds( timeout ) : CommandLine::TimeoutNotSet();
         m_environment = Calamares::getStringList( m, "environment" );
+
+        if ( m.contains( "verbose" ) )
+        {
+            m_verbose = Calamares::getBool( m, "verbose", false );
+        }
     }
     else
     {
@@ -287,6 +292,12 @@ CommandList::expand() const
 {
     auto expander = get_gs_expander( System::RunLocation::RunInHost );
     return expand( expander );
+}
+
+void
+CommandList::updateVerbose( bool verbose )
+{
+    std::for_each( begin(), end(), [ verbose ]( CommandLine& command ) { command.updateVerbose( verbose ); } );
 }
 
 }  // namespace Calamares

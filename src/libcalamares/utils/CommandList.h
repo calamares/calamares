@@ -18,6 +18,7 @@
 #include <QVariant>
 
 #include <chrono>
+#include <optional>
 #include <utility>
 
 class KMacroExpanderBase;
@@ -63,6 +64,7 @@ public:
     QString command() const { return m_command; }
     [[nodiscard]] QStringList environment() const { return m_environment; }
     std::chrono::seconds timeout() const { return m_timeout; }
+    bool isVerbose() const { return m_verbose.value_or( false ); }
 
     bool isValid() const { return !m_command.isEmpty(); }
 
@@ -81,10 +83,20 @@ public:
      */
     DLLEXPORT CommandLine expand() const;
 
+    /** @brief If nothing has set verbosity yet, update to @p verbose */
+    void updateVerbose( bool verbose )
+    {
+        if ( !m_verbose.has_value() )
+        {
+            m_verbose = verbose;
+        }
+    }
+
 private:
     QString m_command;
     QStringList m_environment;
     std::chrono::seconds m_timeout = TimeoutNotSet();
+    std::optional< bool > m_verbose;
 };
 
 /** @brief Abbreviation, used internally. */
@@ -103,6 +115,11 @@ class DLLEXPORT CommandList : protected CommandList_t
 public:
     /** @brief empty command-list with timeout to apply to entries. */
     CommandList( bool doChroot = true, std::chrono::seconds timeout = std::chrono::seconds( 10 ) );
+    /** @brief command-list constructed from script-entries in @p v
+     *
+     * The global settings @p doChroot and @p timeout can be overridden by
+     * the individual script-entries.
+     */
     CommandList( const QVariant& v, bool doChroot = true, std::chrono::seconds timeout = std::chrono::seconds( 10 ) );
     CommandList( int ) = delete;
     CommandList( const QVariant&, int ) = delete;
@@ -126,14 +143,17 @@ public:
      * Each command-line in the list is expanded with the given @p expander.
      * @see CommandLine::expand() for details.
      */
-    CommandList expand( KMacroExpanderBase& expander ) const;
+    DLLEXPORT CommandList expand( KMacroExpanderBase& expander ) const;
 
     /** @brief As above, with a default macro-expander.
      *
      * Each command-line in the list is expanded with that default macro-expander.
      * @see CommandLine::expand() for details.
      */
-    CommandList expand() const;
+    DLLEXPORT CommandList expand() const;
+
+    /** @brief Applies default-value @p verbose to each entry without an explicit setting. */
+    DLLEXPORT void updateVerbose( bool verbose );
 
 private:
     bool m_doChroot;
