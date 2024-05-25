@@ -19,7 +19,10 @@ definitions:
       timeout:
         type: number
         description: the (optional) timeout for this specific command (differently
-          from the global setting)
+          from the global setting).
+      verbose:
+        type: boolean
+        description: when true, log output from the command to the Calamares log.
     required:
     - command
 type: object
@@ -34,6 +37,9 @@ properties:
     type: number
     description: The (global) timeout for the command list in seconds. If unset, defaults
       to 30 seconds.
+  verbose:
+    type: boolean
+    description: when true, log output from the command to the Calamares log.
   script:
     anyOf:
     - $ref: '#definitions/command'
@@ -55,3 +61,5 @@ properties:
         type: string
     required:
     - name
+required:
+  - script
