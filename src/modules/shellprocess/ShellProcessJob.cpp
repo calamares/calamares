@@ -60,6 +60,7 @@ ShellProcessJob::setConfigurationMap( const QVariantMap& configurationMap )
     {
         timeout = 30;
     }
+    bool verbose = Calamares::getBool( configurationMap, "verbose", false );
 
     if ( configurationMap.contains( "script" ) )
     {
@@ -69,6 +70,7 @@ ShellProcessJob::setConfigurationMap( const QVariantMap& configurationMap )
         {
             cDebug() << "ShellProcessJob: \"script\" contains no commands for" << moduleInstanceKey();
         }
+        m_commands->updateVerbose( verbose );
     }
     else
     {
