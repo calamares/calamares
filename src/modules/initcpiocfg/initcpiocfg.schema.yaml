@@ -14,3 +14,4 @@ properties:
             prepend: { type: array, items: string }
             append: { type: array, items: string }
             remove: { type: array, items: string }
+    source: { type: string }

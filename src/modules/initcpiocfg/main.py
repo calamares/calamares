@@ -97,7 +97,7 @@ def get_host_initcpio():
     the lines from that file, or an empty list if it does
     not exist.
     """
-    hostfile = "/etc/mkinitcpio.conf"
+    hostfile = libcalamares.job.configuration.get("source", None) or "/etc/mkinitcpio.conf"
     try:
         with open(hostfile, "r") as mkinitcpio_file:
             mklins = [x.strip() for x in mkinitcpio_file.readlines()]
