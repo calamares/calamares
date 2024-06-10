@@ -7,5 +7,10 @@ additionalProperties: false
 type: object
 properties:
     useSystemdHook: { type: boolean }
-
-
+    hooks:
+        type: object
+        additionalProperties: false
+        properties:
+            prepend: { type: array, items: string }
+            append: { type: array, items: string }
+            remove: { type: array, items: string }
