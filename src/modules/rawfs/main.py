@@ -126,7 +126,7 @@ class RawFSItem:
                 config["source"], device))
         self.source = os.path.realpath(config["source"])
         # If source is a mount point, look for the actual device mounted on it
-        if os.path.ismount(self.source):
+        if os.path.ismount(self.source) and not libcalamares.job.configuration.get("bogus", False):
             procmounts = open("/proc/mounts", "r")
             for line in procmounts:
                 if self.source in line.split():
