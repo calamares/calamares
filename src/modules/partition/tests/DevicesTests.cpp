@@ -51,6 +51,11 @@ DevicesTests::testKPMScanDevices()
 
     cDebug() << "Getting devices via KPMCore";
     CoreBackend* backend = CoreBackendManager::self()->backend();
+#ifdef Q_OS_FREEBSD
+    QEXPECT_FAIL( "", "Test backend not expected on FreeBSD", Continue );
+    QVERIFY( backend );
+    return;
+#endif
     QVERIFY( backend );
     auto devices = backend->scanDevices( ScanFlag( ~0 ) );  // These flags try to get "all"
     cDebug() << Logger::SubEntry << "Done getting devices.";
