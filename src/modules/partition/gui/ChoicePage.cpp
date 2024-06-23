@@ -467,8 +467,6 @@ ChoicePage::onActionChanged()
         {
             m_encryptWidget->setFilesystem( FileSystem::typeForName( m_replaceFsTypesChoiceComboBox->currentText() ) );
         }
-
-        m_encryptWidget->setEncryptionCheckbox( m_config->preCheckEncryption() );
     }
 
     Device* currd = selectedDevice();
@@ -1035,6 +1033,10 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
         if ( m_enableEncryptionWidget )
         {
             m_encryptWidget->show();
+            if ( m_config->preCheckEncryption() )
+            {
+                m_encryptWidget->setEncryptionCheckbox( true );
+            }
         }
         m_previewBeforeLabel->setText( tr( "Current:", "@label" ) );
         m_selectLabel->setText( tr( "<strong>Select a partition to shrink, "
@@ -1087,7 +1089,14 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
     case InstallChoice::Erase:
     case InstallChoice::Replace:
     {
-        m_encryptWidget->setVisible( shouldShowEncryptWidget( choice ) );
+        if ( shouldShowEncryptWidget( choice ) )
+        {
+            m_encryptWidget->show();
+            if ( m_config->preCheckEncryption() )
+            {
+                m_encryptWidget->setEncryptionCheckbox( true );
+            }
+        }
         m_previewBeforeLabel->setText( tr( "Current:", "@label" ) );
         m_afterPartitionBarsView = new PartitionBarsView( m_previewAfterFrame );
         m_afterPartitionBarsView->setNestedPartitionsMode( mode );
