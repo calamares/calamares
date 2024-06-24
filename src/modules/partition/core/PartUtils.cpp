@@ -245,8 +245,6 @@ lookForFstabEntries( const QString& partitionPath )
 
     cDebug() << "Checking device" << partitionPath << "for fstab (fs=" << r.getOutput() << ')';
 
-    FstabEntryList fstabEntries;
-
     Calamares::Partition::TemporaryMount mount( partitionPath, QString(), mountOptions.join( ',' ) );
     if ( mount.isValid() )
     {
