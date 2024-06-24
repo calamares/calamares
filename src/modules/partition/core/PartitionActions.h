@@ -37,11 +37,11 @@ struct ReplacePartitionOptions
     ReplacePartitionOptions( const QString& pt,
                              const QString& fs,
                              Config::LuksGeneration luksFs,
-                             const QString& luksPassphrase )
+                             const QString& passphrase )
         : defaultPartitionTableType( pt )
         , defaultFsType( fs )
         , luksFsType( luksFs )
-        , luksPassphrase( luksPassphrase )
+        , luksPassphrase( passphrase )
     {
     }
 };
@@ -55,11 +55,11 @@ struct AutoPartitionOptions : ReplacePartitionOptions
     AutoPartitionOptions( const QString& pt,
                           const QString& fs,
                           Config::LuksGeneration luksFs,
-                          const QString& luksPassphrase,
+                          const QString& passphrase,
                           const QString& efi,
                           qint64 requiredBytes,
                           Config::SwapChoice s )
-        : ReplacePartitionOptions( pt, fs, luksFs, luksPassphrase )
+        : ReplacePartitionOptions( pt, fs, luksFs, passphrase )
         , efiPartitionMountPoint( efi )
         , requiredSpaceB( requiredBytes > 0 ? quint64( requiredBytes ) : 0U )
         , swap( s )
