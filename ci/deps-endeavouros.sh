@@ -7,5 +7,5 @@
 # It even has most of the build-deps already installed.
 pacman -Syu --noconfirm git cmake ninja jq
 pacman -S --noconfirm gcc yaml-cpp icu
-pacman -S --noconfigm extra-cmake-modules
+pacman -S --noconfirm extra-cmake-modules
 
