@@ -345,8 +345,10 @@ def run():
                 _("No partitions are defined for <pre>{!s}</pre> to use.").format("mount"))
 
     # Find existing swap partitions that are part of the installation and enable them now
-    swap_devices = [p["device"] for p in partitions if (p["fs"] == "linuxswap" and p.get("claimed", False) and p["fsName"] == "linuxswap")] \
-       + ["/dev/mapper/" + p["luksMapperName"] for p in partitions if (p["fs"] == "linuxswap" and p.get("claimed", False) and (p["fsName"] == "luks" or p["fsName"] == "luks2"))]
+    claimed_swap_partitions = [p for p in partitions if p["fs"] == "linuxswap" and p.get("claimed", False)]
+    plain_swap = [p for p in claimed_swap_partitions if p["fsName"] == "linuxswap"]
+    luks_swap = [p for p in claimed_swap_partitions if p["fsName"] == "luks" or p["fsName"] == "luks2"]
+    swap_devices = [p["device"] for p in plain_swap] + ["/dev/mapper/" + p["luksMapperName"] for p in luks_swap]
 
     enable_swap_partition(swap_devices)
 
