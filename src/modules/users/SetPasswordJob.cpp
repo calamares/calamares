@@ -64,7 +64,7 @@ SetPasswordJob::make_salt( int length )
         cWarning() << "Entropy data for salt is low-quality.";
     }
 
-    salt_string.insert( 0, "$6$" );
+    salt_string.insert( 0, "$y$" );
     salt_string.append( '$' );
     return salt_string;
 }
