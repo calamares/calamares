@@ -56,6 +56,7 @@ private Q_SLOTS:
     void testCommandConstructors();
     void testCommandConstructorsYAML();
     void testCommandRunning();
+    void testCommandVerbose();
 
     /** @section Test that all the UMask objects work correctly. */
     void testUmask();
@@ -452,6 +453,54 @@ LibCalamaresTests::testCommandRunning()
 
 
     tempRoot.setAutoRemove( true );
+}
+
+void
+LibCalamaresTests::testCommandVerbose()
+{
+    Logger::setupLogLevel( Logger::LOGDEBUG );
+
+    QTemporaryDir tempRoot( QDir::tempPath() + QStringLiteral( "/test-job-XXXXXX" ) );
+    tempRoot.setAutoRemove( false );
+
+    const QString testExecutable = tempRoot.filePath( "example.sh" );
+
+    cDebug() << "Creating example executable" << testExecutable;
+
+    {
+        QFile f( testExecutable );
+        QVERIFY( f.open( QIODevice::WriteOnly ) );
+        f.write( "#! /bin/sh\necho one\necho two\necho error 1>&2\nsleep 1; echo three\n" );
+        f.close();
+        Calamares::Permissions::apply( testExecutable, 0755 );
+    }
+
+    cDebug() << "Running command non-verbose";
+    {
+        Calamares::CommandList l( false );  // no chroot
+        Calamares::CommandLine c( testExecutable, {}, std::chrono::seconds( 2 ) );
+        c.updateVerbose( false );
+        QVERIFY( !c.isVerbose() );
+
+        l.push_back( c );
+
+        const auto r = l.run();
+        QVERIFY( bool( r ) );
+    }
+
+    cDebug() << "Running command verbosely";
+
+    {
+        Calamares::CommandList l( false );  // no chroot
+        Calamares::CommandLine c( testExecutable, {}, std::chrono::seconds( 2 ) );
+        c.updateVerbose( true );
+        QVERIFY( c.isVerbose() );
+
+        l.push_back( c );
+
+        const auto r = l.run();
+        QVERIFY( bool( r ) );
+    }
 }
 
 void
