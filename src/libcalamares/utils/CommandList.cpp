@@ -261,6 +261,12 @@ CommandList::run()
 
         Calamares::Utils::Runner runner( shell_cmd );
         runner.setLocation( location ).setTimeout( timeout ).setWorkingDirectory( QString() );
+        if ( i->isVerbose() )
+        {
+            runner.enableOutputProcessing();
+            QObject::connect(
+                &runner, &Calamares::Utils::Runner::output, []( QString output ) { cDebug() << output; } );
+        }
         ProcessResult r = runner.run();
 
         if ( r.getExitCode() != 0 )
