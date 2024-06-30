@@ -16,6 +16,7 @@
 #include "compat/Variant.h"
 #include "locale/Global.h"
 #include "utils/Logger.h"
+#include "utils/Runner.h"
 #include "utils/StringExpander.h"
 #include "utils/System.h"
 #include "utils/Variant.h"
@@ -257,7 +258,10 @@ CommandList::run()
         shell_cmd << ( environmentSetting + processed_cmd );
 
         std::chrono::seconds timeout = i->timeout() >= std::chrono::seconds::zero() ? i->timeout() : m_timeout;
-        ProcessResult r = System::runCommand( location, shell_cmd, QString(), QString(), timeout );
+
+        Calamares::Utils::Runner runner( shell_cmd );
+        runner.setLocation( location ).setTimeout( timeout ).setWorkingDirectory( QString() );
+        ProcessResult r = runner.run();
 
         if ( r.getExitCode() != 0 )
         {
