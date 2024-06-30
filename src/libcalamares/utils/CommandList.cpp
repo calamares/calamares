@@ -165,7 +165,12 @@ CommandLine::expand( KMacroExpanderBase& expander ) const
     QStringList e = m_environment;
     std::for_each( e.begin(), e.end(), [ &expander ]( QString& s ) { expander.expandMacrosShellQuote( s ); } );
 
-    return { c, m_environment, m_timeout };
+    CommandLine l { c, m_environment, m_timeout };
+    if ( m_verbose.has_value() )
+    {
+        l.updateVerbose( m_verbose.value() );
+    }
+    return l;
 }
 
 Calamares::CommandLine
