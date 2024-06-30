@@ -31,6 +31,8 @@
 
 #include <QtTest/QtTest>
 
+#include <utility>
+
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <unistd.h>
@@ -56,6 +58,8 @@ private Q_SLOTS:
     void testCommandConstructors();
     void testCommandConstructorsYAML();
     void testCommandRunning();
+    void testCommandTimeout();
+    void testCommandVerbose();
 
     /** @section Test that all the UMask objects work correctly. */
     void testUmask();
@@ -452,6 +456,89 @@ LibCalamaresTests::testCommandRunning()
 
 
     tempRoot.setAutoRemove( true );
+}
+
+void
+LibCalamaresTests::testCommandTimeout()
+{
+
+    QTemporaryDir tempRoot( QDir::tempPath() + QStringLiteral( "/test-job-XXXXXX" ) );
+    tempRoot.setAutoRemove( false );
+
+    const QString testExecutable = tempRoot.filePath( "example.sh" );
+
+    cDebug() << "Creating example executable" << testExecutable;
+
+    {
+        QFile f( testExecutable );
+        QVERIFY( f.open( QIODevice::WriteOnly ) );
+        f.write( "#! /bin/sh\necho early\nsleep 3\necho late" );
+        f.close();
+        Calamares::Permissions::apply( testExecutable, 0755 );
+    }
+
+    {
+        Calamares::CommandList l( false );  // no chroot
+        Calamares::CommandLine c( testExecutable, {}, std::chrono::seconds( 2 ) );
+        l.push_back( c );
+
+        const auto r = l.run();
+        QVERIFY( !bool( r ) );  // Because it times out after 2 seconds
+        // The **command** timed out, but the job result is a generic "error"
+        // QCOMPARE( r.errorCode(), static_cast<std::underlying_type_t<Calamares::ProcessResult::Code>>(Calamares::ProcessResult::Code::TimedOut));
+        QCOMPARE( r.errorCode(), -1 );
+    }
+}
+
+void
+LibCalamaresTests::testCommandVerbose()
+{
+    Logger::setupLogLevel( Logger::LOGDEBUG );
+
+    QTemporaryDir tempRoot( QDir::tempPath() + QStringLiteral( "/test-job-XXXXXX" ) );
+    tempRoot.setAutoRemove( false );
+
+    const QString testExecutable = tempRoot.filePath( "example.sh" );
+
+    cDebug() << "Creating example executable" << testExecutable;
+    {
+        QFile f( testExecutable );
+        QVERIFY( f.open( QIODevice::WriteOnly ) );
+        f.write( "#! /bin/sh\necho one\necho two\necho error 1>&2\nsleep 1; echo three\n" );
+        f.close();
+        Calamares::Permissions::apply( testExecutable, 0755 );
+    }
+
+    // Note that, because of the blocking way run() works,
+    // in this single-threaded test with no event loop,
+    // there's nothing for the verbose version to connect
+    // to for sending output.
+
+    cDebug() << "Running command non-verbose";
+    {
+        Calamares::CommandList l( false );  // no chroot
+        Calamares::CommandLine c( testExecutable, {}, std::chrono::seconds( 2 ) );
+        c.updateVerbose( false );
+        QVERIFY( !c.isVerbose() );
+
+        l.push_back( c );
+
+        const auto r = l.run();
+        QVERIFY( bool( r ) );
+    }
+
+    cDebug() << "Running command verbosely";
+    {
+        Calamares::CommandList l( false );  // no chroot
+        Calamares::CommandLine c( testExecutable, {}, std::chrono::seconds( 2 ) );
+        c.updateVerbose( true );
+        QVERIFY( c.isVerbose() );
+
+        l.push_back( c );
+
+        const auto r = l.run();
+        QVERIFY( bool( r ) );
+    }
 }
 
 void
