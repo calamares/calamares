@@ -501,7 +501,6 @@ LibCalamaresTests::testCommandVerbose()
     const QString testExecutable = tempRoot.filePath( "example.sh" );
 
     cDebug() << "Creating example executable" << testExecutable;
-
     {
         QFile f( testExecutable );
         QVERIFY( f.open( QIODevice::WriteOnly ) );
@@ -509,6 +508,11 @@ LibCalamaresTests::testCommandVerbose()
         f.close();
         Calamares::Permissions::apply( testExecutable, 0755 );
     }
+
+    // Note that, because of the blocking way run() works,
+    // in this single-threaded test with no event loop,
+    // there's nothing for the verbose version to connect
+    // to for sending output.
 
     cDebug() << "Running command non-verbose";
     {
@@ -524,7 +528,6 @@ LibCalamaresTests::testCommandVerbose()
     }
 
     cDebug() << "Running command verbosely";
-
     {
         Calamares::CommandList l( false );  // no chroot
         Calamares::CommandLine c( testExecutable, {}, std::chrono::seconds( 2 ) );
