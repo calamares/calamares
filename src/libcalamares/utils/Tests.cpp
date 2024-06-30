@@ -31,6 +31,8 @@
 
 #include <QtTest/QtTest>
 
+#include <utility>
+
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <unistd.h>
@@ -56,6 +58,7 @@ private Q_SLOTS:
     void testCommandConstructors();
     void testCommandConstructorsYAML();
     void testCommandRunning();
+    void testCommandTimeout();
     void testCommandVerbose();
 
     /** @section Test that all the UMask objects work correctly. */
@@ -453,6 +456,38 @@ LibCalamaresTests::testCommandRunning()
 
 
     tempRoot.setAutoRemove( true );
+}
+
+void
+LibCalamaresTests::testCommandTimeout()
+{
+
+    QTemporaryDir tempRoot( QDir::tempPath() + QStringLiteral( "/test-job-XXXXXX" ) );
+    tempRoot.setAutoRemove( false );
+
+    const QString testExecutable = tempRoot.filePath( "example.sh" );
+
+    cDebug() << "Creating example executable" << testExecutable;
+
+    {
+        QFile f( testExecutable );
+        QVERIFY( f.open( QIODevice::WriteOnly ) );
+        f.write( "#! /bin/sh\necho early\nsleep 3\necho late" );
+        f.close();
+        Calamares::Permissions::apply( testExecutable, 0755 );
+    }
+
+    {
+        Calamares::CommandList l( false );  // no chroot
+        Calamares::CommandLine c( testExecutable, {}, std::chrono::seconds( 2 ) );
+        l.push_back( c );
+
+        const auto r = l.run();
+        QVERIFY( !bool( r ) );  // Because it times out after 2 seconds
+        // The **command** timed out, but the job result is a generic "error"
+        // QCOMPARE( r.errorCode(), static_cast<std::underlying_type_t<Calamares::ProcessResult::Code>>(Calamares::ProcessResult::Code::TimedOut));
+        QCOMPARE( r.errorCode(), -1 );
+    }
 }
 
 void
