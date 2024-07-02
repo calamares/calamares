@@ -115,7 +115,10 @@ PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
         m_ui->label_3->hide();
     }
 
-    CALAMARES_RETRANSLATE( m_ui->retranslateUi( this ); );
+    CALAMARES_RETRANSLATE(
+        m_ui->retranslateUi( this );
+        m_core->bootLoaderModel()->update(); // Need to re-translate entries in the combo-box
+    );
 }
 
 PartitionPage::~PartitionPage() {}
