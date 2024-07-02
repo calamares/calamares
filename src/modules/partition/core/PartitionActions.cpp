@@ -107,6 +107,8 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
     {
         partType = isEfi ? PartitionTable::gpt : PartitionTable::msdos;
     }
+    // last usable sector possibly allowing for secondary GPT using 66 sectors (256 entries)
+    qint64 lastSectorForRoot = dev->totalLogical() - (partType == PartitionTable::gpt ? 67 : 1);
 
     // Looking up the defaultFsType (which should name a filesystem type)
     // will log an error and set the type to Unknown if there's something wrong.
@@ -163,7 +165,6 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
         shouldCreateSwap = availableSpaceB > requiredSpaceB;
     }
 
-    qint64 lastSectorForRoot = dev->totalLogical() - 1;  //last sector of the device
     if ( shouldCreateSwap )
     {
         lastSectorForRoot -= suggestedSwapSizeB / sectorSize + 1;
