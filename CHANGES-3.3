@@ -17,6 +17,7 @@ This release contains contributions from (alphabetically by first name):
  - Adriaan de Groot
  - Evan James
  - Lorenzo Faletra
+ - Tj
  - Victor Fuentes
 
 ## Core ##
@@ -29,6 +30,9 @@ This release contains contributions from (alphabetically by first name):
  - *partition* had a bug where manual partitioning on MBR systems might
    skip the installation of a bootloader, even though the visible bootloader
    combo-box showed that it would be installed. (see #2318)
+ - *partition* could calculate an incorrect partition size when installing to
+   very specific partition sizes, and now leaves a few more sectors for secondary
+   GPT tables. (thanks Tj)
  - *shellprocess* now supports a *verbose* key (globally and per-command) which logs
    command output line-by-line.
  - *users* module defaults password salt to *yescrypt*. (thanks Lorenzo)
