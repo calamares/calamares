@@ -531,6 +531,8 @@ PartitionPage::editExistingPartition( Device* device, Partition* partition )
         dlg->applyChanges( m_core );
     }
     delete dlg;
+
+    updateBootLoaderInstallPath();
 }
 
 void
