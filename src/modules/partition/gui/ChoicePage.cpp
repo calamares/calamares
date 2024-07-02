@@ -360,10 +360,7 @@ ChoicePage::setupChoices()
 Device*
 ChoicePage::selectedDevice()
 {
-    Device* currentDevice = nullptr;
-    currentDevice
-        = m_core->deviceModel()->deviceForIndex( m_core->deviceModel()->index( m_drivesCombo->currentIndex() ) );
-
+    Device* const currentDevice = m_core->deviceModel()->deviceForIndex( m_core->deviceModel()->index( m_drivesCombo->currentIndex() ) );
     return currentDevice;
 }
 
