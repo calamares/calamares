@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-12 21:37+0100\n"
+"POT-Creation-Date: 2024-05-01 00:08+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Demiray Muhterem <mdemiray@msn.com>, 2024\n"
 "Language-Team: Turkish (Turkey) (https://app.transifex.com/calamares/teams/20061/tr_TR/)\n"
@@ -27,15 +27,15 @@ msgstr ""
 msgid "Install bootloader."
 msgstr "Önyükleyici kuruluyor."
 
-#: src/modules/bootloader/main.py:666
+#: src/modules/bootloader/main.py:671
 msgid "Failed to install grub, no partitions defined in global storage"
 msgstr "Grub kurulamadı, global depolamada tanımlı bölüm yok"
 
-#: src/modules/bootloader/main.py:926
+#: src/modules/bootloader/main.py:931
 msgid "Bootloader installation error"
 msgstr "Önyükleyici kurulum hatası"
 
-#: src/modules/bootloader/main.py:927
+#: src/modules/bootloader/main.py:932
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
@@ -75,11 +75,11 @@ msgstr "SLIM yapılandırma dosyası yazılamıyor"
 msgid "SLIM config file {!s} does not exist"
 msgstr "SLIM yapılandırma dosyası {!s} yok"
 
-#: src/modules/displaymanager/main.py:938
+#: src/modules/displaymanager/main.py:940
 msgid "No display managers selected for the displaymanager module."
 msgstr "displaymanager modülü için seçili görüntü yöneticisi yok"
 
-#: src/modules/displaymanager/main.py:939
+#: src/modules/displaymanager/main.py:941
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
@@ -87,7 +87,7 @@ msgstr ""
 "displaymanagers listesi hem globalstorage hem de displaymanager.conf'ta boş "
 "veya tanımsız."
 
-#: src/modules/displaymanager/main.py:1026
+#: src/modules/displaymanager/main.py:1028
 msgid "Display manager configuration was incomplete"
 msgstr "Görüntü yöneticisi yapılandırma işi tamamlanamadı"
 
@@ -117,29 +117,29 @@ msgstr "Dummy python step {}"
 msgid "Writing fstab."
 msgstr "Fstab dosyasına yazılıyor."
 
-#: src/modules/fstab/main.py:378 src/modules/fstab/main.py:384
-#: src/modules/fstab/main.py:412 src/modules/initcpiocfg/main.py:256
-#: src/modules/initcpiocfg/main.py:260 src/modules/initramfscfg/main.py:85
+#: src/modules/fstab/main.py:382 src/modules/fstab/main.py:388
+#: src/modules/fstab/main.py:416 src/modules/initcpiocfg/main.py:257
+#: src/modules/initcpiocfg/main.py:261 src/modules/initramfscfg/main.py:85
 #: src/modules/initramfscfg/main.py:89 src/modules/localecfg/main.py:140
-#: src/modules/mount/main.py:334 src/modules/networkcfg/main.py:106
+#: src/modules/mount/main.py:344 src/modules/networkcfg/main.py:106
 #: src/modules/openrcdmcryptcfg/main.py:72
 #: src/modules/openrcdmcryptcfg/main.py:76 src/modules/rawfs/main.py:164
 msgid "Configuration Error"
 msgstr "Yapılandırma Hatası"
 
-#: src/modules/fstab/main.py:379 src/modules/initramfscfg/main.py:86
-#: src/modules/mount/main.py:335 src/modules/openrcdmcryptcfg/main.py:73
+#: src/modules/fstab/main.py:383 src/modules/initramfscfg/main.py:86
+#: src/modules/mount/main.py:345 src/modules/openrcdmcryptcfg/main.py:73
 #: src/modules/rawfs/main.py:165
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "<pre>{!s}</pre> kullanması için hiçbir bölüm tanımlanmadı."
 
-#: src/modules/fstab/main.py:385 src/modules/initramfscfg/main.py:90
+#: src/modules/fstab/main.py:389 src/modules/initramfscfg/main.py:90
 #: src/modules/localecfg/main.py:141 src/modules/networkcfg/main.py:107
 #: src/modules/openrcdmcryptcfg/main.py:77
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
 msgstr "<pre>{!s}</pre> kullanması için kök bağlama noktası verilmedi."
 
-#: src/modules/fstab/main.py:413
+#: src/modules/fstab/main.py:417
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr ""
 "<pre>{!s}</pre>'nin kullanması için <pre>{!s}</pre> yapılandırması "
@@ -157,11 +157,11 @@ msgstr "Donanım saati ayarlanıyor."
 msgid "Configuring mkinitcpio."
 msgstr "Mkinitcpio yapılandırılıyor."
 
-#: src/modules/initcpiocfg/main.py:257
+#: src/modules/initcpiocfg/main.py:258
 msgid "No partitions are defined for <pre>initcpiocfg</pre>."
 msgstr "<pre>initcpiocfg</pre> için herhangi bir bölüm tanımlanmadı."
 
-#: src/modules/initcpiocfg/main.py:261
+#: src/modules/initcpiocfg/main.py:262
 msgid "No root mount point for <pre>initcpiocfg</pre>."
 msgstr "<pre>initcpiocfg</pre> için kök bağlama noktası yok."
 
@@ -187,25 +187,25 @@ msgstr "Çıkış kodu {} idi"
 
 #: src/modules/mount/main.py:43
 msgid "Mounting partitions."
-msgstr "Bölüntüler bağlanıyor."
+msgstr "Bölümler bağlanıyor."
 
-#: src/modules/mount/main.py:164 src/modules/mount/main.py:200
+#: src/modules/mount/main.py:171 src/modules/mount/main.py:207
 msgid "Internal error mounting zfs datasets"
 msgstr "Dahili bağlama hatası zfs veri kümeleri"
 
-#: src/modules/mount/main.py:176
+#: src/modules/mount/main.py:183
 msgid "Failed to import zpool"
 msgstr "zpool içe aktarılamadı"
 
-#: src/modules/mount/main.py:192
+#: src/modules/mount/main.py:199
 msgid "Failed to unlock zpool"
 msgstr "zpool kilidi açılamadı"
 
-#: src/modules/mount/main.py:209 src/modules/mount/main.py:214
+#: src/modules/mount/main.py:216 src/modules/mount/main.py:221
 msgid "Failed to set zfs mountpoint"
 msgstr "zfs bağlama noktası ayarlanamadı"
 
-#: src/modules/mount/main.py:370
+#: src/modules/mount/main.py:383
 msgid "zfs mounting error"
 msgstr "zfs bağlama hatası"
 
@@ -241,12 +241,12 @@ msgid_plural "Removing %(num)d packages."
 msgstr[0] "1 paket kaldırılıyor."
 msgstr[1] "%(num)d paket kaldırılıyor."
 
-#: src/modules/packages/main.py:740 src/modules/packages/main.py:752
-#: src/modules/packages/main.py:780
+#: src/modules/packages/main.py:769 src/modules/packages/main.py:781
+#: src/modules/packages/main.py:809
 msgid "Package Manager error"
 msgstr "Paket Yöneticisi hatası"
 
-#: src/modules/packages/main.py:741
+#: src/modules/packages/main.py:770
 msgid ""
 "The package manager could not prepare updates. The command <pre>{!s}</pre> "
 "returned error code {!s}."
@@ -254,7 +254,7 @@ msgstr ""
 "Paket yöneticisi güncellemeleri hazırlayamadı. <pre>{!s}</pre> komutu {!s} "
 "hata kodunu döndürdü."
 
-#: src/modules/packages/main.py:753
+#: src/modules/packages/main.py:782
 msgid ""
 "The package manager could not update the system. The command <pre>{!s}</pre>"
 " returned error code {!s}."
@@ -262,7 +262,7 @@ msgstr ""
 "Paket yöneticisi sistemi güncelleyemedi. <pre>{!s}</pre> komutu {!s} hata "
 "kodunu döndürdü."
 
-#: src/modules/packages/main.py:781
+#: src/modules/packages/main.py:810
 msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."
@@ -371,7 +371,7 @@ msgstr "\"{}\" kurulum medyası aktarılamadı"
 
 #: src/modules/unpackfs/main.py:430
 msgid "No mount point for root partition"
-msgstr "kök bölüntüsü için bağlama noktası yok"
+msgstr "kök bölüm için bağlama noktası yok"
 
 #: src/modules/unpackfs/main.py:431
 msgid "globalstorage does not contain a \"rootMountPoint\" key."
@@ -379,7 +379,7 @@ msgstr "globalstorage bir \"rootMountPoint\" anahtarı içermiyor."
 
 #: src/modules/unpackfs/main.py:434
 msgid "Bad mount point for root partition"
-msgstr "Kök bölüntüsü için hatalı bağlama noktası"
+msgstr "Kök bölüm için hatalı bağlama noktası"
 
 #: src/modules/unpackfs/main.py:435
 msgid "rootMountPoint is \"{}\", which does not exist."

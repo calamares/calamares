@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-12 21:37+0100\n"
+"POT-Creation-Date: 2024-05-01 00:08+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: David D, 2023\n"
 "Language-Team: French (https://app.transifex.com/calamares/teams/20061/fr/)\n"
@@ -34,17 +34,17 @@ msgstr ""
 msgid "Install bootloader."
 msgstr "Installation du bootloader."
 
-#: src/modules/bootloader/main.py:666
+#: src/modules/bootloader/main.py:671
 msgid "Failed to install grub, no partitions defined in global storage"
 msgstr ""
 "Échec de l'installation de grub, aucune partition définie dans le stockage "
 "global"
 
-#: src/modules/bootloader/main.py:926
+#: src/modules/bootloader/main.py:931
 msgid "Bootloader installation error"
 msgstr "Erreur d'installation du chargeur de démarrage"
 
-#: src/modules/bootloader/main.py:927
+#: src/modules/bootloader/main.py:932
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
@@ -84,13 +84,13 @@ msgstr "Impossible d'écrire le fichier de configuration SLIM"
 msgid "SLIM config file {!s} does not exist"
 msgstr "Le fichier de configuration SLIM {!S} n'existe pas"
 
-#: src/modules/displaymanager/main.py:938
+#: src/modules/displaymanager/main.py:940
 msgid "No display managers selected for the displaymanager module."
 msgstr ""
 "Aucun gestionnaire d'affichage n'a été sélectionné pour le module de "
 "gestionnaire d'affichage"
 
-#: src/modules/displaymanager/main.py:939
+#: src/modules/displaymanager/main.py:941
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
@@ -98,7 +98,7 @@ msgstr ""
 "La liste des gestionnaires d'affichage est vide ou indéfinie à la fois dans "
 "globalstorage et displaymanager.conf."
 
-#: src/modules/displaymanager/main.py:1026
+#: src/modules/displaymanager/main.py:1028
 msgid "Display manager configuration was incomplete"
 msgstr "La configuration du gestionnaire d'affichage était incomplète"
 
@@ -130,24 +130,24 @@ msgstr "Étape factice de python {}"
 msgid "Writing fstab."
 msgstr "Écriture du fstab."
 
-#: src/modules/fstab/main.py:378 src/modules/fstab/main.py:384
-#: src/modules/fstab/main.py:412 src/modules/initcpiocfg/main.py:256
-#: src/modules/initcpiocfg/main.py:260 src/modules/initramfscfg/main.py:85
+#: src/modules/fstab/main.py:382 src/modules/fstab/main.py:388
+#: src/modules/fstab/main.py:416 src/modules/initcpiocfg/main.py:257
+#: src/modules/initcpiocfg/main.py:261 src/modules/initramfscfg/main.py:85
 #: src/modules/initramfscfg/main.py:89 src/modules/localecfg/main.py:140
-#: src/modules/mount/main.py:334 src/modules/networkcfg/main.py:106
+#: src/modules/mount/main.py:344 src/modules/networkcfg/main.py:106
 #: src/modules/openrcdmcryptcfg/main.py:72
 #: src/modules/openrcdmcryptcfg/main.py:76 src/modules/rawfs/main.py:164
 msgid "Configuration Error"
 msgstr "Erreur de configuration"
 
-#: src/modules/fstab/main.py:379 src/modules/initramfscfg/main.py:86
-#: src/modules/mount/main.py:335 src/modules/openrcdmcryptcfg/main.py:73
+#: src/modules/fstab/main.py:383 src/modules/initramfscfg/main.py:86
+#: src/modules/mount/main.py:345 src/modules/openrcdmcryptcfg/main.py:73
 #: src/modules/rawfs/main.py:165
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr ""
 "Aucune partition n'est définie pour être utilisée par <pre>{!s}</pre>."
 
-#: src/modules/fstab/main.py:385 src/modules/initramfscfg/main.py:90
+#: src/modules/fstab/main.py:389 src/modules/initramfscfg/main.py:90
 #: src/modules/localecfg/main.py:141 src/modules/networkcfg/main.py:107
 #: src/modules/openrcdmcryptcfg/main.py:77
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
@@ -155,7 +155,7 @@ msgstr ""
 "Aucun point de montage racine n'a été donné pour être utilisé par "
 "<pre>{!s}</pre>."
 
-#: src/modules/fstab/main.py:413
+#: src/modules/fstab/main.py:417
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr ""
 "Aucune configuration <pre>{!s}</pre>n'est donnée pour <pre>{!s}</pre> à "
@@ -173,13 +173,13 @@ msgstr "Configuration de l'horloge matériel."
 msgid "Configuring mkinitcpio."
 msgstr "Configuration de mkinitcpio."
 
-#: src/modules/initcpiocfg/main.py:257
+#: src/modules/initcpiocfg/main.py:258
 msgid "No partitions are defined for <pre>initcpiocfg</pre>."
 msgstr ""
 "Aucune partition n'est définie pour être utilisée pour "
 "<pre>initcpiocfg</pre>."
 
-#: src/modules/initcpiocfg/main.py:261
+#: src/modules/initcpiocfg/main.py:262
 msgid "No root mount point for <pre>initcpiocfg</pre>."
 msgstr "Aucun point de montage racine pour <pre>initcpiocfg</pre>."
 
@@ -207,23 +207,23 @@ msgstr "Le code de sortie était {}"
 msgid "Mounting partitions."
 msgstr "Montage des partitions."
 
-#: src/modules/mount/main.py:164 src/modules/mount/main.py:200
+#: src/modules/mount/main.py:171 src/modules/mount/main.py:207
 msgid "Internal error mounting zfs datasets"
 msgstr "Erreur interne lors du montage des jeux de données zfs"
 
-#: src/modules/mount/main.py:176
+#: src/modules/mount/main.py:183
 msgid "Failed to import zpool"
 msgstr "Échec de l'importation de zpool"
 
-#: src/modules/mount/main.py:192
+#: src/modules/mount/main.py:199
 msgid "Failed to unlock zpool"
 msgstr "Impossible de déverrouiller zpool"
 
-#: src/modules/mount/main.py:209 src/modules/mount/main.py:214
+#: src/modules/mount/main.py:216 src/modules/mount/main.py:221
 msgid "Failed to set zfs mountpoint"
 msgstr "Impossible de définir le point de montage zfs"
 
-#: src/modules/mount/main.py:370
+#: src/modules/mount/main.py:383
 msgid "zfs mounting error"
 msgstr "erreur de montage zfs"
 
@@ -261,12 +261,12 @@ msgstr[0] "Suppression d'un paquet."
 msgstr[1] "Suppression de %(num)d paquets."
 msgstr[2] "Suppression de %(num)d paquets."
 
-#: src/modules/packages/main.py:740 src/modules/packages/main.py:752
-#: src/modules/packages/main.py:780
+#: src/modules/packages/main.py:769 src/modules/packages/main.py:781
+#: src/modules/packages/main.py:809
 msgid "Package Manager error"
 msgstr "Erreur du gestionnaire de paquets"
 
-#: src/modules/packages/main.py:741
+#: src/modules/packages/main.py:770
 msgid ""
 "The package manager could not prepare updates. The command <pre>{!s}</pre> "
 "returned error code {!s}."
@@ -274,7 +274,7 @@ msgstr ""
 "Le gestionnaire de paquets n'a pas pu préparer les mises à jour. La commande"
 " <pre>{!s}</pre> a renvoyé le code d'erreur {!s}."
 
-#: src/modules/packages/main.py:753
+#: src/modules/packages/main.py:782
 msgid ""
 "The package manager could not update the system. The command <pre>{!s}</pre>"
 " returned error code {!s}."
@@ -282,7 +282,7 @@ msgstr ""
 "Le gestionnaire de paquets n'a pas pu mettre à jour le système. La commande "
 "<pre>{!s}</pre> a renvoyé le code d'erreur {!s}."
 
-#: src/modules/packages/main.py:781
+#: src/modules/packages/main.py:810
 msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."

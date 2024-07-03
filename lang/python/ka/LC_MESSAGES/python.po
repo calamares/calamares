@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-12 21:37+0100\n"
+"POT-Creation-Date: 2024-05-01 00:08+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>, 2023\n"
 "Language-Team: Georgian (https://app.transifex.com/calamares/teams/20061/ka/)\n"
@@ -25,15 +25,15 @@ msgstr ""
 msgid "Install bootloader."
 msgstr "ჩამტვირთავის დაყენება."
 
-#: src/modules/bootloader/main.py:666
+#: src/modules/bootloader/main.py:671
 msgid "Failed to install grub, no partitions defined in global storage"
 msgstr "GRUB-ის დაყენების შეცდომა. გლობალურ საცავში დანაყოფები აღწერილი არაა"
 
-#: src/modules/bootloader/main.py:926
+#: src/modules/bootloader/main.py:931
 msgid "Bootloader installation error"
 msgstr "ჩამტვირთავის დაყენების შეცდომა"
 
-#: src/modules/bootloader/main.py:927
+#: src/modules/bootloader/main.py:932
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
@@ -73,11 +73,11 @@ msgstr "SLIM-ის კონფიგურაციის ფაილის �
 msgid "SLIM config file {!s} does not exist"
 msgstr "SLIM-ის კონფიგურაციის ფაილი არ არსებობს"
 
-#: src/modules/displaymanager/main.py:938
+#: src/modules/displaymanager/main.py:940
 msgid "No display managers selected for the displaymanager module."
 msgstr "მოდულისთვის 'displaymanager' ეკრანის მმართველი არჩეული არაა."
 
-#: src/modules/displaymanager/main.py:939
+#: src/modules/displaymanager/main.py:941
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
@@ -85,7 +85,7 @@ msgstr ""
 "ეკრანის მმართველების სია ცარიელია ან აღუწერელია, ორივე, globalstorage და "
 "displaymanager.conf-ში."
 
-#: src/modules/displaymanager/main.py:1026
+#: src/modules/displaymanager/main.py:1028
 msgid "Display manager configuration was incomplete"
 msgstr "ეკრანის მმართველის მორგება დასრულებული არაა"
 
@@ -115,23 +115,23 @@ msgstr "შტერი Python ნაბჯი {}"
 msgid "Writing fstab."
 msgstr "'fstab'-ის ჩაწერა."
 
-#: src/modules/fstab/main.py:378 src/modules/fstab/main.py:384
-#: src/modules/fstab/main.py:412 src/modules/initcpiocfg/main.py:256
-#: src/modules/initcpiocfg/main.py:260 src/modules/initramfscfg/main.py:85
+#: src/modules/fstab/main.py:382 src/modules/fstab/main.py:388
+#: src/modules/fstab/main.py:416 src/modules/initcpiocfg/main.py:257
+#: src/modules/initcpiocfg/main.py:261 src/modules/initramfscfg/main.py:85
 #: src/modules/initramfscfg/main.py:89 src/modules/localecfg/main.py:140
-#: src/modules/mount/main.py:334 src/modules/networkcfg/main.py:106
+#: src/modules/mount/main.py:344 src/modules/networkcfg/main.py:106
 #: src/modules/openrcdmcryptcfg/main.py:72
 #: src/modules/openrcdmcryptcfg/main.py:76 src/modules/rawfs/main.py:164
 msgid "Configuration Error"
 msgstr "კონფიგურაციის შეცდომა"
 
-#: src/modules/fstab/main.py:379 src/modules/initramfscfg/main.py:86
-#: src/modules/mount/main.py:335 src/modules/openrcdmcryptcfg/main.py:73
+#: src/modules/fstab/main.py:383 src/modules/initramfscfg/main.py:86
+#: src/modules/mount/main.py:345 src/modules/openrcdmcryptcfg/main.py:73
 #: src/modules/rawfs/main.py:165
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "<pre>{!s}</pre>-სთვის გამოსაყენებელი დანაყოფები აღწერილი არაა."
 
-#: src/modules/fstab/main.py:385 src/modules/initramfscfg/main.py:90
+#: src/modules/fstab/main.py:389 src/modules/initramfscfg/main.py:90
 #: src/modules/localecfg/main.py:141 src/modules/networkcfg/main.py:107
 #: src/modules/openrcdmcryptcfg/main.py:77
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
@@ -139,7 +139,7 @@ msgstr ""
 "<pre>{!s}</pre>-სთვის ძირითადი საქაღალდის მიმაგრების წერტილი მითითებული "
 "არაა."
 
-#: src/modules/fstab/main.py:413
+#: src/modules/fstab/main.py:417
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr "<pre>{!s}</pre> კონფიგურაცია <pre>{!s}</pre>-სთვის მითითებული არაა."
 
@@ -155,11 +155,11 @@ msgstr "აპარატურული საათის დაყენე�
 msgid "Configuring mkinitcpio."
 msgstr "Mkinitcpio-ის მორგება."
 
-#: src/modules/initcpiocfg/main.py:257
+#: src/modules/initcpiocfg/main.py:258
 msgid "No partitions are defined for <pre>initcpiocfg</pre>."
 msgstr "<pre>initcpiocfg</pre>-სთვის დანაყოფები აღწერილი არაა."
 
-#: src/modules/initcpiocfg/main.py:261
+#: src/modules/initcpiocfg/main.py:262
 msgid "No root mount point for <pre>initcpiocfg</pre>."
 msgstr ""
 "<pre>initcpiocfg</pre>-სთვის ძირითადი მიმაგრების წერტილი მითითებული არაა."
@@ -188,23 +188,23 @@ msgstr "გამოსვლის კოდია {}"
 msgid "Mounting partitions."
 msgstr "დანაყოფების მიმაგრება."
 
-#: src/modules/mount/main.py:164 src/modules/mount/main.py:200
+#: src/modules/mount/main.py:171 src/modules/mount/main.py:207
 msgid "Internal error mounting zfs datasets"
 msgstr "ZFS მონაცემის სეტების მიმაგრების შიდა შეცდომა"
 
-#: src/modules/mount/main.py:176
+#: src/modules/mount/main.py:183
 msgid "Failed to import zpool"
 msgstr "Zpool- ის შემოტანის შეცდომა"
 
-#: src/modules/mount/main.py:192
+#: src/modules/mount/main.py:199
 msgid "Failed to unlock zpool"
 msgstr "Zpool- ის განბლოკვის შეცდომა"
 
-#: src/modules/mount/main.py:209 src/modules/mount/main.py:214
+#: src/modules/mount/main.py:216 src/modules/mount/main.py:221
 msgid "Failed to set zfs mountpoint"
 msgstr "ZFS-ის მიმაგრების წერტილის დაყენების შეცდომა"
 
-#: src/modules/mount/main.py:370
+#: src/modules/mount/main.py:383
 msgid "zfs mounting error"
 msgstr "zfs-ის მიმაგრების შეცდომა"
 
@@ -240,12 +240,12 @@ msgid_plural "Removing %(num)d packages."
 msgstr[0] "ერთი პაკეტის წაშლა."
 msgstr[1] "%(num)d პაკეტის წაშლა."
 
-#: src/modules/packages/main.py:740 src/modules/packages/main.py:752
-#: src/modules/packages/main.py:780
+#: src/modules/packages/main.py:769 src/modules/packages/main.py:781
+#: src/modules/packages/main.py:809
 msgid "Package Manager error"
 msgstr "პაკეტების მმართველის შეცდომა"
 
-#: src/modules/packages/main.py:741
+#: src/modules/packages/main.py:770
 msgid ""
 "The package manager could not prepare updates. The command <pre>{!s}</pre> "
 "returned error code {!s}."
@@ -253,7 +253,7 @@ msgstr ""
 "პაკეტების მმართველმა განახლებები ვერ მოამზადა. ბრძანებამ <pre>{!s}</pre> "
 "დააბრუნა შეცდომა კოდით {!s}."
 
-#: src/modules/packages/main.py:753
+#: src/modules/packages/main.py:782
 msgid ""
 "The package manager could not update the system. The command <pre>{!s}</pre>"
 " returned error code {!s}."
@@ -261,7 +261,7 @@ msgstr ""
 "პაკეტების მმართველმა სისტემა ვერ განაახლა. ბრძანებამ <pre>{!s}</pre> "
 "დააბრუნა შეცდომა კოდით {!s}."
 
-#: src/modules/packages/main.py:781
+#: src/modules/packages/main.py:810
 msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."

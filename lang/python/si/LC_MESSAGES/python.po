@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-12 21:37+0100\n"
+"POT-Creation-Date: 2024-05-01 00:08+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Sandaruwan Samaraweera, 2022\n"
 "Language-Team: Sinhala (https://app.transifex.com/calamares/teams/20061/si/)\n"
@@ -26,16 +26,16 @@ msgstr ""
 msgid "Install bootloader."
 msgstr "bootloader ස්ථාපනය කරන්න."
 
-#: src/modules/bootloader/main.py:666
+#: src/modules/bootloader/main.py:671
 msgid "Failed to install grub, no partitions defined in global storage"
 msgstr ""
 "Grub ස්ථාපනය කිරීමට අපොහොසත් විය, ගෝලීය ආචයනය තුළ කොටස් අර්ථ දක්වා නොමැත"
 
-#: src/modules/bootloader/main.py:926
+#: src/modules/bootloader/main.py:931
 msgid "Bootloader installation error"
 msgstr "Bootloader ස්ථාපනය කිරීමේ දෝෂයකි"
 
-#: src/modules/bootloader/main.py:927
+#: src/modules/bootloader/main.py:932
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
@@ -75,11 +75,11 @@ msgstr "SLIM වින්‍යාස ගොනුව ලිවිය නොහ�
 msgid "SLIM config file {!s} does not exist"
 msgstr "SLIM වින්‍යාස ගොනුව {!s} නොපවතී"
 
-#: src/modules/displaymanager/main.py:938
+#: src/modules/displaymanager/main.py:940
 msgid "No display managers selected for the displaymanager module."
 msgstr "සංදර්ශක කළමනාකරු මොඩියුලය සඳහා සංදර්ශක කළමනාකරුවන් තෝරාගෙන නොමැත."
 
-#: src/modules/displaymanager/main.py:939
+#: src/modules/displaymanager/main.py:941
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
@@ -87,7 +87,7 @@ msgstr ""
 "ගෝලීය ගබඩාව සහ displaymanager.conf යන දෙකෙහිම සංදර්ශක කළමනාකරු ලැයිස්තුව "
 "හිස් හෝ අර්ථ දක්වා නොමැත."
 
-#: src/modules/displaymanager/main.py:1026
+#: src/modules/displaymanager/main.py:1028
 msgid "Display manager configuration was incomplete"
 msgstr "සංදර්ශක කළමනාකරු වින්‍යාසය අසම්පූර්ණ විය"
 
@@ -117,29 +117,29 @@ msgstr "ව්‍යාජ python පියවර {}"
 msgid "Writing fstab."
 msgstr "fstab ලියමින්."
 
-#: src/modules/fstab/main.py:378 src/modules/fstab/main.py:384
-#: src/modules/fstab/main.py:412 src/modules/initcpiocfg/main.py:256
-#: src/modules/initcpiocfg/main.py:260 src/modules/initramfscfg/main.py:85
+#: src/modules/fstab/main.py:382 src/modules/fstab/main.py:388
+#: src/modules/fstab/main.py:416 src/modules/initcpiocfg/main.py:257
+#: src/modules/initcpiocfg/main.py:261 src/modules/initramfscfg/main.py:85
 #: src/modules/initramfscfg/main.py:89 src/modules/localecfg/main.py:140
-#: src/modules/mount/main.py:334 src/modules/networkcfg/main.py:106
+#: src/modules/mount/main.py:344 src/modules/networkcfg/main.py:106
 #: src/modules/openrcdmcryptcfg/main.py:72
 #: src/modules/openrcdmcryptcfg/main.py:76 src/modules/rawfs/main.py:164
 msgid "Configuration Error"
 msgstr "වින්‍යාස දෝෂය"
 
-#: src/modules/fstab/main.py:379 src/modules/initramfscfg/main.py:86
-#: src/modules/mount/main.py:335 src/modules/openrcdmcryptcfg/main.py:73
+#: src/modules/fstab/main.py:383 src/modules/initramfscfg/main.py:86
+#: src/modules/mount/main.py:345 src/modules/openrcdmcryptcfg/main.py:73
 #: src/modules/rawfs/main.py:165
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "{!s} සඳහා භාවිතා කිරීමට කිසිදු කොටස් නිර්වචනය කර නොමැත."
 
-#: src/modules/fstab/main.py:385 src/modules/initramfscfg/main.py:90
+#: src/modules/fstab/main.py:389 src/modules/initramfscfg/main.py:90
 #: src/modules/localecfg/main.py:141 src/modules/networkcfg/main.py:107
 #: src/modules/openrcdmcryptcfg/main.py:77
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
 msgstr "{!s} සඳහා භාවිතා කිරීමට root mount point ලබා දී නොමැත."
 
-#: src/modules/fstab/main.py:413
+#: src/modules/fstab/main.py:417
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr ""
 "භාවිතා කිරීමට <pre>{!s}</pre> සඳහා <pre>{!s}</pre> වින්‍යාසයක් ලබා දී නොමැත."
@@ -156,11 +156,11 @@ msgstr "දෘඩාංග ඔරලෝසුව සැකසෙමින්."
 msgid "Configuring mkinitcpio."
 msgstr "mkinitcpio වින්‍යාස කරමින්."
 
-#: src/modules/initcpiocfg/main.py:257
+#: src/modules/initcpiocfg/main.py:258
 msgid "No partitions are defined for <pre>initcpiocfg</pre>."
 msgstr ""
 
-#: src/modules/initcpiocfg/main.py:261
+#: src/modules/initcpiocfg/main.py:262
 msgid "No root mount point for <pre>initcpiocfg</pre>."
 msgstr ""
 
@@ -188,23 +188,23 @@ msgstr "පිටවීමේ කේතය වූයේ {}"
 msgid "Mounting partitions."
 msgstr "කොටස් සවි කිරීම."
 
-#: src/modules/mount/main.py:164 src/modules/mount/main.py:200
+#: src/modules/mount/main.py:171 src/modules/mount/main.py:207
 msgid "Internal error mounting zfs datasets"
 msgstr "zfs දත්ත කට්ටල සවිකිරීමේ අභ්‍යන්තර දෝෂයකි"
 
-#: src/modules/mount/main.py:176
+#: src/modules/mount/main.py:183
 msgid "Failed to import zpool"
 msgstr "zpool ආයාත කිරීමට අසමත් විය"
 
-#: src/modules/mount/main.py:192
+#: src/modules/mount/main.py:199
 msgid "Failed to unlock zpool"
 msgstr "zpool අගුලු හැරීමට අසමත් විය"
 
-#: src/modules/mount/main.py:209 src/modules/mount/main.py:214
+#: src/modules/mount/main.py:216 src/modules/mount/main.py:221
 msgid "Failed to set zfs mountpoint"
 msgstr "zfs සවිකිරීමේ ලක්ෂ්‍යය සැකසීමට අසමත් විය"
 
-#: src/modules/mount/main.py:370
+#: src/modules/mount/main.py:383
 msgid "zfs mounting error"
 msgstr "zfs සවිකිරීමේ දෝෂයකි"
 
@@ -240,12 +240,12 @@ msgid_plural "Removing %(num)d packages."
 msgstr[0] "ඇසුරුමක් ඉවත් වෙමින්."
 msgstr[1] "ඇසුරුම් %(num)d ක් ඉවත් වෙමින්."
 
-#: src/modules/packages/main.py:740 src/modules/packages/main.py:752
-#: src/modules/packages/main.py:780
+#: src/modules/packages/main.py:769 src/modules/packages/main.py:781
+#: src/modules/packages/main.py:809
 msgid "Package Manager error"
 msgstr "පැකේජ කළමනාකරු දෝෂයකි"
 
-#: src/modules/packages/main.py:741
+#: src/modules/packages/main.py:770
 msgid ""
 "The package manager could not prepare updates. The command <pre>{!s}</pre> "
 "returned error code {!s}."
@@ -253,7 +253,7 @@ msgstr ""
 "පැකේජ කළමනාකරුට යාවත්කාලීන සකස් කිරීමට නොහැකි විය. විධානය <pre>{!s}</pre> "
 "දෝෂ කේතය {!s} ලබා දුන්නේය."
 
-#: src/modules/packages/main.py:753
+#: src/modules/packages/main.py:782
 msgid ""
 "The package manager could not update the system. The command <pre>{!s}</pre>"
 " returned error code {!s}."
@@ -261,7 +261,7 @@ msgstr ""
 "පැකේජ කළමනාකරුට පද්ධතිය යාවත්කාලීන කළ නොහැකි විය. විධානය <pre>{!s}</pre> දෝෂ"
 " කේතය {!s} ලබා දුන්නේය."
 
-#: src/modules/packages/main.py:781
+#: src/modules/packages/main.py:810
 msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."

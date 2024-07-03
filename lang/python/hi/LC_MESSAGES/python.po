@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-12 21:37+0100\n"
+"POT-Creation-Date: 2024-05-01 00:08+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Panwar108 <caspian7pena@gmail.com>, 2022\n"
 "Language-Team: Hindi (https://app.transifex.com/calamares/teams/20061/hi/)\n"
@@ -25,15 +25,15 @@ msgstr ""
 msgid "Install bootloader."
 msgstr "बूट लोडर इंस्टॉल करना।"
 
-#: src/modules/bootloader/main.py:666
+#: src/modules/bootloader/main.py:671
 msgid "Failed to install grub, no partitions defined in global storage"
 msgstr "grub इंस्टॉल करना विफल, सर्वत्र संचयन में कोई विभाजन परिभाषित नहीं है"
 
-#: src/modules/bootloader/main.py:926
+#: src/modules/bootloader/main.py:931
 msgid "Bootloader installation error"
 msgstr "बूट लोडर इंस्टॉल त्रुटि"
 
-#: src/modules/bootloader/main.py:927
+#: src/modules/bootloader/main.py:932
 msgid ""
 "The bootloader could not be installed. The installation command "
 "<pre>{!s}</pre> returned error code {!s}."
@@ -73,11 +73,11 @@ msgstr "SLIM विन्यास फ़ाइल राइट नहीं की
 msgid "SLIM config file {!s} does not exist"
 msgstr "SLIM विन्यास फ़ाइल {!s} मौजूद नहीं है"
 
-#: src/modules/displaymanager/main.py:938
+#: src/modules/displaymanager/main.py:940
 msgid "No display managers selected for the displaymanager module."
 msgstr "चयनित डिस्प्ले प्रबंधक मॉड्यूल हेतु कोई डिस्प्ले प्रबंधक नहीं मिला।"
 
-#: src/modules/displaymanager/main.py:939
+#: src/modules/displaymanager/main.py:941
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
@@ -85,7 +85,7 @@ msgstr ""
 "globalstorage व displaymanager.conf में डिस्प्ले प्रबंधक सूची रिक्त या "
 "अपरिभाषित है।"
 
-#: src/modules/displaymanager/main.py:1026
+#: src/modules/displaymanager/main.py:1028
 msgid "Display manager configuration was incomplete"
 msgstr "डिस्प्ले प्रबंधक विन्यास अधूरा था"
 
@@ -115,30 +115,30 @@ msgstr "डमी पाइथन प्रक्रिया की चरण �
 msgid "Writing fstab."
 msgstr "fstab पर राइट करना।"
 
-#: src/modules/fstab/main.py:378 src/modules/fstab/main.py:384
-#: src/modules/fstab/main.py:412 src/modules/initcpiocfg/main.py:256
-#: src/modules/initcpiocfg/main.py:260 src/modules/initramfscfg/main.py:85
+#: src/modules/fstab/main.py:382 src/modules/fstab/main.py:388
+#: src/modules/fstab/main.py:416 src/modules/initcpiocfg/main.py:257
+#: src/modules/initcpiocfg/main.py:261 src/modules/initramfscfg/main.py:85
 #: src/modules/initramfscfg/main.py:89 src/modules/localecfg/main.py:140
-#: src/modules/mount/main.py:334 src/modules/networkcfg/main.py:106
+#: src/modules/mount/main.py:344 src/modules/networkcfg/main.py:106
 #: src/modules/openrcdmcryptcfg/main.py:72
 #: src/modules/openrcdmcryptcfg/main.py:76 src/modules/rawfs/main.py:164
 msgid "Configuration Error"
 msgstr "विन्यास त्रुटि"
 
-#: src/modules/fstab/main.py:379 src/modules/initramfscfg/main.py:86
-#: src/modules/mount/main.py:335 src/modules/openrcdmcryptcfg/main.py:73
+#: src/modules/fstab/main.py:383 src/modules/initramfscfg/main.py:86
+#: src/modules/mount/main.py:345 src/modules/openrcdmcryptcfg/main.py:73
 #: src/modules/rawfs/main.py:165
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "<pre>{!s}</pre> के उपयोग हेतु कोई विभाजन परिभाषित नहीं हैं।"
 
-#: src/modules/fstab/main.py:385 src/modules/initramfscfg/main.py:90
+#: src/modules/fstab/main.py:389 src/modules/initramfscfg/main.py:90
 #: src/modules/localecfg/main.py:141 src/modules/networkcfg/main.py:107
 #: src/modules/openrcdmcryptcfg/main.py:77
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
 msgstr ""
 "<pre>{!s}</pre> के उपयोग हेतु कोई रुट माउंट पॉइंट प्रदान नहीं किया गया।"
 
-#: src/modules/fstab/main.py:413
+#: src/modules/fstab/main.py:417
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr ""
 "कोई <pre>{!s}</pre> विन्यास प्रदान नहीं किया गया <pre>{!s}</pre> के उपयोग "
@@ -156,11 +156,11 @@ msgstr "हार्डवेयर घड़ी सेट करना।"
 msgid "Configuring mkinitcpio."
 msgstr "mkinitcpio को विन्यस्त करना।"
 
-#: src/modules/initcpiocfg/main.py:257
+#: src/modules/initcpiocfg/main.py:258
 msgid "No partitions are defined for <pre>initcpiocfg</pre>."
 msgstr ""
 
-#: src/modules/initcpiocfg/main.py:261
+#: src/modules/initcpiocfg/main.py:262
 msgid "No root mount point for <pre>initcpiocfg</pre>."
 msgstr ""
 
@@ -188,23 +188,23 @@ msgstr "त्रुटि कोड  {}"
 msgid "Mounting partitions."
 msgstr "विभाजन माउंट करना।"
 
-#: src/modules/mount/main.py:164 src/modules/mount/main.py:200
+#: src/modules/mount/main.py:171 src/modules/mount/main.py:207
 msgid "Internal error mounting zfs datasets"
 msgstr "zfs डेटासेट माउंट करते समय आंतरिक त्रुटि"
 
-#: src/modules/mount/main.py:176
+#: src/modules/mount/main.py:183
 msgid "Failed to import zpool"
 msgstr "zpool आयात विफल"
 
-#: src/modules/mount/main.py:192
+#: src/modules/mount/main.py:199
 msgid "Failed to unlock zpool"
 msgstr "zpool अनलॉक करना विफल"
 
-#: src/modules/mount/main.py:209 src/modules/mount/main.py:214
+#: src/modules/mount/main.py:216 src/modules/mount/main.py:221
 msgid "Failed to set zfs mountpoint"
 msgstr "zfs माउंट पॉइंट निर्धारण विफल"
 
-#: src/modules/mount/main.py:370
+#: src/modules/mount/main.py:383
 msgid "zfs mounting error"
 msgstr "zfs माउंट संबंधी त्रुटि"
 
@@ -240,12 +240,12 @@ msgid_plural "Removing %(num)d packages."
 msgstr[0] "एक पैकेज हटाया जा रहा है।"
 msgstr[1] "%(num)d पैकेज हटाए जा रहे हैं।"
 
-#: src/modules/packages/main.py:740 src/modules/packages/main.py:752
-#: src/modules/packages/main.py:780
+#: src/modules/packages/main.py:769 src/modules/packages/main.py:781
+#: src/modules/packages/main.py:809
 msgid "Package Manager error"
 msgstr "पैकेज प्रबंधक त्रुटि"
 
-#: src/modules/packages/main.py:741
+#: src/modules/packages/main.py:770
 msgid ""
 "The package manager could not prepare updates. The command <pre>{!s}</pre> "
 "returned error code {!s}."
@@ -253,7 +253,7 @@ msgstr ""
 "पैकेज प्रबंधक द्वारा अपडेट तैयार करना विफल। कमांड <pre>{!s}</pre> हेतु "
 "त्रुटि कोड {!s} प्राप्त।"
 
-#: src/modules/packages/main.py:753
+#: src/modules/packages/main.py:782
 msgid ""
 "The package manager could not update the system. The command <pre>{!s}</pre>"
 " returned error code {!s}."
@@ -261,7 +261,7 @@ msgstr ""
 "पैकेज प्रबंधक द्वारा सिस्टम अपडेट करना विफल। कमांड <pre>{!s}</pre> हेतु "
 "त्रुटि कोड {!s} प्राप्त।"
 
-#: src/modules/packages/main.py:781
+#: src/modules/packages/main.py:810
 msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."
