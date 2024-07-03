@@ -36,14 +36,14 @@ void
 PasswordTests::testSalt()
 {
     QString s = SetPasswordJob::make_salt( 8 );
-    QCOMPARE( s.length(), 4 + 8 );  // 8 salt chars, plus $6$, plus trailing $
-    QVERIFY( s.startsWith( "$6$" ) );
+    QCOMPARE( s.length(), 4 + 8 );  // 8 salt chars, plus $y$, plus trailing $
+    QVERIFY( s.startsWith( "$y$" ) );
     QVERIFY( s.endsWith( '$' ) );
     qDebug() << "Obtained salt" << s;
 
     s = SetPasswordJob::make_salt( 11 );
     QCOMPARE( s.length(), 4 + 11 );
-    QVERIFY( s.startsWith( "$6$" ) );
+    QVERIFY( s.startsWith( "$y$" ) );
     QVERIFY( s.endsWith( '$' ) );
     qDebug() << "Obtained salt" << s;
 }
