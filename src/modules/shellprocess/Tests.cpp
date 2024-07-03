@@ -49,7 +49,7 @@ ShellProcessTests::testProcessListSampleConfig()
 
     CommandList cl( Calamares::YAML::mapToVariant( doc ).value( "script" ) );
     QVERIFY( !cl.isEmpty() );
-    QCOMPARE( cl.count(), 3 );
+    QCOMPARE( cl.count(), 4 );
 
     QCOMPARE( cl.at( 0 ).timeout(), Calamares::CommandLine::TimeoutNotSet() );
     QCOMPARE( cl.at( 2 ).timeout(), 3600s );  // slowloris
